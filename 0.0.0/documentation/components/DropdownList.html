@@ -2493,7 +2493,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.index &#x3D; this._items.findIndex(item &#x3D;&gt; item.selected);
 		this.setupFocusObservable();
 		setTimeout(() &#x3D;&gt; {
-			if (!this.getSelected()) { return; }
+			if (this.getSelected() !&#x3D;&#x3D; []) { return; }
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;single&quot;) {
 				this.select.emit({ item: this._items.find(item &#x3D;&gt; item.selected), isUpdate: true });
 			} else {

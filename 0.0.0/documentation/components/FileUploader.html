@@ -185,7 +185,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Public</span>
                                 <a href="#dragOver">dragOver</a>
                             </li>
                             <li>
@@ -1393,7 +1393,7 @@
                         <a name="dragOver"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Protected</span>
+                                <span class="modifier">Public</span>
                             dragOver
                             </b>
                             <a href="#dragOver"><span class="icon ion-ios-link"></span></a>
@@ -1413,7 +1413,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/file-uploader/file-uploader.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/file-uploader/file-uploader.component.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -1548,7 +1548,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/file-uploader/file-uploader.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/file-uploader/file-uploader.component.ts:155</a></div>
                             </td>
                         </tr>
 
@@ -1588,7 +1588,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/file-uploader/file-uploader.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/file-uploader/file-uploader.component.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -1852,13 +1852,13 @@ export class FileUploader {
 
 	@Output() filesChange &#x3D; new EventEmitter&lt;any&gt;();
 
-	protected onTouchedCallback: () &#x3D;&gt; void &#x3D; noop;
-	protected onChangeCallback: (_: Set&lt;FileItem&gt;) &#x3D;&gt; void &#x3D; noop;
-
 	/**
 	 * Controls the state of the drag and drop file container
 	 */
-	protected dragOver &#x3D; false;
+	public dragOver &#x3D; false;
+
+	protected onTouchedCallback: () &#x3D;&gt; void &#x3D; noop;
+	protected onChangeCallback: (_: Set&lt;FileItem&gt;) &#x3D;&gt; void &#x3D; noop;
 
 	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
