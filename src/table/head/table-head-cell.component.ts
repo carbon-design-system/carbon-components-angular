@@ -17,24 +17,29 @@ import { TableHeaderItem } from "./../table-header-item.class";
 	template: `
 		<button
 			class="bx--table-sort"
-			*ngIf="sortable && !skeleton && column.sortable"
+			*ngIf="sortable && !skeleton && this.sort.observers.length > 0 && column.sortable"
 			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
 				'bx--table-sort--active': column.sorted,
 				'bx--table-sort--ascending': column.ascending
 			}"
-			(click)="sort.emit()">
+			(click)="onClick()">
 			<span
 				*ngIf="!column.template"
 				[title]="column.data"
 				tabindex="-1">
-				{{column.data}}
+				<div *ngIf="!skeleton">
+					{{column.data}}
+				</div>
 			</span>
 			<ng-template
-				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
+				*ngIf="!skeleton"
+				[ngTemplateOutlet]="column.template"
+				[ngTemplateOutletContext]="{data: column.data}">
 			</ng-template>
 			<svg
+				*ngIf="!skeleton"
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
 				style="will-change: transform;"
@@ -47,6 +52,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 				<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>
 			</svg>
 			<svg
+				*ngIf="!skeleton"
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
 				style="will-change: transform;"
@@ -155,6 +161,12 @@ export class TableHeadCell implements OnChanges {
 
 	getFilterTitle(): Observable<string> {
 		return this._filterTitle.subject;
+	}
+
+	onClick() {
+		if (!this.skeleton) {
+			this.sort.emit();
+		}
 	}
 
 	protected sortLabelMap(): OperatorFunction<string, string> {

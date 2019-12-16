@@ -1,5 +1,5 @@
 import { TableModel } from "../table-model.class";
-import { Component, Input } from "@angular/core";
+import { Component, Input, ElementRef, AfterViewInit } from "@angular/core";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 
 /**
@@ -42,6 +42,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	template: `
 	<section class="bx--table-toolbar">
 		<div
+			*ngIf="model"
 			class="bx--batch-actions"
 			[ngClass]="{
 				'bx--batch-actions--active': selected

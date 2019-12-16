@@ -27,7 +27,13 @@ import { TableItem } from "../table-item.class";
 			</ibm-label>
 		</ng-template>
 
-		<ibm-table [sortable]="sortable" style="display: block; width: 650px;" [model]="model" (sort)="paginationSort($event)"></ibm-table>
+		<ibm-table
+			style="display: block; width: 650px;"
+			[sortable]="sortable"
+			[skeleton]="skeleton"
+			[model]="model"
+			(sort)="paginationSort($event)">
+		</ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
 })
@@ -35,6 +41,7 @@ export class PaginationTableStory implements OnInit {
 	@Input() model = new TableModel();
 
 	@Input() sortable = true;
+	@Input() skeleton = false;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;

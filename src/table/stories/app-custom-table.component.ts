@@ -46,6 +46,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
+			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
@@ -60,6 +61,7 @@ export class DynamicTableStory implements OnInit {
 	@Input() striped = true;
 	@Input() isDataGrid = false;
 	@Input() sortable = true;
+	@Input() skeleton = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
