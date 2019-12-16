@@ -56,7 +56,7 @@ import { filter } from "rxjs/operators";
 					tabindex="0">
 				</ibm-icon-warning-filled16>
 				<div
-					*ngIf="showCloseButton"
+					*ngIf="showClearButton"
 					role="button"
 					class="bx--list-box__selection"
 					tabindex="0"
@@ -278,7 +278,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 					this.propagateChangeCallback(this.view.getSelected());
 				} else {
 					if (event.item && event.item.selected) {
-						this.showCloseButton = true;
+						this.showClearButton = true;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
@@ -418,9 +418,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public onSearch(searchString) {
 		if (searchString && this.type === "single") {
-			this.showCloseButton = true;
+			this.showClearButton = true;
 		} else {
-			this.showCloseButton = false;
+			this.showClearButton = false;
 		}
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
@@ -483,7 +483,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.clearSelected();
 		this.closeDropdown();
 
-		this.showCloseButton = false;
+		this.showClearButton = false;
 	}
 
 	public isTemplate(value) {
