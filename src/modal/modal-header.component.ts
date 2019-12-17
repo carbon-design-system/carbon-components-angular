@@ -24,6 +24,7 @@ import { ExperimentalService } from "./../experimental.service";
 		<header class="{{theme}} bx--modal-header">
 			<ng-content></ng-content>
 			<button
+				type="button"
 				class="bx--modal-close"
 				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
