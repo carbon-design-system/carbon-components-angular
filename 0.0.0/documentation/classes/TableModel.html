@@ -1340,7 +1340,7 @@ empty <code>TableItem</code> elements.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="606" class="link-to-prism">src/table/table-model.class.ts:606</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="608" class="link-to-prism">src/table/table-model.class.ts:608</a></div>
                             </td>
                         </tr>
 
@@ -2026,7 +2026,7 @@ empty <code>TableItem</code> elements.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="596" class="link-to-prism">src/table/table-model.class.ts:596</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="598" class="link-to-prism">src/table/table-model.class.ts:598</a></div>
                             </td>
                         </tr>
 
@@ -2264,7 +2264,7 @@ right with the world again.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="629" class="link-to-prism">src/table/table-model.class.ts:629</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="631" class="link-to-prism">src/table/table-model.class.ts:631</a></div>
                             </td>
                         </tr>
 
@@ -2339,7 +2339,7 @@ negative numbers start from the bottom.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="640" class="link-to-prism">src/table/table-model.class.ts:640</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="642" class="link-to-prism">src/table/table-model.class.ts:642</a></div>
                             </td>
                         </tr>
 
@@ -2425,7 +2425,7 @@ Used by <code>realRowIndex()</code> and <code>realColumnIndex()</code></p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="618" class="link-to-prism">src/table/table-model.class.ts:618</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="620" class="link-to-prism">src/table/table-model.class.ts:620</a></div>
                             </td>
                         </tr>
 
@@ -3608,8 +3608,10 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set all rows to. Defaults to &#x60;true&#x60;
 	 */
 	selectAll(value &#x3D; true) {
-		for (let i &#x3D; 0; i &lt; this.rowsSelected.length; i++) {
-			this.selectRow(i, value);
+		if (this.data.length &gt; 1) {
+			for (let i &#x3D; 0; i &lt; this.rowsSelected.length; i++) {
+				this.selectRow(i, value);
+			}
 		}
 	}
 
