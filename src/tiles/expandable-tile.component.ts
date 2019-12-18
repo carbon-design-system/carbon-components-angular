@@ -2,9 +2,7 @@ import {
 	Component,
 	Input,
 	ElementRef,
-	AfterContentInit,
-	AfterViewInit,
-	ApplicationRef
+	AfterContentInit
 } from "@angular/core";
 import { I18n, Overridable } from "./../i18n/i18n.module";
 import { merge } from "./../utils/object";
@@ -18,7 +16,6 @@ export interface ExpandableTileTranslations {
 	selector: "ibm-expandable-tile",
 	template: `
 		<div
-			*ngIf="!skeleton"
 			class="bx--tile bx--tile--expandable"
 			[ngClass]="{'bx--tile--is-expanded' : expanded}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
@@ -40,11 +37,9 @@ export interface ExpandableTileTranslations {
 				<ng-content select=".bx--tile-content__below-the-fold"></ng-content>
 			</div>
 		</div>
-
-		<div *ngIf="skeleton" class="bx--tile bx--tile--expandable"></div>
 	`
 })
-export class ExpandableTile implements AfterViewInit {
+export class ExpandableTile implements AfterContentInit {
 	@Input() expanded = false;
 	/**
 	 * Expects an object that contains some or all of:
@@ -62,17 +57,15 @@ export class ExpandableTile implements AfterViewInit {
 		this.collapse.override(valueWithDefaults.COLLAPSE);
 	}
 
-	@Input() skeleton = false;
-
 	tileMaxHeight = 0;
 	element = this.elementRef.nativeElement;
 
 	expand = this.i18n.getOverridable("TILES.EXPAND");
 	collapse = this.i18n.getOverridable("TILES.COLLAPSE");
 
-	constructor(protected i18n: I18n, protected elementRef: ElementRef, protected appRef: ApplicationRef) {}
+	constructor(protected i18n: I18n, protected elementRef: ElementRef) {}
 
-	ngAfterViewInit() {
+	ngAfterContentInit() {
 		this.updateMaxHeight();
 	}
 
@@ -91,6 +84,5 @@ export class ExpandableTile implements AfterViewInit {
 	onClick() {
 		this.expanded = !this.expanded;
 		this.updateMaxHeight();
-		this.appRef.tick();
 	}
 }

@@ -17,10 +17,7 @@ import { takeUntil } from "rxjs/operators";
 
 @Component({
 	selector: "ibm-tile-group",
-	template: `
-		<ng-content *ngIf="!skeleton" select="ibm-selection-tile"></ng-content>
-		<label *ngIf="skeleton" class="bx--tile bx--tile--selectable"></label>
-		`,
+	template: `<ng-content select="ibm-selection-tile"></ng-content>`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -39,8 +36,6 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 	 * Set to `true` to support multiple tile selection
 	 */
 	@Input() multiple = false;
-
-	@Input() skeleton = false;
 
 	/**
 	 * Emits an event when the tile selection changes.

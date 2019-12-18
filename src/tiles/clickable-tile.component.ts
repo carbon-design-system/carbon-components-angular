@@ -22,7 +22,6 @@ import { Router } from "@angular/router";
 	selector: "ibm-clickable-tile",
 	template: `
 	<a
-		*ngIf="!skeleton"
 		ibmLink
 		class="bx--tile bx--tile--clickable"
 		tabindex="0"
@@ -31,10 +30,7 @@ import { Router } from "@angular/router";
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
-	</a>
-
-	<a *ngIf="skeleton" class="bx--tile bx--tile--clickable"></a>
-	`
+	</a>`
 })
 export class ClickableTile {
 	/**
@@ -64,7 +60,6 @@ export class ClickableTile {
 	 */
 	@Input() routeExtras: any;
 
-	@Input() skeleton = false;
 	/**
 	 * Emits the navigation status promise when the link is activated
 	 */
