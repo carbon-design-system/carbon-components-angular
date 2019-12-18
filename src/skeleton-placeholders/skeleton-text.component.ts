@@ -33,6 +33,6 @@ export class SkeletonText implements OnChanges {
 		// 0 to numberOfLines - 1, maps each value to a random width in pixels.
 		this.lineWidths =
 			Array.from(Array(this.numberOfLines).keys())
-				.map((num) => this.getRandomInt(this.minLineWidth, this.maxLineWidth, num));
+				.map(num => this.getRandomInt(this.minLineWidth, this.maxLineWidth, num));
 	}
 }
