@@ -62,7 +62,7 @@ import { filter } from "rxjs/operators";
 					tabindex="0"
 					aria-label="Clear Selection"
 					title="Clear selected item"
-					(click)="closeClearButton($event)">
+					(click)="clearInput($event)">
 					<ibm-icon-close16></ibm-icon-close16>
 				</div>
 				<div
@@ -474,7 +474,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		});
 	}
 
-	closeClearButton(event) {
+	clearInput(event) {
 		event.stopPropagation();
 		event.preventDefault();
 
