@@ -40,10 +40,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
-<<<<<<< HEAD
 			[stickyHeader]="stickyHeader"
-=======
->>>>>>> 28598a2a185bd578990271ea080d2250f321ed33
 			[skeleton]="skeleton"
 			[striped]="striped"
 			(sort)="customSort($event)"
