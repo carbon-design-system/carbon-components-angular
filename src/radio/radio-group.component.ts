@@ -80,12 +80,12 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used to set the `aria-label` attribute on the radio group element.
 	 */
 	// tslint:disable-next-line:no-input-rename
-	@Input("aria-label") ariaLabel = "";
+	@Input() ariaLabel: string;
 	/**
 	 * Used to set the `aria-labelledby` attribute on the radio group element.
 	 */
 	// tslint:disable-next-line:no-input-rename
-	@Input("aria-labelledby") ariaLabelledby: string;
+	@Input() ariaLabelledby: string;
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.

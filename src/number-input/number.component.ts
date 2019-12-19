@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
+import { I18n } from "../i18n/i18n.module";
+
 /**
  * Used to emit changes performed on number input components.
  */
@@ -70,7 +72,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
-						aria-label="increment button"
+						[attr.aria-label]="translations.INCREMENT"
 						(click)="onIncrement()">
 						<ibm-icon-caret-up16></ibm-icon-caret-up16>
 					</button>
@@ -79,7 +81,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
-						aria-label="decrement button"
+						[attr.aria-label]="translations.DECREMENT"
 						(click)="onDecrement()">
 						<ibm-icon-caret-down16></ibm-icon-caret-down16>
 					</button>
@@ -161,6 +163,8 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() translations = this.i18n.get().NUMBER;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -171,7 +175,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Creates an instance of `Number`.
 	 */
-	constructor() {
+	constructor(protected i18n: I18n) {
 		NumberComponent.numberCount++;
 	}
 

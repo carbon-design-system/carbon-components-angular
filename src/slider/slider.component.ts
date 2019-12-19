@@ -68,8 +68,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						#thumb
 						role="slider"
 						id="slider"
-						[attr.aria-label]="ariaLabel"
-						[attr.aria-labelledby]="ariaLabelledby"
 						class="bx--slider__thumb"
 						tabindex="0"
 						(mousedown)="onMouseDown($event)"
@@ -202,15 +200,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		}
 	}
 	/**
-	 * Used to set the `aria-label` attribute on the slider element.
+	 * Used to set the `aria-label` attribute on the input element.
 	 */
 	// tslint:disable-next-line:no-input-rename
-	@Input("aria-label") ariaLabel = "";
-	/**
-	 * Used to set the `aria-labelledby` attribute on the slider element.
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input("aria-labelledby") ariaLabelledby: string;
+	@Input() ariaLabel = "";
 
 	get disabled() {
 		return this._disabled;
@@ -255,6 +248,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.input.classList.add("bx--slider-text-input");
 			this.input.classList.add("bx--text-input");
 			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
+			this.input.setAttribute("aria-label", this.ariaLabel);
 			this.input.value = this.value.toString();
 			// bind events on our optional input
 			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));

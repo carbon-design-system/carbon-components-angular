@@ -8,6 +8,7 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 
 // imports
 import { Number } from "./number.component";
+import { I18nModule } from "../i18n/i18n.module";
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { Number } from "./number.component";
 		CommonModule,
 		CaretUp16Module,
 		CaretDown16Module,
+		I18nModule,
 		WarningFilled16Module
 	]
 })
