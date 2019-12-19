@@ -77,12 +77,12 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input() labelPlacement: "right" | "left" =  "right";
 
 	/**
-	 * Used to set the `aria-label` attribute on the input element.
+	 * Used to set the `aria-label` attribute on the radio group element.
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("aria-label") ariaLabel = "";
 	/**
-	 * Used to set the `aria-labelledby` attribute on the input element.
+	 * Used to set the `aria-labelledby` attribute on the radio group element.
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("aria-labelledby") ariaLabelledby: string;

@@ -66,6 +66,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[ngClass]="{'bx--slider--disabled': disabled}">
 					<div
 						#thumb
+						role="slider"
+						id="slider"
+						[attr.aria-label]="ariaLabel"
+						[attr.aria-labelledby]="ariaLabelledby"
 						class="bx--slider__thumb"
 						tabindex="0"
 						(mousedown)="onMouseDown($event)"
@@ -82,7 +86,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</div>
 					<input
 						#range
-						aria-label="slider"
 						class="bx--slider__input"
 						type="range"
 						[step]="step"
@@ -198,6 +201,16 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			input.disabled = v;
 		}
 	}
+	/**
+	 * Used to set the `aria-label` attribute on the slider element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input("aria-label") ariaLabel = "";
+	/**
+	 * Used to set the `aria-labelledby` attribute on the slider element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input("aria-labelledby") ariaLabelledby: string;
 
 	get disabled() {
 		return this._disabled;
