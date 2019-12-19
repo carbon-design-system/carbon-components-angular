@@ -16,6 +16,6 @@ import { CommonModule } from "@angular/common";
 		CommonModule
 	]
 })
-class SkeletonPlaceholderModule { }
+class SkeletonModule { }
 
-export { SkeletonPlaceholder, SkeletonPlaceholderModule };
+export { SkeletonPlaceholder, SkeletonModule };

@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule, DocumentationModule } from "../";
-import { SkeletonPlaceholderModule } from "../skeleton-placeholders/skeleton-placeholders.module";
+import { SkeletonModule } from "../skeleton/skeleton.module";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";
@@ -27,7 +27,7 @@ storiesOf("Components|Tiles", module)
 			imports: [
 				TilesModule,
 				DocumentationModule,
-				SkeletonPlaceholderModule,
+				SkeletonModule,
 				RouterModule.forRoot([
 					{
 						path: "bar",
@@ -123,10 +123,20 @@ storiesOf("Components|Tiles", module)
 	.add("Skeleton", () => ({
 		template: `
 		<ibm-tile>
-			<ibm-skeleton-placeholder></ibm-skeleton-placeholder>
-			<ibm-skeleton-text [numberOfLines]="3"></ibm-skeleton-text>
+			<div class="skeleton-placeholder">
+				<ibm-skeleton-placeholder></ibm-skeleton-placeholder>
+			</div>
+			<div class="skeleton-text">
+				<ibm-skeleton-text [lines]="3"></ibm-skeleton-text>
+			</div>
 		</ibm-tile>
+		`,
+		styles: [`
+			.skeleton-placeholder {
+				margin-bottom: 10px;
+			}
 		`
+		]
 	}))
 	.add("Documentation", () => ({
 		template: `

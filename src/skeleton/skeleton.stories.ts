@@ -1,11 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number } from "@storybook/addon-knobs/angular";
 
-import { SkeletonPlaceholderModule } from "./skeleton-placeholders.module";
+import { SkeletonModule } from "./skeleton.module";
 
-storiesOf("Components|Skeleton Placeholders", module).addDecorator(
+storiesOf("Components|Skeleton", module).addDecorator(
 	moduleMetadata({
-		imports: [ SkeletonPlaceholderModule ]
+		imports: [ SkeletonModule ]
 	})
 )
 	.addDecorator(withKnobs)
@@ -15,7 +15,7 @@ storiesOf("Components|Skeleton Placeholders", module).addDecorator(
 	.add("Skeleton Text", () => ({
 		template: `
 			<ibm-skeleton-text
-				[numberOfLines]="numberOfLines"
+				[lines]="lines"
 				[minLineWidth]="minLineWidth"
 				[maxLineWidth]="maxLineWidth"
 				>
@@ -24,7 +24,7 @@ storiesOf("Components|Skeleton Placeholders", module).addDecorator(
 		props: {
 			minLineWidth: number("Min width of line (in px)", 100),
 			maxLineWidth: number("Max width of line (in px)", 300),
-			numberOfLines: number("Number of lines", 4)
+			lines: number("Number of lines", 4)
 		}
 	}));
 

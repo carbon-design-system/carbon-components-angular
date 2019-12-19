@@ -11,7 +11,7 @@ import { Component, Input, OnChanges } from "@angular/core";
 	`
 })
 export class SkeletonText implements OnChanges {
-	@Input() numberOfLines = 5;
+	@Input() lines = 5;
 
 	@Input() minLineWidth = 100;
 
@@ -29,10 +29,10 @@ export class SkeletonText implements OnChanges {
 	}
 
 	ngOnChanges() {
-		// Creates an array of length defined by input numberOfLines with content from
-		// 0 to numberOfLines - 1, maps each value to a random width in pixels.
+		// Creates an array of length defined by input lines with content from
+		// 0 to lines - 1, maps each value to a random width in pixels.
 		this.lineWidths =
-			Array.from(Array(this.numberOfLines).keys())
+			Array.from(Array(this.lines).keys())
 				.map(num => this.getRandomInt(this.minLineWidth, this.maxLineWidth, num));
 	}
 }
