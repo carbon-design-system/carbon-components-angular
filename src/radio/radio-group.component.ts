@@ -48,7 +48,8 @@ import { RadioChange } from "./radio-change.class";
 	template: `
 		<div
 			class="bx--radio-button-group"
-			aria-label="radiogroup"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby"
 			[ngClass]="{
 				'bx--radio-button-group--vertical': orientation === 'vertical',
 				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
@@ -74,6 +75,17 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 
 	@Input() labelPlacement: "right" | "left" =  "right";
+
+	/**
+	 * Used to set the `aria-label` attribute on the input element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input("aria-label") ariaLabel = "";
+	/**
+	 * Used to set the `aria-labelledby` attribute on the input element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input("aria-labelledby") ariaLabelledby: string;
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
