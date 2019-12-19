@@ -16,6 +16,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
+import * as languages from "flatpickr/dist/l10n/index";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -101,6 +102,14 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	@Input() dateFormat = "m/d/Y";
 
+	/**
+	 * Language of the flatpickr calendar.
+	 *
+	 * For reference of the possible locales:
+	 * https://github.com/flatpickr/flatpickr/blob/master/src/l10n/index.ts
+	 */
+	@Input() language = "en";
+
 	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
@@ -184,6 +193,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	constructor(protected elementRef: ElementRef) { }
 
 	ngOnChanges(changes: SimpleChanges) {
+		// Global localization of flatpickr instances
+		flatpickr.localize(languages.default[this.language]);
 		if (this.isFlatpickrLoaded()) {
 			let dates = this.flatpickrInstance.selectedDates;
 			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
