@@ -48,6 +48,7 @@ import { RadioChange } from "./radio-change.class";
 	template: `
 		<div
 			class="bx--radio-button-group"
+			aria-label="radiogroup"
 			[ngClass]="{
 				'bx--radio-button-group--vertical': orientation === 'vertical',
 				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'

@@ -70,6 +70,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
+						aria-label="increment button"
 						(click)="onIncrement()">
 						<ibm-icon-caret-up16></ibm-icon-caret-up16>
 					</button>
@@ -78,6 +79,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
+						aria-label="decrement button"
 						(click)="onDecrement()">
 						<ibm-icon-caret-down16></ibm-icon-caret-down16>
 					</button>
