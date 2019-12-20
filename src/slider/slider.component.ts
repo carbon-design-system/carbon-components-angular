@@ -199,11 +199,6 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			input.disabled = v;
 		}
 	}
-	/**
-	 * Used to set the `aria-label` attribute on the input element.
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input() ariaLabel = "";
 
 	get disabled() {
 		return this._disabled;
@@ -248,7 +243,6 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.input.classList.add("bx--slider-text-input");
 			this.input.classList.add("bx--text-input");
 			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
-			this.input.setAttribute("aria-label", this.ariaLabel);
 			this.input.value = this.value.toString();
 			// bind events on our optional input
 			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));

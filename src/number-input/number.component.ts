@@ -9,6 +9,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * Used to emit changes performed on number input components.
@@ -72,7 +73,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
-						[attr.aria-label]="translations.INCREMENT"
+						[attr.aria-label]="getIncrementLabel() | async"
 						(click)="onIncrement()">
 						<ibm-icon-caret-up16></ibm-icon-caret-up16>
 					</button>
@@ -81,7 +82,7 @@ export class NumberChange {
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
-						[attr.aria-label]="translations.DECREMENT"
+						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
 						<ibm-icon-caret-down16></ibm-icon-caret-down16>
 					</button>
@@ -164,13 +165,33 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 
-	@Input() translations = this.i18n.get().NUMBER;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
 
+	@Input()
+	set decrementLabel(value: string | Observable<string>) {
+		this._decrementLabel.override(value);
+	}
+
+	get decrementLabel() {
+		return this._decrementLabel.value;
+	}
+
+	@Input()
+	set incrementLabel(value: string | Observable<string>) {
+		this._incrementLabel.override(value);
+	}
+
+	get incrementLabel() {
+		return this._incrementLabel.value;
+	}
+
 	protected _value = 0;
+
+	protected _decrementLabel = this.i18n.getOverridable("NUMBER.DECREMENT");
+	protected _incrementLabel = this.i18n.getOverridable("NUMBER.INCREMENT");
 
 	/**
 	 * Creates an instance of `Number`.
@@ -237,6 +258,14 @@ export class NumberComponent implements ControlValueAccessor {
 			this.value--;
 			this.emitChangeEvent();
 		}
+	}
+
+	getDecrementLabel(): Observable<string> {
+		return this._decrementLabel.subject;
+	}
+
+	getIncrementLabel(): Observable<string> {
+		return this._incrementLabel.subject;
 	}
 
 	/**
