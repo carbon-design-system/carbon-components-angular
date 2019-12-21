@@ -6,7 +6,8 @@ import {
 	ContentChildren,
 	OnDestroy,
 	AfterContentInit,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 
 import { TabHeader } from "./tab-header.component";
@@ -82,9 +83,9 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Input() ariaLabelledby: string;
 
-	@Input() contentAfter;
+	@Input() contentAfter: TemplateRef<any>;
 
-	@Input() contentBefore;
+	@Input() contentBefore: TemplateRef<any>;
 	/**
 	 * ContentChildren of all the tabHeaders.
 	 */
