@@ -22,7 +22,7 @@ import { Observable } from "rxjs";
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
-				[ariaLabel]="getExpandButtonAriaLabel()"
+				[attr.aria-label]="getExpandButtonAriaLabel()"
 				[headers]="model.getHeaderId('expand')"
 				(expandRow)="expandRow.emit()">
 			</td>

@@ -40,7 +40,7 @@ import { Observable } from "rxjs";
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
-				[ariaLabel]="getCheckboxHeaderLabel()"
+				[attr.aria-label]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
 				(change)="onSelectAllCheckboxChange()"

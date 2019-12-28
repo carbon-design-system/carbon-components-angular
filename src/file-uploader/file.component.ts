@@ -30,7 +30,7 @@ import { FileItem } from "./file-item.interface";
 			</ibm-icon-warning-filled16>
 			<ibm-icon-close16
 				class="bx--file-close"
-				[ariaLabel]="translations.REMOVE_BUTTON">
+				[attr.aria-label]="translations.REMOVE_BUTTON">
 			</ibm-icon-close16>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
@@ -44,7 +44,7 @@ import { FileItem } from "./file-item.interface";
 			tabindex="0">
 			<ibm-icon-checkmark-filled16
 				class="bx--file-complete"
-				[ariaLabel]="translations.CHECKMARK">
+				[attr.aria-label]="translations.CHECKMARK">
 			</ibm-icon-checkmark-filled16>
 		</span>
 	`

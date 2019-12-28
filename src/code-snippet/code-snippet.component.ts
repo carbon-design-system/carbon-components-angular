@@ -58,7 +58,7 @@ export enum SnippetType {
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
+				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
 			</button>
 		</ng-template>
 

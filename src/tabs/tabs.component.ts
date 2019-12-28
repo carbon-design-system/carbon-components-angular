@@ -47,7 +47,7 @@ import { TabHeaders } from "./tab-headers.component";
 				[cacheActive]="cacheActive"
 				[contentBefore]="before"
 				[contentAfter]="after"
-				[ariaLabel]="ariaLabel"
+				[attr.aria-label]="ariaLabel"
 				[ariaLabelledby]="ariaLabelledby">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
