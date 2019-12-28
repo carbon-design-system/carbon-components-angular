@@ -87,6 +87,11 @@ export default {
 	"MODAL": {
 		"CLOSE": "Close modal"
 	},
+	"NUMBER_INPUT": {
+		"ICON_DESCRIPTION": "Choose a number",
+		"INCREMENT_BUTTON": "Increment number",
+		"DECREMENT_BUTTON": "Decrement number"
+	},
 	"NOTIFICATION": {
 		"CLOSE_BUTTON": "Close alert notification"
 	},

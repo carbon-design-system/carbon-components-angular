@@ -2,10 +2,11 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, number, select, text } from "@storybook/addon-knobs/angular";
 
 import { NumberModule, DocumentationModule } from "../";
+import { I18nModule } from "../i18n/i18n.module";
 
 storiesOf("Components|Number", module).addDecorator(
 	moduleMetadata({
-		imports: [NumberModule, DocumentationModule]
+		imports: [NumberModule, DocumentationModule, I18nModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -14,6 +15,9 @@ storiesOf("Components|Number", module).addDecorator(
 			<ibm-number
 				[label]="label"
 				[helperText]="[helperText]"
+				[iconDescription]="iconDescription"
+				[incrementLabel]="incrementLabel"
+				[decrementLabel]="decrementLabel"
 				[theme]="theme"
 				[min]="min"
 				[max]="max"
@@ -25,6 +29,9 @@ storiesOf("Components|Number", module).addDecorator(
 		props: {
 			label: text("label", "Number Input Label"),
 			helperText: text("helper text", "Optional helper text."),
+			iconDescription: text("icon description", "Choose a number"),
+			decrementLabel: text("decrement label", "Decrement number"),
+			incrementLabel: text("increment label", "Increment number"),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
@@ -38,6 +45,9 @@ storiesOf("Components|Number", module).addDecorator(
 			<ibm-number
 				[label]="label"
 				[helperText]="[helperText]"
+				[iconDescription]="iconDescription"
+				[incrementLabel]="incrementLabel"
+				[decrementLabel]="decrementLabel"
 				[theme]="theme"
 				[min]="min"
 				[max]="max"
@@ -52,6 +62,9 @@ storiesOf("Components|Number", module).addDecorator(
 			value: 0,
 			label: text("label", "Number Input Label"),
 			helperText: text("helper text", "Optional helper text."),
+			iconDescription: text("icon description", "Choose a number"),
+			decrementLabel: text("decrement label", "Decrement number"),
+			incrementLabel: text("increment label", "Increment number"),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),

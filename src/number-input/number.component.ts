@@ -8,6 +8,9 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
+import { I18n } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
+
 /**
  * Used to emit changes performed on number input components.
  */
@@ -68,6 +71,8 @@ export class NumberChange {
 					<button
 						class="bx--number__control-btn up-icon"
 						type="button"
+						[title]="getIncrementLabel() | async"
+						[attr.aria-label]="(getIncrementLabel() || getIconDescription()) | async"
 						aria-live="polite"
 						aria-atomic="true"
 						(click)="onIncrement()">
@@ -76,6 +81,8 @@ export class NumberChange {
 					<button
 						class="bx--number__control-btn down-icon"
 						type="button"
+						[title]="getDecrementLabel() | async"
+						[attr.aria-label]="(getDecrementLabel() || getIconDescription()) | async"
 						aria-live="polite"
 						aria-atomic="true"
 						(click)="onDecrement()">
@@ -110,6 +117,16 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 	/**
+	 * Set Number input decrement arrow icon label
+	 */
+	@Input()
+	set decrementLabel(value: string | Observable<string>) {
+		this._decrementLabel.override(value);
+	}
+	get decrementLabel() {
+		return this._decrementLabel.value;
+	}
+	/**
 	 * Set to `true` for a disabled number input.
 	 */
 	@Input() disabled = false;
@@ -117,6 +134,26 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Set to `true` for a loading number component.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Provide a description for up/down icons that can be read by screen readers
+	 */
+	@Input()
+	set iconDescription(value: string | Observable<string>) {
+		this._iconDescription.override(value);
+	}
+	get iconDescription() {
+		return this._iconDescription.value;
+	}
+	/**
+	 * Set Number input increment arrow icon label
+	 */
+	@Input()
+	set incrementLabel(value: string | Observable<string>) {
+		this._incrementLabel.override(value);
+	}
+	get incrementLabel() {
+		return this._incrementLabel.value;
+	}
 	/**
 	 * Set to `true` for an invalid number component.
 	 */
@@ -164,12 +201,18 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
 
+	protected _decrementLabel = this.i18n.getOverridable("NUMBER_INPUT.DECREMENT_BUTTON");
+
+	protected _iconDescription = this.i18n.getOverridable("NUMBER_INPUT.ICON_DESCRIPTION");
+
+	protected _incrementLabel = this.i18n.getOverridable("NUMBER_INPUT.INCREMENT_BUTTON");
+
 	protected _value = 0;
 
 	/**
 	 * Creates an instance of `Number`.
 	 */
-	constructor() {
+	constructor(protected i18n: I18n) {
 		NumberComponent.numberCount++;
 	}
 
@@ -194,6 +237,18 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	getDecrementLabel(): Observable<string> {
+		return this._decrementLabel.subject;
+	}
+
+	getIconDescription(): Observable<string> {
+		return this._iconDescription.subject;
+	}
+
+	getIncrementLabel(): Observable<string> {
+		return this._incrementLabel.subject;
 	}
 
 	/**

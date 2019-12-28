@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
+import { I18nModule, I18n } from "./../i18n/i18n.module";
 import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
 import { CaretUp16Module } from "@carbon/icons-angular/lib/caret--up/16";
@@ -16,6 +17,7 @@ describe("Number", () => {
 	let buttonDown: HTMLButtonElement;
 	let labelElement: HTMLDivElement;
 	let helperTextElement: HTMLDivElement;
+	let i18n: I18n;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -24,9 +26,12 @@ describe("Number", () => {
 				FormsModule,
 				CaretUp16Module,
 				CaretDown16Module,
+				I18nModule,
 				WarningFilled16Module
 			],
-			providers: []
+			providers: [
+				I18n
+			]
 		});
 	});
 
@@ -35,6 +40,7 @@ describe("Number", () => {
 		component = fixture.componentInstance;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
+		i18n = TestBed.get(I18n);
 	});
 
 	it("should work", () => {
@@ -149,4 +155,63 @@ describe("Number", () => {
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--number--light")).toEqual(true);
 	});
+
+	it("should bind increment label to button title", () => {
+		const expectedTitle = "Increment that number";
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		expect(buttonUp.title).toEqual(i18n.get("NUMBER_INPUT.INCREMENT_BUTTON").value);
+		component.incrementLabel = expectedTitle;
+		fixture.detectChanges();
+		expect(buttonUp.title).toEqual(expectedTitle);
+	});
+
+	it("should bind increment label to aria-label", () => {
+		const expectedTitle = "Increment that number";
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		expect(buttonUp.getAttribute("aria-label")).toEqual(i18n.get("NUMBER_INPUT.INCREMENT_BUTTON").value);
+		component.incrementLabel = expectedTitle;
+		fixture.detectChanges();
+		expect(buttonUp.getAttribute("aria-label")).toEqual(expectedTitle);
+	});
+
+	it("should default increment label aria-label to iconDescription", () => {
+		const expectedAriaLabel = i18n.get("NUMBER_INPUT.ICON_DESCRIPTION").value;
+		fixture.componentInstance.incrementLabel = null;
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		expect(buttonUp.getAttribute("aria-label")).not.toEqual(i18n.get("NUMBER_INPUT.INCREMENT_BUTTON").value);
+		expect(buttonUp.getAttribute("aria-label")).not.toEqual(expectedAriaLabel);
+	});
+
+	it("should bind decrement label to title", () => {
+		const expectedTitle = "Decrement that number";
+		fixture.detectChanges();
+		buttonDown = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		expect(buttonDown.title).toEqual(i18n.get("NUMBER_INPUT.DECREMENT_BUTTON").value);
+		component.decrementLabel = expectedTitle;
+		fixture.detectChanges();
+		expect(buttonDown.title).toEqual(expectedTitle);
+	});
+
+	it("should bind decrement label to aria-label", () => {
+		const expectedAriaLabel = "Decrement that number";
+		fixture.detectChanges();
+		buttonDown = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		expect(buttonDown.getAttribute("aria-label")).toEqual(i18n.get("NUMBER_INPUT.DECREMENT_BUTTON").value);
+		component.decrementLabel = expectedAriaLabel;
+		fixture.detectChanges();
+		expect(buttonDown.getAttribute("aria-label")).toEqual(expectedAriaLabel);
+	});
+
+	it("should default decrement label aria-label to iconDescription", () => {
+		const expectedAriaLabel = i18n.get("NUMBER_INPUT.ICON_DESCRIPTION");
+		fixture.componentInstance.decrementLabel = null;
+		fixture.detectChanges();
+		buttonDown = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		expect(buttonDown.getAttribute("aria-label")).not.toEqual(i18n.get("NUMBER_INPUT.DECREMENT_BUTTON").value);
+		expect(buttonDown.getAttribute("aria-label")).not.toEqual(expectedAriaLabel);
+	});
+
 });
