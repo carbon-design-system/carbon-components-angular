@@ -227,7 +227,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			if (this.rangeInput.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[1]) {
 				const currentMonth = this.flatpickrInstance.selectedDates[1].getMonth();
 				this.flatpickrInstance.changeMonth(currentMonth, false);
-
 			} else if (this.input.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[0]) {
 				const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 				this.flatpickrInstance.changeMonth(currentMonth, false);
