@@ -303,7 +303,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		// the month and year needs to be manually changed to the current selected month and
 		// year otherwise the calendar view will not be updated upon opening.
 		if (datepickerInput === this.input && this.range && this.flatpickrInstance.selectedDates[0]) {
-
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 
 			this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
