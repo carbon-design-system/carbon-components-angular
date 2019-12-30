@@ -180,7 +180,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		mode: "single",
 		dateFormat: "m/d/Y",
 		plugins: this.plugins,
-		onOpen: () => { this.updateClassNames(); },
+		onOpen: () => {
+			this.updateClassNames();
+			this.updateCalendarListeners();
+		},
 		value: this.value
 	};
 
@@ -310,12 +313,19 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		}
 	}
 
+	protected updateCalendarListeners() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.removeEventListener("click", this.preventCalendarClose);
+			calendar.addEventListener("click", this.preventCalendarClose);
+		});
+	}
+
 	/**
 	 * Carbon uses a number of specific classnames for parts of the flatpickr - this idempotent method applies them if needed.
 	 */
 	protected updateClassNames() {
 		if (!this.elementRef) { return; }
-
 		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		const monthContainer = document.querySelectorAll(".flatpickr-month");
@@ -401,6 +411,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			}
 		}
 	}
+
+	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
 		this.valueChange.emit(selectedValue);
