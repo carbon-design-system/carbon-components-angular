@@ -148,6 +148,18 @@ storiesOf("Components|Date Picker", module)
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
+			<p style="margin-top: 20px;">With chinese(Mandarin) localization</p>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[locale]="'zh'"
+				[theme]="theme"
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
 		`,
 		props: {
 			valueChange: action("Date change fired!"),

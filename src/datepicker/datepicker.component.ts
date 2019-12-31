@@ -14,8 +14,12 @@ import {
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
+
+import l10n from "flatpickr/dist/l10n/index";
+
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
+import { CustomLocale } from "flatpickr/dist/types/locale";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -147,7 +151,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			mode: this.range ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat
-		});
+		}, this.locale ? { locale: this.getLocale() } : {});
 	}
 
 	set flatpickrOptionsRange (options) {
@@ -158,6 +162,19 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	get flatpickrOptionsRange () {
 		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
 		return this.flatpickrOptions;
+	}
+
+	/**
+	 * localization string for flatpickr based on string passed in from the template
+	 */
+	@Input()
+	set locale(lang: string) {
+		this._lang = lang;
+		this._locale = l10n[lang] || l10n.default;
+	}
+
+	get locale() {
+		return this._lang;
 	}
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
@@ -180,6 +197,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	};
 
 	protected flatpickrInstance = null;
+
+	/**
+	 * localization string as per docs for flatpickr
+	 */
+	private _lang: string;
+
+	/**
+	 * CustomLocale dictionary to be passed into flatpickr options as found here https://github.com/flatpickr/flatpickr/tree/master/src/l10n
+	 */
+	private _locale: CustomLocale;
 
 	constructor(protected elementRef: ElementRef) { }
 
@@ -214,6 +241,13 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	@HostListener("focusin")
 	onFocus() {
 		this.onTouched();
+	}
+
+	/**
+	 * Get the localization dictionary to be set in flatpickr options
+	 */
+	getLocale() {
+		return this._locale || l10n.default;
 	}
 
 	/**

@@ -1,11 +1,12 @@
-import { TestBed, async, fakeAsync } from "@angular/core/testing";
+import { TestBed, async, fakeAsync, tick } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
 import { FormsModule, Validators } from "@angular/forms";
-import { tick } from "@angular/core/src/render3";
+import l10n from "flatpickr/dist/l10n/index";
+import { CustomLocale } from "flatpickr/dist/types/locale";
 
 @Component({
 	template: `
@@ -123,4 +124,15 @@ describe("DatePicker", () => {
 		fixture.detectChanges();
 		expect(wrapper.onValueChange).toHaveBeenCalled();
 	});
+
+	it("should set `locale` to value passed in from the input", fakeAsync(() => {
+		fixture = TestBed.createComponent(DatePicker);
+		wrapper = fixture.componentInstance;
+		const languagePrefix = "ar";
+		const locale: CustomLocale = l10n[languagePrefix];
+		wrapper.locale = languagePrefix;
+		tick();
+		expect(wrapper.locale).toBe(languagePrefix);
+		expect(wrapper.getLocale()).toBe(locale);
+	}));
 });
