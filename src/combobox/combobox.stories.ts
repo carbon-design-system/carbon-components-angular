@@ -79,7 +79,7 @@ storiesOf("Components|Combobox", module)
 		props: {
 			disabled: boolean("disabled", false),
 			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid Text", "A valid value is required"),
+			invalidText: text("Invalid text", "A valid value is required"),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
@@ -99,7 +99,7 @@ storiesOf("Components|Combobox", module)
 			selected: action("selection changed")
 		}
 	}))
-	.add("With Dynamic Search", () => ({
+	.add("With dynamic search", () => ({
 		template: `
 			<app-dynamic-combobox
 				[disabled]="disabled"
@@ -113,7 +113,7 @@ storiesOf("Components|Combobox", module)
 		props: {
 			disabled: boolean("disabled", false),
 			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid Text", "A valid value is required"),
+			invalidText: text("Invalid text", "A valid value is required"),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
@@ -132,7 +132,7 @@ storiesOf("Components|Combobox", module)
 			]
 		}
 	}))
-	.add("With Template", () => ({
+	.add("With template", () => ({
 		template: `
 			<ibm-combo-box
 				[disabled]="disabled"
@@ -186,7 +186,7 @@ storiesOf("Components|Combobox", module)
 		`,
 		props: {
 			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid Text", "A valid value is required"),
+			invalidText: text("Invalid text", "A valid value is required"),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
