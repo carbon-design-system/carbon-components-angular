@@ -8,6 +8,8 @@ import {
 import { I18n, Overridable } from "./../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
 	// tslint:disable-next-line: component-selector
 	selector: "[ibmTableHeadCheckbox]",
@@ -48,11 +50,11 @@ export class TableHeadCheckbox {
 
 	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
 
-	@HostBinding("attr.style") hostStyle = "width: 10px;";
+	@HostBinding("attr.style") hostStyle = this.sanitizer.bypassSecurityTrustStyle(`width: 10px`);
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n, private sanitizer: DomSanitizer) { }
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;
