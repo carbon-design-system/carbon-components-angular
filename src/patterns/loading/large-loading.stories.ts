@@ -14,8 +14,7 @@ import {
 	FormControl,
 	Validators,
 	FormsModule,
-	ReactiveFormsModule,
-	AbstractControl } from "@angular/forms";
+	ReactiveFormsModule } from "@angular/forms";
 
 @Component({
 	selector: "app-sample-large-loading",
@@ -79,13 +78,12 @@ import {
 			</form>
 		</div>
 	</div>
-	<div *ngIf="isActive">
-		<ibm-loading
-			[isActive]="isActive"
-			size="normal"
-			[overlay]="overlay">
-		</ibm-loading>
-	</div>
+	<ibm-loading
+		*ngIf="isLoading"
+		[isActive]="isLoading"
+		size="normal"
+		[overlay]="overlay">
+	</ibm-loading>
 	`,
 	styles: [`
 		.header {
@@ -103,7 +101,7 @@ import {
 	]
 })
 class SampleLargeLoading {
-	isActive = false;
+	isLoading = false;
 	overlay = false;
 
 	formGroup = new FormGroup({
@@ -149,28 +147,27 @@ class SampleLargeLoading {
 		{ content: "Option 2" },
 		{ content: "Option 3" },
 		{ content: "Option 4" },
-		{ content: "Option 5"}
+		{ content: "Option 5" }
 	];
 
 	onSubmit() {
-		this.isActive = true;
+		this.isLoading = true;
 		this.overlay = true;
 
 		setTimeout(() => {
-			this.isActive = false;
+			this.isLoading = false;
 			this.overlay = false;    
 		}, 2000);
 
 		if (this.formGroup.invalid) {
 			const invalidFields = [].slice.call(document.getElementsByClassName("ng-invalid"));
 			invalidFields[1].focus();
-
 		}
 		return;
 	}
 
 	isInvalid(controlName: string): boolean {
-		const control: AbstractControl = this.formGroup.get(controlName);
+		const control = this.formGroup.get(controlName);
 
 		return control && control.invalid && (control.dirty || control.touched);
 	}
