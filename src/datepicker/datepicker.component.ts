@@ -16,7 +16,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
-import FlatpickrLanguages from "flatpickr/dist/l10n";
+import languages from "./datepicker.module";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -156,7 +156,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			mode: this.range ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat,
-			locale: FlatpickrLanguages[this.language]
+			locale: languages.default[this.language]
 		});
 	}
 
