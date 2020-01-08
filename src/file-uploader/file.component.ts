@@ -34,7 +34,9 @@ import { FileItem } from "./file-item.interface";
 			</ibm-icon-close16>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
-			<ibm-loading size="sm"></ibm-loading>
+			<div class="bx--inline-loading__animation">
+				<ibm-loading size="sm"></ibm-loading>
+			</div>
 		</span>
 		<span
 			*ngIf="fileItem.state === 'complete'"
@@ -47,7 +49,7 @@ import { FileItem } from "./file-item.interface";
 		</span>
 	`
 })
-export class File {
+export class FileComponent {
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
@@ -67,3 +69,5 @@ export class File {
 
 	constructor(protected i18n: I18n) {}
 }
+
+export { FileComponent as File };

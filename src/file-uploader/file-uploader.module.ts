@@ -5,15 +5,16 @@ import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--fi
 import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 
 import { FileUploader } from "./file-uploader.component";
-import { File } from "./file.component";
+import { FileComponent } from "./file.component";
 import { ButtonModule } from "../button/button.module";
 import { LoadingModule } from "../loading/loading.module";
 
 export { FileUploader } from "./file-uploader.component";
+export { FileComponent, File } from "./file.component";
 
 @NgModule({
-	declarations: [FileUploader, File],
-	exports: [FileUploader],
+	declarations: [FileUploader, FileComponent],
+	exports: [FileUploader, FileComponent],
 	imports: [
 		CommonModule,
 		ButtonModule,
