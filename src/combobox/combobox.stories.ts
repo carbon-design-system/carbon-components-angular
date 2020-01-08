@@ -116,7 +116,7 @@ storiesOf("Components|Combobox", module)
 				if (event.value.content) {
 					this.items = [
 						...event.items,
-						Object.assign({}, event.value, { selected: true})
+						Object.assign({}, event.value, { selected: true })
 					];
 				}
 			}
