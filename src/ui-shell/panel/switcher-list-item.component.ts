@@ -3,8 +3,10 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
+	Optional,
+  HostBinding
+} from "@angular/core";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { Router } from '@angular/router';
 
 /**
@@ -59,6 +61,8 @@ export class SwitcherListItem {
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
+
+	@HostBinding("class.bx--switcher__item") itemClass = true;
 
 	protected _href = "javascript:void(0)";
 
