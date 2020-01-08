@@ -1,14 +1,10 @@
-
 import {
 	Component,
 	Input,
 	Output,
-	ViewChild,
 	EventEmitter,
-	OnInit,
 	HostBinding
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
 import { FileItem } from "./file-item.interface";
@@ -70,4 +66,7 @@ export class FileComponent {
 	constructor(protected i18n: I18n) {}
 }
 
-export { FileComponent as File };
+// compatibility export
+// TODO: remove in v4
+// tslint:disable-next-line: variable-name
+export const File = FileComponent;

@@ -237,6 +237,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 	public open = false;
 
+	public showClearButton = false;
+
 	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
 	/** used to update the displayValue */
@@ -245,8 +247,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
-
-	protected showClearButton = false;
 
 	/**
 	 * Creates an instance of ComboBox.
