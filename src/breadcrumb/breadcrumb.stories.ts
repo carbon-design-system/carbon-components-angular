@@ -19,7 +19,7 @@ const createBreadcrumbItems = (count: number, content = "Breadcrumb"): Array<Bre
 
 const withTemplate = (templateRef, items) => items.map(item => Object.assign(item, { template: templateRef }));
 
-storiesOf("Breadcrumb", module)
+storiesOf("Components|Breadcrumb", module)
 .addDecorator(
 	moduleMetadata({
 		imports: [

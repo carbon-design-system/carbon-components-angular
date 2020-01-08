@@ -4,7 +4,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs";
 
 import { StructuredListModule, DocumentationModule } from "../";
 
-storiesOf("Structured List", module).addDecorator(
+storiesOf("Components|Structured List", module).addDecorator(
 	moduleMetadata({
 		imports: [StructuredListModule, DocumentationModule]
 	}))
