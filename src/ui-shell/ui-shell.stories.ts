@@ -9,6 +9,8 @@ import { DocumentationModule } from "./../documentation-component/documentation.
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
+import { Fade16Module } from "@carbon/icons-angular/lib/fade/16";
+import { Fade20Module } from "@carbon/icons-angular/lib/fade/20";
 
 @Component({
 	selector: "app-bar",
@@ -30,6 +32,8 @@ storiesOf("Components|UI Shell", module)
 				UIShellModule,
 				Carbon32Module,
 				SearchModule,
+				Fade16Module,
+				Fade20Module,
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
@@ -65,26 +69,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -110,26 +98,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -173,39 +145,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -233,39 +181,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item [route]="['foo']">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item [route]="['bar']">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
@@ -292,74 +216,24 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action #firstAction title="action">
-						<svg
-							width="20"
-							height="20"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20 ></svg>
 					</ibm-header-action>
 					<ibm-header-action #secondAction title="action">
-						<svg
-							width="20"
-							height="20"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-								12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-								23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-								14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-						</svg>
+						<svg icon ibmIconFade20 ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 			<ibm-sidenav [expanded]="active">
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -398,39 +272,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav rail="true" [expanded]="false">
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
+					<svg icon ibmIconFade16></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
