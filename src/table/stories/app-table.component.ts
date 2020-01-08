@@ -27,6 +27,7 @@ function sort(model, index: number) {
 			[skeleton]="skeleton"
 			[showSelectionColumn]="true"
 			[enableSingleSelect]="false"
+			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="simpleSort($event)">
@@ -42,6 +43,7 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() sortable = true;
 	@Input() isDataGrid = false;
 	@Input() noData = false;
+	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
 	ngOnInit() {
@@ -62,7 +64,10 @@ export class TableStory implements OnInit, OnChanges {
 				[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
 				[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
 				[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
-				[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })]
+				[new TableItem({ data: "Name 4" }), new TableItem({data: "twer"})],
+				[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
+				[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
+				[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
 			];
 		}
 	}

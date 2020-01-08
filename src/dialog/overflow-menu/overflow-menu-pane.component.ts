@@ -1,9 +1,16 @@
-import { Component, HostListener, ElementRef, AfterViewInit } from "@angular/core";
+import {
+	Component,
+	HostListener,
+	ElementRef,
+	AfterViewInit,
+	Optional
+} from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 import { ExperimentalService } from "./../../experimental.module";
+import { ElementService } from "./../../utils/utils.module";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -30,8 +37,13 @@ import { ExperimentalService } from "./../../experimental.module";
 	`
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected experimental: ExperimentalService) {
-		super(elementRef);
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected experimental: ExperimentalService,
+		// mark `elementService` as optional since making it mandatory would be a breaking change
+		@Optional() protected elementService: ElementService = null) {
+		super(elementRef, elementService);
 	}
 
 	onDialogInit() {
@@ -52,8 +64,8 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				return position.addOffset(pos, 0, -offset);
 			}
 			return position.addOffset(pos, 0, offset);
-		}
-		
+		};
+
 		this.addGap["bottom"] = positionOverflowMenu;
 
 		this.addGap["top"] = positionOverflowMenu;

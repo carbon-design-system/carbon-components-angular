@@ -11,7 +11,7 @@ import {
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 import { NotificationDisplayService } from "./notification-display.service";
-import { of } from "rxjs";
+import { of, isObservable, Subject } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -40,6 +40,16 @@ import { of } from "rxjs";
 				<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>
 				<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>
 			</div>
+		</div>
+		<div *ngFor="let action of notificationObj.actions">
+			<button
+				(click)="onClick(action, $event)"
+				ibmButton="ghost"
+				size="sm"
+				class="bx--inline-notification__action-button"
+				type="button">
+				{{action.text}}
+			</button>
 		</div>
 		<button
 			*ngIf="showClose"
@@ -108,6 +118,17 @@ export class Notification {
 	 */
 	onClose() {
 		this.close.emit();
+	}
+
+	onClick(action, event) {
+		if (!action.click) {
+			return;
+		}
+		if (isObservable(action.click)) {
+			(action.click as Subject<{event: Event, action: any}>).next({event, action});
+		} else {
+			action.click({event, action});
+		}
 	}
 
 	destroy() {
