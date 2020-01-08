@@ -116,6 +116,16 @@
 		&lt;p [innerHTML]&#x3D;&quot;notificationObj.message&quot; class&#x3D;&quot;bx--inline-notification__subtitle&quot;&gt;&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
+&lt;div *ngFor&#x3D;&quot;let action of notificationObj.actions&quot;&gt;
+	&lt;button
+		(click)&#x3D;&quot;onClick(action, $event)&quot;
+		ibmButton&#x3D;&quot;ghost&quot;
+		size&#x3D;&quot;sm&quot;
+		class&#x3D;&quot;bx--inline-notification__action-button&quot;
+		type&#x3D;&quot;button&quot;&gt;
+		{{action.text}}
+	&lt;/button&gt;
+&lt;/div&gt;
 &lt;button
 	*ngIf&#x3D;&quot;showClose&quot;
 	(click)&#x3D;&quot;onClose()&quot;
@@ -179,6 +189,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#destroy">destroy</a>
+                            </li>
+                            <li>
+                                <a href="#onClick">onClick</a>
                             </li>
                             <li>
                                 <a href="#onClose">onClose</a>
@@ -286,7 +299,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/notification/notification.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/notification/notification.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -358,7 +371,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/notification/notification.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/notification.component.ts:72</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -382,7 +395,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/notification/notification.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/notification/notification.component.ts:85</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -415,7 +428,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/notification/notification.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/notification/notification.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -448,7 +461,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/notification/notification.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/notification/notification.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -481,7 +494,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/notification/notification.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/notification/notification.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -509,7 +522,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/notification/notification.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/notification/notification.component.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -537,7 +550,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/notification/notification.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/notification/notification.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -565,7 +578,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/notification/notification.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/notification/notification.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -593,7 +606,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/notification/notification.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/notification/notification.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -621,7 +634,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/notification/notification.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/notification/notification.component.ts:98</a></div>
                             </td>
                         </tr>
 
@@ -658,7 +671,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/notification/notification.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/notification/notification.component.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -670,6 +683,80 @@
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClick"></a>
+                        <span class="name">
+                            <b>
+                            onClick
+                            </b>
+                            <a href="#onClick"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onClick(action, event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/notification/notification.component.ts:123</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>action</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -696,7 +783,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/notification/notification.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/notification/notification.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -754,7 +841,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/notification/notification.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/notification/notification.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -788,7 +875,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/notification/notification.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/notification/notification.component.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -834,7 +921,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/notification/notification.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/notification/notification.component.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -871,7 +958,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/notification/notification.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/notification/notification.component.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -901,7 +988,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/notification.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/notification/notification.component.ts:75</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -955,7 +1042,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/notification/notification.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/notification/notification.component.ts:101</a></div>
                                 </td>
                             </tr>
 
@@ -979,7 +1066,7 @@
 import { NotificationContent } from &quot;./notification-content.interface&quot;;
 import { I18n } from &quot;./../i18n/i18n.module&quot;;
 import { NotificationDisplayService } from &quot;./notification-display.service&quot;;
-import { of } from &quot;rxjs&quot;;
+import { of, isObservable, Subject } from &quot;rxjs&quot;;
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -1008,6 +1095,16 @@ import { of } from &quot;rxjs&quot;;
 				&lt;p [innerHTML]&#x3D;&quot;notificationObj.title&quot; class&#x3D;&quot;bx--inline-notification__title&quot;&gt;&lt;/p&gt;
 				&lt;p [innerHTML]&#x3D;&quot;notificationObj.message&quot; class&#x3D;&quot;bx--inline-notification__subtitle&quot;&gt;&lt;/p&gt;
 			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div *ngFor&#x3D;&quot;let action of notificationObj.actions&quot;&gt;
+			&lt;button
+				(click)&#x3D;&quot;onClick(action, $event)&quot;
+				ibmButton&#x3D;&quot;ghost&quot;
+				size&#x3D;&quot;sm&quot;
+				class&#x3D;&quot;bx--inline-notification__action-button&quot;
+				type&#x3D;&quot;button&quot;&gt;
+				{{action.text}}
+			&lt;/button&gt;
 		&lt;/div&gt;
 		&lt;button
 			*ngIf&#x3D;&quot;showClose&quot;
@@ -1078,6 +1175,17 @@ export class Notification {
 		this.close.emit();
 	}
 
+	onClick(action, event) {
+		if (!action.click) {
+			return;
+		}
+		if (isObservable(action.click)) {
+			(action.click as Subject&lt;{event: Event, action: any}&gt;).next({event, action});
+		} else {
+			action.click({event, action});
+		}
+	}
+
 	destroy() {
 		this.notificationDisplayService.close(this);
 	}
@@ -1117,7 +1225,7 @@ export class Notification {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="bx--inline-notification__details">	<ibm-icon-error-filled16		*ngIf="notificationObj.type === \'error\'"		class="bx--inline-notification__icon">	</ibm-icon-error-filled16>	<ibm-icon-warning-filled16		*ngIf="notificationObj.type === \'warning\'"		class="bx--inline-notification__icon">	</ibm-icon-warning-filled16>	<ibm-icon-checkmark-filled16		*ngIf="notificationObj.type === \'success\'"		class="bx--inline-notification__icon">	</ibm-icon-checkmark-filled16>	<div class="bx--inline-notification__text-wrapper">		<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>		<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>	</div></div><button	*ngIf="showClose"	(click)="onClose()"	class="bx--inline-notification__close-button"	[attr.aria-label]="notificationObj.closeLabel | async"	type="button">	<ibm-icon-close16 class="bx--inline-notification__close-icon"></ibm-icon-close16></button>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="bx--inline-notification__details">	<ibm-icon-error-filled16		*ngIf="notificationObj.type === \'error\'"		class="bx--inline-notification__icon">	</ibm-icon-error-filled16>	<ibm-icon-warning-filled16		*ngIf="notificationObj.type === \'warning\'"		class="bx--inline-notification__icon">	</ibm-icon-warning-filled16>	<ibm-icon-checkmark-filled16		*ngIf="notificationObj.type === \'success\'"		class="bx--inline-notification__icon">	</ibm-icon-checkmark-filled16>	<div class="bx--inline-notification__text-wrapper">		<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>		<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>	</div></div><div *ngFor="let action of notificationObj.actions">	<button		(click)="onClick(action, $event)"		ibmButton="ghost"		size="sm"		class="bx--inline-notification__action-button"		type="button">		{{action.text}}	</button></div><button	*ngIf="showClose"	(click)="onClose()"	class="bx--inline-notification__close-button"	[attr.aria-label]="notificationObj.closeLabel | async"	type="button">	<ibm-icon-close16 class="bx--inline-notification__close-icon"></ibm-icon-close16></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Notification'};

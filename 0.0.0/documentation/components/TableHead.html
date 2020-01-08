@@ -46,6 +46,9 @@
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
         <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -69,6 +72,12 @@
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
 
 
 <section>
@@ -92,14 +101,23 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
 	&lt;tr&gt;
 		&lt;th
-			*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
 			ibmTableHeadExpand
+			*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
+			[ngClass]&#x3D;&quot;{&#x27;bx--table-expand-v2&#x27;: stickyHeader}&quot;
 			[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;&gt;
 		&lt;/th&gt;
 		&lt;th
@@ -213,6 +231,9 @@
                             </li>
                             <li>
                                 <a href="#getSortDescendingLabel">getSortDescendingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
                                 <a href="#onSelectAllCheckboxChange">onSelectAllCheckboxChange</a>
@@ -330,7 +351,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/table/head/table-head.component.ts:153</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/table/head/table-head.component.ts:161</a></div>
                             </td>
                         </tr>
 
@@ -382,7 +403,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/table/head/table-head.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/table/head/table-head.component.ts:104</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -402,7 +423,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/table/head/table-head.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/head/table-head.component.ts:88</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -419,7 +440,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/table/head/table-head.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/table/head/table-head.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -440,7 +461,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/table/head/table-head.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/table/head/table-head.component.ts:84</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -460,7 +481,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/table/head/table-head.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/table/head/table-head.component.ts:92</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -480,7 +501,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/table/head/table-head.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/table/head/table-head.component.ts:90</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -500,7 +521,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/table/head/table-head.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/table/head/table-head.component.ts:86</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -526,7 +547,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/table/head/table-head.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/table/head/table-head.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -546,7 +567,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/table/head/table-head.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/table/head/table-head.component.ts:94</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -563,7 +584,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/table/head/table-head.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/table/head/table-head.component.ts:122</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -580,7 +601,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/table/head/table-head.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head.component.ts:113</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -600,7 +621,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/head/table-head.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/table/head/table-head.component.ts:96</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -624,7 +645,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/table/head/table-head.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/table/head/table-head.component.ts:154</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -645,7 +666,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/table/head/table-head.component.ts:148</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -666,7 +687,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head.component.ts:142</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -701,7 +722,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/table/head/table-head.component.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -739,7 +760,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/table/head/table-head.component.ts:177</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/table/head/table-head.component.ts:189</a></div>
                             </td>
                         </tr>
 
@@ -777,7 +798,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/table/head/table-head.component.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/table/head/table-head.component.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -815,7 +836,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/table/head/table-head.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/table/head/table-head.component.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -825,6 +846,44 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterViewInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterViewInit
+                            </b>
+                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head.component.ts:165</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
                     </td>
@@ -853,7 +912,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/table/head/table-head.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/table/head/table-head.component.ts:169</a></div>
                             </td>
                         </tr>
 
@@ -903,7 +962,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/table/head/table-head.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/table/head/table-head.component.ts:158</a></div>
                             </td>
                         </tr>
 
@@ -937,7 +996,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/table/head/table-head.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/table/head/table-head.component.ts:161</a></div>
                             </td>
                         </tr>
 
@@ -971,7 +1030,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/table/head/table-head.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/table/head/table-head.component.ts:160</a></div>
                             </td>
                         </tr>
 
@@ -1005,7 +1064,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head.component.ts:151</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head.component.ts:159</a></div>
                             </td>
                         </tr>
 
@@ -1045,7 +1104,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/table/head/table-head.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head.component.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -1074,7 +1133,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/table/head/table-head.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/table/head/table-head.component.ts:108</a></div>
                                 </td>
                             </tr>
 
@@ -1085,7 +1144,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/table/head/table-head.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/table/head/table-head.component.ts:104</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1139,7 +1198,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/table/head/table-head.component.ts:117</a></div>
                                 </td>
                             </tr>
 
@@ -1150,7 +1209,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/table/head/table-head.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head.component.ts:113</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1204,7 +1263,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/table/head/table-head.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/table/head/table-head.component.ts:126</a></div>
                                 </td>
                             </tr>
 
@@ -1215,7 +1274,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/table/head/table-head.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/table/head/table-head.component.ts:122</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1269,7 +1328,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/table/head/table-head.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/table/head/table-head.component.ts:135</a></div>
                                 </td>
                             </tr>
 
@@ -1280,7 +1339,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/table/head/table-head.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/table/head/table-head.component.ts:131</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1327,10 +1386,12 @@
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit
 } from &quot;@angular/core&quot;;
 
 import { TableModel } from &quot;../table-model.class&quot;;
+import { getScrollbarWidth } from &quot;../../utils/window-tools&quot;;
 import { I18n, Overridable } from &quot;../../i18n/i18n.module&quot;;
 import { Observable } from &quot;rxjs&quot;;
 
@@ -1350,8 +1411,9 @@ import { Observable } from &quot;rxjs&quot;;
 	&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
 		&lt;tr&gt;
 			&lt;th
-				*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
 				ibmTableHeadExpand
+				*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
+				[ngClass]&#x3D;&quot;{&#x27;bx--table-expand-v2&#x27;: stickyHeader}&quot;
 				[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;&gt;
 			&lt;/th&gt;
 			&lt;th
@@ -1395,9 +1457,14 @@ import { Observable } from &quot;rxjs&quot;;
 		&lt;/tr&gt;
 	&lt;/ng-container&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
-	&#x60;
+	&#x60;,
+	styles: [&#x60;
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	&#x60;]
 })
-export class TableHead {
+export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn &#x3D; true;
@@ -1479,6 +1546,10 @@ export class TableHead {
 
 	constructor(protected i18n: I18n) {}
 
+	ngAfterViewInit() {
+		this.scrollbarWidth &#x3D; getScrollbarWidth();
+	}
+
 	onSelectAllCheckboxChange() {
 		if (!this.selectAllCheckbox) {
 			this.selectAll.emit(this.model);
@@ -1507,6 +1578,14 @@ export class TableHead {
     </div>
 
 
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>
@@ -1533,7 +1612,7 @@ export class TableHead {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="model">	<tr>		<th			*ngIf="model.hasExpandableRows()"			ibmTableHeadExpand			[id]="model.getId(\'expand\')">		</th>		<th			*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"			style="width: 0;"			[id]="model.getId(\'select\')">			<!-- add width 0; since the carbon styles don\'t seem to constrain this headers width -->		</th>		<th			ibmTableHeadCheckbox			*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"			[checked]="selectAllCheckbox"			[indeterminate]="selectAllCheckboxSomeSelected"			[ariaLabel]="getCheckboxHeaderLabel()"			[size]="size"			[skeleton]="skeleton"			(change)="onSelectAllCheckboxChange()"			[id]="model.getId(\'select\')">		</th>		<ng-container *ngFor="let column of model.header; let i = index">			<th				*ngIf="column && column.visible"				[ngStyle]="column.style"				ibmTableHeadCell				[class]="column.className"				[id]="model.getId(i)"				[column]="column"				[skeleton]="skeleton"				[filterTitle]="getFilterTitle()"				[attr.colspan]="column.colSpan"				[attr.rowspan]="column.rowSpan"				(sort)="sort.emit(i)">			</th>		</ng-container>		<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">			<!--				Scrollbar pushes body to the left so this header column is added to push				the title bar the same amount and keep the header and body columns aligned.			-->		</th>	</tr></ng-container><ng-content></ng-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="model">	<tr>		<th			ibmTableHeadExpand			*ngIf="model.hasExpandableRows()"			[ngClass]="{\'bx--table-expand-v2\': stickyHeader}"			[id]="model.getId(\'expand\')">		</th>		<th			*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"			style="width: 0;"			[id]="model.getId(\'select\')">			<!-- add width 0; since the carbon styles don\'t seem to constrain this headers width -->		</th>		<th			ibmTableHeadCheckbox			*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"			[checked]="selectAllCheckbox"			[indeterminate]="selectAllCheckboxSomeSelected"			[ariaLabel]="getCheckboxHeaderLabel()"			[size]="size"			[skeleton]="skeleton"			(change)="onSelectAllCheckboxChange()"			[id]="model.getId(\'select\')">		</th>		<ng-container *ngFor="let column of model.header; let i = index">			<th				*ngIf="column && column.visible"				[ngStyle]="column.style"				ibmTableHeadCell				[class]="column.className"				[id]="model.getId(i)"				[column]="column"				[skeleton]="skeleton"				[filterTitle]="getFilterTitle()"				[attr.colspan]="column.colSpan"				[attr.rowspan]="column.rowSpan"				(sort)="sort.emit(i)">			</th>		</ng-container>		<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">			<!--				Scrollbar pushes body to the left so this header column is added to push				the title bar the same amount and keep the header and body columns aligned.			-->		</th>	</tr></ng-container><ng-content></ng-content></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TableHead'};

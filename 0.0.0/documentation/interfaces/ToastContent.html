@@ -164,7 +164,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface NotificationContent {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Subject } from &quot;rxjs&quot;;
+
+export interface NotificationContent {
 	type: string;
 	title: string;
 	target?: string;
@@ -174,11 +176,18 @@
 	message?: string;
 	showClose?: boolean;
 	lowContrast?: boolean;
+	actions?: NotificationAction[];
 }
 
 export interface ToastContent extends NotificationContent {
 	subtitle: string;
 	caption: string;
+}
+
+interface NotificationAction {
+	text: string;
+	click: Subject&lt;{event: Event, action: any}&gt; | ((event: {event: Event, action: any}) &#x3D;&gt; any);
+	[x: string]: any;
 }
 </code></pre>
     </div>

@@ -263,7 +263,8 @@
 	ElementRef,
 	AfterViewInit,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	HostBinding
 } from &quot;@angular/core&quot;;
 import { Subscription, fromEvent, Observable } from &quot;rxjs&quot;;
 
@@ -434,6 +435,7 @@ export interface TableTranslations {
 	template: &#x60;
 	&lt;table
 		ibmTable
+		[ngClass]&#x3D;&quot;{&#x27;bx--data-table--sticky-header&#x27;: stickyHeader}&quot;
 		sortable&#x3D;&quot;true&quot;
 		[size]&#x3D;&quot;size&quot;
 		[striped]&#x3D;&quot;striped&quot;
@@ -718,7 +720,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Set to &#x60;true&#x60; to stick the header to the top of the table
 	 */
-	@Input() stickyHeader &#x3D; false;
+	@HostBinding(&quot;class.bx--data-table_inner-container&quot;) @Input() stickyHeader &#x3D; false;
 
 	/**
 	 * Set footer template to customize what is displayed in the tfoot section of the table
