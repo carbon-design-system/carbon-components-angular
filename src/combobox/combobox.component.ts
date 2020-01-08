@@ -288,10 +288,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
+					this.view.filterBy("");
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view.filterBy("");
 			});
 			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
