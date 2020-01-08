@@ -29,6 +29,7 @@ import { Router } from "@angular/router";
 					<ng-content select="[icon]"></ng-content>
 				</div>
 				<span class="bx--side-nav__link-text">
+					{{ content }}
 					<ng-content></ng-content>
 				</span>
 			</a>
@@ -40,6 +41,10 @@ export class SideNavItem {
 	 * Link for the item. NOTE: *do not* pass unsafe or untrusted values, this has the potential to open you up to XSS attacks
 	 */
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		} 
 		this._href = v;
 	}
 
@@ -58,18 +63,20 @@ export class SideNavItem {
 	 */
 	@Input() route: any[];
 
+	@Input() content: string;
+
 	/**
 	 * Router options. Used in conjunction with `route`
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
 
+	@Input() isSubMenu = false;
+
 	/**
 	 * Emits the navigation status promise when the link is activated
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
-
-	isSubMenu = false;
 
 	protected _href = "javascript:void(0)";
 

@@ -22,12 +22,17 @@ import { Router } from "@angular/router";
 				[href]="href"
 				(click)="navigate($event)">
 				<ng-content></ng-content>
+				{{ content }}
 			</a>
 		</li>
 	`
 })
 export class HeaderItem {
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		} 
 		this._href = v;
 	}
 
@@ -46,6 +51,15 @@ export class HeaderItem {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	@Input() content: string;
+
+	/**
+	 * Set breakpoint to respond to the size of the window innerWidth. ie. the window
+	 * innerWidth to send the header item to the sidenav. Currently not used as styles
+	 * direct the response to the innerWidth of the window.
+	 */
+	@Input() breakpoint: number;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

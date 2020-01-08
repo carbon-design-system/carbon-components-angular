@@ -5,6 +5,7 @@ import {
 	ElementRef
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { HeaderItemInterface } from "./header-navigation-items.interface";
 
 /**
  * Dropdown menu container for navigation items.
@@ -29,6 +30,14 @@ import { DomSanitizer } from "@angular/platform-browser";
 			</a>
 			<ul class="bx--header__menu" role="menu" [attr.aria-label]="title">
 				<ng-content></ng-content>
+				<ng-container *ngFor="let headerItem of headerItems">
+					<ibm-header-item
+						[href]="headerItem.href"
+						[route]="headerItem.route"
+						[routeExtras]="headerItem.routeExtras"
+						[content]="headerItem.content">
+					</ibm-header-item>
+				</ng-container>
 			</ul>
 		</li>
 	`
@@ -36,6 +45,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class HeaderMenu {
 	@Input() title: string;
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		} 
 		this._href = v;
 	}
 
@@ -43,6 +56,15 @@ export class HeaderMenu {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 	@Input() trigger: "click" | "mouseover" = "click";
+
+	@Input() headerItems: HeaderItemInterface[];
+
+	/**
+	 * Set breakpoint to respond to the size of the window innerWidth. ie. the window
+	 * innerWidth to send the header menu to the sidenav. Currently not used as styles
+	 * direct the response to the innerWidth of the window.
+	 */
+	@Input() breakpoint: number;
 
 	public expanded = false;
 

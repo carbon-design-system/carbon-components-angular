@@ -6,6 +6,7 @@ import {
 	QueryList
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
+import { SideNavItemInterface } from "./sidenav-item.interface";
 
 /**
  * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
@@ -40,6 +41,15 @@ import { SideNavItem } from "./sidenav-item.component";
 			</button>
 			<ul class="bx--side-nav__menu" role="menu">
 				<ng-content></ng-content>
+				<ng-container *ngFor="let subMenuItem of subMenuItems">
+					<ibm-sidenav-item
+						[href]="subMenuItem.href"
+						[route]="subMenuItem.route"
+						[routeExtras]="subMenuItem.routeExtras"
+						[content]="subMenuItem.content"
+						[isSubMenu]="true">
+					</ibm-sidenav-item>
+				</ng-container>
 			</ul>
 		</li>
 	`
@@ -53,6 +63,8 @@ export class SideNavMenu implements AfterContentInit {
 	 * Controls the visibility of the child `SideNavItem`s
 	 */
 	@Input() expanded = false;
+
+	@Input() subMenuItems: SideNavItemInterface[];
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
