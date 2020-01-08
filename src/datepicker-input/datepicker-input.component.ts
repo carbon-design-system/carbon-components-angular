@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -26,6 +27,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				</label>
 				<div class="bx--date-picker-input__wrapper">
 					<input
+						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
 						type="text"
@@ -45,7 +47,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				</div>
 			</div>
 		</div>
-	</div>
+</div>
 	`,
 	providers: [
 		{
@@ -57,7 +59,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
-
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
@@ -87,6 +88,8 @@ export class DatePickerInput {
 	@Input() skeleton = false;
 
 	@Input() value = "";
+
+	@ViewChild("input") input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) {}
 
