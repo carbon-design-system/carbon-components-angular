@@ -103,7 +103,7 @@ class ReactiveFormsStory implements OnInit {
 	}
 }
 
-storiesOf("Dropdown", module)
+storiesOf("Components|Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [ ReactiveFormsStory ],

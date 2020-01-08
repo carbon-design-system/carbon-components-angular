@@ -50,7 +50,7 @@ class PaginationStory implements OnInit {
 }
 
 
-storiesOf("Pagination", module).addDecorator(
+storiesOf("Components|Pagination", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,

@@ -4,7 +4,7 @@ import {
 	Output,
 	ViewChild,
 	EventEmitter,
-	OnInit
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -25,8 +25,24 @@ const noop = () => {};
 			<strong class="bx--file--label">{{title}}</strong>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
+				<label *ngIf="drop" class="bx--file-browse-btn">
+					<div
+						class="bx--file__drop-container"
+						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
+						role="button"
+						(click)="fileInput.click()"
+						[attr.for]="fileUploaderId"
+						(dragover)="onDragOver($event)"
+						(dragleave)="onDragLeave($event)"
+						(drop)="onDrop($event)">
+						<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
+						<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
+					</div>
+				</label>
 				<button
-					ibmButton="primary"
+					*ngIf="!drop"
+					type="button"
+					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
 					[size]="size">
@@ -66,7 +82,7 @@ const noop = () => {};
 		}
 	]
 })
-export class FileUploader implements OnInit {
+export class FileUploader {
 	/**
 	 * Counter used to create unique ids for file-uploader components
 	 */
@@ -77,6 +93,10 @@ export class FileUploader implements OnInit {
 	 * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
 	 */
 	@Input() buttonText = this.i18n.get().FILE_UPLOADER.OPEN;
+	/**
+	 * Type set for button
+	 */
+	@Input() buttonType: "primary" | "secondary" | "tertiary" | "ghost" | "danger" = "primary";
 	/**
 	 * Text set to the title
 	 */
@@ -101,10 +121,16 @@ export class FileUploader implements OnInit {
 	@Input() skeleton = false;
 	/**
 	 * Sets the size of the button.
-	 *
-	 * @type {("sm" | "normal")}
 	 */
 	@Input() size: "sm" | "normal";
+	/**
+	 * Set to `true` to enable drag and drop.
+	 */
+	@Input() drop = false;
+	/**
+	 * Sets the text shown in drag and drop box.
+	 */
+	@Input() dropText: string | TemplateRef<any>;
 	/**
 	 * Provides a unique id for the underlying <input> node
 	 */
@@ -116,8 +142,14 @@ export class FileUploader implements OnInit {
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
-	@Input() files: Set<FileItem>;
+	@Input() files = new Set<FileItem>();
+
 	@Output() filesChange = new EventEmitter<any>();
+
+	/**
+	 * Controls the state of the drag and drop file container
+	 */
+	public dragOver = false;
 
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
@@ -139,16 +171,12 @@ export class FileUploader implements OnInit {
 		}
 	}
 
-	ngOnInit() {
-		// overrides the undefined files value set by the user
-		if (!this.files) {
-			this.files = new Set();
-			this.filesChange.emit(this.files);
-		}
-	}
-
 	onBlur() {
 		this.onTouchedCallback();
+	}
+
+	get fileList() {
+		return Array.from(this.fileInput.nativeElement.files);
 	}
 
 	/**
@@ -160,19 +188,22 @@ export class FileUploader implements OnInit {
 		}
 	}
 
+	createFileItem(file): FileItem {
+		return {
+			uploaded: false,
+			state: "edit",
+			invalid: false,
+			invalidText: "",
+			file: file
+		};
+	}
+
 	onFilesAdded() {
-		const files = this.fileInput.nativeElement.files;
 		if (!this.multiple) {
 			this.files.clear();
 		}
-		for (let file of files) {
-			const fileItem: FileItem = {
-				uploaded: false,
-				state: "edit",
-				invalid: false,
-				invalidText: "",
-				file: file
-			};
+		for (let file of this.fileList) {
+			const fileItem = this.createFileItem(file);
 			this.files.add(fileItem);
 			this.filesChange.emit(this.files);
 		}
@@ -180,10 +211,59 @@ export class FileUploader implements OnInit {
 		this.value = this.files;
 	}
 
+	onDragOver(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		this.dragOver = true;
+	}
+
+	onDragLeave(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		this.dragOver = false;
+	}
+
+	onDrop(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		const transferredFiles = Array.from(event.dataTransfer.files);
+
+		if (!this.accept.length) {
+			transferredFiles.forEach(file => {
+				const fileItem = this.createFileItem(file);
+				this.files.add(fileItem);
+				this.filesChange.emit(this.files);
+			});
+
+			this.value = this.files;
+			this.dragOver = false;
+			return;
+		}
+
+		transferredFiles.filter(({ name, type }) => {
+			// Get the file extension and add a "." to the beginning.
+			const fileExtension = name.split(".").pop().replace(/^/, ".");
+			// Check if the accept array contains the mime type or extension of the file.
+			return this.accept.includes(type) || this.accept.includes(fileExtension);
+		}).forEach(file => {
+			const fileItem = this.createFileItem(file);
+			this.files.add(fileItem);
+			this.filesChange.emit(this.files);
+		});
+
+		this.value = this.files;
+		this.dragOver = false;
+	}
+
 	removeFile(fileItem) {
 		this.files.delete(fileItem);
 		this.fileInput.nativeElement.value = "";
 		this.filesChange.emit(this.files);
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	/**

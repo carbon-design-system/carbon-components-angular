@@ -4,8 +4,10 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * [See demo](../../?path=/story/time-picker--simple)
@@ -36,9 +38,16 @@ import {
 					class="bx--time-picker__input-field bx--text-input">
 			</div>
 			<ng-content></ng-content>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: TimePicker,
+			multi: true
+		}
+	]
 })
-export class TimePicker {
+export class TimePicker implements ControlValueAccessor {
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -65,11 +74,36 @@ export class TimePicker {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+	writeValue(value: string) {
+		this.value = value;
+	}
+
+	registerOnChange(callback: any) {
+		this.onChangeHandler = callback;
+	}
+
+	registerOnTouched(callback: any) {
+		this.onTouchedHandler = callback;
+	}
+
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
 	onChange(event) {
+		this.onChangeHandler(event.target.value);
 		this.valueChange.emit(event.target.value);
+	}
+
+	@HostListener("blur")
+	blur() {
+		this.onTouchedHandler();
 	}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
+
+	protected onChangeHandler = (_: any) => { };
+	protected onTouchedHandler = () => { };
 }

@@ -1,9 +1,9 @@
-{
+export default {
 	"BANNER": {
 		"CLOSE_BUTTON": "Close alert banner"
 	},
 	"CALENDAR": {
-		"MONTHS":{
+		"MONTHS": {
 			"JANUARY": "January",
 			"FEBRUARY": "February",
 			"MARCH": "March",
@@ -17,7 +17,7 @@
 			"NOVEMBER": "November",
 			"DECEMBER": "December"
 		},
-		"SHORTWEEKDAYS":{
+		"SHORTWEEKDAYS": {
 			"SUNDAY": "Sun",
 			"MONDAY": "Mon",
 			"TUESDAY": "Tue",
@@ -155,4 +155,4 @@
 			"TOGGLE_CLOSE": "Close"
 		}
 	}
-}
+};

@@ -1,12 +1,78 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { Component } from "@angular/core";
+import {
+	Component,
+	Input,
+	EventEmitter,
+	Output,
+	OnInit
+} from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
-import { I18n } from "../i18n/i18n.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Subject } from "rxjs";
+
+@Component({
+	selector: "app-notification-action-story",
+	template: `
+		<ibm-notification [notificationObj]="{
+			type: 'error',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'info',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'success',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'warning',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		`,
+	providers: [NotificationService]
+})
+class NotificationActionStory implements OnInit {
+	@Input() showClose = true;
+	@Input() lowContrast = false;
+
+	@Output() actionClicked = new EventEmitter();
+
+	actionSubject = new Subject<any>();
+
+	actions = [
+		{
+			text: "Action",
+			click: this.actionSubject
+		}
+	];
+
+	constructor(protected notificationService: NotificationService) { }
+
+	ngOnInit() {
+		this.actions.forEach(action => action.click.subscribe({ next: () => this.actionClicked.emit() }));
+	}
+}
 
 @Component({
 	selector: "app-notification-story",
@@ -52,11 +118,12 @@ class ToastStory {
 	}
 }
 
-storiesOf("Notification", module)
+storiesOf("Components|Notification", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
 				NotificationStory,
+				NotificationActionStory,
 				ToastStory
 			],
 			imports: [
@@ -100,6 +167,20 @@ storiesOf("Notification", module)
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false)
+		}
+	}))
+	.add("With Actions", () => ({
+		template: `
+			<app-notification-action-story
+				[showClose]="showClose"
+				[lowContrast]="lowContrast"
+				(actionClicked)="selected()">
+			</app-notification-action-story>
+		`,
+		props: {
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false),
+			selected: action("Action button clicked!")
 		}
 	}))
 	.add("Dynamic", () => ({

@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { Close20Module } from "@carbon/icons-angular/lib/close/20";
+import { Menu20Module } from "@carbon/icons-angular/lib/menu/20";
 
 import { I18nModule } from "./../../i18n/i18n.module";
 
@@ -37,7 +38,8 @@ export {
 	imports: [
 		CommonModule,
 		I18nModule,
-		Close20Module
+		Close20Module,
+		Menu20Module
 	],
 	exports: [
 		Header,
