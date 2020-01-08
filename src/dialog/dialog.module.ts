@@ -21,6 +21,7 @@ import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 import { I18nModule } from "./../i18n/i18n.module";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { ExperimentalModule } from "./../experimental.module";
+import { UtilsModule } from "./../utils/utils.module";
 
 // exports
 export { DialogService } from "./dialog.service";
@@ -78,7 +79,8 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		CommonModule,
 		I18nModule,
 		PlaceholderModule,
-		ExperimentalModule
+		ExperimentalModule,
+		UtilsModule
 	]
 })
 export class DialogModule {}
