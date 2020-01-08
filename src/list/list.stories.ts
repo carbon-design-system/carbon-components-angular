@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 
 import { ListModule, DocumentationModule } from "../";
 
-storiesOf("List", module).addDecorator(
+storiesOf("Components|List", module).addDecorator(
 	moduleMetadata({
 		imports: [ListModule, DocumentationModule]
 	}))

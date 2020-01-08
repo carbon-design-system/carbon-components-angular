@@ -9,7 +9,7 @@ import {
 
 import { SearchModule, DocumentationModule } from "../";
 
-storiesOf("Search", module).addDecorator(
+storiesOf("Components|Search", module).addDecorator(
 	moduleMetadata({
 		imports: [SearchModule, DocumentationModule]
 	})

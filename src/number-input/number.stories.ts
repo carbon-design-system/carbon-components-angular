@@ -3,7 +3,7 @@ import { withKnobs, boolean, number, select, text } from "@storybook/addon-knobs
 
 import { NumberModule, DocumentationModule } from "../";
 
-storiesOf("Number", module).addDecorator(
+storiesOf("Components|Number", module).addDecorator(
 	moduleMetadata({
 		imports: [NumberModule, DocumentationModule]
 	})

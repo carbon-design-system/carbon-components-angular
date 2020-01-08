@@ -2,10 +2,12 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
+import { getScrollbarWidth } from "../../utils/window-tools";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
@@ -24,10 +26,16 @@ import { Observable } from "rxjs";
 	template: `
 	<ng-container *ngIf="model">
 		<tr>
-			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows()"></th>
+			<th
+				ibmTableHeadExpand
+				*ngIf="model.hasExpandableRows()"
+				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
+				[id]="model.getId('expand')">
+			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				style="width: 0;">
+				style="width: 0;"
+				[id]="model.getId('select')">
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
 			</th>
 			<th
@@ -38,17 +46,22 @@ import { Observable } from "rxjs";
 				[ariaLabel]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
-				(change)="onSelectAllCheckboxChange()">
+				(change)="onSelectAllCheckboxChange()"
+				[id]="model.getId('select')">
 			</th>
 			<ng-container *ngFor="let column of model.header; let i = index">
 				<th
+					*ngIf="column && column.visible"
+					[ngStyle]="column.style"
 					ibmTableHeadCell
-					[column]="column"
-					[filterTitle]="getFilterTitle()"
-					(sort)="sort.emit(i)"
-					*ngIf="column.visible"
 					[class]="column.className"
-					[ngStyle]="column.style">
+					[id]="model.getId(i)"
+					[column]="column"
+					[skeleton]="skeleton"
+					[filterTitle]="getFilterTitle()"
+					[attr.colspan]="column.colSpan"
+					[attr.rowspan]="column.rowSpan"
+					(sort)="sort.emit(i)">
 				</th>
 			</ng-container>
 			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
@@ -60,9 +73,14 @@ import { Observable } from "rxjs";
 		</tr>
 	</ng-container>
 	<ng-content></ng-content>
-	`
+	`,
+	styles: [`
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	`]
 })
-export class TableHead {
+export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn = true;
@@ -143,6 +161,10 @@ export class TableHead {
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	constructor(protected i18n: I18n) {}
+
+	ngAfterViewInit() {
+		this.scrollbarWidth = getScrollbarWidth();
+	}
 
 	onSelectAllCheckboxChange() {
 		if (!this.selectAllCheckbox) {

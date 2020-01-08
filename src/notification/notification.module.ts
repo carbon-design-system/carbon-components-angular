@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { ButtonModule } from "../button/button.module";
 import { CommonModule } from "@angular/common";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { ErrorFilled16Module } from "@carbon/icons-angular/lib/error--filled/16";
@@ -28,6 +29,7 @@ export { Toast } from "./toast.component";
 	],
 	entryComponents: [Notification, Toast],
 	imports: [
+		ButtonModule,
 		CommonModule,
 		I18nModule,
 		ExperimentalModule,
