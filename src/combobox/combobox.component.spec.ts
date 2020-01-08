@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
+import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 import { I18nModule } from "../i18n/i18n.module";
 
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -42,6 +43,7 @@ describe("Combo box", () => {
 			],
 			imports: [
 				ChevronDown16Module,
+				WarningFilled16Module,
 				I18nModule,
 				FormsModule
 			]
@@ -60,11 +62,11 @@ describe("Combo box", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
 
-		let dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
+		const dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
 		dropdownToggle.click();
 		fixture.detectChanges();
 
-		let dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
+		const dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
 		dropdownOption.click();
 		fixture.detectChanges();
 
@@ -74,16 +76,13 @@ describe("Combo box", () => {
 
 		element.componentInstance.clearSelected();
 
-		expect(wrapper.model).toBeNull();
+		// No longer emits null when selection is empty.
+		expect(wrapper.model).toEqual([]);
 	});
 
 	it("should open dropdown on ArrowDown and close dropdown on Escape", () => {
-		const keyDown = new KeyboardEvent("keydown", {
-			"key": "ArrowDown"
-		});
-		const escape = new KeyboardEvent("keydown", {
-			"key": "Escape"
-		});
+		const keyDown = new KeyboardEvent("keydown", { "key": "ArrowDown" });
+		const escape = new KeyboardEvent("keydown", { "key": "Escape" });
 
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
@@ -103,9 +102,7 @@ describe("Combo box", () => {
 	});
 
 	it("should call onSearch on keyup event", () => {
-		const keyupT = new KeyboardEvent("keyup", {
-			"key": "t"
-		});
+		const keyupT = new KeyboardEvent("keyup", { "key": "t" });
 
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
@@ -113,7 +110,7 @@ describe("Combo box", () => {
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
 		spyOn(element.componentInstance, "onSearch");
 
-		let textInput = element.nativeElement.querySelector(".bx--text-input");
+		const textInput = element.nativeElement.querySelector(".bx--text-input");
 		textInput.dispatchEvent(keyupT);
 		fixture.detectChanges();
 
