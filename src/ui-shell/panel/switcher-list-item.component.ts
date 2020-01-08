@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, HostBinding } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 /**
@@ -35,6 +35,8 @@ export class SwitcherListItem {
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
+
+	@HostBinding("class.bx--switcher__item") itemClass = true;
 
 	protected _href = "javascript:void(0)";
 
