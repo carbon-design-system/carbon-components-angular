@@ -4,7 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { ContentSwitcherModule, DocumentationModule } from "../";
 
-storiesOf("Content Switcher", module)
+storiesOf("Components|Content Switcher", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

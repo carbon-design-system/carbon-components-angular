@@ -4,7 +4,7 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { GridModule, DocumentationModule } from "../";
 
-storiesOf("Grid", module)
+storiesOf("Components|Grid", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [GridModule, DocumentationModule]

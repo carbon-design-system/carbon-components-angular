@@ -16,8 +16,8 @@ import { I18n } from "../../i18n/i18n.module";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
-import { ScrollableList } from "./../scrollable-list.directive";
 import { Observable, isObservable, Subscription } from "rxjs";
+import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 
 /**
@@ -52,6 +52,7 @@ import { Observable, isObservable, Subscription } from "rxjs";
 			#list
 			role="listbox"
 			class="bx--list-box__menu bx--multi-select"
+			(scroll)="emitScroll($event)"
 			[attr.aria-label]="ariaLabel">
 			<li
 				role="option"
@@ -129,6 +130,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Event to emit selection of a list item within the `DropdownList`.
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	/**
+	 * Event to emit scroll event of a list within the `DropdownList`.
+	 */
+	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter<ScrollCustomEvent>();
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
@@ -215,7 +220,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.index = this._items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 		setTimeout(() => {
-			if (!this.getSelected()) { return; }
+			if (this.getSelected() !== []) { return; }
 			if (this.type === "single") {
 				this.select.emit({ item: this._items.find(item => item.selected), isUpdate: true });
 			} else {
@@ -475,5 +480,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		const element = this.listElementList.toArray()[index].nativeElement;
 		element.classList.remove("bx--list-box__menu-item--highlighted");
 		element.tabIndex = -1;
+	}
+
+	/**
+	 * Emits the scroll event of the options list
+	 */
+	emitScroll(event) {
+		const atTop: boolean = event.srcElement.scrollTop === 0;
+		const atBottom: boolean = event.srcElement.scrollHeight - event.srcElement.scrollTop === event.srcElement.clientHeight;
+		const customScrollEvent = { atTop, atBottom, event };
+		this.scroll.emit(customScrollEvent);
 	}
 }

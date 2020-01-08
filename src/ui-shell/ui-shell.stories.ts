@@ -22,7 +22,7 @@ class BarComponent { }
 })
 class FooComponent { }
 
-storiesOf("UI Shell", module)
+storiesOf("Components|UI Shell", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [BarComponent, FooComponent],
@@ -279,7 +279,7 @@ storiesOf("UI Shell", module)
 	.add("Together", () => ({
 		template: `
 			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger" [active]="active" (selected)="selected()"></ibm-hamburger>
+				<ibm-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
 					<ibm-header-item>Docs</ibm-header-item>
@@ -378,7 +378,6 @@ storiesOf("UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			active: boolean("Left panel active", true),
-			selected: () => { console.log("selected"); },
 			options: [
 				{
 					content: "Option 1",

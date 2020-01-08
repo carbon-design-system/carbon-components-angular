@@ -84,7 +84,7 @@ class DatePickerStory {
 	}
 }
 
-storiesOf("Date Picker", module)
+storiesOf("Components|Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

@@ -273,10 +273,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
+					this.view.filterBy("");
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view.filterBy("");
 			});
 			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
@@ -414,7 +414,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected) {
+				if (selected && selected[0]) {
 					selected[0].selected = false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });
@@ -462,7 +462,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected) {
+		} else if (selected && selected[0]) {
 			this.selectedValue = selected[0].content;
 			this.propagateChangeCallback(selected[0]);
 		}
