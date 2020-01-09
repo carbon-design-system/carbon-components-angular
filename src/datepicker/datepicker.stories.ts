@@ -152,18 +152,7 @@ storiesOf("Components|Date Picker", module)
 			</ibm-date-picker>
 		`,
 		props: {
-			language: select("Language of the calendar", [
-				"en",
-				"de",
-				"fi",
-				"ja",
-				"zh",
-				"es",
-				"fr",
-				"it",
-				"ko",
-				"pt"
-			], "en"),
+			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -208,18 +197,7 @@ storiesOf("Components|Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
-			language: select("Language of the calendar", [
-				"en",
-				"de",
-				"fi",
-				"ja",
-				"zh",
-				"es",
-				"fr",
-				"it",
-				"ko",
-				"pt"
-			], "en"),
+			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
