@@ -22,21 +22,22 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-toast",
 	template: `
 		<ibm-icon-error-filled16
-				*ngIf="notificationObj.type === 'error'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-error-filled16>
-			<ibm-icon-warning-filled16
-				*ngIf="notificationObj.type === 'warning'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-warning-filled16>
-			<ibm-icon-checkmark-filled16
-				*ngIf="notificationObj.type === 'success'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-checkmark-filled16>
+			*ngIf="notificationObj.type === 'error'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-error-filled16>
+		<ibm-icon-warning-filled16
+			*ngIf="notificationObj.type === 'warning'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-warning-filled16>
+		<ibm-icon-checkmark-filled16
+			*ngIf="notificationObj.type === 'success'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-checkmark-filled16>
 		<div class="bx--toast-notification__details">
 			<h3 class="bx--toast-notification__title" [innerHTML]="notificationObj.title"></h3>
 			<p class="bx--toast-notification__subtitle" [innerHTML]="notificationObj.subtitle"></p>
 			<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p>
+			<ng-content></ng-content>
 		</div>
 		<button
 			*ngIf="showClose"

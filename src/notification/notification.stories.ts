@@ -7,10 +7,12 @@ import {
 	Input,
 	EventEmitter,
 	Output,
-	OnInit
+	OnInit,
+	ViewEncapsulation
 } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
+import { ButtonModule } from "../button/button.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Subject } from "rxjs";
 
@@ -128,6 +130,7 @@ storiesOf("Components|Notification", module)
 			],
 			imports: [
 				NotificationModule,
+				ButtonModule,
 				DocumentationModule
 			]
 		})
@@ -223,6 +226,45 @@ storiesOf("Components|Notification", module)
 				showClose: showClose
 			}"></ibm-toast>
 		`,
+		props: {
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false)
+		}
+	}))
+	.add("With custom content", () => ({
+		template: `
+			<ibm-toast [notificationObj]="{type: 'error'}">
+				<h3 class="bx--toast-notification__title">Hello</h3>
+				<p class="bx--toast-notification__subtitle">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Ut scelerisque, risus eu tincidunt faucibus
+				</p>
+				<div class="actions">
+					<div class="secondary-button">
+						<button ibmButton="secondary" size="sm">Still Working</button>
+					</div>
+					<div class="primary-button">
+						<button ibmButton="primary" size="sm">Archive</button>
+					</div>
+				</div>
+			</ibm-toast>
+		`,
+		encapsulation: ViewEncapsulation.None,
+		styles: [`
+			ibm-toast {
+				width: 500px;
+			}
+
+			.secondary-button {
+				margin-right: 10px;
+			}
+
+			.actions {
+				margin-bottom: 30px;
+				display: flex;
+				justify-content: flex-end;
+			}
+		`],
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false)
