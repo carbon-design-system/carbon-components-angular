@@ -14,7 +14,8 @@ import {
 	FormControl,
 	Validators,
 	FormsModule,
-	ReactiveFormsModule } from "@angular/forms";
+	ReactiveFormsModule
+} from "@angular/forms";
 
 @Component({
 	selector: "app-sample-large-loading",
