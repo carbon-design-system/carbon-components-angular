@@ -19,13 +19,11 @@ export class SkeletonText implements OnChanges {
 
 	lineWidths: Array<string>;
 
-	randoms = [0.973051493507435, 0.15334737213558558, 0.5671034553053769];
-
 	/**
 	 * Returns a random width in pixels based off a min width, and a max width.
 	 */
-	getRandomInt(min, max, n) {
-		return `${ (Math.floor(this.randoms[n % 3] * (max - min + 1)) + min) + "px" }`;
+	getRandomInt(min, max) {
+		return `${Math.floor(Math.random() * (max - min + 1) + min) + "px"}`;
 	}
 
 	ngOnChanges() {
@@ -33,6 +31,6 @@ export class SkeletonText implements OnChanges {
 		// 0 to lines - 1, maps each value to a random width in pixels.
 		this.lineWidths =
 			Array.from(Array(this.lines).keys())
-				.map(num => this.getRandomInt(this.minLineWidth, this.maxLineWidth, num));
+				.map(num => this.getRandomInt(this.minLineWidth, this.maxLineWidth));
 	}
 }
