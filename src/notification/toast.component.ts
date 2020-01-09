@@ -37,7 +37,7 @@ import { I18n } from "./../i18n/i18n.module";
 			<h3 class="bx--toast-notification__title" [innerHTML]="notificationObj.title"></h3>
 			<p class="bx--toast-notification__subtitle" [innerHTML]="notificationObj.subtitle"></p>
 			<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p>
-			<ng-content></ng-content>
+			<ng-container *ngTemplateOutlet="notificationObj.content"></ng-container>
 		</div>
 		<button
 			*ngIf="showClose"

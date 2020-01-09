@@ -233,29 +233,51 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("With custom content", () => ({
 		template: `
-			<ibm-toast [notificationObj]="{type: 'error'}">
-				<h3 class="bx--toast-notification__title">Hello</h3>
-				<p class="bx--toast-notification__subtitle">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Ut scelerisque, risus eu tincidunt faucibus
-				</p>
+			<ibm-toast [notificationObj]="{
+				type: 'error',
+				title: 'Sample custom toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				content: customToastContent,
+				showClose: showClose
+			}">
+			</ibm-toast>
+			<ibm-notification [notificationObj]="{
+				type: 'error',
+				title: 'Sample custom notification',
+				message: 'Sample error message',
+				showClose: showClose,
+				lowContrast: lowContrast,
+				content: customNotificationContent,
+				actions: actions}">
+			</ibm-notification>
+			<ng-template #customToastContent>
 				<div class="actions">
-					<div class="secondary-button">
+					<div class="secondary-toast-button">
 						<button ibmButton="secondary" size="sm">Still Working</button>
 					</div>
-					<div class="primary-button">
+					<div class="primary-toast-button">
 						<button ibmButton="primary" size="sm">Archive</button>
 					</div>
 				</div>
-			</ibm-toast>
+			</ng-template>
+			<ng-template #customNotificationContent>
+				<div class="primary-notification-button">
+					<button ibmButton="primary" size="sm">Action</button>
+				</div>
+			</ng-template>
+
+
+
 		`,
 		encapsulation: ViewEncapsulation.None,
 		styles: [`
 			ibm-toast {
-				width: 500px;
+				width: 450px;
 			}
 
-			.secondary-button {
+			.secondary-toast-button {
 				margin-right: 10px;
 			}
 
@@ -263,6 +285,10 @@ storiesOf("Components|Notification", module)
 				margin-bottom: 30px;
 				display: flex;
 				justify-content: flex-end;
+			}
+
+			.primary-notification-button {
+				margin-left: 25px;
 			}
 		`],
 		props: {

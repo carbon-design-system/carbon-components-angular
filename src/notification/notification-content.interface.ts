@@ -1,4 +1,5 @@
 import { Subject } from "rxjs";
+import { TemplateRef } from "@angular/core";
 
 export interface NotificationContent {
 	type: string;
@@ -10,12 +11,14 @@ export interface NotificationContent {
 	message?: string;
 	showClose?: boolean;
 	lowContrast?: boolean;
+	content?: TemplateRef<any>;
 	actions?: NotificationAction[];
 }
 
 export interface ToastContent extends NotificationContent {
 	subtitle: string;
 	caption: string;
+	content?: TemplateRef<any>;
 }
 
 interface NotificationAction {
