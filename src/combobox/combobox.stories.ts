@@ -9,7 +9,7 @@ const getOptions = (override = {}) => {
 	const options = {
 		disabled: boolean("disabled", false),
 		invalid: boolean("Invalid", false),
-		invalidText: text("Invalid Text", "A valid value is required"),
+		invalidText: text("Invalid text", "A valid value is required"),
 		label: text("Label", "ComboBox label"),
 		helperText: text("Helper text", "Optional helper text."),
 		items: [
