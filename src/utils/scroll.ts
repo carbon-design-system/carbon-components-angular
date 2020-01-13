@@ -1,5 +1,5 @@
 import { map } from "rxjs/operators";
-import { fromEvent, merge } from "rxjs";
+import { fromEvent, merge, Observable } from "rxjs";
 
 
 /**
@@ -30,12 +30,23 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
 	return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
 };
 
+export const getScrollableParents = (node: HTMLElement) => {
+	const elements = [document.body];
+	while (node.parentElement && node !== document.body) {
+		if (isScrollableElement(node)) {
+			elements.push(node);
+		}
+		node = node.parentElement;
+	}
+	return elements;
+};
+
 /**
  * Returns an observable that emits whenever any scrollable parent element scrolls
  *
  * @param node root element to start finding scrolling parents from
  */
-export const scrollableParentsObservable = (node: HTMLElement) => {
+export const scrollableParentsObservable = (node: HTMLElement): Observable<Event> => {
 	const windowScroll = fromEvent(window, "scroll").pipe(map(event => (
 		// update the event target to be something useful. In this case `body` is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event

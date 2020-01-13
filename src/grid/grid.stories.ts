@@ -4,7 +4,7 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { GridModule, DocumentationModule } from "../";
 
-storiesOf("Grid", module)
+storiesOf("Components|Grid", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [GridModule, DocumentationModule]
@@ -13,13 +13,26 @@ storiesOf("Grid", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-        	<div ibmGrid>
-            	<div ibmRow>
-              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':3, 'sm': 12}">First Column</div>
-              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':3, 'sm': 12}">Second column</div>
+        	<div ibmGrid [condensed]="gridCondensed">
+				<div
+					ibmRow
+					[gutter]="gutter"
+					[leftGutter]="leftGutter"
+					[rightGutter]="rightGutter"
+					[condensed]="rowCondensed">
+              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
             	</div>
          	</div>
-		`
+		`,
+		props: {
+			gutter: boolean("Gutter", true),
+			leftGutter: boolean("Left gutter", true),
+			rightGutter: boolean("Right gutter", true),
+			rowCondensed: boolean("Row condensed", false),
+			gridCondensed: boolean("Grid condensed", false)
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `

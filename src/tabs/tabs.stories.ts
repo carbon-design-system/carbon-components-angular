@@ -3,7 +3,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { TabsModule, DocumentationModule } from "../";
 
-storiesOf("Tabs", module)
+storiesOf("Components|Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

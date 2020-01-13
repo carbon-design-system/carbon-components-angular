@@ -37,3 +37,4 @@ export * from "./tiles/tiles.module";
 export * from "./timepicker/timepicker.module";
 export * from "./timepicker-select/timepicker-select.module";
 export * from "./ui-shell/ui-shell.module";
+export * from "./utils";
