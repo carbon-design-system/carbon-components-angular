@@ -16,7 +16,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
-import languages from "./datepicker.module";
+import * as languages from "flatpickr/dist/l10n/index";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
