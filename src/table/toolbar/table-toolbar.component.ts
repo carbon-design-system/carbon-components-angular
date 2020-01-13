@@ -1,6 +1,6 @@
 import { TableModel } from "../table-model.class";
-import { Component, Input, ElementRef, AfterViewInit } from "@angular/core";
-import { I18n, Overridable } from "../../i18n/i18n.module";
+import { Component, Input } from "@angular/core";
+import { I18n } from "../../i18n/i18n.module";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -54,7 +54,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
-					<span>{{count}}</span> {{batchText}}
+					<span>{{count}}</span> {{_batchText.subject | async}}
 				</p>
 			</div>
 		</div>
@@ -63,10 +63,12 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	`
 })
 export class TableToolbar {
-	@Input() model: TableModel;
+@Input() model: TableModel;
 
-	@Input() batchText = "items selected";
-
+	@Input() set batchText (value: { BATCH_TEXT: string }) {
+		console.log(value.BATCH_TEXT);
+		this._batchText.override(value.BATCH_TEXT);
+	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);
 	}
@@ -78,6 +80,7 @@ export class TableToolbar {
 	}
 	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
+	_batchText = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
 
 	constructor(protected i18n: I18n) {}
 

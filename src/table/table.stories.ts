@@ -153,7 +153,7 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText">
+			<ibm-table-toolbar [model]="model">
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
