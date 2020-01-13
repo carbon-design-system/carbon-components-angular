@@ -11,14 +11,14 @@ export interface NotificationContent {
 	message?: string;
 	showClose?: boolean;
 	lowContrast?: boolean;
-	content?: TemplateRef<any>;
+	template?: TemplateRef<any>;
 	actions?: NotificationAction[];
 }
 
 export interface ToastContent extends NotificationContent {
 	subtitle: string;
 	caption: string;
-	content?: TemplateRef<any>;
+	template?: TemplateRef<any>;
 }
 
 interface NotificationAction {

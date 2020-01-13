@@ -235,24 +235,20 @@ storiesOf("Components|Notification", module)
 		template: `
 			<ibm-toast [notificationObj]="{
 				type: 'error',
-				title: 'Sample custom toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				content: customToastContent,
+				template: customToastContent,
 				showClose: showClose
 			}">
 			</ibm-toast>
 			<ibm-notification [notificationObj]="{
-				type: 'error',
-				title: 'Sample custom notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				content: customNotificationContent,
-				actions: actions}">
+				type: 'warning',
+				template: customNotificationContent,
+				showClose: showClose
+			}">
 			</ibm-notification>
 			<ng-template #customToastContent>
+				<h3 ibmToastTitle>Sample custom toast</h3>
+				<p ibmToastSubtitle>Sample custom subtitle</p>
+				<p ibmToastCaption>Sample custom caption</p>
 				<div class="actions">
 					<div class="secondary-toast-button">
 						<button ibmButton="secondary" size="sm">Still Working</button>
@@ -263,13 +259,11 @@ storiesOf("Components|Notification", module)
 				</div>
 			</ng-template>
 			<ng-template #customNotificationContent>
-				<div class="primary-notification-button">
-					<button ibmButton="primary" size="sm">Action</button>
+				<div class="bx--inline-notification__text-wrapper">
+					<p ibmNotificationTitle>Sample custom notification</p>
+					<p ibmNotificationSubtitle>Sample custom caption</p>
 				</div>
 			</ng-template>
-
-
-
 		`,
 		encapsulation: ViewEncapsulation.None,
 		styles: [`
@@ -282,18 +276,13 @@ storiesOf("Components|Notification", module)
 			}
 
 			.actions {
-				margin-bottom: 30px;
+				margin-bottom: 25px;
 				display: flex;
 				justify-content: flex-end;
 			}
-
-			.primary-notification-button {
-				margin-left: 25px;
-			}
 		`],
 		props: {
-			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
+			showClose: boolean("Show close icon", true)
 		}
 	}))
 	.add("Dynamic toast", () => ({
