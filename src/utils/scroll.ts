@@ -30,6 +30,17 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
 	return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
 };
 
+export const getScrollableParents = (node: HTMLElement) => {
+	const elements = [document.body];
+	while (node.parentElement && node !== document.body) {
+		if (isScrollableElement(node)) {
+			elements.push(node);
+		}
+		node = node.parentElement;
+	}
+	return elements;
+};
+
 /**
  * Returns an observable that emits whenever any scrollable parent element scrolls
  *
