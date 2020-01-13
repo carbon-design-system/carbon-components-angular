@@ -342,7 +342,7 @@ storiesOf("Components|Table", module).addDecorator(
 			</ibm-table-header>
 			<app-pagination-table
 				[skeleton]="skeleton"
-				[sortable]="sortable" 
+				[sortable]="sortable"
 				[totalDataLength]="totalDataLength"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
