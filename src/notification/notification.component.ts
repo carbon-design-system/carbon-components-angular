@@ -36,11 +36,11 @@ import { of, isObservable, Subject } from "rxjs";
 				*ngIf="notificationObj.type === 'success'"
 				class="bx--inline-notification__icon">
 			</ibm-icon-checkmark-filled16>
-			<div class="bx--inline-notification__text-wrapper" *ngIf="!notificationObj.template">
+			<div class="bx--inline-notification__text-wrapper">
 				<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>
 				<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>
+				<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
 			</div>
-			<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
 		</div>
 		<div *ngFor="let action of notificationObj.actions">
 			<button

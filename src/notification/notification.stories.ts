@@ -259,10 +259,8 @@ storiesOf("Components|Notification", module)
 				</div>
 			</ng-template>
 			<ng-template #customNotificationContent>
-				<div class="bx--inline-notification__text-wrapper">
-					<p ibmNotificationTitle>Sample custom notification</p>
-					<p ibmNotificationSubtitle>Sample custom caption</p>
-				</div>
+				<p ibmNotificationTitle>Sample custom notification</p>
+				<p ibmNotificationSubtitle>Sample custom caption</p>
 			</ng-template>
 		`,
 		encapsulation: ViewEncapsulation.None,
