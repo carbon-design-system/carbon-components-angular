@@ -2,13 +2,14 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	Input,
-	ElementRef
+	ElementRef,
+	Optional
 } from "@angular/core";
 import { getFocusElementList } from "./../../common/tab.service";
 
 import { Dialog } from "./../dialog.component";
 import { position } from "@carbon/utils-position";
+import { ElementService } from "./../../utils/utils.module";
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
@@ -47,8 +48,11 @@ export class Tooltip extends Dialog {
 	 */
 	public role = "tooltip";
 
-	constructor(protected elementRef: ElementRef) {
-		super(elementRef);
+	constructor(
+		protected elementRef: ElementRef,
+		// mark `elementService` as optional since making it mandatory would be a breaking change
+		@Optional() protected elementService: ElementService = null) {
+		super(elementRef, elementService);
 	}
 
 	/**

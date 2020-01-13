@@ -32,7 +32,9 @@ import { TableItem } from "../table-item.class";
 			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[model]="model"
-			(sort)="paginationSort($event)">
+			(sort)="paginationSort($event)"
+			[stickyHeader]="stickyHeader"
+			[skeleton]="skeleton">
 		</ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
@@ -50,6 +52,8 @@ export class PaginationTableStory implements OnInit {
 		this.model.totalDataLength = value;
 	}
 
+	@Input() stickyHeader = false;
+	
 	@ViewChild("filter")
 	filter: TemplateRef<any>;
 	@ViewChild("filterableHeaderTemplate")
@@ -62,8 +66,7 @@ export class PaginationTableStory implements OnInit {
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),
 			new TableHeaderItem({
-				data: "Very long title indeed",
-				style: { "width": "auto" }
+				data: "Very long title indeed"
 			})
 		];
 
