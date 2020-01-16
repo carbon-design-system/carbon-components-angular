@@ -4,16 +4,10 @@ import {
 	HostBinding,
 	ViewChild,
 	HostListener,
-	ViewContainerRef,
-	ComponentFactoryResolver,
-	AfterViewInit,
-	ComponentFactory,
-	ComponentRef
+	AfterViewInit
 } from "@angular/core";
 
 import { I18n } from "../i18n/i18n.module";
-
-import { ExpandButton } from "./expand-button.component";
 
 export enum SnippetType {
 	single = "single",
@@ -59,7 +53,14 @@ export enum SnippetType {
 				<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
-			<template #expandButtonContainer></template>
+			<button
+				*ngIf="hasExpandButton"
+				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+				(click)="toggleSnippetExpansion()"
+				type="button">
+				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
+				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
+			</button>
 		</ng-template>
 
 		<ng-template #codeTemplate>
@@ -136,16 +137,14 @@ export class CodeSnippet implements AfterViewInit {
 
 	@ViewChild("code") code;
 
-	@ViewChild("expandButtonContainer", { read: ViewContainerRef }) expandButtonContainer;
-
 	showFeedback = false;
 
-	private expandButtonRef: ComponentRef<ExpandButton>;
+	hasExpandButton = false;
 
 	/**
 	 * Creates an instance of CodeSnippet.
 	 */
-	constructor(protected i18n: I18n, private resolver: ComponentFactoryResolver) {
+	constructor(protected i18n: I18n) {
 		CodeSnippet.codeSnippetCount++;
 	}
 
@@ -193,19 +192,10 @@ export class CodeSnippet implements AfterViewInit {
 		}, this.feedbackTimeout);
 	}
 
-	appendExpansionButton() {
-		this.expandButtonContainer.clear();
-
-		const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(ExpandButton);
-
-		this.expandButtonRef = this.expandButtonContainer.createComponent(factory);
-		this.expandButtonRef.instance.toggleExpansion.subscribe(event => this.expanded = event);
-	}
-
 	ngAfterViewInit() {
 		setTimeout(() => {
 			if (this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false && this.display === "multi") {
-				this.appendExpansionButton();
+				this.hasExpandButton = true;
 			}
 		});
 	}

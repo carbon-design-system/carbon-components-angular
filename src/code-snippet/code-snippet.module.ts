@@ -9,19 +9,16 @@ import { I18nModule } from "../i18n/i18n.module";
 
 // imports
 import { CodeSnippet } from "./code-snippet.component";
-import { ExpandButton } from "./expand-button.component";
 
 // exports
 export { CodeSnippet } from "./code-snippet.component";
 
 @NgModule({
 	declarations: [
-		CodeSnippet,
-		ExpandButton
+		CodeSnippet
 	],
 	exports: [
-		CodeSnippet,
-		ExpandButton
+		CodeSnippet
 	],
 	imports: [
 		CommonModule,
@@ -29,7 +26,6 @@ export { CodeSnippet } from "./code-snippet.component";
 		I18nModule,
 		Copy16Module,
 		ChevronDown16Module
-	],
-	entryComponents: [ExpandButton]
+	]
 })
 export class CodeSnippetModule { }
