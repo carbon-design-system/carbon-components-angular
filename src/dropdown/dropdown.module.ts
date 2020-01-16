@@ -11,6 +11,7 @@ import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { DropdownService } from "./dropdown.service";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { UtilsModule } from "./../utils/utils.module";
 
 export { Dropdown } from "./dropdown.component";
 export { DropdownList } from "./list/dropdown-list.component";
@@ -37,7 +38,8 @@ export { DropdownService } from "./dropdown.service";
 		I18nModule,
 		PlaceholderModule,
 		ChevronDown16Module,
-		WarningFilled16Module
+		WarningFilled16Module,
+		UtilsModule
 	],
 	providers: [ DropdownService ]
 })

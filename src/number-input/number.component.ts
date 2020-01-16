@@ -132,7 +132,11 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Sets the value attribute on the `input` element.
 	 */
-	@Input() set value(v) {
+	@Input() set value(v: any) {
+		if (v === "") {
+			this._value = null;
+			return;
+		}
 		this._value = Number(v);
 	}
 
