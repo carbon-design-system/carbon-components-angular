@@ -2,7 +2,7 @@ export class PaginationModel {
 	/**
 	 * Tracks the current page.
 	 */
-	currentPage = 0;
+	currentPage = 1;
 
 	/**
 	 * Length of page.
