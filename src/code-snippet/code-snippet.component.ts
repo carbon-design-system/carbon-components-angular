@@ -194,7 +194,7 @@ export class CodeSnippet implements AfterViewInit {
 
 	ngAfterViewInit() {
 		setTimeout(() => {
-			if (this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false && this.display === "multi") {
+			if ((this.code && this.code.nativeElement.getBoundingClientRect().height > 255) && this.display === "multi") {
 				this.hasExpandButton = true;
 			}
 		});
