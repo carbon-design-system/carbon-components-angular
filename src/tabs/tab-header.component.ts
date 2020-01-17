@@ -51,7 +51,7 @@ export class TabHeader {
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
-	@Output() selected: EventEmitter<any> = new EventEmitter<any>();
+	@Output() selected = new EventEmitter<any>();
 
 	@ViewChild("tabItem") tabItem: ElementRef;
 
