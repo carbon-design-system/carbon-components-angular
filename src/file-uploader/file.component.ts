@@ -1,14 +1,10 @@
-
 import {
 	Component,
 	Input,
 	Output,
-	ViewChild,
 	EventEmitter,
-	OnInit,
 	HostBinding
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
 import { FileItem } from "./file-item.interface";
@@ -49,7 +45,7 @@ import { FileItem } from "./file-item.interface";
 		</span>
 	`
 })
-export class File {
+export class FileComponent {
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
@@ -69,3 +65,8 @@ export class File {
 
 	constructor(protected i18n: I18n) {}
 }
+
+// compatibility export
+// TODO: remove in v4
+// tslint:disable-next-line: variable-name
+export const File = FileComponent;

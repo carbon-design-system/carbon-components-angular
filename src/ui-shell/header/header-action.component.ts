@@ -19,7 +19,8 @@ import {
 			[attr.aria-label]="title"
 			[title]="title"
 			(click)="onClick()">
-			<ng-content></ng-content>
+			<ng-content *ngIf="!active"></ng-content>
+			<svg *ngIf="active" ibmIconClose20></svg>
 		</button>
 	`
 })
