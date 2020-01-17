@@ -21,7 +21,10 @@ import { Observable } from "rxjs";
 			(change)="change.emit()"
 			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
-	`
+	`,
+	styles: [`
+        :host { width: 10px; }
+    `]
 })
 export class TableHeadCheckbox {
 	/**
@@ -48,9 +51,7 @@ export class TableHeadCheckbox {
 
 	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
 
-	@HostBinding("attr.style") hostStyle = "width: 10px;";
-
-	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+	protected _ariaLabel: Overridable = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
 	constructor(protected i18n: I18n) { }
 

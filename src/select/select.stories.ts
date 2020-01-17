@@ -9,7 +9,7 @@ import {
 
 import { SelectModule, DocumentationModule } from "../";
 
-storiesOf("Select", module).addDecorator(
+storiesOf("Components|Select", module).addDecorator(
 	moduleMetadata({
 		imports: [SelectModule, DocumentationModule]
 	})

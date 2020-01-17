@@ -52,14 +52,24 @@ import { filter } from "rxjs/operators";
 				(click)="toggleDropdown()">
 				<ibm-icon-warning-filled16
 					*ngIf="invalid"
-					class="bx--list-box__invalid-icon">
+					class="bx--list-box__invalid-icon"
+					tabindex="0">
 				</ibm-icon-warning-filled16>
+				<div
+					*ngIf="showClearButton"
+					role="button"
+					class="bx--list-box__selection"
+					tabindex="0"
+					aria-label="Clear Selection"
+					title="Clear selected item"
+					(click)="clearInput($event)">
+					<ibm-icon-close16></ibm-icon-close16>
+				</div>
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
 					role="button"
 					class="bx--list-box__selection bx--list-box__selection--multi"
-					tabindex="0"
 					title="Clear all selected items">
 					{{ pills.length }}
 					<svg
@@ -76,6 +86,7 @@ import { filter } from "rxjs/operators";
 					</svg>
 				</div>
 				<input
+					#input
 					[id]="id"
 					[disabled]="disabled"
 					(keyup)="onSearch($event.target.value)"
@@ -219,11 +230,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
+	@ViewChild("input") input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
+
+	public showClearButton = false;
 
 	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
@@ -264,6 +278,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 					this.propagateChangeCallback(this.view.getSelected());
 				} else {
 					if (event.item && event.item.selected) {
+						this.showClearButton = true;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
@@ -273,10 +288,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
+					this.view.filterBy("");
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view.filterBy("");
 			});
 			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
@@ -402,6 +417,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
+		if (searchString && this.type === "single") {
+			this.showClearButton = true;
+		} else {
+			this.showClearButton = false;
+		}
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -414,7 +434,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected) {
+				if (selected && selected[0]) {
 					selected[0].selected = false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });
@@ -454,6 +474,18 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		});
 	}
 
+	clearInput(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		this.input.nativeElement.value = "";
+
+		this.clearSelected();
+		this.closeDropdown();
+
+		this.showClearButton = false;
+	}
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
@@ -462,7 +494,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected) {
+		} else if (selected && selected[0]) {
 			this.selectedValue = selected[0].content;
 			this.propagateChangeCallback(selected[0]);
 		}

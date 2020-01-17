@@ -11,7 +11,8 @@ import {
 	OnChanges,
 	SimpleChanges,
 	AfterViewChecked,
-	AfterViewInit
+	AfterViewInit,
+	ViewChild
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -19,6 +20,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { scrollableParentsObservable, isVisibleInContainer, isScrollableElement } from "../utils/scroll";
 import { Subscription } from "rxjs";
+import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -40,6 +42,7 @@ import { Subscription } from "rxjs";
 				}">
 				<div class="bx--date-picker-container">
 					<ibm-date-picker-input
+						#input
 						[label]="label"
 						[placeholder]="placeholder"
 						[pattern]="pattern"
@@ -50,12 +53,14 @@ import { Subscription } from "rxjs";
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)">
+						(valueChange)="onValueChange($event)"
+						(click)="openCalendar(input)">
 					</ibm-date-picker-input>
 				</div>
 
 				<div *ngIf="range" class="bx--date-picker-container">
 					<ibm-date-picker-input
+						#rangeInput
 						[label]="rangeLabel"
 						[placeholder]="placeholder"
 						[pattern]="pattern"
@@ -66,7 +71,8 @@ import { Subscription } from "rxjs";
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)">
+						(valueChange)="onRangeValueChange($event)"
+						(click)="openCalendar(rangeInput)">
 					</ibm-date-picker-input>
 				</div>
 			</div>
@@ -151,6 +157,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		});
 	}
 
+	@ViewChild("input") input: DatePickerInput;
+
+	@ViewChild("rangeInput") rangeInput: DatePickerInput;
+
 	set flatpickrOptionsRange (options) {
 		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
 		this.range = true;
@@ -173,7 +183,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		mode: "single",
 		dateFormat: "m/d/Y",
 		plugins: this.plugins,
-		onOpen: () => { this.updateClassNames(); },
+		onOpen: () => {
+			this.updateClassNames();
+			this.updateCalendarListeners();
+		},
 		value: this.value
 	};
 
@@ -225,6 +238,18 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	@HostListener("focusin")
 	onFocus() {
+		// Updates the month manually when calendar mode is range because month
+		// will not update properly without manually updating them on focus.
+		if (this.range) {
+			if (this.rangeInput.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[1]) {
+				const currentMonth = this.flatpickrInstance.selectedDates[1].getMonth();
+				this.flatpickrInstance.changeMonth(currentMonth, false);
+			} else if (this.input.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[0]) {
+				const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+				this.flatpickrInstance.changeMonth(currentMonth, false);
+			}
+		}
+
 		this.onTouched();
 	}
 
@@ -287,11 +312,36 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	}
 
 	/**
+	 * Handles opening the calendar "properly" when the calendar icon is clicked.
+	 */
+	openCalendar(datepickerInput: DatePickerInput) {
+		datepickerInput.input.nativeElement.click();
+
+		// If the first input's calendar icon is clicked when calendar is in range mode, then
+		// the month and year needs to be manually changed to the current selected month and
+		// year otherwise the calendar view will not be updated upon opening.
+		if (datepickerInput === this.input && this.range && this.flatpickrInstance.selectedDates[0]) {
+			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+
+			this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
+
+			this.flatpickrInstance.changeMonth(currentMonth, false);
+		}
+	}
+
+	protected updateCalendarListeners() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.removeEventListener("click", this.preventCalendarClose);
+			calendar.addEventListener("click", this.preventCalendarClose);
+		});
+	}
+
+	/**
 	 * Carbon uses a number of specific classnames for parts of the flatpickr - this idempotent method applies them if needed.
 	 */
 	protected updateClassNames() {
 		if (!this.elementRef) { return; }
-
 		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		const monthContainer = document.querySelectorAll(".flatpickr-month");
@@ -377,6 +427,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			}
 		}
 	}
+
+	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
 		this.valueChange.emit(selectedValue);

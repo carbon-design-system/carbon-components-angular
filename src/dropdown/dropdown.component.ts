@@ -19,18 +19,15 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 // Observable import is required here so typescript can compile correctly
 import {
 	Observable,
-	fromEvent,
 	of,
-	Subscription,
-	merge
+	Subscription
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position } from "@carbon/utils-position";
 import { I18n } from "./../i18n/i18n.module";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/scroll";
+import { ElementService } from "./../utils/utils.module";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -60,16 +57,16 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid
 		}">
-		<button
+		<div
 			type="button"
 			#dropdownButton
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			(click)="toggleMenu()"
+			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[disabled]="disabled">
+			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
@@ -105,7 +102,7 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
 			</ibm-icon-chevron-down16>
-		</button>
+		</div>
 		<div
 			#dropdownMenu
 			[ngClass]="{
@@ -262,10 +259,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	outsideClick = this._outsideClick.bind(this);
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
-	/**
-	 *  Maintians an Event Observable Subscription for tracking scrolling within the open `Dropdown` list.
-	 */
-	scroll: Subscription;
+
+	protected visibilitySubscription = new Subscription();
 
 	protected onTouchedCallback: () => void = this._noop;
 
@@ -279,7 +274,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected dropdownService: DropdownService,
-		protected appRef: ApplicationRef) {}
+		protected appRef: ApplicationRef,
+		protected elementService: ElementService) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
@@ -305,7 +301,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
-				// if we have a `value` selector and selected items map them approperiatly
+				// if we have a `value` selector and selected items map them appropriately
 				if (this.value && this.view.getSelected()) {
 					const values = this.view.getSelected().map(item => item[this.value]);
 					this.propagateChange(values);
@@ -329,6 +325,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			if (event && !event.isUpdate) {
 				this.selected.emit(event);
 			}
+			// manually tick the app so the view picks up any changes
 			this.appRef.tick();
 		});
 	}
@@ -402,7 +399,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	propagateChange = (_: any) => {};
 
 	/**
-	 * `ControlValueAccessor` method to programatically disable the dropdown.
+	 * `ControlValueAccessor` method to programmatically disable the dropdown.
 	 *
 	 * ex: `this.formGroup.get("myDropdown").disable();`
 	 *
@@ -598,7 +595,17 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
 		if (!this.appendInline) {
-			this.addScrollEventListener();
+			const target = this.dropdownButton.nativeElement;
+			const parent = this.elementRef.nativeElement;
+			this.visibilitySubscription = this.elementService
+				.visibility(target, parent)
+				.subscribe(value => {
+					this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
+					if (!value.visible) {
+						this.closeMenu();
+					}
+				}
+			);
 			this._appendToBody();
 		}
 
@@ -652,43 +659,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 
 		// move the list back in the component on close
 		if (!this.appendInline) {
-			this.removeScrollEventListener();
+			this.visibilitySubscription.unsubscribe();
 			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.body.firstElementChild.removeEventListener("keydown", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
 		document.removeEventListener("keydown", this.outsideKey, true);
-	}
-
-	/**
-	 * Add scroll event listener if scrollableContainer is provided
-	 */
-	addScrollEventListener() {
-		let scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
-		if (this.scrollableContainer) {
-			const container: HTMLElement = document.querySelector(this.scrollableContainer);
-
-			if (container) {
-				scrollObservable = merge(scrollObservable, fromEvent(container, "scroll"));
-			}
-		}
-		this.scroll = scrollObservable.subscribe(event => {
-			if (isVisibleInContainer(this.elementRef.nativeElement, event.target as HTMLElement)) {
-				this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
-			} else {
-				this.closeMenu();
-			}
-		});
-	}
-
-	/**
-	 * Removes any `EventListeners` responsible for scroll functionality.
-	 */
-	removeScrollEventListener() {
-		if (this.scroll) {
-			this.scroll.unsubscribe();
-		}
 	}
 
 	/**

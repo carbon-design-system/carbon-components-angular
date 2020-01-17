@@ -10,7 +10,7 @@ import {
 } from "@storybook/addon-knobs/angular";
 import { ExperimentalModule, DocumentationModule } from "../";
 
-storiesOf("Time Picker", module)
+storiesOf("Components|Time Picker", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
