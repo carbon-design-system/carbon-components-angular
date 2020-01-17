@@ -132,6 +132,7 @@ export default {
 	},
 	"TABLE_TOOLBAR": {
 		"ACTION_BAR": "Table Action Bar",
+		"BATCH_TEXT": "items selected",
 		"CANCEL": "Cancel"
 	},
 	"TABS": {
