@@ -7,7 +7,8 @@ import {
 	ContentChildren,
 	AfterContentInit,
 	ViewChildren,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -128,8 +129,8 @@ export class TabHeaders implements AfterContentInit {
 	 */
 	@Input() ariaLabelledby: string;
 
-	@Input() contentBefore;
-	@Input() contentAfter;
+	@Input() contentBefore: TemplateRef<any>;
+	@Input() contentAfter: TemplateRef<any>;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
