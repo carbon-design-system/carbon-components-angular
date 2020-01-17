@@ -138,7 +138,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/number-input/number.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/number-input/number.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -178,7 +178,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/number-input/number.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/number-input/number.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -212,6 +212,9 @@
 	TemplateRef
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
+
+import { I18n } from &quot;../i18n/i18n.module&quot;;
+import { Observable } from &quot;rxjs&quot;;
 
 /**
  * Used to emit changes performed on number input components.
@@ -275,6 +278,7 @@ export class NumberChange {
 						type&#x3D;&quot;button&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
 						(click)&#x3D;&quot;onIncrement()&quot;&gt;
 						&lt;ibm-icon-caret-up16&gt;&lt;/ibm-icon-caret-up16&gt;
 					&lt;/button&gt;
@@ -283,6 +287,7 @@ export class NumberChange {
 						type&#x3D;&quot;button&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
 						(click)&#x3D;&quot;onDecrement()&quot;&gt;
 						&lt;ibm-icon-caret-down16&gt;&lt;/ibm-icon-caret-down16&gt;
 					&lt;/button&gt;
@@ -368,17 +373,39 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef&lt;any&gt;;
+
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;NumberChange&gt;();
 
+	@Input()
+	set decrementLabel(value: string | Observable&lt;string&gt;) {
+		this._decrementLabel.override(value);
+	}
+
+	get decrementLabel() {
+		return this._decrementLabel.value;
+	}
+
+	@Input()
+	set incrementLabel(value: string | Observable&lt;string&gt;) {
+		this._incrementLabel.override(value);
+	}
+
+	get incrementLabel() {
+		return this._incrementLabel.value;
+	}
+
 	protected _value &#x3D; 0;
+
+	protected _decrementLabel &#x3D; this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;);
+	protected _incrementLabel &#x3D; this.i18n.getOverridable(&quot;NUMBER.INCREMENT&quot;);
 
 	/**
 	 * Creates an instance of &#x60;Number&#x60;.
 	 */
-	constructor() {
+	constructor(protected i18n: I18n) {
 		NumberComponent.numberCount++;
 	}
 
@@ -440,6 +467,14 @@ export class NumberComponent implements ControlValueAccessor {
 			this.value--;
 			this.emitChangeEvent();
 		}
+	}
+
+	getDecrementLabel(): Observable&lt;string&gt; {
+		return this._decrementLabel.subject;
+	}
+
+	getIncrementLabel(): Observable&lt;string&gt; {
+		return this._incrementLabel.subject;
 	}
 
 	/**

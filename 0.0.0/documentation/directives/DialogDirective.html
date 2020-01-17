@@ -147,6 +147,10 @@ the service relies on.</p>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#onDialogChanges">onDialogChanges</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#onDialogInit">onDialogInit</a>
                             </li>
                             <li>
@@ -841,7 +845,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/dialog/dialog.directive.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/dialog/dialog.directive.ts:236</a></div>
                             </td>
                         </tr>
 
@@ -922,7 +926,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/dialog/dialog.directive.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.directive.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -965,7 +969,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/dialog/dialog.directive.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/dialog/dialog.directive.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -974,6 +978,49 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                     <td class="col-md-4">
                             <div class="io-description"><p>Sets the config object and binds events for hovering or clicking before
 running code from child class.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onDialogChanges"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            onDialogChanges
+                            </b>
+                            <a href="#onDialogChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>onDialogChanges()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/dialog/dialog.directive.ts:251</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Empty method for child to override and specify additional on changes steps.
+run after DialogDirective completes it&#39;s ngOnChanges.</p>
 </div>
 
                             <div class="io-description">
@@ -1008,7 +1055,7 @@ running code from child class.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/dialog/dialog.directive.ts:242</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/dialog/dialog.directive.ts:245</a></div>
                             </td>
                         </tr>
 
@@ -1049,7 +1096,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/dialog/dialog.directive.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/dialog/dialog.directive.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -1092,7 +1139,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/dialog/dialog.directive.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/dialog/dialog.directive.ts:224</a></div>
                             </td>
                         </tr>
 
@@ -1430,6 +1477,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			wrapperClass: this.wrapperClass,
 			data: this.data
 		};
+
+		// Run any code a child class may need.
+		this.onDialogChanges();
 	}
 
 	/**
@@ -1526,6 +1576,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Run after DialogDirective completes it&#x27;s ngOnInit.
 	 */
 	protected onDialogInit() {}
+
+	/**
+	 * Empty method for child to override and specify additional on changes steps.
+	 * run after DialogDirective completes it&#x27;s ngOnChanges.
+	 */
+	protected onDialogChanges() {}
 }
 </code></pre>
     </div>

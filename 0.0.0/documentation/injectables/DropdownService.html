@@ -79,11 +79,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
-                                <a href="#menuInstance">menuInstance</a>
+                                <a href="#animationFrameSubscription">animationFrameSubscription</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
-                                <a href="#resize">resize</a>
+                                <a href="#menuInstance">menuInstance</a>
                             </li>
                         </ul>
                     </td>
@@ -102,6 +102,9 @@
                             </li>
                             <li>
                                 <a href="#appendToDropdown">appendToDropdown</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -142,7 +145,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(placeholderService: <a href="../injectables/PlaceholderService.html">PlaceholderService</a>)</code>
+<code>constructor(placeholderService: <a href="../injectables/PlaceholderService.html">PlaceholderService</a>, animationFrameService: <a href="../injectables/AnimationFrameService.html">AnimationFrameService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -169,6 +172,18 @@
                                                   
                                                         <td>
                                                                     <code><a href="../injectables/PlaceholderService.html" target="_self" >PlaceholderService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>animationFrameService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AnimationFrameService.html" target="_self" >AnimationFrameService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -212,7 +227,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/dropdown/dropdown.service.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dropdown/dropdown.service.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -319,7 +334,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/dropdown/dropdown.service.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dropdown/dropdown.service.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -377,6 +392,44 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dropdown/dropdown.service.ts:98</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="positionDropdown"></a>
                         <span class="name">
                             <b>
@@ -397,7 +450,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/dropdown/dropdown.service.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dropdown/dropdown.service.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -471,7 +524,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/dropdown/dropdown.service.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dropdown/dropdown.service.ts:94</a></div>
                             </td>
                         </tr>
 
@@ -561,6 +614,47 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="animationFrameSubscription"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            animationFrameSubscription
+                            </b>
+                            <a href="#animationFrameSubscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>animationFrameSubscription:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subscription()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/dropdown/dropdown.service.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Maintains an Event Observable Subscription for the global requestAnimationFrame.
+requestAnimationFrame is tracked only if the <code>Dropdown</code> is appended to the body otherwise we don&#39;t need it</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="menuInstance"></a>
                         <span class="name">
                             <b>
@@ -592,48 +686,6 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>reference to the body appended menu</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="resize"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Protected</span>
-                            resize
-                            </b>
-                            <a href="#resize"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>resize:     <code>Subscription</code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>Subscription</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/dropdown/dropdown.service.ts:27</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Maintains an Event Observable Subscription for tracking window resizes.
-Window resizing is tracked if the <code>Dropdown</code> is appended to the body, otherwise it does not need to be supported.</p>
 </div>
                     </td>
                 </tr>
@@ -720,16 +772,16 @@ Window resizing is tracked if the <code>Dropdown</code> is appended to the body,
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ElementRef } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ElementRef, OnDestroy } from &quot;@angular/core&quot;;
 import { PlaceholderService } from &quot;./../placeholder/placeholder.module&quot;;
-import { fromEvent, Subscription } from &quot;rxjs&quot;;
-import { throttleTime } from &quot;rxjs/operators&quot;;
+import { Subscription } from &quot;rxjs&quot;;
 import { position } from &quot;@carbon/utils-position&quot;;
+import { AnimationFrameService } from &quot;./../utils/utils.module&quot;;
 
 const defaultOffset &#x3D; { top: 0, left: 0 };
 
 @Injectable()
-export class DropdownService {
+export class DropdownService implements OnDestroy {
 	public set offset(value: { top?: number, left?: number }) {
 		this._offset &#x3D; Object.assign({}, defaultOffset, value);
 	}
@@ -743,14 +795,17 @@ export class DropdownService {
 	protected menuInstance: HTMLElement;
 
 	/**
-	 * Maintains an Event Observable Subscription for tracking window resizes.
-	 * Window resizing is tracked if the &#x60;Dropdown&#x60; is appended to the body, otherwise it does not need to be supported.
+	 * Maintains an Event Observable Subscription for the global requestAnimationFrame.
+	 * requestAnimationFrame is tracked only if the &#x60;Dropdown&#x60; is appended to the body otherwise we don&#x27;t need it
 	 */
-	protected resize: Subscription;
+	protected animationFrameSubscription &#x3D; new Subscription();
 
 	protected _offset &#x3D; defaultOffset;
 
-	constructor(protected placeholderService: PlaceholderService) {}
+	constructor(
+		protected placeholderService: PlaceholderService,
+		protected animationFrameService: AnimationFrameService
+	) {}
 
 	/**
 	 * Appends the menu to the body, or a &#x60;ibm-placeholder&#x60; (if defined)
@@ -778,10 +833,9 @@ export class DropdownService {
 
 		this.menuInstance &#x3D; dropdownWrapper;
 
-		this.positionDropdown(parentRef, dropdownWrapper);
-		this.resize &#x3D; fromEvent(window, &quot;resize&quot;)
-			.pipe(throttleTime(100))
-			.subscribe(() &#x3D;&gt; this.positionDropdown(parentRef, dropdownWrapper));
+		this.animationFrameSubscription &#x3D; this.animationFrameService.tick.subscribe(() &#x3D;&gt; {
+			this.positionDropdown(parentRef, dropdownWrapper);
+		});
 
 		return dropdownWrapper;
 	}
@@ -799,7 +853,7 @@ export class DropdownService {
 		this.menuInstance &#x3D; null;
 		menu.style.display &#x3D; &quot;none&quot;;
 		hostRef.appendChild(menu);
-		this.resize.unsubscribe();
+		this.animationFrameSubscription.unsubscribe();
 		if (this.placeholderService.hasPlaceholderRef() &amp;&amp; this.placeholderService.hasElement(instance)) {
 			this.placeholderService.removeElement(instance);
 		} else if (document.body.contains(instance)) {
@@ -813,6 +867,10 @@ export class DropdownService {
 	 */
 	updatePosition(parentRef) {
 		this.positionDropdown(parentRef, this.menuInstance);
+	}
+
+	ngOnDestroy() {
+		this.animationFrameSubscription.unsubscribe();
 	}
 
 	protected positionDropdown(parentRef, menuRef) {

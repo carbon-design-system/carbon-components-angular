@@ -92,6 +92,20 @@
         <tbody>
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#condensed">condensed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
                 <tr>
@@ -115,7 +129,29 @@
 </section>
 
 
-
+            <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="condensed"></a>
+                        <code>condensed</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/grid/grid.directive.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
@@ -173,13 +209,28 @@
 })
 export class GridDirective {
 	@HostBinding(&quot;class.bx--grid&quot;) baseClass &#x3D; true;
+	@HostBinding(&quot;class.bx--grid--condensed&quot;) @Input() condensed &#x3D; false;
 }
 
 @Directive({
 	selector: &quot;[ibmRow]&quot;
 })
 export class RowDirective {
+	@Input() gutter &#x3D; true;
+	@Input() leftGutter &#x3D; true;
+	@Input() rightGutter &#x3D; true;
+
 	@HostBinding(&quot;class.bx--row&quot;) baseClass &#x3D; true;
+	@HostBinding(&quot;class.bx--row--condensed&quot;) @Input() condensed &#x3D; false;
+	@HostBinding(&quot;class.bx--no-gutter&quot;) get showGutter() {
+		return !this.gutter;
+	}
+	@HostBinding(&quot;class.bx--no-gutter--left&quot;) get showLeftGutter() {
+		return !this.leftGutter;
+	}
+	@HostBinding(&quot;class.bx--no-gutter--right&quot;) get showRightGutter() {
+		return !this.rightGutter;
+	}
 }
 
 @Directive({

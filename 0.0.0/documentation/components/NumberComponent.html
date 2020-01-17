@@ -151,6 +151,7 @@
 				type&#x3D;&quot;button&quot;
 				aria-live&#x3D;&quot;polite&quot;
 				aria-atomic&#x3D;&quot;true&quot;
+				[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
 				(click)&#x3D;&quot;onIncrement()&quot;&gt;
 				&lt;ibm-icon-caret-up16&gt;&lt;/ibm-icon-caret-up16&gt;
 			&lt;/button&gt;
@@ -159,6 +160,7 @@
 				type&#x3D;&quot;button&quot;
 				aria-live&#x3D;&quot;polite&quot;
 				aria-atomic&#x3D;&quot;true&quot;
+				[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
 				(click)&#x3D;&quot;onDecrement()&quot;&gt;
 				&lt;ibm-icon-caret-down16&gt;&lt;/ibm-icon-caret-down16&gt;
 			&lt;/button&gt;
@@ -198,6 +200,14 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#_decrementLabel">_decrementLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_incrementLabel">_incrementLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_value">_value</a>
                             </li>
                             <li>
@@ -224,6 +234,12 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#emitChangeEvent">emitChangeEvent</a>
+                            </li>
+                            <li>
+                                <a href="#getDecrementLabel">getDecrementLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getIncrementLabel">getIncrementLabel</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -266,6 +282,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#decrementLabel">decrementLabel</a>
+                            </li>
+                            <li>
                                 <a href="#disabled">disabled</a>
                             </li>
                             <li>
@@ -273,6 +292,9 @@
                             </li>
                             <li>
                                 <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#incrementLabel">incrementLabel</a>
                             </li>
                             <li>
                                 <a href="#invalid">invalid</a>
@@ -347,6 +369,12 @@
                                 <li>
                                     <a href="#value">value</a>
                                 </li>
+                                <li>
+                                    <a href="#decrementLabel">decrementLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#incrementLabel">incrementLabel</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -360,12 +388,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/number-input/number.component.ts:167</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/number-input/number.component.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -373,6 +401,32 @@
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of <code>Number</code>.</p>
 </div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -381,6 +435,23 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="decrementLabel"></a>
+                        <code>decrementLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/number-input/number.component.ts:178</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -398,7 +469,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/number-input/number.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/number-input/number.component.ts:120</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -421,7 +492,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/number-input/number.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/number-input/number.component.ts:166</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -443,7 +514,24 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/number-input/number.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/number-input/number.component.ts:132</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="incrementLabel"></a>
+                        <code>incrementLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/number-input/number.component.ts:187</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -465,7 +553,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/number-input/number.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/number-input/number.component.ts:128</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -488,7 +576,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/number-input/number.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/number-input/number.component.ts:170</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -511,7 +599,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/number-input/number.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/number-input/number.component.ts:162</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -533,7 +621,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/number-input/number.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/number-input/number.component.ts:158</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -555,7 +643,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/number-input/number.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/number-input/number.component.ts:154</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -578,7 +666,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/number-input/number.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/number-input/number.component.ts:136</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -600,7 +688,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/number-input/number.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/number-input/number.component.ts:124</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -626,7 +714,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/number-input/number.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/number-input/number.component.ts:116</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -641,11 +729,15 @@
                     <td class="col-md-10">
                         <div><p>Sets the value attribute on the <code>input</code> element.</p>
 </div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/number-input/number.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/number-input/number.component.ts:140</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -669,7 +761,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/number-input/number.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/number-input/number.component.ts:175</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -702,7 +794,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/number-input/number.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/number-input/number.component.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -739,7 +831,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/number-input/number.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/number-input/number.component.ts:278</a></div>
                             </td>
                         </tr>
 
@@ -751,6 +843,82 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getDecrementLabel"></a>
+                        <span class="name">
+                            <b>
+                            getDecrementLabel
+                            </b>
+                            <a href="#getDecrementLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getDecrementLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/number-input/number.component.ts:267</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getIncrementLabel"></a>
+                        <span class="name">
+                            <b>
+                            getIncrementLabel
+                            </b>
+                            <a href="#getIncrementLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getIncrementLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/number-input/number.component.ts:271</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
 
                             </div>
                     </td>
@@ -781,7 +949,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/number-input/number.component.ts:252</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/number-input/number.component.ts:291</a></div>
                             </td>
                         </tr>
 
@@ -846,7 +1014,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/number-input/number.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/number-input/number.component.ts:260</a></div>
                             </td>
                         </tr>
 
@@ -886,7 +1054,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/number-input/number.component.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/number-input/number.component.ts:250</a></div>
                             </td>
                         </tr>
 
@@ -926,7 +1094,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/number-input/number.component.ts:247</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/number-input/number.component.ts:286</a></div>
                             </td>
                         </tr>
 
@@ -993,7 +1161,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/number-input/number.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/number-input/number.component.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -1066,7 +1234,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/number-input/number.component.ts:195</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/number-input/number.component.ts:226</a></div>
                             </td>
                         </tr>
 
@@ -1142,7 +1310,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/number-input/number.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/number-input/number.component.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -1215,7 +1383,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/number-input/number.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/number-input/number.component.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -1280,6 +1448,74 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_decrementLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _decrementLabel
+                            </b>
+                            <a href="#_decrementLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_decrementLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/number-input/number.component.ts:197</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_incrementLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _incrementLabel
+                            </b>
+                            <a href="#_incrementLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_incrementLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;NUMBER.INCREMENT&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/number-input/number.component.ts:198</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="_value"></a>
                         <span class="name">
                             <b>
@@ -1309,7 +1545,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/number-input/number.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/number-input/number.component.ts:195</a></div>
                             </td>
                         </tr>
 
@@ -1349,7 +1585,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/number-input/number.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/number-input/number.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -1394,7 +1630,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/number-input/number.component.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/number-input/number.component.ts:240</a></div>
                             </td>
                         </tr>
 
@@ -1433,7 +1669,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/number-input/number.component.ts:214</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/number-input/number.component.ts:245</a></div>
                             </td>
                         </tr>
 
@@ -1468,18 +1704,18 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/number-input/number.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/number-input/number.component.ts:148</a></div>
                                 </td>
                             </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>value(v)</code></span>
+                        <span class="accessor"><b>set</b><code>value(v: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/number-input/number.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/number-input/number.component.ts:140</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1493,12 +1729,146 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
                                                             <td>v</td>
+                                                    
+                                                            <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="decrementLabel"></a>
+                        <span class="name"><b>decrementLabel</b><a href="#decrementLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>decrementLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/number-input/number.component.ts:182</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>decrementLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/number-input/number.component.ts:178</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incrementLabel"></a>
+                        <span class="name"><b>incrementLabel</b><a href="#incrementLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>incrementLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/number-input/number.component.ts:191</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>incrementLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/number-input/number.component.ts:187</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
                                                     
                                                     
                                                         <td>
@@ -1533,6 +1903,9 @@
 	TemplateRef
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
+
+import { I18n } from &quot;../i18n/i18n.module&quot;;
+import { Observable } from &quot;rxjs&quot;;
 
 /**
  * Used to emit changes performed on number input components.
@@ -1596,6 +1969,7 @@ export class NumberChange {
 						type&#x3D;&quot;button&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
 						(click)&#x3D;&quot;onIncrement()&quot;&gt;
 						&lt;ibm-icon-caret-up16&gt;&lt;/ibm-icon-caret-up16&gt;
 					&lt;/button&gt;
@@ -1604,6 +1978,7 @@ export class NumberChange {
 						type&#x3D;&quot;button&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
 						(click)&#x3D;&quot;onDecrement()&quot;&gt;
 						&lt;ibm-icon-caret-down16&gt;&lt;/ibm-icon-caret-down16&gt;
 					&lt;/button&gt;
@@ -1658,7 +2033,11 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Sets the value attribute on the &#x60;input&#x60; element.
 	 */
-	@Input() set value(v) {
+	@Input() set value(v: any) {
+		if (v &#x3D;&#x3D;&#x3D; &quot;&quot;) {
+			this._value &#x3D; null;
+			return;
+		}
 		this._value &#x3D; Number(v);
 	}
 
@@ -1685,17 +2064,39 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef&lt;any&gt;;
+
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;NumberChange&gt;();
 
+	@Input()
+	set decrementLabel(value: string | Observable&lt;string&gt;) {
+		this._decrementLabel.override(value);
+	}
+
+	get decrementLabel() {
+		return this._decrementLabel.value;
+	}
+
+	@Input()
+	set incrementLabel(value: string | Observable&lt;string&gt;) {
+		this._incrementLabel.override(value);
+	}
+
+	get incrementLabel() {
+		return this._incrementLabel.value;
+	}
+
 	protected _value &#x3D; 0;
+
+	protected _decrementLabel &#x3D; this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;);
+	protected _incrementLabel &#x3D; this.i18n.getOverridable(&quot;NUMBER.INCREMENT&quot;);
 
 	/**
 	 * Creates an instance of &#x60;Number&#x60;.
 	 */
-	constructor() {
+	constructor(protected i18n: I18n) {
 		NumberComponent.numberCount++;
 	}
 
@@ -1759,6 +2160,14 @@ export class NumberComponent implements ControlValueAccessor {
 		}
 	}
 
+	getDecrementLabel(): Observable&lt;string&gt; {
+		return this._decrementLabel.subject;
+	}
+
+	getIncrementLabel(): Observable&lt;string&gt; {
+		return this._incrementLabel.subject;
+	}
+
 	/**
 	 * Creates a class of &#x60;NumberChange&#x60; to emit the change in the &#x60;Number&#x60;.
 	 */
@@ -1815,8 +2224,8 @@ export { NumberComponent as Number };
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label><label *ngIf="!skeleton && label" [for]="id" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div *ngIf="helperText" class="bx--form__helper-text">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	data-numberinput	[attr.data-invalid]="(invalid ? true : null)"	class="bx--number"	[ngClass]="{		\'bx--number--light\': theme === \'light\',		\'bx--number--nolabel\': !label,		\'bx--number--helpertext\': helperText,		\'bx--skeleton\' : skeleton	}">	<div class="bx--number__input-wrapper">		<input			type="number"			[id]="id"			[value]="value"			[attr.min]="min"			[attr.max]="max"			[disabled]="disabled"			[required]="required"			(input)="onNumberInputChange($event)"/>		<ibm-icon-warning-filled16			*ngIf="!skeleton && invalid"			class="bx--number__invalid"			style="display: inherit;">		</ibm-icon-warning-filled16>		<div *ngIf="!skeleton" class="bx--number__controls">			<button				class="bx--number__control-btn up-icon"				type="button"				aria-live="polite"				aria-atomic="true"				(click)="onIncrement()">				<ibm-icon-caret-up16></ibm-icon-caret-up16>			</button>			<button				class="bx--number__control-btn down-icon"				type="button"				aria-live="polite"				aria-atomic="true"				(click)="onDecrement()">				<ibm-icon-caret-down16></ibm-icon-caret-down16>			</button>		</div>	</div>	<div *ngIf="invalid" class="bx--form-requirement">		<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>	</div></div>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+        var COMPONENT_TEMPLATE = '<div><label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label><label *ngIf="!skeleton && label" [for]="id" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div *ngIf="helperText" class="bx--form__helper-text">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	data-numberinput	[attr.data-invalid]="(invalid ? true : null)"	class="bx--number"	[ngClass]="{		\'bx--number--light\': theme === \'light\',		\'bx--number--nolabel\': !label,		\'bx--number--helpertext\': helperText,		\'bx--skeleton\' : skeleton	}">	<div class="bx--number__input-wrapper">		<input			type="number"			[id]="id"			[value]="value"			[attr.min]="min"			[attr.max]="max"			[disabled]="disabled"			[required]="required"			(input)="onNumberInputChange($event)"/>		<ibm-icon-warning-filled16			*ngIf="!skeleton && invalid"			class="bx--number__invalid"			style="display: inherit;">		</ibm-icon-warning-filled16>		<div *ngIf="!skeleton" class="bx--number__controls">			<button				class="bx--number__control-btn up-icon"				type="button"				aria-live="polite"				aria-atomic="true"				[attr.aria-label]="getIncrementLabel() | async"				(click)="onIncrement()">				<ibm-icon-caret-up16></ibm-icon-caret-up16>			</button>			<button				class="bx--number__control-btn down-icon"				type="button"				aria-live="polite"				aria-atomic="true"				[attr.aria-label]="getDecrementLabel() | async"				(click)="onDecrement()">				<ibm-icon-caret-down16></ibm-icon-caret-down16>			</button>		</div>	</div>	<div *ngIf="invalid" class="bx--form-requirement">		<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>	</div></div>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'NumberComponent'};
 </script>

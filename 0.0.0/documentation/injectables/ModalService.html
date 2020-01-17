@@ -617,7 +617,7 @@ export class ModalService {
 		component.instance.close.subscribe(_ &#x3D;&gt; {
 			this.placeholderService.destroyComponent(component);
 			// filter out our component
-			ModalService.modalList &#x3D; ModalService.modalList.filter(c &#x3D;&gt; c &#x3D;&#x3D;&#x3D; component);
+			ModalService.modalList &#x3D; ModalService.modalList.filter(c &#x3D;&gt; c !&#x3D;&#x3D; component);
 		});
 
 		component.onDestroy(() &#x3D;&gt; {

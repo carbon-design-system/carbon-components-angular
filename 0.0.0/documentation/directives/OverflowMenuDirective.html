@@ -110,7 +110,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#onDialogChanges">onDialogChanges</a>
+                            </li>
+                            <li>
                                 <a href="#onDialogInit">onDialogInit</a>
+                            </li>
+                            <li>
+                                <a href="#updateConfig">updateConfig</a>
                             </li>
                         </ul>
                     </td>
@@ -308,7 +314,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -326,6 +332,44 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="onDialogChanges"></a>
+                        <span class="name">
+                            <b>
+                            onDialogChanges
+                            </b>
+                            <a href="#onDialogChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onDialogChanges()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:68</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="onDialogInit"></a>
                         <span class="name">
                             <b>
@@ -338,6 +382,44 @@
                 <tr>
                     <td class="col-md-4">
 <code>onDialogInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateConfig"></a>
+                        <span class="name">
+                            <b>
+                            updateConfig
+                            </b>
+                            <a href="#updateConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateConfig()</code>
                     </td>
                 </tr>
 
@@ -426,9 +508,17 @@ export class OverflowMenuDirective extends DialogDirective {
 		dialogService.create(OverflowMenuPane);
 	}
 
-	onDialogInit() {
+	updateConfig() {
 		this.dialogConfig.content &#x3D; this.ibmOverflowMenu;
 		this.dialogConfig.flip &#x3D; this.flip;
+	}
+
+	onDialogInit() {
+		this.updateConfig();
+	}
+
+	onDialogChanges() {
+		this.updateConfig();
 	}
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
