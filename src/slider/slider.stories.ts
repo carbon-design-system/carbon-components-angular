@@ -16,7 +16,7 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 }))
 .addDecorator(withKnobs)
 .add("Basic", () => ({
-	template: `<ibm-slider [disabled]="disabled"></ibm-slider>`,
+	template: `<ibm-slider [disabled]="disabled" aria-Label="Label for slider value"></ibm-slider>`,
 	props: {
 		disabled: boolean("disabled", false)
 	}
@@ -31,6 +31,7 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			[value]="value"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
+			aria-Label="Label for slider value"
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
@@ -53,7 +54,7 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 }))
 .add("With NgModel", () => ({
 	template: `
-		<ibm-slider [(ngModel)]="model" [disabled]="disabled"></ibm-slider>
+		<ibm-slider [(ngModel)]="model" [disabled]="disabled" aria-Label="Label for slider value"></ibm-slider>
 		<br>
 		<span>model: {{model}}</span>
 	`,
