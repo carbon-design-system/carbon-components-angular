@@ -37,8 +37,8 @@ import { of, isObservable, Subject } from "rxjs";
 				class="bx--inline-notification__icon">
 			</ibm-icon-checkmark-filled16>
 			<div class="bx--inline-notification__text-wrapper">
-				<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>
-				<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>
+				<p ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
+				<p ibmNotificationSubtitle [innerHTML]="notificationObj.message"></p>
 				<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
 			</div>
 		</div>
