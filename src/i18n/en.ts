@@ -90,6 +90,10 @@ export default {
 	"NOTIFICATION": {
 		"CLOSE_BUTTON": "Close alert notification"
 	},
+	"NUMBER": {
+		"INCREMENT": "increment value",
+		"DECREMENT": "decrement value"
+	},
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
