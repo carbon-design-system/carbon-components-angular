@@ -62,6 +62,7 @@ import { of, isObservable, Subject } from "rxjs";
 	`
 })
 export class Notification {
+	private static notificationCount = 0;
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -88,7 +89,7 @@ export class Notification {
 
 	@ViewChild("notification") notification;
 
-	@HostBinding("attr.id") notificationID = "notification";
+	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
 	@HostBinding("class.bx--inline-notification") notificationClass = true;
 	@HostBinding("attr.role") role = "alert";
 
