@@ -63,11 +63,10 @@ import { I18n } from "../../i18n/i18n.module";
 	`
 })
 export class TableToolbar {
-@Input() model: TableModel;
+	@Input() model: TableModel;
 
-	@Input() set batchText (value: { BATCH_TEXT: string }) {
-		console.log(value.BATCH_TEXT);
-		this._batchText.override(value.BATCH_TEXT);
+	@Input() set batchText (value: string) {
+		this._batchText.override(value);
 	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);
