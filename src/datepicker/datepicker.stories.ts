@@ -129,6 +129,7 @@ storiesOf("Components|Date Picker", module)
 			<ibm-date-picker
 				[label]="label"
 				[placeholder]="placeholder"
+				[language]="language"
 				[theme]="theme"
 				[value]="value"
 				[disabled]="disabled"
@@ -141,6 +142,7 @@ storiesOf("Components|Date Picker", module)
 			<ibm-date-picker
 				[label]="label"
 				[placeholder]="placeholder"
+				[language]="language"
 				[theme]="theme"
 				[disabled]="disabled"
 				[invalid]="invalid"
@@ -150,6 +152,7 @@ storiesOf("Components|Date Picker", module)
 			</ibm-date-picker>
 		`,
 		props: {
+			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -169,6 +172,7 @@ storiesOf("Components|Date Picker", module)
 			[rangeLabel]="label"
 			range="true"
 			[placeholder]="placeholder"
+			[language]="language"
 			[theme]="theme"
 			[disabled]="disabled"
 			[invalid]="invalid"
@@ -182,6 +186,7 @@ storiesOf("Components|Date Picker", module)
 			[label]="label"
 			[rangeLabel]="label"
 			range="true"
+			[language]="language"
 			[placeholder]="placeholder"
 			[theme]="theme"
 			[disabled]="disabled"
@@ -192,6 +197,7 @@ storiesOf("Components|Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
+			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),

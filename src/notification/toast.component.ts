@@ -50,6 +50,7 @@ import { I18n } from "./../i18n/i18n.module";
 	`
 })
 export class Toast extends Notification implements OnInit {
+	private static toastCount = 0;
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -57,7 +58,7 @@ export class Toast extends Notification implements OnInit {
 	 */
 	@Input() notificationObj: ToastContent;
 
-	@HostBinding("attr.id") toastID = "notification";
+	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.bx--toast-notification") toastClass = true;
 	@HostBinding("attr.role") role = "alert";
 
