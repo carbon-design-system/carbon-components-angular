@@ -2,8 +2,7 @@ import { DatePickerInputModule } from "./../datepicker-input/datepicker-input.mo
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DatePicker } from "./datepicker.component";
-import { ElementService } from "../utils/element.service";
-import { AnimationFrameServiceSingleton } from "../utils/animation-frame.service";
+import { UtilsModule } from "../utils/utils.module";
 
 @NgModule({
 	declarations: [
@@ -15,8 +14,8 @@ import { AnimationFrameServiceSingleton } from "../utils/animation-frame.service
 	],
 	imports: [
 		CommonModule,
-		DatePickerInputModule
-	],
-	providers: [ElementService, AnimationFrameServiceSingleton]
+		DatePickerInputModule,
+		UtilsModule
+	]
 })
 export class DatePickerModule { }

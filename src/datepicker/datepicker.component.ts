@@ -204,7 +204,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	protected visibilitySubscription = new Subscription();
 
-	constructor(protected elementRef: ElementRef, protected elementService: ElementService = null) { }
+	constructor(protected elementRef: ElementRef, protected elementService: ElementService) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.isFlatpickrLoaded()) {
@@ -219,18 +219,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	}
 
 	ngAfterViewInit() {
-		setTimeout(() => {
-			if (this.isFlatpickrLoaded() && this.elementService) {
-				this.visibilitySubscription = this.elementService
-					.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
-					.subscribe(value => {
-						this.flatpickrInstance._positionCalendar();
-						if (!value.visible) {
-							this.flatpickrInstance.close();
-						}
-					});
-			}
-		});
+		this.visibilitySubscription = this.elementService
+			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
+			.subscribe(value => {
+				if (this.isFlatpickrLoaded()) {
+					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
+					if (!value.visible) {
+						this.flatpickrInstance.close();
+					}
+				}
+			});
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
