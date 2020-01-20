@@ -1,6 +1,6 @@
 import { TableModel } from "../table-model.class";
 import { Component, Input } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n, Overridable } from "../../i18n/i18n.module";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -77,9 +77,10 @@ export class TableToolbar {
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
-	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
-	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
-	_batchText = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
+
+	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
+	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
+	_batchText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
 
 	constructor(protected i18n: I18n) {}
 
