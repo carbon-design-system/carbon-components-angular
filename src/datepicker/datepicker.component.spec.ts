@@ -6,6 +6,8 @@ import { DatePickerInput } from "../datepicker-input/datepicker-input.component"
 import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
 import { FormsModule, Validators } from "@angular/forms";
 import { tick } from "@angular/core/src/render3";
+import { ElementService } from "../utils/element.service";
+import { AnimationFrameServiceSingleton } from "../utils/animation-frame.service";
 
 @Component({
 	template: `
@@ -41,7 +43,8 @@ describe("DatePicker", () => {
 			imports: [
 				Calendar16Module,
 				FormsModule
-			]
+			],
+			providers: [ElementService, AnimationFrameServiceSingleton]
 		});
 	});
 
