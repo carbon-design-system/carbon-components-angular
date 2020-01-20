@@ -264,7 +264,8 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			batchText: text("Toolbar batch text", "items selected")
 		})
 	}))
 	.add("With expansion", () => ({
