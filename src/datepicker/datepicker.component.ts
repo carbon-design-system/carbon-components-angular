@@ -21,7 +21,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { ElementService } from "../utils/element.service"; 
+import { ElementService } from "../utils/element.service";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -226,7 +226,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 					.subscribe(value => {
 						this.flatpickrInstance._positionCalendar();
 						if (!value.visible) {
-							this.flatpickrInstance.close()
+							this.flatpickrInstance.close();
 						}
 					});
 			}
