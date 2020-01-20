@@ -56,9 +56,17 @@ export class OverflowMenuDirective extends DialogDirective {
 		dialogService.create(OverflowMenuPane);
 	}
 
-	onDialogInit() {
+	updateConfig() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
 		this.dialogConfig.flip = this.flip;
+	}
+
+	onDialogInit() {
+		this.updateConfig();
+	}
+
+	onDialogChanges() {
+		this.updateConfig();
 	}
 
 	@HostListener("keydown", ["$event"])

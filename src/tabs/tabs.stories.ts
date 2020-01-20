@@ -2,6 +2,43 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { TabsModule, DocumentationModule } from "../";
+import { Component, Input } from "@angular/core";
+
+@Component({
+	selector: "ibm-header-group",
+	template: `
+		<ibm-tab-header-group [followFocus]="followFocus">
+			<ibm-tab-header [paneReference]="content1">
+				Content 1
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content2">
+				Content 2
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content3" disabled="true">
+				Content 3
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content4">
+				Content 4
+			</ibm-tab-header>
+		</ibm-tab-header-group>
+
+		<ibm-tab #content1>
+			Tab Content 1
+		</ibm-tab>
+		<ibm-tab #content2>
+			Tab Content 2
+		</ibm-tab>
+		<ibm-tab #content3>
+			Tab Content 3
+		</ibm-tab>
+		<ibm-tab #content4>
+			Tab Content 4
+		</ibm-tab>
+	`
+})
+class TabStory {
+	@Input() followFocus = true;
+}
 
 storiesOf("Components|Tabs", module)
 	.addDecorator(
@@ -9,7 +46,8 @@ storiesOf("Components|Tabs", module)
 			imports: [
 				TabsModule,
 				DocumentationModule
-			]
+			],
+			declarations: [TabStory]
 		})
 	)
 	.addDecorator(withKnobs)
@@ -83,6 +121,14 @@ storiesOf("Components|Tabs", module)
 		props: {
 			followFocus: boolean("followFocus", true),
 			isNavigation: boolean("isNavigation", false)
+		}
+	}))
+	.add("With TabHeaderGroup", () => ({
+		template: `
+			<ibm-header-group [followFocus]="followFocus"></ibm-header-group>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true)
 		}
 	}))
 	.add("Skeleton", () => ({

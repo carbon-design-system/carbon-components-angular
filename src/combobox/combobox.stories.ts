@@ -63,6 +63,49 @@ storiesOf("Components|Combobox", module)
 		})
 	)
 	.addDecorator(withKnobs)
+	.add("Test", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				(search)="onSearch($event)">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			invalid: boolean("Invalid", false),
+			invalidText: text("Invalid text", "A valid value is required"),
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
+			items: [
+				{
+					content: "one"
+				},
+				{
+					content: "two"
+				},
+				{
+					content: "three"
+				},
+				{
+					content: "four"
+				}
+			],
+			onSearch: (event) => {
+				console.log(this.items);
+				if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
+					this.invalid = true;
+				} else {
+					this.invalid = false;
+				}
+			}
+		}
+	}))
 	.add("Basic", () => ({
 		template: `
 			<ibm-combo-box
