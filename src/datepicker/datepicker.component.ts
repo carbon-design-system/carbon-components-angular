@@ -21,6 +21,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 import { scrollableParentsObservable, isVisibleInContainer, isScrollableElement } from "../utils/scroll";
 import { Subscription } from "rxjs";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
+import { ElementService } from "../utils/element.service"; 
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -192,9 +193,9 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	protected flatpickrInstance = null;
 
-	protected scrollSubscription: Subscription = new Subscription();
+	protected visibilitySubscription = new Subscription();
 
-	constructor(protected elementRef: ElementRef) { }
+	constructor(protected elementRef: ElementRef, protected elementService: ElementService = null) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.isFlatpickrLoaded()) {
@@ -209,14 +210,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	}
 
 	ngAfterViewInit() {
-		const scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
-		this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-			if (this.isFlatpickrLoaded()) {
-				if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
-					this.flatpickrInstance.close();
-				} else {
-					this.flatpickrInstance._positionCalendar();
-				}
+		setTimeout(() => {
+			if (this.isFlatpickrLoaded() && this.elementService) {
+				this.visibilitySubscription = this.elementService
+					.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
+					.subscribe(value => {
+						this.flatpickrInstance._positionCalendar();
+						if (!value.visible) {
+							this.flatpickrInstance.close()
+						}
+					});
 			}
 		});
 	}
@@ -282,7 +285,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	ngOnDestroy() {
 		if (!this.isFlatpickrLoaded()) { return; }
 		this.flatpickrInstance.destroy();
-		this.scrollSubscription.unsubscribe();
+		this.visibilitySubscription.unsubscribe();
 	}
 
 	/**
