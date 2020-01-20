@@ -22,7 +22,7 @@ const noop = () => {};
 	selector: "ibm-file-uploader",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<strong class="bx--file--label">{{title}}</strong>
+			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
 				<label *ngIf="drop" class="bx--file-browse-btn">

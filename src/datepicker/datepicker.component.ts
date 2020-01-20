@@ -18,8 +18,8 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
-import { scrollableParentsObservable, isVisibleInContainer, isScrollableElement } from "../utils/scroll";
 import { Subscription } from "rxjs";
+import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { ElementService } from "../utils/element.service"; 
 
@@ -109,6 +109,14 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 */
 	@Input() dateFormat = "m/d/Y";
 
+	/**
+	 * Language of the flatpickr calendar.
+	 *
+	 * For reference of the possible locales:
+	 * https://github.com/flatpickr/flatpickr/blob/master/src/l10n/index.ts
+	 */
+	@Input() language = "en";
+
 	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
@@ -154,7 +162,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
 			mode: this.range ? "range" : "single",
 			plugins,
-			dateFormat: this.dateFormat
+			dateFormat: this.dateFormat,
+			locale: languages.default[this.language]
 		});
 	}
 
