@@ -88,7 +88,7 @@ export interface PaginationTranslations {
 			</div>
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
 				<span *ngIf="!isExperimental">|&nbsp;</span>
-				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
+				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
 			<span *ngIf="pagesUnknown" class="bx--pagination__text">
 				<span *ngIf="!isExperimental">|&nbsp;</span>
@@ -255,22 +255,26 @@ export class Pagination {
 		// in the model once the page is loaded
 		this.selectPage.emit(value);
 	}
+
+	get totalDataLength() {
+		return this.model.totalDataLength;
+	}
 	/**
 	 * The last page number to display in the pagination view.
 	 */
 	get lastPage(): number {
-		const last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		const last = Math.ceil(this.totalDataLength / this.itemsPerPage);
 		return last > 0 ? last : 1;
 	}
 
 	get startItemIndex() {
-		return this.endItemIndex > 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
+		return this.endItemIndex > 0 ? (this.currentPage - 1) * this.itemsPerPage + 1 : 0;
 	}
 
 	get endItemIndex() {
-		const projectedEndItemIndex = this.currentPage * this.model.pageLength;
+		const projectedEndItemIndex = this.currentPage * this.itemsPerPage;
 
-		return projectedEndItemIndex < this.model.totalDataLength ? projectedEndItemIndex : this.model.totalDataLength;
+		return projectedEndItemIndex < this.totalDataLength ? projectedEndItemIndex : this.totalDataLength;
 	}
 
 	/**
@@ -293,8 +297,8 @@ export class Pagination {
 	}
 
 	get pageOptions() {
-		if (this._pageOptions.length !== this.model.totalDataLength) {
-			this._pageOptions = Array(Math.ceil(this.model.totalDataLength / this.itemsPerPage));
+		if (this.totalDataLength && this._pageOptions.length !== this.totalDataLength) {
+			this._pageOptions = Array(Math.ceil(this.totalDataLength / this.itemsPerPage));
 		}
 		return this._pageOptions;
 	}
