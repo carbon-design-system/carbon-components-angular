@@ -890,7 +890,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="430" class="link-to-prism">src/datepicker/datepicker.component.ts:430</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="435" class="link-to-prism">src/datepicker/datepicker.component.ts:435</a></div>
                             </td>
                         </tr>
 
@@ -966,7 +966,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/datepicker/datepicker.component.ts:425</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="430" class="link-to-prism">src/datepicker/datepicker.component.ts:430</a></div>
                             </td>
                         </tr>
 
@@ -1037,7 +1037,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="437" class="link-to-prism">src/datepicker/datepicker.component.ts:437</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/datepicker/datepicker.component.ts:442</a></div>
                             </td>
                         </tr>
 
@@ -1577,7 +1577,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="384" class="link-to-prism">src/datepicker/datepicker.component.ts:384</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="389" class="link-to-prism">src/datepicker/datepicker.component.ts:389</a></div>
                             </td>
                         </tr>
 
@@ -1655,7 +1655,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/datepicker/datepicker.component.ts:324</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="329" class="link-to-prism">src/datepicker/datepicker.component.ts:329</a></div>
                             </td>
                         </tr>
 
@@ -1695,7 +1695,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/datepicker/datepicker.component.ts:335</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/datepicker/datepicker.component.ts:340</a></div>
                             </td>
                         </tr>
 
@@ -2117,7 +2117,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="423" class="link-to-prism">src/datepicker/datepicker.component.ts:423</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="428" class="link-to-prism">src/datepicker/datepicker.component.ts:428</a></div>
                             </td>
                         </tr>
 
@@ -2719,17 +2719,22 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 * Handles opening the calendar &quot;properly&quot; when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
-		datepickerInput.input.nativeElement.click();
+		if (this.range) {
+			datepickerInput.input.nativeElement.click();
 
-		// If the first input&#x27;s calendar icon is clicked when calendar is in range mode, then
-		// the month and year needs to be manually changed to the current selected month and
-		// year otherwise the calendar view will not be updated upon opening.
-		if (datepickerInput &#x3D;&#x3D;&#x3D; this.input &amp;&amp; this.range &amp;&amp; this.flatpickrInstance.selectedDates[0]) {
-			const currentMonth &#x3D; this.flatpickrInstance.selectedDates[0].getMonth();
+			// If the first input&#x27;s calendar icon is clicked when calendar is in range mode, then
+			// the month and year needs to be manually changed to the current selected month and
+			// year otherwise the calendar view will not be updated upon opening.
+			if (datepickerInput &#x3D;&#x3D;&#x3D; this.input &amp;&amp; this.flatpickrInstance.selectedDates[0]) {
+				const currentMonth &#x3D; this.flatpickrInstance.selectedDates[0].getMonth();
 
-			this.flatpickrInstance.currentYear &#x3D; this.flatpickrInstance.selectedDates[0].getFullYear();
-
-			this.flatpickrInstance.changeMonth(currentMonth, false);
+				this.flatpickrInstance.currentYear &#x3D; this.flatpickrInstance.selectedDates[0].getFullYear();
+				this.flatpickrInstance.changeMonth(currentMonth, false);
+			}
+		} else {
+			// Single-mode flatpickr handles mousedown but not click, so nativeElement.click() won&#x27;t
+			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
+			this.flatpickrInstance.open();
 		}
 	}
 
