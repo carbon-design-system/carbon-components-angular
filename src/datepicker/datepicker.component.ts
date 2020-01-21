@@ -222,7 +222,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		this.visibilitySubscription = this.elementService
 			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
 			.subscribe(value => {
-				if (this.isFlatpickrLoaded()) {
+				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
 					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
 					if (!value.visible) {
 						this.flatpickrInstance.close();
