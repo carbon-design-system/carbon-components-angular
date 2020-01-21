@@ -100,7 +100,12 @@ export class DropdownService implements OnDestroy {
 	}
 
 	protected positionDropdown(parentRef, menuRef) {
+		if (!menuRef) {
+			return;
+		}
+
 		let leftOffset = 0;
+
 		const boxMenu = menuRef.querySelector(".bx--list-box__menu");
 
 		// If the parentRef and boxMenu are in a different left position relative to the
@@ -113,7 +118,7 @@ export class DropdownService implements OnDestroy {
 				parentRef.getBoundingClientRect().left - boxMenu.getBoundingClientRect().left + boxMenu.getBoundingClientRect().right;
 
 			if (testBoxMenuRightEdgePos > (window.innerWidth || document.documentElement.clientWidth)) {
-				leftOffset = parentRef.offsetWidth - testBoxMenuRightEdgePos.offsetWidth;
+				leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
 			}
 		// If it has not already been flipped, check if it is necessary to flip, ie. if the
 		// boxMenu is outside of the right viewPort.
