@@ -325,17 +325,22 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
-		datepickerInput.input.nativeElement.click();
+		if (this.range) {
+			datepickerInput.input.nativeElement.click();
 
-		// If the first input's calendar icon is clicked when calendar is in range mode, then
-		// the month and year needs to be manually changed to the current selected month and
-		// year otherwise the calendar view will not be updated upon opening.
-		if (datepickerInput === this.input && this.range && this.flatpickrInstance.selectedDates[0]) {
-			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+			// If the first input's calendar icon is clicked when calendar is in range mode, then
+			// the month and year needs to be manually changed to the current selected month and
+			// year otherwise the calendar view will not be updated upon opening.
+			if (datepickerInput === this.input && this.flatpickrInstance.selectedDates[0]) {
+				const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 
-			this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
-
-			this.flatpickrInstance.changeMonth(currentMonth, false);
+				this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
+				this.flatpickrInstance.changeMonth(currentMonth, false);
+			}
+		} else {
+			// Single-mode flatpickr handles mousedown but not click, so nativeElement.click() won't
+			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
+			this.flatpickrInstance.open();
 		}
 	}
 
