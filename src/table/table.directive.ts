@@ -6,6 +6,8 @@ import { Directive, HostBinding, Input } from "@angular/core";
 export class TableDirective {
 	@Input() @HostBinding("class.bx--data-table--sort") sortable = true;
 
+	@Input() @HostBinding("class.bx--data-table--no-border") noBorder = true;
+
 	@Input() @HostBinding("class.bx--data-table--zebra") striped = false;
 
 	@Input() @HostBinding("class.bx--skeleton") skeleton = false;
