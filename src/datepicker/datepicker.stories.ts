@@ -16,13 +16,27 @@ import {
 } from "@angular/forms";
 import {
 	Component,
-	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	Input
 } from "@angular/core";
 import { DatePickerModule, DocumentationModule } from "../";
 import { ButtonModule } from "../forms/forms.module";
 import { TabsModule } from "../tabs/tabs.module";
+import { ModalModule } from "../modal/modal.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+const modalText =
+	`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.`;
 
 @Component({
 	selector: "app-date-picker",
@@ -84,6 +98,28 @@ class DatePickerStory {
 	}
 }
 
+@Component({
+	selector: "app-date-picker-modal",
+	template: `
+        <ibm-modal>
+            <ibm-modal-header>Header label</ibm-modal-header>
+            <section class="bx--modal-content">
+                <h1>Sample modal works.</h1>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+                <ibm-date-picker
+                    label="Date Picker Label"
+                    rangeLabel="Date Picker Label"
+                    invalidText="Invalid date format">
+                </ibm-date-picker>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+            </section>
+        </ibm-modal>
+    `
+})
+class DatePickerModalStory {
+	@Input() modalText: string;
+}
+
 storiesOf("Components|Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
@@ -93,10 +129,13 @@ storiesOf("Components|Date Picker", module)
 				ReactiveFormsModule,
 				DocumentationModule,
 				ButtonModule,
-				TabsModule
+				BrowserAnimationsModule,
+				TabsModule,
+				ModalModule
 			],
 			declarations: [
-				DatePickerStory
+				DatePickerStory,
+				DatePickerModalStory
 			]
 		})
 	)
@@ -339,6 +378,12 @@ storiesOf("Components|Date Picker", module)
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
 			value: array("Value", ["10/19/2019"])
+		}
+	}))
+	.add("In modal", () => ({
+		template: `<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>`,
+		props: {
+			modalText: text("modal text", modalText)
 		}
 	}))
 	.add("Skeleton", () => ({

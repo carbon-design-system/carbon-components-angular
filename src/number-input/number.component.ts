@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/i18n.module";
 import { Observable } from "rxjs";
 
 /**
@@ -138,7 +138,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the value attribute on the `input` element.
 	 */
 	@Input() set value(v: any) {
-		if (v === "") {
+		if (v === "" || v === null) {
 			this._value = null;
 			return;
 		}
@@ -194,8 +194,8 @@ export class NumberComponent implements ControlValueAccessor {
 
 	protected _value = 0;
 
-	protected _decrementLabel = this.i18n.getOverridable("NUMBER.DECREMENT");
-	protected _incrementLabel = this.i18n.getOverridable("NUMBER.INCREMENT");
+	protected _decrementLabel: Overridable = this.i18n.getOverridable("NUMBER.DECREMENT");
+	protected _incrementLabel: Overridable = this.i18n.getOverridable("NUMBER.INCREMENT");
 
 	/**
 	 * Creates an instance of `Number`.
