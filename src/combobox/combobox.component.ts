@@ -43,41 +43,22 @@ import { filter } from "rxjs/operators";
 				'bx--combo-box': type === 'single' || !pills.length
 			}"
 			class="bx--combo-box bx--list-box"
-			role="combobox"
+			role="listbox"
 			[attr.data-invalid]="(invalid ? true : null)">
 			<div
 				[attr.aria-expanded]="open"
 				role="button"
 				class="bx--list-box__field"
 				type="button"
+				tabindex="-1"
 				aria-label="close menu"
 				aria-haspopup="true"
 				(click)="toggleDropdown()">
-				<ibm-icon-warning-filled16
-					*ngIf="invalid"
-					class="bx--list-box__invalid-icon"
-					tabindex="0">
-				</ibm-icon-warning-filled16>
-				<div
-					*ngIf="showClearButton"
-					role="button"
-					class="bx--list-box__selection"
-					tabindex="0"
-					aria-label="Clear Selection"
-					title="Clear selected item"
-					(click)="clearInput($event)">
-					<ibm-icon-close16></ibm-icon-close16>
-				</div>
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
 					role="button"
-<<<<<<< HEAD
-					class="bx--list-box__selection--multi"
-					tabindex="0"
-=======
 					class="bx--list-box__selection bx--list-box__selection--multi"
->>>>>>> 5c787be8d666356fee31e4349bff4ad3ed5cb927
 					title="Clear all selected items">
 					{{ pills.length }}
 					<svg
@@ -106,11 +87,22 @@ import { filter } from "rxjs/operators";
 					aria-haspopup="true"
 					autocomplete="off"
 					[placeholder]="placeholder"/>
-					<ibm-icon-chevron-down16
-						[ngClass]="{'bx--list-box__menu-icon--open': open}"
-						class="bx--list-box__menu-icon"
-						ariaLabel="Close menu">
-					</ibm-icon-chevron-down16>
+				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<div
+					*ngIf="showClearButton"
+					role="button"
+					class="bx--list-box__selection"
+					tabindex="0"
+					aria-label="Clear Selection"
+					title="Clear selected item"
+					(click)="clearInput($event)">
+					<ibm-icon-close16></ibm-icon-close16>
+				</div>
+				<ibm-icon-chevron-down16
+					[ngClass]="{'bx--list-box__menu-icon--open': open}"
+					class="bx--list-box__menu-icon"
+					ariaLabel="Close menu">
+				</ibm-icon-chevron-down16>
 			</div>
 			<div
 				#dropdownMenu
@@ -428,15 +420,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
-<<<<<<< HEAD
 		this.search.emit(searchString);
-=======
 		if (searchString && this.type === "single") {
 			this.showClearButton = true;
 		} else {
 			this.showClearButton = false;
 		}
->>>>>>> 5c787be8d666356fee31e4349bff4ad3ed5cb927
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();

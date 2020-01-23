@@ -4,58 +4,10 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
-import { Component, Input } from "@angular/core";
-
-@Component({
-	selector: "app-dynamic-combobox",
-	template: `
-		<ibm-combo-box
-			[disabled]="disabled"
-			[invalid]="invalid"
-			[invalidText]="invalidText"
-			[label]="label"
-			[helperText]="helperText"
-			[items]="items"
-			(search)="onSearch($event)">
-			<ibm-dropdown-list></ibm-dropdown-list>
-		</ibm-combo-box>
-	`
-})
-class ComboBoxStory {
-	@Input() disabled = false;
-	@Input() invalid = false;
-	@Input() invalidText = "Entry not valid";
-	@Input() label = "Combobox label";
-	@Input() helperText = "Optional helper text";
-	@Input() items = [
-		{
-			content: "one"
-		},
-		{
-			content: "two"
-		},
-		{
-			content: "three"
-		},
-		{
-			content: "four"
-		}
-	];
-
-	onSearch(event) {
-		// Set invalid to true if no search hits.
-		if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
-			this.invalid = true;
-		} else {
-			this.invalid = false;
-		}
-	}
-}
 
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ ComboBoxStory ],
 			imports: [
 				ComboBoxModule,
 				DocumentationModule
@@ -63,49 +15,6 @@ storiesOf("Components|Combobox", module)
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("Test", () => ({
-		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(search)="onSearch($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
-		`,
-		props: {
-			disabled: boolean("disabled", false),
-			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid text", "A valid value is required"),
-			label: text("Label", "ComboBox label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: [
-				{
-					content: "one"
-				},
-				{
-					content: "two"
-				},
-				{
-					content: "three"
-				},
-				{
-					content: "four"
-				}
-			],
-			onSearch: (event) => {
-				console.log(this.items);
-				if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
-					this.invalid = true;
-				} else {
-					this.invalid = false;
-				}
-			}
-		}
-	}))
 	.add("Basic", () => ({
 		template: `
 			<ibm-combo-box
@@ -144,14 +53,17 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With dynamic search", () => ({
 		template: `
-			<app-dynamic-combobox
+			<ibm-combo-box
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[label]="label"
 				[helperText]="helperText"
-				[items]="items">
-			</app-dynamic-combobox>
+				[items]="items"
+				(selected)="onSelected()"
+				(search)="onSearch($event)">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 		`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -172,7 +84,17 @@ storiesOf("Components|Combobox", module)
 				{
 					content: "four"
 				}
-			]
+			],
+			onSelected: function() {
+				this.invalid = false;
+			},
+			onSearch: function(event) {
+				if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
+					this.invalid = true;
+				} else {
+					this.invalid = false;
+				}
+			}
 		}
 	}))
 	.add("With template", () => ({
