@@ -17,8 +17,7 @@ storiesOf("Components|Skeleton", module).addDecorator(
 			<ibm-skeleton-text
 				[lines]="lines"
 				[minLineWidth]="minLineWidth"
-				[maxLineWidth]="maxLineWidth"
-				>
+				[maxLineWidth]="maxLineWidth">
 			</ibm-skeleton-text>
 			`,
 		props: {
@@ -27,4 +26,3 @@ storiesOf("Components|Skeleton", module).addDecorator(
 			lines: number("Number of lines", 4)
 		}
 	}));
-
