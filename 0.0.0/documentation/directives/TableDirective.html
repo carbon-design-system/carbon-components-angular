@@ -90,6 +90,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#noBorder">noBorder</a>
+                            </li>
+                            <li>
                                 <a href="#size">size</a>
                             </li>
                             <li>
@@ -142,6 +145,26 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="noBorder"></a>
+                        <code>noBorder</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>true</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/table/table.directive.ts:9</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="size"></a>
                         <code>size</code>
                     </td>
@@ -159,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/table/table.directive.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/table/table.directive.ts:18</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -179,7 +202,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/table/table.directive.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/table/table.directive.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -219,7 +242,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/table/table.directive.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/table/table.directive.ts:11</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -253,7 +276,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/table/table.directive.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/table/table.directive.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -281,7 +304,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/table/table.directive.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/table/table.directive.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -309,7 +332,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/table/table.directive.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/table/table.directive.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -337,7 +360,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/table/table.directive.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/table/table.directive.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -361,6 +384,8 @@
 })
 export class TableDirective {
 	@Input() @HostBinding(&quot;class.bx--data-table--sort&quot;) sortable &#x3D; true;
+
+	@Input() @HostBinding(&quot;class.bx--data-table--no-border&quot;) noBorder &#x3D; true;
 
 	@Input() @HostBinding(&quot;class.bx--data-table--zebra&quot;) striped &#x3D; false;
 

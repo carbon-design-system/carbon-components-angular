@@ -408,7 +408,7 @@ export interface PaginationTranslations {
 			&lt;/div&gt;
 			&lt;span *ngIf&#x3D;&quot;!pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
 				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
-				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
+				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			&lt;/span&gt;
 			&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
 				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
@@ -575,22 +575,26 @@ export class Pagination {
 		// in the model once the page is loaded
 		this.selectPage.emit(value);
 	}
+
+	get totalDataLength() {
+		return this.model.totalDataLength;
+	}
 	/**
 	 * The last page number to display in the pagination view.
 	 */
 	get lastPage(): number {
-		const last &#x3D; Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		const last &#x3D; Math.ceil(this.totalDataLength / this.itemsPerPage);
 		return last &gt; 0 ? last : 1;
 	}
 
 	get startItemIndex() {
-		return this.endItemIndex &gt; 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
+		return this.endItemIndex &gt; 0 ? (this.currentPage - 1) * this.itemsPerPage + 1 : 0;
 	}
 
 	get endItemIndex() {
-		const projectedEndItemIndex &#x3D; this.currentPage * this.model.pageLength;
+		const projectedEndItemIndex &#x3D; this.currentPage * this.itemsPerPage;
 
-		return projectedEndItemIndex &lt; this.model.totalDataLength ? projectedEndItemIndex : this.model.totalDataLength;
+		return projectedEndItemIndex &lt; this.totalDataLength ? projectedEndItemIndex : this.totalDataLength;
 	}
 
 	/**
@@ -613,8 +617,8 @@ export class Pagination {
 	}
 
 	get pageOptions() {
-		if (this._pageOptions.length !&#x3D;&#x3D; this.model.totalDataLength) {
-			this._pageOptions &#x3D; Array(Math.ceil(this.model.totalDataLength / this.itemsPerPage));
+		if (this.totalDataLength &amp;&amp; this._pageOptions.length !&#x3D;&#x3D; this.totalDataLength) {
+			this._pageOptions &#x3D; Array(Math.ceil(this.totalDataLength / this.itemsPerPage));
 		}
 		return this._pageOptions;
 	}

@@ -94,7 +94,7 @@
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
 	class&#x3D;&quot;bx--table-sort&quot;
-	*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+	*ngIf&#x3D;&quot;sortable &amp;&amp; !skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
 	[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
 	aria-live&#x3D;&quot;polite&quot;
 	[ngClass]&#x3D;&quot;{
@@ -144,7 +144,7 @@
 &lt;/button&gt;
 &lt;span
 	class&#x3D;&quot;bx--table-header-label&quot;
-	*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable)&quot;&gt;
+	*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable&quot;&gt;
 	&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;{{column.data}}&lt;/span&gt;
 	&lt;ng-template
 		[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
@@ -265,6 +265,9 @@
                                 <a href="#skeleton">skeleton</a>
                             </li>
                             <li>
+                                <a href="#sortable">sortable</a>
+                            </li>
+                            <li>
                                 <a href="#sortAscendingLabel">sortAscendingLabel</a>
                             </li>
                             <li>
@@ -340,7 +343,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head-cell.component.ts:142</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/table/head/table-head-cell.component.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -413,7 +416,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/table/head/table-head-cell.component.ts:127</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -442,6 +445,26 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="sortable"></a>
+                        <code>sortable</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>true</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/table/head/table-head-cell.component.ts:106</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="sortAscendingLabel"></a>
                         <code>sortAscendingLabel</code>
                     </td>
@@ -450,7 +473,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/table/head/table-head-cell.component.ts:118</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -467,7 +490,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/table/head/table-head-cell.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head-cell.component.ts:109</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -491,7 +514,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/table/head/table-head-cell.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/table/head/table-head-cell.component.ts:138</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -524,7 +547,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/table/head/table-head-cell.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head-cell.component.ts:140</a></div>
                             </td>
                         </tr>
 
@@ -561,7 +584,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/table/head/table-head-cell.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/table/head/table-head-cell.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -599,7 +622,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head-cell.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/table/head/table-head-cell.component.ts:158</a></div>
                             </td>
                         </tr>
 
@@ -637,7 +660,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/table/head/table-head-cell.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/table/head/table-head-cell.component.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -675,7 +698,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/table/head/table-head-cell.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/table/head/table-head-cell.component.ts:148</a></div>
                             </td>
                         </tr>
 
@@ -713,7 +736,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/table/head/table-head-cell.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/table/head/table-head-cell.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -753,7 +776,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/table/head/table-head-cell.component.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/table/head/table-head-cell.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -803,7 +826,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head-cell.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/table/head/table-head-cell.component.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -837,7 +860,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/table/head/table-head-cell.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/table/head/table-head-cell.component.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -871,7 +894,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head-cell.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head-cell.component.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -900,7 +923,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/table/head/table-head-cell.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head-cell.component.ts:113</a></div>
                                 </td>
                             </tr>
 
@@ -911,7 +934,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/table/head/table-head-cell.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head-cell.component.ts:109</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -965,7 +988,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/table/head/table-head-cell.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/table/head/table-head-cell.component.ts:122</a></div>
                                 </td>
                             </tr>
 
@@ -976,7 +999,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/table/head/table-head-cell.component.ts:118</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1030,7 +1053,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/table/head/table-head-cell.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/table/head/table-head-cell.component.ts:131</a></div>
                                 </td>
                             </tr>
 
@@ -1041,7 +1064,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/table/head/table-head-cell.component.ts:127</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1103,7 +1126,7 @@ import { TableHeaderItem } from &quot;./../table-header-item.class&quot;;
 	template: &#x60;
 		&lt;button
 			class&#x3D;&quot;bx--table-sort&quot;
-			*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+			*ngIf&#x3D;&quot;sortable &amp;&amp; !skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
 			[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
 			aria-live&#x3D;&quot;polite&quot;
 			[ngClass]&#x3D;&quot;{
@@ -1153,7 +1176,7 @@ import { TableHeaderItem } from &quot;./../table-header-item.class&quot;;
 		&lt;/button&gt;
 		&lt;span
 			class&#x3D;&quot;bx--table-header-label&quot;
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable)&quot;&gt;
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable&quot;&gt;
 			&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;{{column.data}}&lt;/span&gt;
 			&lt;ng-template
 				[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
@@ -1188,6 +1211,8 @@ export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
 
 	@Input() skeleton &#x3D; false;
+
+	@Input() sortable &#x3D; true;
 
 	@Input()
 	set sortDescendingLabel(value: string | Observable&lt;string&gt;) {
@@ -1295,9 +1320,9 @@ export class TableHeadCell implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	class="bx--table-sort"	*ngIf="this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'bx--table-sort--active\': column.sorted,		\'bx--table-sort--ascending\': column.ascending	}"	(click)="onClick()">	<span		*ngIf="!column.template"		[title]="column.data"		tabindex="-1">		<div *ngIf="!skeleton">			{{column.data}}		</div>	</span>	<ng-template		*ngIf="!skeleton"		[ngTemplateOutlet]="column.template"		[ngTemplateOutletContext]="{data: column.data}">	</ng-template>	<svg		*ngIf="!skeleton"		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>	</svg>	<svg		*ngIf="!skeleton"		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon-unsorted"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>	</svg></button><span	class="bx--table-header-label"	*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">	<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></span><button	[ngClass]="{\'active\': column.filterCount > 0}"	*ngIf="column.filterTemplate"	type="button"	aria-expanded="false"	aria-haspopup="true"	[ibmTooltip]="column.filterTemplate"	trigger="click"	[title]="getFilterTitle() | async"	placement="bottom,top"	[data]="column.filterData">	<svg		xmlns="http://www.w3.org/2000/svg"		class="icon--sm"		width="16"		height="16"		viewBox="0 0 16 16">		<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>	</svg>	<span *ngIf="column.filterCount > 0">		{{column.filterCount}}	</span></button>	</div>'
+        var COMPONENT_TEMPLATE = '<div><button	class="bx--table-sort"	*ngIf="sortable && !skeleton && this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'bx--table-sort--active\': column.sorted,		\'bx--table-sort--ascending\': column.ascending	}"	(click)="onClick()">	<span		*ngIf="!column.template"		[title]="column.data"		tabindex="-1">		<div *ngIf="!skeleton">			{{column.data}}		</div>	</span>	<ng-template		*ngIf="!skeleton"		[ngTemplateOutlet]="column.template"		[ngTemplateOutletContext]="{data: column.data}">	</ng-template>	<svg		*ngIf="!skeleton"		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>	</svg>	<svg		*ngIf="!skeleton"		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon-unsorted"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>	</svg></button><span	class="bx--table-header-label"	*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">	<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></span><button	[ngClass]="{\'active\': column.filterCount > 0}"	*ngIf="column.filterTemplate"	type="button"	aria-expanded="false"	aria-haspopup="true"	[ibmTooltip]="column.filterTemplate"	trigger="click"	[title]="getFilterTitle() | async"	placement="bottom,top"	[data]="column.filterData">	<svg		xmlns="http://www.w3.org/2000/svg"		class="icon--sm"		width="16"		height="16"		viewBox="0 0 16 16">		<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>	</svg>	<span *ngIf="column.filterCount > 0">		{{column.filterCount}}	</span></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TableHeadCell'};
 </script>
 <script src="../js/tree.js"></script>
