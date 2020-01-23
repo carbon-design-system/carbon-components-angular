@@ -278,6 +278,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -299,6 +300,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -320,6 +322,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -340,6 +343,7 @@ storiesOf("Components|Table", module).addDecorator(
 			</ibm-table-header>
 			<app-pagination-table
 				[skeleton]="skeleton"
+				[sortable]="sortable"
 				[totalDataLength]="totalDataLength"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
