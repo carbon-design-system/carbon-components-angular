@@ -1,12 +1,80 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { Component } from "@angular/core";
+import {
+	Component,
+	Input,
+	EventEmitter,
+	Output,
+	OnInit,
+	ViewEncapsulation
+} from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
-import { I18n } from "../i18n/i18n.module";
+import { ButtonModule } from "../button/button.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Subject } from "rxjs";
+
+@Component({
+	selector: "app-notification-action-story",
+	template: `
+		<ibm-notification [notificationObj]="{
+			type: 'error',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'info',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'success',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'warning',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		`,
+	providers: [NotificationService]
+})
+class NotificationActionStory implements OnInit {
+	@Input() showClose = true;
+	@Input() lowContrast = false;
+
+	@Output() actionClicked = new EventEmitter();
+
+	actionSubject = new Subject<any>();
+
+	actions = [
+		{
+			text: "Action",
+			click: this.actionSubject
+		}
+	];
+
+	constructor(protected notificationService: NotificationService) { }
+
+	ngOnInit() {
+		this.actions.forEach(action => action.click.subscribe({ next: () => this.actionClicked.emit() }));
+	}
+}
 
 @Component({
 	selector: "app-notification-story",
@@ -57,10 +125,12 @@ storiesOf("Components|Notification", module)
 		moduleMetadata({
 			declarations: [
 				NotificationStory,
+				NotificationActionStory,
 				ToastStory
 			],
 			imports: [
 				NotificationModule,
+				ButtonModule,
 				DocumentationModule
 			]
 		})
@@ -100,6 +170,20 @@ storiesOf("Components|Notification", module)
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false)
+		}
+	}))
+	.add("With Actions", () => ({
+		template: `
+			<app-notification-action-story
+				[showClose]="showClose"
+				[lowContrast]="lowContrast"
+				(actionClicked)="selected()">
+			</app-notification-action-story>
+		`,
+		props: {
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false),
+			selected: action("Action button clicked!")
 		}
 	}))
 	.add("Dynamic", () => ({
@@ -145,6 +229,58 @@ storiesOf("Components|Notification", module)
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false)
+		}
+	}))
+	.add("With custom content", () => ({
+		template: `
+			<ibm-toast [notificationObj]="{
+				type: 'error',
+				template: customToastContent,
+				showClose: showClose
+			}">
+			</ibm-toast>
+			<ibm-notification [notificationObj]="{
+				type: 'warning',
+				template: customNotificationContent,
+				showClose: showClose
+			}">
+			</ibm-notification>
+			<ng-template #customToastContent>
+				<h3 ibmToastTitle>Sample custom toast</h3>
+				<p ibmToastSubtitle>Sample custom subtitle</p>
+				<p ibmToastCaption>Sample custom caption</p>
+				<div class="actions">
+					<div class="secondary-toast-button">
+						<button ibmButton="secondary" size="sm">Still Working</button>
+					</div>
+					<div class="primary-toast-button">
+						<button ibmButton="primary" size="sm">Archive</button>
+					</div>
+				</div>
+			</ng-template>
+			<ng-template #customNotificationContent>
+				<p ibmNotificationTitle>Sample custom notification</p>
+				<p ibmNotificationSubtitle>Sample custom caption</p>
+			</ng-template>
+		`,
+		encapsulation: ViewEncapsulation.None,
+		styles: [`
+			ibm-toast {
+				width: 450px;
+			}
+
+			.secondary-toast-button {
+				margin-right: 10px;
+			}
+
+			.actions {
+				margin-bottom: 25px;
+				display: flex;
+				justify-content: flex-end;
+			}
+		`],
+		props: {
+			showClose: boolean("Show close icon", true)
 		}
 	}))
 	.add("Dynamic toast", () => ({

@@ -12,6 +12,7 @@ import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 import { FormsModule } from "@angular/forms";
 import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
@@ -45,7 +46,8 @@ describe("Dropdown", () => {
 				PlaceholderModule,
 				ChevronDown16Module,
 				FormsModule,
-				WarningFilled16Module
+				WarningFilled16Module,
+				UtilsModule
 			],
 			providers: [ DropdownService ]
 		});

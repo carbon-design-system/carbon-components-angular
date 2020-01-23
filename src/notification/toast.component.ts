@@ -22,21 +22,22 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-toast",
 	template: `
 		<ibm-icon-error-filled16
-				*ngIf="notificationObj.type === 'error'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-error-filled16>
-			<ibm-icon-warning-filled16
-				*ngIf="notificationObj.type === 'warning'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-warning-filled16>
-			<ibm-icon-checkmark-filled16
-				*ngIf="notificationObj.type === 'success'"
-				class="bx--toast-notification__icon">
-			</ibm-icon-checkmark-filled16>
+			*ngIf="notificationObj.type === 'error'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-error-filled16>
+		<ibm-icon-warning-filled16
+			*ngIf="notificationObj.type === 'warning'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-warning-filled16>
+		<ibm-icon-checkmark-filled16
+			*ngIf="notificationObj.type === 'success'"
+			class="bx--toast-notification__icon">
+		</ibm-icon-checkmark-filled16>
 		<div class="bx--toast-notification__details">
-			<h3 class="bx--toast-notification__title" [innerHTML]="notificationObj.title"></h3>
-			<p class="bx--toast-notification__subtitle" [innerHTML]="notificationObj.subtitle"></p>
-			<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p>
+			<h3 ibmToastTitle [innerHTML]="notificationObj.title"></h3>
+			<p ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
+			<p ibmToastCaption [innerHTML]="notificationObj.caption"></p>
+			<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
 		</div>
 		<button
 			*ngIf="showClose"
@@ -49,6 +50,7 @@ import { I18n } from "./../i18n/i18n.module";
 	`
 })
 export class Toast extends Notification implements OnInit {
+	private static toastCount = 0;
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -56,7 +58,7 @@ export class Toast extends Notification implements OnInit {
 	 */
 	@Input() notificationObj: ToastContent;
 
-	@HostBinding("attr.id") toastID = "notification";
+	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.bx--toast-notification") toastClass = true;
 	@HostBinding("attr.role") role = "alert";
 

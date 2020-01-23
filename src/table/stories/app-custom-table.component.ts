@@ -45,8 +45,10 @@ export class CustomHeaderItem extends TableHeaderItem {
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
+			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
+			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="customSort($event)">
@@ -59,6 +61,8 @@ export class DynamicTableStory implements OnInit {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() isDataGrid = false;
+	@Input() sortable = true;
+	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
 	@ViewChild("customHeaderTemplate")
@@ -71,14 +75,17 @@ export class DynamicTableStory implements OnInit {
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "swer" })],
 			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
-			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })]
+			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
+			[new TableItem({ data: "Name 5" }), new TableItem({ data: "twer" })],
+			[new TableItem({ data: "Name 6" }), new TableItem({ data: "twer" })],
+			[new TableItem({ data: "Name 7" }), new TableItem({ data: "twer" })],
+			[new TableItem({ data: "Name 8" }), new TableItem({ data: "twer" })]
 		];
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),
 			new CustomHeaderItem({
 				data: { name: "Custom header", link: "#" },
-				template: this.customHeaderTemplate,
-				style: { "width": "auto" }
+				template: this.customHeaderTemplate
 			})
 		];
 	}
