@@ -45,7 +45,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			[skeleton]="skeleton"
 			[striped]="striped"
 			(sort)="customSort($event)"
-			(rowItemClick)="onRowItemClick($event)"
+			(rowClick)="onRowClick($event)"
 			[isDataGrid]="isDataGrid">
 		</ibm-table>
 	`
@@ -99,7 +99,7 @@ export class ExpansionTableStory implements OnInit {
 		this.sort(this.model, index);
 	}
 
-	onRowItemClick(index: number) {
+	onRowClick(index: number) {
 		console.log("Row item selected:", index);
 	}
 

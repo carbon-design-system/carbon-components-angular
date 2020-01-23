@@ -35,7 +35,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[stickyHeader]="stickyHeader"
 			[skeleton]="skeleton"
 			[isDataGrid]="isDataGrid"
-			(rowItemClick)="onRowItemClick($event)"
+			(rowClick)="onRowClick($event)"
 			[striped]="striped">
 		</ibm-table>
 	`
@@ -71,7 +71,7 @@ export class OverflowTableStory implements OnInit {
 		];
 	}
 
-	onRowItemClick(index: number) {
+	onRowClick(index: number) {
 		console.log("Row item selected:", index);
 	}
 }

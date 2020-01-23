@@ -32,7 +32,7 @@ import { TableItem } from "../table-item.class";
 			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[model]="model"
-			(rowItemClick)="onRowItemClick($event)"
+			(rowClick)="onRowClick($event)"
 			(sort)="paginationSort($event)"
 			[stickyHeader]="stickyHeader"
 			[skeleton]="skeleton">
@@ -110,7 +110,7 @@ export class PaginationTableStory implements OnInit {
 		});
 	}
 
-	onRowItemClick(index: number) {
+	onRowClick(index: number) {
 		console.log("Row item selected:", index);
 	}
 
