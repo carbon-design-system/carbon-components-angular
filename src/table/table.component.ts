@@ -7,7 +7,8 @@ import {
 	ElementRef,
 	AfterViewInit,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	HostBinding
 } from "@angular/core";
 import { Subscription, fromEvent, Observable } from "rxjs";
 
@@ -178,12 +179,15 @@ export interface TableTranslations {
 	template: `
 	<table
 		ibmTable
-		sortable="true"
+		[sortable]="sortable"
+		[noBorder]="noBorder"
+		[ngClass]="{'bx--data-table--sticky-header': stickyHeader}"
 		[size]="size"
 		[striped]="striped"
 		[skeleton]="skeleton">
 		<thead
 			ibmTableHead
+			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
 			(sort)="sort.emit($event)"
@@ -357,6 +361,14 @@ export class Table implements AfterViewInit, OnDestroy {
 		}
 	}
 
+	/**
+	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
+	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
+	 */
+	@Input() sortable = true;
+
+	@Input() noBorder = true;
+
 	get isDataGrid(): boolean {
 		return this._isDataGrid;
 	}
@@ -462,7 +474,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Set to `true` to stick the header to the top of the table
 	 */
-	@Input() stickyHeader = false;
+	@HostBinding("class.bx--data-table_inner-container") @Input() stickyHeader = false;
 
 	/**
 	 * Set footer template to customize what is displayed in the tfoot section of the table

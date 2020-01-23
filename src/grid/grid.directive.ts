@@ -10,13 +10,28 @@ import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 })
 export class GridDirective {
 	@HostBinding("class.bx--grid") baseClass = true;
+	@HostBinding("class.bx--grid--condensed") @Input() condensed = false;
 }
 
 @Directive({
 	selector: "[ibmRow]"
 })
 export class RowDirective {
+	@Input() gutter = true;
+	@Input() leftGutter = true;
+	@Input() rightGutter = true;
+
 	@HostBinding("class.bx--row") baseClass = true;
+	@HostBinding("class.bx--row--condensed") @Input() condensed = false;
+	@HostBinding("class.bx--no-gutter") get showGutter() {
+		return !this.gutter;
+	}
+	@HostBinding("class.bx--no-gutter--left") get showLeftGutter() {
+		return !this.leftGutter;
+	}
+	@HostBinding("class.bx--no-gutter--right") get showRightGutter() {
+		return !this.rightGutter;
+	}
 }
 
 @Directive({
