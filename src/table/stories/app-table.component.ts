@@ -27,6 +27,7 @@ function sort(model, index: number) {
 			[skeleton]="skeleton"
 			[showSelectionColumn]="true"
 			[enableSingleSelect]="false"
+			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
