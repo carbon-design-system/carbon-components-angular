@@ -27,6 +27,7 @@ function sort(model, index: number) {
 			[skeleton]="skeleton"
 			[showSelectionColumn]="true"
 			[enableSingleSelect]="false"
+			(rowItemClick)="onRowItemClick($event)"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
@@ -79,6 +80,10 @@ export class TableStory implements OnInit, OnChanges {
 				column.sortable = changes.sortable.currentValue;
 			}
 		}
+	}
+
+	onRowItemClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 
 	simpleSort(index: number) {

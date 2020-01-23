@@ -30,6 +30,7 @@ import { Observable } from "rxjs";
 					(selectRow)="onRowCheckboxChange(i)"
 					(deselectRow)="onRowCheckboxChange(i)"
 					(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"
+					(rowItemClick)="onRowItemClick(i)"
 					*ngIf="!model.isRowFiltered(i)"
 					[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"
 					[ngClass]="{
@@ -116,6 +117,11 @@ export class TableBody {
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 
+	/**
+	 * Emits if a row item excluding expandButtons, checkboxes, or radios is clicked.
+	 */
+	@Output() rowItemClick = new EventEmitter<number>();
+
 	protected _checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
@@ -132,6 +138,10 @@ export class TableBody {
 		} else {
 			this.selectRow.emit({ model: this.model, selectedRowIndex: index });
 		}
+	}
+
+	onRowItemClick(index: number) {
+		this.rowItemClick.emit(index);
 	}
 
 	getCheckboxRowLabel(): Observable<string> {

@@ -51,6 +51,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
+			(rowItemClick)="onRowItemClick($event)"
 			(sort)="customSort($event)">
 		</ibm-table>
 	`
@@ -110,5 +111,9 @@ export class DynamicTableStory implements OnInit {
 	addColumn() {
 		let column = Array(this.model.data.length).fill(null).map(() => new TableItem({ data: `Column ${this.model.row(0).length}` }));
 		this.model.addColumn(column);
+	}
+
+	onRowItemClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 }
