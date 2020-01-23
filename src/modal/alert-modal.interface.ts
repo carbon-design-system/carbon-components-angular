@@ -37,6 +37,10 @@ export interface AlertModalData {
 	 */
 	content?: string;
 	/**
+	 * Size of the modal to display.
+	 */
+	size?: "xs" | "sm" | "md" | "lg";
+	/**
 	 * Array of `ModalButton`s
 	 */
 	buttons?: Array<ModalButton>;

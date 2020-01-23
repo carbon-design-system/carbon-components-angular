@@ -47,7 +47,11 @@ import { BaseModal } from "./base-modal.class";
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="dismissModal()">
+		<ibm-modal
+			[size]="size"
+			[theme]="modalType"
+			[modalLabel]="modalTitle"
+			(overlaySelected)="dismissModal()">
 			<ibm-modal-header (closeSelect)="dismissModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
@@ -79,6 +83,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalLabel") public modalLabel: string,
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
+		@Inject("size") public size: "xs" | "sm" | "md" | "lg",
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {

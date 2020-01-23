@@ -86,6 +86,11 @@ export class ModalDemo {
 		<ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
+				[ngClass]="{
+					'bx--modal-container--xs': size === 'xs',
+					'bx--modal-container--sm': size === 'sm',
+					'bx--modal-container--lg': size === 'lg'
+				}"
 				[@modalState]="modalState"
 				role="dialog"
 				aria-modal="true"
@@ -112,7 +117,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
-	@Input() size: "sm" | "md" | "lg" | "xl" | "xxl" = "md";
+	@Input() size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 	/**
 	 * Classification of the modal.
 	 */
