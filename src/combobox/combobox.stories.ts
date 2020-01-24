@@ -59,7 +59,53 @@ storiesOf("Components|Combobox", module)
 		`,
 		props: getOptions()
 	}))
-	.add("With Template", () => ({
+	.add("With dynamic search", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				(selected)="onSelected()"
+				(search)="onSearch($event)">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			invalid: boolean("Invalid", false),
+			invalidText: text("Invalid text", "A valid value is required"),
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
+			items: [
+				{
+					content: "one"
+				},
+				{
+					content: "two"
+				},
+				{
+					content: "three"
+				},
+				{
+					content: "four"
+				}
+			],
+			onSelected: function() {
+				this.invalid = false;
+			},
+			onSearch: function(event) {
+				if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
+					this.invalid = true;
+				} else {
+					this.invalid = false;
+				}
+			}
+		}
+	}))
+	.add("With template", () => ({
 		template: `
 			<ibm-combo-box
 				[disabled]="disabled"
