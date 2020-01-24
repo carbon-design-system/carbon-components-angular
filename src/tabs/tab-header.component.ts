@@ -3,7 +3,8 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	Output
+	Output,
+	AfterViewInit
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -34,7 +35,7 @@ import { EventEmitter } from "@angular/core";
 	 `
 })
 
-export class TabHeader {
+export class TabHeader implements AfterViewInit {
 	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
@@ -49,11 +50,21 @@ export class TabHeader {
 	 */
 	@Input() paneReference: Tab;
 	/**
+	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
+	 */
+	@Input() cacheActive = false;
+	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
 	@Output() selected = new EventEmitter<any>();
 
 	@ViewChild("tabItem") tabItem: ElementRef;
+
+	ngAfterViewInit() {
+		if (this.paneReference) {
+			this.paneReference.cacheActive = this.cacheActive;
+		}
+	}
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();

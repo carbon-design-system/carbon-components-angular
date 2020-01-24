@@ -83,6 +83,12 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Input() ariaLabelledby: string;
 
+	/**
+	 * Set to 'true' to have all pane references associated with each tab header
+	 * in the tab header group cached and not reloaded on tab switching.
+	 */
+	@Input() cacheActive = false;
+
 	@Input() contentAfter: TemplateRef<any>;
 
 	@Input() contentBefore: TemplateRef<any>;
@@ -191,6 +197,10 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 
 	ngAfterContentInit() {
 		this.selectedSubscriptionTracker.unsubscribe();
+
+		if (this.tabHeaderQuery) {
+			this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+		}
 
 		const selectedSubscriptions = this.tabHeaderQuery.toArray().forEach(tabHeader => {
 			tabHeader.selected.subscribe(() => {
