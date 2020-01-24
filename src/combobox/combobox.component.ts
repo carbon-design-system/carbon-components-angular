@@ -38,6 +38,7 @@ import { filter } from "rxjs/operators";
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
+			role="combobox"
 			class="bx--combo-box bx--list-box"
 			[attr.data-invalid]="(invalid ? true : null)"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">
@@ -45,7 +46,6 @@ import { filter } from "rxjs/operators";
 				[attr.aria-expanded]="open"
 				role="button"
 				class="bx--list-box__field"
-				tabindex="0"
 				type="button"
 				aria-label="close menu"
 				aria-haspopup="true"
@@ -93,8 +93,10 @@ import { filter } from "rxjs/operators";
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
-					role="combobox"
-					aria-label="ListBox input field"
+					role="searchbox"
+					tabindex="0"
+					[attr.aria-label]="label"
+					aria-haspopup="true"
 					autocomplete="off"
 					[placeholder]="placeholder"/>
 					<ibm-icon-chevron-down16

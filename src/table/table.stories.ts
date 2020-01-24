@@ -264,7 +264,8 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			batchText: text("Toolbar batch text", "items selected")
 		})
 	}))
 	.add("With expansion", () => ({
@@ -277,6 +278,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -298,6 +300,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -319,6 +322,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -339,6 +343,7 @@ storiesOf("Components|Table", module).addDecorator(
 			</ibm-table-header>
 			<app-pagination-table
 				[skeleton]="skeleton"
+				[sortable]="sortable"
 				[totalDataLength]="totalDataLength"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"

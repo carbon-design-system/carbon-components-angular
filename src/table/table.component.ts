@@ -179,13 +179,15 @@ export interface TableTranslations {
 	template: `
 	<table
 		ibmTable
+		[sortable]="sortable"
+		[noBorder]="noBorder"
 		[ngClass]="{'bx--data-table--sticky-header': stickyHeader}"
-		sortable="true"
 		[size]="size"
 		[striped]="striped"
 		[skeleton]="skeleton">
 		<thead
 			ibmTableHead
+			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
 			(sort)="sort.emit($event)"
@@ -358,6 +360,14 @@ export class Table implements AfterViewInit, OnDestroy {
 			}
 		}
 	}
+
+	/**
+	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
+	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
+	 */
+	@Input() sortable = true;
+
+	@Input() noBorder = true;
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;

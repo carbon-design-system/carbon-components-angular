@@ -30,6 +30,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
+			[sortable]="sortable"
 			[showSelectionColumn]="showSelectionColumn"
 			[stickyHeader]="stickyHeader"
 			[skeleton]="skeleton"
@@ -44,6 +45,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() isDataGrid = false;
+	@Input() sortable = true;
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
