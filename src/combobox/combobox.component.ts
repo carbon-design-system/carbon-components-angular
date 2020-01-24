@@ -90,6 +90,7 @@ import { filter } from "rxjs/operators";
 					[id]="id"
 					[disabled]="disabled"
 					(keyup)="onSearch($event.target.value)"
+					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
 					role="searchbox"
@@ -449,28 +450,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
-	 *
-	 * @param ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
-	 *
-	 * Example:
-	 * ```javascript
-	 *	{
-	 *	after: 1,
-	 *	value: "some user string"
-	 *	}
-	 * ```
+	 * Intended to be used to add items to the list.
 	 */
-	public onSubmit(ev) {
-		let index = 0;
-		if (ev.after) {
-			index = this.view.getListItems().indexOf(ev.after) + 1;
-		}
+	public onSubmit(event: KeyboardEvent) {
 		this.submit.emit({
 			items: this.view.getListItems(),
-			index,
+			index: 0,
 			value: {
-				content: ev.value,
+				content: (event.target as HTMLInputElement).value,
 				selected: false
 			}
 		});
