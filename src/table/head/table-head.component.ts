@@ -171,7 +171,9 @@ export class TableHead implements AfterViewInit {
 	constructor(protected i18n: I18n) {}
 
 	ngAfterViewInit() {
-		this.scrollbarWidth = getScrollbarWidth();
+		setTimeout(() => {
+			this.scrollbarWidth = getScrollbarWidth();
+		});
 	}
 
 	onSelectAllCheckboxChange() {
