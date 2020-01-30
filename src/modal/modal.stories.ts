@@ -61,7 +61,7 @@ class ModalStory {
 
 	@Input() modalText = "Hello, World";
 
-	@Input() size = "md";
+	@Input() size = "default";
 
 	constructor(protected modalService: ModalService) { }
 
@@ -89,7 +89,7 @@ class AlertModalStory {
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
-	@Input() size: "xs" | "sm" | "md" | "lg";
+	@Input() size: "xs" | "sm" | "default" | "lg";
 
 	constructor(protected modalService: ModalService) { }
 
@@ -132,7 +132,7 @@ storiesOf("Components|Modal", module)
 		`,
 		props: {
 			modalText: text("modalText", "Hello, World!"),
-			size: select("size", ["xs", "sm", "md", "lg"], "md")
+			size: select("size", ["xs", "sm", "default", "lg"], "default")
 		}
 	}))
 	.add("Transactional", () => ({
@@ -152,7 +152,7 @@ storiesOf("Components|Modal", module)
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Delete service from application"),
 			modalContent: text("modalContent", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
-			size: select("size", ["xs", "sm", "md", "lg"], "md"),
+			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			buttons: [{
 				text: "Cancel",
 				type: "secondary"
@@ -178,7 +178,7 @@ storiesOf("Components|Modal", module)
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Passive modal title"),
-			size: select("size", ["xs", "sm", "md", "lg"], "md"),
+			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
 		}

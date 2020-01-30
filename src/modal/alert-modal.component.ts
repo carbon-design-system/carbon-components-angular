@@ -83,7 +83,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalLabel") public modalLabel: string,
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
-		@Inject("size") public size: "xs" | "sm" | "md" | "lg",
+		@Inject("size") public size: string,
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {
