@@ -53,7 +53,7 @@ export class ModalService {
 		component.instance.close.subscribe(_ => {
 			this.placeholderService.destroyComponent(component);
 			// filter out our component
-			ModalService.modalList = ModalService.modalList.filter(c => c === component);
+			ModalService.modalList = ModalService.modalList.filter(c => c !== component);
 		});
 
 		component.onDestroy(() => {
