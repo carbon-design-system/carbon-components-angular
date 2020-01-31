@@ -55,13 +55,6 @@ export class HeaderItem {
 	@Input() content: string;
 
 	/**
-	 * Set breakpoint to respond to the size of the window innerWidth. ie. the window
-	 * innerWidth to send the header item to the sidenav. Currently not used as styles
-	 * direct the response to the innerWidth of the window.
-	 */
-	@Input() breakpoint: number;
-
-	/**
 	 * Emits the navigation status promise when the link is activated
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();

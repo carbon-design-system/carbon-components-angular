@@ -57,14 +57,10 @@ export class HeaderMenu {
 	}
 	@Input() trigger: "click" | "mouseover" = "click";
 
-	@Input() headerItems: HeaderItemInterface[];
-
 	/**
-	 * Set breakpoint to respond to the size of the window innerWidth. ie. the window
-	 * innerWidth to send the header menu to the sidenav. Currently not used as styles
-	 * direct the response to the innerWidth of the window.
+	 * Used to create header items through a model.
 	 */
-	@Input() breakpoint: number;
+	@Input() headerItems: HeaderItemInterface[];
 
 	public expanded = false;
 

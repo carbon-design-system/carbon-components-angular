@@ -98,6 +98,7 @@ export class SideNav {
 	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
 	@HostBinding("class.bx--side-nav--ux") ux = true;
 	@Input() allowExpansion = false;
+
 	/**
 	 * NavigationItems from the header navigation component which are displayed on the sidenav when the window
 	 * innerWidth is small enough. Sidenav items and menus are created using the model used to create header
