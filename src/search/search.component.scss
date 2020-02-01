@@ -1,0 +1,16 @@
+.search-wrapper{
+    position: relative;
+    display: inline-block;
+    .typeahead-list{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .bx--search-close{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

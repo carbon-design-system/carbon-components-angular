@@ -37,6 +37,44 @@ storiesOf("Components|Search", module).addDecorator(
 			clear: action("clear fired!")
 		}
 	}))
+	.add("Typeahead search", () => ({
+		template: `
+			<div>
+				<p>Default template</p>
+				<ibm-search
+					[typeahead]="true"
+					[size]="size"
+					[typeAheadResults]="typeAheadResults"
+					[theme]="theme"
+					placeholder="search"
+					(valueChange)="valueChange($event)"
+				>
+				</ibm-search>
+
+				<div style="margin-top: 150px;"><p>With custom template</p></div>
+				<ibm-search
+					[typeahead]="true"
+					[size]="size"
+					[typeAheadResults]="typeAheadResults"
+					[listTpl]="myTemplate"
+					[theme]="theme"
+					placeholder="search"
+					(valueChange)="valueChange($event)"
+				>
+				</ibm-search>
+				<ng-template #myTemplate>
+					Custom template
+				</ng-template>
+			</div>
+		`,
+		props: {
+			size: select("size", ["lg", "sm"], "lg"),
+			theme: select("theme", ["dark", "light"], "dark"),
+			typeahead: boolean("typeahead", true),
+			typeAheadResults : ['item1', 'item2'],
+			valueChange: action("value change fired!")
+		}
+	}))
 	.add("Toolbar search", () => ({
 		template: `
 		<div class="bx--toolbar">

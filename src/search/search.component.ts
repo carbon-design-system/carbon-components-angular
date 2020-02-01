@@ -6,7 +6,8 @@ import {
 	HostBinding,
 	ElementRef,
 	HostListener,
-	ViewChild
+	ViewChild,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
@@ -34,6 +35,7 @@ export class SearchChange {
 @Component({
 	selector: "ibm-search",
 	templateUrl: "search.component.html",
+	styleUrls: ["search.component.scss"],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -68,6 +70,11 @@ export class Search implements ControlValueAccessor {
 	get size(): "sm" | "lg" | "xl" {
 		return this._size;
 	}
+
+	/**
+	 * Template to bind to items in the `DropdownList` (optional).
+	 */
+	@Input() listTpl: string | TemplateRef<any> = null;
 	/**
 	 * Set to `true` for a disabled search input.
 	 */
@@ -109,6 +116,15 @@ export class Search implements ControlValueAccessor {
 	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
 	 */
 	@Input() autocomplete = "on";
+	/**
+	 * boolean to determine if typeahead functionality should be available
+	 */
+	@Input() typeahead: boolean;
+	/**
+	 * Array of items to be passed in from parent component to populate the typehead results list
+	 */
+	@Input() typeAheadResults: Array<any> = [];
+
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
@@ -195,8 +211,20 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
+		this.clearTypeaheadResults();
 		this.clear.emit();
 		this.propagateChange(this.value);
+	}
+
+	clearTypeaheadResults() {
+		if (this.typeahead) {
+			this.typeAheadResults = [];
+		}
+	}
+
+	updateSearchResult(option: string) {
+		this.value = option;
+		this.clearTypeaheadResults();
 	}
 
 	doValueChange() {

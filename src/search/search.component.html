@@ -1,6 +1,7 @@
 <div
 	class="bx--search"
 	[ngClass]="{
+		'search-wrapper': typeahead,
 		'bx--search--sm': size === 'sm',
 		'bx--search--xl': size === 'xl',
 		'bx--search--light': theme === 'light',
@@ -26,6 +27,33 @@
 			[disabled]="disabled"
 			[required]="required"
 			(input)="onSearch($event.target.value)"/>
+
+		<ul
+			*ngIf="typeahead"
+			#list
+			role="listbox"
+			class="bx--list-box__menu typeahead-list"
+		>
+			<li
+				(click)="updateSearchResult(option)"
+				*ngFor="let option of typeAheadResults"
+				class="bx--list-box__menu-item"
+			>
+				<div
+					#listItem
+					tabindex="-1"
+					class="bx--list-box__menu-item__option"
+				>
+					<ng-container *ngIf="!listTpl">{{ option }}</ng-container>
+					<ng-template 
+						*ngIf="listTpl" 
+						[ngTemplateOutletContext]="{item: option}"
+						[ngTemplateOutlet]="listTpl"
+					>
+					</ng-template>
+				</div>
+			</li>
+		</ul>
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
 			<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
 		</button>
