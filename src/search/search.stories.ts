@@ -56,10 +56,11 @@ storiesOf("Components|Search", module).addDecorator(
 			typeahead: boolean("typeahead", true),
 			typeAheadResults : array("typeAheadResults", []),
 			valueChange: function(event) {
+				// simulate api result for a backend
 				setTimeout(() => {
 					this.typeAheadResults = genTypeAheadList(event);
 					action("array value change fired!")(event);
-				}, 1000);
+				}, 500);
 			}
 		};
 

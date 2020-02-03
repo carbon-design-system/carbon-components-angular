@@ -7,10 +7,13 @@ import {
 	ElementRef,
 	HostListener,
 	ViewChild,
-	TemplateRef
+	TemplateRef,
+	OnInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
+import { Subject, of } from "rxjs";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 
 /**
  * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
@@ -44,7 +47,7 @@ export class SearchChange {
 		}
 	]
 })
-export class Search implements ControlValueAccessor {
+export class Search implements ControlValueAccessor, OnInit {
 	/**
 	 * Variable used for creating unique ids for search components.
 	 */
@@ -126,6 +129,14 @@ export class Search implements ControlValueAccessor {
 	@Input() typeAheadResults: Array<any> = [];
 
 	/**
+	 * Get an alternate debounce time from the parent template in milliseconds (eg: 500, 1000, etc)
+	 */
+	@Input() set debounceTime(time) {
+		if (!isNaN(time)) {
+			this._debounceTime = Number(time);
+		}
+	}
+	/**
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = this.i18n.get().SEARCH.LABEL;
@@ -157,11 +168,34 @@ export class Search implements ControlValueAccessor {
 	protected _size: "sm" | "xl" = "xl";
 
 	/**
+	 * subject for the input value
+	 */
+	private _valueChanged = new Subject<string>();
+
+	/**
+	 * Debounce time to be used for the valueChange Event emitter
+	 */
+	private _debounceTime = 500;
+
+	/**
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
+	}
+
+	ngOnInit() {
+		const subscription = this._valueChanged
+								.asObservable()
+								.pipe(
+									debounceTime(this._debounceTime),
+									distinctUntilChanged(),
+									switchMap(val => of(val))
+								)
+								.subscribe(text => {
+									this.valueChange.emit(text);
+								});
 	}
 
 	/**
@@ -232,7 +266,7 @@ export class Search implements ControlValueAccessor {
 		event.source = this;
 		event.value = this.value;
 		this.change.emit(event);
-		this.valueChange.emit(this.value);
+		this._valueChanged.next(this.value);
 		this.propagateChange(this.value);
 	}
 
