@@ -1,19 +1,21 @@
-.search-wrapper{
-    position: relative;
-    display: inline-block;
-    .typeahead-list{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        b{
-            font-weight: bold;
-        }
-    }
+.search-wrapper {
+	position: relative;
+	display: inline-block;
 
-    .bx--search-close{
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
+	.typeahead-list {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+
+		b {
+			font-weight: 400;
+		}
+	}
+
+	.bx--search-close {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
 }
