@@ -36,7 +36,7 @@
 		>
 			<li
 				(click)="updateSearchResult(option)"
-				*ngFor="let option of typeAheadResults"
+				*ngFor="let option of _typeAheadResults"
 				class="bx--list-box__menu-item"
 			>
 				<div
@@ -44,7 +44,9 @@
 					tabindex="-1"
 					class="bx--list-box__menu-item__option"
 				>
-					<ng-container *ngIf="!listTpl">{{ option }}</ng-container>
+					<ng-container *ngIf="!listTpl">
+						<span [innerHtml]="option.html"></span>
+					</ng-container>
 					<ng-template 
 						*ngIf="listTpl" 
 						[ngTemplateOutletContext]="{item: option}"

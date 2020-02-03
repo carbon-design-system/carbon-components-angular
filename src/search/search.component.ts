@@ -8,12 +8,19 @@ import {
 	HostListener,
 	ViewChild,
 	TemplateRef,
-	OnInit
+	OnInit,
+	OnDestroy,
+	ViewEncapsulation
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
-import { Subject, of } from "rxjs";
+import { Subject, of, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
+
+export interface TypeAheadListItem {
+	content: string;
+	html: string;
+}
 
 /**
  * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
@@ -39,6 +46,7 @@ export class SearchChange {
 	selector: "ibm-search",
 	templateUrl: "search.component.html",
 	styleUrls: ["search.component.scss"],
+	encapsulation: ViewEncapsulation.None,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -47,7 +55,7 @@ export class SearchChange {
 		}
 	]
 })
-export class Search implements ControlValueAccessor, OnInit {
+export class Search implements ControlValueAccessor, OnInit, OnDestroy {
 	/**
 	 * Variable used for creating unique ids for search components.
 	 */
@@ -126,7 +134,29 @@ export class Search implements ControlValueAccessor, OnInit {
 	/**
 	 * Array of items to be passed in from parent component to populate the typehead results list
 	 */
-	@Input() typeAheadResults: Array<any> = [];
+	@Input() set typeAheadResults(array: Array<string> ) {
+		if (array && array.length >= 0) {
+			const re = new RegExp(this.value, "gi");
+			this._typeAheadResults = array.map(content => {
+				const kwords = content.match(re);
+				let contentHtml = "";
+
+				// generate the html only if keywords are present
+				if (kwords) {
+					const contentParts = content.split(re);
+					contentParts.map((part, index) => {
+						contentHtml += part;
+						contentHtml = kwords[index] ? contentHtml + `<b>${kwords[index]}</b>` : contentHtml;
+					});
+				}
+
+				return {
+					content: content,
+					html: contentHtml || content
+				};
+			});
+		}
+	}
 
 	/**
 	 * Get an alternate debounce time from the parent template in milliseconds (eg: 500, 1000, etc)
@@ -167,11 +197,16 @@ export class Search implements ControlValueAccessor, OnInit {
 
 	protected _size: "sm" | "xl" = "xl";
 
+	private _typeAheadResults: Array<TypeAheadListItem> = [];
 	/**
 	 * subject for the input value
 	 */
 	private _valueChanged = new Subject<string>();
 
+	/**
+	 * subscription returned from Observable for value
+	 */
+	private _valueSubscription: Subscription;
 	/**
 	 * Debounce time to be used for the valueChange Event emitter
 	 */
@@ -186,7 +221,7 @@ export class Search implements ControlValueAccessor, OnInit {
 	}
 
 	ngOnInit() {
-		const subscription = this._valueChanged
+		this._valueSubscription = this._valueChanged
 								.asObservable()
 								.pipe(
 									debounceTime(this._debounceTime),
@@ -196,6 +231,10 @@ export class Search implements ControlValueAccessor, OnInit {
 								.subscribe(text => {
 									this.valueChange.emit(text);
 								});
+	}
+
+	ngOnDestroy() {
+		this._valueSubscription.unsubscribe();
 	}
 
 	/**
@@ -256,8 +295,8 @@ export class Search implements ControlValueAccessor, OnInit {
 		}
 	}
 
-	updateSearchResult(option: string) {
-		this.value = option;
+	updateSearchResult(option: TypeAheadListItem) {
+		this.value = option.content;
 		this.clearTypeaheadResults();
 	}
 

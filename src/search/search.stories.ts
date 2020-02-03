@@ -10,6 +10,31 @@ import {
 
 import { SearchModule, DocumentationModule } from "../";
 
+function genTypeAheadList(searchterm: string) {
+	let list = [];
+	if (searchterm) {
+		const lsterm = searchterm.toLowerCase();
+		for (let i = 0; i < ( Math.round(Math.random() * 5) || 3 ); i++) {
+			list.push(`Api result ${(i + 1)} for ${lsterm}`);
+		}
+	}
+	return list;
+}
+
+const tProps = {
+	size: select("size", ["lg", "sm"], "lg"),
+	theme: select("theme", ["dark", "light"], "dark"),
+	typeahead: boolean("typeahead", true),
+	typeAheadResults : array("typeAheadResults", []),
+	valueChange: function(event) {
+		// simulate api result for a backend
+		setTimeout(() => {
+			this.typeAheadResults = genTypeAheadList(event);
+			action("array value change fired!")(event);
+		}, 500);
+	}
+};
+
 storiesOf("Components|Search", module).addDecorator(
 	moduleMetadata({
 		imports: [SearchModule, DocumentationModule]
@@ -39,63 +64,46 @@ storiesOf("Components|Search", module).addDecorator(
 		}
 	}))
 	.add("Typeahead search", () => {
-		const genTypeAheadList = (searchterm: string) => {
-				let list = [];
-				if (searchterm) {
-					for (let i = 0; i < ( Math.round(Math.random() * 5) || 3 ); i++) {
-						list.push(searchterm + " api result " + (i + 1));
-					}
-				}
-				return list;
-			};
-
-
-		let tProps = {
-			size: select("size", ["lg", "sm"], "lg"),
-			theme: select("theme", ["dark", "light"], "dark"),
-			typeahead: boolean("typeahead", true),
-			typeAheadResults : array("typeAheadResults", []),
-			valueChange: function(event) {
-				// simulate api result for a backend
-				setTimeout(() => {
-					this.typeAheadResults = genTypeAheadList(event);
-					action("array value change fired!")(event);
-				}, 500);
-			}
-		};
-
 		return ({
-		template: `
-			<div>
-				<p>Default template</p>
-				<ibm-search
-					[typeahead]="true"
-					[size]="size"
-					[typeAheadResults]="typeAheadResults"
-					[theme]="theme"
-					placeholder="search"
-					(valueChange)="valueChange($event)"
-				>
-				</ibm-search>
-
-				<div style="margin-top: 150px;"><p>With custom template</p></div>
-				<ibm-search
-					[typeahead]="true"
-					[size]="size"
-					[typeAheadResults]="typeAheadResults"
-					[listTpl]="myTemplate"
-					[theme]="theme"
-					placeholder="search"
-					(valueChange)="valueChange($event)"
-				>
-				</ibm-search>
-				<ng-template #myTemplate>
-					Custom template
-				</ng-template>
-			</div>
-		`,
-		props: tProps
-	})})
+			template: `
+				<div>
+					<p>Default template</p>
+					<ibm-search
+						[typeahead]="true"
+						[size]="size"
+						[typeAheadResults]="typeAheadResults"
+						[theme]="theme"
+						placeholder="search"
+						(valueChange)="valueChange($event)"
+					>
+					</ibm-search>
+				</div>
+			`,
+			props: tProps
+		});
+	})
+	.add("Typeahead with template", () => {
+		return ({
+			template: `
+				<div>
+					<ibm-search
+						[typeahead]="true"
+						[size]="size"
+						[typeAheadResults]="typeAheadResults"
+						[listTpl]="myTemplate"
+						[theme]="theme"
+						placeholder="search"
+						(valueChange)="valueChange($event)"
+					>
+					</ibm-search>
+					<ng-template #myTemplate let-item>
+						Custom template {{ item }}
+					</ng-template>
+				</div>
+			`,
+			props: tProps
+		});
+	})
 	.add("Toolbar search", () => ({
 		template: `
 		<div class="bx--toolbar">
