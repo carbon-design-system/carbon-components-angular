@@ -100,7 +100,7 @@ class AlertModalStory {
 			label: this.modalLabel,
 			title: this.modalTitle,
 			content: this.modalContent,
-			onOverlayClick: this.onOverlayClick
+			onOverlayClick: this.onOverlayClick,
 			size: this.size,
 			buttons: this.buttons
 		});
@@ -145,8 +145,9 @@ storiesOf("Components|Modal", module)
 			[modalTitle]="modalTitle"
 			[modalContent]="modalContent"
 			[buttons]="buttons"
-			[onOverlayClick]="onOverlayClick">
-			[size]="size"
+			[onOverlayClick]="onOverlayClick"
+			[size]="size">
+
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
