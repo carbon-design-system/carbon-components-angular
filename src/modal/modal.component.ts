@@ -124,6 +124,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	@Input() modalLabel = "default";
 
 	/**
+	 * Determins if the modal closes on an overlay click.
+	 */
+	@Input() onOverlayClick: "default" | "override" = "default";
+
+	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
 	 */
 	@Output() overlaySelected = new EventEmitter();

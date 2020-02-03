@@ -73,6 +73,7 @@ export class ModalService {
 	 * `modalTitle` - modal's title,
 	 * `modalContent` - modal's content, could include HTML tags.
 	 * `buttons` is an array of objects
+	 * `onOverlayClick` - "default" | "override" = "default",
 	 * ```
 	 * {
 	 * 		text: "Button text",
@@ -99,7 +100,8 @@ export class ModalService {
 				modalTitle: data.title || data.modalTitle,
 				modalContent: data.content || data.modalContent,
 				buttons: data.buttons || [],
-				close: data.close || (() => {})
+				close: data.close || (() => {}),
+				onOverlayClick: data.onOverlayClick || "default"
 			}
 		});
 	}

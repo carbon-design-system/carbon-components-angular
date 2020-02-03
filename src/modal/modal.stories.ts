@@ -84,6 +84,7 @@ class AlertModalStory {
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
+	@Input() onOverlayClick: string;
 
 	constructor(protected modalService: ModalService) { }
 
@@ -93,7 +94,8 @@ class AlertModalStory {
 			label: this.modalLabel,
 			title: this.modalTitle,
 			content: this.modalContent,
-			buttons: this.buttons
+			buttons: this.buttons,
+			onOverlayClick: this.onOverlayClick
 		});
 	}
 }
@@ -134,7 +136,8 @@ storiesOf("Components|Modal", module)
 			[modalLabel]="modalLabel"
 			[modalTitle]="modalTitle"
 			[modalContent]="modalContent"
-			[buttons]="buttons">
+			[buttons]="buttons"
+			[onOverlayClick]="onOverlayClick">
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
@@ -150,7 +153,8 @@ storiesOf("Components|Modal", module)
 				text: "Delete",
 				type: "primary",
 				click: () => alert("Delete button clicked")
-			}]
+			}],
+			onOverlayClick: select("onOverlayClick", ["default", "override"], "override")
 		}
 	}))
 	.add("Passive", () => ({

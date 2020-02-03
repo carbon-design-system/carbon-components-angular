@@ -47,7 +47,7 @@ import { BaseModal } from "./base-modal.class";
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="dismissModal()">
+		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="handleClickOverlay()">
 			<ibm-modal-header (closeSelect)="dismissModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
@@ -80,7 +80,8 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
 		@Inject("buttons") public buttons = [],
-		@Inject("close") public onClose: Function
+		@Inject("close") public onClose: Function,
+		@Inject("onOverlayClick") public onOverlayClick: string
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
@@ -115,6 +116,13 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 
 	dismissModal() {
 		if (this.onClose && this.onClose() === false) {
+			return;
+		}
+		this.closeModal();
+	}
+
+	handleClickOverlay() {
+		if (this.onOverlayClick === "override") {
 			return;
 		}
 		this.closeModal();
