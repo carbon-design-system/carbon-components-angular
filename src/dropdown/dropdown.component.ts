@@ -71,7 +71,7 @@ import { ElementService } from "./../utils/utils.module";
 				(click)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
 				class="bx--list-box__selection--multi"
-				title="Clear all selected items">
+				[title]="clearText">
 				{{getSelectedCount()}}
 				<svg
 					focusable="false"
@@ -142,6 +142,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * The selected value from the `Dropdown`. Can be a string or template.
 	 */
 	@Input() displayValue: string | TemplateRef<any> = "";
+	/**
+	 * Sets the optional clear button tooltip text.
+	 */
+	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
 	 */
