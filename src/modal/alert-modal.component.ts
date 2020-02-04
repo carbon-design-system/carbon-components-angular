@@ -85,7 +85,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalContent") public modalContent: string,
 		@Inject("size") public size: string,
 		@Inject("buttons") public buttons = [],
-		@Inject("close") public onClose: Function,
+		@Inject("close") public onClose: Function
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
