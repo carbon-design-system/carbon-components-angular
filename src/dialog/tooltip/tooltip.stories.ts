@@ -102,9 +102,49 @@ storiesOf("Components|Tooltip", module)
 				props: {
 					placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom")
 				}
-			}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/directives/TooltipDirective.html"></ibm-documentation>
-		`
-	}));
+		}))
+		.add("Hover tooltips", () => ({
+			template: `
+				<div style="display: flex">
+					<div style="margin-right:30px">
+						<ng-template #template let-tooltip="tooltip">
+							<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
+								If more room is needed please use a modal instead.</p>
+							<div class="bx--tooltip__footer">
+							</div>
+						</ng-template>
+						<span
+							[ibmTooltip]="template"
+							trigger="hover"
+							[placement]="placement">
+							{{triggerText}}
+						</span>
+						<ibm-placeholder></ibm-placeholder>
+					</div>
+					<div>
+						<ng-template #template2 let-tooltip="tooltip">
+							<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
+								If more room is needed please use a modal instead.</p>
+							<div class="bx--tooltip__footer">
+							</div>
+						</ng-template>
+						<span
+							[ibmTooltip]="template2"
+							trigger="hover"
+							[placement]="placement">
+							{{triggerText}}
+						</span>
+						<ibm-placeholder></ibm-placeholder>
+					</div>
+				</div>
+				`,
+				props: {
+					placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+					triggerText: text("Trigger text", "Tooltip label")
+				}
+		}))
+		.add("Documentation", () => ({
+			template: `
+				<ibm-documentation src="documentation/directives/TooltipDirective.html"></ibm-documentation>
+			`
+		}));

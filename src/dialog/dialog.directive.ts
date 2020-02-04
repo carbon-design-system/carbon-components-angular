@@ -213,6 +213,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		if (this.trigger === "hover") {
+			this.dialogService.closeAll(this.dialogService.dialogRef);
+		}
 		this.expanded = true;
 		this.onOpen.emit();
 	}

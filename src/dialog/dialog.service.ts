@@ -193,17 +193,28 @@ export class DialogService {
 	}
 
 	/**
-	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
+	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct.
+	 * If `preventClosure` parameter is provided, it closes all know `Dialog`s except the given Dialog ref.
+	 * @param preventClosure the dialogRef to keep open while all others are closed
 	 */
-	closeAll() {
-		DialogService.dialogRefs.forEach(ref => ref.destroy());
-		DialogService.dialogRefs.clear();
-		DialogService.dialogCloseSubscription.unsubscribe();
-		this.isClosed.emit(true);
+	closeAll(preventClosure?: ComponentRef<Dialog>) {
+		// DialogService.dialogRefs.forEach(ref => ref.destroy());
+		DialogService.dialogRefs.forEach(ref => {
+			if (preventClosure !== ref) {
+				DialogService.dialogRefs.delete(ref);
+				ref.destroy();
+			}
+		});
 
-		// kept for API compat
-		this.dialogRef = null;
-		this.isOpen = false;
+		if (!preventClosure) {
+			DialogService.dialogRefs.clear();
+			DialogService.dialogCloseSubscription.unsubscribe();
+			this.isClosed.emit(true);
+
+			// kept for API compat
+			this.dialogRef = null;
+			this.isOpen = false;
+		}
 	}
 
 	/**
