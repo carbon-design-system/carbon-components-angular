@@ -9,6 +9,7 @@ import { Injectable } from "@angular/core";
 import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
 import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { flattenStyles } from "@angular/platform-browser/src/dom/dom_renderer";
 
 
 /**
