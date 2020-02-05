@@ -104,6 +104,11 @@ export class Notification {
 		return this._notificationObj.showClose;
 	}
 
+	set showClose(bool) {
+		this._notificationObj.showClose = bool;
+		return;
+	}
+
 	protected defaultNotificationObj = {
 		title: "",
 		message: "",
