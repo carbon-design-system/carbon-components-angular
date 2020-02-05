@@ -57,11 +57,7 @@ export class Toast extends Notification implements OnInit {
 	 * `type` can be one of `"error"`, `"info"`, `"warning"`, or `"success"`
 	 */
 	@Input() notificationObj: ToastContent;
-	/**
-	 * Whether the toast notification has a close bitton, set to `true` by default.
-	 *
-	 */
-	@Input() showClose: true | false = true;
+
 
 	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.bx--toast-notification") toastClass = true;

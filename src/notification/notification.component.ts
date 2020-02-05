@@ -53,7 +53,7 @@ import { of, isObservable, Subject } from "rxjs";
 			</button>
 		</div>
 		<button
-			*ngIf="showClose"
+			*ngIf="notificationObj.showClose"
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
