@@ -12,6 +12,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 
 /**
+ * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
  * Used to emit changes performed on search components.
  */
 export class SearchChange {
@@ -25,61 +26,14 @@ export class SearchChange {
 	value: string;
 }
 
+/**
+ * [See demo](../../?path=/story/search--basic)
+ *
+ * <example-url>../../iframe.html?id=search--basic</example-url>
+ */
 @Component({
 	selector: "ibm-search",
-	template: `
-		<div
-			class="bx--search"
-			[ngClass]="{
-				'bx--search--sm': size === 'sm',
-				'bx--search--xl': size === 'xl',
-				'bx--search--light': theme === 'light',
-				'bx--skeleton': skeleton,
-				'bx--toolbar-search': toolbar,
-				'bx--toolbar-search--active': toolbar && active
-			}"
-			role="search">
-			<label class="bx--label" [for]="id">{{label}}</label>
-
-			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
-			<ng-template #enableInput>
-				<input
-					#input
-					*ngIf="!toolbar || active"
-					class="bx--search-input"
-					type="text"
-					role="search"
-					[id]="id"
-					[value]="value"
-					[placeholder]="placeholder"
-					[disabled]="disabled"
-					[required]="required"
-					(input)="onSearch($event.target.value)"/>
-				<button
-					*ngIf="toolbar; else svg"
-					class="bx--toolbar-search__btn"
-					[attr.aria-label]="i18n.get('SEARCH.TOOLBAR_SEARCH') | async"
-					tabindex="0"
-					(click)="openSearch($event)">
-					<ng-template [ngTemplateOutlet]="svg"></ng-template>
-				</button>
-				<ng-template #svg>
-					<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
-				</ng-template>
-			</ng-template>
-
-			<button
-				class="bx--search-close"
-				[ngClass]="{
-					'bx--search-close--hidden': !value || value.length === 0
-				}"
-				[title]="clearButtonTitle"
-				[attr.aria-label]="clearButtonTitle"
-				(click)="clearSearch()">
-				<ibm-icon-close16></ibm-icon-close16>
-			</button>
-		</div>
-	`,
+	templateUrl: "search.component.html",
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -94,7 +48,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") containerClass = true;
+	@HostBinding("class.bx--form-item") get containerClass() { return !this.toolbar; }
 
 	/**
 	 * `light` or `dark` search theme.
@@ -131,6 +85,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() active = false;
 	/**
+	 * Specifies whether the search component is used in the table toolbar.
+	 */
+	@Input() tableSearch = false;
+	/**
 	 * Sets the name attribute on the `input` element.
 	 */
 	@Input() name: string;
@@ -147,6 +105,11 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() value = "";
 	/**
+	 * Sets the autocomplete attribute on the `input` element.
+	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+	 */
+	@Input() autocomplete = "on";
+	/**
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = this.i18n.get().SEARCH.LABEL;
@@ -159,9 +122,19 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
+	 * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<SearchChange>();
+	/**
+	 * Emits an event when value is changed.
+	 */
+	@Output() valueChange = new EventEmitter<string>();
+	@Output() open = new EventEmitter<boolean>();
+	/**
+	 * Emits an event when the clear button is clicked.
+	 */
+	@Output() clear = new EventEmitter();
 
 	@ViewChild("input") inputRef: ElementRef;
 
@@ -210,11 +183,11 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when text is written in the input.
-	 * @param {string} search The input text.
+	 * @param search The input text.
 	 */
 	onSearch(search: string) {
 		this.value = search;
-		this.emitChangeEvent();
+		this.doValueChange();
 	}
 
 	/**
@@ -222,22 +195,22 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
-		this.emitChangeEvent();
+		this.clear.emit();
+		this.propagateChange(this.value);
 	}
 
-	/**
-	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
-	 */
-	emitChangeEvent() {
+	doValueChange() {
 		let event = new SearchChange();
 		event.source = this;
 		event.value = this.value;
 		this.change.emit(event);
+		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 	}
 
 	openSearch() {
 		this.active = true;
+		this.open.emit(this.active);
 		setTimeout(() => this.inputRef.nativeElement.focus());
 	}
 
@@ -254,8 +227,11 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
-		if (this.toolbar && event.relatedTarget === null) {
+		if (this.toolbar &&
+			this.inputRef.nativeElement.value === "" &&
+			event.relatedTarget === null) {
 			this.active = false;
+			this.open.emit(this.active);
 		}
 	}
 }

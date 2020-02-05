@@ -16,6 +16,8 @@ import { DialogService } from "./../dialog.service";
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
+ * [See demo](../../?path=/story/tooltip--basic)
+ *
  * class: TooltipDirective (extends PopoverDirective)
  *
  *
@@ -27,9 +29,7 @@ import { DialogService } from "./../dialog.service";
  * <button nTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
  * ```
  *
- * @export
- * @class TooltipDirective
- * @extends {DialogDirective}
+ * <example-url>../../iframe.html?id=tooltip--basic</example-url>
  */
 @Directive({
 	selector: "[ibmTooltip]",

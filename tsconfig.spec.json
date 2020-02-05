@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"baseUrl": "",
+		"declaration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"downlevelIteration": true,
+		"importHelpers": true,
+		"lib": [
+			"es2016",
+			"dom"
+		],
+		"sourceMap": true,
+		"inlineSources": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"outDir": "./dist/spec",
+		"target": "es2015",
+		"typeRoots": [
+			"./node_modules/@types"
+		],
+		"types": [
+			"jasmine",
+			"node"
+		]
+	},
+	"files": [
+		"src/test.ts"
+	],
+	"include": [
+		"**/*.spec.ts"
+	],
+	"angularCompilerOptions": {
+		"annotateForClosureCompiler": true,
+		"skipTemplateCodegen": true,
+		"strictMetadataEmit": true,
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true,
+		"enableResourceInlining": true
+	}
+}

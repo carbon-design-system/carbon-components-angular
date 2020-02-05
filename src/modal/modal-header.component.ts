@@ -17,9 +17,6 @@ import { ExperimentalService } from "./../experimental.service";
  * ```html
  * <ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * ```
- *
- * @export
- * @class ModalHeader
  */
 @Component({
 	selector: "ibm-modal-header",
@@ -27,6 +24,7 @@ import { ExperimentalService } from "./../experimental.service";
 		<header class="{{theme}} bx--modal-header">
 			<ng-content></ng-content>
 			<button
+				type="button"
 				class="bx--modal-close"
 				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
@@ -39,7 +37,6 @@ import { ExperimentalService } from "./../experimental.service";
 export class ModalHeader {
 	/**
 	 * Sets the style on the modal heading based on its category.
-	 * @type {"default" | "warning" | "error"}
 	 */
 	@Input() theme = "default";
 	/**

@@ -11,7 +11,7 @@ import {
 	AfterViewInit,
 	AfterContentInit,
 	HostBinding,
-	OnInit
+	TemplateRef
 } from "@angular/core";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -22,64 +22,101 @@ import { filter } from "rxjs/operators";
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
- * @export
- * @class ComboBox
- * @implements {OnChanges}
- * @implements {AfterViewInit}
- * @implements {AfterContentInit}
+ * [See demo](../../?path=/story/combobox--basic)
+ *
+ * <example-url>../../iframe.html?id=combobox--basic</example-url>
  */
 @Component({
 	selector: "ibm-combo-box",
 	template: `
+		<label *ngIf="label" [for]="id" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
+		<div *ngIf="helperText" class="bx--form__helper-text">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		</div>
 		<div
-			[attr.aria-expanded]="open"
-			role="button"
-			class="bx--list-box__field"
-			tabindex="0"
-			type="button"
-			aria-label="close menu"
-			aria-haspopup="true"
-			(click)="toggleDropdown()">
+			[ngClass]="{
+				'bx--multi-select': type === 'multi',
+				'bx--combo-box': type === 'single' || !pills.length
+			}"
+			class="bx--combo-box bx--list-box"
+			role="listbox"
+			[attr.data-invalid]="(invalid ? true : null)">
 			<div
-				*ngIf="type === 'multi' && pills.length > 0"
-				(click)="clearSelected()"
+				[attr.aria-expanded]="open"
 				role="button"
-				class="bx--list-box__selection bx--list-box__selection--multi"
-				tabindex="0"
-				title="Clear all selected items">
-				{{ pills.length }}
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					role="img"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-				</svg>
-			</div>
-			<input
-				[disabled]="disabled"
-				(keyup)="onSearch($event.target.value)"
-				[value]="selectedValue"
-				class="bx--text-input"
-				role="combobox"
-				aria-label="ListBox input field"
-				autocomplete="off"
-				[placeholder]="placeholder"/>
+				class="bx--list-box__field"
+				type="button"
+				tabindex="-1"
+				aria-label="close menu"
+				aria-haspopup="true"
+				(click)="toggleDropdown()">
+				<div
+					*ngIf="type === 'multi' && pills.length > 0"
+					(click)="clearSelected()"
+					role="button"
+					class="bx--list-box__selection bx--list-box__selection--multi"
+					title="Clear all selected items">
+					{{ pills.length }}
+					<svg
+						focusable="false"
+						preserveAspectRatio="xMidYMid meet"
+						style="will-change: transform;"
+						role="img"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16"
+						aria-hidden="true">
+						<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+					</svg>
+				</div>
+				<input
+					#input
+					[id]="id"
+					[disabled]="disabled"
+					(keyup)="onSearch($event.target.value)"
+					(keydown.enter)="onSubmit($event)"
+					[value]="selectedValue"
+					class="bx--text-input"
+					role="searchbox"
+					tabindex="0"
+					[attr.aria-label]="label"
+					aria-haspopup="true"
+					autocomplete="off"
+					[placeholder]="placeholder"/>
+				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<div
+					*ngIf="showClearButton"
+					role="button"
+					class="bx--list-box__selection"
+					tabindex="0"
+					aria-label="Clear Selection"
+					title="Clear selected item"
+					(click)="clearInput($event)">
+					<ibm-icon-close16></ibm-icon-close16>
+				</div>
 				<ibm-icon-chevron-down16
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
 					ariaLabel="Close menu">
 				</ibm-icon-chevron-down16>
+			</div>
+			<div
+				#dropdownMenu
+				*ngIf="open">
+				<ng-content></ng-content>
+			</div>
 		</div>
-		<div
-			#dropdownMenu
-			*ngIf="open">
-			<ng-content></ng-content>
+		<div *ngIf="invalid">
+			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+			<ng-template
+				*ngIf="isTemplate(invalidText)"
+				[ngTemplateOutlet]="invalidText">
+			</ng-template>
 		</div>
 	`,
 	providers: [
@@ -90,7 +127,9 @@ import { filter } from "rxjs/operators";
 		}
 	]
 })
-export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentInit {
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
+	static comboBoxCount = 0;
+	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -130,6 +169,22 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Combo box render size.
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
+	/**
+	 * Label for the combobox.
+	 */
+	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -172,17 +227,21 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * }
 	 * ```
 	 */
-	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
+	@Output() submit = new EventEmitter<any>();
 	/** emits an empty event when the menu is closed */
-	@Output() close: EventEmitter<any> = new EventEmitter<any>();
+	@Output() close = new EventEmitter<any>();
+	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
-	@HostBinding("class") class = "bx--combo-box bx--list-box";
+	@ViewChild("input") input: ElementRef;
+	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
+
+	public showClearButton = false;
 
 	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
@@ -210,12 +269,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		}
 	}
 
-	ngOnInit() {
-		if (this.type === "multi") {
-			this.class = "bx--multi-select bx--combo-box bx--list-box";
-		}
-	}
-
 	/**
 	 * Sets initial state that depends on child components
 	 * Subscribes to select events and handles focus/filtering/initial list updates
@@ -229,6 +282,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					this.propagateChangeCallback(this.view.getSelected());
 				} else {
 					if (event.item && event.item.selected) {
+						this.showClearButton = true;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
@@ -238,10 +292,10 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
+					this.view.filterBy("");
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view.filterBy("");
 			});
 			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
@@ -348,6 +402,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
+		if (this.disabled) { return; }
 		this.open = true;
 	}
 
@@ -366,6 +421,12 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
+		this.search.emit(searchString);
+		if (searchString && this.type === "single") {
+			this.showClearButton = true;
+		} else {
+			this.showClearButton = false;
+		}
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -378,7 +439,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected) {
+				if (selected && selected[0]) {
 					selected[0].selected = false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });
@@ -391,42 +452,42 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	}
 
 	/**
-	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
-	 *
-	 * @param {any} ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
-	 *
-	 * Example:
-	 * ```javascript
-	 *	{
-	 *	after: 1,
-	 *	value: "some user string"
-	 *	}
-	 * ```
+	 * Intended to be used to add items to the list.
 	 */
-	public onSubmit(ev) {
-		let index = 0;
-		if (ev.after) {
-			index = this.view.getListItems().indexOf(ev.after) + 1;
-		}
+	public onSubmit(event: KeyboardEvent) {
 		this.submit.emit({
 			items: this.view.getListItems(),
-			index,
+			index: 0,
 			value: {
-				content: ev.value,
+				content: (event.target as HTMLInputElement).value,
 				selected: false
 			}
 		});
 	}
 
+	clearInput(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		this.input.nativeElement.value = "";
+
+		this.clearSelected();
+		this.closeDropdown();
+
+		this.showClearButton = false;
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+
 	protected updateSelected() {
 		const selected = this.view.getSelected();
-		if (selected) {
-			if (this.type === "multi") {
-				this.updatePills();
-			} else {
-				this.selectedValue = selected[0].content;
-				this.propagateChangeCallback(selected[0]);
-			}
+		if (this.type === "multi" ) {
+			this.updatePills();
+		} else if (selected && selected[0]) {
+			this.selectedValue = selected[0].content;
+			this.propagateChangeCallback(selected[0]);
 		}
 	}
 }

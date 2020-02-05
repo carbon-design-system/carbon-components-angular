@@ -11,10 +11,14 @@ import {
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 import { NotificationDisplayService } from "./notification-display.service";
-import { of } from "rxjs";
+import { of, isObservable, Subject } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
+ *
+ * [See demo](../../?path=/story/notification--basic)
+ *
+ * <example-url>../../iframe.html?id=notification--basic</example-url>
  */
 @Component({
 	selector: "ibm-notification",
@@ -33,11 +37,23 @@ import { of } from "rxjs";
 				class="bx--inline-notification__icon">
 			</ibm-icon-checkmark-filled16>
 			<div class="bx--inline-notification__text-wrapper">
-				<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>
-				<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>
+				<p ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
+				<p ibmNotificationSubtitle [innerHTML]="notificationObj.message"></p>
+				<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
 			</div>
 		</div>
+		<div *ngFor="let action of notificationObj.actions">
+			<button
+				(click)="onClick(action, $event)"
+				ibmButton="ghost"
+				size="sm"
+				class="bx--inline-notification__action-button"
+				type="button">
+				{{action.text}}
+			</button>
+		</div>
 		<button
+			*ngIf="showClose"
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
@@ -47,6 +63,7 @@ import { of } from "rxjs";
 	`
 })
 export class Notification {
+	private static notificationCount = 0;
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -73,7 +90,7 @@ export class Notification {
 
 	@ViewChild("notification") notification;
 
-	@HostBinding("attr.id") notificationID = "notification";
+	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
 	@HostBinding("class.bx--inline-notification") notificationClass = true;
 	@HostBinding("attr.role") role = "alert";
 
@@ -81,11 +98,17 @@ export class Notification {
 	@HostBinding("class.bx--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
 	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
+	@HostBinding("class.bx--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
+
+	get showClose() {
+		return this._notificationObj.showClose;
+	}
 
 	protected defaultNotificationObj = {
 		title: "",
 		message: "",
 		type: "info",
+		showClose: true,
 		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
 	};
 	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
@@ -97,6 +120,17 @@ export class Notification {
 	 */
 	onClose() {
 		this.close.emit();
+	}
+
+	onClick(action, event) {
+		if (!action.click) {
+			return;
+		}
+		if (isObservable(action.click)) {
+			(action.click as Subject<{event: Event, action: any}>).next({event, action});
+		} else {
+			action.click({event, action});
+		}
 	}
 
 	destroy() {

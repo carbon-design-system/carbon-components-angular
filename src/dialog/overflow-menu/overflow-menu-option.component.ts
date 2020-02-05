@@ -28,9 +28,9 @@ import {
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
-			(focus)="tabIndex = 0"
-			(blur)="tabIndex = -1"
-			(click)="onClick($event)"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
+			(click)="onClick()"
 			[disabled]="disabled"
 			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
@@ -41,9 +41,9 @@ import {
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
-			(focus)="tabIndex = 0"
-			(blur)="tabIndex = -1"
-			(click)="onClick($event)"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
+			(click)="onClick()"
 			[attr.disabled]="disabled"
 			[href]="href"
 			[attr.title]="title">
@@ -90,8 +90,16 @@ export class OverflowMenuOption implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef) {}
 
-	onClick(event) {
+	onClick() {
 		this.selected.emit();
+	}
+
+	onFocus() {
+		setTimeout(() => this.tabIndex = 0);
+	}
+
+	onBlur() {
+		setTimeout(() => this.tabIndex = -1);
 	}
 
 	ngAfterViewInit() {

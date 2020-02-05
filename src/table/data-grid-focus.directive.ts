@@ -9,6 +9,11 @@ import {
 import { Table } from "./table.component";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
 
+/**
+ * NOTE: This directive has been deprecated in favor of `DataGridInteractionModel`
+ *
+ * @deprecated
+ */
 @Directive({
 	selector: "[ibmDataGridFocus]"
 })
@@ -30,17 +35,6 @@ export class DataGridFocus {
 	protected _columnIndex: number;
 
 	constructor(protected elementRef: ElementRef) {}
-
-	focus(element) {
-		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
-			focusElementList[1].focus();
-		} else if (focusElementList.length > 0) {
-			focusElementList[0].focus();
-		}  else {
-			element.focus();
-		}
-	}
 
 	@HostListener("keydown", ["$event"])
 	keyDown(event: KeyboardEvent) {
@@ -64,7 +58,7 @@ export class DataGridFocus {
 					const nextSibling = element.nextElementSibling;
 					Table.setTabIndex(element, -1);
 					Table.setTabIndex(nextSibling, 0);
-					this.focus(nextSibling);
+					Table.focus(nextSibling);
 				}
 				break;
 			case "Left": // IE specific value
@@ -75,7 +69,7 @@ export class DataGridFocus {
 					const previousSibling = element.previousElementSibling;
 					Table.setTabIndex(element, -1);
 					Table.setTabIndex(previousSibling, 0);
-					this.focus(previousSibling);
+					Table.focus(previousSibling);
 				}
 				break;
 			case "Down": // IE specific value
@@ -87,13 +81,13 @@ export class DataGridFocus {
 					Table.setTabIndex(element, -1);
 					if (rows[rowIndex].classList.contains("bx--expandable-row-v2") && !rows[rowIndex].classList.contains("bx--parent-row-v2")) {
 						Table.setTabIndex(row[0], 0);
-						this.focus(row[0]);
+						Table.focus(row[0]);
 					} else {
 						if (this.columnIndex > row.length - 1) {
 							this.columnIndex = row.length - 1;
 						}
 						Table.setTabIndex(row[this.columnIndex], 0);
-						this.focus(row[this.columnIndex]);
+						Table.focus(row[this.columnIndex]);
 					}
 				}
 				break;
@@ -109,13 +103,13 @@ export class DataGridFocus {
 				const row = rows[rowIndex].querySelectorAll("td, th");
 				if (rows[rowIndex].classList.contains("bx--expandable-row-v2") && !rows[rowIndex].classList.contains("bx--parent-row-v2")) {
 					Table.setTabIndex(row[0], 0);
-					this.focus(row[0]);
+					Table.focus(row[0]);
 				} else {
 					if (this.columnIndex > row.length - 1) {
 						this.columnIndex = row.length - 1;
 					}
 					Table.setTabIndex(row[this.columnIndex], 0);
-					this.focus(row[this.columnIndex]);
+					Table.focus(row[this.columnIndex]);
 				}
 				break;
 			case "Home":
@@ -125,16 +119,16 @@ export class DataGridFocus {
 				if (event.ctrlKey) {
 					if (Array.from(headerRow).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
 						Table.setTabIndex(headerRow[0], 0);
-						this.focus(headerRow[0]);
+						Table.focus(headerRow[0]);
 					} else {
 						const firstBodyCell = rows[1].querySelectorAll("td")[0];
 						Table.setTabIndex(firstBodyCell, 0);
-						this.focus(firstBodyCell);
+						Table.focus(firstBodyCell);
 					}
 				} else {
 					const firstRowCell = rows[rowIndex].querySelectorAll("th, td")[0];
 					Table.setTabIndex(firstRowCell, 0);
-					this.focus(firstRowCell);
+					Table.focus(firstRowCell);
 				}
 				break;
 			case "End":
@@ -144,18 +138,18 @@ export class DataGridFocus {
 				if (event.ctrlKey) {
 					this.columnIndex = lastRow.length - 1;
 					Table.setTabIndex(lastRow[this.columnIndex], 0);
-					this.focus(lastRow[this.columnIndex]);
+					Table.focus(lastRow[this.columnIndex]);
 				} else {
 					const currentRow = rows[rowIndex].querySelectorAll("th, td");
 					this.columnIndex = currentRow.length - 1;
 					Table.setTabIndex(currentRow[this.columnIndex], 0);
-					this.focus(currentRow[this.columnIndex]);
+					Table.focus(currentRow[this.columnIndex]);
 				}
 				break;
 		}
 	}
 
-	@HostListener("click", ["$event"])
+	@HostListener("click")
 	onClick() {
 		if (!this.ibmDataGridFocus) {
 			return;
@@ -163,6 +157,6 @@ export class DataGridFocus {
 		const focusElementList = getFocusElementList(this.elementRef.nativeElement.closest("table"), tabbableSelectorIgnoreTabIndex);
 		focusElementList.forEach(element => Table.setTabIndex(element, -1));
 		Table.setTabIndex(this.elementRef.nativeElement, 0);
-		this.focus(this.elementRef.nativeElement);
+		Table.focus(this.elementRef.nativeElement);
 	}
 }

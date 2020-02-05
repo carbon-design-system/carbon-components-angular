@@ -61,7 +61,12 @@ module.exports = [{
 			},
 			{
 				test: /\.scss$/,
-				loaders: ["raw-loader", "postcss-loader", "sass-loader"]
+				use: ["raw-loader", "postcss-loader", {
+					loader: "sass-loader",
+					options: {
+						implementation: require("sass")
+					}
+				}]
 			},
 			{
 				test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,

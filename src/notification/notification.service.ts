@@ -17,9 +17,6 @@ import { Toast } from "./toast.component";
  * Provides a way to use the notification component.
  *
  * Notifications are displayed toward the top of the UI and do not interrupt the user’s work.
- *
- * @export
- * @class NotificationService
  */
 @Injectable()
 export class NotificationService implements OnDestroy {
@@ -34,9 +31,9 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Constructs NotificationService.
 	 *
-	 * @param {Injector} injector
-	 * @param {ComponentFactoryResolver} componentFactoryResolver
-	 * @param {ApplicationRef} applicationRef
+	 * @param injector
+	 * @param componentFactoryResolver
+	 * @param applicationRef
 	 */
 	constructor(
 		protected injector: Injector,
@@ -47,7 +44,7 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Shows the notification based on the `notificationObj`.
 	 *
-	 * @param {any} notificationObj Can have `type`, `message`, `target`, `duration` and `smart` members.
+	 * @param notificationObj Can have `type`, `message`, `target`, `duration` and `smart` members.
 	 *
 	 * **Members:**
 	 *
@@ -72,7 +69,7 @@ export class NotificationService implements OnDestroy {
 	 * }
 	 * ```
 	 *
-	 * @param {any} [notificationComp=Notification] If provided, used to resolve component factory
+	 * @param [notificationComp=Notification] If provided, used to resolve component factory
 	 */
 	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp = Notification) {
 		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(notificationComp);
@@ -144,6 +141,10 @@ export class NotificationService implements OnDestroy {
 				setTimeout( () => {
 					this.applicationRef.detachView(notificationRef.hostView);
 					notificationRef.destroy();
+					const index = this.notificationRefs.indexOf(notificationRef);
+					if (index !== -1) {
+						this.notificationRefs.splice(index, 1);
+					}
 				}, 200);
 			}
 		}
@@ -152,11 +153,11 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Calculates the amount of time user needs to read the message in the notification.
 	 *
-	 * @param {any} notificationObj Same object used to instantiate notification.
+	 * @param notificationObj Same object used to instantiate notification.
 	 *
 	 * In addition to `type` and `message` members, use `duration` member to add
 	 * some extra time (in ms) to timeout if you need to.
-	 * @returns {number} calculated timeout (in ms) for smart notification
+	 * @returns calculated timeout (in ms) for smart notification
 	 */
 	getSmartTimeout(notificationObj): number {
 		// calculate timeout

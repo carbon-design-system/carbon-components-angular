@@ -1,18 +1,12 @@
 import {
-	ChangeDetectorRef,
 	Component,
-	ElementRef,
 	Input,
-	OnInit,
-	Optional,
-	Renderer2,
 	HostBinding,
 	Output,
 	EventEmitter
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { Checkbox } from "../checkbox/checkbox.component";
-import { RadioGroup, RadioChange } from "./radio-group.component";
+import { RadioChange } from "./radio-change.class";
 
 /**
  * class: Radio (extends Checkbox)
@@ -26,11 +20,6 @@ import { RadioGroup, RadioChange } from "./radio-group.component";
  * ```
  *
  * Also see: [`RadioGroup`](#ibm-radio-group)
- *
- * @export
- * @class Radio
- * @extends {Checkbox}
- * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-radio",
@@ -79,6 +68,8 @@ export class Radio {
 
 	@Input() disabled = false;
 
+	@Input() labelPlacement: "right" | "left" =  "right";
+
 	@Input() set ariaLabelledby(value: string) {
 		this._labelledby = value;
 	}
@@ -113,6 +104,12 @@ export class Radio {
 	 * Binds 'radio' value to the role attribute for `Radio`.
 	 */
 	@HostBinding("attr.role") role = "radio";
+
+	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
+
+	@HostBinding("class.bx--radio-button-wrapper--label-left") get labelLeft() {
+		return this.labelPlacement === "left";
+	}
 
 	protected _labelledby = "";
 

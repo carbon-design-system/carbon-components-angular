@@ -2,11 +2,14 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	Input
+	ElementRef,
+	Optional
 } from "@angular/core";
 import { getFocusElementList } from "./../../common/tab.service";
 
 import { Dialog } from "./../dialog.component";
+import { position } from "@carbon/utils-position";
+import { ElementService } from "./../../utils/utils.module";
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
@@ -18,6 +21,7 @@ import { Dialog } from "./../dialog.component";
 			#dialog
 			[id]="dialogConfig.compID"
 			[attr.role]="role"
+			[attr.data-floating-menu-direction]="placement"
 			class="bx--tooltip bx--tooltip--shown">
 			<span class="bx--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
@@ -43,10 +47,31 @@ export class Tooltip extends Dialog {
 	 * if there _is_ focusable content we switch to the interactive `dialog` role.
 	 */
 	public role = "tooltip";
+
+	constructor(
+		protected elementRef: ElementRef,
+		// mark `elementService` as optional since making it mandatory would be a breaking change
+		@Optional() protected elementService: ElementService = null) {
+		super(elementRef, elementService);
+	}
+
 	/**
 	 * Check whether there is a template for the `Tooltip` content.
 	 */
 	onDialogInit() {
+		this.addGap["bottom"] = pos => {
+			return position.addOffset(pos, 3, 0);
+		};
+		this.addGap["top"] = pos => {
+			return position.addOffset(pos, -10, 0);
+		};
+		this.addGap["left"] = pos => {
+			return position.addOffset(pos, -3, -6);
+		};
+		this.addGap["right"] = pos => {
+			return position.addOffset(pos, -3, 6);
+		};
+
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 	}
 

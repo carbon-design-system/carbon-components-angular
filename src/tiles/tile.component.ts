@@ -6,6 +6,8 @@ import {
 /**
  * Build application's tiles using this component.
  *
+ * [See demo](../../?path=/story/tiles--basic)
+ *
  * ## Basic usage
  *
  * ```html
@@ -14,9 +16,7 @@ import {
  * </ibm-tile>
  * ```
  *
- * @export
- * @class Tile
- * @implements {OnInit}
+ * <example-url>../../iframe.html?id=tiles--basic</example-url>
  */
 @Component({
 	selector: "ibm-tile",

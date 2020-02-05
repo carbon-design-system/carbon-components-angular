@@ -1,26 +1,16 @@
 export class PaginationModel {
 	/**
 	 * Tracks the current page.
-	 *
-	 * @type {number}
-	 * @memberof PaginationModel
 	 */
-	currentPage: number;
+	currentPage = 1;
 
 	/**
 	 * Length of page.
-	 *
-	 * @type {number}
-	 * @memberof PaginationModel
 	 */
-	pageLength: number;
+	pageLength = 10;
 
 	/**
 	 * Absolute total number of items needed to paginate.
-	 *
-	 * @protected
-	 * @type {number}
-	 * @memberof PaginationModel
 	 */
-	totalDataLength: number;
+	totalDataLength = 0;
 }

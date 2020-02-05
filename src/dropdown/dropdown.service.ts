@@ -1,13 +1,13 @@
-import { Injectable, ElementRef } from "@angular/core";
+import { Injectable, ElementRef, OnDestroy } from "@angular/core";
 import { PlaceholderService } from "./../placeholder/placeholder.module";
-import { fromEvent, Subscription } from "rxjs";
-import { throttleTime } from "rxjs/operators";
-import position from "./../utils/position";
+import { Subscription } from "rxjs";
+import { position } from "@carbon/utils-position";
+import { AnimationFrameService } from "./../utils/utils.module";
 
 const defaultOffset = { top: 0, left: 0 };
 
 @Injectable()
-export class DropdownService {
+export class DropdownService implements OnDestroy {
 	public set offset(value: { top?: number, left?: number }) {
 		this._offset = Object.assign({}, defaultOffset, value);
 	}
@@ -21,14 +21,17 @@ export class DropdownService {
 	protected menuInstance: HTMLElement;
 
 	/**
-	 * Maintains an Event Observable Subscription for tracking window resizes.
-	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
+	 * Maintains an Event Observable Subscription for the global requestAnimationFrame.
+	 * requestAnimationFrame is tracked only if the `Dropdown` is appended to the body otherwise we don't need it
 	 */
-	protected resize: Subscription;
+	protected animationFrameSubscription = new Subscription();
 
 	protected _offset = defaultOffset;
 
-	constructor(protected placeholderService: PlaceholderService) {}
+	constructor(
+		protected placeholderService: PlaceholderService,
+		protected animationFrameService: AnimationFrameService
+	) {}
 
 	/**
 	 * Appends the menu to the body, or a `ibm-placeholder` (if defined)
@@ -56,10 +59,9 @@ export class DropdownService {
 
 		this.menuInstance = dropdownWrapper;
 
-		this.positionDropdown(parentRef, dropdownWrapper);
-		this.resize = fromEvent(window, "resize")
-			.pipe(throttleTime(100))
-			.subscribe(() => this.positionDropdown(parentRef, dropdownWrapper));
+		this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
+			this.positionDropdown(parentRef, dropdownWrapper);
+		});
 
 		return dropdownWrapper;
 	}
@@ -77,7 +79,7 @@ export class DropdownService {
 		this.menuInstance = null;
 		menu.style.display = "none";
 		hostRef.appendChild(menu);
-		this.resize.unsubscribe();
+		this.animationFrameSubscription.unsubscribe();
 		if (this.placeholderService.hasPlaceholderRef() && this.placeholderService.hasElement(instance)) {
 			this.placeholderService.removeElement(instance);
 		} else if (document.body.contains(instance)) {
@@ -93,9 +95,39 @@ export class DropdownService {
 		this.positionDropdown(parentRef, this.menuInstance);
 	}
 
+	ngOnDestroy() {
+		this.animationFrameSubscription.unsubscribe();
+	}
+
 	protected positionDropdown(parentRef, menuRef) {
+		if (!menuRef) {
+			return;
+		}
+
+		let leftOffset = 0;
+
+		const boxMenu = menuRef.querySelector(".bx--list-box__menu");
+
+		// If the parentRef and boxMenu are in a different left position relative to the
+		// window, the the boxMenu position has already been flipped and a check needs to be done
+		// to see if it needs to stay flipped.
+		if (parentRef.getBoundingClientRect().left !== boxMenu.getBoundingClientRect().left) {
+			// The getBoundingClientRect().right of the boxMenu if it were hypothetically flipped
+			// back into the original position before the flip.
+			const testBoxMenuRightEdgePos =
+				parentRef.getBoundingClientRect().left - boxMenu.getBoundingClientRect().left + boxMenu.getBoundingClientRect().right;
+
+			if (testBoxMenuRightEdgePos > (window.innerWidth || document.documentElement.clientWidth)) {
+				leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
+			}
+		// If it has not already been flipped, check if it is necessary to flip, ie. if the
+		// boxMenu is outside of the right viewPort.
+		} else if (boxMenu.getBoundingClientRect().right > (window.innerWidth || document.documentElement.clientWidth)) {
+			leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
+		}
+
 		let pos = position.findAbsolute(parentRef, menuRef, "bottom");
-		pos = position.addOffset(pos, this.offset.top, this.offset.left);
+		pos = position.addOffset(pos, this.offset.top, this.offset.left + leftOffset);
 		position.setElement(menuRef, pos);
 	}
 }

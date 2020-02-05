@@ -9,48 +9,69 @@ import {
 	ViewChild,
 	AfterContentInit,
 	HostListener,
-	OnDestroy
+	OnDestroy,
+	HostBinding,
+	TemplateRef,
+	ApplicationRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
-import { Observable, fromEvent, of, Subscription } from "rxjs";
+import {
+	Observable,
+	of,
+	Subscription
+} from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position } from "../utils/position";
 import { I18n } from "./../i18n/i18n.module";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
+import { ElementService } from "./../utils/utils.module";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
  *
+ * [See demo](../../?path=/story/dropdown--basic)
+ *
+ * <example-url>../../iframe.html?id=dropdown--basic</example-url>
  */
 @Component({
 	selector: "ibm-dropdown",
 	template: `
+	<label *ngIf="label" [for]="id" class="bx--label">
+		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+	</label>
+	<div *ngIf="helperText" class="bx--form__helper-text">
+		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+	</div>
 	<div
-		class="bx--list-box"
+		[id]="id"
+		class="bx--dropdown bx--list-box"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
-			'bx--skeleton': skeleton
+			'bx--skeleton': skeleton,
+			'bx--dropdown--disabled bx--list-box--disabled': disabled,
+			'bx--dropdown--invalid': invalid
 		}">
-		<button
+		<div
 			type="button"
 			#dropdownButton
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			(click)="toggleMenu()"
+			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[disabled]="disabled">
+			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
 				class="bx--list-box__selection--multi"
-				title="Clear all selected items">
+				[title]="clearText">
 				{{getSelectedCount()}}
 				<svg
 					focusable="false"
@@ -65,14 +86,23 @@ import { DropdownService } from "./dropdown.service";
 					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
 				</svg>
 			</div>
-			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
+			<span *ngIf="isRenderString()" class="bx--list-box__label">{{getDisplayStringValue() | async}}</span>
+			<ng-template
+				*ngIf="!isRenderString()"
+				[ngTemplateOutletContext]="getRenderTemplateContext()"
+				[ngTemplateOutlet]="displayValue">
+			</ng-template>
+			<svg ibmIconWarningFilled16
+				*ngIf="invalid"
+				class="bx--dropdown__invalid-icon">
+			</svg>
 			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
 			</ibm-icon-chevron-down16>
-		</button>
+		</div>
 		<div
 			#dropdownMenu
 			[ngClass]="{
@@ -80,6 +110,9 @@ import { DropdownService } from "./dropdown.service";
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
+	</div>
+	<div *ngIf="invalid" class="bx--form-requirement">
+		{{invalidText}}
 	</div>
 	`,
 	providers: [
@@ -90,15 +123,29 @@ import { DropdownService } from "./dropdown.service";
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
+export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
+	static dropdownCount = 0;
+	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
+	/**
+	 * Label for the dropdown.
+	 */
+	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Value displayed if no item is selected.
 	 */
 	@Input() placeholder = "";
 	/**
-	 * The selected value from the `Dropdown`.
+	 * The selected value from the `Dropdown`. Can be a string or template.
 	 */
-	@Input() displayValue = "";
+	@Input() displayValue: string | TemplateRef<any> = "";
+	/**
+	 * Sets the optional clear button tooltip text.
+	 */
+	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
 	 */
@@ -129,13 +176,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() disableArrowKeys = false;
 	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText = "";
+	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
 	@Input() set appendToBody (v) {
-		console.log("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.log("Ensure you have an `ibm-placeholder` in your app.");
-		console.log("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
+		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
+		console.warn("Ensure you have an `ibm-placeholder` in your app.");
+		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
 		this.appendInline = !v;
 	}
 
@@ -191,6 +246,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@ViewChild("dropdownMenu") dropdownMenu;
 
+	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
@@ -207,17 +263,23 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	outsideClick = this._outsideClick.bind(this);
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
-	/**
-	 *  Maintians an Event Observable Subscription for tracking scrolling within the open `Dropdown` list.
-	 */
-	scroll: Subscription;
+
+	protected visibilitySubscription = new Subscription();
 
 	protected onTouchedCallback: () => void = this._noop;
+
+	// primarily used to capture and propagate input to `writeValue` before the content is available
+	protected writtenValue = [];
 
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected dropdownService: DropdownService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected dropdownService: DropdownService,
+		protected appRef: ApplicationRef,
+		protected elementService: ElementService) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
@@ -236,11 +298,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (!this.view) {
 			return;
 		}
+		if (this.writtenValue && this.writtenValue.length) {
+			this.writeValue(this.writtenValue);
+		}
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
-				this.propagateChange(this.view.getSelected());
+				// if we have a `value` selector and selected items map them appropriately
+				if (this.value && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.value]);
+					this.propagateChange(values);
+				// otherwise just pass up the values from `getSelected`
+				} else {
+					this.propagateChange(this.view.getSelected());
+				}
 			} else {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
@@ -253,7 +325,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 					this.propagateChange(null);
 				}
 			}
-			this.selected.emit(event);
+			// only emit selected for "organic" selections
+			if (event && !event.isUpdate) {
+				this.selected.emit(event);
+			}
+			// manually tick the app so the view picks up any changes
+			this.appRef.tick();
 		});
 	}
 
@@ -270,16 +347,38 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: any) {
-		if (this.type === "single") {
+		// cache the written value so we can use it in `AfterContentInit`
+		this.writtenValue = value;
+		// propagate null/falsey as an array (deselect everything)
+		if (!value) {
+			this.view.propagateSelected([value]);
+		} else if (this.type === "single") {
 			if (this.value) {
+				// clone the specified item and update its state
 				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
+				// pass the singular value as an array of ListItem
 				this.view.propagateSelected([value]);
 			}
 		} else {
-			this.view.propagateSelected(value);
+			if (this.value) {
+				// clone the items and update their state based on the received value array
+				// this way we don't lose any additional metadata that may be passed in via the `items` Input
+				let newValues = [];
+				for (const v of value) {
+					for (const item of this.view.getListItems()) {
+						if (item[this.value] === v) {
+							newValues.push(Object.assign({}, item, { selected: true }));
+						}
+					}
+				}
+				this.view.propagateSelected(newValues);
+			} else {
+				// we can safely assume we're passing an array of `ListItem`s
+				this.view.propagateSelected(value);
+			}
 		}
 	}
 
@@ -298,7 +397,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.onTouchedCallback = fn;
 	}
 
+	/**
+	 * function passed in by `registerOnChange`
+	 */
 	propagateChange = (_: any) => {};
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the dropdown.
+	 *
+	 * ex: `this.formGroup.get("myDropdown").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
 
 	/**
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
@@ -357,21 +470,39 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * if there is just a selection the ListItem content property will be returned,
 	 * otherwise the placeholder will be returned.
 	 */
-	getDisplayValue(): Observable<string> {
+	getDisplayStringValue(): Observable<string> {
 		if (!this.view) {
 			return;
 		}
 		let selected = this.view.getSelected();
-		if (selected && !this.displayValue) {
+		if (selected.length && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected) {
-			return of(this.displayValue);
+		} else if (selected.length && this.isRenderString()) {
+			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);
+	}
+
+	isRenderString(): boolean {
+		return typeof this.displayValue === "string";
+	}
+
+	getRenderTemplateContext() {
+		if (!this.view) {
+			return;
+		}
+		let selected = this.view.getSelected();
+		if (this.type === "multi") {
+			return {items: selected};
+		} else if (selected && selected.length > 0) {
+			return {item: selected[0]}; // this is to be compatible with the dropdown-list template
+		} else {
+			return {};
+		}
 	}
 
 	getSelectedCount(): number {
@@ -381,9 +512,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	clearSelected() {
+		if (this.disabled) { return; }
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
+		this.selected.emit([]);
+		this.propagateChange([]);
 	}
 
 	/**
@@ -455,12 +589,27 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Expands the dropdown menu in the view.
 	 */
 	openMenu() {
+		// prevents the dropdown from opening when list of items is empty
+		if (this.view.getListItems().length === 0) {
+			return;
+		}
+
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
 		if (!this.appendInline) {
-			this.addScrollEventListener();
+			const target = this.dropdownButton.nativeElement;
+			const parent = this.elementRef.nativeElement;
+			this.visibilitySubscription = this.elementService
+				.visibility(target, parent)
+				.subscribe(value => {
+					this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
+					if (!value.visible) {
+						this.closeMenu();
+					}
+				}
+			);
 			this._appendToBody();
 		}
 
@@ -514,42 +663,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 		// move the list back in the component on close
 		if (!this.appendInline) {
-			this.removeScrollEventListener();
+			this.visibilitySubscription.unsubscribe();
 			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.body.firstElementChild.removeEventListener("keydown", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
 		document.removeEventListener("keydown", this.outsideKey, true);
-	}
-
-	/**
-	 * Add scroll event listener if scrollableContainer is provided
-	 */
-	addScrollEventListener() {
-		if (this.scrollableContainer) {
-			const container: HTMLElement = document.querySelector(this.scrollableContainer);
-
-			if (container) {
-				this.scroll = fromEvent(container, "scroll")
-				.subscribe(() => {
-					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
-						this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
-					} else {
-						this.closeMenu();
-					}
-				});
-			}
-		}
-	}
-
-	/**
-	 * Removes any `EventListeners` responsible for scroll functionality.
-	 */
-	removeScrollEventListener() {
-		if (this.scroll) {
-			this.scroll.unsubscribe();
-		}
 	}
 
 	/**
@@ -563,19 +683,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 	}
 
-	/**
-	 * Returns `true` if the `elem` is visible within the `container`.
-	 */
-	isVisibleInContainer(elem: HTMLElement, container: HTMLElement): boolean {
-		const containerTop = container.scrollTop;
-		const containerBottom = containerTop + container.offsetHeight;
-		const elemTop = elem.offsetTop + elem.offsetHeight;
-		const elemBottom = elemTop;
-
-		if ((elemBottom <= containerBottom) && (elemTop >= containerTop)) {
-			return true;
-		}
-
-		return false;
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

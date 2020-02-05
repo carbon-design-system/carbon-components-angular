@@ -7,6 +7,11 @@ import {
 } from "@angular/core";
 import { AccordionItem } from "./accordion-item.component";
 
+/**
+ * [See demo](../../?path=/story/accordion--basic)
+ *
+ * <example-url>../../iframe.html?id=accordion--basic</example-url>
+ */
 @Component({
 	selector: "ibm-accordion",
 	template: `
