@@ -241,7 +241,6 @@ export class FileUploader {
 
 			if ((this.files.size < 1) || this.multiple) {
 				const fileItem = this.createFileItem(file);
-
 				this.files.add(fileItem);
 
 				this.filesChange.emit(this.files);
