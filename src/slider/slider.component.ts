@@ -66,6 +66,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[ngClass]="{'bx--slider--disabled': disabled}">
 					<div
 						#thumb
+						role="slider"
+						id="slider"
 						class="bx--slider__thumb"
 						tabindex="0"
 						(mousedown)="onMouseDown($event)"
@@ -82,7 +84,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</div>
 					<input
 						#range
-						aria-label="slider"
 						class="bx--slider__input"
 						type="range"
 						[step]="step"

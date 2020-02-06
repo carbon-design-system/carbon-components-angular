@@ -4,8 +4,8 @@ import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
-import { FormsModule, Validators } from "@angular/forms";
-import { tick } from "@angular/core/src/render3";
+import { FormsModule } from "@angular/forms";
+import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
@@ -40,6 +40,7 @@ describe("DatePicker", () => {
 			],
 			imports: [
 				Calendar16Module,
+				UtilsModule,
 				FormsModule
 			]
 		});

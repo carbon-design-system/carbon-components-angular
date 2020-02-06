@@ -11,13 +11,17 @@ import {
 	OnChanges,
 	SimpleChanges,
 	AfterViewChecked,
+	AfterViewInit,
 	ViewChild
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
+import { Subscription } from "rxjs";
+import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
+import { ElementService } from "../utils/element.service";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -90,7 +94,7 @@ import { DatePickerInput } from "../datepicker-input/datepicker-input.component"
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -104,6 +108,14 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 * For reference: https://flatpickr.js.org/formatting/
 	 */
 	@Input() dateFormat = "m/d/Y";
+
+	/**
+	 * Language of the flatpickr calendar.
+	 *
+	 * For reference of the possible locales:
+	 * https://github.com/flatpickr/flatpickr/blob/master/src/l10n/index.ts
+	 */
+	@Input() language = "en";
 
 	@Input() label: string  | TemplateRef<any>;
 
@@ -150,7 +162,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
 			mode: this.range ? "range" : "single",
 			plugins,
-			dateFormat: this.dateFormat
+			dateFormat: this.dateFormat,
+			locale: languages.default[this.language]
 		});
 	}
 
@@ -189,7 +202,9 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 
 	protected flatpickrInstance = null;
 
-	constructor(protected elementRef: ElementRef) { }
+	protected visibilitySubscription = new Subscription();
+
+	constructor(protected elementRef: ElementRef, protected elementService: ElementService) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.isFlatpickrLoaded()) {
@@ -203,13 +218,25 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		}
 	}
 
+	ngAfterViewInit() {
+		this.visibilitySubscription = this.elementService
+			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
+			.subscribe(value => {
+				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
+					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
+					if (!value.visible) {
+						this.flatpickrInstance.close();
+					}
+				}
+			});
+	}
+
 	// because the actual view may be delayed in loading (think projection into a tab pane)
 	// and because we rely on a library that operates outside the Angular view of the world
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
 				if (this.value.length > 0) {
@@ -265,6 +292,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	ngOnDestroy() {
 		if (!this.isFlatpickrLoaded()) { return; }
 		this.flatpickrInstance.destroy();
+		this.visibilitySubscription.unsubscribe();
 	}
 
 	/**
@@ -297,17 +325,22 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
-		datepickerInput.input.nativeElement.click();
+		if (this.range) {
+			datepickerInput.input.nativeElement.click();
 
-		// If the first input's calendar icon is clicked when calendar is in range mode, then
-		// the month and year needs to be manually changed to the current selected month and
-		// year otherwise the calendar view will not be updated upon opening.
-		if (datepickerInput === this.input && this.range && this.flatpickrInstance.selectedDates[0]) {
-			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+			// If the first input's calendar icon is clicked when calendar is in range mode, then
+			// the month and year needs to be manually changed to the current selected month and
+			// year otherwise the calendar view will not be updated upon opening.
+			if (datepickerInput === this.input && this.flatpickrInstance.selectedDates[0]) {
+				const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 
-			this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
-
-			this.flatpickrInstance.changeMonth(currentMonth, false);
+				this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
+				this.flatpickrInstance.changeMonth(currentMonth, false);
+			}
+		} else {
+			// Single-mode flatpickr handles mousedown but not click, so nativeElement.click() won't
+			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
+			this.flatpickrInstance.open();
 		}
 	}
 
