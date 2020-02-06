@@ -238,7 +238,6 @@ export class FileUploader {
 			// Check if the accept array contains the mime type or extension of the file.
 			return this.accept.includes(type) || this.accept.includes(fileExtension);
 		}).forEach(file => {
-
 			if ((this.files.size < 1) || this.multiple) {
 				const fileItem = this.createFileItem(file);
 				this.files.add(fileItem);
