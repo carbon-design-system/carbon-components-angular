@@ -156,7 +156,7 @@ export class TableRowComponent {
 	@Output() expandRow = new EventEmitter();
 
 	/**
-	 * Emits when a row is not dependant on enableSingleSelect or showSelectionColumn.
+	 * Emits when a row is not dependant on `enableSingleSelect` or `showSelectionColumn`.
 	 * SHould only get emitted when a row item is selected excluding expandButtons,
 	 * checkboxes, or radios.
 	 */
