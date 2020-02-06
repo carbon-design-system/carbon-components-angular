@@ -19,8 +19,8 @@ import {
 			[attr.aria-label]="title"
 			[title]="title"
 			(click)="onClick()">
-			<ng-content *ngIf="!active"></ng-content>
-			<svg *ngIf="active" ibmIconClose20></svg>
+			<ng-content *ngIf="!showCloseIcon || !active"></ng-content>
+			<svg *ngIf="showCloseIcon && active" ibmIconClose20></svg>
 		</button>
 	`
 })
@@ -33,6 +33,10 @@ export class HeaderAction {
 	 * Toggles the active state. May be used to toggle a `Panel`s active state.
 	 */
 	@Input() active = false;
+	/**
+	 * Controls showing the close icon when active.
+	 */
+	@Input() showCloseIcon = true;
 	/**
 	 * "Change" emitter to allow double binding to the `active` Input.
 	 */
