@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
 import { ButtonModule, DocumentationModule } from "../";
@@ -26,7 +25,7 @@ storiesOf("Components|Button", module)
 		`,
 		props: {
 			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "primary"),
-			size: select("Size of the buttons", ["normal", "sm"], "normal")
+			size: select("Size of the buttons", ["normal", "sm", "field"], "normal")
 		}
 	}))
 	.add("Skeleton", () => ({
