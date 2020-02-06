@@ -249,7 +249,6 @@ export class FileUploader {
 		});
 
 		this.value = this.files;
-
 		this.dragOver = false;
 	}
 
