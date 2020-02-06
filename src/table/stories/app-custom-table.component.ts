@@ -45,6 +45,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
+			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
 			[stickyHeader]="stickyHeader"
@@ -60,6 +61,7 @@ export class DynamicTableStory implements OnInit {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() isDataGrid = false;
+	@Input() sortable = true;
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 

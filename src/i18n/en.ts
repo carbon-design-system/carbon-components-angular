@@ -63,7 +63,7 @@ export default {
 	"DROPDOWN": {
 		"OPEN": "Open menu",
 		"SELECTED": "selected",
-		"CLEAR": "Clear selection",
+		"CLEAR": "Clear all selected items",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
 			"SEARCH": "Search",
@@ -89,6 +89,10 @@ export default {
 	},
 	"NOTIFICATION": {
 		"CLOSE_BUTTON": "Close alert notification"
+	},
+	"NUMBER": {
+		"INCREMENT": "increment value",
+		"DECREMENT": "decrement value"
 	},
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
@@ -128,6 +132,7 @@ export default {
 	},
 	"TABLE_TOOLBAR": {
 		"ACTION_BAR": "Table Action Bar",
+		"BATCH_TEXT": "items selected",
 		"CANCEL": "Cancel"
 	},
 	"TABS": {

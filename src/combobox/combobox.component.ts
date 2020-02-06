@@ -38,33 +38,22 @@ import { filter } from "rxjs/operators";
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
+			[ngClass]="{
+				'bx--multi-select': type === 'multi',
+				'bx--combo-box': type === 'single' || !pills.length
+			}"
 			class="bx--combo-box bx--list-box"
-			[attr.data-invalid]="(invalid ? true : null)"
-			[ngClass]="{'bx--multi-select' : type === 'multi'}">
+			role="listbox"
+			[attr.data-invalid]="(invalid ? true : null)">
 			<div
 				[attr.aria-expanded]="open"
 				role="button"
 				class="bx--list-box__field"
-				tabindex="0"
 				type="button"
+				tabindex="-1"
 				aria-label="close menu"
 				aria-haspopup="true"
 				(click)="toggleDropdown()">
-				<ibm-icon-warning-filled16
-					*ngIf="invalid"
-					class="bx--list-box__invalid-icon"
-					tabindex="0">
-				</ibm-icon-warning-filled16>
-				<div
-					*ngIf="showClearButton"
-					role="button"
-					class="bx--list-box__selection"
-					tabindex="0"
-					aria-label="Clear Selection"
-					title="Clear selected item"
-					(click)="clearInput($event)">
-					<ibm-icon-close16></ibm-icon-close16>
-				</div>
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
@@ -90,17 +79,31 @@ import { filter } from "rxjs/operators";
 					[id]="id"
 					[disabled]="disabled"
 					(keyup)="onSearch($event.target.value)"
+					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
-					role="combobox"
-					aria-label="ListBox input field"
+					role="searchbox"
+					tabindex="0"
+					[attr.aria-label]="label"
+					aria-haspopup="true"
 					autocomplete="off"
 					[placeholder]="placeholder"/>
-					<ibm-icon-chevron-down16
-						[ngClass]="{'bx--list-box__menu-icon--open': open}"
-						class="bx--list-box__menu-icon"
-						ariaLabel="Close menu">
-					</ibm-icon-chevron-down16>
+				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<div
+					*ngIf="showClearButton"
+					role="button"
+					class="bx--list-box__selection"
+					tabindex="0"
+					aria-label="Clear Selection"
+					title="Clear selected item"
+					(click)="clearInput($event)">
+					<ibm-icon-close16></ibm-icon-close16>
+				</div>
+				<ibm-icon-chevron-down16
+					[ngClass]="{'bx--list-box__menu-icon--open': open}"
+					class="bx--list-box__menu-icon"
+					ariaLabel="Close menu">
+				</ibm-icon-chevron-down16>
 			</div>
 			<div
 				#dropdownMenu
@@ -224,9 +227,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * }
 	 * ```
 	 */
-	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
+	@Output() submit = new EventEmitter<any>();
 	/** emits an empty event when the menu is closed */
-	@Output() close: EventEmitter<any> = new EventEmitter<any>();
+	@Output() close = new EventEmitter<any>();
+	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
@@ -417,6 +421,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
+		this.search.emit(searchString);
 		if (searchString && this.type === "single") {
 			this.showClearButton = true;
 		} else {
@@ -447,28 +452,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
-	 *
-	 * @param ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
-	 *
-	 * Example:
-	 * ```javascript
-	 *	{
-	 *	after: 1,
-	 *	value: "some user string"
-	 *	}
-	 * ```
+	 * Intended to be used to add items to the list.
 	 */
-	public onSubmit(ev) {
-		let index = 0;
-		if (ev.after) {
-			index = this.view.getListItems().indexOf(ev.after) + 1;
-		}
+	public onSubmit(event: KeyboardEvent) {
 		this.submit.emit({
 			items: this.view.getListItems(),
-			index,
+			index: 0,
 			value: {
-				content: ev.value,
+				content: (event.target as HTMLInputElement).value,
 				selected: false
 			}
 		});
