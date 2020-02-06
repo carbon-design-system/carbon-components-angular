@@ -157,6 +157,9 @@
                                 <a href="#class.bx--btn--danger--primary">class.bx--btn--danger--primary</a>
                             </li>
                             <li>
+                                <a href="#class.bx--btn--field">class.bx--btn--field</a>
+                            </li>
+                            <li>
                                 <a href="#class.bx--btn--ghost">class.bx--btn--ghost</a>
                             </li>
                             <li>
@@ -226,7 +229,7 @@
                         <div><p>Specify the size of the button</p>
 </div>
                             <p>
-                            <em>Type :</em>    <code>&quot;normal&quot; | &quot;sm&quot;</code>
+                            <em>Type :</em>    <code>&quot;normal&quot; | &quot;sm&quot; | &quot;field&quot;</code>
 
                             </p>
                         <p>
@@ -342,6 +345,34 @@
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/button/button.directive.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--btn--field"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--btn--field
+                            </b>
+                            <a href="#class.bx--btn--field"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--btn--field:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/button/button.directive.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -514,7 +545,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/button/button.directive.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/button/button.directive.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -547,7 +578,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/button/button.directive.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/button/button.directive.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -584,7 +615,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/button/button.directive.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/button/button.directive.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -642,7 +673,7 @@ export class Button implements OnInit {
 	/**
 	 * Specify the size of the button
 	 */
-	@Input() size: &quot;normal&quot; | &quot;sm&quot; &#x3D; &quot;normal&quot;;
+	@Input() size: &quot;normal&quot; | &quot;sm&quot; | &quot;field&quot; &#x3D; &quot;normal&quot;;
 	// a whole lot of HostBindings ... this way we don&#x27;t have to touch the elementRef directly
 	@HostBinding(&quot;class.bx--btn&quot;) get baseClass() {
 		return !this.toolbarAction;
@@ -668,6 +699,9 @@ export class Button implements OnInit {
 	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--sm&quot;) get smallSize() {
 		return this.size &#x3D;&#x3D;&#x3D; &quot;sm&quot;;
+	}
+	@HostBinding(&quot;class.bx--btn--field&quot;) get fieldSize() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;field&quot;;
 	}
 	@HostBinding(&quot;class.bx--toolbar-action&quot;) toolbarAction &#x3D; false;
 	@HostBinding(&quot;class.bx--overflow-menu&quot;) overflowMenu &#x3D; false;

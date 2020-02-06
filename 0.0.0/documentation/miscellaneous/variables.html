@@ -235,7 +235,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>fp &#x3D;&gt; {
 	const setupElements &#x3D; () &#x3D;&gt; {
-		if (!fp.monthElements) {
+		if (!fp.monthElements || !fp.yearElements) {
 			return;
 		}
 		fp.monthElements.forEach(elem &#x3D;&gt; {
@@ -267,6 +267,9 @@
 		);
 	};
 	const updateCurrentMonth &#x3D; () &#x3D;&gt; {
+		if (!fp.yearElements) {
+			return;
+		}
 		const monthStr &#x3D; monthToStr(
 			fp.currentMonth,
 			config.shorthand &#x3D;&#x3D;&#x3D; true,

@@ -874,8 +874,34 @@ export class DropdownService implements OnDestroy {
 	}
 
 	protected positionDropdown(parentRef, menuRef) {
+		if (!menuRef) {
+			return;
+		}
+
+		let leftOffset &#x3D; 0;
+
+		const boxMenu &#x3D; menuRef.querySelector(&quot;.bx--list-box__menu&quot;);
+
+		// If the parentRef and boxMenu are in a different left position relative to the
+		// window, the the boxMenu position has already been flipped and a check needs to be done
+		// to see if it needs to stay flipped.
+		if (parentRef.getBoundingClientRect().left !&#x3D;&#x3D; boxMenu.getBoundingClientRect().left) {
+			// The getBoundingClientRect().right of the boxMenu if it were hypothetically flipped
+			// back into the original position before the flip.
+			const testBoxMenuRightEdgePos &#x3D;
+				parentRef.getBoundingClientRect().left - boxMenu.getBoundingClientRect().left + boxMenu.getBoundingClientRect().right;
+
+			if (testBoxMenuRightEdgePos &gt; (window.innerWidth || document.documentElement.clientWidth)) {
+				leftOffset &#x3D; parentRef.offsetWidth - boxMenu.offsetWidth;
+			}
+		// If it has not already been flipped, check if it is necessary to flip, ie. if the
+		// boxMenu is outside of the right viewPort.
+		} else if (boxMenu.getBoundingClientRect().right &gt; (window.innerWidth || document.documentElement.clientWidth)) {
+			leftOffset &#x3D; parentRef.offsetWidth - boxMenu.offsetWidth;
+		}
+
 		let pos &#x3D; position.findAbsolute(parentRef, menuRef, &quot;bottom&quot;);
-		pos &#x3D; position.addOffset(pos, this.offset.top, this.offset.left);
+		pos &#x3D; position.addOffset(pos, this.offset.top, this.offset.left + leftOffset);
 		position.setElement(menuRef, pos);
 	}
 }

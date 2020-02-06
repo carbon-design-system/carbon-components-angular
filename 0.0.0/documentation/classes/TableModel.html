@@ -3643,7 +3643,7 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set all rows to. Defaults to &#x60;true&#x60;
 	 */
 	selectAll(value &#x3D; true) {
-		if (this.data.length &gt; 1) {
+		if (this.data.length &gt;&#x3D; 1) {
 			for (let i &#x3D; 0; i &lt; this.rowsSelected.length; i++) {
 				this.selectRow(i, value);
 			}
