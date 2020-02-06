@@ -144,7 +144,6 @@ export class DialogService implements OnDestroy {
 
 		const closeSubscription = this.onClose.subscribe(() => {
 			if (dialogConfig.shouldClose && dialogConfig.shouldClose()) {
-				// dialogRef.instance.dialogConfig = closeSubscription;
 				this.close(viewContainer, dialogRef);
 			}
 		});
