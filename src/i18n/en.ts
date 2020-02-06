@@ -63,7 +63,7 @@ export default {
 	"DROPDOWN": {
 		"OPEN": "Open menu",
 		"SELECTED": "selected",
-		"CLEAR": "Clear selection",
+		"CLEAR": "Clear all selected items",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
 			"SEARCH": "Search",
