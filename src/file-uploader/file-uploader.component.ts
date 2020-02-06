@@ -11,7 +11,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 import { FileItem } from "./file-item.interface";
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * [See demo](../../?path=/story/file-uploader--basic)
@@ -229,48 +229,29 @@ export class FileUploader {
 
 		const transferredFiles = Array.from(event.dataTransfer.files);
 
-		// if (!this.accept.length) {
-		// 	transferredFiles.forEach(file => {
-		// 		if ((this.files.size >= 1) && !this.multiple) {
-		// 			return;
-		// 		}
-		// 		const fileItem = this.createFileItem(file);
-		// 		this.files.add(fileItem);
-		// 		this.filesChange.emit(this.files);
-		// 	});
-
-		// 	this.value = this.files;
-		// 	this.dragOver = false;
-		// 	return;
-		// }
-
 		transferredFiles.filter(({ name, type }) => {
 			// Get the file extension and add a "." to the beginning.
 			const fileExtension = name.split(".").pop().replace(/^/, ".");
 			if (this.accept.length === 0) {
 				return true;
 			}
-				// Check if the accept array contains the mime type or extension of the file.
-				return this.accept.includes(type) || this.accept.includes(fileExtension);
+			// Check if the accept array contains the mime type or extension of the file.
+			return this.accept.includes(type) || this.accept.includes(fileExtension);
 		}).forEach(file => {
 
-			if ((this.files.size >= 1) && !this.multiple) {
-				return;
+			if ((this.files.size < 1) || this.multiple) {
+				const fileItem = this.createFileItem(file);
+
+				this.files.add(fileItem);
+
+				this.filesChange.emit(this.files);
 			}
-
-			const fileItem = this.createFileItem(file);
-
-			this.files.add(fileItem);
-
-			this.filesChange.emit(this.files);
 		});
 
 		this.value = this.files;
 
 		this.dragOver = false;
-		console.log(this.files, "this.files");
-		console.log(this.value, "this.value");
-		console.log(this, "this");
+
 	}
 
 	removeFile(fileItem) {
