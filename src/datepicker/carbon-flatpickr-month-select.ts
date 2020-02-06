@@ -37,7 +37,7 @@ const config = {
 
 export const carbonFlatpickrMonthSelectPlugin = fp => {
 	const setupElements = () => {
-		if (!fp.monthElements) {
+		if (!fp.monthElements || !fp.yearElements) {
 			return;
 		}
 		fp.monthElements.forEach(elem => {
@@ -69,6 +69,9 @@ export const carbonFlatpickrMonthSelectPlugin = fp => {
 		);
 	};
 	const updateCurrentMonth = () => {
+		if (!fp.yearElements) {
+			return;
+		}
 		const monthStr = monthToStr(
 			fp.currentMonth,
 			config.shorthand === true,
@@ -93,6 +96,7 @@ export const carbonFlatpickrMonthSelectPlugin = fp => {
 
 	return {
 		onMonthChange: updateCurrentMonth,
+		onValueUpdate: updateCurrentMonth,
 		onOpen: updateCurrentMonth,
 		onReady: [setupElements, updateCurrentMonth, register]
 	};

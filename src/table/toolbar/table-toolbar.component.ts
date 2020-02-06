@@ -42,6 +42,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	template: `
 	<section class="bx--table-toolbar">
 		<div
+			*ngIf="model"
 			class="bx--batch-actions"
 			[ngClass]="{
 				'bx--batch-actions--active': selected
@@ -53,7 +54,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
-					<span>{{count}}</span> items selected
+					<span>{{count}}</span> {{_batchText.subject | async}}
 				</p>
 			</div>
 		</div>
@@ -64,6 +65,9 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 export class TableToolbar {
 	@Input() model: TableModel;
 
+	@Input() set batchText (value: string) {
+		this._batchText.override(value);
+	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);
 	}
@@ -73,8 +77,10 @@ export class TableToolbar {
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
-	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
-	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
+
+	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
+	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
+	_batchText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
 
 	constructor(protected i18n: I18n) {}
 

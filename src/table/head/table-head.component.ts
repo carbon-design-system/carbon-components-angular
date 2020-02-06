@@ -2,10 +2,12 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
+import { getScrollbarWidth } from "../../utils/window-tools";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
@@ -25,8 +27,9 @@ import { Observable } from "rxjs";
 	<ng-container *ngIf="model">
 		<tr>
 			<th
-				*ngIf="model.hasExpandableRows()"
 				ibmTableHeadExpand
+				*ngIf="model.hasExpandableRows()"
+				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')">
 			</th>
 			<th
@@ -52,8 +55,11 @@ import { Observable } from "rxjs";
 					[ngStyle]="column.style"
 					ibmTableHeadCell
 					[class]="column.className"
+					[sortable]="sortable"
+					[skeleton]="skeleton"
 					[id]="model.getId(i)"
 					[column]="column"
+					[skeleton]="skeleton"
 					[filterTitle]="getFilterTitle()"
 					[attr.colspan]="column.colSpan"
 					[attr.rowspan]="column.rowSpan"
@@ -69,9 +75,14 @@ import { Observable } from "rxjs";
 		</tr>
 	</ng-container>
 	<ng-content></ng-content>
-	`
+	`,
+	styles: [`
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	`]
 })
-export class TableHead {
+export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn = true;
@@ -85,6 +96,12 @@ export class TableHead {
 	@Input() skeleton = false;
 
 	@Input() stickyHeader = false;
+
+	/**
+	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
+	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
+	 */
+	@Input() sortable = true;
 
 	/**
 	 * Size of the table rows.
@@ -152,6 +169,12 @@ export class TableHead {
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	constructor(protected i18n: I18n) {}
+
+	ngAfterViewInit() {
+		setTimeout(() => {
+			this.scrollbarWidth = getScrollbarWidth();
+		});
+	}
 
 	onSelectAllCheckboxChange() {
 		if (!this.selectAllCheckbox) {
