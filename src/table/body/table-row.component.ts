@@ -157,7 +157,7 @@ export class TableRowComponent {
 
 	/**
 	 * Emits when a row is not dependant on `enableSingleSelect` or `showSelectionColumn`.
-	 * SHould only get emitted when a row item is selected excluding expandButtons,
+	 * Should only get emitted when a row item is selected excluding expand buttons,
 	 * checkboxes, or radios.
 	 */
 	@Output() rowClick = new EventEmitter();
