@@ -54,7 +54,7 @@ export enum SnippetType {
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
-				*ngIf="hasExpandButton"
+				*ngIf="shouldShowExpandButton"
 				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
 				(click)="toggleSnippetExpansion()"
 				type="button">
@@ -137,9 +137,19 @@ export class CodeSnippet implements AfterViewInit {
 
 	@ViewChild("code") code;
 
+	get shouldShowExpandButton() {
+		// Checks if `hasExpand` button has been initialized in `AfterViewInit` before detecting whether or not to
+		// show the expand button when the code displayed in the component changes during the life of the component.
+		// This is to avoid the `ExpressionChangedAfterItHasBeenCheckedError`.
+		if (this.hasExpandButton === null) {
+			return this.hasExpandButton;
+		}
+		return this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false && this.display === "multi";
+	}
+
 	showFeedback = false;
 
-	hasExpandButton = false;
+	hasExpandButton = null;
 
 	/**
 	 * Creates an instance of CodeSnippet.
@@ -196,6 +206,8 @@ export class CodeSnippet implements AfterViewInit {
 		setTimeout(() => {
 			if (this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false && this.display === "multi") {
 				this.hasExpandButton = true;
+			} else {
+				this.hasExpandButton = false;
 			}
 		});
 	}
