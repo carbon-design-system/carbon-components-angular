@@ -7,7 +7,8 @@ import {
 	OnDestroy,
 	AfterContentInit,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	OnChanges
 } from "@angular/core";
 
 import { TabHeader } from "./tab-header.component";
@@ -63,9 +64,9 @@ import { Subscription } from "rxjs";
 			</li>
 		</ul>
 	</nav>
-	 `
+	`
 })
-export class TabHeaderGroup implements AfterContentInit, OnDestroy {
+export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 	/**
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
@@ -83,15 +84,22 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Input() ariaLabelledby: string;
 
-	/**
-	 * Set to 'true' to have all pane references associated with each tab header
-	 * in the tab header group cached and not reloaded on tab switching.
-	 */
-	@Input() cacheActive = false;
-
 	@Input() contentAfter: TemplateRef<any>;
 
 	@Input() contentBefore: TemplateRef<any>;
+
+		/**
+	 * Set to 'true' to have all pane references associated with each tab header
+	 * in the tab header group cached and not reloaded on tab switching.
+	 */
+	@Input() set cacheActive(shouldCache: boolean) {
+		this._cacheActive = shouldCache;
+	}
+
+	get cacheActive() {
+		return this._cacheActive;
+	}
+
 	/**
 	 * ContentChildren of all the tabHeaders.
 	 */
@@ -106,6 +114,8 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 	 * Controls the manual focusing done by tabbing through headings.
 	 */
 	public currentSelectedIndex = 0;
+
+	private _cacheActive = false;
 
 	constructor(protected elementRef: ElementRef) {}
 
@@ -219,6 +229,12 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 		this.selectedSubscriptionTracker.add(selectedSubscriptions);
 
 		this.tabHeaderQuery.toArray()[this.currentSelectedIndex].selectTab();
+	}
+
+	ngOnChanges() {
+		if (this.tabHeaderQuery) {
+			this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+		}
 	}
 
 	public getSelectedTab(): any {
