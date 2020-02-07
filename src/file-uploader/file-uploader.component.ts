@@ -232,11 +232,8 @@ export class FileUploader {
 		transferredFiles.filter(({ name, type }) => {
 			// Get the file extension and add a "." to the beginning.
 			const fileExtension = name.split(".").pop().replace(/^/, ".");
-			if (this.accept.length === 0) {
-				return true;
-			}
 			// Check if the accept array contains the mime type or extension of the file.
-			return this.accept.includes(type) || this.accept.includes(fileExtension) || this.accept.length === 0;
+			return this.accept.includes(type) || this.accept.includes(fileExtension) || !this.accept.length;
 		}).forEach(file => {
 			if ((this.files.size < 1) || this.multiple) {
 				const fileItem = this.createFileItem(file);
