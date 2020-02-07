@@ -32,7 +32,7 @@ export class Button implements OnInit {
 	/**
 	 * Specify the size of the button
 	 */
-	@Input() size: "normal" | "sm" = "normal";
+	@Input() size: "normal" | "sm" | "field" = "normal";
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.bx--btn") get baseClass() {
 		return !this.toolbarAction;
@@ -58,6 +58,9 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--btn--sm") get smallSize() {
 		return this.size === "sm";
+	}
+	@HostBinding("class.bx--btn--field") get fieldSize() {
+		return this.size === "field";
 	}
 	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
 	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
