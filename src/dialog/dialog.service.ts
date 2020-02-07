@@ -72,6 +72,8 @@ export class DialogService implements OnDestroy {
 	 */
 	protected dialogSubscription = new Subscription();
 
+	protected closeSubscription: Subscription;
+
 	/**
 	 * Creates an instance of `DialogService`.
 	 */
@@ -79,7 +81,14 @@ export class DialogService implements OnDestroy {
 		protected componentFactoryResolver: ComponentFactoryResolver,
 		protected injector: Injector,
 		protected placeholderService: PlaceholderService
-	) {}
+	) {
+		// Adds current close subscription to the reference of all close subscriptions for
+		// local dialog service.
+		this.dialogSubscription.add(this.closeSubscription);
+
+		// keep track of all dialog subscriptions globally.
+		DialogService.dialogCloseSubscription.add(this.dialogSubscription);
+	}
 
 	/**
 	 * Uses module `componentFactory` to create the `Dialog` component.
@@ -142,18 +151,11 @@ export class DialogService implements OnDestroy {
 		this.onClose = dialogRef.instance.close;
 		this.isOpen = true;
 
-		const closeSubscription = this.onClose.subscribe(() => {
+		this.closeSubscription = this.onClose.subscribe(() => {
 			if (dialogConfig.shouldClose && dialogConfig.shouldClose()) {
 				this.close(viewContainer, dialogRef);
 			}
 		});
-
-		// Adds current close subscription to the reference of all close subscriptions for
-		// local dialog service.
-		this.dialogSubscription.add(closeSubscription);
-
-		// keep track of all dialog subscriptions globally.
-		DialogService.dialogCloseSubscription.add(this.dialogSubscription);
 
 		dialogRef.instance.elementRef.nativeElement.focus();
 
