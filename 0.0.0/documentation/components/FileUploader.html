@@ -787,7 +787,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/file-uploader/file-uploader.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/file-uploader/file-uploader.component.ts:253</a></div>
                             </td>
                         </tr>
 
@@ -1123,7 +1123,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/file-uploader/file-uploader.component.ts:278</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/file-uploader/file-uploader.component.ts:266</a></div>
                             </td>
                         </tr>
 
@@ -1194,7 +1194,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/file-uploader/file-uploader.component.ts:272</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/file-uploader/file-uploader.component.ts:260</a></div>
                             </td>
                         </tr>
 
@@ -1265,7 +1265,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/file-uploader/file-uploader.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/file-uploader/file-uploader.component.ts:247</a></div>
                             </td>
                         </tr>
 
@@ -1935,23 +1935,11 @@ export class FileUploader {
 
 		const transferredFiles &#x3D; Array.from(event.dataTransfer.files);
 
-		if (!this.accept.length) {
-			transferredFiles.forEach(file &#x3D;&gt; {
-				const fileItem &#x3D; this.createFileItem(file);
-				this.files.add(fileItem);
-				this.filesChange.emit(this.files);
-			});
-
-			this.value &#x3D; this.files;
-			this.dragOver &#x3D; false;
-			return;
-		}
-
 		transferredFiles.filter(({ name, type }) &#x3D;&gt; {
 			// Get the file extension and add a &quot;.&quot; to the beginning.
 			const fileExtension &#x3D; name.split(&quot;.&quot;).pop().replace(/^/, &quot;.&quot;);
 			// Check if the accept array contains the mime type or extension of the file.
-			return this.accept.includes(type) || this.accept.includes(fileExtension);
+			return this.accept.includes(type) || this.accept.includes(fileExtension) || this.accept.length &#x3D;&#x3D;&#x3D; 0;
 		}).forEach(file &#x3D;&gt; {
 			const fileItem &#x3D; this.createFileItem(file);
 			this.files.add(fileItem);
