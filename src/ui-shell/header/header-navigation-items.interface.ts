@@ -10,7 +10,7 @@ export interface NavigationItem {
     route?: any[],
     routeExtras?: any[],
     content?: string
-    headerItems?: HeaderItemInterface[]
+    menuItems?: HeaderItemInterface[]
 }
 
 export interface HeaderItemInterface {

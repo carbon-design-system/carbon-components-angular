@@ -36,7 +36,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 						<ibm-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"
 							[title]="navigationItem.title"
-							[subMenuItems]="navigationItem.headerItems">
+							[menuItems]="navigationItem.menuItems">
 						</ibm-sidenav-menu>
 					</ng-container>
 				</div>

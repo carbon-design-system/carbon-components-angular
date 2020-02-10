@@ -26,7 +26,7 @@ import { NavigationItem } from "./header-navigation-items.interface";
 						[href]="navigationItem.href"
 						[title]="navigationItem.title"
 						[trigger]="navigationItem.trigger ? navigationItem.trigger : 'click'"
-						[headerItems]="navigationItem.headerItems">
+						[headerItems]="navigationItem.menuItems">
 					</ibm-header-menu>
 				</ng-container>
 			</ul>

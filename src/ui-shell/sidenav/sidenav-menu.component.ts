@@ -41,12 +41,12 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			</button>
 			<ul class="bx--side-nav__menu" role="menu">
 				<ng-content></ng-content>
-				<ng-container *ngFor="let subMenuItem of subMenuItems">
+				<ng-container *ngFor="let menuItem of menuItems">
 					<ibm-sidenav-item
-						[href]="subMenuItem.href"
-						[route]="subMenuItem.route"
-						[routeExtras]="subMenuItem.routeExtras"
-						[content]="subMenuItem.content"
+						[href]="menuItem.href"
+						[route]="menuItem.route"
+						[routeExtras]="menuItem.routeExtras"
+						[content]="menuItem.content"
 						[isSubMenu]="true">
 					</ibm-sidenav-item>
 				</ng-container>
@@ -64,7 +64,7 @@ export class SideNavMenu implements AfterContentInit {
 	 */
 	@Input() expanded = false;
 
-	@Input() subMenuItems: SideNavItemInterface[];
+	@Input() menuItems: SideNavItemInterface[];
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 

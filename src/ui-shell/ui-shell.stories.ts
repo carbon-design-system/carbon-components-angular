@@ -425,7 +425,7 @@ storiesOf("Components|UI Shell", module)
 					type: "menu",
 					title: "Manage",
 					trigger: "click",
-					headerItems: [
+					menuItems: [
 						{
 							type: "item",
 							route: ["foo"],

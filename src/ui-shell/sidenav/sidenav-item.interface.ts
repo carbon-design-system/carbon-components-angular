@@ -1,8 +1,6 @@
-export interface SideNavItemInterface {
-    href?: string,
-    route?: any[],
-    routeExtras?: any[],
+import { HeaderItemInterface } from '../header/header.module';
+
+export interface SideNavItemInterface extends HeaderItemInterface{
     isSubMenu?: boolean,
     active?: boolean,
-    content?: string
 }
