@@ -8,11 +8,12 @@ import { TableItem } from "./../table-item.class";
 	// tslint:disable-next-line: component-selector
 	selector: "[ibmTableData]",
 	template: `
-		<ng-container *ngIf="!skeleton && !item.template">{{item.data}}</ng-container>
+		<ng-container *ngIf="!item.template">
+			{{item.data}}
+			<span *ngIf="skeleton && !item.data"></span>
+		</ng-container>
 		<ng-template
-			*ngIf="!skeleton"
-			[ngTemplateOutlet]="item.template"
-			[ngTemplateOutletContext]="{data: item.data}">
+			[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 		</ng-template>
 	`
 })

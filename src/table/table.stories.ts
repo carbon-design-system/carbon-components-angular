@@ -390,11 +390,14 @@ storiesOf("Components|Table", module).addDecorator(
 		template: `
 			<app-skeleton-table
 				[skeletonModel]="skeletonModel"
+				[withInitialModel]="withInitialModel"
 				[size]="size"
 				[striped]="striped">
 			</app-skeleton-table>
 	`,
-		props: getProps()
+		props: getProps({
+			withInitialModel: boolean("With initial model", false)
+		})
 	}))
 	.add("Documentation", () => ({
 		template: `
