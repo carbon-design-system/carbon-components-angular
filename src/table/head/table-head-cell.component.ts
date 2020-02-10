@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 	template: `
 		<button
 			class="bx--table-sort"
-			*ngIf="sortable && !skeleton && this.sort.observers.length > 0 && column.sortable"
+			*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"
 			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
@@ -26,13 +26,17 @@ import { TableHeaderItem } from "./../table-header-item.class";
 			}"
 			(click)="onClick()">
 			<span
-				*ngIf="!column.template"
+				*ngIf="!column.template && !skeleton"
 				[title]="column.data"
 				tabindex="-1">
-				<div *ngIf="!skeleton">
+				<div>
 					{{column.data}}
 				</div>
 			</span>
+			<div *ngIf="skeleton && column.data">
+				{{column.data}}
+			</div>
+			<span *ngIf="skeleton && !column.data"></span>
 			<ng-template
 				*ngIf="!skeleton"
 				[ngTemplateOutlet]="column.template"

@@ -21,7 +21,6 @@ function sort(model, index: number) {
 	template: `
 		<ibm-table
 			style="display: block; width: 650px;"
-			[skeleton]="skeleton"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -39,7 +38,6 @@ export class TableNoDataStory implements OnInit, OnChanges {
 	@Input() striped = true;
 	@Input() sortable = true;
 	@Input() isDataGrid = false;
-	@Input() skeleton = false;
 
 	ngOnInit() {
 		this.model.header = [

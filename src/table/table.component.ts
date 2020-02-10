@@ -248,30 +248,55 @@ export interface TableTranslations {
 })
 export class Table implements AfterViewInit, OnDestroy {
 	/**
-	 * Creates a skeleton model with a row and column count specified by the user
+	 * Creates a skeleton model with a row and column count specified by the user.
 	 *
 	 * Example:
 	 *
 	 * ```typescript
 	 * this.model = Table.skeletonModel(5, 5);
 	 * ```
+	 *
+	 * An initial TableModel can be provided and a new skeleton model will be created based off the initial
+	 * model. Note that the new model will be created based on the number of rows/columns of the initial TableModel.
+	 * If headers are already provided in the intiial model, then the headers will be shown.
+	 *
+	 *	Example:
+	 *
+	 * ```typescript
+	 * this.model = Table.skeletonModel(5, 5, initialModel)
+	 * ```
+	 *
 	 */
-	static skeletonModel(rowCount: number, columnCount: number) {
-		const model = new TableModel();
-		let header = new Array<TableHeaderItem>();
-		let data = new Array<Array<TableItem>>();
-		let row = new Array<TableItem>();
+	static skeletonModel(rowCount: number, columnCount: number, initialModel?: TableModel) {
+		// If no initial model is supplied create a model with empty data.
+		if (!initialModel) {
+			const model = new TableModel();
+			let header = new Array<TableHeaderItem>();
+			let data = new Array<Array<TableItem>>();
+			let row = new Array<TableItem>();
 
-		for (let i = 0; i < columnCount; i++) {
-			header.push(new TableHeaderItem());
-			row.push(new TableItem());
+			for (let i = 0; i < columnCount; i++) {
+				header.push(new TableHeaderItem());
+				row.push(new TableItem({ data: " " }));
+			}
+
+			for (let i = 0; i < rowCount - 1; i++) {
+				data.push(row);
+			}
+
+			model.header = header;
+			model.data = data;
+			return model;
 		}
-		for (let i = 0; i < rowCount - 1; i++) {
-			data.push(row);
+		// If an initial model is provided, to create a skeleton state from the given model,
+		// create only first row with empty data to show loading animation only on the first row.
+		const model = Object.assign( Object.create( Object.getPrototypeOf(initialModel)), initialModel);
+		model.data[0] = model.data[0].map(col => new TableItem());
+
+		for (let i = 1; i < model.data.length; i++) {
+			model.data[i] = model.data[i].map(col => new TableItem({ data: " " }));
 		}
 
-		model.header = header;
-		model.data = data;
 		return model;
 	}
 
@@ -344,7 +369,9 @@ export class Table implements AfterViewInit, OnDestroy {
 	 */
 	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 	/**
-	 * Set to `true` for a loading table.
+	 * Set to `true` for a skeleton state table. Skeleton templates can be created using the `skeletonModel` function.
+	 * If data is already provided in the table, the data will not be hidden and the loading animation will not appear,
+	 * where there is already data.
 	 */
 	@Input() skeleton = false;
 	/**
