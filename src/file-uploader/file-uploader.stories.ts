@@ -152,7 +152,7 @@ class DragAndDropStory {
 					}
 					resolve({
 						file: fileObj,
-						accept: (this.accept.includes(fileExtension) || this.accept.includes(mime))
+						accept: (this.accept.includes(fileExtension) || this.accept.includes(mime) || !this.accept.length)
 					});
 				};
 
