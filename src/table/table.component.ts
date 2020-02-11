@@ -393,9 +393,9 @@ const skeletonModel = Table.skeletonModel(0, 0, this.model);
 	 */
 	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 	/**
-	 * Set to `true` for a skeleton state table. Skeleton templates can be created using the `skeletonModel` function.
-	 * If data is already provided in the table, the data will not be hidden and the loading animation will not appear,
-	 * where there is already data.
+	 * Set to `true` for a skeleton state table. Generate a skeleton model using the `skeletonModel` static function, and set
+	 * the current table model to the skeleton model if you set this to `true`. Switch back to original model with fully loaded
+	 * data if you switch from `true` to `false`.
 	 */
 	@Input() skeleton = false;
 	/**
