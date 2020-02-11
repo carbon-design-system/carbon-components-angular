@@ -9,7 +9,8 @@ import {
 	ViewChildren,
 	ElementRef,
 	TemplateRef,
-	OnChanges
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -251,8 +252,8 @@ export class TabHeaders implements AfterContentInit, OnChanges {
 		this.setFirstTab();
 	}
 
-	ngOnChanges() {
-		if (this.tabs) {
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabs && changes.cacheActive) {
 			this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
 		}
 	}

@@ -5,7 +5,8 @@ import {
 	QueryList,
 	AfterContentInit,
 	ContentChild,
-	OnChanges
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
@@ -119,8 +120,8 @@ export class Tabs implements AfterContentInit, OnChanges {
 		});
 	}
 
-	ngOnChanges() {
-		if (this.tabHeaders) {
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabHeaders && changes.cacheActive) {
 			this.tabHeaders.cacheActive = this.cacheActive;
 		}
 	}

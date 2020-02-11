@@ -8,7 +8,8 @@ import {
 	AfterContentInit,
 	ElementRef,
 	TemplateRef,
-	OnChanges
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 
 import { TabHeader } from "./tab-header.component";
@@ -88,17 +89,11 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 
 	@Input() contentBefore: TemplateRef<any>;
 
-		/**
+	/**
 	 * Set to 'true' to have all pane references associated with each tab header
 	 * in the tab header group cached and not reloaded on tab switching.
 	 */
-	@Input() set cacheActive(shouldCache: boolean) {
-		this._cacheActive = shouldCache;
-	}
-
-	get cacheActive() {
-		return this._cacheActive;
-	}
+	@Input() cacheActive = false;
 
 	/**
 	 * ContentChildren of all the tabHeaders.
@@ -231,8 +226,8 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 		this.tabHeaderQuery.toArray()[this.currentSelectedIndex].selectTab();
 	}
 
-	ngOnChanges() {
-		if (this.tabHeaderQuery) {
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabHeaderQuery && changes.cacheActive) {
 			this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
 		}
 	}
