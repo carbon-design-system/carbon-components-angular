@@ -72,8 +72,6 @@ export class DialogService implements OnDestroy {
 	 */
 	protected dialogSubscription = new Subscription();
 
-	protected closeSubscription: Subscription;
-
 	/**
 	 * Creates an instance of `DialogService`.
 	 */
@@ -82,10 +80,6 @@ export class DialogService implements OnDestroy {
 		protected injector: Injector,
 		protected placeholderService: PlaceholderService
 	) {
-		// Adds current close subscription to the reference of all close subscriptions for
-		// local dialog service.
-		this.dialogSubscription.add(this.closeSubscription);
-
 		// keep track of all dialog subscriptions globally.
 		DialogService.dialogCloseSubscription.add(this.dialogSubscription);
 	}
@@ -151,11 +145,15 @@ export class DialogService implements OnDestroy {
 		this.onClose = dialogRef.instance.close;
 		this.isOpen = true;
 
-		this.closeSubscription = this.onClose.subscribe(() => {
+		const closeSubscription = this.onClose.subscribe(() => {
 			if (dialogConfig.shouldClose && dialogConfig.shouldClose()) {
 				this.close(viewContainer, dialogRef);
 			}
 		});
+
+		// Adds current close subscription to the reference of all close subscriptions for
+		// local dialog service.
+		this.dialogSubscription.add(closeSubscription);
 
 		dialogRef.instance.elementRef.nativeElement.focus();
 
@@ -191,9 +189,12 @@ export class DialogService implements OnDestroy {
 		this.dialogRef = null;
 		this.isOpen = false;
 
-		// Keeps the focus on the dialog trigger if there are not focusable elements
-		// within the dialog.
-		if (!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector)) {
+		// Keeps the focus on the dialog trigger if there are no focusable elements. Change focus to previously focused element
+		// if there are focusable elements in the dialog or if trigger is set to `hover` or `mouseenter`.
+		if (
+			!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector) ||
+			dialogRef.instance.dialogConfig.trigger === "hover" ||
+			dialogRef.instance.dialogConfig.trigger === "mouseenter") {
 			elementToFocus.focus();
 		}
 	}

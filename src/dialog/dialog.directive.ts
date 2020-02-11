@@ -43,7 +43,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() ibmDialog: string | TemplateRef<any>;
 	/**
-	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
+	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap).
+	 * Do not add focusable elements if trigger is `hover` or `mouseenter`.
 	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
