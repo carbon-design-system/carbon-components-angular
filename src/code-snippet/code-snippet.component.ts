@@ -144,7 +144,7 @@ export class CodeSnippet implements AfterViewInit {
 		if (this.hasExpandButton === null) {
 			return this.hasExpandButton;
 		}
-		return this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false && this.display === "multi";
+		return this.canExpand();
 	}
 
 	showFeedback = false;
@@ -204,7 +204,7 @@ export class CodeSnippet implements AfterViewInit {
 
 	ngAfterViewInit() {
 		setTimeout(() => {
-			if ((this.code && this.code.nativeElement.getBoundingClientRect().height > 255) && this.display === "multi") {
+			if (this.canExpand()) {
 				this.hasExpandButton = true;
 			} else {
 				this.hasExpandButton = false;
@@ -224,5 +224,9 @@ export class CodeSnippet implements AfterViewInit {
 		}
 
 		this.onCopyButtonClicked();
+	}
+
+	protected canExpand() {
+		return (this.code && this.code.nativeElement.getBoundingClientRect().height > 255) && this.display === "multi";
 	}
 }
