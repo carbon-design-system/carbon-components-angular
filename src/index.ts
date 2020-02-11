@@ -28,6 +28,7 @@ export * from "./progress-indicator/progress-indicator.module";
 export * from "./radio/radio.module";
 export * from "./search/search.module";
 export * from "./select/select.module";
+export * from "./skeleton/skeleton.module";
 export * from "./slider/slider.module";
 export * from "./structured-list/structured-list.module";
 export * from "./table/table.module";
