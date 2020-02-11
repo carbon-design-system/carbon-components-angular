@@ -25,18 +25,13 @@ import { TableHeaderItem } from "./../table-header-item.class";
 				'bx--table-sort--ascending': column.ascending
 			}"
 			(click)="onClick()">
-			<span
-				*ngIf="!column.template && !skeleton"
+			<div
+				*ngIf="!column.template && column.data"
 				[title]="column.data"
 				tabindex="-1">
-				<div>
-					{{column.data}}
-				</div>
-			</span>
-			<div *ngIf="skeleton && column.data">
 				{{column.data}}
 			</div>
-			<span *ngIf="skeleton && !column.data"></span>
+			<span *ngIf="!column.template && skeleton && !column.data"></span>
 			<ng-template
 				*ngIf="!skeleton"
 				[ngTemplateOutlet]="column.template"

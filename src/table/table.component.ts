@@ -252,19 +252,43 @@ export class Table implements AfterViewInit, OnDestroy {
 	 *
 	 * Example:
 	 *
-	 * ```typescript
-	 * this.model = Table.skeletonModel(5, 5);
-	 * ```
+```typescript
+this.model = Table.skeletonModel(5, 5);
+```
 	 *
-	 * An initial TableModel can be provided and a new skeleton model will be created based off the initial
-	 * model. Note that the new model will be created based on the number of rows/columns of the initial TableModel.
-	 * If headers are already provided in the intiial model, then the headers will be shown.
+	 * You can provide an initial table model as an optional parameter to create a skeleton model based on the initial table model.
+	 * Provide the initial model if you have data that is not completely loaded and set the table's model to the generated skeleton model.
+	 * When the data is fully loaded switch back to the original model which now contains the fully loaded data.
 	 *
 	 *	Example:
 	 *
-	 * ```typescript
-	 * this.model = Table.skeletonModel(5, 5, initialModel)
-	 * ```
+```typescript
+model = new TableModel();
+this.model.header = [
+	new TableHeaderItem({
+		data: "Name"
+	}),
+	new TableHeaderItem({
+		data: "hwer",
+		className: "my-class"
+	})
+];
+
+this.model.rowsSelectedChange.subscribe(event => console.log(event));
+
+this.model.data = [
+	[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+	[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
+	[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
+	[new TableItem({ data: "Name 4" }), new TableItem({data: "twer"})],
+	[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
+	[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
+	[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
+];
+// Note that if you provide the skeletonModel with an initial tableModel it makes the row and column count parameter not do anything.
+const skeletonModel = Table.skeletonModel(0, 0, this.model);
+// Set the table model to `skeletonModel` and switch back to `this.model` when data is finished loading.
+```
 	 *
 	 */
 	static skeletonModel(rowCount: number, columnCount: number, initialModel?: TableModel) {
