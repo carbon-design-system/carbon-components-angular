@@ -51,8 +51,8 @@ import { BaseModal } from "./base-modal.class";
 			[size]="size"
 			[theme]="modalType"
 			[modalLabel]="modalTitle"
-			(overlaySelected)="dismissModal()">
-			<ibm-modal-header (closeSelect)="dismissModal()">
+			(overlaySelected)="dismissModal('overlay')">
+			<ibm-modal-header (closeSelect)="dismissModal('close')">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
@@ -118,8 +118,8 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		this.closeModal();
 	}
 
-	dismissModal() {
-		if (this.onClose && this.onClose() === false) {
+	dismissModal(trigger) {
+		if (this.onClose && this.onClose(trigger) === false) {
 			return;
 		}
 		this.closeModal();
