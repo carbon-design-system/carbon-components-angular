@@ -55,7 +55,6 @@ export class SkeletonTableStory implements OnInit, OnChanges {
 		];
 		// Creates an empty table with 5 rows and 5 columns
 		this.skeletonModel = Table.skeletonModel(5, 5, this.withInitialModel ? this.model : null);
-		console.log(this.skeletonModel);
 	}
 
 	ngOnChanges() {
