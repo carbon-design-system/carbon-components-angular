@@ -257,8 +257,12 @@ this.model = Table.skeletonModel(5, 5);
 ```
 	 *
 	 * You can provide an initial table model as an optional parameter to create a skeleton model based on the initial table model.
+	 *
 	 * Provide the initial model if you have data that is not completely loaded and set the table's model to the generated skeleton model.
-	 * When the data is fully loaded switch back to the original model which now contains the fully loaded data.
+	 *
+	 * When the data is fully loaded switch back to the original model which now contains the fully loaded data or overwrite the data in
+	 *
+	 * newly created model and set `skeleton` to false.
 	 *
 	 *	Example:
 	 *
@@ -285,7 +289,8 @@ this.model.data = [
 	[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 	[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
 ];
-// Note that if you provide the skeletonModel with an initial tableModel it makes the row and column count parameter not do anything.
+// Note that if you provide `initialModel` to `skeletonModel()` it will ignore `columnCount` and `rowCount`
+// and use the one from the provided model.
 const skeletonModel = Table.skeletonModel(0, 0, this.model);
 // Set the table model to `skeletonModel` and switch back to `this.model` when data is finished loading.
 ```
@@ -295,18 +300,9 @@ const skeletonModel = Table.skeletonModel(0, 0, this.model);
 		// If no initial model is supplied create a model with empty data.
 		if (!initialModel) {
 			const model = new TableModel();
-			let header = new Array<TableHeaderItem>();
-			let data = new Array<Array<TableItem>>();
-			let row = new Array<TableItem>();
 
-			for (let i = 0; i < columnCount; i++) {
-				header.push(new TableHeaderItem());
-				row.push(new TableItem({ data: " " }));
-			}
-
-			for (let i = 0; i < rowCount - 1; i++) {
-				data.push(row);
-			}
+			const header = new Array(columnCount).fill(0).map(() => new TableHeaderItem());
+			const data = new Array(rowCount - 1).fill(0).map(() => new Array(columnCount).fill(0).map(() => new TableItem({ data: " " })));
 
 			model.header = header;
 			model.data = data;
@@ -315,10 +311,18 @@ const skeletonModel = Table.skeletonModel(0, 0, this.model);
 		// If an initial model is provided, to create a skeleton state from the given model,
 		// create only first row with empty data to show loading animation only on the first row.
 		const model = Object.assign( Object.create( Object.getPrototypeOf(initialModel)), initialModel);
-		model.data[0] = model.data[0].map(col => new TableItem());
+		model.data[0] = model.data[0].map(col => {
+			const tableItem = Object.assign( Object.create( Object.getPrototypeOf(col)), col);
+			tableItem.data = "";
+			return tableItem;
+		});
 
 		for (let i = 1; i < model.data.length; i++) {
-			model.data[i] = model.data[i].map(col => new TableItem({ data: " " }));
+			model.data[i] = model.data[i].map(col => {
+				const tableItem = Object.assign( Object.create( Object.getPrototypeOf(col)), col);
+				tableItem.data = " ";
+				return tableItem;
+			});
 		}
 
 		return model;
@@ -396,6 +400,37 @@ const skeletonModel = Table.skeletonModel(0, 0, this.model);
 	 * Set to `true` for a skeleton state table. Generate a skeleton model using the `skeletonModel` static function, and set
 	 * the current table model to the skeleton model if you set this to `true`. Switch back to original model with fully loaded
 	 * data if you switch from `true` to `false`.
+	 *
+	 * Exampele:
+	 *
+```typescript
+// Have `skeleton` initially set to true as data is being loaded
+this.skeleton = true;
+
+this.model.header = [
+	new TableHeaderItem({
+		data: "Name"
+	}),
+	new TableHeaderItem({
+		data: "hwer",
+		className: "my-class"
+	})
+];
+
+// Provide an initial data model.
+this.model.data = [
+	[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+	[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })]
+];
+// Create a skeleton model using the initialized model.
+// Note that if you provide `initialModel` to `skeletonModel()` it will ignore `columnCount` and `rowCount`
+// and use the one from the provided model.
+this.model = Table.skeletonModel(0, 0, this.model);
+
+// Overwrite the data in the created skeleton model when data is fully loaded and set `skeleton` to false.
+the.model.data.map(datapoint => ...)
+this.skeleton = false;
+```
 	 */
 	@Input() skeleton = false;
 	/**

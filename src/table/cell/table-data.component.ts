@@ -10,8 +10,8 @@ import { TableItem } from "./../table-item.class";
 	template: `
 		<ng-container *ngIf="!item.template">
 			{{item.data}}
-			<span *ngIf="skeleton && !item.data"></span>
 		</ng-container>
+		<span *ngIf="skeleton && !item.data"></span>
 		<ng-template
 			[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 		</ng-template>

@@ -8,7 +8,8 @@ import { TableModel } from "../table-model.class";
 import {
 	Table,
 	TableHeaderItem,
-	TableItem } from "../table.module";
+	TableItem
+} from "../table.module";
 
 @Component({
 	selector: "app-skeleton-table",
