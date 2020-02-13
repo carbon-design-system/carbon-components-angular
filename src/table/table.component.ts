@@ -300,9 +300,8 @@ const skeletonModel = Table.skeletonModel(-1, 0, this.model);
 	 */
 	static skeletonModel(rowCount: number, columnCount: number, initialModel?: TableModel) {
 		// If no initial model is supplied create a model with empty data.
+		const model = new TableModel();
 		if (!initialModel) {
-			const model = new TableModel();
-
 			const header = new Array(columnCount).fill(0).map(() => new TableHeaderItem());
 			const data = new Array(rowCount).fill(0).map(() => new Array(columnCount).fill(0).map(() => new TableItem({ data: " " })));
 
@@ -312,7 +311,6 @@ const skeletonModel = Table.skeletonModel(-1, 0, this.model);
 		}
 		// If an initial model is provided, to create a skeleton state from the given model,
 		// create only first row with empty data to show loading animation only on the first row.
-		const model = new TableModel();
 		model.header = initialModel.header;
 		model.data = initialModel.data;
 
