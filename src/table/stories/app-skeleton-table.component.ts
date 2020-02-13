@@ -43,8 +43,6 @@ export class SkeletonTableStory implements OnInit, OnChanges {
 			})
 		];
 
-		this.model.rowsSelectedChange.subscribe(event => console.log(event));
-
 		this.model.data = [
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
@@ -54,11 +52,12 @@ export class SkeletonTableStory implements OnInit, OnChanges {
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
 		];
-		// Creates an empty table with 5 rows and 5 columns
-		this.skeletonModel = Table.skeletonModel(5, 5, this.withInitialModel ? this.model : null);
+		console.log("in oninit: ",this.model);
+		this.skeletonModel = Table.skeletonModel(3, 5, this.withInitialModel ? this.model : null);
 	}
 
 	ngOnChanges() {
-		this.skeletonModel = Table.skeletonModel(5, 5, this.withInitialModel ? this.model : null);
+		this.skeletonModel = Table.skeletonModel(3, 5, this.withInitialModel ? this.model : null);
+		console.log("in onchanges: ",this.model);
 	}
 }
