@@ -52,12 +52,10 @@ export class SkeletonTableStory implements OnInit, OnChanges {
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
 		];
-		console.log("in oninit: ",this.model);
 		this.skeletonModel = Table.skeletonModel(3, 5, this.withInitialModel ? this.model : null);
 	}
 
 	ngOnChanges() {
 		this.skeletonModel = Table.skeletonModel(3, 5, this.withInitialModel ? this.model : null);
-		console.log("in onchanges: ",this.model);
 	}
 }

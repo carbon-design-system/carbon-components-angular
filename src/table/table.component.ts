@@ -299,11 +299,14 @@ const skeletonModel = Table.skeletonModel(-1, 0, this.model);
 	 *
 	 */
 	static skeletonModel(rowCount: number, columnCount: number, initialModel?: TableModel) {
-		// If no initial model is supplied create a model with empty data.
 		const model = new TableModel();
+
+		// If no initial model is supplied create a model with empty data.
 		if (!initialModel) {
 			const header = new Array(columnCount).fill(0).map(() => new TableHeaderItem());
-			const data = new Array(rowCount).fill(0).map(() => new Array(columnCount).fill(0).map(() => new TableItem({ data: " " })));
+			const data = new Array(rowCount).fill(0).map(
+				() => new Array(columnCount).fill(0).map(() => new TableItem({ data: " " }))
+			);
 
 			model.header = header;
 			model.data = data;
@@ -312,33 +315,18 @@ const skeletonModel = Table.skeletonModel(-1, 0, this.model);
 		// If an initial model is provided, to create a skeleton state from the given model,
 		// create only first row with empty data to show loading animation only on the first row.
 		model.header = initialModel.header;
-		model.data = initialModel.data;
+		const headerLength = initialModel.header.length;
 
-		model.data[0] = model.data[0].map(column => {
-			column.data = "";
-			return column;
-		});
+		// Empty data is put into the first row of the `TableModel` to show a loading animation.
 
-		for (let i = 1; i < (rowCount === -1 ? model.data.length : rowCount); i++) {
-			// Create rows with default `TableItems` for extra rows when given `rowCount` is greater
-			// than the number of rows in the given initial model.
-			if (i >= model.data.length) {
-				model.data[i] = Array(model.data[0].length).fill(0).map(() => new TableItem({ data: " " }));
-			} else {
-				model.data[i] = model.data[i].map(column => {
-					column.data = " ";
-					return column;
-				});
-			}
+		let numberOfRows = rowCount;
+		if (numberOfRows === -1) {
+			numberOfRows = model.data.length;
 		}
-
-		// Delete extra rows if number given `rowCount` is less than the number of rows in a given initial model.
-		const modelLength = model.data.length;
-		if (rowCount < modelLength && rowCount !== -1) {
-			for (let i = rowCount; i < modelLength; i++) {
-				model.deleteRow(i);
-			}
-		}
+		const newData = [Array(headerLength).fill(0).map(() => new TableItem({ data: "" }))];
+		model.data = newData.concat(Array(numberOfRows - 1).fill(0).map(
+			() => Array(headerLength).fill(0).map(() => new TableItem({ data: " " }))
+		));
 
 		return model;
 	}
@@ -590,7 +578,7 @@ this.skeleton = false;
 	 * ```
 	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
 	 * <!-- results in aria-label="Select first column value"
-	 * (where "first column value" is the value of the first column in the row -->
+	 * where "first column value" is the value of the first column in the row -->
 	 * ```
 	 */
 	@Input() selectionLabelColumn: number;
