@@ -101,9 +101,6 @@ export class TableToolbar {
 	}
 
 	onCancel() {
-		this.onCancelSelected.emit();
-		for (let i = 0; i < this.model.rowsSelected.length; i++) {
-			this.model.selectRow(i, false);
-		}
+		this.model.selectAll(false);
 	}
 }

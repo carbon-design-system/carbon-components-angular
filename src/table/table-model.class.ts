@@ -52,6 +52,11 @@ export class TableModel implements PaginationModel {
 	dataChange = new EventEmitter();
 	rowsSelectedChange = new EventEmitter<number>();
 	rowsExpandedChange = new EventEmitter<number>();
+	/**
+	 * Gets emitted when `selectAll` is called. Emits false if all rows are deselected and true if
+	 * all rows are selected.
+	 */
+	selectAllChange = new EventEmitter<boolean>();
 
 	/**
 	 * Gets the full data.
@@ -588,6 +593,7 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set all rows to. Defaults to `true`
 	 */
 	selectAll(value = true) {
+		this.selectAllChange.emit(value);
 		if (this.data.length >= 1) {
 			for (let i = 0; i < this.rowsSelected.length; i++) {
 				this.selectRow(i, value);
