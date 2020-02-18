@@ -25,7 +25,7 @@ function sort(model, index: number) {
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
-			[showSelectionColumn]="true"
+			[showSelectionColumn]="showSelectionColumn"
 			[enableSingleSelect]="false"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
