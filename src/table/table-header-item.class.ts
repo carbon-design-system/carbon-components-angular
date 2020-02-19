@@ -238,6 +238,14 @@ export class TableHeaderItem {
 	 * 0 if it doesn't matter (they are the same)
 	 */
 	compare(one: TableItem, two: TableItem): number {
+		if (!one || !two) {
+			return 0;
+		}
+		
+		if (typeof one.data === "string") {
+			return one.data.localeCompare(two.data);
+		}
+		
 		if (one.data < two.data) {
 			return -1;
 		} else if (one.data > two.data) {
