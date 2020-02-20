@@ -5,6 +5,7 @@ import {
 import { PaginationModel } from "./../pagination/pagination-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
+import { Subject } from "rxjs";
 
 export type HeaderType = number | "select" | "expand";
 
@@ -56,7 +57,7 @@ export class TableModel implements PaginationModel {
 	 * Gets emitted when `selectAll` is called. Emits false if all rows are deselected and true if
 	 * all rows are selected.
 	 */
-	selectAllChange = new EventEmitter<boolean>();
+	selectAllChange = new Subject<boolean>();
 
 	/**
 	 * Gets the full data.
@@ -593,12 +594,12 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set all rows to. Defaults to `true`
 	 */
 	selectAll(value = true) {
-		this.selectAllChange.emit(value);
 		if (this.data.length >= 1) {
 			for (let i = 0; i < this.rowsSelected.length; i++) {
 				this.selectRow(i, value);
 			}
 		}
+		this.selectAllChange.next(value);
 	}
 
 	isRowSelected(index: number) {
