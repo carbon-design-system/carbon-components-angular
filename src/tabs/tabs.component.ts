@@ -5,7 +5,8 @@ import {
 	QueryList,
 	AfterContentInit,
 	ContentChild,
-	Query
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
@@ -63,9 +64,9 @@ import { TabHeaders } from "./tab-headers.component";
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
 			</ibm-tab-headers>
-	 `
+	`
 })
-export class Tabs implements AfterContentInit {
+export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Takes either the string value 'top' or 'bottom' to place TabHeader
 	 * relative to the `TabPanel`s.
@@ -117,6 +118,12 @@ export class Tabs implements AfterContentInit {
 		this.tabs.forEach(tab => {
 			tab.tabIndex = this.isNavigation ? -1 : 0;
 		});
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabHeaders && changes.cacheActive) {
+			this.tabHeaders.cacheActive = this.cacheActive;
+		}
 	}
 
 	/**

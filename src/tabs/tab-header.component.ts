@@ -31,7 +31,7 @@ import { EventEmitter } from "@angular/core";
 				<ng-content></ng-content>
 			</a>
 		</li>
-	 `
+	`
 })
 
 export class TabHeader {
@@ -49,11 +49,30 @@ export class TabHeader {
 	 */
 	@Input() paneReference: Tab;
 	/**
+	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
+	 */
+	@Input() set cacheActive(shouldCache: boolean) {
+		this._cacheActive = shouldCache;
+
+		// Updates the pane references associated with the tab header when cache active is changed.
+		if (this.paneReference) {
+			this.paneReference.cacheActive = this.cacheActive;
+		}
+	}
+
+	get cacheActive() {
+		return this._cacheActive;
+	}
+
+	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
+
 	@Output() selected = new EventEmitter<any>();
 
 	@ViewChild("tabItem") tabItem: ElementRef;
+
+	protected _cacheActive = false;
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();

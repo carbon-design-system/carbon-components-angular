@@ -5,18 +5,20 @@ import {
 	ComponentFactory,
 	ComponentFactoryResolver,
 	Injectable,
-	ViewContainerRef
+	ViewContainerRef,
+	OnDestroy
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
 import { PlaceholderService } from "./../placeholder/placeholder.module";
 import { Dialog } from "./dialog.component";
+import { tabbableSelector } from "../common/tab.service";
 
 /**
  * `Dialog` object to be injected into other components.
  */
 @Injectable()
-export class DialogService {
+export class DialogService implements OnDestroy {
 	/**
 	 * Used in `singletonClickListen`, don't count on its existence and values.
 	 */
@@ -68,7 +70,7 @@ export class DialogService {
 	 *
 	 * @deprecated in favor of `DialogService.dialogCloseSubscription`
 	 */
-	protected dialogSubscription: Subscription;
+	protected dialogSubscription = new Subscription();
 
 	/**
 	 * Creates an instance of `DialogService`.
@@ -77,7 +79,10 @@ export class DialogService {
 		protected componentFactoryResolver: ComponentFactoryResolver,
 		protected injector: Injector,
 		protected placeholderService: PlaceholderService
-	) {}
+	) {
+		// keep track of all dialog subscriptions globally.
+		DialogService.dialogCloseSubscription.add(this.dialogSubscription);
+	}
 
 	/**
 	 * Uses module `componentFactory` to create the `Dialog` component.
@@ -146,16 +151,14 @@ export class DialogService {
 			}
 		});
 
-		// keep track of all dialog subscriptions
-		DialogService.dialogCloseSubscription.add(closeSubscription);
+		// Adds current close subscription to the reference of all close subscriptions for
+		// local dialog service.
+		this.dialogSubscription.add(closeSubscription);
 
 		dialogRef.instance.elementRef.nativeElement.focus();
 
 		// deprecated - kept for API compatibility
 		this.dialogRef = dialogRef;
-
-		// deprecated - kept for API compatibility
-		this.dialogSubscription = closeSubscription;
 
 		// return `this` for easy method chaining
 		// TODO v11: return `dialogRef` instead
@@ -185,11 +188,22 @@ export class DialogService {
 
 		this.dialogRef = null;
 		this.isOpen = false;
-		elementToFocus.focus();
 
-		if (this.dialogSubscription) {
-			this.dialogSubscription.unsubscribe();
+		// Keeps the focus on the dialog trigger if there are no focusable elements. Change focus to previously focused element
+		// if there are focusable elements in the dialog or if trigger is set to `hover` or `mouseenter`.
+		if (
+			!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector) ||
+			dialogRef.instance.dialogConfig.trigger === "hover" ||
+			dialogRef.instance.dialogConfig.trigger === "mouseenter") {
+			elementToFocus.focus();
 		}
+	}
+
+	// Unsubscribes from all the close subscriptions associated with the destroyed dialog
+	// service and removes the subscriptions from the global `dialogCloseSubscription`.
+	ngOnDestroy() {
+		DialogService.dialogCloseSubscription.remove(this.dialogSubscription);
+		this.dialogSubscription.unsubscribe();
 	}
 
 	/**

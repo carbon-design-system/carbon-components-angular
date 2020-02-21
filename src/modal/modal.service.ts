@@ -73,6 +73,7 @@ export class ModalService {
 	 * `modalTitle` - modal's title,
 	 * `modalContent` - modal's content, could include HTML tags.
 	 * `buttons` is an array of objects
+	 * `close` custom close function
 	 * ```
 	 * {
 	 * 		text: "Button text",
@@ -123,5 +124,4 @@ export class ModalService {
 		ModalService.modalList.splice(index, 1);
 	}
 }
-
 

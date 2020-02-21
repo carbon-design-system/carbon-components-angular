@@ -8,7 +8,9 @@ import {
 	AfterContentInit,
 	ViewChildren,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -97,10 +99,10 @@ import { Tab } from "./tab.component";
 				</li>
 			</ul>
 		</nav>
-	 `
+	`
 })
 
-export class TabHeaders implements AfterContentInit {
+export class TabHeaders implements AfterContentInit, OnChanges {
 	/**
 	 * List of `Tab` components.
 	 */
@@ -248,6 +250,12 @@ export class TabHeaders implements AfterContentInit {
 			this.setFirstTab();
 		});
 		this.setFirstTab();
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabs && changes.cacheActive) {
+			this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
+		}
 	}
 
 	/**

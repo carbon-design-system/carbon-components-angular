@@ -66,7 +66,8 @@ import { ElementService } from "./../utils/utils.module";
 			[attr.aria-disabled]="disabled"
 			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[attr.disabled]="disabled ? true : null">
+			[attr.disabled]="disabled ? true : null"
+			[tabindex]="disabled ? -1 : 0">
 			<div
 				(click)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
