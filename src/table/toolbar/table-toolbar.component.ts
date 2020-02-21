@@ -79,10 +79,7 @@ export class TableToolbar {
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
-	/**
-	 * Will be emitted when cancel button is clicked and all rows are deselected.
-	 */
-	@Output() onCancelSelected = new EventEmitter();
+
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
