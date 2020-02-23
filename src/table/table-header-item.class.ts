@@ -234,7 +234,7 @@ export class TableHeaderItem {
 	 * Override to enable different sorting.
 	 *
 	 * < 0 if `one` should go before `two`
-	 * > 0 if `one` shoulg go after `two`
+	 * > 0 if `one` should go after `two`
 	 * 0 if it doesn't matter (they are the same)
 	 */
 	compare(one: TableItem, two: TableItem): number {
