@@ -241,11 +241,11 @@ export class TableHeaderItem {
 		if (!one || !two) {
 			return 0;
 		}
-		
+
 		if (typeof one.data === "string") {
 			return one.data.localeCompare(two.data);
 		}
-		
+
 		if (one.data < two.data) {
 			return -1;
 		} else if (one.data > two.data) {
