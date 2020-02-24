@@ -7,7 +7,7 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [followFocus]="followFocus">
+		<ibm-tab-header-group [followFocus]="followFocus" [cacheActive]="cacheActive">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -38,6 +38,7 @@ import { Component, Input } from "@angular/core";
 })
 class TabStory {
 	@Input() followFocus = true;
+	@Input() cacheActive = false;
 }
 
 storiesOf("Components|Tabs", module)
@@ -53,7 +54,7 @@ storiesOf("Components|Tabs", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
 				<ibm-tab heading="one">Tab Content 1</ibm-tab>
 				<ibm-tab heading="two">Tab Content 2</ibm-tab>
 				<ibm-tab heading="three">Tab Content 3</ibm-tab>
@@ -62,7 +63,8 @@ storiesOf("Components|Tabs", module)
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			isNavigation: boolean("isNavigation", false)
+			isNavigation: boolean("isNavigation", false),
+			cacheActive: boolean("Cache active", true)
 		}
 	}))
 	.add("With template", () => ({
@@ -125,10 +127,11 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [followFocus]="followFocus"></ibm-header-group>
+			<ibm-header-group [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
 		`,
 		props: {
-			followFocus: boolean("followFocus", true)
+			followFocus: boolean("followFocus", true),
+			cacheActive: boolean("Cache active", true)
 		}
 	}))
 	.add("Skeleton", () => ({

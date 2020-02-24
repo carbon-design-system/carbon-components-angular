@@ -3,7 +3,8 @@ import {
 	Input,
 	HostBinding,
 	ViewChild,
-	HostListener
+	HostListener,
+	AfterViewInit
 } from "@angular/core";
 
 import { I18n } from "../i18n/i18n.module";
@@ -53,7 +54,7 @@ export enum SnippetType {
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
-				*ngIf="display === 'multi' && shouldShowExpandButton"
+				*ngIf="shouldShowExpandButton"
 				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
 				(click)="toggleSnippetExpansion()"
 				type="button">
@@ -77,7 +78,7 @@ export enum SnippetType {
 		</ng-template>
 	`
 })
-export class CodeSnippet {
+export class CodeSnippet implements AfterViewInit {
 	/**
 	 * Variable used for creating unique ids for code-snippet components.
 	 */
@@ -137,10 +138,18 @@ export class CodeSnippet {
 	@ViewChild("code") code;
 
 	get shouldShowExpandButton() {
-		return this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false;
+		// Checks if `hasExpand` button has been initialized in `AfterViewInit` before detecting whether or not to
+		// show the expand button when the code displayed in the component changes during the life of the component.
+		// This is to avoid the `ExpressionChangedAfterItHasBeenCheckedError`.
+		if (this.hasExpandButton === null) {
+			return this.hasExpandButton;
+		}
+		return this.canExpand();
 	}
 
 	showFeedback = false;
+
+	hasExpandButton = null;
 
 	/**
 	 * Creates an instance of CodeSnippet.
@@ -193,6 +202,16 @@ export class CodeSnippet {
 		}, this.feedbackTimeout);
 	}
 
+	ngAfterViewInit() {
+		setTimeout(() => {
+			if (this.canExpand()) {
+				this.hasExpandButton = true;
+			} else {
+				this.hasExpandButton = false;
+			}
+		});
+	}
+
 	/**
 	 * Inline code snippet acts as button and makes the whole component clickable.
 	 *
@@ -205,5 +224,9 @@ export class CodeSnippet {
 		}
 
 		this.onCopyButtonClicked();
+	}
+
+	protected canExpand() {
+		return (this.code && this.code.nativeElement.getBoundingClientRect().height > 255) && this.display === "multi";
 	}
 }

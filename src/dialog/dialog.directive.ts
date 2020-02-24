@@ -43,7 +43,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() ibmDialog: string | TemplateRef<any>;
 	/**
-	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
+	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap).
+	 * Do not add focusable elements if trigger is `hover` or `mouseenter`.
 	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
@@ -167,7 +168,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
+			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.open());
 			fromEvent(this.elementRef.nativeElement, this.closeTrigger).subscribe(() => this.close());
 			fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
 			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
@@ -222,10 +223,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
 	toggle() {
-		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
-		this.expanded = this.dialogService.isOpen;
+		this.expanded = !this.expanded;
 		if (this.expanded) {
 			this.onOpen.emit();
+			this.open();
+		} else {
+			this.close();
 		}
 	}
 
