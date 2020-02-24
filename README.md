@@ -10,6 +10,9 @@
 			<img src="https://img.shields.io/npm/v/carbon-components-angular.svg" />
 		</a>
 		<img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+		<a href="https://www.netlify.com" target="_blank">
+			<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+		</a>
 	</p>
 </p>
 
@@ -110,3 +113,5 @@ To keep our build dependencies local we use npm scripts to run our webpack, gulp
   - Likewise, stateless components should be favored whenever possible
 - Components should NOT *necessarily* implement the style guide point-for-point, the guide simply provides guidance on overarching functionality, components should enable that and product specific designs **without** baking in extra functionality
 
+## Code of Conduct
+Read our code of conduct [here](./.github/CODE_OF_CONDUCT.md)
