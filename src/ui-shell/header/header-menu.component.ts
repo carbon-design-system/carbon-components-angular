@@ -34,8 +34,8 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 					<ibm-header-item
 						[href]="headerItem.href"
 						[route]="headerItem.route"
-						[routeExtras]="headerItem.routeExtras"
-						[content]="headerItem.content">
+						[routeExtras]="headerItem.routeExtras">
+						{{ headerItem.content }}
 					</ibm-header-item>
 				</ng-container>
 			</ul>
@@ -48,7 +48,7 @@ export class HeaderMenu {
 		// Needed when component is created dynamically with a model.
 		if (v === undefined) {
 			return;
-		} 
+		}
 		this._href = v;
 	}
 

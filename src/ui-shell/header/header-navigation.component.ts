@@ -1,7 +1,7 @@
 import {
 	Component,
 	HostBinding,
-	Input 
+	Input
 } from "@angular/core";
 import { NavigationItem } from "./header-navigation-items.interface";
 /**
@@ -18,8 +18,8 @@ import { NavigationItem } from "./header-navigation-items.interface";
 						*ngIf="navigationItem.type === 'item'"
 						[href]="navigationItem.href"
 						[route]="navigationItem.route"
-						[routeExtras]="navigationItem.routeExtras"
-						[content]="navigationItem.content">
+						[routeExtras]="navigationItem.routeExtras">
+						{{ navigationItem.content }}
 					</ibm-header-item>
 					<ibm-header-menu
 						*ngIf="navigationItem.type === 'menu'"

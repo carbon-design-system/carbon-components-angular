@@ -22,7 +22,6 @@ import { Router } from "@angular/router";
 				[href]="href"
 				(click)="navigate($event)">
 				<ng-content></ng-content>
-				{{ content }}
 			</a>
 		</li>
 	`
@@ -32,7 +31,7 @@ export class HeaderItem {
 		// Needed when component is created dynamically with a model.
 		if (v === undefined) {
 			return;
-		} 
+		}
 		this._href = v;
 	}
 
@@ -51,8 +50,6 @@ export class HeaderItem {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
-
-	@Input() content: string;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

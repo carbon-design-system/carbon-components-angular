@@ -30,8 +30,8 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							*ngIf="navigationItem.type === 'item'"
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
-							[routeExtras]="navigationItem.routeExtras"
-							[content]="navigationItem.content">
+							[routeExtras]="navigationItem.routeExtras">
+							{{ navigationItem.content }}
 						</ibm-sidenav-item>
 						<ibm-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"

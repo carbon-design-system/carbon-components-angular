@@ -29,7 +29,6 @@ import { Router } from "@angular/router";
 					<ng-content select="[icon]"></ng-content>
 				</div>
 				<span class="bx--side-nav__link-text">
-					{{ content }}
 					<ng-content></ng-content>
 				</span>
 			</a>
@@ -44,7 +43,7 @@ export class SideNavItem {
 		// Needed when component is created dynamically with a model.
 		if (v === undefined) {
 			return;
-		} 
+		}
 		this._href = v;
 	}
 
@@ -62,8 +61,6 @@ export class SideNavItem {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() route: any[];
-
-	@Input() content: string;
 
 	/**
 	 * Router options. Used in conjunction with `route`

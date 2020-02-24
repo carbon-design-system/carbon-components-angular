@@ -46,8 +46,8 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 						[href]="menuItem.href"
 						[route]="menuItem.route"
 						[routeExtras]="menuItem.routeExtras"
-						[content]="menuItem.content"
 						[isSubMenu]="true">
+						{{ menuItem.content }}
 					</ibm-sidenav-item>
 				</ng-container>
 			</ul>
