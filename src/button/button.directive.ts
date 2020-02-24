@@ -50,10 +50,7 @@ export class Button implements OnInit {
 		return this.ibmButton === "ghost";
 	}
 	@HostBinding("class.bx--btn--danger") get dangerButton() {
-		return this.ibmButton === "danger";
-	}
-	@HostBinding("class.bx--btn--danger--primary") get dangerPrimaryButton() {
-		return this.ibmButton === "danger--primary";
+		return this.ibmButton === "danger" || this.ibmButton === "danger--primary";
 	}
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--btn--sm") get smallSize() {
