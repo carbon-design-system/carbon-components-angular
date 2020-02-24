@@ -46,6 +46,9 @@
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
         <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -83,6 +86,15 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+		:host {
+			display: block;
+			position: relative;
+		}
+	</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
@@ -159,7 +171,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/table/table-container.component.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/table/table-container.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -179,7 +191,13 @@
 
 @Component({
 	selector: &quot;ibm-table-container&quot;,
-	template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;
+	template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
+	styles: [&#x60;
+		:host {
+			display: block;
+			position: relative;
+		}
+	&#x60;]
 })
 export class TableContainer {
 	@HostBinding(&quot;class.bx--data-table-container&quot;) containerClass &#x3D; true;
@@ -188,6 +206,15 @@ export class TableContainer {
     </div>
 
 
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+		:host {
+			display: block;
+			position: relative;
+		}
+	
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>

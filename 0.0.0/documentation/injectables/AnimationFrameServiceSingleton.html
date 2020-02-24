@@ -122,7 +122,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -131,6 +131,36 @@
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -164,7 +194,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/utils/animation-frame.service.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/utils/animation-frame.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -233,7 +263,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/utils/animation-frame.service.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/utils/animation-frame.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -366,7 +396,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy, NgZone } from &quot;@angular/core&quot;;
 import { Observable, Subject, from } from &quot;rxjs&quot;;
 
 @Injectable()
@@ -377,9 +407,11 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected animationFrameId: number;
 
-	constructor() {
+	constructor(protected ngZone: NgZone) {
 		this.tick &#x3D; this.frameSource.asObservable();
-		this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+			this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 
 	ngOnDestroy() {
@@ -388,7 +420,9 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected doTick(frame: number) {
 		this.frameSource.next(frame);
-		requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+			requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 }
 

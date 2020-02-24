@@ -787,7 +787,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/file-uploader/file-uploader.component.ts:253</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/file-uploader/file-uploader.component.ts:255</a></div>
                             </td>
                         </tr>
 
@@ -1123,7 +1123,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/file-uploader/file-uploader.component.ts:266</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/file-uploader/file-uploader.component.ts:268</a></div>
                             </td>
                         </tr>
 
@@ -1194,7 +1194,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/file-uploader/file-uploader.component.ts:260</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/file-uploader/file-uploader.component.ts:262</a></div>
                             </td>
                         </tr>
 
@@ -1265,7 +1265,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/file-uploader/file-uploader.component.ts:247</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/file-uploader/file-uploader.component.ts:249</a></div>
                             </td>
                         </tr>
 
@@ -1717,7 +1717,7 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 import { I18n } from &quot;../i18n/i18n.module&quot;;
 import { FileItem } from &quot;./file-item.interface&quot;;
 
-const noop &#x3D; () &#x3D;&gt; {};
+const noop &#x3D; () &#x3D;&gt; { };
 
 /**
  * [See demo](../../?path&#x3D;/story/file-uploader--basic)
@@ -1939,11 +1939,13 @@ export class FileUploader {
 			// Get the file extension and add a &quot;.&quot; to the beginning.
 			const fileExtension &#x3D; name.split(&quot;.&quot;).pop().replace(/^/, &quot;.&quot;);
 			// Check if the accept array contains the mime type or extension of the file.
-			return this.accept.includes(type) || this.accept.includes(fileExtension) || this.accept.length &#x3D;&#x3D;&#x3D; 0;
+			return this.accept.includes(type) || this.accept.includes(fileExtension) || !this.accept.length;
 		}).forEach(file &#x3D;&gt; {
-			const fileItem &#x3D; this.createFileItem(file);
-			this.files.add(fileItem);
-			this.filesChange.emit(this.files);
+			if (!this.files.size || this.multiple) {
+				const fileItem &#x3D; this.createFileItem(file);
+				this.files.add(fileItem);
+				this.filesChange.emit(this.files);
+			}
 		});
 
 		this.value &#x3D; this.files;

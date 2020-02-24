@@ -101,7 +101,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/utils/animation-frame.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/utils/animation-frame.service.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -173,7 +173,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/utils/animation-frame.service.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/utils/animation-frame.service.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -186,7 +186,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy, NgZone } from &quot;@angular/core&quot;;
 import { Observable, Subject, from } from &quot;rxjs&quot;;
 
 @Injectable()
@@ -197,9 +197,11 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected animationFrameId: number;
 
-	constructor() {
+	constructor(protected ngZone: NgZone) {
 		this.tick &#x3D; this.frameSource.asObservable();
-		this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+			this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 
 	ngOnDestroy() {
@@ -208,7 +210,9 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected doTick(frame: number) {
 		this.frameSource.next(frame);
-		requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+			requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 }
 

@@ -302,7 +302,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/modal/modal.service.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/modal/modal.service.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -374,7 +374,7 @@ When called without parameters it destroys the most recently created/top most mo
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modal/modal.service.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/modal/modal.service.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -413,7 +413,8 @@ When called without parameters it destroys the most recently created/top most mo
 <code>modalLabel</code> - a label shown over the title,
 <code>modalTitle</code> - modal&#39;s title,
 <code>modalContent</code> - modal&#39;s content, could include HTML tags.
-<code>buttons</code> is an array of objects</p>
+<code>buttons</code> is an array of objects
+<code>close</code> custom close function</p>
 <div><pre class="line-numbers"><code class="language-none">     * {
      *         text: &quot;Button text&quot;,
      *         type: &quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot; | &quot;ghost&quot; | &quot;danger&quot; | &quot;danger--primary&quot; = &quot;primary&quot;,
@@ -637,6 +638,7 @@ export class ModalService {
 	 * &#x60;modalTitle&#x60; - modal&#x27;s title,
 	 * &#x60;modalContent&#x60; - modal&#x27;s content, could include HTML tags.
 	 * &#x60;buttons&#x60; is an array of objects
+	 * &#x60;close&#x60; custom close function
 	 * &#x60;&#x60;&#x60;
 	 * {
 	 * 		text: &quot;Button text&quot;,
@@ -687,7 +689,6 @@ export class ModalService {
 		ModalService.modalList.splice(index, 1);
 	}
 }
-
 
 </code></pre>
     </div>

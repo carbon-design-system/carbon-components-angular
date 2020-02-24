@@ -200,7 +200,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
 	provide: AnimationFrameServiceSingleton,
-	deps: [[new Optional(), new SkipSelf(), AnimationFrameServiceSingleton]],
+	deps: [[new Optional(), new SkipSelf(), AnimationFrameServiceSingleton], NgZone],
 	useFactory: ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
 }</code>
                         </td>
@@ -962,7 +962,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>() &#x3D;&gt; {}</code>
+                            <i>Default value : </i><code>() &#x3D;&gt; { }</code>
                         </td>
                     </tr>
 

@@ -1028,7 +1028,7 @@ necessary for you to be able to access item&#39;s data in the template.</p>
 <p>Override to enable different sorting.</p>
 <p>&lt; 0 if <code>one</code> should go before <code>two</code></p>
 <blockquote>
-<p>0 if <code>one</code> shoulg go after <code>two</code>
+<p>0 if <code>one</code> should go after <code>two</code>
 0 if it doesn&#39;t matter (they are the same)</p>
 </blockquote>
 </div>
@@ -1106,7 +1106,7 @@ necessary for you to be able to access item&#39;s data in the template.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/table/table-header-item.class.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/table/table-header-item.class.ts:269</a></div>
                             </td>
                         </tr>
 
@@ -1546,10 +1546,18 @@ export class TableHeaderItem {
 	 * Override to enable different sorting.
 	 *
 	 * &lt; 0 if &#x60;one&#x60; should go before &#x60;two&#x60;
-	 * &gt; 0 if &#x60;one&#x60; shoulg go after &#x60;two&#x60;
+	 * &gt; 0 if &#x60;one&#x60; should go after &#x60;two&#x60;
 	 * 0 if it doesn&#x27;t matter (they are the same)
 	 */
 	compare(one: TableItem, two: TableItem): number {
+		if (!one || !two) {
+			return 0;
+		}
+
+		if (typeof one.data &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
+			return one.data.localeCompare(two.data);
+		}
+
 		if (one.data &lt; two.data) {
 			return -1;
 		} else if (one.data &gt; two.data) {

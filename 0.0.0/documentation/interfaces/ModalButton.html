@@ -312,8 +312,9 @@ export interface AlertModalData {
 	buttons?: Array&lt;ModalButton&gt;;
 	/**
 	 * Callback for non-specific close events. &#x60;return false;&#x60; to prevent the modal from closing
+	 * Property trigger has a value of &#x60;overlay&#x60; or &#x60;close&#x60;
 	 */
-	close?: Function;
+	close?: (trigger?: &quot;overlay&quot; | &quot;close&quot;) &#x3D;&gt; boolean;
 }
 
 export enum ModalButtonType {
