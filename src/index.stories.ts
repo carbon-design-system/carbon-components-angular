@@ -106,6 +106,10 @@ import { Document20Module } from "@carbon/icons-angular/lib/document/20";
 					Starter App
 					<svg ibmIconBee20 class="bx--btn__icon"></svg>
 				</a>
+				&nbsp;
+				<a href="https://www.netlify.com" target="_blank">
+					<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+				</a>
 			</div>
 		</section>
 	`,
