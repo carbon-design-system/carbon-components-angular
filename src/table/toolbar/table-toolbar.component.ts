@@ -1,5 +1,10 @@
 import { TableModel } from "../table-model.class";
-import { Component, Input } from "@angular/core";
+import {
+	Component,
+	EventEmitter,
+	Input,
+	Output
+} from "@angular/core";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 
 /**
@@ -74,6 +79,7 @@ export class TableToolbar {
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
+
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
@@ -92,8 +98,6 @@ export class TableToolbar {
 	}
 
 	onCancel() {
-		for (let i = 0; i < this.model.rowsSelected.length; i++) {
-			this.model.selectRow(i, false);
-		}
+		this.model.selectAll(false);
 	}
 }

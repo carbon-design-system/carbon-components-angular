@@ -25,7 +25,7 @@ function sort(model, index: number) {
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
-			[showSelectionColumn]="true"
+			[showSelectionColumn]="showSelectionColumn"
 			[enableSingleSelect]="false"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
@@ -59,6 +59,7 @@ export class TableStory implements OnInit, OnChanges {
 		];
 
 		this.model.rowsSelectedChange.subscribe(event => console.log(event));
+		this.model.selectAllChange.subscribe(event => console.log(event ? "All rows selected!" : "All rows deselected!"));
 
 		if (!this.noData && !this.skeleton) {
 			this.model.data = [
