@@ -59,7 +59,9 @@ import { Observable } from "rxjs";
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan">
+					[attr.rowspan]="item.rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
 				</td>
 				<td
 					*ngIf="item && model.getHeader(j) == null"
@@ -68,7 +70,9 @@ import { Observable } from "rxjs";
 					[item]="item"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan">
+					[attr.rowspan]="item.rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
 				</td>
 			</ng-container>
 		</ng-container>
@@ -151,6 +155,13 @@ export class TableRowComponent {
 	 */
 	@Output() expandRow = new EventEmitter();
 
+	/**
+	 * Emits when a row is clicked regardless of `enableSingleSelect` or `showSelectionColumn`.
+	 * Should only get emitted when a row item is selected excluding expand buttons,
+	 * checkboxes, or radios.
+	 */
+	@Output() rowClick = new EventEmitter();
+
 	@HostBinding("class.bx--data-table--selected") get selectedClass() {
 		return this.selected;
 	}
@@ -177,10 +188,14 @@ export class TableRowComponent {
 	constructor(protected i18n: I18n) { }
 
 	@HostListener("click")
-	onRowClick() {
+	onHostClick() {
 		if (this.enableSingleSelect && !this.showSelectionColumn) {
 			this.onSelectionChange();
 		}
+	}
+
+	onRowClick() {
+		this.rowClick.emit();
 	}
 
 	onSelectionChange() {

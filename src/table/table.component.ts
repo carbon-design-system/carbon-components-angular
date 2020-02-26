@@ -211,6 +211,7 @@ export interface TableTranslations {
 			(selectRow)="onSelectRow($event)"
 			[checkboxRowLabel]="getCheckboxRowLabel()"
 			[enableSingleSelect]="enableSingleSelect"
+			(rowClick)="onRowClick($event)"
 			[expandButtonAriaLabel]="expandButtonAriaLabel"
 			[model]="model"
 			[size]="size"
@@ -528,6 +529,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	@Output() deselectRow = new EventEmitter<Object>();
 
 	/**
+	 * Emits if a row item excluding expandButtons, checkboxes, or radios is clicked.
+	 */
+	@Output() rowClick = new EventEmitter<number>();
+
+	/**
 	 * Emits when table requires more data to be loaded.
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
@@ -664,6 +670,10 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.model.selectRow(event.deselectedRowIndex, false);
 			this.deselectRow.emit(event);
 		}
+	}
+
+	onRowClick(index: number) {
+		this.rowClick.emit(index);
 	}
 
 	updateSelectAllCheckbox() {
