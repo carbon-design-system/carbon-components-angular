@@ -154,9 +154,6 @@
                                 <a href="#class.bx--btn--danger">class.bx--btn--danger</a>
                             </li>
                             <li>
-                                <a href="#class.bx--btn--danger--primary">class.bx--btn--danger--primary</a>
-                            </li>
-                            <li>
                                 <a href="#class.bx--btn--field">class.bx--btn--field</a>
                             </li>
                             <li>
@@ -259,7 +256,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/button/button.directive.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/button/button.directive.ts:55</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -327,34 +324,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class.bx--btn--danger--primary"></a>
-                        <span class="name">
-                            <b>
-                            class.bx--btn--danger--primary
-                            </b>
-                            <a href="#class.bx--btn--danger--primary"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>class.bx--btn--danger--primary:     <code></code>
-</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/button/button.directive.ts:55</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="class.bx--btn--field"></a>
                         <span class="name">
                             <b>
@@ -372,7 +341,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/button/button.directive.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/button/button.directive.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -484,7 +453,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/button/button.directive.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/button/button.directive.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -545,7 +514,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/button/button.directive.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/button/button.directive.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -578,7 +547,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/button/button.directive.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/button/button.directive.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -615,7 +584,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/button/button.directive.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/button/button.directive.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -691,10 +660,7 @@ export class Button implements OnInit {
 		return this.ibmButton &#x3D;&#x3D;&#x3D; &quot;ghost&quot;;
 	}
 	@HostBinding(&quot;class.bx--btn--danger&quot;) get dangerButton() {
-		return this.ibmButton &#x3D;&#x3D;&#x3D; &quot;danger&quot;;
-	}
-	@HostBinding(&quot;class.bx--btn--danger--primary&quot;) get dangerPrimaryButton() {
-		return this.ibmButton &#x3D;&#x3D;&#x3D; &quot;danger--primary&quot;;
+		return this.ibmButton &#x3D;&#x3D;&#x3D; &quot;danger&quot; || this.ibmButton &#x3D;&#x3D;&#x3D; &quot;danger--primary&quot;;
 	}
 	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--sm&quot;) get smallSize() {
