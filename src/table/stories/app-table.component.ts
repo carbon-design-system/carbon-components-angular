@@ -25,8 +25,9 @@ function sort(model, index: number) {
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
-			[showSelectionColumn]="true"
+			[showSelectionColumn]="showSelectionColumn"
 			[enableSingleSelect]="false"
+			(rowClick)="onRowClick($event)"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
@@ -59,6 +60,7 @@ export class TableStory implements OnInit, OnChanges {
 		];
 
 		this.model.rowsSelectedChange.subscribe(event => console.log(event));
+		this.model.selectAllChange.subscribe(event => console.log(event ? "All rows selected!" : "All rows deselected!"));
 
 		if (!this.noData && !this.skeleton) {
 			this.model.data = [
@@ -79,6 +81,10 @@ export class TableStory implements OnInit, OnChanges {
 				column.sortable = changes.sortable.currentValue;
 			}
 		}
+	}
+
+	onRowClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 
 	simpleSort(index: number) {

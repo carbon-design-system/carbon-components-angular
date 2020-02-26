@@ -153,7 +153,7 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model">
+			<ibm-table-toolbar [model]="model" [batchText]="batchText">
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
@@ -193,7 +193,8 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			batchText: text("Toolbar batch text", "items selected")
 		})
 	}))
 	.add("With toolbar without toolbar action", () => ({
@@ -230,42 +231,6 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar")
-		})
-	}))
-	.add("With toolbar without toolbar action", () => ({
-		template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
-			<ibm-table-toolbar>
-				<ibm-table-toolbar-content>
-					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="toolbar-action">
-						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
-					</button>
-					<button ibmButton="primary" size="sm">
-						Primary Button
-						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
-					</button>
-				</ibm-table-toolbar-content>
-			</ibm-table-toolbar>
-
-			<app-table
-				[model]="model"
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[skeleton]="skeleton"
-				[striped]="striped"
-				[sortable]="sortable"
-				[isDataGrid]="isDataGrid">
-			</app-table>
-		</ibm-table-container>
-	`,
-		props: getProps({
-			description: text("Description", "With toolbar"),
-			batchText: text("Toolbar batch text", "items selected")
 		})
 	}))
 	.add("With expansion", () => ({
@@ -345,6 +310,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[skeleton]="skeleton"
 				[sortable]="sortable"
 				[totalDataLength]="totalDataLength"
+				[showSelectionColumn]="showSelectionColumn"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[model]="model">
