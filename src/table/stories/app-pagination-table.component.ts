@@ -31,6 +31,7 @@ import { TableItem } from "../table-item.class";
 			style="display: block; width: 650px;"
 			[sortable]="sortable"
 			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
 			[model]="model"
 			(rowClick)="onRowClick($event)"
 			(sort)="paginationSort($event)"
@@ -46,6 +47,8 @@ export class PaginationTableStory implements OnInit {
 	@Input() sortable = true;
 	@Input() skeleton = false;
 
+	@Input() showSelectionColumn = true;
+
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
 	}
@@ -54,7 +57,7 @@ export class PaginationTableStory implements OnInit {
 	}
 
 	@Input() stickyHeader = false;
-	
+
 	@ViewChild("filter")
 	filter: TemplateRef<any>;
 	@ViewChild("filterableHeaderTemplate")
