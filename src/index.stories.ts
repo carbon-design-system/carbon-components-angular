@@ -96,15 +96,19 @@ import { Document20Module } from "@carbon/icons-angular/lib/document/20";
 			<h1 class="banner__title"><span class="banner__logo--bold">Carbon</span> Components Angular</h1>
 			<h2 class="banner__subtitle">An Angular implementation of the Carbon Design System</h2>
 
-			<div style="display: inline">
-				<a ibmButton="secondary" class="banner__btn" href="documentation/index.html" target="_blank">
+			<div class="banner__links">
+				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
 					Documentation
 					<svg ibmIconDocument20 class="bx--btn__icon"></svg>
 				</a>
 				&nbsp;
-				<a ibmButton="primary" class="banner__btn" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
+				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
 					Starter App
 					<svg ibmIconBee20 class="bx--btn__icon"></svg>
+				</a>
+				&nbsp;
+				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">
+					<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
 				</a>
 			</div>
 		</section>
@@ -135,9 +139,13 @@ import { Document20Module } from "@carbon/icons-angular/lib/document/20";
 			color: #fff;
 			z-index: 2
 		}
-		.banner__btn {
+		.banner__links {
 			margin-top: 20px;
-			border-color: #fff;
+			display: flex;
+		}
+		.banner__netlify {
+			position: relative;
+			z-index: 1;
 		}
 		.banner__logo--bold, .banner__logo span {
 			font-weight: 600;

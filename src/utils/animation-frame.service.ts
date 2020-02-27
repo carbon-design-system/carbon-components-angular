@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable, OnDestroy, NgZone } from "@angular/core";
 import { Observable, Subject, from } from "rxjs";
 
 @Injectable()
@@ -9,9 +9,11 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected animationFrameId: number;
 
-	constructor() {
+	constructor(protected ngZone: NgZone) {
 		this.tick = this.frameSource.asObservable();
-		this.animationFrameId = requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() => {
+			this.animationFrameId = requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 
 	ngOnDestroy() {
@@ -20,7 +22,9 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 
 	protected doTick(frame: number) {
 		this.frameSource.next(frame);
-		requestAnimationFrame(this.doTick.bind(this));
+		this.ngZone.runOutsideAngular(() => {
+			requestAnimationFrame(this.doTick.bind(this));
+		});
 	}
 }
 
