@@ -13,7 +13,9 @@ import { SideNavItem } from "./sidenav-item.component";
 @Component({
 	selector: "ibm-sidenav-menu",
 	template: `
-		<li class="bx--side-nav__item bx--side-nav__item--icon">
+		<li
+			class="bx--side-nav__item bx--side-nav__item--icon"
+			[ngClass]="{ 'bx--side-nav__item--active': hasActiveChild }">
 			<button
 				(click)="toggle()"
 				class="bx--side-nav__submenu"
@@ -53,13 +55,30 @@ export class SideNavMenu implements AfterContentInit {
 	 * Controls the visibility of the child `SideNavItem`s
 	 */
 	@Input() expanded = false;
+	/**
+	 * Controls the active status indicator on the menu if there is an active
+	 * child sidenav item.
+	 */
+	@Input() hasActiveChild = false;
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
+
+	protected findActiveChildren() {
+		if (this.sidenavItems.some(item => item.active)) {
+			this.hasActiveChild = true;
+		} else {
+			this.hasActiveChild = false;
+		}
+	}
 
 	ngAfterContentInit() {
 		setTimeout(() => {
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
+				this.findActiveChildren();
+				item.toggled.subscribe(() => {
+					this.findActiveChildren();
+				})
 			});
 		});
 	}

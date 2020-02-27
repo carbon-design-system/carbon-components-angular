@@ -3,7 +3,8 @@ import {
 	Input,
 	Optional,
 	Output,
-	EventEmitter
+	EventEmitter,
+	OnChanges
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -35,7 +36,7 @@ import { Router } from "@angular/router";
 		</li>
 	`
 })
-export class SideNavItem {
+export class SideNavItem implements OnChanges {
 	/**
 	 * Link for the item. NOTE: *do not* pass unsafe or untrusted values, this has the potential to open you up to XSS attacks
 	 */
@@ -69,11 +70,23 @@ export class SideNavItem {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
+	/**
+	 * Emits when `active` input is changed. This is mainly used to indicate to any parent menu items that a
+	 * child sidenav item is active or not active.
+	 */
+	@Output() toggled = new EventEmitter<boolean>();
+
 	isSubMenu = false;
 
 	protected _href = "javascript:void(0)";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+
+	ngOnChanges(changes) {
+		if (changes.active) {
+			this.toggled.emit(this.active);
+		}
+	}
 
 	navigate(event) {
 		if (this.router && this.route) {
