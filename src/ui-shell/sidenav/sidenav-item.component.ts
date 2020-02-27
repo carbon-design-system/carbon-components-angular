@@ -74,7 +74,7 @@ export class SideNavItem implements OnChanges {
 	 * Emits when `active` input is changed. This is mainly used to indicate to any parent menu items that a
 	 * child sidenav item is active or not active.
 	 */
-	@Output() toggled = new EventEmitter<boolean>();
+	@Output() selected = new EventEmitter<boolean>();
 
 	isSubMenu = false;
 
