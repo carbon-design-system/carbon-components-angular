@@ -11,7 +11,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 import { FileItem } from "./file-item.interface";
 
-const noop = () => {};
+const noop = () => { };
 
 /**
  * [See demo](../../?path=/story/file-uploader--basic)
@@ -233,11 +233,13 @@ export class FileUploader {
 			// Get the file extension and add a "." to the beginning.
 			const fileExtension = name.split(".").pop().replace(/^/, ".");
 			// Check if the accept array contains the mime type or extension of the file.
-			return this.accept.includes(type) || this.accept.includes(fileExtension) || this.accept.length === 0;
+			return this.accept.includes(type) || this.accept.includes(fileExtension) || !this.accept.length;
 		}).forEach(file => {
-			const fileItem = this.createFileItem(file);
-			this.files.add(fileItem);
-			this.filesChange.emit(this.files);
+			if (!this.files.size || this.multiple) {
+				const fileItem = this.createFileItem(file);
+				this.files.add(fileItem);
+				this.filesChange.emit(this.files);
+			}
 		});
 
 		this.value = this.files;

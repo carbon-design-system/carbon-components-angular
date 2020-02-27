@@ -68,7 +68,7 @@ let nextId = 0;
 			[attr.aria-labelledby]="id + '-header'">
 			<ng-content></ng-content>
 		</div>
-	 `
+	`
 })
 export class Tab implements OnInit {
 	/**
@@ -104,7 +104,9 @@ export class Tab implements OnInit {
 	/**
 	 * Set to true to have Tab items cached and not reloaded on tab switching.
 	 */
-	@Input() cacheActive = false;
+	@Input() set cacheActive(shouldCache: boolean) {
+		this._cacheActive = shouldCache;
+	}
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
@@ -114,6 +116,12 @@ export class Tab implements OnInit {
 	 * Used to set the id property on the element.
 	 */
 	@HostBinding("attr.id") attrClass = this.id;
+
+	get cacheActive() {
+		return this._cacheActive;
+	}
+
+	protected _cacheActive = false;
 
 	/**
 	 * Checks for custom heading template on initialization and updates the value
@@ -133,8 +141,8 @@ export class Tab implements OnInit {
 	}
 
 	/**
- 	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
- 	*/
+	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
+	*/
 	shouldRender() {
 		return this.active || this.cacheActive;
 	}
