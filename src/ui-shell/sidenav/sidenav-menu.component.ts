@@ -73,16 +73,28 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 		}
 	}
 
-	protected activeItemsSubscription: Subscription;
+	protected activeItemsSubscription = new Subscription();
 
 	ngAfterContentInit() {
 		setTimeout(() => {
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
 				this.findActiveChildren();
-				this.activeItemsSubscription = item.toggled.subscribe(() => {
+				const activeItemSubscription = item.selected.subscribe(() => {
 					this.findActiveChildren();
-				})
+				});
+				this.activeItemsSubscription.add(activeItemSubscription);
+			});
+
+			this.sidenavItems.changes.subscribe(() => {
+				this.sidenavItems.forEach(item => {
+					item.isSubMenu = true;
+					this.findActiveChildren();
+					const activeItemSubscription = item.selected.subscribe(() => {
+						this.findActiveChildren();
+					});
+					this.activeItemsSubscription.add(activeItemSubscription);
+				});
 			});
 		});
 	}

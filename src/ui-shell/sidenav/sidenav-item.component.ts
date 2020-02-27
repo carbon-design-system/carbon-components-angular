@@ -84,7 +84,7 @@ export class SideNavItem implements OnChanges {
 
 	ngOnChanges(changes) {
 		if (changes.active) {
-			this.toggled.emit(this.active);
+			this.selected.emit(this.active);
 		}
 	}
 
