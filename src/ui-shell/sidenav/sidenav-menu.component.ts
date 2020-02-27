@@ -3,9 +3,11 @@ import {
 	Component,
 	ContentChildren,
 	Input,
-	QueryList
+	QueryList,
+	OnDestroy
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
+import { Subscription } from 'rxjs';
 
 /**
  * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
@@ -46,7 +48,7 @@ import { SideNavItem } from "./sidenav-item.component";
 		</li>
 	`
 })
-export class SideNavMenu implements AfterContentInit {
+export class SideNavMenu implements AfterContentInit, OnDestroy {
 	/**
 	 * Heading for the gorup
 	 */
@@ -71,16 +73,22 @@ export class SideNavMenu implements AfterContentInit {
 		}
 	}
 
+	protected activeItemsSubscription: Subscription;
+
 	ngAfterContentInit() {
 		setTimeout(() => {
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
 				this.findActiveChildren();
-				item.toggled.subscribe(() => {
+				this.activeItemsSubscription = item.toggled.subscribe(() => {
 					this.findActiveChildren();
 				})
 			});
 		});
+	}
+
+	ngOnDestroy() {
+		this.activeItemsSubscription.unsubscribe();
 	}
 
 	toggle() {
