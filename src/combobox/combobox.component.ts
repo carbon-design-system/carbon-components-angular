@@ -288,7 +288,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 						// Under some circumstances the view does not get updated with the selected
 						// item for a single selection combobox. This manually updates the input with the
 						// correct selected item.
-						this.input.nativeElement.value = this.view.getSelected();
+						if (this.view.getSelected()[0]) {
+							this.input.nativeElement.value = this.view.getSelected()[0].content;
+						}
 					} else {
 						this.selectedValue = "";
 						this.propagateChangeCallback(null);
