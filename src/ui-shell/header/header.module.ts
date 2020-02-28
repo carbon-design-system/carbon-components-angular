@@ -15,6 +15,8 @@ import { HeaderAction } from "./header-action.component";
 
 import { Hamburger } from "./hamburger.component";
 
+export { HeaderItemInterface, NavigationItem } from "./header-navigation-items.interface";
+
 export {
 	Header,
 	HeaderItem,
