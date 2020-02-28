@@ -2,10 +2,19 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { ModalModule, InputModule } from "../";
-import { Component, Input, Inject, AfterContentInit } from "@angular/core";
+import {
+	Component,
+	Input,
+	Inject,
+	AfterContentInit
+} from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ModalService, DocumentationModule } from "../";
-import { ModalButton, AlertModalType, ModalButtonType } from "./alert-modal.interface";
+import {
+	ModalButton,
+	AlertModalType,
+	ModalButtonType
+} from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
 import { Observable, Subject } from "rxjs";
