@@ -71,7 +71,10 @@ export class Label implements AfterContentInit {
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
 	/**
-	 * Set to `true` for a loading label.
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
 	 */
 	@Input() skeleton = false;
 	/**

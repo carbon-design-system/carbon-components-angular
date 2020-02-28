@@ -77,7 +77,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() toolbar = false;
 	/**
-	 * Set to `true` for a loading search component.
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
 	 */
 	@Input() skeleton = false;
 	/**

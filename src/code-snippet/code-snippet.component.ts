@@ -109,6 +109,12 @@ export class CodeSnippet implements AfterViewInit {
 	@Input() feedbackTimeout = 2000;
 
 	@HostBinding("class.bx--snippet--expand") @Input() expanded = false;
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 
 	@HostBinding("class.bx--snippet") snippetClass = true;

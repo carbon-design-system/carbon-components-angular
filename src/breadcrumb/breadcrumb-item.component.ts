@@ -25,6 +25,9 @@ import { Router } from "@angular/router";
 	</ng-template>`
 })
 export class BreadcrumbItemComponent {
+	/**
+	 * The link for the breadcrumb item
+	 */
 	@Input() set href(v: string) {
 		this._href = v;
 	}
@@ -50,10 +53,22 @@ export class BreadcrumbItemComponent {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
 
+	/**
+	 * Sets the underlying `aria-current` attribute
+	 */
 	@Input() ariaCurrent = "page";
 
+	/**
+	 * Set to `true` if this is the currently selected breadcrumb
+	 */
 	@HostBinding("class.bx--breadcrumb-item--current") @Input() current = false;
 
 	@HostBinding("class.bx--breadcrumb-item") itemClass = true;

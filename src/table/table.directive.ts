@@ -9,7 +9,12 @@ export class TableDirective {
 	@Input() @HostBinding("class.bx--data-table--no-border") noBorder = true;
 
 	@Input() @HostBinding("class.bx--data-table--zebra") striped = false;
-
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() @HostBinding("class.bx--skeleton") skeleton = false;
 
 	/**

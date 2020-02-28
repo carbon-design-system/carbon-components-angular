@@ -35,12 +35,33 @@ import {
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
+	/**
+	 * The title content
+	 */
 	@Input() title = `Title ${AccordionItem.accordionItemCount}`;
+	/**
+	 * The id of the accordion item. Defaults to an auto-generated value
+	 */
 	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
+	/**
+	 * Emits when the item is selected
+	 */
 	@Output() selected = new EventEmitter();
 
 	@HostBinding("class.bx--accordion__item") itemClass = true;
+	/**
+	 * Expands or collapses the accordion item
+	 *
+	 * Note: boolean properties should be set using the `[expanded]="true"` syntax.
+	 * `expanded="true"` will assign a string value of `"true"`
+	 */
 	@HostBinding("class.bx--accordion__item--active") @Input() expanded = false;
 	@HostBinding("style.display") itemType = "list-item";
 	@HostBinding("attr.role") role = "heading";

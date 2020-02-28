@@ -184,7 +184,12 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
-	/** Set to `true` for a loading slider */
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
 	/** Sets the text inside the `label` tag */
 	@Input() label: string | TemplateRef<any>;

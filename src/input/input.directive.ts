@@ -22,6 +22,12 @@ export class TextInput {
 
 	@HostBinding("class.bx--text-input") inputClass = true;
 	@HostBinding("class.bx--text-input--invalid") @Input() invalid = false;
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--text-input--light") get isLightTheme() {
 		return this.theme === "light";

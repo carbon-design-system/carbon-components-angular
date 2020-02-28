@@ -93,22 +93,36 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	@Input() size: "sm" | "md" = "md";
 	/**
 	 * Set to `true` for checkbox to be rendered with nested styles.
+	 *
+	 * Note: boolean properties should be set using the `[nested]="true"` syntax.
+	 * `nested="true"` will assign a string value of `"true"`
 	 */
 	@Input() nested: boolean;
 	/**
 	 * Set to `true` for checkbox to be rendered without any classes on the host element.
+	 *
+	 * Note: boolean properties should be set using the `[inline]="true"` syntax.
+	 * `inline="true"` will assign a string value of `"true"`
 	 */
 	@Input() inline = false;
 	/**
 	 * Set to `true` for a disabled checkbox.
+	 * Note: boolean properties should be set using the `[disabled]="true"` syntax.
+	 * `disabled="true"` will assign a string value of `"true"`
 	 */
 	@Input() disabled = false;
 	/**
 	 * Set to `true` for a loading checkbox.
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
 	 */
 	@Input() skeleton = false;
 	/**
 	 * Set to `true` to hide the checkbox labels.
+	 *
+	 * Note: boolean properties should be set using the `[hideLabel]="true"` syntax.
+	 * `hideLabel="true"` will assign a string value of `"true"`
 	 */
 	@Input() hideLabel = false;
 	/**
@@ -121,6 +135,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	@Input() id = `checkbox-${Checkbox.checkboxCount}`;
 	/**
 	 * Reflects the required attribute of the `input` element.
+	 *
+	 * Note: boolean properties should be set using the `[required]="true"` syntax.
+	 * `required="true"` will assign a string value of `"true"`
 	 */
 	@Input() required: boolean;
 	/**
@@ -146,6 +163,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.
+	 *
+	 * Note: boolean properties should be set using the `[indeterminate]="true"` syntax.
+	 * `indeterminate="true"` will assign a string value of `"true"`
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
 		let changed = this._indeterminate !== indeterminate;
@@ -169,6 +189,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Updating the state of a checkbox to match the state of the parameter passed in.
+	 *
+	 * Note: boolean properties should be set using the `[checked]="true"` syntax.
+	 * `checked="true"` will assign a string value of `"true"`
 	 */
 	@Input() set checked (checked: boolean) {
 		if (checked !== this.checked) {

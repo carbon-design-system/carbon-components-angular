@@ -117,23 +117,42 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;
-
+	/**
+	 * Array of breadcrumb items to display
+	 */
 	@Input() items: Array<BreadcrumbItem>;
-
+	/**
+	 * Controls if the last slash is shown
+	 *
+	 * Note: boolean properties should be set using the `[noTrailingSlash]="true"` syntax.
+	 * `noTrailingSlash="true"` will assign a string value of`"true"`
+	 */
 	@Input() noTrailingSlash = false;
 
+	/**
+	 * The accessible description of the breadcrumb container
+	 */
 	@Input() ariaLabel: string;
 
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input()
-	set skeleton(value: any) {
+	set skeleton(value: boolean) {
 		this._skeleton = value;
 		this.updateChildren();
 	}
 
-	get skeleton(): any {
+	get skeleton(): boolean {
 		return this._skeleton;
 	}
 
+	/**
+	 * The number of items to be shown before wrapping the excess into an overflow menu
+	 */
 	@Input()
 	set threshold(threshold: number) {
 		this._threshold = threshold;

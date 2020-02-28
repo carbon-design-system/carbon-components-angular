@@ -89,7 +89,10 @@ export class Radio {
 	 */
 	@Input() value = "";
 	/**
-	 * Set to `true` for a loading table.
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
 	 */
 	@Input() skeleton = false;
 	/**

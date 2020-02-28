@@ -26,6 +26,12 @@ import { DocumentationModule } from "./../documentation-component/documentation.
 })
 class PaginationStory implements OnInit {
 	@Input() model = new PaginationModel();
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
 	@Input() disabled = false;
 	@Input() pageInputDisabled = false;

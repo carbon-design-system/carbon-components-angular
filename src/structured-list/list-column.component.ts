@@ -18,6 +18,12 @@ import { Component, HostBinding, Input } from "@angular/core";
 	`
 })
 export class ListColumn {
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
 
 	@HostBinding("class.bx--structured-list-th") isHeaderColumn = true;

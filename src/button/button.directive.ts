@@ -52,6 +52,12 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--btn--danger") get dangerButton() {
 		return this.ibmButton === "danger" || this.ibmButton === "danger--primary";
 	}
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--btn--sm") get smallSize() {
 		return this.size === "sm";

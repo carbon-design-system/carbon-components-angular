@@ -92,7 +92,12 @@ export class TableHead implements AfterViewInit {
 	@Input() selectAllCheckboxSomeSelected = false;
 
 	@Input() selectAllCheckbox = false;
-
+	/**
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
+	 */
 	@Input() skeleton = false;
 
 	@Input() stickyHeader = false;

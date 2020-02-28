@@ -43,7 +43,10 @@ export class TimePickerSelect extends Select {
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
 
 	/**
-	 * Set to true for a loading select.
+	 * Enables or disables the skeleton state
+	 *
+	 * Note: boolean properties should be set using the `[skeleton]="true"` syntax.
+	 * `skeleton="true"` will assign a string value of `"true"`
 	 */
 	@Input() skeleton = false;
 
