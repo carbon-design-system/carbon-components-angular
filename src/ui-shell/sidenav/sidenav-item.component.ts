@@ -59,6 +59,8 @@ export class SideNavItem implements OnChanges {
 	 */
 	@Input() route: any[];
 
+	@Input() isSubMenu = false;
+
 	/**
 	 * Router options. Used in conjunction with `route`
 	 * See: https://angular.io/api/router/Router#navigate
@@ -75,8 +77,6 @@ export class SideNavItem implements OnChanges {
 	 * child sidenav item is active or not active.
 	 */
 	@Output() selected = new EventEmitter<boolean>();
-
-	isSubMenu = false;
 
 	protected _href = "javascript:void(0)";
 
