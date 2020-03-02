@@ -71,8 +71,6 @@ export class SideNavItem implements OnChanges {
 	 */
 	@Input() routeExtras: any;
 
-	@Input() isSubMenu = false;
-
 	/**
 	 * Emits the navigation status promise when the link is activated
 	 */
