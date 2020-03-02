@@ -108,6 +108,23 @@
 	[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
 	&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
 	&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
+		&lt;div
+			class&#x3D;&quot;bx--side-nav__header-navigation bx--side-nav__header-divider&quot;&gt;
+			&lt;ng-container *ngFor&#x3D;&quot;let navigationItem of navigationItems&quot;&gt;
+				&lt;ibm-sidenav-item
+					*ngIf&#x3D;&quot;navigationItem.type &#x3D;&#x3D;&#x3D; &#x27;item&#x27;&quot;
+					[href]&#x3D;&quot;navigationItem.href&quot;
+					[route]&#x3D;&quot;navigationItem.route&quot;
+					[routeExtras]&#x3D;&quot;navigationItem.routeExtras&quot;&gt;
+					{{ navigationItem.content }}
+				&lt;/ibm-sidenav-item&gt;
+				&lt;ibm-sidenav-menu
+					*ngIf&#x3D;&quot;navigationItem.type &#x3D;&#x3D;&#x3D; &#x27;menu&#x27;&quot;
+					[title]&#x3D;&quot;navigationItem.title&quot;
+					[menuItems]&#x3D;&quot;navigationItem.menuItems&quot;&gt;
+				&lt;/ibm-sidenav-menu&gt;
+			&lt;/ng-container&gt;
+		&lt;/div&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
 	&lt;/ul&gt;
 	&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
@@ -217,6 +234,9 @@
                                 <a href="#hidden">hidden</a>
                             </li>
                             <li>
+                                <a href="#navigationItems">navigationItems</a>
+                            </li>
+                            <li>
                                 <a href="#rail">rail</a>
                             </li>
                         </ul>
@@ -261,7 +281,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -316,7 +336,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:100</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -338,7 +358,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:93</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -360,7 +380,32 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:97</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="navigationItems"></a>
+                        <code>navigationItems</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>NavigationItems from the header navigation component which are displayed on the sidenav when the window
+innerWidth is small enough. Sidenav items and menus are created using the model used to create header
+navigation items.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="../interfaces/NavigationItem.html" target="_self" >NavigationItem[]</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:107</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -380,7 +425,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:98</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -414,7 +459,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -447,7 +492,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -480,7 +525,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -517,7 +562,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -568,7 +613,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -588,6 +633,7 @@
 	ViewEncapsulation
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;../../i18n/i18n.module&quot;;
+import { NavigationItem } from &quot;../header/header-navigation-items.interface&quot;;
 
 /**
  * &#x60;Sidenav&#x60; is a fixed left navigation that may contain &#x60;SideNavItem&#x60;s or &#x60;SideNavMenu&#x60;s
@@ -605,6 +651,23 @@ import { I18n } from &quot;../../i18n/i18n.module&quot;;
 			[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
 			&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
 			&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
+				&lt;div
+					class&#x3D;&quot;bx--side-nav__header-navigation bx--side-nav__header-divider&quot;&gt;
+					&lt;ng-container *ngFor&#x3D;&quot;let navigationItem of navigationItems&quot;&gt;
+						&lt;ibm-sidenav-item
+							*ngIf&#x3D;&quot;navigationItem.type &#x3D;&#x3D;&#x3D; &#x27;item&#x27;&quot;
+							[href]&#x3D;&quot;navigationItem.href&quot;
+							[route]&#x3D;&quot;navigationItem.route&quot;
+							[routeExtras]&#x3D;&quot;navigationItem.routeExtras&quot;&gt;
+							{{ navigationItem.content }}
+						&lt;/ibm-sidenav-item&gt;
+						&lt;ibm-sidenav-menu
+							*ngIf&#x3D;&quot;navigationItem.type &#x3D;&#x3D;&#x3D; &#x27;menu&#x27;&quot;
+							[title]&#x3D;&quot;navigationItem.title&quot;
+							[menuItems]&#x3D;&quot;navigationItem.menuItems&quot;&gt;
+						&lt;/ibm-sidenav-menu&gt;
+					&lt;/ng-container&gt;
+				&lt;/div&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
 			&lt;/ul&gt;
 			&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
@@ -664,6 +727,13 @@ export class SideNav {
 	@HostBinding(&quot;class.bx--side-nav--ux&quot;) ux &#x3D; true;
 	@Input() allowExpansion &#x3D; false;
 
+	/**
+	 * NavigationItems from the header navigation component which are displayed on the sidenav when the window
+	 * innerWidth is small enough. Sidenav items and menus are created using the model used to create header
+	 * navigation items.
+	 */
+	@Input() navigationItems: NavigationItem[]
+
 	constructor(public i18n: I18n) { }
 
 	toggle() {
@@ -705,7 +775,7 @@ export class SideNav {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav	class="bx--side-nav__navigation"	role="navigation"	[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">	<ng-content select="ibm-sidenav-header"></ng-content>	<ul class="bx--side-nav__items">		<ng-content></ng-content>	</ul>	<footer class="bx--side-nav__footer">		<button			*ngIf="allowExpansion"			class="bx--side-nav__toggle"			type="button"			[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"			(click)="toggle()">			<div class="bx--side-nav__icon">				<svg					*ngIf="expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>				</svg>				<svg					*ngIf="!expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>				</svg>			</div>			<span class="bx--assistive-text">				{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}			</span>		</button>	</footer></nav>	</div>'
+        var COMPONENT_TEMPLATE = '<div><nav	class="bx--side-nav__navigation"	role="navigation"	[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">	<ng-content select="ibm-sidenav-header"></ng-content>	<ul class="bx--side-nav__items">		<div			class="bx--side-nav__header-navigation bx--side-nav__header-divider">			<ng-container *ngFor="let navigationItem of navigationItems">				<ibm-sidenav-item					*ngIf="navigationItem.type === \'item\'"					[href]="navigationItem.href"					[route]="navigationItem.route"					[routeExtras]="navigationItem.routeExtras">					{{ navigationItem.content }}				</ibm-sidenav-item>				<ibm-sidenav-menu					*ngIf="navigationItem.type === \'menu\'"					[title]="navigationItem.title"					[menuItems]="navigationItem.menuItems">				</ibm-sidenav-menu>			</ng-container>		</div>		<ng-content></ng-content>	</ul>	<footer class="bx--side-nav__footer">		<button			*ngIf="allowExpansion"			class="bx--side-nav__toggle"			type="button"			[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"			(click)="toggle()">			<div class="bx--side-nav__icon">				<svg					*ngIf="expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>				</svg>				<svg					*ngIf="!expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>				</svg>			</div>			<span class="bx--assistive-text">				{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}			</span>		</button>	</footer></nav>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'SideNav'};

@@ -220,7 +220,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/ui-shell/header/header-item.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ui-shell/header/header-item.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -312,7 +312,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/ui-shell/header/header-item.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/ui-shell/header/header-item.component.ts:46</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -336,7 +336,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/ui-shell/header/header-item.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/ui-shell/header/header-item.component.ts:52</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -360,7 +360,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/ui-shell/header/header-item.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/ui-shell/header/header-item.component.ts:57</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -395,7 +395,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ui-shell/header/header-item.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/ui-shell/header/header-item.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -478,7 +478,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/ui-shell/header/header-item.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ui-shell/header/header-item.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -507,7 +507,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/ui-shell/header/header-item.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ui-shell/header/header-item.component.ts:38</a></div>
                                 </td>
                             </tr>
 
@@ -595,6 +595,10 @@ import { Router } from &quot;@angular/router&quot;;
 })
 export class HeaderItem {
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v &#x3D;&#x3D;&#x3D; undefined) {
+			return;
+		}
 		this._href &#x3D; v;
 	}
 
