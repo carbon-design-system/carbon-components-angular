@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
 import { Subscription } from 'rxjs';
+import { SideNavItemInterface } from "./sidenav-item.interface";
+
 
 /**
  * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
@@ -44,6 +46,15 @@ import { Subscription } from 'rxjs';
 			</button>
 			<ul class="bx--side-nav__menu" role="menu">
 				<ng-content></ng-content>
+				<ng-container *ngFor="let menuItem of menuItems">
+					<ibm-sidenav-item
+						[href]="menuItem.href"
+						[route]="menuItem.route"
+						[routeExtras]="menuItem.routeExtras"
+						[isSubMenu]="true">
+						{{ menuItem.content }}
+					</ibm-sidenav-item>
+				</ng-container>
 			</ul>
 		</li>
 	`
@@ -62,6 +73,8 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 	 * child sidenav item.
 	 */
 	@Input() hasActiveChild = false;
+
+	@Input() menuItems: SideNavItemInterface[];
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
