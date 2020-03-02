@@ -1,17 +1,18 @@
 Closes IBM/carbon-components-angular#
 
-{{short description}}
+short description
 
+<!-- add or remove sections as needed -->
 #### Changelog
 
 **New**
 
-* {{new thing}}
+* new thing
 
 **Changed**
 
-* {{change thing}}
+* changed thing
 
 **Removed**
 
-* {{removed thing}}
+* removed thing
