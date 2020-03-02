@@ -7,8 +7,6 @@ import { ProgressIndicator } from "./progress-indicator.component";
 import { DialogModule } from "./../dialog/dialog.module";
 import { ExperimentalModule } from "./../experimental.module";
 
-export { ProgressIndicator } from "./progress-indicator.component";
-
 @NgModule({
 	declarations: [
 		ProgressIndicator

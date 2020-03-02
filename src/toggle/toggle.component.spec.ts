@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Toggle, ToggleChange } from "./toggle.component";
 
 describe("Toggle", () => {

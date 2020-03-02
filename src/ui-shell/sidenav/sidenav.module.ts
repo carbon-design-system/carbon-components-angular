@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { I18nModule } from "./../../i18n/i18n.module";
+import { I18nModule } from "./../../i18n/index";
 
 import { SideNav } from "./sidenav.component";
 import { SideNavHeader } from "./sidenav-header.component";

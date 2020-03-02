@@ -9,7 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "../i18n/i18n.module";
+import { I18n } from "../i18n/index";
 
 /**
  * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version

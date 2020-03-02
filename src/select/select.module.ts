@@ -28,6 +28,4 @@ import { OptGroup } from "./optgroup.directive";
 		WarningFilled16Module
 	]
 })
-class SelectModule { }
-
-export { Select, Option, OptGroup, SelectModule };
+export class SelectModule { }

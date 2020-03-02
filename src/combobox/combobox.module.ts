@@ -7,9 +7,6 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 import { ComboBox } from "./combobox.component";
 import { DropdownModule } from "../dropdown/dropdown.module";
 
-export { ComboBox } from "./combobox.component";
-
-
 @NgModule({
 	declarations: [
 		ComboBox

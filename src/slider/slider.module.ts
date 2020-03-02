@@ -7,9 +7,4 @@ import { CommonModule } from "@angular/common";
 	exports: [Slider],
 	imports: [CommonModule]
 })
-class SliderModule {}
-
-export {
-	SliderModule,
-	Slider
-};
+export class SliderModule {}

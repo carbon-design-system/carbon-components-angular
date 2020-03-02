@@ -4,7 +4,7 @@ import { By	} from "@angular/platform-browser";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";

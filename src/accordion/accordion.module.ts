@@ -5,9 +5,6 @@ import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/1
 import { Accordion } from "./accordion.component";
 import { AccordionItem } from "./accordion-item.component";
 
-export { Accordion } from "./accordion.component";
-export { AccordionItem } from "./accordion-item.component";
-
 @NgModule({
 	declarations: [
 		Accordion,

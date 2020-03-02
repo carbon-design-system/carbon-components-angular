@@ -6,11 +6,8 @@ import { CaretLeft16Module } from "@carbon/icons-angular/lib/caret--left/16";
 import { CaretRight16Module } from "@carbon/icons-angular/lib/caret--right/16";
 
 import { Pagination } from "./pagination.component";
-import { I18nModule } from "./../i18n/i18n.module";
+import { I18nModule } from "./../i18n/index";
 import { ExperimentalModule } from "./../experimental.module";
-
-export { PaginationModel } from "./pagination-model.class";
-export { Pagination } from "./pagination.component";
 
 @NgModule({
 	declarations: [

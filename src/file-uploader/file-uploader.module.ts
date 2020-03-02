@@ -9,13 +9,10 @@ import { FileComponent } from "./file.component";
 import { ButtonModule } from "../button/button.module";
 import { LoadingModule } from "../loading/loading.module";
 
-export { FileUploader } from "./file-uploader.component";
-export { FileComponent } from "./file.component";
-
 // compatibility export
 // TODO: remove in v4
 // tslint:disable-next-line: variable-name
-export const File = FileComponent;
+// export const File = FileComponent;
 
 @NgModule({
 	declarations: [FileUploader, FileComponent],

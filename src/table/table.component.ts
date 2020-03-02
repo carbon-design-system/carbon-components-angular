@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";

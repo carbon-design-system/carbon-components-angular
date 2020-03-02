@@ -5,7 +5,7 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { Observable } from "rxjs";
 
 @Component({

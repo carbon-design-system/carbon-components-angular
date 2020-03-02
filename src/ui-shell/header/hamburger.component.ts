@@ -4,7 +4,7 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 
 /**
  * A toggle for the side navigation

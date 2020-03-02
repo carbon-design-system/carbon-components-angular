@@ -8,6 +8,8 @@ rm -rf dist
 # TODO enable with v4
 ng build
 
+exit 0;
+
 # run the classic buld - TODO remove with v4/Carbon v11
 # gulp build
 # ngc -p tsconfig-aot.json

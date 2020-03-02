@@ -8,7 +8,7 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 
 // imports
 import { Number } from "./number.component";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 
 @NgModule({
 	declarations: [
@@ -27,5 +27,3 @@ import { I18nModule } from "../i18n/i18n.module";
 	]
 })
 export class NumberModule { }
-
-export { Number };

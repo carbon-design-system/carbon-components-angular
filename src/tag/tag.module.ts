@@ -5,8 +5,6 @@ import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { Tag } from "./tag.component";
 import { TagFilter } from "./tag-filter.component";
 
-export * from "./tag.component";
-
 @NgModule({
 	declarations: [ Tag, TagFilter ],
 	exports: [ Tag, TagFilter ],

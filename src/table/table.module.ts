@@ -11,7 +11,7 @@ import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 // internal module imports
 import { NFormsModule } from "./../forms/forms.module";
 import { DialogModule } from "./../dialog/dialog.module";
-import { I18nModule } from "./../i18n/i18n.module";
+import { I18nModule } from "./../i18n/index";
 import { ButtonModule } from "./../button/button.module";
 import { SearchModule } from "./../search/search.module";
 
@@ -50,34 +50,6 @@ export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 export * from "./table-adapter.class";
 export * from "./data-grid-interaction-model.class";
-
-export {
-	// toolbar and utility components
-	TableToolbar,
-	TableContainer,
-	TableHeader,
-	TableHeaderTitle,
-	TableHeaderDescription,
-	TableToolbarActions,
-	TableToolbarSearch,
-	TableToolbarContent,
-	DataGridFocus,
-	ExpandedRowHover,
-	// core table components
-	Table,
-	TableDirective,
-	TableHead,
-	TableHeadCell,
-	TableHeadCheckbox,
-	TableHeadExpand,
-	TableBody,
-	TableRowComponent,
-	TableExpandedRow,
-	TableData,
-	TableCheckbox,
-	TableRadio,
-	TableExpandButton
-};
 
 @NgModule({
 	declarations: [

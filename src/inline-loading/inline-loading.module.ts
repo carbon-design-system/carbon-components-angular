@@ -4,8 +4,6 @@ import { Checkmark16Module } from "@carbon/icons-angular/lib/checkmark/16";
 
 import { InlineLoading } from "./inline-loading.component";
 
-export { InlineLoading } from "./inline-loading.component";
-
 @NgModule({
 	declarations: [InlineLoading],
 	exports: [InlineLoading],

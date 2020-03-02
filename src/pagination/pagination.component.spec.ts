@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 
 import { CommonModule } from "@angular/common";
-import { I18nModule } from "./../i18n/i18n.module";
+import { I18nModule } from "./../i18n/index";
 import { ExperimentalModule } from "./../experimental.module";
 import { Pagination, PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";

@@ -24,7 +24,7 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService } from "./../utils/utils.module";

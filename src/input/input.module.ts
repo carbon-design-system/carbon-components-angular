@@ -26,6 +26,4 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 		WarningFilled16Module
 	]
 })
-class InputModule { }
-
-export { TextInput, Label, InputModule };
+export class InputModule { }

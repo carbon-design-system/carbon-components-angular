@@ -5,13 +5,10 @@ import { CommonModule } from "@angular/common";
 import { Copy16Module } from "@carbon/icons-angular/lib/copy/16";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 
 // imports
 import { CodeSnippet } from "./code-snippet.component";
-
-// exports
-export { CodeSnippet } from "./code-snippet.component";
 
 @NgModule({
 	declarations: [

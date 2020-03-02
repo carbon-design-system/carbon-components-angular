@@ -25,12 +25,4 @@ import { ListColumn } from "./list-column.component";
 		CheckmarkFilled16Module
 	]
 })
-class StructuredListModule { }
-
-export {
-	StructuredListModule,
-	StructuredList,
-	ListRow,
-	ListHeader,
-	ListColumn
-};
+export class StructuredListModule { }

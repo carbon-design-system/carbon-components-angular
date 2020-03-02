@@ -6,7 +6,7 @@ import { Search16Module } from "@carbon/icons-angular/lib/search/16";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 // imports
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Search } from "./search.component";
 
 @NgModule({
@@ -25,5 +25,3 @@ import { Search } from "./search.component";
 	]
 })
 export class SearchModule { }
-
-export { Search };

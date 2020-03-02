@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { NotificationDisplayService } from "./notification-display.service";
 import { of, isObservable, Subject } from "rxjs";
 

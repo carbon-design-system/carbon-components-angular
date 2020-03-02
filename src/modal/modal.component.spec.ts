@@ -6,8 +6,8 @@ import { DebugElement } from "@angular/core";
 import { Modal } from "./modal.component";
 import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
-import { I18nModule } from "../i18n/i18n.module";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { I18nModule } from "../i18n/index";
+import { PlaceholderModule } from "./../placeholder/index";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'

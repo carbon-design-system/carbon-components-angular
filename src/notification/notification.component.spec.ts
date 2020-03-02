@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 
 import { Notification, NotificationDisplayService } from "./notification.module";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { ErrorFilled16Module } from "@carbon/icons-angular/lib/error--filled/16";
 import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
