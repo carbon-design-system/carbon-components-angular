@@ -41,6 +41,10 @@ export class SideNavItem implements OnChanges {
 	 * Link for the item. NOTE: *do not* pass unsafe or untrusted values, this has the potential to open you up to XSS attacks
 	 */
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		}
 		this._href = v;
 	}
 
@@ -64,6 +68,8 @@ export class SideNavItem implements OnChanges {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	@Input() isSubMenu = false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated
