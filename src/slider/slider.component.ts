@@ -10,8 +10,8 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { fromEvent, Subscription } from "rxjs";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { EventService } from "../utils/utils.module";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
@@ -119,7 +119,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		}
 	]
 })
-export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Used to generate unique IDs */
 	private static count = 0;
 	/** The lower bound of our range */
@@ -216,20 +216,18 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	public fractionComplete = 0;
 
 	protected isMouseDown = false;
-	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
-	protected eventSubscriptions: Array<Subscription> = [];
 	protected input: HTMLInputElement;
 	protected _min = 0;
 	protected _max = 100;
 	protected _value = this.min;
 	protected _disabled = false;
 
-	constructor(protected elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef, protected eventService: EventService) {}
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
-		this.eventSubscriptions.push(fromEvent(document, "mousemove").subscribe(this.onMouseMove.bind(this)));
-		this.eventSubscriptions.push(fromEvent(document, "mouseup").subscribe(this.onMouseUp.bind(this)));
+		this.eventService.onDocument("mousemove", this.onMouseMove.bind(this));
+		this.eventService.onDocument("mouseup", this.onMouseUp.bind(this));
 
 		// apply any values we got from before the view initialized
 		this.value = this.value;
@@ -245,16 +243,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
 			this.input.value = this.value.toString();
 			// bind events on our optional input
-			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));
-			this.eventSubscriptions.push(fromEvent(this.input, "focus").subscribe(this.onFocus.bind(this)));
+			this.eventService.on(this.input, "change", this.onChange.bind(this));
+			this.eventService.on(this.input, "focus", this.onFocus.bind(this));
 		}
-	}
-
-	/** Clean up our DOMEvent subscriptions */
-	ngOnDestroy() {
-		this.eventSubscriptions.forEach(subscription => {
-			subscription.unsubscribe();
-		});
 	}
 
 	/** Send changes back to the model */
