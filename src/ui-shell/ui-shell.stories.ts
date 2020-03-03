@@ -252,7 +252,7 @@ storiesOf("Components|UI Shell", module)
 				<ibm-sidenav-menu title="Category title">
 					<svg icon ibmIconFade16></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
+					<ibm-sidenav-item [active]="hasActiveChild">Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
@@ -269,6 +269,7 @@ storiesOf("Components|UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			active: boolean("Left panel active", true),
+			hasActiveChild: boolean("Active side nav child", true),
 			options: [
 				{
 					content: "Option 1",
