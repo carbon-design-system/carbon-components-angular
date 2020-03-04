@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ExperimentalService } from "./../experimental.module";
 import { Step } from "./progress-indicator-step.interface";
 
@@ -20,7 +20,7 @@ import { Step } from "./progress-indicator-step.interface";
 		}">
 		<li
 			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
-			*ngFor="let step of steps"
+			*ngFor="let step of steps; let i=index"
 			[ngClass]="{'bx--progress-step--disabled' : step.disabled}">
 			<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
 				<ibm-icon-checkmark-outline16 *ngIf="step.state == 'complete'"></ibm-icon-checkmark-outline16>
@@ -43,10 +43,11 @@ import { Step } from "./progress-indicator-step.interface";
 					[title]="step.tooltip.title"
 					[gap]="step.tooltip.gap"
 					[appendInline]="step.tooltip.appendInline"
-					[data]="step.tooltip.data">
+					[data]="step.tooltip.data"
+					(click)="onStepSelected.emit({ step: step, index: i })">
 					{{step.text}}
 				</p>
-				<p class="bx--progress-label" *ngIf="!step.tooltip">{{step.text}}</p>
+				<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="onStepSelected.emit({ step: step, index: i })">{{step.text}}</p>
 				<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
 				<span class="bx--progress-line"></span>
 			</div>
@@ -63,6 +64,8 @@ export class ProgressIndicator {
 
 		return steps;
 	}
+
+	@Output() onStepSelected = new EventEmitter<{ step: Step, index: number }>();
 
 	@Input() steps: Array<Step>;
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
