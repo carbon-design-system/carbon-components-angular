@@ -1,13 +1,23 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { ModalModule } from "../";
-import { Component, Input, Inject } from "@angular/core";
+import { ModalModule, InputModule } from "../";
+import {
+	Component,
+	Input,
+	Inject,
+	AfterContentInit
+} from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ModalService, DocumentationModule } from "../";
-import { ModalButton, AlertModalType, ModalButtonType } from "./alert-modal.interface";
+import {
+	ModalButton,
+	AlertModalType,
+	ModalButtonType
+} from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
+import { Observable, Subject } from "rxjs";
 
 @Component({
 	selector: "app-sample-modal",
@@ -76,6 +86,75 @@ class ModalStory {
 	}
 }
 
+@Component({
+	selector: "app-input-modal",
+	template: `
+		<ibm-modal [size]="size" (overlaySelected)="closeModal()">
+			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
+			<section class="bx--modal-content">
+				<ibm-label>
+					Account name
+					<input
+						ibmText
+						[value]="inputValue"
+						(change)="onChange($event)">
+				</ibm-label>
+			</section>
+			<ibm-modal-footer>
+				<button class="bx--btn bx--btn--secondary" (click)="closeModal()">Cancel</button>
+				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
+			</ibm-modal-footer>
+		</ibm-modal>
+	`
+})
+class InputModal extends BaseModal {
+	constructor(
+		@Inject("modalText") public modalText,
+		@Inject("size") public size,
+		@Inject("data") public data,
+		@Inject("inputValue") public inputValue,
+		protected modalService: ModalService) {
+		super();
+	}
+
+	onChange(event) {
+		this.data.next(event.target.value);
+	}
+}
+
+@Component({
+	selector: "app-data-passing-modal",
+	template: `
+		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
+		<h3>Data passed from input modal on input change: </h3>{{ modalInputValue }}
+	`
+})
+class DataPassingModal implements AfterContentInit {
+	@Input() modalText = "Hello, World";
+
+	@Input() size = "default";
+
+	protected modalInputValue = "";
+	protected data: Observable<string> = new Subject<string>();
+
+	constructor(protected modalService: ModalService) { }
+
+	openModal() {
+		this.modalService.create({
+			component: InputModal,
+			inputs: {
+				modalText: this.modalText,
+				inputValue: this.modalInputValue,
+				size: this.size,
+				data: this.data
+			}
+		});
+	}
+
+	ngAfterContentInit() {
+		this.data.subscribe(value => this.modalInputValue = value);
+	}
+}
 
 @Component({
 	selector: "app-alert-modal-story",
@@ -111,16 +190,20 @@ storiesOf("Components|Modal", module)
 			declarations: [
 				ModalStory,
 				SampleModal,
+				InputModal,
+				DataPassingModal,
 				AlertModalStory
 			],
 			imports: [
 				ModalModule,
 				PlaceholderModule,
+				InputModule,
 				BrowserAnimationsModule,
 				DocumentationModule
 			],
 			entryComponents: [
-				SampleModal
+				SampleModal,
+				InputModal
 			]
 		})
 	)
@@ -181,6 +264,19 @@ storiesOf("Components|Modal", module)
 			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
+		}
+	}))
+	.add("Data passing", () => ({
+		template: `
+			<app-data-passing-modal
+				[modalText]="modalText"
+				[size]="size">
+			</app-data-passing-modal>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			modalText: text("modalText", "Hello, World!"),
+			size: select("size", ["xs", "sm", "default", "lg"], "default")
 		}
 	}))
 	.add("Documentation", () => ({

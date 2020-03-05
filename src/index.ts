@@ -35,6 +35,7 @@ export * from "./structured-list/structured-list.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./tag/tag.module";
+export * from "./toggle/toggle.module";
 export * from "./tiles/tiles.module";
 export * from "./timepicker/timepicker.module";
 export * from "./timepicker-select/timepicker-select.module";
