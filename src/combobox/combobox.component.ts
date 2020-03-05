@@ -285,12 +285,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 						this.showClearButton = true;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
-						// Under some circumstances the view does not get updated with the selected
-						// item for a single selection combobox. This manually updates the input with the
-						// correct selected item.
-						if (this.view.getSelected()[0]) {
-							this.input.nativeElement.value = this.view.getSelected()[0].content;
-						}
 					} else {
 						this.selectedValue = "";
 						this.propagateChangeCallback(null);
@@ -476,13 +470,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		event.preventDefault();
 
 		this.clearSelected();
-
-		// This makes sure there are no selected items before clearing the input manually.
-		// The view needs to be updated manually because the input will not clear automatically
-		// if we clear the selected item for a single selection combobox.
-		const selected = this.view.getSelected();
-		this.input.nativeElement.value = selected ? selected : "";
-
+		this.selectedValue = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
