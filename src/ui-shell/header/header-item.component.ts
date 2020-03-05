@@ -28,6 +28,10 @@ import { Router } from "@angular/router";
 })
 export class HeaderItem {
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		}
 		this._href = v;
 	}
 

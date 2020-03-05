@@ -6,6 +6,7 @@ export * from "./code-snippet/code-snippet.module";
 export * from "./combobox/combobox.module";
 export * from "./content-switcher/content-switcher.module";
 export * from "./datepicker/datepicker.module";
+export * from "./datepicker-input/datepicker-input.module";
 export * from "./dialog/dialog.module";
 export * from "./documentation-component/documentation.module";
 export * from "./dropdown/dropdown.module";
