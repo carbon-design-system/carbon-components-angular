@@ -306,7 +306,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/notification/notification.service.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/notification/notification.service.ts:160</a></div>
                             </td>
                         </tr>
 
@@ -381,7 +381,7 @@ some extra time (in ms) to timeout if you need to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/notification/notification.service.ts:201</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/notification/notification.service.ts:199</a></div>
                             </td>
                         </tr>
 
@@ -837,14 +837,12 @@ export class NotificationService implements OnDestroy {
 			if (notificationRef instanceof Notification) {
 				this.close(notificationRef.componentRef);
 			} else {
-				setTimeout( () &#x3D;&gt; {
-					this.applicationRef.detachView(notificationRef.hostView);
-					notificationRef.destroy();
-					const index &#x3D; this.notificationRefs.indexOf(notificationRef);
-					if (index !&#x3D;&#x3D; -1) {
-						this.notificationRefs.splice(index, 1);
-					}
-				}, 200);
+				this.applicationRef.detachView(notificationRef.hostView);
+				notificationRef.destroy();
+				const index &#x3D; this.notificationRefs.indexOf(notificationRef);
+				if (index !&#x3D;&#x3D; -1) {
+					this.notificationRefs.splice(index, 1);
+				}
 			}
 		}
 	}
