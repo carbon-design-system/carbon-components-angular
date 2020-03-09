@@ -1,33 +1,31 @@
-import { NgModule, Optional, SkipSelf, NgZone } from "@angular/core";
+import { NgModule } from "@angular/core";
 import {
 	AnimationFrameService,
-	AnimationFrameServiceSingleton
+	AnimationFrameServiceSingleton,
+	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
+	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
 } from "./animation-frame.service";
 import { ElementService } from "./element.service";
-
-// either provides a new instance of AnimationFrameServiceSingleton, or returns the parent
-export function ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY(parentService: AnimationFrameServiceSingleton, ngZone: NgZone) {
-	return parentService || new AnimationFrameServiceSingleton(ngZone);
-}
-
-export const ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER = {
-	provide: AnimationFrameServiceSingleton,
-	deps: [[new Optional(), new SkipSelf(), AnimationFrameServiceSingleton], NgZone],
-	useFactory: ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
-};
+import { EventService } from "./event.service";
+import { DocumentService } from "./document.service";
 
 @NgModule({
 	providers: [
 		ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
 		AnimationFrameServiceSingleton,
 		AnimationFrameService,
-		ElementService
+		ElementService,
+		EventService
 	]
-}) class UtilsModule { }
+})
+export class UtilsModule { }
 
 export {
-	UtilsModule,
 	AnimationFrameService,
 	AnimationFrameServiceSingleton,
-	ElementService
+	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
+	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY,
+	ElementService,
+	DocumentService,
+	EventService
 };
