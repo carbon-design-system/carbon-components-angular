@@ -236,19 +236,21 @@ storiesOf("Components|Notification", module)
 			<ibm-toast [notificationObj]="{
 				type: 'error',
 				template: customToastContent,
+				templateData: {data: {title: 'Sample custom toast', subtitle: 'Sample custom subtitle', caption: 'Sample custom caption' }},
 				showClose: showClose
 			}">
 			</ibm-toast>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				template: customNotificationContent,
+				templateData: {data: {title: 'Sample custom notification', subtitle: 'Sample custom subtitle' }},
 				showClose: showClose
 			}">
 			</ibm-notification>
-			<ng-template #customToastContent>
-				<h3 ibmToastTitle>Sample custom toast</h3>
-				<p ibmToastSubtitle>Sample custom subtitle</p>
-				<p ibmToastCaption>Sample custom caption</p>
+			<ng-template #customToastContent let-data="data">
+				<h3 ibmToastTitle>{{data.title}}</h3>
+				<p ibmToastSubtitle>{{data.subtitle}}</p>
+				<p ibmToastCaption>{{data.caption}}</p>
 				<div class="actions">
 					<div class="secondary-toast-button">
 						<button ibmButton="secondary" size="sm">Still Working</button>
@@ -258,9 +260,9 @@ storiesOf("Components|Notification", module)
 					</div>
 				</div>
 			</ng-template>
-			<ng-template #customNotificationContent>
-				<p ibmNotificationTitle>Sample custom notification</p>
-				<p ibmNotificationSubtitle>Sample custom caption</p>
+			<ng-template #customNotificationContent let-data="data">
+				<p ibmNotificationTitle>{{data.title}}</p>
+				<p ibmNotificationSubtitle>{{data.subtitle}}</p>
 			</ng-template>
 		`,
 		encapsulation: ViewEncapsulation.None,

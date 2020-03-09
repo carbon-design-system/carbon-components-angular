@@ -12,6 +12,7 @@ export interface NotificationContent {
 	showClose?: boolean;
 	lowContrast?: boolean;
 	template?: TemplateRef<any>;
+	templateData?: any;
 	actions?: NotificationAction[];
 }
 
