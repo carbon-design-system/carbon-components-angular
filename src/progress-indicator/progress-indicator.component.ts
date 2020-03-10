@@ -44,10 +44,10 @@ import { Step } from "./progress-indicator-step.interface";
 					[gap]="step.tooltip.gap"
 					[appendInline]="step.tooltip.appendInline"
 					[data]="step.tooltip.data"
-					(click)="onStepSelected.emit({ step: step, index: i })">
+					(click)="stepSelected.emit({ step: step, index: i })">
 					{{step.text}}
 				</p>
-				<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="onStepSelected.emit({ step: step, index: i })">{{step.text}}</p>
+				<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
 				<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
 				<span class="bx--progress-line"></span>
 			</div>
@@ -65,7 +65,7 @@ export class ProgressIndicator {
 		return steps;
 	}
 
-	@Output() onStepSelected = new EventEmitter<{ step: Step, index: number }>();
+	@Output() stepSelected = new EventEmitter<{ step: Step, index: number }>();
 
 	@Input() steps: Array<Step>;
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
