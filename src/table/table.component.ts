@@ -305,6 +305,9 @@ export class Table implements AfterViewInit, OnDestroy {
 	set model(m: TableModel) {
 		if (this._model) {
 			this.subscriptions.unsubscribe();
+			// Need to create a new subscription instance here because unsubscribing prevents any new subscriptions
+			// from being added for some reason. When a new model is set, none of the subscriptions would exist.
+			this.subscriptions = new Subscription();
 		}
 
 		this._model = m;
