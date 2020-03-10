@@ -4,6 +4,7 @@ import { By	} from "@angular/platform-browser";
 
 import { Slider } from "./slider.component";
 import { CommonModule } from "@angular/common";
+import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
@@ -23,7 +24,7 @@ class SliderTest {
 	onValueChange() {}
 }
 
-describe("Dropdown", () => {
+describe("Slider", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -32,7 +33,8 @@ describe("Dropdown", () => {
 				SliderTest
 			],
 			imports: [
-				CommonModule
+				CommonModule,
+				UtilsModule
 			]
 		});
 	});

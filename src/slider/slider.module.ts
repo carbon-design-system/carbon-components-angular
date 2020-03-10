@@ -1,11 +1,16 @@
 import { NgModule } from "@angular/core";
-import { Slider } from "./slider.component";
 import { CommonModule } from "@angular/common";
+
+import { Slider } from "./slider.component";
+import { UtilsModule } from "../utils/utils.module";
 
 @NgModule({
 	declarations: [Slider],
 	exports: [Slider],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		UtilsModule
+	]
 })
 class SliderModule {}
 
