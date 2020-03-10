@@ -1,4 +1,9 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { 
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
 import { ExperimentalService } from "./../experimental.module";
 import { Step } from "./progress-indicator-step.interface";
 
@@ -20,7 +25,7 @@ import { Step } from "./progress-indicator-step.interface";
 		}">
 		<li
 			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
-			*ngFor="let step of steps; let i=index"
+			*ngFor="let step of steps; let i = index"
 			[ngClass]="{'bx--progress-step--disabled' : step.disabled}">
 			<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
 				<ibm-icon-checkmark-outline16 *ngIf="step.state == 'complete'"></ibm-icon-checkmark-outline16>
