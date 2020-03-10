@@ -236,14 +236,25 @@ storiesOf("Components|Notification", module)
 			<ibm-toast [notificationObj]="{
 				type: 'error',
 				template: customToastContent,
-				templateData: {data: {title: 'Sample custom toast', subtitle: 'Sample custom subtitle', caption: 'Sample custom caption' }},
+				templateData: {
+					data: {
+						title: 'Sample custom toast',
+						subtitle: 'Sample custom subtitle',
+						caption: 'Sample custom caption'
+					}
+				},
 				showClose: showClose
 			}">
 			</ibm-toast>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				template: customNotificationContent,
-				templateData: {data: {title: 'Sample custom notification', subtitle: 'Sample custom subtitle' }},
+				templateData: {
+					data: {
+						title: 'Sample custom notification',
+						subtitle: 'Sample custom subtitle'
+					}
+				},
 				showClose: showClose
 			}">
 			</ibm-notification>
