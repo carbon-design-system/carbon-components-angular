@@ -13,7 +13,7 @@ import { Step } from "./progress-indicator-step.interface";
 	template: `<ibm-progress-indicator
 					[steps]="steps"
 					[current]="current"
-					(onStepSelected)="onStepSelected.emit($event)">
+					(stepSelected)="stepSelected.emit($event)">
 				</ibm-progress-indicator>`
 })
 class ProgressIndicatorTest {
@@ -50,7 +50,7 @@ class ProgressIndicatorTest {
 
 	current = 2;
 
-	onStepSelected = new EventEmitter<{ step: Step, index: number }>();
+	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
 describe("ProgressIndicator", () => {
@@ -110,7 +110,7 @@ describe("ProgressIndicator", () => {
 	it("should emit the step and index when a step is clicked", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
-		spyOn(wrapper.onStepSelected, "emit");
+		spyOn(wrapper.stepSelected, "emit");
 		let index = 2;
 		wrapper.current = index;
 		fixture.detectChanges();
@@ -118,6 +118,6 @@ describe("ProgressIndicator", () => {
 		let step = element.nativeElement.querySelector(".bx--progress-step--current .bx--progress-label");
 		step.click();
 		fixture.detectChanges();
-		expect(wrapper.onStepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
+		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
 	});
 });
