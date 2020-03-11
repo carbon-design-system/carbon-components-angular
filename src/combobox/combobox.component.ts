@@ -52,15 +52,17 @@ import { DocumentService } from "../utils/utils.module";
 				class="bx--list-box__field"
 				type="button"
 				tabindex="-1"
-				aria-label="close menu"
+				[attr.aria-label]="label"
 				aria-haspopup="true"
-				(click)="toggleDropdown()">
+				(click)="toggleDropdown()"
+				[id]="id">
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
 					role="button"
 					class="bx--list-box__selection bx--list-box__selection--multi"
-					title="Clear all selected items">
+					[title]="clearSelectionsTitle"
+					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
 					<svg
 						focusable="false"
@@ -77,7 +79,6 @@ import { DocumentService } from "../utils/utils.module";
 				</div>
 				<input
 					#input
-					[id]="id"
 					[disabled]="disabled"
 					(keyup)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
@@ -85,9 +86,9 @@ import { DocumentService } from "../utils/utils.module";
 					class="bx--text-input"
 					role="searchbox"
 					tabindex="0"
-					[attr.aria-label]="label"
+					[attr.aria-aria-labelledby]="id"
 					aria-haspopup="true"
-					autocomplete="off"
+					autocomplete="list"
 					[placeholder]="placeholder"/>
 				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
 				<div
@@ -95,15 +96,16 @@ import { DocumentService } from "../utils/utils.module";
 					role="button"
 					class="bx--list-box__selection"
 					tabindex="0"
-					aria-label="Clear Selection"
-					title="Clear selected item"
+					[attr.aria-label]="clearSelectionAria"
+					[title]="clearSelectionTitle"
 					(click)="clearInput($event)">
 					<ibm-icon-close16></ibm-icon-close16>
 				</div>
 				<ibm-icon-chevron-down16
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
-					ariaLabel="Close menu">
+					[title]="open ? closeMenuAria : openMenuAria"
+					[ariaLabel]="open ? closeMenuAria : openMenuAria">
 				</ibm-icon-chevron-down16>
 			</div>
 			<div
@@ -114,10 +116,7 @@ import { DocumentService } from "../utils/utils.module";
 		</div>
 		<div *ngIf="invalid">
 			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
-			<ng-template
-				*ngIf="isTemplate(invalidText)"
-				[ngTemplateOutlet]="invalidText">
-			</ng-template>
+			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
 	`,
 	providers: [
@@ -186,6 +185,30 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Value to display for accessibility purposes on the combobox control menu when closed
+	 */
+	@Input() openMenuAria = "open menu";
+	/**
+	 * Value to display for accessibility purposes on the combobox control menu when opened
+	 */
+	@Input() closeMenuAria = "close menu";
+	/**
+	 * Value to display on the clear selections icon, when multi is selected
+	 */
+	@Input() clearSelectionsTitle = "Clear all selected items";
+	/**
+	 * Value to display for accessibility purposes to clear selections, when multi is selected
+	 */
+	@Input() clearSelectionsAria = "Clear all selected items";
+	/**
+	 * Value to display on the clear the selected item icon, when single is selected
+	 */
+	@Input() clearSelectionTitle = "Clear selected item";
+	/**
+	 * Value to display for accessibility purposes on the clear the selected item icon, when single is selected
+	 */
+	@Input() clearSelectionAria = "Clear Selection";
 	/**
 	 * Set to `true` to disable combobox.
 	 */
