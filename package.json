@@ -40,7 +40,8 @@
         "channel": "carbon-v9",
         "range": "2.X"
       }
-    ]
+	],
+	"tagFormat": "v${version}@latest"
   },
   "config": {
     "commitizen": {
