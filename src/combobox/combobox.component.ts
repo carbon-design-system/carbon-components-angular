@@ -17,6 +17,7 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
+import { DocumentService } from "../utils/utils.module";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -255,7 +256,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Creates an instance of ComboBox.
 	 */
-	constructor(protected elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef, protected documentService: DocumentService) {}
 
 	/**
 	 * Lifecycle hook.
@@ -314,8 +315,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Binds event handlers against the rendered view
 	 */
 	ngAfterViewInit() {
-		document.addEventListener("click", ev => {
-			if (!this.elementRef.nativeElement.contains(ev.target)) {
+		this.documentService.handleClick(event => {
+			if (!this.elementRef.nativeElement.contains(event.target)) {
 				if (this.open) {
 					this.closeDropdown();
 				}

@@ -36,7 +36,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * One static event observable to handle window resizing.
 	 */
-	protected static resizeObservable: Observable<any> = fromEvent(window, "resize").pipe(throttleTime(100));
+	protected static resizeObservable: Observable<any> = fromEvent(window, "resize", { passive: true }).pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 */

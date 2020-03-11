@@ -10,11 +10,13 @@ import {
 	ViewContainerRef,
 	HostListener,
 	OnChanges,
-	HostBinding
+	HostBinding,
+	Optional
 } from "@angular/core";
 import { fromEvent } from "rxjs";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
+import { EventService } from "../utils/utils.module";
 
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
@@ -118,15 +120,17 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService) {}
+		protected dialogService: DialogService,
+		// mark `eventService` as optional since making it mandatory would be a breaking change
+		@Optional() protected eventService: EventService = null
+	) {}
 
 	/**
 	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
 	 */
-	@HostListener("touchstart", ["$event"])
-	onTouchStart(evt) {
-		evt.stopImmediatePropagation();
-		evt.preventDefault();
+	onTouchStart(event) {
+		event.stopImmediatePropagation();
+		event.preventDefault();
 		this.toggle();
 	}
 
@@ -158,30 +162,66 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// fix for safari hijacking clicks
 		this.dialogService.singletonClickListen();
 
-		fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
-			// "Esc" is an IE specific value
-			if (event.target === this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
-				event.key === "Escape" || event.key === "Esc") {
-				this.close();
-			}
-		});
+		const element = this.elementRef.nativeElement;
 
-		// bind events for hovering or clicking the host
-		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.open());
-			fromEvent(this.elementRef.nativeElement, this.closeTrigger).subscribe(() => this.close());
-			fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
-			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
-		} else {
-			fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
-			fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
-				// "Spacebar" is an IE specific value
-				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-					setTimeout(() => {
-						this.open();
-					});
+		if (this.eventService) {
+			this.eventService.on(element, "touchstart", this.onTouchStart.bind(this));
+
+			this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
+				// "Esc" is an IE specific value
+				if (event.target === this.dialogConfig.parentRef.nativeElement &&
+					(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+					event.key === "Escape" || event.key === "Esc") {
+					this.close();
 				}
 			});
+
+			// bind events for hovering or clicking the host
+			if (this.trigger === "hover" || this.trigger === "mouseenter") {
+				this.eventService.on(element, "mouseenter", this.open.bind(this));
+				this.eventService.on(element, this.closeTrigger, this.close.bind(this));
+				this.eventService.on(element, "focus", this.open.bind(this));
+				this.eventService.on(element, "blur", this.close.bind(this));
+			} else {
+				this.eventService.on(element, "click", this.toggle.bind(this));
+				this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
+					// "Spacebar" is an IE specific value
+					if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+						setTimeout(() => {
+							this.open();
+						});
+					}
+				});
+			}
+		} else {
+			fromEvent(element, "touchstart", { passive: true }).subscribe(this.onTouchStart.bind(this));
+
+			fromEvent(element, "keydown").subscribe((event: KeyboardEvent) => {
+				// "Esc" is an IE specific value
+				if (event.target === this.dialogConfig.parentRef.nativeElement &&
+					(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+					event.key === "Escape" || event.key === "Esc") {
+					this.close();
+				}
+			});
+
+			// bind events for hovering or clicking the host
+			if (this.trigger === "hover" || this.trigger === "mouseenter") {
+				fromEvent(element, "mouseenter").subscribe(() => this.open());
+				fromEvent(element, this.closeTrigger).subscribe(() => this.close());
+				fromEvent(element, "focus").subscribe(() => this.open());
+				fromEvent(element, "blur").subscribe(() => this.close());
+			} else {
+				fromEvent(element, "click").subscribe(() => this.toggle());
+				fromEvent(element, "keydown").subscribe((event: KeyboardEvent) => {
+					// "Spacebar" is an IE specific value
+					if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+						setTimeout(() => {
+							this.open();
+						});
+					}
+				});
+			}
 		}
 
 		// call onClose when the dialog is closed
