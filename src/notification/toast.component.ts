@@ -37,7 +37,7 @@ import { I18n } from "./../i18n/i18n.module";
 			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
 			<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
 			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
-			<ng-container *ngTemplateOutlet="notificationObj.template; context: notificationObj.templateData"></ng-container>
+			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>
 		<button
 			*ngIf="showClose"

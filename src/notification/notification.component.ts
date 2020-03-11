@@ -39,7 +39,7 @@ import { of, isObservable, Subject } from "rxjs";
 			<div class="bx--inline-notification__text-wrapper">
 				<p *ngIf="!notificationObj.template" ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
 				<p *ngIf="!notificationObj.template" ibmNotificationSubtitle [innerHTML]="notificationObj.message"></p>
-				<ng-container *ngTemplateOutlet="notificationObj.template; context: notificationObj.templateData"></ng-container>
+				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 			</div>
 		</div>
 		<div *ngFor="let action of notificationObj.actions">
