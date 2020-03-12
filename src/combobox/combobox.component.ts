@@ -18,6 +18,8 @@ import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import { DocumentService } from "../utils/utils.module";
+import { I18n } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -160,7 +162,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Text to show when nothing is selected.
 	 */
-	@Input() placeholder = "Filter...";
+	@Input() set placeholder(value: string | Observable<string>) {
+		this._placeholder.override(value);
+	}
+
+	get placeholder() {
+		return this._placeholder.value;
+	}
 	/**
 	 * Combo box type (supporting single or multi selection of items).
 	 */
@@ -188,27 +196,63 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
-	@Input() openMenuAria = "open menu";
+	@Input() set openMenuAria(value: string | Observable<string>) {
+		this._openMenuAria.override(value);
+	}
+
+	get openMenuAria() {
+		return this._openMenuAria.value;
+	}
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when opened
 	 */
-	@Input() closeMenuAria = "close menu";
+	@Input() set closeMenuAria(value: string | Observable<string>) {
+		this._closeMenuAria.override(value);
+	}
+
+	get closeMenuAria() {
+		return this._closeMenuAria.value;
+	}
 	/**
 	 * Value to display on the clear selections icon, when multi is selected
 	 */
-	@Input() clearSelectionsTitle = "Clear all selected items";
+	@Input() set clearSelectionsTitle(value: string | Observable<string>) {
+		this._clearSelectionsTitle.override(value);
+	}
+
+	get clearSelectionsTitle() {
+		return this._clearSelectionsTitle.value;
+	}
 	/**
 	 * Value to display for accessibility purposes to clear selections, when multi is selected
 	 */
-	@Input() clearSelectionsAria = "Clear all selected items";
+	@Input() set clearSelectionsAria(value: string | Observable<string>) {
+		this._clearSelectionsAria.override(value);
+	}
+
+	get clearSelectionsAria() {
+		return this._clearSelectionsAria.value;
+	}
 	/**
 	 * Value to display on the clear the selected item icon, when single is selected
 	 */
-	@Input() clearSelectionTitle = "Clear selected item";
+	@Input() set clearSelectionTitle(value: string | Observable<string>) {
+		this._clearSelectionTitle.override(value);
+	}
+
+	get clearSelectionTitle() {
+		return this._clearSelectionTitle.value;
+	}
 	/**
 	 * Value to display for accessibility purposes on the clear the selected item icon, when single is selected
 	 */
-	@Input() clearSelectionAria = "Clear Selection";
+	@Input() set clearSelectionAria(value: string | Observable<string>) {
+		this._clearSelectionAria.override(value);
+	}
+
+	get clearSelectionAria() {
+		return this._clearSelectionAria.value;
+	}
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -276,10 +320,22 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
+	protected _placeholder = this.i18n.getOverridable("COMBOBOX.PLACEHOLDER");
+	protected _closeMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLOSE_MENU");
+	protected _openMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.OPEN_MENU");
+	protected _clearSelectionsTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTIONS");
+	protected _clearSelectionsAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTIONS");
+	protected _clearSelectionTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTED");
+	protected _clearSelectionAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTED");
+
 	/**
 	 * Creates an instance of ComboBox.
 	 */
-	constructor(protected elementRef: ElementRef, protected documentService: DocumentService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected documentService: DocumentService,
+		protected i18n: I18n
+	) {}
 
 	/**
 	 * Lifecycle hook.
