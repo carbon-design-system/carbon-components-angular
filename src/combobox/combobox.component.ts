@@ -58,8 +58,10 @@ import { DocumentService } from "../utils/utils.module";
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
+					(keydown.enter)="clearSelected()"
 					role="button"
-					class="bx--list-box__selection bx--list-box__selection--multi"
+					class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"
+					tabindex="0"
 					title="Clear all selected items">
 					{{ pills.length }}
 					<svg
