@@ -2,6 +2,7 @@ import { Subject } from "rxjs";
 import { TemplateRef } from "@angular/core";
 
 export interface NotificationContent {
+	[key: string]: any;
 	type: string;
 	title: string;
 	target?: string;

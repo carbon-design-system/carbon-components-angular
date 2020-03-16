@@ -34,10 +34,10 @@ import { I18n } from "./../i18n/i18n.module";
 			class="bx--toast-notification__icon">
 		</ibm-icon-checkmark-filled16>
 		<div class="bx--toast-notification__details">
-			<h3 ibmToastTitle [innerHTML]="notificationObj.title"></h3>
-			<p ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
-			<p ibmToastCaption [innerHTML]="notificationObj.caption"></p>
-			<ng-container *ngTemplateOutlet="notificationObj.template"></ng-container>
+			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
+			<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
+			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
+			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>
 		<button
 			*ngIf="showClose"
