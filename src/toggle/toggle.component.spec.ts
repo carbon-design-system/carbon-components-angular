@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -14,7 +13,7 @@ describe("Toggle", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Toggle],
-			imports: [BrowserAnimationsModule, I18nModule],
+			imports: [I18nModule],
 			providers: []
 		});
 

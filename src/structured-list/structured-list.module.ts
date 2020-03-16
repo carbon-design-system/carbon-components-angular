@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
+import { CheckmarkFilledModule } from "@carbon/icons-angular";
 
 import { StructuredList } from "./structured-list.component";
 import { ListRow } from "./list-row.component";
@@ -22,7 +22,7 @@ import { ListColumn } from "./list-column.component";
 	],
 	imports: [
 		CommonModule,
-		CheckmarkFilled16Module
+		CheckmarkFilledModule
 	]
 })
 export class StructuredListModule { }

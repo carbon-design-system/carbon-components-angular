@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
+import { CloseModule } from "@carbon/icons-angular";
 
 import { Tag } from "./tag.component";
 import { TagFilter } from "./tag-filter.component";
@@ -8,6 +8,6 @@ import { TagFilter } from "./tag-filter.component";
 @NgModule({
 	declarations: [ Tag, TagFilter ],
 	exports: [ Tag, TagFilter ],
-	imports: [ CommonModule, Close16Module ]
+	imports: [ CommonModule, CloseModule ]
 })
 export class TagModule { }

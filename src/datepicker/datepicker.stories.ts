@@ -24,7 +24,6 @@ import { DatePickerModule, DocumentationModule } from "../";
 import { ButtonModule } from "../forms/forms.module";
 import { TabsModule } from "../tabs/tabs.module";
 import { ModalModule } from "../modal/modal.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 const modalText =
 	`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
@@ -129,7 +128,6 @@ storiesOf("Components|Date Picker", module)
 				ReactiveFormsModule,
 				DocumentationModule,
 				ButtonModule,
-				BrowserAnimationsModule,
 				TabsModule,
 				ModalModule
 			],

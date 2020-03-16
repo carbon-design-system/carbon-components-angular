@@ -20,14 +20,16 @@ import { FileItem } from "./file-item.interface";
 			(keyup.enter)="remove.emit()"
 			(keyup.space)="remove.emit()"
 			tabindex="0">
-			<ibm-icon-warning-filled16
+			<ibm-icon-warning-filled
+				size="16"
 				*ngIf="isInvalidText"
 				class="bx--file--invalid">
-			</ibm-icon-warning-filled16>
-			<ibm-icon-close16
+			</ibm-icon-warning-filled>
+			<ibm-icon-close
+				size="16"
 				class="bx--file-close"
 				[ariaLabel]="translations.REMOVE_BUTTON">
-			</ibm-icon-close16>
+			</ibm-icon-close>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
 			<div class="bx--inline-loading__animation">
@@ -38,10 +40,11 @@ import { FileItem } from "./file-item.interface";
 			*ngIf="fileItem.state === 'complete'"
 			class="bx--file__state-container"
 			tabindex="0">
-			<ibm-icon-checkmark-filled16
+			<ibm-icon-checkmark-filled
+				size="16"
 				class="bx--file-complete"
 				[ariaLabel]="translations.CHECKMARK">
-			</ibm-icon-checkmark-filled16>
+			</ibm-icon-checkmark-filled>
 		</span>
 	`
 })

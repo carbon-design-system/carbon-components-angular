@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CheckmarkOutline16Module } from "@carbon/icons-angular/lib/checkmark--outline/16";
-import { Warning16Module } from "@carbon/icons-angular/lib/warning/16";
+import { CheckmarkOutlineModule, WarningModule } from "@carbon/icons-angular";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { DialogModule } from "./../dialog/dialog.module";
@@ -18,8 +17,8 @@ import { ExperimentalModule } from "./../experimental.module";
 		CommonModule,
 		DialogModule,
 		ExperimentalModule,
-		CheckmarkOutline16Module,
-		Warning16Module
+		CheckmarkOutlineModule,
+		WarningModule
 	]
 })
 export class ProgressIndicatorModule { }

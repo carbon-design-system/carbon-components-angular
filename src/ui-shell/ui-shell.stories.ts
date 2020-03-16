@@ -8,9 +8,10 @@ import { DialogModule } from "./../dialog/dialog.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
-import { Fade16Module } from "@carbon/icons-angular/lib/fade/16";
-import { Fade20Module } from "@carbon/icons-angular/lib/fade/20";
+import {
+	CarbonModule,
+	FadeModule
+} from "@carbon/icons-angular";
 
 
 @Component({
@@ -31,11 +32,9 @@ storiesOf("Components|UI Shell", module)
 			declarations: [BarComponent, FooComponent],
 			imports: [
 				UIShellModule,
-				Carbon32Module,
-				Fade16Module,
+				CarbonModule,
 				SearchModule,
-				Fade16Module,
-				Fade20Module,
+				FadeModule,
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
@@ -110,7 +109,7 @@ storiesOf("Components|UI Shell", module)
 
 			<ng-template #brandTemplate>
 				<a class="bx--header__name">
-					<ibm-icon-carbon32 style="stroke:white;fill:white"></ibm-icon-carbon32>
+					<ibm-icon-carbon size="32" style="stroke:white;fill:white"></ibm-icon-carbon>
 					<span class="bx--header__name--prefix">IBM</span>
 					[Platform]
 				</a>

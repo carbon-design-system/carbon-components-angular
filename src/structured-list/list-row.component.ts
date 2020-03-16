@@ -47,7 +47,7 @@ import { ListColumn } from "./list-column.component";
 				(change)="onChange($event)"
 				[checked]="selected"/>
 			<div class="bx--structured-list-td">
-				<ibm-icon-checkmark-filled16 class="bx--structured-list-svg"></ibm-icon-checkmark-filled16>
+				<ibm-icon-checkmark-filled size="16" class="bx--structured-list-svg"></ibm-icon-checkmark-filled>
 			</div>
 		</ng-container>
 	`

@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
+import { InformationFilledModule } from "@carbon/icons-angular";
 import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
 storiesOf("Components|Tooltip", module)
@@ -11,7 +11,7 @@ storiesOf("Components|Tooltip", module)
 			imports: [
 				DialogModule,
 				PlaceholderModule,
-				InformationFilled16Module,
+				InformationFilledModule,
 				DocumentationModule
 			]
 		})
@@ -36,7 +36,7 @@ storiesOf("Components|Tooltip", module)
 						trigger="click"
 						[placement]="placement">
 						<div role="button">
-							<ibm-icon-information-filled16></ibm-icon-information-filled16>
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
 						</div>
 					</span>
 				</div>

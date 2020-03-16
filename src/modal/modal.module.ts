@@ -1,7 +1,7 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
+import { CloseModule } from "@carbon/icons-angular";
 
 // imports
 import { ModalPlaceholder } from "./modal-placeholder.component";
@@ -45,7 +45,7 @@ import { ExperimentalModule } from "./../experimental.module";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		Close16Module
+		CloseModule
 	]
 })
 export class ModalModule { }

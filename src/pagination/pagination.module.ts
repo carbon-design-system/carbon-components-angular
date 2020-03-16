@@ -1,9 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
-import { CaretLeft16Module } from "@carbon/icons-angular/lib/caret--left/16";
-import { CaretRight16Module } from "@carbon/icons-angular/lib/caret--right/16";
+import {
+	ChevronDownModule,
+	CaretLeftModule,
+	CaretRightModule
+} from "@carbon/icons-angular";
 
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "./../i18n/index";
@@ -21,9 +23,9 @@ import { ExperimentalModule } from "./../experimental.module";
 		FormsModule,
 		I18nModule,
 		ExperimentalModule,
-		ChevronDown16Module,
-		CaretLeft16Module,
-		CaretRight16Module
+		ChevronDownModule,
+		CaretLeftModule,
+		CaretRightModule
 	]
 })
 export class PaginationModule {}

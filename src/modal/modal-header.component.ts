@@ -28,7 +28,7 @@ import { ExperimentalService } from "./../experimental.service";
 				class="bx--modal-close"
 				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
-				<ibm-icon-close16 class="bx--modal-close__icon"></ibm-icon-close16>
+				<ibm-icon-close size="16" class="bx--modal-close__icon"></ibm-icon-close>
 			</button>
 		</header>
 

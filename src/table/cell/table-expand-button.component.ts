@@ -17,7 +17,7 @@ import { Observable } from "rxjs";
 			class="bx--table-expand__button"
 			[attr.aria-label]="getAriaLabel() | async"
 			(click)="expandRow.emit()">
-			<ibm-icon-chevron-right16 innerClass="bx--table-expand__svg"></ibm-icon-chevron-right16>
+			<ibm-icon-chevron-right size="16" innerClass="bx--table-expand__svg"></ibm-icon-chevron-right>
 		</button>
 	`
 })

@@ -97,12 +97,13 @@ import { ElementService } from "./../utils/utils.module";
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
 			</svg>
-			<ibm-icon-chevron-down16
+			<ibm-icon-chevron-down
+				size="16"
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down16>
+			</ibm-icon-chevron-down>
 		</div>
 		<div
 			#dropdownMenu

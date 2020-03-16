@@ -9,8 +9,7 @@ import { ScrollableList } from "./scrollable-list.directive";
 import { I18nModule } from "./../i18n/index";
 import { PlaceholderModule } from "./../placeholder/index";
 import { DropdownService } from "./dropdown.service";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { ChevronDownModule, WarningFilledModule } from "@carbon/icons-angular";
 import { UtilsModule } from "./../utils/utils.module";
 
 @NgModule({
@@ -29,8 +28,8 @@ import { UtilsModule } from "./../utils/utils.module";
 		FormsModule,
 		I18nModule,
 		PlaceholderModule,
-		ChevronDown16Module,
-		WarningFilled16Module,
+		ChevronDownModule,
+		WarningFilledModule,
 		UtilsModule
 	],
 	providers: [ DropdownService ]

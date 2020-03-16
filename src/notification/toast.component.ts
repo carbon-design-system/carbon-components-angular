@@ -21,18 +21,21 @@ import { I18n } from "./../i18n/index";
 @Component({
 	selector: "ibm-toast",
 	template: `
-		<ibm-icon-error-filled16
+		<ibm-icon-error-filled
+			size="16"
 			*ngIf="notificationObj.type === 'error'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-error-filled16>
-		<ibm-icon-warning-filled16
+		</ibm-icon-error-filled>
+		<ibm-icon-warning-filled
+			size="16"
 			*ngIf="notificationObj.type === 'warning'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-warning-filled16>
-		<ibm-icon-checkmark-filled16
+		</ibm-icon-warning-filled>
+		<ibm-icon-checkmark-filled
+			size="16"
 			*ngIf="notificationObj.type === 'success'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-checkmark-filled16>
+		</ibm-icon-checkmark-filled>
 		<div class="bx--toast-notification__details">
 			<h3 ibmToastTitle [innerHTML]="notificationObj.title"></h3>
 			<p ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
@@ -45,7 +48,7 @@ import { I18n } from "./../i18n/index";
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<ibm-icon-close16 class="bx--toast-notification__close-icon"></ibm-icon-close16>
+			<ibm-icon-close size="16" class="bx--toast-notification__close-icon"></ibm-icon-close>
 		</button>
 	`
 })

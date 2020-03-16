@@ -50,7 +50,7 @@ export enum SnippetType {
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
 				tabindex="0">
-				<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>
+				<ibm-icon-copy size="16" class="bx--snippet__icon"></ibm-icon-copy>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
@@ -59,7 +59,7 @@ export enum SnippetType {
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
+				<ibm-icon-chevron-down size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down>
 			</button>
 		</ng-template>
 

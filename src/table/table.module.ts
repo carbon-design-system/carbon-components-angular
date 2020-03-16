@@ -4,9 +4,11 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 // icons
-import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
-import { Search16Module } from "@carbon/icons-angular/lib/search/16";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
+import {
+	ChevronRightModule,
+	SearchModule as SearchIconModule,
+	CloseModule
+} from "@carbon/icons-angular";
 
 // internal module imports
 import { NFormsModule } from "./../forms/forms.module";
@@ -114,9 +116,9 @@ export * from "./data-grid-interaction-model.class";
 		ButtonModule,
 		SearchModule,
 		I18nModule,
-		ChevronRight16Module,
-		Search16Module,
-		Close16Module
+		ChevronRightModule,
+		SearchIconModule,
+		CloseModule
 	]
 })
 export class TableModule {}

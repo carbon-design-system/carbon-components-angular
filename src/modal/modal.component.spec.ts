@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
@@ -30,7 +29,6 @@ describe("Modal", () => {
 		TestBed.configureTestingModule({
 			declarations: [Modal, Overlay],
 			imports: [
-				BrowserAnimationsModule,
 				I18nModule,
 				PlaceholderModule
 			],
