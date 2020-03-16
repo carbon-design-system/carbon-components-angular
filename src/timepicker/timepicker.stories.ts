@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
-import { TimePickerSelectModule } from "../timepicker-select/timepicker-select.module";
-import { TimePickerModule } from "./timepicker.module";
+import { TimePickerSelectModule } from "../timepicker-select/index";
+import { TimePickerModule } from "./index";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,

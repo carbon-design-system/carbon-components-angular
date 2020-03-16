@@ -2,9 +2,9 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { UIShellModule } from "./ui-shell.module";
-import { SearchModule } from "./../search/search.module";
-import { DialogModule } from "./../dialog/dialog.module";
+import { UIShellModule } from "./index";
+import { SearchModule } from "./../search/index";
+import { DialogModule } from "./../dialog/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";

@@ -1,4 +1,4 @@
-import { PaginationModule } from "./../pagination/pagination.module";
+import { PaginationModule } from "./../pagination/index";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,

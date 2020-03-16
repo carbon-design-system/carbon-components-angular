@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule, DocumentationModule } from "../";
-import { SkeletonModule } from "../skeleton/skeleton.module";
+import { SkeletonModule } from "../skeleton/index";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";

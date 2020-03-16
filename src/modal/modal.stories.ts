@@ -3,13 +3,14 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
-import { ModalService, DocumentationModule } from "../";
+import { ModalService } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 import {
 	ModalButton,
 	AlertModalType,
 	ModalButtonType
 } from "./alert-modal.interface";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { PlaceholderModule } from "./../placeholder/index";
 import { BaseModal } from "./base-modal.class";
 import { Observable, Subject } from "rxjs";
 import { InputModule } from "../input";

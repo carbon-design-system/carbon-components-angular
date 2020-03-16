@@ -8,7 +8,7 @@ import {
 	select
 } from "@storybook/addon-knobs/angular";
 
-import { SliderModule } from "./slider.module";
+import { SliderModule } from "./index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Components|Slider", module).addDecorator(moduleMetadata({

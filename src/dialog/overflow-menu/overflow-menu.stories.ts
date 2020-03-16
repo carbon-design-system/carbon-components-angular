@@ -1,8 +1,9 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs";
 
-import { DialogModule, DocumentationModule } from "../../";
-import { PlaceholderModule } from "../../placeholder/placeholder.module";
+import { DialogModule } from "../../";
+import { PlaceholderModule } from "../../placeholder/index";
+import { DocumentationModule } from "./../../documentation-component/documentation.module";
 
 let options;
 
