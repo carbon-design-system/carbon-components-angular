@@ -1317,7 +1317,7 @@ to not obscure the content beneath.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100))</code>
+                            <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;, { passive: true }).pipe(throttleTime(100))</code>
                         </td>
                     </tr>
                             <tr>

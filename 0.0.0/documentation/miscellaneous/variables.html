@@ -60,7 +60,7 @@
                             <a href="#_scrollbarWidth" title="src/utils/window-tools.ts"><b>_scrollbarWidth</b>&nbsp;&nbsp;&nbsp;(src/.../window-tools.ts)</a>
                         </li>
                         <li>
-                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER" title="src/utils/utils.module.ts"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
+                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER" title="src/utils/animation-frame.service.ts"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../animation-frame.service.ts)</a>
                         </li>
                         <li>
                             <a href="#carbonFlatpickrMonthSelectPlugin" title="src/datepicker/carbon-flatpickr-month-select.ts"><b>carbonFlatpickrMonthSelectPlugin</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
@@ -78,10 +78,13 @@
                             <a href="#EXPERIMENTAL_SERVICE_PROVIDER" title="src/experimental.module.ts"><b>EXPERIMENTAL_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../experimental.module.ts)</a>
                         </li>
                         <li>
+                            <a href="#File" title="src/file-uploader/file.component.ts"><b>File</b>&nbsp;&nbsp;&nbsp;(src/.../file.component.ts)</a>
+                        </li>
+                        <li>
                             <a href="#File" title="src/file-uploader/file-uploader.module.ts"><b>File</b>&nbsp;&nbsp;&nbsp;(src/.../file-uploader.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#File" title="src/file-uploader/file.component.ts"><b>File</b>&nbsp;&nbsp;&nbsp;(src/.../file.component.ts)</a>
+                            <a href="#getEventObservable" title="src/utils/event.service.ts"><b>getEventObservable</b>&nbsp;&nbsp;&nbsp;(src/.../event.service.ts)</a>
                         </li>
                         <li>
                             <a href="#getScrollableParents" title="src/utils/scroll.ts"><b>getScrollableParents</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
@@ -169,7 +172,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/utils/utils.module.ts</h3>
+    <h3>src/utils/animation-frame.service.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -540,6 +543,37 @@ so some copy pasta is required</p>
             </tbody>
         </table>
 </section>
+    <h3>src/file-uploader/file.component.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="File"></a>
+                        <span class="name">
+                            <b>
+                            File
+                            </b>
+                            <a href="#File"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>File:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>FileComponent</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/file-uploader/file-uploader.module.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -571,30 +605,41 @@ so some copy pasta is required</p>
             </tbody>
         </table>
 </section>
-    <h3>src/file-uploader/file.component.ts</h3>
+    <h3>src/utils/event.service.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="File"></a>
+                        <a name="getEventObservable"></a>
                         <span class="name">
                             <b>
-                            File
+                            getEventObservable
                             </b>
-                            <a href="#File"><span class="icon ion-ios-link"></span></a>
+                            <a href="#getEventObservable"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>File:     <code></code>
+                        <code>getEventObservable:     <code></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>FileComponent</code>
+                            <i>Default value : </i><code>(targetElement: HTMLElement | Element, eventType: string): Observable&lt;Event&gt; &#x3D;&gt; {
+	switch (eventType) {
+		case &quot;scroll&quot;:
+		case &quot;resize&quot;:
+		case &quot;touchstart&quot;:
+		case &quot;touchmove&quot;:
+		case &quot;touchend&quot;:
+			return fromEvent(targetElement, eventType, { passive: true });
+		default:
+			return fromEvent(targetElement, eventType);
+	}
+}</code>
                         </td>
                     </tr>
 
@@ -746,7 +791,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>(node: HTMLElement): Observable&lt;Event&gt; &#x3D;&gt; {
-	const windowScroll &#x3D; fromEvent(window, &quot;scroll&quot;).pipe(map(event &#x3D;&gt; (
+	const windowScroll &#x3D; fromEvent(window, &quot;scroll&quot;, { passive: true }).pipe(map(event &#x3D;&gt; (
 		// update the event target to be something useful. In this case &#x60;body&#x60; is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event
 	)));
@@ -754,7 +799,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
 	// walk the parents and subscribe to all the scroll events we can
 	while (node.parentElement &amp;&amp; node !&#x3D;&#x3D; document.body) {
 		if (isScrollableElement(node)) {
-			observables.push(fromEvent(node, &quot;scroll&quot;));
+			observables.push(fromEvent(node, &quot;scroll&quot;, { passive: true }));
 		}
 		node &#x3D; node.parentElement;
 	}

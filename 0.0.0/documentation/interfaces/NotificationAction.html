@@ -104,7 +104,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/notification/notification-content.interface.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/notification/notification-content.interface.ts:27</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -180,6 +180,7 @@
 import { TemplateRef } from &quot;@angular/core&quot;;
 
 export interface NotificationContent {
+	[key: string]: any;
 	type: string;
 	title: string;
 	target?: string;

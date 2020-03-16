@@ -1014,7 +1014,7 @@ to not obscure the content beneath.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100))</code>
+                            <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;, { passive: true }).pipe(throttleTime(100))</code>
                         </td>
                     </tr>
                         <tr>
@@ -1190,7 +1190,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * One static event observable to handle window resizing.
 	 */
-	protected static resizeObservable: Observable&lt;any&gt; &#x3D; fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100));
+	protected static resizeObservable: Observable&lt;any&gt; &#x3D; fromEvent(window, &quot;resize&quot;, { passive: true }).pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a &#x60;Dialog&#x60; object.
 	 */

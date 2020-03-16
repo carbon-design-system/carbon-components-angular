@@ -128,6 +128,24 @@
         </section>
 
 
+            <section>
+    <h3 id="inputs">Indexable</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <code>[key: string]:    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/notification/notification-content.interface.ts:4</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
                 <h3 id="inputs">Properties</h3>
@@ -504,6 +522,7 @@
 import { TemplateRef } from &quot;@angular/core&quot;;
 
 export interface NotificationContent {
+	[key: string]: any;
 	type: string;
 	title: string;
 	target?: string;
