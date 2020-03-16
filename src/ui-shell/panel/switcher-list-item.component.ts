@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
 				'bx--switcher__item-link--selected': active
 			}"
 			[href]="href"
+			[target]="target"
 			(click)="navigate($event)">
 			<ng-content></ng-content>
 		</a>
@@ -62,9 +63,21 @@ export class SwitcherListItem {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 
+	/**
+	 * Optional target for the underlying anchor.
+	 */
+	@Input() set target(value: string) {
+		this._target = value;
+	}
+
+	get target() {
+		return this._target;
+	}
+
 	@HostBinding("class.bx--switcher__item") itemClass = true;
 
 	protected _href = "javascript:void(0)";
+	protected _target = "";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
