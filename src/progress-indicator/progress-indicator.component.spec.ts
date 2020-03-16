@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -6,9 +6,14 @@ import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { DialogModule, ExperimentalModule } from "..";
 import { CheckmarkOutlineModule, WarningModule } from "@carbon/icons-angular";
+import { Step } from "./progress-indicator-step.interface";
 
 @Component({
-	template: `<ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>`
+	template: `<ibm-progress-indicator
+					[steps]="steps"
+					[current]="current"
+					(stepSelected)="stepSelected.emit($event)">
+				</ibm-progress-indicator>`
 })
 class ProgressIndicatorTest {
 	steps = [
@@ -43,6 +48,8 @@ class ProgressIndicatorTest {
 	];
 
 	current = 2;
+
+	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
 describe("ProgressIndicator", () => {
@@ -97,5 +104,19 @@ describe("ProgressIndicator", () => {
 		fixture.detectChanges();
 		expect(tooltipTrigger.getAttribute("aria-expanded")).toEqual("true");
 		expect(element.nativeElement.querySelector("ibm-tooltip").textContent).toContain("Test");
+	});
+
+	it("should emit the step and index when a step is clicked", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		spyOn(wrapper.stepSelected, "emit");
+		let index = 2;
+		wrapper.current = index;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		let step = element.nativeElement.querySelector(".bx--progress-step--current .bx--progress-label");
+		step.click();
+		fixture.detectChanges();
+		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
 	});
 });

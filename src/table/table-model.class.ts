@@ -9,7 +9,23 @@ import { Subject } from "rxjs";
 
 export type HeaderType = number | "select" | "expand";
 
-
+/**
+ * TableModel represents a data model for two-dimensional data. It's used for all things table
+ * (table component, table toolbar, pagination, etc)
+ *
+ * TableModel manages its internal data integrity very well if you use the provided helper
+ * functions for modifying rows and columns and assigning header and data in that order.
+ *
+ * It also provides direct access to the data so you can read and modify it.
+ * If you change the structure of the data (by directly pushing into the arrays or otherwise),
+ * keep in mind to keep the data structure intact.
+ *
+ * Header length and length of every line in the data should be equal.
+ *
+ * If they are not consistent, unexpected things will happen.
+ *
+ * Use the provided functions when in doubt.
+ */
 export class TableModel implements PaginationModel {
 	/**
 	 * The number of models instantiated, used for (among other things) unique id generation

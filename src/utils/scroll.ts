@@ -47,7 +47,7 @@ export const getScrollableParents = (node: HTMLElement) => {
  * @param node root element to start finding scrolling parents from
  */
 export const scrollableParentsObservable = (node: HTMLElement): Observable<Event> => {
-	const windowScroll = fromEvent(window, "scroll").pipe(map(event => (
+	const windowScroll = fromEvent(window, "scroll", { passive: true }).pipe(map(event => (
 		// update the event target to be something useful. In this case `body` is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event
 	)));
@@ -55,7 +55,7 @@ export const scrollableParentsObservable = (node: HTMLElement): Observable<Event
 	// walk the parents and subscribe to all the scroll events we can
 	while (node.parentElement && node !== document.body) {
 		if (isScrollableElement(node)) {
-			observables.push(fromEvent(node, "scroll"));
+			observables.push(fromEvent(node, "scroll", { passive: true }));
 		}
 		node = node.parentElement;
 	}
