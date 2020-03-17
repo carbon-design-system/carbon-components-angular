@@ -18,7 +18,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import { DocumentService } from "../utils/utils.module";
-import { I18n } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/i18n.module";
 import { Observable } from "rxjs";
 
 /**
