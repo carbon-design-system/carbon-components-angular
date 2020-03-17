@@ -7,37 +7,46 @@ export interface DialogConfig {
 	/**
 	 * Title for the `Dialog` header.
 	 */
-	title: string;
+	title?: string;
 	/**
 	 * Body content for the `Dialog`.
 	 */
 	content: string | TemplateRef<any>;
 	/**
 	 * Parameter for triggering `Dialog` display.
-	 * With the release of v2.0 the type will just be "click" or "hover".
 	 */
-	trigger: "click" | "hover" | "mouseenter";
+	trigger?: "click" | "hover" | "mouseenter";
+	/**
+	 * Parameter for triggering the `Dialog` close event.
+	 */
+	closeTrigger?: "mouseout" | "mouseleave";
+	/**
+	 * Callback to control the closing behaviour. return `true` to close, and `false` to prevent closing
+	 */
+	shouldClose: () => boolean;
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
-	 * @type {Placement}
 	 */
-	placement: string;
+	placement?: string;
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.
 	 */
-	gap: number;
+	gap?: number;
 	/**
 	 * Reference to the Parent element that links the `Dialog`.
 	 */
-	parentRef: ElementRef;
+	parentRef?: ElementRef;
 	/**
 	 * Set to `true` to open the dialog next to the triggering component
 	 */
-	appendInline: boolean;
+	appendInline?: boolean;
 	/**
 	 * Config object passed to the rendered component. (Optional)
 	 */
-	data: Object;
+	data?: Object;
+	/**
+	 * Additional arbitrary properties (mostly for internal/extended component use)
+	 */
 	[propName: string]: any;
 }

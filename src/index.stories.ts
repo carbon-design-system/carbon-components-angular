@@ -2,6 +2,8 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./";
+import { Bee20Module } from "@carbon/icons-angular/lib/bee/20";
+import { Document20Module } from "@carbon/icons-angular/lib/document/20";
 
 @Component({
 	selector: "app-welcome",
@@ -93,9 +95,22 @@ import { ButtonModule } from "./";
 
 			<h1 class="banner__title"><span class="banner__logo--bold">Carbon</span> Components Angular</h1>
 			<h2 class="banner__subtitle">An Angular implementation of the Carbon Design System</h2>
-			<a style="z-index: 2" href="https://angular.carbondesignsystem.com/documentation/">
-				<button class="banner__btn" ibmButton="secondary">Documentation</button>
-			</a>
+
+			<div class="banner__links">
+				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
+					Documentation
+					<svg ibmIconDocument20 class="bx--btn__icon"></svg>
+				</a>
+				&nbsp;
+				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
+					Starter App
+					<svg ibmIconBee20 class="bx--btn__icon"></svg>
+				</a>
+				&nbsp;
+				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">
+					<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+				</a>
+			</div>
 		</section>
 	`,
 	// tslint:enable:max-line-length
@@ -124,10 +139,13 @@ import { ButtonModule } from "./";
 			color: #fff;
 			z-index: 2
 		}
-		.banner__btn {
+		.banner__links {
 			margin-top: 20px;
-			border-color: #fff;
-			color: #fff;
+			display: flex;
+		}
+		.banner__netlify {
+			position: relative;
+			z-index: 1;
 		}
 		.banner__logo--bold, .banner__logo span {
 			font-weight: 600;
@@ -144,18 +162,18 @@ import { ButtonModule } from "./";
 })
 class WelcomeStory implements OnInit, OnDestroy {
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("welcome");
+		document.querySelector(".sb-show-main").classList.add("full-page");
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("welcome");
+		document.querySelector(".sb-show-main").classList.remove("full-page");
 	}
 }
 
 
-storiesOf("Welcome", module)
+storiesOf("Components|Welcome", module)
 .addDecorator(
 	moduleMetadata({
-		imports: [ButtonModule],
+		imports: [ButtonModule, Bee20Module, Document20Module],
 		declarations: [WelcomeStory]
 	})
 )

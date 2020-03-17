@@ -5,12 +5,15 @@ import {
 	ViewChild,
 	ElementRef,
 	HostListener,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * `ibm-select` provides a styled `select` component.
+ *
+ * [See demo](../../?path=/story/select--basic)
  *
  * Example:
  *
@@ -22,7 +25,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * 	<option value="option3">Option 3</option>
  * </ibm-select>
  *	```
-
+ *
+ * <example-url>../../iframe.html?id=select--basic</example-url>
  */
 @Component({
 	selector: "ibm-select",
@@ -36,10 +40,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				}"
 				class="bx--select"
 				style="width: 100%">
-				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
-				<div class="bx--select-input__wrapper">
+				<label *ngIf="skeleton && label" [for]="id" class="bx--label bx--skeleton"></label>
+				<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+				</label>
+				<div *ngIf="helperText" class="bx--form__helper-text">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				</div>
+				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 					<select
 						#select
 						[attr.id]="id"
@@ -48,9 +58,29 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select-input">
 						<ng-content></ng-content>
 					</select>
-					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+					<ibm-icon-warning-filled16
+						*ngIf="!skeleton && invalid"
+						class="bx--select__invalid-icon"
+						style="display: inherit;">
+					</ibm-icon-warning-filled16>
+					<svg
+						*ngIf="!skeleton"
+						focusable="false"
+						preserveAspectRatio="xMidYMid meet"
+						style="will-change: transform;"
+						xmlns="http://www.w3.org/2000/svg"
+						class="bx--select__arrow"
+						width="10"
+						height="6"
+						viewBox="0 0 10 6"
+						aria-hidden="true">
+						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
+					</svg>
 				</div>
-				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
+				<div *ngIf="invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
 			</div>
 		</div>
 	`,
@@ -80,15 +110,15 @@ export class Select implements ControlValueAccessor {
 	/**
 	 * Label for the select. Appears above the input.
 	 */
-	@Input() label = "Select label";
+	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Optional helper text that appears under he label.
+	 * Optional helper text that appears under the label.
 	 */
-	@Input() helperText: string;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
@@ -112,8 +142,11 @@ export class Select implements ControlValueAccessor {
 	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * emits the selected options `value`
+	 * @deprecated use `valueChange` instead
 	 */
 	@Output() selected = new EventEmitter();
+
+	@Output() valueChange = new EventEmitter();
 
 	@ViewChild("select") select: ElementRef;
 
@@ -160,6 +193,19 @@ export class Select implements ControlValueAccessor {
 	onChange(event) {
 		this.onChangeHandler(event.target.value);
 		this.selected.emit(event.target.value);
+		this.valueChange.emit(event.target.value);
+	}
+
+	/**
+	 * Listens for the host blurring, and notifies the model
+	 */
+	@HostListener("blur")
+	blur() {
+		this.onTouchedHandler();
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	/**
@@ -167,12 +213,4 @@ export class Select implements ControlValueAccessor {
 	 */
 	protected onChangeHandler = (_: any) => { };
 	protected onTouchedHandler = () => { };
-
-	/**
-	 * Listens for the host blurring, and notifies the model
-	 */
-	@HostListener("blur")
-	protected blur() {
-		this.onTouchedHandler();
-	}
 }

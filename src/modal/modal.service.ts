@@ -22,8 +22,6 @@ import { PlaceholderService } from "./../placeholder/placeholder.module";
  * 	destroy(index: number = -1): void {}
  * }
  * ```
- * @export
- * @class ModalService
  */
 @Injectable()
 export class ModalService {
@@ -32,18 +30,12 @@ export class ModalService {
 
 	/**
 	 * Creates an instance of `ModalService`.
-	 * @param {ComponentFactoryResolver} resolver
-	 * @memberof ModalService
 	 */
 	constructor(public resolver: ComponentFactoryResolver, public placeholderService: PlaceholderService) {}
 
 	/**
 	 * Creates and renders the modal component that is passed in.
 	 * `inputs` is an optional parameter of `data` that can be passed to the `Modal` component.
-	 * @template T
-	 * @param {{component: any, inputs?: any}} data
-	 * @returns {ComponentRef<any>}
-	 * @memberof ModalService
 	 */
 	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
 		let defaults = {inputs: {}};
@@ -61,7 +53,7 @@ export class ModalService {
 		component.instance.close.subscribe(_ => {
 			this.placeholderService.destroyComponent(component);
 			// filter out our component
-			ModalService.modalList = ModalService.modalList.filter(c => c === component);
+			ModalService.modalList = ModalService.modalList.filter(c => c !== component);
 		});
 
 		component.onDestroy(() => {
@@ -81,6 +73,7 @@ export class ModalService {
 	 * `modalTitle` - modal's title,
 	 * `modalContent` - modal's content, could include HTML tags.
 	 * `buttons` is an array of objects
+	 * `close` custom close function
 	 * ```
 	 * {
 	 * 		text: "Button text",
@@ -88,8 +81,6 @@ export class ModalService {
 	 * 		click: clickFunction,
 	 * }
 	 * ```
-	 * @returns {ComponentRef<any>}
-	 * @memberof ModalService
 	 */
 	show(data: AlertModalData) {
 		for (let key of Object.keys(data)) {
@@ -108,7 +99,9 @@ export class ModalService {
 				modalLabel: data.label || data.modalLabel,
 				modalTitle: data.title || data.modalTitle,
 				modalContent: data.content || data.modalContent,
-				buttons: data.buttons || []
+				size: data.size,
+				buttons: data.buttons || [],
+				close: data.close || (() => {})
 			}
 		});
 	}
@@ -116,10 +109,6 @@ export class ModalService {
 	/**
 	 * Destroys the modal on the supplied index.
 	 * When called without parameters it destroys the most recently created/top most modal.
-	 *
-	 * @param {any} [index=-1]
-	 * @returns
-	 * @memberof ModalService
 	 */
 	destroy(index = -1) {
 		// return if nothing to destroy because it's already destroyed
@@ -135,5 +124,4 @@ export class ModalService {
 		ModalService.modalList.splice(index, 1);
 	}
 }
-
 

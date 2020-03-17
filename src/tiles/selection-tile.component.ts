@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ViewChild
+	ViewChild,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "./../i18n/i18n.module";
@@ -69,17 +70,26 @@ export class SelectionTile {
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
 	 */
-	name: string;
+	name = "tile-group-unbound";
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
 	 */
-	multiple: boolean;
+	multiple = true;	// Set to true because of the way tile group sets it up.
+						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
 	@ViewChild("input") input;
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;
+	}
+
+	@HostListener("keydown", ["$event"])
+	keyboardInput(event) {
+		if (event.key === "Enter" || event.key === "Spacebar" || event.key === " ") {
+			this.selected = !this.selected;
+			this.change.emit(event);
+		}
 	}
 
 	onChange(event) {

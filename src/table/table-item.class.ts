@@ -5,9 +5,6 @@ import {
 export class TableItem {
 	/**
 	 * Data for the table item.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	data: any;
 
@@ -15,9 +12,6 @@ export class TableItem {
 	 * Data for the expanded part of the row.
 	 *
 	 * You only need to set it for the first item in the row.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	expandedData: any;
 
@@ -52,9 +46,6 @@ export class TableItem {
 	 * 	[new TableItem({data: {name: "Custom item", link: "/table"}, template: this.customItemTemplate})]
 	 * ];
 	 * ```
-	 *
-	 * @type {TemplateRef<any>}
-	 * @memberof TableItem
 	 */
 	template: TemplateRef<any>;
 
@@ -63,15 +54,21 @@ export class TableItem {
 	 *
 	 * You only need to set it for the first item in the row.
 	 *
-	 * @type {TemplateRef<any>}
-	 * @memberof TableItem
 	 */
 	expandedTemplate: TemplateRef<any>;
 
 	/**
+	 * The number of rows to span
+	 */
+	rowSpan = 1;
+
+	/**
+	 * The number of columns to span
+	 */
+	colSpan = 1;
+
+	/**
 	 * Creates an instance of TableItem.
-	 * @param {*} [rawData]
-	 * @memberof TableItem
 	 */
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
@@ -80,9 +77,10 @@ export class TableItem {
 		};
 		// fill our object with provided props, and fallback to defaults
 		const data = Object.assign({}, defaults, rawData);
-		this.data = data.data;
-		this.expandedData = data.expandedData;
-		this.template = data.template;
-		this.expandedTemplate = data.expandedTemplate;
+		for (const property of Object.getOwnPropertyNames(data)) {
+			if (data.hasOwnProperty(property)) {
+				this[property] = data[property];
+			}
+		}
 	}
 }

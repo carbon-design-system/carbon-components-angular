@@ -15,8 +15,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * Defines the set of states for a checkbox component.
- * @export
- * @enum {number}
  */
 export enum CheckboxState {
 	Init,
@@ -27,29 +25,22 @@ export enum CheckboxState {
 
 /**
  * Used to emit changes performed on checkbox components.
- * @export
- * @class CheckboxChange
  */
 export class CheckboxChange {
 	/**
 	 * Contains the `Checkbox` that has been changed.
-	 * @type {Checkbox}
-	 * @memberof CheckboxChange
 	 */
 	source: Checkbox;
 	/**
 	 * The state of the `Checkbox` encompassed in the `CheckboxChange` class.
-	 * @type {boolean}
-	 * @memberof CheckboxChange
 	 */
 	checked: boolean;
 }
 
 /**
- * @export
- * @class Checkbox
- * @implements {ControlValueAccessor}
- * @implements {AfterViewInit}
+ * [See demo](../../?path=/story/checkbox--basic)
+ *
+ * <example-url>../../iframe.html?id=checkbox--basic</example-url>
  */
 @Component({
 	selector: "ibm-checkbox",
@@ -76,7 +67,9 @@ export class CheckboxChange {
 			[ngClass]="{
 				'bx--skeleton' : skeleton
 			}">
-			<ng-content></ng-content>
+			<span [ngClass]="{'bx--visually-hidden' : hideLabel}">
+				<ng-content></ng-content>
+			</span>
 		</label>
 	`,
 	providers: [
@@ -115,6 +108,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() skeleton = false;
 	/**
+	 * Set to `true` to hide the checkbox labels.
+	 */
+	@Input() hideLabel = false;
+	/**
 	 * Sets the name attribute on the `input` element.
 	 */
 	@Input() name: string;
@@ -142,7 +139,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	@Input("aria-labelledby") ariaLabelledby: string;
 	/**
 	 * Reflects whether the checkbox state is indeterminate.
-	 * @readonly
 	 */
 	get indeterminate() {
 		return this._indeterminate;
@@ -166,7 +162,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Returns value `true` if state is selected for the checkbox.
-	 * @readonly
 	 */
 	get checked() {
 		return this._checked;
@@ -224,8 +219,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates an instance of `Checkbox`.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof Checkbox
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Checkbox.checkboxCount++;
@@ -233,7 +226,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Toggle the selected state of the checkbox.
-	 * @memberof Checkbox
 	 */
 	public toggle() {
 		this.checked = !this.checked;
@@ -246,8 +238,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Checkbox
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange = fn;
@@ -263,8 +253,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Executes on the event of a change within `Checkbox` to block propagation.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onChange(event) {
 		event.stopPropagation();
@@ -272,8 +260,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Handles click events on the `Checkbox` and emits changes to other classes.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onClick(event) {
 		if (!this.disabled) {
@@ -286,15 +272,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Called when checkbox is blurred. Needed to properly implement `ControlValueAccessor`.
-	 * @memberof Checkbox
 	 */
 	onTouched: () => any = () => {};
 
 	/**
 	 * Handles changes between checkbox states.
-	 * @param {CheckboxState} newState
-	 * @returns {null}
-	 * @memberof Checkbox
 	 */
 	transitionCheckboxState(newState: CheckboxState) {
 		let oldState = this.currentCheckboxState;
@@ -316,7 +298,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates instance of `CheckboxChange` used to propagate the change event.
-	 * @memberof Checkbox
 	 */
 	emitChangeEvent() {
 		let event = new CheckboxChange();
@@ -329,7 +310,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Updates the checkbox if it is in the indeterminate state.
-	 * @memberof Checkbox
 	 */
 	ngAfterViewInit() {
 		if (this.indeterminate) {
@@ -340,7 +320,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
-	 * @memberof Checkbox
 	 */
 	propagateChange = (_: any) => {};
 }

@@ -37,9 +37,18 @@ export interface AlertModalData {
 	 */
 	content?: string;
 	/**
+	 * Size of the modal to display.
+	 */
+	size?: "xs" | "sm" | "lg";
+	/**
 	 * Array of `ModalButton`s
 	 */
 	buttons?: Array<ModalButton>;
+	/**
+	 * Callback for non-specific close events. `return false;` to prevent the modal from closing
+	 * Property trigger has a value of `overlay` or `close`
+	 */
+	close?: (trigger?: "overlay" | "close") => boolean;
 }
 
 export enum ModalButtonType {

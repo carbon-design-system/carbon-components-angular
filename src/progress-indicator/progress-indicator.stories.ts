@@ -5,9 +5,9 @@ import {
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, number, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, number } from "@storybook/addon-knobs/angular";
 
-import { ProgressIndicatorModule } from "../";
+import { ProgressIndicatorModule, PlaceholderModule, DocumentationModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
 
 @Component({
@@ -27,12 +27,14 @@ class SkeletonStory implements OnInit {
 	}
 }
 
-storiesOf("Progress Indicator", module)
+storiesOf("Components|Progress Indicator", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [SkeletonStory],
 			imports: [
-				ProgressIndicatorModule
+				ProgressIndicatorModule,
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -40,38 +42,52 @@ storiesOf("Progress Indicator", module)
 	.add("Basic", () => ({
 		template: `
 		<div style="display: flex;">
-			<ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>
+			<ibm-progress-indicator [steps]="steps" [current]="current" (stepSelected)="stepSelected($event)"></ibm-progress-indicator>
+			<ibm-placeholder></ibm-placeholder>
 		</div>
 		`,
 		props: {
 			steps : [
 				{
 					text: "First step",
-					state: ["complete"]
+					state: ["complete"],
+					optionalText: "optional"
 				},
 				{
 					text: "Second step",
-					state: ["current"]
+					state: ["current"],
+					tooltip: { content: "Overflow tooltip content.", trigger: "click", placement: "bottom" }
 				},
 				{
 					text: "Third step",
-					state: ["incomplete"]
+					state: ["incomplete"],
+					tooltip: {
+						content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+							Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
+							blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
+							Laboriosam, consequatur.`,
+						trigger: "click",
+						placement: "bottom"
+					}
 				},
 				{
 					text: "Fourth step",
-					state: ["incomplete"]
+					state: ["incomplete", "error"]
 				},
 				{
 					text: "Fifth step",
-					state: ["incomplete"]
+					state: ["incomplete"],
+					disabled: true
 				}
 			],
-			current: number("Current progress", 1)
+			current: number("Current progress", 1),
+			stepSelected: action("stepSelected")
 		}
 	}))
 	.add("Vertical", () => ({
 		template: `
-		<ibm-progress-indicator orientation="vertical" [steps]="steps" [current]="current"></ibm-progress-indicator>
+		<ibm-progress-indicator orientation="vertical" [steps]="steps" [current]="current" (stepSelected)="stepSelected($event)">
+		</ibm-progress-indicator>
 		`,
 		props: {
 			steps : [
@@ -89,14 +105,16 @@ storiesOf("Progress Indicator", module)
 				},
 				{
 					text: "Fourth step",
-					state: ["incomplete"]
+					state: ["incomplete", "error"]
 				},
 				{
 					text: "Fifth step",
-					state: ["incomplete"]
+					state: ["incomplete"],
+					disabled: true
 				}
 			],
-			current: number("Current progress", 1)
+			current: number("Current progress", 1),
+			stepSelected: action("stepSelected")
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -104,5 +122,10 @@ storiesOf("Progress Indicator", module)
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		&nbsp;&nbsp;
 		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/ProgressIndicator.html"></ibm-documentation>
 		`
 	}));

@@ -1,6 +1,11 @@
 import { Component, Input, HostBinding } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
 
+/**
+ * [See demo](../../?path=/story/loading--basic)
+ *
+ * <example-url>../../iframe.html?id=loading--basic</example-url>
+ */
 @Component({
 	selector: "ibm-loading",
 	template: `
@@ -27,19 +32,16 @@ export class Loading {
 
 	/**
 	 * set to `false` to stop the loading animation
-	 * @type {boolean}
 	 */
 	@Input() isActive = true;
 
 	/**
 	 * Specify the size of the button
-	 * @type {("normal" | "sm")}
 	 */
 	@Input() size: "normal" | "sm" = "normal";
 
 	/**
 	 * Set to `true` to make loader with an overlay.
-	 * @type {boolean}
 	 */
 	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 

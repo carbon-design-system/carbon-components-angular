@@ -1,6 +1,8 @@
 import {
 	Component,
-	Inject
+	Inject,
+	ViewChild,
+	AfterViewInit
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 
@@ -41,25 +43,26 @@ import { BaseModal } from "./base-modal.class";
  * 	}
  * }
  * ```
- *
- * @export
- * @class AlertModal
  */
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle">
-			<ibm-modal-header (closeSelect)="closeModal()">
+		<ibm-modal
+			[size]="size"
+			[theme]="modalType"
+			[modalLabel]="modalTitle"
+			(overlaySelected)="dismissModal('overlay')">
+			<ibm-modal-header (closeSelect)="dismissModal('close')">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
-			<div class="bx--modal-content">
+			<div #content class="bx--modal-content">
 				<p [innerHTML]="modalContent"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
 					<button
-						ibmButton="{{button.type}}"
+						[ibmButton]="button.type"
 						(click)="buttonClicked(i)"
 						[id]="button.id"
 						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
@@ -70,18 +73,19 @@ import { BaseModal } from "./base-modal.class";
 		</ibm-modal>
 	`
 })
-export class AlertModal extends BaseModal {
+export class AlertModal extends BaseModal implements AfterViewInit {
+	@ViewChild("content") content;
 	/**
 	 * Creates an instance of `AlertModal`.
-	 * @param {ModalService} modalService
-	 * @memberof AlertModal
 	 */
 	constructor(
 		@Inject("modalType") public modalType = "default",
 		@Inject("modalLabel") public modalLabel: string,
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
-		@Inject("buttons") public buttons = []
+		@Inject("size") public size: string,
+		@Inject("buttons") public buttons = [],
+		@Inject("close") public onClose: Function
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
@@ -95,12 +99,29 @@ export class AlertModal extends BaseModal {
 		}
 	}
 
+	ngAfterViewInit() {
+		if (!this.content) { return false; }
+		const element = this.content.nativeElement;
+		if (element.scrollHeight > element.clientHeight) {
+			element.tabIndex = 0;
+		} else {
+			element.tabIndex = -1;
+		}
+	}
+
 	buttonClicked(buttonIndex) {
 		const button = this.buttons[buttonIndex];
 		if (button.click) {
 			button.click();
 		}
 
+		this.closeModal();
+	}
+
+	dismissModal(trigger) {
+		if (this.onClose && this.onClose(trigger) === false) {
+			return;
+		}
 		this.closeModal();
 	}
 }

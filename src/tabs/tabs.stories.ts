@@ -1,27 +1,70 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { TabsModule } from "../";
+import { TabsModule, DocumentationModule } from "../";
+import { Component, Input } from "@angular/core";
 
-storiesOf("Tabs", module)
+@Component({
+	selector: "ibm-header-group",
+	template: `
+		<ibm-tab-header-group [followFocus]="followFocus" [cacheActive]="cacheActive">
+			<ibm-tab-header [paneReference]="content1">
+				Content 1
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content2">
+				Content 2
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content3" disabled="true">
+				Content 3
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content4">
+				Content 4
+			</ibm-tab-header>
+		</ibm-tab-header-group>
+
+		<ibm-tab #content1>
+			Tab Content 1
+		</ibm-tab>
+		<ibm-tab #content2>
+			Tab Content 2
+		</ibm-tab>
+		<ibm-tab #content3>
+			Tab Content 3
+		</ibm-tab>
+		<ibm-tab #content4>
+			Tab Content 4
+		</ibm-tab>
+	`
+})
+class TabStory {
+	@Input() followFocus = true;
+	@Input() cacheActive = false;
+}
+
+storiesOf("Components|Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule
-			]
+				TabsModule,
+				DocumentationModule
+			],
+			declarations: [TabStory]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab heading="one">foo</ibm-tab>
-				<ibm-tab heading="two">bar</ibm-tab>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
+				<ibm-tab heading="one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			isNavigation: boolean("isNavigation", false)
+			isNavigation: boolean("isNavigation", false),
+			cacheActive: boolean("Cache active", true)
 		}
 	}))
 	.add("With template", () => ({
@@ -55,11 +98,52 @@ storiesOf("Tabs", module)
 			]
 		}
 	}))
+	.add("Width before and after content", () => ({
+		template: `
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span after>content after</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+				<span after>content after</span>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
+		}
+	}))
+	.add("With TabHeaderGroup", () => ({
+		template: `
+			<ibm-header-group [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			cacheActive: boolean("Cache active", true)
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<ibm-tabs skeleton="true">
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
 		`
 	}));

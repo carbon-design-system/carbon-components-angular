@@ -1,14 +1,19 @@
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = [{
+	devtool: "source-map",
 	module: {
 		rules: [
 			{
 				test: /\.ts$/,
-				loader: "ts-loader",
-				options: {
-					transpileOnly: true
-				}
+				loaders: [{
+						loader: "ts-loader",
+						options: {
+							// transpileOnly: true
+						}
+					},
+					"angular2-template-loader"
+				]
 			},
 			{
 				test: /\.html$/,
@@ -20,7 +25,12 @@ module.exports = [{
 			},
 			{
 				test: /\.scss$/,
-				loaders: ["raw-loader", "sass-loader"]
+				use: ["raw-loader", "postcss-loader", {
+					loader: "sass-loader",
+					options: {
+						implementation: require("sass")
+					}
+				}]
 			},
 			{
 				test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,

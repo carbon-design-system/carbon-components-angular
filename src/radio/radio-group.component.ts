@@ -1,44 +1,22 @@
 import {
 	AfterContentInit,
-	ChangeDetectorRef,
 	ContentChildren,
 	Component,
-	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Input,
-	OnInit,
 	Output,
 	QueryList,
-	Renderer2,
 	HostBinding,
 	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
+import { RadioChange } from "./radio-change.class";
 
 /**
- * Used to emit changes performed on a `Radio`.
- * @export
- * @class RadioChange
- */
-export class RadioChange {
-	/**
-	 * Contains the `Radio` that has been changed.
-	 */
-	source: Radio | null;
-	/**
-	 * The value of the `Radio` encompassed in the `RadioChange` class.
-	 */
-	value: string;
-
-	constructor(source: Radio, value: string) {
-		this.source = source;
-		this.value = value;
-	}
-}
-
-/**
+ * [See demo](../../?path=/story/radio--basic)
+ *
  * class: RadioGroup
  *
  * selector: `ibm-radio-group`
@@ -63,11 +41,20 @@ export class RadioChange {
  *
  * Also see: [`Radio`](#ibm-radio)
  *
+ * <example-url>../../iframe.html?id=radio--basic</example-url>
  */
 @Component({
 	selector: "ibm-radio-group",
 	template: `
-		<div class="bx--radio-button-group" role="radiogroup">
+		<div
+			class="bx--radio-button-group"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby"
+			[ngClass]="{
+				'bx--radio-button-group--vertical': orientation === 'vertical',
+				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
+			}"
+			role="radiogroup">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -84,6 +71,21 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used for creating the `RadioGroup` 'name' property dynamically.
 	 */
 	static radioGroupCount = 0;
+
+	@Input() orientation: "horizontal" | "vertical" = "horizontal";
+
+	@Input() labelPlacement: "right" | "left" =  "right";
+
+	/**
+	 * Used to set the `aria-label` attribute on the radio group element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input() ariaLabel: string;
+	/**
+	 * Used to set the `aria-labelledby` attribute on the radio group element.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input() ariaLabelledby: string;
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
@@ -139,7 +141,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input()
 	set name(name: string) {
 		this._name = name;
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 	/**
 	 * Returns the associated name of the `RadioGroup`.
@@ -233,13 +235,21 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.onTouched();
 	}
 
-	/**
-	 * Synchronizes the names of the radio items with the name of the `RadioGroup`.
-	 */
 	updateRadioNames() {
+		console.warn("updateRadioNames had been deprecated. Use updateRadios instead");
+		this.updateRadios();
+	}
+
+	/**
+	 * Synchronizes radio properties.
+	 */
+	updateRadios() {
 		if (this.radios) {
 			setTimeout(() => {
 				this.radios.forEach(radio => radio.name = this.name);
+				if (this.labelPlacement === "left") {
+					this.radios.forEach(radio => radio.labelPlacement = "left");
+				}
 			});
 		}
 	}
@@ -253,7 +263,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	ngAfterContentInit() {
 		this.radios.changes.subscribe(() => {
-			this.updateRadioNames();
+			this.updateRadios();
 			this.updateRadioChangeHandler();
 		});
 
@@ -262,7 +272,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	ngAfterViewInit() {
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 
 	/**

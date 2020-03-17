@@ -4,11 +4,13 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * Defines the set of states for a toggle component.
@@ -35,13 +37,21 @@ export class ToggleChange {
 }
 
 /**
+ * [See demo](../../?path=/story/toggle--basic)
+ *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
+ *
+ * <example-url>../../iframe.html?id=toggle--basic</example-url>
  */
 @Component({
 	selector: "ibm-toggle",
 	template: `
+		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -55,6 +65,7 @@ export class ToggleChange {
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
+			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -64,13 +75,13 @@ export class ToggleChange {
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{(!skeleton ? offText : null) | async }}</span>
+			<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>
 			<span class="bx--toggle__appearance">
 				<svg *ngIf="size === 'sm'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
 					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
 				</svg>
 			</span>
-			<span class="bx--toggle__text--right">{{(!skeleton ? onText : null) | async}}</span>
+			<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span>
 		</label>
 	`,
 	providers: [
@@ -91,27 +102,29 @@ export class Toggle extends Checkbox {
 	 * Text that is set on the left side of the toggle.
 	 */
 	@Input()
-	set offText(value: string) {
-		this._offText.next(value);
+	set offText(value: string | Observable<string>) {
+		this._offValues.override(value);
 	}
 
 	get offText() {
-		return this._offText;
+		return this._offValues.value;
 	}
 
 	/**
 	 * Text that is set on the right side of the toggle.
 	 */
 	@Input()
-	set onText(value: string) {
-		this._onText.next(value);
+	set onText(value: string | Observable<string>) {
+		this._onValues.override(value);
 	}
 
 	get onText() {
-		return this._onText;
+		return this._onValues.value;
 	}
-
-
+	/**
+	 * Text that is set as the label of the toggle.
+	 */
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Size of the toggle component.
 	 */
@@ -132,14 +145,22 @@ export class Toggle extends Checkbox {
 	 */
 	@Output() change = new EventEmitter<ToggleChange>();
 
-	protected _offText = this.i18n.get("TOGGLE.OFF");
-	protected _onText = this.i18n.get("TOGGLE.ON");
+	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
+	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
 	/**
 	 * Creates an instance of Toggle.
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
+	}
+
+	getOffText(): Observable<string> {
+		return this._offValues.subject;
+	}
+
+	getOnText(): Observable<string> {
+		return this._onValues.subject;
 	}
 
 	/**
@@ -152,5 +173,9 @@ export class Toggle extends Checkbox {
 
 		this.propagateChange(this.checked);
 		this.change.emit(event);
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs";
 
-import { DialogModule } from "../../";
+import { DialogModule, DocumentationModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 let options;
@@ -14,31 +14,51 @@ function createOptions(count: number): Array<string> {
 	return options;
 }
 
-storiesOf("Overflow Menu", module)
+storiesOf("Components|Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
 				DialogModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-overflow-menu [flip]="flip">
-				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-				<li class="bx--overflow-menu-options__option">
-					<button class="bx--overflow-menu-options__btn">A fully custom option</button>
-				</li>
-				<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-			<ibm-placeholder></ibm-placeholder>
+			<div>
+				<h1 style="margin-bottom: 1rem">Bottom placement</h1>
+				<ibm-overflow-menu [flip]="flip">
+					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
+						An example option that is really long to show what should be done to handle long text
+					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<li class="bx--overflow-menu-options__option">
+						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+					</li>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+			<div style="margin-top: 8rem">
+				<h1 style="margin-bottom: 1rem">Top placement</h1>
+				<ibm-overflow-menu [flip]="flip" placement="top">
+					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
+						An example option that is really long to show what should be done to handle long text
+					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<li class="bx--overflow-menu-options__option">
+						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+					</li>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
 		`,
 		props: {
 			click: () => console.log("click"),
@@ -48,18 +68,38 @@ storiesOf("Overflow Menu", module)
 	}))
 	.add("With links", () => ({
 		template: `
-			<app-experimental-component></app-experimental-component>
-			<ibm-overflow-menu [flip]="flip" >
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-			<ibm-placeholder></ibm-placeholder>
+			<div>
+				<h1 style="margin-bottom: 1rem">Bottom placement</h1>
+				<ibm-overflow-menu [flip]="flip" >
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
+						An example option that is really long to show what should be done to handle long text
+					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
+						Danger option
+					</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+			<div style="margin-top: 8rem">
+				<h1 style="margin-bottom: 1rem">Top placement</h1>
+				<ibm-overflow-menu [flip]="flip" placement="top">
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
+						An example option that is really long to show what should be done to handle long text
+					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
+						Danger option
+					</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
 		`,
 		props: {
 			click: () => console.log("click"),
@@ -84,4 +124,9 @@ storiesOf("Overflow Menu", module)
 			optionCount: number("optionCount", 10),
 			options: createOptions
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/OverflowMenu.html"></ibm-documentation>
+		`
 	}));

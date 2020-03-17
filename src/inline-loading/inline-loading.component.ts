@@ -6,6 +6,11 @@ import {
 	HostBinding
 } from "@angular/core";
 
+/**
+ * [See demo](../../?path=/story/inline-loading--basic)
+ *
+ * <example-url>../../iframe.html?id=inline-loading--basic</example-url>
+ */
 @Component({
 	selector: "ibm-inline-loading",
 	template: `
@@ -71,8 +76,6 @@ export class InlineLoading {
 
 	/**
 	 * Emits event after the success state is active
-	 *
-	 * @type {EventEmitter<any>}
 	 */
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
