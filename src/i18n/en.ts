@@ -55,6 +55,17 @@ export default {
 		"COPY_CODE": "Copy code",
 		"COPIED": "Copied!"
 	},
+	"COMBOBOX": {
+		"PLACEHOLDER": "Filter...",
+		"CLEAR_SELECTIONS": "Clear all selected items",
+		"CLEAR_SELECTED": "Clear selected item",
+		"A11Y": {
+			"OPEN_MENU": "open menu",
+			"CLOSE_MENU": "close menu",
+			"CLEAR_SELECTIONS": "Clear all selected items",
+			"CLEAR_SELECTED": "Clear Selection"
+		}
+	},
 	"DIALOG": {
 		"POPOVER" : {
 			"CLOSE": "Close popover"
