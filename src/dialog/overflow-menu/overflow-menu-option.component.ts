@@ -8,6 +8,10 @@ import {
 	AfterViewInit
 } from "@angular/core";
 
+type Target = "_self" | "_blank" | "_parent" | "_top";
+
+const REL = "noreferrer noopener";
+
 /**
  * `OverflowMenuOption` represents a single option in an overflow menu
  *
@@ -46,6 +50,8 @@ import {
 			(click)="onClick()"
 			[attr.disabled]="disabled"
 			[href]="href"
+			[attr.target]="target"
+			[attr.rel]="rel"
 			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
 		</a>
@@ -78,8 +84,20 @@ export class OverflowMenuOption implements AfterViewInit {
 	 * disable/enable interactions
 	 */
 	@Input() disabled = false;
-
+	/**
+	 * If it's an anchor, this is its location
+	 */
 	@Input() href: string;
+	/**
+	 * Allows to add a target to the anchor
+	 */
+	@Input() target: Target;
+	/**
+	 * rel only returns its value if target is defined
+	 */
+	get rel() {
+		return this.target ? REL : null;
+	}
 
 	@Output() selected: EventEmitter<any> = new EventEmitter();
 
@@ -87,6 +105,8 @@ export class OverflowMenuOption implements AfterViewInit {
 	// note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
 	// change after checked errors
 	public title = null;
+
+	protected _target?: Target;
 
 	constructor(protected elementRef: ElementRef) {}
 
