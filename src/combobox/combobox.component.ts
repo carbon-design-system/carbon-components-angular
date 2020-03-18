@@ -60,7 +60,7 @@ import { DocumentService } from "../utils/utils.module";
 					(click)="clearSelected()"
 					(keydown.enter)="clearSelected()"
 					role="button"
-					class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"
+					class="bx--tag--filter bx--list-box__selection--multi"
 					tabindex="0"
 					title="Clear all selected items">
 					{{ pills.length }}
