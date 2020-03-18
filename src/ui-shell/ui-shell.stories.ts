@@ -70,10 +70,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -99,10 +99,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -146,15 +146,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -182,15 +182,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item [route]="['foo']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item [route]="['bar']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
@@ -232,24 +232,24 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action #firstAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 					<ibm-header-action #secondAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 			<ibm-sidenav [expanded]="active">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item [active]="hasActiveChild">Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -289,15 +289,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav rail="true" [expanded]="false">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>

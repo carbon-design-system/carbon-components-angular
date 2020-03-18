@@ -79,7 +79,8 @@ export interface PaginationTranslations {
 					</option>
 				</select>
 				<svg
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit"
 					class="bx--select__arrow"
 					aria-hidden="true"
@@ -130,7 +131,8 @@ export interface PaginationTranslations {
 				</select>
 				<svg
 					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit;"
 					class="bx--select__arrow"
 					[attr.ariaLabel]="optionsListText.subject | async">

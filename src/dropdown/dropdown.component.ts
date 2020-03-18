@@ -93,7 +93,8 @@ import { ElementService } from "./../utils/utils.module";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled16
+			<svg ibmIconWarningFilled
+				size="16"
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
 			</svg>
