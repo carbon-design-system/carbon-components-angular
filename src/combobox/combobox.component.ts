@@ -18,6 +18,8 @@ import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import { DocumentService } from "../utils/utils.module";
+import { I18n, Overridable } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -52,17 +54,19 @@ import { DocumentService } from "../utils/utils.module";
 				class="bx--list-box__field"
 				type="button"
 				tabindex="-1"
-				aria-label="close menu"
+				[attr.aria-label]="label"
 				aria-haspopup="true"
-				(click)="toggleDropdown()">
+				(click)="toggleDropdown()"
+				[id]="id">
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
 					(keydown.enter)="clearSelected()"
 					role="button"
 					class="bx--tag--filter bx--list-box__selection--multi"
-					tabindex="0"
-					title="Clear all selected items">
+          tabindex="0"
+					[title]="clearSelectionsTitle"
+					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
 					<svg
 						focusable="false"
@@ -79,7 +83,6 @@ import { DocumentService } from "../utils/utils.module";
 				</div>
 				<input
 					#input
-					[id]="id"
 					[disabled]="disabled"
 					(keyup)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
@@ -87,9 +90,9 @@ import { DocumentService } from "../utils/utils.module";
 					class="bx--text-input"
 					role="searchbox"
 					tabindex="0"
-					[attr.aria-label]="label"
+					[attr.aria-aria-labelledby]="id"
 					aria-haspopup="true"
-					autocomplete="off"
+					autocomplete="list"
 					[placeholder]="placeholder"/>
 				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
 				<div
@@ -97,15 +100,16 @@ import { DocumentService } from "../utils/utils.module";
 					role="button"
 					class="bx--list-box__selection"
 					tabindex="0"
-					aria-label="Clear Selection"
-					title="Clear selected item"
+					[attr.aria-label]="clearSelectionAria"
+					[title]="clearSelectionTitle"
 					(click)="clearInput($event)">
 					<ibm-icon-close16></ibm-icon-close16>
 				</div>
 				<ibm-icon-chevron-down16
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
-					ariaLabel="Close menu">
+					[title]="open ? closeMenuAria : openMenuAria"
+					[ariaLabel]="open ? closeMenuAria : openMenuAria">
 				</ibm-icon-chevron-down16>
 			</div>
 			<div
@@ -116,10 +120,7 @@ import { DocumentService } from "../utils/utils.module";
 		</div>
 		<div *ngIf="invalid">
 			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
-			<ng-template
-				*ngIf="isTemplate(invalidText)"
-				[ngTemplateOutlet]="invalidText">
-			</ng-template>
+			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
 	`,
 	providers: [
@@ -163,7 +164,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Text to show when nothing is selected.
 	 */
-	@Input() placeholder = "Filter...";
+	@Input() set placeholder(value: string | Observable<string>) {
+		this._placeholder.override(value);
+	}
+
+	get placeholder() {
+		return this._placeholder.value;
+	}
 	/**
 	 * Combo box type (supporting single or multi selection of items).
 	 */
@@ -188,6 +195,66 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Value to display for accessibility purposes on the combobox control menu when closed
+	 */
+	@Input() set openMenuAria(value: string | Observable<string>) {
+		this._openMenuAria.override(value);
+	}
+
+	get openMenuAria() {
+		return this._openMenuAria.value;
+	}
+	/**
+	 * Value to display for accessibility purposes on the combobox control menu when opened
+	 */
+	@Input() set closeMenuAria(value: string | Observable<string>) {
+		this._closeMenuAria.override(value);
+	}
+
+	get closeMenuAria() {
+		return this._closeMenuAria.value;
+	}
+	/**
+	 * Value to display on the clear selections icon, when multi is selected
+	 */
+	@Input() set clearSelectionsTitle(value: string | Observable<string>) {
+		this._clearSelectionsTitle.override(value);
+	}
+
+	get clearSelectionsTitle() {
+		return this._clearSelectionsTitle.value;
+	}
+	/**
+	 * Value to display for accessibility purposes to clear selections, when multi is selected
+	 */
+	@Input() set clearSelectionsAria(value: string | Observable<string>) {
+		this._clearSelectionsAria.override(value);
+	}
+
+	get clearSelectionsAria() {
+		return this._clearSelectionsAria.value;
+	}
+	/**
+	 * Value to display on the clear the selected item icon, when single is selected
+	 */
+	@Input() set clearSelectionTitle(value: string | Observable<string>) {
+		this._clearSelectionTitle.override(value);
+	}
+
+	get clearSelectionTitle() {
+		return this._clearSelectionTitle.value;
+	}
+	/**
+	 * Value to display for accessibility purposes on the clear the selected item icon, when single is selected
+	 */
+	@Input() set clearSelectionAria(value: string | Observable<string>) {
+		this._clearSelectionAria.override(value);
+	}
+
+	get clearSelectionAria() {
+		return this._clearSelectionAria.value;
+	}
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -255,10 +322,22 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
+	protected _placeholder = this.i18n.getOverridable("COMBOBOX.PLACEHOLDER");
+	protected _closeMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLOSE_MENU");
+	protected _openMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.OPEN_MENU");
+	protected _clearSelectionsTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTIONS");
+	protected _clearSelectionsAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTIONS");
+	protected _clearSelectionTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTED");
+	protected _clearSelectionAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTED");
+
 	/**
 	 * Creates an instance of ComboBox.
 	 */
-	constructor(protected elementRef: ElementRef, protected documentService: DocumentService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected documentService: DocumentService,
+		protected i18n: I18n
+	) {}
 
 	/**
 	 * Lifecycle hook.
@@ -472,9 +551,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		event.stopPropagation();
 		event.preventDefault();
 
-		this.input.nativeElement.value = "";
-
 		this.clearSelected();
+		this.selectedValue = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
