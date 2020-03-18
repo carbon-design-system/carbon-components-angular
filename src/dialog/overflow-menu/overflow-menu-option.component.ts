@@ -8,8 +8,18 @@ import {
 	AfterViewInit
 } from "@angular/core";
 
-type Target = "_self" | "_blank" | "_parent" | "_top";
-
+/**
+ * Available HTML anchor targets
+ */
+enum Target {
+	_self = "_self",
+	_blank = "_blank",
+	_parent = "_parent",
+	_top = "_top"
+}
+/**
+ * Security HTML anchor rel when target is set
+ */
 const REL = "noreferrer noopener";
 
 /**
@@ -91,12 +101,22 @@ export class OverflowMenuOption implements AfterViewInit {
 	/**
 	 * Allows to add a target to the anchor
 	 */
-	@Input() target: Target;
+	@Input() set target(value: Target) {
+		if (!Object.keys(Target).includes(value)) {
+			return;
+		}
+
+		this._target = value;
+	}
+
+	get target() {
+		return this._target;
+	}
 	/**
 	 * rel only returns its value if target is defined
 	 */
 	get rel() {
-		return this.target ? REL : null;
+		return this._target ? REL : null;
 	}
 
 	@Output() selected: EventEmitter<any> = new EventEmitter();
@@ -106,7 +126,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	// change after checked errors
 	public title = null;
 
-	protected _target?: Target;
+	protected _target: Target;
 
 	constructor(protected elementRef: ElementRef) {}
 
