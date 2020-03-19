@@ -11,13 +11,6 @@ import {
 	ElementRef,
 	ViewChild
 } from "@angular/core";
-import {
-	trigger,
-	state,
-	style,
-	transition,
-	animate
-} from "@angular/animations";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 /**
@@ -91,7 +84,6 @@ export class ModalDemo {
 					'bx--modal-container--sm': size === 'sm',
 					'bx--modal-container--lg': size === 'lg'
 				}"
-				[@modalState]="modalState"
 				role="dialog"
 				aria-modal="true"
 				style="z-index:1;"
@@ -100,20 +92,9 @@ export class ModalDemo {
 				<ng-content></ng-content>
 			</div>
 		</ibm-overlay>
-	`,
-	animations: [
-		trigger("modalState", [
-			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
-			transition(":enter", [
-				animate("200ms ease-in")
-			]),
-			transition(":leave", [
-				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
-			])
-		])
-	]
+	`
 })
-export class Modal implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -142,11 +123,6 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	@ViewChild("modal") modal: ElementRef;
 
 	/**
-	 * Controls the transitions of the `Modal` component.
-	 */
-	modalState: "in" | "out" = "out";
-
-	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
 	 */
 	selectorPrimaryFocus = "[modal-primary-focus]";
@@ -155,13 +131,6 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 * Creates an instance of `Modal`.
 	 */
 	constructor(public modalService: ModalService) {}
-
-	/**
-	 * Set modalState on the modal component when it is initialized.
-	 */
-	ngOnInit() {
-		this.modalState = "in";
-	}
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
@@ -177,13 +146,6 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 		} else {
 			setTimeout(() => this.modal.nativeElement.focus());
 		}
-	}
-
-	/**
-	 * Emit the close event when the modal component is destroyed.
-	 */
-	ngOnDestroy() {
-		this.modalState = "out";
 	}
 
 	/**

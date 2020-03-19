@@ -6,7 +6,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
 import { DialogModule } from "./../dialog.module";
-import { PlaceholderModule } from "../../placeholder/placeholder.module";
+import { PlaceholderModule } from "../../placeholder/index";
 
 @Component({
 	selector: "test-component",
@@ -69,7 +69,7 @@ describe("Tooltip directive", () => {
 				`
 			}
 		}).createComponent(TooltipTest);
-		
+
 		fixture.detectChanges();
 
 		let button = fixture.debugElement.query(By.css("button"));

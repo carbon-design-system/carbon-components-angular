@@ -58,11 +58,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select-input">
 						<ng-content></ng-content>
 					</select>
-					<ibm-icon-warning-filled16
+					<ibm-icon-warning-filled
+						size="16"
 						*ngIf="!skeleton && invalid"
 						class="bx--select__invalid-icon"
 						style="display: inherit;">
-					</ibm-icon-warning-filled16>
+					</ibm-icon-warning-filled>
 					<svg
 						*ngIf="!skeleton"
 						focusable="false"

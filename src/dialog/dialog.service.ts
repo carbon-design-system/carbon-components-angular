@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "./../placeholder/index";
 import { Dialog } from "./dialog.component";
 import { tabbableSelector } from "../common/tab.service";
 

@@ -1,23 +1,19 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { ModalModule, InputModule } from "../";
-import {
-	Component,
-	Input,
-	Inject,
-	AfterContentInit
-} from "@angular/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ModalService, DocumentationModule } from "../";
+import { ModalModule } from "../";
+import { Component, Input, Inject } from "@angular/core";
+import { ModalService } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 import {
 	ModalButton,
 	AlertModalType,
 	ModalButtonType
 } from "./alert-modal.interface";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { PlaceholderModule } from "./../placeholder/index";
 import { BaseModal } from "./base-modal.class";
 import { Observable, Subject } from "rxjs";
+import { InputModule } from "../input";
 
 @Component({
 	selector: "app-sample-modal",
@@ -198,7 +194,6 @@ storiesOf("Components|Modal", module)
 				ModalModule,
 				PlaceholderModule,
 				InputModule,
-				BrowserAnimationsModule,
 				DocumentationModule
 			],
 			entryComponents: [

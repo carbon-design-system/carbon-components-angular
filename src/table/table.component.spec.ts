@@ -4,7 +4,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { TableModel } from "./table-model.class";
-import { Table, TableModule } from "./table.module";
+import { Table, TableModule } from "./index";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 

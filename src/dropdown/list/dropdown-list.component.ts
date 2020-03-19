@@ -14,7 +14,7 @@ import {
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";

@@ -89,7 +89,7 @@ import { DocumentService } from "../utils/utils.module";
 					aria-haspopup="true"
 					autocomplete="off"
 					[placeholder]="placeholder"/>
-				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
 				<div
 					*ngIf="showClearButton"
 					role="button"
@@ -98,13 +98,13 @@ import { DocumentService } from "../utils/utils.module";
 					aria-label="Clear Selection"
 					title="Clear selected item"
 					(click)="clearInput($event)">
-					<ibm-icon-close16></ibm-icon-close16>
+					<ibm-icon-close size="16"></ibm-icon-close>
 				</div>
-				<ibm-icon-chevron-down16
+				<ibm-icon-chevron-down size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
 					ariaLabel="Close menu">
-				</ibm-icon-chevron-down16>
+				</ibm-icon-chevron-down>
 			</div>
 			<div
 				#dropdownMenu

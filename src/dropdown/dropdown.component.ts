@@ -24,7 +24,7 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService } from "./../utils/utils.module";
@@ -93,16 +93,18 @@ import { ElementService } from "./../utils/utils.module";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled16
+			<svg ibmIconWarningFilled
+				size="16"
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
 			</svg>
-			<ibm-icon-chevron-down16
+			<ibm-icon-chevron-down
+				size="16"
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down16>
+			</ibm-icon-chevron-down>
 		</div>
 		<div
 			#dropdownMenu

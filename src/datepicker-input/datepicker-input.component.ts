@@ -38,8 +38,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-						<ibm-icon-calendar16 class="bx--date-picker__icon">
-						</ibm-icon-calendar16>
+						<ibm-icon-calendar size="16" class="bx--date-picker__icon"></ibm-icon-calendar>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>

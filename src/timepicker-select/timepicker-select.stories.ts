@@ -1,4 +1,4 @@
-import { TimePickerSelectModule } from "./timepicker-select.module";
+import { TimePickerSelectModule } from "./index";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { ExperimentalModule, DocumentationModule } from "../";

@@ -8,7 +8,7 @@ import {
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n } from "./../../i18n/index";
 import { ExperimentalService } from "./../../experimental.module";
 import { ElementService } from "./../../utils/utils.module";
 

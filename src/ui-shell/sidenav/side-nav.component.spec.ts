@@ -3,7 +3,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { CommonModule } from "@angular/common";
-import { I18nModule } from "./../../i18n/i18n.module";
+import { I18nModule } from "./../../i18n/index";
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
@@ -55,7 +55,7 @@ describe("SideNav", () => {
 						path: "foo",
 						component: FooComponent
 					}
-				], 
+				],
 				{
 					initialNavigation: false,
 					useHash: true
@@ -63,12 +63,12 @@ describe("SideNav", () => {
 			]
 		});
 	});
-    
+
 	it("should work", () => {
 		fixture = TestBed.createComponent(SideNav);
 		expect(fixture.componentInstance instanceof SideNav).toBe(true);
 	});
-    
+
 	it("should emit the navigation status promise when the link is activated and call onNavigation", async () => {
 		fixture = TestBed.createComponent(SideNavTest);
 		wrapper = fixture.componentInstance;

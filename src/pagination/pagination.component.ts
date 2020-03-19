@@ -6,7 +6,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { ExperimentalService } from "./../experimental.module";
 import { merge } from "./../utils/object";
 
@@ -79,11 +79,12 @@ export interface PaginationTranslations {
 					</option>
 				</select>
 				<svg
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit"
 					class="bx--select__arrow"
 					aria-hidden="true"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
@@ -130,10 +131,11 @@ export interface PaginationTranslations {
 				</select>
 				<svg
 					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit;"
 					class="bx--select__arrow"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 
@@ -152,7 +154,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="backwardText.subject | async"
 				(click)="selectPage.emit(previousPage)"
 				[disabled]="(currentPage <= 1 || disabled ? true : null)">
-				<ibm-icon-caret-left16></ibm-icon-caret-left16>
+				<ibm-icon-caret-left size="16"></ibm-icon-caret-left>
 			</button>
 
 			<button
@@ -164,7 +166,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="forwardText.subject | async"
 				(click)="selectPage.emit(nextPage)"
 				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-				<ibm-icon-caret-right16></ibm-icon-caret-right16>
+				<ibm-icon-caret-right size="16"></ibm-icon-caret-right>
 			</button>
 		</div>
 	</div>

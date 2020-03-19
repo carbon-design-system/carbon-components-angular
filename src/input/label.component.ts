@@ -43,10 +43,11 @@ import {
 		</label>
 		<div *ngIf="!skeleton" class="bx--form__helper-text">{{helperText}}</div>
 		<div class="bx--text-input__field-wrapper" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
-			<ibm-icon-warning-filled16
+			<ibm-icon-warning-filled
+				size="16"
 				*ngIf="invalid"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
-			</ibm-icon-warning-filled16>
+			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
 		<div *ngIf="invalid" class="bx--form-requirement">

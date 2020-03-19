@@ -5,7 +5,7 @@ import {
 	ViewEncapsulation,
 	ContentChild
 } from "@angular/core";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n } from "./../../i18n/index";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**

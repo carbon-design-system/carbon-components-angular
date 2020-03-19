@@ -4,7 +4,7 @@ import {
 	ViewContainerRef,
 	ViewChild
 } from "@angular/core";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "./../placeholder/index";
 
 /**
  * Deprecated as of v2.0, will be removed with v3.0

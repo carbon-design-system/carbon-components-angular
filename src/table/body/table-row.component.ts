@@ -7,7 +7,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { TableModel } from "./../table-model.class";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { TableItem } from "./../table-item.class";
 import { Observable } from "rxjs";
 

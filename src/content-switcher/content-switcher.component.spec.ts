@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { ContentSwitcher } from "./content-switcher.component";
-import { ContentSwitcherModule, ContentSwitcherOption } from "./content-switcher.module";
+import { ContentSwitcherModule, ContentSwitcherOption } from "./index";
 
 @Component({
 	template: `

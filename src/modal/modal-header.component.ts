@@ -4,7 +4,7 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { ExperimentalService } from "./../experimental.service";
 
 /**
@@ -28,7 +28,7 @@ import { ExperimentalService } from "./../experimental.service";
 				class="bx--modal-close"
 				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
-				<ibm-icon-close16 class="bx--modal-close__icon"></ibm-icon-close16>
+				<ibm-icon-close size="16" class="bx--modal-close__icon"></ibm-icon-close>
 			</button>
 		</header>
 
