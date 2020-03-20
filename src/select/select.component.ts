@@ -141,11 +141,6 @@ export class Select implements ControlValueAccessor {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
-	/**
-	 * emits the selected options `value`
-	 * @deprecated use `valueChange` instead
-	 */
-	@Output() selected = new EventEmitter();
 
 	@Output() valueChange = new EventEmitter();
 
@@ -193,7 +188,6 @@ export class Select implements ControlValueAccessor {
 	 */
 	onChange(event) {
 		this.onChangeHandler(event.target.value);
-		this.selected.emit(event.target.value);
 		this.valueChange.emit(event.target.value);
 	}
 

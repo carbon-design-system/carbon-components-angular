@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { DialogService } from "./dialog.service";
 import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
-import { DialogPlaceholder } from "./dialog-placeholder.component";
 
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDefinition } from "./tooltip/tooltip-definition.component";
@@ -23,6 +22,8 @@ import { PlaceholderModule } from "./../placeholder/index";
 import { ExperimentalModule } from "./../experimental.module";
 import { UtilsModule } from "./../utils/utils.module";
 
+import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
+
 @NgModule({
 	declarations: [
 		Dialog,
@@ -35,8 +36,7 @@ import { UtilsModule } from "./../utils/utils.module";
 		TooltipDirective,
 		EllipsisTooltip,
 		OverflowMenuDirective,
-		OverflowMenuOption,
-		DialogPlaceholder
+		OverflowMenuOption
 	],
 	exports: [
 		Dialog,
@@ -49,8 +49,7 @@ import { UtilsModule } from "./../utils/utils.module";
 		TooltipDirective,
 		EllipsisTooltip,
 		OverflowMenuDirective,
-		OverflowMenuOption,
-		DialogPlaceholder
+		OverflowMenuOption
 	],
 	providers: [ DialogService ],
 	entryComponents: [
@@ -63,7 +62,8 @@ import { UtilsModule } from "./../utils/utils.module";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		UtilsModule
+		UtilsModule,
+		OverflowMenuVerticalModule
 	]
 })
 export class DialogModule {}

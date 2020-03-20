@@ -9,7 +9,6 @@ export { TableHeader } from "./header/table-header.component";
 export { TableHeaderTitle } from "./header/table-header-title.directive";
 export { TableHeaderDescription } from "./header/table-header-description.directive";
 
-export { DataGridFocus } from "./data-grid-focus.directive";
 export { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports

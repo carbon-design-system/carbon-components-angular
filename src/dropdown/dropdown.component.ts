@@ -187,20 +187,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 */
 	@Input() invalidText = "";
 	/**
-	 * Deprecated. Dropdown now defaults to appending inline
-	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
-	 */
-	@Input() set appendToBody (v) {
-		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.warn("Ensure you have an `ibm-placeholder` in your app.");
-		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
-		this.appendInline = !v;
-	}
-
-	get appendToBody() {
-		return !this.appendInline;
-	}
-	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
 	@Input() appendInline = false;
@@ -341,7 +327,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Removing the `Dropdown` from the body if it is appended to the body.
 	 */
 	ngOnDestroy() {
-		if (this.appendToBody) {
+		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
 	}

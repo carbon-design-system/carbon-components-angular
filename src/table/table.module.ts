@@ -28,7 +28,6 @@ import { TableHeader } from "./header/table-header.component";
 import { TableHeaderTitle } from "./header/table-header-title.directive";
 import { TableHeaderDescription } from "./header/table-header-description.directive";
 
-import { DataGridFocus } from "./data-grid-focus.directive";
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports
@@ -64,7 +63,6 @@ export * from "./data-grid-interaction-model.class";
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
-		DataGridFocus,
 		ExpandedRowHover,
 		// core table components
 		Table,
@@ -91,7 +89,6 @@ export * from "./data-grid-interaction-model.class";
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
-		DataGridFocus,
 		ExpandedRowHover,
 		// core table components
 		Table,

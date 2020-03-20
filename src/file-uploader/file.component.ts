@@ -68,8 +68,3 @@ export class FileComponent {
 
 	constructor(protected i18n: I18n) {}
 }
-
-// compatibility export
-// TODO: remove in v4
-// tslint:disable-next-line: variable-name
-export const File = FileComponent;

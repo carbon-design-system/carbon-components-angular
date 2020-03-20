@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { CloseModule } from "@carbon/icons-angular";
 
 // imports
-import { ModalPlaceholder } from "./modal-placeholder.component";
 import { ModalService } from "./modal.service";
 import { Modal } from "./modal.component";
 import { ModalFooter } from "./modal-footer.component";
@@ -19,7 +18,6 @@ import { ExperimentalModule } from "./../experimental.module";
 @NgModule({
 	declarations: [
 		AlertModal,
-		ModalPlaceholder,
 		Modal,
 		ModalHeader,
 		ModalFooter,
@@ -27,7 +25,6 @@ import { ExperimentalModule } from "./../experimental.module";
 	],
 	exports: [
 		AlertModal,
-		ModalPlaceholder,
 		Modal,
 		ModalHeader,
 		ModalFooter

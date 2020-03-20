@@ -50,10 +50,6 @@ export class ModalHeader {
 	 */
 	@Output() closeSelect = new EventEmitter();
 
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
-
 	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {}
 
 	/**

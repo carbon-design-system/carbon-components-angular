@@ -376,22 +376,6 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
-	 *
-	 * @deprecated in the next major carbon-components-angular version in favor of
-	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
-	 *  please use `showSelectionColumn` instead
-	 */
-	@Input()
-	set enableRowSelect(value: boolean) {
-		this.showSelectionColumn = value;
-	}
-
-	get enableRowSelect () {
-		return this.showSelectionColumn;
-	}
-
-	/**
-	 * Controls whether to show the selection checkboxes column or not.
 	 */
 	@Input() showSelectionColumn = true;
 

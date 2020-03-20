@@ -136,11 +136,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Event to emit selection of a list item within the `DropdownList`.
 	 */
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() select: EventEmitter<{ item: ListItem, isUpdate?: boolean } | ListItem[]> = new EventEmitter();
 	/**
 	 * Event to emit scroll event of a list within the `DropdownList`.
 	 */
-	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter<ScrollCustomEvent>();
+	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter();
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
