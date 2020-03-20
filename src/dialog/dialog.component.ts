@@ -94,11 +94,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Creates an instance of `Dialog`.
 	 * @param elementRef
+	 * @param elementService
 	 */
 	constructor(
 		protected elementRef: ElementRef,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null
+		protected elementService: ElementService
 	) {	}
 
 	/**
@@ -139,44 +139,17 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
-		if (this.elementService) {
-			this.visibilitySubscription = this.elementService
-				.visibility(parentElement, parentElement)
-				.subscribe(value => {
-					this.placeDialog();
-					if (!value.visible) {
-						this.doClose();
-					}
+		this.visibilitySubscription = this.elementService
+			.visibility(parentElement, parentElement)
+			.subscribe(value => {
+				this.placeDialog();
+				if (!value.visible) {
+					this.doClose();
 				}
-			);
-		}
-
-		const placeDialogInContainer = () => {
-			// only do the work to find the scroll containers if we're appended to body
-			// or skip this work if we're inline
-			if (!this.dialogConfig.appendInline) {
-				// subscribe to the observable, and update the position and visibility
-				const scrollObservable = scrollableParentsObservable(parentElement);
-				this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-					this.placeDialog();
-					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
-						this.doClose();
-					}
-				});
 			}
-		};
+		);
 
 		this.placeDialog();
-
-		// settimeout to let the DOM settle before attempting to place the dialog
-		// and before notifying components that the DOM is ready
-		setTimeout(() => {
-			// fallback if animationFrameService isn't available
-			if (!this.elementService) {
-				placeDialogInContainer();
-			}
-			this.afterDialogViewInit();
-		});
 	}
 
 	/**

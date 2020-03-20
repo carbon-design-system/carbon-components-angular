@@ -126,6 +126,26 @@ storiesOf("Components|Overflow Menu", module)
 			options: createOptions
 		}
 	}))
+	.add("Programmatically", () => ({
+		template: `
+			<ibm-overflow-menu [flip]="flip" [open]="open">
+				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
+					An example option that is really long to show what should be done to handle long text
+				</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+				<li class="bx--overflow-menu-options__option">
+					<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+				</li>
+				<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+			</ibm-overflow-menu>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			open: boolean("Open", false)
+		}
+	}))
 	.add("Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/components/OverflowMenu.html"></ibm-documentation>
