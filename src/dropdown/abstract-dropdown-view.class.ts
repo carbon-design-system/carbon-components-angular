@@ -95,4 +95,8 @@ export class AbstractDropdownView {
 	 * In most cases this just calls `getCurrentElement().focus()`
 	 */
 	initFocus(): void {}
+	/**
+	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
+	 */
+	onItemsReady(subcription: () => void): void {}
 }

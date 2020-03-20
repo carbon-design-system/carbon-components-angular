@@ -6,6 +6,7 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 
 import { ComboBox } from "./combobox.component";
 import { DropdownModule } from "../dropdown/dropdown.module";
+import { I18nModule } from "./../i18n/i18n.module";
 import { UtilsModule } from "../utils/utils.module";
 
 export { ComboBox } from "./combobox.component";
@@ -24,6 +25,7 @@ export { ComboBox } from "./combobox.component";
 		DropdownModule,
 		ChevronDown16Module,
 		Close16Module,
+		I18nModule,
 		WarningFilled16Module,
 		UtilsModule
 	]
