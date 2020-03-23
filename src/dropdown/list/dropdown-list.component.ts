@@ -162,6 +162,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
+	 *
+	 * @deprecated since v4
 	 */
 	public size: "sm" | "md" | "lg" = "md";
 	/**
@@ -287,7 +289,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the last item in the `DropdownList`.
-	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
 		if (this.index < this.displayItems.length - 1) {
@@ -323,7 +324,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the first in the list.
-	 * TODO: standardize
 	 */
 	hasPrevElement(): boolean {
 		if (this.index > 0) {

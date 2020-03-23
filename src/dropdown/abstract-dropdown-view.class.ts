@@ -37,6 +37,8 @@ export class AbstractDropdownView {
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
+	 *
+	 * @deprecated since v4
 	 */
 	public size: "sm" | "md" | "lg" = "md";
 	/**

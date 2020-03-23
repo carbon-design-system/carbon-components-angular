@@ -30,6 +30,8 @@ export interface TableTranslations {
 	CHECKBOX_ROW: string;
 }
 
+export type TableRowSize = "sm" | "sh" | "md" | "lg";
+
 /**
  * Build your table with this component by extending things that differ from default.
  *
@@ -343,7 +345,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */

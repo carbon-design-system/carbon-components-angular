@@ -151,6 +151,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
