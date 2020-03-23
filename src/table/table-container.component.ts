@@ -4,9 +4,7 @@ import { Component, HostBinding } from "@angular/core";
 	selector: "ibm-table-container",
 	template: `<ng-content></ng-content>`,
 	styles: [`
-		:host {
-			display: block;
-		}
+		:host { display: block }
 	`]
 })
 export class TableContainer {
