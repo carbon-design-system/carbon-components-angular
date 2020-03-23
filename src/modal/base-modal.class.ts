@@ -1,4 +1,4 @@
-import { Output, EventEmitter } from "@angular/core";
+import { Output, EventEmitter, Input } from "@angular/core";
 
 /**
  * Extend `BaseModal` in your custom modal implementations to ensure consistent close behavior.
@@ -14,7 +14,7 @@ export class BaseModal {
 	/**
 	 * Controls the open state of the modal
 	 */
-	open = false;
+	@Input() open = false;
 
 	/**
 	 * Default method to handle closing the modal
