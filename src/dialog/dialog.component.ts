@@ -99,7 +99,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	constructor(
 		protected elementRef: ElementRef,
 		protected elementService: ElementService
-	) {	}
+	) {}
 
 	/**
 	 * Initialize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
