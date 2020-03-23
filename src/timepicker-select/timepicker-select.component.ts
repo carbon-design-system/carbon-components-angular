@@ -17,7 +17,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "ibm-timepicker-select",
 	template: `
-			<label *ngIf="!skeleton && label" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
+		<label *ngIf="!skeleton && label" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
+		<div class="bx--select-input__wrapper">
 			<select
 				#select
 				[attr.id]="id"
@@ -27,6 +28,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				<ng-content></ng-content>
 			</select>
 			<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+		</div>
 	`,
 	providers: [
 		{
