@@ -7,7 +7,7 @@ import { Select } from "./select.component";
 
 @Component({
 	template: `
-		<ibm-select (selected)="onChange($event)" [(ngModel)]="model">
+		<ibm-select (valueChange)="onChange($event)" [(ngModel)]="model">
 			<option value="option1"> Option 1 </option>
 		</ibm-select>
 		`
