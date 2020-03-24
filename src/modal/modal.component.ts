@@ -98,6 +98,7 @@ export class ModalDemo {
 				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
+				<div class="bx--modal-content--overflow-indicator"></div>
 			</div>
 		</ibm-overlay>
 	`,
