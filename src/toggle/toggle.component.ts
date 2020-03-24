@@ -68,7 +68,7 @@ export class ToggleChange {
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
-			(click)="onClick($event)">
+			(click)="onClick()">
 		<label
 			class="bx--toggle__label"
 			[for]="id"

@@ -12,7 +12,7 @@ export { TableHeaderDescription } from "./header/table-header-description.direct
 export { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports
-export { Table } from "./table.component";
+export { Table, TableRowSize, TableTranslations } from "./table.component";
 export { TableDirective } from "./table.directive";
 export { TableHead } from "./head/table-head.component";
 export { TableHeadCell } from "./head/table-head-cell.component";

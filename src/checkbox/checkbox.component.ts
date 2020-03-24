@@ -64,7 +64,7 @@ export type CheckboxValue = boolean | "on" | "off";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
-			(click)="onClick($event)">
+			(click)="onClick()">
 		<label
 			[for]="id"
 			class="bx--checkbox-label"
