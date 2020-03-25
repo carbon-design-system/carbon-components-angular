@@ -17,8 +17,7 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule,
-	DocumentationModule
+	ButtonModule
 } from "../";
 
 import {
@@ -38,6 +37,7 @@ import {
 	SkeletonTableStory,
 	TableNoDataStory
 } from "./stories";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 const simpleModel = new TableModel();
 simpleModel.data = [

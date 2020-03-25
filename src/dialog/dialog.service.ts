@@ -4,10 +4,8 @@ import {
 	ComponentFactory,
 	ComponentFactoryResolver,
 	Injectable,
-	ViewContainerRef,
-	OnDestroy
+	ViewContainerRef
 } from "@angular/core";
-import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
 import { PlaceholderService } from "./../placeholder/index";
 import { Dialog } from "./dialog.component";
@@ -17,7 +15,7 @@ import { tabbableSelector } from "../common/tab.service";
  * `Dialog` object to be injected into other components.
  */
 @Injectable()
-export class DialogService implements OnDestroy {
+export class DialogService {
 	/**
 	 * Used in `singletonClickListen`, don't count on its existence and values.
 	 */
@@ -29,19 +27,17 @@ export class DialogService implements OnDestroy {
 	protected static dialogRefs = new Set<ComponentRef<Dialog>>();
 
 	/**
-	 * A `Subscription` that contains all `onClose` subscriptions
+	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
 	 */
-	protected static dialogCloseSubscription = new Subscription();
+	public static closeAll() {
+		DialogService.dialogRefs.forEach(ref => ref.instance.doClose());
+		DialogService.dialogRefs.clear();
+	}
 
 	/**
 	 * The default component factory to use when creating dialogs
 	 */
 	public componentFactory: ComponentFactory<any>;
-
-	/**
-	 * To watch the event that closes the `Dialog`.
-	 */
-	protected dialogSubscription = new Subscription();
 
 	/**
 	 * Creates an instance of `DialogService`.
@@ -50,15 +46,12 @@ export class DialogService implements OnDestroy {
 		protected componentFactoryResolver: ComponentFactoryResolver,
 		protected injector: Injector,
 		protected placeholderService: PlaceholderService
-	) {
-		// keep track of all dialog subscriptions globally.
-		DialogService.dialogCloseSubscription.add(this.dialogSubscription);
-	}
+	) {}
 
 	/**
 	 * Set the context for the service. For example, the `component` property can be used to set the
 	 * default component that should be created by the service, for a given instance of the service.
-	 * @param options
+	 * @param options `{ component: any }` where `component` is a component that extends `dialog.component`
 	 */
 	context(options: { component: any }) {
 		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(options.component);
@@ -99,16 +92,6 @@ export class DialogService implements OnDestroy {
 		dialogConfig["previouslyFocusedElement"] = document.activeElement;
 		dialogRef.instance.dialogConfig = dialogConfig;
 
-		const closeSubscription = dialogRef.instance.close.subscribe(() => {
-			if (dialogConfig.shouldClose && dialogConfig.shouldClose()) {
-				this.close(dialogRef);
-			}
-		});
-
-		// Adds current close subscription to the reference of all close subscriptions for
-		// local dialog service.
-		this.dialogSubscription.add(closeSubscription);
-
 		dialogRef.instance.elementRef.nativeElement.focus();
 
 		return dialogRef as ComponentRef<Dialog>;
@@ -128,6 +111,7 @@ export class DialogService implements OnDestroy {
 
 		dialogRef.destroy();
 
+		// update the globally tracked dialogRefs
 		if (DialogService.dialogRefs.has(dialogRef)) {
 			DialogService.dialogRefs.delete(dialogRef);
 		}
@@ -139,22 +123,14 @@ export class DialogService implements OnDestroy {
 		}
 	}
 
-	// Unsubscribes from all the close subscriptions associated with the destroyed dialog
-	// service and removes the subscriptions from the global `dialogCloseSubscription`.
-	ngOnDestroy() {
-		DialogService.dialogCloseSubscription.remove(this.dialogSubscription);
-		this.dialogSubscription.unsubscribe();
-	}
-
 	/**
 	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
+	 *
+	 * @deprecated since v4. Use the static `DialogService.closeAll` instead
 	 */
 	closeAll() {
-		DialogService.dialogRefs.forEach(ref => ref.destroy());
-		DialogService.dialogRefs.clear();
-		DialogService.dialogCloseSubscription.unsubscribe();
+		DialogService.closeAll();
 	}
-
 	/**
 	 * Fix for safari hijacking clicks.
 	 *

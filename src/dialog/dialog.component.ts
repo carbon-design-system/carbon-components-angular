@@ -8,8 +8,7 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener,
-	Optional
+	HostListener
 } from "@angular/core";
 import {
 	Observable,
@@ -21,7 +20,6 @@ import { throttleTime } from "rxjs/operators";
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
-import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/scroll";
 import { ElementService } from "./../utils/utils.module";
 
 /**
@@ -33,10 +31,6 @@ import { ElementService } from "./../utils/utils.module";
 	template: ""
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
-	/**
-	 * One static event observable to handle window resizing.
-	 */
-	protected static resizeObservable: Observable<any> = fromEvent(window, "resize", { passive: true }).pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 */
@@ -60,17 +54,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * The placement of the `Dialog` is received from the `Position` service.
 	 */
 	public placement: string;
-
-	/**
-	 * `Subscription` used to update placement in the event of a window resize.
-	 */
-	protected resizeSubscription = new Subscription();
-	/**
-	 * Subscription to all the scrollable parents `scroll` event
-	 */
-	// add a new subscription temporarily so that contexts (such as tests)
-	// that don't run ngAfterViewInit have something to unsubscribe in ngOnDestroy
-	protected scrollSubscription = new Subscription();
 
 	protected visibilitySubscription = new Subscription();
 	/**
@@ -107,11 +90,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	ngOnInit() {
 		this.placement = this.dialogConfig.placement.split(",")[0];
 		this.data = this.dialogConfig.data;
-
-		// fallback if elementService isn't available
-		if (!this.elementService) {
-			this.resizeSubscription = Dialog.resizeObservable.subscribe(this.placeDialog);
-		}
 
 		// run any additional initialization code that consuming classes may have
 		this.onDialogInit();
@@ -244,8 +222,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * At destruction of component, `Dialog` unsubscribes from all the subscriptions.
 	 */
 	ngOnDestroy() {
-		this.resizeSubscription.unsubscribe();
-		this.scrollSubscription.unsubscribe();
 		this.visibilitySubscription.unsubscribe();
 	}
 }

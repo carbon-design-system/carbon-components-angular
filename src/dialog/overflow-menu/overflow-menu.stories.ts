@@ -83,7 +83,6 @@ storiesOf("Components|Overflow Menu", module)
 						Danger option
 					</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
-				<ibm-placeholder></ibm-placeholder>
 			</div>
 			<div style="margin-top: 8rem">
 				<h1 style="margin-bottom: 1rem">Top placement</h1>
@@ -99,8 +98,8 @@ storiesOf("Components|Overflow Menu", module)
 						Danger option
 					</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
-				<ibm-placeholder></ibm-placeholder>
 			</div>
+			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			click: () => console.log("click"),

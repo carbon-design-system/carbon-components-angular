@@ -33,8 +33,6 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			[ngClass]="{'bx--overflow-menu--open': open}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
-			(onOpen)="open = true"
-			(onClose)="open = false"
 			[isOpen]="open"
 			(isOpenChange)="handleOpenChange($event)"
 			role="button"

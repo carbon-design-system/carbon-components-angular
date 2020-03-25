@@ -92,7 +92,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Emits an event when the dialog is opened
 	 */
 	@Output() onOpen: EventEmitter<any> = new EventEmitter();
-
+	/**
+	 * Emits an event when the state of `isOpen` changes. Allows `isOpen` to be double bound
+	 */
 	@Output() isOpenChange = new EventEmitter<boolean>();
 
 	@HostBinding("attr.role") role = "button";
@@ -101,6 +103,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
+	/**
+	 * Keeps a reference to the currently opened dialog
+	 */
 	protected dialogRef: ComponentRef<Dialog>;
 
 	/**
@@ -215,6 +220,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
 	open() {
+		// don't allow dialogs to be opened if they're already open
+		if (this.dialogRef) { return; }
+
+		// actually open the dialog, emit events, and set the open state
 		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig);
 		this.isOpen = true;
 		this.onOpen.emit();
@@ -223,9 +232,15 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// Handles emitting all the close events to clean everything up
 		// Also enforce accessibility on close by updating an aria attr on the nativeElement.
 		this.dialogRef.instance.close.subscribe(() => {
-			this.onClose.emit();
-			this.isOpenChange.emit(false);
-			this.isOpen = false;
+			if (!this.dialogRef) { return; }
+			if (this.dialogConfig.shouldClose && this.dialogConfig.shouldClose()) {
+				// close the dialog, emit events, and clear out the open states
+				this.dialogService.close(this.dialogRef);
+				this.dialogRef = null;
+				this.isOpen = false;
+				this.onClose.emit();
+				this.isOpenChange.emit(false);
+			}
 		});
 
 		return this.dialogRef;
@@ -235,8 +250,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Helper method to toggle the open state of the dialog
 	 */
 	toggle() {
-		this.isOpen = !this.isOpen;
-		if (this.isOpen) {
+		if (!this.isOpen) {
 			this.open();
 		} else {
 			this.close();
@@ -262,7 +276,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Empty method for child to override and specify additional on changes steps.
 	 * run after DialogDirective completes it's ngOnChanges.
 	 */
-	protected onDialogChanges(changes: SimpleChanges) {}
+	protected onDialogChanges(_changes: SimpleChanges) {}
 
 	protected updateConfig() {}
 }
