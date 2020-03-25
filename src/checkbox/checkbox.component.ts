@@ -259,7 +259,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	_indeterminate = false;
 
 	/**
-	 * Keeps a reference to the checkboxes current state, as defined in `CheckboxState.
+	 * Keeps a reference to the checkboxes current state, as defined in `CheckboxState`.
 	 */
 	currentCheckboxState = CheckboxState.Init;
 
