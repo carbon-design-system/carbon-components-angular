@@ -150,6 +150,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		);
 
 		this.placeDialog();
+		// run afterDialogViewInit on the next tick
+		setTimeout(() => this.afterDialogViewInit());
 	}
 
 	/**

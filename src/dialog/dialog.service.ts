@@ -133,11 +133,8 @@ export class DialogService implements OnDestroy {
 		}
 
 		// Keeps the focus on the dialog trigger if there are no focusable elements. Change focus to previously focused element
-		// if there are focusable elements in the dialog or if trigger is set to `hover` or `mouseenter`.
-		if (
-			!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector) ||
-			dialogRef.instance.dialogConfig.trigger === "hover" ||
-			dialogRef.instance.dialogConfig.trigger === "mouseenter") {
+		// if there are focusable elements in the dialog.
+		if (!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector)) {
 			elementToFocus.focus();
 		}
 	}

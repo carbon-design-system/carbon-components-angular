@@ -181,6 +181,12 @@ class AlertModalStory {
 	}
 }
 
+const getOptions = (options = {}) => {
+	return Object.assign({}, {
+		size: select("size", [null, "xs", "sm", "lg"], null)
+	}, options);
+};
+
 storiesOf("Components|Modal", module)
 	.addDecorator(
 		moduleMetadata({
@@ -210,10 +216,9 @@ storiesOf("Components|Modal", module)
 		<app-modal-story [modalText]="modalText" [size]="size"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
-			modalText: text("modalText", "Hello, World!"),
-			size: select("size", ["xs", "sm", "lg"], "sm")
-		}
+		props: getOptions({
+			modalText: text("modalText", "Hello, World!")
+		})
 	}))
 	.add("Transactional", () => ({
 		template: `
@@ -227,12 +232,11 @@ storiesOf("Components|Modal", module)
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
+		props: getOptions({
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Delete service from application"),
 			modalContent: text("modalContent", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
-			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			buttons: [{
 				text: "Cancel",
 				type: "secondary"
@@ -241,7 +245,7 @@ storiesOf("Components|Modal", module)
 				type: "primary",
 				click: () => alert("Delete button clicked")
 			}]
-		}
+		})
 	}))
 	.add("Passive", () => ({
 		template: `
@@ -254,14 +258,13 @@ storiesOf("Components|Modal", module)
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
+		props: getOptions({
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Passive modal title"),
-			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
-		}
+		})
 	}))
 	.add("Data passing", () => ({
 		template: `
