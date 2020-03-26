@@ -42,7 +42,7 @@ const testingSetup = (checkboxComponent) => {
 
 const setupFixture = testingSetup(CheckboxTest);
 
-describe("Checkbox", async() => {
+describe("Checkbox", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		fixture = testingSetup(CheckboxTest);
@@ -102,6 +102,6 @@ describe("Checkbox", async() => {
 		setupFixture.detectChanges();
 		const instance = new CheckboxExportedTest();
 		/* tslint:disable-next-line */
-		new BDDTestParser(instance.tests, setupFixture.debugElement.nativeElement);
+		new BDDTestParser((instance as any).tests, setupFixture.debugElement.nativeElement);
 	});
 });
