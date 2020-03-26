@@ -60,6 +60,12 @@ export class TabHeader {
 		}
 	}
 
+	@Input() set paneTabIndex(tabIndex: number | null) {
+		if (this.paneReference) {
+			this.paneReference.tabIndex = tabIndex;
+		}
+	}
+
 	get cacheActive() {
 		return this._cacheActive;
 	}

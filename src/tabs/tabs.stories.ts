@@ -7,7 +7,10 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [followFocus]="followFocus" [cacheActive]="cacheActive">
+		<ibm-tab-header-group
+			[followFocus]="followFocus"
+			[cacheActive]="cacheActive"
+			[isNavigation]="isNavigation">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -39,6 +42,7 @@ import { Component, Input } from "@angular/core";
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
+	@Input() isNavigation = true;
 }
 
 storiesOf("Components|Tabs", module)
@@ -127,11 +131,16 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+			<ibm-header-group
+				[followFocus]="followFocus"
+				[cacheActive]="cacheActive"
+				[isNavigation]="isNavigation">
+			</ibm-header-group>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			cacheActive: boolean("Cache active", true)
+			cacheActive: boolean("Cache active", true),
+			isNavigation: boolean("isNavigation", true)
 		}
 	}))
 	.add("Skeleton", () => ({

@@ -95,6 +95,8 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 	 */
 	@Input() cacheActive = false;
 
+	@Input() isNavigation = false;
+
 	/**
 	 * ContentChildren of all the tabHeaders.
 	 */
@@ -204,7 +206,11 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 		this.selectedSubscriptionTracker.unsubscribe();
 
 		if (this.tabHeaderQuery) {
-			this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+			this.tabHeaderQuery.toArray()
+				.forEach(tabHeader => {
+					tabHeader.cacheActive = this.cacheActive;
+					tabHeader.paneTabIndex = this.isNavigation ? null : 0;
+				});
 		}
 
 		const selectedSubscriptions = this.tabHeaderQuery.toArray().forEach(tabHeader => {
@@ -227,8 +233,15 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (this.tabHeaderQuery && changes.cacheActive) {
-			this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+		if (this.tabHeaderQuery) {
+			if (changes.cacheActive) {
+				this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+			}
+
+			if (changes.isNavigation) {
+				this.tabHeaderQuery.toArray()
+					.forEach(tabHeader => tabHeader.paneTabIndex = this.isNavigation ? null : 0);
+			}
 		}
 	}
 
