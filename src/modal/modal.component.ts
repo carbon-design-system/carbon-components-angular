@@ -156,12 +156,12 @@ export class Modal implements AfterViewInit, OnChanges {
 	constructor(public modalService: ModalService) {}
 
 	ngOnChanges({ open }: SimpleChanges) {
-		if (open && open.currentValue) {
-			// `100` is just enough time to allow the modal
-			// to become visible, so that we can set focus
-			setTimeout(() => this.focusInitialElement(), 100);
-		} else if (open && !open.currentValue) {
-			if (this.trigger) {
+		if (open) {
+			if (open.currentValue) {
+				// `100` is just enough time to allow the modal
+				// to become visible, so that we can set focus
+				setTimeout(() => this.focusInitialElement(), 100);
+			} else if (this.trigger) {
 				this.trigger.focus();
 			}
 		}
