@@ -27,6 +27,13 @@ class CheckboxTest {
 	onIndeterminateChange() {}
 }
 
+const defaults = {
+	selectors: {
+		root: "ibm-checkbox",
+		input: "input"
+	}
+};
+
 const testingSetup = (checkboxComponent) => {
 	// Due to TestBed being used outside the test suite, it'll need to be reset
 	TestBed.resetTestingModule();
@@ -100,7 +107,7 @@ describe("Checkbox", () => {
 		// Get checkbox from the fixture
 		element = setupFixture.debugElement.query(By.css("ibm-checkbox"));
 		setupFixture.detectChanges();
-		const instance = new CheckboxExportedTest();
+		const instance = new CheckboxExportedTest(defaults);
 		/* tslint:disable-next-line */
 		new BDDTestParser((instance as any).tests, setupFixture.debugElement.nativeElement);
 	});

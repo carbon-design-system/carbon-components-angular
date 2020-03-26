@@ -3,13 +3,17 @@ import { expect } from "chai";
 import ComponentTests from "../exported-tests/component-tests";
 
 class CheckboxExportedTests extends ComponentTests {
-	static structure() {
+	static getComponent(fragment, selectors) {
+		return super.getComponent(fragment, selectors);
+	}
+
+	static structure(settings) {
 		const tests = {
 			checked: {
-				name: "Set checked to true when clicked",
+				name: "initially be unchecked, be checked on click",
 				getActual: fragment =>
 					new Promise(resolve => {
-						const component = this.getComponent(fragment, "ibm-checkbox input");
+						const component = this.getComponent(fragment, `${settings.selectors.root} ${settings.selectors.input}`);
 						const initialState = component.checked;
 						component.click();
 						const afterClickState = component.checked;
@@ -32,9 +36,9 @@ class CheckboxExportedTests extends ComponentTests {
 		}];
 	}
 
-	constructor() {
-		super();
-		(this as any).tests = (this as any).tests.concat((this.constructor as typeof CheckboxExportedTests).structure());
+	constructor(configs) {
+		super(configs);
+		(this as any).tests = (this as any).tests.concat((this.constructor as typeof CheckboxExportedTests).structure((this as any).settings));
 	}
 }
 

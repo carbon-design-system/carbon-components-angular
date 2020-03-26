@@ -1,3 +1,5 @@
+import merge from "lodash-es/merge";
+
 class ComponentTests {
 	static defaults = {
 		selectors: {
@@ -15,7 +17,8 @@ class ComponentTests {
 		return root;
 	}
 
-	constructor() {
+	constructor(configs = {}) {
+		(this as any).settings = merge({}, (this.constructor as typeof ComponentTests).defaults, configs);
 		(this as any).tests = [];
 		this.bindFunctions();
 	}
