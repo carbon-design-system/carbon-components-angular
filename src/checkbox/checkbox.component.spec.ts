@@ -5,6 +5,8 @@ import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 
 import { Checkbox } from "./checkbox.component";
+import BDDTestParser from "exported-tests/src/parsers/BDD";
+import CheckboxExportedTest from "./checkbox-exported-tests";
 
 @Component({
 	template: `
@@ -25,13 +27,25 @@ class CheckboxTest {
 	onIndeterminateChange() {}
 }
 
+const testingSetup = (checkboxComponent) => {
+	// Due to TestBed being used outside the test suite, it'll need to be reset
+	TestBed.resetTestingModule();
+	// configureTestingModule normally happens in `beforeEach`, but needed here because
+	// Exported Tests need access to the compiled component into the `fixture` variable
+	TestBed.configureTestingModule({
+		declarations: [Checkbox, CheckboxTest],
+		imports: [CommonModule, FormsModule]
+	});
+
+	return TestBed.createComponent(checkboxComponent);
+};
+
+const setupFixture = testingSetup(CheckboxTest);
+
 describe("Checkbox", async() => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
-		TestBed.configureTestingModule({
-			declarations: [Checkbox, CheckboxTest],
-			imports: [CommonModule, FormsModule]
-		}).compileComponents();
+		fixture = testingSetup(CheckboxTest);
 	});
 
 	it("should work", () => {
@@ -80,5 +94,14 @@ describe("Checkbox", async() => {
 		element.nativeElement.click();
 		fixture.detectChanges();
 		expect(wrapper.onIndeterminateChange).toHaveBeenCalled();
+	});
+
+	describe("PAL exported tests", () => {
+		// Get checkbox from the fixture
+		element = setupFixture.debugElement.query(By.css("ibm-checkbox"));
+		setupFixture.detectChanges();
+		const instance = new CheckboxExportedTest();
+		/* tslint:disable-next-line */
+		new BDDTestParser(instance.tests, setupFixture.debugElement.nativeElement);
 	});
 });
