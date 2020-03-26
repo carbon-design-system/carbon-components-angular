@@ -15,13 +15,14 @@ import {
 			(click)="toggleExpanded()"
 			class="bx--accordion__heading">
 			<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>
-			<p
+			<p *ngIf="!isTemplate(title)"
 				class="bx--accordion__title"
 				[ngClass]="{
 					'bx--skeleton__text': skeleton
 				}">
 				{{!skeleton ? title : null}}
 			</p>
+			<ng-template *ngIf="isTemplate(title)" [ngTemplateOutlet]="title"></ng-template>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
 			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
@@ -35,7 +36,7 @@ import {
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
-	@Input() title = `Title ${AccordionItem.accordionItemCount}`;
+	@Input() title: string | TemplateRef<any>;
 	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
 	@Input() skeleton = false;
 	@Output() selected = new EventEmitter();
@@ -55,5 +56,9 @@ export class AccordionItem {
 			this.expanded = !this.expanded;
 			this.selected.emit({id: this.id, expanded: this.expanded});
 		}
+	}
+	
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
