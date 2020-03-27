@@ -74,6 +74,7 @@ export class OverflowMenuDirective extends DialogDirective {
 		this.dialogConfig.flip = this.flip;
 		this.dialogConfig.verticalOffset = this.verticalOffset;
 		this.dialogConfig.horizontalOffset = this.horizontalOffset;
+		this.dialogConfig.wrapperClass = this.wrapperClass;
 	}
 
 	onDialogInit() {
