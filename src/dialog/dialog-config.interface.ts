@@ -49,4 +49,16 @@ export interface DialogConfig {
 	 * Additional arbitrary properties (mostly for internal/extended component use)
 	 */
 	[propName: string]: any;
+	/**
+	 * Classes to add to the dialog container
+	 */
+	wrapperClass?: string;
+	/**
+	 * Vertical offset for the position of the dialog
+	 */
+	verticalOffset?: number;
+	/**
+	 * Horizontal offset for the position of the dialog
+	 */
+	horizontalOffset?: number;
 }

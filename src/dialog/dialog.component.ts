@@ -203,6 +203,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			} else {
 				pos = this.addGap[placement](positionService.findAbsolute(reference, target, placement));
 			}
+
+			// Apply vertical and horizontal offsets given through the dialogConfig
+			pos.top = pos.top + this.dialogConfig.verticalOffset;
+			pos.left = pos.left + this.dialogConfig.horizontalOffset;
+
 			return pos;
 		};
 
