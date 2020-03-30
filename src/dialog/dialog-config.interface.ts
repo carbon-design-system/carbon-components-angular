@@ -54,11 +54,7 @@ export interface DialogConfig {
 	 */
 	wrapperClass?: string;
 	/**
-	 * Vertical offset for the position of the dialog
+	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
-	verticalOffset?: number;
-	/**
-	 * Horizontal offset for the position of the dialog
-	 */
-	horizontalOffset?: number;
+	offset?: { x: number, y: number };
 }

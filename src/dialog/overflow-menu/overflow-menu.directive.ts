@@ -44,14 +44,9 @@ export class OverflowMenuDirective extends DialogDirective {
 	 */
 	@Input() flip = false;
 	/**
-	 * Vertical offset for the position of the dialog
+	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
-	@Input() verticalOffset = 0;
-	/**
-	 * Horizontal offset for the position of the dialog
-	 */
-	@Input() horizontalOffset = 0;
-
+	@Input() offset: { x: number, y: number };
 	/**
 	 * Classes to add to the dialog container
 	 */
@@ -72,8 +67,7 @@ export class OverflowMenuDirective extends DialogDirective {
 	updateConfig() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
 		this.dialogConfig.flip = this.flip;
-		this.dialogConfig.verticalOffset = this.verticalOffset;
-		this.dialogConfig.horizontalOffset = this.horizontalOffset;
+		this.dialogConfig.offset = this.offset;
 		this.dialogConfig.wrapperClass = this.wrapperClass;
 	}
 
