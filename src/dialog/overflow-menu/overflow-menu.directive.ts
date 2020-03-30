@@ -75,7 +75,6 @@ export class OverflowMenuDirective extends DialogDirective {
 			case "Enter":
 			case " ":
 				event.preventDefault();
-				this.toggle();
 				break;
 		}
 	}
