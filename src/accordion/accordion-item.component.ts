@@ -57,7 +57,7 @@ export class AccordionItem {
 			this.selected.emit({id: this.id, expanded: this.expanded});
 		}
 	}
-	
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
