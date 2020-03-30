@@ -55,7 +55,7 @@ export class OverflowMenuDirective extends DialogDirective {
 		protected eventService: EventService
 	) {
 		super(elementRef, viewContainerRef, dialogService, eventService);
-		dialogService.context({ component: OverflowMenuPane });
+		dialogService.setContext({ component: OverflowMenuPane });
 	}
 
 	updateConfig() {

@@ -53,7 +53,7 @@ export class DialogService {
 	 * default component that should be created by the service, for a given instance of the service.
 	 * @param options `{ component: any }` where `component` is a component that extends `dialog.component`
 	 */
-	context(options: { component: any }) {
+	setContext(options: { component: any }) {
 		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(options.component);
 	}
 

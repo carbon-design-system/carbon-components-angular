@@ -68,7 +68,7 @@ export class TooltipDirective extends DialogDirective {
 		protected eventService: EventService
 	) {
 		super(elementRef, viewContainerRef, dialogService, eventService);
-		dialogService.context({ component: Tooltip });
+		dialogService.setContext({ component: Tooltip });
 	}
 
 	updateConfig() {
