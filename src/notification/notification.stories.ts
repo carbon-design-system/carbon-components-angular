@@ -11,8 +11,8 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
-import { NotificationModule, NotificationService } from "./notification.module";
-import { ButtonModule } from "../button/button.module";
+import { NotificationModule, NotificationService } from "./index";
+import { ButtonModule } from "../button/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Subject } from "rxjs";
 

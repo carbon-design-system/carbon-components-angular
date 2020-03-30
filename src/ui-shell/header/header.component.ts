@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 
 /**
  * A fixed header and navigation.

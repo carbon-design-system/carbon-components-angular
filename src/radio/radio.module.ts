@@ -6,15 +6,6 @@ import { CommonModule } from "@angular/common";
 // imports
 import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
-import { RadioChange } from "./radio-change.class";
-
-
-// exports
-export {
-	Radio,
-	RadioGroup,
-	RadioChange
-};
 
 @NgModule({
 	declarations: [

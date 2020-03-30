@@ -14,7 +14,7 @@ import {
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
@@ -137,11 +137,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Event to emit selection of a list item within the `DropdownList`.
 	 */
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() select: EventEmitter<{ item: ListItem, isUpdate?: boolean } | ListItem[]> = new EventEmitter();
 	/**
 	 * Event to emit scroll event of a list within the `DropdownList`.
 	 */
-	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter<ScrollCustomEvent>();
+	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter();
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
@@ -163,6 +163,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
+	 *
+	 * @deprecated since v4
 	 */
 	public size: "sm" | "md" | "lg" = "md";
 	/**
@@ -288,7 +290,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the last item in the `DropdownList`.
-	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
 		if (this.index < this.displayItems.length - 1) {
@@ -324,7 +325,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the first in the list.
-	 * TODO: standardize
 	 */
 	hasPrevElement(): boolean {
 		if (this.index > 0) {

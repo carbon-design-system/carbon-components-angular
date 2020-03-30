@@ -17,10 +17,8 @@ export class AbstractDropdownView {
 	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
 	 * Emits selection events to controlling classes
-	 *
-	 * Deprecated: `Object` as a valid type.
 	 */
-	@Output() select: EventEmitter<{item: ListItem } | ListItem[] | Object>;
+	@Output() select: EventEmitter<{item: ListItem } | ListItem[]>;
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
@@ -39,6 +37,8 @@ export class AbstractDropdownView {
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
+	 *
+	 * @deprecated since v4
 	 */
 	public size: "sm" | "md" | "lg" = "md";
 	/**

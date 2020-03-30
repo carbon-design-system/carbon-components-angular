@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 
-import { ComboBoxModule } from "./combobox.module";
+import { ComboBoxModule } from "./index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 const getOptions = (override = {}) => {

@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
@@ -29,6 +29,8 @@ export interface TableTranslations {
 	CHECKBOX_HEADER: string;
 	CHECKBOX_ROW: string;
 }
+
+export type TableRowSize = "sm" | "sh" | "md" | "lg";
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -346,7 +348,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */
@@ -375,22 +377,6 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;
-	}
-
-	/**
-	 * Controls whether to show the selection checkboxes column or not.
-	 *
-	 * @deprecated in the next major carbon-components-angular version in favor of
-	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
-	 *  please use `showSelectionColumn` instead
-	 */
-	@Input()
-	set enableRowSelect(value: boolean) {
-		this.showSelectionColumn = value;
-	}
-
-	get enableRowSelect () {
-		return this.showSelectionColumn;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 import { Injectable, ElementRef, OnDestroy } from "@angular/core";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "./../placeholder/index";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
 import { AnimationFrameService } from "./../utils/utils.module";

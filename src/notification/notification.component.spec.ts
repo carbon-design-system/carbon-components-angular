@@ -1,11 +1,13 @@
 import { TestBed } from "@angular/core/testing";
 
-import { Notification, NotificationDisplayService } from "./notification.module";
-import { I18nModule } from "../i18n/i18n.module";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
-import { ErrorFilled16Module } from "@carbon/icons-angular/lib/error--filled/16";
-import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { Notification, NotificationDisplayService } from "./index";
+import { I18nModule } from "../i18n/index";
+import {
+	CloseModule,
+	ErrorFilledModule,
+	CheckmarkFilledModule,
+	WarningFilledModule
+} from "@carbon/icons-angular";
 
 
 describe("Notification", () => {
@@ -15,10 +17,10 @@ describe("Notification", () => {
 			providers: [NotificationDisplayService],
 			imports: [
 				I18nModule,
-				Close16Module,
-				ErrorFilled16Module,
-				CheckmarkFilled16Module,
-				WarningFilled16Module
+				CloseModule,
+				ErrorFilledModule,
+				CheckmarkFilledModule,
+				WarningFilledModule
 			]
 		});
 	});

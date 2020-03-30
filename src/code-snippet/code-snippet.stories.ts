@@ -3,9 +3,9 @@ import { withKnobs, select, text } from "@storybook/addon-knobs/angular";
 
 import {
 	CodeSnippetModule,
-	DocumentationModule,
 	ButtonModule } from "..";
 import { Input, Component } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";

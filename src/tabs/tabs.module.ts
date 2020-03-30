@@ -7,12 +7,6 @@ import { TabHeaders } from "./tab-headers.component";
 import { TabHeader } from "./tab-header.component";
 import { TabHeaderGroup } from "./tab-header-group.component";
 
-
-export { Tabs } from "./tabs.component";
-export { Tab } from "./tab.component";
-export { TabHeaders } from "./tab-headers.component";
-
-
 @NgModule({
 	declarations: [
 		Tabs,

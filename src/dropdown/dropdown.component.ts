@@ -24,7 +24,7 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService } from "./../utils/utils.module";
@@ -93,16 +93,18 @@ import { ElementService } from "./../utils/utils.module";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled16
+			<svg ibmIconWarningFilled
+				size="16"
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
 			</svg>
-			<ibm-icon-chevron-down16
+			<ibm-icon-chevron-down
+				size="16"
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down16>
+			</ibm-icon-chevron-down>
 		</div>
 		<div
 			#dropdownMenu
@@ -149,6 +151,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -184,20 +188,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText = "";
-	/**
-	 * Deprecated. Dropdown now defaults to appending inline
-	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
-	 */
-	@Input() set appendToBody (v) {
-		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.warn("Ensure you have an `ibm-placeholder` in your app.");
-		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
-		this.appendInline = !v;
-	}
-
-	get appendToBody() {
-		return !this.appendInline;
-	}
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
@@ -339,7 +329,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Removing the `Dropdown` from the body if it is appended to the body.
 	 */
 	ngOnDestroy() {
-		if (this.appendToBody) {
+		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
 	}

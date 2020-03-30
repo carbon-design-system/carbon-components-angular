@@ -10,10 +10,6 @@ import { CommonModule } from "@angular/common";
 import { Placeholder } from "./placeholder.component";
 import { PlaceholderService } from "./placeholder.service";
 
-// exports
-export { Placeholder } from "./placeholder.component";
-export { PlaceholderService } from "./placeholder.service";
-
 // either provides a new instance of ModalPlaceholderService, or returns the parent
 export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: PlaceholderService) {
 	return parentService || new PlaceholderService();

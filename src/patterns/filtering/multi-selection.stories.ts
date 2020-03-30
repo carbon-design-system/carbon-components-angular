@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
-import { DropdownModule } from "../../dropdown/dropdown.module";
-import { GridModule } from "../../grid/grid.module";
-import { UIShellModule } from "../../ui-shell/ui-shell.module";
+import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
+import { DropdownModule } from "../../dropdown/index";
+import { GridModule } from "../../grid/index";
+import { UIShellModule } from "../../ui-shell/index";
 
 @Component({
     selector: "app-sample-multi-selection",
@@ -58,7 +58,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
         .data-table {
             width: 100%;
         }
-        
+
         .filter-dropdown {
             margin-left: 20px;
             flex-grow: 1;
@@ -84,14 +84,14 @@ class SampleMultiSelection {
         { name: "Daikon Radish", type: ["Vegetable"] },
         { name: "Beef", type: ["Meat"] }
     ];
-    
+
     onSelected(event) {
         const checkboxFilters = event.map(filter => filter.content);
 
-        this.model.data = 
+        this.model.data =
             this.dataset
                 .filter(data => checkboxFilters.every(filter => data.type.includes(filter)))
-                .map(filteredData =>                     
+                .map(filteredData =>
                     [
                         new TableItem({ data: filteredData.name }),
                         new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
@@ -103,7 +103,7 @@ class SampleMultiSelection {
 
         this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
-        this.model.data = this.dataset.map(datapoint => 
+        this.model.data = this.dataset.map(datapoint =>
             [
                 new TableItem({ data: datapoint.name }),
                 new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
