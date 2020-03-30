@@ -66,7 +66,8 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
-				}">
+				}"
+				[title]="item.content">
 				<div
 					#listItem
 					tabindex="-1"

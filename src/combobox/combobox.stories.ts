@@ -97,7 +97,11 @@ storiesOf("Components|Combobox", module)
 				this.invalid = false;
 			},
 			onSearch: function(event) {
-				if (!this.items.filter(item => item.content.toLowerCase().includes(event.toLowerCase())).length) {
+				const selected = this.items.find(
+					({ content }) => content.toLowerCase().includes(event.toLowerCase())
+				);
+
+				if (!selected) {
 					this.invalid = true;
 				} else {
 					this.invalid = false;
@@ -114,8 +118,8 @@ storiesOf("Components|Combobox", module)
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
+				(selected)="onSelected()"
+				(search)="onSearch($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 
@@ -123,7 +127,22 @@ storiesOf("Components|Combobox", module)
 				<div class="bx--form-requirement">This is a template</div>
 			</ng-template>
 		`,
-		props: getOptions()
+		props: getOptions({
+			onSelected: function() {
+				this.invalid = false;
+			},
+			onSearch: function(event) {
+				const selected = this.items.find(
+					({ content }) => content.toLowerCase().includes(event.toLowerCase())
+				);
+
+				if (!selected) {
+					this.invalid = true;
+				} else {
+					this.invalid = false;
+				}
+			}
+		})
 	}))
 	.add("Multi-select", () => ({
 		template: `
