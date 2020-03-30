@@ -10,6 +10,7 @@ import { TableModel } from "../table-model.class";
 import { getScrollbarWidth } from "../../utils/window-tools";
 import { I18n, Overridable } from "../../i18n/index";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -106,7 +107,7 @@ export class TableHead implements AfterViewInit {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

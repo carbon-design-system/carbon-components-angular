@@ -14,18 +14,19 @@ import { PlaceholderModule } from "./../placeholder/index";
 import { BaseModal } from "./base-modal.class";
 import { Observable, Subject } from "rxjs";
 import { InputModule } from "../input";
+import { ButtonModule } from "../forms";
 
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<ibm-modal [size]="size" (overlaySelected)="closeModal()">
+		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
 			<ibm-modal-header (closeSelect)="closeModal()">Header label</ibm-modal-header>
 			<section class="bx--modal-content">
 				<h1>Sample modal works.</h1>
 				<p class="bx--modal-content__text">{{modalText}}</p>
 			</section>
 			<ibm-modal-footer>
-				<button class="bx--btn bx--btn--secondary" (click)="showSecondaryModal()">Show Secondary Modal</button>
+				<button class="bx--btn bx--btn--secondary" (click)="showSecondaryModal()">Show secondary modal</button>
 				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
@@ -41,9 +42,9 @@ class SampleModal extends BaseModal {
 
 	showSecondaryModal() {
 		this.modalService.show({
-			modalLabel: "Secondary header label",
-			modalTitle: "Sample secondary modal works.",
-			modalContent: this.modalText,
+			label: "Secondary header label",
+			title: "Sample secondary modal works.",
+			content: this.modalText,
 			size: this.size,
 			buttons: [{
 				text: "Cancel",
@@ -85,7 +86,7 @@ class ModalStory {
 @Component({
 	selector: "app-input-modal",
 	template: `
-		<ibm-modal [size]="size" (overlaySelected)="closeModal()">
+		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
 			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
 			<section class="bx--modal-content">
 				<ibm-label>
@@ -164,13 +165,13 @@ class AlertModalStory {
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
-	@Input() size: "xs" | "sm" | "default" | "lg";
+	@Input() size: "xs" | "sm" | "lg";
 
 	constructor(protected modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.show({
-			modalType: this.modalType,
+			type: this.modalType,
 			label: this.modalLabel,
 			title: this.modalTitle,
 			content: this.modalContent,
@@ -179,6 +180,12 @@ class AlertModalStory {
 		});
 	}
 }
+
+const getOptions = (options = {}) => {
+	return Object.assign({}, {
+		size: select("size", [null, "xs", "sm", "lg"], null)
+	}, options);
+};
 
 storiesOf("Components|Modal", module)
 	.addDecorator(
@@ -194,6 +201,7 @@ storiesOf("Components|Modal", module)
 				ModalModule,
 				PlaceholderModule,
 				InputModule,
+				ButtonModule,
 				DocumentationModule
 			],
 			entryComponents: [
@@ -208,10 +216,9 @@ storiesOf("Components|Modal", module)
 		<app-modal-story [modalText]="modalText" [size]="size"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
-			modalText: text("modalText", "Hello, World!"),
-			size: select("size", ["xs", "sm", "default", "lg"], "default")
-		}
+		props: getOptions({
+			modalText: text("modalText", "Hello, World!")
+		})
 	}))
 	.add("Transactional", () => ({
 		template: `
@@ -225,12 +232,11 @@ storiesOf("Components|Modal", module)
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
+		props: getOptions({
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Delete service from application"),
 			modalContent: text("modalContent", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
-			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			buttons: [{
 				text: "Cancel",
 				type: "secondary"
@@ -239,7 +245,7 @@ storiesOf("Components|Modal", module)
 				type: "primary",
 				click: () => alert("Delete button clicked")
 			}]
-		}
+		})
 	}))
 	.add("Passive", () => ({
 		template: `
@@ -252,14 +258,13 @@ storiesOf("Components|Modal", module)
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
-		props: {
+		props: getOptions({
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Passive modal title"),
-			size: select("size", ["xs", "sm", "default", "lg"], "default"),
 			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
-		}
+		})
 	}))
 	.add("Data passing", () => ({
 		template: `
@@ -272,6 +277,33 @@ storiesOf("Components|Modal", module)
 		props: {
 			modalText: text("modalText", "Hello, World!"),
 			size: select("size", ["xs", "sm", "default", "lg"], "default")
+		}
+	}))
+	.add("Simple modal", () => ({
+		template: `
+			<button #trigger ibmButton="primary" (click)="open = true">Open</button>
+			<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
+				<ibm-modal-header (closeSelect)="open = false">
+					<p class="bx--modal-header__label bx--type-delta">No service required</p>
+					<p class="bx--modal-header__heading bx--type-beta">A very simple modal</p>
+				</ibm-modal-header>
+				<div class="bx--modal-content">
+					<p>hello world</p>
+				</div>
+				<ibm-modal-footer>
+					<ng-container>
+						<button
+							ibmButton="primary"
+							(click)="open = false"
+							[attr.modal-primary-focus]="true">
+							Okay
+						</button>
+					</ng-container>
+				</ibm-modal-footer>
+			</ibm-modal>
+		`,
+		props: {
+			open: false
 		}
 	}))
 	.add("Documentation", () => ({

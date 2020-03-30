@@ -2,7 +2,8 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { AccordionModule, DocumentationModule } from "../";
+import { AccordionModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Accordion", module)
 	.addDecorator(

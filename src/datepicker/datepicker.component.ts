@@ -171,16 +171,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	@ViewChild("rangeInput") rangeInput: DatePickerInput;
 
-	set flatpickrOptionsRange (options) {
-		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
-		this.range = true;
-		this.flatpickrOptions = options;
-	}
-	get flatpickrOptionsRange () {
-		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
-		return this.flatpickrOptions;
-	}
-
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
 	protected _value = [];

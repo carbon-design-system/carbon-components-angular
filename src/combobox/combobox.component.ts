@@ -168,6 +168,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**

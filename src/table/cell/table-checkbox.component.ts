@@ -7,6 +7,7 @@ import {
 import { I18n, Overridable } from "./../../i18n/index";
 import { TableItem } from "./../table-item.class";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -30,7 +31,7 @@ export class TableCheckbox {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set label(value: string | Observable<string>) {

@@ -67,7 +67,7 @@ describe("Search", () => {
 
 	it("should display component of the correct size", () => {
 		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
-		component.size = "lg";
+		component.size = "xl";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--search--xl")).toEqual(true);
 		component.size = "sm";

@@ -5,11 +5,11 @@ import {
 	EventEmitter,
 	HostListener,
 	Input,
-	OnDestroy,
-	OnInit,
 	Output,
 	ElementRef,
-	ViewChild
+	ViewChild,
+	SimpleChanges,
+	OnChanges
 } from "@angular/core";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
@@ -76,7 +76,10 @@ export class ModalDemo {
 @Component({
 	selector: "ibm-modal",
 	template: `
-		<ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay
+			[theme]="theme"
+			[open]="open"
+			(overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
 				[ngClass]="{
@@ -87,14 +90,14 @@ export class ModalDemo {
 				role="dialog"
 				aria-modal="true"
 				style="z-index:1;"
-				[attr.aria-label]="modalLabel"
+				[attr.aria-label]="ariaLabel"
 				#modal>
 				<ng-content></ng-content>
 			</div>
 		</ibm-overlay>
 	`
 })
-export class Modal implements AfterViewInit {
+export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -106,8 +109,28 @@ export class Modal implements AfterViewInit {
 
 	/**
 	 * Label for the modal.
+	 *
+	 * @deprecated since v4
 	 */
-	@Input() modalLabel = "default";
+	@Input() set modalLabel(value: string) {
+		this.ariaLabel = value;
+	}
+
+	get modalLabel() {
+		return this.ariaLabel;
+	}
+
+	@Input() ariaLabel = "default";
+
+	/**
+	 * Controls the visibility of the modal when used directly in a template
+	 */
+	@Input() open = false;
+
+	/**
+	 * The element that triggers the modal, which should receive focus when the modal closes
+	 */
+	@Input() trigger: HTMLElement;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
@@ -132,20 +155,24 @@ export class Modal implements AfterViewInit {
 	 */
 	constructor(public modalService: ModalService) {}
 
+	ngOnChanges({ open }: SimpleChanges) {
+		if (open) {
+			if (open.currentValue) {
+				// `100` is just enough time to allow the modal
+				// to become visible, so that we can set focus
+				setTimeout(() => this.focusInitialElement(), 100);
+			} else if (this.trigger) {
+				this.trigger.focus();
+			}
+		}
+	}
+
+
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
 	 */
 	ngAfterViewInit() {
-		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
-		if (primaryFocusElement && primaryFocusElement.focus) {
-			setTimeout(() => primaryFocusElement.focus());
-			return;
-		}
-		if (getFocusElementList(this.modal.nativeElement).length > 0) {
-			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
-		} else {
-			setTimeout(() => this.modal.nativeElement.focus());
-		}
+		this.focusInitialElement();
 	}
 
 	/**
@@ -157,6 +184,7 @@ export class Modal implements AfterViewInit {
 			case "Escape": {
 				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 				this.modalService.destroy();  // destroy top (latest) modal
+				this.close.emit();
 				break;
 			}
 
@@ -164,6 +192,17 @@ export class Modal implements AfterViewInit {
 				cycleTabs(event, this.modal.nativeElement);
 				break;
 			}
+		}
+	}
+
+	protected focusInitialElement() {
+		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
+		if (primaryFocusElement && primaryFocusElement.focus) {
+			setTimeout(() => primaryFocusElement.focus());
+		} else if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
+		} else {
+			setTimeout(() => this.modal.nativeElement.focus());
 		}
 	}
 }

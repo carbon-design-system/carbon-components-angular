@@ -23,7 +23,7 @@ import {
 import { DatePickerModule } from "../datepicker/index";
 import { ButtonModule } from "../forms/index";
 import { TabsModule } from "../tabs/index";
-import { ModalModule } from "../modal/index";
+import { ModalModule, BaseModal } from "../modal/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 const modalText =
@@ -101,7 +101,7 @@ class DatePickerStory {
 @Component({
 	selector: "app-date-picker-modal",
 	template: `
-        <ibm-modal>
+        <ibm-modal [open]="true">
             <ibm-modal-header>Header label</ibm-modal-header>
             <section class="bx--modal-content">
                 <h1>Sample modal works.</h1>

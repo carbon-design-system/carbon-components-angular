@@ -63,10 +63,7 @@ export interface PaginationTranslations {
 			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
 				{{itemsPerPageText.subject | async}}
 			</label>
-			<div class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__item-count': isExperimental
-				}">
+			<div class="bx--select bx--select--inline bx--select__item-count">
 				<select
 					[id]="itemsPerPageSelectId"
 					[(ngModel)]="itemsPerPage"
@@ -88,11 +85,9 @@ export interface PaginationTranslations {
 				</svg>
 			</div>
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
 			<span *ngIf="pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
@@ -102,16 +97,10 @@ export interface PaginationTranslations {
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__right"
-			[ngClass]="{
-				'bx--pagination--inline': !isExperimental
-			}">
+		<div *ngIf="!skeleton" class="bx--pagination__right">
 			<div
 				*ngIf="!pageInputDisabled"
-				class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__page-number' : isExperimental
-				}">
+				class="bx--select bx--select--inline bx--select__page-number">
 				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
 				<input
 					*ngIf="pageOptions.length > pageSelectThreshold"
@@ -292,10 +281,6 @@ export class Pagination {
 	get nextPage(): number {
 		const lastPage = this.lastPage;
 		return this.currentPage >= lastPage ? lastPage : this.currentPage + 1;
-	}
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
 	}
 
 	get pageOptions() {

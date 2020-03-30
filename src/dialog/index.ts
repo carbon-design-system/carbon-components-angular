@@ -1,7 +1,6 @@
 export { DialogService } from "./dialog.service";
 export { Dialog } from "./dialog.component";
 export { DialogDirective } from "./dialog.directive";
-export { DialogPlaceholder } from "./dialog-placeholder.component";
 
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDefinition } from "./tooltip/tooltip-definition.component";

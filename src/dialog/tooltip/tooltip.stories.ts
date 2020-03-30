@@ -3,7 +3,9 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilledModule } from "@carbon/icons-angular";
-import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
+import { DialogModule, PlaceholderModule } from "../../";
+import { DocumentationModule } from "../../documentation-component/documentation.module";
+import { boolean } from "@storybook/addon-knobs";
 
 storiesOf("Components|Tooltip", module)
 	.addDecorator(
@@ -18,7 +20,7 @@ storiesOf("Components|Tooltip", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
-	template: `
+		template: `
 			<div>
 				<ng-template #template let-tooltip="tooltip">
 					<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
@@ -142,6 +144,30 @@ storiesOf("Components|Tooltip", module)
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
 				triggerText: text("Trigger text", "Tooltip label")
 			}
+	}))
+	.add("Programmatically", () => ({
+		template: `
+			<div>
+				<div class="bx--tooltip__label">
+					{{triggerText}}
+					<span
+						ibmTooltip="Hello, World"
+						[isOpen]="isOpen"
+						trigger="click"
+						[placement]="placement">
+						<div role="button">
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
+						</div>
+					</span>
+				</div>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+		`,
+		props: {
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			triggerText: text("Trigger text", "Tooltip label"),
+			isOpen: boolean("isOpen", false)
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `

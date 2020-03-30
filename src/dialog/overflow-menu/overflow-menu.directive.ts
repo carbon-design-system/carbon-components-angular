@@ -6,9 +6,10 @@ import {
 	TemplateRef,
 	HostListener
 } from "@angular/core";
-import { DialogDirective } from "./../dialog.directive";
-import { DialogService } from "./../dialog.service";
+import { DialogDirective } from "../dialog.directive";
+import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
+import { EventService } from "../../utils/event.service";
 
 
 /**
@@ -50,23 +51,16 @@ export class OverflowMenuDirective extends DialogDirective {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService
+		protected dialogService: DialogService,
+		protected eventService: EventService
 	) {
-		super(elementRef, viewContainerRef, dialogService);
-		dialogService.create(OverflowMenuPane);
+		super(elementRef, viewContainerRef, dialogService, eventService);
+		dialogService.setContext({ component: OverflowMenuPane });
 	}
 
 	updateConfig() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
 		this.dialogConfig.flip = this.flip;
-	}
-
-	onDialogInit() {
-		this.updateConfig();
-	}
-
-	onDialogChanges() {
-		this.updateConfig();
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -75,7 +69,6 @@ export class OverflowMenuDirective extends DialogDirective {
 			case "Enter":
 			case " ":
 				event.preventDefault();
-				this.toggle();
 				break;
 		}
 	}

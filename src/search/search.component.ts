@@ -12,21 +12,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/index";
 
 /**
- * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
- * Used to emit changes performed on search components.
- */
-export class SearchChange {
-	/**
-	 * Contains the `Search` that has been changed.
-	 */
-	source: Search;
-	/**
-	 * The value of the `Search` field encompassed in the `SearchChange` class.
-	 */
-	value: string;
-}
-
-/**
  * [See demo](../../?path=/story/search--basic)
  *
  * <example-url>../../iframe.html?id=search--basic</example-url>
@@ -57,15 +42,11 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() set size(value: "sm" | "lg" | "xl") {
-		if (value === "lg") {
-			console.warn("size `lg` has been deprecated and replaced by `xl`");
-			value = "xl";
-		}
+	@Input() set size(value: "sm" | "xl") {
 		this._size = value;
 	}
 
-	get size(): "sm" | "lg" | "xl" {
+	get size(): "sm" | "xl" {
 		return this._size;
 	}
 	/**
@@ -106,7 +87,7 @@ export class Search implements ControlValueAccessor {
 	@Input() value = "";
 	/**
 	 * Sets the autocomplete attribute on the `input` element.
-	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+	 * For reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
 	 */
 	@Input() autocomplete = "on";
 	/**
@@ -121,11 +102,6 @@ export class Search implements ControlValueAccessor {
 	 * Used to set the `title` attribute of the clear button.
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
-	/**
-	 * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
-	 * Emits event notifying other classes when a change in state occurs in the input.
-	 */
-	@Output() change = new EventEmitter<SearchChange>();
 	/**
 	 * Emits an event when value is changed.
 	 */
@@ -200,10 +176,6 @@ export class Search implements ControlValueAccessor {
 	}
 
 	doValueChange() {
-		let event = new SearchChange();
-		event.source = this;
-		event.value = this.value;
-		this.change.emit(event);
 		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 	}

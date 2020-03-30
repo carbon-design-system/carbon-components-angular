@@ -71,11 +71,6 @@ export class Toast extends Notification implements OnInit {
 	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
 	@HostBinding("class.bx--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
-
 	constructor(
 		protected notificationDisplayService: NotificationDisplayService,
 		protected i18n: I18n,
