@@ -3,6 +3,7 @@ import {
 	Input,
 	HostBinding,
 	Output,
+	TemplateRef,
 	EventEmitter
 } from "@angular/core";
 
