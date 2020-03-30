@@ -126,7 +126,7 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
-		expect(element.nativeElement.textContent).toBe("label");
+		expect(element.nativeElement.textContent).toBe("labelopen menu");
 	});
 
 	it("should set placeholder to 'placeholder'", () => {
