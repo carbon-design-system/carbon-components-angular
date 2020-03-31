@@ -3,13 +3,14 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
+import { ButtonModule } from "../button/button.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import {
 	ReactiveFormsModule,
 	FormGroup,
 	FormBuilder,
 	FormControl
-} from '@angular/forms';
+} from "@angular/forms";
 import { Component, OnInit, Input } from "@angular/core";
 
 const getOptions = (override = {}) => {
@@ -95,6 +96,7 @@ storiesOf("Components|Combobox", module)
 			declarations: [ReactiveFormsCombobox],
 			imports: [
 				ComboBoxModule,
+				ButtonModule,
 				ReactiveFormsModule,
 				DocumentationModule
 			]
@@ -164,6 +166,47 @@ storiesOf("Components|Combobox", module)
 				} else {
 					this.invalid = false;
 				}
+			}
+		}
+	}))
+	.add("Dynamically added list items", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+
+			<button ibmButton (click)="addListItem()">Add list item</button>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			invalid: boolean("Invalid", false),
+			invalidText: text("Invalid text", "A valid value is required"),
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
+			items: [
+				{
+					content: "one"
+				},
+				{
+					content: "two"
+				},
+				{
+					content: "three"
+				},
+				{
+					content: "four"
+				}
+			],
+			addListItem: function() {
+				this.items.push({ content: `${this.items.length + 1}` });
+				const newItems = JSON.parse(JSON.stringify(this.items));
+				this.items = newItems;
 			}
 		}
 	}))
