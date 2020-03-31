@@ -755,7 +755,11 @@ If the element has an overflow set as part of its computed style it can scroll.<
                             <i>Default value : </i><code>(element: HTMLElement, container: HTMLElement) &#x3D;&gt; {
 	const elementRect &#x3D; element.getBoundingClientRect();
 	const containerRect &#x3D; container.getBoundingClientRect();
-	return elementRect.bottom &lt;&#x3D; containerRect.bottom &amp;&amp; elementRect.top &gt;&#x3D; containerRect.top;
+	return (
+		// This also accounts for partial visibility. It will still return true if the element is partially visible inside the container.
+		(elementRect.bottom - element.clientHeight) &lt;&#x3D; (containerRect.bottom + (container.offsetHeight - container.clientHeight) / 2) &amp;&amp;
+		elementRect.top &gt;&#x3D; (- element.clientHeight)
+	);
 }</code>
                         </td>
                     </tr>

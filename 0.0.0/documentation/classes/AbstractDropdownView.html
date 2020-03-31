@@ -145,6 +145,9 @@ ex: <code>providers: [{provide: AbstractDropdownView, useExisting: forwardRef(()
                                 <a href="#initFocus">initFocus</a>
                             </li>
                             <li>
+                                <a href="#onItemsReady">onItemsReady</a>
+                            </li>
+                            <li>
                                 <a href="#propagateSelected">propagateSelected</a>
                             </li>
                         </ul>
@@ -829,6 +832,77 @@ In most cases this just calls <code>getCurrentElement().focus()</code></p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="onItemsReady"></a>
+                        <span class="name">
+                            <b>
+                            onItemsReady
+                            </b>
+                            <a href="#onItemsReady"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onItemsReady(subcription: () => void)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:101</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Subscribe the function passed to an internal observable that will resolve once the items are ready</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>subcription</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="propagateSelected"></a>
                         <span class="name">
                             <b>
@@ -1148,6 +1222,10 @@ export class AbstractDropdownView {
 	 * In most cases this just calls &#x60;getCurrentElement().focus()&#x60;
 	 */
 	initFocus(): void {}
+	/**
+	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
+	 */
+	onItemsReady(subcription: () &#x3D;&gt; void): void {}
 }
 </code></pre>
     </div>

@@ -92,13 +92,14 @@
 	(click)&#x3D;&quot;toggleExpanded()&quot;
 	class&#x3D;&quot;bx--accordion__heading&quot;&gt;
 	&lt;ibm-icon-chevron-right16 class&#x3D;&quot;bx--accordion__arrow&quot;&gt;&lt;/ibm-icon-chevron-right16&gt;
-	&lt;p
+	&lt;p *ngIf&#x3D;&quot;!isTemplate(title)&quot;
 		class&#x3D;&quot;bx--accordion__title&quot;
 		[ngClass]&#x3D;&quot;{
 			&#x27;bx--skeleton__text&#x27;: skeleton
 		}&quot;&gt;
 		{{!skeleton ? title : null}}
 	&lt;/p&gt;
+	&lt;ng-template *ngIf&#x3D;&quot;isTemplate(title)&quot; [ngTemplateOutlet]&#x3D;&quot;title&quot;&gt;&lt;/ng-template&gt;
 &lt;/button&gt;
 &lt;div [id]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--accordion__content&quot;&gt;
 	&lt;ng-content *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;&lt;/ng-content&gt;
@@ -151,6 +152,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isTemplate">isTemplate</a>
+                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#toggleExpanded">toggleExpanded</a>
@@ -238,7 +243,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/accordion/accordion-item.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/accordion/accordion-item.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -263,7 +268,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/accordion/accordion-item.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/accordion/accordion-item.component.ts:49</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -283,7 +288,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/accordion/accordion-item.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/accordion/accordion-item.component.ts:46</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -303,7 +308,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/accordion/accordion-item.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/accordion/accordion-item.component.ts:41</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -323,7 +328,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/accordion/accordion-item.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/accordion/accordion-item.component.ts:42</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -336,14 +341,15 @@
                         <code>title</code>
                     </td>
                     <td class="col-md-10">
-                        <p>
-                            <em>Default value : </em><code>&#x60;Title ${AccordionItem.accordionItemCount}&#x60;</code>
-                        </p>
+                            <p>
+                            <em>Type :</em>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/accordion/accordion-item.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/accordion/accordion-item.component.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -365,7 +371,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/accordion/accordion-item.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/accordion/accordion-item.component.ts:43</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -398,7 +404,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/accordion/accordion-item.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/accordion/accordion-item.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -431,7 +437,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/accordion/accordion-item.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/accordion/accordion-item.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -464,7 +470,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/accordion/accordion-item.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/accordion/accordion-item.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -479,6 +485,73 @@
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isTemplate"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            isTemplate
+                            </b>
+                            <a href="#isTemplate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>isTemplate(value)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/accordion/accordion-item.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -503,7 +576,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/accordion/accordion-item.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/accordion/accordion-item.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -559,7 +632,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/accordion/accordion-item.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/accordion/accordion-item.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -577,6 +650,7 @@
 	Input,
 	HostBinding,
 	Output,
+	TemplateRef,
 	EventEmitter
 } from &quot;@angular/core&quot;;
 
@@ -589,13 +663,14 @@
 			(click)&#x3D;&quot;toggleExpanded()&quot;
 			class&#x3D;&quot;bx--accordion__heading&quot;&gt;
 			&lt;ibm-icon-chevron-right16 class&#x3D;&quot;bx--accordion__arrow&quot;&gt;&lt;/ibm-icon-chevron-right16&gt;
-			&lt;p
+			&lt;p *ngIf&#x3D;&quot;!isTemplate(title)&quot;
 				class&#x3D;&quot;bx--accordion__title&quot;
 				[ngClass]&#x3D;&quot;{
 					&#x27;bx--skeleton__text&#x27;: skeleton
 				}&quot;&gt;
 				{{!skeleton ? title : null}}
 			&lt;/p&gt;
+			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(title)&quot; [ngTemplateOutlet]&#x3D;&quot;title&quot;&gt;&lt;/ng-template&gt;
 		&lt;/button&gt;
 		&lt;div [id]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--accordion__content&quot;&gt;
 			&lt;ng-content *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;&lt;/ng-content&gt;
@@ -609,7 +684,7 @@
 })
 export class AccordionItem {
 	static accordionItemCount &#x3D; 0;
-	@Input() title &#x3D; &#x60;Title ${AccordionItem.accordionItemCount}&#x60;;
+	@Input() title: string | TemplateRef&lt;any&gt;;
 	@Input() id &#x3D; &#x60;accordion-item-${AccordionItem.accordionItemCount}&#x60;;
 	@Input() skeleton &#x3D; false;
 	@Output() selected &#x3D; new EventEmitter();
@@ -629,6 +704,10 @@ export class AccordionItem {
 			this.expanded &#x3D; !this.expanded;
 			this.selected.emit({id: this.id, expanded: this.expanded});
 		}
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
 </code></pre>
@@ -661,7 +740,7 @@ export class AccordionItem {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	[attr.aria-expanded]="expanded"	[attr.aria-controls]="id"	(click)="toggleExpanded()"	class="bx--accordion__heading">	<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>	<p		class="bx--accordion__title"		[ngClass]="{			\'bx--skeleton__text\': skeleton		}">		{{!skeleton ? title : null}}	</p></button><div [id]="id" class="bx--accordion__content">	<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>	<ng-template #skeletonTemplate>		<p class="bx--skeleton__text" style="width: 90%"></p>		<p class="bx--skeleton__text" style="width: 80%"></p>		<p class="bx--skeleton__text" style="width: 95%"></p>	</ng-template></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><button	[attr.aria-expanded]="expanded"	[attr.aria-controls]="id"	(click)="toggleExpanded()"	class="bx--accordion__heading">	<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>	<p *ngIf="!isTemplate(title)"		class="bx--accordion__title"		[ngClass]="{			\'bx--skeleton__text\': skeleton		}">		{{!skeleton ? title : null}}	</p>	<ng-template *ngIf="isTemplate(title)" [ngTemplateOutlet]="title"></ng-template></button><div [id]="id" class="bx--accordion__content">	<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>	<ng-template #skeletonTemplate>		<p class="bx--skeleton__text" style="width: 90%"></p>		<p class="bx--skeleton__text" style="width: 80%"></p>		<p class="bx--skeleton__text" style="width: 95%"></p>	</ng-template></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'AccordionItem'};

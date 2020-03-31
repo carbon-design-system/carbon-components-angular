@@ -106,6 +106,10 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#offset">offset</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#parentRef">parentRef</a>
                                 </li>
                                 <li>
@@ -122,6 +126,10 @@
                                 <li>
                                             <span class="modifier">Optional</span>
                                         <a href="#trigger">trigger</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#wrapperClass">wrapperClass</a>
                                 </li>
                             </ul>
                         </td>
@@ -358,6 +366,46 @@ is associated to.</p>
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="offset"></a>
+                                        <span class="name"><b>offset</b><a href="#offset"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>offset:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>This specifies any vertical and horizontal offset for the position of the dialog</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="parentRef"></a>
                                         <span class="name"><b>parentRef</b><a href="#parentRef"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
@@ -549,6 +597,46 @@ is associated to.</p>
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="wrapperClass"></a>
+                                        <span class="name"><b>wrapperClass</b><a href="#wrapperClass"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>wrapperClass:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Classes to add to the dialog container</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </section>
     </div>
 
@@ -605,6 +693,14 @@ export interface DialogConfig {
 	 * Additional arbitrary properties (mostly for internal/extended component use)
 	 */
 	[propName: string]: any;
+	/**
+	 * Classes to add to the dialog container
+	 */
+	wrapperClass?: string;
+	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	offset?: { x: number, y: number };
 }
 </code></pre>
     </div>

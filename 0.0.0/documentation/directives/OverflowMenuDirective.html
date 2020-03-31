@@ -136,6 +136,12 @@
                             <li>
                                 <a href="#ibmOverflowMenu">ibmOverflowMenu</a>
                             </li>
+                            <li>
+                                <a href="#offset">offset</a>
+                            </li>
+                            <li>
+                                <a href="#wrapperClass">wrapperClass</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -172,7 +178,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -283,6 +289,51 @@
                         </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="offset"></a>
+                        <code>offset</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>This specifies any vertical and horizontal offset for the position of the dialog</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>literal type</code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:49</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="wrapperClass"></a>
+                        <code>wrapperClass</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Classes to add to the dialog container</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>&#x27;&#x27;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:53</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
 </section>
 
 
@@ -314,7 +365,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -350,7 +401,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -388,7 +439,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -426,7 +477,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -495,6 +546,14 @@ export class OverflowMenuDirective extends DialogDirective {
 	 * Controls wether the overflow menu is flipped
 	 */
 	@Input() flip &#x3D; false;
+	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+	/**
+	 * Classes to add to the dialog container
+	 */
+	@Input() wrapperClass &#x3D; &#x27;&#x27;;
 
 	/**
 	 * Creates an instance of &#x60;OverflowMenuDirective&#x60;.
@@ -511,6 +570,8 @@ export class OverflowMenuDirective extends DialogDirective {
 	updateConfig() {
 		this.dialogConfig.content &#x3D; this.ibmOverflowMenu;
 		this.dialogConfig.flip &#x3D; this.flip;
+		this.dialogConfig.offset &#x3D; this.offset;
+		this.dialogConfig.wrapperClass &#x3D; this.wrapperClass;
 	}
 
 	onDialogInit() {
@@ -527,7 +588,6 @@ export class OverflowMenuDirective extends DialogDirective {
 			case &quot;Enter&quot;:
 			case &quot; &quot;:
 				event.preventDefault();
-				this.toggle();
 				break;
 		}
 	}

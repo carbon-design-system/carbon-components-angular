@@ -395,7 +395,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/dialog/dialog.component.ts:254</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/dialog/dialog.component.ts:261</a></div>
                             </td>
                         </tr>
 
@@ -437,7 +437,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/dialog/dialog.component.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/dialog/dialog.component.ts:240</a></div>
                             </td>
                         </tr>
 
@@ -523,7 +523,7 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/dialog/dialog.component.ts:264</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dialog/dialog.component.ts:271</a></div>
                             </td>
                         </tr>
 
@@ -604,7 +604,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dialog/dialog.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/dialog/dialog.component.ts:278</a></div>
                             </td>
                         </tr>
 
@@ -1357,6 +1357,13 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			} else {
 				pos &#x3D; this.addGap[placement](positionService.findAbsolute(reference, target, placement));
 			}
+
+			if (this.dialogConfig.offset) {
+				// Apply vertical and horizontal offsets given through the dialogConfig
+				pos.top &#x3D; pos.top + this.dialogConfig.offset.y;
+				pos.left &#x3D; pos.left + this.dialogConfig.offset.x;
+			}
+
 			return pos;
 		};
 

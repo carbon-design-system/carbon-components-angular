@@ -1384,7 +1384,7 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 		});
 		this.selectedSubscriptionTracker.add(selectedSubscriptions);
 
-		this.tabHeaderQuery.toArray()[this.currentSelectedIndex].selectTab();
+		setTimeout(() &#x3D;&gt; this.tabHeaderQuery.toArray()[this.currentSelectedIndex].selectTab());
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
