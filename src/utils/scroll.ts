@@ -27,6 +27,20 @@ export const isScrollableElement = (element: HTMLElement) => {
 export const isVisibleInContainer = (element: HTMLElement, container: HTMLElement) => {
 	const elementRect = element.getBoundingClientRect();
 	const containerRect = container.getBoundingClientRect();
+	// If there exists `height: 100%` on the `html` or `body` tag of an application,
+	// it causes the calculation to return true if you need to scroll before the element is seen.
+	// In that case we calculate its visibility based on the window viewport.
+	if (container.tagName === "BODY" || container.tagName === "HTML") {
+		return (
+			(elementRect.top >= 0 || (elementRect.top + element.clientHeight) >= 0) &&
+			elementRect.left >= 0 &&
+			(
+				elementRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) ||
+				(elementRect.bottom - element.clientHeight) <= (window.innerHeight || document.documentElement.clientHeight)
+			) &&
+			elementRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	}
 	return (
 		// This also accounts for partial visibility. It will still return true if the element is partially visible inside the container.
 		(elementRect.bottom - element.clientHeight) <= (containerRect.bottom + (container.offsetHeight - container.clientHeight) / 2) &&
