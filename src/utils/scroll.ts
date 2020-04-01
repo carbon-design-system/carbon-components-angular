@@ -31,14 +31,19 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
 	// it causes the calculation to return true if you need to scroll before the element is seen.
 	// In that case we calculate its visibility based on the window viewport.
 	if (container.tagName === "BODY" || container.tagName === "HTML") {
+		// This checks if element is within the top, bottom, left and right of viewport, ie. if the element is visible in
+		// the screen. This also takes into account partial visibility of an element.
+		const isWithinTopOfScreen = elementRect.top >= 0 || (elementRect.top + element.clientHeight) >= 0;
+		const isWithinLeftOfScreen = elementRect.left >= 0;
+		const isWithinBottomOfScreen =
+			(elementRect.bottom - element.clientHeight) <= (window.innerHeight || document.documentElement.clientHeight);
+		const isWithinRightOfScreen = elementRect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
 		return (
-			(elementRect.top >= 0 || (elementRect.top + element.clientHeight) >= 0) &&
-			elementRect.left >= 0 &&
-			(
-				elementRect.bottom <= (window.innerHeight || document.documentElement.clientHeight) ||
-				(elementRect.bottom - element.clientHeight) <= (window.innerHeight || document.documentElement.clientHeight)
-			) &&
-			elementRect.right <= (window.innerWidth || document.documentElement.clientWidth)
+			isWithinTopOfScreen &&
+			isWithinBottomOfScreen &&
+			isWithinLeftOfScreen &&
+			isWithinRightOfScreen
 		);
 	}
 	return (
