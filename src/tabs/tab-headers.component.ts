@@ -37,7 +37,8 @@ import { Tab } from "./tab.component";
 				(click)="showTabList()"
 				(keydown)="onDropdownKeydown($event)">
 				<a
-					href="javascript:void(0)"
+					href="#"
+					(click)="$event.preventDefault()"
 					class="bx--tabs-trigger-text"
 					tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
@@ -79,10 +80,11 @@ import { Tab } from "./tab.component";
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
 						(focus)="onTabFocus(tabItem, i)"
+						(click)="$event.preventDefault()"
 						draggable="false"
 						id="{{tab.id}}-header"
 						class="bx--tabs__nav-link"
-						href="javascript:void(0)"
+						href="#"
 						role="tab">
 						<ng-container *ngIf="!tab.headingIsTemplate">
 							{{ tab.heading }}
