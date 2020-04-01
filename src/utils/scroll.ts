@@ -33,18 +33,15 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
 	if (container.tagName === "BODY" || container.tagName === "HTML") {
 		// This checks if element is within the top, bottom, left and right of viewport, ie. if the element is visible in
 		// the screen. This also takes into account partial visibility of an element.
-		const isWithinTopOfScreen = elementRect.top >= 0 || (elementRect.top + element.clientHeight) >= 0;
-		const isWithinLeftOfScreen = elementRect.left >= 0;
-		const isWithinBottomOfScreen =
-			(elementRect.bottom - element.clientHeight) <= (window.innerHeight || document.documentElement.clientHeight);
-		const isWithinRightOfScreen = elementRect.right <= (window.innerWidth || document.documentElement.clientWidth);
+		const isAboveViewport = elementRect.top < 0 && (elementRect.top + element.clientHeight) < 0;
+		const isLeftOfViewport = elementRect.left < 0;
+		const isBelowViewport =
+			(elementRect.bottom - element.clientHeight) > (window.innerHeight || document.documentElement.clientHeight);
+		const isRightOfViewport = elementRect.right > (window.innerWidth || document.documentElement.clientWidth);
 
-		return (
-			isWithinTopOfScreen &&
-			isWithinBottomOfScreen &&
-			isWithinLeftOfScreen &&
-			isWithinRightOfScreen
-		);
+		const isVisibleInViewport = !(isAboveViewport || isBelowViewport || isLeftOfViewport || isRightOfViewport);
+
+		return isVisibleInViewport;
 	}
 	return (
 		// This also accounts for partial visibility. It will still return true if the element is partially visible inside the container.
