@@ -26,7 +26,8 @@ import { Tab } from "./tab.component";
 		<nav
 			class="bx--tabs"
 			[ngClass]="{
-				'bx--skeleton': skeleton
+				'bx--skeleton': skeleton,
+				'bx--tabs--container': type === 'container'
 			}"
 			role="navigation"
 			[attr.aria-label]="ariaLabel"
@@ -133,6 +134,8 @@ export class TabHeaders implements AfterContentInit, OnChanges {
 
 	@Input() contentBefore: TemplateRef<any>;
 	@Input() contentAfter: TemplateRef<any>;
+
+	@Input() type: "default" | "container" = "default";
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.

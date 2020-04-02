@@ -21,7 +21,8 @@ import { Subscription } from "rxjs";
 	<nav
 		class="bx--tabs"
 		[ngClass]="{
-			'bx--skeleton': skeleton
+			'bx--skeleton': skeleton,
+			'bx--tabs--container': type === 'container'
 		}"
 		role="navigation"
 		[attr.aria-label]="ariaLabel"
@@ -94,6 +95,8 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges {
 	 * in the tab header group cached and not reloaded on tab switching.
 	 */
 	@Input() cacheActive = false;
+
+	@Input() type: "default" | "container" = "default";
 
 	/**
 	 * ContentChildren of all the tabHeaders.
