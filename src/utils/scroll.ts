@@ -27,7 +27,11 @@ export const isScrollableElement = (element: HTMLElement) => {
 export const isVisibleInContainer = (element: HTMLElement, container: HTMLElement) => {
 	const elementRect = element.getBoundingClientRect();
 	const containerRect = container.getBoundingClientRect();
-	return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
+	return (
+		// This also accounts for partial visibility. It will still return true if the element is partially visible inside the container.
+		(elementRect.bottom - element.clientHeight) <= (containerRect.bottom + (container.offsetHeight - container.clientHeight) / 2) &&
+		elementRect.top >= (- element.clientHeight)
+	);
 };
 
 export const getScrollableParents = (node: HTMLElement) => {
