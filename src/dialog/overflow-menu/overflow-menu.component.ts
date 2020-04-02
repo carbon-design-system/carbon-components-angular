@@ -31,6 +31,8 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			[ngClass]="{'bx--overflow-menu--open': open}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
+			[offset]="offset"
+			[wrapperClass]="wrapperClass"
 			(onOpen)="open = true"
 			(onClose)="open = false"
 			role="button"
@@ -70,12 +72,18 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 	encapsulation: ViewEncapsulation.None
 })
 export class OverflowMenu {
-
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() flip = false;
 
 	@Input() placement: "bottom" | "top" = "bottom";
+
+	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+
+	@Input() wrapperClass = '';
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
