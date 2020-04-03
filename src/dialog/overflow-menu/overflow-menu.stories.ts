@@ -1,3 +1,4 @@
+import { Document16Module } from "@carbon/icons-angular/lib/document/16";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,
@@ -24,6 +25,7 @@ storiesOf("Components|Overflow Menu", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
+				Document16Module,
 				PlaceholderModule,
 				DocumentationModule
 			]
@@ -122,6 +124,35 @@ storiesOf("Components|Overflow Menu", module)
 			selected: () => console.log("selected"),
 			flip: boolean("Flipped", false),
 			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
+		}
+	}))
+	.add("With custom trigger", () => ({
+		template: `
+				<ibm-overflow-menu
+					[flip]="flip"
+					[customTrigger]="customTrigger"
+					placement="bottom"
+					[offset]="offset">
+					<svg *ngIf="customTrigger" customTriggerTemplate ibmIconDocument16></svg>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
+						An example option that is really long to show what should be done to handle long text
+					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
+						Danger option
+					</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			click: () => console.log("click"),
+			selected: () => console.log("selected"),
+			flip: boolean("Flipped", false),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 }),
+			customTrigger: boolean("Custom trigger", true)
 		}
 	}))
 	.add("Dynamic", () => ({

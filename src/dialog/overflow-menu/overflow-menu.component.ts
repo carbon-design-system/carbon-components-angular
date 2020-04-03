@@ -40,6 +40,10 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			class="bx--overflow-menu"
 			[placement]="placement"
 			tabindex="0">
+			<ng-container *ngIf="customTrigger; else defaultIcon">
+				<ng-content select="[customTriggerTemplate]"></ng-content>
+			</ng-container>
+			<ng-template #defaultIcon>
 			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />
@@ -47,6 +51,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 					<circle cx="1.5" cy="13.5" r="1.5" />
 				</g>
 			</svg>
+			</ng-template>
 		</div>
 		<ng-template #options>
 			<ng-content></ng-content>
@@ -79,6 +84,11 @@ export class OverflowMenu {
 	@Input() placement: "bottom" | "top" = "bottom";
 
 	/**
+	 * This specifies is custom trigger template was provided
+	 */
+	@Input() customTrigger = false;
+
+	/**
 	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
 	@Input() offset: { x: number, y: number };
@@ -89,5 +99,5 @@ export class OverflowMenu {
 
 	open = false;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) { }
 }
