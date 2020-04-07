@@ -63,7 +63,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() placement = "left";
 	/**
-	 * Class to add to the dialog container
+	 * Classes to add to the dialog container
 	 */
 	@Input() wrapperClass: string;
 	/**
