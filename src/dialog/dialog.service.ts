@@ -130,7 +130,9 @@ export class DialogService implements OnDestroy {
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
 			setTimeout(() => {
-				window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
+				if (this.dialogRef) {
+					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
+				}
 			});
 		} else {
 			dialogRef = this.placeholderService.createComponent(componentFactory, this.injector);
