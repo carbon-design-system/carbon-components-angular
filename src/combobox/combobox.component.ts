@@ -61,8 +61,10 @@ import { Observable } from "rxjs";
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
+					(keydown.enter)="clearSelected()"
 					role="button"
-					class="bx--list-box__selection bx--list-box__selection--multi"
+					class="bx--tag--filter bx--list-box__selection--multi"
+          tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
