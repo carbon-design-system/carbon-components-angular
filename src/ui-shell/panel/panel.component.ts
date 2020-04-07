@@ -7,13 +7,14 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "ibm-panel",
 	template: `
-		<aside
+		<div
 			class="bx--panel--overlay"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'bx--panel--expanded': expanded
 			}">
 			<ng-content></ng-content>
-		</aside>
+		</div>
 	`
 })
 export class Panel {
@@ -21,4 +22,6 @@ export class Panel {
 	 * Controls the visibility of the panel
 	 */
 	@Input() expanded = false;
+
+	@Input() ariaLabel = "Header panel";
 }
