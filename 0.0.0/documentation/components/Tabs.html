@@ -128,7 +128,8 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
 	[contentBefore]&#x3D;&quot;before&quot;
 	[contentAfter]&#x3D;&quot;after&quot;
 	[ariaLabel]&#x3D;&quot;ariaLabel&quot;
-	[ariaLabelledby]&#x3D;&quot;ariaLabelledby&quot;&gt;
+	[ariaLabelledby]&#x3D;&quot;ariaLabelledby&quot;
+	[type]&#x3D;&quot;type&quot;&gt;
 &lt;/ibm-tab-headers&gt;
 &lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;ng-template #before&gt;
@@ -141,7 +142,8 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
 	*ngIf&#x3D;&quot;hasTabHeaders() &amp;&amp; position &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;&quot;
 	[skeleton]&#x3D;&quot;skeleton&quot;
 	[tabs]&#x3D;&quot;tabs&quot;
-	[cacheActive]&#x3D;&quot;cacheActive&quot;&gt;
+	[cacheActive]&#x3D;&quot;cacheActive&quot;
+	[type]&#x3D;&quot;type&quot;&gt;
 &lt;/ibm-tab-headers&gt;
 	</code></pre></td>
             </tr>
@@ -230,6 +232,9 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                             <li>
                                 <a href="#skeleton">skeleton</a>
                             </li>
+                            <li>
+                                <a href="#type">type</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -262,7 +267,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tabs.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/tabs/tabs.component.ts:96</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -285,7 +290,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/tabs/tabs.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/tabs/tabs.component.ts:100</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -307,7 +312,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/tabs/tabs.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/tabs/tabs.component.ts:80</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -329,7 +334,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/tabs/tabs.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/tabs/tabs.component.ts:84</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -351,7 +356,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/tabs/tabs.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/tabs/tabs.component.ts:92</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -378,7 +383,7 @@ relative to the <code>TabPanel</code>s.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/tabs/tabs.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/tabs/tabs.component.ts:76</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -400,7 +405,33 @@ relative to the <code>TabPanel</code>s.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/tabs/tabs.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/tabs/tabs.component.ts:88</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="type"></a>
+                        <code>type</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the type of the <code>TabHeader</code>s</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>&quot;default&quot; | &quot;container&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;default&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/tabs/tabs.component.ts:104</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -436,7 +467,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/tabs/tabs.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/tabs/tabs.component.ts:138</a></div>
                             </td>
                         </tr>
 
@@ -476,7 +507,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/tabs/tabs.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/tabs/tabs.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -517,7 +548,7 @@ selected Tab item.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/tabs/tabs.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/tabs/tabs.component.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -601,7 +632,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/tabs/tabs.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/tabs/tabs.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -650,7 +681,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/tabs/tabs.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tabs/tabs.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -720,7 +751,8 @@ import { TabHeaders } from &quot;./tab-headers.component&quot;;
 				[contentBefore]&#x3D;&quot;before&quot;
 				[contentAfter]&#x3D;&quot;after&quot;
 				[ariaLabel]&#x3D;&quot;ariaLabel&quot;
-				[ariaLabelledby]&#x3D;&quot;ariaLabelledby&quot;&gt;
+				[ariaLabelledby]&#x3D;&quot;ariaLabelledby&quot;
+				[type]&#x3D;&quot;type&quot;&gt;
 			&lt;/ibm-tab-headers&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 			&lt;ng-template #before&gt;
@@ -733,7 +765,8 @@ import { TabHeaders } from &quot;./tab-headers.component&quot;;
 				*ngIf&#x3D;&quot;hasTabHeaders() &amp;&amp; position &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;&quot;
 				[skeleton]&#x3D;&quot;skeleton&quot;
 				[tabs]&#x3D;&quot;tabs&quot;
-				[cacheActive]&#x3D;&quot;cacheActive&quot;&gt;
+				[cacheActive]&#x3D;&quot;cacheActive&quot;
+				[type]&#x3D;&quot;type&quot;&gt;
 			&lt;/ibm-tab-headers&gt;
 	&#x60;
 })
@@ -767,6 +800,10 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 * Sets the aria labelledby on the &#x60;TabHeader&#x60;s nav element.
 	 */
 	@Input() ariaLabelledby: string;
+	/**
+	 * Sets the type of the &#x60;TabHeader&#x60;s
+	 */
+	@Input() type: &quot;default&quot; | &quot;container&quot; &#x3D; &quot;default&quot;;
 
 	/**
 	 * Maintains a &#x60;QueryList&#x60; of the &#x60;Tab&#x60; elements and updates if &#x60;Tab&#x60;s are added or removed.
@@ -839,7 +876,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ibm-tab-headers	*ngIf="hasTabHeaders() && position === \'top\'"	[skeleton]="skeleton"	[tabs]="tabs"	[followFocus]="followFocus"	[cacheActive]="cacheActive"	[contentBefore]="before"	[contentAfter]="after"	[ariaLabel]="ariaLabel"	[ariaLabelledby]="ariaLabelledby"></ibm-tab-headers><ng-content></ng-content><ng-template #before>	<ng-content select="[before]"></ng-content></ng-template><ng-template #after>	<ng-content select="[after]"></ng-content></ng-template><ibm-tab-headers	*ngIf="hasTabHeaders() && position === \'bottom\'"	[skeleton]="skeleton"	[tabs]="tabs"	[cacheActive]="cacheActive"></ibm-tab-headers>	</div>'
+        var COMPONENT_TEMPLATE = '<div><ibm-tab-headers	*ngIf="hasTabHeaders() && position === \'top\'"	[skeleton]="skeleton"	[tabs]="tabs"	[followFocus]="followFocus"	[cacheActive]="cacheActive"	[contentBefore]="before"	[contentAfter]="after"	[ariaLabel]="ariaLabel"	[ariaLabelledby]="ariaLabelledby"	[type]="type"></ibm-tab-headers><ng-content></ng-content><ng-template #before>	<ng-content select="[before]"></ng-content></ng-template><ng-template #after>	<ng-content select="[after]"></ng-content></ng-template><ibm-tab-headers	*ngIf="hasTabHeaders() && position === \'bottom\'"	[skeleton]="skeleton"	[tabs]="tabs"	[cacheActive]="cacheActive"	[type]="type"></ibm-tab-headers>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Tabs'};
