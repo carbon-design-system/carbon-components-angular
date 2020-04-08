@@ -23,7 +23,11 @@ import {
 				}">
 				{{!skeleton ? title : null}}
 			</p>
-			<ng-template *ngIf="isTemplate(title)" [ngTemplateOutlet]="title" [ngTemplateOutletContext]="context"></ng-template>
+			<ng-template
+				*ngIf="isTemplate(title)"
+				[ngTemplateOutlet]="title"
+				[ngTemplateOutletContext]="context">
+			</ng-template>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
 			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
@@ -38,7 +42,7 @@ import {
 export class AccordionItem {
 	static accordionItemCount = 0;
 	@Input() title: string | TemplateRef<any>;
-	@Input() context?: Object;
+	@Input() context: Object | null = null;
 	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
 	@Input() skeleton = false;
 	@Output() selected = new EventEmitter();
