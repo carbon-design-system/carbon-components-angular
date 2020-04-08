@@ -40,8 +40,8 @@
         "channel": "carbon-v9",
         "range": "2.X"
       }
-	],
-	"tagFormat": "v${version}@latest"
+    ],
+    "tagFormat": "v${version}@latest"
   },
   "config": {
     "commitizen": {
@@ -97,7 +97,7 @@
     "@types/node": "11.13.0",
     "angular2-template-loader": "0.6.2",
     "babel-loader": "8.0.5",
-    "carbon-components": "10.9.2",
+    "carbon-components": "10.10.3",
     "codelyzer": "5.0.0",
     "commitizen": "3.0.7",
     "core-js": "3.1.3",

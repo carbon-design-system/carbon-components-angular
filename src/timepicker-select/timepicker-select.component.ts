@@ -27,7 +27,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="bx--select-input">
 				<ng-content></ng-content>
 			</select>
-			<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+			<svg ibmIconChevronDown16 *ngIf="!skeleton" class="bx--select__arrow"></svg>
 		</div>
 	`,
 	providers: [
