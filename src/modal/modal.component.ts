@@ -130,8 +130,8 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	@Input() modalLabel = "default";
 
 	/**
-     * Specify whether the modal contains scrolling content
-     */
+	 * Specify whether the modal contains scrolling content
+	 */
 	@Input() hasScrollingContent = false;
 
 	/**
