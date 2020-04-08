@@ -98,7 +98,7 @@ export class ModalDemo {
 				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
-				<div class="bx--modal-content--overflow-indicator"></div>
+				<div *ngIf="hasScrollingContent" class="bx--modal-content--overflow-indicator"></div>
 			</div>
 		</ibm-overlay>
 	`,
@@ -128,6 +128,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 * Label for the modal.
 	 */
 	@Input() modalLabel = "default";
+
+	/**
+     * Specify whether the modal contains scrolling content
+     */
+	@Input() hasScrollingContent = false;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
