@@ -50,11 +50,12 @@ import { BaseModal } from "./base-modal.class";
 		<ibm-modal
 			[size]="size"
 			[theme]="modalType"
+			[hasScrollingContent]="hasScrollingContent"
 			[modalLabel]="modalTitle"
 			(overlaySelected)="dismissModal('overlay')">
 			<ibm-modal-header (closeSelect)="dismissModal('close')">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
-      			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
+				<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
 			<div #content class="bx--modal-content">
 				<p [innerHTML]="modalContent"></p>
@@ -84,6 +85,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
 		@Inject("size") public size: string,
+		@Inject("hasScrollingContent") public hasScrollingContent: boolean | null = null,
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {

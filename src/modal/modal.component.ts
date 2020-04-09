@@ -9,7 +9,8 @@ import {
 	OnInit,
 	Output,
 	ElementRef,
-	ViewChild
+	ViewChild,
+	AfterContentChecked
 } from "@angular/core";
 import {
 	trigger,
@@ -98,7 +99,10 @@ export class ModalDemo {
 				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
-				<div *ngIf="hasScrollingContent" class="bx--modal-content--overflow-indicator"></div>
+				<div
+					*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"
+					class="bx--modal-content--overflow-indicator">
+				</div>
 			</div>
 		</ibm-overlay>
 	`,
@@ -114,7 +118,7 @@ export class ModalDemo {
 		])
 	]
 })
-export class Modal implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChecked {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -130,9 +134,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	@Input() modalLabel = "default";
 
 	/**
-	 * Specify whether the modal contains scrolling content
+	 * Specify whether the modal contains scrolling content. This property overrides the automcatic detection of the existance of scrolling
+	 * content. Set this property to `true` to force overflow indicator to show up or to `false` to force overflow indicator to disappear.
+	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
-	@Input() hasScrollingContent = false;
+	@Input() hasScrollingContent: boolean | null = null;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
@@ -183,8 +189,12 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 		} else {
 			setTimeout(() => this.modal.nativeElement.focus());
 		}
+		this.setShouldShowScrollbar();
 	}
 
+	ngAfterContentChecked() {
+		this.setShouldShowScrollbar();
+	}
 	/**
 	 * Emit the close event when the modal component is destroyed.
 	 */
@@ -210,4 +220,26 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			}
 		}
 	}
+
+	@HostListener('window:resize')
+	onResize() {
+		this.setShouldShowScrollbar();
+	}
+
+	/**
+	 * This determines whether or not the modal contains scrolling content automatically. If it fails at doing so,
+	 * you can use the `hasScrollingContent` property and manually set the overflow indicator on or off.
+	 */
+	protected setShouldShowScrollbar() {
+		const modalContent = this.modal.nativeElement.querySelector('.bx--modal-content');
+		if (modalContent) {
+			const modalContentHeight = modalContent.getBoundingClientRect().height;
+			const modalContentActualHeight = modalContent.scrollHeight;
+			this.shouldShowScrollbar = modalContentActualHeight > modalContentHeight;
+		} else {
+			this.shouldShowScrollbar = false;
+		}
+	}
+
+	protected shouldShowScrollbar = false;
 }
