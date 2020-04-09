@@ -164,6 +164,12 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
+	 * This is used within the component for automatic scrolling content detection. This can be overwritten
+	 * through public property `hasScrollingContent`.
+	 */
+	protected shouldShowScrollbar = false;
+
+	/**
 	 * Creates an instance of `Modal`.
 	 */
 	constructor(public modalService: ModalService) {}
@@ -221,7 +227,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 		}
 	}
 
-	@HostListener('window:resize')
+	@HostListener("window:resize")
 	onResize() {
 		this.setShouldShowScrollbar();
 	}
@@ -231,7 +237,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 	 * you can use the `hasScrollingContent` property and manually set the overflow indicator on or off.
 	 */
 	protected setShouldShowScrollbar() {
-		const modalContent = this.modal.nativeElement.querySelector('.bx--modal-content');
+		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
 			const modalContentActualHeight = modalContent.scrollHeight;
@@ -240,6 +246,4 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 			this.shouldShowScrollbar = false;
 		}
 	}
-
-	protected shouldShowScrollbar = false;
 }
