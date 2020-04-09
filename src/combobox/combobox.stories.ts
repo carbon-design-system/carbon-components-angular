@@ -298,6 +298,26 @@ storiesOf("Components|Combobox", module)
 			}
 		})
 	}))
+	.add("With ngModel", () => ({
+		template: `
+			<ibm-combo-box
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				[(ngModel)]="model"
+				(selected)="selected($event)"
+				(submit)="submit($event)">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+
+			<p>model: {{model | json}}</p>
+		`,
+		props: getOptions({
+			model:  { "content": "three", "selected": true }
+		})
+	}))
 	.add("Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/components/ComboBox.html"></ibm-documentation>
