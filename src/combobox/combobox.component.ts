@@ -196,6 +196,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number;
+	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
 	@Input() set openMenuAria(value: string | Observable<string>) {
@@ -379,6 +383,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 				this.selected.emit(event);
 			});
+			if (!!this.maxLength && !!this.elementRef.nativeElement.querySelector("input")) {
+				this.elementRef.nativeElement.querySelector("input").setAttribute("maxlength", this.maxLength);
+			}
 			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
