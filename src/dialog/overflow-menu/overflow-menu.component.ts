@@ -1,9 +1,10 @@
 import {
 	Component,
+	ContentChild,
 	ElementRef,
 	Input,
-	ViewEncapsulation,
-	ContentChild
+	TemplateRef,
+	ViewEncapsulation
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
@@ -40,18 +41,14 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			class="bx--overflow-menu"
 			[placement]="placement"
 			tabindex="0">
-			<ng-container *ngIf="customTrigger; else defaultIcon">
-				<ng-content select="[customTriggerTemplate]"></ng-content>
-			</ng-container>
-			<ng-template #defaultIcon>
-			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
+			<svg *ngIf="!customIcon" focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />
 					<circle cx="1.5" cy="7.5" r="1.5" />
 					<circle cx="1.5" cy="13.5" r="1.5" />
 				</g>
 			</svg>
-			</ng-template>
+			<ng-template *ngIf="customIcon" [ngTemplateOutlet]="customIcon"></ng-template>
 		</div>
 		<ng-template #options>
 			<ng-content></ng-content>
@@ -84,9 +81,9 @@ export class OverflowMenu {
 	@Input() placement: "bottom" | "top" = "bottom";
 
 	/**
-	 * This specifies is custom trigger template was provided
+	 * Sets the icon of trigger button
 	 */
-	@Input() customTrigger = false;
+	@Input() customIcon: TemplateRef<any>;
 
 	/**
 	 * This specifies any vertical and horizontal offset for the position of the dialog

@@ -128,31 +128,25 @@ storiesOf("Components|Overflow Menu", module)
 	}))
 	.add("With custom trigger", () => ({
 		template: `
+				<span>Overflow menu with custom trigger icon</span>
 				<ibm-overflow-menu
 					[flip]="flip"
-					[customTrigger]="customTrigger"
+					[customIcon]="customIcon"
 					placement="bottom"
 					[offset]="offset">
-					<svg *ngIf="customTrigger" customTriggerTemplate ibmIconDocument16></svg>
-					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
-						An example option that is really long to show what should be done to handle long text
-					</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
-						Danger option
-					</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
+				<ng-template #customIcon><svg ibmIconDocument16></svg></ng-template>
 		`,
 		props: {
 			click: () => console.log("click"),
 			selected: () => console.log("selected"),
 			flip: boolean("Flipped", false),
-			offset: object("Horizontal and vertical offset", { x: 0, y: 0 }),
-			customTrigger: boolean("Custom trigger", true)
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("Dynamic", () => ({
