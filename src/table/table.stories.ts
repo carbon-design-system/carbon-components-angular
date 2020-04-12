@@ -5,6 +5,7 @@ import {
 	boolean,
 	select,
 	number,
+	object,
 	text
 } from "@storybook/addon-knobs/angular";
 
@@ -194,7 +195,10 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
-			batchText: text("Toolbar batch text", "items selected")
+			batchText: object("Toolbar batch text", {
+				SINGLE: "1 item selected",
+				MULTIPLE: "{{count}} items selected"
+			})
 		})
 	}))
 	.add("With toolbar without toolbar action", () => ({
