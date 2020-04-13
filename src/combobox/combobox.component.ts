@@ -61,8 +61,10 @@ import { Observable } from "rxjs";
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
+					(keydown.enter)="clearSelected()"
 					role="button"
-					class="bx--list-box__selection bx--list-box__selection--multi"
+					class="bx--tag--filter bx--list-box__selection--multi"
+					tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
@@ -89,6 +91,7 @@ import { Observable } from "rxjs";
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
+					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
 					autocomplete="list"
 					[placeholder]="placeholder"/>
@@ -193,6 +196,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number = null;
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */

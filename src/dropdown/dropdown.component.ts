@@ -25,6 +25,7 @@ import {
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "./../i18n/i18n.module";
+// Import needed to avoid compiler issue.
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService } from "./../utils/utils.module";
@@ -70,8 +71,10 @@ import { ElementService } from "./../utils/utils.module";
 			[tabindex]="disabled ? -1 : 0">
 			<div
 				(click)="clearSelected()"
+				(keydown.enter)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="bx--list-box__selection--multi"
+				class="bx--tag--filter bx--list-box__selection--multi"
+				tabindex="0"
 				[title]="clearText">
 				{{getSelectedCount()}}
 				<svg
