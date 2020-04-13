@@ -224,6 +224,9 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * This determines whether or not the modal contains scrolling content automatically. If it fails at doing so,
 	 * you can use the `hasScrollingContent` property and manually set the overflow indicator on or off.
+	 *
+	 * If you want to force trigger a detection (ie. on window resize) you can reset the value of the modal
+	 * content.
 	 */
 	get shouldShowScrollbar() {
 		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
