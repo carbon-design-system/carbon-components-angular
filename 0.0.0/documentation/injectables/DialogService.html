@@ -265,7 +265,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/dialog/dialog.service.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/dialog/dialog.service.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -364,7 +364,7 @@ the current <code>dialogRef</code> item. Unsubscribes to the event of <code>Dial
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/dialog/dialog.service.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/dialog/dialog.service.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -472,7 +472,7 @@ the current <code>dialogRef</code> item. Unsubscribes to the event of <code>Dial
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/dialog/dialog.service.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.service.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -619,7 +619,7 @@ May be <code>null</code> if an <code>ibm-placeholder</code> exists and <code>dia
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/dialog/dialog.service.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/dialog/dialog.service.ts:235</a></div>
                             </td>
                         </tr>
 
@@ -1247,7 +1247,9 @@ export class DialogService implements OnDestroy {
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
 			dialogRef &#x3D; viewContainer.createComponent(componentFactory, 0, this.injector);
 			setTimeout(() &#x3D;&gt; {
-				window.document.querySelector(&quot;body&quot;).appendChild(this.dialogRef.location.nativeElement);
+				if (this.dialogRef) {
+					window.document.querySelector(&quot;body&quot;).appendChild(this.dialogRef.location.nativeElement);
+				}
 			});
 		} else {
 			dialogRef &#x3D; this.placeholderService.createComponent(componentFactory, this.injector);

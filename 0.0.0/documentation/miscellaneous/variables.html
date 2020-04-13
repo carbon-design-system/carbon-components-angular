@@ -755,6 +755,22 @@ If the element has an overflow set as part of its computed style it can scroll.<
                             <i>Default value : </i><code>(element: HTMLElement, container: HTMLElement) &#x3D;&gt; {
 	const elementRect &#x3D; element.getBoundingClientRect();
 	const containerRect &#x3D; container.getBoundingClientRect();
+	// If there exists &#x60;height: 100%&#x60; on the &#x60;html&#x60; or &#x60;body&#x60; tag of an application,
+	// it causes the calculation to return true if you need to scroll before the element is seen.
+	// In that case we calculate its visibility based on the window viewport.
+	if (container.tagName &#x3D;&#x3D;&#x3D; &quot;BODY&quot; || container.tagName &#x3D;&#x3D;&#x3D; &quot;HTML&quot;) {
+		// This checks if element is within the top, bottom, left and right of viewport, ie. if the element is visible in
+		// the screen. This also takes into account partial visibility of an element.
+		const isAboveViewport &#x3D; elementRect.top &lt; 0 &amp;&amp; (elementRect.top + element.clientHeight) &lt; 0;
+		const isLeftOfViewport &#x3D; elementRect.left &lt; 0;
+		const isBelowViewport &#x3D;
+			(elementRect.bottom - element.clientHeight) &gt; (window.innerHeight || document.documentElement.clientHeight);
+		const isRightOfViewport &#x3D; elementRect.right &gt; (window.innerWidth || document.documentElement.clientWidth);
+
+		const isVisibleInViewport &#x3D; !(isAboveViewport || isBelowViewport || isLeftOfViewport || isRightOfViewport);
+
+		return isVisibleInViewport;
+	}
 	return (
 		// This also accounts for partial visibility. It will still return true if the element is partially visible inside the container.
 		(elementRect.bottom - element.clientHeight) &lt;&#x3D; (containerRect.bottom + (container.offsetHeight - container.clientHeight) / 2) &amp;&amp;
