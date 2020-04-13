@@ -9,8 +9,7 @@ import {
 	OnInit,
 	Output,
 	ElementRef,
-	ViewChild,
-	AfterContentChecked
+	ViewChild
 } from "@angular/core";
 import {
 	trigger,
@@ -118,7 +117,7 @@ export class ModalDemo {
 		])
 	]
 })
-export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChecked {
+export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -167,7 +166,6 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 	 * This is used within the component for automatic scrolling content detection. This can be overwritten
 	 * through public property `hasScrollingContent`.
 	 */
-	protected shouldShowScrollbar = false;
 
 	/**
 	 * Creates an instance of `Modal`.
@@ -195,12 +193,8 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 		} else {
 			setTimeout(() => this.modal.nativeElement.focus());
 		}
-		this.setShouldShowScrollbar();
 	}
 
-	ngAfterContentChecked() {
-		this.setShouldShowScrollbar();
-	}
 	/**
 	 * Emit the close event when the modal component is destroyed.
 	 */
@@ -226,24 +220,18 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 			}
 		}
 	}
-
-	@HostListener("window:resize")
-	onResize() {
-		this.setShouldShowScrollbar();
-	}
-
 	/**
 	 * This determines whether or not the modal contains scrolling content automatically. If it fails at doing so,
 	 * you can use the `hasScrollingContent` property and manually set the overflow indicator on or off.
 	 */
-	protected setShouldShowScrollbar() {
+	get shouldShowScrollbar() {
 		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
 			const modalContentScrollHeight = modalContent.scrollHeight;
-			this.shouldShowScrollbar = modalContentScrollHeight > modalContentHeight;
+			return modalContentScrollHeight > modalContentHeight;
 		} else {
-			this.shouldShowScrollbar = false;
+			return false;
 		}
 	}
 }
