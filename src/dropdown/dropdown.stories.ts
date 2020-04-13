@@ -133,7 +133,6 @@ storiesOf("Components|Dropdown", module)
 				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 			</ibm-dropdown>
 		</div>
-		<ibm-placeholder></ibm-placeholder>
 	`,
 		props: getProps()
 	}))
