@@ -384,7 +384,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 				this.selected.emit(event);
 			});
-			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
