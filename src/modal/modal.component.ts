@@ -138,7 +138,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 * overflow indicator to show up or to `false` to force overflow indicator to disappear.
 	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
-	@Input() hasScrollingContent: boolean | null = null;
+	@Input() hasScrollingContent: boolean = null;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.

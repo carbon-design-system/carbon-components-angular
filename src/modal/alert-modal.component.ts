@@ -85,7 +85,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
 		@Inject("size") public size: string,
-		@Inject("hasScrollingContent") public hasScrollingContent: boolean | null = null,
+		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {

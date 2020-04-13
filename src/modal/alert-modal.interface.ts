@@ -50,7 +50,7 @@ export interface AlertModalData {
 	 * show up or to `false` to force overflow indicator to disappear.
 	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
-	hasScrollingContent?: boolean | null;
+	hasScrollingContent?: boolean;
 	/**
 	 * Callback for non-specific close events. `return false;` to prevent the modal from closing
 	 * Property trigger has a value of `overlay` or `close`
