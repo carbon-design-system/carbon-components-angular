@@ -164,11 +164,6 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
-	 * This is used within the component for automatic scrolling content detection. This can be overwritten
-	 * through public property `hasScrollingContent`.
-	 */
-
-	/**
 	 * Creates an instance of `Modal`.
 	 */
 	constructor(public modalService: ModalService) {}
