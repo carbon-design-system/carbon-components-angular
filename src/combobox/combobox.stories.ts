@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { ButtonModule } from "../button/button.module";
@@ -118,6 +118,26 @@ storiesOf("Components|Combobox", module)
 			</ibm-combo-box>
 		`,
 		props: getOptions()
+	}))
+	.add("Basic with max length", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				(selected)="selected($event)"
+				(submit)="submit($event)"
+				[maxLength]="maxLength">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+		`,
+		props: {
+			...getOptions(),
+			maxLength: number("Max length", 5)
+		}
 	}))
 	.add("With dynamic search", () => ({
 		template: `
