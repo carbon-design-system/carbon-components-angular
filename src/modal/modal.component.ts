@@ -240,8 +240,8 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
-			const modalContentActualHeight = modalContent.scrollHeight;
-			this.shouldShowScrollbar = modalContentActualHeight > modalContentHeight;
+			const modalContentScrollHeight = modalContent.scrollHeight;
+			this.shouldShowScrollbar = modalContentScrollHeight > modalContentHeight;
 		} else {
 			this.shouldShowScrollbar = false;
 		}
