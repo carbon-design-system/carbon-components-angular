@@ -53,6 +53,33 @@ storiesOf("Components|Accordion", module)
 			selected: action("item expanded")
 		}
 	}))
+	.add("With title template", () => ({
+		template: `
+			<div style="width: 500px">
+				<ibm-accordion>
+					<ibm-accordion-item [title]="title" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>
+					<ibm-accordion-item [title]="titleWithContext" [context]="{ index: 2 }" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>
+				</ibm-accordion>
+			</div>
+
+			<ng-template #title>
+				<p class="bx--accordion__title">Section 1 title</p>
+			</ng-template>
+
+			<ng-template #titleWithContext let-index="index">
+				<p class="bx--accordion__title">Section {{ index }} title</p>
+			</ng-template>
+		`,
+		props: {
+			selected: action("item expanded")
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<div style="width: 500px">
