@@ -134,8 +134,9 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy, AfterContentChec
 	@Input() modalLabel = "default";
 
 	/**
-	 * Specify whether the modal contains scrolling content. This property overrides the automcatic detection of the existance of scrolling
-	 * content. Set this property to `true` to force overflow indicator to show up or to `false` to force overflow indicator to disappear.
+	 * Specify whether the modal contains scrolling content. This property overrides the automatic
+	 * detection of the existence of scrolling content. Set this property to `true` to force
+	 * overflow indicator to show up or to `false` to force overflow indicator to disappear.
 	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
 	@Input() hasScrollingContent: boolean | null = null;
