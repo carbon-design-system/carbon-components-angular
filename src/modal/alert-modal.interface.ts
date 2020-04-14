@@ -29,6 +29,13 @@ export interface AlertModalData {
 	 */
 	buttons?: Array<ModalButton>;
 	/**
+	 * Specify whether the modal contains scrolling content. This property overrides the automatic detection
+	 * of the existence of scrolling content. Set this property to `true` to force overflow indicator to
+	 * show up or to `false` to force overflow indicator to disappear.
+	 * It is set to `null` by default which indicates not to override automatic detection.
+	 */
+	hasScrollingContent?: boolean;
+	/**
 	 * Callback for non-specific close events. `return false;` to prevent the modal from closing
 	 * Property trigger has a value of `overlay` or `close`
 	 */

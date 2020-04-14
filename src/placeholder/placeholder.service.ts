@@ -10,59 +10,82 @@ import { Injectable } from "@angular/core";
  * Singleton service used to register the container for out-of-flow components to insert into.
  * Also used to insert/remove components from that view.
  */
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class PlaceholderService {
 	/**
-	 * Maintain a `ViewContainerRef` to an instance of the component.
+	 * Main `ViewContainerRef` to insert components into
 	 */
 	protected viewContainerRef: ViewContainerRef = null;
 	/**
+	 * Map of id's to secondary `ViewContainerRef`s
+	 */
+	protected viewContainerMap: Map<any, ViewContainerRef> = new Map();
+	/**
 	 * Used by `Placeholder` to register view-container reference.
 	 */
-	registerViewContainerRef(vcRef: ViewContainerRef): void {
-		this.viewContainerRef = vcRef;
+	registerViewContainerRef(vcRef: ViewContainerRef, id?: any): void {
+		if (id) {
+			this.viewContainerMap.set(id, vcRef);
+		} else {
+			this.viewContainerRef = vcRef;
+		}
 	}
 
 	/**
 	 * Creates and returns component in the view.
 	 */
-	createComponent(componentFactory: ComponentFactory<any>, injector: Injector): ComponentRef<any> {
+	createComponent(componentFactory: ComponentFactory<any>, injector: Injector, id?: any): ComponentRef<any> {
+		if (id) {
+			if (!this.viewContainerMap.has(id)) {
+				console.error(`No view container with id ${id} found`);
+				return;
+			}
+			return this.viewContainerMap.get(id).createComponent(componentFactory, null, injector);
+		}
 		if (!this.viewContainerRef) {
 			console.error("No view container defined! Likely due to a missing `ibm-placeholder`");
+			return;
 		}
 		return this.viewContainerRef.createComponent(componentFactory, null, injector);
 	}
 
 	destroyComponent(component: ComponentRef<any>) {
-		const index = this.viewContainerRef.indexOf(component.hostView);
-		if (index < 0) {
-			return;
-		}
-
-		// destroy the view
-		this.viewContainerRef.remove(index);
+		component.destroy();
 	}
 
-	hasComponentRef(component: ComponentRef<any>) {
-		if (this.viewContainerRef.indexOf(component.hostView) < 0) {
-			return false;
+	hasComponentRef(component: ComponentRef<any>, id?: any) {
+		if (id) {
+			return !(this.viewContainerMap.get(id).indexOf(component.hostView) < 0);
 		}
-		return true;
+
+		return !(this.viewContainerRef.indexOf(component.hostView) < 0);
 	}
 
-	hasPlaceholderRef() {
+	hasPlaceholderRef(id?: any) {
+		if (id) {
+			return this.viewContainerMap.has(id);
+		}
 		return !!this.viewContainerRef;
 	}
 
-	appendElement(element: HTMLElement): HTMLElement {
+	appendElement(element: HTMLElement, id?: any): HTMLElement {
+		if (id) {
+			return this.viewContainerMap.get(id).element.nativeElement.appendChild(element);
+		}
 		return this.viewContainerRef.element.nativeElement.appendChild(element);
 	}
 
-	removeElement(element: HTMLElement): HTMLElement {
+	removeElement(element: HTMLElement, id?: any): HTMLElement {
+		if (id) {
+			return this.viewContainerMap.get(id).element.nativeElement.removeChild(element);
+		}
 		return this.viewContainerRef.element.nativeElement.removeChild(element);
 	}
 
-	hasElement(element: HTMLElement): boolean {
+	hasElement(element: HTMLElement, id?: any): boolean {
+		if (id) {
+			return this.viewContainerMap.get(id).element.nativeElement.contains(element);
+		}
 		return this.viewContainerRef.element.nativeElement.contains(element);
 	}
 }

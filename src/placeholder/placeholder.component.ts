@@ -2,7 +2,8 @@ import {
 	Component,
 	OnInit,
 	ViewContainerRef,
-	ViewChild
+	ViewChild,
+	Input
 } from "@angular/core";
 import { PlaceholderService } from "./placeholder.service";
 
@@ -21,6 +22,7 @@ import { PlaceholderService } from "./placeholder.service";
 	template: `<div #placeholder></div>`
 })
 export class Placeholder implements OnInit {
+	@Input() id: any;
 	/**
 	 * Maintains a reference to the view DOM element of the `Placeholder`.
 	 */
@@ -35,6 +37,7 @@ export class Placeholder implements OnInit {
 	 * Registers the components view with `PlaceholderService`
 	 */
 	ngOnInit() {
+		// TODO use `id` to register with the placeholderService
 		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}
 }

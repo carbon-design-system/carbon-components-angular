@@ -63,6 +63,9 @@ export class DropdownService implements OnDestroy {
 			this.positionDropdown(parentRef, dropdownWrapper);
 		});
 
+		// run one position in sync, so we're less likely to have the view "jump" as we focus
+		this.positionDropdown(parentRef, dropdownWrapper);
+
 		return dropdownWrapper;
 	}
 
