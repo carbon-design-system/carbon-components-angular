@@ -99,6 +99,7 @@ export class ModalService {
 				modalLabel: data.label || data.modalLabel,
 				modalTitle: data.title || data.modalTitle,
 				modalContent: data.content || data.modalContent,
+				hasScrollingContent: data.hasScrollingContent || null,
 				size: data.size,
 				buttons: data.buttons || [],
 				close: data.close || (() => {})
