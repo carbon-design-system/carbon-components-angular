@@ -51,13 +51,6 @@ export class PlaceholderService {
 
 	destroyComponent(component: ComponentRef<any>) {
 		component.destroy();
-		// const index = this.viewContainerRef.indexOf(component.hostView);
-		// if (index < 0) {
-		// 	return;
-		// }
-
-		// // destroy the view
-		// this.viewContainerRef.remove(index);
 	}
 
 	hasComponentRef(component: ComponentRef<any>, id?: any) {
