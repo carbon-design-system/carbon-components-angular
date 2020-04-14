@@ -143,6 +143,7 @@ export default {
 	},
 	"TABLE_TOOLBAR": {
 		"ACTION_BAR": "Table action bar",
+		"BATCH_TEXT": "",
 		"BATCH_TEXT_SINGLE": "1 item selected",
 		"BATCH_TEXT_MULTIPLE": "{{count}} items selected",
 		"CANCEL": "Cancel"

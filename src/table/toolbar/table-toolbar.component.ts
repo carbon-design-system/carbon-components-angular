@@ -59,8 +59,13 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para" *ngIf="count as n">
-					<span *ngIf="n === 1">{{_batchTextSingle.subject | async}}</span>
-					<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
+						<span>{{n}}</span> {{legacyText}}
+					</ng-container>
+					<ng-template #batchTextBlock>
+						<span *ngIf="n === 1">{{_batchTextSingle.subject | async}}</span>
+						<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+					</ng-template>
 				</p>
 			</div>
 		</div>
@@ -77,8 +82,7 @@ export class TableToolbar {
 			this._batchTextMultiple.override(value.MULTIPLE);
 		} else {
 			// For compatibility with old code
-			this._batchTextSingle.override(`1 ${value}`);
-			this._batchTextMultiple.override(`{{count}} ${value}`);
+			this._batchTextLegacy.override(value);
 		}
 	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
@@ -94,6 +98,7 @@ export class TableToolbar {
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
+	_batchTextLegacy: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
 	_batchTextSingle: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_SINGLE");
 	_batchTextMultiple: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE");
 
