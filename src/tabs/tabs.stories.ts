@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
 import { TabsModule } from "../";
 import { Component, Input } from "@angular/core";
@@ -8,7 +8,7 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [followFocus]="followFocus" [cacheActive]="cacheActive">
+		<ibm-tab-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -40,6 +40,7 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
+	@Input() type = "default";
 }
 
 storiesOf("Components|Tabs", module)
@@ -68,6 +69,21 @@ storiesOf("Components|Tabs", module)
 			cacheActive: boolean("Cache active", true)
 		}
 	}))
+	.add("Container", () => ({
+		template: `
+			<ibm-tabs type="container" [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
+				<ibm-tab heading="one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false),
+			cacheActive: boolean("Cache active", true)
+		}
+	}))
 	.add("With template", () => ({
 		template: `
 			<ng-template #customTabs let-item>
@@ -84,7 +100,7 @@ storiesOf("Components|Tabs", module)
 					</svg>
 				</div>
 			</ng-template>
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
 				<ibm-tab [heading]="iconTab">Tab Content Custom</ibm-tab>
 			</ibm-tabs>
@@ -96,25 +112,26 @@ storiesOf("Components|Tabs", module)
 				{ name: "one" },
 				{ name: "two" },
 				{ name: "three" }
-			]
+			],
+			type: select("type", ["default", "container"], "default")
 		}
 	}))
 	.add("Width before and after content", () => ({
 		template: `
 			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 				<span before>content before</span>
 			</ibm-tabs>
 			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 				<span after>content after</span>
 			</ibm-tabs>
 			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
-			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 				<span before>content before</span>
@@ -123,16 +140,18 @@ storiesOf("Components|Tabs", module)
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			isNavigation: boolean("isNavigation", false)
+			isNavigation: boolean("isNavigation", false),
+			type: select("type", ["default", "container"], "default")
 		}
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+			<ibm-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			cacheActive: boolean("Cache active", true)
+			cacheActive: boolean("Cache active", true),
+			type: select("type", ["default", "container"], "default")
 		}
 	}))
 	.add("Skeleton", () => ({

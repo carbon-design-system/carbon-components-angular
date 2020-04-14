@@ -121,6 +121,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					observer.complete();
 				});
 			});
+			this.onItemsReady(null);
 		} else {
 			this.updateList(value);
 		}

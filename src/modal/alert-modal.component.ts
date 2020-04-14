@@ -51,6 +51,7 @@ import { BaseModal } from "./base-modal.class";
 			[size]="size"
 			[theme]="type"
 			[ariaLabel]="title"
+			[hasScrollingContent]="hasScrollingContent"
 			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
 			<ibm-modal-header (closeSelect)="dismissModal('close')">
@@ -85,6 +86,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		@Inject("title") public title: string,
 		@Inject("content") public content: string,
 		@Inject("size") public size: string,
+		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {
