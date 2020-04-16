@@ -4,6 +4,7 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Component, AfterViewInit } from "@angular/core";
 
 const getOptions = (override = {}) => {
 	const options = {
@@ -33,9 +34,56 @@ const getOptions = (override = {}) => {
 	return Object.assign({}, options, override);
 };
 
+@Component({
+	selector: "app-dynamic-list-combobox",
+	template: `
+		<ibm-combo-box
+			[(items)]="items"
+			type="multi"
+			(selected)="updateSelected($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class DynamicListComboBox implements AfterViewInit {
+	items = [
+		{
+			content: "one"
+		},
+		{
+			content: "two"
+		},
+		{
+			content: "three"
+		},
+		{
+			content: "four"
+		}
+	];
+
+	updateSelected(event) {
+		this.items.forEach((item: any) => {
+			if (event.some(selectedItem => selectedItem.content === item.content)) {
+				item.selected = true;
+			} else {
+				item.selected = false;
+			}
+		});
+	}
+
+	ngAfterViewInit() {
+		setInterval(() => {
+			const newItems = JSON.parse(JSON.stringify(this.items));
+			newItems.push({ content: `New ${newItems.length}` });
+			this.items = newItems;
+		}, 4000);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [DynamicListComboBox],
 			imports: [
 				ComboBoxModule,
 				DocumentationModule
@@ -58,6 +106,11 @@ storiesOf("Components|Combobox", module)
 			</ibm-combo-box>
 		`,
 		props: getOptions()
+	}))
+	.add("Dynamically added list items", () => ({
+		template: `
+			<app-dynamic-list-combobox></app-dynamic-list-combobox>
+		`
 	}))
 	.add("With dynamic search", () => ({
 		template: `

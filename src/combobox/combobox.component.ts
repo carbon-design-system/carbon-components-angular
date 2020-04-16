@@ -64,7 +64,7 @@ import { Observable } from "rxjs";
 					(keydown.enter)="clearSelected()"
 					role="button"
 					class="bx--tag--filter bx--list-box__selection--multi"
-          tabindex="0"
+					tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
@@ -347,6 +347,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
+			// If new items are added into the combobox while there is search input, this
+			// prevents the search results from being cleared once the new items are added.
+			this.onSearch(this.input.nativeElement.value);
 			this.updateSelected();
 		}
 	}
