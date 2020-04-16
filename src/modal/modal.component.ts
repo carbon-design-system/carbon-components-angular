@@ -98,7 +98,10 @@ export class ModalDemo {
 				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
-				<div class="bx--modal-content--overflow-indicator"></div>
+				<div
+					*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"
+					class="bx--modal-content--overflow-indicator">
+				</div>
 			</div>
 		</ibm-overlay>
 	`,
@@ -128,6 +131,14 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 * Label for the modal.
 	 */
 	@Input() modalLabel = "default";
+
+	/**
+	 * Specify whether the modal contains scrolling content. This property overrides the automatic
+	 * detection of the existence of scrolling content. Set this property to `true` to force
+	 * overflow indicator to show up or to `false` to force overflow indicator to disappear.
+	 * It is set to `null` by default which indicates not to override automatic detection.
+	 */
+	@Input() hasScrollingContent: boolean = null;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
@@ -203,6 +214,23 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 				cycleTabs(event, this.modal.nativeElement);
 				break;
 			}
+		}
+	}
+	/**
+	 * This detects whether or not the modal contains scrolling content.
+	 *
+	 * To force trigger a detection (ie. on window resize), change or reset the value of the modal content.
+	 *
+	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
+	 */
+	get shouldShowScrollbar() {
+		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
+		if (modalContent) {
+			const modalContentHeight = modalContent.getBoundingClientRect().height;
+			const modalContentScrollHeight = modalContent.scrollHeight;
+			return modalContentScrollHeight > modalContentHeight;
+		} else {
+			return false;
 		}
 	}
 }

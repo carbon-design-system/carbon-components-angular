@@ -211,9 +211,22 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 */
 	@Input() scrollableContainer: string;
 	/**
+	 * Deprecated. Use `itemValueKey` instead.
+	 * Specifies the property to be used as the return value to `ngModel`
+	 * @deprecated use itemValueKey instead
+	 */
+	@Input() set value (newValue: string) {
+		console.warn("Dropdown `value` property has been deprecated. Use `itemValueKey` instead");
+		this.itemValueKey = newValue;
+	}
+
+	get value() {
+		return this.itemValueKey;
+	}
+	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */
-	@Input() value: string;
+	@Input() itemValueKey: string;
 	/**
 	 * Accessible label for the button that opens the dropdown list.
 	 * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
@@ -310,8 +323,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
 				// if we have a `value` selector and selected items map them appropriately
-				if (this.value && this.view.getSelected()) {
-					const values = this.view.getSelected().map(item => item[this.value]);
+				if (this.itemValueKey && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
 					this.propagateChange(values);
 				// otherwise just pass up the values from `getSelected`
 				} else {
@@ -320,8 +333,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			} else {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
-					if (this.value) {
-						this.propagateChange(event.item[this.value]);
+					if (this.itemValueKey) {
+						this.propagateChange(event.item[this.itemValueKey]);
 					} else {
 						this.propagateChange(event.item);
 					}
@@ -358,9 +371,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			if (!value) {
 				this.view.propagateSelected([value]);
 			} else if (this.type === "single") {
-				if (this.value) {
+				if (this.itemValueKey) {
 					// clone the specified item and update its state
-					const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
+					const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.itemValueKey] === value));
 					newValue.selected = true;
 					this.view.propagateSelected([newValue]);
 				} else {
@@ -368,13 +381,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 					this.view.propagateSelected([value]);
 				}
 			} else {
-				if (this.value) {
+				if (this.itemValueKey) {
 					// clone the items and update their state based on the received value array
 					// this way we don't lose any additional metadata that may be passed in via the `items` Input
 					let newValues = [];
 					for (const v of value) {
 						for (const item of this.view.getListItems()) {
-							if (item[this.value] === v) {
+							if (item[this.itemValueKey] === v) {
 								newValues.push(Object.assign({}, item, { selected: true }));
 							}
 						}

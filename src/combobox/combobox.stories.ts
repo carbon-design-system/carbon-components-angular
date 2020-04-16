@@ -1,10 +1,22 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
+import { ButtonModule } from "../button/button.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
-import { Component, AfterViewInit } from "@angular/core";
+import {
+	ReactiveFormsModule,
+	FormGroup,
+	FormBuilder,
+	FormControl
+} from "@angular/forms";
+import {
+	Component,
+	OnInit,
+	Input,
+	AfterViewInit
+} from "@angular/core";
 
 const getOptions = (override = {}) => {
 	const options = {
@@ -80,12 +92,63 @@ class DynamicListComboBox implements AfterViewInit {
 	}
 }
 
+@Component({
+	selector: "app-reactive-combobox",
+	template: `
+		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
+			<ibm-combo-box
+				formControlName="combobox"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			selected: {{ sampleForm.get("combobox").value | json }}
+			<ibm-combo-box
+				style="margin-top: 40px"
+				formControlName="multibox"
+				[label]="label"
+				[helperText]="helperText"
+				type="multi"
+				[items]="items">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			selected: {{ sampleForm.get("multibox").value | json }}
+		</form>
+	`
+})
+class ReactiveFormsCombobox implements OnInit {
+	public sampleForm: FormGroup;
+	@Input() items = [];
+	@Input() label = "";
+	@Input() helperText = "";
+
+	constructor(private fb: FormBuilder) {}
+
+	ngOnInit() {
+		this.sampleForm = this.fb.group({
+			combobox: new FormControl,
+			multibox: new FormControl
+		});
+
+		this.sampleForm.get("combobox").setValue({ content: "four", selected: true });
+		this.sampleForm.get("multibox").setValue(
+			[
+				{ content: "four", selected: true },
+				{ content: "two", selected: true }
+			]
+		);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [DynamicListComboBox],
+			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
 			imports: [
 				ComboBoxModule,
+				ButtonModule,
+				ReactiveFormsModule,
 				DocumentationModule
 			]
 		})
@@ -111,6 +174,26 @@ storiesOf("Components|Combobox", module)
 		template: `
 			<app-dynamic-list-combobox></app-dynamic-list-combobox>
 		`
+	}))
+	.add("Basic with max length", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				(selected)="selected($event)"
+				(submit)="submit($event)"
+				[maxLength]="maxLength">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+		`,
+		props: {
+			...getOptions(),
+			maxLength: number("Max length", 5)
+		}
 	}))
 	.add("With dynamic search", () => ({
 		template: `
@@ -210,6 +293,16 @@ storiesOf("Components|Combobox", module)
 				(submit)="submit($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
+		`,
+		props: getOptions()
+	}))
+	.add("With reactive forms", () => ({
+		template: `
+			<app-reactive-combobox
+				[items]="items"
+				[label]="label"
+				[helperText]="helperText">
+			</app-reactive-combobox>
 		`,
 		props: getOptions()
 	}))
