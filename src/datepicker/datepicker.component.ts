@@ -446,6 +446,13 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
+		// In range mode, if a date is selected from the first calendar that is from the previous month,
+		// the month will not be updated on the calendar until the calendar is re-opened.
+		// This will make sure the calendar is updated with the correct month.
+		if (this.range) {
+			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+			this.flatpickrInstance.changeMonth(currentMonth, false);
+		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);
 	}
