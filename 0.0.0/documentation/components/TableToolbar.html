@@ -133,8 +133,14 @@
 			&lt;button ibmButton&#x3D;&quot;primary&quot; class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;{{_cancelText.subject | async}}&lt;/button&gt;
 		&lt;/div&gt;
 		&lt;div class&#x3D;&quot;bx--batch-summary&quot;&gt;
-			&lt;p class&#x3D;&quot;bx--batch-summary__para&quot;&gt;
-				&lt;span&gt;{{count}}&lt;/span&gt; {{_batchText.subject | async}}
+			&lt;p class&#x3D;&quot;bx--batch-summary__para&quot; *ngIf&#x3D;&quot;count as n&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;_batchTextLegacy.subject | async as legacyText; else batchTextBlock&quot;&gt;
+					&lt;span&gt;{{n}}&lt;/span&gt; {{legacyText}}
+				&lt;/ng-container&gt;
+				&lt;ng-template #batchTextBlock&gt;
+					&lt;span *ngIf&#x3D;&quot;n &#x3D;&#x3D;&#x3D; 1&quot;&gt;{{_batchTextSingle.subject | async}}&lt;/span&gt;
+					&lt;span *ngIf&#x3D;&quot;n !&#x3D;&#x3D; 1&quot;&gt;{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}&lt;/span&gt;
+				&lt;/ng-template&gt;
 			&lt;/p&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
@@ -168,7 +174,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#_batchText">_batchText</a>
+                                <a href="#_batchTextLegacy">_batchTextLegacy</a>
+                            </li>
+                            <li>
+                                <a href="#_batchTextMultiple">_batchTextMultiple</a>
+                            </li>
+                            <li>
+                                <a href="#_batchTextSingle">_batchTextSingle</a>
                             </li>
                             <li>
                                 <a href="#_cancelText">_cancelText</a>
@@ -263,7 +275,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -319,7 +331,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:88</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -332,15 +344,11 @@
                         <code>batchText</code>
                     </td>
                     <td class="col-md-10">
-                            <p>
-                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:79</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -361,7 +369,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:91</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -382,7 +390,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:77</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -418,7 +426,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -445,18 +453,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_batchText"></a>
+                        <a name="_batchTextLegacy"></a>
                         <span class="name">
                             <b>
-                            _batchText
+                            _batchTextLegacy
                             </b>
-                            <a href="#_batchText"><span class="icon ion-ios-link"></span></a>
+                            <a href="#_batchTextLegacy"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>_batchText:     <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+                        <code>_batchTextLegacy:     <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
 </code>
                     </td>
                 </tr>
@@ -473,7 +481,85 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:101</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_batchTextMultiple"></a>
+                        <span class="name">
+                            <b>
+                            _batchTextMultiple
+                            </b>
+                            <a href="#_batchTextMultiple"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>_batchTextMultiple:     <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:103</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_batchTextSingle"></a>
+                        <span class="name">
+                            <b>
+                            _batchTextSingle
+                            </b>
+                            <a href="#_batchTextSingle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>_batchTextSingle:     <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT_SINGLE&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -512,7 +598,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -551,7 +637,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -576,12 +662,12 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>batchText(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                        <span class="accessor"><b>set</b><code>batchText(value)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:79</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -593,7 +679,6 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                 </tr>
                                             </thead>
@@ -601,9 +686,6 @@
                                                     <tr>
                                                             <td>value</td>
                                                     
-                                                            <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                            </td>
                                                     
                                                         <td>
                                                                 No
@@ -640,7 +722,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:88</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -698,7 +780,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:95</a></div>
                                 </td>
                             </tr>
 
@@ -709,7 +791,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:91</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -767,7 +849,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:107</a></div>
                                 </td>
                             </tr>
 
@@ -789,7 +871,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:110</a></div>
                                 </td>
                             </tr>
 
@@ -860,8 +942,14 @@ import { I18n, Overridable } from &quot;../../i18n/i18n.module&quot;;
 				&lt;button ibmButton&#x3D;&quot;primary&quot; class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;{{_cancelText.subject | async}}&lt;/button&gt;
 			&lt;/div&gt;
 			&lt;div class&#x3D;&quot;bx--batch-summary&quot;&gt;
-				&lt;p class&#x3D;&quot;bx--batch-summary__para&quot;&gt;
-					&lt;span&gt;{{count}}&lt;/span&gt; {{_batchText.subject | async}}
+				&lt;p class&#x3D;&quot;bx--batch-summary__para&quot; *ngIf&#x3D;&quot;count as n&quot;&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;_batchTextLegacy.subject | async as legacyText; else batchTextBlock&quot;&gt;
+						&lt;span&gt;{{n}}&lt;/span&gt; {{legacyText}}
+					&lt;/ng-container&gt;
+					&lt;ng-template #batchTextBlock&gt;
+						&lt;span *ngIf&#x3D;&quot;n &#x3D;&#x3D;&#x3D; 1&quot;&gt;{{_batchTextSingle.subject | async}}&lt;/span&gt;
+						&lt;span *ngIf&#x3D;&quot;n !&#x3D;&#x3D; 1&quot;&gt;{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}&lt;/span&gt;
+					&lt;/ng-template&gt;
 				&lt;/p&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -872,8 +960,14 @@ import { I18n, Overridable } from &quot;../../i18n/i18n.module&quot;;
 export class TableToolbar {
 	@Input() model: TableModel;
 
-	@Input() set batchText (value: string) {
-		this._batchText.override(value);
+	@Input() set batchText (value: string | { SINGLE: string, MULTIPLE: string }) {
+		if (typeof value &#x3D;&#x3D;&#x3D; &quot;object&quot;) {
+			this._batchTextSingle.override(value.SINGLE);
+			this._batchTextMultiple.override(value.MULTIPLE);
+		} else {
+			// For compatibility with old code
+			this._batchTextLegacy.override(value);
+		}
 	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);
@@ -888,7 +982,9 @@ export class TableToolbar {
 
 	actionBarLabel: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.ACTION_BAR&quot;);
 	_cancelText: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.CANCEL&quot;);
-	_batchText: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT&quot;);
+	_batchTextLegacy: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT&quot;);
+	_batchTextSingle: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT_SINGLE&quot;);
+	_batchTextMultiple: Overridable &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE&quot;);
 
 	constructor(protected i18n: I18n) {}
 
@@ -933,7 +1029,7 @@ export class TableToolbar {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><section class="bx--table-toolbar">	<div		*ngIf="model"		class="bx--batch-actions"		[ngClass]="{			\'bx--batch-actions--active\': selected		}"		[attr.aria-label]="actionBarLabel.subject | async">		<div class="bx--action-list">			<ng-content select="ibm-table-toolbar-actions"></ng-content>			<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>		</div>		<div class="bx--batch-summary">			<p class="bx--batch-summary__para">				<span>{{count}}</span> {{_batchText.subject | async}}			</p>		</div>	</div>	<ng-content></ng-content></section></div>'
+        var COMPONENT_TEMPLATE = '<div><section class="bx--table-toolbar">	<div		*ngIf="model"		class="bx--batch-actions"		[ngClass]="{			\'bx--batch-actions--active\': selected		}"		[attr.aria-label]="actionBarLabel.subject | async">		<div class="bx--action-list">			<ng-content select="ibm-table-toolbar-actions"></ng-content>			<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>		</div>		<div class="bx--batch-summary">			<p class="bx--batch-summary__para" *ngIf="count as n">				<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">					<span>{{n}}</span> {{legacyText}}				</ng-container>				<ng-template #batchTextBlock>					<span *ngIf="n === 1">{{_batchTextSingle.subject | async}}</span>					<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>				</ng-template>			</p>		</div>	</div>	<ng-content></ng-content></section></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TableToolbar'};

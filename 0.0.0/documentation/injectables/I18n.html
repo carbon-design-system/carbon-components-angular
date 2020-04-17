@@ -1026,7 +1026,7 @@ export class I18n {
 	public getValueFromPath(path): string | { [key: string]: string } {
 		let value &#x3D; this.translationStrings;
 		for (const segment of path.split(&quot;.&quot;)) {
-			if (value[segment]) {
+			if (value[segment] !&#x3D;&#x3D; undefined &amp;&amp; value[segment] !&#x3D;&#x3D; null) {
 				value &#x3D; value[segment];
 			} else {
 				throw new Error(&#x60;no key ${segment} at ${path}&#x60;);
