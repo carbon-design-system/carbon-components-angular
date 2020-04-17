@@ -58,8 +58,14 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>
 			</div>
 			<div class="bx--batch-summary">
-				<p class="bx--batch-summary__para">
-					<span>{{count}}</span> {{_batchText.subject | async}}
+				<p class="bx--batch-summary__para" *ngIf="count as n">
+					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
+						<span>{{n}}</span> {{legacyText}}
+					</ng-container>
+					<ng-template #batchTextBlock>
+						<span *ngIf="n === 1">{{_batchTextSingle.subject | async}}</span>
+						<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+					</ng-template>
 				</p>
 			</div>
 		</div>
@@ -70,8 +76,14 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 export class TableToolbar {
 	@Input() model: TableModel;
 
-	@Input() set batchText (value: string) {
-		this._batchText.override(value);
+	@Input() set batchText (value: string | { SINGLE: string, MULTIPLE: string }) {
+		if (typeof value === "object") {
+			this._batchTextSingle.override(value.SINGLE);
+			this._batchTextMultiple.override(value.MULTIPLE);
+		} else {
+			// For compatibility with old code
+			this._batchTextLegacy.override(value);
+		}
 	}
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);
@@ -86,7 +98,9 @@ export class TableToolbar {
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
-	_batchText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
+	_batchTextLegacy: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
+	_batchTextSingle: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_SINGLE");
+	_batchTextMultiple: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE");
 
 	constructor(protected i18n: I18n) {}
 
