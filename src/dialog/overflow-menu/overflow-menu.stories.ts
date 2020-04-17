@@ -131,7 +131,7 @@ storiesOf("Components|Overflow Menu", module)
 				<span>Overflow menu with custom trigger icon</span>
 				<ibm-overflow-menu
 					[flip]="flip"
-					[customIcon]="customIcon"
+					[customTrigger]="customTrigger"
 					placement="bottom"
 					[offset]="offset">
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
@@ -140,7 +140,7 @@ storiesOf("Components|Overflow Menu", module)
 					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
-				<ng-template #customIcon><svg ibmIconDocument16></svg></ng-template>
+				<ng-template #customTrigger><svg ibmIconDocument16></svg></ng-template>
 		`,
 		props: {
 			click: () => console.log("click"),
