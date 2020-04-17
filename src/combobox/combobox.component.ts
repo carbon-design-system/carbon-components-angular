@@ -352,8 +352,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
-			// If new items are added into the combobox while there is search input, this
-			// prevents the search results from being cleared once the new items are added.
+			// If new items are added into the combobox while there is search input,
+			// repeat the search.
 			this.onSearch(this.input.nativeElement.value);
 			this.updateSelected();
 		}
