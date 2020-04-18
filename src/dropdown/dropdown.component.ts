@@ -213,6 +213,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() scrollableContainer: string;
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
+	 * @deprecated since v4 use itemValueKey instead
 	 */
 	@Input() value: string;
 	/**

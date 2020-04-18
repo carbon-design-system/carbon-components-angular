@@ -268,6 +268,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * key input matching the first letter of the item in the list.
 	 */
 	setupFocusObservable() {
+		if (!this.list) { return; }
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
 		}

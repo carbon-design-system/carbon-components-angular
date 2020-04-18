@@ -103,7 +103,9 @@ export class Label implements AfterContentInit {
 	 * Sets the id on the input item associated with the `Label`.
 	 */
 	ngAfterContentInit() {
-		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		if (this.wrapper) {
+			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		}
 	}
 
 	public isTemplate(value) {
