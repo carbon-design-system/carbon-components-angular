@@ -17,10 +17,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav
-			class="bx--side-nav__navigation"
-			role="navigation"
-			[attr.aria-label]="i18n.get('UI_SHELL.SIDE_NAV.LABEL')">
+		<nav class="bx--side-nav__navigation" role="navigation">
 			<ng-content select="ibm-sidenav-header"></ng-content>
 			<ul class="bx--side-nav__items">
 				<div
@@ -87,6 +84,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.bx--side-nav") hostClass = true;
+	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
 	/**
 	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
 	 */
@@ -104,7 +102,7 @@ export class SideNav {
 	 * innerWidth is small enough. Sidenav items and menus are created using the model used to create header
 	 * navigation items.
 	 */
-	@Input() navigationItems: NavigationItem[]
+	@Input() navigationItems: NavigationItem[];
 
 	constructor(public i18n: I18n) { }
 

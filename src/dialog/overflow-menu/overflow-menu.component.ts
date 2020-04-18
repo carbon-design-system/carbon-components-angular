@@ -35,6 +35,8 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			[flip]="flip"
 			[isOpen]="open"
 			(isOpenChange)="handleOpenChange($event)"
+			[offset]="offset"
+			[wrapperClass]="wrapperClass"
 			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
@@ -66,7 +68,6 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 	encapsulation: ViewEncapsulation.None
 })
 export class OverflowMenu {
-
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() flip = false;
@@ -76,6 +77,12 @@ export class OverflowMenu {
 	@Input() open = false;
 
 	@Output() openChange = new EventEmitter<boolean>();
+	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+
+	@Input() wrapperClass = "";
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 

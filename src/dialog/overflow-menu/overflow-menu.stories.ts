@@ -1,5 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, number, boolean } from "@storybook/addon-knobs";
+import {
+	withKnobs,
+	number,
+	boolean,
+	object
+} from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/index";
@@ -30,7 +35,9 @@ storiesOf("Components|Overflow Menu", module)
 		template: `
 			<div>
 				<h1 style="margin-bottom: 1rem">Bottom placement</h1>
-				<ibm-overflow-menu [flip]="flip">
+				<ibm-overflow-menu
+					[flip]="flip"
+					[offset]="offset">
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
@@ -46,7 +53,10 @@ storiesOf("Components|Overflow Menu", module)
 			</div>
 			<div style="margin-top: 8rem">
 				<h1 style="margin-bottom: 1rem">Top placement</h1>
-				<ibm-overflow-menu [flip]="flip" placement="top">
+				<ibm-overflow-menu
+					[flip]="flip"
+					placement="top"
+					[offset]="offset">
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
@@ -64,14 +74,17 @@ storiesOf("Components|Overflow Menu", module)
 		props: {
 			click: () => console.log("click"),
 			selected: () => console.log("selected"),
-			flip: boolean("Flipped", false)
+			flip: boolean("Flipped", false),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("With links", () => ({
 		template: `
 			<div>
 				<h1 style="margin-bottom: 1rem">Bottom placement</h1>
-				<ibm-overflow-menu [flip]="flip" >
+				<ibm-overflow-menu
+					[flip]="flip"
+					[offset]="offset">
 					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
@@ -86,7 +99,10 @@ storiesOf("Components|Overflow Menu", module)
 			</div>
 			<div style="margin-top: 8rem">
 				<h1 style="margin-bottom: 1rem">Top placement</h1>
-				<ibm-overflow-menu [flip]="flip" placement="top">
+				<ibm-overflow-menu
+					[flip]="flip"
+					placement="top"
+					[offset]="offset">
 					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
@@ -104,7 +120,8 @@ storiesOf("Components|Overflow Menu", module)
 		props: {
 			click: () => console.log("click"),
 			selected: () => console.log("selected"),
-			flip: boolean("Flipped", false)
+			flip: boolean("Flipped", false),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("Dynamic", () => ({
@@ -114,7 +131,7 @@ storiesOf("Components|Overflow Menu", module)
 				using the <code style="font-family: monospace;">optionCount</code> knob <br/>
 				to change the number of menu options
 			</span>
-			<ibm-overflow-menu>
+			<ibm-overflow-menu [offset]="offset">
 				<ibm-overflow-menu-option *ngFor="let option of options(optionCount)">
 					{{option}}
 				</ibm-overflow-menu-option>
@@ -122,7 +139,8 @@ storiesOf("Components|Overflow Menu", module)
 		`,
 		props: {
 			optionCount: number("optionCount", 10),
-			options: createOptions
+			options: createOptions,
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("Programmatically", () => ({
