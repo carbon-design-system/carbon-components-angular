@@ -18,7 +18,7 @@ import { Observable } from "rxjs";
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
-			(change)="change.emit()"
+			(click)="change.emit()"
 			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
@@ -47,7 +47,7 @@ export class TableHeadCheckbox {
 		return this._ariaLabel.value;
 	}
 
-	@Output() change = new EventEmitter<boolean>();
+	@Output() change = new EventEmitter<void>();
 
 	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
 

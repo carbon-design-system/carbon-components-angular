@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import { I18n, Overridable } from "./../../i18n/i18n.module";
 import { TableItem } from "./../table-item.class";
+import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
 
 @Component({
@@ -18,14 +19,19 @@ import { Observable } from "rxjs";
 			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="selected"
+			[disabled]="disabled"
 			(change)="change.emit()">
 		</ibm-checkbox>
 	`
 })
 export class TableCheckbox {
-	@Input() row: any[];
+	@Input() row: TableItem[];
 
 	@Input() selected = false;
+
+	get disabled(): boolean {
+		return this.row ? !!(this.row as TableRow).disabled : false;
+	}
 
 	/**
 	 * Size of the table rows.

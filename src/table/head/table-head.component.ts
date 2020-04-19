@@ -177,7 +177,7 @@ export class TableHead implements AfterViewInit {
 	}
 
 	onSelectAllCheckboxChange() {
-		if (!this.selectAllCheckbox) {
+		if (!this.selectAllCheckbox && !this.selectAllCheckboxSomeSelected) {
 			this.selectAll.emit(this.model);
 		} else {
 			this.deselectAll.emit(this.model);
