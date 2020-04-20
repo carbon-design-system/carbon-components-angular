@@ -256,15 +256,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Maintains a reference to the `AbstractDropdownView` object within the content DOM.
 	 */
-	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
+	// @ts-ignore
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	/**
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
-	@ViewChild("dropdownButton") dropdownButton;
+	// @ts-ignore
+	@ViewChild("dropdownButton", { static: false }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
-	@ViewChild("dropdownMenu") dropdownMenu;
+	// @ts-ignore
+	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 
 	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**

@@ -42,7 +42,8 @@ export class Overlay {
 	/**
 	 * Maintains a reference to the view DOM element of the `Overlay`.
 	 */
-	@ViewChild("overlay") overlay: ElementRef;
+	// @ts-ignore
+	@ViewChild("overlay", { static: false }) overlay: ElementRef;
 
 	/**
 	 * Handles the user clicking on the `Overlay` which resides outside the `Modal` object.

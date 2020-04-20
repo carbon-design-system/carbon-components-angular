@@ -78,7 +78,8 @@ export class SelectionTile {
 	multiple = true;	// Set to true because of the way tile group sets it up.
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
-	@ViewChild("input") input;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input;
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;

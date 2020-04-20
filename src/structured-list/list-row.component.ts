@@ -81,7 +81,8 @@ export class ListRow implements AfterContentInit {
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 
 	ngAfterContentInit() {
 		this.columns.forEach(column => {

@@ -309,9 +309,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() close = new EventEmitter<any>();
 	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
-	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
-	@ViewChild("dropdownMenu") dropdownMenu;
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ContentChild(AbstractDropdownView, { static: false }) view: AbstractDropdownView;
+	// @ts-ignore
+	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
