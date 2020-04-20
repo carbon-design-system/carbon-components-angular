@@ -429,13 +429,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (value) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
-			} else {
-				this.view.propagateSelected(value);
-			}
+		if (this.type === "single") {
+			this.view.propagateSelected([value]);
+		} else {
+			this.view.propagateSelected(value);
 		}
+		this.updateSelected();
 	}
 
 	onBlur() {
