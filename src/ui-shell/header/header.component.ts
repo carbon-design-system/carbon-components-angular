@@ -27,7 +27,7 @@ import { I18n } from "../../i18n/i18n.module";
 			role="banner"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
-				*ngIf="!skipTo"
+				*ngIf="skipTo"
 				class="bx--skip-to-content"
 				[href]="skipTo"
 				tabindex="0">
