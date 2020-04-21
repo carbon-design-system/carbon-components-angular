@@ -34,14 +34,19 @@
       {
         "name": "next",
         "channel": "next"
-      },
+	  },
+	  {
+		"name": "v3",
+		"channel": "v3",
+		"range": "3.x"
+	},
       {
         "name": "v9",
         "channel": "carbon-v9",
         "range": "2.X"
       }
     ],
-    "tagFormat": "v${version}@latest"
+    "tagFormat": "v${version}@v3"
   },
   "config": {
     "commitizen": {
