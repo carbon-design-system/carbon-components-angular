@@ -44,7 +44,7 @@
 				"range": "2.X"
 			}
 		],
-		"tagFormat": "v${version}@next"
+		"tagFormat": "v${version}@latest"
 	},
 	"config": {
 		"commitizen": {
