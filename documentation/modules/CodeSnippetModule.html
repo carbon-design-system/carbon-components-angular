@@ -196,16 +196,12 @@
 import { NgModule } from &quot;@angular/core&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { Copy16Module } from &quot;@carbon/icons-angular/lib/copy/16&quot;;
-import { ChevronDown16Module } from &quot;@carbon/icons-angular/lib/chevron--down/16&quot;;
+import { CopyModule, ChevronDownModule } from &quot;@carbon/icons-angular&quot;;
 
-import { I18nModule } from &quot;../i18n/i18n.module&quot;;
+import { I18nModule } from &quot;../i18n/index&quot;;
 
 // imports
 import { CodeSnippet } from &quot;./code-snippet.component&quot;;
-
-// exports
-export { CodeSnippet } from &quot;./code-snippet.component&quot;;
 
 @NgModule({
 	declarations: [
@@ -218,8 +214,8 @@ export { CodeSnippet } from &quot;./code-snippet.component&quot;;
 		CommonModule,
 		FormsModule,
 		I18nModule,
-		Copy16Module,
-		ChevronDown16Module
+		CopyModule,
+		ChevronDownModule
 	]
 })
 export class CodeSnippetModule { }

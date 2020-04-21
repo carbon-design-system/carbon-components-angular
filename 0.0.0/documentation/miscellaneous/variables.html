@@ -60,9 +60,6 @@
                             <a href="#_scrollbarWidth" title="src/utils/window-tools.ts"><b>_scrollbarWidth</b>&nbsp;&nbsp;&nbsp;(src/.../window-tools.ts)</a>
                         </li>
                         <li>
-                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER" title="src/utils/animation-frame.service.ts"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../animation-frame.service.ts)</a>
-                        </li>
-                        <li>
                             <a href="#carbonFlatpickrMonthSelectPlugin" title="src/datepicker/carbon-flatpickr-month-select.ts"><b>carbonFlatpickrMonthSelectPlugin</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
                         </li>
                         <li>
@@ -78,16 +75,13 @@
                             <a href="#EXPERIMENTAL_SERVICE_PROVIDER" title="src/experimental.module.ts"><b>EXPERIMENTAL_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../experimental.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#File" title="src/file-uploader/file.component.ts"><b>File</b>&nbsp;&nbsp;&nbsp;(src/.../file.component.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#File" title="src/file-uploader/file-uploader.module.ts"><b>File</b>&nbsp;&nbsp;&nbsp;(src/.../file-uploader.module.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#getEventObservable" title="src/utils/event.service.ts"><b>getEventObservable</b>&nbsp;&nbsp;&nbsp;(src/.../event.service.ts)</a>
+                            <a href="#getEventObservable" title="src/utils/event-observable.ts"><b>getEventObservable</b>&nbsp;&nbsp;&nbsp;(src/.../event-observable.ts)</a>
                         </li>
                         <li>
                             <a href="#getScrollableParents" title="src/utils/scroll.ts"><b>getScrollableParents</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#hasScrollableParents" title="src/utils/scroll.ts"><b>hasScrollableParents</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
                         </li>
                         <li>
                             <a href="#I18N_SERVICE_PROVIDER" title="src/i18n/i18n.module.ts"><b>I18N_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
@@ -112,9 +106,6 @@
                         </li>
                         <li>
                             <a href="#noop" title="src/file-uploader/file-uploader.component.ts"><b>noop</b>&nbsp;&nbsp;&nbsp;(src/.../file-uploader.component.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#PLACEHOLDER_SERVICE_PROVIDER" title="src/placeholder/placeholder.module.ts"><b>PLACEHOLDER_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../placeholder.module.ts)</a>
                         </li>
                         <li>
                             <a href="#replace" title="src/i18n/i18n.service.ts"><b>replace</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.service.ts)</a>
@@ -165,47 +156,6 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>-1</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/utils/animation-frame.service.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER"></a>
-                        <span class="name">
-                            <b>
-                            ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER
-                            </b>
-                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-	provide: AnimationFrameServiceSingleton,
-	deps: [[new Optional(), new SkipSelf(), AnimationFrameServiceSingleton], NgZone],
-	useFactory: ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
-}</code>
                         </td>
                     </tr>
 
@@ -543,69 +493,7 @@ so some copy pasta is required</p>
             </tbody>
         </table>
 </section>
-    <h3>src/file-uploader/file.component.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="File"></a>
-                        <span class="name">
-                            <b>
-                            File
-                            </b>
-                            <a href="#File"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>File:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>FileComponent</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/file-uploader/file-uploader.module.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="File"></a>
-                        <span class="name">
-                            <b>
-                            File
-                            </b>
-                            <a href="#File"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>File:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>FileComponent</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/utils/event.service.ts</h3>
+    <h3>src/utils/event-observable.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -679,6 +567,42 @@ so some copy pasta is required</p>
 		node &#x3D; node.parentElement;
 	}
 	return elements;
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasScrollableParents"></a>
+                        <span class="name">
+                            <b>
+                            hasScrollableParents
+                            </b>
+                            <a href="#hasScrollableParents"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>hasScrollableParents:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(node: HTMLElement) &#x3D;&gt; {
+	while (node.parentElement &amp;&amp; node !&#x3D;&#x3D; document.body) {
+		if (isScrollableElement(node)) {
+			return true;
+		}
+		node &#x3D; node.parentElement;
+	}
+	return false;
 }</code>
                         </td>
                     </tr>
@@ -1028,47 +952,6 @@ If the element has an overflow set as part of its computed style it can scroll.<
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>() &#x3D;&gt; { }</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/placeholder/placeholder.module.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="PLACEHOLDER_SERVICE_PROVIDER"></a>
-                        <span class="name">
-                            <b>
-                            PLACEHOLDER_SERVICE_PROVIDER
-                            </b>
-                            <a href="#PLACEHOLDER_SERVICE_PROVIDER"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>PLACEHOLDER_SERVICE_PROVIDER:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-	provide: PlaceholderService,
-	deps: [[new Optional(), new SkipSelf(), PlaceholderService]],
-	useFactory: PLACEHOLDER_SERVICE_PROVIDER_FACTORY
-}</code>
                         </td>
                     </tr>
 

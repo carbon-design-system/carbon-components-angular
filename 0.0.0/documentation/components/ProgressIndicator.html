@@ -110,17 +110,16 @@
 		*ngFor&#x3D;&quot;let step of steps; let i &#x3D; index&quot;
 		[ngClass]&#x3D;&quot;{&#x27;bx--progress-step--disabled&#x27; : step.disabled}&quot;&gt;
 		&lt;div class&#x3D;&quot;bx--progress-step-button bx--progress-step-button--unclickable&quot; role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;-1&quot;&gt;
-			&lt;ibm-icon-checkmark-outline16 *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;complete&#x27;&quot;&gt;&lt;/ibm-icon-checkmark-outline16&gt;
+			&lt;ibm-icon-checkmark-outline size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;complete&#x27;&quot;&gt;&lt;/ibm-icon-checkmark-outline&gt;
 			&lt;svg *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;current&#x27;&quot;&gt;
-				&lt;path *ngIf&#x3D;&quot;isExperimental&quot; d&#x3D;&quot;M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0&quot; &gt;&lt;/path&gt;
+				&lt;path d&#x3D;&quot;M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0&quot; &gt;&lt;/path&gt;
 			&lt;/svg&gt;
 			&lt;svg *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;incomplete&#x27;&quot;&gt;
 				&lt;path
-					*ngIf&#x3D;&quot;isExperimental&quot;
 					d&#x3D;&quot;M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z&quot;&gt;
 				&lt;/path&gt;
 			&lt;/svg&gt;
-			&lt;ibm-icon-warning16 *ngIf&#x3D;&quot;step.state.includes(&#x27;error&#x27;)&quot; innerClass&#x3D;&quot;bx--progress__warning&quot;&gt;&lt;/ibm-icon-warning16&gt;
+			&lt;ibm-icon-warning size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;step.state.includes(&#x27;error&#x27;)&quot; innerClass&#x3D;&quot;bx--progress__warning&quot;&gt;&lt;/ibm-icon-warning&gt;
 			&lt;p
 				class&#x3D;&quot;bx--progress-label&quot;
 				*ngIf&#x3D;&quot;step.tooltip&quot;
@@ -228,9 +227,6 @@
                                 <li>
                                     <a href="#current">current</a>
                                 </li>
-                                <li>
-                                    <a href="#isExperimental">isExperimental</a>
-                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -249,7 +245,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -301,7 +297,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:78</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -325,7 +321,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:75</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -345,7 +341,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:76</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -366,7 +362,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:74</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -388,7 +384,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:72</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -425,7 +421,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -496,7 +492,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:81</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -538,28 +534,6 @@
                     </tr>
             </tbody>
         </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="isExperimental"></a>
-                        <span class="name"><b>isExperimental</b><a href="#isExperimental"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isExperimental()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:105</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
 </section>
 </div>
 
@@ -595,17 +569,16 @@ import { Step } from &quot;./progress-indicator-step.interface&quot;;
 			*ngFor&#x3D;&quot;let step of steps; let i &#x3D; index&quot;
 			[ngClass]&#x3D;&quot;{&#x27;bx--progress-step--disabled&#x27; : step.disabled}&quot;&gt;
 			&lt;div class&#x3D;&quot;bx--progress-step-button bx--progress-step-button--unclickable&quot; role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;-1&quot;&gt;
-				&lt;ibm-icon-checkmark-outline16 *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;complete&#x27;&quot;&gt;&lt;/ibm-icon-checkmark-outline16&gt;
+				&lt;ibm-icon-checkmark-outline size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;complete&#x27;&quot;&gt;&lt;/ibm-icon-checkmark-outline&gt;
 				&lt;svg *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;current&#x27;&quot;&gt;
-					&lt;path *ngIf&#x3D;&quot;isExperimental&quot; d&#x3D;&quot;M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0&quot; &gt;&lt;/path&gt;
+					&lt;path d&#x3D;&quot;M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0&quot; &gt;&lt;/path&gt;
 				&lt;/svg&gt;
 				&lt;svg *ngIf&#x3D;&quot;step.state &#x3D;&#x3D; &#x27;incomplete&#x27;&quot;&gt;
 					&lt;path
-						*ngIf&#x3D;&quot;isExperimental&quot;
 						d&#x3D;&quot;M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z&quot;&gt;
 					&lt;/path&gt;
 				&lt;/svg&gt;
-				&lt;ibm-icon-warning16 *ngIf&#x3D;&quot;step.state.includes(&#x27;error&#x27;)&quot; innerClass&#x3D;&quot;bx--progress__warning&quot;&gt;&lt;/ibm-icon-warning16&gt;
+				&lt;ibm-icon-warning size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;step.state.includes(&#x27;error&#x27;)&quot; innerClass&#x3D;&quot;bx--progress__warning&quot;&gt;&lt;/ibm-icon-warning&gt;
 				&lt;p
 					class&#x3D;&quot;bx--progress-label&quot;
 					*ngIf&#x3D;&quot;step.tooltip&quot;
@@ -669,10 +642,6 @@ export class ProgressIndicator {
 		}
 	}
 
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
-
 	constructor(protected experimental: ExperimentalService) {}
 }
 </code></pre>
@@ -710,9 +679,9 @@ export class ProgressIndicator {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul	data-progress	data-progress-current	class="bx--progress"	[ngClass]="{		\'bx--skeleton\': skeleton,		\'bx--progress--vertical\': (orientation === \'vertical\')	}">	<li		class="bx--progress-step bx--progress-step--{{step.state[0]}}"		*ngFor="let step of steps; let i = index"		[ngClass]="{\'bx--progress-step--disabled\' : step.disabled}">		<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">			<ibm-icon-checkmark-outline16 *ngIf="step.state == \'complete\'"></ibm-icon-checkmark-outline16>			<svg *ngIf="step.state == \'current\'">				<path *ngIf="isExperimental" d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>			</svg>			<svg *ngIf="step.state == \'incomplete\'">				<path					*ngIf="isExperimental"					d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">				</path>			</svg>			<ibm-icon-warning16 *ngIf="step.state.includes(\'error\')" innerClass="bx--progress__warning"></ibm-icon-warning16>			<p				class="bx--progress-label"				*ngIf="step.tooltip"				[ibmTooltip]="step.tooltip.content"				[trigger]="step.tooltip.trigger"				[placement]="step.tooltip.placement"				[title]="step.tooltip.title"				[gap]="step.tooltip.gap"				[appendInline]="step.tooltip.appendInline"				[data]="step.tooltip.data"				(click)="stepSelected.emit({ step: step, index: i })">				{{step.text}}			</p>			<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>			<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>			<span class="bx--progress-line"></span>		</div>	</li></ul></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><ul	data-progress	data-progress-current	class="bx--progress"	[ngClass]="{		\'bx--skeleton\': skeleton,		\'bx--progress--vertical\': (orientation === \'vertical\')	}">	<li		class="bx--progress-step bx--progress-step--{{step.state[0]}}"		*ngFor="let step of steps; let i = index"		[ngClass]="{\'bx--progress-step--disabled\' : step.disabled}">		<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">			<ibm-icon-checkmark-outline size="16" *ngIf="step.state == \'complete\'"></ibm-icon-checkmark-outline>			<svg *ngIf="step.state == \'current\'">				<path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>			</svg>			<svg *ngIf="step.state == \'incomplete\'">				<path					d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">				</path>			</svg>			<ibm-icon-warning size="16" *ngIf="step.state.includes(\'error\')" innerClass="bx--progress__warning"></ibm-icon-warning>			<p				class="bx--progress-label"				*ngIf="step.tooltip"				[ibmTooltip]="step.tooltip.content"				[trigger]="step.tooltip.trigger"				[placement]="step.tooltip.placement"				[title]="step.tooltip.title"				[gap]="step.tooltip.gap"				[appendInline]="step.tooltip.appendInline"				[data]="step.tooltip.data"				(click)="stepSelected.emit({ step: step, index: i })">				{{step.text}}			</p>			<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>			<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>			<span class="bx--progress-line"></span>		</div>	</li></ul></div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ProgressIndicator'};
 </script>
 <script src="../js/tree.js"></script>

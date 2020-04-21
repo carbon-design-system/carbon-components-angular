@@ -197,9 +197,6 @@
 import { I18n } from &quot;./i18n.service&quot;;
 import { ReplacePipe } from &quot;./replace.pipe&quot;;
 
-export { I18n, replace, Overridable } from &quot;./i18n.service&quot;;
-export { ReplacePipe } from &quot;./replace.pipe&quot;;
-
 // either provides a new instance of I18n, or returns the parent
 export function I18N_SERVICE_PROVIDER_FACTORY(parentService: I18n) {
 	return parentService || new I18n();

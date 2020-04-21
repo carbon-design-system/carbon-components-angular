@@ -341,20 +341,11 @@ import { Dropdown } from &quot;./dropdown.component&quot;;
 import { DropdownList } from &quot;./list/dropdown-list.component&quot;;
 
 import { ScrollableList } from &quot;./scrollable-list.directive&quot;;
-import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
-import { PlaceholderModule } from &quot;./../placeholder/placeholder.module&quot;;
+import { I18nModule } from &quot;./../i18n/index&quot;;
+import { PlaceholderModule } from &quot;./../placeholder/index&quot;;
 import { DropdownService } from &quot;./dropdown.service&quot;;
-import { ChevronDown16Module } from &quot;@carbon/icons-angular/lib/chevron--down/16&quot;;
-import { WarningFilled16Module } from &quot;@carbon/icons-angular/lib/warning--filled/16&quot;;
+import { ChevronDownModule, WarningFilledModule } from &quot;@carbon/icons-angular&quot;;
 import { UtilsModule } from &quot;./../utils/utils.module&quot;;
-
-export { Dropdown } from &quot;./dropdown.component&quot;;
-export { DropdownList } from &quot;./list/dropdown-list.component&quot;;
-
-export { ScrollableList } from &quot;./scrollable-list.directive&quot;;
-export { AbstractDropdownView } from &quot;./abstract-dropdown-view.class&quot;;
-export { ListItem } from &quot;./list-item.interface&quot;;
-export { DropdownService } from &quot;./dropdown.service&quot;;
 
 @NgModule({
 	declarations: [
@@ -372,8 +363,8 @@ export { DropdownService } from &quot;./dropdown.service&quot;;
 		FormsModule,
 		I18nModule,
 		PlaceholderModule,
-		ChevronDown16Module,
-		WarningFilled16Module,
+		ChevronDownModule,
+		WarningFilledModule,
 		UtilsModule
 	],
 	providers: [ DropdownService ]

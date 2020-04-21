@@ -245,15 +245,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 
-import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
+import { I18nModule } from &quot;./../i18n/index&quot;;
 
 import { HeaderModule } from &quot;./header/header.module&quot;;
 import { SideNavModule } from &quot;./sidenav/sidenav.module&quot;;
 import { PanelModule } from &quot;./panel/panel.module&quot;;
-
-export * from &quot;./header/header.module&quot;;
-export * from &quot;./sidenav/sidenav.module&quot;;
-export * from &quot;./panel/panel.module&quot;;
 
 @NgModule({
 	imports: [

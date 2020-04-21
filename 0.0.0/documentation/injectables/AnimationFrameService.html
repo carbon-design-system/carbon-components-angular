@@ -189,13 +189,13 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Injectable,
 	OnDestroy,
-	NgZone,
-	Optional,
-	SkipSelf
+	NgZone
 } from &quot;@angular/core&quot;;
 import { Observable, Subject, from } from &quot;rxjs&quot;;
 
-@Injectable()
+@Injectable({
+	providedIn: &quot;root&quot;
+})
 export class AnimationFrameServiceSingleton implements OnDestroy {
 	public tick: Observable&lt;number&gt;;
 
@@ -230,18 +230,6 @@ export class AnimationFrameService {
 		this.tick &#x3D; from(this.singleton.tick);
 	}
 }
-
-// TODO: use &#x60;providedIn&#x60; instead of the provider factory pattern
-// either provides a new instance of AnimationFrameServiceSingleton, or returns the parent
-export function ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY(parentService: AnimationFrameServiceSingleton, ngZone: NgZone) {
-	return parentService || new AnimationFrameServiceSingleton(ngZone);
-}
-
-export const ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER &#x3D; {
-	provide: AnimationFrameServiceSingleton,
-	deps: [[new Optional(), new SkipSelf(), AnimationFrameServiceSingleton], NgZone],
-	useFactory: ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
-};
 </code></pre>
     </div>
 

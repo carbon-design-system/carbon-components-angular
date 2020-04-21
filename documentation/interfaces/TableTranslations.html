@@ -273,7 +273,7 @@ import { TableHeaderItem } from &quot;./table-header-item.class&quot;;
 import { TableItem } from &quot;./table-item.class&quot;;
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from &quot;../common/tab.service&quot;;
-import { I18n, Overridable } from &quot;./../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;./../i18n/index&quot;;
 import { merge } from &quot;./../utils/object&quot;;
 import { DataGridInteractionModel } from &quot;./data-grid-interaction-model.class&quot;;
 import { TableDomAdapter } from &quot;./table-adapter.class&quot;;
@@ -285,6 +285,8 @@ export interface TableTranslations {
 	CHECKBOX_HEADER: string;
 	CHECKBOX_ROW: string;
 }
+
+export type TableRowSize &#x3D; &quot;sm&quot; | &quot;sh&quot; | &quot;md&quot; | &quot;lg&quot;;
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -602,7 +604,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: &quot;sm&quot; | &quot;sh&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;md&quot;;
+	@Input() size: TableRowSize &#x3D; &quot;md&quot;;
 	/**
 	 * Set to &#x60;true&#x60; for a loading table.
 	 */
@@ -631,22 +633,6 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;
-	}
-
-	/**
-	 * Controls whether to show the selection checkboxes column or not.
-	 *
-	 * @deprecated in the next major carbon-components-angular version in favor of
-	 * &#x60;showSelectionColumn&#x60; because of new attribute &#x60;enableSingleSelect&#x60;
-	 *  please use &#x60;showSelectionColumn&#x60; instead
-	 */
-	@Input()
-	set enableRowSelect(value: boolean) {
-		this.showSelectionColumn &#x3D; value;
-	}
-
-	get enableRowSelect () {
-		return this.showSelectionColumn;
 	}
 
 	/**

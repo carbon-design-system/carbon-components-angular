@@ -326,7 +326,7 @@ import {
 	EventEmitter
 } from &quot;@angular/core&quot;;
 
-import { I18n, Overridable } from &quot;./../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;./../i18n/index&quot;;
 import { ExperimentalService } from &quot;./../experimental.module&quot;;
 import { merge } from &quot;./../utils/object&quot;;
 
@@ -383,10 +383,7 @@ export interface PaginationTranslations {
 			&lt;label class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
 				{{itemsPerPageText.subject | async}}
 			&lt;/label&gt;
-			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;bx--select__item-count&#x27;: isExperimental
-				}&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--select bx--select--inline bx--select__item-count&quot;&gt;
 				&lt;select
 					[id]&#x3D;&quot;itemsPerPageSelectId&quot;
 					[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
@@ -399,19 +396,18 @@ export interface PaginationTranslations {
 					&lt;/option&gt;
 				&lt;/select&gt;
 				&lt;svg
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size&#x3D;&quot;16&quot;
 					style&#x3D;&quot;display: inherit&quot;
 					class&#x3D;&quot;bx--select__arrow&quot;
 					aria-hidden&#x3D;&quot;true&quot;
-					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+					[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 				&lt;/svg&gt;
 			&lt;/div&gt;
 			&lt;span *ngIf&#x3D;&quot;!pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			&lt;/span&gt;
 			&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			&lt;/span&gt;
 		&lt;/div&gt;
@@ -421,16 +417,10 @@ export interface PaginationTranslations {
 			&lt;p class&#x3D;&quot;bx--skeleton__text&quot; style&#x3D;&quot;width: 70px&quot;&gt;&lt;/p&gt;
 		&lt;/div&gt;
 
-		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--pagination--inline&#x27;: !isExperimental
-			}&quot;&gt;
+		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;&gt;
 			&lt;div
 				*ngIf&#x3D;&quot;!pageInputDisabled&quot;
-				class&#x3D;&quot;bx--select bx--select--inline&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;bx--select__page-number&#x27; : isExperimental
-				}&quot;&gt;
+				class&#x3D;&quot;bx--select bx--select--inline bx--select__page-number&quot;&gt;
 				&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText.subject | async}}&lt;/label&gt;
 				&lt;input
 					*ngIf&#x3D;&quot;pageOptions.length &gt; pageSelectThreshold&quot;
@@ -450,10 +440,11 @@ export interface PaginationTranslations {
 				&lt;/select&gt;
 				&lt;svg
 					*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; 1000&quot;
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size&#x3D;&quot;16&quot;
 					style&#x3D;&quot;display: inherit;&quot;
 					class&#x3D;&quot;bx--select__arrow&quot;
-					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+					[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 				&lt;/svg&gt;
 			&lt;/div&gt;
 
@@ -472,7 +463,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
-				&lt;ibm-icon-caret-left16&gt;&lt;/ibm-icon-caret-left16&gt;
+				&lt;ibm-icon-caret-left size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-left&gt;
 			&lt;/button&gt;
 
 			&lt;button
@@ -484,7 +475,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
-				&lt;ibm-icon-caret-right16&gt;&lt;/ibm-icon-caret-right16&gt;
+				&lt;ibm-icon-caret-right size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-right&gt;
 			&lt;/button&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
@@ -610,10 +601,6 @@ export class Pagination {
 	get nextPage(): number {
 		const lastPage &#x3D; this.lastPage;
 		return this.currentPage &gt;&#x3D; lastPage ? lastPage : this.currentPage + 1;
-	}
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
 	}
 
 	get pageOptions() {

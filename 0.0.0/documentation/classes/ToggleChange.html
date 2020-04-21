@@ -73,6 +73,11 @@
 
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -138,7 +143,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/toggle/toggle.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/toggle/toggle.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -178,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/toggle/toggle.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/toggle/toggle.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -214,7 +219,7 @@ import {
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
-import { I18n, Overridable } from &quot;../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;../i18n/index&quot;;
 import { Observable } from &quot;rxjs&quot;;
 
 /**
@@ -229,6 +234,8 @@ export enum ToggleState {
 
 /**
  * Used to emit changes performed on toggle components.
+ *
+ * @deprecated since v4
  */
 export class ToggleChange {
 	/**
@@ -273,7 +280,7 @@ export class ToggleChange {
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 			[attr.aria-checked]&#x3D;&quot;checked&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
+			(click)&#x3D;&quot;onClick()&quot;&gt;
 		&lt;label
 			class&#x3D;&quot;bx--toggle__label&quot;
 			[for]&#x3D;&quot;id&quot;
@@ -347,6 +354,8 @@ export class Toggle extends Checkbox {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a
 	 * click.
+	 *
+	 * @deprecated since v4
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;ToggleChange&gt;();
 
@@ -372,12 +381,15 @@ export class Toggle extends Checkbox {
 	 * Creates instance of &#x60;ToggleChange&#x60; used to propagate the change event.
 	 */
 	emitChangeEvent() {
+		/* begin deprecation */
 		let event &#x3D; new ToggleChange();
 		event.source &#x3D; this;
 		event.checked &#x3D; this.checked;
-
-		this.propagateChange(this.checked);
 		this.change.emit(event);
+		/* end deprecation */
+
+		this.checkedChange.emit(this.checked);
+		this.propagateChange(this.checked);
 	}
 
 	public isTemplate(value) {

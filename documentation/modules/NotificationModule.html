@@ -457,10 +457,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { ButtonModule } from &quot;../button/button.module&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { Close16Module } from &quot;@carbon/icons-angular/lib/close/16&quot;;
-import { ErrorFilled16Module } from &quot;@carbon/icons-angular/lib/error--filled/16&quot;;
-import { CheckmarkFilled16Module } from &quot;@carbon/icons-angular/lib/checkmark--filled/16&quot;;
-import { WarningFilled16Module } from &quot;@carbon/icons-angular/lib/warning--filled/16&quot;;
+import {
+	CloseModule,
+	ErrorFilledModule,
+	CheckmarkFilledModule,
+	WarningFilledModule
+} from &quot;@carbon/icons-angular&quot;;
 
 import { Toast } from &quot;./toast.component&quot;;
 import { ToastTitle } from &quot;./toast-title.directive&quot;;
@@ -471,18 +473,8 @@ import { NotificationSubtitle } from &quot;./notification-subtitle.directive&quo
 import { Notification } from &quot;./notification.component&quot;;
 import { NotificationService } from &quot;./notification.service&quot;;
 import { NotificationDisplayService } from &quot;./notification-display.service&quot;;
-import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
+import { I18nModule } from &quot;./../i18n/index&quot;;
 import { ExperimentalModule } from &quot;./../experimental.module&quot;;
-
-export { NotificationService } from &quot;./notification.service&quot;;
-export { NotificationDisplayService } from &quot;./notification-display.service&quot;;
-export { Notification } from &quot;./notification.component&quot;;
-export { Toast } from &quot;./toast.component&quot;;
-export { ToastTitle } from &quot;./toast-title.directive&quot;;
-export { ToastSubtitle } from &quot;./toast-subtitle.directive&quot;;
-export { ToastCaption } from &quot;./toast-caption.directive&quot;;
-export { NotificationTitle } from &quot;./notification-title.directive&quot;;
-export { NotificationSubtitle } from &quot;./notification-subtitle.directive&quot;;
 
 @NgModule({
 	declarations: [
@@ -509,10 +501,10 @@ export { NotificationSubtitle } from &quot;./notification-subtitle.directive&quo
 		CommonModule,
 		I18nModule,
 		ExperimentalModule,
-		Close16Module,
-		ErrorFilled16Module,
-		CheckmarkFilled16Module,
-		WarningFilled16Module
+		CloseModule,
+		ErrorFilledModule,
+		CheckmarkFilledModule,
+		WarningFilledModule
 	],
 	providers: [NotificationService, NotificationDisplayService]
 })

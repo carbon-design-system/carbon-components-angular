@@ -73,6 +73,11 @@
 
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -138,7 +143,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/checkbox/checkbox.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/checkbox/checkbox.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -178,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/checkbox/checkbox.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/checkbox/checkbox.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -230,6 +235,8 @@ export enum CheckboxState {
 
 /**
  * Used to emit changes performed on checkbox components.
+ *
+ * @deprecated since v4
  */
 export class CheckboxChange {
 	/**
@@ -241,6 +248,8 @@ export class CheckboxChange {
 	 */
 	checked: boolean;
 }
+
+export type CheckboxValue &#x3D; boolean | &quot;on&quot; | &quot;off&quot;;
 
 /**
  * [See demo](../../?path&#x3D;/story/checkbox--basic)
@@ -265,7 +274,7 @@ export class CheckboxChange {
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 			[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
+			(click)&#x3D;&quot;onClick()&quot;&gt;
 		&lt;label
 			[for]&#x3D;&quot;id&quot;
 			class&#x3D;&quot;bx--checkbox-label&quot;
@@ -294,10 +303,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Size of the checkbox.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: &quot;sm&quot; | &quot;md&quot; &#x3D; &quot;md&quot;;
 	/**
 	 * Set to &#x60;true&#x60; for checkbox to be rendered with nested styles.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() nested: boolean;
 	/**
@@ -331,26 +344,47 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Sets the value attribute on the &#x60;input&#x60; element.
 	 */
-	@Input() value: string;
+	@Input() value: CheckboxValue;
 	/**
 	 * Used to set the &#x60;aria-label&#x60; attribute on the input element.
+	 *
+	 * @deprecated since v4 use the &#x60;ariaLabel&#x60; input instead
 	 */
 	// tslint:disable-next-line:no-input-rename
-	@Input(&quot;aria-label&quot;) ariaLabel &#x3D; &quot;&quot;;
+	@Input(&quot;aria-label&quot;) set ariaLabel(value: string) {
+		this._ariaLabel &#x3D; value;
+	}
+
+	get ariaLabel() {
+		return this._ariaLabel;
+	}
+
+	// TODO: drop the &#x60;_&#x60;
+	// tslint:disable-next-line:no-input-rename
+	@Input(&quot;ariaLabel&quot;) _ariaLabel &#x3D; &quot;&quot;;
+
 	/**
 	 * Used to set the &#x60;aria-labelledby&#x60; attribute on the input element.
+	 *
+	 * @deprecated since v4 use the &#x60;ariaLabelledby&#x60; input instead
 	 */
 	// tslint:disable-next-line:no-input-rename
-	@Input(&quot;aria-labelledby&quot;) ariaLabelledby: string;
-	/**
-	 * Reflects whether the checkbox state is indeterminate.
-	 */
-	get indeterminate() {
-		return this._indeterminate;
+	@Input(&quot;aria-labelledby&quot;) set ariaLabelledby(value: string) {
+		this._ariaLabelledby &#x3D; value;
 	}
+
+	get ariaLabelledby() {
+		return this._ariaLabelledby;
+	}
+
+	// TODO: drop the &#x60;_&#x60;
+	// tslint:disable-next-line:no-input-rename
+	@Input(&quot;ariaLabelledby&quot;) _ariaLabelledby: string;
 
 	/**
 	 * Set the checkbox&#x27;s indeterminate state to match the parameter and transition the view to reflect the change.
+	 *
+	 * Allows double binding with the &#x60;indeterminateChange&#x60; Output.
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
 		let changed &#x3D; this._indeterminate !&#x3D;&#x3D; indeterminate;
@@ -366,14 +400,16 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	}
 
 	/**
-	 * Returns value &#x60;true&#x60; if state is selected for the checkbox.
+	 * Reflects whether the checkbox state is indeterminate.
 	 */
-	get checked() {
-		return this._checked;
+	get indeterminate() {
+		return this._indeterminate;
 	}
 
 	/**
-	 * Updating the state of a checkbox to match the state of the parameter passed in.
+	 * Sets the &#x60;checked&#x60; state. &#x60;true&#x60; for checked, &#x60;false&#x60; for unchecked
+	 *
+	 * Allows double binding with the &#x60;checkedChange&#x60; Output.
 	 */
 	@Input() set checked (checked: boolean) {
 		if (checked !&#x3D;&#x3D; this.checked) {
@@ -388,6 +424,13 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		}
 	}
 
+	/**
+	 * Returns value &#x60;true&#x60; if state is selected for the checkbox.
+	 */
+	get checked() {
+		return this._checked;
+	}
+
 	@HostBinding(&quot;class.bx--checkbox-wrapper&quot;) get checkboxWrapperClass() {
 		return !this.inline;
 	}
@@ -398,8 +441,18 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
 	 * click.
+	 *
+	 * @deprecated since v4 use &#x60;checked&#x60; and &#x60;checkedChange&#x60; instead
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;CheckboxChange&gt;();
+
+	/**
+	 * Emits an event when the value of the checkbox changes.
+	 *
+	 * Allows double biding with the &#x60;checked&#x60; Input.
+	 */
+	@Output() checkedChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
 	/**
 	 * Emits event notifying other classes when a change in state occurs specifically
 	 * on an indeterminate checkbox.
@@ -415,12 +468,16 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	_indeterminate &#x3D; false;
 
-	currentCheckboxState: CheckboxState &#x3D; CheckboxState.Init;
+	/**
+	 * Keeps a reference to the checkboxes current state, as defined in &#x60;CheckboxState&#x60;.
+	 */
+	currentCheckboxState &#x3D; CheckboxState.Init;
 
 	/**
 	 * Maintains a reference to the view DOM element of the &#x60;Checkbox&#x60;.
 	 */
-	@ViewChild(&quot;inputCheckbox&quot;) inputCheckbox: ElementRef;
+	// @ts-ignore
+	@ViewChild(&quot;inputCheckbox&quot;, { static: false }) inputCheckbox: ElementRef;
 
 	/**
 	 * Creates an instance of &#x60;Checkbox&#x60;.
@@ -436,7 +493,13 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		this.checked &#x3D; !this.checked;
 	}
 
-	// this is the initial value set to the component
+	/**
+	 * Writes a value from &#x60;ngModel&#x60; to the component.
+	 *
+	 * In this case the value is the &#x60;checked&#x60; property.
+	 *
+	 * @param value boolean, corresponds to the &#x60;checked&#x60; property.
+	 */
 	public writeValue(value: any) {
 		this.checked &#x3D; !!value;
 	}
@@ -459,14 +522,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Executes on the event of a change within &#x60;Checkbox&#x60; to block propagation.
 	 */
-	onChange(event) {
+	onChange(event: Event) {
 		event.stopPropagation();
 	}
 
 	/**
 	 * Handles click events on the &#x60;Checkbox&#x60; and emits changes to other classes.
 	 */
-	onClick(event) {
+	onClick() {
 		if (!this.disabled) {
 			this.toggle();
 			this.transitionCheckboxState(this._checked ? CheckboxState.Checked : CheckboxState.Unchecked);
@@ -505,12 +568,15 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Creates instance of &#x60;CheckboxChange&#x60; used to propagate the change event.
 	 */
 	emitChangeEvent() {
+		/* begin deprecation */
 		let event &#x3D; new CheckboxChange();
 		event.source &#x3D; this;
 		event.checked &#x3D; this.checked;
-
-		this.propagateChange(this.checked);
 		this.change.emit(event);
+		/* end deprecation */
+
+		this.checkedChange.emit(this.checked);
+		this.propagateChange(this.checked);
 	}
 
 	/**

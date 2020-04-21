@@ -114,8 +114,7 @@ export class ModalDemo {
     </p>
     <p class="comment">
                 <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
     </p>
 
 
@@ -143,7 +142,10 @@ export class ModalDemo {
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ibm-overlay [theme]&#x3D;&quot;theme&quot; (overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ibm-overlay
+	[theme]&#x3D;&quot;theme&quot;
+	[open]&#x3D;&quot;open&quot;
+	(overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
 	&lt;div
 		class&#x3D;&quot;bx--modal-container&quot;
 		[ngClass]&#x3D;&quot;{
@@ -151,11 +153,10 @@ export class ModalDemo {
 			&#x27;bx--modal-container--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
 			&#x27;bx--modal-container--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 		}&quot;
-		[@modalState]&#x3D;&quot;modalState&quot;
 		role&#x3D;&quot;dialog&quot;
 		aria-modal&#x3D;&quot;true&quot;
 		style&#x3D;&quot;z-index:1;&quot;
-		[attr.aria-label]&#x3D;&quot;modalLabel&quot;
+		[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 		#modal&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;div
@@ -199,9 +200,6 @@ export class ModalDemo {
                                 <a href="#modalService">modalService</a>
                             </li>
                             <li>
-                                <a href="#modalState">modalState</a>
-                            </li>
-                            <li>
                                 <a href="#selectorPrimaryFocus">selectorPrimaryFocus</a>
                             </li>
                         </ul>
@@ -217,13 +215,14 @@ export class ModalDemo {
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#focusInitialElement">focusInitialElement</a>
+                            </li>
+                            <li>
                                 <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
-                                <a href="#ngOnDestroy">ngOnDestroy</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnChanges">ngOnChanges</a>
                             </li>
                         </ul>
                     </td>
@@ -238,16 +237,25 @@ export class ModalDemo {
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ariaLabel">ariaLabel</a>
+                            </li>
+                            <li>
                                 <a href="#hasScrollingContent">hasScrollingContent</a>
                             </li>
                             <li>
                                 <a href="#modalLabel">modalLabel</a>
                             </li>
                             <li>
+                                <a href="#open">open</a>
+                            </li>
+                            <li>
                                 <a href="#size">size</a>
                             </li>
                             <li>
                                 <a href="#theme">theme</a>
+                            </li>
+                            <li>
+                                <a href="#trigger">trigger</a>
                             </li>
                         </ul>
                     </td>
@@ -295,6 +303,9 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <ul class="index-list">
+                                <li>
+                                    <a href="#modalLabel">modalLabel</a>
+                                </li>
                                 <li>
                                     <a href="#shouldShowScrollbar">shouldShowScrollbar</a>
                                 </li>
@@ -362,6 +373,26 @@ export class ModalDemo {
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="ariaLabel"></a>
+                        <code>ariaLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>&quot;default&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/modal/modal.component.ts:127</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="hasScrollingContent"></a>
                         <code>hasScrollingContent</code>
                     </td>
@@ -382,7 +413,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/modal/modal.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/modal/modal.component.ts:145</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -397,14 +428,37 @@ It is set to <code>null</code> by default which indicates not to override automa
                     <td class="col-md-10">
                         <div><p>Label for the modal.</p>
 </div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/modal/modal.component.ts:119</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="open"></a>
+                        <code>open</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls the visibility of the modal when used directly in a template</p>
+</div>
                         <p>
-                            <em>Default value : </em><code>&quot;default&quot;</code>
+                            <em>Default value : </em><code>false</code>
                         </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/modal/modal.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/modal/modal.component.ts:132</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -427,7 +481,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/modal/modal.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/modal/modal.component.ts:108</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -453,7 +507,30 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/modal/modal.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/modal/modal.component.ts:112</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="trigger"></a>
+                        <code>trigger</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>The element that triggers the modal, which should receive focus when the modal closes</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>HTMLElement</code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/modal/modal.component.ts:137</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -477,7 +554,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/modal/modal.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/modal/modal.component.ts:154</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -498,7 +575,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/modal/modal.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/modal/modal.component.ts:150</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -533,7 +610,7 @@ It is set to <code>null</code> by default which indicates not to override automa
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/modal/modal.component.ts:205</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/modal/modal.component.ts:195</a></div>
                             </td>
                         </tr>
 
@@ -558,6 +635,46 @@ It is set to <code>null</code> by default which indicates not to override automa
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="focusInitialElement"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            focusInitialElement
+                            </b>
+                            <a href="#focusInitialElement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>focusInitialElement()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/modal/modal.component.ts:229</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="ngAfterViewInit"></a>
                         <span class="name">
                             <b>
@@ -576,7 +693,7 @@ It is set to <code>null</code> by default which indicates not to override automa
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/modal/modal.component.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/modal/modal.component.ts:187</a></div>
                             </td>
                         </tr>
 
@@ -598,78 +715,66 @@ It is set to <code>null</code> by default which indicates not to override automa
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="ngOnDestroy"></a>
+                        <a name="ngOnChanges"></a>
                         <span class="name">
                             <b>
-                            ngOnDestroy
+                            ngOnChanges
                             </b>
-                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                            <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>ngOnDestroy()</code>
+<code>ngOnChanges(undefined: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/modal/modal.component.ts:197</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/modal/modal.component.ts:171</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Emit the close event when the modal component is destroyed.</p>
-</div>
 
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ngOnInit"></a>
-                        <span class="name">
-                            <b>
-                            ngOnInit
-                            </b>
-                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>ngOnInit()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/modal/modal.component.ts:174</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Set modalState on the modal component when it is initialized.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -711,13 +816,13 @@ It is set to <code>null</code> by default which indicates not to override automa
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ViewChild(&#x27;modal&#x27;)<br />
+                                @ViewChild(&#x27;modal&#x27;, {static: undefined})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/modal/modal.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/modal/modal.component.ts:159</a></div>
                             </td>
                         </tr>
 
@@ -762,51 +867,6 @@ It is set to <code>null</code> by default which indicates not to override automa
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="modalState"></a>
-                        <span class="name">
-                            <b>
-                            modalState
-                            </b>
-                            <a href="#modalState"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>modalState:     <code>&quot;in&quot; | &quot;out&quot;</code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>&quot;in&quot; | &quot;out&quot;</code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;out&quot;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/modal/modal.component.ts:159</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Controls the transitions of the <code>Modal</code> component.</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -865,6 +925,77 @@ It is set to <code>null</code> by default which indicates not to override automa
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="modalLabel"></a>
+                        <span class="name"><b>modalLabel</b><a href="#modalLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>modalLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/modal/modal.component.ts:123</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>modalLabel(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/modal/modal.component.ts:119</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Label for the modal.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="shouldShowScrollbar"></a>
                         <span class="name"><b>shouldShowScrollbar</b><a href="#shouldShowScrollbar"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -877,7 +1008,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/modal/modal.component.ts:226</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/modal/modal.component.ts:218</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -904,19 +1035,12 @@ import {
 	EventEmitter,
 	HostListener,
 	Input,
-	OnDestroy,
-	OnInit,
 	Output,
 	ElementRef,
-	ViewChild
+	ViewChild,
+	SimpleChanges,
+	OnChanges
 } from &quot;@angular/core&quot;;
-import {
-	trigger,
-	state,
-	style,
-	transition,
-	animate
-} from &quot;@angular/animations&quot;;
 import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quot;;
 
 /**
@@ -982,7 +1106,10 @@ export class ModalDemo {
 @Component({
 	selector: &quot;ibm-modal&quot;,
 	template: &#x60;
-		&lt;ibm-overlay [theme]&#x3D;&quot;theme&quot; (overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
+		&lt;ibm-overlay
+			[theme]&#x3D;&quot;theme&quot;
+			[open]&#x3D;&quot;open&quot;
+			(overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
 			&lt;div
 				class&#x3D;&quot;bx--modal-container&quot;
 				[ngClass]&#x3D;&quot;{
@@ -990,11 +1117,10 @@ export class ModalDemo {
 					&#x27;bx--modal-container--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
 					&#x27;bx--modal-container--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 				}&quot;
-				[@modalState]&#x3D;&quot;modalState&quot;
 				role&#x3D;&quot;dialog&quot;
 				aria-modal&#x3D;&quot;true&quot;
 				style&#x3D;&quot;z-index:1;&quot;
-				[attr.aria-label]&#x3D;&quot;modalLabel&quot;
+				[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 				#modal&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
 				&lt;div
@@ -1003,20 +1129,9 @@ export class ModalDemo {
 				&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/ibm-overlay&gt;
-	&#x60;,
-	animations: [
-		trigger(&quot;modalState&quot;, [
-			state(&quot;void&quot;, style({transform: &quot;translate(0, 5%)&quot;, opacity: 0})),
-			transition(&quot;:enter&quot;, [
-				animate(&quot;200ms ease-in&quot;)
-			]),
-			transition(&quot;:leave&quot;, [
-				animate(200, style({transform: &quot;translate(0, 5%)&quot;, opacity: 0}))
-			])
-		])
-	]
+	&#x60;
 })
-export class Modal implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -1028,8 +1143,28 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 
 	/**
 	 * Label for the modal.
+	 *
+	 * @deprecated since v4
 	 */
-	@Input() modalLabel &#x3D; &quot;default&quot;;
+	@Input() set modalLabel(value: string) {
+		this.ariaLabel &#x3D; value;
+	}
+
+	get modalLabel() {
+		return this.ariaLabel;
+	}
+
+	@Input() ariaLabel &#x3D; &quot;default&quot;;
+
+	/**
+	 * Controls the visibility of the modal when used directly in a template
+	 */
+	@Input() open &#x3D; false;
+
+	/**
+	 * The element that triggers the modal, which should receive focus when the modal closes
+	 */
+	@Input() trigger: HTMLElement;
 
 	/**
 	 * Specify whether the modal contains scrolling content. This property overrides the automatic
@@ -1050,12 +1185,8 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the &#x60;Modal&#x60;.
 	 */
-	@ViewChild(&quot;modal&quot;) modal: ElementRef;
-
-	/**
-	 * Controls the transitions of the &#x60;Modal&#x60; component.
-	 */
-	modalState: &quot;in&quot; | &quot;out&quot; &#x3D; &quot;out&quot;;
+	// @ts-ignore
+	@ViewChild(&quot;modal&quot;, { static: false }) modal: ElementRef;
 
 	/**
 	 * An element should have &#x27;modal-primary-focus&#x27; as an attribute to receive initial focus within the &#x60;Modal&#x60; component.
@@ -1067,34 +1198,24 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 */
 	constructor(public modalService: ModalService) {}
 
-	/**
-	 * Set modalState on the modal component when it is initialized.
-	 */
-	ngOnInit() {
-		this.modalState &#x3D; &quot;in&quot;;
+	ngOnChanges({ open }: SimpleChanges) {
+		if (open) {
+			if (open.currentValue) {
+				// &#x60;100&#x60; is just enough time to allow the modal
+				// to become visible, so that we can set focus
+				setTimeout(() &#x3D;&gt; this.focusInitialElement(), 100);
+			} else if (this.trigger) {
+				this.trigger.focus();
+			}
+		}
 	}
+
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
 	 */
 	ngAfterViewInit() {
-		const primaryFocusElement &#x3D; this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
-		if (primaryFocusElement &amp;&amp; primaryFocusElement.focus) {
-			setTimeout(() &#x3D;&gt; primaryFocusElement.focus());
-			return;
-		}
-		if (getFocusElementList(this.modal.nativeElement).length &gt; 0) {
-			setTimeout(() &#x3D;&gt; getFocusElementList(this.modal.nativeElement)[0].focus());
-		} else {
-			setTimeout(() &#x3D;&gt; this.modal.nativeElement.focus());
-		}
-	}
-
-	/**
-	 * Emit the close event when the modal component is destroyed.
-	 */
-	ngOnDestroy() {
-		this.modalState &#x3D; &quot;out&quot;;
+		this.focusInitialElement();
 	}
 
 	/**
@@ -1106,6 +1227,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			case &quot;Escape&quot;: {
 				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 				this.modalService.destroy();  // destroy top (latest) modal
+				this.close.emit();
 				break;
 			}
 
@@ -1115,6 +1237,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			}
 		}
 	}
+
 	/**
 	 * This detects whether or not the modal contains scrolling content.
 	 *
@@ -1130,6 +1253,17 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			return modalContentScrollHeight &gt; modalContentHeight;
 		} else {
 			return false;
+		}
+	}
+
+	protected focusInitialElement() {
+		const primaryFocusElement &#x3D; this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
+		if (primaryFocusElement &amp;&amp; primaryFocusElement.focus) {
+			setTimeout(() &#x3D;&gt; primaryFocusElement.focus());
+		} else if (getFocusElementList(this.modal.nativeElement).length &gt; 0) {
+			setTimeout(() &#x3D;&gt; getFocusElementList(this.modal.nativeElement)[0].focus());
+		} else {
+			setTimeout(() &#x3D;&gt; this.modal.nativeElement.focus());
 		}
 	}
 }
@@ -1168,9 +1302,9 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">	<div		class="bx--modal-container"		[ngClass]="{			\'bx--modal-container--xs\': size === \'xs\',			\'bx--modal-container--sm\': size === \'sm\',			\'bx--modal-container--lg\': size === \'lg\'		}"		[@modalState]="modalState"		role="dialog"		aria-modal="true"		style="z-index:1;"		[attr.aria-label]="modalLabel"		#modal>		<ng-content></ng-content>		<div			*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"			class="bx--modal-content--overflow-indicator">		</div>	</div></ibm-overlay>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><ibm-overlay	[theme]="theme"	[open]="open"	(overlaySelect)="overlaySelected.emit()">	<div		class="bx--modal-container"		[ngClass]="{			\'bx--modal-container--xs\': size === \'xs\',			\'bx--modal-container--sm\': size === \'sm\',			\'bx--modal-container--lg\': size === \'lg\'		}"		role="dialog"		aria-modal="true"		style="z-index:1;"		[attr.aria-label]="ariaLabel"		#modal>		<ng-content></ng-content>		<div			*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"			class="bx--modal-content--overflow-indicator">		</div>	</div></ibm-overlay>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Modal'};
 </script>
 <script src="../js/tree.js"></script>

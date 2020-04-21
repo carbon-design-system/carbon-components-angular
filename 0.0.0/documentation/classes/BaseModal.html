@@ -95,6 +95,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#open">open</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -146,13 +160,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modal/base-modal.class.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modal/base-modal.class.ts:22</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Default method to handle closing the modal</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -165,7 +181,31 @@
 </section>
 
 
-
+            <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="open"></a>
+                        <code>open</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls the open state of the modal</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modal/base-modal.class.ts:17</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
             <section>
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -176,13 +216,15 @@
                         <code>close</code>
                     </td>
                     <td class="col-md-10">
+                        <div><p>Base event emitter to propagate close events</p>
+</div>
                         <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modal/base-modal.class.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modal/base-modal.class.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -194,7 +236,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Output, EventEmitter } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Output, EventEmitter, Input } from &quot;@angular/core&quot;;
 
 /**
  * Extend &#x60;BaseModal&#x60; in your custom modal implementations to ensure consistent close behavior.
@@ -202,7 +244,19 @@
  * &#x60;ModalService&#x60; depends on the &#x60;close&#x60; event to correctly clean up the component.
  */
 export class BaseModal {
+	/**
+	 * Base event emitter to propagate close events
+	 */
 	@Output() close &#x3D; new EventEmitter();
+
+	/**
+	 * Controls the open state of the modal
+	 */
+	@Input() open &#x3D; false;
+
+	/**
+	 * Default method to handle closing the modal
+	 */
 	closeModal(): void {
 		this.close.emit();
 	}

@@ -210,16 +210,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
-import { ChevronDown16Module } from &quot;@carbon/icons-angular/lib/chevron--down/16&quot;;
-import { CaretLeft16Module } from &quot;@carbon/icons-angular/lib/caret--left/16&quot;;
-import { CaretRight16Module } from &quot;@carbon/icons-angular/lib/caret--right/16&quot;;
+import {
+	ChevronDownModule,
+	CaretLeftModule,
+	CaretRightModule
+} from &quot;@carbon/icons-angular&quot;;
 
 import { Pagination } from &quot;./pagination.component&quot;;
-import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
+import { I18nModule } from &quot;./../i18n/index&quot;;
 import { ExperimentalModule } from &quot;./../experimental.module&quot;;
-
-export { PaginationModel } from &quot;./pagination-model.class&quot;;
-export { Pagination } from &quot;./pagination.component&quot;;
 
 @NgModule({
 	declarations: [
@@ -233,9 +232,9 @@ export { Pagination } from &quot;./pagination.component&quot;;
 		FormsModule,
 		I18nModule,
 		ExperimentalModule,
-		ChevronDown16Module,
-		CaretLeft16Module,
-		CaretRight16Module
+		ChevronDownModule,
+		CaretLeftModule,
+		CaretRightModule
 	]
 })
 export class PaginationModule {}

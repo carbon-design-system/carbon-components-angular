@@ -334,7 +334,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dropdown/dropdown.service.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/dropdown/dropdown.service.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -410,7 +410,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dropdown/dropdown.service.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dropdown/dropdown.service.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -450,7 +450,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dropdown/dropdown.service.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/dropdown/dropdown.service.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -524,7 +524,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dropdown/dropdown.service.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/dropdown/dropdown.service.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -773,7 +773,7 @@ requestAnimationFrame is tracked only if the <code>Dropdown</code> is appended t
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ElementRef, OnDestroy } from &quot;@angular/core&quot;;
-import { PlaceholderService } from &quot;./../placeholder/placeholder.module&quot;;
+import { PlaceholderService } from &quot;./../placeholder/index&quot;;
 import { Subscription } from &quot;rxjs&quot;;
 import { position } from &quot;@carbon/utils-position&quot;;
 import { AnimationFrameService } from &quot;./../utils/utils.module&quot;;
@@ -836,6 +836,9 @@ export class DropdownService implements OnDestroy {
 		this.animationFrameSubscription &#x3D; this.animationFrameService.tick.subscribe(() &#x3D;&gt; {
 			this.positionDropdown(parentRef, dropdownWrapper);
 		});
+
+		// run one position in sync, so we&#x27;re less likely to have the view &quot;jump&quot; as we focus
+		this.positionDropdown(parentRef, dropdownWrapper);
 
 		return dropdownWrapper;
 	}

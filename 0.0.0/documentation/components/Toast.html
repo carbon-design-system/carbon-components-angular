@@ -110,18 +110,21 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ibm-icon-error-filled16
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ibm-icon-error-filled
+	size&#x3D;&quot;16&quot;
 	*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;error&#x27;&quot;
 	class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-&lt;/ibm-icon-error-filled16&gt;
-&lt;ibm-icon-warning-filled16
+&lt;/ibm-icon-error-filled&gt;
+&lt;ibm-icon-warning-filled
+	size&#x3D;&quot;16&quot;
 	*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;warning&#x27;&quot;
 	class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-&lt;/ibm-icon-warning-filled16&gt;
-&lt;ibm-icon-checkmark-filled16
+&lt;/ibm-icon-warning-filled&gt;
+&lt;ibm-icon-checkmark-filled
+	size&#x3D;&quot;16&quot;
 	*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
 	class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-&lt;/ibm-icon-checkmark-filled16&gt;
+&lt;/ibm-icon-checkmark-filled&gt;
 &lt;div class&#x3D;&quot;bx--toast-notification__details&quot;&gt;
 	&lt;h3 *ngIf&#x3D;&quot;!notificationObj.template&quot; ibmToastTitle [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/h3&gt;
 	&lt;p *ngIf&#x3D;&quot;!notificationObj.template&quot; ibmToastSubtitle [innerHTML]&#x3D;&quot;notificationObj.subtitle&quot;&gt;&lt;/p&gt;
@@ -134,7 +137,7 @@
 	type&#x3D;&quot;button&quot;
 	[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel&quot;
 	(click)&#x3D;&quot;onClose()&quot;&gt;
-	&lt;ibm-icon-close16 class&#x3D;&quot;bx--toast-notification__close-icon&quot;&gt;&lt;/ibm-icon-close16&gt;
+	&lt;ibm-icon-close size&#x3D;&quot;16&quot; class&#x3D;&quot;bx--toast-notification__close-icon&quot;&gt;&lt;/ibm-icon-close&gt;
 &lt;/button&gt;
 	</code></pre></td>
             </tr>
@@ -309,20 +312,6 @@
                 </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#isExperimental">isExperimental</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -338,7 +327,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/toast.component.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/toast.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -421,7 +410,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/notification/toast.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/notification/toast.component.ts:62</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -452,7 +441,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Notification:74</div>
+                                    <div class="io-line">Defined in Notification:77</div>
                             </td>
                         </tr>
             </tbody>
@@ -482,7 +471,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Notification:87</div>
+                                    <div class="io-line">Defined in Notification:90</div>
                             </td>
                         </tr>
             </tbody>
@@ -515,7 +504,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/notification/toast.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/notification/toast.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -548,7 +537,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/notification/toast.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/notification/toast.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -581,7 +570,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/notification/toast.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/toast.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -609,7 +598,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/toast.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/notification/toast.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -637,7 +626,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/notification/toast.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/notification/toast.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +654,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/notification/toast.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/toast.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -693,7 +682,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/notification/toast.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/notification/toast.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -721,7 +710,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/notification/toast.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/notification/toast.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -760,7 +749,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:93</div>
+                                    <div class="io-line">Defined in Notification:97</div>
                             </td>
                         </tr>
 
@@ -799,7 +788,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:95</div>
+                                    <div class="io-line">Defined in Notification:99</div>
                             </td>
                         </tr>
 
@@ -838,7 +827,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:94</div>
+                                    <div class="io-line">Defined in Notification:98</div>
                             </td>
                         </tr>
 
@@ -872,7 +861,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:97</div>
+                                    <div class="io-line">Defined in Notification:101</div>
                             </td>
                         </tr>
 
@@ -906,7 +895,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:98</div>
+                                    <div class="io-line">Defined in Notification:102</div>
                             </td>
                         </tr>
 
@@ -940,7 +929,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:101</div>
+                                    <div class="io-line">Defined in Notification:105</div>
                             </td>
                         </tr>
 
@@ -974,7 +963,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:99</div>
+                                    <div class="io-line">Defined in Notification:103</div>
                             </td>
                         </tr>
 
@@ -1008,7 +997,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:100</div>
+                                    <div class="io-line">Defined in Notification:104</div>
                             </td>
                         </tr>
 
@@ -1045,7 +1034,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/notification/toast.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/notification/toast.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -1089,7 +1078,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:136</div>
+                                    <div class="io-line">Defined in Notification:140</div>
                             </td>
                         </tr>
 
@@ -1133,7 +1122,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:125</div>
+                                    <div class="io-line">Defined in Notification:129</div>
                             </td>
                         </tr>
 
@@ -1213,7 +1202,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:121</div>
+                                    <div class="io-line">Defined in Notification:125</div>
                             </td>
                         </tr>
 
@@ -1272,7 +1261,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/notification/toast.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/notification/toast.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -1318,7 +1307,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:114</div>
+                                    <div class="io-line">Defined in Notification:118</div>
                             </td>
                         </tr>
 
@@ -1358,7 +1347,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:89</div>
+                                    <div class="io-line">Defined in Notification:92</div>
                             </td>
                         </tr>
 
@@ -1410,7 +1399,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:107</div>
+                                    <div class="io-line">Defined in Notification:111</div>
                             </td>
                         </tr>
 
@@ -1441,7 +1430,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ViewChild(&#x27;notification&#x27;)<br />
+                                @ViewChild(&#x27;notification&#x27;, {static: undefined})<br />
                             </code>
                         </td>
                     </tr>
@@ -1453,7 +1442,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:91</div>
+                                    <div class="io-line">Defined in Notification:95</div>
                             </td>
                         </tr>
 
@@ -1500,7 +1489,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Notification:66</div>
+                                    <div class="io-line">Defined in Notification:69</div>
                             </td>
                         </tr>
 
@@ -1509,33 +1498,6 @@
         </table>
 </section>
 
-    <section>
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="isExperimental"></a>
-                        <span class="name"><b>isExperimental</b><a href="#isExperimental"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isExperimental()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/toast.component.ts:72</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-</section>
 </div>
 
 
@@ -1551,7 +1513,7 @@ import { ToastContent } from &quot;./notification-content.interface&quot;;
 import { Notification } from &quot;./notification.component&quot;;
 import { ExperimentalService } from &quot;./../experimental.module&quot;;
 import { NotificationDisplayService } from &quot;./notification-display.service&quot;;
-import { I18n } from &quot;./../i18n/i18n.module&quot;;
+import { I18n } from &quot;./../i18n/index&quot;;
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -1563,18 +1525,21 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 @Component({
 	selector: &quot;ibm-toast&quot;,
 	template: &#x60;
-		&lt;ibm-icon-error-filled16
+		&lt;ibm-icon-error-filled
+			size&#x3D;&quot;16&quot;
 			*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;error&#x27;&quot;
 			class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-		&lt;/ibm-icon-error-filled16&gt;
-		&lt;ibm-icon-warning-filled16
+		&lt;/ibm-icon-error-filled&gt;
+		&lt;ibm-icon-warning-filled
+			size&#x3D;&quot;16&quot;
 			*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;warning&#x27;&quot;
 			class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-		&lt;/ibm-icon-warning-filled16&gt;
-		&lt;ibm-icon-checkmark-filled16
+		&lt;/ibm-icon-warning-filled&gt;
+		&lt;ibm-icon-checkmark-filled
+			size&#x3D;&quot;16&quot;
 			*ngIf&#x3D;&quot;notificationObj.type &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;
 			class&#x3D;&quot;bx--toast-notification__icon&quot;&gt;
-		&lt;/ibm-icon-checkmark-filled16&gt;
+		&lt;/ibm-icon-checkmark-filled&gt;
 		&lt;div class&#x3D;&quot;bx--toast-notification__details&quot;&gt;
 			&lt;h3 *ngIf&#x3D;&quot;!notificationObj.template&quot; ibmToastTitle [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/h3&gt;
 			&lt;p *ngIf&#x3D;&quot;!notificationObj.template&quot; ibmToastSubtitle [innerHTML]&#x3D;&quot;notificationObj.subtitle&quot;&gt;&lt;/p&gt;
@@ -1587,7 +1552,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 			type&#x3D;&quot;button&quot;
 			[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel&quot;
 			(click)&#x3D;&quot;onClose()&quot;&gt;
-			&lt;ibm-icon-close16 class&#x3D;&quot;bx--toast-notification__close-icon&quot;&gt;&lt;/ibm-icon-close16&gt;
+			&lt;ibm-icon-close size&#x3D;&quot;16&quot; class&#x3D;&quot;bx--toast-notification__close-icon&quot;&gt;&lt;/ibm-icon-close&gt;
 		&lt;/button&gt;
 	&#x60;
 })
@@ -1609,11 +1574,6 @@ export class Toast extends Notification implements OnInit {
 	@HostBinding(&quot;class.bx--toast-notification--success&quot;) get isSuccess() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;success&quot;; }
 	@HostBinding(&quot;class.bx--toast-notification--warning&quot;) get isWarning() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;warning&quot;; }
 	@HostBinding(&quot;class.bx--toast-notification--low-contrast&quot;) get isLowContrast() { return this.notificationObj.lowContrast; }
-
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
 
 	constructor(
 		protected notificationDisplayService: NotificationDisplayService,
@@ -1665,9 +1625,9 @@ export class Toast extends Notification implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ibm-icon-error-filled16	*ngIf="notificationObj.type === \'error\'"	class="bx--toast-notification__icon"></ibm-icon-error-filled16><ibm-icon-warning-filled16	*ngIf="notificationObj.type === \'warning\'"	class="bx--toast-notification__icon"></ibm-icon-warning-filled16><ibm-icon-checkmark-filled16	*ngIf="notificationObj.type === \'success\'"	class="bx--toast-notification__icon"></ibm-icon-checkmark-filled16><div class="bx--toast-notification__details">	<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>	<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>	<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>	<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container></div><button	*ngIf="showClose"	class="bx--toast-notification__close-button"	type="button"	[attr.aria-label]="notificationObj.closeLabel"	(click)="onClose()">	<ibm-icon-close16 class="bx--toast-notification__close-icon"></ibm-icon-close16></button>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><ibm-icon-error-filled	size="16"	*ngIf="notificationObj.type === \'error\'"	class="bx--toast-notification__icon"></ibm-icon-error-filled><ibm-icon-warning-filled	size="16"	*ngIf="notificationObj.type === \'warning\'"	class="bx--toast-notification__icon"></ibm-icon-warning-filled><ibm-icon-checkmark-filled	size="16"	*ngIf="notificationObj.type === \'success\'"	class="bx--toast-notification__icon"></ibm-icon-checkmark-filled><div class="bx--toast-notification__details">	<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>	<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>	<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>	<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container></div><button	*ngIf="showClose"	class="bx--toast-notification__close-button"	type="button"	[attr.aria-label]="notificationObj.closeLabel"	(click)="onClose()">	<ibm-icon-close size="16" class="bx--toast-notification__close-icon"></ibm-icon-close></button>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Toast'};
 </script>
 <script src="../js/tree.js"></script>

@@ -199,17 +199,15 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { Close16Module } from &quot;@carbon/icons-angular/lib/close/16&quot;;
+import { CloseModule } from &quot;@carbon/icons-angular&quot;;
 
 import { Tag } from &quot;./tag.component&quot;;
 import { TagFilter } from &quot;./tag-filter.component&quot;;
 
-export * from &quot;./tag.component&quot;;
-
 @NgModule({
 	declarations: [ Tag, TagFilter ],
 	exports: [ Tag, TagFilter ],
-	imports: [ CommonModule, Close16Module ]
+	imports: [ CommonModule, CloseModule ]
 })
 export class TagModule { }
 </code></pre>

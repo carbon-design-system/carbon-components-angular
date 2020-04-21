@@ -64,13 +64,8 @@
             </p>
             <p class="comment">
                 <p>Modal service handles instantiating and destroying modal instances.
-Uses ModalPlaceholderService to track open instances, and for it&#39;s placeholder view reference.</p>
-<div><pre class="line-numbers"><code class="language-typescript"> * export class ModalService {
- *     registerViewContainerRef(vcRef: ViewContainerRef): void {}
- *     create&lt;T&gt;(data: {component: any, inputs?: any}): void {}
- *     destroy(index: number = -1): void {}
- * }
- *</code></pre></div>
+Uses PlaceholderService to track open instances, and for it&#39;s placeholder view reference.</p>
+
             </p>
 
 
@@ -143,7 +138,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modal/modal.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -222,7 +217,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modal/modal.service.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modal/modal.service.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -302,7 +297,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/modal/modal.service.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/modal/modal.service.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -374,7 +369,7 @@ When called without parameters it destroys the most recently created/top most mo
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/modal/modal.service.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/modal/modal.service.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -409,10 +404,10 @@ When called without parameters it destroys the most recently created/top most mo
 
                                                         <td>
                                                                 <code><p>You can pass in:
-<code>modalType</code> - &quot;default&quot; | &quot;danger&quot; = &quot;default&quot;,
-<code>modalLabel</code> - a label shown over the title,
-<code>modalTitle</code> - modal&#39;s title,
-<code>modalContent</code> - modal&#39;s content, could include HTML tags.
+<code>type</code> - &quot;default&quot; | &quot;danger&quot; = &quot;default&quot;,
+<code>label</code> - a label shown over the title,
+<code>title</code> - modal&#39;s title,
+<code>content</code> - modal&#39;s content, could include HTML tags.
 <code>buttons</code> is an array of objects
 <code>close</code> custom close function</p>
 <div><pre class="line-numbers"><code class="language-none">     * {
@@ -480,7 +475,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.service.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modal/modal.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -515,7 +510,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modal/modal.service.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modal/modal.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -550,7 +545,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modal/modal.service.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modal/modal.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -573,20 +568,13 @@ import { ReplaySubject } from &quot;rxjs&quot;;
 import { Injectable } from &quot;@angular/core&quot;;
 import { AlertModal } from &quot;./alert-modal.component&quot;;
 import { AlertModalData } from &quot;./alert-modal.interface&quot;;
-import { PlaceholderService } from &quot;./../placeholder/placeholder.module&quot;;
+import { PlaceholderService } from &quot;./../placeholder/index&quot;;
+import { tap, delay } from &quot;rxjs/operators&quot;;
 
 
 /**
  * Modal service handles instantiating and destroying modal instances.
- * Uses ModalPlaceholderService to track open instances, and for it&#x27;s placeholder view reference.
- *
- * &#x60;&#x60;&#x60;typescript
- * export class ModalService {
- * 	registerViewContainerRef(vcRef: ViewContainerRef): void {}
- * 	create&lt;T&gt;(data: {component: any, inputs?: any}): void {}
- * 	destroy(index: number &#x3D; -1): void {}
- * }
- * &#x60;&#x60;&#x60;
+ * Uses PlaceholderService to track open instances, and for it&#x27;s placeholder view reference.
  */
 @Injectable()
 export class ModalService {
@@ -606,16 +594,30 @@ export class ModalService {
 		let defaults &#x3D; {inputs: {}};
 		data &#x3D; Object.assign({}, defaults, data);
 
-		const inputProviders &#x3D; Object.keys(data.inputs).map(inputName &#x3D;&gt; ({provide: inputName, useValue: data.inputs[inputName]}));
+		const inputProviders &#x3D; Object.keys(data.inputs).map(inputName &#x3D;&gt; ({
+			provide: inputName,
+			useValue: data.inputs[inputName]
+		}));
 		const injector &#x3D; Injector.create(inputProviders);
 		const factory &#x3D; this.resolver.resolveComponentFactory(data.component);
 		let focusedElement &#x3D; document.activeElement as HTMLElement;
 
 		let component &#x3D; this.placeholderService.createComponent(factory, injector);
 
+		setTimeout(() &#x3D;&gt; {
+			component.instance.open &#x3D; true;
+		});
+
 		component[&quot;previouslyFocusedElement&quot;] &#x3D; focusedElement;  // used to return focus to previously focused element
 
-		component.instance.close.subscribe(_ &#x3D;&gt; {
+		component.instance.close.pipe(
+			// trigger the close animation
+			tap(() &#x3D;&gt; {
+				component.instance.open &#x3D; false;
+			}),
+			// delay closing by an arbitrary amount to allow the animation to finish
+			delay(150)
+		).subscribe(() &#x3D;&gt; {
 			this.placeholderService.destroyComponent(component);
 			// filter out our component
 			ModalService.modalList &#x3D; ModalService.modalList.filter(c &#x3D;&gt; c !&#x3D;&#x3D; component);
@@ -633,10 +635,10 @@ export class ModalService {
 	/**
 	 * Creates and renders a new alert modal component.
 	 * @param data You can pass in:
-	 * &#x60;modalType&#x60; - &quot;default&quot; | &quot;danger&quot; &#x3D; &quot;default&quot;,
-	 * &#x60;modalLabel&#x60; - a label shown over the title,
-	 * &#x60;modalTitle&#x60; - modal&#x27;s title,
-	 * &#x60;modalContent&#x60; - modal&#x27;s content, could include HTML tags.
+	 * &#x60;type&#x60; - &quot;default&quot; | &quot;danger&quot; &#x3D; &quot;default&quot;,
+	 * &#x60;label&#x60; - a label shown over the title,
+	 * &#x60;title&#x60; - modal&#x27;s title,
+	 * &#x60;content&#x60; - modal&#x27;s content, could include HTML tags.
 	 * &#x60;buttons&#x60; is an array of objects
 	 * &#x60;close&#x60; custom close function
 	 * &#x60;&#x60;&#x60;
@@ -648,22 +650,13 @@ export class ModalService {
 	 * &#x60;&#x60;&#x60;
 	 */
 	show(data: AlertModalData) {
-		for (let key of Object.keys(data)) {
-			if ([&quot;modalType&quot;, &quot;modalLabel&quot;, &quot;modalTitle&quot;, &quot;modalContent&quot;].includes(key)) {
-				try {
-					throw new Error(&#x60;${key} is deprecated, use ${key.replace(&quot;modal&quot;, &quot;&quot;).toLowerCase()} instead&#x60;);
-				} catch (error) {
-					console.warn(error);
-				}
-			}
-		}
 		return this.create({
 			component: AlertModal,
 			inputs: {
-				modalType: data.type || data.modalType,
-				modalLabel: data.label || data.modalLabel,
-				modalTitle: data.title || data.modalTitle,
-				modalContent: data.content || data.modalContent,
+				type: data.type,
+				label: data.label,
+				title: data.title,
+				content: data.content,
 				hasScrollingContent: data.hasScrollingContent || null,
 				size: data.size,
 				buttons: data.buttons || [],

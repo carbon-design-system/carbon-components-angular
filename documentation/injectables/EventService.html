@@ -125,7 +125,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/utils/event.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/utils/event.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -190,7 +190,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/utils/event.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/utils/event.service.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -228,7 +228,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/utils/event.service.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/utils/event.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -321,7 +321,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/utils/event.service.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/utils/event.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -414,7 +414,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/utils/event.service.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/utils/event.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -448,7 +448,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/utils/event.service.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/utils/event.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -462,23 +462,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &quot;@angular/core&quot;;
-import { Observable, fromEvent, Subscription } from &quot;rxjs&quot;;
+import { Observable, Subscription } from &quot;rxjs&quot;;
 import { DocumentService } from &quot;./document.service&quot;;
-
-export type EventHandler &#x3D; (event: Event) &#x3D;&gt; void;
-
-export const getEventObservable &#x3D; (targetElement: HTMLElement | Element, eventType: string): Observable&lt;Event&gt; &#x3D;&gt; {
-	switch (eventType) {
-		case &quot;scroll&quot;:
-		case &quot;resize&quot;:
-		case &quot;touchstart&quot;:
-		case &quot;touchmove&quot;:
-		case &quot;touchend&quot;:
-			return fromEvent(targetElement, eventType, { passive: true });
-		default:
-			return fromEvent(targetElement, eventType);
-	}
-};
+import { EventHandler } from &quot;./types&quot;;
+import { getEventObservable } from &quot;./event-observable&quot;;
 
 @Injectable()
 export class EventService implements OnDestroy {

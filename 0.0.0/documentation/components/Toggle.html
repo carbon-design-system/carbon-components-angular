@@ -132,7 +132,7 @@
 	[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 	[attr.aria-checked]&#x3D;&quot;checked&quot;
 	(change)&#x3D;&quot;onChange($event)&quot;
-	(click)&#x3D;&quot;onClick($event)&quot;&gt;
+	(click)&#x3D;&quot;onClick()&quot;&gt;
 &lt;label
 	class&#x3D;&quot;bx--toggle__label&quot;
 	[for]&#x3D;&quot;id&quot;
@@ -301,6 +301,12 @@
                                 <a href="#aria-labelledby">aria-labelledby</a>
                             </li>
                             <li>
+                                <a href="#ariaLabel">ariaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#ariaLabelledby">ariaLabelledby</a>
+                            </li>
+                            <li>
                                 <a href="#checked">checked</a>
                             </li>
                             <li>
@@ -353,6 +359,9 @@
                             </li>
                             <li>
                                 <a href="#change">change</a>
+                            </li>
+                            <li>
+                                <a href="#checkedChange">checkedChange</a>
                             </li>
                             <li>
                                 <a href="#indeterminateChange">indeterminateChange</a>
@@ -412,7 +421,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/toggle/toggle.component.ts:149</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/toggle/toggle.component.ts:153</a></div>
                             </td>
                         </tr>
 
@@ -484,7 +493,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/toggle/toggle.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/toggle/toggle.component.ts:129</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -503,7 +512,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/toggle/toggle.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/toggle/toggle.component.ts:107</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -522,7 +531,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/toggle/toggle.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/toggle/toggle.component.ts:119</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -548,7 +557,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/toggle/toggle.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/toggle/toggle.component.ts:133</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -570,7 +579,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/toggle/toggle.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/toggle/toggle.component.ts:137</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -585,9 +594,10 @@
                     <td class="col-md-10">
                         <div><p>Used to set the <code>aria-label</code> attribute on the input element.</p>
 </div>
-                        <p>
-                            <em>Default value : </em><code>&quot;&quot;</code>
-                        </p>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
                     </td>
                 </tr>
                             <tr>
@@ -598,7 +608,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:134</div>
+                                    <div class="io-line">Defined in Checkbox:144</div>
                             </td>
                         </tr>
             </tbody>
@@ -627,7 +637,60 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:139</div>
+                                    <div class="io-line">Defined in Checkbox:162</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="ariaLabel"></a>
+                        <code>ariaLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>&quot;&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in Checkbox:154</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="ariaLabelledby"></a>
+                        <code>ariaLabelledby</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in Checkbox:172</div>
                             </td>
                         </tr>
             </tbody>
@@ -640,7 +703,8 @@
                         <code>checked</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>Updating the state of a checkbox to match the state of the parameter passed in.</p>
+                        <div><p>Sets the <code>checked</code> state. <code>true</code> for checked, <code>false</code> for unchecked</p>
+<p>Allows double binding with the <code>checkedChange</code> Output.</p>
 </div>
                             <p>
                             <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -656,7 +720,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:173</div>
+                                    <div class="io-line">Defined in Checkbox:204</div>
                             </td>
                         </tr>
             </tbody>
@@ -684,7 +748,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:105</div>
+                                    <div class="io-line">Defined in Checkbox:113</div>
                             </td>
                         </tr>
             </tbody>
@@ -712,7 +776,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:113</div>
+                                    <div class="io-line">Defined in Checkbox:121</div>
                             </td>
                         </tr>
             </tbody>
@@ -740,7 +804,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:121</div>
+                                    <div class="io-line">Defined in Checkbox:129</div>
                             </td>
                         </tr>
             </tbody>
@@ -754,6 +818,7 @@
                     </td>
                     <td class="col-md-10">
                         <div><p>Set the checkbox&#39;s indeterminate state to match the parameter and transition the view to reflect the change.</p>
+<p>Allows double binding with the <code>indeterminateChange</code> Output.</p>
 </div>
                             <p>
                             <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -769,7 +834,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:150</div>
+                                    <div class="io-line">Defined in Checkbox:179</div>
                             </td>
                         </tr>
             </tbody>
@@ -797,7 +862,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:101</div>
+                                    <div class="io-line">Defined in Checkbox:109</div>
                             </td>
                         </tr>
             </tbody>
@@ -826,7 +891,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:117</div>
+                                    <div class="io-line">Defined in Checkbox:125</div>
                             </td>
                         </tr>
             </tbody>
@@ -855,7 +920,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:97</div>
+                                    <div class="io-line">Defined in Checkbox:105</div>
                             </td>
                         </tr>
             </tbody>
@@ -884,7 +949,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:125</div>
+                                    <div class="io-line">Defined in Checkbox:133</div>
                             </td>
                         </tr>
             </tbody>
@@ -916,7 +981,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:93</div>
+                                    <div class="io-line">Defined in Checkbox:99</div>
                             </td>
                         </tr>
             </tbody>
@@ -944,7 +1009,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:109</div>
+                                    <div class="io-line">Defined in Checkbox:117</div>
                             </td>
                         </tr>
             </tbody>
@@ -960,7 +1025,7 @@
                         <div><p>Sets the value attribute on the <code>input</code> element.</p>
 </div>
                             <p>
-                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <em>Type :</em>    <code><a href="../components/Checkbox.html" target="_self" >CheckboxValue</a></code>
 
                             </p>
                     </td>
@@ -973,7 +1038,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:129</div>
+                                    <div class="io-line">Defined in Checkbox:137</div>
                             </td>
                         </tr>
             </tbody>
@@ -998,7 +1063,7 @@ click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/toggle/toggle.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/toggle/toggle.component.ts:150</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1026,7 +1091,35 @@ click.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:197</div>
+                                    <div class="io-line">Defined in Checkbox:237</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="checkedChange"></a>
+                        <code>checkedChange</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits an event when the value of the checkbox changes.</p>
+<p>Allows double biding with the <code>checked</code> Input.</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in Checkbox:244</div>
                             </td>
                         </tr>
             </tbody>
@@ -1054,7 +1147,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:202</div>
+                                    <div class="io-line">Defined in Checkbox:250</div>
                             </td>
                         </tr>
             </tbody>
@@ -1088,7 +1181,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:186</div>
+                                    <div class="io-line">Defined in Checkbox:224</div>
                             </td>
                         </tr>
 
@@ -1122,7 +1215,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:189</div>
+                                    <div class="io-line">Defined in Checkbox:227</div>
                             </td>
                         </tr>
 
@@ -1159,7 +1252,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/toggle/toggle.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/toggle/toggle.component.ts:173</a></div>
                             </td>
                         </tr>
 
@@ -1199,7 +1292,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/toggle/toggle.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/toggle/toggle.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -1237,7 +1330,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/toggle/toggle.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/toggle/toggle.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -1277,7 +1370,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/toggle/toggle.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/toggle/toggle.component.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -1348,7 +1441,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:302</div>
+                                    <div class="io-line">Defined in Checkbox:360</div>
                             </td>
                         </tr>
 
@@ -1394,7 +1487,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:314</div>
+                                    <div class="io-line">Defined in Checkbox:375</div>
                             </td>
                         </tr>
 
@@ -1427,7 +1520,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>onChange(event)</code>
+<code>onChange(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
                     </td>
                 </tr>
 
@@ -1440,7 +1533,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:257</div>
+                                    <div class="io-line">Defined in Checkbox:315</div>
                             </td>
                         </tr>
 
@@ -1456,12 +1549,16 @@ on an indeterminate checkbox.</p>
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
                                                         <td>event</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1500,7 +1597,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>onClick(event)</code>
+<code>onClick()</code>
                     </td>
                 </tr>
 
@@ -1513,7 +1610,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:264</div>
+                                    <div class="io-line">Defined in Checkbox:322</div>
                             </td>
                         </tr>
 
@@ -1524,36 +1621,9 @@ on an indeterminate checkbox.</p>
 </div>
 
                             <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>event</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
-                                <div class="io-description">
-                                    
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1588,7 +1658,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:242</div>
+                                    <div class="io-line">Defined in Checkbox:300</div>
                             </td>
                         </tr>
 
@@ -1667,7 +1737,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:250</div>
+                                    <div class="io-line">Defined in Checkbox:308</div>
                             </td>
                         </tr>
 
@@ -1751,7 +1821,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:230</div>
+                                    <div class="io-line">Defined in Checkbox:282</div>
                             </td>
                         </tr>
 
@@ -1797,7 +1867,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:281</div>
+                                    <div class="io-line">Defined in Checkbox:339</div>
                             </td>
                         </tr>
 
@@ -1876,13 +1946,16 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:235</div>
+                                    <div class="io-line">Defined in Checkbox:293</div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Writes a value from <code>ngModel</code> to the component.</p>
+<p>In this case the value is the <code>checked</code> property.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -1892,6 +1965,7 @@ on an indeterminate checkbox.</p>
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1906,6 +1980,10 @@ on an indeterminate checkbox.</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>boolean, corresponds to the <code>checked</code> property.</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1957,7 +2035,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/toggle/toggle.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/toggle/toggle.component.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -1991,7 +2069,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/toggle/toggle.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/toggle/toggle.component.ts:153</a></div>
                             </td>
                         </tr>
 
@@ -2024,7 +2102,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/toggle/toggle.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/toggle/toggle.component.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -2070,7 +2148,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/toggle/toggle.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/toggle/toggle.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -2115,7 +2193,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:207</div>
+                                    <div class="io-line">Defined in Checkbox:255</div>
                             </td>
                         </tr>
 
@@ -2160,7 +2238,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:211</div>
+                                    <div class="io-line">Defined in Checkbox:259</div>
                             </td>
                         </tr>
 
@@ -2212,7 +2290,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:88</div>
+                                    <div class="io-line">Defined in Checkbox:92</div>
                             </td>
                         </tr>
 
@@ -2240,16 +2318,10 @@ on an indeterminate checkbox.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>currentCheckboxState:     <code><a href="../components/Checkbox.html" target="_self" >CheckboxState</a></code>
+                        <code>currentCheckboxState:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../components/Checkbox.html" target="_self" >CheckboxState</a></code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>CheckboxState.Init</code>
@@ -2263,10 +2335,16 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:213</div>
+                                    <div class="io-line">Defined in Checkbox:264</div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Keeps a reference to the checkboxes current state, as defined in <code>CheckboxState</code>.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2300,7 +2378,7 @@ on an indeterminate checkbox.</p>
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ViewChild(&#x27;inputCheckbox&#x27;)<br />
+                                @ViewChild(&#x27;inputCheckbox&#x27;, {static: undefined})<br />
                             </code>
                         </td>
                     </tr>
@@ -2312,7 +2390,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:218</div>
+                                    <div class="io-line">Defined in Checkbox:270</div>
                             </td>
                         </tr>
 
@@ -2363,7 +2441,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:276</div>
+                                    <div class="io-line">Defined in Checkbox:334</div>
                             </td>
                         </tr>
 
@@ -2408,7 +2486,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:324</div>
+                                    <div class="io-line">Defined in Checkbox:385</div>
                             </td>
                         </tr>
 
@@ -2443,7 +2521,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/toggle/toggle.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/toggle/toggle.component.ts:111</a></div>
                                 </td>
                             </tr>
 
@@ -2454,7 +2532,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/toggle/toggle.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/toggle/toggle.component.ts:107</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2510,7 +2588,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/toggle/toggle.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/toggle/toggle.component.ts:123</a></div>
                                 </td>
                             </tr>
 
@@ -2521,7 +2599,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/toggle/toggle.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/toggle/toggle.component.ts:119</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2577,7 +2655,7 @@ import {
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
-import { I18n, Overridable } from &quot;../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;../i18n/index&quot;;
 import { Observable } from &quot;rxjs&quot;;
 
 /**
@@ -2592,6 +2670,8 @@ export enum ToggleState {
 
 /**
  * Used to emit changes performed on toggle components.
+ *
+ * @deprecated since v4
  */
 export class ToggleChange {
 	/**
@@ -2636,7 +2716,7 @@ export class ToggleChange {
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 			[attr.aria-checked]&#x3D;&quot;checked&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
+			(click)&#x3D;&quot;onClick()&quot;&gt;
 		&lt;label
 			class&#x3D;&quot;bx--toggle__label&quot;
 			[for]&#x3D;&quot;id&quot;
@@ -2710,6 +2790,8 @@ export class Toggle extends Checkbox {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a
 	 * click.
+	 *
+	 * @deprecated since v4
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;ToggleChange&gt;();
 
@@ -2735,12 +2817,15 @@ export class Toggle extends Checkbox {
 	 * Creates instance of &#x60;ToggleChange&#x60; used to propagate the change event.
 	 */
 	emitChangeEvent() {
+		/* begin deprecation */
 		let event &#x3D; new ToggleChange();
 		event.source &#x3D; this;
 		event.checked &#x3D; this.checked;
-
-		this.propagateChange(this.checked);
 		this.change.emit(event);
+		/* end deprecation */
+
+		this.checkedChange.emit(this.checked);
+		this.propagateChange(this.checked);
 	}
 
 	public isTemplate(value) {
@@ -2782,9 +2867,9 @@ export class Toggle extends Checkbox {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" [id]="ariaLabelledby" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick($event)"><label	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>	<span class="bx--toggle__appearance">		<svg *ngIf="size === \'sm\'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span>	<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span></label>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" [id]="ariaLabelledby" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick()"><label	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>	<span class="bx--toggle__appearance">		<svg *ngIf="size === \'sm\'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span>	<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span></label>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Toggle'};
 </script>
 <script src="../js/tree.js"></script>

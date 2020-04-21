@@ -213,7 +213,7 @@
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 
-import { I18n, Overridable } from &quot;../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;../i18n/index&quot;;
 import { Observable } from &quot;rxjs&quot;;
 
 /**
@@ -267,11 +267,12 @@ export class NumberChange {
 					[disabled]&#x3D;&quot;disabled&quot;
 					[required]&#x3D;&quot;required&quot;
 					(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
-				&lt;ibm-icon-warning-filled16
+				&lt;ibm-icon-warning-filled
+					size&#x3D;&quot;16&quot;
 					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
 					class&#x3D;&quot;bx--number__invalid&quot;
 					style&#x3D;&quot;display: inherit;&quot;&gt;
-				&lt;/ibm-icon-warning-filled16&gt;
+				&lt;/ibm-icon-warning-filled&gt;
 				&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
 					&lt;button
 						class&#x3D;&quot;bx--number__control-btn up-icon&quot;
@@ -280,7 +281,7 @@ export class NumberChange {
 						aria-atomic&#x3D;&quot;true&quot;
 						[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
 						(click)&#x3D;&quot;onIncrement()&quot;&gt;
-						&lt;ibm-icon-caret-up16&gt;&lt;/ibm-icon-caret-up16&gt;
+						&lt;ibm-icon-caret-up size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-up&gt;
 					&lt;/button&gt;
 					&lt;button
 						class&#x3D;&quot;bx--number__control-btn down-icon&quot;
@@ -289,7 +290,7 @@ export class NumberChange {
 						aria-atomic&#x3D;&quot;true&quot;
 						[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
 						(click)&#x3D;&quot;onDecrement()&quot;&gt;
-						&lt;ibm-icon-caret-down16&gt;&lt;/ibm-icon-caret-down16&gt;
+						&lt;ibm-icon-caret-down size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-down&gt;
 					&lt;/button&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;

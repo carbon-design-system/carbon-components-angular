@@ -169,16 +169,14 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { Checkmark16Module } from &quot;@carbon/icons-angular/lib/checkmark/16&quot;;
+import { CheckmarkModule } from &quot;@carbon/icons-angular&quot;;
 
 import { InlineLoading } from &quot;./inline-loading.component&quot;;
-
-export { InlineLoading } from &quot;./inline-loading.component&quot;;
 
 @NgModule({
 	declarations: [InlineLoading],
 	exports: [InlineLoading],
-	imports: [CommonModule, Checkmark16Module]
+	imports: [CommonModule, CheckmarkModule]
 })
 export class InlineLoadingModule { }
 </code></pre>

@@ -121,6 +121,10 @@ the service relies on.</p>
                                     <span class="modifier">Static</span>
                                 <a href="#dialogCounter">dialogCounter</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#dialogRef">dialogRef</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -162,6 +166,10 @@ the service relies on.</p>
                             <li>
                                 <a href="#toggle">toggle</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#updateConfig">updateConfig</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -178,9 +186,6 @@ the service relies on.</p>
                                 <a href="#appendInline">appendInline</a>
                             </li>
                             <li>
-                                <a href="#appendToBody">appendToBody</a>
-                            </li>
-                            <li>
                                 <a href="#closeTrigger">closeTrigger</a>
                             </li>
                             <li>
@@ -191,6 +196,9 @@ the service relies on.</p>
                             </li>
                             <li>
                                 <a href="#ibmDialog">ibmDialog</a>
+                            </li>
+                            <li>
+                                <a href="#isOpen">isOpen</a>
                             </li>
                             <li>
                                 <a href="#placement">placement</a>
@@ -217,6 +225,9 @@ the service relies on.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#isOpenChange">isOpenChange</a>
+                            </li>
+                            <li>
                                 <a href="#onClose">onClose</a>
                             </li>
                             <li>
@@ -235,9 +246,6 @@ the service relies on.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#attr.aria-expanded">attr.aria-expanded</a>
-                            </li>
-                            <li>
                                 <a href="#attr.aria-haspopup">attr.aria-haspopup</a>
                             </li>
                             <li>
@@ -251,20 +259,6 @@ the service relies on.</p>
                 </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#appendToBody">appendToBody</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -280,7 +274,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/dialog.directive.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/dialog.directive.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -375,31 +369,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/dialog/dialog.directive.ts:89</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-2">
-                        <a name="appendToBody"></a>
-                        <code>appendToBody</code>
-                    </td>
-                    <td class="col-md-10">
-                        <div><p>Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-Value <code>true</code> appends Dialog to the body (to break out of containers)</p>
-</div>
-                            <p>
-                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                            </p>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/dialog/dialog.directive.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/dialog/dialog.directive.ts:76</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -450,7 +420,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/dialog.directive.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/dialog/dialog.directive.ts:80</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -496,6 +466,26 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dialog/dialog.directive.ts:46</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="isOpen"></a>
+                        <code>isOpen</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/dialog/dialog.directive.ts:82</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -601,6 +591,27 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="isOpenChange"></a>
+                        <code>isOpenChange</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits an event when the state of <code>isOpen</code> changes. Allows <code>isOpen</code> to be double bound</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dialog/dialog.directive.ts:98</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="onClose"></a>
                         <code>onClose</code>
                     </td>
@@ -613,7 +624,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/dialog.directive.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/dialog.directive.ts:90</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -634,7 +645,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/dialog/dialog.directive.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dialog/dialog.directive.ts:94</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -642,39 +653,6 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 </section>
             <section>
     <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="attr.aria-expanded"></a>
-                        <span class="name">
-                            <b>
-                            attr.aria-expanded
-                            </b>
-                            <a href="#attr.aria-expanded"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>attr.aria-expanded:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dialog/dialog.directive.ts:108</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -700,7 +678,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/dialog.directive.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/dialog.directive.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -734,7 +712,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/dialog/dialog.directive.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dialog/dialog.directive.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -767,7 +745,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/dialog/dialog.directive.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/dialog/dialog.directive.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -804,17 +782,14 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/dialog/dialog.directive.ts:279</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/dialog/dialog.directive.ts:263</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Helper method to call dialogService &#39;close&#39;.</p>
-<ul>
-<li>Enforce accessibility by updating an aria attr for nativeElement.</li>
-</ul>
+                            <div class="io-description"><p>Helper method to close the dialogRef.</p>
 </div>
 
                             <div class="io-description">
@@ -840,14 +815,14 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>ngOnChanges()</code>
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/dialog/dialog.directive.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/dialog/dialog.directive.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -856,9 +831,40 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                     <td class="col-md-4">
 
                             <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>changes</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -885,7 +891,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/dialog/dialog.directive.ts:247</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/dialog/dialog.directive.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -928,7 +934,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/dialog/dialog.directive.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/dialog/dialog.directive.ts:167</a></div>
                             </td>
                         </tr>
 
@@ -964,14 +970,14 @@ running code from child class.</p>
                 <tr>
                     <td class="col-md-4">
                             <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>onDialogChanges()</code>
+                        <code>onDialogChanges(_changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/dialog/dialog.directive.ts:294</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/dialog/dialog.directive.ts:279</a></div>
                             </td>
                         </tr>
 
@@ -983,9 +989,40 @@ run after DialogDirective completes it&#39;s ngOnChanges.</p>
 </div>
 
                             <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_changes</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1014,7 +1051,7 @@ run after DialogDirective completes it&#39;s ngOnChanges.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/dialog/dialog.directive.ts:288</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/dialog/dialog.directive.ts:273</a></div>
                             </td>
                         </tr>
 
@@ -1055,7 +1092,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/dialog/dialog.directive.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/dialog/dialog.directive.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -1122,7 +1159,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/dialog/dialog.directive.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/dialog/dialog.directive.ts:222</a></div>
                             </td>
                         </tr>
 
@@ -1136,7 +1173,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 </div>
 
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                     </td>
@@ -1165,18 +1202,55 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/dialog/dialog.directive.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/dialog/dialog.directive.ts:252</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Helper method to call dialogService &#39;toggle&#39;.</p>
-<ul>
-<li>Enforce accessibility by updating an aria attr for nativeElement.</li>
-</ul>
+                            <div class="io-description"><p>Helper method to toggle the open state of the dialog</p>
 </div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateConfig"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            updateConfig
+                            </b>
+                            <a href="#updateConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>updateConfig()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/dialog/dialog.directive.ts:281</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1220,7 +1294,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/dialog/dialog.directive.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/dialog/dialog.directive.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -1273,85 +1347,49 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
             </tbody>
         </table>
-</section>
-
-            <section>
-    <h3 id="accessors">
-        Accessors
-    </h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="appendToBody"></a>
-                        <span class="name"><b>appendToBody</b><a href="#appendToBody"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="dialogRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            dialogRef
+                            </b>
+                            <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
                     </td>
                 </tr>
-
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>appendToBody()</code></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>dialogRef:     <code><a href="../components/Dialog.html" target="_self" >ComponentRef&lt;Dialog&gt;</a></code>
+</code>
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/dialog/dialog.directive.ts:83</a></div>
-                                </td>
-                            </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>appendToBody(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/dialog/dialog.directive.ts:77</a></div>
-                                </td>
-                            </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-Value <code>true</code> appends Dialog to the body (to break out of containers)</p>
-</div>
+                            <i>Type : </i>    <code><a href="../components/Dialog.html" target="_self" >ComponentRef&lt;Dialog&gt;</a></code>
 
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                            <td>v</td>
-                                                    
-                                                            <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                            </td>
-                                                    
-                                                        <td>
-                                                                No
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/dialog.directive.ts:109</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Keeps a reference to the currently opened dialog</p>
+</div>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
 </section>
+
 
     </div>
 
@@ -1367,15 +1405,15 @@ Value <code>true</code> appends Dialog to the body (to break out of containers)<
 	ElementRef,
 	TemplateRef,
 	ViewContainerRef,
-	HostListener,
 	OnChanges,
 	HostBinding,
-	Optional
+	SimpleChanges,
+	ComponentRef
 } from &quot;@angular/core&quot;;
-import { fromEvent } from &quot;rxjs&quot;;
 import { DialogService } from &quot;./dialog.service&quot;;
 import { DialogConfig } from &quot;./dialog-config.interface&quot;;
 import { EventService } from &quot;../utils/utils.module&quot;;
+import { Dialog } from &quot;./dialog.component&quot;;
 
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
@@ -1430,19 +1468,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() gap &#x3D; 0;
 	/**
-	 * Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-	 * Value &#x60;true&#x60; appends Dialog to the body (to break out of containers)
-	 */
-	@Input() set appendToBody(v: boolean) {
-		console.log(&quot;&#x60;appendToBody&#x60; has been deprecated. Dialogs now append to the body by default.&quot;);
-		console.log(&quot;Ensure you have an &#x60;ibm-placeholder&#x60; in your app.&quot;);
-		console.log(&quot;Use &#x60;appendInline&#x60; if you need to position your dialogs within the normal page flow.&quot;);
-		this.appendInline &#x3D; !v;
-	}
-	get appendToBody() {
-		return !this.appendInline;
-	}
-	/**
 	 * Set to &#x60;true&#x60; to open the dialog next to the triggering component
 	 */
 	@Input() appendInline &#x3D; false;
@@ -1450,6 +1475,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Optional data for templates
 	 */
 	@Input() data &#x3D; {};
+
+	@Input() @HostBinding(&quot;attr.aria-expanded&quot;) isOpen &#x3D; false;
 	/**
 	 * Config object passed to the rendered component
 	 */
@@ -1462,26 +1489,34 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Emits an event when the dialog is opened
 	 */
 	@Output() onOpen: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+	/**
+	 * Emits an event when the state of &#x60;isOpen&#x60; changes. Allows &#x60;isOpen&#x60; to be double bound
+	 */
+	@Output() isOpenChange &#x3D; new EventEmitter&lt;boolean&gt;();
 
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;button&quot;;
-	@HostBinding(&quot;attr.aria-expanded&quot;) expanded &#x3D; false;
 	@HostBinding(&quot;attr.aria-haspopup&quot;) hasPopup &#x3D; true;
 	@HostBinding(&quot;attr.aria-owns&quot;) get ariaOwns(): string {
-		return this.expanded ? this.dialogConfig.compID : null;
+		return this.isOpen ? this.dialogConfig.compID : null;
 	}
+
+	/**
+	 * Keeps a reference to the currently opened dialog
+	 */
+	protected dialogRef: ComponentRef&lt;Dialog&gt;;
 
 	/**
 	 * Creates an instance of DialogDirective.
 	 * @param elementRef
 	 * @param viewContainerRef
 	 * @param dialogService
+	 * @param eventService
 	 */
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected dialogService: DialogService,
-		// mark &#x60;eventService&#x60; as optional since making it mandatory would be a breaking change
-		@Optional() protected eventService: EventService &#x3D; null
+		protected eventService: EventService
 	) {}
 
 	/**
@@ -1493,7 +1528,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.toggle();
 	}
 
-	ngOnChanges() {
+	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig &#x3D; {
 			title: this.title,
@@ -1509,8 +1544,17 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			data: this.data
 		};
 
+		if (changes.isOpen) {
+			if (changes.isOpen.currentValue) {
+				this.open();
+			} else {
+				this.close();
+			}
+		}
+
 		// Run any code a child class may need.
-		this.onDialogChanges();
+		this.onDialogChanges(changes);
+		this.updateConfig();
 	}
 
 	/**
@@ -1523,80 +1567,41 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		const element &#x3D; this.elementRef.nativeElement;
 
-		if (this.eventService) {
-			this.eventService.on(element, &quot;touchstart&quot;, this.onTouchStart.bind(this));
+		this.eventService.on(element, &quot;touchstart&quot;, this.onTouchStart.bind(this));
 
-			this.eventService.on(element, &quot;keydown&quot;, (event: KeyboardEvent) &#x3D;&gt; {
-				// &quot;Esc&quot; is an IE specific value
-				if (event.target &#x3D;&#x3D;&#x3D; this.dialogConfig.parentRef.nativeElement &amp;&amp;
-					(event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; &amp;&amp; event.shiftKey) ||
-					event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) {
-					this.close();
-				}
-			});
-
-			// bind events for hovering or clicking the host
-			if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
-				this.eventService.on(element, &quot;mouseenter&quot;, this.open.bind(this));
-				this.eventService.on(element, this.closeTrigger, this.close.bind(this));
-				this.eventService.on(element, &quot;focus&quot;, this.open.bind(this));
-				this.eventService.on(element, &quot;blur&quot;, this.close.bind(this));
-			} else {
-				this.eventService.on(element, &quot;click&quot;, this.toggle.bind(this));
-				this.eventService.on(element, &quot;keydown&quot;, (event: KeyboardEvent) &#x3D;&gt; {
-					// &quot;Spacebar&quot; is an IE specific value
-					if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
-						setTimeout(() &#x3D;&gt; {
-							this.open();
-						});
-					}
-				});
-			}
-		} else {
-			fromEvent(element, &quot;touchstart&quot;, { passive: true }).subscribe(this.onTouchStart.bind(this));
-
-			fromEvent(element, &quot;keydown&quot;).subscribe((event: KeyboardEvent) &#x3D;&gt; {
-				// &quot;Esc&quot; is an IE specific value
-				if (event.target &#x3D;&#x3D;&#x3D; this.dialogConfig.parentRef.nativeElement &amp;&amp;
-					(event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; &amp;&amp; event.shiftKey) ||
-					event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) {
-					this.close();
-				}
-			});
-
-			// bind events for hovering or clicking the host
-			if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
-				fromEvent(element, &quot;mouseenter&quot;).subscribe(() &#x3D;&gt; this.open());
-				fromEvent(element, this.closeTrigger).subscribe(() &#x3D;&gt; this.close());
-				fromEvent(element, &quot;focus&quot;).subscribe(() &#x3D;&gt; this.open());
-				fromEvent(element, &quot;blur&quot;).subscribe(() &#x3D;&gt; this.close());
-			} else {
-				fromEvent(element, &quot;click&quot;).subscribe(() &#x3D;&gt; this.toggle());
-				fromEvent(element, &quot;keydown&quot;).subscribe((event: KeyboardEvent) &#x3D;&gt; {
-					// &quot;Spacebar&quot; is an IE specific value
-					if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
-						setTimeout(() &#x3D;&gt; {
-							this.open();
-						});
-					}
-				});
-			}
-		}
-
-		// call onClose when the dialog is closed
-		// - Enforce accessibility by updating an aria attr for nativeElement.
-		this.dialogService.isClosed.subscribe(value &#x3D;&gt; {
-			if (value) {
-				this.onClose.emit();
-				this.expanded &#x3D; false;
+		this.eventService.on(element, &quot;keydown&quot;, (event: KeyboardEvent) &#x3D;&gt; {
+			// &quot;Esc&quot; is an IE specific value
+			if (event.target &#x3D;&#x3D;&#x3D; this.dialogConfig.parentRef.nativeElement &amp;&amp;
+				(event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; &amp;&amp; event.shiftKey) ||
+				event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) {
+				this.close();
 			}
 		});
+
+		// bind events for hovering or clicking the host
+		if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
+			this.eventService.on(element, &quot;mouseenter&quot;, this.open.bind(this));
+			this.eventService.on(element, this.closeTrigger, this.close.bind(this));
+			this.eventService.on(element, &quot;focus&quot;, this.open.bind(this));
+			this.eventService.on(element, &quot;blur&quot;, this.close.bind(this));
+		} else {
+			this.eventService.on(element, &quot;click&quot;, this.toggle.bind(this));
+			this.eventService.on(element, &quot;keydown&quot;, (event: KeyboardEvent) &#x3D;&gt; {
+				// &quot;Spacebar&quot; is an IE specific value
+				if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
+					setTimeout(() &#x3D;&gt; {
+						this.open();
+					});
+				}
+			});
+		}
 
 		DialogDirective.dialogCounter++;
 		this.dialogConfig.compID &#x3D; &quot;dialog-&quot; + DialogDirective.dialogCounter;
 
 		// run any code a child class may need
 		this.onDialogInit();
+		this.updateConfig();
 	}
 
 	/**
@@ -1612,19 +1617,37 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
 	open() {
-		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
-		this.expanded &#x3D; true;
+		// don&#x27;t allow dialogs to be opened if they&#x27;re already open
+		if (this.dialogRef) { return; }
+
+		// actually open the dialog, emit events, and set the open state
+		this.dialogRef &#x3D; this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		this.isOpen &#x3D; true;
 		this.onOpen.emit();
+		this.isOpenChange.emit(true);
+
+		// Handles emitting all the close events to clean everything up
+		// Also enforce accessibility on close by updating an aria attr on the nativeElement.
+		this.dialogRef.instance.close.subscribe(() &#x3D;&gt; {
+			if (!this.dialogRef) { return; }
+			if (this.dialogConfig.shouldClose &amp;&amp; this.dialogConfig.shouldClose()) {
+				// close the dialog, emit events, and clear out the open states
+				this.dialogService.close(this.dialogRef);
+				this.dialogRef &#x3D; null;
+				this.isOpen &#x3D; false;
+				this.onClose.emit();
+				this.isOpenChange.emit(false);
+			}
+		});
+
+		return this.dialogRef;
 	}
 
 	/**
-	 * Helper method to call dialogService &#x27;toggle&#x27;.
-	 * - Enforce accessibility by updating an aria attr for nativeElement.
+	 * Helper method to toggle the open state of the dialog
 	 */
 	toggle() {
-		this.expanded &#x3D; !this.expanded;
-		if (this.expanded) {
-			this.onOpen.emit();
+		if (!this.isOpen) {
 			this.open();
 		} else {
 			this.close();
@@ -1632,12 +1655,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	}
 
 	/**
-	 * Helper method to call dialogService &#x27;close&#x27;.
-	 * - Enforce accessibility by updating an aria attr for nativeElement.
+	 * Helper method to close the dialogRef.
 	 */
 	close() {
-		this.dialogService.close(this.viewContainerRef);
-		this.expanded &#x3D; false;
+		if (this.dialogRef) {
+			this.dialogRef.instance.doClose();
+		}
 	}
 
 	/**
@@ -1650,7 +1673,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Empty method for child to override and specify additional on changes steps.
 	 * run after DialogDirective completes it&#x27;s ngOnChanges.
 	 */
-	protected onDialogChanges() {}
+	protected onDialogChanges(_changes: SimpleChanges) {}
+
+	protected updateConfig() {}
 }
 </code></pre>
     </div>

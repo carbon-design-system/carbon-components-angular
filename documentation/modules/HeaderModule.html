@@ -375,10 +375,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 
-import { Close20Module } from &quot;@carbon/icons-angular/lib/close/20&quot;;
-import { Menu20Module } from &quot;@carbon/icons-angular/lib/menu/20&quot;;
+import { CloseModule, MenuModule } from &quot;@carbon/icons-angular&quot;;
 
-import { I18nModule } from &quot;./../../i18n/i18n.module&quot;;
+import { I18nModule } from &quot;./../../i18n/index&quot;;
 
 import { Header } from &quot;./header.component&quot;;
 import { HeaderItem } from &quot;./header-item.component&quot;;
@@ -414,8 +413,8 @@ export {
 	imports: [
 		CommonModule,
 		I18nModule,
-		Close20Module,
-		Menu20Module
+		CloseModule,
+		MenuModule
 	],
 	exports: [
 		Header,

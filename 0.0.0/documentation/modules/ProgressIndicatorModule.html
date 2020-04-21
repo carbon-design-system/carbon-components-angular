@@ -209,14 +209,11 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { CheckmarkOutline16Module } from &quot;@carbon/icons-angular/lib/checkmark--outline/16&quot;;
-import { Warning16Module } from &quot;@carbon/icons-angular/lib/warning/16&quot;;
+import { CheckmarkOutlineModule, WarningModule } from &quot;@carbon/icons-angular&quot;;
 
 import { ProgressIndicator } from &quot;./progress-indicator.component&quot;;
 import { DialogModule } from &quot;./../dialog/dialog.module&quot;;
 import { ExperimentalModule } from &quot;./../experimental.module&quot;;
-
-export { ProgressIndicator } from &quot;./progress-indicator.component&quot;;
 
 @NgModule({
 	declarations: [
@@ -229,8 +226,8 @@ export { ProgressIndicator } from &quot;./progress-indicator.component&quot;;
 		CommonModule,
 		DialogModule,
 		ExperimentalModule,
-		CheckmarkOutline16Module,
-		Warning16Module
+		CheckmarkOutlineModule,
+		WarningModule
 	]
 })
 export class ProgressIndicatorModule { }

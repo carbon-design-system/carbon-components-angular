@@ -113,7 +113,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#onDialogInit">onDialogInit</a>
+                                <a href="#updateConfig">updateConfig</a>
                             </li>
                         </ul>
                     </td>
@@ -170,12 +170,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, viewContainerRef: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>, dialogService: <a href="../injectables/DialogService.html">DialogService</a>)</code>
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, viewContainerRef: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>, dialogService: <a href="../injectables/DialogService.html">DialogService</a>, eventService: <a href="../injectables/EventService.html">EventService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -230,6 +230,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>eventService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -259,7 +271,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:46</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -285,7 +297,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:51</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -320,7 +332,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -353,7 +365,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -386,7 +398,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -405,33 +417,31 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="onDialogInit"></a>
+                        <a name="updateConfig"></a>
                         <span class="name">
                             <b>
-                            onDialogInit
+                            updateConfig
                             </b>
-                            <a href="#onDialogInit"><span class="icon ion-ios-link"></span></a>
+                            <a href="#updateConfig"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>onDialogInit()</code>
+<code>updateConfig()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:74</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Extends the <code>Dialog</code> component&#39;s data structure with tooltip properties.</p>
-</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -459,9 +469,10 @@
 	ViewContainerRef,
 	HostBinding
 } from &quot;@angular/core&quot;;
-import { DialogDirective } from &quot;./../dialog.directive&quot;;
+import { DialogDirective } from &quot;../dialog.directive&quot;;
 import { Tooltip } from &quot;./tooltip.component&quot;;
-import { DialogService } from &quot;./../dialog.service&quot;;
+import { DialogService } from &quot;../dialog.service&quot;;
+import { EventService } from &quot;../../utils/event.service&quot;;
 
 
 /**
@@ -505,7 +516,7 @@ export class TooltipDirective extends DialogDirective {
 	@HostBinding(&quot;class.bx--tooltip__trigger&quot;) className &#x3D; true;
 
 	@HostBinding(&quot;attr.aria-describedby&quot;) get descriptorId(): string {
-		return this.expanded ? this.dialogConfig.compID : null;
+		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
 	/**
@@ -514,16 +525,14 @@ export class TooltipDirective extends DialogDirective {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService
+		protected dialogService: DialogService,
+		protected eventService: EventService
 	) {
-		super(elementRef, viewContainerRef, dialogService);
-		dialogService.create(Tooltip);
+		super(elementRef, viewContainerRef, dialogService, eventService);
+		dialogService.setContext({ component: Tooltip });
 	}
 
-	/**
-	 * Extends the &#x60;Dialog&#x60; component&#x27;s data structure with tooltip properties.
-	 */
-	onDialogInit() {
+	updateConfig() {
 		this.dialogConfig.content &#x3D; this.ibmTooltip;
 		this.dialogConfig.type &#x3D; this.tooltipType;
 	}

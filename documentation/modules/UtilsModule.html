@@ -190,9 +190,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import {
 	AnimationFrameService,
-	AnimationFrameServiceSingleton,
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY
+	AnimationFrameServiceSingleton
 } from &quot;./animation-frame.service&quot;;
 import { ElementService } from &quot;./element.service&quot;;
 import { EventService } from &quot;./event.service&quot;;
@@ -200,7 +198,6 @@ import { DocumentService } from &quot;./document.service&quot;;
 
 @NgModule({
 	providers: [
-		ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
 		AnimationFrameServiceSingleton,
 		AnimationFrameService,
 		ElementService,
@@ -212,8 +209,6 @@ export class UtilsModule { }
 export {
 	AnimationFrameService,
 	AnimationFrameServiceSingleton,
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY,
 	ElementService,
 	DocumentService,
 	EventService

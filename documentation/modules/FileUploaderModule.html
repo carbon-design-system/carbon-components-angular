@@ -265,22 +265,16 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
-import { Close16Module } from &quot;@carbon/icons-angular/lib/close/16&quot;;
-import { CheckmarkFilled16Module } from &quot;@carbon/icons-angular/lib/checkmark--filled/16&quot;;
-import { WarningFilled16Module } from &quot;@carbon/icons-angular/lib/warning--filled/16&quot;;
+import {
+	CloseModule,
+	CheckmarkFilledModule,
+	WarningFilledModule
+} from &quot;@carbon/icons-angular&quot;;
 
 import { FileUploader } from &quot;./file-uploader.component&quot;;
 import { FileComponent } from &quot;./file.component&quot;;
 import { ButtonModule } from &quot;../button/button.module&quot;;
 import { LoadingModule } from &quot;../loading/loading.module&quot;;
-
-export { FileUploader } from &quot;./file-uploader.component&quot;;
-export { FileComponent } from &quot;./file.component&quot;;
-
-// compatibility export
-// TODO: remove in v4
-// tslint:disable-next-line: variable-name
-export const File &#x3D; FileComponent;
 
 @NgModule({
 	declarations: [FileUploader, FileComponent],
@@ -289,9 +283,9 @@ export const File &#x3D; FileComponent;
 		CommonModule,
 		ButtonModule,
 		LoadingModule,
-		Close16Module,
-		CheckmarkFilled16Module,
-		WarningFilled16Module
+		CloseModule,
+		CheckmarkFilledModule,
+		WarningFilledModule
 	]
 })
 export class FileUploaderModule { }

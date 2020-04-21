@@ -292,7 +292,7 @@ ex: <code>providers: [{provide: AbstractDropdownView, useExisting: forwardRef(()
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -1019,7 +1019,7 @@ ex. <code>@Output() blurIntent = new EventEmitter&lt;&quot;top&quot; | &quot;bot
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:32</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1033,15 +1033,14 @@ ex. <code>@Output() blurIntent = new EventEmitter&lt;&quot;top&quot; | &quot;bot
                     </td>
                     <td class="col-md-10">
                         <div><p>Emits selection events to controlling classes</p>
-<p>Deprecated: <code>Object</code> as a valid type.</p>
 </div>
-                        <em><code>$event</code> Type:</em>    <code>EventEmitter&lt;literal type | [] | Object&gt;</code>
+                        <em><code>$event</code> Type:</em>    <code>EventEmitter&lt;literal type | []&gt;</code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:21</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1144,10 +1143,8 @@ export class AbstractDropdownView {
 	get items(): Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt; { return; }
 	/**
 	 * Emits selection events to controlling classes
-	 *
-	 * Deprecated: &#x60;Object&#x60; as a valid type.
 	 */
-	@Output() select: EventEmitter&lt;{item: ListItem } | ListItem[] | Object&gt;;
+	@Output() select: EventEmitter&lt;{item: ListItem } | ListItem[]&gt;;
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
@@ -1166,6 +1163,8 @@ export class AbstractDropdownView {
 	public type: &quot;single&quot; | &quot;multi&quot; &#x3D; &quot;single&quot;;
 	/**
 	 * Specifies the render size of the items within the &#x60;AbstractDropdownView&#x60;.
+	 *
+	 * @deprecated since v4
 	 */
 	public size: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;md&quot;;
 	/**

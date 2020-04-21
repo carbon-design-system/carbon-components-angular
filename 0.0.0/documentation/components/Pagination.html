@@ -124,10 +124,7 @@ you load the page.</p>
 		&lt;label class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
 			{{itemsPerPageText.subject | async}}
 		&lt;/label&gt;
-		&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--select__item-count&#x27;: isExperimental
-			}&quot;&gt;
+		&lt;div class&#x3D;&quot;bx--select bx--select--inline bx--select__item-count&quot;&gt;
 			&lt;select
 				[id]&#x3D;&quot;itemsPerPageSelectId&quot;
 				[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
@@ -140,19 +137,18 @@ you load the page.</p>
 				&lt;/option&gt;
 			&lt;/select&gt;
 			&lt;svg
-				ibmIconChevronDown16
+				ibmIconChevronDown
+				size&#x3D;&quot;16&quot;
 				style&#x3D;&quot;display: inherit&quot;
 				class&#x3D;&quot;bx--select__arrow&quot;
 				aria-hidden&#x3D;&quot;true&quot;
-				[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+				[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 			&lt;/svg&gt;
 		&lt;/div&gt;
 		&lt;span *ngIf&#x3D;&quot;!pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-			&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 			{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 		&lt;/span&gt;
 		&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-			&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 			{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 		&lt;/span&gt;
 	&lt;/div&gt;
@@ -162,16 +158,10 @@ you load the page.</p>
 		&lt;p class&#x3D;&quot;bx--skeleton__text&quot; style&#x3D;&quot;width: 70px&quot;&gt;&lt;/p&gt;
 	&lt;/div&gt;
 
-	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;bx--pagination--inline&#x27;: !isExperimental
-		}&quot;&gt;
+	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;&gt;
 		&lt;div
 			*ngIf&#x3D;&quot;!pageInputDisabled&quot;
-			class&#x3D;&quot;bx--select bx--select--inline&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--select__page-number&#x27; : isExperimental
-			}&quot;&gt;
+			class&#x3D;&quot;bx--select bx--select--inline bx--select__page-number&quot;&gt;
 			&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText.subject | async}}&lt;/label&gt;
 			&lt;input
 				*ngIf&#x3D;&quot;pageOptions.length &gt; pageSelectThreshold&quot;
@@ -191,10 +181,11 @@ you load the page.</p>
 			&lt;/select&gt;
 			&lt;svg
 				*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; 1000&quot;
-				ibmIconChevronDown16
+				ibmIconChevronDown
+				size&#x3D;&quot;16&quot;
 				style&#x3D;&quot;display: inherit;&quot;
 				class&#x3D;&quot;bx--select__arrow&quot;
-				[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+				[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 			&lt;/svg&gt;
 		&lt;/div&gt;
 
@@ -213,7 +204,7 @@ you load the page.</p>
 			[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 			(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
 			[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
-			&lt;ibm-icon-caret-left16&gt;&lt;/ibm-icon-caret-left16&gt;
+			&lt;ibm-icon-caret-left size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-left&gt;
 		&lt;/button&gt;
 
 		&lt;button
@@ -225,7 +216,7 @@ you load the page.</p>
 			[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 			(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
 			[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
-			&lt;ibm-icon-caret-right16&gt;&lt;/ibm-icon-caret-right16&gt;
+			&lt;ibm-icon-caret-right size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-right&gt;
 		&lt;/button&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -391,9 +382,6 @@ you load the page.</p>
                                     <a href="#nextPage">nextPage</a>
                                 </li>
                                 <li>
-                                    <a href="#isExperimental">isExperimental</a>
-                                </li>
-                                <li>
                                     <a href="#pageOptions">pageOptions</a>
                                 </li>
                             </ul>
@@ -414,7 +402,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/pagination/pagination.component.ts:319</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/pagination/pagination.component.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -483,7 +471,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/pagination/pagination.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/pagination/pagination.component.ts:178</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -510,7 +498,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/pagination/pagination.component.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/pagination/pagination.component.ts:222</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -533,7 +521,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/pagination/pagination.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/pagination/pagination.component.ts:174</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -555,7 +543,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/pagination/pagination.component.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/pagination/pagination.component.ts:182</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -575,7 +563,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/pagination/pagination.component.ts:196</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/pagination/pagination.component.ts:187</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -597,7 +585,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/pagination/pagination.component.ts:195</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/pagination/pagination.component.ts:186</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -619,7 +607,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/pagination/pagination.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/pagination/pagination.component.ts:170</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -647,7 +635,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/pagination/pagination.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/pagination/pagination.component.ts:204</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -673,7 +661,7 @@ data is finally loaded.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/pagination/pagination.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/pagination/pagination.component.ts:230</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -720,7 +708,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/pagination/pagination.component.ts:319</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/pagination/pagination.component.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -753,7 +741,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/pagination/pagination.component.ts:311</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/pagination/pagination.component.ts:298</a></div>
                             </td>
                         </tr>
 
@@ -786,7 +774,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/pagination/pagination.component.ts:307</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/pagination/pagination.component.ts:294</a></div>
                             </td>
                         </tr>
 
@@ -819,7 +807,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/pagination/pagination.component.ts:312</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/pagination/pagination.component.ts:299</a></div>
                             </td>
                         </tr>
 
@@ -852,7 +840,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/pagination/pagination.component.ts:306</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/pagination/pagination.component.ts:293</a></div>
                             </td>
                         </tr>
 
@@ -885,7 +873,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/pagination/pagination.component.ts:309</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/pagination/pagination.component.ts:296</a></div>
                             </td>
                         </tr>
 
@@ -918,7 +906,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/pagination/pagination.component.ts:317</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/pagination/pagination.component.ts:304</a></div>
                             </td>
                         </tr>
 
@@ -951,7 +939,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/pagination/pagination.component.ts:310</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/pagination/pagination.component.ts:297</a></div>
                             </td>
                         </tr>
 
@@ -984,7 +972,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">src/pagination/pagination.component.ts:316</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/pagination/pagination.component.ts:303</a></div>
                             </td>
                         </tr>
 
@@ -1024,7 +1012,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/pagination/pagination.component.ts:174</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/pagination/pagination.component.ts:165</a></div>
                             </td>
                         </tr>
 
@@ -1057,7 +1045,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/pagination/pagination.component.ts:313</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/pagination/pagination.component.ts:300</a></div>
                             </td>
                         </tr>
 
@@ -1090,7 +1078,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="314" class="link-to-prism">src/pagination/pagination.component.ts:314</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/pagination/pagination.component.ts:301</a></div>
                             </td>
                         </tr>
 
@@ -1123,7 +1111,7 @@ data is finally loaded.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="315" class="link-to-prism">src/pagination/pagination.component.ts:315</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/pagination/pagination.component.ts:302</a></div>
                             </td>
                         </tr>
 
@@ -1153,7 +1141,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/pagination/pagination.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/pagination/pagination.component.ts:204</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1218,7 +1206,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/pagination/pagination.component.ts:241</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/pagination/pagination.component.ts:232</a></div>
                                 </td>
                             </tr>
 
@@ -1229,7 +1217,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/pagination/pagination.component.ts:244</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/pagination/pagination.component.ts:235</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1283,7 +1271,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/pagination/pagination.component.ts:249</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/pagination/pagination.component.ts:240</a></div>
                                 </td>
                             </tr>
 
@@ -1294,7 +1282,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/pagination/pagination.component.ts:252</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/pagination/pagination.component.ts:243</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1348,7 +1336,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/pagination/pagination.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/pagination/pagination.component.ts:250</a></div>
                                 </td>
                             </tr>
 
@@ -1370,7 +1358,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/pagination/pagination.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/pagination/pagination.component.ts:256</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1403,7 +1391,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/pagination/pagination.component.ts:270</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/pagination/pagination.component.ts:261</a></div>
                                 </td>
                             </tr>
 
@@ -1425,7 +1413,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/pagination/pagination.component.ts:274</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/pagination/pagination.component.ts:265</a></div>
                                 </td>
                             </tr>
 
@@ -1447,7 +1435,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/pagination/pagination.component.ts:283</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/pagination/pagination.component.ts:274</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1480,7 +1468,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/pagination/pagination.component.ts:290</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/pagination/pagination.component.ts:281</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1501,28 +1489,6 @@ data is finally loaded.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isExperimental"></a>
-                        <span class="name"><b>isExperimental</b><a href="#isExperimental"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isExperimental()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/pagination/pagination.component.ts:295</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="pageOptions"></a>
                         <span class="name"><b>pageOptions</b><a href="#pageOptions"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -1535,7 +1501,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/pagination/pagination.component.ts:299</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/pagination/pagination.component.ts:286</a></div>
                                 </td>
                             </tr>
 
@@ -1554,7 +1520,7 @@ import {
 	EventEmitter
 } from &quot;@angular/core&quot;;
 
-import { I18n, Overridable } from &quot;./../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;./../i18n/index&quot;;
 import { ExperimentalService } from &quot;./../experimental.module&quot;;
 import { merge } from &quot;./../utils/object&quot;;
 
@@ -1611,10 +1577,7 @@ export interface PaginationTranslations {
 			&lt;label class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
 				{{itemsPerPageText.subject | async}}
 			&lt;/label&gt;
-			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;bx--select__item-count&#x27;: isExperimental
-				}&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--select bx--select--inline bx--select__item-count&quot;&gt;
 				&lt;select
 					[id]&#x3D;&quot;itemsPerPageSelectId&quot;
 					[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
@@ -1627,19 +1590,18 @@ export interface PaginationTranslations {
 					&lt;/option&gt;
 				&lt;/select&gt;
 				&lt;svg
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size&#x3D;&quot;16&quot;
 					style&#x3D;&quot;display: inherit&quot;
 					class&#x3D;&quot;bx--select__arrow&quot;
 					aria-hidden&#x3D;&quot;true&quot;
-					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+					[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 				&lt;/svg&gt;
 			&lt;/div&gt;
 			&lt;span *ngIf&#x3D;&quot;!pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			&lt;/span&gt;
 			&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
-				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			&lt;/span&gt;
 		&lt;/div&gt;
@@ -1649,16 +1611,10 @@ export interface PaginationTranslations {
 			&lt;p class&#x3D;&quot;bx--skeleton__text&quot; style&#x3D;&quot;width: 70px&quot;&gt;&lt;/p&gt;
 		&lt;/div&gt;
 
-		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--pagination--inline&#x27;: !isExperimental
-			}&quot;&gt;
+		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;&gt;
 			&lt;div
 				*ngIf&#x3D;&quot;!pageInputDisabled&quot;
-				class&#x3D;&quot;bx--select bx--select--inline&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;bx--select__page-number&#x27; : isExperimental
-				}&quot;&gt;
+				class&#x3D;&quot;bx--select bx--select--inline bx--select__page-number&quot;&gt;
 				&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText.subject | async}}&lt;/label&gt;
 				&lt;input
 					*ngIf&#x3D;&quot;pageOptions.length &gt; pageSelectThreshold&quot;
@@ -1678,10 +1634,11 @@ export interface PaginationTranslations {
 				&lt;/select&gt;
 				&lt;svg
 					*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; 1000&quot;
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size&#x3D;&quot;16&quot;
 					style&#x3D;&quot;display: inherit;&quot;
 					class&#x3D;&quot;bx--select__arrow&quot;
-					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+					[attr.ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
 				&lt;/svg&gt;
 			&lt;/div&gt;
 
@@ -1700,7 +1657,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
-				&lt;ibm-icon-caret-left16&gt;&lt;/ibm-icon-caret-left16&gt;
+				&lt;ibm-icon-caret-left size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-left&gt;
 			&lt;/button&gt;
 
 			&lt;button
@@ -1712,7 +1669,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
-				&lt;ibm-icon-caret-right16&gt;&lt;/ibm-icon-caret-right16&gt;
+				&lt;ibm-icon-caret-right size&#x3D;&quot;16&quot;&gt;&lt;/ibm-icon-caret-right&gt;
 			&lt;/button&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
@@ -1840,10 +1797,6 @@ export class Pagination {
 		return this.currentPage &gt;&#x3D; lastPage ? lastPage : this.currentPage + 1;
 	}
 
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
-
 	get pageOptions() {
 		if (this.totalDataLength &amp;&amp; this._pageOptions.length !&#x3D;&#x3D; this.totalDataLength) {
 			this._pageOptions &#x3D; Array(Math.ceil(this.totalDataLength / this.itemsPerPage));
@@ -1905,9 +1858,9 @@ export class Pagination {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	class="bx--pagination"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__left">		<p class="bx--skeleton__text" style="width: 70px"></p>		<p class="bx--skeleton__text" style="width: 35px"></p>		<p class="bx--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__left">		<label class="bx--pagination__text" [for]="itemsPerPageSelectId">			{{itemsPerPageText.subject | async}}		</label>		<div class="bx--select bx--select--inline"			[ngClass]="{				\'bx--select__item-count\': isExperimental			}">			<select				[id]="itemsPerPageSelectId"				[(ngModel)]="itemsPerPage"				class="bx--select-input">				<option					class="bx--select-option"					*ngFor="let option of itemsPerPageOptions"					[value]="option">						{{ option }}				</option>			</select>			<svg				ibmIconChevronDown16				style="display: inherit"				class="bx--select__arrow"				aria-hidden="true"				[ariaLabel]="optionsListText.subject | async">			</svg>		</div>		<span *ngIf="!pagesUnknown" class="bx--pagination__text">			<span *ngIf="!isExperimental">|&nbsp;</span>			{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="pagesUnknown" class="bx--pagination__text">			<span *ngIf="!isExperimental">|&nbsp;</span>			{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__right">		<p class="bx--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__right"		[ngClass]="{			\'bx--pagination--inline\': !isExperimental		}">		<div			*ngIf="!pageInputDisabled"			class="bx--select bx--select--inline"			[ngClass]="{				\'bx--select__page-number\' : isExperimental			}">			<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>			<input				*ngIf="pageOptions.length > pageSelectThreshold"				style="padding-right: 1rem; margin-right: 1rem;"				[id]="currentPageSelectId"				type="number"				min="1"				[max]="pageOptions.length"				class="bx--select-input"				[(ngModel)]="currentPage">			<select				*ngIf="pageOptions.length <= pageSelectThreshold"				[id]="currentPageSelectId"				class="bx--select-input"				[(ngModel)]="currentPage">				<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>			</select>			<svg				*ngIf="pageOptions.length <= 1000"				ibmIconChevronDown16				style="display: inherit;"				class="bx--select__arrow"				[ariaLabel]="optionsListText.subject | async">			</svg>		</div>		<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">			{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">			{{pageText.subject | async}} {{currentPage}}		</span>		<button			class="bx--pagination__button bx--pagination__button--backward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage <= 1 || disabled			}"			tabindex="0"			[attr.aria-label]="backwardText.subject | async"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 || disabled ? true : null)">			<ibm-icon-caret-left16></ibm-icon-caret-left16>		</button>		<button			class="bx--pagination__button bx--pagination__button--forward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage >= lastPage || disabled			}"			tabindex="0"			[attr.aria-label]="forwardText.subject | async"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage || disabled ? true : null)">			<ibm-icon-caret-right16></ibm-icon-caret-right16>		</button>	</div></div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><div	class="bx--pagination"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__left">		<p class="bx--skeleton__text" style="width: 70px"></p>		<p class="bx--skeleton__text" style="width: 35px"></p>		<p class="bx--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__left">		<label class="bx--pagination__text" [for]="itemsPerPageSelectId">			{{itemsPerPageText.subject | async}}		</label>		<div class="bx--select bx--select--inline bx--select__item-count">			<select				[id]="itemsPerPageSelectId"				[(ngModel)]="itemsPerPage"				class="bx--select-input">				<option					class="bx--select-option"					*ngFor="let option of itemsPerPageOptions"					[value]="option">						{{ option }}				</option>			</select>			<svg				ibmIconChevronDown				size="16"				style="display: inherit"				class="bx--select__arrow"				aria-hidden="true"				[attr.ariaLabel]="optionsListText.subject | async">			</svg>		</div>		<span *ngIf="!pagesUnknown" class="bx--pagination__text">			{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="pagesUnknown" class="bx--pagination__text">			{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__right">		<p class="bx--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__right">		<div			*ngIf="!pageInputDisabled"			class="bx--select bx--select--inline bx--select__page-number">			<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>			<input				*ngIf="pageOptions.length > pageSelectThreshold"				style="padding-right: 1rem; margin-right: 1rem;"				[id]="currentPageSelectId"				type="number"				min="1"				[max]="pageOptions.length"				class="bx--select-input"				[(ngModel)]="currentPage">			<select				*ngIf="pageOptions.length <= pageSelectThreshold"				[id]="currentPageSelectId"				class="bx--select-input"				[(ngModel)]="currentPage">				<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>			</select>			<svg				*ngIf="pageOptions.length <= 1000"				ibmIconChevronDown				size="16"				style="display: inherit;"				class="bx--select__arrow"				[attr.ariaLabel]="optionsListText.subject | async">			</svg>		</div>		<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">			{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">			{{pageText.subject | async}} {{currentPage}}		</span>		<button			class="bx--pagination__button bx--pagination__button--backward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage <= 1 || disabled			}"			tabindex="0"			[attr.aria-label]="backwardText.subject | async"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 || disabled ? true : null)">			<ibm-icon-caret-left size="16"></ibm-icon-caret-left>		</button>		<button			class="bx--pagination__button bx--pagination__button--forward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage >= lastPage || disabled			}"			tabindex="0"			[attr.aria-label]="forwardText.subject | async"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage || disabled ? true : null)">			<ibm-icon-caret-right size="16"></ibm-icon-caret-right>		</button>	</div></div></div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Pagination'};
 </script>
 <script src="../js/tree.js"></script>
