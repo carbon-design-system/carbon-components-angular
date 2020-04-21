@@ -34,7 +34,12 @@
       {
         "name": "next",
         "channel": "next"
-      },
+	  },
+	  {
+		"name": "v3",
+		"channel": "v3",
+		"range": "3.x"
+	},
       {
         "name": "v9",
         "channel": "carbon-v9",
