@@ -5,11 +5,11 @@ import {
     TableModule,
     TableModel,
     TableHeaderItem,
-    TableItem } from "../../table/table.module";
-import { DropdownModule } from "../../dropdown/dropdown.module";
-import { GridModule } from "../../grid/grid.module";
-import { ButtonModule } from "../../forms/forms.module";
-import { UIShellModule } from "../../ui-shell/ui-shell.module";
+    TableItem } from "../../table/index";
+import { DropdownModule } from "../../dropdown/index";
+import { GridModule } from "../../grid/index";
+import { ButtonModule } from "../../forms/index";
+import { UIShellModule } from "../../ui-shell/index";
 
 @Component({
     selector: "app-sample-progressive-loading",
@@ -89,7 +89,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
         `
     ]
 })
-class SampleProgressiveLoading {   
+class SampleProgressiveLoading {
     model = new TableModel();
     skeletonStateTable = true;
     skeletonStateDropdown = true;
@@ -118,7 +118,7 @@ class SampleProgressiveLoading {
 
     loadScreen() {
         this.model.data = this.dataset.map(datapoint => [new TableItem({}), new TableItem({})]);
-        
+
         this.model.header = [new TableHeaderItem({ data: "" }), new TableHeaderItem({ data: "" })];
 
         setTimeout(() => {
@@ -133,7 +133,7 @@ class SampleProgressiveLoading {
         setTimeout(() => {
             this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
-            this.model.data = this.dataset.map(datapoint => 
+            this.model.data = this.dataset.map(datapoint =>
                 [
                     new TableItem({ data: datapoint.name }),
                     new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })

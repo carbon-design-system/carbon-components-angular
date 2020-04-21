@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 
-import { TagModule } from "../tag/tag.module";
+import { TagModule } from "../tag/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Components|Tag", module)

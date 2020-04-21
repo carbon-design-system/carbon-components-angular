@@ -1,21 +1,8 @@
 import { Injectable, OnDestroy } from "@angular/core";
-import { Observable, fromEvent, Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { DocumentService } from "./document.service";
-
-export type EventHandler = (event: Event) => void;
-
-export const getEventObservable = (targetElement: HTMLElement | Element, eventType: string): Observable<Event> => {
-	switch (eventType) {
-		case "scroll":
-		case "resize":
-		case "touchstart":
-		case "touchmove":
-		case "touchend":
-			return fromEvent(targetElement, eventType, { passive: true });
-		default:
-			return fromEvent(targetElement, eventType);
-	}
-};
+import { EventHandler } from "./types";
+import { getEventObservable } from "./event-observable";
 
 @Injectable()
 export class EventService implements OnDestroy {

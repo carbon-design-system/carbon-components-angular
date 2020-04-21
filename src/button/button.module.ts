@@ -3,8 +3,6 @@ import { CommonModule } from "@angular/common";
 
 import { Button } from "./button.directive";
 
-export { Button } from "./button.directive";
-
 @NgModule({
 	declarations: [Button],
 	exports: [Button],

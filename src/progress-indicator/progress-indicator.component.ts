@@ -28,17 +28,16 @@ import { Step } from "./progress-indicator-step.interface";
 			*ngFor="let step of steps; let i = index"
 			[ngClass]="{'bx--progress-step--disabled' : step.disabled}">
 			<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
-				<ibm-icon-checkmark-outline16 *ngIf="step.state == 'complete'"></ibm-icon-checkmark-outline16>
+				<ibm-icon-checkmark-outline size="16" *ngIf="step.state == 'complete'"></ibm-icon-checkmark-outline>
 				<svg *ngIf="step.state == 'current'">
-					<path *ngIf="isExperimental" d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>
+					<path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>
 				</svg>
 				<svg *ngIf="step.state == 'incomplete'">
 					<path
-						*ngIf="isExperimental"
 						d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
 					</path>
 				</svg>
-				<ibm-icon-warning16 *ngIf="step.state.includes('error')" innerClass="bx--progress__warning"></ibm-icon-warning16>
+				<ibm-icon-warning size="16" *ngIf="step.state.includes('error')" innerClass="bx--progress__warning"></ibm-icon-warning>
 				<p
 					class="bx--progress-label"
 					*ngIf="step.tooltip"
@@ -100,10 +99,6 @@ export class ProgressIndicator {
 		for (let i = current + 1; i < this.steps.length; i++) {
 			this.steps[i].state[0] = "incomplete";
 		}
-	}
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
 	}
 
 	constructor(protected experimental: ExperimentalService) {}
