@@ -57,7 +57,7 @@
     "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26 || ^0.9.0",
+    "zone.js": "^0.8.26 || ^0.9.0 || ^0.10.0",
     "carbon-components": "^10.0.0",
     "@carbon/icons-angular": "^11.0.0"
   },
@@ -91,7 +91,7 @@
     "@types/node": "11.13.0",
     "angular2-template-loader": "0.6.2",
     "babel-loader": "8.0.5",
-    "carbon-components": "10.9.2",
+    "carbon-components": "10.10.3",
     "codelyzer": "5.0.0",
     "commitizen": "4.0.3",
     "core-js": "2.6.11",

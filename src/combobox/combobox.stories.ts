@@ -11,7 +11,12 @@ import {
 	FormBuilder,
 	FormControl
 } from "@angular/forms";
-import { Component, OnInit, Input } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	AfterViewInit
+} from "@angular/core";
 
 const getOptions = (override = {}) => {
 	const options = {
@@ -40,6 +45,52 @@ const getOptions = (override = {}) => {
 
 	return Object.assign({}, options, override);
 };
+
+@Component({
+	selector: "app-dynamic-list-combobox",
+	template: `
+		<ibm-combo-box
+			[(items)]="items"
+			type="multi"
+			(selected)="updateSelected($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class DynamicListComboBox implements AfterViewInit {
+	items = [
+		{
+			content: "one"
+		},
+		{
+			content: "two"
+		},
+		{
+			content: "three"
+		},
+		{
+			content: "four"
+		}
+	];
+
+	updateSelected(event) {
+		this.items.forEach((item: any) => {
+			if (event.some(selectedItem => selectedItem.content === item.content)) {
+				item.selected = true;
+			} else {
+				item.selected = false;
+			}
+		});
+	}
+
+	ngAfterViewInit() {
+		setInterval(() => {
+			const newItems = JSON.parse(JSON.stringify(this.items));
+			newItems.push({ content: `New ${newItems.length}` });
+			this.items = newItems;
+		}, 4000);
+	}
+}
 
 @Component({
 	selector: "app-reactive-combobox",
@@ -93,7 +144,7 @@ class ReactiveFormsCombobox implements OnInit {
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ReactiveFormsCombobox],
+			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
@@ -118,6 +169,11 @@ storiesOf("Components|Combobox", module)
 			</ibm-combo-box>
 		`,
 		props: getOptions()
+	}))
+	.add("Dynamically added list items", () => ({
+		template: `
+			<app-dynamic-list-combobox></app-dynamic-list-combobox>
+		`
 	}))
 	.add("Basic with max length", () => ({
 		template: `
@@ -186,47 +242,6 @@ storiesOf("Components|Combobox", module)
 				} else {
 					this.invalid = false;
 				}
-			}
-		}
-	}))
-	.add("Dynamically added list items", () => ({
-		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
-
-			<button ibmButton (click)="addListItem()">Add list item</button>
-		`,
-		props: {
-			disabled: boolean("disabled", false),
-			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid text", "A valid value is required"),
-			label: text("Label", "ComboBox label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: [
-				{
-					content: "one"
-				},
-				{
-					content: "two"
-				},
-				{
-					content: "three"
-				},
-				{
-					content: "four"
-				}
-			],
-			addListItem: function() {
-				this.items.push({ content: `${this.items.length + 1}` });
-				const newItems = JSON.parse(JSON.stringify(this.items));
-				this.items = newItems;
 			}
 		}
 	}))
