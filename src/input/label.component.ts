@@ -95,9 +95,11 @@ export class Label implements AfterContentInit {
 	 */
 	@Input() invalid = false;
 
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	// @ts-ignore
+	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
-	@ContentChild(TextArea) textArea: TextArea;
+	// @ts-ignore
+	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
@@ -115,7 +117,9 @@ export class Label implements AfterContentInit {
 		if (this.textArea) {
 			this.wrapperClass = "bx--text-area__wrapper";
 		}
-		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		if (this.wrapper) {
+			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		}
 	}
 
 	public isTemplate(value) {

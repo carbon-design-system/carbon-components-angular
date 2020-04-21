@@ -135,7 +135,8 @@ export class CodeSnippet implements AfterViewInit {
 		return this.display === SnippetType.inline ? "button" : null;
 	}
 
-	@ViewChild("code") code;
+	// @ts-ignore
+	@ViewChild("code", { static: false }) code;
 
 	get shouldShowExpandButton() {
 		// Checks if `hasExpand` button has been initialized in `AfterViewInit` before detecting whether or not to

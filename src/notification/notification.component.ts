@@ -91,7 +91,8 @@ export class Notification {
 
 	componentRef: ComponentRef<Notification>;
 
-	@ViewChild("notification") notification;
+	// @ts-ignore
+	@ViewChild("notification", { static: false }) notification;
 
 	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
 	@HostBinding("class.bx--inline-notification") notificationClass = true;

@@ -167,9 +167,11 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		});
 	}
 
-	@ViewChild("input") input: DatePickerInput;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: DatePickerInput;
 
-	@ViewChild("rangeInput") rangeInput: DatePickerInput;
+	// @ts-ignore
+	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 

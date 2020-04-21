@@ -88,7 +88,8 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) {}
 

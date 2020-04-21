@@ -24,6 +24,8 @@ export enum ToggleState {
 
 /**
  * Used to emit changes performed on toggle components.
+ *
+ * @deprecated since v4
  */
 export class ToggleChange {
 	/**

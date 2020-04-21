@@ -112,7 +112,8 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() clear = new EventEmitter();
 
-	@ViewChild("input") inputRef: ElementRef;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
 	protected _size: "sm" | "xl" = "xl";
 

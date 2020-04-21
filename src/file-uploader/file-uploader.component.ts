@@ -138,7 +138,8 @@ export class FileUploader {
 	/**
 	 * Maintains a reference to the view DOM element of the underlying <input> node
 	 */
-	@ViewChild("fileInput") fileInput;
+	// @ts-ignore
+	@ViewChild("fileInput", { static: false }) fileInput;
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
