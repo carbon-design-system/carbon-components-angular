@@ -8,7 +8,8 @@ import {
 	number
 } from "@storybook/addon-knobs/angular";
 
-import { InputModule, DocumentationModule } from "../";
+import { InputModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Input", module).addDecorator(
 	moduleMetadata({

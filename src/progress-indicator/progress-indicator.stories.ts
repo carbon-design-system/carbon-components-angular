@@ -7,8 +7,9 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, number } from "@storybook/addon-knobs/angular";
 
-import { ProgressIndicatorModule, PlaceholderModule, DocumentationModule } from "../";
+import { ProgressIndicatorModule, PlaceholderModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-skeleton-progress-indicator",

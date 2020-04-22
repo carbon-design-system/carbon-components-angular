@@ -2,15 +2,16 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { UIShellModule } from "./ui-shell.module";
-import { SearchModule } from "./../search/search.module";
-import { DialogModule } from "./../dialog/dialog.module";
+import { UIShellModule } from "./index";
+import { SearchModule } from "./../search/index";
+import { DialogModule } from "./../dialog/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
-import { Fade16Module } from "@carbon/icons-angular/lib/fade/16";
-import { Fade20Module } from "@carbon/icons-angular/lib/fade/20";
+import {
+	CarbonModule,
+	FadeModule
+} from "@carbon/icons-angular";
 
 
 @Component({
@@ -31,11 +32,9 @@ storiesOf("Components|UI Shell", module)
 			declarations: [BarComponent, FooComponent],
 			imports: [
 				UIShellModule,
-				Carbon32Module,
-				Fade16Module,
+				CarbonModule,
 				SearchModule,
-				Fade16Module,
-				Fade20Module,
+				FadeModule,
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
@@ -71,10 +70,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -100,17 +99,17 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 
 			<ng-template #brandTemplate>
 				<a class="bx--header__name">
-					<ibm-icon-carbon32 style="stroke:white;fill:white"></ibm-icon-carbon32>
+					<ibm-icon-carbon size="32" style="stroke:white;fill:white"></ibm-icon-carbon>
 					<span class="bx--header__name--prefix">IBM</span>
 					[Platform]
 				</a>
@@ -147,15 +146,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -183,15 +182,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item [route]="['foo']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item [route]="['bar']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
@@ -233,24 +232,24 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action #firstAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 					<ibm-header-action #secondAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 			<ibm-sidenav [expanded]="active">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item [active]="hasActiveChild">Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -290,15 +289,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav rail="true" [expanded]="false">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>

@@ -229,7 +229,7 @@ export class I18n {
 	public getValueFromPath(path): string | { [key: string]: string } {
 		let value = this.translationStrings;
 		for (const segment of path.split(".")) {
-			if (value[segment]) {
+			if (value[segment] !== undefined && value[segment] !== null) {
 				value = value[segment];
 			} else {
 				throw new Error(`no key ${segment} at ${path}`);

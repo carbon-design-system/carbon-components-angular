@@ -18,7 +18,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import { DocumentService } from "../utils/utils.module";
-import { I18n, Overridable } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
 
 /**
@@ -64,7 +64,7 @@ import { Observable } from "rxjs";
 					(keydown.enter)="clearSelected()"
 					role="button"
 					class="bx--tag--filter bx--list-box__selection--multi"
-          tabindex="0"
+					tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
@@ -91,10 +91,11 @@ import { Observable } from "rxjs";
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
+					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
 					autocomplete="list"
 					[placeholder]="placeholder"/>
-				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
 				<div
 					*ngIf="showClearButton"
 					role="button"
@@ -103,14 +104,14 @@ import { Observable } from "rxjs";
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
 					(click)="clearInput($event)">
-					<ibm-icon-close16></ibm-icon-close16>
+					<ibm-icon-close size="16"></ibm-icon-close>
 				</div>
-				<ibm-icon-chevron-down16
+				<ibm-icon-chevron-down size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
 					[title]="open ? closeMenuAria : openMenuAria"
 					[ariaLabel]="open ? closeMenuAria : openMenuAria">
-				</ibm-icon-chevron-down16>
+				</ibm-icon-chevron-down>
 			</div>
 			<div
 				#dropdownMenu
@@ -177,6 +178,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -195,6 +198,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number = null;
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -302,9 +309,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() close = new EventEmitter<any>();
 	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
-	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
-	@ViewChild("dropdownMenu") dropdownMenu;
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ContentChild(AbstractDropdownView, { static: false }) view: AbstractDropdownView;
+	// @ts-ignore
+	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -347,6 +357,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
+			// If new items are added into the combobox while there is search input,
+			// repeat the search.
+			this.onSearch(this.input.nativeElement.value);
 			this.updateSelected();
 		}
 	}
@@ -379,7 +392,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 				this.selected.emit(event);
 			});
-			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {

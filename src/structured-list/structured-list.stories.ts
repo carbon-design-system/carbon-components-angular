@@ -2,7 +2,8 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 
-import { StructuredListModule, DocumentationModule } from "../";
+import { StructuredListModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Structured List", module).addDecorator(
 	moduleMetadata({

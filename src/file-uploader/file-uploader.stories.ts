@@ -13,12 +13,12 @@ import {
 import {
 	FileUploaderModule,
 	NotificationModule,
-	ButtonModule,
-	DocumentationModule
+	ButtonModule
 } from "../";
 import { NotificationService } from "../notification/notification.service";
 
 import * as fileType from "file-type";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-file-uploader",

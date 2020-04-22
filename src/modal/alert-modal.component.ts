@@ -31,8 +31,8 @@ import { BaseModal } from "./base-modal.class";
  * 	openModal() {
  * 		this.modalService.show({
  *			modalType: "default",
- *			modalLabel: "optional header text",
- *			modalTitle: "Modal modalTitle",
+ *			label: "optional header text",
+ *			title: "Modal title",
  *			text: "Modal text",
  *			buttons: [{
  *				text: "Button text",
@@ -49,15 +49,17 @@ import { BaseModal } from "./base-modal.class";
 	template: `
 		<ibm-modal
 			[size]="size"
-			[theme]="modalType"
-			[modalLabel]="modalTitle"
+			[theme]="type"
+			[ariaLabel]="title"
+			[hasScrollingContent]="hasScrollingContent"
+			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
 			<ibm-modal-header (closeSelect)="dismissModal('close')">
-				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
-      			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
+				<p class="bx--modal-header__label bx--type-delta">{{label}}</p>
+      			<p class="bx--modal-header__heading bx--type-beta">{{title}}</p>
 			</ibm-modal-header>
-			<div #content class="bx--modal-content">
-				<p [innerHTML]="modalContent"></p>
+			<div #modalContent class="bx--modal-content">
+				<p [innerHTML]="content"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
@@ -74,16 +76,18 @@ import { BaseModal } from "./base-modal.class";
 	`
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
-	@ViewChild("content") content;
+	// @ts-ignore
+	@ViewChild("modalContent", { static: false }) modalContent;
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
 	constructor(
-		@Inject("modalType") public modalType = "default",
-		@Inject("modalLabel") public modalLabel: string,
-		@Inject("modalTitle") public modalTitle: string,
-		@Inject("modalContent") public modalContent: string,
+		@Inject("type") public type = "default",
+		@Inject("label") public label: string,
+		@Inject("title") public title: string,
+		@Inject("content") public content: string,
 		@Inject("size") public size: string,
+		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
 		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {
@@ -100,8 +104,8 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		if (!this.content) { return false; }
-		const element = this.content.nativeElement;
+		if (!this.modalContent) { return false; }
+		const element = this.modalContent.nativeElement;
 		if (element.scrollHeight > element.clientHeight) {
 			element.tabIndex = 0;
 		} else {
