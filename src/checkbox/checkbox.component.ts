@@ -64,7 +64,7 @@ export type CheckboxValue = boolean | "on" | "off";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
-			(click)="onClick()">
+			(click)="onClick($event)">
 		<label
 			[for]="id"
 			class="bx--checkbox-label"
@@ -323,7 +323,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Handles click events on the `Checkbox` and emits changes to other classes.
 	 */
-	onClick(event) {
+	onClick(event: Event) {
 		if (this.click.observers.length) {
 			// Disable default checkbox activation behavior which flips checked and resets indeterminate.
 			// This allows the parent component to control the checked/indeterminate properties.
