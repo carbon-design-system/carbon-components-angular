@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n } from "../i18n/index";
 import { FileItem } from "./file-item.interface";
 
 const noop = () => { };
@@ -138,7 +138,8 @@ export class FileUploader {
 	/**
 	 * Maintains a reference to the view DOM element of the underlying <input> node
 	 */
-	@ViewChild("fileInput") fileInput;
+	// @ts-ignore
+	@ViewChild("fileInput", { static: false }) fileInput;
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */

@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number } from "@storybook/addon-knobs/angular";
 
-import { SkeletonModule } from "./skeleton.module";
+import { SkeletonModule } from "./index";
 
 storiesOf("Components|Skeleton", module).addDecorator(
 	moduleMetadata({

@@ -50,6 +50,7 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
 	);
 };
 
+
 export const getScrollableParents = (node: HTMLElement) => {
 	const elements = [document.body];
 	while (node.parentElement && node !== document.body) {
@@ -59,6 +60,16 @@ export const getScrollableParents = (node: HTMLElement) => {
 		node = node.parentElement;
 	}
 	return elements;
+};
+
+export const hasScrollableParents = (node: HTMLElement) => {
+	while (node.parentElement && node !== document.body) {
+		if (isScrollableElement(node)) {
+			return true;
+		}
+		node = node.parentElement;
+	}
+	return false;
 };
 
 /**

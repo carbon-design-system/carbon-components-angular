@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
 
 /**
@@ -62,11 +62,12 @@ export class NumberChange {
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
-				<ibm-icon-warning-filled16
+				<ibm-icon-warning-filled
+					size="16"
 					*ngIf="!skeleton && invalid"
 					class="bx--number__invalid"
 					style="display: inherit;">
-				</ibm-icon-warning-filled16>
+				</ibm-icon-warning-filled>
 				<div *ngIf="!skeleton" class="bx--number__controls">
 					<button
 						class="bx--number__control-btn up-icon"
@@ -75,7 +76,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getIncrementLabel() | async"
 						(click)="onIncrement()">
-						<ibm-icon-caret-up16></ibm-icon-caret-up16>
+						<ibm-icon-caret-up size="16"></ibm-icon-caret-up>
 					</button>
 					<button
 						class="bx--number__control-btn down-icon"
@@ -84,7 +85,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<ibm-icon-caret-down16></ibm-icon-caret-down16>
+						<ibm-icon-caret-down size="16"></ibm-icon-caret-down>
 					</button>
 				</div>
 			</div>

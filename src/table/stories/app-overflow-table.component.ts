@@ -50,7 +50,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("overflowMenuItemTemplate")
+	@ViewChild("overflowMenuItemTemplate", { static: false })
 	protected overflowMenuItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

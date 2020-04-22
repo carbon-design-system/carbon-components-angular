@@ -5,8 +5,9 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -30,7 +31,7 @@ export class TableHeadCheckbox {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input() checked = false;
 

@@ -66,9 +66,11 @@ export class DynamicTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("customHeaderTemplate")
+	// @ts-ignore
+	@ViewChild("customHeaderTemplate", { static: false })
 	protected customHeaderTemplate: TemplateRef<any>;
-	@ViewChild("customTableItemTemplate")
+	// @ts-ignore
+	@ViewChild("customTableItemTemplate", { static: false })
 	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
