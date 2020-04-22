@@ -11,28 +11,6 @@ export interface Experiment {
 @Injectable()
 export class ExperimentalService {
 	/**
-	 * Tracks if the v10 experimental mode is enabled
-	 * @deprecated since v3
-	 */
-	static experimentalEnabled = true;
-
-	/**
-	 * Sets the v10 experimental mode
-	 * @deprecated since v3
-	 */
-	set isExperimental(v: boolean) {
-		ExperimentalService.experimentalEnabled = v;
-	}
-
-	/**
-	 * Gets the state of the v10 experimental mode
-	 * @deprecated since v3
-	 */
-	get isExperimental() {
-		return ExperimentalService.experimentalEnabled;
-	}
-
-	/**
 	 * Map to hold all our experiments
 	 */
 	private experiments = new Map<string, Experiment>();

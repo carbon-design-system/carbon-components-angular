@@ -15,7 +15,7 @@ import {
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
 			class="bx--accordion__heading">
-			<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>
+			<ibm-icon-chevron-right size="16" class="bx--accordion__arrow"></ibm-icon-chevron-right>
 			<p *ngIf="!isTemplate(title)"
 				class="bx--accordion__title"
 				[ngClass]="{

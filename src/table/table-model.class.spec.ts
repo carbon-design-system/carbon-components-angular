@@ -1,4 +1,4 @@
-import { TableModel, TableItem, TableHeaderItem } from "./table.module";
+import { TableModel, TableItem, TableHeaderItem } from "./index";
 
 describe("Table", () => {
 	it("empty model should have length 0", () => {

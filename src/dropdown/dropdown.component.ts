@@ -12,7 +12,8 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	ApplicationRef
+	ApplicationRef,
+	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -24,14 +25,25 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/i18n.module";
-// Import needed to avoid compiler issue.
+import { I18n } from "./../i18n/index";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService } from "./../utils/utils.module";
+import { hasScrollableParents } from "../utils";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
+ *
+ * #### Opening behavior/List DOM placement
+ * By default the dropdown will try to figure out the best placement for the dropdown list.
+ *
+ * If it's not contained within any scrolling elements, it will open inline, if it _is_
+ * contained within a scrolling container it will try to open in the body, or an `ibm-placeholder`.
+ *
+ * To control this behavior you can use the `appendInline` input:
+ * - `[appendInline]="null"` is the default (auto detection)
+ * - `[appendInline]="false"` will always append to the body/`ibm-placeholder`
+ * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
  * [See demo](../../?path=/story/dropdown--basic)
  *
@@ -56,7 +68,8 @@ import { ElementService } from "./../utils/utils.module";
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
-			'bx--dropdown--invalid': invalid
+			'bx--dropdown--invalid': invalid,
+			'bx--list-box--up': dropUp
 		}">
 		<div
 			type="button"
@@ -96,16 +109,18 @@ import { ElementService } from "./../utils/utils.module";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled16
+			<svg ibmIconWarningFilled
+				size="16"
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
 			</svg>
-			<ibm-icon-chevron-down16
+			<ibm-icon-chevron-down
+				size="16"
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down16>
+			</ibm-icon-chevron-down>
 		</div>
 		<div
 			#dropdownMenu
@@ -127,7 +142,7 @@ import { ElementService } from "./../utils/utils.module";
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
@@ -152,6 +167,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -188,23 +205,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 */
 	@Input() invalidText = "";
 	/**
-	 * Deprecated. Dropdown now defaults to appending inline
-	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
-	 */
-	@Input() set appendToBody (v) {
-		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.warn("Ensure you have an `ibm-placeholder` in your app.");
-		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
-		this.appendInline = !v;
-	}
-
-	get appendToBody() {
-		return !this.appendInline;
-	}
-	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
-	@Input() appendInline = false;
+	@Input() appendInline: boolean = null;
 	/**
 	 * Query string for the element that contains the `Dropdown`.
 	 * Used to trigger closing the dropdown if it scrolls outside of the viewport of the `scrollableContainer`.
@@ -213,7 +216,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	/**
 	 * Deprecated. Use `itemValueKey` instead.
 	 * Specifies the property to be used as the return value to `ngModel`
-	 * @deprecated use itemValueKey instead
+	 * @deprecated since v4 use itemValueKey instead
 	 */
 	@Input() set value (newValue: string) {
 		console.warn("Dropdown `value` property has been deprecated. Use `itemValueKey` instead");
@@ -253,15 +256,18 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	/**
 	 * Maintains a reference to the `AbstractDropdownView` object within the content DOM.
 	 */
-	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
+	// @ts-ignore
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	/**
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
-	@ViewChild("dropdownButton") dropdownButton;
+	// @ts-ignore
+	@ViewChild("dropdownButton", { static: false }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
-	@ViewChild("dropdownMenu") dropdownMenu;
+	// @ts-ignore
+	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 
 	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**
@@ -351,11 +357,24 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		});
 	}
 
+	ngAfterViewInit() {
+		// if appendInline is default valued (null) we should:
+		// 1. if there are scrollable parents (not including body) don't append inline
+		//    this should also cover the case where the dropdown is in a modal
+		//    (where we _do_ want to append to the placeholder)
+		if (this.appendInline === null && hasScrollableParents(this.elementRef.nativeElement)) {
+			this.appendInline = false;
+		// 2. otherwise we should append inline
+		} else if (this.appendInline === null) {
+			this.appendInline = true;
+		}
+	}
+
 	/**
 	 * Removing the `Dropdown` from the body if it is appended to the body.
 	 */
 	ngOnDestroy() {
-		if (this.appendToBody) {
+		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
 	}
@@ -623,7 +642,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			this.visibilitySubscription = this.elementService
 				.visibility(target, parent)
 				.subscribe(value => {
-					this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
 					if (!value.visible) {
 						this.closeMenu();
 					}
@@ -635,19 +653,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		// set the dropdown menu to drop up if it's near the bottom of the screen
 		// setTimeout lets us measure after it's visible in the DOM
 		setTimeout(() => {
-			const menu = this.dropdownMenu.nativeElement;
-			const boundingClientRect = menu.getBoundingClientRect();
-
-			if (boundingClientRect.bottom > window.innerHeight) {
-				// min height of 100px
-				if (window.innerHeight - boundingClientRect.top > 100) {
-					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
-					if (this.view["enableScroll"]) {
-						this.view["enableScroll"]();
-					}
-				} else {
-					this.dropUp = true;
-				}
+			const button = this.dropdownButton.nativeElement;
+			const boundingClientRect = button.getBoundingClientRect();
+			// +100 to give the dropUp some buffer
+			if ((boundingClientRect.bottom + 100) > window.innerHeight) {
+				this.dropUp = true;
 			} else {
 				this.dropUp = false;
 			}

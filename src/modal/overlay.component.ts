@@ -18,8 +18,11 @@ import {
 	selector: "ibm-overlay",
 	template: `
 		<section
-			class="bx--modal bx--modal-tall is-visible"
-			[ngClass]="{'bx--modal--danger': theme === 'danger'}"
+			class="bx--modal bx--modal-tall"
+			[ngClass]="{
+				'bx--modal--danger': theme === 'danger',
+				'is-visible': open
+			}"
 			(click)="overlayClick($event)"
 			#overlay>
 			<ng-content></ng-content>
@@ -31,6 +34,7 @@ export class Overlay {
 	 * Classification of the modal.
 	 */
 	@Input() theme: "default" | "danger" = "default";
+	@Input() open = false;
 	/**
 	 * To emit the event where the user selects the overlay behind the `Modal`.
 	 */
@@ -38,7 +42,8 @@ export class Overlay {
 	/**
 	 * Maintains a reference to the view DOM element of the `Overlay`.
 	 */
-	@ViewChild("overlay") overlay: ElementRef;
+	// @ts-ignore
+	@ViewChild("overlay", { static: false }) overlay: ElementRef;
 
 	/**
 	 * Handles the user clicking on the `Overlay` which resides outside the `Modal` object.

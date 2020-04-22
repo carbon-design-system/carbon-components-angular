@@ -50,8 +50,7 @@ export class Tooltip extends Dialog {
 
 	constructor(
 		protected elementRef: ElementRef,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null) {
+		protected elementService: ElementService) {
 		super(elementRef, elementService);
 	}
 
