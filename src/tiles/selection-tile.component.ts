@@ -7,7 +7,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 
 @Component({
 	selector: "ibm-selection-tile",
@@ -78,7 +78,8 @@ export class SelectionTile {
 	multiple = true;	// Set to true because of the way tile group sets it up.
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
-	@ViewChild("input") input;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input;
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;

@@ -1,5 +1,5 @@
 import { Injectable, ElementRef, OnDestroy } from "@angular/core";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "./../placeholder/index";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
 import { AnimationFrameService } from "./../utils/utils.module";
@@ -62,6 +62,9 @@ export class DropdownService implements OnDestroy {
 		this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
 			this.positionDropdown(parentRef, dropdownWrapper);
 		});
+
+		// run one position in sync, so we're less likely to have the view "jump" as we focus
+		this.positionDropdown(parentRef, dropdownWrapper);
 
 		return dropdownWrapper;
 	}

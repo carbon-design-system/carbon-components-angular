@@ -2,7 +2,8 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, object } from "@storybook/addon-knobs/angular";
 
-import { InlineLoadingModule, ButtonModule, DocumentationModule } from "../";
+import { InlineLoadingModule, ButtonModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Inline Loading", module)
 	.addDecorator(

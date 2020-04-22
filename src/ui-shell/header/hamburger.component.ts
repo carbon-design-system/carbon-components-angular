@@ -4,7 +4,7 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 
 /**
  * A toggle for the side navigation
@@ -19,8 +19,8 @@ import { I18n } from "../../i18n/i18n.module";
 			class="bx--header__menu-trigger bx--header__action bx--header__menu-toggle"
 			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
 			[attr.title]="i18n.get('UI_SHELL.HEADER.MENU') | async">
-			<svg *ngIf="!active" ibmIconMenu20></svg>
-			<svg *ngIf="active" ibmIconClose20></svg>
+			<svg *ngIf="!active" ibmIconMenu size="20"></svg>
+			<svg *ngIf="active" ibmIconClose size="20"></svg>
 		</button>
 	`
 })

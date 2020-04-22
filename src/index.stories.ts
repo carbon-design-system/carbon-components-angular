@@ -2,8 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./";
-import { Bee20Module } from "@carbon/icons-angular/lib/bee/20";
-import { Document20Module } from "@carbon/icons-angular/lib/document/20";
+import { BeeModule, DocumentModule } from "@carbon/icons-angular";
 
 @Component({
 	selector: "app-welcome",
@@ -99,12 +98,12 @@ import { Document20Module } from "@carbon/icons-angular/lib/document/20";
 			<div class="banner__links">
 				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
 					Documentation
-					<svg ibmIconDocument20 class="bx--btn__icon"></svg>
+					<svg ibmIconDocument size="20" class="bx--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
 					Starter App
-					<svg ibmIconBee20 class="bx--btn__icon"></svg>
+					<svg ibmIconBee size="20" class="bx--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">
@@ -173,7 +172,11 @@ class WelcomeStory implements OnInit, OnDestroy {
 storiesOf("Components|Welcome", module)
 .addDecorator(
 	moduleMetadata({
-		imports: [ButtonModule, Bee20Module, Document20Module],
+		imports: [
+			ButtonModule,
+			BeeModule,
+			DocumentModule
+		],
 		declarations: [WelcomeStory]
 	})
 )
