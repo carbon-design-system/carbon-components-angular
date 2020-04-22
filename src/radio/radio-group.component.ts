@@ -235,11 +235,6 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.onTouched();
 	}
 
-	updateRadioNames() {
-		console.warn("updateRadioNames had been deprecated. Use updateRadios instead");
-		this.updateRadios();
-	}
-
 	/**
 	 * Synchronizes radio properties.
 	 */

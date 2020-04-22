@@ -15,10 +15,4 @@ import { List } from "./list.directive";
 	],
 	imports: [CommonModule]
 })
-class ListModule {}
-
-export {
-	ListModule,
-	ListItemDirective,
-	List
-};
+export class ListModule {}

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 
 /**
  * A fixed header and navigation.
@@ -27,7 +27,7 @@ import { I18n } from "../../i18n/i18n.module";
 			role="banner"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
-				*ngIf="!skipTo"
+				*ngIf="skipTo"
 				class="bx--skip-to-content"
 				[href]="skipTo"
 				tabindex="0">

@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
-import { GridModule } from "../../grid/grid.module";
-import { UIShellModule } from "../../ui-shell/ui-shell.module";
-import { ProgressIndicatorModule } from "../../progress-indicator/progress-indicator.module";
-import { PlaceholderModule } from "../../placeholder/placeholder.module";
-import { InputModule } from "../../input/input.module";
-import { DropdownModule } from "../../dropdown/dropdown.module";
-import { LoadingModule } from "../../loading/loading.module";
-import { ButtonModule } from "../../button/button.module";
+import { GridModule } from "../../grid/index";
+import { UIShellModule } from "../../ui-shell/index";
+import { ProgressIndicatorModule } from "../../progress-indicator/index";
+import { PlaceholderModule } from "../../placeholder/index";
+import { InputModule } from "../../input/index";
+import { DropdownModule } from "../../dropdown/index";
+import { LoadingModule } from "../../loading/index";
+import { ButtonModule } from "../../button/index";
 import {
 	FormGroup,
 	FormControl,
@@ -157,7 +157,7 @@ class SampleLargeLoading {
 
 		setTimeout(() => {
 			this.isLoading = false;
-			this.overlay = false;    
+			this.overlay = false;
 		}, 2000);
 
 		if (this.formGroup.invalid) {

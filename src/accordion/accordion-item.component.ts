@@ -15,7 +15,7 @@ import {
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
 			class="bx--accordion__heading">
-			<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>
+			<ibm-icon-chevron-right size="16" class="bx--accordion__arrow"></ibm-icon-chevron-right>
 			<p *ngIf="!isTemplate(title)"
 				class="bx--accordion__title"
 				[ngClass]="{
@@ -23,7 +23,11 @@ import {
 				}">
 				{{!skeleton ? title : null}}
 			</p>
-			<ng-template *ngIf="isTemplate(title)" [ngTemplateOutlet]="title"></ng-template>
+			<ng-template
+				*ngIf="isTemplate(title)"
+				[ngTemplateOutlet]="title"
+				[ngTemplateOutletContext]="context">
+			</ng-template>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
 			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
@@ -38,6 +42,7 @@ import {
 export class AccordionItem {
 	static accordionItemCount = 0;
 	@Input() title: string | TemplateRef<any>;
+	@Input() context: Object | null = null;
 	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
 	@Input() skeleton = false;
 	@Output() selected = new EventEmitter();

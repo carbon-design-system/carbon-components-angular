@@ -8,7 +8,7 @@ import {
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n } from "./../../i18n/index";
 import { ExperimentalService } from "./../../experimental.module";
 import { ElementService } from "./../../utils/utils.module";
 
@@ -49,17 +49,12 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	onDialogInit() {
 		const positionOverflowMenu = pos => {
 			let offset;
-			if (this.experimental.isExperimental) {
-				/*
-				* 16 is half the width of the overflow menu trigger element.
-				* we also move the element by half of it's own width, since
-				* position service will try and center everything
-				*/
-				offset = Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
-			} else {
-				// 60 shifts the menu right to align the arrow.
-				offset = 60;
-			}
+			/*
+			* 16 is half the width of the overflow menu trigger element.
+			* we also move the element by half of it's own width, since
+			* position service will try and center everything
+			*/
+			offset = Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
 			if (this.dialogConfig.flip) {
 				return position.addOffset(pos, 0, -offset);
 			}

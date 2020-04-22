@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
-import { DropdownModule } from "../../dropdown/dropdown.module";
-import { StructuredListModule } from "../../structured-list/structured-list.module";
-import { GridModule } from "../../grid/grid.module";
-import { RadioModule } from "../../radio/radio.module";
-import { CheckboxModule } from "../../checkbox/checkbox.module";
-import { ButtonModule } from "../../forms/forms.module";
-import { TagModule } from "../../tag/tag.module";
-import { UIShellModule } from "../../ui-shell/ui-shell.module";
+import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
+import { DropdownModule } from "../../dropdown/index";
+import { StructuredListModule } from "../../structured-list/index";
+import { GridModule } from "../../grid/index";
+import { RadioModule } from "../../radio/index";
+import { CheckboxModule } from "../../checkbox/index";
+import { ButtonModule } from "../../forms/index";
+import { TagModule } from "../../tag/index";
+import { UIShellModule } from "../../ui-shell/index";
 
 @Component({
     selector: "app-sample-multi-categories",
@@ -150,12 +150,12 @@ class SampleMultiCategories {
     }
 
     applyFilters() {
-        this.model.data = 
+        this.model.data =
             this.dataset
                 .filter(data =>
                     (this.checkBoxFilters.every(filter => data.type.includes(filter))) &&
                     (data.color === this.radioFilter || !this.radioFilter))
-                .map(filteredData =>                     
+                .map(filteredData =>
                     [
                         new TableItem({ data: filteredData.name }),
                         new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
@@ -166,8 +166,8 @@ class SampleMultiCategories {
         document.querySelector('.sb-show-main').classList.add('full-page');
 
         this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
-        
-        this.model.data = this.dataset.map(datapoint => 
+
+        this.model.data = this.dataset.map(datapoint =>
             [
                 new TableItem({ data: datapoint.name}),
                 new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
