@@ -907,7 +907,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="445" class="link-to-prism">src/datepicker/datepicker.component.ts:445</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">src/datepicker/datepicker.component.ts:452</a></div>
                             </td>
                         </tr>
 
@@ -1054,7 +1054,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">src/datepicker/datepicker.component.ts:452</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="459" class="link-to-prism">src/datepicker/datepicker.component.ts:459</a></div>
                             </td>
                         </tr>
 
@@ -2874,6 +2874,13 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	protected preventCalendarClose &#x3D; event &#x3D;&gt; event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
+		// In range mode, if a date is selected from the first calendar that is from the previous month,
+		// the month will not be updated on the calendar until the calendar is re-opened.
+		// This will make sure the calendar is updated with the correct month.
+		if (this.range) {
+			const currentMonth &#x3D; this.flatpickrInstance.selectedDates[0].getMonth();
+			this.flatpickrInstance.changeMonth(currentMonth, false);
+		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);
 	}
