@@ -216,7 +216,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
 	 */
 	get shouldShowScrollbar() {
-		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
 			const modalContentScrollHeight = modalContent.scrollHeight;
