@@ -2,11 +2,12 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
-import { TilesModule, DocumentationModule } from "../";
-import { SkeletonModule } from "../skeleton/skeleton.module";
+import { TilesModule } from "../";
+import { SkeletonModule } from "../skeleton/index";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-bar",

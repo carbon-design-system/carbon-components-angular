@@ -1,8 +1,9 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { TabsModule, DocumentationModule } from "../";
+import { TabsModule } from "../";
 import { Component, Input } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "ibm-header-group",

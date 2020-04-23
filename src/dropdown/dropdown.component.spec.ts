@@ -6,13 +6,12 @@ import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
 import { ScrollableList } from "./scrollable-list.directive";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { DropdownService } from "./dropdown.service";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
+import { PlaceholderModule } from "./../placeholder/index";
 import { FormsModule } from "@angular/forms";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 import { UtilsModule } from "../utils/utils.module";
+import { ChevronDownModule, WarningFilledModule } from "@carbon/icons-angular";
 
 @Component({
 	template: `
@@ -44,9 +43,9 @@ describe("Dropdown", () => {
 			imports: [
 				I18nModule,
 				PlaceholderModule,
-				ChevronDown16Module,
+				ChevronDownModule,
 				FormsModule,
-				WarningFilled16Module,
+				WarningFilledModule,
 				UtilsModule
 			],
 			providers: [ DropdownService ]

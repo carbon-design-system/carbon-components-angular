@@ -3,7 +3,7 @@ import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
+import { CalendarModule } from "@carbon/icons-angular";
 import { FormsModule } from "@angular/forms";
 import { UtilsModule } from "../utils/utils.module";
 
@@ -39,7 +39,7 @@ describe("DatePicker", () => {
 				DatePickerInput
 			],
 			imports: [
-				Calendar16Module,
+				CalendarModule,
 				UtilsModule,
 				FormsModule
 			]
