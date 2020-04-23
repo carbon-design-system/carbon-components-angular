@@ -10,6 +10,8 @@ import { DialogModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/index";
 import { DocumentationModule } from "./../../documentation-component/documentation.module";
 
+import { DocumentModule } from "@carbon/icons-angular";
+
 let options;
 
 function createOptions(count: number): Array<string> {
@@ -25,6 +27,7 @@ storiesOf("Components|Overflow Menu", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
+				DocumentModule,
 				PlaceholderModule,
 				DocumentationModule
 			]
@@ -116,6 +119,29 @@ storiesOf("Components|Overflow Menu", module)
 				</ibm-overflow-menu>
 			</div>
 			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			click: () => console.log("click"),
+			selected: () => console.log("selected"),
+			flip: boolean("Flipped", false),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
+		}
+	}))
+	.add("With custom trigger", () => ({
+		template: `
+				<span>Overflow menu with custom trigger icon</span>
+				<ibm-overflow-menu
+					[flip]="flip"
+					[customTrigger]="customTrigger"
+					placement="bottom"
+					[offset]="offset">
+					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+				</ibm-overflow-menu>
+				<ibm-placeholder></ibm-placeholder>
+				<ng-template #customTrigger><svg ibmIconDocument size="16"></svg></ng-template>
 		`,
 		props: {
 			click: () => console.log("click"),
