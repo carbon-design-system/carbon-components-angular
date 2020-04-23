@@ -95,8 +95,8 @@ export class TimePicker implements ControlValueAccessor {
 		this.valueChange.emit(event.target.value);
 	}
 
-	@HostListener("blur")
-	blur() {
+	@HostListener("focusout")
+	focusOut() {
 		this.onTouchedHandler();
 	}
 

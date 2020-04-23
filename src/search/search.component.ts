@@ -200,6 +200,7 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
+		this.onTouched();
 		if (this.toolbar &&
 			this.inputRef.nativeElement.value === "" &&
 			event.relatedTarget === null) {
