@@ -8,7 +8,8 @@ import {
 	Input,
 	Output,
 	ViewChild,
-	HostBinding
+	HostBinding,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -311,6 +312,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
 	}
 
 	/**
