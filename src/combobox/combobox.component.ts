@@ -447,6 +447,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			} else {
 				this.view.propagateSelected(value);
 			}
+			this.updateSelected();
 		}
 	}
 
