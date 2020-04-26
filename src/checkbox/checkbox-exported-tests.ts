@@ -1,6 +1,15 @@
 import { expect } from "chai";
 
+import merge from "lodash/merge";
+
 import ComponentTests from "../exported-tests/component-tests";
+
+const defaults = {
+	selectors: {
+		root: "ibm-checkbox",
+		input: "input"
+	}
+};
 
 class CheckboxExportedTests extends ComponentTests {
 	static getComponent(fragment, selectors) {
@@ -37,7 +46,7 @@ class CheckboxExportedTests extends ComponentTests {
 	}
 
 	constructor(configs) {
-		super(configs);
+		super(merge({}, defaults, configs));
 		(this as any).tests = (this as any).tests.concat((this.constructor as typeof CheckboxExportedTests).structure((this as any).settings));
 	}
 }
