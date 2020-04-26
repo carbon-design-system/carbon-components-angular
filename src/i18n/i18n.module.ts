@@ -3,9 +3,6 @@ import { NgModule, SkipSelf, Optional } from "@angular/core";
 import { I18n } from "./i18n.service";
 import { ReplacePipe } from "./replace.pipe";
 
-export { I18n, replace, Overridable } from "./i18n.service";
-export { ReplacePipe } from "./replace.pipe";
-
 // either provides a new instance of I18n, or returns the parent
 export function I18N_SERVICE_PROVIDER_FACTORY(parentService: I18n) {
 	return parentService || new I18n();

@@ -1,4 +1,5 @@
 import { Directive, HostBinding, Input } from "@angular/core";
+import { TableRowSize } from "./table.component";
 
 @Directive({
 	selector: "[ibmTable]"
@@ -15,7 +16,7 @@ export class TableDirective {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@HostBinding("class.bx--data-table") tableClass = true;
 

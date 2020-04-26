@@ -22,9 +22,10 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
-import { PlaceholderModule } from "../placeholder/placeholder.module";
+import { PlaceholderModule } from "../placeholder/index";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { DropdownModule } from "./dropdown.module";
 
 const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
@@ -132,7 +133,6 @@ storiesOf("Components|Dropdown", module)
 				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 			</ibm-dropdown>
 		</div>
-		<ibm-placeholder></ibm-placeholder>
 	`,
 		props: getProps()
 	}))

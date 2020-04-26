@@ -7,9 +7,10 @@ import {
 	HostListener
 } from "@angular/core";
 import { TableModel } from "./../table-model.class";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { TableItem } from "./../table-item.class";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -96,7 +97,7 @@ export class TableRowComponent {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	/**
 	 * Controls whether to enable multiple or single row selection.

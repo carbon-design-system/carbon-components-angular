@@ -1,7 +1,8 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
-import { ButtonModule, DocumentationModule } from "../";
+import { ButtonModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Button", module)
 	.addDecorator(

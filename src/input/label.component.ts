@@ -5,8 +5,11 @@ import {
 	ElementRef,
 	HostBinding,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	ContentChild
 } from "@angular/core";
+
+import { TextArea } from "./text-area.directive";
 
 /**
  * [See demo](../../?path=/story/input--label)
@@ -41,12 +44,13 @@ import {
 			}">
 			<ng-content></ng-content>
 		</label>
-		<div *ngIf="!skeleton" class="bx--form__helper-text">{{helperText}}</div>
-		<div class="bx--text-input__field-wrapper" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
-			<ibm-icon-warning-filled16
+		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
+		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
+			<ibm-icon-warning-filled
+				size="16"
 				*ngIf="invalid"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
-			</ibm-icon-warning-filled16>
+			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
@@ -65,6 +69,10 @@ export class Label implements AfterContentInit {
 	 * its input counterpart through the 'for' attribute.
 	 */
 	labelInputID = "ibm-label-" + Label.labelCounter;
+	/**
+	 * The class of the wrapper
+	 */
+	wrapperClass = "bx--text-input__field-wrapper";
 
 	/**
 	 * State of the `Label` will determine the styles applied.
@@ -87,7 +95,11 @@ export class Label implements AfterContentInit {
 	 */
 	@Input() invalid = false;
 
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	// @ts-ignore
+	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
+
+	// @ts-ignore
+	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
@@ -102,7 +114,12 @@ export class Label implements AfterContentInit {
 	 * Sets the id on the input item associated with the `Label`.
 	 */
 	ngAfterContentInit() {
-		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		if (this.textArea) {
+			this.wrapperClass = "bx--text-area__wrapper";
+		}
+		if (this.wrapper) {
+			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		}
 	}
 
 	public isTemplate(value) {
