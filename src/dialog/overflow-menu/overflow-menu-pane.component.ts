@@ -125,8 +125,10 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				button.tabIndex = -1;
 			}
 		});
-		focusElementList[0].tabIndex = 0;
-		focusElementList[0].focus();
+		if (focusElementList[0]) {
+			focusElementList[0].tabIndex = 0;
+			focusElementList[0].focus();
+		}
 	}
 
 	protected listItems() {
