@@ -74,20 +74,12 @@ const getProps = (more = {}) => {
 
 function getModelWithDisabledRows() {
 	const disabledModel = new TableModel();
-	const row1 = new TableRow();
+	const row1 = new TableRow(new TableItem({data: "Name 1"}), new TableItem({data: "Disabled 1"}));
 	row1.disabled = true;
-	row1.push(new TableItem({data: "Name 1"}));
-	row1.push(new TableItem({data: "Disabled 1"}));
-	const row2 = new TableRow();
+	const row2 = new TableRow(new TableItem({data: "Name 3"}), new TableItem({data: "Disabled 2"}));
 	row2.disabled = true;
-	row2.push(new TableItem({data: "Name 3"}));
-	row2.push(new TableItem({data: "Disabled 2"}));
-	const row3 = new TableRow();
-	row3.push(new TableItem({data: "Name 2"}));
-	row3.push(new TableItem({data: "Enabled 1"}));
-	const row4 = new TableRow();
-	row4.push(new TableItem({data: "Name 4"}));
-	row4.push(new TableItem({data: "Enabled 2"}));
+	const row3 = new TableRow(new TableItem({data: "Name 2"}), new TableItem({data: "Enabled 1"}));
+	const row4 = new TableRow(new TableItem({data: "Name 4"}), new TableItem({data: "Enabled 2"}));
 	disabledModel.data = [row1, row2, row3, row4];
 	return disabledModel;
 }
