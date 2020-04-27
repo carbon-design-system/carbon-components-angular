@@ -17,7 +17,7 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "../utils/utils.module";
+import { DocumentService } from "../utils/index";
 import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
 
