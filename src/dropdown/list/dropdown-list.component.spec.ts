@@ -5,7 +5,7 @@ import { By	} from "@angular/platform-browser";
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
-import { I18nModule } from "../../i18n/i18n.module";
+import { I18nModule } from "../../i18n/index";
 
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`

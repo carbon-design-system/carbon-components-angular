@@ -7,7 +7,7 @@ import {
 	AfterViewInit
 } from "@angular/core";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n } from "../i18n/index";
 
 export enum SnippetType {
 	single = "single",
@@ -50,7 +50,7 @@ export enum SnippetType {
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
 				tabindex="0">
-				<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>
+				<ibm-icon-copy size="16" class="bx--snippet__icon"></ibm-icon-copy>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
@@ -59,7 +59,7 @@ export enum SnippetType {
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
+				<ibm-icon-chevron-down size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down>
 			</button>
 		</ng-template>
 
@@ -135,7 +135,8 @@ export class CodeSnippet implements AfterViewInit {
 		return this.display === SnippetType.inline ? "button" : null;
 	}
 
-	@ViewChild("code") code;
+	// @ts-ignore
+	@ViewChild("code", { static: false }) code;
 
 	get shouldShowExpandButton() {
 		// Checks if `hasExpand` button has been initialized in `AfterViewInit` before detecting whether or not to

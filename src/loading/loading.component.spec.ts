@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { Loading } from "./loading.component";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 

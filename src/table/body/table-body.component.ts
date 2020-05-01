@@ -5,8 +5,9 @@ import {
 	Output
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -87,7 +88,7 @@ export class TableBody {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.

@@ -46,10 +46,11 @@ import { TextArea } from "./text-area.directive";
 		</label>
 		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
-			<ibm-icon-warning-filled16
+			<ibm-icon-warning-filled
+				size="16"
 				*ngIf="invalid"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
-			</ibm-icon-warning-filled16>
+			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
@@ -94,9 +95,11 @@ export class Label implements AfterContentInit {
 	 */
 	@Input() invalid = false;
 
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	// @ts-ignore
+	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
-	@ContentChild(TextArea) textArea: TextArea;
+	// @ts-ignore
+	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
@@ -114,7 +117,9 @@ export class Label implements AfterContentInit {
 		if (this.textArea) {
 			this.wrapperClass = "bx--text-area__wrapper";
 		}
-		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		if (this.wrapper) {
+			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		}
 	}
 
 	public isTemplate(value) {

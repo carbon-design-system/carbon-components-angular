@@ -110,7 +110,8 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Content child of the projected header component
 	 */
-	@ContentChild(TabHeaders) tabHeaders;
+	// @ts-ignore
+	@ContentChild(TabHeaders, { static: false }) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial

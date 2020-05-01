@@ -1,4 +1,4 @@
-import { PaginationModule } from "./../pagination/pagination.module";
+import { PaginationModule } from "./../pagination/index";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,
@@ -18,15 +18,16 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule,
-	DocumentationModule
+	ButtonModule
 } from "../";
 
-import { Settings16Module } from "@carbon/icons-angular/lib/settings/16";
-import { Delete16Module } from "@carbon/icons-angular/lib/delete/16";
-import { Save16Module } from "@carbon/icons-angular/lib/save/16";
-import { Download16Module } from "@carbon/icons-angular/lib/download/16";
-import { Add20Module } from "@carbon/icons-angular/lib/add/20";
+import {
+	SettingsModule,
+	DeleteModule,
+	SaveModule,
+	DownloadModule,
+	AddModule
+} from "@carbon/icons-angular";
 
 import {
 	TableStory,
@@ -37,6 +38,7 @@ import {
 	SkeletonTableStory,
 	TableNoDataStory
 } from "./stories";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 const simpleModel = new TableModel();
 simpleModel.data = [
@@ -78,11 +80,11 @@ storiesOf("Components|Table", module).addDecorator(
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
-				Settings16Module,
-				Delete16Module,
-				Save16Module,
-				Download16Module,
-				Add20Module,
+				SettingsModule,
+				DeleteModule,
+				SaveModule,
+				DownloadModule,
+				AddModule,
 				DocumentationModule
 			],
 			declarations: [
@@ -158,25 +160,25 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<ibm-icon-delete16 class="bx--btn__icon"></ibm-icon-delete16>
+						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<ibm-icon-save16 class="bx--btn__icon"></ibm-icon-save16>
+						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<ibm-icon-download16 class="bx--btn__icon"></ibm-icon-download16>
+						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
+						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
 						Primary Button
-						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
+						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -212,11 +214,11 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="toolbar-action">
-						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
+						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
 						Primary Button
-						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
+						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
