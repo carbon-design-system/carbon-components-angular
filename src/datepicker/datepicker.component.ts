@@ -241,7 +241,12 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	ngAfterContentInit() {
 		(languages.default.en.weekdays.shorthand as string[])
-			= languages.default.en.weekdays.shorthand.map(day => day === "Thu" || day ===  "T" ? "Th" : day.charAt(0));
+			= languages.default.en.weekdays.longhand.map(day => {
+				if (day === "Thursday") {
+					return "Th";
+				}
+				return day.charAt(0);
+			});
 	}
 
 	@HostListener("focusin")
