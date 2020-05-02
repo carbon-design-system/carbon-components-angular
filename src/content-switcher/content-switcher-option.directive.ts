@@ -35,7 +35,7 @@ export class ContentSwitcherOption {
 	/**
 	 * Emits when the option is selected.
 	 */
-	@Output() selected = new EventEmitter();
+	@Output() selected = new EventEmitter<boolean>();
 
 	@HostBinding("class") switcherClass = "bx--content-switcher-btn";
 	@HostBinding("class.bx--content-switcher--selected") selectedClass = false;
@@ -47,12 +47,6 @@ export class ContentSwitcherOption {
 
 	@HostListener("click")
 	hostClick() {
-		this.active = true;
-		this.selected.emit(true);
-	}
-
-	@HostListener("focus")
-	onFocus() {
 		this.active = true;
 		this.selected.emit(true);
 	}

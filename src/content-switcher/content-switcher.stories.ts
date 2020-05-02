@@ -24,7 +24,7 @@ storiesOf("Components|Content Switcher", module)
 			</ibm-content-switcher>
 		`,
 		props: {
-			selected: action("selection changed")
+			selected: action("selection changed"),
 		}
 	}))
 	.add("Documentation", () => ({
