@@ -622,7 +622,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -1448,8 +1448,10 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				button.tabIndex &#x3D; -1;
 			}
 		});
-		focusElementList[0].tabIndex &#x3D; 0;
-		focusElementList[0].focus();
+		if (focusElementList[0]) {
+			focusElementList[0].tabIndex &#x3D; 0;
+			focusElementList[0].focus();
+		}
 	}
 
 	protected listItems() {

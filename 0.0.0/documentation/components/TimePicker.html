@@ -281,7 +281,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#blur">blur</a>
+                                <a href="#focusout">focusout</a>
                             </li>
                         </ul>
                     </td>
@@ -528,18 +528,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="blur"></a>
+                        <a name="focusout"></a>
                         <span class="name">
                             <b>
-                            blur
+                            focusout
                             </b>
-                            <a href="#blur"><span class="icon ion-ios-link"></span></a>
+                            <a href="#focusout"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>blur()</code>
+<code>focusout()</code>
                     </td>
                 </tr>
 
@@ -1192,8 +1192,8 @@ export class TimePicker implements ControlValueAccessor {
 		this.valueChange.emit(event.target.value);
 	}
 
-	@HostListener(&quot;blur&quot;)
-	blur() {
+	@HostListener(&quot;focusout&quot;)
+	focusOut() {
 		this.onTouchedHandler();
 	}
 

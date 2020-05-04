@@ -132,7 +132,7 @@
 	[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 	[attr.aria-checked]&#x3D;&quot;checked&quot;
 	(change)&#x3D;&quot;onChange($event)&quot;
-	(click)&#x3D;&quot;onClick()&quot;&gt;
+	(click)&#x3D;&quot;onClick($event)&quot;&gt;
 &lt;label
 	class&#x3D;&quot;bx--toggle__label&quot;
 	[for]&#x3D;&quot;id&quot;
@@ -257,6 +257,10 @@
                                 <a href="#registerOnTouched">registerOnTouched</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setChecked">setChecked</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#toggle">toggle</a>
                             </li>
@@ -364,6 +368,9 @@
                                 <a href="#checkedChange">checkedChange</a>
                             </li>
                             <li>
+                                <a href="#click">click</a>
+                            </li>
+                            <li>
                                 <a href="#indeterminateChange">indeterminateChange</a>
                             </li>
                         </ul>
@@ -388,6 +395,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#focusout">focusout</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                     <tr>
                         <td class="col-md-4">
@@ -608,7 +629,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:144</div>
+                                    <div class="io-line">Defined in Checkbox:145</div>
                             </td>
                         </tr>
             </tbody>
@@ -637,7 +658,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:162</div>
+                                    <div class="io-line">Defined in Checkbox:163</div>
                             </td>
                         </tr>
             </tbody>
@@ -663,7 +684,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:154</div>
+                                    <div class="io-line">Defined in Checkbox:155</div>
                             </td>
                         </tr>
             </tbody>
@@ -690,7 +711,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:172</div>
+                                    <div class="io-line">Defined in Checkbox:173</div>
                             </td>
                         </tr>
             </tbody>
@@ -720,7 +741,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:204</div>
+                                    <div class="io-line">Defined in Checkbox:211</div>
                             </td>
                         </tr>
             </tbody>
@@ -748,7 +769,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:113</div>
+                                    <div class="io-line">Defined in Checkbox:114</div>
                             </td>
                         </tr>
             </tbody>
@@ -776,7 +797,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:121</div>
+                                    <div class="io-line">Defined in Checkbox:122</div>
                             </td>
                         </tr>
             </tbody>
@@ -804,7 +825,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:129</div>
+                                    <div class="io-line">Defined in Checkbox:130</div>
                             </td>
                         </tr>
             </tbody>
@@ -834,7 +855,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:179</div>
+                                    <div class="io-line">Defined in Checkbox:180</div>
                             </td>
                         </tr>
             </tbody>
@@ -862,7 +883,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:109</div>
+                                    <div class="io-line">Defined in Checkbox:110</div>
                             </td>
                         </tr>
             </tbody>
@@ -891,7 +912,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:125</div>
+                                    <div class="io-line">Defined in Checkbox:126</div>
                             </td>
                         </tr>
             </tbody>
@@ -920,7 +941,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:105</div>
+                                    <div class="io-line">Defined in Checkbox:106</div>
                             </td>
                         </tr>
             </tbody>
@@ -949,7 +970,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:133</div>
+                                    <div class="io-line">Defined in Checkbox:134</div>
                             </td>
                         </tr>
             </tbody>
@@ -981,7 +1002,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:99</div>
+                                    <div class="io-line">Defined in Checkbox:100</div>
                             </td>
                         </tr>
             </tbody>
@@ -1009,7 +1030,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:117</div>
+                                    <div class="io-line">Defined in Checkbox:118</div>
                             </td>
                         </tr>
             </tbody>
@@ -1038,7 +1059,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:137</div>
+                                    <div class="io-line">Defined in Checkbox:138</div>
                             </td>
                         </tr>
             </tbody>
@@ -1091,7 +1112,7 @@ click.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:237</div>
+                                    <div class="io-line">Defined in Checkbox:240</div>
                             </td>
                         </tr>
             </tbody>
@@ -1119,7 +1140,34 @@ click.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:244</div>
+                                    <div class="io-line">Defined in Checkbox:247</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="click"></a>
+                        <code>click</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits click event.</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in Checkbox:233</div>
                             </td>
                         </tr>
             </tbody>
@@ -1147,7 +1195,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Checkbox:250</div>
+                                    <div class="io-line">Defined in Checkbox:253</div>
                             </td>
                         </tr>
             </tbody>
@@ -1181,7 +1229,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:224</div>
+                                    <div class="io-line">Defined in Checkbox:223</div>
                             </td>
                         </tr>
 
@@ -1215,7 +1263,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:227</div>
+                                    <div class="io-line">Defined in Checkbox:226</div>
                             </td>
                         </tr>
 
@@ -1224,6 +1272,43 @@ on an indeterminate checkbox.</p>
         </table>
 </section>
 
+    <section>
+    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focusout"></a>
+                        <span class="name">
+                            <b>
+                            focusout
+                            </b>
+                            <a href="#focusout"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>focusout()</code>
+                    </td>
+                </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in Checkbox:318</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
     <section>
     
@@ -1441,7 +1526,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:360</div>
+                                    <div class="io-line">Defined in Checkbox:363</div>
                             </td>
                         </tr>
 
@@ -1487,7 +1572,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:375</div>
+                                    <div class="io-line">Defined in Checkbox:378</div>
                             </td>
                         </tr>
 
@@ -1533,7 +1618,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:315</div>
+                                    <div class="io-line">Defined in Checkbox:325</div>
                             </td>
                         </tr>
 
@@ -1597,7 +1682,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>onClick()</code>
+<code>onClick(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
                     </td>
                 </tr>
 
@@ -1610,7 +1695,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:322</div>
+                                    <div class="io-line">Defined in Checkbox:332</div>
                             </td>
                         </tr>
 
@@ -1621,9 +1706,40 @@ on an indeterminate checkbox.</p>
 </div>
 
                             <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1658,7 +1774,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:300</div>
+                                    <div class="io-line">Defined in Checkbox:305</div>
                             </td>
                         </tr>
 
@@ -1737,7 +1853,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:308</div>
+                                    <div class="io-line">Defined in Checkbox:313</div>
                             </td>
                         </tr>
 
@@ -1795,6 +1911,97 @@ on an indeterminate checkbox.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="setChecked"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            setChecked
+                            </b>
+                            <a href="#setChecked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>setChecked(checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, resetIndeterminate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    </td>
+                </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in Checkbox:393</div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sets checked state and optionally resets indeterminate state.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>checked</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>resetIndeterminate</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="toggle"></a>
                         <span class="name">
                             <b>
@@ -1821,7 +2028,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:282</div>
+                                    <div class="io-line">Defined in Checkbox:285</div>
                             </td>
                         </tr>
 
@@ -1867,7 +2074,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:339</div>
+                                    <div class="io-line">Defined in Checkbox:356</div>
                             </td>
                         </tr>
 
@@ -1946,7 +2153,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:293</div>
+                                    <div class="io-line">Defined in Checkbox:297</div>
                             </td>
                         </tr>
 
@@ -2193,7 +2400,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:255</div>
+                                    <div class="io-line">Defined in Checkbox:258</div>
                             </td>
                         </tr>
 
@@ -2238,7 +2445,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:259</div>
+                                    <div class="io-line">Defined in Checkbox:262</div>
                             </td>
                         </tr>
 
@@ -2290,7 +2497,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:92</div>
+                                    <div class="io-line">Defined in Checkbox:93</div>
                             </td>
                         </tr>
 
@@ -2335,7 +2542,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:264</div>
+                                    <div class="io-line">Defined in Checkbox:267</div>
                             </td>
                         </tr>
 
@@ -2390,7 +2597,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:270</div>
+                                    <div class="io-line">Defined in Checkbox:273</div>
                             </td>
                         </tr>
 
@@ -2441,7 +2648,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:334</div>
+                                    <div class="io-line">Defined in Checkbox:351</div>
                             </td>
                         </tr>
 
@@ -2486,7 +2693,7 @@ on an indeterminate checkbox.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Checkbox:385</div>
+                                    <div class="io-line">Defined in Checkbox:388</div>
                             </td>
                         </tr>
 
@@ -2716,7 +2923,7 @@ export class ToggleChange {
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 			[attr.aria-checked]&#x3D;&quot;checked&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick()&quot;&gt;
+			(click)&#x3D;&quot;onClick($event)&quot;&gt;
 		&lt;label
 			class&#x3D;&quot;bx--toggle__label&quot;
 			[for]&#x3D;&quot;id&quot;
@@ -2867,7 +3074,7 @@ export class Toggle extends Checkbox {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" [id]="ariaLabelledby" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick()"><label	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>	<span class="bx--toggle__appearance">		<svg *ngIf="size === \'sm\'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span>	<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span></label>	</div>'
+        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" [id]="ariaLabelledby" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick($event)"><label	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>	<span class="bx--toggle__appearance">		<svg *ngIf="size === \'sm\'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span>	<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span></label>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Toggle'};

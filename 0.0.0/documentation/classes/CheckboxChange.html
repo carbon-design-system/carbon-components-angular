@@ -143,7 +143,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/checkbox/checkbox.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/checkbox/checkbox.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/checkbox/checkbox.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/checkbox/checkbox.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -218,7 +218,8 @@
 	Input,
 	Output,
 	ViewChild,
-	HostBinding
+	HostBinding,
+	HostListener
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 
@@ -274,7 +275,7 @@ export type CheckboxValue &#x3D; boolean | &quot;on&quot; | &quot;off&quot;;
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
 			[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick()&quot;&gt;
+			(click)&#x3D;&quot;onClick($event)&quot;&gt;
 		&lt;label
 			[for]&#x3D;&quot;id&quot;
 			class&#x3D;&quot;bx--checkbox-label&quot;
@@ -387,15 +388,21 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the &#x60;indeterminateChange&#x60; Output.
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
-		let changed &#x3D; this._indeterminate !&#x3D;&#x3D; indeterminate;
+		if (indeterminate &#x3D;&#x3D;&#x3D; this._indeterminate) {
+			return;
+		}
+		// Set indeterminate and reset checked if indeterminate is true - only one of them can be true
 		this._indeterminate &#x3D; indeterminate;
+		if (indeterminate &amp;&amp; this._checked) {
+			this._checked &#x3D; false;
+		}
 
-		if (changed) {
+		if (this._indeterminate) {
 			this.transitionCheckboxState(CheckboxState.Indeterminate);
 		} else {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
-
+		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
 
@@ -412,16 +419,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the &#x60;checkedChange&#x60; Output.
 	 */
 	@Input() set checked (checked: boolean) {
-		if (checked !&#x3D;&#x3D; this.checked) {
-			if (this._indeterminate) {
-				Promise.resolve().then(() &#x3D;&gt; {
-					this._indeterminate &#x3D; false;
-					this.indeterminateChange.emit(this._indeterminate);
-				});
-			}
-			this._checked &#x3D; checked;
-			this.changeDetectorRef.markForCheck();
-		}
+		// Set checked and reset indeterminate if checked is true - only one of them can be true
+		this.setChecked(checked, checked);
 	}
 
 	/**
@@ -438,6 +437,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		return !this.inline;
 	}
 
+	/**
+	 * Emits click event.
+	 */
+	@Output() click &#x3D; new EventEmitter&lt;void&gt;();
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
 	 * click.
@@ -490,7 +493,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Toggle the selected state of the checkbox.
 	 */
 	public toggle() {
-		this.checked &#x3D; !this.checked;
+		// Flip checked and reset indeterminate
+		this.setChecked(!this.checked, true);
 	}
 
 	/**
@@ -501,7 +505,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * @param value boolean, corresponds to the &#x60;checked&#x60; property.
 	 */
 	public writeValue(value: any) {
-		this.checked &#x3D; !!value;
+		// Set checked and reset indeterminate
+		this.setChecked(!!value, true);
 	}
 
 	/**
@@ -519,6 +524,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		this.onTouched &#x3D; fn;
 	}
 
+	@HostListener(&quot;focusout&quot;)
+	focusOut() {
+		this.onTouched();
+	}
+
 	/**
 	 * Executes on the event of a change within &#x60;Checkbox&#x60; to block propagation.
 	 */
@@ -529,7 +539,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Handles click events on the &#x60;Checkbox&#x60; and emits changes to other classes.
 	 */
-	onClick() {
+	onClick(event: Event) {
+		if (this.click.observers.length) {
+			// Disable default checkbox activation behavior which flips checked and resets indeterminate.
+			// This allows the parent component to control the checked/indeterminate properties.
+			event.preventDefault();
+			this.click.emit();
+			return;
+		}
 		if (!this.disabled) {
 			this.toggle();
 			this.transitionCheckboxState(this._checked ? CheckboxState.Checked : CheckboxState.Unchecked);
@@ -547,20 +564,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Handles changes between checkbox states.
 	 */
 	transitionCheckboxState(newState: CheckboxState) {
-		let oldState &#x3D; this.currentCheckboxState;
-
-		// Indeterminate has to be set always if it&#x27;s transitioned to
-		// checked has to be set before indeterminate or it overrides
-		// indeterminate&#x27;s dash
-		if (newState &#x3D;&#x3D;&#x3D; CheckboxState.Indeterminate) {
-			this.checked &#x3D; false;
-			this.inputCheckbox.nativeElement.indeterminate &#x3D; true;
-		}
-
-		if (oldState &#x3D;&#x3D;&#x3D; newState) {
-			return;
-		}
-
 		this.currentCheckboxState &#x3D; newState;
 	}
 
@@ -593,6 +596,24 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
+
+	/**
+	 * Sets checked state and optionally resets indeterminate state.
+	 */
+	private setChecked(checked: boolean, resetIndeterminate: boolean) {
+		if (checked &#x3D;&#x3D;&#x3D; this._checked) {
+			return;
+		}
+		this._checked &#x3D; checked;
+		// Reset indeterminate if requested
+		if (resetIndeterminate &amp;&amp; this._indeterminate) {
+			this._indeterminate &#x3D; false;
+			Promise.resolve().then(() &#x3D;&gt; {
+				this.indeterminateChange.emit(this._indeterminate);
+			});
+		}
+		this.changeDetectorRef.markForCheck();
+	}
 }
 </code></pre>
     </div>
