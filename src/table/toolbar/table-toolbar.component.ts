@@ -59,8 +59,7 @@ import { I18n, Overridable } from "../../i18n/index";
 					ibmButton="primary"
 					class="bx--batch-summary__cancel"
 					[tabindex]="selected ? 0 : -1"
-					(click)="onCancel()"
-				>
+					(click)="onCancel()">
 					{{_cancelText.subject | async}}
 				</button>
 			</div>
