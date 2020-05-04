@@ -65,7 +65,7 @@ export type CheckboxValue = boolean | "on" | "off";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
-			(click)="onClick()">
+			(click)="onClick($event)">
 		<label
 			[for]="id"
 			class="bx--checkbox-label"
@@ -178,15 +178,21 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `indeterminateChange` Output.
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
-		let changed = this._indeterminate !== indeterminate;
+		if (indeterminate === this._indeterminate) {
+			return;
+		}
+		// Set indeterminate and reset checked if indeterminate is true - only one of them can be true
 		this._indeterminate = indeterminate;
+		if (indeterminate && this._checked) {
+			this._checked = false;
+		}
 
-		if (changed) {
+		if (this._indeterminate) {
 			this.transitionCheckboxState(CheckboxState.Indeterminate);
 		} else {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
-
+		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
 
@@ -203,16 +209,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `checkedChange` Output.
 	 */
 	@Input() set checked (checked: boolean) {
-		if (checked !== this.checked) {
-			if (this._indeterminate) {
-				Promise.resolve().then(() => {
-					this._indeterminate = false;
-					this.indeterminateChange.emit(this._indeterminate);
-				});
-			}
-			this._checked = checked;
-			this.changeDetectorRef.markForCheck();
-		}
+		// Set checked and reset indeterminate if checked is true - only one of them can be true
+		this.setChecked(checked, checked);
 	}
 
 	/**
@@ -229,6 +227,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		return !this.inline;
 	}
 
+	/**
+	 * Emits click event.
+	 */
+	@Output() click = new EventEmitter<void>();
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
 	 * click.
@@ -281,7 +283,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Toggle the selected state of the checkbox.
 	 */
 	public toggle() {
-		this.checked = !this.checked;
+		// Flip checked and reset indeterminate
+		this.setChecked(!this.checked, true);
 	}
 
 	/**
@@ -292,7 +295,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * @param value boolean, corresponds to the `checked` property.
 	 */
 	public writeValue(value: any) {
-		this.checked = !!value;
+		// Set checked and reset indeterminate
+		this.setChecked(!!value, true);
 	}
 
 	/**
@@ -325,7 +329,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Handles click events on the `Checkbox` and emits changes to other classes.
 	 */
-	onClick() {
+	onClick(event: Event) {
+		if (this.click.observers.length) {
+			// Disable default checkbox activation behavior which flips checked and resets indeterminate.
+			// This allows the parent component to control the checked/indeterminate properties.
+			event.preventDefault();
+			this.click.emit();
+			return;
+		}
 		if (!this.disabled) {
 			this.toggle();
 			this.transitionCheckboxState(this._checked ? CheckboxState.Checked : CheckboxState.Unchecked);
@@ -343,20 +354,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Handles changes between checkbox states.
 	 */
 	transitionCheckboxState(newState: CheckboxState) {
-		let oldState = this.currentCheckboxState;
-
-		// Indeterminate has to be set always if it's transitioned to
-		// checked has to be set before indeterminate or it overrides
-		// indeterminate's dash
-		if (newState === CheckboxState.Indeterminate) {
-			this.checked = false;
-			this.inputCheckbox.nativeElement.indeterminate = true;
-		}
-
-		if (oldState === newState) {
-			return;
-		}
-
 		this.currentCheckboxState = newState;
 	}
 
@@ -389,4 +386,22 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Method set in `registerOnChange` to propagate changes back to the form.
 	 */
 	propagateChange = (_: any) => {};
+
+	/**
+	 * Sets checked state and optionally resets indeterminate state.
+	 */
+	private setChecked(checked: boolean, resetIndeterminate: boolean) {
+		if (checked === this._checked) {
+			return;
+		}
+		this._checked = checked;
+		// Reset indeterminate if requested
+		if (resetIndeterminate && this._indeterminate) {
+			this._indeterminate = false;
+			Promise.resolve().then(() => {
+				this.indeterminateChange.emit(this._indeterminate);
+			});
+		}
+		this.changeDetectorRef.markForCheck();
+	}
 }
