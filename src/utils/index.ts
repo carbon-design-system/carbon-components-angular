@@ -10,3 +10,4 @@ export * from "./element.service";
 export * from "./event.service";
 export * from "./event-observable";
 export * from "./types";
+export * from "./document.service";
