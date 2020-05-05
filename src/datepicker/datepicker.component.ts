@@ -167,19 +167,11 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		});
 	}
 
-	@ViewChild("input") input: DatePickerInput;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: DatePickerInput;
 
-	@ViewChild("rangeInput") rangeInput: DatePickerInput;
-
-	set flatpickrOptionsRange (options) {
-		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
-		this.range = true;
-		this.flatpickrOptions = options;
-	}
-	get flatpickrOptionsRange () {
-		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
-		return this.flatpickrOptions;
-	}
+	// @ts-ignore
+	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -446,6 +438,13 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
+		// In range mode, if a date is selected from the first calendar that is from the previous month,
+		// the month will not be updated on the calendar until the calendar is re-opened.
+		// This will make sure the calendar is updated with the correct month.
+		if (this.range) {
+			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+			this.flatpickrInstance.changeMonth(currentMonth, false);
+		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);
 	}

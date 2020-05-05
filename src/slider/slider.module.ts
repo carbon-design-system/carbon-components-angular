@@ -12,9 +12,4 @@ import { UtilsModule } from "../utils/utils.module";
 		UtilsModule
 	]
 })
-class SliderModule {}
-
-export {
-	SliderModule,
-	Slider
-};
+export class SliderModule {}

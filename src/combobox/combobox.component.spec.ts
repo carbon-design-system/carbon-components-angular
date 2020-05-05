@@ -1,16 +1,19 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
-import { I18nModule } from "../i18n/i18n.module";
+import {
+	ChevronDownModule,
+	WarningFilledModule,
+	CloseModule
+} from "@carbon/icons-angular";
+import { I18nModule } from "../i18n/index";
 
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
 import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
+import { UtilsModule } from "../utils";
 
 
 @Component({
@@ -43,11 +46,12 @@ describe("Combo box", () => {
 				ScrollableList
 			],
 			imports: [
-				ChevronDown16Module,
-				WarningFilled16Module,
-				Close16Module,
+				ChevronDownModule,
+				WarningFilledModule,
+				CloseModule,
 				I18nModule,
-				FormsModule
+				FormsModule,
+				UtilsModule
 			]
 		});
 	});

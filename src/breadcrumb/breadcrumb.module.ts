@@ -6,10 +6,6 @@ import { DialogModule } from "../dialog/dialog.module";
 import { Breadcrumb } from "./breadcrumb.component";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 
-export { Breadcrumb } from "./breadcrumb.component";
-export { BreadcrumbItemComponent } from "./breadcrumb-item.component";
-export { BreadcrumbItem } from "./breadcrumb-item.interface";
-
 @NgModule({
 	declarations: [
 		Breadcrumb,

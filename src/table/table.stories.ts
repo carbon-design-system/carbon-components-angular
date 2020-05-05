@@ -1,10 +1,11 @@
-import { PaginationModule } from "./../pagination/pagination.module";
+import { PaginationModule } from "./../pagination/index";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,
 	boolean,
 	select,
 	number,
+	object,
 	text
 } from "@storybook/addon-knobs/angular";
 
@@ -17,15 +18,16 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule,
-	DocumentationModule
+	ButtonModule
 } from "../";
 
-import { Settings16Module } from "@carbon/icons-angular/lib/settings/16";
-import { Delete16Module } from "@carbon/icons-angular/lib/delete/16";
-import { Save16Module } from "@carbon/icons-angular/lib/save/16";
-import { Download16Module } from "@carbon/icons-angular/lib/download/16";
-import { Add20Module } from "@carbon/icons-angular/lib/add/20";
+import {
+	SettingsModule,
+	DeleteModule,
+	SaveModule,
+	DownloadModule,
+	AddModule
+} from "@carbon/icons-angular";
 
 import {
 	TableStory,
@@ -36,6 +38,8 @@ import {
 	SkeletonTableStory,
 	TableNoDataStory
 } from "./stories";
+import { TableRow } from "./table-row.class";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 const simpleModel = new TableModel();
 simpleModel.data = [
@@ -68,6 +72,18 @@ const getProps = (more = {}) => {
 	}, more);
 };
 
+function getModelWithDisabledRows() {
+	const disabledModel = new TableModel();
+	const row1 = new TableRow(new TableItem({data: "Name 1"}), new TableItem({data: "Disabled 1"}));
+	row1.disabled = true;
+	const row2 = new TableRow(new TableItem({data: "Name 3"}), new TableItem({data: "Disabled 2"}));
+	row2.disabled = true;
+	const row3 = new TableRow(new TableItem({data: "Name 2"}), new TableItem({data: "Enabled 1"}));
+	const row4 = new TableRow(new TableItem({data: "Name 4"}), new TableItem({data: "Enabled 2"}));
+	disabledModel.data = [row1, row2, row3, row4];
+	return disabledModel;
+}
+
 storiesOf("Components|Table", module).addDecorator(
 		moduleMetadata({
 			imports: [
@@ -77,11 +93,11 @@ storiesOf("Components|Table", module).addDecorator(
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
-				Settings16Module,
-				Delete16Module,
-				Save16Module,
-				Download16Module,
-				Add20Module,
+				SettingsModule,
+				DeleteModule,
+				SaveModule,
+				DownloadModule,
+				AddModule,
 				DocumentationModule
 			],
 			declarations: [
@@ -157,25 +173,25 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<ibm-icon-delete16 class="bx--btn__icon"></ibm-icon-delete16>
+						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<ibm-icon-save16 class="bx--btn__icon"></ibm-icon-save16>
+						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<ibm-icon-download16 class="bx--btn__icon"></ibm-icon-download16>
+						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
+						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
 						Primary Button
-						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
+						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -194,8 +210,69 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
-			batchText: text("Toolbar batch text", "items selected")
+			batchText: object("Toolbar batch text", {
+				SINGLE: "1 item selected",
+				MULTIPLE: "{{count}} items selected"
+			})
 		})
+	}))
+	.add("With toolbar and disabled rows", () => ({
+		template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<ibm-table-toolbar [model]="model" [batchText]="batchText">
+				<ibm-table-toolbar-actions>
+					<button ibmButton="primary">
+						Delete
+						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+					</button>
+					<button ibmButton="primary">
+						Save
+						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+					</button>
+					<button ibmButton="primary">
+						Download
+						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+					</button>
+				</ibm-table-toolbar-actions>
+				<ibm-table-toolbar-content>
+					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
+					<button ibmButton="ghost" class="toolbar-action">
+						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
+					</button>
+					<button ibmButton="primary" size="sm">
+						Primary Button
+						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+					</button>
+				</ibm-table-toolbar-content>
+			</ibm-table-toolbar>
+
+			<app-no-data-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="true"
+				[striped]="striped"
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
+			</app-no-data-table>
+		</ibm-table-container>
+	`,
+		props: {
+			model: getModelWithDisabledRows(),
+			size: select("size", { Small: "sm", Short: "sh", Normal: "md", Large: "lg" }, "md"),
+			title: text("Title", "Table title"),
+			description: text("Description", "With toolbar and disabled rows"),
+			striped: boolean("striped", false),
+			sortable: boolean("sortable", true),
+			isDataGrid: boolean("Data grid keyboard interactions", true),
+			batchText: object("Toolbar batch text", {
+				SINGLE: "1 item selected",
+				MULTIPLE: "{{count}} items selected"
+			})
+		}
 	}))
 	.add("With toolbar without toolbar action", () => ({
 		template: `
@@ -208,11 +285,11 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="toolbar-action">
-						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
+						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
 						Primary Button
-						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
+						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>

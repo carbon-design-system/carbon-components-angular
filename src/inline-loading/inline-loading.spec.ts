@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { InlineLoading } from "./inline-loading.component";
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 
 describe("Inline Loading", () => {
 	let component: InlineLoading;

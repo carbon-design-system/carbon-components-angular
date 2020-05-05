@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
 
 /**
@@ -24,6 +24,8 @@ export enum ToggleState {
 
 /**
  * Used to emit changes performed on toggle components.
+ *
+ * @deprecated since v4
  */
 export class ToggleChange {
 	/**
@@ -142,6 +144,8 @@ export class Toggle extends Checkbox {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a
 	 * click.
+	 *
+	 * @deprecated since v4
 	 */
 	@Output() change = new EventEmitter<ToggleChange>();
 
@@ -167,12 +171,15 @@ export class Toggle extends Checkbox {
 	 * Creates instance of `ToggleChange` used to propagate the change event.
 	 */
 	emitChangeEvent() {
+		/* begin deprecation */
 		let event = new ToggleChange();
 		event.source = this;
 		event.checked = this.checked;
-
-		this.propagateChange(this.checked);
 		this.change.emit(event);
+		/* end deprecation */
+
+		this.checkedChange.emit(this.checked);
+		this.propagateChange(this.checked);
 	}
 
 	public isTemplate(value) {

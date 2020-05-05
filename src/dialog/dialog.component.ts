@@ -8,8 +8,7 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener,
-	Optional
+	HostListener
 } from "@angular/core";
 import {
 	Observable,
@@ -21,8 +20,7 @@ import { throttleTime } from "rxjs/operators";
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
-import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/scroll";
-import { ElementService } from "./../utils/utils.module";
+import { ElementService } from "./../utils/index";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -33,10 +31,6 @@ import { ElementService } from "./../utils/utils.module";
 	template: ""
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
-	/**
-	 * One static event observable to handle window resizing.
-	 */
-	protected static resizeObservable: Observable<any> = fromEvent(window, "resize", { passive: true }).pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 */
@@ -49,7 +43,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the `Dialog`.
 	 */
-	@ViewChild("dialog") dialog: ElementRef;
+	// @ts-ignore
+	@ViewChild("dialog", { static: false }) dialog: ElementRef;
 
 	/**
 	 * Stores the data received from `dialogConfig`.
@@ -60,17 +55,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * The placement of the `Dialog` is received from the `Position` service.
 	 */
 	public placement: string;
-
-	/**
-	 * `Subscription` used to update placement in the event of a window resize.
-	 */
-	protected resizeSubscription = new Subscription();
-	/**
-	 * Subscription to all the scrollable parents `scroll` event
-	 */
-	// add a new subscription temporarily so that contexts (such as tests)
-	// that don't run ngAfterViewInit have something to unsubscribe in ngOnDestroy
-	protected scrollSubscription = new Subscription();
 
 	protected visibilitySubscription = new Subscription();
 	/**
@@ -94,12 +78,12 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Creates an instance of `Dialog`.
 	 * @param elementRef
+	 * @param elementService
 	 */
 	constructor(
 		protected elementRef: ElementRef,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null
-	) {	}
+		protected elementService: ElementService
+	) {}
 
 	/**
 	 * Initialize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
@@ -107,11 +91,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	ngOnInit() {
 		this.placement = this.dialogConfig.placement.split(",")[0];
 		this.data = this.dialogConfig.data;
-
-		// fallback if elementService isn't available
-		if (!this.elementService) {
-			this.resizeSubscription = Dialog.resizeObservable.subscribe(this.placeDialog);
-		}
 
 		// run any additional initialization code that consuming classes may have
 		this.onDialogInit();
@@ -139,44 +118,19 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
-		if (this.elementService) {
-			this.visibilitySubscription = this.elementService
-				.visibility(parentElement, parentElement)
-				.subscribe(value => {
-					this.placeDialog();
-					if (!value.visible) {
-						this.doClose();
-					}
+		this.visibilitySubscription = this.elementService
+			.visibility(parentElement, parentElement)
+			.subscribe(value => {
+				this.placeDialog();
+				if (!value.visible) {
+					this.doClose();
 				}
-			);
-		}
-
-		const placeDialogInContainer = () => {
-			// only do the work to find the scroll containers if we're appended to body
-			// or skip this work if we're inline
-			if (!this.dialogConfig.appendInline) {
-				// subscribe to the observable, and update the position and visibility
-				const scrollObservable = scrollableParentsObservable(parentElement);
-				this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-					this.placeDialog();
-					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
-						this.doClose();
-					}
-				});
 			}
-		};
+		);
 
 		this.placeDialog();
-
-		// settimeout to let the DOM settle before attempting to place the dialog
-		// and before notifying components that the DOM is ready
-		setTimeout(() => {
-			// fallback if animationFrameService isn't available
-			if (!this.elementService) {
-				placeDialogInContainer();
-			}
-			this.afterDialogViewInit();
-		});
+		// run afterDialogViewInit on the next tick
+		setTimeout(() => this.afterDialogViewInit());
 	}
 
 	/**
@@ -276,8 +230,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * At destruction of component, `Dialog` unsubscribes from all the subscriptions.
 	 */
 	ngOnDestroy() {
-		this.resizeSubscription.unsubscribe();
-		this.scrollSubscription.unsubscribe();
 		this.visibilitySubscription.unsubscribe();
 	}
 }

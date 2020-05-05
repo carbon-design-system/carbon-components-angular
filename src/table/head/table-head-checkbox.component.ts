@@ -5,8 +5,9 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -18,7 +19,7 @@ import { Observable } from "rxjs";
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
-			(change)="change.emit()"
+			(click)="change.emit()"
 			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
@@ -30,7 +31,7 @@ export class TableHeadCheckbox {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input() checked = false;
 
@@ -47,7 +48,7 @@ export class TableHeadCheckbox {
 		return this._ariaLabel.value;
 	}
 
-	@Output() change = new EventEmitter<boolean>();
+	@Output() change = new EventEmitter<void>();
 
 	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
 
