@@ -12,17 +12,18 @@ const defaults = {
 };
 
 class CheckboxExportedTests extends ComponentTests {
-	static getComponent(fragment, selectors) {
-		return super.getComponent(fragment, selectors);
+	constructor(configs) {
+		super(merge({}, defaults, configs));
+		this.tests = this.tests.concat(this.structure());
 	}
 
-	static structure(settings) {
+	structure() {
 		const tests = {
 			checked: {
 				name: "initially be unchecked, be checked on click",
 				getActual: fragment =>
 					new Promise(resolve => {
-						const component = this.getComponent(fragment, `${settings.selectors.root} ${settings.selectors.input}`);
+						const component = this.getComponent(fragment, `${this.settings.selectors.root} ${this.settings.selectors.input}`);
 						const initialState = component.checked;
 						component.click();
 						const afterClickState = component.checked;
@@ -32,9 +33,9 @@ class CheckboxExportedTests extends ComponentTests {
 						});
 					}),
 				runComparison: results => {
-					/* tslint:disable-next-line */
+					// tslint:disable-next-line
 					expect(results.initialState).to.be.false;
-					/* tslint:disable-next-line */
+					// tslint:disable-next-line
 					expect(results.afterClickState).to.be.true;
 				}
 			}
@@ -43,11 +44,6 @@ class CheckboxExportedTests extends ComponentTests {
 			name: "Basic checkbox tests",
 			tests: this.getTests(tests)
 		}];
-	}
-
-	constructor(configs) {
-		super(merge({}, defaults, configs));
-		(this as any).tests = (this as any).tests.concat((this.constructor as typeof CheckboxExportedTests).structure((this as any).settings));
 	}
 }
 

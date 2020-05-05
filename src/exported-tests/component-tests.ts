@@ -7,32 +7,20 @@ class ComponentTests {
 		},
 		classes: {}
 	};
+	settings: any = {};
+	tests: any[] = [];
 
-	static getTests(tests) {
+	constructor(configs = {}) {
+		this.settings = merge({}, ComponentTests.defaults, configs);
+	}
+
+	getTests(tests) {
 		return Object.keys(tests).map(i => tests[i]);
 	}
 
-	static getComponent(fragment, selector) {
+	getComponent(fragment, selector) {
 		const root = fragment.querySelector(selector);
 		return root;
-	}
-
-	constructor(configs = {}) {
-		(this as any).settings = merge({}, (this.constructor as typeof ComponentTests).defaults, configs);
-		(this as any).tests = [];
-		this.bindFunctions();
-	}
-
-	bindFunctions() {
-		// Bind functions
-		const publicFunctions = {
-			getComponent: (this.constructor as typeof ComponentTests).getComponent,
-			getTests: (this.constructor as typeof ComponentTests).getTests
-		};
-
-		Object.keys(publicFunctions).forEach(name => {
-			this.constructor[name] = publicFunctions[name].bind(this);
-		});
 	}
 }
 
