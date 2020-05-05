@@ -235,7 +235,7 @@ storiesOf("Components|UI Shell", module)
 					<ibm-header-action #firstAction title="action">
 						<svg icon ibmIconFade20 ></svg>
 					</ibm-header-action>
-					<ibm-header-action #secondAction title="action">
+					<ibm-header-action [(active)]="secondAction" title="action">
 						<svg icon ibmIconFade20 ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
@@ -257,7 +257,7 @@ storiesOf("Components|UI Shell", module)
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
 			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
-			<ibm-panel [expanded]="secondAction.active">
+			<ibm-panel [expanded]="secondAction">
 				<ibm-switcher-list>
 					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
 					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
@@ -269,6 +269,7 @@ storiesOf("Components|UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			active: boolean("Left panel active", true),
+			secondAction: boolean("Second right panel active", false),
 			hasActiveChild: boolean("Active side nav child", true),
 			options: [
 				{
