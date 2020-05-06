@@ -18,8 +18,8 @@ class CheckboxExportedTests extends ComponentTests {
 	}
 
 	structure() {
-		const tests = {
-			checked: {
+		const tests = [
+			{
 				name: "initially be unchecked, be checked on click",
 				getActual: fragment =>
 					new Promise(resolve => {
@@ -42,7 +42,7 @@ class CheckboxExportedTests extends ComponentTests {
 					expect(results.afterClickState).to.be.true;
 				}
 			}
-		};
+		];
 		return [{
 			name: "Basic checkbox tests",
 			tests: this.getTests(tests)

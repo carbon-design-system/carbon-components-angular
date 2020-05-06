@@ -1,5 +1,12 @@
 import merge from "lodash-es/merge";
 
+function isObject(val) {
+	if (val === null) {
+		return false;
+	}
+	return typeof val === "function" || typeof val === "object";
+}
+
 class ComponentTests {
 	static defaults = {
 		selectors: {
@@ -15,7 +22,10 @@ class ComponentTests {
 	}
 
 	getTests(tests) {
-		return Object.keys(tests).map(i => tests[i]);
+		if (isObject(tests)) {
+			return Object.keys(tests).map(i => tests[i]);
+		}
+		return tests;
 	}
 
 	getComponent(fragment, selector) {
