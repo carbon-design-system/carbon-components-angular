@@ -5,9 +5,7 @@ import {
 } from "@angular/core";
 import { Observable, Subject, from } from "rxjs";
 
-@Injectable({
-	providedIn: "root"
-})
+@Injectable()
 export class AnimationFrameServiceSingleton implements OnDestroy {
 	public tick: Observable<number>;
 
