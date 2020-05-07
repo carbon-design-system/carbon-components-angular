@@ -170,7 +170,7 @@ storiesOf("Components|Tooltip", module)
 		}
 	}))
 	.add("Ellipsis tooltip", () => ({
-			styles: [`
+		styles: [`
 			.fullText {
 				white-space: nowrap;
 				display: inline-block;
@@ -184,18 +184,18 @@ storiesOf("Components|Tooltip", module)
 			}
 		`],
 		template: `
-		<span
-			class="ellipsis"
-			[ngClass]="{
-				'fullText': showFullText,
-				'overflowText': !showFullText
-			}"
-			trigger="hover"
-			[placement]="'bottom'"
-			ibmEllipsisTooltip>
-				Tooltip for ellipsis because I can and I am really really long
-		</span>
-		<ibm-placeholder></ibm-placeholder>
+			<span
+				class="ellipsis"
+				[ngClass]="{
+					'fullText': showFullText,
+					'overflowText': !showFullText
+				}"
+				trigger="hover"
+				[placement]="'bottom'"
+				ibmEllipsisTooltip>
+					Tooltip for ellipsis because I can and I am really really long
+			</span>
+			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			showFullText: boolean("Show full text", false)
