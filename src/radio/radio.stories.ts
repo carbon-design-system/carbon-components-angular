@@ -4,10 +4,62 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { RadioModule } from "../";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule } from "@angular/forms";
+
+@Component({
+	selector: "app-reactive-forms",
+	template: `
+		<form [formGroup]="formGroup">
+			<ibm-radio-group
+				aria-label="radiogroup"
+				formControlName="radioGroup">
+				<ibm-radio
+					value="radio">
+					zero
+				</ibm-radio>
+				<ibm-radio *ngFor="let radio of manyRadios"
+					[value]="radio.num"
+					[disabled]="radio.disabled">
+					{{radio.num}}
+				</ibm-radio>
+			</ibm-radio-group>
+		</form>
+
+		<button (click)="changeSelected()">Set selected to three</button>
+	`
+})
+class ReactiveFormsStory implements AfterViewInit, OnInit {
+	public formGroup: FormGroup;
+
+	manyRadios = [
+		{ num: "one" },
+		{ num: "two" },
+		{ num: "three" },
+		{ num: "four", disabled: true }
+	];
+
+	constructor(protected formBuilder: FormBuilder) {}
+
+	changeSelected() {
+		this.formGroup.get("radioGroup").setValue("three");
+	}
+
+	ngOnInit() {
+		this.formGroup = this.formBuilder.group({
+			radioGroup: new FormControl()
+		});
+	}
+
+	ngAfterViewInit() {
+		this.formGroup.get("radioGroup").setValue("one");
+	}
+}
 
 storiesOf("Components|Radio", module).addDecorator(
 	moduleMetadata({
-		imports: [RadioModule, DocumentationModule]
+		declarations: [ReactiveFormsStory],
+		imports: [RadioModule, DocumentationModule, ReactiveFormsModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -77,6 +129,9 @@ storiesOf("Components|Radio", module).addDecorator(
 				{ num: "four", disabled: true }
 			]
 		}
+	}))
+	.add("With reactive forms", () => ({
+		template: `<app-reactive-forms></app-reactive-forms>`
 	}))
 	.add("Skeleton", () => ({
 		template: `
