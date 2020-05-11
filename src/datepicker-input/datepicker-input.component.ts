@@ -30,6 +30,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
+						[readonly]="readOnly"
 						type="text"
 						class="bx--date-picker__input"
 						[value]="value"
@@ -85,6 +86,8 @@ export class DatePickerInput {
 	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
+
+	@Input() readOnly = false;
 
 	@Input() value = "";
 

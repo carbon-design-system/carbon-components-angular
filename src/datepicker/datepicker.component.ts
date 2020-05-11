@@ -47,6 +47,7 @@ import { ElementService } from "../utils/element.service";
 						[label]="label"
 						[placeholder]="placeholder"
 						[pattern]="pattern"
+						[readOnly]="readOnly"
 						[id]="id"
 						[type]="(range ? 'range' : 'single')"
 						[hasIcon]="(range ? false : true)"
@@ -65,6 +66,7 @@ import { ElementService } from "../utils/element.service";
 						[label]="rangeLabel"
 						[placeholder]="placeholder"
 						[pattern]="pattern"
+						[readOnly]="readOnly"
 						[id]="id + '-rangeInput'"
 						[type]="(range ? 'range' : 'single')"
 						[hasIcon]="(range ? true : null)"
@@ -147,6 +149,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
+
+	@Input() readOnly = false;
 
 	@Input() plugins = [];
 

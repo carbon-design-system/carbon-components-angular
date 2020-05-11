@@ -169,6 +169,7 @@ storiesOf("Components|Date Picker", module)
 				[placeholder]="placeholder"
 				[language]="language"
 				[theme]="theme"
+				[readOnly]="readOnly"
 				[value]="value"
 				[disabled]="disabled"
 				[invalid]="invalid"
@@ -182,6 +183,7 @@ storiesOf("Components|Date Picker", module)
 				[placeholder]="placeholder"
 				[language]="language"
 				[theme]="theme"
+				[readOnly]="readOnly"
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
@@ -198,6 +200,7 @@ storiesOf("Components|Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
+			readOnly: boolean("Read only", false),
 			dateFormat: text("Date format", "m/d/Y"),
 			value: array("Value", ["10/19/2019"])
 		}
@@ -212,6 +215,7 @@ storiesOf("Components|Date Picker", module)
 			[placeholder]="placeholder"
 			[language]="language"
 			[theme]="theme"
+			[readOnly]="readOnly"
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -227,6 +231,7 @@ storiesOf("Components|Date Picker", module)
 			[language]="language"
 			[placeholder]="placeholder"
 			[theme]="theme"
+			[readOnly]="readOnly"
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -243,6 +248,7 @@ storiesOf("Components|Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
+			readOnly: boolean("Read only", false),
 			dateFormat: text("Date format", "m/d/Y"),
 			value: array("Value", ["09/19/2019", "10/19/2019"])
 		}
