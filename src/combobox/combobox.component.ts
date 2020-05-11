@@ -310,11 +310,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	// @ts-ignore
-	@ContentChild(AbstractDropdownView, { static: false }) view: AbstractDropdownView;
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	// @ts-ignore
 	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: ElementRef;
+	@ViewChild("input", { static: true }) input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -355,7 +355,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 */
 	ngOnChanges(changes) {
-		if (changes.items && this.view) {
+		if (changes.items) {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
@@ -441,14 +441,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (this.view) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
-			} else {
-				this.view.propagateSelected(value);
-			}
-			this.updateSelected();
+		if (this.type === "single") {
+			this.view.propagateSelected([value]);
+		} else {
+			this.view.propagateSelected(value);
 		}
+		this.updateSelected();
 	}
 
 	onBlur() {
