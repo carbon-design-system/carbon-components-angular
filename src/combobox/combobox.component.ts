@@ -355,7 +355,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 */
 	ngOnChanges(changes) {
-		if (changes.items) {
+		if (changes.items && this.view) {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
@@ -441,12 +441,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (this.type === "single") {
-			this.view.propagateSelected([value]);
-		} else {
-			this.view.propagateSelected(value);
+		if (this.view) {
+			if (this.type === "single") {
+				this.view.propagateSelected([value]);
+			} else {
+				this.view.propagateSelected(value);
+			}
+			this.updateSelected();
 		}
-		this.updateSelected();
 	}
 
 	onBlur() {
