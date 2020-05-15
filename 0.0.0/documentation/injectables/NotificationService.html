@@ -134,12 +134,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(injector: <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a>, componentFactoryResolver: <a href="https://angular.io/api/core/ComponentFactoryResolver" target="_blank">ComponentFactoryResolver</a>, applicationRef: <a href="https://angular.io/api/core/ApplicationRef" target="_blank">ApplicationRef</a>)</code>
+<code>constructor(injector: <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a>, componentFactoryResolver: <a href="https://angular.io/api/core/ComponentFactoryResolver" target="_blank">ComponentFactoryResolver</a>, applicationRef: <a href="https://angular.io/api/core/ApplicationRef" target="_blank">ApplicationRef</a>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/notification/notification.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/notification/notification.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -194,6 +194,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -230,7 +242,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/notification/notification.service.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/notification/notification.service.ts:146</a></div>
                             </td>
                         </tr>
 
@@ -306,7 +318,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/notification/notification.service.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/notification/notification.service.ts:170</a></div>
                             </td>
                         </tr>
 
@@ -381,7 +393,7 @@ some extra time (in ms) to timeout if you need to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/notification/notification.service.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/notification/notification.service.ts:209</a></div>
                             </td>
                         </tr>
 
@@ -422,7 +434,7 @@ some extra time (in ms) to timeout if you need to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.service.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/notification/notification.service.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -539,7 +551,7 @@ it&#39;s added to the calculated timeout</li>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/notification/notification.service.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/notification/notification.service.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -637,7 +649,7 @@ it&#39;s added to the calculated timeout</li>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/notification/notification.service.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/notification/notification.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -684,7 +696,7 @@ is responsible for.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/notification/notification.service.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/notification/notification.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -705,7 +717,8 @@ is responsible for.</p>
 	EventEmitter,
 	Injectable,
 	Injector,
-	OnDestroy
+	OnDestroy,
+	NgZone
 } from &quot;@angular/core&quot;;
 
 import { NotificationContent, ToastContent } from &quot;./notification-content.interface&quot;;
@@ -737,7 +750,8 @@ export class NotificationService implements OnDestroy {
 	constructor(
 		protected injector: Injector,
 		protected componentFactoryResolver: ComponentFactoryResolver,
-		protected applicationRef: ApplicationRef) {
+		protected applicationRef: ApplicationRef,
+		protected ngZone: NgZone) {
 	}
 
 	/**
@@ -803,16 +817,24 @@ export class NotificationService implements OnDestroy {
 		}
 
 		if (notificationObj.duration &amp;&amp; notificationObj.duration &gt; 0) {
-			setTimeout(() &#x3D;&gt; {
-				this.close(notificationRef);
-			}, notificationObj.duration);
+			this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+				setTimeout(() &#x3D;&gt; {
+					this.ngZone.run(() &#x3D;&gt; {
+						this.close(notificationRef);
+					});
+				}, notificationObj.duration);
+			});
 		}
 
 		if (notificationObj.smart) {
-			// let it disappear after calculated timeout
-			setTimeout(() &#x3D;&gt; {
-				this.close(notificationRef);
-			}, this.getSmartTimeout(notificationObj));
+			this.ngZone.runOutsideAngular(() &#x3D;&gt; {
+				// let it disappear after calculated timeout
+				setTimeout(() &#x3D;&gt; {
+					this.ngZone.run(() &#x3D;&gt; {
+						this.close(notificationRef);
+					});
+				}, this.getSmartTimeout(notificationObj));
+			});
 		}
 
 		this.onClose.subscribe(() &#x3D;&gt; {

@@ -146,7 +146,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/utils/document.service.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/utils/document.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -215,7 +215,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/utils/document.service.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/document.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -296,7 +296,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/utils/document.service.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/utils/document.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -346,7 +346,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/utils/document.service.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/document.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -380,7 +380,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/document.service.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/utils/document.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -414,7 +414,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/document.service.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/utils/document.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -432,9 +432,7 @@ import { Observable, Subscription } from &quot;rxjs&quot;;
 import { EventHandler } from &quot;./types&quot;;
 import { getEventObservable } from &quot;./event-observable&quot;;
 
-@Injectable({
-	providedIn: &quot;root&quot;
-})
+@Injectable()
 export class DocumentService implements OnDestroy {
 	protected globalEvents &#x3D; new Map&lt;string, Observable&lt;Event&gt;&gt;();
 

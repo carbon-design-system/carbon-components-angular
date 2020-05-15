@@ -297,7 +297,7 @@ export class List {
 	}
 
 	@HostBinding(&quot;class.bx--list--nested&quot;) get nested() {
-		return this.elementRef.nativeElement.parentElement.tagName &#x3D;&#x3D;&#x3D; &quot;LI&quot;;
+		return (this.elementRef.nativeElement.parentElement &amp;&amp; this.elementRef.nativeElement.parentElement.tagName &#x3D;&#x3D;&#x3D; &quot;LI&quot;);
 	}
 
 	constructor(protected elementRef: ElementRef) {}

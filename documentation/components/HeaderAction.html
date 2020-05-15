@@ -150,9 +150,6 @@
                                 <a href="#active">active</a>
                             </li>
                             <li>
-                                <a href="#activeChange">activeChange</a>
-                            </li>
-                            <li>
                                 <a href="#title">title</a>
                             </li>
                         </ul>
@@ -167,6 +164,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#activeChange">activeChange</a>
+                            </li>
                             <li>
                                 <a href="#selected">selected</a>
                             </li>
@@ -209,32 +209,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
-                        <a name="activeChange"></a>
-                        <code>activeChange</code>
-                    </td>
-                    <td class="col-md-10">
-                        <div><p>&quot;Change&quot; emitter to allow double binding to the <code>active</code> Input.</p>
-</div>
-                            <p>
-                            <em>Type :</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                            </p>
-                        <p>
-                            <em>Default value : </em><code>new EventEmitter&lt;boolean&gt;()</code>
-                        </p>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ui-shell/header/header-action.component.ts:38</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-2">
                         <a name="title"></a>
                         <code>title</code>
                     </td>
@@ -256,6 +230,27 @@
 </section>
     <section>
     <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="activeChange"></a>
+                        <code>activeChange</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>&quot;Change&quot; emitter to allow double binding to the <code>active</code> Input.</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ui-shell/header/header-action.component.ts:38</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -367,7 +362,7 @@ export class HeaderAction {
 	/**
 	 * &quot;Change&quot; emitter to allow double binding to the &#x60;active&#x60; Input.
 	 */
-	@Input() activeChange &#x3D; new EventEmitter&lt;boolean&gt;();
+	@Output() activeChange &#x3D; new EventEmitter&lt;boolean&gt;();
 	/**
 	 * Emits when the action has been clicked.
 	 */

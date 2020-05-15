@@ -22,61 +22,45 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_PlaceholderModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="93,-70 93,-268 403,-268 403,-70 93,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="177,-70 177,-268 319,-268 319,-70 177,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_PlaceholderModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="297,-78 297,-130 395,-130 395,-78 297,-78"/>
+<polygon fill="none" stroke="#000000" points="199,-78 199,-130 297,-130 297,-78 199,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_PlaceholderModule_exports</title>
-<polygon fill="none" stroke="#000000" points="212,-208 212,-260 314,-260 314,-208 212,-208"/>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster_PlaceholderModule_providers</title>
-<polygon fill="none" stroke="#000000" points="101,-78 101,-130 289,-130 289,-78 101,-78"/>
+<polygon fill="none" stroke="#000000" points="197,-208 197,-260 299,-260 299,-208 197,-208"/>
 </g>
 <!-- Placeholder -->
 <g id="node1" class="node">
 <title>Placeholder</title>
-<polygon fill="#ffffb3" stroke="#000000" points="387.0828,-122 304.9172,-122 304.9172,-86 387.0828,-86 387.0828,-122"/>
-<text text-anchor="middle" x="346" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Placeholder</text>
+<polygon fill="#ffffb3" stroke="#000000" points="289.0828,-122 206.9172,-122 206.9172,-86 289.0828,-86 289.0828,-122"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Placeholder</text>
 </g>
 <!-- PlaceholderModule -->
 <g id="node2" class="node">
 <title>PlaceholderModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="325.6331,-187 322.6331,-191 301.6331,-191 298.6331,-187 200.3669,-187 200.3669,-151 325.6331,-151 325.6331,-187"/>
-<text text-anchor="middle" x="263" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">PlaceholderModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="310.6331,-187 307.6331,-191 286.6331,-191 283.6331,-187 185.3669,-187 185.3669,-151 310.6331,-151 310.6331,-187"/>
+<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">PlaceholderModule</text>
 </g>
 <!-- Placeholder&#45;&gt;PlaceholderModule -->
 <g id="edge1" class="edge">
 <title>Placeholder&#45;&gt;PlaceholderModule</title>
-<path fill="none" stroke="#000000" d="M315.3875,-122.1061C315.3875,-122.1061 315.3875,-140.991 315.3875,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="311.8875,-140.9909 315.3875,-150.991 318.8875,-140.991 311.8875,-140.9909"/>
+<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
 </g>
 <!-- Placeholder  -->
 <g id="node3" class="node">
 <title>Placeholder </title>
-<polygon fill="#fb8072" stroke="#000000" points="305.5838,-252 220.4162,-252 220.4162,-216 305.5838,-216 305.5838,-252"/>
-<text text-anchor="middle" x="263" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">Placeholder </text>
+<polygon fill="#fb8072" stroke="#000000" points="290.5838,-252 205.4162,-252 205.4162,-216 290.5838,-216 290.5838,-252"/>
+<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">Placeholder </text>
 </g>
 <!-- PlaceholderModule&#45;&gt;Placeholder  -->
 <g id="edge2" class="edge">
 <title>PlaceholderModule&#45;&gt;Placeholder </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M263,-187.1061C263,-187.1061 263,-205.991 263,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="259.5001,-205.9909 263,-215.991 266.5001,-205.991 259.5001,-205.9909"/>
-</g>
-<!-- PlaceholderService -->
-<g id="node4" class="node">
-<title>PlaceholderService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="195" cy="-104" rx="85.6493" ry="18"/>
-<text text-anchor="middle" x="195" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">PlaceholderService</text>
-</g>
-<!-- PlaceholderService&#45;&gt;PlaceholderModule -->
-<g id="edge3" class="edge">
-<title>PlaceholderService&#45;&gt;PlaceholderModule</title>
-<path fill="none" stroke="#000000" d="M240.3792,-119.4041C240.3792,-119.4041 240.3792,-140.9397 240.3792,-140.9397"/>
-<polygon fill="#000000" stroke="#000000" points="236.8793,-140.9397 240.3792,-150.9397 243.8793,-140.9398 236.8793,-140.9397"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
 </g>
 </g>
 </svg>

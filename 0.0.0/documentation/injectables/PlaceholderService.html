@@ -900,7 +900,7 @@ import { Injectable } from &quot;@angular/core&quot;;
  * Singleton service used to register the container for out-of-flow components to insert into.
  * Also used to insert/remove components from that view.
  */
-@Injectable({ providedIn: &quot;root&quot; })
+@Injectable()
 export class PlaceholderService {
 	/**
 	 * Main &#x60;ViewContainerRef&#x60; to insert components into
