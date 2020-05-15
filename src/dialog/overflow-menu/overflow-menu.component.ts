@@ -1,11 +1,12 @@
 import {
 	Component,
-	ElementRef,
-	Input,
-	ViewEncapsulation,
 	ContentChild,
+	ElementRef,
+	EventEmitter,
+	Input,
 	Output,
-	EventEmitter
+	TemplateRef,
+	ViewEncapsulation
 } from "@angular/core";
 import { I18n } from "./../../i18n/index";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
@@ -42,10 +43,13 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			class="bx--overflow-menu"
 			[placement]="placement"
 			tabindex="0">
-			<svg ibmIconOverflowMenuVertical size="16" class="bx--overflow-menu__icon"></svg>
+			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
 		</div>
 		<ng-template #options>
 			<ng-content></ng-content>
+		</ng-template>
+		<ng-template #defaultIcon>
+			<svg ibmIconOverflowMenuVertical size="16" class="bx--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`
@@ -77,6 +81,11 @@ export class OverflowMenu {
 	@Input() open = false;
 
 	@Output() openChange = new EventEmitter<boolean>();
+	/**
+	 * Sets the custom overflow menu trigger
+	 */
+	@Input() customTrigger: TemplateRef<any>;
+
 	/**
 	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */

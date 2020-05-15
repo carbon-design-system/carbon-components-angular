@@ -156,7 +156,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
 	// @ts-ignore
-	@ViewChild("modal", { static: false }) modal: ElementRef;
+	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
@@ -216,7 +216,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
 	 */
 	get shouldShowScrollbar() {
-		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
 			const modalContentScrollHeight = modalContent.scrollHeight;
