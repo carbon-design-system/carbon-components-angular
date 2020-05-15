@@ -13,6 +13,7 @@ import { ComboBox } from "./combobox.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
 import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
+import { UtilsModule } from "../utils";
 
 
 @Component({
@@ -49,7 +50,8 @@ describe("Combo box", () => {
 				WarningFilledModule,
 				CloseModule,
 				I18nModule,
-				FormsModule
+				FormsModule,
+				UtilsModule
 			]
 		});
 	});
