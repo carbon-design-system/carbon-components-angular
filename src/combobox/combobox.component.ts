@@ -43,7 +43,8 @@ import { Observable } from "rxjs";
 		<div
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
-				'bx--combo-box': type === 'single' || !pills.length
+				'bx--combo-box': type === 'single' || !pills.length,
+				'bx--list-box--expanded': open
 			}"
 			class="bx--combo-box bx--list-box"
 			role="listbox"
