@@ -5,6 +5,7 @@ import {
 import { PaginationModel } from "./../pagination/pagination-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
+import { TableRow } from "./table-row.class";
 import { Subject } from "rxjs";
 
 export type HeaderType = number | "select" | "expand";
@@ -600,6 +601,9 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set the row to. Defaults to `true`
 	 */
 	selectRow(index: number, value = true) {
+		if (this.isRowDisabled(index)) {
+			return;
+		}
 		this.rowsSelected[index] = value;
 		this.rowsSelectedChange.emit(index);
 	}
@@ -620,6 +624,14 @@ export class TableModel implements PaginationModel {
 
 	isRowSelected(index: number) {
 		return this.rowsSelected[index];
+	}
+
+	/**
+	 * Checks if row is disabled or not.
+	 */
+	isRowDisabled(index: number) {
+		const row = this.data[index] as TableRow;
+		return !!row.disabled;
 	}
 
 	/**

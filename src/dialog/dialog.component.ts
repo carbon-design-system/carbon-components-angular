@@ -20,7 +20,7 @@ import { throttleTime } from "rxjs/operators";
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
-import { ElementService } from "./../utils/utils.module";
+import { ElementService } from "./../utils/index";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.

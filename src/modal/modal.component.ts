@@ -156,7 +156,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
 	// @ts-ignore
-	@ViewChild("modal", { static: false }) modal: ElementRef;
+	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
