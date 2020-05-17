@@ -63,6 +63,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() placement = "left";
 	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+	/**
 	 * Classes to add to the dialog container
 	 */
 	@Input() wrapperClass: string;
@@ -144,7 +148,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			shouldClose: () => true,
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
-			data: this.data
+			data: this.data,
+			offset: this.offset
 		};
 
 		if (changes.isOpen) {
