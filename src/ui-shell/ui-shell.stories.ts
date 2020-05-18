@@ -442,6 +442,26 @@ storiesOf("Components|UI Shell", module)
 			]
 		}
 	}))
+	.add("Use angular router attributes for routing", () => (
+		{
+			template: `
+			<ibm-header name="[Platform]" [route]="['bar']" [useRouter]="true">
+				<ibm-header-navigation>
+					<ibm-header-item [route]="['foo']" [useRouter]="true" [activeLinkClass]="'item--active'">Catalog</ibm-header-item>
+					<ibm-header-item [route]="['bar']" [useRouter]="true" [activeLinkClass]="['item--active', 'another-class']">Docs</ibm-header-item>
+					<ibm-header-item [route]="['foo']" [useRouter]="true">Support</ibm-header-item>
+					<ibm-header-menu title="Manage">
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 1</ibm-header-item>
+						<ibm-header-item [route]="['bar']" [useRouter]="true">Link 2</ibm-header-item>
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 3</ibm-header-item>
+					</ibm-header-menu>
+				</ibm-header-navigation>
+			</ibm-header>
+			<div style="margin-top: 2rem">
+				<router-outlet></router-outlet>
+			</div>`
+		}
+	))
 	.add("Header Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/components/Header.html"></ibm-documentation>
