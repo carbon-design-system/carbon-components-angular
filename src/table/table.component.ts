@@ -647,14 +647,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	onSelectRow(event) {
 		// check for the existence of the selectedRowIndex property
 		if (Object.keys(event).includes("selectedRowIndex")) {
+			if (this.enableSingleSelect) {
+				this.model.selectAll(false);
+			}
 			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
-
-			if (this.showSelectionColumn && this.enableSingleSelect) {
-				const index = event.selectedRowIndex;
-				this.model.selectAll(false);
-				this.model.selectRow(index);
-			}
 		} else {
 			this.model.selectRow(event.deselectedRowIndex, false);
 			this.deselectRow.emit(event);

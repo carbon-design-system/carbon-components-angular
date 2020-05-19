@@ -124,6 +124,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[stickyHeader]="stickyHeader"
 				[size]="size"
 				[skeleton]="skeleton"
+				[enableSingleSelect]="enableSingleSelect"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
 				[sortable]="sortable"
@@ -131,7 +132,9 @@ storiesOf("Components|Table", module).addDecorator(
 			</app-table>
 		</ibm-table-container>
 	`,
-		props: getProps()
+		props: getProps({
+			enableSingleSelect: boolean("Enable single select", false)
+		})
 	}))
 	.add("With no data", () => ({
 		template: `
@@ -200,6 +203,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[enableSingleSelect]="enableSingleSelect"
 				[striped]="striped"
 				[sortable]="sortable"
 				[skeleton]="skeleton"
@@ -210,6 +214,7 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
+			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
 				MULTIPLE: "{{count}} items selected"
@@ -298,6 +303,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[enableSingleSelect]="enableSingleSelect"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -307,7 +313,8 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			enableSingleSelect: boolean("Enable single select", false)
 		})
 	}))
 	.add("With expansion", () => ({
