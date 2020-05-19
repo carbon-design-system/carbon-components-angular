@@ -47,6 +47,7 @@ import { Observable } from "rxjs";
 				[size]="size"
 				[skeleton]="skeleton"
 				(change)="onSelectAllCheckboxChange()"
+				[name]="model.getHeaderId('select')"
 				[id]="model.getId('select')">
 			</th>
 			<ng-container *ngFor="let column of model.header; let i = index">

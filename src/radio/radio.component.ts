@@ -39,6 +39,7 @@ import { RadioChange } from "./radio-change.class";
 		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
 		<label
 			class="bx--radio-button__label"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}"
@@ -96,6 +97,11 @@ export class Radio {
 	 * The id for the `Radio`.
 	 */
 	@Input() id = `radio-${Radio.radioCount++}`;
+	/**
+	 * Used to set the `aria-label` attribute on the input label.
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input() ariaLabel = "";
 	/**
 	 * emits when the state of the radio changes
 	 */
