@@ -1,5 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	text,
+	select,
+	boolean
+} from "@storybook/addon-knobs/angular";
 
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
@@ -19,7 +24,11 @@ import { ButtonModule } from "../forms";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
+		<ibm-modal
+			[size]="size"
+			[open]="open"
+			(overlaySelected)="closeModal()"
+			[hasForm]="hasForm">
 			<ibm-modal-header (closeSelect)="closeModal()">Header label</ibm-modal-header>
 			<section class="bx--modal-content">
 				<h1>Sample modal works.</h1>
@@ -36,6 +45,7 @@ class SampleModal extends BaseModal {
 	constructor(
 		@Inject("modalText") public modalText,
 		@Inject("size") public size,
+		@Inject("hasForm") public hasForm,
 		protected modalService: ModalService) {
 		super();
 	}
@@ -70,6 +80,8 @@ class ModalStory {
 
 	@Input() size = "default";
 
+	@Input() hasForm = false;
+
 	constructor(protected modalService: ModalService) { }
 
 	openModal() {
@@ -77,6 +89,7 @@ class ModalStory {
 			component: SampleModal,
 			inputs: {
 				modalText: this.modalText,
+				hasForm: this.hasForm,
 				size: this.size
 			}
 		});
@@ -86,7 +99,11 @@ class ModalStory {
 @Component({
 	selector: "app-input-modal",
 	template: `
-		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
+		<ibm-modal
+			[size]="size"
+			[open]="open"
+			(overlaySelected)="closeModal()"
+			[hasForm]="hasForm">
 			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
 			<section class="bx--modal-content">
 				<ibm-label>
@@ -108,6 +125,7 @@ class InputModal extends BaseModal {
 	constructor(
 		@Inject("modalText") public modalText,
 		@Inject("size") public size,
+		@Inject("hasForm") public hasForm,
 		@Inject("data") public data,
 		@Inject("inputValue") public inputValue,
 		protected modalService: ModalService) {
@@ -142,6 +160,7 @@ class DataPassingModal implements AfterContentInit {
 			inputs: {
 				modalText: this.modalText,
 				inputValue: this.modalInputValue,
+				hasForm: true,
 				size: this.size,
 				data: this.data
 			}
@@ -165,6 +184,7 @@ class AlertModalStory {
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
+	@Input() hasForm: boolean;
 	@Input() size: "xs" | "sm" | "lg";
 
 	constructor(protected modalService: ModalService) { }
@@ -176,7 +196,8 @@ class AlertModalStory {
 			title: this.modalTitle,
 			content: this.modalContent,
 			size: this.size,
-			buttons: this.buttons
+			buttons: this.buttons,
+			hasForm: this.hasForm
 		});
 	}
 }
@@ -213,11 +234,12 @@ storiesOf("Components|Modal", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<app-modal-story [modalText]="modalText" [size]="size"></app-modal-story>
+		<app-modal-story [modalText]="modalText" [size]="size" [hasForm]="hasForm"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
 		props: getOptions({
-			modalText: text("modalText", "Hello, World!")
+			modalText: text("modalText", "Hello, World!"),
+			hasForm: boolean("Has form", false)
 		})
 	}))
 	.add("Transactional", () => ({
@@ -227,6 +249,7 @@ storiesOf("Components|Modal", module)
 			[modalLabel]="modalLabel"
 			[modalTitle]="modalTitle"
 			[modalContent]="modalContent"
+			[hasForm]="hasForm"
 			[size]="size"
 			[buttons]="buttons">
 		</app-alert-modal-story>
@@ -237,6 +260,7 @@ storiesOf("Components|Modal", module)
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Delete service from application"),
 			modalContent: text("modalContent", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
+			hasForm: boolean("Has form", false),
 			buttons: [{
 				text: "Cancel",
 				type: "secondary"
@@ -253,6 +277,7 @@ storiesOf("Components|Modal", module)
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
 			[modalTitle]="modalTitle"
+			[hasForm]="hasForm"
 			[size]="size"
 			[modalContent]="modalContent">
 		</app-alert-modal-story>
@@ -262,6 +287,7 @@ storiesOf("Components|Modal", module)
 			modalType: select("modalType", ["default", "danger"], "default"),
 			modalLabel: text("modalLabel", "optional label"),
 			modalTitle: text("modalTitle", "Passive modal title"),
+			hasForm: boolean("Has form", false),
 			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
 		})

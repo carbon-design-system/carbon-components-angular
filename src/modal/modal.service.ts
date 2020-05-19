@@ -100,6 +100,7 @@ export class ModalService {
 				hasScrollingContent: data.hasScrollingContent || null,
 				size: data.size,
 				buttons: data.buttons || [],
+				hasForm: data.hasForm,
 				close: data.close || (() => {})
 			}
 		});
