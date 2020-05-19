@@ -35,7 +35,7 @@
 			},
 			{
 				"name": "v3",
-				"channel": "v3",
+				"channel": "carbon-v3",
 				"range": "3.x"
 			},
 			{
