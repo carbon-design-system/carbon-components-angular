@@ -40,7 +40,7 @@ import { ElementService } from "./../utils/utils.module";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label *ngIf="label" [for]="id" class="bx--label">
+	<label *ngIf="label" class="bx--label">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
@@ -59,6 +59,7 @@ import { ElementService } from "./../utils/utils.module";
 			'bx--dropdown--invalid': invalid
 		}">
 		<div
+			role="button"
 			type="button"
 			#dropdownButton
 			class="bx--list-box__field"
