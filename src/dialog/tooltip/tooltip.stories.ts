@@ -1,6 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	text,
+	select,
+	object
+} from "@storybook/addon-knobs/angular";
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
 import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
@@ -63,6 +68,7 @@ storiesOf("Components|Tooltip", module)
 					<span
 						[ibmTooltip]="template"
 						trigger="click"
+						[offset]="offset"
 						[placement]="placement">
 						{{triggerText}}
 					</span>
@@ -71,7 +77,8 @@ storiesOf("Components|Tooltip", module)
 			`,
 			props: {
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-				triggerText: text("Trigger text", "Tooltip label")
+				triggerText: text("Trigger text", "Tooltip label"),
+				offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 			}
 	}))
 	.add("Only icon", () => ({

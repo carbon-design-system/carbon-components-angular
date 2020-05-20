@@ -72,8 +72,9 @@ export class TooltipDirective extends DialogDirective {
 	/**
 	 * Extends the `Dialog` component's data structure with tooltip properties.
 	 */
-	onDialogInit() {
+	onDialogChanges() {
 		this.dialogConfig.content = this.ibmTooltip;
+		this.dialogConfig.offset = this.offset;
 		this.dialogConfig.type = this.tooltipType;
 	}
 }
