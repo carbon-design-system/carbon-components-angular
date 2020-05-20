@@ -36,7 +36,7 @@ export class EllipsisTooltip extends TooltipDirective {
 	 * @returns null
 	 * @memberof EllipsisTooltip
 	 */
-	generateTooltipContent() {
+	updateTooltipContent() {
 		if (this.elementRef.nativeElement.scrollWidth <= this.elementRef.nativeElement.offsetWidth) {
 			this.disabled = true;
 			return;
@@ -49,19 +49,19 @@ export class EllipsisTooltip extends TooltipDirective {
 	@HostListener("click")
 	onClick() {
 		if (this.trigger === "click") {
-			this.generateTooltipContent();
+			this.updateTooltipContent();
 		}
 	}
 
 	@HostListener("mouseenter")
 	onHover() {
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			this.generateTooltipContent();
+			this.updateTooltipContent();
 		}
 	}
 
 	@HostListener("focus")
 	onFocus() {
-		this.generateTooltipContent();
+		this.updateTooltipContent();
 	}
 }
