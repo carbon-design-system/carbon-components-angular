@@ -69,8 +69,7 @@ import { hasScrollableParents } from "../utils";
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
-			'bx--list-box--up': dropUp,
-			'bx--list-box--expanded': !menuIsClosed
+			'bx--list-box--up': dropUp
 		}">
 		<div
 			type="button"
