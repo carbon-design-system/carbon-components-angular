@@ -88,6 +88,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		return !this.appendInline;
 	}
 	/**
+	 * This prevents the dialog from being toggled
+	 */
+	@Input() disabled = false;
+	/**
 	 * Set to `true` to open the dialog next to the triggering component
 	 */
 	@Input() appendInline = false;
@@ -152,7 +156,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
 			data: this.data,
-			offset: this.offset
+			offset: this.offset,
+			disabled: this.disabled
 		};
 
 		// Run any code a child class may need.
@@ -258,6 +263,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
 	open() {
+		if (this.disabled) { return; }
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
 		this.expanded = true;
 		this.onOpen.emit();
