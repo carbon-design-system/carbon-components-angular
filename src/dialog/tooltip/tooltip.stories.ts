@@ -4,6 +4,7 @@ import {
 	withKnobs,
 	text,
 	select,
+	object,
 	boolean
 } from "@storybook/addon-knobs/angular";
 
@@ -68,6 +69,7 @@ storiesOf("Components|Tooltip", module)
 					<span
 						[ibmTooltip]="template"
 						trigger="click"
+						[offset]="offset"
 						[placement]="placement">
 						{{triggerText}}
 					</span>
@@ -76,7 +78,8 @@ storiesOf("Components|Tooltip", module)
 			`,
 			props: {
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-				triggerText: text("Trigger text", "Tooltip label")
+				triggerText: text("Trigger text", "Tooltip label"),
+				offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 			}
 	}))
 	.add("Only icon", () => ({
@@ -170,14 +173,17 @@ storiesOf("Components|Tooltip", module)
 					'overflowText': !showFullText
 				}"
 				trigger="hover"
-				[placement]="'bottom'"
+				[offset]="offset"
+				[placement]="placement"
 				ibmEllipsisTooltip>
 					Tooltip for ellipsis because I can and I am really really long
 			</span>
 			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
-			showFullText: boolean("Show full text", false)
+			showFullText: boolean("Show full text", false),
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("Documentation", () => ({
