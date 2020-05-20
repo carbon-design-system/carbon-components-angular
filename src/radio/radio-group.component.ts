@@ -219,7 +219,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		if (this.radios && !alreadySelected) {
 			this._selected = null;
 			this.radios.forEach(radio => {
-				if (radio.checked) {
+				if (radio.checked  || radio.value === this._value) {
 					this._selected = radio;
 				}
 			});
