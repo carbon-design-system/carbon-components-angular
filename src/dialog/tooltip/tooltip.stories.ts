@@ -173,14 +173,17 @@ storiesOf("Components|Tooltip", module)
 					'overflowText': !showFullText
 				}"
 				trigger="hover"
-				[placement]="'bottom'"
+				[offset]="offset"
+				[placement]="placement"
 				ibmEllipsisTooltip>
 					Tooltip for ellipsis because I can and I am really really long
 			</span>
 			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
-			showFullText: boolean("Show full text", false)
+			showFullText: boolean("Show full text", false),
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("Documentation", () => ({
