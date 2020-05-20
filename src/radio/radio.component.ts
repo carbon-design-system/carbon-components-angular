@@ -39,6 +39,7 @@ import { RadioChange } from "./radio-change.class";
 		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
 		<label
 			class="bx--radio-button__label"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}"
@@ -80,6 +81,12 @@ export class Radio {
 		}
 		return `label-${this.id}`;
 	}
+
+	/**
+	 * Used to set the `aria-label` attribute on the input label.
+	 */
+	@Input() ariaLabel = "";
+
 	/**
 	 * Sets the HTML required attribute
 	 */
