@@ -14,6 +14,7 @@ import { Tag } from "./tag.component";
 			(click)="close.emit()"
 			focusable="false"
 			preserveAspectRatio="xMidYMid meet"
+			class="bx--tag__close-icon"
 			style="will-change: transform;"
 			xmlns="http://www.w3.org/2000/svg"
 			aria-label="Clear filter"
