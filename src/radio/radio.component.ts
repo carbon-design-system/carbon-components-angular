@@ -100,7 +100,6 @@ export class Radio {
 	/**
 	 * Used to set the `aria-label` attribute on the input label.
 	 */
-	// tslint:disable-next-line:no-input-rename
 	@Input() ariaLabel = "";
 	/**
 	 * emits when the state of the radio changes
