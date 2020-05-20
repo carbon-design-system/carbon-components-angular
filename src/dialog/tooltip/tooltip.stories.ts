@@ -4,7 +4,8 @@ import {
 	withKnobs,
 	text,
 	select,
-	object
+	object,
+	boolean
 } from "@storybook/addon-knobs/angular";
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
@@ -149,6 +150,38 @@ storiesOf("Components|Tooltip", module)
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
 				triggerText: text("Trigger text", "Tooltip label")
 			}
+	}))
+	.add("Ellipsis tooltip", () => ({
+		styles: [`
+			.fullText {
+				white-space: nowrap;
+				display: inline-block;
+			}
+			.overflowText {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100px;
+				display: inline-block;
+			}
+		`],
+		template: `
+			<span
+				class="ellipsis"
+				[ngClass]="{
+					'fullText': showFullText,
+					'overflowText': !showFullText
+				}"
+				trigger="hover"
+				[placement]="'bottom'"
+				ibmEllipsisTooltip>
+					Tooltip for ellipsis because I can and I am really really long
+			</span>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			showFullText: boolean("Show full text", false)
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `
