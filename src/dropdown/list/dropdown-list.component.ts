@@ -9,7 +9,8 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	HostBinding
 } from "@angular/core";
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
@@ -163,6 +164,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * item selection.
 	 */
 	@Input() type: "single" | "multi" = "single";
+
+	@HostBinding("class.bx--list-box--expanded") hostClass = true;
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
 	 *
