@@ -83,7 +83,7 @@ export interface PaginationTranslations {
 					style="display: inherit"
 					class="bx--select__arrow"
 					aria-hidden="true"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
@@ -133,7 +133,7 @@ export interface PaginationTranslations {
 					ibmIconChevronDown16
 					style="display: inherit;"
 					class="bx--select__arrow"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 
