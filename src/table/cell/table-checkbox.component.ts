@@ -15,6 +15,7 @@ import { Observable } from "rxjs";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
+			[name]="name"
 			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="selected"
@@ -26,6 +27,8 @@ export class TableCheckbox {
 	@Input() row: any[];
 
 	@Input() selected = false;
+
+	@Input() name = "";
 
 	/**
 	 * Size of the table rows.
