@@ -70,7 +70,7 @@ export class InlineLoading {
 	/**
 	 * Specify the text description for the loading state.
 	 */
-	@Input() state: InlineLoadingState = InlineLoadingState.Active;
+	@Input() state: InlineLoadingState | string = InlineLoadingState.Active;
 	/**
 	 * Specify the text description for the loading state.
 	 */
