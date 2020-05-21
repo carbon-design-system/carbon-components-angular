@@ -16,13 +16,14 @@ import { Router } from "@angular/router";
 	template: `
 		<li style="height: 100%">
 			<ng-container [ngSwitch]="useRouter">
+				<ng-template #content><ng-content></ng-content></ng-template>
 				<a *ngSwitchCase="false"
 				   class="bx--header__menu-item"
 				   role="menuitem"
 				   tabindex="0"
 				   [href]="href"
 				   (click)="navigate($event)">
-					<ng-content></ng-content>
+					<ng-container *ngTemplateOutlet="content"></ng-container>
 				</a>
 				<a *ngSwitchCase="true"
 				   class="bx--header__menu-item"
@@ -30,7 +31,7 @@ import { Router } from "@angular/router";
 				   tabindex="0"
 				   [routerLink]="route"
 				   [routerLinkActive]="activeLinkClass">
-					<ng-content></ng-content>
+					<ng-container *ngTemplateOutlet="content"></ng-container>
 				</a>
 			</ng-container>
 		</li>
