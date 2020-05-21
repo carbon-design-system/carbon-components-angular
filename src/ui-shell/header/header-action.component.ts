@@ -35,7 +35,7 @@ export class HeaderAction {
 	/**
 	 * "Change" emitter to allow double binding to the `active` Input.
 	 */
-	@Input() activeChange = new EventEmitter<boolean>();
+	@Output() activeChange = new EventEmitter<boolean>();
 	/**
 	 * Emits when the action has been clicked.
 	 */
