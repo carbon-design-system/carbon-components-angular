@@ -614,9 +614,11 @@ export class Table implements AfterViewInit, OnDestroy {
 
 			// if the model has just initialized don't focus or reset anything
 			if (previousRow === -1 || previousColumn === -1) { return; }
-
-			const previousElement = tableAdapter.getCell(previousRow, previousColumn);
-			Table.setTabIndex(previousElement, -1);
+			// Make the previous cell unfocusable (if it's not the current)
+			if (previousRow !== currentRow || previousColumn !== currentColumn) {
+				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
+				Table.setTabIndex(previousElement, -1);
+			}
 			Table.focus(currentElement);
 		});
 		// call this after assigning `this.interactionModel` since it depends on it
