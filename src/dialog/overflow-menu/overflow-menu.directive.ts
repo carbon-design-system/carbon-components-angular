@@ -51,7 +51,7 @@ export class OverflowMenuDirective extends DialogDirective {
 	/**
 	 * Classes to add to the dialog container
 	 */
-	@Input() wrapperClass = '';
+	@Input() wrapperClass = "";
 
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
