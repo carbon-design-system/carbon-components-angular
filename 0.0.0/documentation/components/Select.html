@@ -1440,7 +1440,7 @@ export class Select implements ControlValueAccessor {
 	@Output() valueChange &#x3D; new EventEmitter();
 
 	// @ts-ignore
-	@ViewChild(&quot;select&quot;, { static: false }) select: ElementRef;
+	@ViewChild(&quot;select&quot;, { static: true }) select: ElementRef;
 
 	get value() {
 		return this.select.nativeElement.value;

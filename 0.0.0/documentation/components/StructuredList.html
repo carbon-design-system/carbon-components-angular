@@ -536,7 +536,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/structured-list/structured-list.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/structured-list/structured-list.component.ts:180</a></div>
                             </td>
                         </tr>
 
@@ -605,7 +605,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/structured-list/structured-list.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/structured-list/structured-list.component.ts:184</a></div>
                             </td>
                         </tr>
 
@@ -676,7 +676,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/structured-list/structured-list.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/structured-list/structured-list.component.ts:188</a></div>
                             </td>
                         </tr>
 
@@ -714,7 +714,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/structured-list/structured-list.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/structured-list/structured-list.component.ts:169</a></div>
                             </td>
                         </tr>
 
@@ -1248,6 +1248,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 		this.rows.forEach(row &#x3D;&gt; {
 			setSelection(row);
 			row.name &#x3D; this.name;
+			row.tabindex &#x3D; this.selection ? &quot;0&quot; : &quot;null&quot;;
 			row.change.subscribe(() &#x3D;&gt; {
 				this.selected.emit({
 					value: row.value,

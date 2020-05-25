@@ -693,7 +693,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/radio/radio-group.component.ts:232</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/radio/radio-group.component.ts:231</a></div>
                             </td>
                         </tr>
 
@@ -764,7 +764,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/radio/radio-group.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/radio/radio-group.component.ts:258</a></div>
                             </td>
                         </tr>
 
@@ -802,7 +802,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/radio/radio-group.component.ts:269</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/radio/radio-group.component.ts:268</a></div>
                             </td>
                         </tr>
 
@@ -842,7 +842,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/radio/radio-group.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/radio/radio-group.component.ts:275</a></div>
                             </td>
                         </tr>
 
@@ -915,7 +915,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/radio/radio-group.component.ts:284</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/radio/radio-group.component.ts:283</a></div>
                             </td>
                         </tr>
 
@@ -993,7 +993,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/radio/radio-group.component.ts:298</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/radio/radio-group.component.ts:297</a></div>
                             </td>
                         </tr>
 
@@ -1033,7 +1033,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/radio/radio-group.component.ts:304</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/radio/radio-group.component.ts:303</a></div>
                             </td>
                         </tr>
 
@@ -1071,7 +1071,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/radio/radio-group.component.ts:241</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/radio/radio-group.component.ts:240</a></div>
                             </td>
                         </tr>
 
@@ -1151,7 +1151,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/radio/radio-group.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/radio/radio-group.component.ts:254</a></div>
                             </td>
                         </tr>
 
@@ -1491,7 +1491,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/radio/radio-group.component.ts:291</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/radio/radio-group.component.ts:290</a></div>
                             </td>
                         </tr>
 
@@ -1530,7 +1530,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/radio/radio-group.component.ts:296</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/radio/radio-group.component.ts:295</a></div>
                             </td>
                         </tr>
 
@@ -2157,11 +2157,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	updateSelectedRadioFromValue() {
 		let alreadySelected &#x3D; this._selected !&#x3D; null &amp;&amp; this._selected.value &#x3D;&#x3D;&#x3D; this._value;
-
 		if (this.radios &amp;&amp; !alreadySelected) {
 			this._selected &#x3D; null;
 			this.radios.forEach(radio &#x3D;&gt; {
-				if (radio.checked) {
+				if (radio.checked || radio.value &#x3D;&#x3D;&#x3D; this._value) {
 					this._selected &#x3D; radio;
 				}
 			});

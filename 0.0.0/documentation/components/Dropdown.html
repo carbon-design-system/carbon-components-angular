@@ -3809,7 +3809,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			this.elementRef.nativeElement.className);
+			&#x60;${this.elementRef.nativeElement.className}${!this.menuIsClosed ? &quot; bx--list-box--expanded&quot; : &quot;&quot;}&#x60;);
 		this.dropdownMenu.nativeElement.addEventListener(&quot;keydown&quot;, this.keyboardNav, true);
 	}
 
