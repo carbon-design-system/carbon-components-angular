@@ -202,6 +202,7 @@ export class Search implements ControlValueAccessor {
 	focusOut(event) {
 		this.onTouched();
 		if (this.toolbar &&
+			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
 			event.relatedTarget === null) {
 			this.active = false;
