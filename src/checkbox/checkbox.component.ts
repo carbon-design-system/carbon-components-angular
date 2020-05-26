@@ -56,13 +56,13 @@ export class CheckboxChange {
 			[checked]="checked"
 			[disabled]="disabled"
 			[indeterminate]="indeterminate"
-			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label
 			[for]="id"
+			[attr.aria-label]="ariaLabel"
 			class="bx--checkbox-label"
 			[ngClass]="{
 				'bx--skeleton' : skeleton
@@ -128,7 +128,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() value: string;
 	/**
-	 * Used to set the `aria-label` attribute on the input element.
+	 * Used to set the `aria-label` attribute on the input label.
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("aria-label") ariaLabel = "";
