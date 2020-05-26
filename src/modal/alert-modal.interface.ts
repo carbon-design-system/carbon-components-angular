@@ -29,10 +29,6 @@ export interface AlertModalData {
 	 */
 	buttons?: Array<ModalButton>;
 	/**
-	 * Provide whether the modal content has a form element.
-	 */
-	hasForm?: boolean;
-	/**
 	 * Specify whether the modal contains scrolling content. This property overrides the automatic detection
 	 * of the existence of scrolling content. Set this property to `true` to force overflow indicator to
 	 * show up or to `false` to force overflow indicator to disappear.

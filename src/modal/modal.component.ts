@@ -132,11 +132,6 @@ export class Modal implements AfterViewInit, OnChanges {
 	@Input() open = false;
 
 	/**
-	 * Provide whether the modal content has a form element.
-	 */
-	@Input() hasForm = false;
-
-	/**
 	 * The element that triggers the modal, which should receive focus when the modal closes
 	 */
 	@Input() trigger: HTMLElement;
@@ -189,16 +184,9 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Set document focus to be on the modal component after it is initialized.
 	 */
 	ngAfterViewInit() {
-		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
-		if (modalContent) {
-			if (this.hasForm) {
-				const classNames = modalContent.className.split(" ");
-				classNames.push("bx--modal-content--with-form");
-				modalContent.className = classNames.join(" ");
-			}
-		}
 		this.focusInitialElement();
 	}
+
 	/**
 	 * Handle keyboard events to close modal and tab through the content within the modal.
 	 */

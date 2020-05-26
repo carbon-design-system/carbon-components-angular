@@ -14,6 +14,10 @@ import { ButtonModule } from "../forms/index";
 import { I18nModule } from "./../i18n/index";
 import { PlaceholderModule } from "./../placeholder/index";
 import { ExperimentalModule } from "./../experimental.module";
+import { ModalContent } from "./modal-content.directive";
+import { ModalContentText } from "./modal-content-text.directive";
+import { ModalHeaderHeading } from "./modal-header-heading.directive";
+import { ModalHeaderLabel } from "./modal-header-label.directive";
 
 @NgModule({
 	declarations: [
@@ -21,13 +25,21 @@ import { ExperimentalModule } from "./../experimental.module";
 		Modal,
 		ModalHeader,
 		ModalFooter,
-		Overlay
+		Overlay,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel
 	],
 	exports: [
 		AlertModal,
 		Modal,
 		ModalHeader,
-		ModalFooter
+		ModalFooter,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel
 	],
 	entryComponents: [
 		AlertModal,
