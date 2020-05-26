@@ -31,6 +31,11 @@ import { Tooltip } from "./tooltip.component";
 	]
 })
 export class EllipsisTooltip extends TooltipDirective {
+	/**
+	 * If text is truncated, this appends the text to the dialog as content.
+	 * @returns null
+	 * @memberof EllipsisTooltip
+	 */
 	updateTooltipContent() {
 		if (this.elementRef.nativeElement.scrollWidth <= this.elementRef.nativeElement.offsetWidth) {
 			this.disabled = true;
