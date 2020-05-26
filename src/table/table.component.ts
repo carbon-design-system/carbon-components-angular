@@ -614,9 +614,11 @@ export class Table implements AfterViewInit, OnDestroy {
 
 			// if the model has just initialized don't focus or reset anything
 			if (previousRow === -1 || previousColumn === -1) { return; }
-
-			const previousElement = tableAdapter.getCell(previousRow, previousColumn);
-			Table.setTabIndex(previousElement, -1);
+			// Make the previous cell unfocusable (if it's not the current)
+			if (previousRow !== currentRow || previousColumn !== currentColumn) {
+				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
+				Table.setTabIndex(previousElement, -1);
+			}
 			Table.focus(currentElement);
 		});
 		// call this after assigning `this.interactionModel` since it depends on it
@@ -647,14 +649,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	onSelectRow(event) {
 		// check for the existence of the selectedRowIndex property
 		if (Object.keys(event).includes("selectedRowIndex")) {
+			if (this.enableSingleSelect) {
+				this.model.selectAll(false);
+			}
 			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
-
-			if (this.showSelectionColumn && this.enableSingleSelect) {
-				const index = event.selectedRowIndex;
-				this.model.selectAll(false);
-				this.model.selectRow(index);
-			}
 		} else {
 			this.model.selectRow(event.deselectedRowIndex, false);
 			this.deselectRow.emit(event);
