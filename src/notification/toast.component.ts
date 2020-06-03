@@ -21,21 +21,30 @@ import { I18n } from "./../i18n/index";
 @Component({
 	selector: "ibm-toast",
 	template: `
-		<ibm-icon-error-filled
+		<svg
+			ibmIconErrorFilled
 			size="16"
 			*ngIf="notificationObj.type === 'error'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-error-filled>
-		<ibm-icon-warning-filled
+		</svg>
+		<svg
+			ibmIconWarningFilled
 			size="16"
 			*ngIf="notificationObj.type === 'warning'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-warning-filled>
-		<ibm-icon-checkmark-filled
+		</svg>
+		<svg
+			ibmIconCheckmarkFilled
 			size="16"
 			*ngIf="notificationObj.type === 'success'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-checkmark-filled>
+		</svg>
+		<svg
+			ibmIconInformationFilled
+			size="16"
+			*ngIf="notificationObj.type === 'info'"
+			class="bx--toast-notification__icon">
+		</svg>
 		<div class="bx--toast-notification__details">
 			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
 			<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
