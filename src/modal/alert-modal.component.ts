@@ -2,7 +2,8 @@ import {
 	Component,
 	Inject,
 	ViewChild,
-	AfterViewInit
+	AfterViewInit,
+	Optional
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 
@@ -82,14 +83,14 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 	 * Creates an instance of `AlertModal`.
 	 */
 	constructor(
-		@Inject("type") public type = "default",
-		@Inject("label") public label: string,
-		@Inject("title") public title: string,
-		@Inject("content") public content: string,
-		@Inject("size") public size: string,
-		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
-		@Inject("buttons") public buttons = [],
-		@Inject("close") public onClose: Function
+		@Optional() @Inject("type") public type = "default",
+		@Optional() @Inject("label") public label: string,
+		@Optional() @Inject("title") public title: string,
+		@Optional() @Inject("content") public content: string,
+		@Optional() @Inject("size") public size: string,
+		@Optional() @Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
+		@Optional() @Inject("buttons") public buttons = [],
+		@Optional() @Inject("close") public onClose: Function
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
