@@ -24,21 +24,30 @@ import { of, isObservable, Subject } from "rxjs";
 	selector: "ibm-notification",
 	template: `
 		<div class="bx--inline-notification__details">
-			<ibm-icon-error-filled
+			<svg
+				ibmIconErrorFilled
 				size="16"
 				*ngIf="notificationObj.type === 'error'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-error-filled>
-			<ibm-icon-warning-filled
+			</svg>
+			<svg
+				ibmIconWarningFilled
 				size="16"
 				*ngIf="notificationObj.type === 'warning'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-warning-filled>
-			<ibm-icon-checkmark-filled
+			</svg>
+			<svg
+				ibmIconCheckmarkFilled
 				size="16"
 				*ngIf="notificationObj.type === 'success'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-checkmark-filled>
+			</svg>
+			<svg
+				ibmIconInformationFilled
+				size="16"
+				*ngIf="notificationObj.type === 'info'"
+				class="bx--inline-notification__icon">
+			</svg>
 			<div class="bx--inline-notification__text-wrapper">
 				<p *ngIf="!notificationObj.template" ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
 				<p *ngIf="!notificationObj.template" ibmNotificationSubtitle [innerHTML]="notificationObj.message"></p>
