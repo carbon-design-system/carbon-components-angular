@@ -17,6 +17,7 @@ import { TableRowSize } from "../table.component";
 			*ngIf="!skeleton"
 			inline="true"
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
+			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(click)="change.emit()"
@@ -28,6 +29,7 @@ import { TableRowSize } from "../table.component";
     `]
 })
 export class TableHeadCheckbox {
+	private static tableSelectAllCount = 0;
 	/**
 	 * Size of the table rows.
 	 */
@@ -38,6 +40,8 @@ export class TableHeadCheckbox {
 	@Input() indeterminate = false;
 
 	@Input() skeleton = false;
+
+	@Input() name = `select-all-${TableHeadCheckbox.tableSelectAllCount++}`;
 
 	@Input()
 	set ariaLabel(value: string | Observable<string>) {
