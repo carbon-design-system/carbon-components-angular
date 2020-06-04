@@ -107,7 +107,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#toggle">toggle</a>
+                                <a href="#updateTooltipContent">updateTooltipContent</a>
                             </li>
                         </ul>
                     </td>
@@ -116,6 +116,26 @@
 
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#click">click</a>
+                            </li>
+                            <li>
+                                <a href="#focus">focus</a>
+                            </li>
+                            <li>
+                                <a href="#mouseenter">mouseenter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
         </tbody>
     </table>
@@ -125,6 +145,95 @@
 
 
 
+            <section>
+    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="click"></a>
+                        <span class="name">
+                            <b>
+                            click
+                            </b>
+                            <a href="#click"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>click()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/dialog/tooltip/ellipsis-tooltip.directive.ts:50</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focus"></a>
+                        <span class="name">
+                            <b>
+                            focus
+                            </b>
+                            <a href="#focus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>focus()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/tooltip/ellipsis-tooltip.directive.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mouseenter"></a>
+                        <span class="name">
+                            <b>
+                            mouseenter
+                            </b>
+                            <a href="#mouseenter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>mouseenter()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/tooltip/ellipsis-tooltip.directive.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -135,32 +244,32 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="toggle"></a>
+                        <a name="updateTooltipContent"></a>
                         <span class="name">
                             <b>
-                            toggle
+                            updateTooltipContent
                             </b>
-                            <a href="#toggle"><span class="icon ion-ios-link"></span></a>
+                            <a href="#updateTooltipContent"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>toggle()</code>
+<code>updateTooltipContent()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/tooltip/ellipsis-tooltip.directive.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dialog/tooltip/ellipsis-tooltip.directive.ts:39</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Toggles tooltip in view if text is truncated.</p>
+                            <div class="io-description"><p>If text is truncated, this appends the text to the dialog as content.</p>
 </div>
 
                             <div>
@@ -192,7 +301,8 @@
 	ElementRef,
 	Injector,
 	ComponentFactoryResolver,
-	ViewContainerRef
+	ViewContainerRef,
+	HostListener
 } from &quot;@angular/core&quot;;
 import { TooltipDirective } from &quot;./tooltip.directive&quot;;
 import { DialogService } from &quot;./../dialog.service&quot;;
@@ -218,17 +328,37 @@ import { Tooltip } from &quot;./tooltip.component&quot;;
 })
 export class EllipsisTooltip extends TooltipDirective {
 	/**
-	 * Toggles tooltip in view if text is truncated.
+	 * If text is truncated, this appends the text to the dialog as content.
 	 * @returns null
 	 * @memberof EllipsisTooltip
 	 */
-	toggle() {
+	updateTooltipContent() {
 		if (this.elementRef.nativeElement.scrollWidth &lt;&#x3D; this.elementRef.nativeElement.offsetWidth) {
+			this.disabled &#x3D; true;
 			return;
 		}
 
+		this.disabled &#x3D; false;
 		this.dialogConfig.content &#x3D; this.elementRef.nativeElement.innerText;
-		super.toggle();
+	}
+
+	@HostListener(&quot;click&quot;)
+	onClick() {
+		if (this.trigger &#x3D;&#x3D;&#x3D; &quot;click&quot;) {
+			this.updateTooltipContent();
+		}
+	}
+
+	@HostListener(&quot;mouseenter&quot;)
+	onHover() {
+		if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
+			this.updateTooltipContent();
+		}
+	}
+
+	@HostListener(&quot;focus&quot;)
+	onFocus() {
+		this.updateTooltipContent();
 	}
 }
 </code></pre>

@@ -436,8 +436,11 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findColumnIndex(cell: HTMLTableCellElement): number {
 		const row &#x3D; this.getRow(this.findRowIndex(cell));
+		if (!row) {
+			return;
+		}
 		// if the cell has linked headers we can do a more accurate lookup
-		if (cell.headers) {
+		if (cell &amp;&amp; cell.headers) {
 			const ids &#x3D; cell.headers.split(&quot; &quot;);
 			const headerRows &#x3D; Array.from(this.tableElement.tHead.rows);
 			const indexes &#x3D; [];

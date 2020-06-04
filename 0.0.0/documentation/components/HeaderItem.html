@@ -94,14 +94,25 @@
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;li style&#x3D;&quot;height: 100%&quot;&gt;
-	&lt;a
-		class&#x3D;&quot;bx--header__menu-item&quot;
-		role&#x3D;&quot;menuitem&quot;
-		tabindex&#x3D;&quot;0&quot;
-		[href]&#x3D;&quot;href&quot;
-		(click)&#x3D;&quot;navigate($event)&quot;&gt;
-		&lt;ng-content&gt;&lt;/ng-content&gt;
-	&lt;/a&gt;
+	&lt;ng-container [ngSwitch]&#x3D;&quot;useRouter&quot;&gt;
+		&lt;ng-template #content&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/ng-template&gt;
+		&lt;a *ngSwitchCase&#x3D;&quot;false&quot;
+		   class&#x3D;&quot;bx--header__menu-item&quot;
+		   role&#x3D;&quot;menuitem&quot;
+		   tabindex&#x3D;&quot;0&quot;
+		   [href]&#x3D;&quot;href&quot;
+		   (click)&#x3D;&quot;navigate($event)&quot;&gt;
+			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;content&quot;&gt;&lt;/ng-container&gt;
+		&lt;/a&gt;
+		&lt;a *ngSwitchCase&#x3D;&quot;true&quot;
+		   class&#x3D;&quot;bx--header__menu-item&quot;
+		   role&#x3D;&quot;menuitem&quot;
+		   tabindex&#x3D;&quot;0&quot;
+		   [routerLink]&#x3D;&quot;route&quot;
+		   [routerLinkActive]&#x3D;&quot;activeLinkClass&quot;&gt;
+			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;content&quot;&gt;&lt;/ng-container&gt;
+		&lt;/a&gt;
+	&lt;/ng-container&gt;
 &lt;/li&gt;
 	</code></pre></td>
             </tr>
@@ -162,6 +173,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#activeLinkClass">activeLinkClass</a>
+                            </li>
+                            <li>
                                 <a href="#href">href</a>
                             </li>
                             <li>
@@ -169,6 +183,9 @@
                             </li>
                             <li>
                                 <a href="#routeExtras">routeExtras</a>
+                            </li>
+                            <li>
+                                <a href="#useRouter">useRouter</a>
                             </li>
                         </ul>
                     </td>
@@ -220,7 +237,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ui-shell/header/header-item.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/header/header-item.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -276,6 +293,29 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="activeLinkClass"></a>
+                        <code>activeLinkClass</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>String or array of string class names to apply when active</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>string | string[]</code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/ui-shell/header/header-item.component.ts:61</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="href"></a>
                         <code>href</code>
                     </td>
@@ -288,7 +328,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/ui-shell/header/header-item.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/ui-shell/header/header-item.component.ts:41</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -312,7 +352,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/ui-shell/header/header-item.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/ui-shell/header/header-item.component.ts:67</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -336,7 +376,33 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/ui-shell/header/header-item.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/ui-shell/header/header-item.component.ts:73</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="useRouter"></a>
+                        <code>useRouter</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Use the routerLink attribute on <a> tag for navigation instead of using event handlers</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/ui-shell/header/header-item.component.ts:56</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -360,7 +426,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/ui-shell/header/header-item.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/ui-shell/header/header-item.component.ts:78</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -395,7 +461,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/ui-shell/header/header-item.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/ui-shell/header/header-item.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -478,7 +544,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/ui-shell/header/header-item.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/header/header-item.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -507,7 +573,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/ui-shell/header/header-item.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/ui-shell/header/header-item.component.ts:49</a></div>
                                 </td>
                             </tr>
 
@@ -518,7 +584,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/ui-shell/header/header-item.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/ui-shell/header/header-item.component.ts:41</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -582,14 +648,25 @@ import { Router } from &quot;@angular/router&quot;;
 	selector: &quot;ibm-header-item&quot;,
 	template: &#x60;
 		&lt;li style&#x3D;&quot;height: 100%&quot;&gt;
-			&lt;a
-				class&#x3D;&quot;bx--header__menu-item&quot;
-				role&#x3D;&quot;menuitem&quot;
-				tabindex&#x3D;&quot;0&quot;
-				[href]&#x3D;&quot;href&quot;
-				(click)&#x3D;&quot;navigate($event)&quot;&gt;
-				&lt;ng-content&gt;&lt;/ng-content&gt;
-			&lt;/a&gt;
+			&lt;ng-container [ngSwitch]&#x3D;&quot;useRouter&quot;&gt;
+				&lt;ng-template #content&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/ng-template&gt;
+				&lt;a *ngSwitchCase&#x3D;&quot;false&quot;
+				   class&#x3D;&quot;bx--header__menu-item&quot;
+				   role&#x3D;&quot;menuitem&quot;
+				   tabindex&#x3D;&quot;0&quot;
+				   [href]&#x3D;&quot;href&quot;
+				   (click)&#x3D;&quot;navigate($event)&quot;&gt;
+					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;content&quot;&gt;&lt;/ng-container&gt;
+				&lt;/a&gt;
+				&lt;a *ngSwitchCase&#x3D;&quot;true&quot;
+				   class&#x3D;&quot;bx--header__menu-item&quot;
+				   role&#x3D;&quot;menuitem&quot;
+				   tabindex&#x3D;&quot;0&quot;
+				   [routerLink]&#x3D;&quot;route&quot;
+				   [routerLinkActive]&#x3D;&quot;activeLinkClass&quot;&gt;
+					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;content&quot;&gt;&lt;/ng-container&gt;
+				&lt;/a&gt;
+			&lt;/ng-container&gt;
 		&lt;/li&gt;
 	&#x60;
 })
@@ -605,6 +682,16 @@ export class HeaderItem {
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
+
+	/**
+	 * Use the routerLink attribute on &lt;a&gt; tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter: boolean &#x3D; false;
+
+	/**
+	 * String or array of string class names to apply when active
+	 */
+	@Input() activeLinkClass: string | string[];
 
 	/**
 	 * Array of commands to send to the router when the link is activated
@@ -665,9 +752,9 @@ export class HeaderItem {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><li style="height: 100%">	<a		class="bx--header__menu-item"		role="menuitem"		tabindex="0"		[href]="href"		(click)="navigate($event)">		<ng-content></ng-content>	</a></li>	</div>'
+        var COMPONENT_TEMPLATE = '<div><li style="height: 100%">	<ng-container [ngSwitch]="useRouter">		<ng-template #content><ng-content></ng-content></ng-template>		<a *ngSwitchCase="false"		   class="bx--header__menu-item"		   role="menuitem"		   tabindex="0"		   [href]="href"		   (click)="navigate($event)">			<ng-container *ngTemplateOutlet="content"></ng-container>		</a>		<a *ngSwitchCase="true"		   class="bx--header__menu-item"		   role="menuitem"		   tabindex="0"		   [routerLink]="route"		   [routerLinkActive]="activeLinkClass">			<ng-container *ngTemplateOutlet="content"></ng-container>		</a>	</ng-container></li>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'HeaderItem'};
 </script>
 <script src="../js/tree.js"></script>

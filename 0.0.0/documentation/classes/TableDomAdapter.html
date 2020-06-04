@@ -306,7 +306,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/table/table-adapter.class.ts:292</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/table/table-adapter.class.ts:295</a></div>
                             </td>
                         </tr>
 
@@ -416,7 +416,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="329" class="link-to-prism">src/table/table-adapter.class.ts:329</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/table/table-adapter.class.ts:332</a></div>
                             </td>
                         </tr>
 
@@ -510,7 +510,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/table/table-adapter.class.ts:319</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/table/table-adapter.class.ts:322</a></div>
                             </td>
                         </tr>
 
@@ -678,7 +678,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/table/table-adapter.class.ts:268</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/table/table-adapter.class.ts:271</a></div>
                             </td>
                         </tr>
 
@@ -747,7 +747,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/table/table-adapter.class.ts:254</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/table/table-adapter.class.ts:257</a></div>
                             </td>
                         </tr>
 
@@ -994,7 +994,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/table/table-adapter.class.ts:280</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/table/table-adapter.class.ts:283</a></div>
                             </td>
                         </tr>
 
@@ -1390,8 +1390,11 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findColumnIndex(cell: HTMLTableCellElement): number {
 		const row &#x3D; this.getRow(this.findRowIndex(cell));
+		if (!row) {
+			return;
+		}
 		// if the cell has linked headers we can do a more accurate lookup
-		if (cell.headers) {
+		if (cell &amp;&amp; cell.headers) {
 			const ids &#x3D; cell.headers.split(&quot; &quot;);
 			const headerRows &#x3D; Array.from(this.tableElement.tHead.rows);
 			const indexes &#x3D; [];
