@@ -12,7 +12,8 @@ import {
 	SimpleChanges,
 	AfterViewChecked,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	AfterContentInit
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -94,7 +95,7 @@ import { ElementService } from "../utils/element.service";
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit, AfterContentInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -249,6 +250,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 				}
 			}
 		}
+	}
+
+	ngAfterContentInit() {
+		(languages.default.en.weekdays.shorthand as string[])
+			= languages.default.en.weekdays.longhand.map(day => {
+				if (day === "Thursday") {
+					return "Th";
+				}
+				return day.charAt(0);
+			});
 	}
 
 	@HostListener("focusin")
