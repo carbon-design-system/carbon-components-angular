@@ -5,7 +5,8 @@ import {
 	CloseModule,
 	ErrorFilledModule,
 	CheckmarkFilledModule,
-	WarningFilledModule
+	WarningFilledModule,
+	InformationFilledModule
 } from "@carbon/icons-angular";
 
 import { Toast } from "./toast.component";
@@ -48,7 +49,8 @@ import { ExperimentalModule } from "./../experimental.module";
 		CloseModule,
 		ErrorFilledModule,
 		CheckmarkFilledModule,
-		WarningFilledModule
+		WarningFilledModule,
+		InformationFilledModule
 	],
 	providers: [NotificationService, NotificationDisplayService]
 })

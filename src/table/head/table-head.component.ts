@@ -47,6 +47,7 @@ import { TableRowSize } from "../table.component";
 				[ariaLabel]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
+				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
 				[id]="model.getId('select')">
 			</th>

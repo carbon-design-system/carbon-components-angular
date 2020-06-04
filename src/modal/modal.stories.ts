@@ -1,5 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	text,
+	select,
+	boolean
+} from "@storybook/addon-knobs/angular";
 
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
@@ -19,11 +24,17 @@ import { ButtonModule } from "../forms";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
-			<ibm-modal-header (closeSelect)="closeModal()">Header label</ibm-modal-header>
-			<section class="bx--modal-content">
+		<ibm-modal
+			[size]="size"
+			[open]="open"
+			(overlaySelected)="closeModal()">
+			<ibm-modal-header (closeSelect)="closeModal()">
+				<h2 ibmModalHeaderLabel>Label</h2>
+				<h3 ibmModalHeaderHeading>Modal</h3>
+			</ibm-modal-header>
+			<section ibmModalContent>
 				<h1>Sample modal works.</h1>
-				<p class="bx--modal-content__text">{{modalText}}</p>
+				<p ibmModalContentText>{{modalText}}</p>
 			</section>
 			<ibm-modal-footer>
 				<button class="bx--btn bx--btn--secondary" (click)="showSecondaryModal()">Show secondary modal</button>
@@ -57,6 +68,45 @@ class SampleModal extends BaseModal {
 		});
 	}
 }
+@Component({
+	selector: "app-form-modal",
+	template: `
+		<ibm-modal
+			size="lg"
+			open="true"
+			(overlaySelected)="closeModal()">
+			<ibm-modal-header (closeSelect)="closeModal()">
+				<h2 ibmModalHeaderLabel>Label</h2>
+				<h3 ibmModalHeaderHeading>Modal</h3>
+			</ibm-modal-header>
+			<section ibmModalContent hasForm="true">
+				<h1 ibmModalContentText class="bx--modal-content__regular-content modal-text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus erat vel aliquam sodales.
+					Phasellus porta velit vel libero pulvinar, sit amet semper purus volutpat.
+				</h1>
+				<div class="bx--text-input__field-wrapper">
+					<ibm-label helperText="Helper text">
+						{{label}}
+						<input
+							ibmText
+							placeholder="Placeholder"
+							[autocomplete]="false">
+					</ibm-label>
+				</div>
+			</section>
+			<ibm-modal-footer>
+				<button class="bx--btn bx--btn--secondary" (click)="closeModal()">Show secondary modal</button>
+				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
+			</ibm-modal-footer>
+		</ibm-modal>
+	`,
+	styles: [`
+		.modal-text {
+			margin-bottom: 30px;
+		}
+	`]
+})
+class SampleFormModal extends BaseModal {}
 
 @Component({
 	selector: "app-modal-story",
@@ -86,7 +136,10 @@ class ModalStory {
 @Component({
 	selector: "app-input-modal",
 	template: `
-		<ibm-modal [size]="size" [open]="open" (overlaySelected)="closeModal()">
+		<ibm-modal
+			[size]="size"
+			[open]="open"
+			(overlaySelected)="closeModal()">
 			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
 			<section class="bx--modal-content">
 				<ibm-label>
@@ -195,14 +248,16 @@ storiesOf("Components|Modal", module)
 				SampleModal,
 				InputModal,
 				DataPassingModal,
-				AlertModalStory
+				AlertModalStory,
+				SampleFormModal
 			],
 			imports: [
 				ModalModule,
 				PlaceholderModule,
 				InputModule,
 				ButtonModule,
-				DocumentationModule
+				DocumentationModule,
+				InputModule
 			],
 			entryComponents: [
 				SampleModal,
@@ -219,6 +274,9 @@ storiesOf("Components|Modal", module)
 		props: getOptions({
 			modalText: text("modalText", "Hello, World!")
 		})
+	}))
+	.add("Form modal", () => ({
+		template: `<app-form-modal></app-form-modal>`
 	}))
 	.add("Transactional", () => ({
 		template: `
