@@ -180,8 +180,14 @@ export class TableModel implements PaginationModel {
 	 */
 	protected _data: TableItem[][] = [[]];
 
+	/**
+	 * The number of models instantiated, this is to make sure each table has a different
+	 * model count for unique id generation.
+	 */
+	protected tableModelCount = 0;
+
 	constructor() {
-		TableModel.COUNT++;
+		this.tableModelCount = TableModel.COUNT++;
 	}
 
 	/**
@@ -191,7 +197,7 @@ export class TableModel implements PaginationModel {
 	 * @param row the row of the header to generate an id for
 	 */
 	getId(column: HeaderType, row = 0): string {
-		return `table-header-${row}-${column}-${TableModel.COUNT}`;
+		return `table-header-${row}-${column}-${this.tableModelCount}`;
 	}
 
 	/**
