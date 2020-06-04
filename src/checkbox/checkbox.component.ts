@@ -61,13 +61,13 @@ export type CheckboxValue = boolean | "on" | "off";
 			[checked]="checked"
 			[disabled]="disabled"
 			[indeterminate]="indeterminate"
-			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label
 			[for]="id"
+			[attr.aria-label]="ariaLabel"
 			class="bx--checkbox-label"
 			[ngClass]="{
 				'bx--skeleton' : skeleton

@@ -123,13 +123,19 @@ export class Tabs implements AfterContentInit, OnChanges {
 		}
 
 		this.tabs.forEach(tab => {
-			tab.tabIndex = this.isNavigation ? -1 : 0;
+			tab.tabIndex = this.isNavigation ? null : 0;
 		});
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.tabHeaders && changes.cacheActive) {
 			this.tabHeaders.cacheActive = this.cacheActive;
+		}
+
+		if (this.tabs && changes.isNavigation) {
+			this.tabs.forEach(tab => {
+				tab.tabIndex = this.isNavigation ? null : 0;
+			});
 		}
 	}
 

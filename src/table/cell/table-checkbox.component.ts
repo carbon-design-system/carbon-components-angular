@@ -17,6 +17,7 @@ import { TableRowSize } from "../table.component";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
+			[name]="name"
 			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="selected"
@@ -29,6 +30,8 @@ export class TableCheckbox {
 	@Input() row: TableItem[];
 
 	@Input() selected = false;
+
+	@Input() name = "";
 
 	get disabled(): boolean {
 		return this.row ? !!(this.row as TableRow).disabled : false;

@@ -15,6 +15,7 @@ import { Observable } from "rxjs";
 		<ibm-radio
 			*ngIf="!skeleton"
 			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			(change)="change.emit()">
 		</ibm-radio>

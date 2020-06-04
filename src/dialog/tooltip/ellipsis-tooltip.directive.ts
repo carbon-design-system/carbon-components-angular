@@ -5,7 +5,8 @@ import {
 	ElementRef,
 	Injector,
 	ComponentFactoryResolver,
-	ViewContainerRef
+	ViewContainerRef,
+	HostListener
 } from "@angular/core";
 import { TooltipDirective } from "./tooltip.directive";
 import { DialogService } from "./../dialog.service";
@@ -31,16 +32,36 @@ import { Tooltip } from "./tooltip.component";
 })
 export class EllipsisTooltip extends TooltipDirective {
 	/**
-	 * Toggles tooltip in view if text is truncated.
+	 * If text is truncated, this appends the text to the dialog as content.
 	 * @returns null
 	 * @memberof EllipsisTooltip
 	 */
-	toggle() {
+	updateTooltipContent() {
 		if (this.elementRef.nativeElement.scrollWidth <= this.elementRef.nativeElement.offsetWidth) {
+			this.disabled = true;
 			return;
 		}
 
+		this.disabled = false;
 		this.dialogConfig.content = this.elementRef.nativeElement.innerText;
-		super.toggle();
+	}
+
+	@HostListener("click")
+	onClick() {
+		if (this.trigger === "click") {
+			this.updateTooltipContent();
+		}
+	}
+
+	@HostListener("mouseenter")
+	onHover() {
+		if (this.trigger === "hover" || this.trigger === "mouseenter") {
+			this.updateTooltipContent();
+		}
+	}
+
+	@HostListener("focus")
+	onFocus() {
+		this.updateTooltipContent();
 	}
 }
