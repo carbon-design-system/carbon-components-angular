@@ -98,7 +98,7 @@ export class Header {
 	/**
 	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
 	 */
-	@Input() useRouter: boolean = false;
+	@Input() useRouter = false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated
