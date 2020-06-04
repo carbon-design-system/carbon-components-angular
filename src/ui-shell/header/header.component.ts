@@ -38,14 +38,23 @@ import { I18n } from "../../i18n/index";
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
 			</ng-template>
-			<a
-				*ngIf="!isTemplate(brand)"
-				class="bx--header__name"
-				[href]="href"
-				(click)="navigate($event)">
-				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
-				{{name}}
-			</a>
+			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
+				<a
+					*ngSwitchCase="false"
+					class="bx--header__name"
+					[href]="href"
+					(click)="navigate($event)">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+				<a
+					*ngSwitchCase="true"
+					class="bx--header__name"
+					[routerLink]="route">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+			</ng-container>
 			<ng-content></ng-content>
 		</header>
 	`
@@ -85,6 +94,11 @@ export class Header {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter: boolean = false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated
