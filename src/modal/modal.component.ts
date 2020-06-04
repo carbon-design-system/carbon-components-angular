@@ -180,7 +180,6 @@ export class Modal implements AfterViewInit, OnChanges {
 		}
 	}
 
-
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
 	 */
