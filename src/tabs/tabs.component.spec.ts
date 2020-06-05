@@ -109,9 +109,9 @@ describe("Sample", () => {
 		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(2);
 	});
 
-	it("should set tabIndex of all tabpanels to be -1 if isNavigation is false", () => {
+	it("should set tabIndex of all tabpanels to be null if isNavigation is false", () => {
 		element.componentInstance.tabs.forEach(tab => {
-			expect(tab.tabIndex).toBe(-1);
+			expect(tab.tabIndex).toBeFalsy();
 		});
 	});
 

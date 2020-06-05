@@ -72,7 +72,7 @@ export type CheckboxValue = boolean | "on" | "off";
 			[ngClass]="{
 				'bx--skeleton' : skeleton
 			}">
-			<span [ngClass]="{'bx--visually-hidden' : hideLabel}">
+			<span [ngClass]="{'bx--visually-hidden' : hideLabel}" class="bx--checkbox-label-text">
 				<ng-content></ng-content>
 			</span>
 		</label>

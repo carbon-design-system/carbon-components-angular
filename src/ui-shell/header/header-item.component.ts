@@ -53,7 +53,7 @@ export class HeaderItem {
 	/**
 	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
 	 */
-	@Input() useRouter: boolean = false;
+	@Input() useRouter = false;
 
 	/**
 	 * String or array of string class names to apply when active
