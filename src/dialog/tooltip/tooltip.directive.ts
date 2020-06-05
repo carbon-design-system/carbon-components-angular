@@ -74,5 +74,6 @@ export class TooltipDirective extends DialogDirective {
 	updateConfig() {
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
+		this.dialogConfig.offset = this.offset;
 	}
 }
