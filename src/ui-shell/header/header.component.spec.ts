@@ -5,7 +5,7 @@ import { By } from "@angular/platform-browser";
 import { I18nModule } from "../../i18n/index";
 import { Header } from "./header.component";
 import { Hamburger } from "../index";
-import {RouterModule} from "@angular/router";
+import { RouterModule } from "@angular/router";
 
 /**
  * Testing component for projecting an ibm-hamburger component

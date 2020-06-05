@@ -4,10 +4,10 @@ import {
 	Output,
 	EventEmitter,
 	Optional,
-  HostBinding
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 /**
  * Represents an item in a switcher list.

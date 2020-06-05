@@ -16,7 +16,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 			[attr.aria-describedby]="id">
 			<ng-content></ng-content>
 		</button>
-		<div class="bx--assistive-text" [id]="id" role="tooltip">{{content}}</div> 
+		<div class="bx--assistive-text" [id]="id" role="tooltip">{{content}}</div>
 	`
 })
 export class TooltipDefinition {
