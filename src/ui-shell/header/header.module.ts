@@ -13,6 +13,7 @@ import { HeaderGlobal } from "./header-global.component";
 import { HeaderAction } from "./header-action.component";
 
 import { Hamburger } from "./hamburger.component";
+import { RouterModule } from "@angular/router";
 
 export { HeaderItemInterface, NavigationItem } from "./header-navigation-items.interface";
 
@@ -40,7 +41,8 @@ export {
 		CommonModule,
 		I18nModule,
 		CloseModule,
-		MenuModule
+		MenuModule,
+		RouterModule
 	],
 	exports: [
 		Header,

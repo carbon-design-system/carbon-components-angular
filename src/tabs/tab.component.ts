@@ -61,7 +61,7 @@ let nextId = 0;
 	selector: "ibm-tab",
 	template: `
 		<div
-			[tabindex]="tabIndex"
+			[attr.tabindex]="tabIndex"
 			role="tabpanel"
 			*ngIf="shouldRender()"
 			[ngStyle]="{'display': active ? null : 'none'}"

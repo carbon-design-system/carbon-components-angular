@@ -32,11 +32,18 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label *ngIf="label" [for]="id" class="bx--label">
+		<label
+			*ngIf="label"
+			[for]="id"
+			class="bx--label"
+			[ngClass]="{'bx--label--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
+		<div
+			*ngIf="helperText"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
@@ -44,7 +51,8 @@ import { Observable } from "rxjs";
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
-				'bx--list-box--expanded': open
+				'bx--list-box--expanded': open,
+				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
 			role="listbox"
@@ -444,8 +452,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	writeValue(value: any) {
 		if (this.type === "single") {
 			this.view.propagateSelected([value]);
+			this.showClearButton = !!(value && this.view.getSelected().length);
 		} else {
-			this.view.propagateSelected(value);
+			this.view.propagateSelected(value ? value : [""]);
 		}
 		this.updateSelected();
 	}
@@ -578,9 +587,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected && selected[0]) {
-			this.selectedValue = selected[0].content;
-			this.propagateChangeCallback(selected[0]);
+		} else if (selected) {
+			const value = selected[0] ? selected[0].content : "";
+			const changeCallbackValue = selected[0] ? selected[0] : "";
+			this.selectedValue = value;
+			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
 }

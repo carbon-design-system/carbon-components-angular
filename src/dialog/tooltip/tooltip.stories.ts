@@ -179,6 +179,38 @@ storiesOf("Components|Tooltip", module)
 			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
+	.add("Ellipsis tooltip", () => ({
+		styles: [`
+			.fullText {
+				white-space: nowrap;
+				display: inline-block;
+			}
+			.overflowText {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100px;
+				display: inline-block;
+			}
+		`],
+		template: `
+			<span
+				class="ellipsis"
+				[ngClass]="{
+					'fullText': showFullText,
+					'overflowText': !showFullText
+				}"
+				trigger="hover"
+				[placement]="'bottom'"
+				ibmEllipsisTooltip>
+					Tooltip for ellipsis because I can and I am really really long
+			</span>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			showFullText: boolean("Show full text", false)
+		}
+	}))
 	.add("Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/directives/TooltipDirective.html"></ibm-documentation>

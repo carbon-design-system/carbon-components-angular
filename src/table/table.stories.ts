@@ -124,6 +124,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[stickyHeader]="stickyHeader"
 				[size]="size"
 				[skeleton]="skeleton"
+				[enableSingleSelect]="enableSingleSelect"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
 				[sortable]="sortable"
@@ -131,7 +132,9 @@ storiesOf("Components|Table", module).addDecorator(
 			</app-table>
 		</ibm-table-container>
 	`,
-		props: getProps()
+		props: getProps({
+			enableSingleSelect: boolean("Enable single select", false)
+		})
 	}))
 	.add("With no data", () => ({
 		template: `
@@ -169,27 +172,27 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText">
+			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<ibm-table-toolbar-actions>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
 						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
 					</button>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Save
 						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
 					</button>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Download
 						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action">
+					<button ibmButton="ghost" class="toolbar-action" [tabindex]="toolbar.selected ? -1 : 0">
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
-					<button ibmButton="primary" size="sm">
+					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
 						Primary Button
 						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
@@ -200,6 +203,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[enableSingleSelect]="enableSingleSelect"
 				[striped]="striped"
 				[sortable]="sortable"
 				[skeleton]="skeleton"
@@ -210,6 +214,7 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
+			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
 				MULTIPLE: "{{count}} items selected"
@@ -298,6 +303,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[enableSingleSelect]="enableSingleSelect"
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
@@ -307,7 +313,8 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			enableSingleSelect: boolean("Enable single select", false)
 		})
 	}))
 	.add("With expansion", () => ({

@@ -52,7 +52,7 @@ import { hasScrollableParents } from "../utils";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label *ngIf="label" [for]="id" class="bx--label">
+	<label *ngIf="label" class="bx--label">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
@@ -620,7 +620,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			this.elementRef.nativeElement.className);
+			`${this.elementRef.nativeElement.className}${!this.menuIsClosed ? " bx--list-box--expanded" : ""}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 
