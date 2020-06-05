@@ -33,50 +33,48 @@ import { ElementService } from "../utils/element.service";
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<div class="bx--form-item">
-			<div
-				class="bx--date-picker"
-				[ngClass]="{
-					'bx--date-picker--range' : range,
-					'bx--date-picker--single' : !range,
-					'bx--date-picker--light' : theme === 'light',
-					'bx--skeleton' : skeleton
-				}">
-				<div class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#input
-						[label]="label"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[id]="id"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? false : true)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)"
-						(click)="openCalendar(input)">
-					</ibm-date-picker-input>
-				</div>
+		<div
+			class="bx--date-picker"
+			[ngClass]="{
+				'bx--date-picker--range' : range,
+				'bx--date-picker--single' : !range,
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
+			<div class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#input
+					[label]="label"
+					[placeholder]="placeholder"
+					[pattern]="pattern"
+					[id]="id"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? false : true)"
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[skeleton]="skeleton"
+					(valueChange)="onValueChange($event)"
+					(click)="openCalendar(input)">
+				</ibm-date-picker-input>
+			</div>
 
-				<div *ngIf="range" class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#rangeInput
-						[label]="rangeLabel"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[id]="id + '-rangeInput'"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? true : null)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)"
-						(click)="openCalendar(rangeInput)">
-					</ibm-date-picker-input>
-				</div>
+			<div *ngIf="range" class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#rangeInput
+					[label]="rangeLabel"
+					[placeholder]="placeholder"
+					[pattern]="pattern"
+					[id]="id + '-rangeInput'"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? true : null)"
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[skeleton]="skeleton"
+					(valueChange)="onRangeValueChange($event)"
+					(click)="openCalendar(rangeInput)">
+				</ibm-date-picker-input>
 			</div>
 		</div>
 	</div>
