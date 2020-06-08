@@ -85,6 +85,30 @@ describe("Combo box", () => {
 		// No longer emits null when selection is empty.
 		expect(wrapper.model).toEqual([]);
 	});
+	
+	it("should call clearInput on clear selection button keyup event", () => {
+		const keyupEnter = new KeyboardEvent("keyup", { "key": "Enter" });
+		fixture = TestBed.createComponent(ComboboxTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		spyOn(element.componentInstance, "clearInput");
+
+		// Select an item from the dropdown
+		const dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+		const dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		// Attempt clear by keyboard event
+		const clearBtn = element.nativeElement.querySelector(".bx--list-box__selection");
+		clearBtn.dispatchEvent(keyupEnter);
+		fixture.detectChanges();
+
+		expect(element.componentInstance.clearInput).toHaveBeenCalled();
+	});
 
 	it("should open dropdown on ArrowDown and close dropdown on Escape", () => {
 		const keyDown = new KeyboardEvent("keydown", { "key": "ArrowDown" });
