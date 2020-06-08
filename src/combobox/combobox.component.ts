@@ -64,7 +64,7 @@ import { Observable } from "rxjs";
 					(keydown.enter)="clearSelected()"
 					role="button"
 					class="bx--tag--filter bx--list-box__selection--multi"
-          tabindex="0"
+					tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
@@ -406,7 +406,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
+	 * Handles `Escape/Tab` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
@@ -417,6 +417,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+		}
+
+		if (
+			this.open && ev.key === "Tab" &&
+			(this.dropdownMenu.nativeElement.contains(ev.target as Node) || ev.target === this.input.nativeElement)
+		) {
+			this.closeDropdown();
+		}
+
+		if (this.open && ev.key === "Tab" && ev.shiftKey) {
+			this.closeDropdown();
 		}
 	}
 
