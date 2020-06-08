@@ -489,10 +489,6 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                     <td class="col-md-10">
                         <div><p>Use the routerLink attribute on <a> tag for navigation instead of using event handlers</p>
 </div>
-                            <p>
-                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                            </p>
                         <p>
                             <em>Default value : </em><code>false</code>
                         </p>
@@ -933,7 +929,7 @@ export class Header {
 	/**
 	 * Use the routerLink attribute on &lt;a&gt; tag for navigation instead of using event handlers
 	 */
-	@Input() useRouter: boolean &#x3D; false;
+	@Input() useRouter &#x3D; false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

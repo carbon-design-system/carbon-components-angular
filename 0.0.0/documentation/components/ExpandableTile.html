@@ -395,7 +395,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/tiles/expandable-tile.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/tiles/expandable-tile.component.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -433,7 +433,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/tiles/expandable-tile.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/tiles/expandable-tile.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -760,7 +760,10 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	get expandedHeight() {
-		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(&quot;.bx--tile&quot;)).paddingBottom, 10);
+		const tile &#x3D; this.element.querySelector(&quot;.bx--tile&quot;);
+		const tilePadding
+			&#x3D; parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
+		return this.tileMaxHeight + tilePadding;
 	}
 
 	updateMaxHeight() {

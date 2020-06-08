@@ -467,7 +467,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/tabs/tabs.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/tabs/tabs.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -825,13 +825,19 @@ export class Tabs implements AfterContentInit, OnChanges {
 		}
 
 		this.tabs.forEach(tab &#x3D;&gt; {
-			tab.tabIndex &#x3D; this.isNavigation ? -1 : 0;
+			tab.tabIndex &#x3D; this.isNavigation ? null : 0;
 		});
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.tabHeaders &amp;&amp; changes.cacheActive) {
 			this.tabHeaders.cacheActive &#x3D; this.cacheActive;
+		}
+
+		if (this.tabs &amp;&amp; changes.isNavigation) {
+			this.tabs.forEach(tab &#x3D;&gt; {
+				tab.tabIndex &#x3D; this.isNavigation ? null : 0;
+			});
 		}
 	}
 

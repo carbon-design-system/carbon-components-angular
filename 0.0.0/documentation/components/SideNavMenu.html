@@ -359,7 +359,7 @@ child sidenav item.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:115</a></div>
                             </td>
                         </tr>
 
@@ -397,7 +397,7 @@ child sidenav item.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -435,7 +435,7 @@ child sidenav item.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -473,7 +473,7 @@ child sidenav item.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -523,7 +523,7 @@ child sidenav item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav-menu.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -588,7 +588,7 @@ child sidenav item.</p>
 	OnDestroy
 } from &quot;@angular/core&quot;;
 import { SideNavItem } from &quot;./sidenav-item.component&quot;;
-import { Subscription } from &#x27;rxjs&#x27;;
+import { Subscription } from &quot;rxjs&quot;;
 import { SideNavItemInterface } from &quot;./sidenav-item.interface&quot;;
 
 
@@ -659,14 +659,6 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList&lt;SideNavItem&gt;;
 
-	protected findActiveChildren() {
-		if (this.sidenavItems.some(item &#x3D;&gt; item.active)) {
-			this.hasActiveChild &#x3D; true;
-		} else {
-			this.hasActiveChild &#x3D; false;
-		}
-	}
-
 	protected activeItemsSubscription &#x3D; new Subscription();
 
 	ngAfterContentInit() {
@@ -699,6 +691,14 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 
 	toggle() {
 		this.expanded &#x3D; !this.expanded;
+	}
+
+	protected findActiveChildren() {
+		if (this.sidenavItems.some(item &#x3D;&gt; item.active)) {
+			this.hasActiveChild &#x3D; true;
+		} else {
+			this.hasActiveChild &#x3D; false;
+		}
 	}
 }
 </code></pre>

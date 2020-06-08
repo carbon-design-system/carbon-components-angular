@@ -230,7 +230,10 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	get expandedHeight() {
-		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(&quot;.bx--tile&quot;)).paddingBottom, 10);
+		const tile &#x3D; this.element.querySelector(&quot;.bx--tile&quot;);
+		const tilePadding
+			&#x3D; parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
+		return this.tileMaxHeight + tilePadding;
 	}
 
 	updateMaxHeight() {
