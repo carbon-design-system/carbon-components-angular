@@ -8,7 +8,8 @@
 		"storybook": "start-storybook -s .storybook/public -p 6006",
 		"docs:build": "compodoc -p tsconfig.json",
 		"docs:server": "compodoc -p tsconfig.json -s -w",
-		"lint": "tslint src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
+		"lint": "tslint 'src/**/*.ts' && stylelint 'src/**/*.scss' --config .stylelintrc.yml",
+		"lint:fix": "tslint --fix 'src/**/*.ts' && stylelint 'src/**/*.scss' --config .stylelintrc.yml",
 		"test": "ng test --no-watch",
 		"test:watch": "ng test --watch",
 		"build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
@@ -35,7 +36,7 @@
 			},
 			{
 				"name": "v3",
-				"channel": "v3",
+				"channel": "carbon-v3",
 				"range": "3.x"
 			},
 			{
@@ -44,7 +45,7 @@
 				"range": "2.X"
 			}
 		],
-		"tagFormat": "v${version}@latest"
+		"tagFormat": "v${version}"
 	},
 	"config": {
 		"commitizen": {
@@ -97,7 +98,7 @@
 		"angular2-template-loader": "0.6.2",
 		"autoprefixer": "8.6.5",
 		"babel-loader": "8.0.5",
-		"carbon-components": "10.10.3",
+		"carbon-components": "10.11.2",
 		"chai": "4.2.0",
 		"codelyzer": "5.0.0",
 		"commitizen": "4.0.3",

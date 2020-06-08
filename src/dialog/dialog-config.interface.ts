@@ -57,4 +57,8 @@ export interface DialogConfig {
 	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
 	offset?: { x: number, y: number };
+	/**
+	 * This prevents the dialog from being toggled
+	 */
+	disabled?: boolean;
 }

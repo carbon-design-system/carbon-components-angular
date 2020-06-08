@@ -8,7 +8,11 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive">
+		<ibm-tab-header-group
+			[type]="type"
+			[followFocus]="followFocus"
+			[cacheActive]="cacheActive"
+			[isNavigation]="isNavigation">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -40,6 +44,7 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
+	@Input() isNavigation = true;
 	@Input() type = "default";
 }
 
@@ -146,11 +151,17 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+			<ibm-header-group
+				[type]="type"
+				[followFocus]="followFocus"
+				[cacheActive]="cacheActive"
+				[isNavigation]="isNavigation">
+			</ibm-header-group>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
 			cacheActive: boolean("Cache active", true),
+			isNavigation: boolean("isNavigation", true),
 			type: select("type", ["default", "container"], "default")
 		}
 	}))
