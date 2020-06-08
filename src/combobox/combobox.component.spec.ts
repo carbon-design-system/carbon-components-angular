@@ -85,7 +85,7 @@ describe("Combo box", () => {
 		// No longer emits null when selection is empty.
 		expect(wrapper.model).toEqual([]);
 	});
-	
+
 	it("should call clearInput on clear selection button keyup event", () => {
 		const keyupEnter = new KeyboardEvent("keyup", { "key": "Enter" });
 		fixture = TestBed.createComponent(ComboboxTest);
