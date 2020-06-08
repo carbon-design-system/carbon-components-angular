@@ -202,7 +202,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			}
 		},
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
-			dayElem.className += ' bx--date-picker__day';
+			dayElem.className += " bx--date-picker__day";
 		},
 		value: this.value
 	};
