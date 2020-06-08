@@ -6,9 +6,10 @@ import {
 	TemplateRef,
 	HostListener
 } from "@angular/core";
-import { DialogDirective } from "./../dialog.directive";
-import { DialogService } from "./../dialog.service";
+import { DialogDirective } from "../dialog.directive";
+import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
+import { EventService } from "../../utils/event.service";
 
 
 /**
@@ -50,7 +51,7 @@ export class OverflowMenuDirective extends DialogDirective {
 	/**
 	 * Classes to add to the dialog container
 	 */
-	@Input() wrapperClass = '';
+	@Input() wrapperClass = "";
 
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
@@ -58,10 +59,11 @@ export class OverflowMenuDirective extends DialogDirective {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService
+		protected dialogService: DialogService,
+		protected eventService: EventService
 	) {
-		super(elementRef, viewContainerRef, dialogService);
-		dialogService.create(OverflowMenuPane);
+		super(elementRef, viewContainerRef, dialogService, eventService);
+		dialogService.setContext({ component: OverflowMenuPane });
 	}
 
 	updateConfig() {
@@ -69,14 +71,6 @@ export class OverflowMenuDirective extends DialogDirective {
 		this.dialogConfig.flip = this.flip;
 		this.dialogConfig.offset = this.offset;
 		this.dialogConfig.wrapperClass = this.wrapperClass;
-	}
-
-	onDialogInit() {
-		this.updateConfig();
-	}
-
-	onDialogChanges() {
-		this.updateConfig();
 	}
 
 	@HostListener("keydown", ["$event"])

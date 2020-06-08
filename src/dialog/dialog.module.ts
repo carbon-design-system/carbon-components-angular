@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { DialogService } from "./dialog.service";
 import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
-import { DialogPlaceholder } from "./dialog-placeholder.component";
 
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDefinition } from "./tooltip/tooltip-definition.component";
@@ -18,27 +17,12 @@ import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
-import { I18nModule } from "./../i18n/i18n.module";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { I18nModule } from "./../i18n/index";
+import { PlaceholderModule } from "./../placeholder/index";
 import { ExperimentalModule } from "./../experimental.module";
 import { UtilsModule } from "./../utils/utils.module";
 
-// exports
-export { DialogService } from "./dialog.service";
-export { Dialog } from "./dialog.component";
-export { DialogDirective } from "./dialog.directive";
-export { DialogPlaceholder } from "./dialog-placeholder.component";
-
-export { Tooltip } from "./tooltip/tooltip.component";
-export { TooltipDefinition } from "./tooltip/tooltip-definition.component";
-export { TooltipIcon } from "./tooltip/tooltip-icon.component";
-export { TooltipDirective } from "./tooltip/tooltip.directive";
-export { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
-
-export { OverflowMenu } from "./overflow-menu/overflow-menu.component";
-export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
-export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
-export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
+import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 
 @NgModule({
 	declarations: [
@@ -52,8 +36,7 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		TooltipDirective,
 		EllipsisTooltip,
 		OverflowMenuDirective,
-		OverflowMenuOption,
-		DialogPlaceholder
+		OverflowMenuOption
 	],
 	exports: [
 		Dialog,
@@ -66,8 +49,7 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		TooltipDirective,
 		EllipsisTooltip,
 		OverflowMenuDirective,
-		OverflowMenuOption,
-		DialogPlaceholder
+		OverflowMenuOption
 	],
 	providers: [ DialogService ],
 	entryComponents: [
@@ -80,7 +62,8 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		UtilsModule
+		UtilsModule,
+		OverflowMenuVerticalModule
 	]
 })
 export class DialogModule {}

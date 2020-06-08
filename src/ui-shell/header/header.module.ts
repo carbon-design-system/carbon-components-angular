@@ -1,10 +1,9 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { Close20Module } from "@carbon/icons-angular/lib/close/20";
-import { Menu20Module } from "@carbon/icons-angular/lib/menu/20";
+import { CloseModule, MenuModule } from "@carbon/icons-angular";
 
-import { I18nModule } from "./../../i18n/i18n.module";
+import { I18nModule } from "./../../i18n/index";
 
 import { Header } from "./header.component";
 import { HeaderItem } from "./header-item.component";
@@ -14,6 +13,7 @@ import { HeaderGlobal } from "./header-global.component";
 import { HeaderAction } from "./header-action.component";
 
 import { Hamburger } from "./hamburger.component";
+import { RouterModule } from "@angular/router";
 
 export { HeaderItemInterface, NavigationItem } from "./header-navigation-items.interface";
 
@@ -40,8 +40,9 @@ export {
 	imports: [
 		CommonModule,
 		I18nModule,
-		Close20Module,
-		Menu20Module
+		CloseModule,
+		MenuModule,
+		RouterModule
 	],
 	exports: [
 		Header,

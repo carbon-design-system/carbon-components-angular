@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "../../i18n/index";
 
 /**
  * A fixed header and navigation.
@@ -27,7 +27,7 @@ import { I18n } from "../../i18n/i18n.module";
 			role="banner"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
-				*ngIf="!skipTo"
+				*ngIf="skipTo"
 				class="bx--skip-to-content"
 				[href]="skipTo"
 				tabindex="0">
@@ -38,14 +38,23 @@ import { I18n } from "../../i18n/i18n.module";
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
 			</ng-template>
-			<a
-				*ngIf="!isTemplate(brand)"
-				class="bx--header__name"
-				[href]="href"
-				(click)="navigate($event)">
-				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
-				{{name}}
-			</a>
+			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
+				<a
+					*ngSwitchCase="false"
+					class="bx--header__name"
+					[href]="href"
+					(click)="navigate($event)">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+				<a
+					*ngSwitchCase="true"
+					class="bx--header__name"
+					[routerLink]="route">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+			</ng-container>
 			<ng-content></ng-content>
 		</header>
 	`
@@ -85,6 +94,11 @@ export class Header {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

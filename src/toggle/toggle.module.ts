@@ -4,11 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Toggle } from "../toggle/toggle.component";
-
-// exports
-export { Toggle } from "../toggle/toggle.component";
 
 @NgModule({
 	declarations: [

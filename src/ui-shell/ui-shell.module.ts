@@ -1,15 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { I18nModule } from "./../i18n/i18n.module";
+import { I18nModule } from "./../i18n/index";
 
 import { HeaderModule } from "./header/header.module";
 import { SideNavModule } from "./sidenav/sidenav.module";
 import { PanelModule } from "./panel/panel.module";
-
-export * from "./header/header.module";
-export * from "./sidenav/sidenav.module";
-export * from "./panel/panel.module";
 
 @NgModule({
 	imports: [

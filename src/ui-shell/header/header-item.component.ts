@@ -15,14 +15,25 @@ import { Router } from "@angular/router";
 	selector: "ibm-header-item",
 	template: `
 		<li style="height: 100%">
-			<a
-				class="bx--header__menu-item"
-				role="menuitem"
-				tabindex="0"
-				[href]="href"
-				(click)="navigate($event)">
-				<ng-content></ng-content>
-			</a>
+			<ng-container [ngSwitch]="useRouter">
+				<ng-template #content><ng-content></ng-content></ng-template>
+				<a *ngSwitchCase="false"
+				   class="bx--header__menu-item"
+				   role="menuitem"
+				   tabindex="0"
+				   [href]="href"
+				   (click)="navigate($event)">
+					<ng-container *ngTemplateOutlet="content"></ng-container>
+				</a>
+				<a *ngSwitchCase="true"
+				   class="bx--header__menu-item"
+				   role="menuitem"
+				   tabindex="0"
+				   [routerLink]="route"
+				   [routerLinkActive]="activeLinkClass">
+					<ng-container *ngTemplateOutlet="content"></ng-container>
+				</a>
+			</ng-container>
 		</li>
 	`
 })
@@ -38,6 +49,16 @@ export class HeaderItem {
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
+
+	/**
+	 * String or array of string class names to apply when active
+	 */
+	@Input() activeLinkClass: string | string[];
 
 	/**
 	 * Array of commands to send to the router when the link is activated

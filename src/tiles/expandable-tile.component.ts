@@ -4,7 +4,7 @@ import {
 	ElementRef,
 	AfterContentInit
 } from "@angular/core";
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { merge } from "./../utils/object";
 
 export interface ExpandableTileTranslations {
@@ -70,7 +70,10 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	get expandedHeight() {
-		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(".bx--tile")).paddingBottom, 10);
+		const tile = this.element.querySelector(".bx--tile");
+		const tilePadding
+			= parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
+		return this.tileMaxHeight + tilePadding;
 	}
 
 	updateMaxHeight() {

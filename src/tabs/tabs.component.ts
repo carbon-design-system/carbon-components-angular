@@ -110,7 +110,8 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Content child of the projected header component
 	 */
-	@ContentChild(TabHeaders) tabHeaders;
+	// @ts-ignore
+	@ContentChild(TabHeaders, { static: false }) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial
@@ -122,13 +123,19 @@ export class Tabs implements AfterContentInit, OnChanges {
 		}
 
 		this.tabs.forEach(tab => {
-			tab.tabIndex = this.isNavigation ? -1 : 0;
+			tab.tabIndex = this.isNavigation ? null : 0;
 		});
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.tabHeaders && changes.cacheActive) {
 			this.tabHeaders.cacheActive = this.cacheActive;
+		}
+
+		if (this.tabs && changes.isNavigation) {
+			this.tabs.forEach(tab => {
+				tab.tabIndex = this.isNavigation ? null : 0;
+			});
 		}
 	}
 

@@ -4,9 +4,11 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/index";
 import { TableItem } from "./../table-item.class";
+import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.component";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -15,22 +17,30 @@ import { Observable } from "rxjs";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
+			[name]="name"
 			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="selected"
+			[disabled]="disabled"
 			(change)="change.emit()">
 		</ibm-checkbox>
 	`
 })
 export class TableCheckbox {
-	@Input() row: any[];
+	@Input() row: TableItem[];
 
 	@Input() selected = false;
+
+	@Input() name = "";
+
+	get disabled(): boolean {
+		return this.row ? !!(this.row as TableRow).disabled : false;
+	}
 
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set label(value: string | Observable<string>) {

@@ -7,3 +7,7 @@ export * from "./utils";
 export * from "./utils.module";
 export * from "./window-tools";
 export * from "./element.service";
+export * from "./event.service";
+export * from "./event-observable";
+export * from "./types";
+export * from "./document.service";

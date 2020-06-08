@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
@@ -29,6 +29,8 @@ export interface TableTranslations {
 	CHECKBOX_HEADER: string;
 	CHECKBOX_ROW: string;
 }
+
+export type TableRowSize = "sm" | "sh" | "md" | "lg";
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -346,7 +348,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */
@@ -375,22 +377,6 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;
-	}
-
-	/**
-	 * Controls whether to show the selection checkboxes column or not.
-	 *
-	 * @deprecated in the next major carbon-components-angular version in favor of
-	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
-	 *  please use `showSelectionColumn` instead
-	 */
-	@Input()
-	set enableRowSelect(value: boolean) {
-		this.showSelectionColumn = value;
-	}
-
-	get enableRowSelect () {
-		return this.showSelectionColumn;
 	}
 
 	/**
@@ -628,9 +614,11 @@ export class Table implements AfterViewInit, OnDestroy {
 
 			// if the model has just initialized don't focus or reset anything
 			if (previousRow === -1 || previousColumn === -1) { return; }
-
-			const previousElement = tableAdapter.getCell(previousRow, previousColumn);
-			Table.setTabIndex(previousElement, -1);
+			// Make the previous cell unfocusable (if it's not the current)
+			if (previousRow !== currentRow || previousColumn !== currentColumn) {
+				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
+				Table.setTabIndex(previousElement, -1);
+			}
 			Table.focus(currentElement);
 		});
 		// call this after assigning `this.interactionModel` since it depends on it
@@ -661,14 +649,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	onSelectRow(event) {
 		// check for the existence of the selectedRowIndex property
 		if (Object.keys(event).includes("selectedRowIndex")) {
+			if (this.enableSingleSelect) {
+				this.model.selectAll(false);
+			}
 			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
-
-			if (this.showSelectionColumn && this.enableSingleSelect) {
-				const index = event.selectedRowIndex;
-				this.model.selectAll(false);
-				this.model.selectRow(index);
-			}
 		} else {
 			this.model.selectRow(event.deselectedRowIndex, false);
 			this.deselectRow.emit(event);

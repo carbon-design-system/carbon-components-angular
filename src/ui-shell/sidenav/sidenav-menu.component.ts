@@ -7,7 +7,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 import { SideNavItemInterface } from "./sidenav-item.interface";
 
 
@@ -78,14 +78,6 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
-	protected findActiveChildren() {
-		if (this.sidenavItems.some(item => item.active)) {
-			this.hasActiveChild = true;
-		} else {
-			this.hasActiveChild = false;
-		}
-	}
-
 	protected activeItemsSubscription = new Subscription();
 
 	ngAfterContentInit() {
@@ -118,5 +110,13 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 
 	toggle() {
 		this.expanded = !this.expanded;
+	}
+
+	protected findActiveChildren() {
+		if (this.sidenavItems.some(item => item.active)) {
+			this.hasActiveChild = true;
+		} else {
+			this.hasActiveChild = false;
+		}
 	}
 }

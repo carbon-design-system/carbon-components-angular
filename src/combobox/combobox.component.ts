@@ -17,8 +17,8 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "../utils/utils.module";
-import { I18n, Overridable } from "../i18n/i18n.module";
+import { DocumentService } from "../utils/index";
+import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
 
 /**
@@ -32,18 +32,27 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label *ngIf="label" [for]="id" class="bx--label">
+		<label
+			*ngIf="label"
+			[for]="id"
+			class="bx--label"
+			[ngClass]="{'bx--label--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
+		<div
+			*ngIf="helperText"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
-				'bx--combo-box': type === 'single' || !pills.length
+				'bx--combo-box': type === 'single' || !pills.length,
+				'bx--list-box--expanded': open,
+				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
 			role="listbox"
@@ -91,10 +100,11 @@ import { Observable } from "rxjs";
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
+					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
 					autocomplete="list"
 					[placeholder]="placeholder"/>
-				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
+				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
 				<div
 					*ngIf="showClearButton"
 					role="button"
@@ -103,14 +113,14 @@ import { Observable } from "rxjs";
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
 					(click)="clearInput($event)">
-					<ibm-icon-close16></ibm-icon-close16>
+					<ibm-icon-close size="16"></ibm-icon-close>
 				</div>
-				<ibm-icon-chevron-down16
+				<ibm-icon-chevron-down size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
 					[title]="open ? closeMenuAria : openMenuAria"
 					[ariaLabel]="open ? closeMenuAria : openMenuAria">
-				</ibm-icon-chevron-down16>
+				</ibm-icon-chevron-down>
 			</div>
 			<div
 				#dropdownMenu
@@ -177,6 +187,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
+	 *
+	 * @deprecated since v4
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -195,6 +207,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number = null;
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -302,9 +318,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() close = new EventEmitter<any>();
 	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
-	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
-	@ViewChild("dropdownMenu") dropdownMenu;
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
+	// @ts-ignore
+	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	// @ts-ignore
+	@ViewChild("input", { static: true }) input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -347,6 +366,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
+			// If new items are added into the combobox while there is search input,
+			// repeat the search.
+			this.onSearch(this.input.nativeElement.value);
 			this.updateSelected();
 		}
 	}
@@ -379,7 +401,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 				this.selected.emit(event);
 			});
-			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
@@ -440,13 +461,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (value) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
-			} else {
-				this.view.propagateSelected(value);
-			}
+		if (this.type === "single") {
+			this.view.propagateSelected([value]);
+			this.showClearButton = !!(value && this.view.getSelected().length);
+		} else {
+			this.view.propagateSelected(value ? value : [""]);
 		}
+		this.updateSelected();
 	}
 
 	onBlur() {
@@ -577,9 +598,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected && selected[0]) {
-			this.selectedValue = selected[0].content;
-			this.propagateChangeCallback(selected[0]);
+		} else if (selected) {
+			const value = selected[0] ? selected[0].content : "";
+			const changeCallbackValue = selected[0] ? selected[0] : "";
+			this.selectedValue = value;
+			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
 }

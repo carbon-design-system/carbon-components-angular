@@ -58,11 +58,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select-input">
 						<ng-content></ng-content>
 					</select>
-					<ibm-icon-warning-filled16
+					<ibm-icon-warning-filled
+						size="16"
 						*ngIf="!skeleton && invalid"
 						class="bx--select__invalid-icon"
 						style="display: inherit;">
-					</ibm-icon-warning-filled16>
+					</ibm-icon-warning-filled>
 					<svg
 						*ngIf="!skeleton"
 						focusable="false"
@@ -140,15 +141,11 @@ export class Select implements ControlValueAccessor {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
-	/**
-	 * emits the selected options `value`
-	 * @deprecated use `valueChange` instead
-	 */
-	@Output() selected = new EventEmitter();
 
 	@Output() valueChange = new EventEmitter();
 
-	@ViewChild("select") select: ElementRef;
+	// @ts-ignore
+	@ViewChild("select", { static: true }) select: ElementRef;
 
 	get value() {
 		return this.select.nativeElement.value;
@@ -192,15 +189,14 @@ export class Select implements ControlValueAccessor {
 	 */
 	onChange(event) {
 		this.onChangeHandler(event.target.value);
-		this.selected.emit(event.target.value);
 		this.valueChange.emit(event.target.value);
 	}
 
 	/**
 	 * Listens for the host blurring, and notifies the model
 	 */
-	@HostListener("blur")
-	blur() {
+	@HostListener("focusout")
+	focusOut() {
 		this.onTouchedHandler();
 	}
 

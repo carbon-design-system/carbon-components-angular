@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/index";
 import { NotificationDisplayService } from "./notification-display.service";
 import { of, isObservable, Subject } from "rxjs";
 
@@ -24,18 +24,30 @@ import { of, isObservable, Subject } from "rxjs";
 	selector: "ibm-notification",
 	template: `
 		<div class="bx--inline-notification__details">
-			<ibm-icon-error-filled16
+			<svg
+				ibmIconErrorFilled
+				size="16"
 				*ngIf="notificationObj.type === 'error'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-error-filled16>
-			<ibm-icon-warning-filled16
+			</svg>
+			<svg
+				ibmIconWarningFilled
+				size="16"
 				*ngIf="notificationObj.type === 'warning'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-warning-filled16>
-			<ibm-icon-checkmark-filled16
+			</svg>
+			<svg
+				ibmIconCheckmarkFilled
+				size="16"
 				*ngIf="notificationObj.type === 'success'"
 				class="bx--inline-notification__icon">
-			</ibm-icon-checkmark-filled16>
+			</svg>
+			<svg
+				ibmIconInformationFilled
+				size="16"
+				*ngIf="notificationObj.type === 'info'"
+				class="bx--inline-notification__icon">
+			</svg>
 			<div class="bx--inline-notification__text-wrapper">
 				<p *ngIf="!notificationObj.template" ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
 				<p *ngIf="!notificationObj.template" ibmNotificationSubtitle [innerHTML]="notificationObj.message"></p>
@@ -58,7 +70,7 @@ import { of, isObservable, Subject } from "rxjs";
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<ibm-icon-close16 class="bx--inline-notification__close-icon"></ibm-icon-close16>
+			<ibm-icon-close size="16" class="bx--inline-notification__close-icon"></ibm-icon-close>
 		</button>
 	`
 })
@@ -88,7 +100,8 @@ export class Notification {
 
 	componentRef: ComponentRef<Notification>;
 
-	@ViewChild("notification") notification;
+	// @ts-ignore
+	@ViewChild("notification", { static: false }) notification;
 
 	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
 	@HostBinding("class.bx--inline-notification") notificationClass = true;

@@ -4,18 +4,16 @@ import {
 	Output,
 	EventEmitter,
 	Optional,
-  HostBinding
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 /**
  * Represents an item in a switcher list.
- *
- * **Note:** `ibm-product-x` selectors and components are deprecated and will be removed in the next major version
  */
 @Component({
-	selector: "ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item",
+	selector: "ibm-switcher-list-item",
 	template: `
 		<a
 			class="bx--switcher__item-link"

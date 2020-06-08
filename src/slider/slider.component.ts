@@ -205,10 +205,14 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
 	@HostBinding("class.bx--form-item") hostClass = true;
-	@ViewChild("thumb") thumb: ElementRef;
-	@ViewChild("track") track: ElementRef;
-	@ViewChild("filledTrack") filledTrack: ElementRef;
-	@ViewChild("range") range: ElementRef;
+	// @ts-ignore
+	@ViewChild("thumb", { static: false }) thumb: ElementRef;
+	// @ts-ignore
+	@ViewChild("track", { static: false }) track: ElementRef;
+	// @ts-ignore
+	@ViewChild("filledTrack", { static: false }) filledTrack: ElementRef;
+	// @ts-ignore
+	@ViewChild("range", { static: false }) range: ElementRef;
 
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;

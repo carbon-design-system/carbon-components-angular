@@ -6,7 +6,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18n, Overridable } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/index";
 import { ExperimentalService } from "./../experimental.module";
 import { merge } from "./../utils/object";
 
@@ -63,10 +63,7 @@ export interface PaginationTranslations {
 			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
 				{{itemsPerPageText.subject | async}}
 			</label>
-			<div class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__item-count': isExperimental
-				}">
+			<div class="bx--select bx--select--inline bx--select__item-count">
 				<select
 					[id]="itemsPerPageSelectId"
 					[(ngModel)]="itemsPerPage"
@@ -79,19 +76,18 @@ export interface PaginationTranslations {
 					</option>
 				</select>
 				<svg
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit"
 					class="bx--select__arrow"
 					aria-hidden="true"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
 			<span *ngIf="pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
@@ -101,16 +97,10 @@ export interface PaginationTranslations {
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__right"
-			[ngClass]="{
-				'bx--pagination--inline': !isExperimental
-			}">
+		<div *ngIf="!skeleton" class="bx--pagination__right">
 			<div
 				*ngIf="!pageInputDisabled"
-				class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__page-number' : isExperimental
-				}">
+				class="bx--select bx--select--inline bx--select__page-number">
 				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
 				<input
 					*ngIf="pageOptions.length > pageSelectThreshold"
@@ -130,10 +120,11 @@ export interface PaginationTranslations {
 				</select>
 				<svg
 					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown16
+					ibmIconChevronDown
+					size="16"
 					style="display: inherit;"
 					class="bx--select__arrow"
-					[ariaLabel]="optionsListText.subject | async">
+					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
 
@@ -152,7 +143,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="backwardText.subject | async"
 				(click)="selectPage.emit(previousPage)"
 				[disabled]="(currentPage <= 1 || disabled ? true : null)">
-				<ibm-icon-caret-left16></ibm-icon-caret-left16>
+				<ibm-icon-caret-left size="16"></ibm-icon-caret-left>
 			</button>
 
 			<button
@@ -164,7 +155,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="forwardText.subject | async"
 				(click)="selectPage.emit(nextPage)"
 				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-				<ibm-icon-caret-right16></ibm-icon-caret-right16>
+				<ibm-icon-caret-right size="16"></ibm-icon-caret-right>
 			</button>
 		</div>
 	</div>
@@ -290,10 +281,6 @@ export class Pagination {
 	get nextPage(): number {
 		const lastPage = this.lastPage;
 		return this.currentPage >= lastPage ? lastPage : this.currentPage + 1;
-	}
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
 	}
 
 	get pageOptions() {

@@ -60,6 +60,12 @@ export class TabHeader {
 		}
 	}
 
+	@Input() set paneTabIndex(tabIndex: number | null) {
+		if (this.paneReference) {
+			this.paneReference.tabIndex = tabIndex;
+		}
+	}
+
 	get cacheActive() {
 		return this._cacheActive;
 	}
@@ -70,7 +76,8 @@ export class TabHeader {
 
 	@Output() selected = new EventEmitter<any>();
 
-	@ViewChild("tabItem") tabItem: ElementRef;
+	// @ts-ignore
+	@ViewChild("tabItem", { static: false }) tabItem: ElementRef;
 
 	protected _cacheActive = false;
 
