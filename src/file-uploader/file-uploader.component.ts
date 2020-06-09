@@ -45,7 +45,8 @@ const noop = () => { };
 					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
-					[size]="size">
+					[size]="size"
+					[disabled]="disabled">
 					{{buttonText}}
 				</button>
 				<input
@@ -56,7 +57,8 @@ const noop = () => { };
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
-					(change)="onFilesAdded()"/>
+					(change)="onFilesAdded()"
+					[disabled]="disabled"/>
 				<div class="bx--file-container">
 					<div *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
@@ -144,6 +146,10 @@ export class FileUploader {
 	 * The list of files that have been submitted to be uploaded
 	 */
 	@Input() files = new Set<FileItem>();
+	/**
+	 * Set to `true` to disable upload button
+	 */
+	@Input() disabled = false;
 
 	@Output() filesChange = new EventEmitter<any>();
 
