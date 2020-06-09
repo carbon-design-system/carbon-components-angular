@@ -3,8 +3,6 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	ContentChild,
-	TemplateRef,
 	Input,
 	ViewChild,
 	ElementRef
