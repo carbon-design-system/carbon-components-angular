@@ -12,7 +12,8 @@ import {
 	SimpleChanges,
 	AfterViewChecked,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	AfterContentInit
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -32,52 +33,50 @@ import { ElementService } from "../utils/element.service";
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<div class="bx--form-item">
-			<div
-				class="bx--date-picker"
-				[ngClass]="{
-					'bx--date-picker--range' : range,
-					'bx--date-picker--single' : !range,
-					'bx--date-picker--light' : theme === 'light',
-					'bx--skeleton' : skeleton
-				}">
-				<div class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#input
-						[label]="label"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[readOnly]="readOnly"
-						[id]="id"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? false : true)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)"
-						(click)="openCalendar(input)">
-					</ibm-date-picker-input>
-				</div>
+		<div
+			class="bx--date-picker"
+			[ngClass]="{
+				'bx--date-picker--range' : range,
+				'bx--date-picker--single' : !range,
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
+			<div class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#input
+					[label]="label"
+					[placeholder]="placeholder"
+					[pattern]="pattern"
+					[id]="id"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? false : true)"
+					[readOnly]="readOnly"
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[skeleton]="skeleton"
+					(valueChange)="onValueChange($event)"
+					(click)="openCalendar(input)">
+				</ibm-date-picker-input>
+			</div>
 
-				<div *ngIf="range" class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#rangeInput
-						[label]="rangeLabel"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[readOnly]="readOnly"
-						[id]="id + '-rangeInput'"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? true : null)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)"
-						(click)="openCalendar(rangeInput)">
-					</ibm-date-picker-input>
-				</div>
+			<div *ngIf="range" class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#rangeInput
+					[label]="rangeLabel"
+					[placeholder]="placeholder"
+					[pattern]="pattern"
+					[id]="id + '-rangeInput'"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? true : null)"
+					[readOnly]="readOnly"
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[skeleton]="skeleton"
+					(valueChange)="onRangeValueChange($event)"
+					(click)="openCalendar(rangeInput)">
+				</ibm-date-picker-input>
 			</div>
 		</div>
 	</div>
@@ -96,7 +95,7 @@ import { ElementService } from "../utils/element.service";
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit, AfterContentInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -193,6 +192,22 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			this.updateClassNames();
 			this.updateCalendarListeners();
 		},
+		onClose: () => {
+			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
+			// the inputs when the calendar closes.
+			if (this.range && this.flatpickrInstance) {
+				const inputValue = this.input.input.nativeElement.value;
+				const rangeInputValue = this.rangeInput.input.nativeElement.value;
+				// Range needs both dates to properly set the selected dates on the calendar.
+				if (inputValue && rangeInputValue) {
+					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
+					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+				}
+			}
+		},
+		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
+			dayElem.classList.add("bx--date-picker__day");
+		},
 		value: this.value
 	};
 
@@ -240,6 +255,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 				}
 			}
 		}
+	}
+
+	ngAfterContentInit() {
+		(languages.default.en.weekdays.shorthand as string[])
+			= languages.default.en.weekdays.longhand.map(day => {
+				if (day === "Thursday") {
+					return "Th";
+				}
+				return day.charAt(0);
+			});
 	}
 
 	@HostListener("focusin")
@@ -310,7 +335,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 * Handles the `valueChange` event from the range input
 	 */
 	onRangeValueChange(event: string) {
-		if (this.isFlatpickrLoaded()) {
+		if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
 			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
 			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
 			this.doSelect(this.flatpickrInstance.selectedDates);

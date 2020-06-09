@@ -63,6 +63,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() placement = "left";
 	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+	/**
 	 * Classes to add to the dialog container
 	 */
 	@Input() wrapperClass: string;
@@ -80,6 +84,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() data = {};
 
 	@Input() @HostBinding("attr.aria-expanded") isOpen = false;
+	/**
+	 * This prevents the dialog from being toggled
+	 */
+	@Input() disabled = false;
 	/**
 	 * Config object passed to the rendered component
 	 */
@@ -144,7 +152,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			shouldClose: () => true,
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
-			data: this.data
+			data: this.data,
+			offset: this.offset,
+			disabled: this.disabled
 		};
 
 		if (changes.isOpen) {
@@ -221,7 +231,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	open() {
 		// don't allow dialogs to be opened if they're already open
-		if (this.dialogRef) { return; }
+		if (this.dialogRef || this.disabled) { return; }
 
 		// actually open the dialog, emit events, and set the open state
 		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig);

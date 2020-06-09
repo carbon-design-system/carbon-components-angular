@@ -27,7 +27,7 @@ class FooComponent {}
 	`
 })
 class SideNavTest {
-	route = ['foo'];
+	route = ["foo"];
 	hidden = false;
 	allowExpansion = false;
 	statusPromise = null;

@@ -32,18 +32,27 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label *ngIf="label" [for]="id" class="bx--label">
+		<label
+			*ngIf="label"
+			[for]="id"
+			class="bx--label"
+			[ngClass]="{'bx--label--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
+		<div
+			*ngIf="helperText"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
-				'bx--combo-box': type === 'single' || !pills.length
+				'bx--combo-box': type === 'single' || !pills.length,
+				'bx--list-box--expanded': open,
+				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
 			role="listbox"
@@ -310,11 +319,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	// @ts-ignore
-	@ContentChild(AbstractDropdownView, { static: false }) view: AbstractDropdownView;
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	// @ts-ignore
 	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: ElementRef;
+	@ViewChild("input", { static: true }) input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -355,7 +364,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 */
 	ngOnChanges(changes) {
-		if (changes.items && this.view) {
+		if (changes.items) {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
@@ -418,7 +427,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
+	 * Handles `Escape/Tab` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
@@ -429,6 +438,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+		}
+
+		if (
+			this.open && ev.key === "Tab" &&
+			(this.dropdownMenu.nativeElement.contains(ev.target as Node) || ev.target === this.input.nativeElement)
+		) {
+			this.closeDropdown();
+		}
+
+		if (this.open && ev.key === "Tab" && ev.shiftKey) {
+			this.closeDropdown();
 		}
 	}
 
@@ -441,14 +461,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (this.view) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
-			} else {
-				this.view.propagateSelected(value);
-			}
-			this.updateSelected();
+		if (this.type === "single") {
+			this.view.propagateSelected([value]);
+			this.showClearButton = !!(value && this.view.getSelected().length);
+		} else {
+			this.view.propagateSelected(value ? value : [""]);
 		}
+		this.updateSelected();
 	}
 
 	onBlur() {
@@ -579,9 +598,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected && selected[0]) {
-			this.selectedValue = selected[0].content;
-			this.propagateChangeCallback(selected[0]);
+		} else if (selected) {
+			const value = selected[0] ? selected[0].content : "";
+			const changeCallbackValue = selected[0] ? selected[0] : "";
+			this.selectedValue = value;
+			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
 }

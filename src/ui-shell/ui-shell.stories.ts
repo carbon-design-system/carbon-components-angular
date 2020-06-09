@@ -234,7 +234,7 @@ storiesOf("Components|UI Shell", module)
 					<ibm-header-action #firstAction title="action">
 						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
-					<ibm-header-action #secondAction title="action">
+					<ibm-header-action [(active)]="secondAction" title="action">
 						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
@@ -256,7 +256,7 @@ storiesOf("Components|UI Shell", module)
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
 			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
-			<ibm-panel [expanded]="secondAction.active">
+			<ibm-panel [expanded]="secondAction">
 				<ibm-switcher-list>
 					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
 					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
@@ -268,6 +268,7 @@ storiesOf("Components|UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			active: boolean("Left panel active", true),
+			secondAction: boolean("Second right panel active", false),
 			hasActiveChild: boolean("Active side nav child", true),
 			options: [
 				{
@@ -441,6 +442,26 @@ storiesOf("Components|UI Shell", module)
 			]
 		}
 	}))
+	.add("Use angular router attributes for routing", () => (
+		{
+			template: `
+			<ibm-header name="[Platform]" [route]="['bar']" [useRouter]="true">
+				<ibm-header-navigation>
+					<ibm-header-item [route]="['foo']" [useRouter]="true" [activeLinkClass]="'item--active'">Catalog</ibm-header-item>
+					<ibm-header-item [route]="['bar']" [useRouter]="true" [activeLinkClass]="['item--active', 'another-class']">Docs</ibm-header-item>
+					<ibm-header-item [route]="['foo']" [useRouter]="true">Support</ibm-header-item>
+					<ibm-header-menu title="Manage">
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 1</ibm-header-item>
+						<ibm-header-item [route]="['bar']" [useRouter]="true">Link 2</ibm-header-item>
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 3</ibm-header-item>
+					</ibm-header-menu>
+				</ibm-header-navigation>
+			</ibm-header>
+			<div style="margin-top: 2rem">
+				<router-outlet></router-outlet>
+			</div>`
+		}
+	))
 	.add("Header Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/components/Header.html"></ibm-documentation>
