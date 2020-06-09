@@ -10,7 +10,7 @@ import { Tag } from "./tag.component";
 @Component({
 	selector: "ibm-tag-filter",
 	template: `
-		<span class="bx--tag__label" [title]="title">
+		<span class="bx--tag__label" [attr.title]="title ? title : null">
 			<ng-content></ng-content>
 		</span>
 		<button
