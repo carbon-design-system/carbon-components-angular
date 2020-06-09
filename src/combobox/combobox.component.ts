@@ -585,6 +585,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 		this.clearSelected();
 		this.selectedValue = "";
+		this.input.nativeElement.value = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
@@ -602,6 +603,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const value = selected[0] ? selected[0].content : "";
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
+			this.showClearButton = !!value;
 			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
