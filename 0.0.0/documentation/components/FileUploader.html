@@ -129,7 +129,8 @@
 			[ibmButton]&#x3D;&quot;buttonType&quot;
 			(click)&#x3D;&quot;fileInput.click()&quot;
 			[attr.for]&#x3D;&quot;fileUploaderId&quot;
-			[size]&#x3D;&quot;size&quot;&gt;
+			[size]&#x3D;&quot;size&quot;
+			[disabled]&#x3D;&quot;disabled&quot;&gt;
 			{{buttonText}}
 		&lt;/button&gt;
 		&lt;input
@@ -140,7 +141,8 @@
 			[id]&#x3D;&quot;fileUploaderId&quot;
 			[multiple]&#x3D;&quot;multiple&quot;
 			tabindex&#x3D;&quot;-1&quot;
-			(change)&#x3D;&quot;onFilesAdded()&quot;/&gt;
+			(change)&#x3D;&quot;onFilesAdded()&quot;
+			[disabled]&#x3D;&quot;disabled&quot;/&gt;
 		&lt;div class&#x3D;&quot;bx--file-container&quot;&gt;
 			&lt;div *ngFor&#x3D;&quot;let fileItem of files&quot;&gt;
 				&lt;ibm-file [fileItem]&#x3D;&quot;fileItem&quot; (remove)&#x3D;&quot;removeFile(fileItem)&quot;&gt;&lt;/ibm-file&gt;
@@ -274,6 +276,9 @@
                                 <a href="#description">description</a>
                             </li>
                             <li>
+                                <a href="#disabled">disabled</a>
+                            </li>
+                            <li>
                                 <a href="#drop">drop</a>
                             </li>
                             <li>
@@ -350,7 +355,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/file-uploader/file-uploader.component.ts:156</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/file-uploader/file-uploader.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -407,7 +412,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/file-uploader/file-uploader.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/file-uploader/file-uploader.component.ts:113</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -430,7 +435,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/file-uploader/file-uploader.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/file-uploader/file-uploader.component.ts:97</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -456,7 +461,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/file-uploader/file-uploader.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/file-uploader/file-uploader.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -479,7 +484,29 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/file-uploader/file-uploader.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/file-uploader/file-uploader.component.ts:109</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="disabled"></a>
+                        <code>disabled</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> to disable upload button</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/file-uploader/file-uploader.component.ts:152</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -501,7 +528,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/file-uploader/file-uploader.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/file-uploader/file-uploader.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -524,7 +551,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/file-uploader/file-uploader.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/file-uploader/file-uploader.component.ts:135</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -550,7 +577,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/file-uploader/file-uploader.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/file-uploader/file-uploader.component.ts:148</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -572,7 +599,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/file-uploader/file-uploader.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/file-uploader/file-uploader.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -595,7 +622,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/file-uploader/file-uploader.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/file-uploader/file-uploader.component.ts:119</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -618,7 +645,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/file-uploader/file-uploader.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/file-uploader/file-uploader.component.ts:127</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -640,7 +667,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/file-uploader/file-uploader.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/file-uploader/file-uploader.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -663,7 +690,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/file-uploader/file-uploader.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/file-uploader/file-uploader.component.ts:105</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -685,7 +712,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/file-uploader/file-uploader.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/file-uploader/file-uploader.component.ts:154</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -720,7 +747,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/file-uploader/file-uploader.component.ts:192</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/file-uploader/file-uploader.component.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -787,7 +814,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/file-uploader/file-uploader.component.ts:256</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/file-uploader/file-uploader.component.ts:262</a></div>
                             </td>
                         </tr>
 
@@ -852,7 +879,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/file-uploader/file-uploader.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/file-uploader/file-uploader.component.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -890,7 +917,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/file-uploader/file-uploader.component.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/file-uploader/file-uploader.component.ts:227</a></div>
                             </td>
                         </tr>
 
@@ -955,7 +982,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/file-uploader/file-uploader.component.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/file-uploader/file-uploader.component.ts:221</a></div>
                             </td>
                         </tr>
 
@@ -1020,7 +1047,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/file-uploader/file-uploader.component.ts:227</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/file-uploader/file-uploader.component.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -1085,7 +1112,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/file-uploader/file-uploader.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/file-uploader/file-uploader.component.ts:208</a></div>
                             </td>
                         </tr>
 
@@ -1123,7 +1150,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/file-uploader/file-uploader.component.ts:269</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/file-uploader/file-uploader.component.ts:275</a></div>
                             </td>
                         </tr>
 
@@ -1194,7 +1221,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/file-uploader/file-uploader.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/file-uploader/file-uploader.component.ts:269</a></div>
                             </td>
                         </tr>
 
@@ -1265,7 +1292,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/file-uploader/file-uploader.component.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/file-uploader/file-uploader.component.ts:256</a></div>
                             </td>
                         </tr>
 
@@ -1330,7 +1357,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/file-uploader/file-uploader.component.ts:186</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/file-uploader/file-uploader.component.ts:192</a></div>
                             </td>
                         </tr>
 
@@ -1413,7 +1440,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/file-uploader/file-uploader.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/file-uploader/file-uploader.component.ts:159</a></div>
                             </td>
                         </tr>
 
@@ -1456,7 +1483,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/file-uploader/file-uploader.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/file-uploader/file-uploader.component.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -1502,7 +1529,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/file-uploader/file-uploader.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/file-uploader/file-uploader.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -1548,7 +1575,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/file-uploader/file-uploader.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/file-uploader/file-uploader.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -1588,7 +1615,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/file-uploader/file-uploader.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/file-uploader/file-uploader.component.ts:161</a></div>
                             </td>
                         </tr>
 
@@ -1617,7 +1644,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/file-uploader/file-uploader.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/file-uploader/file-uploader.component.ts:171</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1639,7 +1666,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/file-uploader/file-uploader.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/file-uploader/file-uploader.component.ts:174</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1693,7 +1720,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/file-uploader/file-uploader.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/file-uploader/file-uploader.component.ts:185</a></div>
                                 </td>
                             </tr>
 
@@ -1751,7 +1778,8 @@ const noop &#x3D; () &#x3D;&gt; { };
 					[ibmButton]&#x3D;&quot;buttonType&quot;
 					(click)&#x3D;&quot;fileInput.click()&quot;
 					[attr.for]&#x3D;&quot;fileUploaderId&quot;
-					[size]&#x3D;&quot;size&quot;&gt;
+					[size]&#x3D;&quot;size&quot;
+					[disabled]&#x3D;&quot;disabled&quot;&gt;
 					{{buttonText}}
 				&lt;/button&gt;
 				&lt;input
@@ -1762,7 +1790,8 @@ const noop &#x3D; () &#x3D;&gt; { };
 					[id]&#x3D;&quot;fileUploaderId&quot;
 					[multiple]&#x3D;&quot;multiple&quot;
 					tabindex&#x3D;&quot;-1&quot;
-					(change)&#x3D;&quot;onFilesAdded()&quot;/&gt;
+					(change)&#x3D;&quot;onFilesAdded()&quot;
+					[disabled]&#x3D;&quot;disabled&quot;/&gt;
 				&lt;div class&#x3D;&quot;bx--file-container&quot;&gt;
 					&lt;div *ngFor&#x3D;&quot;let fileItem of files&quot;&gt;
 						&lt;ibm-file [fileItem]&#x3D;&quot;fileItem&quot; (remove)&#x3D;&quot;removeFile(fileItem)&quot;&gt;&lt;/ibm-file&gt;
@@ -1850,6 +1879,10 @@ export class FileUploader {
 	 * The list of files that have been submitted to be uploaded
 	 */
 	@Input() files &#x3D; new Set&lt;FileItem&gt;();
+	/**
+	 * Set to &#x60;true&#x60; to disable upload button
+	 */
+	@Input() disabled &#x3D; false;
 
 	@Output() filesChange &#x3D; new EventEmitter&lt;any&gt;();
 
@@ -2011,7 +2044,7 @@ export class FileUploader {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>	<p class="bx--label-description">{{description}}</p>	<div class="bx--file">		<label *ngIf="drop" class="bx--file-browse-btn">			<div				class="bx--file__drop-container"				[ngClass]="{\'bx--file__drop-container--drag-over\': dragOver}"				role="button"				(click)="fileInput.click()"				[attr.for]="fileUploaderId"				(dragover)="onDragOver($event)"				(dragleave)="onDragLeave($event)"				(drop)="onDrop($event)">				<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>				<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>			</div>		</label>		<button			*ngIf="!drop"			type="button"			[ibmButton]="buttonType"			(click)="fileInput.click()"			[attr.for]="fileUploaderId"			[size]="size">			{{buttonText}}		</button>		<input			#fileInput			type="file"			class="bx--file-input"			[accept]="accept"			[id]="fileUploaderId"			[multiple]="multiple"			tabindex="-1"			(change)="onFilesAdded()"/>		<div class="bx--file-container">			<div *ngFor="let fileItem of files">				<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>				<div *ngIf="fileItem.invalid" class="bx--form-requirement">					{{fileItem.invalidText}}				</div>			</div>		</div>	</div></ng-container><ng-template #skeletonTemplate>	<div class="bx--skeleton__text" style="width: 100px"></div>	<div class="bx--skeleton__text" style="width: 225px"></div>	<button ibmButton skeleton="true"></button></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>	<p class="bx--label-description">{{description}}</p>	<div class="bx--file">		<label *ngIf="drop" class="bx--file-browse-btn">			<div				class="bx--file__drop-container"				[ngClass]="{\'bx--file__drop-container--drag-over\': dragOver}"				role="button"				(click)="fileInput.click()"				[attr.for]="fileUploaderId"				(dragover)="onDragOver($event)"				(dragleave)="onDragLeave($event)"				(drop)="onDrop($event)">				<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>				<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>			</div>		</label>		<button			*ngIf="!drop"			type="button"			[ibmButton]="buttonType"			(click)="fileInput.click()"			[attr.for]="fileUploaderId"			[size]="size"			[disabled]="disabled">			{{buttonText}}		</button>		<input			#fileInput			type="file"			class="bx--file-input"			[accept]="accept"			[id]="fileUploaderId"			[multiple]="multiple"			tabindex="-1"			(change)="onFilesAdded()"			[disabled]="disabled"/>		<div class="bx--file-container">			<div *ngFor="let fileItem of files">				<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>				<div *ngIf="fileItem.invalid" class="bx--form-requirement">					{{fileItem.invalidText}}				</div>			</div>		</div>	</div></ng-container><ng-template #skeletonTemplate>	<div class="bx--skeleton__text" style="width: 100px"></div>	<div class="bx--skeleton__text" style="width: 225px"></div>	<button ibmButton skeleton="true"></button></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'FileUploader'};
