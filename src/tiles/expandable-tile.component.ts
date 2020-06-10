@@ -4,8 +4,8 @@ import {
 	ElementRef,
 	AfterContentInit
 } from "@angular/core";
-import { I18n, Overridable } from "./../i18n/index";
-import { merge } from "./../utils/object";
+import { I18n, Overridable } from "carbon-components-angular/i18n/index";
+import { merge } from "carbon-components-angular/utils/object";
 
 export interface ExpandableTileTranslations {
 	EXPAND: string;

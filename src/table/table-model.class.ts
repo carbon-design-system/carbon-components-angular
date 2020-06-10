@@ -2,7 +2,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { PaginationModel } from "./../pagination/pagination-model.class";
+import { PaginationModel } from "carbon-components-angular/pagination/pagination-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { TableRow } from "./table-row.class";

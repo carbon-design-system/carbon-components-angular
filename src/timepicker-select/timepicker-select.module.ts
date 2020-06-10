@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TimePickerSelect } from "./timepicker-select.component";
-import { SelectModule } from "../select/select.module";
+import { SelectModule } from "carbon-components-angular/select/select.module";
 import { ChevronDownModule } from "@carbon/icons-angular";
 
 @NgModule({

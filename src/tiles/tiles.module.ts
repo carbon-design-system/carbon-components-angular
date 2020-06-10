@@ -6,8 +6,8 @@ import { ClickableTile } from "./clickable-tile.component";
 import { ExpandableTile } from "./expandable-tile.component";
 import { SelectionTile } from "./selection-tile.component";
 import { TileGroup } from "./tile-group.component";
-import { I18nModule } from "./../i18n/index";
-import { LinkModule } from "./../link/link.module";
+import { I18nModule } from "carbon-components-angular/i18n/index";
+import { LinkModule } from "carbon-components-angular/link/link.module";
 
 @NgModule({
 	declarations: [

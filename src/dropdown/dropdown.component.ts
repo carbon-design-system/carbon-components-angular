@@ -25,11 +25,11 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n/index";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "./../utils/utils.module";
-import { hasScrollableParents } from "../utils";
+import { ElementService } from "carbon-components-angular/utils/utils.module";
+import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.

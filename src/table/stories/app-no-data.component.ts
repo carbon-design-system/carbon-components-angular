@@ -5,8 +5,8 @@ import {
 	OnChanges,
 	SimpleChanges
 } from "@angular/core";
-import { TableModel } from "../table-model.class";
-import { TableHeaderItem } from "../table-header-item.class";
+import { TableModel } from "carbon-components-angular/table-model.class";
+import { TableHeaderItem } from "carbon-components-angular/table-header-item.class";
 
 function sort(model, index: number) {
 	if (model.header[index].sorted) {

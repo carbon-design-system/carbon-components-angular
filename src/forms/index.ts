@@ -1,6 +1,6 @@
-export { CheckboxModule } from "../checkbox/index";
-export { ToggleModule } from "../toggle/index";
-export { RadioModule } from "../radio/index";
-export { InputModule } from "../input/index";
-export { ButtonModule } from "../button/index";
+export { CheckboxModule } from "carbon-components-angular/checkbox/index";
+export { ToggleModule } from "carbon-components-angular/toggle/index";
+export { RadioModule } from "carbon-components-angular/radio/index";
+export { InputModule } from "carbon-components-angular/input/index";
+export { ButtonModule } from "carbon-components-angular/button/index";
 export * from "./forms.module";

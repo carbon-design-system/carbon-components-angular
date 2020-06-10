@@ -6,11 +6,11 @@ import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 
 import { ScrollableList } from "./scrollable-list.directive";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
+import { I18nModule } from "carbon-components-angular/i18n/index";
+import { PlaceholderModule } from "carbon-components-angular/placeholder/index";
 import { DropdownService } from "./dropdown.service";
 import { ChevronDownModule, WarningFilledModule } from "@carbon/icons-angular";
-import { UtilsModule } from "./../utils/utils.module";
+import { UtilsModule } from "carbon-components-angular/utils/utils.module";
 
 @NgModule({
 	declarations: [

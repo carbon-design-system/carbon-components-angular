@@ -1,5 +1,5 @@
 import { TemplateRef } from "@angular/core";
-import { DialogConfig } from "./../dialog/dialog-config.interface";
+import { DialogConfig } from "carbon-components-angular/dialog/dialog-config.interface";
 
 export interface Step {
 	/**

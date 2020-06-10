@@ -11,7 +11,7 @@ export * from "./dialog/index";
 export * from "./dropdown/index";
 export * from "./experimental.module";
 export * from "./file-uploader/index";
-export * from "./forms/index";
+export * from "./forms/forms.module";
 export * from "./grid/index";
 export * from "./i18n/index";
 export * from "./inline-loading/index";

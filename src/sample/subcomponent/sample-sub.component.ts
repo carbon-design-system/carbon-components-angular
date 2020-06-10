@@ -7,8 +7,8 @@ import {
 	OnChanges
 } from "@angular/core";
 
-import { SampleBase } from "./../sample-base.class";
-import { SampleInterface } from "./../sample.interface";
+import { SampleBase } from "carbon-components-angular/sample-base.class";
+import { SampleInterface } from "carbon-components-angular/sample.interface";
 
 /**
  * this is a sample sub-component

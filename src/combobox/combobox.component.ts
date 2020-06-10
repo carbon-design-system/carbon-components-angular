@@ -13,12 +13,12 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
-import { ListItem } from "./../dropdown/list-item.interface";
+import { AbstractDropdownView } from "carbon-components-angular/dropdown/abstract-dropdown-view.class";
+import { ListItem } from "carbon-components-angular/dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "../utils/index";
-import { I18n, Overridable } from "../i18n/index";
+import { DocumentService } from "carbon-components-angular/utils/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n/index";
 import { Observable } from "rxjs";
 
 /**

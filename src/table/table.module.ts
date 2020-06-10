@@ -11,11 +11,11 @@ import {
 } from "@carbon/icons-angular";
 
 // internal module imports
-import { NFormsModule } from "./../forms/forms.module";
-import { DialogModule } from "./../dialog/dialog.module";
-import { I18nModule } from "./../i18n/index";
-import { ButtonModule } from "./../button/button.module";
-import { SearchModule } from "./../search/search.module";
+import { NFormsModule } from "carbon-components-angular/forms/forms.module";
+import { DialogModule } from "carbon-components-angular/dialog/dialog.module";
+import { I18nModule } from "carbon-components-angular/i18n/index";
+import { ButtonModule } from "carbon-components-angular/button/button.module";
+import { SearchModule } from "carbon-components-angular/search/search.module";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";

@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
-import { EventService } from "../utils/utils.module";
+import { EventService } from "carbon-components-angular/utils/utils.module";
 import { Dialog } from "./dialog.component";
 
 /**

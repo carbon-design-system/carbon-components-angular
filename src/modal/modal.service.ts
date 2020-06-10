@@ -8,7 +8,7 @@ import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
-import { PlaceholderService } from "./../placeholder/index";
+import { PlaceholderService } from "carbon-components-angular/placeholder/index";
 import { tap, delay } from "rxjs/operators";
 
 

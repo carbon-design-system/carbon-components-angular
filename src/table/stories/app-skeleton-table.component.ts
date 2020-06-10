@@ -7,8 +7,8 @@ import {
 	OnChanges,
 	SimpleChanges
 } from "@angular/core";
-import { TableModel } from "../table-model.class";
-import { Table } from "../index";
+import { TableModel } from "carbon-components-angular/table-model.class";
+import { Table } from "carbon-components-angular/index";
 
 @Component({
 	selector: "app-skeleton-table",

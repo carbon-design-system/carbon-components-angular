@@ -7,7 +7,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n/index";
 
 @Component({
 	selector: "ibm-selection-tile",

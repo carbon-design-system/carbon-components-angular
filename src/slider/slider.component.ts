@@ -10,7 +10,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { EventService } from "../utils/utils.module";
+import { EventService } from "carbon-components-angular/utils/utils.module";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.

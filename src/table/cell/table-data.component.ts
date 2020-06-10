@@ -2,7 +2,7 @@ import {
 	Component,
 	Input
 } from "@angular/core";
-import { TableItem } from "./../table-item.class";
+import { TableItem } from "../table-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
