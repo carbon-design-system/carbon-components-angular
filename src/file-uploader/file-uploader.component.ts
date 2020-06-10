@@ -25,7 +25,10 @@ const noop = () => { };
 			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
-				<label *ngIf="drop" class="bx--file-browse-btn">
+				<label
+					*ngIf="drop"
+					class="bx--file-browse-btn"
+					[ngClass]="{'bx--file-browse-btn--disabled': disabled}">
 					<div
 						class="bx--file__drop-container"
 						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
@@ -45,7 +48,8 @@ const noop = () => { };
 					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
-					[size]="size">
+					[size]="size"
+					[disabled]="disabled">
 					{{buttonText}}
 				</button>
 				<input
@@ -54,6 +58,7 @@ const noop = () => { };
 					class="bx--file-input"
 					[accept]="accept"
 					[id]="fileUploaderId"
+					[disabled]="disabled"
 					[multiple]="multiple"
 					tabindex="-1"
 					(change)="onFilesAdded()"/>
@@ -143,7 +148,10 @@ export class FileUploader {
 	 * The list of files that have been submitted to be uploaded
 	 */
 	@Input() files = new Set<FileItem>();
-
+	/**
+	 * Set to `true` to disable upload button or drop container
+	 */
+	@Input() disabled = false;
 	@Output() filesChange = new EventEmitter<any>();
 
 	/**
