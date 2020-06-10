@@ -9,7 +9,7 @@ import {
 
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "carbon-components-angular/i18n/index";
-import { ExperimentalModule } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalModule } from "carbon-components-angular/experimental.module";
 
 @NgModule({
 	declarations: [

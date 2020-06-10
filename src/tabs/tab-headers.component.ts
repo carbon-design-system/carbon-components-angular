@@ -143,7 +143,7 @@ export class TabHeaders implements AfterContentInit, OnChanges {
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
 	// @ts-ignore
-	@ViewChild("tabList", { static: false }) headerContainer;
+	@ViewChild("tabList", { static: true }) headerContainer;
 	/**
 	 * ContentChild of all the n-tabs
 	 */

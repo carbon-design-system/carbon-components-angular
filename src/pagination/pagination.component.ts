@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 import { I18n, Overridable } from "carbon-components-angular/i18n/index";
-import { ExperimentalService } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental.module";
 import { merge } from "carbon-components-angular/utils/object";
 
 export interface PaginationTranslations {

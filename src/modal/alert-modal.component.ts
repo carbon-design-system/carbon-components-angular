@@ -78,7 +78,7 @@ import { BaseModal } from "./base-modal.class";
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
 	// @ts-ignore
-	@ViewChild("modalContent", { static: false }) modalContent;
+	@ViewChild("modalContent", { static: true }) modalContent;
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */

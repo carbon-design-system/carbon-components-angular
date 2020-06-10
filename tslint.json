@@ -126,14 +126,14 @@
 		"directive-selector": [true, "attribute", ["ibm", "app", "test"], "camelCase"],
 		"component-selector": [true, "element", ["ibm", "app", "test"], "kebab-case"],
 
-		"use-input-property-decorator": true,
-		"use-output-property-decorator": true,
-		"use-host-property-decorator": true,
-		"no-attribute-parameter-decorator": true,
+		"no-inputs-metadata-property": true,
+		"no-outputs-metadata-property": true,
+		"no-host-metadata-property": true,
+		"no-attribute-decorator": true,
 		"no-input-rename": true,
 		"no-output-rename": true,
 		"no-forward-ref": true,
-		"use-life-cycle-interface": true,
+		"use-lifecycle-interface": true,
 		"use-pipe-transform-interface": true
 	}
 }

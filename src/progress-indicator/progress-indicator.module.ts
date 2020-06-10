@@ -4,7 +4,7 @@ import { CheckmarkOutlineModule, WarningModule } from "@carbon/icons-angular";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { DialogModule } from "carbon-components-angular/dialog/dialog.module";
-import { ExperimentalModule } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalModule } from "carbon-components-angular/experimental.module";
 
 @NgModule({
 	declarations: [

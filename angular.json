@@ -15,7 +15,12 @@
 						"tsConfig": "./tsconfig.json",
 						"project": "./ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "tsconfig.lib.prod.json"
+            }
+          }
+},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
@@ -68,7 +73,7 @@
 	"schematics": {
 		"@schematics/angular:component": {
 			"prefix": "ibm",
-			"styleext": "css"
+			"style": "css"
 		},
 		"@schematics/angular:directive": {
 			"prefix": "ibm"

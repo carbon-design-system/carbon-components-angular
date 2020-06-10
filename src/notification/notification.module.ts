@@ -19,7 +19,7 @@ import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18nModule } from "carbon-components-angular/i18n/index";
-import { ExperimentalModule } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalModule } from "carbon-components-angular/experimental.module";
 
 @NgModule({
 	declarations: [

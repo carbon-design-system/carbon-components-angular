@@ -7,7 +7,7 @@ import {
 
 import { ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
-import { ExperimentalService } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental.module";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n/index";
 

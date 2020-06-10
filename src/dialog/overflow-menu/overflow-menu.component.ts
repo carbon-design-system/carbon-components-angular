@@ -94,7 +94,7 @@ export class OverflowMenu {
 	@Input() wrapperClass = "";
 
 	// @ts-ignore
-	@ContentChild(OverflowMenuDirective, { static: false }) overflowMenuDirective: OverflowMenuDirective;
+	@ContentChild(OverflowMenuDirective, /* TODO: add static flag */ {}) overflowMenuDirective: OverflowMenuDirective;
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 

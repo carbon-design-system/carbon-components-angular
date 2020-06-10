@@ -9,7 +9,7 @@ import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common/tab.service";
 import { I18n } from "carbon-components-angular/i18n/index";
-import { ExperimentalService } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental.module";
 import { ElementService } from "carbon-components-angular/utils/utils.module";
 
 /**

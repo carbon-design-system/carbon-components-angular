@@ -157,7 +157,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
 	// @ts-ignore
-	@ViewChild("list", { static: false }) list: ElementRef;
+	@ViewChild("list", { static: true }) list: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.

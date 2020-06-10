@@ -5,7 +5,7 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n/index";
-import { ExperimentalService } from "carbon-components-angular/experimental/experimental.service";
+import { ExperimentalService } from "carbon-components-angular/experimental.service";
 
 /**
  * ***Inputs***

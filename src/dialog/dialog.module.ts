@@ -19,7 +19,7 @@ import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 import { I18nModule } from "carbon-components-angular/i18n/index";
 import { PlaceholderModule } from "carbon-components-angular/placeholder/index";
-import { ExperimentalModule } from "carbon-components-angular/experimental/experimental.module";
+import { ExperimentalModule } from "carbon-components-angular/experimental.module";
 import { UtilsModule } from "carbon-components-angular/utils/utils.module";
 
 import { OverflowMenuVerticalModule } from "@carbon/icons-angular";

@@ -79,7 +79,7 @@ export class SelectionTile {
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input;
+	@ViewChild("input", { static: true }) input;
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;

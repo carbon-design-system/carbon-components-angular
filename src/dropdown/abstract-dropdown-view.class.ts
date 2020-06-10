@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter } from "@angular/core";
+import { Input, Output, EventEmitter, Directive } from "@angular/core";
 import { ListItem } from "./list-item.interface";
 import { Observable } from "rxjs";
 
@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
+@Directive()
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
