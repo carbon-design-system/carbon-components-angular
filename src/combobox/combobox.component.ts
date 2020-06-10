@@ -113,7 +113,7 @@ import { Observable } from "rxjs";
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
 					(click)="clearInput($event)">
-					<ibm-icon-close size="16"></ibm-icon-close>
+					<svg ibmIconClose size="16"></svg>
 				</div>
 				<ibm-icon-chevron-down size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
