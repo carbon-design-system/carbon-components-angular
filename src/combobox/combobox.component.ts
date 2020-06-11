@@ -112,6 +112,7 @@ import { Observable } from "rxjs";
 					tabindex="0"
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
+					(keyup.enter)="clearInput($event)"
 					(click)="clearInput($event)">
 					<svg ibmIconClose size="16"></svg>
 				</div>
