@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
+import { LoadingModule } from "../loading/loading.module";
 import { ButtonModule } from "../button/button.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import {
@@ -141,15 +142,61 @@ class ReactiveFormsCombobox implements OnInit {
 	}
 }
 
+@Component({
+	selector: "app-mock-query-search",
+	template: `
+		<ibm-loading [isActive]="loading" size="sm"></ibm-loading>
+		<ibm-combo-box
+			appendInline="true"
+			[items]="filterItems"
+			(search)="onSearch($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class TestComponent {
+	filterItems = [
+		{
+			content: "one"
+		},
+		{
+			content: "two"
+		},
+		{
+			content: "three"
+		},
+		{
+			content: "four"
+		}
+	];
+
+	loading = false;
+
+	onSearch() {
+		this.loading = true;
+		setTimeout(() => {
+			const newItems = JSON.parse(JSON.stringify(this.filterItems));
+			newItems.push({ content: `New ${newItems.length}` });
+			this.filterItems = newItems;
+			this.loading = false;
+		}, 1000);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
+			declarations: [
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				TestComponent
+			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
 				ReactiveFormsModule,
-				DocumentationModule
+				DocumentationModule,
+				LoadingModule
 			]
 		})
 	)
@@ -352,6 +399,11 @@ storiesOf("Components|Combobox", module)
 		props: getOptions({
 			model:  { "content": "three", "selected": true }
 		})
+	}))
+	.add("Mock query search", () => ({
+		template: `
+			<app-mock-query-search></app-mock-query-search>
+		`
 	}))
 	.add("Documentation", () => ({
 		template: `

@@ -354,7 +354,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
+			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
 		}
 	}
@@ -509,8 +509,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
+		}
 		if (searchString && this.type === "single") {
 			this.showClearButton = true;
 		} else {
