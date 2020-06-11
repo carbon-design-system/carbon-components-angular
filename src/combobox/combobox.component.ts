@@ -561,6 +561,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		event.preventDefault();
 
 		this.clearSelected();
+		this.input.nativeElement.value = "";
 		this.selectedValue = "";
 		this.closeDropdown();
 

@@ -155,29 +155,19 @@ class ReactiveFormsCombobox implements OnInit {
 	`
 })
 class TestComponent {
-	filterItems = [
-		{
-			content: "one"
-		},
-		{
-			content: "two"
-		},
-		{
-			content: "three"
-		},
-		{
-			content: "four"
-		}
-	];
+	filterItems = [];
 
 	loading = false;
 
 	onSearch() {
 		this.loading = true;
 		setTimeout(() => {
-			const newItems = JSON.parse(JSON.stringify(this.filterItems));
-			newItems.push({ content: `New ${newItems.length}` });
-			this.filterItems = newItems;
+			this.filterItems = [
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` }
+			];
 			this.loading = false;
 		}, 1000);
 	}
