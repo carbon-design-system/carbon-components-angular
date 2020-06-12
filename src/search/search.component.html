@@ -38,8 +38,8 @@
 			'bx--search-close--hidden': !value || value.length === 0
 		}"
 		[title]="clearButtonTitle"
-		[attr.aria-label]="clearButtonTitle"
 		(click)="clearSearch()">
+		<span class="bx--visually-hidden">{{ clearButtonTitle }}</span>
 		<ibm-icon-close size="16"></ibm-icon-close>
 	</button>
 </div>
