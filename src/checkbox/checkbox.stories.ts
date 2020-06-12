@@ -17,7 +17,6 @@ storiesOf("Components|Checkbox", module).addDecorator(
 			<legend class="bx--label">{{label}}</legend>
 			<ibm-checkbox
 				checked="true"
-				id="This didn't work before"
 				[hideLabel]="hideLabel"
 				(change)="onChange($event)">
 				Checkbox
