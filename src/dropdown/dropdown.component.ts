@@ -65,6 +65,7 @@ import { hasScrollableParents } from "../utils";
 		class="bx--dropdown bx--list-box"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
+			'bx--list-box--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
