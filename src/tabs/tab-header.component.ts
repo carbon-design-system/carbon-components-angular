@@ -50,6 +50,7 @@ export class TabHeader implements AfterViewInit {
 	 * Reference to the corresponsing tab pane.
 	 */
 	@Input() paneReference: Tab;
+	@Input() title;
 	/**
 	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
 	 */
@@ -82,10 +83,9 @@ export class TabHeader implements AfterViewInit {
 	@ViewChild("tabItem", { static: false }) tabItem: ElementRef;
 
 	protected _cacheActive = false;
-	protected title = "Tab header";
 
 	ngAfterViewInit() {
-		this.title = this.tabItem.nativeElement.textContent;
+		this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
 	}
 
 	selectTab() {
