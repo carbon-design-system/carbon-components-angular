@@ -60,6 +60,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
 
 
 <section>
@@ -140,6 +146,20 @@
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -208,7 +228,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/file-uploader/file.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/file-uploader/file.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -266,7 +286,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/file-uploader/file.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/file-uploader/file.component.ts:60</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -288,7 +308,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/file-uploader/file.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/file-uploader/file.component.ts:56</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -310,7 +330,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/file-uploader/file.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/file-uploader/file.component.ts:62</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -343,7 +363,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/file-uploader/file.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/file-uploader/file.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -371,7 +391,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/file-uploader/file.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/file-uploader/file.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -381,6 +401,50 @@
 </section>
 
 
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/file-uploader/file.component.ts:72</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 </div>
@@ -392,7 +456,8 @@
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	OnDestroy
 } from &quot;@angular/core&quot;;
 
 import { I18n } from &quot;../i18n/index&quot;;
@@ -437,7 +502,7 @@ import { FileItem } from &quot;./file-item.interface&quot;;
 		&lt;/span&gt;
 	&#x60;
 })
-export class FileComponent {
+export class FileComponent implements OnDestroy {
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
@@ -456,6 +521,10 @@ export class FileComponent {
 	}
 
 	constructor(protected i18n: I18n) {}
+
+	ngOnDestroy() {
+		this.remove.emit();
+	}
 }
 </code></pre>
     </div>
