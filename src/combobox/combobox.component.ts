@@ -112,8 +112,9 @@ import { Observable } from "rxjs";
 					tabindex="0"
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
+					(keyup.enter)="clearInput($event)"
 					(click)="clearInput($event)">
-					<ibm-icon-close size="16"></ibm-icon-close>
+					<svg ibmIconClose size="16"></svg>
 				</div>
 				<ibm-icon-chevron-down size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
@@ -427,7 +428,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
+	 * Handles `Escape/Tab` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
@@ -438,6 +439,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+		}
+
+		if (
+			this.open && ev.key === "Tab" &&
+			(this.dropdownMenu.nativeElement.contains(ev.target as Node) || ev.target === this.input.nativeElement)
+		) {
+			this.closeDropdown();
+		}
+
+		if (this.open && ev.key === "Tab" && ev.shiftKey) {
+			this.closeDropdown();
 		}
 	}
 

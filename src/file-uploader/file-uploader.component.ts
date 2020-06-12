@@ -25,7 +25,10 @@ const noop = () => { };
 			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
-				<label *ngIf="drop" class="bx--file-browse-btn">
+				<label
+					*ngIf="drop"
+					class="bx--file-browse-btn"
+					[ngClass]="{'bx--file-browse-btn--disabled': disabled}">
 					<div
 						class="bx--file__drop-container"
 						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
