@@ -66,7 +66,7 @@ describe("Checkbox", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "onChange");
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--checkbox"));
+		element = fixture.debugElement.query(By.css(".bx--checkbox-label"));
 		element.nativeElement.click();
 		element.nativeElement.dispatchEvent(new Event("change"));
 		fixture.detectChanges();
