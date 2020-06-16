@@ -375,6 +375,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
+						this.isInputEmpty = false;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
