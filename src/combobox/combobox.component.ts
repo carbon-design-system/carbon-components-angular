@@ -88,7 +88,7 @@ import { Observable } from "rxjs";
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
-					[ngClass]="{'bx--text-input--empty': isInputEmpty}"
+					[ngClass]="{'bx--text-input--empty': !showClearButton}"
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
@@ -325,7 +325,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public selectedValue = "";
 
 	protected noop = this._noop.bind(this);
-	protected isInputEmpty = true;
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
@@ -375,7 +374,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
-						this.isInputEmpty = false;
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
@@ -413,9 +411,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 			}
 		});
-		if (this.input) {
-			this.isInputEmpty = !this.input.nativeElement.value;
-		}
 	}
 
 	/**
@@ -520,7 +515,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.search.emit(searchString);
 		}
 		this.showClearButton = searchString && this.type === "single";
-		this.isInputEmpty = !(searchString && this.type === "single");
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -569,7 +563,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.closeDropdown();
 
 		this.showClearButton = false;
-		this.isInputEmpty = true;
 	}
 
 	public isTemplate(value) {
