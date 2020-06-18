@@ -369,7 +369,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
+			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
 		}
 	}
@@ -535,13 +535,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
-		if (searchString && this.type === "single") {
-			this.showClearButton = true;
-		} else {
-			this.showClearButton = false;
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
 		}
+		this.showClearButton = searchString && this.type === "single";
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -554,12 +552,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected && selected[0]) {
-					selected[0].selected = false;
-					// notify that the selection has changed
-					this.view.select.emit({ item: selected[0] });
-					this.propagateChangeCallback(null);
-				} else {
+				if (!selected || !selected[0]) {
 					this.view.filterBy("");
 				}
 			}
@@ -586,6 +579,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 		this.clearSelected();
 		this.selectedValue = "";
+		this.input.nativeElement.value = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
