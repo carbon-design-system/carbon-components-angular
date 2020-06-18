@@ -88,6 +88,7 @@ import { Observable } from "rxjs";
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
+					[ngClass]="{'bx--text-input--empty': isInputEmpty}"
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
@@ -324,6 +325,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public selectedValue = "";
 
 	protected noop = this._noop.bind(this);
+	protected isInputEmpty = true;
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
@@ -354,7 +356,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
+			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
 		}
 	}
@@ -410,6 +412,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 			}
 		});
+		if (this.input) {
+			this.isInputEmpty = !this.input.nativeElement.value;
+		}
 	}
 
 	/**
@@ -509,13 +514,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
-		if (searchString && this.type === "single") {
-			this.showClearButton = true;
-		} else {
-			this.showClearButton = false;
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
 		}
+		this.showClearButton = searchString && this.type === "single";
+		this.isInputEmpty = !(searchString && this.type === "single");
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -559,10 +563,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		event.preventDefault();
 
 		this.clearSelected();
+		this.input.nativeElement.value = "";
 		this.selectedValue = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
+		this.isInputEmpty = true;
 	}
 
 	public isTemplate(value) {

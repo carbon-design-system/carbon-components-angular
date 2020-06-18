@@ -220,6 +220,8 @@ class DragAndDropStory {
 		<button ibmButton *ngIf="model && model.size > 0" (click)="onUpload()">
 			Upload
 		</button>
+
+		<button ibmButton (click)="removeFiles()">Remove all</button>
 	`
 })
 class NgModelFileUploaderStory {
@@ -240,6 +242,10 @@ class NgModelFileUploaderStory {
 
 	constructor(protected notificationService: NotificationService) {
 		FileUploaderStory.notificationCount++;
+	}
+
+	removeFiles() {
+		this.model = new Set();
 	}
 
 	onUpload() {
