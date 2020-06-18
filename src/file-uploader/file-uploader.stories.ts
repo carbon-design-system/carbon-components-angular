@@ -32,7 +32,8 @@ import * as fileType from "file-type";
 			[multiple]="multiple"
 			[skeleton]="skeleton"
 			[(files)]="files"
-			[size]="size">
+			[size]="size"
+			[disabled]="disabled">
 		</ibm-file-uploader>
 
 		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
@@ -54,6 +55,7 @@ class FileUploaderStory {
 	@Input() multiple;
 	@Input() skeleton = false;
 	@Input() size = "normal";
+	@Input() disabled = false;
 
 	protected maxSize = 500000;
 
@@ -101,7 +103,8 @@ class FileUploaderStory {
 			[size]="size"
 			drop="true"
 			[dropText]="dropText"
-			(filesChange)="onDropped($event)">
+			(filesChange)="onDropped($event)"
+			[disabled]="disabled">
 		</ibm-file-uploader>
 
 		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
@@ -120,6 +123,7 @@ class DragAndDropStory {
 	@Input() accept = [".jpg", ".png"];
 	@Input() multiple;
 	@Input() dropText = "Drag and drop files here of upload";
+	@Input() disabled = false;
 
 	protected maxSize = 500000;
 
@@ -208,7 +212,8 @@ class DragAndDropStory {
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
-			[(ngModel)]="model">
+			[(ngModel)]="model"
+			[disabled]="disabled">
 		</ibm-file-uploader>
 
 		<br><div [id]="notificationId" style="width: 300px"></div>
@@ -230,6 +235,7 @@ class NgModelFileUploaderStory {
 	@Input() accept;
 	@Input() multiple;
 	@Input() size = "normal";
+	@Input() disabled = false;
 
 	protected model = new Set();
 	protected maxSize = 500000;
@@ -289,7 +295,8 @@ storiesOf("Components|File Uploader", module)
 				[buttonType]="buttonType"
 				[accept]="accept"
 				[multiple]="multiple"
-				[size]="size">
+				[size]="size"
+				[disabled]="disabled">
 			</app-file-uploader>
 		`,
 		props: {
@@ -305,7 +312,8 @@ storiesOf("Components|File Uploader", module)
 			}, "primary"),
 			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", "image/jpeg"], ","),
-			multiple: boolean("Supports multiple files", true)
+			multiple: boolean("Supports multiple files", true),
+			disabled: boolean("Disabled", false)
 		}
 	}))
 	.add("Drag and drop", () => ({
@@ -316,7 +324,8 @@ storiesOf("Components|File Uploader", module)
 			[accept]="accept"
 			[multiple]="multiple"
 			[dropText]="dropText"
-			drop="true">
+			drop="true"
+			[disabled]="disabled">
 		</app-drop-file-uploader>
 	`,
 	props: {
@@ -324,7 +333,8 @@ storiesOf("Components|File Uploader", module)
 		dropText: text("Drop container text", "Drag and drop files here or upload"),
 		description: text("The description", "only .jpg and .png files. 500kb max file size."),
 		accept: array("Accepted file extensions", [".png", "image/jpeg"], ","),
-		multiple: boolean("Supports multiple files", true)
+		multiple: boolean("Supports multiple files", true),
+		disabled: boolean("Disabled", false)
 	}
 	}))
 	.add("Using ngModel", () => ({
@@ -336,7 +346,8 @@ storiesOf("Components|File Uploader", module)
 				[buttonType]="buttonType"
 				[accept]="accept"
 				[multiple]="multiple"
-				[size]="size">
+				[size]="size"
+				[disabled]="disabled">
 			</app-ngmodel-file-uploader>
 		`,
 		props: {
@@ -352,7 +363,8 @@ storiesOf("Components|File Uploader", module)
 			}, "primary"),
 			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
-			multiple: boolean("Supports multiple files", true)
+			multiple: boolean("Supports multiple files", true),
+			disabled: boolean("Disabled", false)
 		}
 	}))
 	.add("Skeleton", () => ({
