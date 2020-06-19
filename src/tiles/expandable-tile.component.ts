@@ -58,6 +58,7 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	tileMaxHeight = 0;
+	currentExpandedHeight = 0;
 	element = this.elementRef.nativeElement;
 
 	expand = this.i18n.getOverridable("TILES.EXPAND");
@@ -73,7 +74,12 @@ export class ExpandableTile implements AfterContentInit {
 		const tile = this.element.querySelector(".bx--tile");
 		const tilePadding
 			= parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
-		return this.tileMaxHeight + tilePadding;
+		const expandedHeight = this.tileMaxHeight + tilePadding;
+		// parseInt(getComputedStyle(tile).padding, 10) can be NaN and that causes an expression change error.
+		if (!isNaN(expandedHeight)) {
+			this.currentExpandedHeight = this.tileMaxHeight + tilePadding;
+		}
+		return this.currentExpandedHeight;
 	}
 
 	updateMaxHeight() {
