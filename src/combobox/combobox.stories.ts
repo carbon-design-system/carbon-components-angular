@@ -141,10 +141,40 @@ class ReactiveFormsCombobox implements OnInit {
 	}
 }
 
+@Component({
+	selector: "app-mock-query-search",
+	template: `
+		<ibm-combo-box
+			appendInline="true"
+			[items]="filterItems"
+			(search)="onSearch($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class MockQueryCombobox {
+	filterItems = [];
+
+	onSearch() {
+		setTimeout(() => {
+			this.filterItems = [
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` }
+			];
+		}, 1000);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
+			declarations: [
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
+			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
@@ -352,6 +382,11 @@ storiesOf("Components|Combobox", module)
 		props: getOptions({
 			model:  { "content": "three", "selected": true }
 		})
+	}))
+	.add("Mock query search", () => ({
+		template: `
+			<app-mock-query-search></app-mock-query-search>
+		`
 	}))
 	.add("Documentation", () => ({
 		template: `
