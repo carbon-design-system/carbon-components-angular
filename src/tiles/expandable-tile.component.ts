@@ -75,9 +75,8 @@ export class ExpandableTile implements AfterContentInit {
 		const tilePadding
 			= parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
 		const expandedHeight = this.tileMaxHeight + tilePadding;
-		// parseInt(getComputedStyle(tile).padding, 10) can be NaN and that causes an expression change error.
 		if (!isNaN(expandedHeight)) {
-			this.currentExpandedHeight = this.tileMaxHeight + tilePadding;
+			this.currentExpandedHeight = expandedHeight;
 		}
 		return this.currentExpandedHeight;
 	}
