@@ -93,7 +93,7 @@ import { Observable } from "rxjs";
 				<input
 					#input
 					[disabled]="disabled"
-					(keyup)="onSearch($event.target.value)"
+					(input)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
