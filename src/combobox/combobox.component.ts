@@ -52,6 +52,8 @@ import { Observable } from "rxjs";
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
 				'bx--list-box--expanded': open,
+				'bx--list-box--sm': size === 'sm',
+				'bx--list-box--xl': size === 'xl',
 				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
