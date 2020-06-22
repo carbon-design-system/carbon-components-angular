@@ -6,7 +6,7 @@ import { DatePickerInput } from "../datepicker-input/datepicker-input.component"
 import { CalendarModule } from "@carbon/icons-angular";
 import { FormsModule } from "@angular/forms";
 import { UtilsModule } from "../utils/utils.module";
-import { I18nModule } from "../i18n";
+import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
