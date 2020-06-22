@@ -69,8 +69,8 @@ import { ElementService } from "../utils/element.service";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
-					[invalid]="invalid"
-					[invalidText]="invalidText"
+					[invalid]="rangeInvalid"
+					[invalidText]="rangeInvalidText"
 					[skeleton]="skeleton"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
@@ -144,6 +144,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	@Input() invalid = false;
 
 	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() rangeInvalid = false;
+
+	@Input() rangeInvalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 
