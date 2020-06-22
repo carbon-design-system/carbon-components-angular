@@ -9,10 +9,55 @@ import {
 
 import { SelectModule } from "../";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { Component, OnInit } from "@angular/core";
+import {
+	FormGroup,
+	FormBuilder,
+	FormControl,
+	ReactiveFormsModule
+} from "@angular/forms";
+
+@Component({
+	selector: "app-reactive-form",
+	template: `
+		<form [formGroup]="formGroup">
+			<ibm-select formControlName="selecterino">
+				<option value="default" disabled selected hidden>Choose an option</option>
+				<option value="option1">Option 1</option>
+				<option value="option2">Option 2</option>
+				<option value="option3">Option 3</option>
+			</ibm-select>
+		</form>
+
+		<button (click)="clearSelection()">Clear selection</button>
+	`
+})
+class ReactiveFormsSelect implements OnInit {
+	public formGroup: FormGroup;
+
+	constructor(protected formBuilder: FormBuilder) {}
+
+	clearSelection() {
+		this.formGroup.get("selecterino").setValue("default");
+	}
+
+	ngOnInit() {
+		this.formGroup = this.formBuilder.group({
+			selecterino: new FormControl()
+		});
+
+		this.formGroup.get("selecterino").setValue("option2");
+	}
+}
 
 storiesOf("Components|Select", module).addDecorator(
 	moduleMetadata({
-		imports: [SelectModule, DocumentationModule]
+		declarations: [ReactiveFormsSelect],
+		imports: [
+			SelectModule,
+			DocumentationModule,
+			ReactiveFormsModule
+		]
 	})
 )
 	.addDecorator(withKnobs)
@@ -64,6 +109,9 @@ storiesOf("Components|Select", module).addDecorator(
 		props: {
 			model: "default"
 		}
+	}))
+	.add("With reactive forms", () => ({
+		template: `<app-reactive-form></app-reactive-form>`
 	}))
 	.add("Skeleton", () => ({
 		template: `
