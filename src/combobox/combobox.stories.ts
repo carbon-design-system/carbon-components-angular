@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { ButtonModule } from "../button/button.module";
@@ -299,6 +299,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					(selected)="selected($event)"
 					(submit)="submit($event)">
@@ -306,7 +307,10 @@ storiesOf("Components|Combobox", module)
 				</ibm-combo-box>
 			</div>
 		`,
-		props: getOptions()
+		props: {
+			...getOptions(),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("With reactive forms", () => ({
 		template: `
@@ -329,6 +333,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					(selected)="selected($event)"
 					(submit)="submit($event)">
@@ -336,18 +341,21 @@ storiesOf("Components|Combobox", module)
 				</ibm-combo-box>
 			</div>
 		`,
-		props: getOptions({
-			submit: function(event) {
-				// so the action still shows up in the "actions" panel
-				action("submit")(event);
-				if (event.value.content) {
-					this.items = [
-						...event.items,
-						Object.assign({}, event.value, { selected: true })
-					];
+		props: {
+			...getOptions({
+				submit: function(event) {
+					// so the action still shows up in the "actions" panel
+					action("submit")(event);
+					if (event.value.content) {
+						this.items = [
+							...event.items,
+							Object.assign({}, event.value, { selected: true })
+						];
+					}
 				}
-			}
-		})
+			}),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("With ngModel", () => ({
 		template: `

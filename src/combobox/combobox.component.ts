@@ -216,6 +216,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	@Input() maxLength: number = null;
 	/**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     * `top-after-reopen`: selected item jump to top after reopen dropdown
+     */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
+	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
 	@Input() set openMenuAria(value: string | Observable<string>) {
@@ -492,6 +499,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.propagateChangeCallback(this.view.getSelected());
+		this.checkForReorder();
 	}
 
 	public clearSelected() {
@@ -513,6 +521,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public closeDropdown() {
 		this.open = false;
+		this.checkForReorder();
 		this.close.emit();
 	}
 
@@ -608,5 +617,19 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.selectedValue = value;
 			this.propagateChangeCallback(changeCallbackValue);
 		}
+	}
+
+	protected checkForReorder() {
+		if (this.type === "multi") {
+			const selectionFeedback = this.selectionFeedback;
+			if ((!this.open && selectionFeedback === "top-after-reopen") || selectionFeedback === "top") {
+				const selected = this.view.getSelected();
+				setTimeout(() => this.view.items = this.reorder(this.items, selected));
+			}
+		}
+	}
+
+	protected reorder(items: ListItem[], selected: ListItem[]): ListItem[] {
+		return [...selected, ...items.filter(itm => selected.filter(sel => sel.content === itm.content).length === 0)];
 	}
 }
