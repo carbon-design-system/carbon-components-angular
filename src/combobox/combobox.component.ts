@@ -96,7 +96,10 @@ import { Observable } from "rxjs";
 					(keyup)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
-					class="bx--text-input"
+					[ngClass]="{
+						'bx--text-input': true,
+						'bx--text-input--empty': !showClearButton
+					}"
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"

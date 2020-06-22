@@ -156,39 +156,45 @@ storiesOf("Components|Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: getOptions()
 	}))
 	.add("Dynamically added list items", () => ({
 		template: `
-			<app-dynamic-list-combobox></app-dynamic-list-combobox>
+			<div style="width: 300px">
+				<app-dynamic-list-combobox></app-dynamic-list-combobox>
+			</div>
 		`
 	}))
 	.add("Basic with max length", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="selected($event)"
-				(submit)="submit($event)"
-				[maxLength]="maxLength">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="selected($event)"
+					(submit)="submit($event)"
+					[maxLength]="maxLength">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: {
 			...getOptions(),
@@ -197,17 +203,19 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With dynamic search", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="onSelected()"
-				(search)="onSearch($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="onSelected()"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -247,21 +255,23 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With template", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="onSelected()"
-				(search)="onSearch($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="onSelected()"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
 
-			<ng-template #invalidText>
-				<div class="bx--form-requirement">This is a template</div>
-			</ng-template>
+				<ng-template #invalidText>
+					<div class="bx--form-requirement">This is a template</div>
+				</ng-template>
+			</div>
 		`,
 		props: getOptions({
 			onSelected: function() {
@@ -282,43 +292,49 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				type="multi"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					type="multi"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: getOptions()
 	}))
 	.add("With reactive forms", () => ({
 		template: `
-			<app-reactive-combobox
-				[items]="items"
-				[label]="label"
-				[helperText]="helperText">
-			</app-reactive-combobox>
+			<div style="width: 300px">
+				<app-reactive-combobox
+					[items]="items"
+					[label]="label"
+					[helperText]="helperText">
+				</app-reactive-combobox>
+			</div>
 		`,
 		props: getOptions()
 	}))
 	.add("With submit", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				type="multi"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					type="multi"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: getOptions({
 			submit: function(event) {
@@ -335,19 +351,21 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With ngModel", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				[(ngModel)]="model"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					[(ngModel)]="model"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
 
-			<p>model: {{model | json}}</p>
+				<p>model: {{model | json}}</p>
+			</div>
 		`,
 		props: getOptions({
 			model:  { "content": "three", "selected": true }
