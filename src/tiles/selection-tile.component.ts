@@ -50,13 +50,11 @@ export class SelectionTile {
 	 * Set to `true` if this tile should be selected.
 	 */
 	@Input() set selected(value: boolean) {
-		if (!this.input) { return; }
-		this.input.nativeElement.checked = value ? true : null;
+		this._selected = value;
 	}
 
 	get selected() {
-		if (!this.input) { return; }
-		return this.input.nativeElement.checked;
+		return this._selected;
 	}
 	/**
 	 * The value for the tile. Returned via `ngModel` or `selected` event on the containing `TileGroup`.
@@ -78,8 +76,7 @@ export class SelectionTile {
 	multiple = true;	// Set to true because of the way tile group sets it up.
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
-	// @ts-ignore
-	@ViewChild("input", { static: false }) input;
+	protected _selected = false;
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;
