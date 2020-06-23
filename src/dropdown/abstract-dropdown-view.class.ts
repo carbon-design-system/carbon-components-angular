@@ -102,5 +102,5 @@ export class AbstractDropdownView {
 	/**
 	 * Reorder selected items bringing them to the top of the list
 	 */
-	reorderSelected(andMoveFocus?: boolean): void {}
+	reorderSelected(moveFocus?: boolean): void {}
 }
