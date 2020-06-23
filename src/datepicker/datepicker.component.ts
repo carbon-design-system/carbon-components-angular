@@ -72,8 +72,8 @@ import { I18n } from "./../i18n/index";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
-					[invalid]="invalid"
-					[invalidText]="invalidText"
+					[invalid]="rangeInvalid"
+					[invalidText]="rangeInvalidText"
 					[skeleton]="skeleton"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
@@ -153,6 +153,10 @@ export class DatePicker implements
 	@Input() invalid = false;
 
 	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() rangeInvalid = false;
+
+	@Input() rangeInvalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 

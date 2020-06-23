@@ -65,14 +65,14 @@ import { TableHeaderItem } from "./../table-header-item.class";
 				<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>
 			</svg>
 		</button>
-		<span
+		<div
 			class="bx--table-header-label"
 			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">
 			<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 			<ng-template
 				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 			</ng-template>
-		</span>
+		</div>
 		<button
 			[ngClass]="{'active': column.filterCount > 0}"
 			*ngIf="column.filterTemplate"
