@@ -557,7 +557,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.openDropdown();
 		} else {
 			this.selectedValue = "";
-			if (this.type === "multi" && (this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
+			if (this.type === "multi" &&
+				(this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
 				this.view.reorderSelected();
 			}
 		}
