@@ -1,8 +1,8 @@
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
-import { ButtonModule } from "carbon-components-angular/button/button.module";
-import { LoadingModule } from "carbon-components-angular/loading/loading.module";
+import { ButtonModule } from "carbon-components-angular/button";
+import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
 import { FileComponent } from "./file.component";
 import { CommonModule } from "@angular/common";

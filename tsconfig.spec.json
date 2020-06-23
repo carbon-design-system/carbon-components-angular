@@ -22,7 +22,15 @@
 		"types": [
 			"jasmine",
 			"node"
-		]
+		],
+		"paths": {
+			"carbon-components-angular": [
+				"./src/index"
+			],
+			"carbon-components-angular/*": [
+				"./src/*/index"
+			]
+		},
 	},
 	"files": [
 		"src/test.ts"

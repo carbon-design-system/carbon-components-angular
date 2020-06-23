@@ -17,8 +17,8 @@ describe("Link", () => {
 		expect(component).toBeTruthy();
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
 		expect(directiveEl).not.toBeNull();
-		expect(directiveEl.attributes["aria-disabled"]).toBe(null);
-		expect(directiveEl.attributes["tabindex"]).toBe(null);
+		expect(directiveEl.attributes["aria-disabled"]).toBe(null || undefined);
+		expect(directiveEl.attributes["tabindex"]).toBe(null || undefined);
 		expect(directiveEl.attributes["href"]).toBe("https://angular.carbondesignsystem.com/");
 	});
 

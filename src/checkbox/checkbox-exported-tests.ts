@@ -2,7 +2,7 @@ import { expect } from "chai";
 
 import merge from "lodash/merge";
 
-import ComponentTests from "carbon-components-angular/exported-tests/component-tests";
+import ComponentTests from "../exported-tests/component-tests";
 
 const defaults = {
 	selectors: {
