@@ -40,7 +40,8 @@ const getOptions = (override = {}) => {
 			}
 		],
 		selected: action("selection changed"),
-		submit: action("submit")
+		submit: action("submit"),
+		size: select("size", ["sm", "md", "xl"], "md")
 	};
 
 	return Object.assign({}, options, override);
@@ -98,6 +99,7 @@ class DynamicListComboBox implements AfterViewInit {
 		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
 			<ibm-combo-box
 				formControlName="combobox"
+				[size]="size"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items">
@@ -108,6 +110,7 @@ class DynamicListComboBox implements AfterViewInit {
 				style="margin-top: 40px"
 				formControlName="multibox"
 				[label]="label"
+				[size]="size"
 				[helperText]="helperText"
 				type="multi"
 				[items]="items">
@@ -122,6 +125,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() items = [];
 	@Input() label = "";
 	@Input() helperText = "";
+	@Input() size = "md";
 
 	constructor(private fb: FormBuilder) {}
 
@@ -141,10 +145,40 @@ class ReactiveFormsCombobox implements OnInit {
 	}
 }
 
+@Component({
+	selector: "app-mock-query-search",
+	template: `
+		<ibm-combo-box
+			appendInline="true"
+			[items]="filterItems"
+			(search)="onSearch($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class MockQueryCombobox {
+	filterItems = [];
+
+	onSearch() {
+		setTimeout(() => {
+			this.filterItems = [
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` }
+			];
+		}, 1000);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
+			declarations: [
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
+			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
@@ -160,6 +194,7 @@ storiesOf("Components|Combobox", module)
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
+					[size]="size"
 					[invalidText]="invalidText"
 					[label]="label"
 					[helperText]="helperText"
@@ -185,6 +220,7 @@ storiesOf("Components|Combobox", module)
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
+					[size]="size"
 					[invalidText]="invalidText"
 					[label]="label"
 					[helperText]="helperText"
@@ -207,6 +243,7 @@ storiesOf("Components|Combobox", module)
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
+					[size]="size"
 					[invalidText]="invalidText"
 					[label]="label"
 					[helperText]="helperText"
@@ -261,6 +298,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
 					(selected)="onSelected()"
@@ -297,6 +335,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
 					[selectionFeedback]="selectionFeedback"
@@ -317,6 +356,7 @@ storiesOf("Components|Combobox", module)
 			<div style="width: 300px">
 				<app-reactive-combobox
 					[items]="items"
+					[size]="size"
 					[label]="label"
 					[helperText]="helperText">
 				</app-reactive-combobox>
@@ -334,6 +374,7 @@ storiesOf("Components|Combobox", module)
 					[helperText]="helperText"
 					[items]="items"
 					[selectionFeedback]="selectionFeedback"
+					[size]="size"
 					type="multi"
 					(selected)="selected($event)"
 					(submit)="submit($event)">
@@ -364,6 +405,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
 					[(ngModel)]="model"
@@ -378,6 +420,11 @@ storiesOf("Components|Combobox", module)
 		props: getOptions({
 			model:  { "content": "three", "selected": true }
 		})
+	}))
+	.add("Mock query search", () => ({
+		template: `
+			<app-mock-query-search></app-mock-query-search>
+		`
 	}))
 	.add("Documentation", () => ({
 		template: `

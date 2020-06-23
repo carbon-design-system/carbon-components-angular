@@ -52,6 +52,8 @@ import { Observable } from "rxjs";
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
 				'bx--list-box--expanded': open,
+				'bx--list-box--sm': size === 'sm',
+				'bx--list-box--xl': size === 'xl',
 				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
@@ -93,13 +95,11 @@ import { Observable } from "rxjs";
 				<input
 					#input
 					[disabled]="disabled"
-					(keyup)="onSearch($event.target.value)"
+					(input)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
-					[ngClass]="{
-						'bx--text-input': true,
-						'bx--text-input--empty': !showClearButton
-					}"
+					class="bx--text-input"
+					[ngClass]="{'bx--text-input--empty': !showClearButton}"
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
@@ -216,11 +216,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	@Input() maxLength: number = null;
 	/**
-     * Specify feedback (mode) of the selection.
-     * `top`: selected item jumps to top
-     * `fixed`: selected item stays at it's position
-     * `top-after-reopen`: selected item jump to top after reopen dropdown
-     */
+	 * Specify feedback (mode) of the selection.
+	 * `top`: selected item jumps to top
+	 * `fixed`: selected item stays at it's position
+	 * `top-after-reopen`: selected item jump to top after reopen dropdown
+	 */
 	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
@@ -379,7 +379,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
+			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
 		}
 	}
@@ -547,13 +547,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
-		if (searchString && this.type === "single") {
-			this.showClearButton = true;
-		} else {
-			this.showClearButton = false;
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
 		}
+		this.showClearButton = searchString && this.type === "single";
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -569,12 +567,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected && selected[0]) {
-					selected[0].selected = false;
-					// notify that the selection has changed
-					this.view.select.emit({ item: selected[0] });
-					this.propagateChangeCallback(null);
-				} else {
+				if (!selected || !selected[0]) {
 					this.view.filterBy("");
 				}
 			}
@@ -601,6 +594,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 		this.clearSelected();
 		this.selectedValue = "";
+		this.input.nativeElement.value = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
