@@ -99,4 +99,8 @@ export class AbstractDropdownView {
 	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
 	 */
 	onItemsReady(subcription: () => void): void {}
+	/**
+	 * Reorder selected items bringing them to the top of the list
+	 */
+	reorderSelected(moveFocus?: boolean): void {}
 }

@@ -25,7 +25,7 @@ import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { ElementService } from "../utils/element.service";
-import { I18n } from "./../i18n";
+import { I18n } from "./../i18n/index";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
