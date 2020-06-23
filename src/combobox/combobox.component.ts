@@ -600,6 +600,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const value = selected[0] ? selected[0].content : "";
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
+			this.showClearButton = !!value;
 			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
