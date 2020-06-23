@@ -194,7 +194,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Label for the combobox.
 	 */
@@ -613,6 +613,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const value = selected[0] ? selected[0].content : "";
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
+			this.showClearButton = !!value;
 			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
