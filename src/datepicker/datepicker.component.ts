@@ -13,7 +13,9 @@ import {
 	AfterViewChecked,
 	AfterViewInit,
 	ViewChild,
-	AfterContentInit
+	AfterContentInit,
+	OnInit,
+	SimpleChange
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -23,6 +25,7 @@ import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { ElementService } from "../utils/element.service";
+import { I18n } from "./../i18n";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -93,7 +96,13 @@ import { ElementService } from "../utils/element.service";
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit, AfterContentInit {
+export class DatePicker implements
+	OnInit,
+	OnDestroy,
+	OnChanges,
+	AfterViewChecked,
+	AfterViewInit,
+	AfterContentInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -211,18 +220,25 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	protected visibilitySubscription = new Subscription();
 
-	constructor(protected elementRef: ElementRef, protected elementService: ElementService) { }
+	constructor(
+		protected elementRef: ElementRef,
+		protected elementService: ElementService,
+		protected i18n: I18n
+	) { }
+
+	ngOnInit() {
+		// if i18n is set to anything other than en we'll want to change the language
+		// otherwise we'll just use the local setting
+		if (this.i18n.getLocale() !== "en") {
+			this.i18n.getLocaleObservable().subscribe(locale => {
+				this.language = locale;
+				this.resetFlackpickrInstance();
+			});
+		}
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (this.isFlatpickrLoaded()) {
-			let dates = this.flatpickrInstance.selectedDates;
-			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
-				dates = changes.value.currentValue;
-			}
-			// only reset the flatpickr instance on Input changes
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-			this.setDateValues(dates);
-		}
+		this.resetFlackpickrInstance(changes.value);
 	}
 
 	ngAfterViewInit() {
@@ -367,6 +383,25 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			calendar.removeEventListener("click", this.preventCalendarClose);
 			calendar.addEventListener("click", this.preventCalendarClose);
 		});
+	}
+
+	/**
+	 * Resets the flatpickr instance while keeping the date values (or updating them if newDates is provided)
+	 *
+	 * Used to pick up input changes or locale changes.
+	 *
+	 * @param newDates An optional SimpleChange of date values
+	 */
+	protected resetFlackpickrInstance(newDates?: SimpleChange) {
+		if (this.isFlatpickrLoaded()) {
+			let dates = this.flatpickrInstance.selectedDates;
+			if (newDates && this.didDateValueChange(newDates.currentValue, newDates.previousValue)) {
+				dates = newDates.currentValue;
+			}
+			// only reset the flatpickr instance on Input changes
+			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.setDateValues(dates);
+		}
 	}
 
 	/**
