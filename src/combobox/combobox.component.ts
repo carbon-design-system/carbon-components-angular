@@ -559,6 +559,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.openDropdown();
 		} else {
 			this.selectedValue = "";
+			if (this.type === "multi" && (this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
+				this.view.reorderSelected();
+			}
 		}
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
@@ -620,16 +623,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	protected checkForReorder() {
-		if (this.type === "multi") {
-			const selectionFeedback = this.selectionFeedback;
-			if ((!this.open && selectionFeedback === "top-after-reopen") || selectionFeedback === "top") {
-				const selected = this.view.getSelected();
-				setTimeout(() => this.view.items = this.reorder(this.items, selected));
-			}
+		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected(this.selectionFeedback === "top");
 		}
-	}
-
-	protected reorder(items: ListItem[], selected: ListItem[]): ListItem[] {
-		return [...selected, ...items.filter(itm => selected.filter(sel => sel.content === itm.content).length === 0)];
 	}
 }

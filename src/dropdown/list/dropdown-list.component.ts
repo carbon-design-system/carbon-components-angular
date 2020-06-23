@@ -473,6 +473,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doClick(event, item) {
 		event.preventDefault();
 		if (!item.disabled) {
+			let selected;
 			if (this.type === "single") {
 				item.selected = true;
 				// reset the selection
@@ -480,13 +481,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
 
-				this.select.emit({item});
+				selected = {item};
 			} else {
 				item.selected = !item.selected;
 				// emit an array of selected items
-				this.select.emit(this.getSelected());
+				selected = this.getSelected();
 			}
-			this.index = this.getListItems().indexOf(item);
+			this.index = this.displayItems.indexOf(item);
+			this.select.emit(selected);
 		}
 	}
 
@@ -518,5 +520,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	onItemsReady(subcription: () => void): void {
 		// this subscription will auto unsubscribe because of the `first()` pipe
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
+	}
+
+	reorderSelected(andMoveFocus = false): void {
+		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
+		if (andMoveFocus) {
+			setTimeout(() => this.getCurrentElement().focus(), 1);
+		}
 	}
 }
