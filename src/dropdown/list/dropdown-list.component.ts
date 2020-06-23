@@ -522,7 +522,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
 	}
 
-	reorderSelected(andMoveFocus = false): void {
+	reorderSelected(moveFocus = false): void {
 		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
 		if (andMoveFocus) {
 			setTimeout(() => this.getCurrentElement().focus(), 1);
