@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
-import { getScrollbarWidth } from "carbon-components-angular/utils/window-tools";
-import { I18n, Overridable } from "carbon-components-angular/i18n/index";
+import { getScrollbarWidth } from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.component";
 

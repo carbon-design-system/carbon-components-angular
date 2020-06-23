@@ -5,7 +5,7 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.component";
 

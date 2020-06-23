@@ -1,4 +1,4 @@
-import { Search } from "carbon-components-angular/search/search.component";
+import { Search } from "carbon-components-angular/search";
 import {
 	Component,
 	HostBinding,

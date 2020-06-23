@@ -4,7 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
 

@@ -19,19 +19,19 @@
 		],
 		"paths": {
 			"carbon-components-angular": [
-				"./src"
+				"./src/index"
 			],
 			"carbon-components-angular/*": [
-				"./src/*"
+				"./src/*/index"
 			]
 		},
 	},
 	"include": [
-		"src/**/*"
+		"./src/**/*"
 	],
 	"exclude": [
-		"src/**/*.stories.ts",
-		"src/**/stories/**",
+		"**/*.stories.ts",
+		"**/stories/**",
 		"**/*.spec.ts"
 	],
 	"angularCompilerOptions": {

@@ -25,10 +25,10 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "carbon-components-angular/i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "carbon-components-angular/utils/utils.module";
+import { ElementService } from "carbon-components-angular/utils";
 import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**

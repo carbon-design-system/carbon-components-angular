@@ -11,7 +11,7 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { cycleTabs, getFocusElementList } from "carbon-components-angular/common/tab.service";
+import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 
 /**
  * Component to create modals for presenting content.

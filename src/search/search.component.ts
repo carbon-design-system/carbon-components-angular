@@ -9,7 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "carbon-components-angular/i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/search--basic)

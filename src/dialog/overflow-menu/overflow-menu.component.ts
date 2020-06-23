@@ -8,7 +8,7 @@ import {
 	TemplateRef,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "carbon-components-angular/i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**

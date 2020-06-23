@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 
 import { CloseModule, MenuModule } from "@carbon/icons-angular";
 
-import { I18nModule } from "carbon-components-angular/i18n/index";
+import { I18nModule } from "carbon-components-angular/i18n";
 
 import { Header } from "./header.component";
 import { HeaderItem } from "./header-item.component";

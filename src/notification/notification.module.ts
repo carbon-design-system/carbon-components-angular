@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { ButtonModule } from "carbon-components-angular/button/button.module";
+import { ButtonModule } from "carbon-components-angular/button";
 import { CommonModule } from "@angular/common";
 import {
 	CloseModule,
@@ -18,8 +18,8 @@ import { NotificationSubtitle } from "./notification-subtitle.directive";
 import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
-import { I18nModule } from "carbon-components-angular/i18n/index";
-import { ExperimentalModule } from "carbon-components-angular/experimental.module";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
 
 @NgModule({
 	declarations: [

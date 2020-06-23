@@ -9,7 +9,7 @@ import {
 import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
-import { EventService } from "carbon-components-angular/utils/event.service";
+import { EventService } from "carbon-components-angular/utils";
 
 
 /**

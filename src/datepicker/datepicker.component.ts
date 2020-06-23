@@ -21,8 +21,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
-import { DatePickerInput } from "carbon-components-angular/datepicker-input/datepicker-input.component";
-import { ElementService } from "carbon-components-angular/utils/element.service";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
+import { ElementService } from "carbon-components-angular/utils";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)

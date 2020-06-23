@@ -10,7 +10,7 @@ import {
 	ElementRef
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
-import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common/tab.service";
+import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
 
 /**
  * The content switcher can be used for toggling between distinct options.

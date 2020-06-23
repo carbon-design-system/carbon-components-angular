@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "carbon-components-angular/i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { NavigationItem } from "../header/header-navigation-items.interface";
 
 /**

@@ -4,8 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { I18nModule } from "carbon-components-angular/i18n/index";
-import { Toggle } from "carbon-components-angular/toggle/toggle.component";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { Toggle } from "./toggle.component";
 
 @NgModule({
 	declarations: [

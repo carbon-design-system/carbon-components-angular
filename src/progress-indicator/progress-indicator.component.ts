@@ -4,7 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { ExperimentalService } from "carbon-components-angular/experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental";
 import { Step } from "./progress-indicator-step.interface";
 
 /**

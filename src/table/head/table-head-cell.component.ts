@@ -7,7 +7,7 @@ import {
 	OnChanges
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
-import { I18n, Overridable } from "carbon-components-angular/i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { map } from "rxjs/operators";
 import { TableHeaderItem } from "../table-header-item.class";
 
