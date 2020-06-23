@@ -218,7 +218,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Specify feedback (mode) of the selection.
 	 * `top`: selected item jumps to top
-	 * `fixed`: selected item stays at it's position
+	 * `fixed`: selected item stays at its position
 	 * `top-after-reopen`: selected item jump to top after reopen dropdown
 	 */
 	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
