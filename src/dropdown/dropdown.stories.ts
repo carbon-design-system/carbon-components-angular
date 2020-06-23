@@ -55,6 +55,7 @@ const getProps = (overrides = {}) => Object.assign({}, {
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[theme]="theme"
+					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					placeholder="Multi-select"
 					value="oid"
@@ -79,6 +80,7 @@ class ReactiveFormsStory implements OnInit {
 	@Input() helperText = "";
 	@Input() invalid = false;
 	@Input() invalidText = "";
+	@Input() selectionFeedback = "top-after-reopen";
 	@Input() set disabled(value) {
 		if (!this.formGroup) { return; }
 		if (value) {
@@ -144,6 +146,7 @@ storiesOf("Components|Dropdown", module)
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[selectionFeedback]="selectionFeedback"
 				type="multi"
 				placeholder="Multi-select"
 				[disabled]="disabled"
@@ -153,7 +156,10 @@ storiesOf("Components|Dropdown", module)
 			</ibm-dropdown>
 		</div>
 	`,
-		props: getProps()
+		props: {
+			...getProps(),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("Multi-select with ngModel", () => ({
 		template: `
@@ -164,6 +170,7 @@ storiesOf("Components|Dropdown", module)
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[selectionFeedback]="selectionFeedback"
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
@@ -180,7 +187,8 @@ storiesOf("Components|Dropdown", module)
 				{ content: "three", id: 2 },
 				{ content: "four", id: 3 }
 			]),
-			model: null
+			model: null,
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
 		})
 	}))
 	.add("With ngModel", () => ({
@@ -213,6 +221,7 @@ storiesOf("Components|Dropdown", module)
 				[invalidText]="invalidText"
 				[disabled]="disabled"
 				[items]="items"
+				[selectionFeedback]="selectionFeedback"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">
 			</app-reactive-forms>
@@ -223,6 +232,7 @@ storiesOf("Components|Dropdown", module)
 				{ content: "role 2", oid: 2, selected: false },
 				{ content: "role 3", oid: 3, selected: false }
 			],
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen"),
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
 		})

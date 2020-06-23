@@ -233,6 +233,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() itemValueKey: string;
 	/**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     * `top-after-reopen`: selected item jump to top after reopen dropdown
+     */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
+	/**
 	 * Accessible label for the button that opens the dropdown list.
 	 * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
 	 */
@@ -352,6 +359,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			}
 			// only emit selected for "organic" selections
 			if (event && !event.isUpdate) {
+				this.checkForReorder();
 				this.selected.emit(event);
 			}
 			// manually tick the app so the view picks up any changes
@@ -681,6 +689,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// return early if the menu is already closed
 		if (this.menuIsClosed) { return; }
 		this.menuIsClosed = true;
+		this.checkForReorder();
 		this.onClose.emit();
 		this.close.emit();
 
@@ -716,5 +725,15 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Controls when it's needed to apply the selection feedback
+	 */
+	protected checkForReorder() {
+		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected(this.selectionFeedback === "top");
+		}
 	}
 }
