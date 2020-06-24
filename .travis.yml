@@ -1,3 +1,4 @@
+os: linux
 dist: trusty
 language: node_js
 node_js:
@@ -18,12 +19,13 @@ jobs:
 	  script: npm run lint
 	- name: "Test"
 	  script: npm test
-script: npm run ng:build
-deploy:
-  provider: script
-  script: "bash ./scripts/deploy.sh"
-  skip_cleanup: true
-  on:
-    all_branches: true
+	- name: "Build"
+	  script: npm run ng:build
+      deploy:
+        provider: script
+        script: "bash ./scripts/deploy.sh"
+        cleanup: false
+        on:
+          all_branches: true
 notifications:
   email: false
