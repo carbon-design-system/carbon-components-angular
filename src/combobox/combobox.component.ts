@@ -52,6 +52,8 @@ import { Observable } from "rxjs";
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
 				'bx--list-box--expanded': open,
+				'bx--list-box--sm': size === 'sm',
+				'bx--list-box--xl': size === 'xl',
 				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
@@ -93,10 +95,11 @@ import { Observable } from "rxjs";
 				<input
 					#input
 					[disabled]="disabled"
-					(keyup)="onSearch($event.target.value)"
+					(input)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
+					[ngClass]="{'bx--text-input--empty': !showClearButton}"
 					role="searchbox"
 					tabindex="0"
 					[attr.aria-aria-labelledby]="id"
@@ -191,7 +194,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Label for the combobox.
 	 */
@@ -212,6 +215,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Max length value to limit input characters
 	 */
 	@Input() maxLength: number = null;
+	/**
+	 * Specify feedback (mode) of the selection.
+	 * `top`: selected item jumps to top
+	 * `fixed`: selected item stays at its position
+	 * `top-after-reopen`: selected item jump to top after reopen dropdown
+	 */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -369,7 +379,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.view.items = changes.items.currentValue;
 			// If new items are added into the combobox while there is search input,
 			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
+			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
 		}
 	}
@@ -489,6 +499,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.propagateChangeCallback(this.view.getSelected());
+		this.checkForReorder();
 	}
 
 	public clearSelected() {
@@ -510,6 +521,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public closeDropdown() {
 		this.open = false;
+		this.checkForReorder();
 		this.close.emit();
 	}
 
@@ -535,18 +547,20 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
-		if (searchString && this.type === "single") {
-			this.showClearButton = true;
-		} else {
-			this.showClearButton = false;
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
 		}
+		this.showClearButton = searchString && this.type === "single";
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
 		} else {
 			this.selectedValue = "";
+			if (this.type === "multi" &&
+				(this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
+				this.view.reorderSelected();
+			}
 		}
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
@@ -554,12 +568,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected && selected[0]) {
-					selected[0].selected = false;
-					// notify that the selection has changed
-					this.view.select.emit({ item: selected[0] });
-					this.propagateChangeCallback(null);
-				} else {
+				if (!selected || !selected[0]) {
 					this.view.filterBy("");
 				}
 			}
@@ -586,6 +595,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 		this.clearSelected();
 		this.selectedValue = "";
+		this.input.nativeElement.value = "";
 		this.closeDropdown();
 
 		this.showClearButton = false;
@@ -603,7 +613,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const value = selected[0] ? selected[0].content : "";
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
+			this.showClearButton = !!value;
 			this.propagateChangeCallback(changeCallbackValue);
+		}
+	}
+
+	protected checkForReorder() {
+		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected(this.selectionFeedback === "top");
 		}
 	}
 }

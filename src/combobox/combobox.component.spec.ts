@@ -131,9 +131,7 @@ describe("Combo box", () => {
 		expect(element.componentInstance.open).toBe(false);
 	});
 
-	it("should call onSearch on keyup event", () => {
-		const keyupT = new KeyboardEvent("keyup", { "key": "t" });
-
+	it("should call onSearch on input event", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
@@ -141,7 +139,7 @@ describe("Combo box", () => {
 		spyOn(element.componentInstance, "onSearch");
 
 		const textInput = element.nativeElement.querySelector(".bx--text-input");
-		textInput.dispatchEvent(keyupT);
+		textInput.dispatchEvent(new Event("input"));
 		fixture.detectChanges();
 
 		expect(element.componentInstance.onSearch).toHaveBeenCalled();
