@@ -1,8 +1,7 @@
-os: linux
 dist: trusty
 language: node_js
 node_js:
-  - "12"
+  - "10"
 addons:
   chrome: stable
 before_install:
@@ -13,19 +12,12 @@ before_script:
   - "sleep 3"
   - "sudo chown root /opt/google/chrome/chrome-sandbox"
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-jobs:
-  include:
-	- name: "Lint"
-	  script: npm run lint
-	- name: "Test"
-	  script: npm test
-	- name: "Build"
-	  script: npm run ng:build
-      deploy:
-        provider: script
-        script: "bash ./scripts/deploy.sh"
-        cleanup: false
-        on:
-          all_branches: true
+script: "npm run ng:build"
+deploy:
+  provider: script
+  script: "bash ./scripts/deploy.sh"
+  skip_cleanup: true
+  on:
+    all_branches: true
 notifications:
   email: false
