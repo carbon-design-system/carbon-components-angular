@@ -26,7 +26,7 @@
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_DatePickerModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="296,-189.5901 296,-241.5901 390,-241.5901 390,-189.5901 296,-189.5901"/>
+<polygon fill="none" stroke="#000000" points="399,-189.5901 399,-241.5901 493,-241.5901 493,-189.5901 399,-189.5901"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_DatePickerModule_DatePicker_providers</title>
@@ -34,53 +34,53 @@
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_DatePickerModule_imports</title>
-<polygon fill="none" stroke="#000000" points="16,-189.5901 16,-241.5901 288,-241.5901 288,-189.5901 16,-189.5901"/>
+<polygon fill="none" stroke="#000000" points="16,-189.5901 16,-241.5901 391,-241.5901 391,-189.5901 16,-189.5901"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_DatePickerModule_exports</title>
-<polygon fill="none" stroke="#000000" points="68,-319.5901 68,-371.5901 338,-371.5901 338,-319.5901 68,-319.5901"/>
+<polygon fill="none" stroke="#000000" points="86,-319.5901 86,-371.5901 356,-371.5901 356,-319.5901 86,-319.5901"/>
 </g>
 <!-- DatePicker -->
 <g id="node1" class="node">
 <title>DatePicker</title>
-<polygon fill="#ffffb3" stroke="#000000" points="382.1896,-233.5901 303.8104,-233.5901 303.8104,-197.5901 382.1896,-197.5901 382.1896,-233.5901"/>
-<text text-anchor="middle" x="343" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker</text>
+<polygon fill="#ffffb3" stroke="#000000" points="485.1896,-233.5901 406.8104,-233.5901 406.8104,-197.5901 485.1896,-197.5901 485.1896,-233.5901"/>
+<text text-anchor="middle" x="446" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker</text>
 </g>
 <!-- DatePickerModule -->
 <g id="node2" class="node">
 <title>DatePickerModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="264.7395,-298.5901 261.7395,-302.5901 240.7395,-302.5901 237.7395,-298.5901 143.2605,-298.5901 143.2605,-262.5901 264.7395,-262.5901 264.7395,-298.5901"/>
-<text text-anchor="middle" x="204" y="-276.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="299.7395,-298.5901 296.7395,-302.5901 275.7395,-302.5901 272.7395,-298.5901 178.2605,-298.5901 178.2605,-262.5901 299.7395,-262.5901 299.7395,-298.5901"/>
+<text text-anchor="middle" x="239" y="-276.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerModule</text>
 </g>
 <!-- DatePicker&#45;&gt;DatePickerModule -->
 <g id="edge1" class="edge">
 <title>DatePicker&#45;&gt;DatePickerModule</title>
-<path fill="none" stroke="#000000" d="M316.875,-233.6962C316.875,-252.9292 316.875,-280.5901 316.875,-280.5901 316.875,-280.5901 275.0625,-280.5901 275.0625,-280.5901"/>
-<polygon fill="#000000" stroke="#000000" points="275.0626,-277.0902 265.0625,-280.5901 275.0625,-284.0902 275.0626,-277.0902"/>
+<path fill="none" stroke="#000000" d="M446,-233.6962C446,-252.9292 446,-280.5901 446,-280.5901 446,-280.5901 309.9872,-280.5901 309.9872,-280.5901"/>
+<polygon fill="#000000" stroke="#000000" points="309.9873,-277.0902 299.9872,-280.5901 309.9872,-284.0902 309.9873,-277.0902"/>
 </g>
 <!-- DatePicker  -->
-<g id="node6" class="node">
+<g id="node7" class="node">
 <title>DatePicker </title>
-<polygon fill="#fb8072" stroke="#000000" points="329.69,-363.5901 248.31,-363.5901 248.31,-327.5901 329.69,-327.5901 329.69,-363.5901"/>
-<text text-anchor="middle" x="289" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker </text>
+<polygon fill="#fb8072" stroke="#000000" points="347.69,-363.5901 266.31,-363.5901 266.31,-327.5901 347.69,-327.5901 347.69,-363.5901"/>
+<text text-anchor="middle" x="307" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker </text>
 </g>
 <!-- DatePickerModule&#45;&gt;DatePicker  -->
-<g id="edge5" class="edge">
+<g id="edge6" class="edge">
 <title>DatePickerModule&#45;&gt;DatePicker </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256.5125,-298.6962C256.5125,-298.6962 256.5125,-317.581 256.5125,-317.581"/>
-<polygon fill="#000000" stroke="#000000" points="253.0125,-317.581 256.5125,-327.581 260.0125,-317.5811 253.0125,-317.581"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M283.0125,-298.6962C283.0125,-298.6962 283.0125,-317.581 283.0125,-317.581"/>
+<polygon fill="#000000" stroke="#000000" points="279.5125,-317.581 283.0125,-327.581 286.5125,-317.5811 279.5125,-317.581"/>
 </g>
 <!-- DatePickerInputModule  -->
-<g id="node7" class="node">
+<g id="node8" class="node">
 <title>DatePickerInputModule </title>
-<polygon fill="#fb8072" stroke="#000000" points="230.2905,-363.5901 75.7095,-363.5901 75.7095,-327.5901 230.2905,-327.5901 230.2905,-363.5901"/>
-<text text-anchor="middle" x="153" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerInputModule </text>
+<polygon fill="#fb8072" stroke="#000000" points="248.2905,-363.5901 93.7095,-363.5901 93.7095,-327.5901 248.2905,-327.5901 248.2905,-363.5901"/>
+<text text-anchor="middle" x="171" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerInputModule </text>
 </g>
 <!-- DatePickerModule&#45;&gt;DatePickerInputModule  -->
-<g id="edge6" class="edge">
+<g id="edge7" class="edge">
 <title>DatePickerModule&#45;&gt;DatePickerInputModule </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M186.7628,-298.6962C186.7628,-298.6962 186.7628,-317.581 186.7628,-317.581"/>
-<polygon fill="#000000" stroke="#000000" points="183.2629,-317.581 186.7628,-327.581 190.2629,-317.5811 183.2629,-317.581"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M213.2628,-298.6962C213.2628,-298.6962 213.2628,-317.581 213.2628,-317.581"/>
+<polygon fill="#000000" stroke="#000000" points="209.7629,-317.581 213.2628,-327.581 216.7629,-317.5811 209.7629,-317.581"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: DatePicker, multi: true
@@ -101,32 +101,44 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: DatePicker, multi: true
 }&#45;&gt;DatePicker</title>
-<path fill="none" stroke="#000000" d="M343,-168.5989C343,-168.5989 343,-187.2551 343,-187.2551"/>
-<polygon fill="#000000" stroke="#000000" points="339.5001,-187.255 343,-197.2551 346.5001,-187.2551 339.5001,-187.255"/>
+<path fill="none" stroke="#000000" d="M446,-166.0225C446,-166.0225 446,-187.4408 446,-187.4408"/>
+<polygon fill="#000000" stroke="#000000" points="442.5001,-187.4407 446,-197.4408 449.5001,-187.4408 442.5001,-187.4407"/>
 </g>
 <!-- DatePickerInputModule -->
 <g id="node4" class="node">
 <title>DatePickerInputModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="279.7907,-233.5901 276.7907,-237.5901 255.7907,-237.5901 252.7907,-233.5901 128.2093,-233.5901 128.2093,-197.5901 279.7907,-197.5901 279.7907,-233.5901"/>
-<text text-anchor="middle" x="204" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerInputModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="382.7907,-233.5901 379.7907,-237.5901 358.7907,-237.5901 355.7907,-233.5901 231.2093,-233.5901 231.2093,-197.5901 382.7907,-197.5901 382.7907,-233.5901"/>
+<text text-anchor="middle" x="307" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerInputModule</text>
 </g>
 <!-- DatePickerInputModule&#45;&gt;DatePickerModule -->
 <g id="edge3" class="edge">
 <title>DatePickerInputModule&#45;&gt;DatePickerModule</title>
-<path fill="none" stroke="#000000" d="M204,-233.6962C204,-233.6962 204,-252.581 204,-252.581"/>
-<polygon fill="#000000" stroke="#000000" points="200.5001,-252.581 204,-262.581 207.5001,-252.5811 200.5001,-252.581"/>
+<path fill="none" stroke="#000000" d="M265.6122,-233.6962C265.6122,-233.6962 265.6122,-252.581 265.6122,-252.581"/>
+<polygon fill="#000000" stroke="#000000" points="262.1123,-252.581 265.6122,-262.581 269.1123,-252.5811 262.1123,-252.581"/>
+</g>
+<!-- I18nModule -->
+<g id="node5" class="node">
+<title>I18nModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="213.7107,-233.5901 210.7107,-237.5901 189.7107,-237.5901 186.7107,-233.5901 128.2893,-233.5901 128.2893,-197.5901 213.7107,-197.5901 213.7107,-233.5901"/>
+<text text-anchor="middle" x="171" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">I18nModule</text>
+</g>
+<!-- I18nModule&#45;&gt;DatePickerModule -->
+<g id="edge4" class="edge">
+<title>I18nModule&#45;&gt;DatePickerModule</title>
+<path fill="none" stroke="#000000" d="M195.8678,-233.6962C195.8678,-233.6962 195.8678,-252.581 195.8678,-252.581"/>
+<polygon fill="#000000" stroke="#000000" points="192.3679,-252.581 195.8678,-262.581 199.3679,-252.5811 192.3679,-252.581"/>
 </g>
 <!-- UtilsModule -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>UtilsModule</title>
 <polygon fill="#8dd3c7" stroke="#000000" points="110.2731,-233.5901 107.2731,-237.5901 86.2731,-237.5901 83.2731,-233.5901 23.7269,-233.5901 23.7269,-197.5901 110.2731,-197.5901 110.2731,-233.5901"/>
 <text text-anchor="middle" x="67" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">UtilsModule</text>
 </g>
 <!-- UtilsModule&#45;&gt;DatePickerModule -->
-<g id="edge4" class="edge">
+<g id="edge5" class="edge">
 <title>UtilsModule&#45;&gt;DatePickerModule</title>
-<path fill="none" stroke="#000000" d="M92.9956,-233.6962C92.9956,-252.9292 92.9956,-280.5901 92.9956,-280.5901 92.9956,-280.5901 132.9774,-280.5901 132.9774,-280.5901"/>
-<polygon fill="#000000" stroke="#000000" points="132.9774,-284.0902 142.9774,-280.5901 132.9774,-277.0902 132.9774,-284.0902"/>
+<path fill="none" stroke="#000000" d="M101.9956,-233.6962C101.9956,-252.9292 101.9956,-280.5901 101.9956,-280.5901 101.9956,-280.5901 168.11,-280.5901 168.11,-280.5901"/>
+<polygon fill="#000000" stroke="#000000" points="168.1101,-284.0902 178.11,-280.5901 168.11,-277.0902 168.1101,-284.0902"/>
 </g>
 </g>
 </svg>

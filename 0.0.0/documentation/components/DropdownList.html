@@ -320,6 +320,9 @@
                                 <a href="#propagateSelected">propagateSelected</a>
                             </li>
                             <li>
+                                <a href="#reorderSelected">reorderSelected</a>
+                            </li>
+                            <li>
                                 <a href="#setupFocusObservable">setupFocusObservable</a>
                             </li>
                             <li>
@@ -811,7 +814,7 @@ ArrowUp -&gt; emit event</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="508" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:508</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:510</a></div>
                             </td>
                         </tr>
 
@@ -1474,7 +1477,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="499" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:499</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="501" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:501</a></div>
                             </td>
                         </tr>
 
@@ -1539,7 +1542,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="493" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:493</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="495" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:495</a></div>
                             </td>
                         </tr>
 
@@ -1604,7 +1607,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:518</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="520" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:520</a></div>
                             </td>
                         </tr>
 
@@ -1706,6 +1709,75 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
                                                             No
                                                     </td>
                                                     
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="reorderSelected"></a>
+                        <span class="name">
+                            <b>
+                            reorderSelected
+                            </b>
+                            <a href="#reorderSelected"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>reorderSelected(moveFocus)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:525</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>moveFocus</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>false</code>
+                                                        </td>
 
                                                 </tr>
                                         </tbody>
@@ -2864,6 +2936,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doClick(event, item) {
 		event.preventDefault();
 		if (!item.disabled) {
+			let selected;
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;single&quot;) {
 				item.selected &#x3D; true;
 				// reset the selection
@@ -2871,13 +2944,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					if (item !&#x3D;&#x3D; otherItem) { otherItem.selected &#x3D; false; }
 				}
 
-				this.select.emit({item});
+				selected &#x3D; {item};
 			} else {
 				item.selected &#x3D; !item.selected;
 				// emit an array of selected items
-				this.select.emit(this.getSelected());
+				selected &#x3D; this.getSelected();
 			}
-			this.index &#x3D; this.getListItems().indexOf(item);
+			this.index &#x3D; this.displayItems.indexOf(item);
+			this.select.emit(selected);
 		}
 	}
 
@@ -2909,6 +2983,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	onItemsReady(subcription: () &#x3D;&gt; void): void {
 		// this subscription will auto unsubscribe because of the &#x60;first()&#x60; pipe
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
+	}
+
+	reorderSelected(moveFocus &#x3D; false): void {
+		this.displayItems &#x3D; [...this.getSelected(), ...this.getListItems().filter(item &#x3D;&gt; !item.selected)];
+		if (moveFocus) {
+			setTimeout(() &#x3D;&gt; this.getCurrentElement().focus());
+		}
 	}
 }
 </code></pre>

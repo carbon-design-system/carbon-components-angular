@@ -150,6 +150,9 @@ ex: <code>providers: [{provide: AbstractDropdownView, useExisting: forwardRef(()
                             <li>
                                 <a href="#propagateSelected">propagateSelected</a>
                             </li>
+                            <li>
+                                <a href="#reorderSelected">reorderSelected</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -970,6 +973,77 @@ In most cases this just calls <code>getCurrentElement().focus()</code></p>
                 </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="reorderSelected"></a>
+                        <span class="name">
+                            <b>
+                            reorderSelected
+                            </b>
+                            <a href="#reorderSelected"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>reorderSelected(moveFocus?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:105</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Reorder selected items bringing them to the top of the list</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>moveFocus</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
 
@@ -1225,6 +1299,10 @@ export class AbstractDropdownView {
 	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
 	 */
 	onItemsReady(subcription: () &#x3D;&gt; void): void {}
+	/**
+	 * Reorder selected items bringing them to the top of the list
+	 */
+	reorderSelected(moveFocus?: boolean): void {}
 }
 </code></pre>
     </div>

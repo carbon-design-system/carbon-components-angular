@@ -607,7 +607,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/select/select.component.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/select/select.component.ts:201</a></div>
                             </td>
                         </tr>
 
@@ -652,7 +652,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/select/select.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/select/select.component.ts:205</a></div>
                             </td>
                         </tr>
 
@@ -717,7 +717,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/select/select.component.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/select/select.component.ts:192</a></div>
                             </td>
                         </tr>
 
@@ -785,7 +785,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/select/select.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/select/select.component.ts:170</a></div>
                             </td>
                         </tr>
 
@@ -856,7 +856,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/select/select.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/select/select.component.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -927,7 +927,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/select/select.component.ts:182</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/select/select.component.ts:184</a></div>
                             </td>
                         </tr>
 
@@ -998,7 +998,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/select/select.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/select/select.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -1081,7 +1081,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/select/select.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/select/select.component.ts:212</a></div>
                             </td>
                         </tr>
 
@@ -1121,7 +1121,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/select/select.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/select/select.component.ts:213</a></div>
                             </td>
                         </tr>
 
@@ -1447,7 +1447,9 @@ export class Select implements ControlValueAccessor {
 	}
 
 	set value(v) {
-		this.select.nativeElement.value &#x3D; v;
+		if (this.select) {
+			this.select.nativeElement.value &#x3D; v;
+		}
 	}
 
 	/**

@@ -774,6 +774,12 @@ export class Overridable {
 }
 
 /**
+ * An object of strings, should follow the same format as src/i18n/en.json
+ */
+export type TranslationStrings &#x3D; { [key: string]: string };
+
+
+/**
  * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
@@ -787,12 +793,44 @@ export class I18n {
 
 	protected translations &#x3D; new Map();
 
+	protected locale &#x3D; new BehaviorSubject(&quot;en&quot;);
+
+	/**
+	 * Sets the locale and optionally the translation strings. Locale is used by components that
+	 * are already locale aware (datepicker for example) while the translation strings are used
+	 * for components that are not.
+	 *
+	 * Locales set here will override locales/languages set in components
+	 * @param language an ISO 639-1 language code - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+	 * @param strings an object of strings, optional
+	 */
+	public setLocale(language: string, strings?: TranslationStrings) {
+		this.locale.next(language);
+		if (strings) {
+			this.set(strings);
+		}
+	}
+
+	/**
+	 * Returns the current locale
+	 */
+	public getLocale() {
+		return this.locale.value;
+	}
+
+	/**
+	 * Returns an observable that resolves to the current locale, and will update when changed
+	 */
+	public getLocaleObservable() {
+		return this.locale.asObservable();
+	}
+
 	/**
 	 * Set/update the translations from an object. Also notifies all participating components of the update.
 	 *
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
-	public set(strings: { [key: string]: string }) {
+	public set(strings: TranslationStrings) {
 		this.translationStrings &#x3D; merge({}, EN, strings);
 		// iterate over all our tracked translations and update each observable
 		const translations &#x3D; Array.from(this.translations);

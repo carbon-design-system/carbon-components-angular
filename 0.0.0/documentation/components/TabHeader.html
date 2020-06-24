@@ -60,6 +60,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
 
 
 <section>
@@ -100,6 +106,7 @@
 		draggable&#x3D;&quot;false&quot;
 		class&#x3D;&quot;bx--tabs__nav-link&quot;
 		href&#x3D;&quot;javascript:void(0)&quot;
+		[title]&#x3D;&quot;title&quot;
 		[attr.tabindex]&#x3D;&quot;(active? 0 : -1)&quot;
 		role&#x3D;&quot;tab&quot;&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
@@ -152,6 +159,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
                                 <a href="#selectTab">selectTab</a>
                             </li>
                         </ul>
@@ -180,6 +190,9 @@
                             </li>
                             <li>
                                 <a href="#paneTabIndex">paneTabIndex</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
                             </li>
                         </ul>
                     </td>
@@ -244,7 +257,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/tabs/tab-header.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/tabs/tab-header.component.ts:44</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -267,7 +280,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/tabs/tab-header.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/tabs/tab-header.component.ts:57</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -289,7 +302,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/tabs/tab-header.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/tabs/tab-header.component.ts:48</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -312,7 +325,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/tabs/tab-header.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/tabs/tab-header.component.ts:52</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -329,7 +342,24 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/tabs/tab-header.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/tabs/tab-header.component.ts:66</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="title"></a>
+                        <code>title</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/tabs/tab-header.component.ts:53</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -353,7 +383,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/tabs/tab-header.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/tabs/tab-header.component.ts:80</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -366,6 +396,44 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterViewInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterViewInit
+                            </b>
+                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/tabs/tab-header.component.ts:87</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -388,7 +456,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/tabs/tab-header.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/tabs/tab-header.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -438,7 +506,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/tabs/tab-header.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/tabs/tab-header.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -481,7 +549,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/tabs/tab-header.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/tabs/tab-header.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -510,7 +578,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/tabs/tab-header.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/tabs/tab-header.component.ts:72</a></div>
                                 </td>
                             </tr>
 
@@ -521,7 +589,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/tabs/tab-header.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/tabs/tab-header.component.ts:57</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -582,7 +650,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/tabs/tab-header.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/tabs/tab-header.component.ts:66</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -630,7 +698,8 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
 	Input,
 	ViewChild,
 	ElementRef,
-	Output
+	Output,
+	AfterViewInit
 } from &quot;@angular/core&quot;;
 
 import { Tab } from &quot;./tab.component&quot;;
@@ -653,6 +722,7 @@ import { EventEmitter } from &quot;@angular/core&quot;;
 				draggable&#x3D;&quot;false&quot;
 				class&#x3D;&quot;bx--tabs__nav-link&quot;
 				href&#x3D;&quot;javascript:void(0)&quot;
+				[title]&#x3D;&quot;title&quot;
 				[attr.tabindex]&#x3D;&quot;(active? 0 : -1)&quot;
 				role&#x3D;&quot;tab&quot;&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
@@ -661,7 +731,7 @@ import { EventEmitter } from &quot;@angular/core&quot;;
 	&#x60;
 })
 
-export class TabHeader {
+export class TabHeader implements AfterViewInit {
 	/**
 	 * Indicates whether the &#x60;Tab&#x60; is active/selected.
 	 * Determines whether it&#x27;s &#x60;TabPanel&#x60; is rendered.
@@ -675,6 +745,7 @@ export class TabHeader {
 	 * Reference to the corresponsing tab pane.
 	 */
 	@Input() paneReference: Tab;
+	@Input() title;
 	/**
 	 * Set to &#x27;true&#x27; to have pane reference cached and not reloaded on tab switching.
 	 */
@@ -707,6 +778,10 @@ export class TabHeader {
 	@ViewChild(&quot;tabItem&quot;, { static: false }) tabItem: ElementRef;
 
 	protected _cacheActive &#x3D; false;
+
+	ngAfterViewInit() {
+		this.title &#x3D; this.title ? this.title : this.tabItem.nativeElement.textContent;
+	}
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();
@@ -749,7 +824,7 @@ export class TabHeader {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><li	[ngClass]="{		\'bx--tabs__nav-item--selected\': active,		\'bx--tabs__nav-item--disabled\': disabled	}"	class="bx--tabs__nav-item"	role="presentation"	(click)="selectTab()">	<a		#tabItem		[attr.aria-selected]="active"		draggable="false"		class="bx--tabs__nav-link"		href="javascript:void(0)"		[attr.tabindex]="(active? 0 : -1)"		role="tab">		<ng-content></ng-content>	</a></li>	</div>'
+        var COMPONENT_TEMPLATE = '<div><li	[ngClass]="{		\'bx--tabs__nav-item--selected\': active,		\'bx--tabs__nav-item--disabled\': disabled	}"	class="bx--tabs__nav-item"	role="presentation"	(click)="selectTab()">	<a		#tabItem		[attr.aria-selected]="active"		draggable="false"		class="bx--tabs__nav-link"		href="javascript:void(0)"		[title]="title"		[attr.tabindex]="(active? 0 : -1)"		role="tab">		<ng-content></ng-content>	</a></li>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TabHeader'};

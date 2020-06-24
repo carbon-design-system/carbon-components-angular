@@ -260,32 +260,34 @@ export type CheckboxValue &#x3D; boolean | &quot;on&quot; | &quot;off&quot;;
 @Component({
 	selector: &quot;ibm-checkbox&quot;,
 	template: &#x60;
-		&lt;input
-			#inputCheckbox
-			class&#x3D;&quot;bx--checkbox&quot;
-			type&#x3D;&quot;checkbox&quot;
-			[id]&#x3D;&quot;id&quot;
-			[value]&#x3D;&quot;value&quot;
-			[name]&#x3D;&quot;name&quot;
-			[required]&#x3D;&quot;required&quot;
-			[checked]&#x3D;&quot;checked&quot;
-			[disabled]&#x3D;&quot;disabled&quot;
-			[indeterminate]&#x3D;&quot;indeterminate&quot;
-			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
-			[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
-			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-		&lt;label
-			[for]&#x3D;&quot;id&quot;
-			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
-			class&#x3D;&quot;bx--checkbox-label&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--skeleton&#x27; : skeleton
-			}&quot;&gt;
-			&lt;span [ngClass]&#x3D;&quot;{&#x27;bx--visually-hidden&#x27; : hideLabel}&quot; class&#x3D;&quot;bx--checkbox-label-text&quot;&gt;
-				&lt;ng-content&gt;&lt;/ng-content&gt;
-			&lt;/span&gt;
-		&lt;/label&gt;
+		&lt;div class&#x3D;&quot;bx--form-item bx--checkbox-wrapper&quot;&gt;
+			&lt;input
+				#inputCheckbox
+				class&#x3D;&quot;bx--checkbox&quot;
+				type&#x3D;&quot;checkbox&quot;
+				[id]&#x3D;&quot;id&quot;
+				[value]&#x3D;&quot;value&quot;
+				[name]&#x3D;&quot;name&quot;
+				[required]&#x3D;&quot;required&quot;
+				[checked]&#x3D;&quot;checked&quot;
+				[disabled]&#x3D;&quot;disabled&quot;
+				[indeterminate]&#x3D;&quot;indeterminate&quot;
+				[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
+				[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;&gt;
+			&lt;label
+				[for]&#x3D;&quot;id&quot;
+				[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+				class&#x3D;&quot;bx--checkbox-label&quot;
+				(change)&#x3D;&quot;onChange($event)&quot;
+				(click)&#x3D;&quot;onClick($event)&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--skeleton&#x27; : skeleton
+				}&quot;&gt;
+				&lt;span [ngClass]&#x3D;&quot;{&#x27;bx--visually-hidden&#x27; : hideLabel}&quot; class&#x3D;&quot;bx--checkbox-label-text&quot;&gt;
+					&lt;ng-content&gt;&lt;/ng-content&gt;
+				&lt;/span&gt;
+			&lt;/label&gt;
+		&lt;/div&gt;
 	&#x60;,
 	providers: [
 		{

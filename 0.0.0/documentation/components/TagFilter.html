@@ -92,21 +92,17 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;svg
-	(click)&#x3D;&quot;close.emit()&quot;
-	focusable&#x3D;&quot;false&quot;
-	preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;span class&#x3D;&quot;bx--tag__label&quot; [attr.title]&#x3D;&quot;title ? title : null&quot;&gt;
+	&lt;ng-content&gt;&lt;/ng-content&gt;
+&lt;/span&gt;
+&lt;button
 	class&#x3D;&quot;bx--tag__close-icon&quot;
-	style&#x3D;&quot;will-change: transform;&quot;
-	xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-	aria-label&#x3D;&quot;Clear filter&quot;
-	width&#x3D;&quot;16&quot;
-	height&#x3D;&quot;16&quot;
-	viewBox&#x3D;&quot;0 0 16 16&quot;
-	role&#x3D;&quot;img&quot;&gt;
-	&lt;path d&#x3D;&quot;M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z&quot;&gt;&lt;/path&gt;
-&lt;/svg&gt;
+	(click)&#x3D;&quot;close.emit()&quot;
+	[disabled]&#x3D;&quot;disabled&quot;
+	[title]&#x3D;&quot;closeButtonLabel&quot;&gt;
+	&lt;span class&#x3D;&quot;bx--visually-hidden&quot;&gt;{{closeButtonLabel}}&lt;/span&gt;
+	&lt;svg ibmIconClose size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+&lt;/button&gt;
 	</code></pre></td>
             </tr>
 
@@ -136,6 +132,15 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#closeButtonLabel">closeButtonLabel</a>
+                            </li>
+                            <li>
+                                <a href="#disabled">disabled</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
+                            </li>
                             <li>
                                 <a href="#class">class</a>
                             </li>
@@ -170,6 +175,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#attr.aria-label">attr.aria-label</a>
+                            </li>
+                            <li>
                                 <a href="#attr.class">attr.class</a>
                             </li>
                             <li>
@@ -187,6 +195,68 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="closeButtonLabel"></a>
+                        <code>closeButtonLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>&quot;Clear Filter&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/tag/tag-filter.component.ts:27</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="disabled"></a>
+                        <code>disabled</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/tag/tag-filter.component.ts:28</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="title"></a>
+                        <code>title</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/tag/tag-filter.component.ts:29</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -265,7 +335,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/tag/tag-filter.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/tag/tag-filter.component.ts:34</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -273,6 +343,34 @@
 </section>
     <section>
     <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.aria-label"></a>
+                        <span class="name">
+                            <b>
+                            attr.aria-label
+                            </b>
+                            <a href="#attr.aria-label"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.aria-label:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/tag/tag-filter.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -293,7 +391,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/tag/tag-filter.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/tag/tag-filter.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -347,31 +445,32 @@
 	Component,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	Input
 } from &quot;@angular/core&quot;;
 import { Tag } from &quot;./tag.component&quot;;
 
 @Component({
 	selector: &quot;ibm-tag-filter&quot;,
 	template: &#x60;
-		&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;svg
-			(click)&#x3D;&quot;close.emit()&quot;
-			focusable&#x3D;&quot;false&quot;
-			preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+		&lt;span class&#x3D;&quot;bx--tag__label&quot; [attr.title]&#x3D;&quot;title ? title : null&quot;&gt;
+			&lt;ng-content&gt;&lt;/ng-content&gt;
+		&lt;/span&gt;
+		&lt;button
 			class&#x3D;&quot;bx--tag__close-icon&quot;
-			style&#x3D;&quot;will-change: transform;&quot;
-			xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-			aria-label&#x3D;&quot;Clear filter&quot;
-			width&#x3D;&quot;16&quot;
-			height&#x3D;&quot;16&quot;
-			viewBox&#x3D;&quot;0 0 16 16&quot;
-			role&#x3D;&quot;img&quot;&gt;
-			&lt;path d&#x3D;&quot;M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
+			(click)&#x3D;&quot;close.emit()&quot;
+			[disabled]&#x3D;&quot;disabled&quot;
+			[title]&#x3D;&quot;closeButtonLabel&quot;&gt;
+			&lt;span class&#x3D;&quot;bx--visually-hidden&quot;&gt;{{closeButtonLabel}}&lt;/span&gt;
+			&lt;svg ibmIconClose size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+		&lt;/button&gt;
 	&#x60;
 })
 export class TagFilter extends Tag {
+	@Input() closeButtonLabel &#x3D; &quot;Clear Filter&quot;;
+	@Input() disabled: boolean;
+	@Input() title: string;
+
 	/**
 	 * Function for close/delete the tag
 	 */
@@ -379,6 +478,10 @@ export class TagFilter extends Tag {
 
 	@HostBinding(&quot;attr.class&quot;) get attrClass() {
 		return &#x60;bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}&#x60;;
+	}
+
+	@HostBinding(&quot;attr.aria-label&quot;) get attrAriaLabel() {
+		return &#x60;${this.title || &quot;&quot;} ${this.closeButtonLabel}&#x60;.trim();
 	}
 }
 </code></pre>
@@ -411,7 +514,7 @@ export class TagFilter extends Tag {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-content></ng-content><svg	(click)="close.emit()"	focusable="false"	preserveAspectRatio="xMidYMid meet"	class="bx--tag__close-icon"	style="will-change: transform;"	xmlns="http://www.w3.org/2000/svg"	aria-label="Clear filter"	width="16"	height="16"	viewBox="0 0 16 16"	role="img">	<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path></svg>	</div>'
+        var COMPONENT_TEMPLATE = '<div><span class="bx--tag__label" [attr.title]="title ? title : null">	<ng-content></ng-content></span><button	class="bx--tag__close-icon"	(click)="close.emit()"	[disabled]="disabled"	[title]="closeButtonLabel">	<span class="bx--visually-hidden">{{closeButtonLabel}}</span>	<svg ibmIconClose size="16"></svg></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TagFilter'};
