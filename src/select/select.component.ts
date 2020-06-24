@@ -152,7 +152,9 @@ export class Select implements ControlValueAccessor {
 	}
 
 	set value(v) {
-		this.select.nativeElement.value = v;
+		if (this.select) {
+			this.select.nativeElement.value = v;
+		}
 	}
 
 	/**
