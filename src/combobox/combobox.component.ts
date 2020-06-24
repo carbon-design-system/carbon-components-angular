@@ -194,7 +194,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Label for the combobox.
 	 */
@@ -215,6 +215,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Max length value to limit input characters
 	 */
 	@Input() maxLength: number = null;
+	/**
+	 * Specify feedback (mode) of the selection.
+	 * `top`: selected item jumps to top
+	 * `fixed`: selected item stays at its position
+	 * `top-after-reopen`: selected item jump to top after reopen dropdown
+	 */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -492,6 +499,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.propagateChangeCallback(this.view.getSelected());
+		this.checkForReorder();
 	}
 
 	public clearSelected() {
@@ -513,6 +521,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public closeDropdown() {
 		this.open = false;
+		this.checkForReorder();
 		this.close.emit();
 	}
 
@@ -548,6 +557,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.openDropdown();
 		} else {
 			this.selectedValue = "";
+			if (this.type === "multi" &&
+				(this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
+				this.view.reorderSelected();
+			}
 		}
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
@@ -600,7 +613,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const value = selected[0] ? selected[0].content : "";
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
+			this.showClearButton = !!value;
 			this.propagateChangeCallback(changeCallbackValue);
+		}
+	}
+
+	protected checkForReorder() {
+		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected(this.selectionFeedback === "top");
 		}
 	}
 }

@@ -25,7 +25,7 @@ import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { ElementService } from "../utils/element.service";
-import { I18n } from "./../i18n";
+import { I18n } from "./../i18n/index";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -72,8 +72,8 @@ import { I18n } from "./../i18n";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
-					[invalid]="invalid"
-					[invalidText]="invalidText"
+					[invalid]="rangeInvalid"
+					[invalidText]="rangeInvalidText"
 					[skeleton]="skeleton"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
@@ -153,6 +153,10 @@ export class DatePicker implements
 	@Input() invalid = false;
 
 	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() rangeInvalid = false;
+
+	@Input() rangeInvalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 
