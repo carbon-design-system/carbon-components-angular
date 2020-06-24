@@ -1,7 +1,7 @@
 dist: trusty
 language: node_js
 node_js:
-  - "10"
+  - "12"
 addons:
   chrome: stable
 before_install:
@@ -12,7 +12,10 @@ before_script:
   - "sleep 3"
   - "sudo chown root /opt/google/chrome/chrome-sandbox"
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-script: "bash ./scripts/travis.sh"
+script:
+  - npm run lint
+  - npm test
+  - travis_wait npm run ng:build
 deploy:
   provider: script
   script: "bash ./scripts/deploy.sh"
