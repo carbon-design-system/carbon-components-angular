@@ -164,7 +164,8 @@ export default {
 	"UI_SHELL": {
 		"SKIP_TO": "Skip to content",
 		"HEADER": {
-			"MENU": "Open menu"
+			"OPEN_MENU": "Open menu",
+			"CLOSE_MENU": "Close menu"
 		},
 		"SIDE_NAV": {
 			"LABEL": "Side navigation",

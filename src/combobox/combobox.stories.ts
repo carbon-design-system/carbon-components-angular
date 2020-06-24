@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { ButtonModule } from "../button/button.module";
@@ -40,7 +40,8 @@ const getOptions = (override = {}) => {
 			}
 		],
 		selected: action("selection changed"),
-		submit: action("submit")
+		submit: action("submit"),
+		size: select("size", ["sm", "md", "xl"], "md")
 	};
 
 	return Object.assign({}, options, override);
@@ -98,6 +99,7 @@ class DynamicListComboBox implements AfterViewInit {
 		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
 			<ibm-combo-box
 				formControlName="combobox"
+				[size]="size"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items">
@@ -108,6 +110,7 @@ class DynamicListComboBox implements AfterViewInit {
 				style="margin-top: 40px"
 				formControlName="multibox"
 				[label]="label"
+				[size]="size"
 				[helperText]="helperText"
 				type="multi"
 				[items]="items">
@@ -122,6 +125,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() items = [];
 	@Input() label = "";
 	@Input() helperText = "";
+	@Input() size = "md";
 
 	constructor(private fb: FormBuilder) {}
 
@@ -141,10 +145,40 @@ class ReactiveFormsCombobox implements OnInit {
 	}
 }
 
+@Component({
+	selector: "app-mock-query-search",
+	template: `
+		<ibm-combo-box
+			appendInline="true"
+			[items]="filterItems"
+			(search)="onSearch($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+})
+class MockQueryCombobox {
+	filterItems = [];
+
+	onSearch() {
+		setTimeout(() => {
+			this.filterItems = [
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` }
+			];
+		}, 1000);
+	}
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [DynamicListComboBox, ReactiveFormsCombobox],
+			declarations: [
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
+			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
@@ -156,39 +190,47 @@ storiesOf("Components|Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[size]="size"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: getOptions()
 	}))
 	.add("Dynamically added list items", () => ({
 		template: `
-			<app-dynamic-list-combobox></app-dynamic-list-combobox>
+			<div style="width: 300px">
+				<app-dynamic-list-combobox></app-dynamic-list-combobox>
+			</div>
 		`
 	}))
 	.add("Basic with max length", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="selected($event)"
-				(submit)="submit($event)"
-				[maxLength]="maxLength">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[size]="size"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="selected($event)"
+					(submit)="submit($event)"
+					[maxLength]="maxLength">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: {
 			...getOptions(),
@@ -197,17 +239,20 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With dynamic search", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="onSelected()"
-				(search)="onSearch($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[size]="size"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="onSelected()"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -247,21 +292,24 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With template", () => ({
 		template: `
-			<ibm-combo-box
-				[disabled]="disabled"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				(selected)="onSelected()"
-				(search)="onSearch($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[size]="size"
+					[helperText]="helperText"
+					[items]="items"
+					(selected)="onSelected()"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
 
-			<ng-template #invalidText>
-				<div class="bx--form-requirement">This is a template</div>
-			</ng-template>
+				<ng-template #invalidText>
+					<div class="bx--form-requirement">This is a template</div>
+				</ng-template>
+			</div>
 		`,
 		props: getOptions({
 			onSelected: function() {
@@ -282,76 +330,101 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				type="multi"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[size]="size"
+					[helperText]="helperText"
+					[items]="items"
+					[selectionFeedback]="selectionFeedback"
+					type="multi"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
-		props: getOptions()
+		props: {
+			...getOptions(),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("With reactive forms", () => ({
 		template: `
-			<app-reactive-combobox
-				[items]="items"
-				[label]="label"
-				[helperText]="helperText">
-			</app-reactive-combobox>
+			<div style="width: 300px">
+				<app-reactive-combobox
+					[items]="items"
+					[size]="size"
+					[label]="label"
+					[helperText]="helperText">
+				</app-reactive-combobox>
+			</div>
 		`,
 		props: getOptions()
 	}))
 	.add("With submit", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				type="multi"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[helperText]="helperText"
+					[items]="items"
+					[selectionFeedback]="selectionFeedback"
+					[size]="size"
+					type="multi"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+			</div>
 		`,
-		props: getOptions({
-			submit: function(event) {
-				// so the action still shows up in the "actions" panel
-				action("submit")(event);
-				if (event.value.content) {
-					this.items = [
-						...event.items,
-						Object.assign({}, event.value, { selected: true })
-					];
+		props: {
+			...getOptions({
+				submit: function(event) {
+					// so the action still shows up in the "actions" panel
+					action("submit")(event);
+					if (event.value.content) {
+						this.items = [
+							...event.items,
+							Object.assign({}, event.value, { selected: true })
+						];
+					}
 				}
-			}
-		})
+			}),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("With ngModel", () => ({
 		template: `
-			<ibm-combo-box
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[label]="label"
-				[helperText]="helperText"
-				[items]="items"
-				[(ngModel)]="model"
-				(selected)="selected($event)"
-				(submit)="submit($event)">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+			<div style="width: 300px">
+				<ibm-combo-box
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[label]="label"
+					[size]="size"
+					[helperText]="helperText"
+					[items]="items"
+					[(ngModel)]="model"
+					(selected)="selected($event)"
+					(submit)="submit($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
 
-			<p>model: {{model | json}}</p>
+				<p>model: {{model | json}}</p>
+			</div>
 		`,
 		props: getOptions({
 			model:  { "content": "three", "selected": true }
 		})
+	}))
+	.add("Mock query search", () => ({
+		template: `
+			<app-mock-query-search></app-mock-query-search>
+		`
 	}))
 	.add("Documentation", () => ({
 		template: `

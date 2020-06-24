@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	OnDestroy
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -48,7 +49,7 @@ import { FileItem } from "./file-item.interface";
 		</span>
 	`
 })
-export class FileComponent {
+export class FileComponent implements OnDestroy {
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
@@ -67,4 +68,8 @@ export class FileComponent {
 	}
 
 	constructor(protected i18n: I18n) {}
+
+	ngOnDestroy() {
+		this.remove.emit();
+	}
 }

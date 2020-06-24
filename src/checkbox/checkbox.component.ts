@@ -50,32 +50,34 @@ export type CheckboxValue = boolean | "on" | "off";
 @Component({
 	selector: "ibm-checkbox",
 	template: `
-		<input
-			#inputCheckbox
-			class="bx--checkbox"
-			type="checkbox"
-			[id]="id"
-			[value]="value"
-			[name]="name"
-			[required]="required"
-			[checked]="checked"
-			[disabled]="disabled"
-			[indeterminate]="indeterminate"
-			[attr.aria-labelledby]="ariaLabelledby"
-			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
-			(change)="onChange($event)"
-			(click)="onClick($event)">
-		<label
-			[for]="id"
-			[attr.aria-label]="ariaLabel"
-			class="bx--checkbox-label"
-			[ngClass]="{
-				'bx--skeleton' : skeleton
-			}">
-			<span [ngClass]="{'bx--visually-hidden' : hideLabel}" class="bx--checkbox-label-text">
-				<ng-content></ng-content>
-			</span>
-		</label>
+		<div class="bx--form-item bx--checkbox-wrapper">
+			<input
+				#inputCheckbox
+				class="bx--checkbox"
+				type="checkbox"
+				[id]="id"
+				[value]="value"
+				[name]="name"
+				[required]="required"
+				[checked]="checked"
+				[disabled]="disabled"
+				[indeterminate]="indeterminate"
+				[attr.aria-labelledby]="ariaLabelledby"
+				[attr.aria-checked]="(indeterminate ? 'mixed' : checked)">
+			<label
+				[for]="id"
+				[attr.aria-label]="ariaLabel"
+				class="bx--checkbox-label"
+				(change)="onChange($event)"
+				(click)="onClick($event)"
+				[ngClass]="{
+					'bx--skeleton' : skeleton
+				}">
+				<span [ngClass]="{'bx--visually-hidden' : hideLabel}" class="bx--checkbox-label-text">
+					<ng-content></ng-content>
+				</span>
+			</label>
+		</div>
 	`,
 	providers: [
 		{

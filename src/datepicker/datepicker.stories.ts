@@ -215,6 +215,8 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[rangeInvalid]="invalid"
+			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
 			[value]="value"
 			(valueChange)="valueChange($event)">

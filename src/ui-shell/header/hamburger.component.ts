@@ -17,8 +17,12 @@ import { I18n } from "carbon-components-angular/i18n";
 			(click)="doClick()"
 			[ngClass]="{'bx--header__action--active': active}"
 			class="bx--header__menu-trigger bx--header__action bx--header__menu-toggle"
-			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
-			[attr.title]="i18n.get('UI_SHELL.HEADER.MENU') | async">
+			[attr.aria-label]="active
+				? (i18n.get('UI_SHELL.HEADER.CLOSE_MENU') | async)
+				: (i18n.get('UI_SHELL.HEADER.OPEN_MENU') | async)"
+			[attr.title]="active
+				? (i18n.get('UI_SHELL.HEADER.CLOSE_MENU') | async)
+				: (i18n.get('UI_SHELL.HEADER.OPEN_MENU') | async)">
 			<svg *ngIf="!active" ibmIconMenu size="20"></svg>
 			<svg *ngIf="active" ibmIconClose size="20"></svg>
 		</button>
