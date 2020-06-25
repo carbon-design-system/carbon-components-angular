@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
-@Directive()
+@Directive({ selector: "[ibmAbstractDropdownView]" })
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.

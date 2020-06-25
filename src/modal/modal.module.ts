@@ -18,6 +18,7 @@ import { ModalContent } from "./modal-content.directive";
 import { ModalContentText } from "./modal-content-text.directive";
 import { ModalHeaderHeading } from "./modal-header-heading.directive";
 import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { BaseModal } from "./base-modal.class";
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { ModalHeaderLabel } from "./modal-header-label.directive";
 		ModalContent,
 		ModalContentText,
 		ModalHeaderHeading,
-		ModalHeaderLabel
+		ModalHeaderLabel,
+		BaseModal
 	],
 	exports: [
 		AlertModal,
@@ -39,7 +41,8 @@ import { ModalHeaderLabel } from "./modal-header-label.directive";
 		ModalContent,
 		ModalContentText,
 		ModalHeaderHeading,
-		ModalHeaderLabel
+		ModalHeaderLabel,
+		BaseModal
 	],
 	entryComponents: [
 		AlertModal,

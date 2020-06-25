@@ -5,7 +5,7 @@ import { Output, EventEmitter, Input, Directive } from "@angular/core";
  *
  * `ModalService` depends on the `close` event to correctly clean up the component.
  */
-@Directive()
+@Directive({ selector: "[ibmBaseModal]" })
 export class BaseModal {
 	/**
 	 * Base event emitter to propagate close events

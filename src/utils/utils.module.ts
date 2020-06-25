@@ -43,11 +43,3 @@ export const ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER = {
 	]
 })
 export class UtilsModule { }
-
-export {
-	AnimationFrameService,
-	AnimationFrameServiceSingleton,
-	ElementService,
-	DocumentService,
-	EventService
-};
