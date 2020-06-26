@@ -1,2 +1,2 @@
-export * from "./button.directive";
-export * from "./button.module";
+export { Button, ButtonSize, ButtonType } from "./button.directive";
+export { ButtonModule } from "./button.module";

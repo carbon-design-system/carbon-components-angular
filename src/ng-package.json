@@ -6,7 +6,6 @@
 	},
 	"whitelistedNonPeerDependencies": [
 		"@carbon/utils-position",
-		"flatpickr",
-		"@angular/animations"
+		"flatpickr"
 	]
 }

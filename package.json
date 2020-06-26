@@ -77,7 +77,7 @@
     "@angular/platform-browser-dynamic": "7.2.16",
     "@angular/router": "7.2.16",
     "@babel/core": "7.4.3",
-    "@carbon/icons-angular": "11.0.0",
+    "@carbon/icons-angular": "11.0.1",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@compodoc/compodoc": "1.1.7",
