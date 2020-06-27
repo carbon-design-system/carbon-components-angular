@@ -23,9 +23,9 @@
 		],
 		"paths": {
 			"carbon-components-angular/*": [
-				"./src/index"
+				"./src/*/index"
 			]
-		},
+		}
 	},
 	"exclude": [
 		"**/*.stories.ts",

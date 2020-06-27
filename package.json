@@ -12,7 +12,7 @@
     "lint:fix": "tslint --fix 'src/**/*.ts' && stylelint 'src/**/*.scss' --config .stylelintrc.yml",
     "test": "ng test --no-watch",
     "test:watch": "ng test --watch",
-    "build-storybook": "exit 0; build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
+    "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
     "ng": "ng",
