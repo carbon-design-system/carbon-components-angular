@@ -8,15 +8,15 @@
     "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc -p tsconfig.json",
     "docs:server": "compodoc -p tsconfig.json -s -w",
-    "lint": "tslint 'src/**/*.ts' && stylelint 'src/**/*.scss' --config .stylelintrc.yml",
-    "lint:fix": "tslint --fix 'src/**/*.ts' && stylelint 'src/**/*.scss' --config .stylelintrc.yml",
+    "lint": "tslint 'src/**/*.ts'",
+    "lint:fix": "tslint --fix 'src/**/*.ts'",
     "test": "ng test --no-watch",
     "test:watch": "ng test --watch",
     "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
     "ng": "ng",
-    "ng:build": "node --max_old_space_size=10096 ./node_modules/@angular/cli/bin/ng build"
+    "ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build"
   },
   "husky": {
     "hooks": {

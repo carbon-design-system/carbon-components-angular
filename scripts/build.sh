@@ -7,12 +7,12 @@ rm -rf dist
 cd src
 
 # run the angular/ng-packagr build
-ng build
+npm run ng:build
 
 # # move/generate/update meta files into dist
-# gulp buildMeta
+gulp buildMeta
 
 # # generate ALL the documentation
-# mkdir dist/docs
-# npm run build-storybook
-# npm run docs:build && mv documentation dist/docs/
+mkdir dist/docs
+npm run build-storybook
+npm run docs:build && mv documentation dist/docs/
