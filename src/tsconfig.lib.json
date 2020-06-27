@@ -2,8 +2,5 @@
   "extends": "./../tsconfig.json",
   "compilerOptions": {
 	  "rootDir": "."
-  },
-  "angularCompilerOptions": {
-    "enableIvy": false
   }
 }
