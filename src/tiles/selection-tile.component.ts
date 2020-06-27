@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	ViewChild,
-	HostListener
+	HostListener,
+	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -39,7 +40,7 @@ import { I18n } from "carbon-components-angular/i18n";
 		</label>
 	`
 })
-export class SelectionTile {
+export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
 	/**
 	 * The unique id for the input.
@@ -50,13 +51,16 @@ export class SelectionTile {
 	 * Set to `true` if this tile should be selected.
 	 */
 	@Input() set selected(value: boolean) {
-		if (!this.input) { return; }
-		this.input.nativeElement.checked = value ? true : null;
+		// If an initial selected value is set before input exists, we save
+		// the value and check again when input exists in `AfterViewInit`.
+		this._selected = value ? true : null;
+		if (this.input) {
+			this.input.nativeElement.checked = this._selected;
+		}
 	}
 
 	get selected() {
-		if (!this.input) { return; }
-		return this.input.nativeElement.checked;
+		return this.input ? this.input.nativeElement.checked : false;
 	}
 	/**
 	 * The value for the tile. Returned via `ngModel` or `selected` event on the containing `TileGroup`.
@@ -81,8 +85,20 @@ export class SelectionTile {
 	// @ts-ignore
 	@ViewChild("input", { static: true }) input;
 
+	// If an initial selected value is set before input exists, we save
+	// the value and check again when input exists in `AfterViewInit`.
+	protected _selected = null;
+
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;
+	}
+
+	ngAfterViewInit() {
+		if (this.input) {
+			setTimeout(() => {
+				this.input.nativeElement.checked = this._selected;
+			});
+		}
 	}
 
 	@HostListener("keydown", ["$event"])

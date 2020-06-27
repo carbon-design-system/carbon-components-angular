@@ -62,8 +62,11 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 	</div>
 	<div
 		[id]="id"
-		class="bx--dropdown bx--list-box"
+		class="bx--list-box"
 		[ngClass]="{
+			'bx--dropdown': type !== 'multi',
+			'bx--multiselect': type === 'multi',
+			'bx--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--light': theme === 'light',
 			'bx--list-box--inline': inline,
@@ -73,22 +76,21 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'bx--list-box--up': dropUp,
 			'bx--list-box--expanded': !menuIsClosed
 		}">
-		<div
-			type="button"
+		<button
 			#dropdownButton
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
+			aria-haspopup="listbox"
 			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[attr.disabled]="disabled ? true : null"
-			[tabindex]="disabled ? -1 : 0">
+			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
 				(keydown.enter)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="bx--tag--filter bx--list-box__selection--multi"
+				class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"
 				tabindex="0"
 				[title]="clearText">
 				{{getSelectedCount()}}
@@ -123,7 +125,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
 			</ibm-icon-chevron-down>
-		</div>
+		</button>
 		<div
 			#dropdownMenu
 			[ngClass]="{

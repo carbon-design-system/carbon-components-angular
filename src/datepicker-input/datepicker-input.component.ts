@@ -32,6 +32,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						autocomplete="off"
 						type="text"
 						class="bx--date-picker__input"
+						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
 						[pattern]="pattern"
 						[placeholder]="placeholder"
