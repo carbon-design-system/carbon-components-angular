@@ -193,8 +193,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -249,8 +248,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -293,8 +291,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
