@@ -51,6 +51,15 @@ import { Subject } from "rxjs";
 			lowContrast: lowContrast,
 			actions: actions}">
 		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'error',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions,
+			links: links}">
+		</ibm-notification>
 		`,
 	providers: [NotificationService]
 })
@@ -66,6 +75,17 @@ class NotificationActionStory implements OnInit {
 		{
 			text: "Action",
 			click: this.actionSubject
+		}
+	];
+
+	links = [
+		{
+			href: "https://ibm.com",
+			text: "Link"
+		},
+		{
+			href: "https://ibm.com",
+			text: "Link"
 		}
 	];
 
@@ -225,10 +245,29 @@ storiesOf("Components|Notification", module)
 				lowContrast: lowContrast,
 				showClose: showClose
 			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'error',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				showClose: showClose,
+				links: links
+			}"></ibm-toast>
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
+			lowContrast: boolean("Low Contrast", false),
+			links: [
+				{
+					href: "https://ibm.com",
+					text: "Link"
+				},
+				{
+					href: "https://ibm.com",
+					text: "Link"
+				}
+			]
 		}
 	}))
 	.add("With custom content", () => ({
