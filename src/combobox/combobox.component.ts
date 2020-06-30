@@ -95,7 +95,7 @@ import { Observable } from "rxjs";
 				</div>
 				<input
 					#input
-					type="text"
+					role="combobox"
 					[disabled]="disabled"
 					(input)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
