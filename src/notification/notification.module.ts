@@ -20,6 +20,7 @@ import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18nModule } from "./../i18n/index";
 import { ExperimentalModule } from "./../experimental.module";
+import { LinkModule } from "./../link/index";
 
 @NgModule({
 	declarations: [
@@ -50,7 +51,8 @@ import { ExperimentalModule } from "./../experimental.module";
 		ErrorFilledModule,
 		CheckmarkFilledModule,
 		WarningFilledModule,
-		InformationFilledModule
+		InformationFilledModule,
+		LinkModule
 	],
 	providers: [NotificationService, NotificationDisplayService]
 })
