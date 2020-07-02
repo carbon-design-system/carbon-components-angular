@@ -20,6 +20,7 @@ import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { LinkModule } from "carbon-components-angular/link";
 
 @NgModule({
 	declarations: [
@@ -50,7 +51,8 @@ import { ExperimentalModule } from "carbon-components-angular/experimental";
 		ErrorFilledModule,
 		CheckmarkFilledModule,
 		WarningFilledModule,
-		InformationFilledModule
+		InformationFilledModule,
+		LinkModule
 	],
 	providers: [NotificationService, NotificationDisplayService]
 })

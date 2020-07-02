@@ -51,6 +51,7 @@ import { Observable } from "rxjs";
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
+				'bx--list-box--light': theme === 'light',
 				'bx--list-box--expanded': open,
 				'bx--list-box--sm': size === 'sm',
 				'bx--list-box--xl': size === 'xl',
@@ -94,6 +95,8 @@ import { Observable } from "rxjs";
 				</div>
 				<input
 					#input
+					type="text"
+					role="combobox"
 					[disabled]="disabled"
 					(input)="onSearch($event.target.value)"
 					(keydown.enter)="onSubmit($event)"
@@ -215,6 +218,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Max length value to limit input characters
 	 */
 	@Input() maxLength: number = null;
+	/**
+	 * `light` or `dark` dropdown theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * Specify feedback (mode) of the selection.
 	 * `top`: selected item jumps to top

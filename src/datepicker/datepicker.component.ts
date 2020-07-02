@@ -207,10 +207,10 @@ export class DatePicker implements
 			if (this.range && this.flatpickrInstance) {
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
-				// Range needs both dates to properly set the selected dates on the calendar.
-				if (inputValue && rangeInputValue) {
+				if (inputValue || rangeInputValue) {
 					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
 					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
 		},
@@ -505,7 +505,7 @@ export class DatePicker implements
 		// In range mode, if a date is selected from the first calendar that is from the previous month,
 		// the month will not be updated on the calendar until the calendar is re-opened.
 		// This will make sure the calendar is updated with the correct month.
-		if (this.range) {
+		if (this.range && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 			this.flatpickrInstance.changeMonth(currentMonth, false);
 		}

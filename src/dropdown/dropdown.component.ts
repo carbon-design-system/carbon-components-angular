@@ -380,6 +380,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		} else if (this.appendInline === null) {
 			this.appendInline = true;
 		}
+		this.checkForReorder();
 	}
 
 	/**
@@ -429,6 +430,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.view.propagateSelected(value);
 				}
 			}
+			this.checkForReorder();
 		});
 	}
 
