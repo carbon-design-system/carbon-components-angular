@@ -47,7 +47,12 @@ import { I18n } from "./../i18n/index";
 		</svg>
 		<div class="bx--toast-notification__details">
 			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
-			<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
+			<div *ngIf="!notificationObj.template" ibmToastSubtitle>
+				<span [innerHTML]="notificationObj.subtitle"></span>
+				<ng-container *ngFor="let link of notificationObj.links">
+					<a ibmLink [href]="link.href"> {{link.text}}</a>
+				</ng-container>
+			</div>
 			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>

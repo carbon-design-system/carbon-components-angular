@@ -87,7 +87,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector(".bx--inline-notification__text-wrapper").querySelectorAll("p")[1];
+		let p = fixture.nativeElement.querySelector(".bx--inline-notification__text-wrapper div span");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});

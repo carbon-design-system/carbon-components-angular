@@ -2,8 +2,6 @@ import {
 	Component,
 	Input,
 	Output,
-	ViewChild,
-	ElementRef,
 	HostListener,
 	EventEmitter,
 	TemplateRef
@@ -51,8 +49,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</div>
 				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 					<select
-						#select
 						[attr.id]="id"
+						[value]="value"
 						[disabled]="disabled"
 						(change)="onChange($event)"
 						class="bx--select-input">
@@ -144,18 +142,15 @@ export class Select implements ControlValueAccessor {
 
 	@Output() valueChange = new EventEmitter();
 
-	// @ts-ignore
-	@ViewChild("select", { static: true }) select: ElementRef;
-
 	get value() {
-		return this.select.nativeElement.value;
+		return this._value;
 	}
 
 	set value(v) {
-		if (this.select) {
-			this.select.nativeElement.value = v;
-		}
+		this._value = v;
 	}
+
+	protected _value = "";
 
 	/**
 	 * Receives a value from the model.
