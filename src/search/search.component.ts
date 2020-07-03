@@ -42,11 +42,11 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() set size(value: "sm" | "xl") {
+	@Input() set size(value: "sm" | "xl" | "lg") {
 		this._size = value;
 	}
 
-	get size(): "sm" | "xl" {
+	get size(): "sm" | "xl" | "lg" {
 		return this._size;
 	}
 	/**
@@ -115,7 +115,7 @@ export class Search implements ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
-	protected _size: "sm" | "xl" = "xl";
+	protected _size: "sm" | "xl" | "lg" = "xl";
 
 	/**
 	 * Creates an instance of `Search`.
