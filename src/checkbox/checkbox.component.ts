@@ -55,7 +55,7 @@ export type CheckboxValue = boolean | "on" | "off";
 				#inputCheckbox
 				class="bx--checkbox"
 				type="checkbox"
-				[id]="id"
+				[id]="id + '_input'"
 				[value]="value"
 				[name]="name"
 				[required]="required"
@@ -67,7 +67,7 @@ export type CheckboxValue = boolean | "on" | "off";
 				(change)="onChange($event)"
 				(click)="onClick($event)">
 			<label
-				[for]="id"
+				[for]="id + '_input'"
 				[attr.aria-label]="ariaLabel"
 				class="bx--checkbox-label"
 				[ngClass]="{
