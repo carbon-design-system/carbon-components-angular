@@ -31,7 +31,8 @@ const getOptions = (override = {}) => {
 				content: "one"
 			},
 			{
-				content: "two"
+				content: "two",
+				selected: true
 			},
 			{
 				content: "three"
