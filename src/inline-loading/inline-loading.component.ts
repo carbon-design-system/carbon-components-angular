@@ -42,20 +42,16 @@ export enum InlineLoadingState {
 			</div>
 			<svg
 				*ngIf="state === InlineLoadingState.Finished"
-				class="bx--inline-loading__checkmark-container bx--inline-loading__svg"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 10 10">
-				<polyline class="bx--inline-loading__checkmark" points="0.74 3.4 3.67 6.34 9.24 0.74"></polyline>
+				ibmIconCheckmarkFilled
+				size="16"
+				class="bx--inline-loading__checkmark-container">
 			</svg>
 			<svg
 				*ngIf="state === InlineLoadingState.Error"
-				class="bx--inline-loading--error"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 16 16">
-				<path d="M8,1C4.1,1,1,4.1,1,8s3.1,7,7,7s7-3.1,7-7S11.9,1,8,1z M10.7,11.5L4.5,5.3l0.8-0.8l6.2,6.2L10.7,11.5z"></path>
-				<path fill="none" d="M10.7,11.5L4.5,5.3l0.8-0.8l6.2,6.2L10.7,11.5z" data-icon-path="inner-path" opacity="0"></path>
+				ibmIconErrorFilled
+				size="16"
+				class="bx--inline-loading--error">
 			</svg>
-
 		</div>
 		<p
 			*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"
