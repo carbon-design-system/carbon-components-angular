@@ -32,6 +32,10 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						autocomplete="off"
 						type="text"
 						class="bx--date-picker__input"
+						[ngClass]="{
+							'bx--date-picker__input--sm': size === 'sm',
+							'bx--date-picker__input--xl': size === 'xl'
+						}"
 						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
 						[pattern]="pattern"
@@ -88,6 +92,8 @@ export class DatePickerInput {
 	@Input() skeleton = false;
 
 	@Input() value = "";
+
+	@Input() size: "sm" | "md" | "xl" = "md";
 
 	// @ts-ignore
 	@ViewChild("input", { static: false }) input: ElementRef;
