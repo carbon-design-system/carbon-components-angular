@@ -11,15 +11,17 @@ import {
 	AfterViewInit,
 	AfterContentInit,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	OnDestroy
 } from "@angular/core";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "../utils/index";
+import { DocumentService, hasScrollableParents } from "../utils/index";
 import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
+import { DropdownService } from "../dropdown/dropdown.service";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -129,10 +131,8 @@ import { Observable } from "rxjs";
 					[ariaLabel]="open ? closeMenuAria : openMenuAria">
 				</ibm-icon-chevron-down>
 			</div>
-			<div
-				#dropdownMenu
-				*ngIf="open">
-				<ng-content></ng-content>
+			<div #dropdownMenu>
+				<ng-content *ngIf="open"></ng-content>
 			</div>
 		</div>
 		<div *ngIf="invalid">
@@ -148,36 +148,7 @@ import { Observable } from "rxjs";
 		}
 	]
 })
-export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
-	static comboBoxCount = 0;
-	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
-	/**
-	 * List of items to fill the content with.
-	 *
-	 * **Example:**
-	 * ```javascript
-	 * items = [
-	 *		{
-	 *			content: "Abacus",
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: "Byte",
-	 *			selected: false,
-	 *		},
-	 *		{
-	 *			content: "Computer",
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: "Digital",
-	 *			selected: false
-	 *		}
-	 * ];
-	 * ```
-	 *
-	 */
-	@Input() items: Array<ListItem> = [];
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -188,47 +159,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get placeholder() {
 		return this._placeholder.value;
 	}
-	/**
-	 * Combo box type (supporting single or multi selection of items).
-	 */
-	@Input() type: "single" | "multi" = "single";
-	/**
-	 * Combo box render size.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
-	/**
-	 * Label for the combobox.
-	 */
-	@Input() label: string | TemplateRef<any>;
-	/**
-	 * Sets the optional helper text.
-	 */
-	@Input() helperText: string | TemplateRef<any>;
-	/**
-	 * Set to `true` for invalid state.
-	 */
-	@Input() invalid = false;
-	/**
-	 * Value displayed if dropdown is in invalid state.
-	 */
-	@Input() invalidText: string | TemplateRef<any>;
-	/**
-	 * Max length value to limit input characters
-	 */
-	@Input() maxLength: number = null;
-	/**
-	 * `light` or `dark` dropdown theme
-	 */
-	@Input() theme: "light" | "dark" = "dark";
-	/**
-	 * Specify feedback (mode) of the selection.
-	 * `top`: selected item jumps to top
-	 * `fixed`: selected item stays at its position
-	 * `top-after-reopen`: selected item jump to top after reopen dropdown
-	 */
-	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -289,6 +219,80 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get clearSelectionAria() {
 		return this._clearSelectionAria.value;
 	}
+	static comboBoxCount = 0;
+	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
+	/**
+	 * List of items to fill the content with.
+	 *
+	 * **Example:**
+	 * ```javascript
+	 * items = [
+	 *		{
+	 *			content: "Abacus",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Byte",
+	 *			selected: false,
+	 *		},
+	 *		{
+	 *			content: "Computer",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Digital",
+	 *			selected: false
+	 *		}
+	 * ];
+	 * ```
+	 *
+	 */
+	@Input() items: Array<ListItem> = [];
+	/**
+	 * Combo box type (supporting single or multi selection of items).
+	 */
+	@Input() type: "single" | "multi" = "single";
+	/**
+	 * Combo box render size.
+	 *
+	 * @deprecated since v4
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
+	/**
+	 * Label for the combobox.
+	 */
+	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * set to `true` to place the dropdown view inline with the component
+	 */
+	@Input() appendInline: boolean = null;
+	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number = null;
+	/**
+	 * `light` or `dark` dropdown theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * Specify feedback (mode) of the selection.
+	 * `top`: selected item jumps to top
+	 * `fixed`: selected item stays at its position
+	 * `top-after-reopen`: selected item jump to top after reopen dropdown
+	 */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -355,6 +359,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** used to update the displayValue */
 	public selectedValue = "";
 
+	keyboardNav = this._keyboardNav.bind(this);
+
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
@@ -373,6 +379,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	constructor(
 		protected elementRef: ElementRef,
 		protected documentService: DocumentService,
+		protected dropdownService: DropdownService,
 		protected i18n: I18n
 	) {}
 
@@ -442,6 +449,25 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 			}
 		});
+		// if appendInline is default valued (null) we should:
+		// 1. if there are scrollable parents (not including body) don't append inline
+		//    this should also cover the case where the dropdown is in a modal
+		//    (where we _do_ want to append to the placeholder)
+		if (this.appendInline === null && hasScrollableParents(this.elementRef.nativeElement)) {
+			this.appendInline = false;
+		// 2. otherwise we should append inline
+		} else if (this.appendInline === null) {
+			this.appendInline = true;
+		}
+	}
+
+	/**
+	 * Removing the `Dropdown` from the body if it is appended to the body.
+	 */
+	ngOnDestroy() {
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
 	}
 
 	/**
@@ -530,6 +556,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.open = false;
 		this.checkForReorder();
 		this.close.emit();
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
 	}
 
 	/**
@@ -538,6 +567,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public openDropdown() {
 		if (this.disabled) { return; }
 		this.open = true;
+		if (!this.appendInline) {
+			this._appendToBody();
+		}
 	}
 
 	/**
@@ -610,6 +642,46 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
+	 */
+	_keyboardNav(event: KeyboardEvent) {
+		// "Esc" is an IE specific value
+		if ((event.key === "Escape" || event.key === "Esc") && this.open) {
+			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
+		if (event.key === "Escape" || event.key === "Esc") {
+			event.preventDefault();
+			this.closeDropdown();
+			this.input.nativeElement.focus();
+		} else if (this.open && event.key === "Tab") {
+			// this way focus will start on the next focusable item from the dropdown
+			// not the top of the body!
+			this.input.nativeElement.focus();
+			this.input.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.closeDropdown();
+		}
+	}
+
+	/**
+	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
+	 */
+	_appendToBody() {
+		this.dropdownService.appendToBody(
+			this.input.nativeElement,
+			this.dropdownMenu.nativeElement,
+			`${this.elementRef.nativeElement.className}${this.open ? " bx--list-box--expanded" : ""}`);
+		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
+	}
+
+	/**
+	 * Creates the `Dropdown` list appending it to the dropdown parent object instead of the body.
+	 */
+	_appendToDropdown() {
+		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
+		this.dropdownMenu.nativeElement.removeEventListener("keydown", this.keyboardNav, true);
 	}
 
 	protected updateSelected() {

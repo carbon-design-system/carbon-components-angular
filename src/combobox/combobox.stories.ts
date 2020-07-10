@@ -17,6 +17,8 @@ import {
 	Input,
 	AfterViewInit
 } from "@angular/core";
+import { ModalModule } from "../modal";
+import { PlaceholderModule } from "../placeholder";
 
 const getOptions = (override = {}) => {
 	const options = {
@@ -174,19 +176,44 @@ class MockQueryCombobox {
 	}
 }
 
+@Component({
+	selector: "app-combobox-modal",
+	template: `
+        <ibm-modal [open]="true">
+            <ibm-modal-header>Header label</ibm-modal-header>
+            <section class="bx--modal-content">
+                <h1>Sample modal works.</h1>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+                <ibm-combo-box [items]="items">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+            </section>
+		</ibm-modal>
+		<ibm-placeholder></ibm-placeholder>
+    `
+})
+class ComboBoxModal {
+	@Input() modalText: string;
+	@Input() items: any;
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
 				DynamicListComboBox,
 				ReactiveFormsCombobox,
-				MockQueryCombobox
+				MockQueryCombobox,
+				ComboBoxModal
 			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
 				ReactiveFormsModule,
-				DocumentationModule
+				DocumentationModule,
+				ModalModule,
+				PlaceholderModule
 			]
 		})
 	)
@@ -417,6 +444,12 @@ storiesOf("Components|Combobox", module)
 		template: `
 			<app-mock-query-search></app-mock-query-search>
 		`
+	}))
+	.add("In modal", () => ({
+		template: `<app-combobox-modal [modalText]="modalText" [items]="items"></app-combobox-modal>`,
+		props: getOptions({
+			modalText: text("modal text", "Hello")
+		})
 	}))
 	.add("Documentation", () => ({
 		template: `
