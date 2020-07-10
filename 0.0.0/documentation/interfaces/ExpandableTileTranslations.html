@@ -218,6 +218,7 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	tileMaxHeight &#x3D; 0;
+	currentExpandedHeight &#x3D; 0;
 	element &#x3D; this.elementRef.nativeElement;
 
 	expand &#x3D; this.i18n.getOverridable(&quot;TILES.EXPAND&quot;);
@@ -233,7 +234,11 @@ export class ExpandableTile implements AfterContentInit {
 		const tile &#x3D; this.element.querySelector(&quot;.bx--tile&quot;);
 		const tilePadding
 			&#x3D; parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
-		return this.tileMaxHeight + tilePadding;
+		const expandedHeight &#x3D; this.tileMaxHeight + tilePadding;
+		if (!isNaN(expandedHeight)) {
+			this.currentExpandedHeight &#x3D; expandedHeight;
+		}
+		return this.currentExpandedHeight;
 	}
 
 	updateMaxHeight() {

@@ -104,7 +104,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/notification/notification-content.interface.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/notification/notification-content.interface.ts:28</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -192,6 +192,7 @@ export interface NotificationContent {
 	lowContrast?: boolean;
 	template?: TemplateRef&lt;any&gt;;
 	actions?: NotificationAction[];
+	links?: NotificationLink[];
 }
 
 export interface ToastContent extends NotificationContent {
@@ -200,10 +201,15 @@ export interface ToastContent extends NotificationContent {
 	template?: TemplateRef&lt;any&gt;;
 }
 
-interface NotificationAction {
+export interface NotificationAction {
 	text: string;
 	click: Subject&lt;{event: Event, action: any}&gt; | ((event: {event: Event, action: any}) &#x3D;&gt; any);
 	[x: string]: any;
+}
+
+export interface NotificationLink {
+	text: string;
+	href: string;
 }
 </code></pre>
     </div>

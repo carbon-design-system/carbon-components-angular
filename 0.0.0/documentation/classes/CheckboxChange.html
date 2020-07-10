@@ -265,7 +265,7 @@ export type CheckboxValue &#x3D; boolean | &quot;on&quot; | &quot;off&quot;;
 				#inputCheckbox
 				class&#x3D;&quot;bx--checkbox&quot;
 				type&#x3D;&quot;checkbox&quot;
-				[id]&#x3D;&quot;id&quot;
+				[id]&#x3D;&quot;id + &#x27;_input&#x27;&quot;
 				[value]&#x3D;&quot;value&quot;
 				[name]&#x3D;&quot;name&quot;
 				[required]&#x3D;&quot;required&quot;
@@ -273,13 +273,13 @@ export type CheckboxValue &#x3D; boolean | &quot;on&quot; | &quot;off&quot;;
 				[disabled]&#x3D;&quot;disabled&quot;
 				[indeterminate]&#x3D;&quot;indeterminate&quot;
 				[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
-				[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;&gt;
+				[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
+				(change)&#x3D;&quot;onChange($event)&quot;
+				(click)&#x3D;&quot;onClick($event)&quot;&gt;
 			&lt;label
-				[for]&#x3D;&quot;id&quot;
+				[for]&#x3D;&quot;id + &#x27;_input&#x27;&quot;
 				[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 				class&#x3D;&quot;bx--checkbox-label&quot;
-				(change)&#x3D;&quot;onChange($event)&quot;
-				(click)&#x3D;&quot;onClick($event)&quot;
 				[ngClass]&#x3D;&quot;{
 					&#x27;bx--skeleton&#x27; : skeleton
 				}&quot;&gt;
