@@ -179,7 +179,7 @@ class MockQueryCombobox {
 @Component({
 	selector: "app-combobox-modal",
 	template: `
-        <ibm-modal [open]="true">
+        <ibm-modal [open]="true" [hasScrollingContent]="false">
             <ibm-modal-header>Header label</ibm-modal-header>
             <section class="bx--modal-content">
                 <h1>Sample modal works.</h1>
@@ -187,7 +187,6 @@ class MockQueryCombobox {
                 <ibm-combo-box [items]="items">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
-                <p class="bx--modal-content__text">{{modalText}}</p>
             </section>
 		</ibm-modal>
 		<ibm-placeholder></ibm-placeholder>

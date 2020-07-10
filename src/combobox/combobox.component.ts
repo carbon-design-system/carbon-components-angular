@@ -21,7 +21,7 @@ import { filter } from "rxjs/operators";
 import { DocumentService, hasScrollableParents } from "../utils/index";
 import { I18n, Overridable } from "../i18n/index";
 import { Observable } from "rxjs";
-import { DropdownService } from "../dropdown/dropdown.service";
+import { DropdownService } from "../dropdown/index";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
