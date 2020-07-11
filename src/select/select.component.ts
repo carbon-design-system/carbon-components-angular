@@ -30,16 +30,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
+			<ng-template [ngIf]="skeleton">
+				<div *ngIf="label" class="bx--label bx--skeleton"></div>
+				<div class="bx--select bx--skeleton"></div>
+			</ng-template>
 			<div
+				*ngIf="!skeleton"
+				class="bx--select"
 				[ngClass]="{
 					'bx--select--inline': display === 'inline',
-					'bx--select--light': theme === 'light',
-					'bx--skeleton': skeleton
-				}"
-				class="bx--select"
-				style="width: 100%">
-				<label *ngIf="skeleton && label" [for]="id" class="bx--label bx--skeleton"></label>
-				<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+					'bx--select--light': theme === 'light'
+				}">
+				<label *ngIf="label" [for]="id" class="bx--label">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
@@ -58,12 +60,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</select>
 					<ibm-icon-warning-filled
 						size="16"
-						*ngIf="!skeleton && invalid"
+						*ngIf="invalid"
 						class="bx--select__invalid-icon"
 						style="display: inherit;">
 					</ibm-icon-warning-filled>
 					<svg
-						*ngIf="!skeleton"
 						focusable="false"
 						preserveAspectRatio="xMidYMid meet"
 						style="will-change: transform;"
