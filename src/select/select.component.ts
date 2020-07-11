@@ -112,16 +112,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	]
 })
 export class Select implements ControlValueAccessor {
-
-	get value() {
-		return this._value;
-	}
-
-	set value(v) {
-		console.log(">> TESTING >> setting value", v);
-		this._value = v;
-	}
-
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -172,6 +162,9 @@ export class Select implements ControlValueAccessor {
 	}
 
 	set value(v) {
+		this._value = v;
+	}
+
 	protected _value = "";
 
 	/**
