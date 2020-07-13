@@ -3,14 +3,23 @@ import {
 	Component,
 	HostBinding,
 	Input,
-	OnInit
+	OnInit,
+	AfterViewInit
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-table-toolbar-search",
-	templateUrl: "../../search/search.component.html"
+	templateUrl: "../../search/search.component.html",
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: TableToolbarSearch,
+			multi: true
+		}
+	]
 })
-export class TableToolbarSearch extends Search implements OnInit {
+export class TableToolbarSearch extends Search implements OnInit, AfterViewInit {
 	tableSearch = true;
 
 	@HostBinding("class.bx--toolbar-search-container-expandable") @Input() expandable = false;
@@ -26,5 +35,13 @@ export class TableToolbarSearch extends Search implements OnInit {
 		if (this.expandable) {
 			this.toolbar = true;
 		}
+	}
+
+	ngAfterViewInit() {
+		setTimeout(() => {
+			if (this.value) {
+				this.openSearch();
+			}
+		});
 	}
 }
