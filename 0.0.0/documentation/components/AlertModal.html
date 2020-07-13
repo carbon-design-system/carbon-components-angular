@@ -65,15 +65,15 @@
         <p>Component to create standard modals for presenting content or asking for user&#39;s input.
 It can show as a passive modal showing only text or show as a transactional modal with
 multiple buttons for different actions for the user to choose from.</p>
-<p>Using a modal in your application requires <code>ibm-modal-placeholder</code> which would generally be
+<p>Using a modal in your application requires <code>ibm-placeholder</code> which would generally be
 placed near the end of your app component template (app.component.ts or app.component.html) as:</p>
-<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;
  *</code></pre></div><p>Example of opening the modal:</p>
 <div><pre class="line-numbers"><code class="language-typescript"> * \&#64;Component({
  *  selector: &quot;app-modal-demo&quot;,
  *  template: `
    &lt;button class=&quot;btn--primary&quot; (click)=&quot;openModal()&quot;&gt;Open modal&lt;/button&gt;
-   &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;`
+   &lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;`
  * })
  * export class ModalDemo {
  *     openModal() {
@@ -1132,11 +1132,11 @@ import { BaseModal } from &quot;./base-modal.class&quot;;
  * It can show as a passive modal showing only text or show as a transactional modal with
  * multiple buttons for different actions for the user to choose from.
  *
- * Using a modal in your application requires &#x60;ibm-modal-placeholder&#x60; which would generally be
+ * Using a modal in your application requires &#x60;ibm-placeholder&#x60; which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * &#x60;&#x60;&#x60;html
- * &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;
+ * &lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;
  * &#x60;&#x60;&#x60;
  *
  * Example of opening the modal:
@@ -1146,7 +1146,7 @@ import { BaseModal } from &quot;./base-modal.class&quot;;
  *  selector: &quot;app-modal-demo&quot;,
  *  template: &#x60;
  *   &lt;button class&#x3D;&quot;btn--primary&quot; (click)&#x3D;&quot;openModal()&quot;&gt;Open modal&lt;/button&gt;
- *   &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;&#x60;
+ *   &lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;&#x60;
  * })
  * export class ModalDemo {
  * 	openModal() {
