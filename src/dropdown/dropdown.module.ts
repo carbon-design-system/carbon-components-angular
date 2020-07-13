@@ -9,7 +9,7 @@ import { ScrollableList } from "./scrollable-list.directive";
 import { I18nModule } from "./../i18n/index";
 import { PlaceholderModule } from "./../placeholder/index";
 import { DropdownService } from "./dropdown.service";
-import { ChevronDownModule, WarningFilledModule } from "@carbon/icons-angular";
+import { ChevronDownModule, WarningFilledModule, CheckmarkModule } from "@carbon/icons-angular";
 import { UtilsModule } from "./../utils/utils.module";
 
 @NgModule({
@@ -25,6 +25,7 @@ import { UtilsModule } from "./../utils/utils.module";
 	],
 	imports: [
 		CommonModule,
+		CheckmarkModule,
 		FormsModule,
 		I18nModule,
 		PlaceholderModule,
