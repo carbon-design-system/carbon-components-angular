@@ -166,6 +166,7 @@ storiesOf("Components|Date Picker", module)
 			<p>With initial value</p>
 			<ibm-date-picker
 				[label]="label"
+				id="initial-value-datepicker"
 				[placeholder]="placeholder"
 				[language]="language"
 				[theme]="theme"
@@ -209,6 +210,7 @@ storiesOf("Components|Date Picker", module)
 			[label]="label"
 			[rangeLabel]="label"
 			range="true"
+			id="initial-value-datepicker"
 			[placeholder]="placeholder"
 			[language]="language"
 			[theme]="theme"
