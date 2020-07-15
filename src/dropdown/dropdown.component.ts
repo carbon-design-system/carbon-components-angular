@@ -78,6 +78,7 @@ import { hasScrollableParents } from "../utils";
 		}">
 		<button
 			#dropdownButton
+			type="button"
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
