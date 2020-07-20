@@ -42,6 +42,7 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
+
 	@Input() set size(value: "sm" | "md" | "xl") {
 		this._size = value;
 	}
