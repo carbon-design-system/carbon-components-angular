@@ -51,6 +51,7 @@ import { I18n } from "./../i18n/index";
 					[placeholder]="placeholder"
 					[pattern]="pattern"
 					[id]="id"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
@@ -69,6 +70,7 @@ import { I18n } from "./../i18n/index";
 					[placeholder]="placeholder"
 					[pattern]="pattern"
 					[id]="id + '-rangeInput'"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
@@ -153,6 +155,8 @@ export class DatePicker implements
 	@Input() invalid = false;
 
 	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() size: "sm" | "md" | "xl" = "md";
 
 	@Input() rangeInvalid = false;
 
