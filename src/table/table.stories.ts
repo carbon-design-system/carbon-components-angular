@@ -188,7 +188,11 @@ storiesOf("Components|Table", module).addDecorator(
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
-					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
+					<ibm-table-toolbar-search
+						ngDefaultControl
+						[expandable]="true"
+						[(ngModel)]="searchModel">
+					</ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action" [tabindex]="toolbar.selected ? -1 : 0">
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
@@ -213,6 +217,7 @@ storiesOf("Components|Table", module).addDecorator(
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
+			searchModel: text("Search model", "Initial search value"),
 			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
