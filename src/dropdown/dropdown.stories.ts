@@ -29,6 +29,7 @@ import { DropdownModule } from "./dropdown.module";
 
 const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
+	size: select("Size", ["sm", "md", "xl"], "md"),
 	invalidText: "This is not a validation text",
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
@@ -125,6 +126,7 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[theme]="theme"
@@ -144,6 +146,7 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[selectionFeedback]="selectionFeedback"
@@ -168,6 +171,7 @@ storiesOf("Components|Dropdown", module)
 				type="multi"
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[selectionFeedback]="selectionFeedback"
@@ -197,6 +201,7 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				placeholder="Select"
@@ -217,6 +222,7 @@ storiesOf("Components|Dropdown", module)
 			<app-reactive-forms
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
@@ -245,6 +251,7 @@ storiesOf("Components|Dropdown", module)
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[size]="size"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -270,6 +277,7 @@ storiesOf("Components|Dropdown", module)
 				[theme]="theme"
 				placeholder="Select"
 				[displayValue]="dropdownRenderer"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
