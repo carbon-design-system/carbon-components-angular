@@ -26,8 +26,8 @@ import { ExperimentalService } from "./../experimental.service";
 			<button
 				type="button"
 				class="bx--modal-close"
-				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
+				<span class="bx--assistive-text">{{ closeLabel }}</span>
 				<svg ibmIconClose size="20" class="bx--modal-close__icon"></svg>
 			</button>
 		</header>
