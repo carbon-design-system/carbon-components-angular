@@ -65,10 +65,12 @@ export interface PaginationTranslations {
 			</label>
 			<div class="bx--select bx--select--inline"
 				[ngClass]="{
-					'bx--select__item-count': isExperimental
+					'bx--select__item-count': isExperimental,
+					'bx--select--disabled': pageInputDisabled
 				}">
 				<select
 					[id]="itemsPerPageSelectId"
+					[disabled]="pageInputDisabled"
 					[(ngModel)]="itemsPerPage"
 					class="bx--select-input">
 					<option
@@ -106,10 +108,10 @@ export interface PaginationTranslations {
 				'bx--pagination--inline': !isExperimental
 			}">
 			<div
-				*ngIf="!pageInputDisabled"
 				class="bx--select bx--select--inline"
 				[ngClass]="{
-					'bx--select__page-number' : isExperimental
+					'bx--select__page-number' : isExperimental,
+					'bx--select--disabled': pageInputDisabled
 				}">
 				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
 				<input
@@ -124,6 +126,7 @@ export interface PaginationTranslations {
 				<select
 					*ngIf="pageOptions.length <= pageSelectThreshold"
 					[id]="currentPageSelectId"
+					[disabled]="pageInputDisabled"
 					class="bx--select-input"
 					[(ngModel)]="currentPage">
 					<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
@@ -137,10 +140,10 @@ export interface PaginationTranslations {
 				</svg>
 			</div>
 
-			<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text">
 				{{pageText.subject | async}} {{currentPage}}
 			</span>
 			<button
