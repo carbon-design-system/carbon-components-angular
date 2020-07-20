@@ -14,6 +14,8 @@ import { DropdownList } from "./../dropdown/list/dropdown-list.component";
 import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
 import { UtilsModule } from "../utils";
+import { DropdownService } from "./../dropdown/index";
+import { PlaceholderModule } from "./../placeholder/index";
 
 
 @Component({
@@ -51,8 +53,10 @@ describe("Combo box", () => {
 				CloseModule,
 				I18nModule,
 				FormsModule,
-				UtilsModule
-			]
+				UtilsModule,
+				PlaceholderModule
+			],
+			providers: [ DropdownService ]
 		});
 	});
 
