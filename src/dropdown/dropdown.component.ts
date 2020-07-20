@@ -74,6 +74,8 @@ import { hasScrollableParents } from "../utils";
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
 			'bx--list-box--up': dropUp,
+			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
+			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
 		}">
 		<button
@@ -175,7 +177,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
