@@ -20,7 +20,18 @@ export class TextInput {
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
+	/**
+	 * Input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
+
 	@HostBinding("class.bx--text-input") inputClass = true;
+	@HostBinding("class.bx--text-input--xl") get isSizeXl() {
+		return this.size === "xl";
+	}
+	@HostBinding("class.bx--text-input--sm") get isSizeSm() {
+		return this.size === "sm";
+	}
 	@HostBinding("class.bx--text-input--invalid") @Input() invalid = false;
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--text-input--light") get isLightTheme() {

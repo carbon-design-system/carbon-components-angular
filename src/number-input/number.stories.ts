@@ -20,11 +20,13 @@ storiesOf("Components|Number", module).addDecorator(
 				[max]="max"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[size]="size"
 				[disabled]="disabled">
 			</ibm-number>
 		`,
 		props: {
 			label: text("label", "Number Input Label"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
@@ -41,6 +43,7 @@ storiesOf("Components|Number", module).addDecorator(
 				[helperText]="[helperText]"
 				[theme]="theme"
 				[min]="min"
+				[size]="size"
 				[max]="max"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
@@ -52,6 +55,7 @@ storiesOf("Components|Number", module).addDecorator(
 		props: {
 			value: 0,
 			label: text("label", "Number Input Label"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
