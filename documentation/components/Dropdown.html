@@ -208,8 +208,9 @@ contained within a scrolling container it will try to open in the body, or an <c
 		&lt;ng-content *ngIf&#x3D;&quot;!menuIsClosed&quot;&gt;&lt;/ng-content&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
-	{{invalidText}}
+&lt;div *ngIf&#x3D;&quot;invalid&quot;&gt;
+	&lt;div *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;{{ invalidText }}&lt;/div&gt;
+	&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
 &lt;/div&gt;
 </code></pre></td>
             </tr>
@@ -541,7 +542,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/dropdown/dropdown.component.ts:306</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/dropdown/dropdown.component.ts:307</a></div>
                             </td>
                         </tr>
 
@@ -652,7 +653,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/dropdown/dropdown.component.ts:214</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/dropdown/dropdown.component.ts:215</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -678,7 +679,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/dropdown/dropdown.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/dropdown/dropdown.component.ts:172</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -700,7 +701,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/dropdown/dropdown.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/dropdown/dropdown.component.ts:203</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -722,7 +723,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/dropdown/dropdown.component.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/dropdown/dropdown.component.ts:191</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -748,7 +749,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/dropdown/dropdown.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/dropdown/dropdown.component.ts:168</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -771,7 +772,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/dropdown/dropdown.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/dropdown/dropdown.component.ts:160</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -791,7 +792,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/dropdown/dropdown.component.ts:151</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/dropdown/dropdown.component.ts:152</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -813,7 +814,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/dropdown/dropdown.component.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/dropdown/dropdown.component.ts:199</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -835,7 +836,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dropdown/dropdown.component.ts:206</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/dropdown/dropdown.component.ts:207</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -850,14 +851,15 @@ contained within a scrolling container it will try to open in the body, or an <c
                     <td class="col-md-10">
                         <div><p>Value displayed if dropdown is in invalid state.</p>
 </div>
-                        <p>
-                            <em>Default value : </em><code>&quot;&quot;</code>
-                        </p>
+                            <p>
+                            <em>Type :</em>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/dropdown/dropdown.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/dropdown/dropdown.component.ts:211</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -880,7 +882,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/dropdown/dropdown.component.ts:236</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/dropdown/dropdown.component.ts:237</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -903,7 +905,7 @@ contained within a scrolling container it will try to open in the body, or an <c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/dropdown/dropdown.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/dropdown/dropdown.component.ts:156</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -926,7 +928,7 @@ Defaults to the <code>DROPDOWN.OPEN</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/dropdown/dropdown.component.ts:248</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/dropdown/dropdown.component.ts:249</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -948,7 +950,7 @@ Defaults to the <code>DROPDOWN.OPEN</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/dropdown/dropdown.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/dropdown/dropdown.component.ts:164</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -972,7 +974,7 @@ Used to trigger closing the dropdown if it scrolls outside of the viewport of th
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/dropdown/dropdown.component.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/dropdown/dropdown.component.ts:220</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -995,7 +997,7 @@ Defaults to the <code>DROPDOWN.SELECTED</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/dropdown/dropdown.component.ts:253</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/dropdown/dropdown.component.ts:254</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1024,7 +1026,7 @@ Defaults to the <code>DROPDOWN.SELECTED</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/dropdown/dropdown.component.ts:243</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/dropdown/dropdown.component.ts:244</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1050,7 +1052,7 @@ Defaults to the <code>DROPDOWN.SELECTED</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/dropdown/dropdown.component.ts:177</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/dropdown/dropdown.component.ts:178</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1072,7 +1074,7 @@ Defaults to the <code>DROPDOWN.SELECTED</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/dropdown/dropdown.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/dropdown/dropdown.component.ts:195</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1098,7 +1100,7 @@ Defaults to the <code>DROPDOWN.SELECTED</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/dropdown/dropdown.component.ts:186</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/dropdown/dropdown.component.ts:187</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1125,7 +1127,7 @@ item selection.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/dropdown/dropdown.component.ts:182</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/dropdown/dropdown.component.ts:183</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1149,7 +1151,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/dropdown/dropdown.component.ts:225</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/dropdown/dropdown.component.ts:226</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1173,7 +1175,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/dropdown/dropdown.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/dropdown/dropdown.component.ts:266</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1194,7 +1196,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/dropdown/dropdown.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/dropdown/dropdown.component.ts:262</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1215,7 +1217,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/dropdown/dropdown.component.ts:257</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/dropdown/dropdown.component.ts:258</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1248,7 +1250,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/dropdown/dropdown.component.ts:283</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/dropdown/dropdown.component.ts:284</a></div>
                             </td>
                         </tr>
 
@@ -1285,7 +1287,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="473" class="link-to-prism">src/dropdown/dropdown.component.ts:473</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="474" class="link-to-prism">src/dropdown/dropdown.component.ts:474</a></div>
                             </td>
                         </tr>
 
@@ -1328,7 +1330,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="632" class="link-to-prism">src/dropdown/dropdown.component.ts:632</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="633" class="link-to-prism">src/dropdown/dropdown.component.ts:633</a></div>
                             </td>
                         </tr>
 
@@ -1368,7 +1370,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="624" class="link-to-prism">src/dropdown/dropdown.component.ts:624</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="625" class="link-to-prism">src/dropdown/dropdown.component.ts:625</a></div>
                             </td>
                         </tr>
 
@@ -1408,7 +1410,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="603" class="link-to-prism">src/dropdown/dropdown.component.ts:603</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="604" class="link-to-prism">src/dropdown/dropdown.component.ts:604</a></div>
                             </td>
                         </tr>
 
@@ -1479,7 +1481,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="583" class="link-to-prism">src/dropdown/dropdown.component.ts:583</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/dropdown/dropdown.component.ts:584</a></div>
                             </td>
                         </tr>
 
@@ -1517,7 +1519,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="587" class="link-to-prism">src/dropdown/dropdown.component.ts:587</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="588" class="link-to-prism">src/dropdown/dropdown.component.ts:588</a></div>
                             </td>
                         </tr>
 
@@ -1584,7 +1586,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="595" class="link-to-prism">src/dropdown/dropdown.component.ts:595</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="596" class="link-to-prism">src/dropdown/dropdown.component.ts:596</a></div>
                             </td>
                         </tr>
 
@@ -1651,7 +1653,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="737" class="link-to-prism">src/dropdown/dropdown.component.ts:737</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="738" class="link-to-prism">src/dropdown/dropdown.component.ts:738</a></div>
                             </td>
                         </tr>
 
@@ -1691,7 +1693,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="566" class="link-to-prism">src/dropdown/dropdown.component.ts:566</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="567" class="link-to-prism">src/dropdown/dropdown.component.ts:567</a></div>
                             </td>
                         </tr>
 
@@ -1729,7 +1731,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="505" class="link-to-prism">src/dropdown/dropdown.component.ts:505</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/dropdown/dropdown.component.ts:506</a></div>
                             </td>
                         </tr>
 
@@ -1794,7 +1796,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="692" class="link-to-prism">src/dropdown/dropdown.component.ts:692</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="693" class="link-to-prism">src/dropdown/dropdown.component.ts:693</a></div>
                             </td>
                         </tr>
 
@@ -1834,7 +1836,7 @@ Specifies the property to be used as the return value to <code>ngModel</code></p
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/dropdown/dropdown.component.ts:525</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="526" class="link-to-prism">src/dropdown/dropdown.component.ts:526</a></div>
                             </td>
                         </tr>
 
@@ -1876,7 +1878,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="546" class="link-to-prism">src/dropdown/dropdown.component.ts:546</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="547" class="link-to-prism">src/dropdown/dropdown.component.ts:547</a></div>
                             </td>
                         </tr>
 
@@ -1914,7 +1916,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="560" class="link-to-prism">src/dropdown/dropdown.component.ts:560</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="561" class="link-to-prism">src/dropdown/dropdown.component.ts:561</a></div>
                             </td>
                         </tr>
 
@@ -1952,7 +1954,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="542" class="link-to-prism">src/dropdown/dropdown.component.ts:542</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="543" class="link-to-prism">src/dropdown/dropdown.component.ts:543</a></div>
                             </td>
                         </tr>
 
@@ -1992,7 +1994,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="730" class="link-to-prism">src/dropdown/dropdown.component.ts:730</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="731" class="link-to-prism">src/dropdown/dropdown.component.ts:731</a></div>
                             </td>
                         </tr>
 
@@ -2057,7 +2059,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/dropdown/dropdown.component.ts:331</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/dropdown/dropdown.component.ts:332</a></div>
                             </td>
                         </tr>
 
@@ -2097,7 +2099,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/dropdown/dropdown.component.ts:372</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="373" class="link-to-prism">src/dropdown/dropdown.component.ts:373</a></div>
                             </td>
                         </tr>
 
@@ -2135,7 +2137,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="389" class="link-to-prism">src/dropdown/dropdown.component.ts:389</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/dropdown/dropdown.component.ts:390</a></div>
                             </td>
                         </tr>
 
@@ -2175,7 +2177,7 @@ otherwise the placeholder will be returned.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/dropdown/dropdown.component.ts:322</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/dropdown/dropdown.component.ts:323</a></div>
                             </td>
                         </tr>
 
@@ -2216,7 +2218,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="437" class="link-to-prism">src/dropdown/dropdown.component.ts:437</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="438" class="link-to-prism">src/dropdown/dropdown.component.ts:438</a></div>
                             </td>
                         </tr>
 
@@ -2254,7 +2256,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="643" class="link-to-prism">src/dropdown/dropdown.component.ts:643</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="644" class="link-to-prism">src/dropdown/dropdown.component.ts:644</a></div>
                             </td>
                         </tr>
 
@@ -2294,7 +2296,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="441" class="link-to-prism">src/dropdown/dropdown.component.ts:441</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/dropdown/dropdown.component.ts:442</a></div>
                             </td>
                         </tr>
 
@@ -2363,7 +2365,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="448" class="link-to-prism">src/dropdown/dropdown.component.ts:448</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="449" class="link-to-prism">src/dropdown/dropdown.component.ts:449</a></div>
                             </td>
                         </tr>
 
@@ -2434,7 +2436,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/dropdown/dropdown.component.ts:464</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="465" class="link-to-prism">src/dropdown/dropdown.component.ts:465</a></div>
                             </td>
                         </tr>
 
@@ -2511,7 +2513,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="722" class="link-to-prism">src/dropdown/dropdown.component.ts:722</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="723" class="link-to-prism">src/dropdown/dropdown.component.ts:723</a></div>
                             </td>
                         </tr>
 
@@ -2551,7 +2553,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="578" class="link-to-prism">src/dropdown/dropdown.component.ts:578</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="579" class="link-to-prism">src/dropdown/dropdown.component.ts:579</a></div>
                             </td>
                         </tr>
 
@@ -2591,7 +2593,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/dropdown/dropdown.component.ts:398</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="399" class="link-to-prism">src/dropdown/dropdown.component.ts:399</a></div>
                             </td>
                         </tr>
 
@@ -2677,7 +2679,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/dropdown/dropdown.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/dropdown/dropdown.component.ts:277</a></div>
                             </td>
                         </tr>
 
@@ -2723,7 +2725,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/dropdown/dropdown.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/dropdown/dropdown.component.ts:151</a></div>
                             </td>
                         </tr>
 
@@ -2760,7 +2762,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/dropdown/dropdown.component.ts:281</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/dropdown/dropdown.component.ts:282</a></div>
                             </td>
                         </tr>
 
@@ -2799,7 +2801,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/dropdown/dropdown.component.ts:292</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/dropdown/dropdown.component.ts:293</a></div>
                             </td>
                         </tr>
 
@@ -2838,7 +2840,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/dropdown/dropdown.component.ts:299</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/dropdown/dropdown.component.ts:300</a></div>
                             </td>
                         </tr>
 
@@ -2871,7 +2873,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/dropdown/dropdown.component.ts:287</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/dropdown/dropdown.component.ts:288</a></div>
                             </td>
                         </tr>
 
@@ -2910,7 +2912,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/dropdown/dropdown.component.ts:296</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/dropdown/dropdown.component.ts:297</a></div>
                             </td>
                         </tr>
 
@@ -2950,7 +2952,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/dropdown/dropdown.component.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/dropdown/dropdown.component.ts:304</a></div>
                             </td>
                         </tr>
 
@@ -2983,7 +2985,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/dropdown/dropdown.component.ts:297</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/dropdown/dropdown.component.ts:298</a></div>
                             </td>
                         </tr>
 
@@ -3016,7 +3018,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/dropdown/dropdown.component.ts:298</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/dropdown/dropdown.component.ts:299</a></div>
                             </td>
                         </tr>
 
@@ -3049,7 +3051,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="455" class="link-to-prism">src/dropdown/dropdown.component.ts:455</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="456" class="link-to-prism">src/dropdown/dropdown.component.ts:456</a></div>
                             </td>
                         </tr>
 
@@ -3098,7 +3100,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dropdown/dropdown.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/dropdown/dropdown.component.ts:272</a></div>
                             </td>
                         </tr>
 
@@ -3138,7 +3140,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/dropdown/dropdown.component.ts:301</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/dropdown/dropdown.component.ts:302</a></div>
                             </td>
                         </tr>
 
@@ -3178,7 +3180,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/dropdown/dropdown.component.ts:306</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/dropdown/dropdown.component.ts:307</a></div>
                             </td>
                         </tr>
 
@@ -3207,7 +3209,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/dropdown/dropdown.component.ts:230</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/dropdown/dropdown.component.ts:231</a></div>
                                 </td>
                             </tr>
 
@@ -3218,7 +3220,7 @@ The <code>type</code> property specifies whether the <code>Dropdown</code> allow
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/dropdown/dropdown.component.ts:225</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/dropdown/dropdown.component.ts:226</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3404,8 +3406,9 @@ import { hasScrollableParents } from &quot;../utils&quot;;
 			&lt;ng-content *ngIf&#x3D;&quot;!menuIsClosed&quot;&gt;&lt;/ng-content&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-	&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
-		{{invalidText}}
+	&lt;div *ngIf&#x3D;&quot;invalid&quot;&gt;
+		&lt;div *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;{{ invalidText }}&lt;/div&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
 	&lt;/div&gt;
 	&#x60;,
 	providers: [
@@ -3477,7 +3480,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
-	@Input() invalidText &#x3D; &quot;&quot;;
+	@Input() invalidText: string | TemplateRef&lt;any&gt;;
 	/**
 	 * set to &#x60;true&#x60; to place the dropdown view inline with the component
 	 */
@@ -4046,7 +4049,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div *ngIf="helperText" class="bx--form__helper-text">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	[id]="id"	class="bx--list-box"	[ngClass]="{		\'bx--dropdown\': type !== \'multi\',		\'bx--multiselect\': type === \'multi\',		\'bx--multi-select--selected\': type === \'multi\' && getSelectedCount() > 0,		\'bx--dropdown--light\': theme === \'light\',		\'bx--list-box--light\': theme === \'light\',		\'bx--list-box--inline\': inline,		\'bx--skeleton\': skeleton,		\'bx--dropdown--disabled bx--list-box--disabled\': disabled,		\'bx--dropdown--invalid\': invalid,		\'bx--list-box--up\': dropUp,		\'bx--list-box--expanded\': !menuIsClosed	}">	<button		#dropdownButton		class="bx--list-box__field"		[ngClass]="{\'a\': !menuIsClosed}"		[attr.aria-expanded]="!menuIsClosed"		[attr.aria-disabled]="disabled"		aria-haspopup="listbox"		(click)="disabled ? $event.stopPropagation() : toggleMenu()"		(blur)="onBlur()"		[attr.disabled]="disabled ? true : null">		<div			(click)="clearSelected()"			(keydown.enter)="clearSelected()"			*ngIf="type === \'multi\' && getSelectedCount() > 0"			class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"			tabindex="0"			[title]="clearText">			{{getSelectedCount()}}			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				role="img"				xmlns="http://www.w3.org/2000/svg"				width="16"				height="16"				viewBox="0 0 16 16"				aria-hidden="true">				<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>			</svg>		</div>		<span *ngIf="isRenderString()" class="bx--list-box__label">{{getDisplayStringValue() | async}}</span>		<ng-template			*ngIf="!isRenderString()"			[ngTemplateOutletContext]="getRenderTemplateContext()"			[ngTemplateOutlet]="displayValue">		</ng-template>		<svg ibmIconWarningFilled			size="16"			*ngIf="invalid"			class="bx--dropdown__invalid-icon">		</svg>		<ibm-icon-chevron-down			size="16"			*ngIf="!skeleton"			class="bx--list-box__menu-icon"			[attr.aria-label]="menuButtonLabel"			[ngClass]="{\'bx--list-box__menu-icon--open\': !menuIsClosed }">		</ibm-icon-chevron-down>	</button>	<div		#dropdownMenu		[ngClass]="{			\'drop-up\': dropUp		}">		<ng-content *ngIf="!menuIsClosed"></ng-content>	</div></div><div *ngIf="invalid" class="bx--form-requirement">	{{invalidText}}</div></div>'
+        var COMPONENT_TEMPLATE = '<div><label *ngIf="label" class="bx--label">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div *ngIf="helperText" class="bx--form__helper-text">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	[id]="id"	class="bx--list-box"	[ngClass]="{		\'bx--dropdown\': type !== \'multi\',		\'bx--multiselect\': type === \'multi\',		\'bx--multi-select--selected\': type === \'multi\' && getSelectedCount() > 0,		\'bx--dropdown--light\': theme === \'light\',		\'bx--list-box--light\': theme === \'light\',		\'bx--list-box--inline\': inline,		\'bx--skeleton\': skeleton,		\'bx--dropdown--disabled bx--list-box--disabled\': disabled,		\'bx--dropdown--invalid\': invalid,		\'bx--list-box--up\': dropUp,		\'bx--list-box--expanded\': !menuIsClosed	}">	<button		#dropdownButton		class="bx--list-box__field"		[ngClass]="{\'a\': !menuIsClosed}"		[attr.aria-expanded]="!menuIsClosed"		[attr.aria-disabled]="disabled"		aria-haspopup="listbox"		(click)="disabled ? $event.stopPropagation() : toggleMenu()"		(blur)="onBlur()"		[attr.disabled]="disabled ? true : null">		<div			(click)="clearSelected()"			(keydown.enter)="clearSelected()"			*ngIf="type === \'multi\' && getSelectedCount() > 0"			class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"			tabindex="0"			[title]="clearText">			{{getSelectedCount()}}			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				role="img"				xmlns="http://www.w3.org/2000/svg"				width="16"				height="16"				viewBox="0 0 16 16"				aria-hidden="true">				<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>			</svg>		</div>		<span *ngIf="isRenderString()" class="bx--list-box__label">{{getDisplayStringValue() | async}}</span>		<ng-template			*ngIf="!isRenderString()"			[ngTemplateOutletContext]="getRenderTemplateContext()"			[ngTemplateOutlet]="displayValue">		</ng-template>		<svg ibmIconWarningFilled			size="16"			*ngIf="invalid"			class="bx--dropdown__invalid-icon">		</svg>		<ibm-icon-chevron-down			size="16"			*ngIf="!skeleton"			class="bx--list-box__menu-icon"			[attr.aria-label]="menuButtonLabel"			[ngClass]="{\'bx--list-box__menu-icon--open\': !menuIsClosed }">		</ibm-icon-chevron-down>	</button>	<div		#dropdownMenu		[ngClass]="{			\'drop-up\': dropUp		}">		<ng-content *ngIf="!menuIsClosed"></ng-content>	</div></div><div *ngIf="invalid">	<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>	<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Dropdown'};
