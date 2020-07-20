@@ -85,7 +85,9 @@ export class TabHeader implements AfterViewInit {
 	protected _cacheActive = false;
 
 	ngAfterViewInit() {
-		this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
+		setTimeout(() => {
+			this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
+		});
 	}
 
 	selectTab() {
