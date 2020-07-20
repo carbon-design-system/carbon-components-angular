@@ -134,8 +134,9 @@ import { hasScrollableParents } from "../utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
-		{{invalidText}}
+	<div *ngIf="invalid">
+		<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 	</div>
 	`,
 	providers: [
@@ -207,7 +208,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
-	@Input() invalidText = "";
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
