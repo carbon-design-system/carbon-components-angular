@@ -505,7 +505,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
-		this.propagateChangeCallback(this.view.getSelected());
 		this.checkForReorder();
 	}
 
@@ -520,7 +519,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.updatePills();
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
-		this.selected.emit(this.view.getSelected() as any);
+		const selected = this.view.getSelected();
+		this.propagateChangeCallback(selected);
+		this.selected.emit(selected as any);
 	}
 
 	/**
@@ -621,7 +622,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const changeCallbackValue = selected[0] ? selected[0] : "";
 			this.selectedValue = value;
 			this.showClearButton = !!value;
-			this.propagateChangeCallback(changeCallbackValue);
 		}
 	}
 
