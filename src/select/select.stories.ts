@@ -65,6 +65,7 @@ storiesOf("Components|Select", module).addDecorator(
 		template: `
 			<ibm-select
 				[disabled]="disabled"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[label]="label"
@@ -85,6 +86,7 @@ storiesOf("Components|Select", module).addDecorator(
 	`,
 		props: {
 			disabled: boolean("Disabled", false),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Please select an option."),
 			label: text("Label text", "Select Label"),
@@ -96,7 +98,7 @@ storiesOf("Components|Select", module).addDecorator(
 	.add("With ngModel", () => ({
 		template: `
 			<div style="width: 165px">
-				<ibm-select [(ngModel)]="model">
+				<ibm-select [(ngModel)]="model" [size]="size">
 					<option value="default" disabled selected hidden>Choose an option</option>
 					<option value="option1">Option 1</option>
 					<option value="option2">Option 2</option>
@@ -107,6 +109,7 @@ storiesOf("Components|Select", module).addDecorator(
 			</div>
 		`,
 		props: {
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			model: "default"
 		}
 	}))

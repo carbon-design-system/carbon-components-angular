@@ -53,7 +53,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						[value]="value"
 						[disabled]="disabled"
 						(change)="onChange($event)"
-						class="bx--select-input">
+						class="bx--select-input"
+						[ngClass]="{
+							'bx--select-input--xl': size === 'xl',
+							'bx--select-input--sm': size === 'sm'
+						}">
 						<ng-content></ng-content>
 					</select>
 					<ibm-icon-warning-filled
@@ -122,6 +126,10 @@ export class Select implements ControlValueAccessor {
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
+	/**
+	 * Number input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Set to true to disable component.
 	 */
