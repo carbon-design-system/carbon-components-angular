@@ -199,8 +199,8 @@ export class Select implements ControlValueAccessor {
 	/**
 	 * Listens for the host blurring, and notifies the model
 	 */
-	@HostListener("blur")
-	blur() {
+	@HostListener("focusout")
+	focusOut() {
 		this.onTouchedHandler();
 	}
 
