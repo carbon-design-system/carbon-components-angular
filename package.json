@@ -15,7 +15,8 @@
 		"build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
 		"semantic-release": "semantic-release",
 		"commit": "git-cz",
-		"ng": "ng"
+		"ng": "ng",
+		"ng:build": "ng build"
 	},
 	"husky": {
 		"hooks": {
