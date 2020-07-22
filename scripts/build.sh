@@ -9,7 +9,7 @@ cd src
 # run the angular/ng-packagr build
 npm run ng:build
 
-# # move/generate/update meta files into dist
+# move/generate/update meta files into dist
 gulp buildMeta
 
 # # generate ALL the documentation
