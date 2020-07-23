@@ -4,7 +4,8 @@ import {
 	HostBinding,
 	EventEmitter,
 	Output,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -225,6 +226,11 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
 	}
 
 	/**

@@ -3,7 +3,8 @@ import {
 	ElementRef,
 	Input,
 	ViewEncapsulation,
-	ContentChild
+	ContentChild,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
@@ -40,6 +41,12 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			class="bx--overflow-menu"
 			[placement]="placement"
 			tabindex="0">
+			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
+		</div>
+		<ng-template #options>
+			<ng-content></ng-content>
+		</ng-template>
+		<ng-template #defaultIcon>
 			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />
@@ -47,9 +54,6 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 					<circle cx="1.5" cy="13.5" r="1.5" />
 				</g>
 			</svg>
-		</div>
-		<ng-template #options>
-			<ng-content></ng-content>
 		</ng-template>
 	`,
 	styles: [`
@@ -83,7 +87,12 @@ export class OverflowMenu {
 	 */
 	@Input() offset: { x: number, y: number };
 
-	@Input() wrapperClass = '';
+	@Input() wrapperClass = "";
+
+	/**
+	 * Sets the custom overflow menu trigger
+	 */
+	@Input() customTrigger: TemplateRef<any>;
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
