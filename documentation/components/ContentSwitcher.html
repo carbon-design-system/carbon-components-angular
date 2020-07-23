@@ -495,7 +495,7 @@ export class ContentSwitcher implements AfterViewInit {
 	/**
 	 * Emits the activated &#x60;ContentSwitcherOption&#x60;
 	 */
-	@Output() selected &#x3D; new EventEmitter();
+	@Output() selected &#x3D; new EventEmitter&lt;ContentSwitcherOption&gt;();
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList&lt;ContentSwitcherOption&gt;;
 
@@ -509,7 +509,7 @@ export class ContentSwitcher implements AfterViewInit {
 		}
 		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option &#x3D;&gt; {
-			option.selected.subscribe(_ &#x3D;&gt; {
+			option.selected.subscribe((_: boolean) &#x3D;&gt; {
 				const active &#x3D; option;
 				this.options.forEach(option &#x3D;&gt; {
 					if (option !&#x3D;&#x3D; active) {
