@@ -456,7 +456,7 @@ Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/tabs/tab-header.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/tabs/tab-header.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -780,7 +780,9 @@ export class TabHeader implements AfterViewInit {
 	protected _cacheActive &#x3D; false;
 
 	ngAfterViewInit() {
-		this.title &#x3D; this.title ? this.title : this.tabItem.nativeElement.textContent;
+		setTimeout(() &#x3D;&gt; {
+			this.title &#x3D; this.title ? this.title : this.tabItem.nativeElement.textContent;
+		});
 	}
 
 	selectTab() {

@@ -103,6 +103,9 @@
                                 <a href="#invalid">invalid</a>
                             </li>
                             <li>
+                                <a href="#size">size</a>
+                            </li>
+                            <li>
                                 <a href="#skeleton">skeleton</a>
                             </li>
                             <li>
@@ -126,6 +129,12 @@
                             </li>
                             <li>
                                 <a href="#class.bx--text-input--light">class.bx--text-input--light</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--text-input--sm">class.bx--text-input--sm</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--text-input--xl">class.bx--text-input--xl</a>
                             </li>
                         </ul>
                     </td>
@@ -154,7 +163,33 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/input/input.directive.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/input/input.directive.ts:35</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="size"></a>
+                        <code>size</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Input field render size</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>&quot;sm&quot; | &quot;md&quot; | &quot;xl&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;md&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/input/input.directive.ts:26</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -174,7 +209,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/input/input.directive.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/input/input.directive.ts:36</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -234,7 +269,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/input/input.directive.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/input/input.directive.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -262,7 +297,63 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/input/input.directive.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/input/input.directive.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--text-input--sm"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--text-input--sm
+                            </b>
+                            <a href="#class.bx--text-input--sm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--text-input--sm:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/input/input.directive.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--text-input--xl"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--text-input--xl
+                            </b>
+                            <a href="#class.bx--text-input--xl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--text-input--xl:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/input/input.directive.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -301,7 +392,18 @@ export class TextInput {
 	 */
 	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
 
+	/**
+	 * Input field render size
+	 */
+	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;xl&quot; &#x3D; &quot;md&quot;;
+
 	@HostBinding(&quot;class.bx--text-input&quot;) inputClass &#x3D; true;
+	@HostBinding(&quot;class.bx--text-input--xl&quot;) get isSizeXl() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;xl&quot;;
+	}
+	@HostBinding(&quot;class.bx--text-input--sm&quot;) get isSizeSm() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;sm&quot;;
+	}
 	@HostBinding(&quot;class.bx--text-input--invalid&quot;) @Input() invalid &#x3D; false;
 	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
 	@HostBinding(&quot;class.bx--text-input--light&quot;) get isLightTheme() {

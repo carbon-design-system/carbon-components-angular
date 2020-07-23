@@ -80,6 +80,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
                 <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
                 <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -212,10 +213,8 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 			[ariaLabel]&#x3D;&quot;open ? closeMenuAria : openMenuAria&quot;&gt;
 		&lt;/ibm-icon-chevron-down&gt;
 	&lt;/div&gt;
-	&lt;div
-		#dropdownMenu
-		*ngIf&#x3D;&quot;open&quot;&gt;
-		&lt;ng-content&gt;&lt;/ng-content&gt;
+	&lt;div #dropdownMenu&gt;
+		&lt;ng-content *ngIf&#x3D;&quot;open&quot;&gt;&lt;/ng-content&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
 &lt;div *ngIf&#x3D;&quot;invalid&quot;&gt;
@@ -288,6 +287,9 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                                 <a href="#input">input</a>
                             </li>
                             <li>
+                                <a href="#keyboardNav">keyboardNav</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#noop">noop</a>
                             </li>
@@ -331,6 +333,15 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#_appendToBody">_appendToBody</a>
+                            </li>
+                            <li>
+                                <a href="#_appendToDropdown">_appendToDropdown</a>
+                            </li>
+                            <li>
+                                <a href="#_keyboardNav">_keyboardNav</a>
+                            </li>
+                            <li>
                                 <a href="#_noop">_noop</a>
                             </li>
                             <li>
@@ -360,6 +371,9 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                             </li>
                             <li>
                                 <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
                                 <a href="#onBlur">onBlur</a>
@@ -409,6 +423,9 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#appendInline">appendInline</a>
+                            </li>
                             <li>
                                 <a href="#clearSelectionAria">clearSelectionAria</a>
                             </li>
@@ -572,12 +589,12 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, documentService: <a href="../injectables/DocumentService.html">DocumentService</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, documentService: <a href="../injectables/DocumentService.html">DocumentService</a>, dropdownService: <a href="../injectables/DropdownService.html">DropdownService</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/combobox/combobox.component.ts:368</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="374" class="link-to-prism">src/combobox/combobox.component.ts:374</a></div>
                             </td>
                         </tr>
 
@@ -621,6 +638,18 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>dropdownService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/DropdownService.html" target="_self" >DropdownService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>i18n</td>
                                                   
                                                         <td>
@@ -647,6 +676,32 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="appendInline"></a>
+                        <code>appendInline</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>set to <code>true</code> to place the dropdown view inline with the component</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>null</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/combobox/combobox.component.ts:272</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="clearSelectionAria"></a>
                         <code>clearSelectionAria</code>
                     </td>
@@ -657,7 +712,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/combobox/combobox.component.ts:285</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/combobox/combobox.component.ts:215</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -676,7 +731,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/combobox/combobox.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/combobox/combobox.component.ts:195</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -695,7 +750,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/combobox/combobox.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/combobox/combobox.component.ts:185</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -714,7 +769,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/combobox/combobox.component.ts:275</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/combobox/combobox.component.ts:205</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -733,7 +788,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/combobox/combobox.component.ts:245</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/combobox/combobox.component.ts:175</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -755,7 +810,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/combobox/combobox.component.ts:295</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/combobox/combobox.component.ts:299</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -778,7 +833,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/combobox/combobox.component.ts:208</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/combobox/combobox.component.ts:268</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -798,7 +853,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/combobox/combobox.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/combobox/combobox.component.ts:223</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -820,7 +875,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/combobox/combobox.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/combobox/combobox.component.ts:276</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -843,7 +898,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/combobox/combobox.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/combobox/combobox.component.ts:280</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -888,7 +943,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/combobox/combobox.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/combobox/combobox.component.ts:250</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -911,7 +966,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/combobox/combobox.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/combobox/combobox.component.ts:264</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -937,7 +992,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/combobox/combobox.component.ts:220</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/combobox/combobox.component.ts:284</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -956,7 +1011,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/combobox/combobox.component.ts:235</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/combobox/combobox.component.ts:165</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -975,7 +1030,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/combobox/combobox.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/combobox/combobox.component.ts:155</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1004,7 +1059,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/combobox/combobox.component.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/combobox/combobox.component.ts:295</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1030,7 +1085,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/combobox/combobox.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/combobox/combobox.component.ts:260</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1056,7 +1111,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/combobox/combobox.component.ts:224</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/combobox/combobox.component.ts:288</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1082,7 +1137,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/combobox/combobox.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/combobox/combobox.component.ts:254</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1106,7 +1161,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/combobox/combobox.component.ts:336</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/combobox/combobox.component.ts:340</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1125,7 +1180,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="337" class="link-to-prism">src/combobox/combobox.component.ts:337</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="341" class="link-to-prism">src/combobox/combobox.component.ts:341</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1151,7 +1206,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/combobox/combobox.component.ts:307</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/combobox/combobox.component.ts:311</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1187,7 +1242,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/combobox/combobox.component.ts:334</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/combobox/combobox.component.ts:338</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1220,7 +1275,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/combobox/combobox.component.ts:346</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/combobox/combobox.component.ts:350</a></div>
                             </td>
                         </tr>
 
@@ -1253,7 +1308,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/combobox/combobox.component.ts:345</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/combobox/combobox.component.ts:349</a></div>
                             </td>
                         </tr>
 
@@ -1286,7 +1341,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/combobox/combobox.component.ts:347</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/combobox/combobox.component.ts:351</a></div>
                             </td>
                         </tr>
 
@@ -1323,7 +1378,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="451" class="link-to-prism">src/combobox/combobox.component.ts:451</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="477" class="link-to-prism">src/combobox/combobox.component.ts:477</a></div>
                             </td>
                         </tr>
 
@@ -1348,6 +1403,157 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_appendToBody"></a>
+                        <span class="name">
+                            <b>
+                            _appendToBody
+                            </b>
+                            <a href="#_appendToBody"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>_appendToBody()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="672" class="link-to-prism">src/combobox/combobox.component.ts:672</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates the <code>Dropdown</code> list as an element that is appended to the DOM body.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_appendToDropdown"></a>
+                        <span class="name">
+                            <b>
+                            _appendToDropdown
+                            </b>
+                            <a href="#_appendToDropdown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>_appendToDropdown()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="683" class="link-to-prism">src/combobox/combobox.component.ts:683</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates the <code>Dropdown</code> list appending it to the dropdown parent object instead of the body.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_keyboardNav"></a>
+                        <span class="name">
+                            <b>
+                            _keyboardNav
+                            </b>
+                            <a href="#_keyboardNav"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>_keyboardNav(event: KeyboardEvent)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="651" class="link-to-prism">src/combobox/combobox.component.ts:651</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Handles keyboard events so users are controlling the <code>Dropdown</code> instead of unintentionally controlling outside elements.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code>KeyboardEvent</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="_noop"></a>
                         <span class="name">
                             <b>
@@ -1366,7 +1572,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="476" class="link-to-prism">src/combobox/combobox.component.ts:476</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="502" class="link-to-prism">src/combobox/combobox.component.ts:502</a></div>
                             </td>
                         </tr>
 
@@ -1406,7 +1612,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="628" class="link-to-prism">src/combobox/combobox.component.ts:628</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="700" class="link-to-prism">src/combobox/combobox.component.ts:700</a></div>
                             </td>
                         </tr>
 
@@ -1444,7 +1650,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="600" class="link-to-prism">src/combobox/combobox.component.ts:600</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="632" class="link-to-prism">src/combobox/combobox.component.ts:632</a></div>
                             </td>
                         </tr>
 
@@ -1511,7 +1717,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">src/combobox/combobox.component.ts:511</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="537" class="link-to-prism">src/combobox/combobox.component.ts:537</a></div>
                             </td>
                         </tr>
 
@@ -1551,7 +1757,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="530" class="link-to-prism">src/combobox/combobox.component.ts:530</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="556" class="link-to-prism">src/combobox/combobox.component.ts:556</a></div>
                             </td>
                         </tr>
 
@@ -1593,7 +1799,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="612" class="link-to-prism">src/combobox/combobox.component.ts:612</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="644" class="link-to-prism">src/combobox/combobox.component.ts:644</a></div>
                             </td>
                         </tr>
 
@@ -1658,7 +1864,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/combobox/combobox.component.ts:398</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/combobox/combobox.component.ts:405</a></div>
                             </td>
                         </tr>
 
@@ -1699,7 +1905,7 @@ Subscribes to select events and handles focus/filtering/initial list updates</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="437" class="link-to-prism">src/combobox/combobox.component.ts:437</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="444" class="link-to-prism">src/combobox/combobox.component.ts:444</a></div>
                             </td>
                         </tr>
 
@@ -1739,7 +1945,7 @@ Subscribes to select events and handles focus/filtering/initial list updates</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="384" class="link-to-prism">src/combobox/combobox.component.ts:384</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/combobox/combobox.component.ts:391</a></div>
                             </td>
                         </tr>
 
@@ -1789,6 +1995,46 @@ Updates pills if necessary.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="467" class="link-to-prism">src/combobox/combobox.component.ts:467</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Removing the <code>Dropdown</code> from the body if it is appended to the body.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="onBlur"></a>
                         <span class="name">
                             <b>
@@ -1807,7 +2053,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="491" class="link-to-prism">src/combobox/combobox.component.ts:491</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="517" class="link-to-prism">src/combobox/combobox.component.ts:517</a></div>
                             </td>
                         </tr>
 
@@ -1847,7 +2093,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="558" class="link-to-prism">src/combobox/combobox.component.ts:558</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/combobox/combobox.component.ts:590</a></div>
                             </td>
                         </tr>
 
@@ -1931,7 +2177,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="589" class="link-to-prism">src/combobox/combobox.component.ts:589</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="621" class="link-to-prism">src/combobox/combobox.component.ts:621</a></div>
                             </td>
                         </tr>
 
@@ -2004,7 +2250,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="539" class="link-to-prism">src/combobox/combobox.component.ts:539</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="568" class="link-to-prism">src/combobox/combobox.component.ts:568</a></div>
                             </td>
                         </tr>
 
@@ -2044,7 +2290,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="495" class="link-to-prism">src/combobox/combobox.component.ts:495</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="521" class="link-to-prism">src/combobox/combobox.component.ts:521</a></div>
                             </td>
                         </tr>
 
@@ -2113,7 +2359,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="499" class="link-to-prism">src/combobox/combobox.component.ts:499</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/combobox/combobox.component.ts:525</a></div>
                             </td>
                         </tr>
 
@@ -2184,7 +2430,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="547" class="link-to-prism">src/combobox/combobox.component.ts:547</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="579" class="link-to-prism">src/combobox/combobox.component.ts:579</a></div>
                             </td>
                         </tr>
 
@@ -2226,7 +2472,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/combobox/combobox.component.ts:506</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="532" class="link-to-prism">src/combobox/combobox.component.ts:532</a></div>
                             </td>
                         </tr>
 
@@ -2268,7 +2514,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="616" class="link-to-prism">src/combobox/combobox.component.ts:616</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="688" class="link-to-prism">src/combobox/combobox.component.ts:688</a></div>
                             </td>
                         </tr>
 
@@ -2306,7 +2552,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="481" class="link-to-prism">src/combobox/combobox.component.ts:481</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="507" class="link-to-prism">src/combobox/combobox.component.ts:507</a></div>
                             </td>
                         </tr>
 
@@ -2387,7 +2633,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/combobox/combobox.component.ts:368</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="374" class="link-to-prism">src/combobox/combobox.component.ts:374</a></div>
                             </td>
                         </tr>
 
@@ -2421,7 +2667,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/combobox/combobox.component.ts:366</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/combobox/combobox.component.ts:372</a></div>
                             </td>
                         </tr>
 
@@ -2455,7 +2701,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/combobox/combobox.component.ts:365</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="371" class="link-to-prism">src/combobox/combobox.component.ts:371</a></div>
                             </td>
                         </tr>
 
@@ -2489,7 +2735,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/combobox/combobox.component.ts:367</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="373" class="link-to-prism">src/combobox/combobox.component.ts:373</a></div>
                             </td>
                         </tr>
 
@@ -2523,7 +2769,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/combobox/combobox.component.ts:363</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="369" class="link-to-prism">src/combobox/combobox.component.ts:369</a></div>
                             </td>
                         </tr>
 
@@ -2557,7 +2803,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="364" class="link-to-prism">src/combobox/combobox.component.ts:364</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="370" class="link-to-prism">src/combobox/combobox.component.ts:370</a></div>
                             </td>
                         </tr>
 
@@ -2591,7 +2837,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="362" class="link-to-prism">src/combobox/combobox.component.ts:362</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/combobox/combobox.component.ts:368</a></div>
                             </td>
                         </tr>
 
@@ -2631,7 +2877,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/combobox/combobox.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/combobox/combobox.component.ts:222</a></div>
                             </td>
                         </tr>
 
@@ -2668,7 +2914,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/combobox/combobox.component.ts:342</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/combobox/combobox.component.ts:346</a></div>
                             </td>
                         </tr>
 
@@ -2711,7 +2957,40 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/combobox/combobox.component.ts:344</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="348" class="link-to-prism">src/combobox/combobox.component.ts:348</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="keyboardNav"></a>
+                        <span class="name">
+                            <b>
+                            keyboardNav
+                            </b>
+                            <a href="#keyboardNav"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>keyboardNav:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this._keyboardNav.bind(this)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="362" class="link-to-prism">src/combobox/combobox.component.ts:362</a></div>
                             </td>
                         </tr>
 
@@ -2745,7 +3024,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/combobox/combobox.component.ts:358</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="364" class="link-to-prism">src/combobox/combobox.component.ts:364</a></div>
                             </td>
                         </tr>
 
@@ -2785,7 +3064,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="359" class="link-to-prism">src/combobox/combobox.component.ts:359</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/combobox/combobox.component.ts:365</a></div>
                             </td>
                         </tr>
 
@@ -2819,7 +3098,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/combobox/combobox.component.ts:349</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="353" class="link-to-prism">src/combobox/combobox.component.ts:353</a></div>
                             </td>
                         </tr>
 
@@ -2859,7 +3138,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/combobox/combobox.component.ts:354</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/combobox/combobox.component.ts:358</a></div>
                             </td>
                         </tr>
 
@@ -2905,7 +3184,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/combobox/combobox.component.ts:360</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/combobox/combobox.component.ts:366</a></div>
                             </td>
                         </tr>
 
@@ -2945,7 +3224,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="356" class="link-to-prism">src/combobox/combobox.component.ts:356</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/combobox/combobox.component.ts:360</a></div>
                             </td>
                         </tr>
 
@@ -2985,7 +3264,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/combobox/combobox.component.ts:351</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/combobox/combobox.component.ts:355</a></div>
                             </td>
                         </tr>
 
@@ -3028,7 +3307,7 @@ Updates pills if necessary.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/combobox/combobox.component.ts:340</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/combobox/combobox.component.ts:344</a></div>
                             </td>
                         </tr>
 
@@ -3063,7 +3342,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/combobox/combobox.component.ts:188</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/combobox/combobox.component.ts:159</a></div>
                                 </td>
                             </tr>
 
@@ -3074,7 +3353,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/combobox/combobox.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/combobox/combobox.component.ts:155</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3130,7 +3409,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/combobox/combobox.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/combobox/combobox.component.ts:169</a></div>
                                 </td>
                             </tr>
 
@@ -3141,7 +3420,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/combobox/combobox.component.ts:235</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/combobox/combobox.component.ts:165</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3197,7 +3476,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/combobox/combobox.component.ts:249</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/combobox/combobox.component.ts:179</a></div>
                                 </td>
                             </tr>
 
@@ -3208,7 +3487,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/combobox/combobox.component.ts:245</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/combobox/combobox.component.ts:175</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3264,7 +3543,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/combobox/combobox.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/combobox/combobox.component.ts:189</a></div>
                                 </td>
                             </tr>
 
@@ -3275,7 +3554,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/combobox/combobox.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/combobox/combobox.component.ts:185</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3331,7 +3610,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/combobox/combobox.component.ts:269</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/combobox/combobox.component.ts:199</a></div>
                                 </td>
                             </tr>
 
@@ -3342,7 +3621,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/combobox/combobox.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/combobox/combobox.component.ts:195</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3398,7 +3677,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/combobox/combobox.component.ts:279</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/combobox/combobox.component.ts:209</a></div>
                                 </td>
                             </tr>
 
@@ -3409,7 +3688,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/combobox/combobox.component.ts:275</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/combobox/combobox.component.ts:205</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3465,7 +3744,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/combobox/combobox.component.ts:289</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/combobox/combobox.component.ts:219</a></div>
                                 </td>
                             </tr>
 
@@ -3476,7 +3755,7 @@ Updates pills if necessary.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/combobox/combobox.component.ts:285</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/combobox/combobox.component.ts:215</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3534,15 +3813,17 @@ Updates pills if necessary.</p>
 	AfterViewInit,
 	AfterContentInit,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	OnDestroy
 } from &quot;@angular/core&quot;;
 import { AbstractDropdownView } from &quot;./../dropdown/abstract-dropdown-view.class&quot;;
 import { ListItem } from &quot;./../dropdown/list-item.interface&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 import { filter } from &quot;rxjs/operators&quot;;
-import { DocumentService } from &quot;../utils/index&quot;;
+import { DocumentService, hasScrollableParents } from &quot;../utils/index&quot;;
 import { I18n, Overridable } from &quot;../i18n/index&quot;;
 import { Observable } from &quot;rxjs&quot;;
+import { DropdownService } from &quot;../dropdown/index&quot;;
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -3652,10 +3933,8 @@ import { Observable } from &quot;rxjs&quot;;
 					[ariaLabel]&#x3D;&quot;open ? closeMenuAria : openMenuAria&quot;&gt;
 				&lt;/ibm-icon-chevron-down&gt;
 			&lt;/div&gt;
-			&lt;div
-				#dropdownMenu
-				*ngIf&#x3D;&quot;open&quot;&gt;
-				&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;div #dropdownMenu&gt;
+				&lt;ng-content *ngIf&#x3D;&quot;open&quot;&gt;&lt;/ng-content&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 		&lt;div *ngIf&#x3D;&quot;invalid&quot;&gt;
@@ -3671,36 +3950,7 @@ import { Observable } from &quot;rxjs&quot;;
 		}
 	]
 })
-export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
-	static comboBoxCount &#x3D; 0;
-	@Input() id &#x3D; &#x60;dropdown-${ComboBox.comboBoxCount++}&#x60;;
-	/**
-	 * List of items to fill the content with.
-	 *
-	 * **Example:**
-	 * &#x60;&#x60;&#x60;javascript
-	 * items &#x3D; [
-	 *		{
-	 *			content: &quot;Abacus&quot;,
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: &quot;Byte&quot;,
-	 *			selected: false,
-	 *		},
-	 *		{
-	 *			content: &quot;Computer&quot;,
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: &quot;Digital&quot;,
-	 *			selected: false
-	 *		}
-	 * ];
-	 * &#x60;&#x60;&#x60;
-	 *
-	 */
-	@Input() items: Array&lt;ListItem&gt; &#x3D; [];
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -3711,47 +3961,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get placeholder() {
 		return this._placeholder.value;
 	}
-	/**
-	 * Combo box type (supporting single or multi selection of items).
-	 */
-	@Input() type: &quot;single&quot; | &quot;multi&quot; &#x3D; &quot;single&quot;;
-	/**
-	 * Combo box render size.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;xl&quot; &#x3D; &quot;md&quot;;
-	/**
-	 * Label for the combobox.
-	 */
-	@Input() label: string | TemplateRef&lt;any&gt;;
-	/**
-	 * Sets the optional helper text.
-	 */
-	@Input() helperText: string | TemplateRef&lt;any&gt;;
-	/**
-	 * Set to &#x60;true&#x60; for invalid state.
-	 */
-	@Input() invalid &#x3D; false;
-	/**
-	 * Value displayed if dropdown is in invalid state.
-	 */
-	@Input() invalidText: string | TemplateRef&lt;any&gt;;
-	/**
-	 * Max length value to limit input characters
-	 */
-	@Input() maxLength: number &#x3D; null;
-	/**
-	 * &#x60;light&#x60; or &#x60;dark&#x60; dropdown theme
-	 */
-	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
-	/**
-	 * Specify feedback (mode) of the selection.
-	 * &#x60;top&#x60;: selected item jumps to top
-	 * &#x60;fixed&#x60;: selected item stays at its position
-	 * &#x60;top-after-reopen&#x60;: selected item jump to top after reopen dropdown
-	 */
-	@Input() selectionFeedback: &quot;top&quot; | &quot;fixed&quot; | &quot;top-after-reopen&quot; &#x3D; &quot;top-after-reopen&quot;;
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -3812,6 +4021,80 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get clearSelectionAria() {
 		return this._clearSelectionAria.value;
 	}
+	static comboBoxCount &#x3D; 0;
+	@Input() id &#x3D; &#x60;dropdown-${ComboBox.comboBoxCount++}&#x60;;
+	/**
+	 * List of items to fill the content with.
+	 *
+	 * **Example:**
+	 * &#x60;&#x60;&#x60;javascript
+	 * items &#x3D; [
+	 *		{
+	 *			content: &quot;Abacus&quot;,
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: &quot;Byte&quot;,
+	 *			selected: false,
+	 *		},
+	 *		{
+	 *			content: &quot;Computer&quot;,
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: &quot;Digital&quot;,
+	 *			selected: false
+	 *		}
+	 * ];
+	 * &#x60;&#x60;&#x60;
+	 *
+	 */
+	@Input() items: Array&lt;ListItem&gt; &#x3D; [];
+	/**
+	 * Combo box type (supporting single or multi selection of items).
+	 */
+	@Input() type: &quot;single&quot; | &quot;multi&quot; &#x3D; &quot;single&quot;;
+	/**
+	 * Combo box render size.
+	 *
+	 * @deprecated since v4
+	 */
+	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;xl&quot; &#x3D; &quot;md&quot;;
+	/**
+	 * Label for the combobox.
+	 */
+	@Input() label: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * set to &#x60;true&#x60; to place the dropdown view inline with the component
+	 */
+	@Input() appendInline: boolean &#x3D; null;
+	/**
+	 * Set to &#x60;true&#x60; for invalid state.
+	 */
+	@Input() invalid &#x3D; false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number &#x3D; null;
+	/**
+	 * &#x60;light&#x60; or &#x60;dark&#x60; dropdown theme
+	 */
+	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
+	/**
+	 * Specify feedback (mode) of the selection.
+	 * &#x60;top&#x60;: selected item jumps to top
+	 * &#x60;fixed&#x60;: selected item stays at its position
+	 * &#x60;top-after-reopen&#x60;: selected item jump to top after reopen dropdown
+	 */
+	@Input() selectionFeedback: &quot;top&quot; | &quot;fixed&quot; | &quot;top-after-reopen&quot; &#x3D; &quot;top-after-reopen&quot;;
 	/**
 	 * Set to &#x60;true&#x60; to disable combobox.
 	 */
@@ -3878,6 +4161,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** used to update the displayValue */
 	public selectedValue &#x3D; &quot;&quot;;
 
+	keyboardNav &#x3D; this._keyboardNav.bind(this);
+
 	protected noop &#x3D; this._noop.bind(this);
 	protected onTouchedCallback: () &#x3D;&gt; void &#x3D; this._noop;
 	protected propagateChangeCallback: (_: any) &#x3D;&gt; void &#x3D; this._noop;
@@ -3896,6 +4181,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	constructor(
 		protected elementRef: ElementRef,
 		protected documentService: DocumentService,
+		protected dropdownService: DropdownService,
 		protected i18n: I18n
 	) {}
 
@@ -3965,6 +4251,25 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				}
 			}
 		});
+		// if appendInline is default valued (null) we should:
+		// 1. if there are scrollable parents (not including body) don&#x27;t append inline
+		//    this should also cover the case where the dropdown is in a modal
+		//    (where we _do_ want to append to the placeholder)
+		if (this.appendInline &#x3D;&#x3D;&#x3D; null &amp;&amp; hasScrollableParents(this.elementRef.nativeElement)) {
+			this.appendInline &#x3D; false;
+		// 2. otherwise we should append inline
+		} else if (this.appendInline &#x3D;&#x3D;&#x3D; null) {
+			this.appendInline &#x3D; true;
+		}
+	}
+
+	/**
+	 * Removing the &#x60;Dropdown&#x60; from the body if it is appended to the body.
+	 */
+	ngOnDestroy() {
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
 	}
 
 	/**
@@ -4054,6 +4359,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.open &#x3D; false;
 		this.checkForReorder();
 		this.close.emit();
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
 	}
 
 	/**
@@ -4062,6 +4370,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public openDropdown() {
 		if (this.disabled) { return; }
 		this.open &#x3D; true;
+		if (!this.appendInline) {
+			this._appendToBody();
+		}
 	}
 
 	/**
@@ -4136,6 +4447,46 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		return value instanceof TemplateRef;
 	}
 
+	/**
+	 * Handles keyboard events so users are controlling the &#x60;Dropdown&#x60; instead of unintentionally controlling outside elements.
+	 */
+	_keyboardNav(event: KeyboardEvent) {
+		// &quot;Esc&quot; is an IE specific value
+		if ((event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) &amp;&amp; this.open) {
+			event.stopImmediatePropagation();  // don&#x27;t unintentionally close modal if inside of it
+		}
+		if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) {
+			event.preventDefault();
+			this.closeDropdown();
+			this.input.nativeElement.focus();
+		} else if (this.open &amp;&amp; event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot;) {
+			// this way focus will start on the next focusable item from the dropdown
+			// not the top of the body!
+			this.input.nativeElement.focus();
+			this.input.nativeElement.dispatchEvent(new KeyboardEvent(&quot;keydown&quot;, {bubbles: true, cancelable: true, key: &quot;Tab&quot;}));
+			this.closeDropdown();
+		}
+	}
+
+	/**
+	 * Creates the &#x60;Dropdown&#x60; list as an element that is appended to the DOM body.
+	 */
+	_appendToBody() {
+		this.dropdownService.appendToBody(
+			this.input.nativeElement,
+			this.dropdownMenu.nativeElement,
+			&#x60;${this.elementRef.nativeElement.className}${this.open ? &quot; bx--list-box--expanded&quot; : &quot;&quot;}&#x60;);
+		this.dropdownMenu.nativeElement.addEventListener(&quot;keydown&quot;, this.keyboardNav, true);
+	}
+
+	/**
+	 * Creates the &#x60;Dropdown&#x60; list appending it to the dropdown parent object instead of the body.
+	 */
+	_appendToDropdown() {
+		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
+		this.dropdownMenu.nativeElement.removeEventListener(&quot;keydown&quot;, this.keyboardNav, true);
+	}
+
 	protected updateSelected() {
 		const selected &#x3D; this.view.getSelected();
 		if (this.type &#x3D;&#x3D;&#x3D; &quot;multi&quot; ) {
@@ -4190,7 +4541,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label	*ngIf="label"	[for]="id"	class="bx--label"	[ngClass]="{\'bx--label--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div	*ngIf="helperText"	class="bx--form__helper-text"	[ngClass]="{\'bx--form__helper-text--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	[ngClass]="{		\'bx--multi-select\': type === \'multi\',		\'bx--combo-box\': type === \'single\' || !pills.length,		\'bx--list-box--light\': theme === \'light\',		\'bx--list-box--expanded\': open,		\'bx--list-box--sm\': size === \'sm\',		\'bx--list-box--xl\': size === \'xl\',		\'bx--list-box--disabled\': disabled	}"	class="bx--combo-box bx--list-box"	role="listbox"	[attr.data-invalid]="(invalid ? true : null)">	<div		[attr.aria-expanded]="open"		role="button"		class="bx--list-box__field"		type="button"		tabindex="-1"		[attr.aria-label]="label"		aria-haspopup="true"		(click)="toggleDropdown()"		[id]="id">		<div			*ngIf="type === \'multi\' && pills.length > 0"			(click)="clearSelected()"			(keydown.enter)="clearSelected()"			role="button"			class="bx--tag--filter bx--list-box__selection--multi"			tabindex="0"			[title]="clearSelectionsTitle"			[attr.aria-label]="clearSelectionAria">			{{ pills.length }}			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				role="img"				xmlns="http://www.w3.org/2000/svg"				width="16"				height="16"				viewBox="0 0 16 16"				aria-hidden="true">				<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>			</svg>		</div>		<input			#input			type="text"			role="combobox"			[disabled]="disabled"			(input)="onSearch($event.target.value)"			(keydown.enter)="onSubmit($event)"			[value]="selectedValue"			class="bx--text-input"			[ngClass]="{\'bx--text-input--empty\': !showClearButton}"			role="searchbox"			tabindex="0"			[attr.aria-aria-labelledby]="id"			[attr.maxlength]="maxLength"			aria-haspopup="true"			autocomplete="list"			[placeholder]="placeholder"/>		<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>		<div			*ngIf="showClearButton"			role="button"			class="bx--list-box__selection"			tabindex="0"			[attr.aria-label]="clearSelectionAria"			[title]="clearSelectionTitle"			(keyup.enter)="clearInput($event)"			(click)="clearInput($event)">			<svg ibmIconClose size="16"></svg>		</div>		<ibm-icon-chevron-down size="16"			[ngClass]="{\'bx--list-box__menu-icon--open\': open}"			class="bx--list-box__menu-icon"			[title]="open ? closeMenuAria : openMenuAria"			[ariaLabel]="open ? closeMenuAria : openMenuAria">		</ibm-icon-chevron-down>	</div>	<div		#dropdownMenu		*ngIf="open">		<ng-content></ng-content>	</div></div><div *ngIf="invalid">	<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>	<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><label	*ngIf="label"	[for]="id"	class="bx--label"	[ngClass]="{\'bx--label--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div	*ngIf="helperText"	class="bx--form__helper-text"	[ngClass]="{\'bx--form__helper-text--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div><div	[ngClass]="{		\'bx--multi-select\': type === \'multi\',		\'bx--combo-box\': type === \'single\' || !pills.length,		\'bx--list-box--light\': theme === \'light\',		\'bx--list-box--expanded\': open,		\'bx--list-box--sm\': size === \'sm\',		\'bx--list-box--xl\': size === \'xl\',		\'bx--list-box--disabled\': disabled	}"	class="bx--combo-box bx--list-box"	role="listbox"	[attr.data-invalid]="(invalid ? true : null)">	<div		[attr.aria-expanded]="open"		role="button"		class="bx--list-box__field"		type="button"		tabindex="-1"		[attr.aria-label]="label"		aria-haspopup="true"		(click)="toggleDropdown()"		[id]="id">		<div			*ngIf="type === \'multi\' && pills.length > 0"			(click)="clearSelected()"			(keydown.enter)="clearSelected()"			role="button"			class="bx--tag--filter bx--list-box__selection--multi"			tabindex="0"			[title]="clearSelectionsTitle"			[attr.aria-label]="clearSelectionAria">			{{ pills.length }}			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				role="img"				xmlns="http://www.w3.org/2000/svg"				width="16"				height="16"				viewBox="0 0 16 16"				aria-hidden="true">				<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>			</svg>		</div>		<input			#input			type="text"			role="combobox"			[disabled]="disabled"			(input)="onSearch($event.target.value)"			(keydown.enter)="onSubmit($event)"			[value]="selectedValue"			class="bx--text-input"			[ngClass]="{\'bx--text-input--empty\': !showClearButton}"			role="searchbox"			tabindex="0"			[attr.aria-aria-labelledby]="id"			[attr.maxlength]="maxLength"			aria-haspopup="true"			autocomplete="list"			[placeholder]="placeholder"/>		<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>		<div			*ngIf="showClearButton"			role="button"			class="bx--list-box__selection"			tabindex="0"			[attr.aria-label]="clearSelectionAria"			[title]="clearSelectionTitle"			(keyup.enter)="clearInput($event)"			(click)="clearInput($event)">			<svg ibmIconClose size="16"></svg>		</div>		<ibm-icon-chevron-down size="16"			[ngClass]="{\'bx--list-box__menu-icon--open\': open}"			class="bx--list-box__menu-icon"			[title]="open ? closeMenuAria : openMenuAria"			[ariaLabel]="open ? closeMenuAria : openMenuAria">		</ibm-icon-chevron-down>	</div>	<div #dropdownMenu>		<ng-content *ngIf="open"></ng-content>	</div></div><div *ngIf="invalid">	<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>	<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'ibm-skeleton-text'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeader', 'selector': 'ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'ModalContent', 'selector': '[ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'ToastCaption', 'selector': '[ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[ibmToastTitle]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ComboBox'};

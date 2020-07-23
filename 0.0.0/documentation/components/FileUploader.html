@@ -817,7 +817,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/file-uploader/file-uploader.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/file-uploader/file-uploader.component.ts:266</a></div>
                             </td>
                         </tr>
 
@@ -1153,7 +1153,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/file-uploader/file-uploader.component.ts:278</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/file-uploader/file-uploader.component.ts:279</a></div>
                             </td>
                         </tr>
 
@@ -1224,7 +1224,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/file-uploader/file-uploader.component.ts:272</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/file-uploader/file-uploader.component.ts:273</a></div>
                             </td>
                         </tr>
 
@@ -1993,6 +1993,7 @@ export class FileUploader {
 	}
 
 	removeFile(fileItem) {
+		if (!this.files) { return; }
 		this.files.delete(fileItem);
 		this.fileInput.nativeElement.value &#x3D; &quot;&quot;;
 		this.filesChange.emit(this.files);
