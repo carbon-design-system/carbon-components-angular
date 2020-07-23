@@ -89,6 +89,12 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
+					<svg
+						*ngIf="!listTpl && type === 'single'"
+						ibmIconCheckmark
+						size="16"
+						class="bx--list-box__menu-item__selected-icon">
+					</svg>
 					<ng-template
 						*ngIf="listTpl"
 						[ngTemplateOutletContext]="{item: item}"
@@ -168,7 +174,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "lg" = "md";
+	public size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Holds the list of items that will be displayed in the `DropdownList`.
 	 * It differs from the the complete set of items when filtering is used (but

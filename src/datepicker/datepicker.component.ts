@@ -50,7 +50,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[label]="label"
 					[placeholder]="placeholder"
 					[pattern]="pattern"
-					[id]="id"
+					[id]="id + '-input'"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
@@ -69,6 +70,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[placeholder]="placeholder"
 					[pattern]="pattern"
 					[id]="id + '-rangeInput'"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
@@ -154,6 +156,8 @@ export class DatePicker implements
 
 	@Input() invalidText: string | TemplateRef<any>;
 
+	@Input() size: "sm" | "md" | "xl" = "md";
+
 	@Input() rangeInvalid = false;
 
 	@Input() rangeInvalidText: string | TemplateRef<any>;
@@ -207,10 +211,10 @@ export class DatePicker implements
 			if (this.range && this.flatpickrInstance) {
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
-				// Range needs both dates to properly set the selected dates on the calendar.
-				if (inputValue && rangeInputValue) {
+				if (inputValue || rangeInputValue) {
 					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
 					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
 		},
@@ -250,7 +254,7 @@ export class DatePicker implements
 			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
 			.subscribe(value => {
 				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
-					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
+					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}-input`));
 					if (!value.visible) {
 						this.flatpickrInstance.close();
 					}
@@ -263,7 +267,7 @@ export class DatePicker implements
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
 				if (this.value.length > 0) {
@@ -403,7 +407,7 @@ export class DatePicker implements
 				dates = newDates.currentValue;
 			}
 			// only reset the flatpickr instance on Input changes
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			this.setDateValues(dates);
 		}
 	}
@@ -462,7 +466,7 @@ export class DatePicker implements
 	 */
 	protected setDateValues(dates: (Date | string)[]) {
 		if (this.isFlatpickrLoaded()) {
-			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
+			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}-input`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
 
 			// set the date on the instance
@@ -505,7 +509,7 @@ export class DatePicker implements
 		// In range mode, if a date is selected from the first calendar that is from the previous month,
 		// the month will not be updated on the calendar until the calendar is re-opened.
 		// This will make sure the calendar is updated with the correct month.
-		if (this.range) {
+		if (this.range && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 			this.flatpickrInstance.changeMonth(currentMonth, false);
 		}

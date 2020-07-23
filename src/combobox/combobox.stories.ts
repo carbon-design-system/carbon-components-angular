@@ -17,6 +17,8 @@ import {
 	Input,
 	AfterViewInit
 } from "@angular/core";
+import { ModalModule } from "../modal";
+import { PlaceholderModule } from "../placeholder";
 
 const getOptions = (override = {}) => {
 	const options = {
@@ -41,7 +43,8 @@ const getOptions = (override = {}) => {
 		],
 		selected: action("selection changed"),
 		submit: action("submit"),
-		size: select("size", ["sm", "md", "xl"], "md")
+		size: select("size", ["sm", "md", "xl"], "md"),
+		theme: select("theme", ["dark", "light"], "dark")
 	};
 
 	return Object.assign({}, options, override);
@@ -102,6 +105,7 @@ class DynamicListComboBox implements AfterViewInit {
 				[size]="size"
 				[label]="label"
 				[helperText]="helperText"
+				[theme]="theme"
 				[items]="items">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
@@ -126,6 +130,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() label = "";
 	@Input() helperText = "";
 	@Input() size = "md";
+	@Input() theme = "dark";
 
 	constructor(private fb: FormBuilder) {}
 
@@ -171,19 +176,43 @@ class MockQueryCombobox {
 	}
 }
 
+@Component({
+	selector: "app-combobox-modal",
+	template: `
+        <ibm-modal [open]="true" [hasScrollingContent]="false">
+            <ibm-modal-header>Header label</ibm-modal-header>
+            <section class="bx--modal-content">
+                <h1>Sample modal works.</h1>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+                <ibm-combo-box [items]="items">
+					<ibm-dropdown-list></ibm-dropdown-list>
+				</ibm-combo-box>
+            </section>
+		</ibm-modal>
+		<ibm-placeholder></ibm-placeholder>
+    `
+})
+class ComboBoxModal {
+	@Input() modalText: string;
+	@Input() items: any;
+}
+
 storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
 				DynamicListComboBox,
 				ReactiveFormsCombobox,
-				MockQueryCombobox
+				MockQueryCombobox,
+				ComboBoxModal
 			],
 			imports: [
 				ComboBoxModule,
 				ButtonModule,
 				ReactiveFormsModule,
-				DocumentationModule
+				DocumentationModule,
+				ModalModule,
+				PlaceholderModule
 			]
 		})
 	)
@@ -199,6 +228,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
@@ -225,6 +255,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
 					[maxLength]="maxLength">
@@ -248,32 +279,14 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					(selected)="onSelected()"
 					(search)="onSearch($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
 		`,
-		props: {
-			disabled: boolean("disabled", false),
-			invalid: boolean("Invalid", false),
-			invalidText: text("Invalid text", "A valid value is required"),
-			label: text("Label", "ComboBox label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: [
-				{
-					content: "one"
-				},
-				{
-					content: "two"
-				},
-				{
-					content: "three"
-				},
-				{
-					content: "four"
-				}
-			],
+		props: getOptions({
 			onSelected: function() {
 				this.invalid = false;
 			},
@@ -288,7 +301,7 @@ storiesOf("Components|Combobox", module)
 					this.invalid = false;
 				}
 			}
-		}
+		})
 	}))
 	.add("With template", () => ({
 		template: `
@@ -301,6 +314,7 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					(selected)="onSelected()"
 					(search)="onSearch($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
@@ -338,6 +352,7 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					(selected)="selected($event)"
@@ -358,6 +373,7 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[size]="size"
 					[label]="label"
+					[theme]="theme"
 					[helperText]="helperText">
 				</app-reactive-combobox>
 			</div>
@@ -373,6 +389,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					[selectionFeedback]="selectionFeedback"
 					[size]="size"
 					type="multi"
@@ -408,6 +425,7 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
+					[theme]="theme"
 					[(ngModel)]="model"
 					(selected)="selected($event)"
 					(submit)="submit($event)">
@@ -418,13 +436,19 @@ storiesOf("Components|Combobox", module)
 			</div>
 		`,
 		props: getOptions({
-			model:  { "content": "three", "selected": true }
+			model: { "content": "three", "selected": true }
 		})
 	}))
 	.add("Mock query search", () => ({
 		template: `
 			<app-mock-query-search></app-mock-query-search>
 		`
+	}))
+	.add("In modal", () => ({
+		template: `<app-combobox-modal [modalText]="modalText" [items]="items"></app-combobox-modal>`,
+		props: getOptions({
+			modalText: text("modal text", "Hello")
+		})
 	}))
 	.add("Documentation", () => ({
 		template: `

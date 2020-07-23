@@ -74,10 +74,13 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
 			'bx--list-box--up': dropUp,
+			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
+			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
 		}">
 		<button
 			#dropdownButton
+			type="button"
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
@@ -134,8 +137,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
-		{{invalidText}}
+	<div *ngIf="invalid">
+		<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 	</div>
 	`,
 	providers: [
@@ -174,7 +178,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -207,7 +211,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
-	@Input() invalidText = "";
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
@@ -380,6 +384,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		} else if (this.appendInline === null) {
 			this.appendInline = true;
 		}
+		this.checkForReorder();
 	}
 
 	/**
@@ -429,6 +434,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.view.propagateSelected(value);
 				}
 			}
+			this.checkForReorder();
 		});
 	}
 
@@ -628,10 +634,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
+		const lightClass = this.theme === "light" ? " bx--list-box--light" : "";
+		const expandedClass = !this.menuIsClosed ? " bx--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			`${this.elementRef.nativeElement.className}${!this.menuIsClosed ? " bx--list-box--expanded" : ""}`);
+			`${this.elementRef.nativeElement.className}${lightClass}${expandedClass}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 

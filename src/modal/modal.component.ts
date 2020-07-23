@@ -22,7 +22,7 @@ import { cycleTabs, getFocusElementList } from "carbon-components-angular/common
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
 ```html
-<ibm-modal-placeholder></ibm-modal-placeholder>
+<ibm-placeholder></ibm-placeholder>
 ```
  *
  * A more complete example for `Modal` is given as follows:

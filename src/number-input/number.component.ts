@@ -51,7 +51,9 @@ export class NumberChange {
 				'bx--number--light': theme === 'light',
 				'bx--number--nolabel': !label,
 				'bx--number--helpertext': helperText,
-				'bx--skeleton' : skeleton
+				'bx--skeleton' : skeleton,
+				'bx--number--sm': size === 'sm',
+				'bx--number--xl': size === 'xl'
 			}">
 			<div class="bx--number__input-wrapper">
 				<input
@@ -132,6 +134,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 * The unique id for the number component.
 	 */
 	@Input() id = `number-${NumberComponent.numberCount}`;
+	/**
+	 * Number input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */
