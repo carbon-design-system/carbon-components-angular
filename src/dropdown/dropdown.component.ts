@@ -634,10 +634,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
+		const lightClass = this.theme === "light" ? " bx--list-box--light" : "";
+		const expandedClass = !this.menuIsClosed ? " bx--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			`${this.elementRef.nativeElement.className}${!this.menuIsClosed ? " bx--list-box--expanded" : ""}`);
+			`${this.elementRef.nativeElement.className}${lightClass}${expandedClass}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 
