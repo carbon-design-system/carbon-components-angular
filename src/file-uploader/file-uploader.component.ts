@@ -257,6 +257,7 @@ export class FileUploader {
 	}
 
 	removeFile(fileItem) {
+		if (!this.files) { return; }
 		this.files.delete(fileItem);
 		this.fileInput.nativeElement.value = "";
 		this.filesChange.emit(this.files);
