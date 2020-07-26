@@ -75,6 +75,7 @@ import { DropdownService } from "../dropdown/index";
 				[id]="id">
 				<button
 					*ngIf="type === 'multi' && pills.length > 0"
+					type="button"
 					(click)="clearSelected()"
 					(blur)="onBlur()"
 					(keydown.enter)="clearSelected()"
