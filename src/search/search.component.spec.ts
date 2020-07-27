@@ -24,14 +24,6 @@ describe("Search", () => {
 			],
 			providers: []
 		})
-		// .overrideComponent(Search, {
-		// 	remove: {
-		// 		templateUrl: "search.component.html"
-		// 	},
-		// 	add: {
-		// 		template: require("./search.component.html")
-		// 	}
-		// })
 		.compileComponents();
 	}));
 
