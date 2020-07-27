@@ -71,14 +71,15 @@ import { DropdownService } from "../dropdown/index";
 				[attr.aria-label]="label"
 				aria-haspopup="true"
 				(click)="toggleDropdown()"
+				(blur)="onBlur()"
 				[id]="id">
-				<div
+				<button
 					*ngIf="type === 'multi' && pills.length > 0"
+					type="button"
 					(click)="clearSelected()"
+					(blur)="onBlur()"
 					(keydown.enter)="clearSelected()"
-					role="button"
 					class="bx--tag--filter bx--list-box__selection--multi"
-					tabindex="0"
 					[title]="clearSelectionsTitle"
 					[attr.aria-label]="clearSelectionAria">
 					{{ pills.length }}
@@ -94,13 +95,14 @@ import { DropdownService } from "../dropdown/index";
 						aria-hidden="true">
 						<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
 					</svg>
-				</div>
+				</button>
 				<input
 					#input
 					type="text"
 					role="combobox"
 					[disabled]="disabled"
 					(input)="onSearch($event.target.value)"
+					(blur)="onBlur()"
 					(keydown.enter)="onSubmit($event)"
 					[value]="selectedValue"
 					class="bx--text-input"
@@ -121,7 +123,8 @@ import { DropdownService } from "../dropdown/index";
 					[attr.aria-label]="clearSelectionAria"
 					[title]="clearSelectionTitle"
 					(keyup.enter)="clearInput($event)"
-					(click)="clearInput($event)">
+					(click)="clearInput($event)"
+					(blur)="onBlur()">
 					<svg ibmIconClose size="16"></svg>
 				</div>
 				<ibm-icon-chevron-down size="16"
@@ -639,6 +642,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		this.closeDropdown();
 
 		this.showClearButton = false;
+		this.input.nativeElement.focus();
 	}
 
 	public isTemplate(value) {
