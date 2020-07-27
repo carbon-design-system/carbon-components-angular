@@ -18,7 +18,7 @@ import { AbstractDropdownView, DropdownService } from "carbon-components-angular
 import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "carbon-components-angular/utils";
+import { DocumentService, hasScrollableParents } from "carbon-components-angular/utils";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 

@@ -44,7 +44,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * Maintains a reference to the view DOM element of the `Dialog`.
 	 */
 	// @ts-ignore
-	@ViewChild("dialog", /* TODO: add static flag */ {}) dialog: ElementRef;
+	@ViewChild("dialog", { static: false }) dialog: ElementRef;
 
 	/**
 	 * Stores the data received from `dialogConfig`.

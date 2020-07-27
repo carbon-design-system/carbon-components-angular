@@ -96,10 +96,10 @@ export class Label implements AfterContentInit {
 	@Input() invalid = false;
 
 	// @ts-ignore
-	@ViewChild("wrapper", { static: true }) wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
 	// @ts-ignore
-	@ContentChild(TextArea, /* TODO: add static flag */ {}) textArea: TextArea;
+	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 

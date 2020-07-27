@@ -272,7 +272,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Maintains a reference to the view DOM element of the `Checkbox`.
 	 */
 	// @ts-ignore
-	@ViewChild("inputCheckbox", /* TODO: add static flag */ {}) inputCheckbox: ElementRef;
+	@ViewChild("inputCheckbox", { static: false }) inputCheckbox: ElementRef;
 
 	/**
 	 * Creates an instance of `Checkbox`.
