@@ -1,4 +1,9 @@
-import { Output, EventEmitter, Input, Directive } from "@angular/core";
+import {
+	Output,
+	EventEmitter,
+	Input,
+	Directive
+} from "@angular/core";
 
 /**
  * Extend `BaseModal` in your custom modal implementations to ensure consistent close behavior.

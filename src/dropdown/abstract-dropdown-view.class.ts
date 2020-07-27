@@ -1,4 +1,9 @@
-import { Input, Output, EventEmitter, Directive } from "@angular/core";
+import {
+	Input,
+	Output,
+	EventEmitter,
+	Directive
+} from "@angular/core";
 import { ListItem } from "./list-item.interface";
 import { Observable } from "rxjs";
 
