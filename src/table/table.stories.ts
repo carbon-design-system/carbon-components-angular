@@ -14,12 +14,12 @@ import {
 	TableModule,
 	TableModel,
 	TableItem,
-	TableHeaderItem,
-	NFormsModule,
-	DialogModule,
-	SearchModule,
-	ButtonModule
-} from "../";
+	TableHeaderItem
+} from "./index";
+
+import { NFormsModule, ButtonModule } from "../forms/index";
+import { DialogModule } from "../dialog/index";
+import { SearchModule } from "../search/index";
 
 import {
 	SettingsModule,

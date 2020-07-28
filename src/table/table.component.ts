@@ -21,16 +21,7 @@ import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
-
-export interface TableTranslations {
-	FILTER: string;
-	END_OF_DATA: string;
-	SCROLL_TOP: string;
-	CHECKBOX_HEADER: string;
-	CHECKBOX_ROW: string;
-}
-
-export type TableRowSize = "sm" | "sh" | "md" | "lg";
+import { TableRowSize } from "./table.types";
 
 /**
  * Build your table with this component by extending things that differ from default.

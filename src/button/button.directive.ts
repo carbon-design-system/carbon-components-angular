@@ -4,10 +4,7 @@ import {
 	Input,
 	OnInit
 } from "@angular/core";
-
-export type ButtonType = "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" | "toolbar-action";
-
-export type ButtonSize = "sm" | "field";
+import { ButtonSize, ButtonType } from "./button.types";
 
 /**
  * A convenience directive for applying styling to a button.

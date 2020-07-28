@@ -9,12 +9,8 @@ export {
 export { AnimationFrameService, AnimationFrameServiceSingleton } from "./animation-frame.service";
 export { merge } from "./object";
 export {
-	AbsolutePosition,
-	Offset,
 	PLACEMENTS,
 	Position,
-	Positions,
-	ReferenceRect,
 	defaultPositions,
 	position
 } from "./position";
@@ -34,7 +30,8 @@ export {
 	UtilsModule
 } from "./utils.module";
 export { getScrollbarWidth } from "./window-tools";
-export { ElementService, ElementVisibilityEvent } from "./element.service";
+export { ElementService } from "./element.service";
+export { ElementVisibilityEvent } from "./element.types";
 export { EventService } from "./event.service";
 export { getEventObservable } from "./event-observable";
 export { EventHandler } from "./types";
