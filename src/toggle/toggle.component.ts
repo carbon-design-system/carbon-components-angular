@@ -55,10 +55,10 @@ export class ToggleChange {
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<input
-			class="bx--toggle"
+			class="bx--toggle-input"
 			type="checkbox"
 			[ngClass]="{
-				'bx--toggle--small': size === 'sm',
+				'bx--toggle-input--small': size === 'sm',
 				'bx--skeleton': skeleton
 			}"
 			[id]="id"
@@ -72,18 +72,15 @@ export class ToggleChange {
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label
-			class="bx--toggle__label"
+			class="bx--toggle-input__label"
 			[for]="id"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>
-			<span class="bx--toggle__appearance">
-				<svg *ngIf="size === 'sm'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
-					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
-				</svg>
+			<span class="bx--toggle__switch">
+				<span class="bx--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
+				<span class="bx--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
 			</span>
-			<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span>
 		</label>
 	`,
 	providers: [
