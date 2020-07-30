@@ -49,7 +49,7 @@ export class ContentSwitcherOption {
 
 	protected _active = false;
 
-	@HostListener("click")
+	@HostListener("click", ["$event"])
 	hostClick(event: MouseEvent) {
 		this.onClick.emit(event);
 		// skip setting and emitting if the option is already active
@@ -58,7 +58,7 @@ export class ContentSwitcherOption {
 		this.selected.emit(true);
 	}
 
-	@HostListener("focus")
+	@HostListener("focus", ["$event"])
 	doFocus(event: FocusEvent) {
 		this.onFocus.emit(event);
 		// skip setting and emitting if the option is already active
