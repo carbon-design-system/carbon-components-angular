@@ -536,16 +536,9 @@ export class DatePicker implements
 	 */
 	protected rightArrowHTML() {
 		return `
-      <svg
-        focusable="false"
-        preserveAspectRatio="xMidYMid meet"
-        style="will-change: transform;"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        aria-hidden="true">
-          <path d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"></path>
+      <svg width="16px" height="16px" viewBox="0 0 16 16">
+        <polygon points="11,8 6,13 5.3,12.3 9.6,8 5.3,3.7 6,3 "/>
+        <rect width="16" height="16" style="fill:none" />
       </svg>`;
 	}
 
@@ -554,17 +547,9 @@ export class DatePicker implements
 	 */
 	protected leftArrowHTML() {
 		return `
-      <svg
-        focusable="false"
-        preserveAspectRatio="xMidYMid meet"
-        style="will-change: transform;"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        aria-hidden="true"
-      >
-        <path d="M5 8l5-5 .7.7L6.4 8l4.3 4.3-.7.7z"></path>
+      <svg width="16px" height="16px" viewBox="0 0 16 16">
+        <polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
+        <rect width="16" height="16" style="fill:none" />
       </svg>`;
 	}
 }
