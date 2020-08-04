@@ -42,7 +42,8 @@ const getOptions = (override = {}) => {
 			}
 		],
 		selected: action("selection changed"),
-		submit: action("submit")
+		submit: action("submit"),
+		search: action("search")
 	};
 
 	return Object.assign({}, options, override);
@@ -202,7 +203,8 @@ storiesOf("Components|Combobox", module)
 				[helperText]="helperText"
 				[items]="items"
 				(selected)="selected($event)"
-				(submit)="submit($event)">
+				(submit)="submit($event)"
+				(search)="search($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 		`,
