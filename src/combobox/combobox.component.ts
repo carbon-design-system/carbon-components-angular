@@ -563,6 +563,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.closeDropdown();
 
 		this.showClearButton = false;
+		this.search.emit("");
 	}
 
 	public isTemplate(value) {
