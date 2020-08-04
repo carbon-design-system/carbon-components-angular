@@ -221,6 +221,8 @@ export class DatePicker implements
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
 			dayElem.classList.add("bx--date-picker__day");
 		},
+		nextArrow: this.rightArrowHTML(),
+		prevArrow: this.leftArrowHTML(),
 		value: this.value
 	};
 
@@ -527,5 +529,27 @@ export class DatePicker implements
 	protected isFlatpickrLoaded() {
 		// cast the instance to a boolean, and some method that has to exist for the library to be loaded in this case `setDate`
 		return !!this.flatpickrInstance && !!this.flatpickrInstance.setDate;
+	}
+
+	/**
+	 * Right arrow HTML passed to flatpickr
+	 */
+	protected rightArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="11,8 6,13 5.3,12.3 9.6,8 5.3,3.7 6,3 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
+	}
+
+	/**
+	 * Left arrow HTML passed to flatpickr
+	 */
+	protected leftArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
 	}
 }
