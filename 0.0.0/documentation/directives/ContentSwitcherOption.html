@@ -493,6 +493,11 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Arguments : </i><code>'$event' </code>
+                        </td>
+                    </tr>
                 <tr>
                     <td class="col-md-4">
 <code>click(event: MouseEvent)</code>
@@ -522,6 +527,11 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Arguments : </i><code>'$event' </code>
+                        </td>
+                    </tr>
                 <tr>
                     <td class="col-md-4">
 <code>focus(event: FocusEvent)</code>
@@ -714,7 +724,7 @@ export class ContentSwitcherOption {
 
 	protected _active &#x3D; false;
 
-	@HostListener(&quot;click&quot;)
+	@HostListener(&quot;click&quot;, [&quot;$event&quot;])
 	hostClick(event: MouseEvent) {
 		this.onClick.emit(event);
 		// skip setting and emitting if the option is already active
@@ -723,7 +733,7 @@ export class ContentSwitcherOption {
 		this.selected.emit(true);
 	}
 
-	@HostListener(&quot;focus&quot;)
+	@HostListener(&quot;focus&quot;, [&quot;$event&quot;])
 	doFocus(event: FocusEvent) {
 		this.onFocus.emit(event);
 		// skip setting and emitting if the option is already active
