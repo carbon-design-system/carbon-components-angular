@@ -80,7 +80,7 @@ export class TabHeader implements AfterViewInit {
 	@Output() selected = new EventEmitter<any>();
 
 	// @ts-ignore
-	@ViewChild("tabItem", { static: false }) tabItem: ElementRef;
+	@ViewChild("tabItem", { static: true }) tabItem: ElementRef;
 
 	protected _cacheActive = false;
 

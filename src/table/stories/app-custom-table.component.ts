@@ -8,7 +8,7 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
-import { clone } from "./../../utils/utils";
+import { clone } from "../../utils/index";
 
 export class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting

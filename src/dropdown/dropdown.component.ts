@@ -25,11 +25,11 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "./../utils/utils.module";
-import { hasScrollableParents } from "../utils";
+import { ElementService } from "carbon-components-angular/utils";
+import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -277,12 +277,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownButton", { static: false }) dropdownButton;
+	@ViewChild("dropdownButton", { static: true }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
 	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**

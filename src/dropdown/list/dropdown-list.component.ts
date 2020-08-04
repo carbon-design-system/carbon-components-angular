@@ -14,10 +14,10 @@ import {
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { I18n } from "../../i18n/index";
-import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
-import { ListItem } from "./../list-item.interface";
-import { watchFocusJump } from "./../dropdowntools";
+import { I18n } from "carbon-components-angular/i18n";
+import { AbstractDropdownView } from "../abstract-dropdown-view.class";
+import { ListItem } from "../list-item.interface";
+import { watchFocusJump } from "../dropdowntools";
 import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 
@@ -163,7 +163,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
 	// @ts-ignore
-	@ViewChild("list", { static: false }) list: ElementRef;
+	@ViewChild("list", { static: true }) list: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.

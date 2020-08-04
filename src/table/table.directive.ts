@@ -1,5 +1,5 @@
 import { Directive, HostBinding, Input } from "@angular/core";
-import { TableRowSize } from "./table.component";
+import { TableRowSize } from "./table.types";
 
 @Directive({
 	selector: "[ibmTable]"

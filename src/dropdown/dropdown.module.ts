@@ -4,24 +4,27 @@ import { FormsModule } from "@angular/forms";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
+import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 
 import { ScrollableList } from "./scrollable-list.directive";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
 import { DropdownService } from "./dropdown.service";
 import { ChevronDownModule, WarningFilledModule, CheckmarkModule } from "@carbon/icons-angular";
-import { UtilsModule } from "./../utils/utils.module";
+import { UtilsModule } from "carbon-components-angular/utils";
 
 @NgModule({
 	declarations: [
 		Dropdown,
 		DropdownList,
-		ScrollableList
+		ScrollableList,
+		AbstractDropdownView
 	],
 	exports: [
 		Dropdown,
 		DropdownList,
-		ScrollableList
+		ScrollableList,
+		AbstractDropdownView
 	],
 	imports: [
 		CommonModule,

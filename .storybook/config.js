@@ -1,12 +1,13 @@
 import "./polyfills.js";
 
 import { configure, addDecorator } from "@storybook/angular";
-import { withOptions } from '@storybook/addon-options';
+import { withOptions } from "@storybook/addon-options";
+import { setConfig } from "@storybook/addons";
+import { CarbonG100 } from "./theme";
 
 addDecorator(
 	withOptions({
-		name: "carbon components angular",
-		url: "https://github.com/IBM/carbon-components-angular",
+		theme: CarbonG100
 	})
 );
 

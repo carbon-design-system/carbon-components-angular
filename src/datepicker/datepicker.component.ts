@@ -23,9 +23,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { ElementService } from "../utils/element.service";
-import { I18n } from "./../i18n/index";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
+import { ElementService } from "carbon-components-angular/utils";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -184,7 +184,7 @@ export class DatePicker implements
 	}
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: DatePickerInput;
+	@ViewChild("input", { static: true }) input: DatePickerInput;
 
 	// @ts-ignore
 	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;

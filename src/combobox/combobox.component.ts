@@ -14,14 +14,13 @@ import {
 	TemplateRef,
 	OnDestroy
 } from "@angular/core";
-import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
-import { ListItem } from "./../dropdown/list-item.interface";
+import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
+import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService, hasScrollableParents } from "../utils/index";
-import { I18n, Overridable } from "../i18n/index";
+import { DocumentService, hasScrollableParents } from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { DropdownService } from "../dropdown/index";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.

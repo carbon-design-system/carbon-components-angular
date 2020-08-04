@@ -8,7 +8,7 @@ import {
 	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
 	selector: "ibm-selection-tile",
@@ -83,7 +83,7 @@ export class SelectionTile implements AfterViewInit {
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input;
+	@ViewChild("input", { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save
 	// the value and check again when input exists in `AfterViewInit`.

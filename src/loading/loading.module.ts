@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { Loading } from "./loading.component";
-import { I18nModule } from "./../i18n/index";
+import { I18nModule } from "carbon-components-angular/i18n";
 
 @NgModule({
 	declarations: [Loading],
