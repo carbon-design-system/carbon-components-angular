@@ -44,7 +44,8 @@ const getOptions = (override = {}) => {
 		selected: action("selection changed"),
 		submit: action("submit"),
 		size: select("size", ["sm", "md", "xl"], "md"),
-		theme: select("theme", ["dark", "light"], "dark")
+		theme: select("theme", ["dark", "light"], "dark"),
+		search: action("search")
 	};
 
 	return Object.assign({}, options, override);
@@ -230,7 +231,8 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[theme]="theme"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(search)="search($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>

@@ -338,10 +338,18 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * }
 	 * ```
 	 */
-	@Output() submit = new EventEmitter<any>();
+	@Output() submit = new EventEmitter <{
+		items: ListItem[],
+		index: number,
+		value: {
+			content: string,
+			selected: boolean
+		}
+	}>();
 	/** emits an empty event when the menu is closed */
-	@Output() close = new EventEmitter<any>();
-	@Output() search = new EventEmitter<any>();
+	@Output() close = new EventEmitter<void>();
+	/** emits the search string from the input */
+	@Output() search = new EventEmitter<string>();
 	/** ContentChild reference to the instantiated dropdown list */
 	// @ts-ignore
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
@@ -643,6 +651,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 
 		this.showClearButton = false;
 		this.input.nativeElement.focus();
+		this.search.emit("");
 	}
 
 	public isTemplate(value) {
