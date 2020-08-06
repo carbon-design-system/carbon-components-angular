@@ -32,6 +32,7 @@ export { DialogPlaceholder } from "./dialog-placeholder.component";
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDefinition } from "./tooltip/tooltip-definition.component";
 export { TooltipIcon } from "./tooltip/tooltip-icon.component";
+import { OverflowMenuVertical16Module } from "@carbon/icons-angular/lib/overflow-menu--vertical/16";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
 export { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
@@ -80,6 +81,7 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
+		OverflowMenuVertical16Module,
 		UtilsModule
 	]
 })
