@@ -4,8 +4,6 @@ set -e # exit with nonzero exit code if anything fails
 
 rm -rf dist
 
-cd src
-
 # run the angular/ng-packagr build
 npm run ng:build
 
