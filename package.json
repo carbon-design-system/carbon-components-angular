@@ -123,6 +123,7 @@
     "lodash-es": "4.17.15",
     "ng-packagr": "4.7.1",
     "rxjs": "6.4.0",
+    "sass": "^1.26.10",
     "semantic-release": "17.0.4",
     "ts-helpers": "1.1.2",
     "tsickle": "0.35.0",
