@@ -43,7 +43,9 @@ const getOptions = (override = {}) => {
 		],
 		selected: action("selection changed"),
 		submit: action("submit"),
-		search: action("search")
+		search: function(event) {
+			console.log("search string:", event);
+		}
 	};
 
 	return Object.assign({}, options, override);
