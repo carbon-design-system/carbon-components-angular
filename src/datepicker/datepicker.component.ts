@@ -26,6 +26,7 @@ import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
+import { BaseOptions } from "flatpickr/dist/types/options";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -193,11 +194,11 @@ export class DatePicker implements
 
 	protected _value = [];
 
-	protected _flatpickrOptions = {
+	protected _flatpickrOptions: Partial<BaseOptions> = {
 		allowInput: true
 	};
 
-	protected flatpickrBaseOptions = {
+	protected flatpickrBaseOptions: Partial<BaseOptions> = {
 		mode: "single",
 		dateFormat: "m/d/Y",
 		plugins: this.plugins,
@@ -222,8 +223,7 @@ export class DatePicker implements
 			dayElem.classList.add("bx--date-picker__day");
 		},
 		nextArrow: this.rightArrowHTML(),
-		prevArrow: this.leftArrowHTML(),
-		value: this.value
+		prevArrow: this.leftArrowHTML()
 	};
 
 	protected flatpickrInstance = null;
