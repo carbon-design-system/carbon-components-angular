@@ -4,6 +4,18 @@ import { By } from "@angular/platform-browser";
 
 import { Link } from "./link.directive";
 
+@Component({
+	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
+})
+class TestLinkComponent {
+}
+
+@Component({
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
+})
+class TestDisabledLinkComponent {
+}
+
 describe("Link", () => {
 	it("should create a Link", () => {
 		TestBed.configureTestingModule({
@@ -37,14 +49,4 @@ describe("Link", () => {
 	});
 });
 
-@Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
-})
-class TestLinkComponent {
-}
 
-@Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
-})
-class TestDisabledLinkComponent {
-}

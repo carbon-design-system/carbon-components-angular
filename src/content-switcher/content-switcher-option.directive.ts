@@ -35,7 +35,11 @@ export class ContentSwitcherOption {
 	/**
 	 * Emits when the option is selected.
 	 */
-	@Output() selected = new EventEmitter();
+	@Output() selected = new EventEmitter<boolean>();
+
+	@Output() onClick = new EventEmitter<MouseEvent>();
+
+	@Output() onFocus = new EventEmitter<FocusEvent>();
 
 	@HostBinding("class") switcherClass = "bx--content-switcher-btn";
 	@HostBinding("class.bx--content-switcher--selected") selectedClass = false;
@@ -45,14 +49,20 @@ export class ContentSwitcherOption {
 
 	protected _active = false;
 
-	@HostListener("click")
-	hostClick() {
+	@HostListener("click", ["$event"])
+	hostClick(event: MouseEvent) {
+		this.onClick.emit(event);
+		// skip setting and emitting if the option is already active
+		if (this.active) { return; }
 		this.active = true;
 		this.selected.emit(true);
 	}
 
-	@HostListener("focus")
-	onFocus() {
+	@HostListener("focus", ["$event"])
+	doFocus(event: FocusEvent) {
+		this.onFocus.emit(event);
+		// skip setting and emitting if the option is already active
+		if (this.active) { return; }
 		this.active = true;
 		this.selected.emit(true);
 	}

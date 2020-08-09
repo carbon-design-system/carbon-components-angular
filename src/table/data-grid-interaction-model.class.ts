@@ -5,7 +5,7 @@ import {
 } from "rxjs";
 import { map } from "rxjs/operators";
 import { TableAdapter } from "./table-adapter.class";
-import { tabbableSelectorIgnoreTabIndex, getFocusElementList } from "./../common/tab.service";
+import { tabbableSelectorIgnoreTabIndex, getFocusElementList } from "carbon-components-angular/common";
 
 /**
  * The current and previous position in the grid.

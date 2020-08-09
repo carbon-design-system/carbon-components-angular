@@ -3,7 +3,8 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilledModule } from "@carbon/icons-angular";
-import { DialogModule, PlaceholderModule } from "../../";
+import { DialogModule } from "../dialog.module";
+import { PlaceholderModule } from "../../placeholder/index";
 import { DocumentationModule } from "../../documentation-component/documentation.module";
 import { boolean, object } from "@storybook/addon-knobs";
 

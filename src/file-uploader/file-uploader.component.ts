@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
 
 const noop = () => { };
@@ -257,7 +257,9 @@ export class FileUploader {
 	}
 
 	removeFile(fileItem) {
-		this.files.delete(fileItem);
+		if (this.files) {
+			this.files.delete(fileItem);
+		}
 		this.fileInput.nativeElement.value = "";
 		this.filesChange.emit(this.files);
 	}

@@ -23,9 +23,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { ElementService } from "../utils/element.service";
-import { I18n } from "./../i18n/index";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
+import { ElementService } from "carbon-components-angular/utils";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -50,7 +50,8 @@ import { I18n } from "./../i18n/index";
 					[label]="label"
 					[placeholder]="placeholder"
 					[pattern]="pattern"
-					[id]="id"
+					[id]="id + '-input'"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
@@ -69,6 +70,7 @@ import { I18n } from "./../i18n/index";
 					[placeholder]="placeholder"
 					[pattern]="pattern"
 					[id]="id + '-rangeInput'"
+					[size]="size"
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
@@ -154,6 +156,8 @@ export class DatePicker implements
 
 	@Input() invalidText: string | TemplateRef<any>;
 
+	@Input() size: "sm" | "md" | "xl" = "md";
+
 	@Input() rangeInvalid = false;
 
 	@Input() rangeInvalidText: string | TemplateRef<any>;
@@ -180,7 +184,7 @@ export class DatePicker implements
 	}
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: DatePickerInput;
+	@ViewChild("input", { static: true }) input: DatePickerInput;
 
 	// @ts-ignore
 	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
@@ -217,6 +221,8 @@ export class DatePicker implements
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
 			dayElem.classList.add("bx--date-picker__day");
 		},
+		nextArrow: this.rightArrowHTML(),
+		prevArrow: this.leftArrowHTML(),
 		value: this.value
 	};
 
@@ -250,7 +256,7 @@ export class DatePicker implements
 			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
 			.subscribe(value => {
 				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
-					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
+					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}-input`));
 					if (!value.visible) {
 						this.flatpickrInstance.close();
 					}
@@ -263,7 +269,7 @@ export class DatePicker implements
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
 				if (this.value.length > 0) {
@@ -403,7 +409,7 @@ export class DatePicker implements
 				dates = newDates.currentValue;
 			}
 			// only reset the flatpickr instance on Input changes
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			this.setDateValues(dates);
 		}
 	}
@@ -462,7 +468,7 @@ export class DatePicker implements
 	 */
 	protected setDateValues(dates: (Date | string)[]) {
 		if (this.isFlatpickrLoaded()) {
-			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
+			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}-input`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
 
 			// set the date on the instance
@@ -523,5 +529,27 @@ export class DatePicker implements
 	protected isFlatpickrLoaded() {
 		// cast the instance to a boolean, and some method that has to exist for the library to be loaded in this case `setDate`
 		return !!this.flatpickrInstance && !!this.flatpickrInstance.setDate;
+	}
+
+	/**
+	 * Right arrow HTML passed to flatpickr
+	 */
+	protected rightArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="11,8 6,13 5.3,12.3 9.6,8 5.3,3.7 6,3 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
+	}
+
+	/**
+	 * Left arrow HTML passed to flatpickr
+	 */
+	protected leftArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
 	}
 }

@@ -1,15 +1,15 @@
 const path = require('path');
 
-module.exports = ({config, mode}) => {
+module.exports = ({ config }) => {
 	config.module.rules.push({
 		test: [/\.stories\.tsx?$/, /index\.ts$/],
 		loaders: [
-		  {
-			loader: require.resolve('@storybook/addon-storysource/loader'),
-			options: {
-			  parser: 'typescript',
+			{
+				loader: require.resolve('@storybook/source-loader'),
+				options: {
+					parser: 'typescript',
+				},
 			},
-		  },
 		],
 		include: [path.resolve(__dirname, '../src')],
 		enforce: 'pre',

@@ -25,11 +25,11 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "./../utils/utils.module";
-import { hasScrollableParents } from "../utils";
+import { ElementService } from "carbon-components-angular/utils";
+import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -74,10 +74,13 @@ import { hasScrollableParents } from "../utils";
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
 			'bx--list-box--up': dropUp,
+			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
+			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
 		}">
 		<button
 			#dropdownButton
+			type="button"
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
@@ -175,7 +178,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -274,12 +277,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownButton", { static: false }) dropdownButton;
+	@ViewChild("dropdownButton", { static: true }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
 	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**
@@ -631,10 +634,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
+		const lightClass = this.theme === "light" ? " bx--list-box--light" : "";
+		const expandedClass = !this.menuIsClosed ? " bx--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			`${this.elementRef.nativeElement.className}${!this.menuIsClosed ? " bx--list-box--expanded" : ""}`);
+			`${this.elementRef.nativeElement.className}${lightClass}${expandedClass}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 

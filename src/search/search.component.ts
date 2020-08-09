@@ -9,7 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/search--basic)
@@ -42,11 +42,12 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() set size(value: "sm" | "xl" | "lg") {
+
+	@Input() set size(value: "sm" | "md" | "xl") {
 		this._size = value;
 	}
 
-	get size(): "sm" | "xl" | "lg" {
+	get size(): "sm" | "md" | "xl" {
 		return this._size;
 	}
 	/**
@@ -115,7 +116,7 @@ export class Search implements ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
-	protected _size: "sm" | "xl" | "lg" = "xl";
+	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
 	 * Creates an instance of `Search`.

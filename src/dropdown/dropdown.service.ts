@@ -1,8 +1,8 @@
 import { Injectable, ElementRef, OnDestroy } from "@angular/core";
-import { PlaceholderService } from "./../placeholder/index";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
-import { AnimationFrameService } from "./../utils/utils.module";
+import { AnimationFrameService } from "carbon-components-angular/utils";
 
 const defaultOffset = { top: 0, left: 0 };
 

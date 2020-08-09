@@ -1,9 +1,9 @@
-import { DatePickerInputModule } from "./../datepicker-input/datepicker-input.module";
+import { DatePickerInputModule } from "carbon-components-angular/datepicker-input";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DatePicker } from "./datepicker.component";
-import { UtilsModule } from "../utils/utils.module";
-import { I18nModule } from "./../i18n/index";
+import { UtilsModule } from "carbon-components-angular/utils";
+import { I18nModule } from "carbon-components-angular/i18n";
 
 @NgModule({
 	declarations: [

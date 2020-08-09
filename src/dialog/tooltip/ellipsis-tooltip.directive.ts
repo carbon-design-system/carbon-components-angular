@@ -9,7 +9,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { TooltipDirective } from "./tooltip.directive";
-import { DialogService } from "./../dialog.service";
+import { DialogService } from "../dialog.service";
 import { Tooltip } from "./tooltip.component";
 
 

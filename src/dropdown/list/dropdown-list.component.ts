@@ -14,10 +14,10 @@ import {
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { I18n } from "../../i18n/index";
-import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
-import { ListItem } from "./../list-item.interface";
-import { watchFocusJump } from "./../dropdowntools";
+import { I18n } from "carbon-components-angular/i18n";
+import { AbstractDropdownView } from "../abstract-dropdown-view.class";
+import { ListItem } from "../list-item.interface";
+import { watchFocusJump } from "../dropdowntools";
 import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 
@@ -89,6 +89,12 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
+					<svg
+						*ngIf="!listTpl && type === 'single'"
+						ibmIconCheckmark
+						size="16"
+						class="bx--list-box__menu-item__selected-icon">
+					</svg>
 					<ng-template
 						*ngIf="listTpl"
 						[ngTemplateOutletContext]="{item: item}"
@@ -157,7 +163,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
 	// @ts-ignore
-	@ViewChild("list", { static: false }) list: ElementRef;
+	@ViewChild("list", { static: true }) list: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -168,7 +174,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "lg" = "md";
+	public size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Holds the list of items that will be displayed in the `DropdownList`.
 	 * It differs from the the complete set of items when filtering is used (but
