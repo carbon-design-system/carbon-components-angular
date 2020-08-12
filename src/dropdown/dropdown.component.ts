@@ -116,7 +116,7 @@ import { ElementService } from "./../utils/utils.module";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
+	<div *ngIf="invalid && invalidText" class="bx--form-requirement">
 		{{invalidText}}
 	</div>
 	`,
