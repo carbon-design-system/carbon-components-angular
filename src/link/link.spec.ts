@@ -17,7 +17,7 @@ class TestDisabledLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="1+1===2" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" ibmLink>link</a>`
 })
 class TestInlineLinkComponent {
 }
