@@ -11,6 +11,7 @@ import {
 	selector: "ibm-accordion-item",
 	template: `
 		<button
+			type="button"
 			[attr.aria-expanded]="expanded"
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
