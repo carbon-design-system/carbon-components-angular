@@ -57,7 +57,7 @@ import { I18n } from "carbon-components-angular/i18n";
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>
 		<button
-			*ngIf="showClose"
+			*ngIf="!isCloseHidden"
 			class="bx--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
