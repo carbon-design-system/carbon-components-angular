@@ -272,7 +272,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	close() {
 		if (this.dialogRef) {
-			this.dialogRef.instance.doClose();
+			setTimeout(() => {
+				this.dialogRef.instance.doClose();
+			});
 		}
 	}
 
