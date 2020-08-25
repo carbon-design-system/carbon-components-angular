@@ -33,6 +33,12 @@ export class Link {
 	@HostBinding("attr.tabindex") tabindex;
 
 	/**
+	 * Set to true to show links inline in a sentence or paragraph.
+	 */
+	@Input()
+	@HostBinding("class.bx--link--inline") inline = false;
+
+	/**
 	 * Set to true to disable link.
 	 */
 	@Input()
