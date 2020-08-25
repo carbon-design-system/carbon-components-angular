@@ -79,7 +79,9 @@ export class DialogService {
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
 			if (dialogRef) {
-				window.document.querySelector("body").appendChild(dialogRef.location.nativeElement);
+				setTimeout(() => {
+					window.document.querySelector("body").appendChild(dialogRef.location.nativeElement);
+				});
 			}
 		} else {
 			dialogRef = this.placeholderService.createComponent(componentFactory, this.injector);
