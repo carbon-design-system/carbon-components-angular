@@ -261,6 +261,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
+	 * Specifies the property to be used as the return value to `ngModel`
+	 */
+	@Input() itemValueKey: string;
+	/**
 	 * Label for the combobox.
 	 */
 	@Input() label: string | TemplateRef<any>;
@@ -418,12 +422,22 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			this.view.select.subscribe(event => {
 				if (this.type === "multi") {
 					this.updatePills();
-					this.propagateChangeCallback(this.view.getSelected());
+					if (this.itemValueKey && this.view.getSelected()) {
+						const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+						this.propagateChangeCallback(values);
+					// otherwise just pass up the values from `getSelected`
+					} else {
+						this.propagateChangeCallback(this.view.getSelected());
+					}
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
-						this.selectedValue = event.item.content;
-						this.propagateChangeCallback(event.item);
+						if (this.itemValueKey) {
+							this.propagateChangeCallback(event.item[this.itemValueKey]);
+						} else {
+							this.selectedValue = event.item.content;
+							this.propagateChangeCallback(event.item);
+						}
 					} else {
 						this.selectedValue = "";
 						this.propagateChangeCallback(null);
@@ -516,10 +530,31 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	writeValue(value: any) {
 		if (this.type === "single") {
-			this.view.propagateSelected([value]);
+			if (this.itemValueKey) {
+				// clone the specified item and update its state
+				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.itemValueKey] === value));
+				newValue.selected = true;
+				this.view.propagateSelected([newValue]);
+			} else {
+				this.view.propagateSelected([value]);
+			}
 			this.showClearButton = !!(value && this.view.getSelected().length);
 		} else {
-			this.view.propagateSelected(value ? value : [""]);
+			if (this.itemValueKey) {
+				// clone the items and update their state based on the received value array
+				// this way we don't lose any additional metadata that may be passed in via the `items` Input
+				let newValues = [];
+				for (const v of value) {
+					for (const item of this.view.getListItems()) {
+						if (item[this.itemValueKey] === v) {
+							newValues.push(Object.assign({}, item, { selected: true }));
+						}
+					}
+				}
+				this.view.propagateSelected(newValues);
+			} else {
+				this.view.propagateSelected(value ? value : [""]);
+			}
 		}
 		this.updateSelected();
 	}
