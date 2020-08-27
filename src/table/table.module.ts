@@ -47,6 +47,7 @@ import { TableExpandButton } from "./cell/table-expand-button.component";
 
 // model exports
 export { TableModel } from "./table-model.class";
+export { TableRow } from "./table-row.class";
 export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 export * from "./table-adapter.class";
