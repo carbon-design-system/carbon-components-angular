@@ -36,7 +36,7 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	helperText: text("Helper text", "Optional helper text."),
 	items: object("items", [
 		{ content: "one" },
-		{ content: "two" },
+		{ content: "two", selected: true },
 		{ content: "three" },
 		{ content: "four" }
 	]),
@@ -49,7 +49,7 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup">
-			<div style="text-align:center">
+			<div style="width: 300px">
 				<ibm-dropdown
 					[label]="label"
 					[helperText]="helperText"
@@ -57,7 +57,6 @@ const getProps = (overrides = {}) => Object.assign({}, {
 					[invalidText]="invalidText"
 					[theme]="theme"
 					[selectionFeedback]="selectionFeedback"
-					type="multi"
 					placeholder="Multi-select"
 					value="oid"
 					(selected)="selected.emit($event)"
@@ -93,7 +92,7 @@ class ReactiveFormsStory implements OnInit {
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
-	constructor(protected formBuilder: FormBuilder) {}
+	constructor(protected formBuilder: FormBuilder) { }
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
@@ -103,14 +102,14 @@ class ReactiveFormsStory implements OnInit {
 	}
 
 	private selectRoles() {
-		this.formGroup.get("roles").setValue([1, 2]);
+		this.formGroup.get("roles").setValue(1);
 	}
 }
 
 storiesOf("Components|Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ ReactiveFormsStory ],
+			declarations: [ReactiveFormsStory],
 			imports: [
 				DropdownModule,
 				PlaceholderModule,
@@ -191,7 +190,7 @@ storiesOf("Components|Dropdown", module)
 				{ content: "three", id: 2 },
 				{ content: "four", id: 3 }
 			]),
-			model: null,
+			model: [2],
 			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
 		})
 	}))
@@ -214,15 +213,14 @@ storiesOf("Components|Dropdown", module)
 		</div>
 		`,
 		props: getProps({
-			model: null
+			model: "two"
 		})
 	}))
-	.add("Width reactive forms", () => ({
+	.add("With reactive forms", () => ({
 		template: `
 			<app-reactive-forms
 				[label]="label"
 				[helperText]="helperText"
-				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
@@ -234,9 +232,16 @@ storiesOf("Components|Dropdown", module)
 		`,
 		props: getProps({
 			items: [
-				{ content: "role 1", oid: 1, selected: false },
-				{ content: "role 2", oid: 2, selected: false },
-				{ content: "role 3", oid: 3, selected: false }
+				{
+					content: "numerical value item 1",
+					oid: 1,
+					selected: false
+				},
+				{
+					content: "string value item 2",
+					oid: 2,
+					selected: false
+				}
 			],
 			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen"),
 			selected: action("Selected fired for multi-select dropdown"),
@@ -264,7 +269,7 @@ storiesOf("Components|Dropdown", module)
 		props: getProps({
 			items: of([
 				{ content: "one" },
-				{ content: "two" },
+				{ content: "two", selected: true },
 				{ content: "three" },
 				{ content: "four" }
 			])
