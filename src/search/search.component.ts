@@ -130,6 +130,10 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<string>();
+	/**
+	 * Emits an event on enter.
+	 */
+	@Output() search = new EventEmitter<string>();
 	@Output() open = new EventEmitter<boolean>();
 	/**
 	 * Emits an event when the clear button is clicked.
@@ -188,6 +192,13 @@ export class Search implements ControlValueAccessor {
 	onSearch(search: string) {
 		this.value = search;
 		this.doValueChange();
+	}
+
+	/**
+	 * Called on enter.
+	 */
+	onEnter() {
+		this.search.emit(this.value);
 	}
 
 	/**
