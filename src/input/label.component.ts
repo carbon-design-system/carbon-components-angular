@@ -44,7 +44,6 @@ import { TextArea } from "./text-area.directive";
 			}">
 			<ng-content></ng-content>
 		</label>
-		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
 			<ibm-icon-warning-filled
 				size="16"
@@ -53,6 +52,7 @@ import { TextArea } from "./text-area.directive";
 			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
+		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
