@@ -106,6 +106,7 @@ class DynamicListComboBox implements AfterViewInit {
 				[size]="size"
 				[label]="label"
 				[helperText]="helperText"
+				itemValueKey="content"
 				[theme]="theme"
 				[items]="items">
 				<ibm-dropdown-list></ibm-dropdown-list>
@@ -116,6 +117,7 @@ class DynamicListComboBox implements AfterViewInit {
 				formControlName="multibox"
 				[label]="label"
 				[size]="size"
+				itemValueKey="content"
 				[helperText]="helperText"
 				type="multi"
 				[items]="items">
@@ -141,13 +143,8 @@ class ReactiveFormsCombobox implements OnInit {
 			multibox: new FormControl
 		});
 
-		this.sampleForm.get("combobox").setValue({ content: "four", selected: true });
-		this.sampleForm.get("multibox").setValue(
-			[
-				{ content: "four", selected: true },
-				{ content: "two", selected: true }
-			]
-		);
+		this.sampleForm.get("combobox").setValue("four");
+		this.sampleForm.get("multibox").setValue(["four", "two"]);
 	}
 }
 
@@ -425,6 +422,7 @@ storiesOf("Components|Combobox", module)
 					[invalidText]="invalidText"
 					[label]="label"
 					[size]="size"
+					itemValueKey="content"
 					[helperText]="helperText"
 					[items]="items"
 					[theme]="theme"
@@ -438,7 +436,7 @@ storiesOf("Components|Combobox", module)
 			</div>
 		`,
 		props: getOptions({
-			model: { "content": "three", "selected": true }
+			model: "three"
 		})
 	}))
 	.add("Mock query search", () => ({
