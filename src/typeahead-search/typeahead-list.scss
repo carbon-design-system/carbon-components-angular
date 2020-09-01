@@ -30,12 +30,12 @@
 			white-space: nowrap;
 		}
 	}
-}
 
-.bx--typeahead__menu-item:hover {
-	background-color: #e5e5e5;
-}
+	.bx--typeahead__menu-item:hover {
+		background-color: #e5e5e5;
+	}
 
-.bx--typeahead__menu-item[selected] {
-	background-color: #e5e5e5;
+	.bx--typeahead__menu-item[selected] {
+		background-color: #e5e5e5;
+	}
 }
