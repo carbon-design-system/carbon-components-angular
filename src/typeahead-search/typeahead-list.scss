@@ -1,0 +1,41 @@
+.bx--typeahead__menu {
+	background-color: #f4f4f4;
+	max-height: 13.75rem;
+	overflow-y: auto;
+
+	.bx--typeahead__menu-label {
+		padding-left: 0.75rem;
+		padding-top: 1.25rem;
+		height: 2.5rem;
+	}
+
+	.bx--typeahead__menu-item {
+		height: 3rem;
+
+		.bx--typeahead__menu-item__option {
+			outline: 2px solid transparent;
+			outline-offset: -2px;
+			display: block;
+			height: 2.5rem;
+			color: black;
+			text-decoration: none;
+			font-weight: normal;
+			line-height: 1rem;
+			padding: 0.6875rem 0;
+			margin: 0 1rem;
+			padding-right: 1.5rem;
+			padding-left: 1.5rem;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
+}
+
+.bx--typeahead__menu-item:hover {
+	background-color: #e5e5e5;
+}
+
+.bx--typeahead__menu-item[selected] {
+	background-color: #e5e5e5;
+}

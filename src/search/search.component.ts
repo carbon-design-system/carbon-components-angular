@@ -70,6 +70,8 @@ export class Search implements ControlValueAccessor {
 	 * Specifies whether the search component is used in the table toolbar.
 	 */
 	@Input() tableSearch = false;
+	@Input() typeaheadSearch = false;
+	@Input() menuIsClosed = true;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */
@@ -108,6 +110,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() valueChange = new EventEmitter<string>();
 	@Output() open = new EventEmitter<boolean>();
+	@Output() search = new EventEmitter<string>();
 	/**
 	 * Emits an event when the clear button is clicked.
 	 */

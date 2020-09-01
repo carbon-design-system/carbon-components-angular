@@ -24,6 +24,7 @@
 			[autocomplete]="autocomplete"
 			[placeholder]="placeholder"
 			[disabled]="disabled"
+			(keydown.enter)="search.emit(value)"
 			[required]="required"
 			(input)="onSearch($event.target.value)"/>
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
@@ -43,4 +44,9 @@
 		<span class="bx--visually-hidden">{{ clearButtonTitle }}</span>
 		<ibm-icon-close size="16"></ibm-icon-close>
 	</button>
+
+	<div
+		#typeaheadMenu>
+		<ng-content *ngIf="!menuIsClosed"></ng-content>
+	</div>
 </div>
