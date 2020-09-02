@@ -28,7 +28,7 @@ import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "carbon-components-angular/utils";
+import { ElementService, getScrollableParents } from "carbon-components-angular/utils";
 import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**
@@ -73,7 +73,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
-			'bx--list-box--up': dropUp,
 			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
 			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
@@ -132,7 +131,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		<div
 			#dropdownMenu
 			[ngClass]="{
-				'drop-up': dropUp
+				'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
@@ -256,6 +255,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() selectedLabel = this.i18n.get().DROPDOWN.SELECTED;
 	/**
+	 * Overrides the automatic dropUp.
+	 */
+	@Input() dropUp: boolean;
+	/**
 	 * Emits selection events.
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
@@ -291,9 +294,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	menuIsClosed = true;
 
 	/**
-	 * controls wether the `drop-up` class is applied
+	 * controls whether the `drop-up` class is applied
 	 */
-	dropUp = false;
+	_dropUp = false;
 
 	// .bind creates a new function, so we declare the methods below
 	// but .bind them up here
@@ -644,6 +647,27 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	/**
+	 * Detects whether or not the `Dropdown` list is visible within all scrollable parents.
+	 * This can be overridden by passing in a value to the `dropUp` input.
+	 */
+	_shouldDropUp() {
+		// check if dropdownMenu exists first.
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		// check if menu exists first.
+		const menuRect = menu && menu.getBoundingClientRect();
+		if (menu && menuRect) {
+			const scrollableParents = getScrollableParents(menu);
+			return scrollableParents.reduce((shouldDropUp: boolean, parent: HTMLElement) => {
+				const parentRect = parent.getBoundingClientRect();
+				const isBelowParent = !(menuRect.bottom <= parentRect.bottom);
+				return shouldDropUp || isBelowParent;
+			}, false);
+		}
+
+		return false;
+	}
+
+	/**
 	 * Expands the dropdown menu in the view.
 	 */
 	openMenu() {
@@ -652,6 +676,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			return;
 		}
 
+		this._dropUp = false;
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if we're not appending inline
@@ -673,13 +698,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// set the dropdown menu to drop up if it's near the bottom of the screen
 		// setTimeout lets us measure after it's visible in the DOM
 		setTimeout(() => {
-			const button = this.dropdownButton.nativeElement;
-			const boundingClientRect = button.getBoundingClientRect();
-			// +100 to give the dropUp some buffer
-			if ((boundingClientRect.bottom + 100) > window.innerHeight) {
-				this.dropUp = true;
-			} else {
-				this.dropUp = false;
+			if (this.dropUp === null || this.dropUp === undefined) {
+				this._dropUp = this._shouldDropUp();
 			}
 		}, 0);
 

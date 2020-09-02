@@ -26,6 +26,29 @@ import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { DropdownModule } from "./dropdown.module";
+import { ModalModule } from "../modal";
+
+const modalText =
+	`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.`;
 
 const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
@@ -42,7 +65,8 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	]),
 	selected: action("Selected fired for dropdown"),
 	onClose: action("Dropdown closed"),
-	theme: select("theme", ["dark", "light"], "dark")
+	theme: select("theme", ["dark", "light"], "dark"),
+	dropUp: boolean("Drop up", false)
 }, overrides);
 
 @Component({
@@ -106,12 +130,36 @@ class ReactiveFormsStory implements OnInit {
 	}
 }
 
+@Component({
+	selector: "app-dropdown-modal",
+	template: `
+        <ibm-modal [open]="true">
+            <ibm-modal-header>Header label</ibm-modal-header>
+            <section class="bx--modal-content">
+                <h1>Sample modal works.</h1>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+                <div style="width: 300px">
+					<ibm-dropdown placeholder="Select">
+						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+					</ibm-dropdown>
+				</div>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+            </section>
+        </ibm-modal>
+    `
+})
+class DropdownModal {
+	@Input() modalText: string;
+	@Input() items: any[];
+}
+
 storiesOf("Components|Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
+			declarations: [ReactiveFormsStory, DropdownModal],
 			imports: [
 				DropdownModule,
+				ModalModule,
 				PlaceholderModule,
 				DocumentationModule,
 				ReactiveFormsModule
@@ -126,6 +174,7 @@ storiesOf("Components|Dropdown", module)
 				[label]="label"
 				[helperText]="helperText"
 				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[theme]="theme"
@@ -146,6 +195,7 @@ storiesOf("Components|Dropdown", module)
 				[label]="label"
 				[helperText]="helperText"
 				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[selectionFeedback]="selectionFeedback"
@@ -171,6 +221,7 @@ storiesOf("Components|Dropdown", module)
 				[label]="label"
 				[helperText]="helperText"
 				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[selectionFeedback]="selectionFeedback"
@@ -214,6 +265,17 @@ storiesOf("Components|Dropdown", module)
 		`,
 		props: getProps({
 			model: "two"
+		})
+	}))
+	.add("In modal", () => ({
+		template: `
+			<app-dropdown-modal
+				[items]="items"
+				[modalText]="modalText">
+			</app-dropdown-modal>
+		`,
+		props: getProps({
+			modalText: text("modal text", modalText)
 		})
 	}))
 	.add("With reactive forms", () => ({
