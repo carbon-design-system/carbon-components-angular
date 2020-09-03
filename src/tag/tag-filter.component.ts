@@ -11,7 +11,7 @@ import { Tag } from "./tag.component";
 	template: `
 		<ng-content></ng-content>
 		<svg
-			(click)="close.emit()"
+			(click)="onClose($event)"
 			focusable="false"
 			preserveAspectRatio="xMidYMid meet"
 			style="will-change: transform;"
@@ -30,6 +30,11 @@ export class TagFilter extends Tag {
 	 * Function for close/delete the tag
 	 */
 	@Output() close = new EventEmitter<any>();
+
+	onClose(event) {
+		event.stopImmediatePropagation();
+		this.close.emit();
+	}
 
 	@HostBinding("attr.class") get attrClass() {
 		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}`;
