@@ -110,16 +110,6 @@ export class Toggle extends Checkbox {
 	}
 
 	/**
-	 * Sets the aria labelledby on the `toggle`s label element.
-	 */
-	@Input() ariaLabelledby: string;
-
-	/**
-	 * Sets the aria name on the `toggle`s input element.
-	 */
-	@Input() name: string;
-
-	/**
 	 * Text that is set on the right side of the toggle.
 	 */
 	@Input()
