@@ -17,7 +17,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">>
+		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
 			<ng-content select="ibm-sidenav-header"></ng-content>
 			<ul class="bx--side-nav__items">
 				<div
