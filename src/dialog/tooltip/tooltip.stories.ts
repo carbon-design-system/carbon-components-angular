@@ -66,7 +66,6 @@ storiesOf("Components|Tooltip", module)
 							{{ tag.content }}
 						</ibm-tag-filter>
 					</ng-template>
-	
 					<div class="bx--tooltip__label">
 						{{triggerText}}
 						<span

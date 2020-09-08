@@ -31,8 +31,18 @@ export class TagFilter extends Tag {
 	 */
 	@Output() close = new EventEmitter<any>();
 
+	/**
+	 * We need to stop the immedate propagation of click on the close button
+	 * to prevent undesired effects when used within dialogs.
+	 *
+	 * We need to emit a click event on close to allow for clicks to be listened
+	 * to on the immediate close button element.
+	 */
+	@Output() click = new EventEmitter<any>();
+
 	onClose(event) {
 		event.stopImmediatePropagation();
+		this.click.emit();
 		this.close.emit();
 	}
 
