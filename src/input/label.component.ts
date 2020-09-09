@@ -38,6 +38,7 @@ import { TextArea } from "./text-area.directive";
 	template: `
 		<label
 			[for]="labelInputID"
+			[attr.aria-label]="labelInputID"
 			class="bx--label"
 			[ngClass]="{
 				'bx--skeleton': skeleton
