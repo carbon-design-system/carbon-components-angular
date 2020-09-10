@@ -5,13 +5,13 @@ import {
 } from "@angular/core";
 
 /**
- * A convinence directive for applying styling to a link.
+ * A convenience directive for applying styling to a link.
  *
  * [See demo](../../?path=/story/link--basic)
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <a href="#" ibmLink>A link</a>
  * ```
  *

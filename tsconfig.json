@@ -31,7 +31,8 @@
 		"**/*.stories.ts",
 		"**/stories/**",
 		"**/*.spec.ts",
-		"**/node_modules/**"
+		"**/node_modules/**",
+		"**/dist/**"
 	],
 	"angularCompilerOptions": {
 		"skipTemplateCodegen": true,

@@ -6,8 +6,7 @@
   "scripts": {
     "build": "bash scripts/build.sh",
     "storybook": "start-storybook -s .storybook/public -p 6006",
-    "docs:build": "compodoc -p tsconfig.json",
-    "docs:server": "compodoc -p tsconfig.json -s -w",
+    "docs:build": "typedoc",
     "lint": "tslint 'src/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts'",
     "test": "ng test --no-watch",
@@ -86,7 +85,6 @@
     "@carbon/themes": "10.15.0",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
-    "@compodoc/compodoc": "1.1.7",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-knobs": "5.3.19",
     "@storybook/addon-links": "5.3.19",
@@ -129,6 +127,8 @@
     "tsickle": "0.35.0",
     "tslib": "1.9.3",
     "tslint": "5.15.0",
+    "typedoc": "0.14.2",
+    "typedoc-plugin-external-module-name": "^4.0.3",
     "typescript": "3.2.4",
     "whatwg-fetch": "3.0.0",
     "zone.js": "0.8.26"
