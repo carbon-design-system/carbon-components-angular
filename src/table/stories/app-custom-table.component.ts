@@ -8,7 +8,6 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
-import { TableHeadCellLabel } from "../head/table-head-cell-label.directive";
 import { clone } from "../../utils/index";
 
 export class CustomHeaderItem extends TableHeaderItem {

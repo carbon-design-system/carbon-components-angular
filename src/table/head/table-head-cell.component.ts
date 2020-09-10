@@ -29,7 +29,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 				class="bx--table-sort__flex"
 				[title]="column.data"
 				tabindex="-1">
-				<div *ngIf="!skeleton && !column.template" class="bx--table-header-label">
+				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
 					{{column.data}}
 				</div>
 				<ng-template
