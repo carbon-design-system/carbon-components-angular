@@ -8,6 +8,7 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
+import { TableHeadCellLabel } from "../head/table-head-cell-label.directive";
 import { clone } from "../../utils/index";
 
 export class CustomHeaderItem extends TableHeaderItem {
@@ -38,7 +39,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 			<a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
 		</ng-template>
 		<ng-template #customHeaderTemplate let-data="data">
-			<i><a [attr.href]="data.link">{{data.name}}</a></i>
+			<i ibmTableHeadCellLabel><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
 		<ibm-table
