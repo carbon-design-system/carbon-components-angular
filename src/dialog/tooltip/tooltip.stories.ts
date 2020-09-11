@@ -10,12 +10,14 @@ import {
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
 import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
+import { TagModule } from "../../tag/tag.module";
 
 storiesOf("Components|Tooltip", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
 				DialogModule,
+				TagModule,
 				PlaceholderModule,
 				InformationFilled16Module,
 				DocumentationModule
@@ -24,36 +26,69 @@ storiesOf("Components|Tooltip", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
-	template: `
-			<div>
-				<ng-template #template let-tooltip="tooltip">
-					<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
-						If more room is needed please use a modal instead.</p>
-					<div class="bx--tooltip__footer">
-						<a href="/" class="bx--link">Learn More</a>
-						<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
-					</div>
-				</ng-template>
-
-				<div class="bx--tooltip__label">
-					{{triggerText}}
-					<span
-						[ibmTooltip]="template"
-						trigger="click"
-						[placement]="placement">
-						<div role="button">
-							<ibm-icon-information-filled16></ibm-icon-information-filled16>
+		template: `
+				<div>
+					<ng-template #template let-tooltip="tooltip">
+						<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
+							If more room is needed please use a modal instead.</p>
+						<div class="bx--tooltip__footer">
+							<a href="/" class="bx--link">Learn More</a>
+							<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
 						</div>
-					</span>
+					</ng-template>
+
+					<div class="bx--tooltip__label">
+						{{triggerText}}
+						<span
+							[ibmTooltip]="template"
+							trigger="click"
+							[placement]="placement">
+							<div role="button">
+								<ibm-icon-information-filled16></ibm-icon-information-filled16>
+							</div>
+						</span>
+					</div>
+					<ibm-placeholder></ibm-placeholder>
 				</div>
-				<ibm-placeholder></ibm-placeholder>
-			</div>
-		`,
-		props: {
-			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-			triggerText: text("Trigger text", "Tooltip label")
-		}
-	}))
+			`,
+			props: {
+				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+				triggerText: text("Trigger text", "Tooltip label")
+			}
+		}))
+	.add("With dynamic content", () => ({
+		template: `
+				<div>
+					<ng-template #template let-tooltip="tooltip">
+						<ibm-tag-filter
+							*ngFor="let tag of tags; let i of index"
+							(close)="removeTag(i)">
+							{{ tag.content }}
+						</ibm-tag-filter>
+					</ng-template>
+					<div class="bx--tooltip__label">
+						{{triggerText}}
+						<span
+							[ibmTooltip]="template"
+							trigger="click"
+							[placement]="placement">
+							<div role="button">
+								<ibm-icon-information-filled16></ibm-icon-information-filled16>
+							</div>
+						</span>
+					</div>
+					<ibm-placeholder></ibm-placeholder>
+				</div>
+			`,
+			props: {
+				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+				triggerText: text("Trigger text", "Tooltip label"),
+				tags: [{ content: "One" }, { content: "Two" }, { content: "Three" }, { content: "Four" }],
+				removeTag: function(index: number) {
+					this.tags.splice(index, 1);
+				}
+			}
+		}))
 	.add("No icon", () => ({
 		template: `
 				<div>
