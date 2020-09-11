@@ -205,9 +205,8 @@ export class Pagination {
 	 *		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 	 *		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
 	 *		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
-	 *		"TOTAL_PAGES": "{{current}} of {{last}} pages",
-	 *		"TOTAL_PAGE": "{{current}} of {{last}} page",
-	 *		"OF_LAST_PAGES": "of {{last}} pages"
+	 *		"OF_LAST_PAGES": "of {{last}} pages",
+	 *		"OF_LAST_PAGE": "of {{last}} page"
 	 * }
 	 * ```
 	 */
