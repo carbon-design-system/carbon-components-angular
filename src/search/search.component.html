@@ -25,7 +25,8 @@
 			[placeholder]="placeholder"
 			[disabled]="disabled"
 			[required]="required"
-			(input)="onSearch($event.target.value)"/>
+			(input)="onSearch($event.target.value)"
+			(keyup.enter)="onEnter()"/>
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
 			<ibm-icon-search size="16" class="bx--search-magnifier"></ibm-icon-search>
 		</button>
