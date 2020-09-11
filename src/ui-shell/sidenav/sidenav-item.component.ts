@@ -27,7 +27,7 @@ import { Router } from "@angular/router";
 				[attr.aria-current]="(active ? 'page' : null)"
 				(click)="navigate($event)">
 				<div *ngIf="!isSubMenu" class="bx--side-nav__icon">
-					<ng-content select="[icon]"></ng-content>
+					<ng-content select="svg, [icon]"></ng-content>
 				</div>
 				<span class="bx--side-nav__link-text">
 					<ng-content></ng-content>
