@@ -60,7 +60,7 @@ storiesOf("Components|UI Shell", module)
 				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
-					<ibm-header-item>Docs</ibm-header-item>
+					<ibm-header-item isCurrentPage="true">Docs</ibm-header-item>
 					<ibm-header-item>Support</ibm-header-item>
 					<ibm-header-menu title="Manage">
 						<ibm-header-item>Link 1</ibm-header-item>
