@@ -32,7 +32,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 		<div
 			[ibmOverflowMenu]="options"
 			[ngClass]="{'bx--overflow-menu--open': open}"
-			[className]="'bx--overflow-menu ' + triggerClass"
+			class="bx--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
 			[isOpen]="open"
