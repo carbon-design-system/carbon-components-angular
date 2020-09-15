@@ -38,6 +38,7 @@ import { TextArea } from "./text-area.directive";
 	template: `
 		<label
 			[for]="labelInputID"
+			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
 				'bx--skeleton': skeleton
@@ -94,6 +95,10 @@ export class Label implements AfterContentInit {
 	 * Set to `true` for an invalid label component.
 	 */
 	@Input() invalid = false;
+	/**
+	 * Set the arialabel for label
+	 */
+	@Input() ariaLabel: string;
 
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;

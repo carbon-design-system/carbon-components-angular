@@ -253,6 +253,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	writeValue(value: any) {
 		this.value = value;
+		setTimeout(() => {
+			this.updateSelectedRadioFromValue();
+			this.checkSelectedRadio();
+		});
 	}
 
 	ngAfterContentInit() {
