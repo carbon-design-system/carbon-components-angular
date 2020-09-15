@@ -35,7 +35,8 @@ import { Subscription } from "rxjs";
 			<a
 				href="javascript:void(0)"
 				class="bx--tabs-trigger-text"
-				tabindex="-1">
+				tabindex="-1"
+				*ngIf="(!getSelectedTab().headingIsTemplate && getSelectedTab().heading != '') || getSelectedTab().headingIsTemplate">
 				<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
 					{{ getSelectedTab().heading }}
 				</ng-container>
