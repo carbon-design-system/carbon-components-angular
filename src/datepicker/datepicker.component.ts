@@ -328,9 +328,11 @@ export class DatePicker implements
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
-		if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
-			this.setDateValues(this.value);
-		}
+		setTimeout(() => {
+			if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
+				this.setDateValues(this.value);
+			}
+		});
 	}
 
 	registerOnChange(fn: any) {
