@@ -1,4 +1,4 @@
-name: Check build
+name: Run tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master, next, v3, v9 ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
