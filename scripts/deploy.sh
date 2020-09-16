@@ -26,6 +26,8 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 
 	# clean up old build files in the root
 	rm *.js
+	rm *.map
+	rm -rf documentation
 
 	mkdir -p documentation
 	cp -R ../dist/docs/documentation/* ./documentation
