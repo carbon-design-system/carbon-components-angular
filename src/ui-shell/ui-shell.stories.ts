@@ -99,7 +99,7 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade size="20"></svg>
+						<svg ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
 						<svg icon ibmIconFade size="20"></svg>
@@ -146,7 +146,7 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade size="16"></svg>
+					<svg ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
@@ -154,7 +154,7 @@ storiesOf("Components|UI Shell", module)
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade size="16"></svg>
+					<ibm-icon-fade icon size="16"></ibm-icon-fade>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>

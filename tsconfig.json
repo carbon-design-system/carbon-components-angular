@@ -5,6 +5,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
+		"esModuleInterop": true,
 		"importHelpers": true,
 		"lib": [
 			"es2016",
@@ -31,7 +32,8 @@
 		"**/*.stories.ts",
 		"**/stories/**",
 		"**/*.spec.ts",
-		"**/node_modules/**"
+		"**/node_modules/**",
+		"**/dist/**"
 	],
 	"angularCompilerOptions": {
 		"skipTemplateCodegen": true,

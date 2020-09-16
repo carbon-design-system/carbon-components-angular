@@ -74,6 +74,8 @@ export class SwitcherListItem {
 
 	@HostBinding("class.bx--switcher__item") itemClass = true;
 
+	@HostBinding("attr.role") itemRole = "listitem";
+
 	protected _href = "javascript:void(0)";
 	protected _target = "";
 

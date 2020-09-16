@@ -5,6 +5,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
+		"esModuleInterop": true,
 		"importHelpers": true,
 		"lib": [
 			"es2016",
