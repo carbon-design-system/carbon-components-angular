@@ -121,9 +121,10 @@ export default {
 		"FORWARD": "Forward",
 		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
 		"PAGE": "page",
-		"OF_LAST_PAGES": "of {{last}} pages"
+		"OF_LAST_PAGES": "of {{last}} pages",
+		"OF_LAST_PAGE": "of {{last}} page"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",

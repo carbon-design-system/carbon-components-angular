@@ -38,7 +38,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 			<a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
 		</ng-template>
 		<ng-template #customHeaderTemplate let-data="data">
-			<i><a [attr.href]="data.link">{{data.name}}</a></i>
+			<i ibmTableHeadCellLabel><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
 		<ibm-table
