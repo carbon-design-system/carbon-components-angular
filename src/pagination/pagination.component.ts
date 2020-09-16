@@ -15,9 +15,11 @@ export interface PaginationTranslations {
 	OPEN_LIST_OF_OPTIONS: string;
 	BACKWARD: string;
 	FORWARD: string;
+	TOTAL_ITEMS_UNKNOWN: string;
 	TOTAL_ITEMS: string;
-	TOTAL_PAGES: string;
+	TOTAL_ITEM: string;
 	OF_LAST_PAGES: string;
+	OF_LAST_PAGE: string;
 }
 
 /**
@@ -84,7 +86,10 @@ export interface PaginationTranslations {
 					[attr.ariaLabel]="optionsListText.subject | async">
 				</svg>
 			</div>
-			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text">
+				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+			</span>
+			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text">
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
 			<span *ngIf="pagesUnknown" class="bx--pagination__text">
@@ -128,7 +133,10 @@ export interface PaginationTranslations {
 				</svg>
 			</div>
 
-			<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
+			</span>
+			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage > 1" class="bx--pagination__text">
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
 			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
@@ -194,9 +202,11 @@ export class Pagination {
 	 *		"OPEN_LIST_OF_OPTIONS": "Open list of options",
 	 *		"BACKWARD": "Backward",
 	 *		"FORWARD": "Forward",
+	 *		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 	 *		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-	 *		"TOTAL_PAGES": "{{current}} of {{last}} pages",
-	 *		"OF_LAST_PAGES": "of {{last}} pages"
+	 *		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
+	 *		"OF_LAST_PAGES": "of {{last}} pages",
+	 *		"OF_LAST_PAGE": "of {{last}} page"
 	 * }
 	 * ```
 	 */
@@ -208,10 +218,11 @@ export class Pagination {
 		this.backwardText.override(valueWithDefaults.BACKWARD);
 		this.forwardText.override(valueWithDefaults.FORWARD);
 		this.totalItemsText.override(valueWithDefaults.TOTAL_ITEMS);
+		this.totalItemText.override(valueWithDefaults.TOTAL_ITEM);
 		this.totalItemsUnknownText.override(valueWithDefaults.TOTAL_ITEMS_UNKNOWN);
-		this.totalPagesText.override(valueWithDefaults.TOTAL_PAGES);
 		this.pageText.override(valueWithDefaults.PAGE);
 		this.ofLastPagesText.override(valueWithDefaults.OF_LAST_PAGES);
+		this.ofLastPageText.override(valueWithDefaults.OF_LAST_PAGE);
 	}
 
 	/**
@@ -298,10 +309,11 @@ export class Pagination {
 	backwardText = this.i18n.getOverridable("PAGINATION.BACKWARD");
 	forwardText = this.i18n.getOverridable("PAGINATION.FORWARD");
 	totalItemsText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS");
+	totalItemText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEM");
 	totalItemsUnknownText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS_UNKNOWN");
-	totalPagesText = this.i18n.getOverridable("PAGINATION.TOTAL_PAGES");
 	pageText = this.i18n.getOverridable("PAGINATION.PAGE");
 	ofLastPagesText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGES");
+	ofLastPageText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGE");
 
 	protected _pageOptions = [];
 

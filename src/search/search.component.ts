@@ -112,6 +112,10 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when the clear button is clicked.
 	 */
 	@Output() clear = new EventEmitter();
+	/**
+	 * Emits an event on enter.
+	 */
+	@Output() search = new EventEmitter<string>();
 
 	// @ts-ignore
 	@ViewChild("input", { static: false }) inputRef: ElementRef;
@@ -166,6 +170,13 @@ export class Search implements ControlValueAccessor {
 	onSearch(search: string) {
 		this.value = search;
 		this.doValueChange();
+	}
+
+	/**
+	 * Called on enter.
+	 */
+	onEnter() {
+		this.search.emit(this.value);
 	}
 
 	/**

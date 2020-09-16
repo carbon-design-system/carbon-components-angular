@@ -44,6 +44,7 @@ import { TableData } from "./cell/table-data.component";
 import { TableCheckbox } from "./cell/table-checkbox.component";
 import { TableRadio } from "./cell/table-radio.component";
 import { TableExpandButton } from "./cell/table-expand-button.component";
+import { TableHeadCellLabel } from "./head/table-head-cell-label.directive";
 
 // model exports
 export { TableModel } from "./table-model.class";
@@ -61,6 +62,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
@@ -87,6 +89,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,

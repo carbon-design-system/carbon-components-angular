@@ -49,7 +49,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					#input
 					[label]="label"
 					[placeholder]="placeholder"
-					[pattern]="pattern"
+					[pattern]="inputPattern"
 					[id]="id + '-input'"
 					[size]="size"
 					[type]="(range ? 'range' : 'single')"
@@ -68,7 +68,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					#rangeInput
 					[label]="rangeLabel"
 					[placeholder]="placeholder"
-					[pattern]="pattern"
+					[pattern]="inputPattern"
 					[id]="id + '-rangeInput'"
 					[size]="size"
 					[type]="(range ? 'range' : 'single')"
@@ -133,7 +133,22 @@ export class DatePicker implements
 
 	@Input() placeholder = "mm/dd/yyyy";
 
+	/**
+	 * The pattern for the underlying input element
+	 * @deprecated as of v4 - switch to inputPattern
+	 */
 	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
+
+	/**
+	 * The pattern for the underlying input element
+	 */
+	@Input() set inputPattern(value: string) {
+		this.pattern = value;
+	}
+
+	get inputPattern() {
+		return this.pattern;
+	}
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -269,6 +284,7 @@ export class DatePicker implements
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
+			/// @ts-ignore ts is unhappy with the below call to `flatpickr`
 			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
@@ -312,9 +328,11 @@ export class DatePicker implements
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
-		if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
-			this.setDateValues(this.value);
-		}
+		setTimeout(() => {
+			if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
+				this.setDateValues(this.value);
+			}
+		});
 	}
 
 	registerOnChange(fn: any) {

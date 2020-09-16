@@ -15,14 +15,13 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: "ibm-expandable-tile",
 	template: `
-		<div
+		<button
 			class="bx--tile bx--tile--expandable"
 			[ngClass]="{'bx--tile--is-expanded' : expanded}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
-			role="button"
-			tabindex="0"
+			type="button"
 			(click)="onClick()">
-			<button [attr.aria-label]="(expanded ? collapse : expand).subject | async" class="bx--tile__chevron">
+			<div [attr.aria-label]="(expanded ? collapse : expand).subject | async" class="bx--tile__chevron">
 				<svg *ngIf="!expanded" width="12" height="7" viewBox="0 0 12 7" role="img">
 					<title>{{expand.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
@@ -31,12 +30,12 @@ export interface ExpandableTileTranslations {
 					<title>{{collapse.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
 				</svg>
-			</button>
+			</div>
 			<div class="bx--tile-content">
 				<ng-content select=".bx--tile-content__above-the-fold"></ng-content>
 				<ng-content select=".bx--tile-content__below-the-fold"></ng-content>
 			</div>
-		</div>
+		</button>
 	`
 })
 export class ExpandableTile implements AfterContentInit {

@@ -26,15 +26,17 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 
 	# clean up old build files in the root
 	rm *.js
+	rm *.map
+	rm -rf documentation
 
 	mkdir -p documentation
-	# cp -R ../dist/docs/documentation/* ./documentation
+	cp -R ../dist/docs/documentation/* ./documentation
 	cp -R ../dist/docs/storybook/* ./
 
 	version=$(node -e 'const package = require("./../dist/package.json"); console.log(package.version);')
 	mkdir -p $version
-	# mkdir -p $version/documentation
-	# cp -R ../dist/docs/documentation/* $version/documentation
+	mkdir -p $version/documentation
+	cp -R ../dist/docs/documentation/* $version/documentation
 	cp -R ../dist/docs/storybook/* $version
 
 	echo "angular.carbondesignsystem.com" > CNAME
