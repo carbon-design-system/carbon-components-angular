@@ -1,0 +1,10 @@
+{
+	"inputFiles": [ "./src" ],
+	"mode": "modules",
+	"out": "documentation",
+	"exclude": [ "**/node_modules/**" ],
+	"externalPattern": [ "@storybook/*" ],
+	"excludeExternals": true,
+	"ignoreCompilerErrors": true,
+	"theme": "./carbon-angular-typedoc-theme"
+}

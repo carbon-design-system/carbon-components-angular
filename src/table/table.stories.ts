@@ -172,7 +172,11 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
+			<ibm-table-toolbar
+				[model]="model"
+				[batchText]="batchText"
+				[size]="size"
+				#toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
@@ -193,9 +197,16 @@ storiesOf("Components|Table", module).addDecorator(
 						[expandable]="true"
 						[(ngModel)]="searchModel">
 					</ibm-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action" [tabindex]="toolbar.selected ? -1 : 0">
-						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
-					</button>
+					<ibm-overflow-menu
+						triggerClass="bx--toolbar-action"
+						[customTrigger]="customTrigger"
+						placement="bottom"
+						[offset]="size === 'sm' ? null : offset">
+						<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+					</ibm-overflow-menu>
 					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
 						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
@@ -213,6 +224,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[stickyHeader]="stickyHeader"
 				[isDataGrid]="isDataGrid">
 			</app-table>
+			<ng-template #customTrigger><svg ibmIconSettings size="16"></svg></ng-template>
 		</ibm-table-container>
 	`,
 		props: getProps({
@@ -222,7 +234,8 @@ storiesOf("Components|Table", module).addDecorator(
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
 				MULTIPLE: "{{count}} items selected"
-			})
+			}),
+			offset: { x: -9, y: 0 }
 		})
 	}))
 	.add("With toolbar and disabled rows", () => ({
@@ -260,7 +273,7 @@ storiesOf("Components|Table", module).addDecorator(
 
 			<app-no-data-table
 				[model]="model"
-				[size]="size"
+				[size]="lg"
 				[showSelectionColumn]="true"
 				[striped]="striped"
 				[sortable]="sortable"

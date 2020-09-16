@@ -183,6 +183,10 @@ export class TableRowComponent {
 		return this.expandable ? true : null;
 	}
 
+	@HostBinding("attr.tabindex") get isAccessible() {
+		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
+	}
+
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
