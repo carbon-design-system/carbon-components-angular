@@ -16,7 +16,6 @@ import {
 			[ngClass]="{
 				'bx--header__action--active': active
 			}"
-			[attr.aria-label]="title"
 			[title]="title"
 			(click)="onClick()">
 			<ng-content></ng-content>
