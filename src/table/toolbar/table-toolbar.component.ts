@@ -55,7 +55,13 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 			[attr.aria-label]="actionBarLabel.subject | async">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
-				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>
+				<button
+					ibmButton="primary"
+					class="bx--batch-summary__cancel"
+					[tabindex]="selected ? 0 : -1"
+					(click)="onCancel()">
+					{{_cancelText.subject | async}}
+				</button>
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para" *ngIf="count as n">
