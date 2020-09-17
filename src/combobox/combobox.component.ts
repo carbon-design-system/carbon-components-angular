@@ -49,6 +49,7 @@ import { Observable } from "rxjs";
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
+			#listbox
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
@@ -360,6 +361,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 	// @ts-ignore
 	@ViewChild("input", { static: true }) input: ElementRef;
+	// @ts-ignore
+	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -718,7 +721,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	_appendToBody() {
 		this.dropdownService.appendToBody(
-			this.input.nativeElement,
+			this.listbox.nativeElement,
 			this.dropdownMenu.nativeElement,
 			`${this.elementRef.nativeElement.className}${this.open ? " bx--list-box--expanded" : ""}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
