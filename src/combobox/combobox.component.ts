@@ -111,7 +111,7 @@ import { Observable } from "rxjs";
 					[attr.aria-aria-labelledby]="id"
 					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
-					autocomplete="list"
+					[autocomplete]="autocomplete"
 					[placeholder]="placeholder"/>
 				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
 				<div
@@ -299,6 +299,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * `top-after-reopen`: selected item jump to top after reopen dropdown
 	 */
 	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
+	/**
+	 * Specify autocomplete attribute of text input
+	 */
+	@Input() autocomplete = "list";
 	/**
 	 * Set to `true` to disable combobox.
 	 */
