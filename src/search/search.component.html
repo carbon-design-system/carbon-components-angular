@@ -29,7 +29,13 @@
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
 			<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
 		</button>
-		<ibm-icon-search16 *ngIf="tableSearch || !toolbar" (click)="openSearch()" class="bx--search-magnifier"></ibm-icon-search16>
+		<ibm-icon-search16
+			*ngIf="tableSearch || !toolbar"
+			class="bx--search-magnifier"
+			role="button"
+			tabindex="0"
+			(click)="openSearch()">
+		</ibm-icon-search16>
 	</ng-template>
 
 	<button

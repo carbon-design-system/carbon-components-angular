@@ -154,27 +154,27 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText">
+			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<ibm-table-toolbar-actions>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
 						<ibm-icon-delete16 class="bx--btn__icon"></ibm-icon-delete16>
 					</button>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Save
 						<ibm-icon-save16 class="bx--btn__icon"></ibm-icon-save16>
 					</button>
-					<button ibmButton="primary">
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Download
 						<ibm-icon-download16 class="bx--btn__icon"></ibm-icon-download16>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action">
+					<button ibmButton="ghost" class="toolbar-action" [tabindex]="toolbar.selected ? -1 : 0">
 						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
 					</button>
-					<button ibmButton="primary" size="sm">
+					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
 						Primary Button
 						<ibm-icon-add20 class="bx--btn__icon"></ibm-icon-add20>
 					</button>
