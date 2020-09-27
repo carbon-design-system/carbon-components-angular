@@ -93,8 +93,9 @@ export class ListRow implements AfterContentInit {
 
 	@HostListener("click")
 	onclick() {
-		if (!this.selection) { return false; }
-		this.input.nativeElement.click();
+		if (this.selection) {
+			this.input.nativeElement.click();
+		}
 	}
 
 	onChange(event) {
