@@ -20,7 +20,6 @@ function sort(model, index: number) {
 	selector: "app-no-data-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[skeleton]="skeleton"
 			[model]="model"
 			[size]="size"
