@@ -138,8 +138,8 @@ import { Observable } from "rxjs";
 				<ng-content *ngIf="open"></ng-content>
 			</div>
 		</div>
-		<div *ngIf="invalid">
-			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+		<div *ngIf="invalid" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
 	`,
@@ -439,10 +439,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
+						this.selectedValue = event.item.content;
+
 						if (this.itemValueKey) {
 							this.propagateChangeCallback(event.item[this.itemValueKey]);
 						} else {
-							this.selectedValue = event.item.content;
 							this.propagateChangeCallback(event.item);
 						}
 					} else {
