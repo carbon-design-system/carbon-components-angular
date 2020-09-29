@@ -20,7 +20,7 @@ import { TableRowSize } from "../table.types";
 			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
-			(click)="change.emit()"
+			(change)="change.emit()"
 			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
