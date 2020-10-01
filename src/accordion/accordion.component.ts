@@ -15,12 +15,16 @@ import { AccordionItem } from "./accordion-item.component";
 @Component({
 	selector: "ibm-accordion",
 	template: `
-		<ul class="bx--accordion">
+		<ul class="bx--accordion"
+			[class.bx--accordion--end]="align == 'end'"
+			[class.bx--accordion--start]="align == 'start'">
 			<ng-content></ng-content>
 		</ul>
 	`
 })
 export class Accordion implements AfterContentInit {
+	@Input() align: "start" | "end" = "end";
+
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 
 	protected _skeleton = false;
