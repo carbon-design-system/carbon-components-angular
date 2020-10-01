@@ -42,13 +42,6 @@ import { Observable } from "rxjs";
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<div
-			*ngIf="helperText"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div
 			#listbox
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
@@ -137,6 +130,13 @@ import { Observable } from "rxjs";
 			<div #dropdownMenu>
 				<ng-content *ngIf="open"></ng-content>
 			</div>
+		</div>
+		<div
+			*ngIf="helperText && !invalid"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>

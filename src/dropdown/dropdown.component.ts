@@ -56,10 +56,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
-	<div *ngIf="helperText" class="bx--form__helper-text">
-		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-	</div>
 	<div
 		[id]="id"
 		class="bx--list-box"
@@ -135,6 +131,10 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
+	</div>
+	<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
 	<div *ngIf="invalid" class="bx--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>

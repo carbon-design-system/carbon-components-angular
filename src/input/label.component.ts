@@ -53,7 +53,7 @@ import { TextArea } from "./text-area.directive";
 			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
-		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
+		<div *ngIf="!skeleton && helperText && !invalid" class="bx--form__helper-text">{{helperText}}</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
