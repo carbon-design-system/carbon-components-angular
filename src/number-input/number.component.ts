@@ -39,10 +39,6 @@ export class NumberChange {
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -91,6 +87,10 @@ export class NumberChange {
 						<ibm-icon-caret-down size="16"></ibm-icon-caret-down>
 					</button>
 				</div>
+			</div>
+			<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
 			<div *ngIf="invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
