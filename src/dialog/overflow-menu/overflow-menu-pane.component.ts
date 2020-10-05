@@ -86,7 +86,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 			el = el.parentElement || el.parentNode;
 		} while (el !== null && el.nodeType === 1);
 		return null;
-	};
+	}
 
 	matchesAttr(el, attr, val) {
 		const styles = window.getComputedStyle(el);
