@@ -90,12 +90,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 
 	matchesAttr(el, attr, val) {
 		const styles = window.getComputedStyle(el);
-
-		if (val.includes(styles[attr])) {
-			return true;
-		} else {
-			return false;
-		}
+		return val.includes(styles[attr]);
 	}
 
 	@HostListener("keydown", ["$event"])
