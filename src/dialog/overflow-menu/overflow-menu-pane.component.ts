@@ -54,7 +54,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 			* we also move the element by half of it's own width, since
 			* position service will try and center everything
 			*/
-			const closestRel = this.closestAttr('position', ['relative', 'fixed', 'absolute']);
+			const closestRel = this.closestAttr("position", ["relative", "fixed", "absolute"]);
 			const topFix = closestRel ? closestRel.getBoundingClientRect().top * -1 : 0;
 			const leftFix = closestRel ? closestRel.getBoundingClientRect().left * -1 : 0;
 
