@@ -70,13 +70,14 @@ export class PaginationOverflow {
 	 */
 	@Output() change = new EventEmitter<number>();
 
-	handleChange(event) {
-		event.target.value = "";
-	}
-
 	get countAsArray() {
 		return [...Array(this.count)];
 	}
 
 	constructor() {}
+
+	handleChange(event) {
+		event.target.value = "";
+	}
+
 }
