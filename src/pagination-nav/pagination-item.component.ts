@@ -6,28 +6,12 @@ import {
 } from "@angular/core";
 
 /**
- * Use pagination when you have multiple pages of data to handle.
+ * Used to present a single navigation item in a pagination list
  *
- * [See demo](../../?path=/story/pagination-nav--basic)
- *
- * ```html
- * <ibm-pagination-nav [model]="model" (selectPage)="selectPage($event)"></ibm-pagination-nav>
+ *  * ```html
+ * <ibm-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></ibm-pagination-nav-item>
  * ```
  *
- * In your `selectPage()` method set the `model.currentPage` to selected page, _after_
- * you load the page.
- *
- * ```typescript
- * selectPage(page) {
- * 	// ... your code to load the page goes here
- *
- * 	this.model.currentPage = page;
- *
- * 	// ... anything you want to do after page selection changes goes here
- * }
- * ```
- *
- * <example-url>../../iframe.html?id=pagination-nav--basic</example-url>
  */
 @Component({
 	selector: "ibm-pagination-nav-item",
