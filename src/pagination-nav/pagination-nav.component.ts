@@ -47,7 +47,8 @@ export interface PaginationNavTranslations {
 			<ul class="bx--pagination-nav__list">
 				<li class="bx--pagination-nav__list-item">
 					<button
-						class="bx--btn bx--btn--ghost bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+						class="bx--btn bx--btn--ghost bx--pagination-nav-previous
+						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
 						[disabled]="disabled"
 						(click)="jumpToPrevious()"
 					>
@@ -91,7 +92,8 @@ export interface PaginationNavTranslations {
 				</ibm-pagination-nav-item>
 				<li class="bx--pagination-nav__list-item">
 					<button
-						class="bx--btn bx--btn--ghost bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+						class="bx--btn bx--btn--ghost bx--pagination-nav-next
+						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
 						[disabled]="disabled"
 						(click)="jumpToNext()"
 					>

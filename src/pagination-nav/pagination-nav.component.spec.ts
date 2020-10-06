@@ -34,7 +34,7 @@ class PaginationNavTest implements OnInit {
 }
 
 describe("PaginationNav", () => {
-	let fixture, wrapper, element, component;
+	let fixture, wrapper, element, paginationComponent;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ PaginationNavTest ],
@@ -48,68 +48,66 @@ describe("PaginationNav", () => {
 		});
 	});
 
-	it("should work", () => {
+	beforeEach(() => {
 		fixture = TestBed.createComponent(PaginationNavTest);
-		expect(fixture.componentInstance instanceof PaginationNav).toBe(true);
+		paginationComponent = fixture.debugElement.query(By.css("ibm-pagination-nav"));
+	});
+
+	it("should work", () => {
+		expect(paginationComponent.componentInstance instanceof PaginationNav).toBe(true);
 	});
 
 	it("should emit selectPage with the correct page when current page changes", () => {
-		fixture = TestBed.createComponent(PaginationNavTest);
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination-nav"));
-		element.componentInstance.currentPage = 4;
+		paginationComponent.componentInstance.currentPage = 4;
 		fixture.detectChanges();
 		expect(wrapper.selectPage).toHaveBeenCalled();
 		expect(wrapper.model.currentPage).toBe(4);
 	});
 
-	it("should get next page and previous page from the current page when nextPage and previousPage is called", () => {
-		fixture = TestBed.createComponent(PaginationNavTest);
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination-nav"));
-		element.componentInstance.currentPage = 4;
-		fixture.detectChanges();
-		expect(element.componentInstance.nextPage).toBe(5);
-		expect(element.componentInstance.previousPage).toBe(3);
-	});
-
-	it("should get next page and previous page from the current page when forward/backwards button is clicked", () => {
-		fixture = TestBed.createComponent(PaginationNavTest);
+	it("should move to a page when a user clicks on one", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		element.nativeElement.querySelector(".bx--pagination__button--forward").click();
+		const navItems = paginationComponent.queryAll(By.css("ibm-pagination-nav-item"));
+		navItems[1].nativeElement.click();
+		expect(wrapper.selectPage).toHaveBeenCalled();
+		expect(wrapper.model.currentPage).toBe(2);
+	});
+
+	it("should get next page and previous page from the current page when forward/backwards button is clicked", () => {
+		wrapper = fixture.componentInstance;
+		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		expect(element.componentInstance.currentPage).toBe(2);
+		paginationComponent.nativeElement.querySelector(".bx--pagination-nav-next").click();
+		fixture.detectChanges();
+		expect(paginationComponent.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		element.nativeElement.querySelector(".bx--pagination__button--backward").click();
+		paginationComponent.nativeElement.querySelector(".pagination-nav-previous").click();
 		fixture.detectChanges();
-		expect(element.componentInstance.currentPage).toBe(1);
+		expect(paginationComponent.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
 	});
 
-	it("should disabled the forward and backward button when disabled is true", () => {
-		fixture = TestBed.createComponent(PaginationNavTest);
+	it("should disable the forward and backward button when disabled is true", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.disabled = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		element.componentInstance.currentPage = 5;
-		const buttonForward = element.nativeElement.querySelector(".bx--pagination__button--forward");
-		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--forward");
+		paginationComponent.componentInstance.currentPage = 5;
+		const buttonForward = paginationComponent.nativeElement.querySelector(".bx--pagination-nav-next");
+		const buttonBackward = paginationComponent.nativeElement.querySelector(".bx--pagination-nav-previous");
 
 		buttonForward.click();
 		fixture.detectChanges();
 		expect(buttonForward.disabled).toBe(true);
-		expect(element.componentInstance.currentPage).toBe(5);
+		expect(paginationComponent.componentInstance.currentPage).toBe(5);
 
 		buttonBackward.click();
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
-		expect(element.componentInstance.currentPage).toBe(5);
+		expect(paginationComponent.componentInstance.currentPage).toBe(5);
 	});
 });
