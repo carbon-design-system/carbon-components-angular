@@ -86,7 +86,7 @@ describe("PaginationNav", () => {
 		expect(paginationComponent.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		paginationComponent.nativeElement.querySelector(".pagination-nav-previous").click();
+		paginationComponent.nativeElement.querySelector(".bx--pagination-nav-previous").click();
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
