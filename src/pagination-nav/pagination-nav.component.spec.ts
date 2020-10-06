@@ -28,7 +28,6 @@ class PaginationNavTest implements OnInit {
 	}
 
 	ngOnInit() {
-		this.model.pageLength = 10;
 		this.model.currentPage = 1;
 		this.model.totalDataLength = 105;
 	}
@@ -77,7 +76,7 @@ describe("PaginationNav", () => {
 	});
 
 	it("should get next page and previous page from the current page when forward/backwards button is clicked", () => {
-		fixture = TestBed.createComponent(PaginationTest);
+		fixture = TestBed.createComponent(PaginationNavTest);
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
@@ -94,7 +93,7 @@ describe("PaginationNav", () => {
 	});
 
 	it("should disabled the forward and backward button when disabled is true", () => {
-		fixture = TestBed.createComponent(PaginationTest);
+		fixture = TestBed.createComponent(PaginationNavTest);
 		wrapper = fixture.componentInstance;
 		wrapper.disabled = true;
 		fixture.detectChanges();
