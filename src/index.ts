@@ -23,6 +23,7 @@ export * from "carbon-components-angular/modal";
 export * from "carbon-components-angular/notification";
 export * from "carbon-components-angular/number-input";
 export * from "carbon-components-angular/pagination";
+export * from "carbon-components-angular/pagination-nav";
 export * from "carbon-components-angular/placeholder";
 export * from "carbon-components-angular/progress-indicator";
 export * from "carbon-components-angular/radio";

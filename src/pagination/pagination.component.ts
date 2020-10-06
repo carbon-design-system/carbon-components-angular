@@ -78,7 +78,7 @@ export interface PaginationTranslations {
 					</option>
 				</select>
 				<svg
-					ibmIconChevronDown
+					ibmIconCarrotLeft
 					size="16"
 					style="display: inherit"
 					class="bx--select__arrow"
