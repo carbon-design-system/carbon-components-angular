@@ -43,10 +43,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div *ngIf="helperText" class="bx--form__helper-text">
-					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
 				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 					<select
 						[attr.id]="id"
@@ -79,6 +75,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						aria-hidden="true">
 						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
 					</svg>
+				</div>
+				<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>

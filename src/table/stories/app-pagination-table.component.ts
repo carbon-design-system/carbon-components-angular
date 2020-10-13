@@ -28,7 +28,6 @@ import { TableItem } from "../table-item.class";
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
