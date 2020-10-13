@@ -86,6 +86,7 @@ export interface PaginationNavTranslations {
 					(change)="handleOverflowSelection($event)"
 				></ibm-pagination-overflow>
 				<ibm-pagination-nav-item
+					*ngIf="totalDataLength > 1"
 					[page]="totalNumbersArray.length"
 					(click)="currentPage = totalNumbersArray.length"
 					[isActive]="currentPage == totalNumbersArray.length">
@@ -232,6 +233,9 @@ export class PaginationNav {
 	}
 
 	private getPages() {
+		if (this.totalDataLength <= 1) {
+			return null;
+		}
 		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
 		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
 	}
