@@ -14,12 +14,12 @@ import {
 	TableModule,
 	TableModel,
 	TableItem,
-	TableHeaderItem,
-	NFormsModule,
-	DialogModule,
-	SearchModule,
-	ButtonModule
-} from "../";
+	TableHeaderItem
+} from "./index";
+
+import { NFormsModule, ButtonModule } from "../forms/index";
+import { DialogModule } from "../dialog/index";
+import { SearchModule } from "../search/index";
 
 import {
 	SettingsModule,
@@ -172,7 +172,11 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
+			<ibm-table-toolbar
+				[model]="model"
+				[batchText]="batchText"
+				[size]="size"
+				#toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
@@ -188,13 +192,23 @@ storiesOf("Components|Table", module).addDecorator(
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content>
-					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action" [tabindex]="toolbar.selected ? -1 : 0">
-						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
-					</button>
+					<ibm-table-toolbar-search
+						ngDefaultControl
+						[expandable]="true"
+						[(ngModel)]="searchModel">
+					</ibm-table-toolbar-search>
+					<ibm-overflow-menu
+						triggerClass="bx--toolbar-action"
+						[customTrigger]="customTrigger"
+						placement="bottom"
+						[offset]="size === 'sm' ? null : offset">
+						<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+					</ibm-overflow-menu>
 					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -210,15 +224,18 @@ storiesOf("Components|Table", module).addDecorator(
 				[stickyHeader]="stickyHeader"
 				[isDataGrid]="isDataGrid">
 			</app-table>
+			<ng-template #customTrigger><svg ibmIconSettings size="16"></svg></ng-template>
 		</ibm-table-container>
 	`,
 		props: getProps({
 			description: text("Description", "With toolbar"),
+			searchModel: text("Search model", "Initial search value"),
 			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
 				MULTIPLE: "{{count}} items selected"
-			})
+			}),
+			offset: { x: -9, y: 0 }
 		})
 	}))
 	.add("With toolbar and disabled rows", () => ({
@@ -249,15 +266,14 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
 
 			<app-no-data-table
 				[model]="model"
-				[size]="size"
+				[size]="lg"
 				[showSelectionColumn]="true"
 				[striped]="striped"
 				[sortable]="sortable"
@@ -293,8 +309,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button
-						<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>

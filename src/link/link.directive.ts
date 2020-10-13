@@ -5,13 +5,13 @@ import {
 } from "@angular/core";
 
 /**
- * A convinence directive for applying styling to a link.
+ * A convenience directive for applying styling to a link.
  *
  * [See demo](../../?path=/story/link--basic)
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <a href="#" ibmLink>A link</a>
  * ```
  *
@@ -31,6 +31,12 @@ export class Link {
 	 * Automatically set to `-1` when link is disabled.
 	 */
 	@HostBinding("attr.tabindex") tabindex;
+
+	/**
+	 * Set to true to show links inline in a sentence or paragraph.
+	 */
+	@Input()
+	@HostBinding("class.bx--link--inline") inline = false;
 
 	/**
 	 * Set to true to disable link.

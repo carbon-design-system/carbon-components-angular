@@ -38,13 +38,13 @@ import { TextArea } from "./text-area.directive";
 	template: `
 		<label
 			[for]="labelInputID"
+			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
 			<ng-content></ng-content>
 		</label>
-		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
 			<ibm-icon-warning-filled
 				size="16"
@@ -53,6 +53,7 @@ import { TextArea } from "./text-area.directive";
 			</ibm-icon-warning-filled>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
+		<div *ngIf="!skeleton && helperText && !invalid" class="bx--form__helper-text">{{helperText}}</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
@@ -94,6 +95,10 @@ export class Label implements AfterContentInit {
 	 * Set to `true` for an invalid label component.
 	 */
 	@Input() invalid = false;
+	/**
+	 * Set the arialabel for label
+	 */
+	@Input() ariaLabel: string;
 
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;

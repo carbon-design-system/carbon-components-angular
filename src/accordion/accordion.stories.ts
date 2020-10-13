@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, select, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { AccordionModule } from "../";
 import { DocumentationModule } from "../documentation-component/documentation.module";
@@ -17,7 +17,7 @@ storiesOf("Components|Accordion", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-accordion>
+			<ibm-accordion [align]="align">
 				<ibm-accordion-item title="Section 1 title" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
 				et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \
@@ -51,7 +51,8 @@ storiesOf("Components|Accordion", module)
 					content: "four"
 				}
 			],
-			selected: action("item expanded")
+			selected: action("item expanded"),
+			align: select("Align", ["start", "end"], "end")
 		}
 	}))
 	.add("With title template", () => ({

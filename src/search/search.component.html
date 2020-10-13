@@ -2,8 +2,8 @@
 	class="bx--search"
 	[ngClass]="{
 		'bx--search--sm': size === 'sm',
+		'bx--search--lg': size === 'md',
 		'bx--search--xl': size === 'xl',
-		'bx--search--lg': size === 'lg',
 		'bx--search--light': theme === 'light',
 		'bx--skeleton': skeleton,
 		'bx--toolbar-search': toolbar,
@@ -25,11 +25,19 @@
 			[placeholder]="placeholder"
 			[disabled]="disabled"
 			[required]="required"
-			(input)="onSearch($event.target.value)"/>
+			(input)="onSearch($event.target.value)"
+			(keyup.enter)="onEnter()"/>
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
 			<ibm-icon-search size="16" class="bx--search-magnifier"></ibm-icon-search>
 		</button>
-		<ibm-icon-search size="16" *ngIf="tableSearch || !toolbar" (click)="openSearch()" class="bx--search-magnifier"></ibm-icon-search>
+		<ibm-icon-search
+			*ngIf="tableSearch || !toolbar"
+			class="bx--search-magnifier"
+			size="16"
+			role="button"
+			tabindex="0"
+			(click)="openSearch()">
+		</ibm-icon-search>
 	</ng-template>
 
 	<button

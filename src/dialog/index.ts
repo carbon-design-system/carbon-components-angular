@@ -13,4 +13,6 @@ export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 
+export { DialogConfig } from "./dialog-config.interface";
+
 export * from "./dialog.module";

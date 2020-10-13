@@ -8,7 +8,7 @@ import {
 	TemplateRef,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "./../../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
@@ -32,6 +32,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 		<div
 			[ibmOverflowMenu]="options"
 			[ngClass]="{'bx--overflow-menu--open': open}"
+			class="bx--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
 			[isOpen]="open"
@@ -92,6 +93,11 @@ export class OverflowMenu {
 	@Input() offset: { x: number, y: number };
 
 	@Input() wrapperClass = "";
+
+	/**
+	 * This appends additional classes to the overflow trigger/button.
+	 */
+	@Input() triggerClass = "";
 
 	// @ts-ignore
 	@ContentChild(OverflowMenuDirective, { static: false }) overflowMenuDirective: OverflowMenuDirective;

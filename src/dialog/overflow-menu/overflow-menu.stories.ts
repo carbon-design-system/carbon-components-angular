@@ -6,7 +6,7 @@ import {
 	object
 } from "@storybook/addon-knobs";
 
-import { DialogModule } from "../../";
+import { DialogModule } from "../../index";
 import { PlaceholderModule } from "../../placeholder/index";
 import { DocumentationModule } from "./../../documentation-component/documentation.module";
 

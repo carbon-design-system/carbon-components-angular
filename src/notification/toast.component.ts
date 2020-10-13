@@ -7,9 +7,9 @@ import {
 
 import { ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
-import { ExperimentalService } from "./../experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental";
 import { NotificationDisplayService } from "./notification-display.service";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -57,7 +57,7 @@ import { I18n } from "./../i18n/index";
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>
 		<button
-			*ngIf="showClose"
+			*ngIf="!isCloseHidden"
 			class="bx--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"

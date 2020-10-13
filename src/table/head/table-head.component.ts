@@ -7,10 +7,10 @@ import {
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
-import { getScrollbarWidth } from "../../utils/window-tools";
-import { I18n, Overridable } from "../../i18n/index";
+import { getScrollbarWidth } from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 /**
  * A subcomponent that creates the thead of the table

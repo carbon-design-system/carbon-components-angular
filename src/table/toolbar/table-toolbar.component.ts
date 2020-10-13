@@ -5,7 +5,8 @@ import {
 	Input,
 	Output
 } from "@angular/core";
-import { I18n, Overridable } from "../../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableRowSize } from "../table.types";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -45,7 +46,9 @@ import { I18n, Overridable } from "../../i18n/index";
 @Component({
 	selector: "ibm-table-toolbar",
 	template: `
-	<section class="bx--table-toolbar">
+	<section
+		class="bx--table-toolbar"
+		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}">
 		<div
 			*ngIf="model"
 			class="bx--batch-actions"
@@ -97,6 +100,7 @@ export class TableToolbar {
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
+	@Input() size: TableRowSize = "md";
 
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };

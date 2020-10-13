@@ -7,9 +7,9 @@ import {
 	OnChanges
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
-import { I18n, Overridable } from "./../../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { map } from "rxjs/operators";
-import { TableHeaderItem } from "./../table-header-item.class";
+import { TableHeaderItem } from "../table-header-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -26,44 +26,44 @@ import { TableHeaderItem } from "./../table-header-item.class";
 			}"
 			(click)="onClick()">
 			<span
-				*ngIf="!column.template"
+				class="bx--table-sort__flex"
 				[title]="column.data"
 				tabindex="-1">
-				<div *ngIf="!skeleton">
+				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
 					{{column.data}}
 				</div>
+				<ng-template
+					*ngIf="!skeleton && column.template"
+					[ngTemplateOutlet]="column.template"
+					[ngTemplateOutletContext]="{data: column.data}">
+				</ng-template>
+				<svg
+					*ngIf="!skeleton"
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					xmlns="http://www.w3.org/2000/svg"
+					class="bx--table-sort__icon"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>
+				</svg>
+				<svg
+					*ngIf="!skeleton"
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					xmlns="http://www.w3.org/2000/svg"
+					class="bx--table-sort__icon-unsorted"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>
+				</svg>
 			</span>
-			<ng-template
-				*ngIf="!skeleton"
-				[ngTemplateOutlet]="column.template"
-				[ngTemplateOutletContext]="{data: column.data}">
-			</ng-template>
-			<svg
-				*ngIf="!skeleton"
-				focusable="false"
-				preserveAspectRatio="xMidYMid meet"
-				style="will-change: transform;"
-				xmlns="http://www.w3.org/2000/svg"
-				class="bx--table-sort__icon"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16"
-				aria-hidden="true">
-				<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>
-			</svg>
-			<svg
-				*ngIf="!skeleton"
-				focusable="false"
-				preserveAspectRatio="xMidYMid meet"
-				style="will-change: transform;"
-				xmlns="http://www.w3.org/2000/svg"
-				class="bx--table-sort__icon-unsorted"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16"
-				aria-hidden="true">
-				<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>
-			</svg>
 		</button>
 		<div
 			class="bx--table-header-label"

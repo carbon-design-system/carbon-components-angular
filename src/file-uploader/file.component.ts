@@ -7,7 +7,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
 
 @Component({

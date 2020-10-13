@@ -10,14 +10,15 @@ import { ModalFooter } from "./modal-footer.component";
 import { Overlay } from "./overlay.component";
 import { ModalHeader } from "./modal-header.component";
 import { AlertModal } from "./alert-modal.component";
-import { ButtonModule } from "../forms/index";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
-import { ExperimentalModule } from "./../experimental.module";
+import { ButtonModule } from "carbon-components-angular/forms";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { ModalContent } from "./modal-content.directive";
 import { ModalContentText } from "./modal-content-text.directive";
 import { ModalHeaderHeading } from "./modal-header-heading.directive";
 import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { BaseModal } from "./base-modal.class";
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { ModalHeaderLabel } from "./modal-header-label.directive";
 		ModalContent,
 		ModalContentText,
 		ModalHeaderHeading,
-		ModalHeaderLabel
+		ModalHeaderLabel,
+		BaseModal
 	],
 	exports: [
 		AlertModal,
@@ -39,7 +41,8 @@ import { ModalHeaderLabel } from "./modal-header-label.directive";
 		ModalContent,
 		ModalContentText,
 		ModalHeaderHeading,
-		ModalHeaderLabel
+		ModalHeaderLabel,
+		BaseModal
 	],
 	entryComponents: [
 		AlertModal,

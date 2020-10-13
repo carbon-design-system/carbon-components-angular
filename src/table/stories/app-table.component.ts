@@ -21,7 +21,6 @@ function sort(model, index: number) {
 	selector: "app-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"

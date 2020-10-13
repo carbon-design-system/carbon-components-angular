@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -39,10 +39,6 @@ export class NumberChange {
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -51,7 +47,9 @@ export class NumberChange {
 				'bx--number--light': theme === 'light',
 				'bx--number--nolabel': !label,
 				'bx--number--helpertext': helperText,
-				'bx--skeleton' : skeleton
+				'bx--skeleton' : skeleton,
+				'bx--number--sm': size === 'sm',
+				'bx--number--xl': size === 'xl'
 			}">
 			<div class="bx--number__input-wrapper">
 				<input
@@ -89,6 +87,10 @@ export class NumberChange {
 						<ibm-icon-caret-down size="16"></ibm-icon-caret-down>
 					</button>
 				</div>
+			</div>
+			<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
 			<div *ngIf="invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
@@ -132,6 +134,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 * The unique id for the number component.
 	 */
 	@Input() id = `number-${NumberComponent.numberCount}`;
+	/**
+	 * Number input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */

@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { of, isObservable, Subject } from "rxjs";
 
@@ -70,7 +70,7 @@ import { of, isObservable, Subject } from "rxjs";
 			</button>
 		</div>
 		<button
-			*ngIf="showClose"
+			*ngIf="!isCloseHidden"
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
@@ -117,10 +117,7 @@ export class Notification {
 	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
 	@HostBinding("class.bx--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
-
-	get showClose() {
-		return this._notificationObj.showClose;
-	}
+	@HostBinding("class.bx--inline-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
 
 	protected defaultNotificationObj = {
 		title: "",

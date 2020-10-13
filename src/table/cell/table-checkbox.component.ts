@@ -4,11 +4,11 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/index";
-import { TableItem } from "./../table-item.class";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableItem } from "../table-item.class";
 import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector

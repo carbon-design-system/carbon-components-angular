@@ -7,9 +7,9 @@ import {
 	ViewContainerRef
 } from "@angular/core";
 import { DialogConfig } from "./dialog-config.interface";
-import { PlaceholderService } from "./../placeholder/index";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Dialog } from "./dialog.component";
-import { tabbableSelector } from "../common/tab.service";
+import { tabbableSelector } from "carbon-components-angular/common";
 
 /**
  * `Dialog` object to be injected into other components.
@@ -78,11 +78,11 @@ export class DialogService {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
-			setTimeout(() => {
-				if (dialogRef) {
+			if (dialogRef) {
+				setTimeout(() => {
 					window.document.querySelector("body").appendChild(dialogRef.location.nativeElement);
-				}
-			});
+				});
+			}
 		} else {
 			dialogRef = this.placeholderService.createComponent(componentFactory, this.injector);
 		}

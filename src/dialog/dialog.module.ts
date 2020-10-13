@@ -17,10 +17,10 @@ import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
-import { ExperimentalModule } from "./../experimental.module";
-import { UtilsModule } from "./../utils/utils.module";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { UtilsModule } from "carbon-components-angular/utils";
 
 import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 

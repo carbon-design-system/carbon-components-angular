@@ -12,7 +12,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-
+import { CheckboxValue } from "./checkbox.types";
 
 /**
  * Defines the set of states for a checkbox component.
@@ -39,8 +39,6 @@ export class CheckboxChange {
 	 */
 	checked: boolean;
 }
-
-export type CheckboxValue = boolean | "on" | "off";
 
 /**
  * [See demo](../../?path=/story/checkbox--basic)

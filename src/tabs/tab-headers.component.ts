@@ -80,6 +80,7 @@ import { Tab } from "./tab.component";
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
+						[attr.aria-disabled]="tab.disabled"
 						(focus)="onTabFocus(tabItem, i)"
 						(click)="$event.preventDefault()"
 						draggable="false"
@@ -144,7 +145,7 @@ export class TabHeaders implements AfterContentInit, OnChanges {
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
 	// @ts-ignore
-	@ViewChild("tabList", { static: false }) headerContainer;
+	@ViewChild("tabList", { static: true }) headerContainer;
 	/**
 	 * ContentChild of all the n-tabs
 	 */

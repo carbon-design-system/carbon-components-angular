@@ -7,10 +7,10 @@ import {
 } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
-import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
-import { I18n } from "./../../i18n/index";
-import { ExperimentalService } from "./../../experimental.module";
-import { ElementService } from "./../../utils/utils.module";
+import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
+import { I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService } from "carbon-components-angular/experimental";
+import { ElementService } from "carbon-components-angular/utils";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.

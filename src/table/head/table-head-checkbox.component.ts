@@ -5,9 +5,9 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -20,7 +20,7 @@ import { TableRowSize } from "../table.component";
 			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
-			(click)="change.emit()"
+			(change)="change.emit()"
 			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
