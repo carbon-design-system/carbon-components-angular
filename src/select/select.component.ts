@@ -208,6 +208,7 @@ export class Select implements ControlValueAccessor {
 	 * Sends events to the change handler and emits a `selected` event.
 	 */
 	onChange(event) {
+		this.value = event.target.value;
 		this.onChangeHandler(event.target.value);
 		this.valueChange.emit(event.target.value);
 	}
