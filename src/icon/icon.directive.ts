@@ -47,12 +47,14 @@ export class IconDirective implements AfterViewInit {
 		const rawSVG = icon.svg;
 		const svgElement = domParser.parseFromString(rawSVG, "image/svg+xml").documentElement;
 
-		let node = root.tagName.toUpperCase() !== "SVG" ? svgElement : svgElement.firstChild;
+		let node: ChildNode = root.tagName.toUpperCase() !== "SVG" ? svgElement : svgElement.firstChild;
 		while (node) {
 			// importNode makes a clone of the node
 			// this ensures we keep looping over the nodes in the parsed document
 			root.appendChild(root.ownerDocument.importNode(node, true));
-			node = node.nextSibling;
+			// type the node because the angular compiler freaks out if it
+			// ends up thinking it's a `Node` instead of a `ChildNode`
+			node = node.nextSibling as ChildNode;
 		}
 
 		const svg = root.tagName.toUpperCase() !== "SVG" ? svgElement : root;
