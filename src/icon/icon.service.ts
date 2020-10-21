@@ -175,7 +175,7 @@ export class IconService {
 			}
 			return icon;
 		} catch (e) {
-			console.warn(e);
+			throw e;
 		}
 	}
 
