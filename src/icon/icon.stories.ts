@@ -95,7 +95,7 @@ storiesOf("Components|Icon", module).addDecorator(
 
 		}
 	}))
-	.add("Many icons", () => ({
+	.add("All icons", () => ({
 		template: `
 			<app-demo-many-icon></app-demo-many-icon>
 		`

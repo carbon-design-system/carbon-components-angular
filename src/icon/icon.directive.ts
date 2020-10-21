@@ -39,7 +39,7 @@ export class IconDirective implements AfterViewInit {
 	) {}
 
 	ngAfterViewInit() {
-		const root = this.elementRef.nativeElement;
+		const root = this.elementRef.nativeElement as HTMLElement;
 
 		const icon = this.iconService.get(this.ibmIcon, this.size.toString());
 

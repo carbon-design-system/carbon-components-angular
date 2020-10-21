@@ -34,7 +34,7 @@ export const ICON_SERVICE_PROVIDER = {
 })
 export class IconModule {
 	constructor(iconService: IconService) {
-		// TODO register icons here to ensure they're available anywhere
+		// TODO register icons used in the library here to ensure they're available anywhere
 		// iconService.register(Icon);
 	}
 }

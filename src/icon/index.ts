@@ -1,2 +1,1 @@
-export * from "./icon.directive";
-export * from "./icon.module";
+export * from "./public_api";
