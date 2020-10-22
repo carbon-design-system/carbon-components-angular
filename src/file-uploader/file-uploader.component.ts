@@ -63,12 +63,12 @@ const noop = () => { };
 					(change)="onFilesAdded()"
 					[disabled]="disabled"/>
 				<div class="bx--file-container">
-					<div *ngFor="let fileItem of files">
+					<ng-container *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
 						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
 							{{fileItem.invalidText}}
 						</div>
-					</div>
+					</ng-container>
 				</div>
 			</div>
 		</ng-container>
