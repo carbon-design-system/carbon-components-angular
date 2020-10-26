@@ -21,7 +21,9 @@ import { PaginationOverflow } from "./pagination-overflow.component";
 		PaginationOverflow
 	],
 	exports: [
-		PaginationNav
+		PaginationNav,
+		PaginationNavItem,
+		PaginationOverflow
 	],
 	imports: [
 		CommonModule,
