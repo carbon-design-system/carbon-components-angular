@@ -42,7 +42,6 @@ export class CustomHeaderItem extends TableHeaderItem {
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"

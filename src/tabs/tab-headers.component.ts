@@ -80,6 +80,7 @@ import { Tab } from "./tab.component";
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
+						[attr.aria-disabled]="tab.disabled"
 						(focus)="onTabFocus(tabItem, i)"
 						(click)="$event.preventDefault()"
 						draggable="false"

@@ -63,12 +63,12 @@ const noop = () => { };
 					(change)="onFilesAdded()"
 					[disabled]="disabled"/>
 				<div class="bx--file-container">
-					<div *ngFor="let fileItem of files">
+					<ng-container *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
 						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
 							{{fileItem.invalidText}}
 						</div>
-					</div>
+					</ng-container>
 				</div>
 			</div>
 		</ng-container>
@@ -215,9 +215,9 @@ export class FileUploader {
 		for (let file of this.fileList) {
 			const fileItem = this.createFileItem(file);
 			this.files.add(fileItem);
-			this.filesChange.emit(this.files);
 		}
 
+		this.filesChange.emit(this.files);
 		this.value = this.files;
 	}
 
@@ -248,10 +248,10 @@ export class FileUploader {
 			if (!this.files.size || this.multiple) {
 				const fileItem = this.createFileItem(file);
 				this.files.add(fileItem);
-				this.filesChange.emit(this.files);
 			}
 		});
 
+		this.filesChange.emit(this.files);
 		this.value = this.files;
 		this.dragOver = false;
 	}

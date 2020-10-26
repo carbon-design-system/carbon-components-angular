@@ -217,11 +217,11 @@ storiesOf("Components|Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<div style="width: 300px">
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
 					[size]="size"
+					[appendInline]="false"
 					[invalidText]="invalidText"
 					[label]="label"
 					[helperText]="helperText"
@@ -232,7 +232,6 @@ storiesOf("Components|Combobox", module)
 					(search)="search($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
-			</div>
 		`,
 		props: getOptions()
 	}))
@@ -350,6 +349,7 @@ storiesOf("Components|Combobox", module)
 					[label]="label"
 					[size]="size"
 					[helperText]="helperText"
+					[appendInline]="false"
 					[items]="items"
 					[theme]="theme"
 					[selectionFeedback]="selectionFeedback"

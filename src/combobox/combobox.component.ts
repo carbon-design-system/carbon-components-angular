@@ -42,13 +42,7 @@ import { Observable } from "rxjs";
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<div
-			*ngIf="helperText"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div
+			#listbox
 			[ngClass]="{
 				'bx--multi-select': type === 'multi',
 				'bx--combo-box': type === 'single' || !pills.length,
@@ -137,8 +131,15 @@ import { Observable } from "rxjs";
 				<ng-content *ngIf="open"></ng-content>
 			</div>
 		</div>
-		<div *ngIf="invalid">
-			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+		<div
+			*ngIf="helperText && !invalid"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		</div>
+		<div *ngIf="invalid" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
 	`,
@@ -364,6 +365,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 	// @ts-ignore
 	@ViewChild("input", { static: true }) input: ElementRef;
+	// @ts-ignore
+	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
@@ -436,10 +439,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
+						this.selectedValue = event.item.content;
+
 						if (this.itemValueKey) {
 							this.propagateChangeCallback(event.item[this.itemValueKey]);
 						} else {
-							this.selectedValue = event.item.content;
 							this.propagateChangeCallback(event.item);
 						}
 					} else {
@@ -722,7 +726,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	_appendToBody() {
 		this.dropdownService.appendToBody(
-			this.input.nativeElement,
+			this.listbox.nativeElement,
 			this.dropdownMenu.nativeElement,
 			`${this.elementRef.nativeElement.className}${this.open ? " bx--list-box--expanded" : ""}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
