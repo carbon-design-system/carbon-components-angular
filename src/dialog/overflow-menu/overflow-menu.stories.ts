@@ -6,11 +6,12 @@ import {
 	object
 } from "@storybook/addon-knobs";
 
-import { DialogModule } from "../../index";
-import { PlaceholderModule } from "../../placeholder/index";
+import { DialogModule } from "../../dialog";
+import { PlaceholderModule } from "../../placeholder";
 import { DocumentationModule } from "./../../documentation-component/documentation.module";
+import { CheckboxModule } from "../../checkbox";
 
-import { DocumentModule } from "@carbon/icons-angular";
+import { DocumentModule, SettingsModule } from "@carbon/icons-angular";
 
 let options;
 
@@ -29,7 +30,9 @@ storiesOf("Components|Overflow Menu", module)
 				DialogModule,
 				DocumentModule,
 				PlaceholderModule,
-				DocumentationModule
+				DocumentationModule,
+				CheckboxModule,
+				SettingsModule
 			]
 		})
 	)
@@ -188,6 +191,25 @@ storiesOf("Components|Overflow Menu", module)
 		props: {
 			open: boolean("Open", false)
 		}
+	}))
+	.add("With custom template", () => ({
+		template: `
+			<p style="padding-bottom: 1rem;">When writing a custom template to be inserted into an overflow menu it becomes your responsibility to make sure tab order/keyboard nav is implemented correctly</p>
+			<button
+				style="border: none; width: 3rem; height: 3rem; background-color: lightgrey; display: flex; align-items: center; justify-content: center;"
+				[ibmOverflowMenu]="templateRef"
+				[customPane]="true"
+				placement="bottom"
+				[offset]="{ x: -8, y: 0 }"
+			><svg ibmIconSettings size="16"></svg></button>
+			<ng-template #templateRef>
+				<div style="padding: 0 1rem;">
+					<div style="padding-top: 0.5rem; color: grey;">Columns</div>
+					<div><ibm-checkbox [checked]="true">Status</ibm-checkbox></div>
+					<div><ibm-checkbox>Last modified</ibm-checkbox></div>
+				</div>
+			</ng-template>
+		`
 	}))
 	.add("Documentation", () => ({
 		template: `

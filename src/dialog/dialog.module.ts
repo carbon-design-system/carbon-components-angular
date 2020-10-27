@@ -15,6 +15,7 @@ import { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
 import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+import { OverflowMenuCustomPane } from "./overflow-menu/overflow-menu-custom-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 import { I18nModule } from "carbon-components-angular/i18n";
@@ -32,6 +33,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
+		OverflowMenuCustomPane,
 		DialogDirective,
 		TooltipDirective,
 		EllipsisTooltip,
@@ -45,6 +47,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
+		OverflowMenuCustomPane,
 		DialogDirective,
 		TooltipDirective,
 		EllipsisTooltip,
@@ -55,7 +58,8 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 	entryComponents: [
 		Dialog,
 		Tooltip,
-		OverflowMenuPane
+		OverflowMenuPane,
+		OverflowMenuCustomPane
 	],
 	imports: [
 		CommonModule,
