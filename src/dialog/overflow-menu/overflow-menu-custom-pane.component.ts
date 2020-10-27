@@ -3,7 +3,7 @@ import { position } from "@carbon/utils-position";
 import { I18n } from "carbon-components-angular/i18n";
 import { ElementService } from "carbon-components-angular/utils";
 
-import { Dialog } from '../dialog.component';
+import { Dialog } from "../dialog.component";
 
 @Component({
 	selector: "ibm-overflow-custom-menu-pane",
@@ -30,7 +30,7 @@ export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
 		// mark `elementService` as optional since making it mandatory would be a breaking change
 		@Optional() protected elementService: ElementService = null
 	) {
-		super(elementRef, elementService)
+		super(elementRef, elementService);
 	}
 
 	onDialogInit() {

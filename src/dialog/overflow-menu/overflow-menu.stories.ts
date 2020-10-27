@@ -194,9 +194,13 @@ storiesOf("Components|Overflow Menu", module)
 	}))
 	.add("With custom template", () => ({
 		template: `
-			<p style="padding-bottom: 1rem;">When writing a custom template to be inserted into an overflow menu it becomes your responsibility to make sure tab order/keyboard nav is implemented correctly</p>
+			<p style="padding-bottom: 1rem;">
+				When writing a custom template to be inserted into an overflow menu
+				it becomes your responsibility to make sure tab order/keyboard nav is implemented correctly
+			</p>
 			<button
-				style="border: none; width: 3rem; height: 3rem; background-color: lightgrey; display: flex; align-items: center; justify-content: center;"
+				style="border: none; width: 3rem; height: 3rem; background-color: lightgrey;
+				display: flex; align-items: center; justify-content: center;"
 				[ibmOverflowMenu]="templateRef"
 				[customPane]="true"
 				placement="bottom"
