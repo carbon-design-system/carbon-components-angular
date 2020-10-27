@@ -7,7 +7,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs/angular";
 
 import { NFormsModule } from "..";
-import { PaginationNavModule, PaginationNavModel } from "./index";
+import { PaginationModule, PaginationNavModel } from "./index";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
@@ -48,7 +48,7 @@ storiesOf("Components|PaginationNav", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,
-				PaginationNavModule,
+				PaginationModule,
 				DocumentationModule
 			],
 			declarations: [

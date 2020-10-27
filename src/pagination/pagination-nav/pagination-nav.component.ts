@@ -49,7 +49,7 @@ export interface PaginationNavTranslations {
 					<button
 						class="bx--btn bx--btn--ghost bx--pagination-nav-previous
 						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
-						[disabled]="disabled"
+						[disabled]="leftArrowDisabled"
 						(click)="jumpToPrevious()"
 					>
 						<span class="bx--assistive-text">{{previousItemText.subject | async}}</span>
@@ -95,7 +95,7 @@ export interface PaginationNavTranslations {
 					<button
 						class="bx--btn bx--btn--ghost bx--pagination-nav-next
 						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
-						[disabled]="disabled"
+						[disabled]="rightArrowDisabled"
 						(click)="jumpToNext()"
 					>
 						<span class="bx--assistive-text">{{nextItemText.subject | async}}</span>
@@ -184,6 +184,14 @@ export class PaginationNav {
 	get backCuts() {
 		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
 		return cuts.back;
+	}
+
+	get leftArrowDisabled() {
+		return this.disabled || this.currentPage === 1;
+	}
+
+	get rightArrowDisabled() {
+		return this.disabled || this.currentPage === this.totalDataLength;
 	}
 
 	nextItemText = this.i18n.getOverridable("PAGINATION.NEXT");

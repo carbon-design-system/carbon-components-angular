@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
-import { PaginationNav, PaginationNavModule } from "./index";
+import { PaginationNav, PaginationNavModule } from ".";
 import { PaginationNavModel } from "./pagination-nav-model.class";
 
 @Component({

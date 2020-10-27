@@ -4,19 +4,31 @@ import { FormsModule } from "@angular/forms";
 import {
 	ChevronDownModule,
 	CaretLeftModule,
-	CaretRightModule
+	CaretRightModule,
+	OverflowMenuHorizontalModule
 } from "@carbon/icons-angular";
 
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
+import {
+	PaginationNav,
+	PaginationNavItem,
+	PaginationOverflow
+} from "./pagination-nav";
 
 @NgModule({
 	declarations: [
-		Pagination
+		Pagination,
+		PaginationNav,
+		PaginationNavItem,
+		PaginationOverflow
 	],
 	exports: [
-		Pagination
+		Pagination,
+		PaginationNav,
+		PaginationNavItem,
+		PaginationOverflow
 	],
 	imports: [
 		CommonModule,
@@ -25,7 +37,8 @@ import { ExperimentalModule } from "carbon-components-angular/experimental";
 		ExperimentalModule,
 		ChevronDownModule,
 		CaretLeftModule,
-		CaretRightModule
+		CaretRightModule,
+		OverflowMenuHorizontalModule
 	]
 })
 export class PaginationModule {}
