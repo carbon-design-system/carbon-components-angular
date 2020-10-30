@@ -545,7 +545,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
-				this.view.propagateSelected([value]);
+				this.view.propagateSelected([value || ""]);
 			}
 			this.showClearButton = !!(value && this.view.getSelected().length);
 		} else {
