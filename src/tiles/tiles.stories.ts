@@ -56,7 +56,7 @@ storiesOf("Components|Tiles", module)
 		</ibm-tile>
 		`,
 		props: {
-			theme: select("theme", ["dark", "light"], "dark"),
+			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
 	.add("Multiple", () => ({
