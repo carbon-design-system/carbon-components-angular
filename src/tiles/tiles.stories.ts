@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { boolean, withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule } from "../";
@@ -51,10 +51,13 @@ storiesOf("Components|Tiles", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-tile>
+		<ibm-tile [lightTheme]="lightTheme">
 			tile content goes here...
 		</ibm-tile>
-		`
+		`,
+		props: {
+			lightTheme: boolean("lightTheme", false)
+		}
 	}))
 	.add("Multiple", () => ({
 		template: `

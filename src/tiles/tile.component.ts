@@ -1,6 +1,7 @@
 import {
 	Component,
-	HostBinding
+	HostBinding,
+	Input
 } from "@angular/core";
 
 /**
@@ -24,4 +25,10 @@ import {
 })
 export class Tile {
 	@HostBinding("class.bx--tile") tileClass = true;
+
+	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+		return this.lightTheme;
+	}
+
+	@Input() lightTheme = false;
 }
