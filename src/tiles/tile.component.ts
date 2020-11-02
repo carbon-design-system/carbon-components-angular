@@ -27,8 +27,8 @@ export class Tile {
 	@HostBinding("class.bx--tile") tileClass = true;
 
 	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
-		return this.lightTheme;
+		return this.theme === "light";
 	}
 
-	@Input() lightTheme = false;
+	@Input() theme: "light" | "dark" = "dark";
 }
