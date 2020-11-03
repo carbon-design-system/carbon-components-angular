@@ -11,11 +11,9 @@ import {
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
-import {
-	PaginationNav,
-	PaginationNavItem,
-	PaginationOverflow
-} from "./pagination-nav";
+import { PaginationNav } from "./pagination-nav";
+import { PaginationNavItem } from "./pagination-nav";
+import { PaginationOverflow } from "./pagination-nav";
 
 @NgModule({
 	declarations: [
