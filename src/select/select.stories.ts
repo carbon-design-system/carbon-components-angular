@@ -35,7 +35,7 @@ import {
 class ReactiveFormsSelect implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	constructor(protected formBuilder: FormBuilder) { }
 
 	clearSelection() {
 		this.formGroup.get("selecterino").setValue("default");
@@ -90,7 +90,7 @@ storiesOf("Components|Select", module).addDecorator(
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Please select an option."),
 			label: text("Label text", "Select Label"),
-			helperText: text("Helper text", "Optional helper text."),
+			helperText: text("Helper text", ""),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			display: select("Display", ["default", "inline"], "default")
 		}
@@ -119,9 +119,15 @@ storiesOf("Components|Select", module).addDecorator(
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 300px">
-			<ibm-select skeleton="true"></ibm-select>
+			<ibm-select
+				skeleton="true"
+				[label]="label">
+			</ibm-select>
 		</div>
-		`
+		`,
+		props: {
+			label: text("Label text", "Select Label")
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `

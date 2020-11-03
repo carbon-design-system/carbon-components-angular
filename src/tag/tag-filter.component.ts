@@ -15,7 +15,7 @@ import { Tag } from "./tag.component";
 		</span>
 		<button
 			class="bx--tag__close-icon"
-			(click)="close.emit()"
+			(click)="onClose($event)"
 			[disabled]="disabled"
 			[title]="closeButtonLabel">
 			<span class="bx--visually-hidden">{{closeButtonLabel}}</span>
@@ -32,6 +32,21 @@ export class TagFilter extends Tag {
 	 * Function for close/delete the tag
 	 */
 	@Output() close = new EventEmitter<any>();
+
+	/**
+	 * We need to stop the immedate propagation of click on the close button
+	 * to prevent undesired effects when used within dialogs.
+	 *
+	 * We need to emit a click event on close to allow for clicks to be listened
+	 * to on the immediate close button element.
+	 */
+	@Output() click = new EventEmitter<any>();
+
+	onClose(event: any) {
+		event.stopImmediatePropagation();
+		this.click.emit();
+		this.close.emit();
+	}
 
 	@HostBinding("attr.class") get attrClass() {
 		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}`;

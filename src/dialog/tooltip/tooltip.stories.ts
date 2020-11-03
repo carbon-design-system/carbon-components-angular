@@ -4,6 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilledModule } from "@carbon/icons-angular";
 import { DialogModule } from "../dialog.module";
+import { TagModule } from "../../tag/tag.module";
 import { PlaceholderModule } from "../../placeholder/index";
 import { DocumentationModule } from "../../documentation-component/documentation.module";
 import { boolean, object } from "@storybook/addon-knobs";
@@ -15,6 +16,7 @@ storiesOf("Components|Tooltip", module)
 				DialogModule,
 				PlaceholderModule,
 				InformationFilledModule,
+				TagModule,
 				DocumentationModule
 			]
 		})
@@ -210,6 +212,39 @@ storiesOf("Components|Tooltip", module)
 		`,
 		props: {
 			showFullText: boolean("Show full text", false)
+		}
+	}))
+	.add("With dynamic content", () => ({
+		template: `
+			<div>
+				<ng-template #template let-tooltip="tooltip">
+					<ibm-tag-filter
+						*ngFor="let tag of tags; let i of index"
+						(close)="removeTag(i)">
+						{{ tag.content }}
+					</ibm-tag-filter>
+				</ng-template>
+				<div class="bx--tooltip__label">
+					{{triggerText}}
+					<span
+						[ibmTooltip]="template"
+						trigger="click"
+						[placement]="placement">
+						<div role="button">
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
+						</div>
+					</span>
+				</div>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+		`,
+		props: {
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			triggerText: text("Trigger text", "Tooltip label"),
+			tags: [{ content: "One" }, { content: "Two" }, { content: "Three" }, { content: "Four" }],
+			removeTag: function(index: number) {
+				this.tags.splice(index, 1);
+			}
 		}
 	}))
 	.add("Documentation", () => ({

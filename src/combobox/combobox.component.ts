@@ -475,7 +475,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	ngAfterViewInit() {
 		this.documentService.handleClick(event => {
-			if (!this.elementRef.nativeElement.contains(event.target)) {
+			if (!this.elementRef.nativeElement.contains(event.target) &&
+				!this.dropdownMenu.nativeElement.contains(event.target)) {
 				if (this.open) {
 					this.closeDropdown();
 				}
