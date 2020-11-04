@@ -176,10 +176,6 @@ export class IconMemoryCache extends IconCache {
 export class IconService {
 	private iconCache: IconCache = new IconMemoryCache();
 
-	constructor() {
-		console.log(this.iconCache);
-	}
-
 	/**
 	 * Registers an array of icons based on the metadata provided by `@carbon/cions`
 	 */

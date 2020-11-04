@@ -6,11 +6,7 @@ import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
 import { FileComponent } from "./file.component";
 import { CommonModule } from "@angular/common";
-import {
-	CheckmarkFilledModule,
-	WarningFilledModule,
-	CloseModule
-} from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
 
@@ -44,9 +40,7 @@ describe("FileUploader", () => {
 				CommonModule,
 				ButtonModule,
 				LoadingModule,
-				CloseModule,
-				CheckmarkFilledModule,
-				WarningFilledModule
+				IconModule
 			]
 		});
 	});
