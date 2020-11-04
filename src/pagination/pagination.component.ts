@@ -65,10 +65,13 @@ export interface PaginationTranslations {
 			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
 				{{itemsPerPageText.subject | async}}
 			</label>
-			<div class="bx--select bx--select--inline bx--select__item-count">
+			<div
+				class="bx--select bx--select--inline bx--select__item-count"
+				[class.bx--select--disabled]="pageInputDisabled">
 				<select
 					[id]="itemsPerPageSelectId"
 					[(ngModel)]="itemsPerPage"
+					[disabled]="pageInputDisabled"
 					class="bx--select-input">
 					<option
 						class="bx--select-option"
@@ -104,8 +107,8 @@ export interface PaginationTranslations {
 
 		<div *ngIf="!skeleton" class="bx--pagination__right">
 			<div
-				*ngIf="!pageInputDisabled"
-				class="bx--select bx--select--inline bx--select__page-number">
+				class="bx--select bx--select--inline bx--select__page-number"
+				[class.bx--select--disabled]="pageInputDisabled">
 				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
 				<input
 					*ngIf="pageOptions.length > pageSelectThreshold"
@@ -120,6 +123,7 @@ export interface PaginationTranslations {
 					*ngIf="pageOptions.length <= pageSelectThreshold"
 					[id]="currentPageSelectId"
 					class="bx--select-input"
+					[disabled]="pageInputDisabled"
 					[(ngModel)]="currentPage">
 					<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 				</select>
@@ -133,13 +137,13 @@ export interface PaginationTranslations {
 				</svg>
 			</div>
 
-			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage <= 1" class="bx--pagination__text">
 				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage > 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage > 1" class="bx--pagination__text">
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text">
 				{{pageText.subject | async}} {{currentPage}}
 			</span>
 			<button
