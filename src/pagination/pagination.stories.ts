@@ -74,7 +74,7 @@ storiesOf("Components|Pagination", module).addDecorator(
 			</div>
 		`,
 		props: {
-			disabled: boolean("Disabeld buttons", false),
+			disabled: boolean("Disabled buttons", false),
 			pageInputDisabled: boolean("Disable page input", false),
 			pagesUnknown: boolean("Total number of items unknown ", false),
 			totalDataLength: number("Total number of items", 105)
