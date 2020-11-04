@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ChevronRightModule } from "@carbon/icons-angular";
 
 import { Accordion } from "./accordion.component";
 import { AccordionItem } from "./accordion-item.component";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -16,7 +16,7 @@ import { AccordionItem } from "./accordion-item.component";
 	],
 	imports: [
 		CommonModule,
-		ChevronRightModule
+		IconModule
 	]
 })
 export class AccordionModule { }

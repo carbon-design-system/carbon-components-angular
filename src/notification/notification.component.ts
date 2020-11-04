@@ -25,25 +25,25 @@ import { of, isObservable, Subject } from "rxjs";
 	template: `
 		<div class="bx--inline-notification__details">
 			<svg
-				ibmIconErrorFilled
+				ibmIcon="error--filled"
 				size="16"
 				*ngIf="notificationObj.type === 'error'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
-				ibmIconWarningFilled
+				ibmIcon="warning--filled"
 				size="16"
 				*ngIf="notificationObj.type === 'warning'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
-				ibmIconCheckmarkFilled
+				ibmIcon="checkmark--filled"
 				size="16"
 				*ngIf="notificationObj.type === 'success'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
-				ibmIconInformationFilled
+				ibmIcon="information--filled"
 				size="16"
 				*ngIf="notificationObj.type === 'info'"
 				class="bx--inline-notification__icon">
@@ -75,7 +75,7 @@ import { of, isObservable, Subject } from "rxjs";
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<ibm-icon-close size="16" class="bx--inline-notification__close-icon"></ibm-icon-close>
+			<svg ibmIcon="close" size="16" class="bx--inline-notification__close-icon"></svg>
 		</button>
 	`
 })

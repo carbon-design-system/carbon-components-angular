@@ -18,25 +18,25 @@ import { TableRowSize } from "../table.types";
  *		<ibm-table-toolbar-actions>
  *			<button ibmButton="primary">
  *				Delete
- *				<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+ *				<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Save
- *				<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+ *				<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Download
- *				<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+ *				<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-actions>
  *			<ibm-table-toolbar-content>
  *			<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
  *			<button ibmButton="toolbar-action">
- *				<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
+ *				<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
  *			</button>
  *			<button ibmButton="primary" size="sm">
  *				Primary Button
- *				<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+ *				<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-content>
  *	</ibm-table-toolbar>

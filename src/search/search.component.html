@@ -28,16 +28,17 @@
 			(input)="onSearch($event.target.value)"
 			(keyup.enter)="onEnter()"/>
 		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
-			<ibm-icon-search size="16" class="bx--search-magnifier"></ibm-icon-search>
+			<svg ibmIcon="search" size="16" class="bx--search-magnifier"></svg>
 		</button>
-		<ibm-icon-search
+		<svg
+			ibmIcon="search"
 			*ngIf="tableSearch || !toolbar"
 			class="bx--search-magnifier"
 			size="16"
 			role="button"
 			tabindex="0"
 			(click)="openSearch()">
-		</ibm-icon-search>
+		</svg>
 	</ng-template>
 
 	<button
@@ -49,6 +50,6 @@
 		[title]="clearButtonTitle"
 		(click)="clearSearch()">
 		<span class="bx--visually-hidden">{{ clearButtonTitle }}</span>
-		<ibm-icon-close size="16"></ibm-icon-close>
+		<svg ibmIcon="close" size="16"></svg>
 	</button>
 </div>

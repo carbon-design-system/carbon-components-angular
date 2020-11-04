@@ -85,12 +85,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					aria-hidden="true">
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
-				<ibm-icon-warning-filled
-					size="16"
+				<svg
 					*ngIf="invalid"
-					class="bx--select__invalid-icon"
-					style="display: inherit;">
-				</ibm-icon-warning-filled>
+					ibomIcon="warning--filled"
+					size="16"
+					class="bx--select__invalid-icon">
+				</svg>
 			</div>
 			<div *ngIf="invalid && invalidText" role="alert" class="bx--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>

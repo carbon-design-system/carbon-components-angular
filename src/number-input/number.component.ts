@@ -61,12 +61,12 @@ export class NumberChange {
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
-				<ibm-icon-warning-filled
-					size="16"
+				<svg
 					*ngIf="!skeleton && invalid"
-					class="bx--number__invalid"
-					style="display: inherit;">
-				</ibm-icon-warning-filled>
+					ibmIcon="warning--filled"
+					size="16"
+					class="bx--number__invalid">
+				</svg>
 				<div *ngIf="!skeleton" class="bx--number__controls">
 					<button
 						class="bx--number__control-btn up-icon"
@@ -75,7 +75,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getIncrementLabel() | async"
 						(click)="onIncrement()">
-						<ibm-icon-caret-up size="16"></ibm-icon-caret-up>
+						<svg ibmIcon="caret--up" size="16"></svg>
 					</button>
 					<button
 						class="bx--number__control-btn down-icon"
@@ -84,7 +84,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<ibm-icon-caret-down size="16"></ibm-icon-caret-down>
+						<svg ibmIcon="caret--down" size="16"></svg>
 					</button>
 				</div>
 			</div>

@@ -37,16 +37,15 @@ let nextId = 0;
 *
 * ```html
 * <ng-template #tabHeading>
-* 	<ibm-icon
-* 		icon="facebook"
+* 	<svg ibmIcon="facebook"
 * 		size="sm"
 * 		style="margin-right: 7px;">
-* 	</ibm-icon>
+* 	</svg>
 * 	Hello Tab 1
 * </ng-template>
 * <ibm-tabs>
 * 	<ibm-tab [heading]="tabHeading">
-* 		Tab 1 content <ibm-icon icon="alert" size="lg"></ibm-icon>
+* 		Tab 1 content <svg ibmIcon="alert" size="lg"></svg>
 * 	</ibm-tab>
 * 	<ibm-tab heading='Tab2'>
 * 		Tab 2 content

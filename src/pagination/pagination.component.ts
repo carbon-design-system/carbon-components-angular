@@ -78,7 +78,7 @@ export interface PaginationTranslations {
 					</option>
 				</select>
 				<svg
-					ibmIconChevronDown
+					ibmIcon="chevron--down"
 					size="16"
 					style="display: inherit"
 					class="bx--select__arrow"
@@ -125,7 +125,7 @@ export interface PaginationTranslations {
 				</select>
 				<svg
 					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown
+					ibmIcon="chevron--down"
 					size="16"
 					style="display: inherit;"
 					class="bx--select__arrow"
@@ -151,7 +151,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="backwardText.subject | async"
 				(click)="selectPage.emit(previousPage)"
 				[disabled]="(currentPage <= 1 || disabled ? true : null)">
-				<ibm-icon-caret-left size="16"></ibm-icon-caret-left>
+				<svg ibmIcon="caret--left" size="16"></svg>
 			</button>
 
 			<button
@@ -163,7 +163,7 @@ export interface PaginationTranslations {
 				[attr.aria-label]="forwardText.subject | async"
 				(click)="selectPage.emit(nextPage)"
 				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-				<ibm-icon-caret-right size="16"></ibm-icon-caret-right>
+				<svg ibmIcon="caret--right" size="16"></svg>
 			</button>
 		</div>
 	</div>

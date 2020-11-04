@@ -10,8 +10,8 @@ import { ScrollableList } from "./scrollable-list.directive";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { PlaceholderModule } from "carbon-components-angular/placeholder";
 import { DropdownService } from "./dropdown.service";
-import { ChevronDownModule, WarningFilledModule, CheckmarkModule } from "@carbon/icons-angular";
 import { UtilsModule } from "carbon-components-angular/utils";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -28,13 +28,11 @@ import { UtilsModule } from "carbon-components-angular/utils";
 	],
 	imports: [
 		CommonModule,
-		CheckmarkModule,
 		FormsModule,
 		I18nModule,
 		PlaceholderModule,
-		ChevronDownModule,
-		WarningFilledModule,
-		UtilsModule
+		UtilsModule,
+		IconModule
 	],
 	providers: [ DropdownService ]
 })

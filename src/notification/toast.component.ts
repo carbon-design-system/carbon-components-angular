@@ -22,25 +22,25 @@ import { I18n } from "carbon-components-angular/i18n";
 	selector: "ibm-toast",
 	template: `
 		<svg
-			ibmIconErrorFilled
+			ibmIcon="error--filled"
 			size="16"
 			*ngIf="notificationObj.type === 'error'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
-			ibmIconWarningFilled
+			ibmIcon="warning--filled"
 			size="16"
 			*ngIf="notificationObj.type === 'warning'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
-			ibmIconCheckmarkFilled
+			ibmIcon="checkmark--filled"
 			size="16"
 			*ngIf="notificationObj.type === 'success'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
-			ibmIconInformationFilled
+			ibmIcon="information--filled"
 			size="16"
 			*ngIf="notificationObj.type === 'info'"
 			class="bx--toast-notification__icon">
@@ -62,7 +62,7 @@ import { I18n } from "carbon-components-angular/i18n";
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<ibm-icon-close size="16" class="bx--toast-notification__close-icon"></ibm-icon-close>
+			<svg ibmIcon="close" size="16" class="bx--toast-notification__close-icon"></svg>
 		</button>
 	`
 })
