@@ -62,37 +62,42 @@ export interface PaginationTranslations {
 		</div>
 
 		<div *ngIf="!skeleton" class="bx--pagination__left">
-			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
-				{{itemsPerPageText.subject | async}}
-			</label>
-			<div class="bx--select bx--select--inline bx--select__item-count">
-				<select
-					[id]="itemsPerPageSelectId"
-					[(ngModel)]="itemsPerPage"
-					class="bx--select-input">
-					<option
-						class="bx--select-option"
-						*ngFor="let option of itemsPerPageOptions"
-						[value]="option">
-							{{ option }}
-					</option>
-				</select>
-				<svg
-					ibmIconChevronDown
-					size="16"
-					style="display: inherit"
-					class="bx--select__arrow"
-					aria-hidden="true"
-					[attr.ariaLabel]="optionsListText.subject | async">
-				</svg>
-			</div>
-			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text">
+			<ng-container *ngIf="showPageInput">
+				<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
+					{{itemsPerPageText.subject | async}}
+				</label>
+				<div
+					class="bx--select bx--select--inline bx--select__item-count"
+					[class.bx--select--disabled]="pageInputDisabled">
+					<select
+						[id]="itemsPerPageSelectId"
+						[(ngModel)]="itemsPerPage"
+						[disabled]="pageInputDisabled"
+						class="bx--select-input">
+						<option
+							class="bx--select-option"
+							*ngFor="let option of itemsPerPageOptions"
+							[value]="option">
+								{{ option }}
+						</option>
+					</select>
+					<svg
+						ibmIconChevronDown
+						size="16"
+						style="display: inherit"
+						class="bx--select__arrow"
+						aria-hidden="true"
+						[attr.ariaLabel]="optionsListText.subject | async">
+					</svg>
+				</div>
+			</ng-container>
+			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
@@ -103,43 +108,49 @@ export interface PaginationTranslations {
 		</div>
 
 		<div *ngIf="!skeleton" class="bx--pagination__right">
-			<div
-				*ngIf="!pageInputDisabled"
-				class="bx--select bx--select--inline bx--select__page-number">
-				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
-				<input
-					*ngIf="pageOptions.length > pageSelectThreshold"
-					style="padding-right: 1rem; margin-right: 1rem;"
-					[id]="currentPageSelectId"
-					type="number"
-					min="1"
-					[max]="pageOptions.length"
-					class="bx--select-input"
-					[(ngModel)]="currentPage">
-				<select
-					*ngIf="pageOptions.length <= pageSelectThreshold"
-					[id]="currentPageSelectId"
-					class="bx--select-input"
-					[(ngModel)]="currentPage">
-					<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
-				</select>
-				<svg
-					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown
-					size="16"
-					style="display: inherit;"
-					class="bx--select__arrow"
-					[attr.ariaLabel]="optionsListText.subject | async">
-				</svg>
-			</div>
+			<ng-container *ngIf="showPageInput">
+				<div
+					class="bx--select bx--select--inline bx--select__page-number"
+					[class.bx--select--disabled]="pageInputDisabled">
+					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
+					<input
+						*ngIf="pageOptions.length > pageSelectThreshold"
+						style="padding-right: 1rem; margin-right: 1rem;"
+						[id]="currentPageSelectId"
+						type="number"
+						min="1"
+						[max]="pageOptions.length"
+						class="bx--select-input"
+						[(ngModel)]="currentPage">
+					<select
+						*ngIf="pageOptions.length <= pageSelectThreshold"
+						[id]="currentPageSelectId"
+						class="bx--select-input"
+						[disabled]="pageInputDisabled"
+						[(ngModel)]="currentPage">
+						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
+					</select>
+					<svg
+						*ngIf="pageOptions.length <= 1000"
+						ibmIconChevronDown
+						size="16"
+						style="display: inherit;"
+						class="bx--select__arrow"
+						[attr.ariaLabel]="optionsListText.subject | async">
+					</svg>
+				</div>
+			</ng-container>
 
-			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && !pagesUnknown && lastPage > 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage > 1" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{pageText.subject | async}} {{currentPage}}
 			</span>
 			<button
@@ -188,6 +199,10 @@ export class Pagination {
 	 * Set to `true` to disable the select box that changes the page.
 	 */
 	@Input() pageInputDisabled = false;
+	/**
+	 * Controls wether or not to show the page selects
+	 */
+	@Input() showPageInput = true;
 	/**
 	 * Set to `true` if the total number of items is unknown.
 	 */
