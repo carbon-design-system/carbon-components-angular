@@ -12,14 +12,12 @@ import {
 } from "@angular/core";
 import {
 	Observable,
-	Subscription,
-	fromEvent
+	Subscription
 } from "rxjs";
-import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
-import { DialogConfig } from "./dialog-config.interface";
+import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { ElementService } from "carbon-components-angular/utils";
 
 /**
@@ -34,7 +32,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 */
-	@Output() close: EventEmitter<any> = new EventEmitter();
+	@Output() close: EventEmitter<CloseMeta> = new EventEmitter();
 	/**
 	 * Receives `DialogConfig` interface object with properties of `Dialog`
 	 * explicitly defined.
@@ -118,15 +116,19 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
-		this.visibilitySubscription = this.elementService
-			.visibility(parentElement, parentElement)
-			.subscribe(value => {
-				this.placeDialog();
-				if (!value.visible) {
-					this.doClose();
+		if (this.dialogConfig.closeWhenHidden) {
+			this.visibilitySubscription = this.elementService
+				.visibility(parentElement, parentElement)
+				.subscribe(value => {
+					this.placeDialog();
+					if (!value.visible) {
+						this.doClose({
+							reason: CloseReasons.hidden
+						});
+					}
 				}
-			}
-		);
+			);
+		}
 
 		this.placeDialog();
 		// run afterDialogViewInit on the next tick
@@ -196,7 +198,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			case "Esc": // IE specific value
 			case "Escape": {
 				event.stopImmediatePropagation();
-				this.doClose();
+				this.doClose({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
 				break;
 			}
 			case "Tab": {
@@ -215,15 +220,18 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	clickClose(event) {
 		if (!this.elementRef.nativeElement.contains(event.target)
 			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
-			this.doClose();
+			this.doClose({
+				reason: CloseReasons.interaction,
+				target: event.target
+			});
 		}
 	}
 
 	/**
 	 * Closes `Dialog` object by emitting the close event upwards to parents.
 	 */
-	public doClose() {
-		this.close.emit();
+	public doClose(meta: CloseMeta = { reason: CloseReasons.interaction }) {
+		this.close.emit(meta);
 	}
 
 	/**
