@@ -19,7 +19,7 @@ import { Tag } from "./tag.component";
 			[disabled]="disabled"
 			[title]="closeButtonLabel">
 			<span class="bx--visually-hidden">{{closeButtonLabel}}</span>
-			<svg ibmIconClose size="16"></svg>
+			<svg ibmIcon="close" size="16"></svg>
 		</button>
 	`
 })

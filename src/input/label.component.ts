@@ -46,11 +46,12 @@ import { TextArea } from "./text-area.directive";
 			<ng-content></ng-content>
 		</label>
 		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
-			<ibm-icon-warning-filled
-				size="16"
+			<svg
 				*ngIf="invalid"
+				ibmIcon="warning--filled"
+				size="16"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
-			</ibm-icon-warning-filled>
+			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
 		<div *ngIf="!skeleton && helperText && !invalid" class="bx--form__helper-text">

@@ -1,11 +1,8 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import {
-	ChevronDownModule,
-	WarningFilledModule,
-	CloseModule
-} from "@carbon/icons-angular";
+
+import { IconModule } from "../icon/index";
 import { I18nModule } from "../i18n/index";
 
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -48,9 +45,7 @@ describe("Combo box", () => {
 				ScrollableList
 			],
 			imports: [
-				ChevronDownModule,
-				WarningFilledModule,
-				CloseModule,
+				IconModule,
 				I18nModule,
 				FormsModule,
 				UtilsModule,

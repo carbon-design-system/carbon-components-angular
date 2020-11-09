@@ -1,6 +1,33 @@
 import { Injectable } from "@angular/core";
 import { toString } from "@carbon/icon-helpers";
 
+// icon imports
+import {
+	Add16,
+	Calendar16,
+	CaretDown16,
+	CaretLeft16,
+	CaretRight16,
+	CaretUp16,
+	Checkmark16,
+	CheckmarkFilled16,
+	CheckmarkOutline16,
+	ChevronDown16,
+	ChevronRight16,
+	Close16,
+	Copy16,
+	Delete16,
+	Download16,
+	ErrorFilled16,
+	InformationFilled16,
+	Menu16,
+	OverflowMenuVertical16,
+	Save16,
+	Settings16,
+	Warning16,
+	WarningFilled16
+} from "@carbon/icons";
+
 /**
  * An object that represents a parsed icon
  */
@@ -148,6 +175,14 @@ export class IconMemoryCache extends IconCache {
 @Injectable()
 export class IconService {
 	private iconCache: IconCache = new IconMemoryCache();
+
+	/**
+	 * Registers an array of icons based on the metadata provided by `@carbon/cions`
+	 */
+	public registerAll(descriptors: object[]) {
+		descriptors.forEach(icon => this.register(icon));
+	}
+
 	/**
 	 * Registers an icon based on the metadata provided by `@carbon/icons`
 	 */

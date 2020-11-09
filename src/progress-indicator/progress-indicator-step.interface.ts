@@ -18,4 +18,5 @@ export interface Step {
 	 * Determines whether the step is disabled or not
 	 */
 	disabled?: boolean;
+	optionalText: string;
 }

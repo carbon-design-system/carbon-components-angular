@@ -3,7 +3,7 @@ import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
 import { DatePickerInput } from "./datepicker-input.component";
-import { CalendarModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -40,7 +40,7 @@ describe("Select", () => {
 			],
 			imports: [
 				CommonModule,
-				CalendarModule,
+				IconModule,
 				FormsModule
 			]
 		});

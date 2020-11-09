@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
-import { ChevronRightModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { AccordionItem } from "./accordion-item.component";
 import { Accordion } from "./accordion.component";
 
@@ -32,7 +32,7 @@ describe("Accordion", () => {
 			],
 			imports: [
 				FormsModule,
-				ChevronRightModule
+				IconModule
 			]
 		});
 	});

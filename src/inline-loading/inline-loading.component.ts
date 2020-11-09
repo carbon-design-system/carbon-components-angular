@@ -42,13 +42,13 @@ export enum InlineLoadingState {
 			</div>
 			<svg
 				*ngIf="state === InlineLoadingState.Finished"
-				ibmIconCheckmarkFilled
+				ibmIcon="checkmark--filled"
 				size="16"
 				class="bx--inline-loading__checkmark-container">
 			</svg>
 			<svg
 				*ngIf="state === InlineLoadingState.Error"
-				ibmIconErrorFilled
+				ibmIcon="error--filled"
 				size="16"
 				class="bx--inline-loading--error">
 			</svg>

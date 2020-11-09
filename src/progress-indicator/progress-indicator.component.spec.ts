@@ -5,7 +5,7 @@ import { By } from "@angular/platform-browser";
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { DialogModule, ExperimentalModule } from "..";
-import { CheckmarkOutlineModule, WarningModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
@@ -64,8 +64,7 @@ describe("ProgressIndicator", () => {
 				CommonModule,
 				DialogModule,
 				ExperimentalModule,
-				CheckmarkOutlineModule,
-				WarningModule
+				IconModule
 			]
 		});
 	});

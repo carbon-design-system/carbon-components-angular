@@ -7,7 +7,7 @@ import { CommonModule } from "@angular/common";
 import { Label } from "./label.component";
 import { TextInput } from "./input.directive";
 import { TextArea } from "./text-area.directive";
-import { WarningFilledModule } from "@carbon/icons-angular";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -23,7 +23,7 @@ import { WarningFilledModule } from "@carbon/icons-angular";
 	imports: [
 		CommonModule,
 		FormsModule,
-		WarningFilledModule
+		IconModule
 	]
 })
 export class InputModule { }

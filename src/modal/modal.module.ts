@@ -1,7 +1,6 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CloseModule } from "@carbon/icons-angular";
 
 // imports
 import { ModalService } from "./modal.service";
@@ -19,6 +18,7 @@ import { ModalContentText } from "./modal-content-text.directive";
 import { ModalHeaderHeading } from "./modal-header-heading.directive";
 import { ModalHeaderLabel } from "./modal-header-label.directive";
 import { BaseModal } from "./base-modal.class";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -57,7 +57,7 @@ import { BaseModal } from "./base-modal.class";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		CloseModule
+		IconModule
 	]
 })
 export class ModalModule { }

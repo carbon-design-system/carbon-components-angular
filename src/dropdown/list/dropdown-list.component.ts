@@ -91,7 +91,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 					<svg
 						*ngIf="!listTpl && type === 'single'"
-						ibmIconCheckmark
+						ibmIcon="checkmark"
 						size="16"
 						class="bx--list-box__menu-item__selected-icon">
 					</svg>

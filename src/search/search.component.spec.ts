@@ -4,7 +4,7 @@ import { By } from "@angular/platform-browser";
 import { Search } from "./search.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/index";
-import { CloseModule, SearchModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 
 describe("Search", () => {
 	let component: Search;
@@ -19,8 +19,7 @@ describe("Search", () => {
 			imports: [
 				FormsModule,
 				I18nModule,
-				SearchModule,
-				CloseModule
+				IconModule
 			],
 			providers: []
 		})
