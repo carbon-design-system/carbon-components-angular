@@ -17,6 +17,7 @@ import {
 				'bx--header__action--active': active
 			}"
 			[title]="title"
+			[attr.aria-label]="ariaLabel"
 			(click)="onClick()">
 			<ng-content></ng-content>
 		</button>
@@ -27,6 +28,10 @@ export class HeaderAction {
 	 * Title. Populates the aria-label as well as the browser `title` tooltip
 	 */
 	@Input() title = "";
+	/**
+	 * Sets the aria label on the nav element.
+	 */
+	@Input() ariaLabel: string;
 	/**
 	 * Toggles the active state. May be used to toggle a `Panel`s active state.
 	 */

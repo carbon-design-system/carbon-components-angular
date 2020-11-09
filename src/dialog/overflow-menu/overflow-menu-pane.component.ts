@@ -11,6 +11,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 import { I18n } from "carbon-components-angular/i18n";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { ElementService } from "carbon-components-angular/utils";
+import { CloseReasons } from "../dialog-config.interface";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -27,7 +28,7 @@ import { ElementService } from "carbon-components-angular/utils";
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			(click)="doClose()"
+			(click)="onClose($event)"
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
@@ -134,10 +135,20 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 			case "Escape":
 			case "Tab":
 				event.stopImmediatePropagation();
-				this.doClose();
+				this.doClose({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
 				break;
 			default: break;
 		}
+	}
+
+	onClose(event) {
+		this.doClose({
+			reason: CloseReasons.interaction,
+			target: event.target
+		});
 	}
 
 	afterDialogViewInit() {
