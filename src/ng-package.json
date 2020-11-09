@@ -6,6 +6,8 @@
 	},
 	"whitelistedNonPeerDependencies": [
 		"@carbon/utils-position",
-		"flatpickr"
+		"flatpickr",
+		"@carbon/icon-helpers",
+		"@carbon/icons"
 	]
 }
