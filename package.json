@@ -135,7 +135,7 @@
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.9.0",
-    "@carbon/icons": "10.19.0",
+    "@carbon/icons": "10.20.0",
     "@carbon/utils-position": "1.1.3",
     "flatpickr": "4.6.1"
   }
