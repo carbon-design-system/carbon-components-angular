@@ -10,7 +10,11 @@ storiesOf("Components|Skeleton", module).addDecorator(
 )
 	.addDecorator(withKnobs)
 	.add("Skeleton Placeholder", () => ({
-		template: `<ibm-skeleton-placeholder></ibm-skeleton-placeholder>`
+		template: `<ibm-skeleton-placeholder [ngStyle]="{'width.px': width, 'height.px': height }"></ibm-skeleton-placeholder>`,
+		props: {
+			width: number("Width (in px)", 100),
+			height: number("Height (in px)", 100)
+		}
 	}))
 	.add("Skeleton Text", () => ({
 		template: `
