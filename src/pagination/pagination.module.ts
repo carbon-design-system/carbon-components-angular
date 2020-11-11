@@ -37,7 +37,7 @@ import { IconModule } from "carbon-components-angular/icon";
 		ChevronDownModule,
 		CaretLeftModule,
 		CaretRightModule,
-		OverflowMenuHorizontalModule
+		OverflowMenuHorizontalModule,
 		IconModule
 	]
 })
