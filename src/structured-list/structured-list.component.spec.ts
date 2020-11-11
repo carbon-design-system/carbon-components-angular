@@ -6,7 +6,7 @@ import { StructuredList } from "./structured-list.component";
 import { ListRow } from "./list-row.component";
 import { ListHeader } from "./list-header.component";
 import { ListColumn } from "./list-column.component";
-import { CheckmarkFilledModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 
 @Component({
 	template: `
@@ -54,7 +54,7 @@ describe("StructuredList", () => {
 			],
 			imports: [
 				FormsModule,
-				CheckmarkFilledModule
+				IconModule
 			]
 		});
 	});

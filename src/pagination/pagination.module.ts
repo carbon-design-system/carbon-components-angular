@@ -14,6 +14,7 @@ import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { PaginationNav } from "./pagination-nav";
 import { PaginationNavItem } from "./pagination-nav";
 import { PaginationOverflow } from "./pagination-nav";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { PaginationOverflow } from "./pagination-nav";
 		CaretLeftModule,
 		CaretRightModule,
 		OverflowMenuHorizontalModule
+		IconModule
 	]
 })
 export class PaginationModule {}

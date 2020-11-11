@@ -50,7 +50,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			<ng-content></ng-content>
 		</ng-template>
 		<ng-template #defaultIcon>
-			<svg ibmIconOverflowMenuVertical size="16" class="bx--overflow-menu__icon"></svg>
+			<svg ibmIcon="overflow-menu--vertical" size="16" class="bx--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`

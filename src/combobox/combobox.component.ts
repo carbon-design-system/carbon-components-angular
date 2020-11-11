@@ -107,7 +107,12 @@ import { Observable } from "rxjs";
 					aria-haspopup="true"
 					[autocomplete]="autocomplete"
 					[placeholder]="placeholder"/>
-				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
+				<svg
+					*ngIf="invalid"
+					ibomIcon="warning--filled"
+					size="16"
+					class="bx--list-box__invalid-icon">
+				</svg>
 				<div
 					*ngIf="showClearButton"
 					role="button"
@@ -118,14 +123,16 @@ import { Observable } from "rxjs";
 					(keyup.enter)="clearInput($event)"
 					(click)="clearInput($event)"
 					(blur)="onBlur()">
-					<svg ibmIconClose size="16"></svg>
+					<svg ibmIcon="close" size="16"></svg>
 				</div>
-				<ibm-icon-chevron-down size="16"
+				<svg
+					ibmIcon="chevron--down"
+					size="16"
 					[ngClass]="{'bx--list-box__menu-icon--open': open}"
 					class="bx--list-box__menu-icon"
 					[title]="open ? closeMenuAria : openMenuAria"
 					[ariaLabel]="open ? closeMenuAria : openMenuAria">
-				</ibm-icon-chevron-down>
+				</svg>
 			</div>
 			<div #dropdownMenu>
 				<ng-content *ngIf="open"></ng-content>
@@ -545,7 +552,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
-				this.view.propagateSelected([value]);
+				// all items in propagateSelected must be iterable
+				this.view.propagateSelected([value || ""]);
 			}
 			this.showClearButton = !!(value && this.view.getSelected().length);
 		} else {

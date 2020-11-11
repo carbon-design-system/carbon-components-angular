@@ -1,15 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import {
-	CloseModule,
-	CheckmarkFilledModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
 
 import { FileUploader } from "./file-uploader.component";
 import { FileComponent } from "./file.component";
 import { ButtonModule } from "carbon-components-angular/button";
 import { LoadingModule } from "carbon-components-angular/loading";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [FileUploader, FileComponent],
@@ -18,9 +14,7 @@ import { LoadingModule } from "carbon-components-angular/loading";
 		CommonModule,
 		ButtonModule,
 		LoadingModule,
-		CloseModule,
-		CheckmarkFilledModule,
-		WarningFilledModule
+		IconModule
 	]
 })
 export class FileUploaderModule { }

@@ -28,7 +28,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 				class="bx--modal-close"
 				(click)="onClose()">
 				<span class="bx--assistive-text">{{ closeLabel }}</span>
-				<svg ibmIconClose size="20" class="bx--modal-close__icon"></svg>
+				<svg ibmIcon="close" size="20" class="bx--modal-close__icon"></svg>
 			</button>
 		</header>
 

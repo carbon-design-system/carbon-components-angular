@@ -111,18 +111,20 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled
-				size="16"
+			<svg
 				*ngIf="invalid"
-				class="bx--dropdown__invalid-icon">
+				class="bx--dropdown__invalid-icon"
+				ibomIcon="warning--filled"
+				size="16">
 			</svg>
-			<ibm-icon-chevron-down
-				size="16"
+			<svg
 				*ngIf="!skeleton"
+				ibmIcon="chevron--down"
+				size="16"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down>
+			</svg>
 		</button>
 		<div
 			#dropdownMenu

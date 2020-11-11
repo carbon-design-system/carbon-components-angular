@@ -6,7 +6,7 @@ import {
 	Injectable,
 	ViewContainerRef
 } from "@angular/core";
-import { DialogConfig } from "./dialog-config.interface";
+import { CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Dialog } from "./dialog.component";
 import { tabbableSelector } from "carbon-components-angular/common";
@@ -30,7 +30,9 @@ export class DialogService {
 	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
 	 */
 	public static closeAll() {
-		DialogService.dialogRefs.forEach(ref => ref.instance.doClose());
+		DialogService.dialogRefs.forEach(ref => ref.instance.doClose({
+			reason: CloseReasons.programmatic
+		}));
 		DialogService.dialogRefs.clear();
 	}
 

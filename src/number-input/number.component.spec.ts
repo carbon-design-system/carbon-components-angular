@@ -4,11 +4,7 @@ import { By } from "@angular/platform-browser";
 import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/index";
-import {
-	CaretUpModule,
-	CaretDownModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 
 describe("Number", () => {
 	let component: Number;
@@ -26,9 +22,7 @@ describe("Number", () => {
 			imports: [
 				I18nModule,
 				FormsModule,
-				CaretUpModule,
-				CaretDownModule,
-				WarningFilledModule
+				IconModule
 			],
 			providers: []
 		});

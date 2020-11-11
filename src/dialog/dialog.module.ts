@@ -22,8 +22,7 @@ import { I18nModule } from "carbon-components-angular/i18n";
 import { PlaceholderModule } from "carbon-components-angular/placeholder";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { UtilsModule } from "carbon-components-angular/utils";
-
-import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -67,7 +66,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		PlaceholderModule,
 		ExperimentalModule,
 		UtilsModule,
-		OverflowMenuVerticalModule
+		IconModule
 	]
 })
 export class DialogModule {}

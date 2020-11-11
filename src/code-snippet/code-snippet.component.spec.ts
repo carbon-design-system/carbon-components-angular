@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { I18nModule } from "../i18n/index";
+import { IconModule } from "../icon/index";
 
 import { CodeSnippet } from "./code-snippet.component";
-import { CopyModule, ChevronDownModule } from "@carbon/icons-angular";
 
 describe("CodeSnippet", () => {
 	let component: CodeSnippet;
@@ -13,8 +13,7 @@ describe("CodeSnippet", () => {
 			declarations: [CodeSnippet],
 			imports: [
 				I18nModule,
-				CopyModule,
-				ChevronDownModule
+				IconModule
 			]
 		});
 

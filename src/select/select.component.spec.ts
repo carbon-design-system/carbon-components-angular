@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
-import { ChevronDownModule, WarningFilledModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { Select } from "./select.component";
 
 @Component({
@@ -30,8 +30,7 @@ describe("Select", () => {
 			],
 			imports: [
 				FormsModule,
-				ChevronDownModule,
-				WarningFilledModule
+				IconModule
 			]
 		});
 	});

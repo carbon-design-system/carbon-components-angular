@@ -2,7 +2,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { CopyModule, ChevronDownModule } from "@carbon/icons-angular";
+import { IconModule } from "carbon-components-angular/icon";
 
 import { I18nModule } from "carbon-components-angular/i18n";
 
@@ -20,8 +20,7 @@ import { CodeSnippet } from "./code-snippet.component";
 		CommonModule,
 		FormsModule,
 		I18nModule,
-		CopyModule,
-		ChevronDownModule
+		IconModule
 	]
 })
 export class CodeSnippetModule { }
