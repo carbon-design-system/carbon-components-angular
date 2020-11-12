@@ -106,6 +106,8 @@ export class TableToolbar {
 		return { CANCEL: this._cancelText.value as string };
 	}
 
+	@Output() cancel = new EventEmitter;
+
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
 	_batchTextLegacy: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT");
@@ -123,5 +125,6 @@ export class TableToolbar {
 
 	onCancel() {
 		this.model.selectAll(false);
+		this.cancel.emit();
 	}
 }
