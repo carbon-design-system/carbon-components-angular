@@ -24,7 +24,6 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<header
 			class="bx--header"
-			role="banner"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
 				*ngIf="skipTo"
