@@ -1,12 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import {
-	ChevronDownModule,
-	CaretLeftModule,
-	CaretRightModule,
-	OverflowMenuHorizontalModule
-} from "@carbon/icons-angular";
 
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "carbon-components-angular/i18n";
@@ -34,10 +28,6 @@ import { IconModule } from "carbon-components-angular/icon";
 		FormsModule,
 		I18nModule,
 		ExperimentalModule,
-		ChevronDownModule,
-		CaretLeftModule,
-		CaretRightModule,
-		OverflowMenuHorizontalModule,
 		IconModule
 	]
 })

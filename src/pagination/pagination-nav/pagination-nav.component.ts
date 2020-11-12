@@ -54,7 +54,7 @@ export interface PaginationNavTranslations {
 					>
 						<span class="bx--assistive-text">{{previousItemText.subject | async}}</span>
 						<svg
-							ibmIconCaretLeft
+							ibmIcon="caret--left"
 							size="16"
 							style="display: inherit"
 							class="bx--btn__icon"
@@ -100,11 +100,10 @@ export interface PaginationNavTranslations {
 					>
 						<span class="bx--assistive-text">{{nextItemText.subject | async}}</span>
 						<svg
-							ibmIconCaretRight
+							ibmIcon="caret--right"
 							size="16"
 							style="display: inherit"
-							class="bx--btn__icon"
-						>
+							class="bx--btn__icon">
 						</svg>
 					</button>
 				</li>
@@ -207,12 +206,20 @@ export class PaginationNav {
 		}
 	}
 
-	private jumpToNext() {
+	public jumpToNext() {
 		this.currentPage = this.currentPage < this.totalDataLength ? this.currentPage + 1 : this.totalDataLength;
 	}
 
-	private jumpToPrevious() {
+	public jumpToPrevious() {
 		this.currentPage = this.currentPage > 1 ? this.currentPage - 1 : 1;
+	}
+
+	public getPages() {
+		if (this.totalDataLength <= 1) {
+			return null;
+		}
+		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
+		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
 	}
 
 	private getCuts(page, totalItems, itemsThatFit, splitPoint = null) {
@@ -238,13 +245,5 @@ export class PaginationNav {
 			front: frontHidden,
 			back: backHidden
 		};
-	}
-
-	private getPages() {
-		if (this.totalDataLength <= 1) {
-			return null;
-		}
-		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
-		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
 	}
 }

@@ -29,7 +29,7 @@ import {
 			  </select>
 			  <div class="bx--pagination-nav__select-icon-wrapper">
 				  <svg
-					  ibmIconOverflowMenuHorizontal
+					  ibmIcon="overflow-menu--horizontal"
 					  size="16"
 					  style="display: inherit"
 					  class="bx--pagination-nav__select-icon">
