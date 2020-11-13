@@ -84,10 +84,6 @@ function getModelWithDisabledRows() {
 	return disabledModel;
 }
 
-function printSomething() {
-	console.log("printing something on cancel");
-}
-
 storiesOf("Components|Table", module).addDecorator(
 		moduleMetadata({
 			imports: [
