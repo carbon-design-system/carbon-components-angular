@@ -95,8 +95,7 @@ export interface PaginationNavTranslations {
 						class="bx--btn bx--btn--ghost bx--pagination-nav-next
 						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
 						[disabled]="rightArrowDisabled"
-						(click)="jumpToNext()"
-					>
+						(click)="jumpToNext()">
 						<span class="bx--assistive-text">{{nextItemText.subject | async}}</span>
 						<svg
 							ibmIcon="caret--right"
