@@ -37,7 +37,7 @@ import {
 			  </div>
 			</div>
 		  </li>
-		<ibm-pagination-nav-item *ngIf="count == 1" [page]="fromIndex + 1"></ibm-pagination-nav-item>
+		<ibm-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></ibm-pagination-nav-item>
 	`
 })
 export class PaginationOverflow {
