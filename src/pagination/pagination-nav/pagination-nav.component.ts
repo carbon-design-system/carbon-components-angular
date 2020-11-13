@@ -64,7 +64,8 @@ export interface PaginationNavTranslations {
 					*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"
 					page="1"
 					(click)="currentPage = 1"
-					[isActive]="currentPage == 1"></ibm-pagination-nav-item>
+					[isActive]="currentPage == 1">
+				</ibm-pagination-nav-item>
 				<ibm-pagination-overflow
 					*ngIf="frontCuts"
 					[count]="frontCuts"
