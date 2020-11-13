@@ -82,8 +82,8 @@ export interface PaginationNavTranslations {
 					*ngIf="backCuts"
 					[count]="backCuts"
 					[fromIndex]="totalNumbersArray.length - backCuts - 1"
-					(change)="handleOverflowSelection($event)"
-				></ibm-pagination-overflow>
+					(change)="handleOverflowSelection($event)">
+				</ibm-pagination-overflow>
 				<ibm-pagination-nav-item
 					*ngIf="totalDataLength > 1"
 					[page]="totalNumbersArray.length"
