@@ -21,8 +21,7 @@ import {
 				type="button"
 				class="bx--pagination-nav__page"
 				[ngClass]="{ 'bx--pagination-nav__page--active': isActive }"
-				(click)="click.emit(page)"
-			>
+				(click)="click.emit(page)">
 				<span class="bx--pagination-nav__accessibility-label">
 					{{page}}
 				</span>
