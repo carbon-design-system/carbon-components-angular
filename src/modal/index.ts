@@ -1,5 +1,10 @@
 export { AlertModal } from "./alert-modal.component";
-export { AlertModalData, AlertModalType, ModalButton, ModalButtonType } from "./alert-modal.interface";
+export {
+	AlertModalData,
+	AlertModalType,
+	ModalButton,
+	ModalButtonType
+} from "./alert-modal.interface";
 export { BaseModal } from "./base-modal.class";
 export { ModalFooter } from "./modal-footer.component";
 export { ModalHeader } from "./modal-header.component";
