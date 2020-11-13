@@ -2,7 +2,6 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
-
 import { CommonModule } from "@angular/common";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
