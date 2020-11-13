@@ -106,7 +106,7 @@ export class TableToolbar {
 		return { CANCEL: this._cancelText.value as string };
 	}
 
-	@Output() cancel = new EventEmitter;
+	@Output() cancel = new EventEmitter();
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
