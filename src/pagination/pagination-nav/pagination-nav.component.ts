@@ -56,8 +56,7 @@ export interface PaginationNavTranslations {
 							ibmIcon="caret--left"
 							size="16"
 							style="display: inherit"
-							class="bx--btn__icon"
-						>
+							class="bx--btn__icon">
 						</svg>
 					</button>
 				</li>
