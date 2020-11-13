@@ -50,8 +50,7 @@ export interface PaginationNavTranslations {
 						class="bx--btn bx--btn--ghost bx--pagination-nav-previous
 						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
 						[disabled]="leftArrowDisabled"
-						(click)="jumpToPrevious()"
-					>
+						(click)="jumpToPrevious()">
 						<span class="bx--assistive-text">{{previousItemText.subject | async}}</span>
 						<svg
 							ibmIcon="caret--left"
