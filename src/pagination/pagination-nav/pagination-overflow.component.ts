@@ -41,7 +41,6 @@ import {
 	`
 })
 export class PaginationOverflow {
-
 	/**
 	 * The page for this component to dipslay
 	 */
