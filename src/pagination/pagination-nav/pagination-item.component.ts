@@ -11,7 +11,6 @@ import {
  *  * ```html
  * <ibm-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></ibm-pagination-nav-item>
  * ```
- *
  */
 @Component({
 	selector: "ibm-pagination-nav-item",
