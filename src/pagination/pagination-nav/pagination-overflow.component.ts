@@ -22,8 +22,7 @@ import {
 				  <option value="" hidden></option>
 				  <option
 					(click)="change.emit(fromIndex + i + 1)"
-					*ngFor="let item of countAsArray; let i = index"
-					>
+					*ngFor="let item of countAsArray; let i = index">
 						{{fromIndex + i + 1}}
 				  </option>
 			  </select>
