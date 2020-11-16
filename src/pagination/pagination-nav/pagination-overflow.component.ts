@@ -61,5 +61,4 @@ export class PaginationOverflow {
 	handleChange(event) {
 		event.target.value = "";
 	}
-
 }
