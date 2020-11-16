@@ -176,6 +176,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[batchText]="batchText"
 				[size]="size"
+				(cancel)="cancelMethod()"
 				#toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
@@ -228,6 +229,9 @@ storiesOf("Components|Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
+			cancelMethod: function() {
+				console.log("Custom cancel method");
+			},
 			description: text("Description", "With toolbar"),
 			searchModel: text("Search model", "Initial search value"),
 			enableSingleSelect: boolean("Enable single select", false),
