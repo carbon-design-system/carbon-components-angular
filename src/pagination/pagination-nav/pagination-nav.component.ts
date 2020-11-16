@@ -149,7 +149,6 @@ export class PaginationNav {
 	 */
 	@Output() selectPage = new EventEmitter<number>();
 
-
 	get totalNumbersArray() {
 		return [...Array(this.totalDataLength).keys()].map(n => n + 1);
 	}
