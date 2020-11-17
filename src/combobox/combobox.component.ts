@@ -102,7 +102,7 @@ import { Observable } from "rxjs";
 					[ngClass]="{'bx--text-input--empty': !showClearButton}"
 					role="searchbox"
 					tabindex="0"
-					[attr.aria-aria-labelledby]="id"
+					[attr.aria-labelledby]="id"
 					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
 					[autocomplete]="autocomplete"
