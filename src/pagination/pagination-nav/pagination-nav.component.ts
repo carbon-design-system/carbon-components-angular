@@ -1,4 +1,4 @@
-import { PaginationNavModel } from "./pagination-nav-model.class";
+import { PaginationModel } from "../pagination-model.class";
 import {
 	Component,
 	Input,
@@ -115,7 +115,7 @@ export class PaginationNav {
 	/**
 	 * `PaginationNavModel` with the information about pages you're controlling.
 	 */
-	@Input() model: PaginationNavModel;
+	@Input() model: PaginationModel;
 	/**
  	 * Set to `true` to disable the backward/forward buttons.
 	 */
@@ -173,12 +173,12 @@ export class PaginationNav {
 	}
 
 	get frontCuts() {
-		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
+		const cuts = this.getCuts();
 		return cuts.front;
 	}
 
 	get backCuts() {
-		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
+		const cuts = this.getCuts();
 		return cuts.back;
 	}
 
@@ -215,11 +215,15 @@ export class PaginationNav {
 		if (this.totalDataLength <= 1) {
 			return null;
 		}
-		const cuts = this.getCuts(this.currentPage - 1, this.totalDataLength, this.numOfItemsToShow);
+		const cuts = this.getCuts();
 		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
 	}
 
-	private getCuts(page, totalItems, itemsThatFit, splitPoint = null) {
+	private getCuts(splitPoint = null) {
+		const page = this.currentPage - 1;
+		const totalItems = this.totalDataLength;
+		const itemsThatFit = this.numOfItemsToShow;
+
 		if (itemsThatFit >= totalItems) {
 			return {
 				front: 0,

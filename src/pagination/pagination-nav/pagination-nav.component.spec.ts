@@ -7,7 +7,7 @@ import { I18nModule } from "carbon-components-angular/i18n";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { PaginationNav } from "./index";
 import { PaginationModule } from "../index";
-import { PaginationNavModel } from "./pagination-nav-model.class";
+import { PaginationModel } from "../pagination-model.class";
 
 @Component({
 	template: `
@@ -20,7 +20,7 @@ import { PaginationNavModel } from "./pagination-nav-model.class";
 	`
 })
 class PaginationNavTest implements OnInit {
-	model = new PaginationNavModel();
+	model = new PaginationModel();
 	disabled = false;
 
 	selectPage(page) {
