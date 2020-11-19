@@ -1,7 +1,7 @@
 import {
 	Component,
 	Input,
-	AfterContentInit,
+	AfterViewInit,
 	ElementRef,
 	HostBinding,
 	TemplateRef,
@@ -64,7 +64,7 @@ import { TextArea } from "./text-area.directive";
 		</div>
 	`
 })
-export class Label implements AfterContentInit {
+export class Label implements AfterViewInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -122,7 +122,7 @@ export class Label implements AfterContentInit {
 	/**
 	 * Sets the id on the input item associated with the `Label`.
 	 */
-	ngAfterContentInit() {
+	ngAfterViewInit() {
 		if (this.textArea) {
 			this.wrapperClass = "bx--text-area__wrapper";
 		}
