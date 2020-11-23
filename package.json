@@ -86,6 +86,7 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@storybook/addon-actions": "5.3.19",
+    "@storybook/addon-google-analytics": "^6.1.1",
     "@storybook/addon-knobs": "5.3.19",
     "@storybook/addon-links": "5.3.19",
     "@storybook/addon-notes": "5.3.19",
