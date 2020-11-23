@@ -6,6 +6,29 @@ import "@storybook/addon-links/register";
 import "@storybook/addon-notes/register";
 import "@storybook/addon-knobs/register";
 import "@storybook/addon-options/register";
-import "@storybook/addon-google-analytics/register";
 
-window.STORYBOOK_GA_ID = "G-G070S732G6";
+import { addons } from "@storybook/addons";
+import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
+
+// custom addon for google analytics v4
+addons.register("ga4", (api) => {
+	api.on(STORY_CHANGED, () => {
+		const { path } = api.getUrlState();
+		gtag('event', 'page_view', {
+			page_path: path,
+			page_title: document.title
+		});
+	});
+	api.on(STORY_ERRORED, ({ description }) => {
+		gtag('event', 'exception', {
+			description,
+			fatal: true
+		});
+	});
+	api.on(STORY_MISSING, (id) => {
+		gtag('event', 'exception', {
+			description: `attempted to render ${id}, but it is missing`,
+			fatal: false
+		});
+	});
+});
