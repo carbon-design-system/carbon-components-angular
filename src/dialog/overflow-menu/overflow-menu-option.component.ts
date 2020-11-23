@@ -9,6 +9,21 @@ import {
 } from "@angular/core";
 
 /**
+ * Available HTML anchor targets
+ */
+export enum Target {
+	self = "_self",
+	blank = "_blank",
+	parent = "_parent",
+	top = "_top"
+}
+
+/**
+ * Security HTML anchor rel when target is set
+ */
+const REL = "noreferrer noopener";
+
+/**
  * `OverflowMenuOption` represents a single option in an overflow menu
  *
  * Presently it has three possible states - normal, disabled, and danger:
@@ -46,6 +61,8 @@ import {
 			(click)="onClick()"
 			[attr.disabled]="disabled"
 			[href]="href"
+			[attr.target]="target"
+			[attr.rel]="rel"
 			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
 		</a>
@@ -78,8 +95,33 @@ export class OverflowMenuOption implements AfterViewInit {
 	 * disable/enable interactions
 	 */
 	@Input() disabled = false;
-
+	/**
+	 * If it's an anchor, this is its location
+	 */
 	@Input() href: string;
+	/**
+	 * Allows to add a target to the anchor
+	 */
+	@Input() set target(value: Target) {
+		if (!Object.values(Target).includes(value)) {
+			console.warn(
+`\`target\` must have one of the following values: ${Object.values(Target).join(", ")}.
+Please use the \`Target\` enum exported by carbon-components-angular`);
+			return;
+		}
+
+		this._target = value;
+	}
+
+	get target() {
+		return this._target;
+	}
+	/**
+	 * rel only returns its value if target is defined
+	 */
+	get rel() {
+		return this._target ? REL : null;
+	}
 
 	@Output() selected: EventEmitter<any> = new EventEmitter();
 
@@ -87,6 +129,8 @@ export class OverflowMenuOption implements AfterViewInit {
 	// note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
 	// change after checked errors
 	public title = null;
+
+	protected _target: Target;
 
 	constructor(protected elementRef: ElementRef) {}
 
