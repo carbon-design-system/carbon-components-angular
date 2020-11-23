@@ -41,6 +41,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			[wrapperClass]="wrapperClass"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
+			type="button"
 			[placement]="placement">
 			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
 		</button>
