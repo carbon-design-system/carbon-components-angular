@@ -215,11 +215,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
-
 		if (this.radios && !alreadySelected) {
 			this._selected = null;
 			this.radios.forEach(radio => {
-				if (radio.checked) {
+				if (radio.checked || radio.value === this._value) {
 					this._selected = radio;
 				}
 			});
@@ -233,11 +232,6 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.change.emit(event);
 		this.propagateChange(event.value);
 		this.onTouched();
-	}
-
-	updateRadioNames() {
-		console.warn("updateRadioNames had been deprecated. Use updateRadios instead");
-		this.updateRadios();
 	}
 
 	/**
@@ -259,6 +253,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	writeValue(value: any) {
 		this.value = value;
+		setTimeout(() => {
+			this.updateSelectedRadioFromValue();
+			this.checkSelectedRadio();
+		});
 	}
 
 	ngAfterContentInit() {

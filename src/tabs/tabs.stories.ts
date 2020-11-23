@@ -1,13 +1,18 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { TabsModule, DocumentationModule } from "../";
+import { TabsModule } from "../";
 import { Component, Input } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive">
+		<ibm-tab-header-group
+			[type]="type"
+			[followFocus]="followFocus"
+			[cacheActive]="cacheActive"
+			[isNavigation]="isNavigation">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -39,6 +44,7 @@ import { Component, Input } from "@angular/core";
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
+	@Input() isNavigation = true;
 	@Input() type = "default";
 }
 
@@ -145,11 +151,17 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+			<ibm-header-group
+				[type]="type"
+				[followFocus]="followFocus"
+				[cacheActive]="cacheActive"
+				[isNavigation]="isNavigation">
+			</ibm-header-group>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
 			cacheActive: boolean("Cache active", true),
+			isNavigation: boolean("isNavigation", true),
 			type: select("type", ["default", "container"], "default")
 		}
 	}))

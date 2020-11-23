@@ -1,12 +1,13 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { select, withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
-import { TilesModule, DocumentationModule } from "../";
-import { SkeletonModule } from "../skeleton/skeleton.module";
+import { TilesModule } from "../";
+import { SkeletonModule } from "../skeleton/index";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-bar",
@@ -50,10 +51,13 @@ storiesOf("Components|Tiles", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-tile>
+		<ibm-tile [theme]="theme">
 			tile content goes here...
 		</ibm-tile>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("Multiple", () => ({
 		template: `

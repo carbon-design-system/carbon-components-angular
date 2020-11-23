@@ -1,5 +1,5 @@
 import { Component, Input, HostBinding } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/loading--basic)

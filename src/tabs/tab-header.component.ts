@@ -3,7 +3,8 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	Output
+	Output,
+	AfterViewInit
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -26,6 +27,7 @@ import { EventEmitter } from "@angular/core";
 				draggable="false"
 				class="bx--tabs__nav-link"
 				href="javascript:void(0)"
+				[title]="title"
 				[attr.tabindex]="(active? 0 : -1)"
 				role="tab">
 				<ng-content></ng-content>
@@ -34,7 +36,7 @@ import { EventEmitter } from "@angular/core";
 	`
 })
 
-export class TabHeader {
+export class TabHeader implements AfterViewInit {
 	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
@@ -48,6 +50,7 @@ export class TabHeader {
 	 * Reference to the corresponsing tab pane.
 	 */
 	@Input() paneReference: Tab;
+	@Input() title;
 	/**
 	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
 	 */
@@ -57,6 +60,12 @@ export class TabHeader {
 		// Updates the pane references associated with the tab header when cache active is changed.
 		if (this.paneReference) {
 			this.paneReference.cacheActive = this.cacheActive;
+		}
+	}
+
+	@Input() set paneTabIndex(tabIndex: number | null) {
+		if (this.paneReference) {
+			this.paneReference.tabIndex = tabIndex;
 		}
 	}
 
@@ -70,9 +79,16 @@ export class TabHeader {
 
 	@Output() selected = new EventEmitter<any>();
 
-	@ViewChild("tabItem") tabItem: ElementRef;
+	// @ts-ignore
+	@ViewChild("tabItem", { static: true }) tabItem: ElementRef;
 
 	protected _cacheActive = false;
+
+	ngAfterViewInit() {
+		setTimeout(() => {
+			this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
+		});
+	}
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();

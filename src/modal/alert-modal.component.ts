@@ -2,7 +2,8 @@ import {
 	Component,
 	Inject,
 	ViewChild,
-	AfterViewInit
+	AfterViewInit,
+	Optional
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 
@@ -11,11 +12,11 @@ import { BaseModal } from "./base-modal.class";
  * It can show as a passive modal showing only text or show as a transactional modal with
  * multiple buttons for different actions for the user to choose from.
  *
- * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
+ * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
- * <ibm-modal-placeholder></ibm-modal-placeholder>
+ * <ibm-placeholder></ibm-placeholder>
  * ```
  *
  * Example of opening the modal:
@@ -25,14 +26,14 @@ import { BaseModal } from "./base-modal.class";
  *  selector: "app-modal-demo",
  *  template: `
  *   <button class="btn--primary" (click)="openModal()">Open modal</button>
- *   <ibm-modal-placeholder></ibm-modal-placeholder>`
+ *   <ibm-placeholder></ibm-placeholder>`
  * })
  * export class ModalDemo {
  * 	openModal() {
  * 		this.modalService.show({
  *			modalType: "default",
- *			modalLabel: "optional header text",
- *			modalTitle: "Modal modalTitle",
+ *			label: "optional header text",
+ *			title: "Modal title",
  *			text: "Modal text",
  *			buttons: [{
  *				text: "Button text",
@@ -49,16 +50,17 @@ import { BaseModal } from "./base-modal.class";
 	template: `
 		<ibm-modal
 			[size]="size"
-			[theme]="modalType"
+			[theme]="type"
+			[ariaLabel]="title"
 			[hasScrollingContent]="hasScrollingContent"
-			[modalLabel]="modalTitle"
+			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
 			<ibm-modal-header (closeSelect)="dismissModal('close')">
-				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
-				<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
+				<p ibmModalHeaderLabel class="bx--type-delta">{{label}}</p>
+				<p ibmModalHeaderHeading class="bx--type-beta">{{title}}</p>
 			</ibm-modal-header>
-			<div #content class="bx--modal-content">
-				<p [innerHTML]="modalContent"></p>
+			<div ibmModalContent #modalContent>
+				<p [innerHTML]="content"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
@@ -75,19 +77,20 @@ import { BaseModal } from "./base-modal.class";
 	`
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
-	@ViewChild("content") content;
+	// @ts-ignore
+	@ViewChild("modalContent", { static: true }) modalContent;
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
 	constructor(
-		@Inject("modalType") public modalType = "default",
-		@Inject("modalLabel") public modalLabel: string,
-		@Inject("modalTitle") public modalTitle: string,
-		@Inject("modalContent") public modalContent: string,
-		@Inject("size") public size: string,
-		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
-		@Inject("buttons") public buttons = [],
-		@Inject("close") public onClose: Function
+		@Optional() @Inject("type") public type = "default",
+		@Optional() @Inject("label") public label: string,
+		@Optional() @Inject("title") public title: string,
+		@Optional() @Inject("content") public content: string,
+		@Optional() @Inject("size") public size: string,
+		@Optional() @Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
+		@Optional() @Inject("buttons") public buttons = [],
+		@Optional() @Inject("close") public onClose: Function
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
@@ -102,8 +105,8 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		if (!this.content) { return false; }
-		const element = this.content.nativeElement;
+		if (!this.modalContent) { return false; }
+		const element = this.modalContent.nativeElement;
 		if (element.scrollHeight > element.clientHeight) {
 			element.tabIndex = 0;
 		} else {

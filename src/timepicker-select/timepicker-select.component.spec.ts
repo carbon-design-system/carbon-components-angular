@@ -2,8 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { IconModule } from "../icon/index";
 import { TimePickerSelect } from "./timepicker-select.component";
 
 @Component({
@@ -28,8 +27,7 @@ describe("TimePickerSelect", () => {
 			],
 			imports: [
 				FormsModule,
-				ChevronDown16Module,
-				WarningFilled16Module
+				IconModule
 			]
 		});
 	});

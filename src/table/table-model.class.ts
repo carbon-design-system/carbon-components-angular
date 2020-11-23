@@ -2,9 +2,10 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { PaginationModel } from "./../pagination/pagination-model.class";
+import { PaginationModel } from "carbon-components-angular/pagination";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
+import { TableRow } from "./table-row.class";
 import { Subject } from "rxjs";
 
 export type HeaderType = number | "select" | "expand";
@@ -179,8 +180,14 @@ export class TableModel implements PaginationModel {
 	 */
 	protected _data: TableItem[][] = [[]];
 
+	/**
+	 * The number of models instantiated, this is to make sure each table has a different
+	 * model count for unique id generation.
+	 */
+	protected tableModelCount = 0;
+
 	constructor() {
-		TableModel.COUNT++;
+		this.tableModelCount = TableModel.COUNT++;
 	}
 
 	/**
@@ -190,7 +197,7 @@ export class TableModel implements PaginationModel {
 	 * @param row the row of the header to generate an id for
 	 */
 	getId(column: HeaderType, row = 0): string {
-		return `table-header-${row}-${column}-${TableModel.COUNT}`;
+		return `table-header-${row}-${column}-${this.tableModelCount}`;
 	}
 
 	/**
@@ -600,6 +607,9 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set the row to. Defaults to `true`
 	 */
 	selectRow(index: number, value = true) {
+		if (this.isRowDisabled(index)) {
+			return;
+		}
 		this.rowsSelected[index] = value;
 		this.rowsSelectedChange.emit(index);
 	}
@@ -620,6 +630,14 @@ export class TableModel implements PaginationModel {
 
 	isRowSelected(index: number) {
 		return this.rowsSelected[index];
+	}
+
+	/**
+	 * Checks if row is disabled or not.
+	 */
+	isRowDisabled(index: number) {
+		const row = this.data[index] as TableRow;
+		return !!row.disabled;
 	}
 
 	/**

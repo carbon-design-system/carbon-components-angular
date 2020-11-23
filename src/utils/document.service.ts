@@ -1,10 +1,9 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
-import { EventHandler, getEventObservable } from "./event.service";
+import { EventHandler } from "./types";
+import { getEventObservable } from "./event-observable";
 
-@Injectable({
-	providedIn: "root"
-})
+@Injectable()
 export class DocumentService implements OnDestroy {
 	protected globalEvents = new Map<string, Observable<Event>>();
 

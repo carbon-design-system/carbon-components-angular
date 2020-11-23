@@ -2,8 +2,12 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
-import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
+import { InformationFilledModule } from "@carbon/icons-angular";
+import { DialogModule } from "../dialog.module";
+import { TagModule } from "../../tag/tag.module";
+import { PlaceholderModule } from "../../placeholder/index";
+import { DocumentationModule } from "../../documentation-component/documentation.module";
+import { boolean, object } from "@storybook/addon-knobs";
 
 storiesOf("Components|Tooltip", module)
 	.addDecorator(
@@ -11,14 +15,15 @@ storiesOf("Components|Tooltip", module)
 			imports: [
 				DialogModule,
 				PlaceholderModule,
-				InformationFilled16Module,
+				InformationFilledModule,
+				TagModule,
 				DocumentationModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
-	template: `
+		template: `
 			<div>
 				<ng-template #template let-tooltip="tooltip">
 					<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
@@ -33,10 +38,11 @@ storiesOf("Components|Tooltip", module)
 					{{triggerText}}
 					<span
 						[ibmTooltip]="template"
+						[offset]="offset"
 						trigger="click"
 						[placement]="placement">
 						<div role="button">
-							<ibm-icon-information-filled16></ibm-icon-information-filled16>
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
 						</div>
 					</span>
 				</div>
@@ -45,7 +51,8 @@ storiesOf("Components|Tooltip", module)
 		`,
 		props: {
 			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-			triggerText: text("Trigger text", "Tooltip label")
+			triggerText: text("Trigger text", "Tooltip label"),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 		}
 	}))
 	.add("No icon", () => ({
@@ -62,6 +69,7 @@ storiesOf("Components|Tooltip", module)
 
 					<span
 						[ibmTooltip]="template"
+						[offset]="offset"
 						trigger="click"
 						[placement]="placement">
 						{{triggerText}}
@@ -71,7 +79,8 @@ storiesOf("Components|Tooltip", module)
 			`,
 			props: {
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-				triggerText: text("Trigger text", "Tooltip label")
+				triggerText: text("Trigger text", "Tooltip label"),
+				offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 			}
 	}))
 	.add("Only icon", () => ({
@@ -88,6 +97,7 @@ storiesOf("Components|Tooltip", module)
 
 					<span
 						[ibmTooltip]="template"
+						[offset]="offset"
 						trigger="click"
 						[placement]="placement">
 						<div role="button" class="bx--tooltip__trigger">
@@ -100,7 +110,8 @@ storiesOf("Components|Tooltip", module)
 				</div>
 			`,
 			props: {
-				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom")
+				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+				offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 			}
 	}))
 	.add("Multiple tooltips", () => ({
@@ -115,6 +126,7 @@ storiesOf("Components|Tooltip", module)
 					</ng-template>
 					<span
 						[ibmTooltip]="template"
+						[offset]="offset"
 						trigger="hover"
 						[placement]="placement">
 						{{triggerText}}
@@ -140,8 +152,100 @@ storiesOf("Components|Tooltip", module)
 			`,
 			props: {
 				placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
-				triggerText: text("Trigger text", "Tooltip label")
+				triggerText: text("Trigger text", "Tooltip label"),
+				offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
 			}
+	}))
+	.add("Programmatically", () => ({
+		template: `
+			<div>
+				<div class="bx--tooltip__label">
+					{{triggerText}}
+					<span
+						ibmTooltip="Hello, World"
+						[offset]="offset"
+						[isOpen]="isOpen"
+						trigger="click"
+						[placement]="placement">
+						<div role="button">
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
+						</div>
+					</span>
+				</div>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+		`,
+		props: {
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			triggerText: text("Trigger text", "Tooltip label"),
+			isOpen: boolean("isOpen", false),
+			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
+		}
+	}))
+	.add("Ellipsis tooltip", () => ({
+		styles: [`
+			.fullText {
+				white-space: nowrap;
+				display: inline-block;
+			}
+			.overflowText {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100px;
+				display: inline-block;
+			}
+		`],
+		template: `
+			<span
+				class="ellipsis"
+				[ngClass]="{
+					'fullText': showFullText,
+					'overflowText': !showFullText
+				}"
+				trigger="hover"
+				[placement]="'bottom'"
+				ibmEllipsisTooltip>
+					Tooltip for ellipsis because I can and I am really really long
+			</span>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			showFullText: boolean("Show full text", false)
+		}
+	}))
+	.add("With dynamic content", () => ({
+		template: `
+			<div>
+				<ng-template #template let-tooltip="tooltip">
+					<ibm-tag-filter
+						*ngFor="let tag of tags; let i of index"
+						(close)="removeTag(i)">
+						{{ tag.content }}
+					</ibm-tag-filter>
+				</ng-template>
+				<div class="bx--tooltip__label">
+					{{triggerText}}
+					<span
+						[ibmTooltip]="template"
+						trigger="click"
+						[placement]="placement">
+						<div role="button">
+							<ibm-icon-information-filled size="16"></ibm-icon-information-filled>
+						</div>
+					</span>
+				</div>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
+		`,
+		props: {
+			placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom"),
+			triggerText: text("Trigger text", "Tooltip label"),
+			tags: [{ content: "One" }, { content: "Two" }, { content: "Three" }, { content: "Four" }],
+			removeTag: function(index: number) {
+				this.tags.splice(index, 1);
+			}
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `

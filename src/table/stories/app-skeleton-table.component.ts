@@ -8,7 +8,7 @@ import {
 	SimpleChanges
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { Table } from "../table.module";
+import { Table } from "../index";
 
 @Component({
 	selector: "app-skeleton-table",

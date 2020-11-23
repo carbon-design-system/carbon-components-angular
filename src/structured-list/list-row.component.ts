@@ -47,7 +47,7 @@ import { ListColumn } from "./list-column.component";
 				(change)="onChange($event)"
 				[checked]="selected"/>
 			<div class="bx--structured-list-td">
-				<ibm-icon-checkmark-filled16 class="bx--structured-list-svg"></ibm-icon-checkmark-filled16>
+				<svg ibmIcon="checkmark--filled" size="16" class="bx--structured-list-svg"></svg>
 			</div>
 		</ng-container>
 	`
@@ -81,7 +81,8 @@ export class ListRow implements AfterContentInit {
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
-	@ViewChild("input") input: ElementRef;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 
 	ngAfterContentInit() {
 		this.columns.forEach(column => {
@@ -92,8 +93,9 @@ export class ListRow implements AfterContentInit {
 
 	@HostListener("click")
 	onclick() {
-		if (!this.selection) { return false; }
-		this.input.nativeElement.click();
+		if (this.selection) {
+			this.input.nativeElement.click();
+		}
 	}
 
 	onChange(event) {

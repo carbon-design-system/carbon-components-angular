@@ -28,7 +28,6 @@ import { TableItem } from "../table-item.class";
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
@@ -58,11 +57,13 @@ export class PaginationTableStory implements OnInit {
 
 	@Input() stickyHeader = false;
 
-	@ViewChild("filter")
-	filter: TemplateRef<any>;
-	@ViewChild("filterableHeaderTemplate")
+	// @ts-ignore
+	@ViewChild("filter", { static: false }) filter: TemplateRef<any>;
+	// @ts-ignore
+	@ViewChild("filterableHeaderTemplate", { static: false })
 	protected filterableHeaderTemplate: TemplateRef<any>;
-	@ViewChild("paginationTableItemTemplate")
+	// @ts-ignore
+	@ViewChild("paginationTableItemTemplate", { static: false })
 	protected paginationTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

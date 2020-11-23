@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "carbon-components-angular/i18n";
 import { NavigationItem } from "../header/header-navigation-items.interface";
 
 /**
@@ -17,7 +17,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav class="bx--side-nav__navigation" role="navigation">
+		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
 			<ng-content select="ibm-sidenav-header"></ng-content>
 			<ul class="bx--side-nav__items">
 				<div

@@ -4,11 +4,14 @@ import {
 	ViewContainerRef,
 	Input,
 	TemplateRef,
-	HostListener
+	HostListener,
+	AfterContentInit
 } from "@angular/core";
-import { DialogDirective } from "./../dialog.directive";
-import { DialogService } from "./../dialog.service";
+import { DialogDirective } from "../dialog.directive";
+import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
+import { OverflowMenuCustomPane } from "./overflow-menu-custom-pane.component";
+import { EventService } from "carbon-components-angular/utils";
 
 
 /**
@@ -26,6 +29,13 @@ import { OverflowMenuPane } from "./overflow-menu-pane.component";
  * 	<!-- overflow menu options here -->
  * </ng-template>
  * ```
+ *
+ * ```html
+ * <div [ibmOverflowMenu]="templateRef" [customPane]="true"></div>
+ * <ng-template #templateRef>
+ *  <!-- custom content goes here -->
+ * </ng-template>
+ * ```
  */
 @Directive({
 	selector: "[ibmOverflowMenu]",
@@ -34,7 +44,7 @@ import { OverflowMenuPane } from "./overflow-menu-pane.component";
 		DialogService
 	]
 })
-export class OverflowMenuDirective extends DialogDirective {
+export class OverflowMenuDirective extends DialogDirective implements AfterContentInit {
 	/**
 	 * Takes a template ref of `OverflowMenuOptions`s
 	 */
@@ -50,7 +60,11 @@ export class OverflowMenuDirective extends DialogDirective {
 	/**
 	 * Classes to add to the dialog container
 	 */
-	@Input() wrapperClass = '';
+	@Input() wrapperClass = "";
+	/**
+	 * Set to true to for custom content
+	 */
+	@Input() customPane = false;
 
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
@@ -58,10 +72,14 @@ export class OverflowMenuDirective extends DialogDirective {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService
+		protected dialogService: DialogService,
+		protected eventService: EventService
 	) {
-		super(elementRef, viewContainerRef, dialogService);
-		dialogService.create(OverflowMenuPane);
+		super(elementRef, viewContainerRef, dialogService, eventService);
+	}
+
+	ngAfterContentInit() {
+		this.dialogService.setContext({ component: this.customPane ? OverflowMenuCustomPane : OverflowMenuPane });
 	}
 
 	updateConfig() {
@@ -69,14 +87,6 @@ export class OverflowMenuDirective extends DialogDirective {
 		this.dialogConfig.flip = this.flip;
 		this.dialogConfig.offset = this.offset;
 		this.dialogConfig.wrapperClass = this.wrapperClass;
-	}
-
-	onDialogInit() {
-		this.updateConfig();
-	}
-
-	onDialogChanges() {
-		this.updateConfig();
 	}
 
 	@HostListener("keydown", ["$event"])

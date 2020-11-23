@@ -1,8 +1,7 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../i18n/index";
 import { Toggle, ToggleChange } from "./toggle.component";
 
 describe("Toggle", () => {
@@ -14,7 +13,7 @@ describe("Toggle", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Toggle],
-			imports: [BrowserAnimationsModule, I18nModule],
+			imports: [I18nModule],
 			providers: []
 		});
 
@@ -29,11 +28,11 @@ describe("Toggle", () => {
 		expect(component instanceof Toggle).toBe(true);
 	});
 
-	it("should have input with class 'bx--toggle'", () => {
-		expect(buttonElement.className.includes("bx--toggle")).toEqual(true);
+	it("should have input with class 'bx--toggle-input'", () => {
+		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle")).toEqual(true);
+		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
 	});
 
 	it("should change state", () => {
@@ -47,18 +46,10 @@ describe("Toggle", () => {
 	});
 
 	it("should display small version of toggle when size equals sm", () => {
-		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(false);
+		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(true);
-	});
-
-	it("should display SVG in small version of toggle", () => {
-		component.size = "sm";
-		fixture.detectChanges();
-		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
-		expect(fixture.debugElement.query(By.css("svg")).nativeElement).not.toBeNull();
-		expect(labelElement.innerHTML).toContain("bx--toggle__check");
+		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(true);
 	});
 
 	it("should match the input checked value", () => {

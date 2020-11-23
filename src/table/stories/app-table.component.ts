@@ -21,12 +21,11 @@ function sort(model, index: number) {
 	selector: "app-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
-			[enableSingleSelect]="false"
+			[enableSingleSelect]="enableSingleSelect"
 			(rowClick)="onRowClick($event)"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
@@ -41,6 +40,7 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
+	@Input() enableSingleSelect = false;
 	@Input() striped = true;
 	@Input() sortable = true;
 	@Input() isDataGrid = false;

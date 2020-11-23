@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { Slider } from "./slider.component";
-import { UtilsModule } from "../utils/utils.module";
+import { UtilsModule } from "carbon-components-angular/utils";
 
 @NgModule({
 	declarations: [Slider],
@@ -12,9 +12,4 @@ import { UtilsModule } from "../utils/utils.module";
 		UtilsModule
 	]
 })
-class SliderModule {}
-
-export {
-	SliderModule,
-	Slider
-};
+export class SliderModule {}

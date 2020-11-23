@@ -121,9 +121,10 @@ export default {
 		"FORWARD": "Forward",
 		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
 		"PAGE": "page",
-		"OF_LAST_PAGES": "of {{last}} pages"
+		"OF_LAST_PAGES": "of {{last}} pages",
+		"OF_LAST_PAGE": "of {{last}} page"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
@@ -142,8 +143,10 @@ export default {
 		"ROW": "row"
 	},
 	"TABLE_TOOLBAR": {
-		"ACTION_BAR": "Table Action Bar",
-		"BATCH_TEXT": "items selected",
+		"ACTION_BAR": "Table action bar",
+		"BATCH_TEXT": "",
+		"BATCH_TEXT_SINGLE": "1 item selected",
+		"BATCH_TEXT_MULTIPLE": "{{count}} items selected",
 		"CANCEL": "Cancel"
 	},
 	"TABS": {
@@ -162,7 +165,8 @@ export default {
 	"UI_SHELL": {
 		"SKIP_TO": "Skip to content",
 		"HEADER": {
-			"MENU": "Open menu"
+			"OPEN_MENU": "Open menu",
+			"CLOSE_MENU": "Close menu"
 		},
 		"SIDE_NAV": {
 			"LABEL": "Side navigation",

@@ -27,7 +27,6 @@ import { TableHeaderItem } from "../table-header-item.class";
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -50,7 +49,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("overflowMenuItemTemplate")
+	@ViewChild("overflowMenuItemTemplate", { static: false })
 	protected overflowMenuItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

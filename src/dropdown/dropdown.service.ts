@@ -1,8 +1,8 @@
 import { Injectable, ElementRef, OnDestroy } from "@angular/core";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
-import { AnimationFrameService } from "./../utils/utils.module";
+import { AnimationFrameService } from "carbon-components-angular/utils";
 
 const defaultOffset = { top: 0, left: 0 };
 
@@ -63,6 +63,9 @@ export class DropdownService implements OnDestroy {
 			this.positionDropdown(parentRef, dropdownWrapper);
 		});
 
+		// run one position in sync, so we're less likely to have the view "jump" as we focus
+		this.positionDropdown(parentRef, dropdownWrapper);
+
 		return dropdownWrapper;
 	}
 
@@ -108,22 +111,24 @@ export class DropdownService implements OnDestroy {
 
 		const boxMenu = menuRef.querySelector(".bx--list-box__menu");
 
-		// If the parentRef and boxMenu are in a different left position relative to the
-		// window, the the boxMenu position has already been flipped and a check needs to be done
-		// to see if it needs to stay flipped.
-		if (parentRef.getBoundingClientRect().left !== boxMenu.getBoundingClientRect().left) {
-			// The getBoundingClientRect().right of the boxMenu if it were hypothetically flipped
-			// back into the original position before the flip.
-			const testBoxMenuRightEdgePos =
-				parentRef.getBoundingClientRect().left - boxMenu.getBoundingClientRect().left + boxMenu.getBoundingClientRect().right;
+		if (boxMenu) {
+			// If the parentRef and boxMenu are in a different left position relative to the
+			// window, the the boxMenu position has already been flipped and a check needs to be done
+			// to see if it needs to stay flipped.
+			if (parentRef.getBoundingClientRect().left !== boxMenu.getBoundingClientRect().left) {
+				// The getBoundingClientRect().right of the boxMenu if it were hypothetically flipped
+				// back into the original position before the flip.
+				const testBoxMenuRightEdgePos =
+					parentRef.getBoundingClientRect().left - boxMenu.getBoundingClientRect().left + boxMenu.getBoundingClientRect().right;
 
-			if (testBoxMenuRightEdgePos > (window.innerWidth || document.documentElement.clientWidth)) {
+				if (testBoxMenuRightEdgePos > (window.innerWidth || document.documentElement.clientWidth)) {
+					leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
+				}
+			// If it has not already been flipped, check if it is necessary to flip, ie. if the
+			// boxMenu is outside of the right viewPort.
+			} else if (boxMenu.getBoundingClientRect().right > (window.innerWidth || document.documentElement.clientWidth)) {
 				leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
 			}
-		// If it has not already been flipped, check if it is necessary to flip, ie. if the
-		// boxMenu is outside of the right viewPort.
-		} else if (boxMenu.getBoundingClientRect().right > (window.innerWidth || document.documentElement.clientWidth)) {
-			leftOffset = parentRef.offsetWidth - boxMenu.offsetWidth;
 		}
 
 		let pos = position.findAbsolute(parentRef, menuRef, "bottom");

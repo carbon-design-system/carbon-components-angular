@@ -1,11 +1,14 @@
 import {
 	Component,
+	ContentChild,
 	ElementRef,
+	EventEmitter,
 	Input,
-	ViewEncapsulation,
-	ContentChild
+	Output,
+	TemplateRef,
+	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
@@ -29,27 +32,25 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 		<div
 			[ibmOverflowMenu]="options"
 			[ngClass]="{'bx--overflow-menu--open': open}"
+			class="bx--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
+			[isOpen]="open"
+			(isOpenChange)="handleOpenChange($event)"
 			[offset]="offset"
 			[wrapperClass]="wrapperClass"
-			(onOpen)="open = true"
-			(onClose)="open = false"
 			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
 			[placement]="placement"
 			tabindex="0">
-			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
-				<g fill-rule="evenodd">
-					<circle cx="1.5" cy="1.5" r="1.5" />
-					<circle cx="1.5" cy="7.5" r="1.5" />
-					<circle cx="1.5" cy="13.5" r="1.5" />
-				</g>
-			</svg>
+			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
 		</div>
 		<ng-template #options>
 			<ng-content></ng-content>
+		</ng-template>
+		<ng-template #defaultIcon>
+			<svg ibmIcon="overflow-menu--vertical" size="16" class="bx--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`
@@ -78,16 +79,33 @@ export class OverflowMenu {
 
 	@Input() placement: "bottom" | "top" = "bottom";
 
+	@Input() open = false;
+
+	@Output() openChange = new EventEmitter<boolean>();
+	/**
+	 * Sets the custom overflow menu trigger
+	 */
+	@Input() customTrigger: TemplateRef<any>;
+
 	/**
 	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
 	@Input() offset: { x: number, y: number };
 
-	@Input() wrapperClass = '';
+	@Input() wrapperClass = "";
 
-	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
+	/**
+	 * This appends additional classes to the overflow trigger/button.
+	 */
+	@Input() triggerClass = "";
 
-	open = false;
+	// @ts-ignore
+	@ContentChild(OverflowMenuDirective, { static: false }) overflowMenuDirective: OverflowMenuDirective;
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+
+	handleOpenChange(event: boolean) {
+		this.open = event;
+		this.openChange.emit(event);
+	}
 }

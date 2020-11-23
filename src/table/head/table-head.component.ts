@@ -7,9 +7,10 @@ import {
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
-import { getScrollbarWidth } from "../../utils/window-tools";
-import { I18n, Overridable } from "../../i18n/i18n.module";
+import { getScrollbarWidth } from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.types";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -46,6 +47,7 @@ import { Observable } from "rxjs";
 				[ariaLabel]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
+				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
 				[id]="model.getId('select')">
 			</th>
@@ -106,7 +108,7 @@ export class TableHead implements AfterViewInit {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {
@@ -177,7 +179,7 @@ export class TableHead implements AfterViewInit {
 	}
 
 	onSelectAllCheckboxChange() {
-		if (!this.selectAllCheckbox) {
+		if (!this.selectAllCheckbox && !this.selectAllCheckboxSomeSelected) {
 			this.selectAll.emit(this.model);
 		} else {
 			this.deselectAll.emit(this.model);

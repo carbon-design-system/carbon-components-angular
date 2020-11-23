@@ -24,6 +24,11 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 
 	git pull "https://git:${GH_TOKEN}@github.com/IBM/carbon-components-angular.git" gh-pages
 
+	# clean up old build files in the root
+	rm -f *.js
+	rm -f *.map
+	rm -rf documentation
+
 	mkdir -p documentation
 	cp -R ../dist/docs/documentation/* ./documentation
 	cp -R ../dist/docs/storybook/* ./

@@ -11,11 +11,12 @@ import {
 	selector: "ibm-accordion-item",
 	template: `
 		<button
+			type="button"
 			[attr.aria-expanded]="expanded"
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
 			class="bx--accordion__heading">
-			<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>
+			<svg ibmIcon="chevron--right" size="16" class="bx--accordion__arrow"></svg>
 			<p *ngIf="!isTemplate(title)"
 				class="bx--accordion__title"
 				[ngClass]="{

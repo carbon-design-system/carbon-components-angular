@@ -2,13 +2,12 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
+import { IconModule } from "../icon/index";
 import { Select } from "./select.component";
 
 @Component({
 	template: `
-		<ibm-select (selected)="onChange($event)" [(ngModel)]="model">
+		<ibm-select (valueChange)="onChange($event)" [(ngModel)]="model">
 			<option value="option1"> Option 1 </option>
 		</ibm-select>
 		`
@@ -31,8 +30,7 @@ describe("Select", () => {
 			],
 			imports: [
 				FormsModule,
-				ChevronDown16Module,
-				WarningFilled16Module
+				IconModule
 			]
 		});
 	});

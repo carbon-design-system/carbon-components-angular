@@ -2,12 +2,11 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { Search16Module } from "@carbon/icons-angular/lib/search/16";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 // imports
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "carbon-components-angular/i18n";
 import { Search } from "./search.component";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -20,10 +19,7 @@ import { Search } from "./search.component";
 		FormsModule,
 		CommonModule,
 		I18nModule,
-		Search16Module,
-		Close16Module
+		IconModule
 	]
 })
 export class SearchModule { }
-
-export { Search };

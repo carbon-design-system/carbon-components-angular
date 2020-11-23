@@ -8,9 +8,10 @@ import {
 	ViewContainerRef,
 	HostBinding
 } from "@angular/core";
-import { DialogDirective } from "./../dialog.directive";
+import { DialogDirective } from "../dialog.directive";
 import { Tooltip } from "./tooltip.component";
-import { DialogService } from "./../dialog.service";
+import { DialogService } from "../dialog.service";
+import { EventService } from "carbon-components-angular/utils";
 
 
 /**
@@ -54,7 +55,7 @@ export class TooltipDirective extends DialogDirective {
 	@HostBinding("class.bx--tooltip__trigger") className = true;
 
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
-		return this.expanded ? this.dialogConfig.compID : null;
+		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
 	/**
@@ -63,17 +64,16 @@ export class TooltipDirective extends DialogDirective {
 	constructor(
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService
+		protected dialogService: DialogService,
+		protected eventService: EventService
 	) {
-		super(elementRef, viewContainerRef, dialogService);
-		dialogService.create(Tooltip);
+		super(elementRef, viewContainerRef, dialogService, eventService);
+		dialogService.setContext({ component: Tooltip });
 	}
 
-	/**
-	 * Extends the `Dialog` component's data structure with tooltip properties.
-	 */
-	onDialogInit() {
+	updateConfig() {
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
+		this.dialogConfig.offset = this.offset;
 	}
 }

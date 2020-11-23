@@ -7,7 +7,8 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { SearchModule, DocumentationModule } from "../";
+import { SearchModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Search", module).addDecorator(
 	moduleMetadata({
@@ -28,7 +29,7 @@ storiesOf("Components|Search", module).addDecorator(
 			</ibm-search>
 		`,
 		props: {
-			size: select("size", ["lg", "sm"], "lg"),
+			size: select("size", ["sm", "md", "xl"], "md"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			autocomplete: text("autocomplete", "on"),

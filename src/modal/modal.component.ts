@@ -5,20 +5,13 @@ import {
 	EventEmitter,
 	HostListener,
 	Input,
-	OnDestroy,
-	OnInit,
 	Output,
 	ElementRef,
-	ViewChild
+	ViewChild,
+	SimpleChanges,
+	OnChanges
 } from "@angular/core";
-import {
-	trigger,
-	state,
-	style,
-	transition,
-	animate
-} from "@angular/animations";
-import { cycleTabs, getFocusElementList } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 
 /**
  * Component to create modals for presenting content.
@@ -29,7 +22,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
 ```html
-<ibm-modal-placeholder></ibm-modal-placeholder>
+<ibm-placeholder></ibm-placeholder>
 ```
  *
  * A more complete example for `Modal` is given as follows:
@@ -45,7 +38,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
 							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
-								<ibm-icon icon="info" size="sm"></ibm-icon>
+								<svg ibmIcon="info" size="sm"></ibm-icon>
 							</button>
 							{{modalText}}
 						</section>
@@ -83,7 +76,10 @@ export class ModalDemo {
 @Component({
 	selector: "ibm-modal",
 	template: `
-		<ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay
+			[theme]="theme"
+			[open]="open"
+			(overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
 				[ngClass]="{
@@ -91,11 +87,10 @@ export class ModalDemo {
 					'bx--modal-container--sm': size === 'sm',
 					'bx--modal-container--lg': size === 'lg'
 				}"
-				[@modalState]="modalState"
 				role="dialog"
 				aria-modal="true"
 				style="z-index:1;"
-				[attr.aria-label]="modalLabel"
+				[attr.aria-label]="ariaLabel"
 				#modal>
 				<ng-content></ng-content>
 				<div
@@ -104,20 +99,9 @@ export class ModalDemo {
 				</div>
 			</div>
 		</ibm-overlay>
-	`,
-	animations: [
-		trigger("modalState", [
-			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
-			transition(":enter", [
-				animate("200ms ease-in")
-			]),
-			transition(":leave", [
-				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
-			])
-		])
-	]
+	`
 })
-export class Modal implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -129,8 +113,28 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 
 	/**
 	 * Label for the modal.
+	 *
+	 * @deprecated since v4
 	 */
-	@Input() modalLabel = "default";
+	@Input() set modalLabel(value: string) {
+		this.ariaLabel = value;
+	}
+
+	get modalLabel() {
+		return this.ariaLabel;
+	}
+
+	@Input() ariaLabel = "default";
+
+	/**
+	 * Controls the visibility of the modal when used directly in a template
+	 */
+	@Input() open = false;
+
+	/**
+	 * The element that triggers the modal, which should receive focus when the modal closes
+	 */
+	@Input() trigger: HTMLElement;
 
 	/**
 	 * Specify whether the modal contains scrolling content. This property overrides the automatic
@@ -151,12 +155,8 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
-	@ViewChild("modal") modal: ElementRef;
-
-	/**
-	 * Controls the transitions of the `Modal` component.
-	 */
-	modalState: "in" | "out" = "out";
+	// @ts-ignore
+	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
@@ -168,34 +168,23 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 */
 	constructor(public modalService: ModalService) {}
 
-	/**
-	 * Set modalState on the modal component when it is initialized.
-	 */
-	ngOnInit() {
-		this.modalState = "in";
+	ngOnChanges({ open }: SimpleChanges) {
+		if (open) {
+			if (open.currentValue) {
+				// `100` is just enough time to allow the modal
+				// to become visible, so that we can set focus
+				setTimeout(() => this.focusInitialElement(), 100);
+			} else if (this.trigger) {
+				this.trigger.focus();
+			}
+		}
 	}
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
 	 */
 	ngAfterViewInit() {
-		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
-		if (primaryFocusElement && primaryFocusElement.focus) {
-			setTimeout(() => primaryFocusElement.focus());
-			return;
-		}
-		if (getFocusElementList(this.modal.nativeElement).length > 0) {
-			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
-		} else {
-			setTimeout(() => this.modal.nativeElement.focus());
-		}
-	}
-
-	/**
-	 * Emit the close event when the modal component is destroyed.
-	 */
-	ngOnDestroy() {
-		this.modalState = "out";
+		this.focusInitialElement();
 	}
 
 	/**
@@ -207,6 +196,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			case "Escape": {
 				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 				this.modalService.destroy();  // destroy top (latest) modal
+				this.close.emit();
 				break;
 			}
 
@@ -216,6 +206,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			}
 		}
 	}
+
 	/**
 	 * This detects whether or not the modal contains scrolling content.
 	 *
@@ -224,13 +215,24 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
 	 */
 	get shouldShowScrollbar() {
-		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
 		if (modalContent) {
 			const modalContentHeight = modalContent.getBoundingClientRect().height;
 			const modalContentScrollHeight = modalContent.scrollHeight;
 			return modalContentScrollHeight > modalContentHeight;
 		} else {
 			return false;
+		}
+	}
+
+	protected focusInitialElement() {
+		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
+		if (primaryFocusElement && primaryFocusElement.focus) {
+			setTimeout(() => primaryFocusElement.focus());
+		} else if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
+		} else {
+			setTimeout(() => this.modal.nativeElement.focus());
 		}
 	}
 }

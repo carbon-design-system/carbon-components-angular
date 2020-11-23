@@ -8,7 +8,7 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
-import { clone } from "./../../utils/utils";
+import { clone } from "../../utils/index";
 
 export class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
@@ -38,11 +38,10 @@ export class CustomHeaderItem extends TableHeaderItem {
 			<a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
 		</ng-template>
 		<ng-template #customHeaderTemplate let-data="data">
-			<i><a [attr.href]="data.link">{{data.name}}</a></i>
+			<i ibmTableHeadCellLabel><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -66,9 +65,11 @@ export class DynamicTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("customHeaderTemplate")
+	// @ts-ignore
+	@ViewChild("customHeaderTemplate", { static: false })
 	protected customHeaderTemplate: TemplateRef<any>;
-	@ViewChild("customTableItemTemplate")
+	// @ts-ignore
+	@ViewChild("customTableItemTemplate", { static: false })
 	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

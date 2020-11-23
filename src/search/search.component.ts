@@ -9,22 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "../i18n/i18n.module";
-
-/**
- * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
- * Used to emit changes performed on search components.
- */
-export class SearchChange {
-	/**
-	 * Contains the `Search` that has been changed.
-	 */
-	source: Search;
-	/**
-	 * The value of the `Search` field encompassed in the `SearchChange` class.
-	 */
-	value: string;
-}
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/search--basic)
@@ -57,15 +42,12 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() set size(value: "sm" | "lg" | "xl") {
-		if (value === "lg") {
-			console.warn("size `lg` has been deprecated and replaced by `xl`");
-			value = "xl";
-		}
+
+	@Input() set size(value: "sm" | "md" | "xl") {
 		this._size = value;
 	}
 
-	get size(): "sm" | "lg" | "xl" {
+	get size(): "sm" | "md" | "xl" {
 		return this._size;
 	}
 	/**
@@ -106,7 +88,7 @@ export class Search implements ControlValueAccessor {
 	@Input() value = "";
 	/**
 	 * Sets the autocomplete attribute on the `input` element.
-	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+	 * For reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
 	 */
 	@Input() autocomplete = "on";
 	/**
@@ -122,11 +104,6 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
-	 * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
-	 * Emits event notifying other classes when a change in state occurs in the input.
-	 */
-	@Output() change = new EventEmitter<SearchChange>();
-	/**
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<string>();
@@ -135,10 +112,15 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when the clear button is clicked.
 	 */
 	@Output() clear = new EventEmitter();
+	/**
+	 * Emits an event on enter.
+	 */
+	@Output() search = new EventEmitter<string>();
 
-	@ViewChild("input") inputRef: ElementRef;
+	// @ts-ignore
+	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
-	protected _size: "sm" | "xl" = "xl";
+	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
 	 * Creates an instance of `Search`.
@@ -191,6 +173,13 @@ export class Search implements ControlValueAccessor {
 	}
 
 	/**
+	 * Called on enter.
+	 */
+	onEnter() {
+		this.search.emit(this.value);
+	}
+
+	/**
 	 * Called when clear button is clicked.
 	 */
 	clearSearch(): void {
@@ -200,10 +189,6 @@ export class Search implements ControlValueAccessor {
 	}
 
 	doValueChange() {
-		let event = new SearchChange();
-		event.source = this;
-		event.value = this.value;
-		this.change.emit(event);
 		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 	}
@@ -227,7 +212,9 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
+		this.onTouched();
 		if (this.toolbar &&
+			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
 			event.relatedTarget === null) {
 			this.active = false;

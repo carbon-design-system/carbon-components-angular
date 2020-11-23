@@ -6,7 +6,7 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { Select } from "../select/select.component";
+import { Select } from "carbon-components-angular/select";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
@@ -27,7 +27,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="bx--select-input">
 				<ng-content></ng-content>
 			</select>
-			<svg ibmIconChevronDown16 *ngIf="!skeleton" class="bx--select__arrow"></svg>
+			<svg ibmIcon="chevron--down" size="16" *ngIf="!skeleton" class="bx--select__arrow"></svg>
 		</div>
 	`,
 	providers: [

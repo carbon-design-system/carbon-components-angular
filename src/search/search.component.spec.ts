@@ -3,9 +3,8 @@ import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
 import { FormsModule } from "@angular/forms";
-import { I18nModule } from "../i18n/i18n.module";
-import { Search16Module } from "@carbon/icons-angular/lib/search/16";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
+import { I18nModule } from "../i18n/index";
+import { IconModule } from "../icon/index";
 
 describe("Search", () => {
 	let component: Search;
@@ -20,18 +19,9 @@ describe("Search", () => {
 			imports: [
 				FormsModule,
 				I18nModule,
-				Search16Module,
-				Close16Module
+				IconModule
 			],
 			providers: []
-		})
-		.overrideComponent(Search, {
-			remove: {
-				templateUrl: "search.component.html"
-			},
-			add: {
-				template: require("./search.component.html")
-			}
 		})
 		.compileComponents();
 	}));
@@ -68,7 +58,7 @@ describe("Search", () => {
 
 	it("should display component of the correct size", () => {
 		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
-		component.size = "lg";
+		component.size = "xl";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--search--xl")).toEqual(true);
 		component.size = "sm";

@@ -2,15 +2,16 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { UIShellModule } from "./ui-shell.module";
-import { SearchModule } from "./../search/search.module";
-import { DialogModule } from "./../dialog/dialog.module";
+import { UIShellModule } from "./index";
+import { SearchModule } from "./../search/index";
+import { DialogModule } from "./../dialog/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
-import { Fade16Module } from "@carbon/icons-angular/lib/fade/16";
-import { Fade20Module } from "@carbon/icons-angular/lib/fade/20";
+import {
+	CarbonModule,
+	FadeModule
+} from "@carbon/icons-angular";
 
 
 @Component({
@@ -31,11 +32,9 @@ storiesOf("Components|UI Shell", module)
 			declarations: [BarComponent, FooComponent],
 			imports: [
 				UIShellModule,
-				Carbon32Module,
-				Fade16Module,
+				CarbonModule,
 				SearchModule,
-				Fade16Module,
-				Fade20Module,
+				FadeModule,
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
@@ -61,7 +60,7 @@ storiesOf("Components|UI Shell", module)
 				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
-					<ibm-header-item>Docs</ibm-header-item>
+					<ibm-header-item isCurrentPage="true">Docs</ibm-header-item>
 					<ibm-header-item>Support</ibm-header-item>
 					<ibm-header-menu title="Manage">
 						<ibm-header-item>Link 1</ibm-header-item>
@@ -71,10 +70,10 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
@@ -100,17 +99,17 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg ibmIconFade size="20"></svg>
 					</ibm-header-action>
 					<ibm-header-action title="action">
-						<svg icon ibmIconFade20></svg>
+						<svg icon ibmIconFade size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 
 			<ng-template #brandTemplate>
 				<a class="bx--header__name">
-					<ibm-icon-carbon32 style="stroke:white;fill:white"></ibm-icon-carbon32>
+					<ibm-icon-carbon size="32" style="stroke:white;fill:white"></ibm-icon-carbon>
 					<span class="bx--header__name--prefix">IBM</span>
 					[Platform]
 				</a>
@@ -147,15 +146,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<ibm-icon-fade icon size="16"></ibm-icon-fade>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -183,15 +182,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav>
 				<ibm-sidenav-item [route]="['foo']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item [route]="['bar']">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
@@ -233,31 +232,31 @@ storiesOf("Components|UI Shell", module)
 				</ibm-header-navigation>
 				<ibm-header-global>
 					<ibm-header-action #firstAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
-					<ibm-header-action #secondAction title="action">
-						<svg icon ibmIconFade20 ></svg>
+					<ibm-header-action [(active)]="secondAction" title="action">
+						<svg icon ibmIconFade size="20" ></svg>
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
 			<ibm-sidenav [expanded]="active">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item [active]="hasActiveChild">Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
 			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
-			<ibm-panel [expanded]="secondAction.active">
+			<ibm-panel [expanded]="secondAction">
 				<ibm-switcher-list>
 					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
 					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
@@ -269,6 +268,7 @@ storiesOf("Components|UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			active: boolean("Left panel active", true),
+			secondAction: boolean("Second right panel active", false),
 			hasActiveChild: boolean("Active side nav child", true),
 			options: [
 				{
@@ -290,15 +290,15 @@ storiesOf("Components|UI Shell", module)
 		template: `
 			<ibm-sidenav rail="true" [expanded]="false">
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-item>
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg icon ibmIconFade16></svg>
+					<svg icon ibmIconFade size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -442,6 +442,26 @@ storiesOf("Components|UI Shell", module)
 			]
 		}
 	}))
+	.add("Use angular router attributes for routing", () => (
+		{
+			template: `
+			<ibm-header name="[Platform]" [route]="['bar']" [useRouter]="true">
+				<ibm-header-navigation>
+					<ibm-header-item [route]="['foo']" [useRouter]="true" [activeLinkClass]="'item--active'">Catalog</ibm-header-item>
+					<ibm-header-item [route]="['bar']" [useRouter]="true" [activeLinkClass]="['item--active', 'another-class']">Docs</ibm-header-item>
+					<ibm-header-item [route]="['foo']" [useRouter]="true">Support</ibm-header-item>
+					<ibm-header-menu title="Manage">
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 1</ibm-header-item>
+						<ibm-header-item [route]="['bar']" [useRouter]="true">Link 2</ibm-header-item>
+						<ibm-header-item [route]="['foo']" [useRouter]="true">Link 3</ibm-header-item>
+					</ibm-header-menu>
+				</ibm-header-navigation>
+			</ibm-header>
+			<div style="margin-top: 2rem">
+				<router-outlet></router-outlet>
+			</div>`
+		}
+	))
 	.add("Header Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/components/Header.html"></ibm-documentation>

@@ -36,7 +36,6 @@ class CustomHeaderItem extends TableHeaderItem {
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -60,9 +59,11 @@ export class ExpansionTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("customHeaderTemplate")
+	// @ts-ignore
+	@ViewChild("customHeaderTemplate", { static: false })
 	protected customHeaderTemplate: TemplateRef<any>;
-	@ViewChild("customTableItemTemplate")
+	// @ts-ignore
+	@ViewChild("customTableItemTemplate", { static: false })
 	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
@@ -84,7 +85,7 @@ export class ExpansionTableStory implements OnInit {
 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
-			
+
 		];
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),

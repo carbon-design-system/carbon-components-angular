@@ -6,10 +6,11 @@ import {
 	HostBinding,
 	HostListener
 } from "@angular/core";
-import { TableModel } from "./../table-model.class";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
-import { TableItem } from "./../table-item.class";
+import { TableModel } from "../table-model.class";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -96,7 +97,7 @@ export class TableRowComponent {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	/**
 	 * Controls whether to enable multiple or single row selection.
@@ -180,6 +181,10 @@ export class TableRowComponent {
 
 	@HostBinding("attr.data-parent-row") get isParentRow() {
 		return this.expandable ? true : null;
+	}
+
+	@HostBinding("attr.tabindex") get isAccessible() {
+		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
 	}
 
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");

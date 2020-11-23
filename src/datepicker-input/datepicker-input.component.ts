@@ -32,13 +32,18 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						autocomplete="off"
 						type="text"
 						class="bx--date-picker__input"
+						[ngClass]="{
+							'bx--date-picker__input--sm': size === 'sm',
+							'bx--date-picker__input--xl': size === 'xl'
+						}"
+						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
 						[pattern]="pattern"
 						[placeholder]="placeholder"
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-					<svg ibmIconCalendar16 class="bx--date-picker__icon"></svg>
+						<svg ibmIcon="calendar" size="16" class="bx--date-picker__icon"></svg>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
@@ -88,7 +93,10 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	@ViewChild("input") input: ElementRef;
+	@Input() size: "sm" | "md" | "xl" = "md";
+
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) {}
 

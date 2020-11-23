@@ -8,7 +8,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@ang
 import { Breadcrumb } from "./breadcrumb.component";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
-import { OverflowMenu } from "../dialog/overflow-menu/overflow-menu.component";
+import { OverflowMenu } from "carbon-components-angular/dialog";
 
 @Component({
 	selector: "test-breadcrumb",

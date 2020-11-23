@@ -7,10 +7,11 @@ import {
 } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
-import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
-import { I18n } from "./../../i18n/i18n.module";
-import { ExperimentalService } from "./../../experimental.module";
-import { ElementService } from "./../../utils/utils.module";
+import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
+import { I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService } from "carbon-components-angular/experimental";
+import { ElementService } from "carbon-components-angular/utils";
+import { CloseReasons } from "../dialog-config.interface";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -27,7 +28,7 @@ import { ElementService } from "./../../utils/utils.module";
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			(click)="doClose()"
+			(click)="onClose($event)"
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
@@ -49,21 +50,20 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	onDialogInit() {
 		const positionOverflowMenu = pos => {
 			let offset;
-			if (this.experimental.isExperimental) {
-				/*
-				* 16 is half the width of the overflow menu trigger element.
-				* we also move the element by half of it's own width, since
-				* position service will try and center everything
-				*/
-				offset = Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
-			} else {
-				// 60 shifts the menu right to align the arrow.
-				offset = 60;
-			}
+			/*
+			* 16 is half the width of the overflow menu trigger element.
+			* we also move the element by half of it's own width, since
+			* position service will try and center everything
+			*/
+			const closestRel = this.closestAttr("position", ["relative", "fixed", "absolute"]);
+			const topFix = closestRel ? closestRel.getBoundingClientRect().top * -1 : 0;
+			const leftFix = closestRel ? closestRel.getBoundingClientRect().left * -1 : 0;
+
+			offset = Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
 			if (this.dialogConfig.flip) {
-				return position.addOffset(pos, 0, -offset);
+				return position.addOffset(pos, topFix, (-offset + leftFix));
 			}
-			return position.addOffset(pos, 0, offset);
+			return position.addOffset(pos, topFix, (offset + leftFix));
 		};
 
 		this.addGap["bottom"] = positionOverflowMenu;
@@ -73,6 +73,25 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
+	}
+
+	closestAttr(s, t) {
+		let el = this.elementRef.nativeElement;
+
+		do {
+			if (
+				this.matchesAttr(el, s, t)
+			) {
+				return el;
+			}
+			el = el.parentElement || el.parentNode;
+		} while (el !== null && el.nodeType === 1);
+		return null;
+	}
+
+	matchesAttr(el, attr, val) {
+		const styles = window.getComputedStyle(el);
+		return val.includes(styles[attr]);
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -116,10 +135,20 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 			case "Escape":
 			case "Tab":
 				event.stopImmediatePropagation();
-				this.doClose();
+				this.doClose({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
 				break;
 			default: break;
 		}
+	}
+
+	onClose(event) {
+		this.doClose({
+			reason: CloseReasons.interaction,
+			target: event.target
+		});
 	}
 
 	afterDialogViewInit() {
@@ -130,8 +159,10 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				button.tabIndex = -1;
 			}
 		});
-		focusElementList[0].tabIndex = 0;
-		focusElementList[0].focus();
+		if (focusElementList[0]) {
+			focusElementList[0].tabIndex = 0;
+			focusElementList[0].focus();
+		}
 	}
 
 	protected listItems() {

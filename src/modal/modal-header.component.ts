@@ -4,8 +4,8 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
-import { ExperimentalService } from "./../experimental.service";
+import { I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService } from "carbon-components-angular/experimental";
 
 /**
  * ***Inputs***
@@ -26,9 +26,9 @@ import { ExperimentalService } from "./../experimental.service";
 			<button
 				type="button"
 				class="bx--modal-close"
-				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
-				<ibm-icon-close16 class="bx--modal-close__icon"></ibm-icon-close16>
+				<span class="bx--assistive-text">{{ closeLabel }}</span>
+				<svg ibmIcon="close" size="20" class="bx--modal-close__icon"></svg>
 			</button>
 		</header>
 
@@ -49,10 +49,6 @@ export class ModalHeader {
 	 * To emit the event of clicking on the close icon within the modal.
 	 */
 	@Output() closeSelect = new EventEmitter();
-
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
 
 	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {}
 

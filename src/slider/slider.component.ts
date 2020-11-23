@@ -10,7 +10,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { EventService } from "../utils/utils.module";
+import { EventService } from "carbon-components-angular/utils";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
@@ -205,10 +205,14 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
 	@HostBinding("class.bx--form-item") hostClass = true;
-	@ViewChild("thumb") thumb: ElementRef;
-	@ViewChild("track") track: ElementRef;
-	@ViewChild("filledTrack") filledTrack: ElementRef;
-	@ViewChild("range") range: ElementRef;
+	// @ts-ignore
+	@ViewChild("thumb", { static: false }) thumb: ElementRef;
+	// @ts-ignore
+	@ViewChild("track", { static: false }) track: ElementRef;
+	// @ts-ignore
+	@ViewChild("filledTrack", { static: false }) filledTrack: ElementRef;
+	// @ts-ignore
+	@ViewChild("range", { static: false }) range: ElementRef;
 
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;

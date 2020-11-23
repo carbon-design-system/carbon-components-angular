@@ -1,7 +1,7 @@
 import {
 	Component,
 	Input,
-	AfterContentInit,
+	AfterViewInit,
 	ElementRef,
 	HostBinding,
 	TemplateRef,
@@ -38,19 +38,25 @@ import { TextArea } from "./text-area.directive";
 	template: `
 		<label
 			[for]="labelInputID"
+			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
 			<ng-content></ng-content>
 		</label>
-		<div *ngIf="!skeleton && helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
-			<ibm-icon-warning-filled16
+			<svg
 				*ngIf="invalid"
+				ibmIcon="warning--filled"
+				size="16"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
-			</ibm-icon-warning-filled16>
+			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
+		</div>
+		<div *ngIf="!skeleton && helperText && !invalid" class="bx--form__helper-text">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div *ngIf="invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
@@ -58,7 +64,7 @@ import { TextArea } from "./text-area.directive";
 		</div>
 	`
 })
-export class Label implements AfterContentInit {
+export class Label implements AfterViewInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -84,7 +90,7 @@ export class Label implements AfterContentInit {
 	/**
 	 * Optional helper text that appears under the label.
 	 */
-	@Input() helperText: string;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */
@@ -93,10 +99,16 @@ export class Label implements AfterContentInit {
 	 * Set to `true` for an invalid label component.
 	 */
 	@Input() invalid = false;
+	/**
+	 * Set the arialabel for label
+	 */
+	@Input() ariaLabel: string;
 
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	// @ts-ignore
+	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
-	@ContentChild(TextArea) textArea: TextArea;
+	// @ts-ignore
+	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
@@ -110,11 +122,13 @@ export class Label implements AfterContentInit {
 	/**
 	 * Sets the id on the input item associated with the `Label`.
 	 */
-	ngAfterContentInit() {
+	ngAfterViewInit() {
 		if (this.textArea) {
 			this.wrapperClass = "bx--text-area__wrapper";
 		}
-		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		if (this.wrapper) {
+			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		}
 	}
 
 	public isTemplate(value) {
