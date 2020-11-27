@@ -167,66 +167,68 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("With toolbar", () => ({
 		template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
-			<ibm-table-toolbar
-				[model]="model"
-				[batchText]="batchText"
-				[size]="size"
-				(cancel)="cancelMethod()"
-				#toolbar>
-				<ibm-table-toolbar-actions>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-						Delete
-						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
-					</button>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-						Save
-						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
-					</button>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-						Download
-						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
-					</button>
-				</ibm-table-toolbar-actions>
-				<ibm-table-toolbar-content>
-					<ibm-table-toolbar-search
-						ngDefaultControl
-						[expandable]="true"
-						[(ngModel)]="searchModel">
-					</ibm-table-toolbar-search>
-					<ibm-overflow-menu
-						triggerClass="bx--toolbar-action"
-						[customTrigger]="customTrigger"
-						placement="bottom"
-						[offset]="size === 'sm' ? null : offset">
-						<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
-					</ibm-overflow-menu>
-					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
-					</button>
-				</ibm-table-toolbar-content>
-			</ibm-table-toolbar>
+		<section>
+			<ibm-table-container>
+				<ibm-table-header>
+					<h4 ibmTableHeaderTitle>{{title}}</h4>
+					<p ibmTableHeaderDescription>{{description}}</p>
+				</ibm-table-header>
+				<ibm-table-toolbar
+					[model]="model"
+					[batchText]="batchText"
+					[size]="size"
+					(cancel)="cancelMethod()"
+					#toolbar>
+					<ibm-table-toolbar-actions>
+						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+							Delete
+							<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+						</button>
+						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+							Save
+							<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+						</button>
+						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+							Download
+							<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+						</button>
+					</ibm-table-toolbar-actions>
+					<ibm-table-toolbar-content>
+						<ibm-table-toolbar-search
+							ngDefaultControl
+							[expandable]="true"
+							[(ngModel)]="searchModel">
+						</ibm-table-toolbar-search>
+						<ibm-overflow-menu
+							triggerClass="bx--toolbar-action"
+							[customTrigger]="customTrigger"
+							placement="bottom"
+							[offset]="size === 'sm' ? null : offset">
+							<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
+							<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
+							<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
+							<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+						</ibm-overflow-menu>
+						<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
+							Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						</button>
+					</ibm-table-toolbar-content>
+				</ibm-table-toolbar>
 
-			<app-table
-				[model]="model"
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[enableSingleSelect]="enableSingleSelect"
-				[striped]="striped"
-				[sortable]="sortable"
-				[skeleton]="skeleton"
-				[stickyHeader]="stickyHeader"
-				[isDataGrid]="isDataGrid">
-			</app-table>
-			<ng-template #customTrigger><svg ibmIconSettings size="16"></svg></ng-template>
-		</ibm-table-container>
+				<app-table
+					[model]="model"
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[enableSingleSelect]="enableSingleSelect"
+					[striped]="striped"
+					[sortable]="sortable"
+					[skeleton]="skeleton"
+					[stickyHeader]="stickyHeader"
+					[isDataGrid]="isDataGrid">
+				</app-table>
+				<ng-template #customTrigger><svg ibmIconSettings size="16"></svg></ng-template>
+			</ibm-table-container>
+		</section>
 	`,
 		props: getProps({
 			cancelMethod: function() {

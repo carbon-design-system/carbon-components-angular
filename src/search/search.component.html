@@ -9,14 +9,15 @@
 		'bx--toolbar-search': toolbar,
 		'bx--toolbar-search--active': toolbar && active
 	}"
-	role="search">
+	role="search"
+	tabindex="0"
+	(click)="openSearch()">
 	<label class="bx--label" [for]="id">{{label}}</label>
 
 	<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
 	<ng-template #enableInput>
 		<input
 			#input
-			*ngIf="!toolbar || active || value !== ''"
 			class="bx--search-input"
 			[type]="tableSearch || !toolbar ? 'text' : 'search'"
 			[id]="id"
@@ -27,17 +28,18 @@
 			[required]="required"
 			(input)="onSearch($event.target.value)"
 			(keyup.enter)="onEnter()"/>
-		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
+		<button
+			*ngIf="!tableSearch && toolbar"
+			class="bx--toolbar-search__btn"
+			(click)="openSearch()"
+			aria-label="Open search">
 			<svg ibmIcon="search" size="16" class="bx--search-magnifier"></svg>
 		</button>
 		<svg
 			ibmIcon="search"
 			*ngIf="tableSearch || !toolbar"
 			class="bx--search-magnifier"
-			size="16"
-			role="button"
-			tabindex="0"
-			(click)="openSearch()">
+			size="16">
 		</svg>
 	</ng-template>
 
