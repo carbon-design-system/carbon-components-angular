@@ -139,7 +139,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	onTouchStart(event) {
 		event.stopImmediatePropagation();
-		event.preventDefault();
 		this.toggle({
 			reason: CloseReasons.interaction
 		});
