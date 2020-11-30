@@ -9,7 +9,7 @@ import {
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
-import { range } from "../../common";
+import { range } from "carbon-components-angular/common";
 
 export interface PaginationNavTranslations {
 	NEXT: string;
