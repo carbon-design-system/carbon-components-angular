@@ -1,12 +1,13 @@
 import {
 	Component,
 	Input,
-	AfterContentInit,
+	AfterViewInit,
 	ElementRef,
 	HostBinding,
 	TemplateRef,
 	ViewChild,
-	ContentChild
+	ContentChild,
+	AfterContentInit
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -64,7 +65,7 @@ import { TextArea } from "./text-area.directive";
 		</div>
 	`
 })
-export class Label implements AfterContentInit {
+export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -120,14 +121,23 @@ export class Label implements AfterContentInit {
 	}
 
 	/**
-	 * Sets the id on the input item associated with the `Label`.
+	 * Update wrapper class if a textarea is hosted.
 	 */
 	ngAfterContentInit() {
 		if (this.textArea) {
 			this.wrapperClass = "bx--text-area__wrapper";
 		}
+	}
+
+	/**
+	 * Sets the id on the input item associated with the `Label`.
+	 */
+	ngAfterViewInit() {
 		if (this.wrapper) {
-			this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
+			if (inputElement) {
+				inputElement.setAttribute("id", this.labelInputID);
+			}
 		}
 	}
 
