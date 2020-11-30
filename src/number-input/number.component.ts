@@ -58,6 +58,7 @@ export class NumberChange {
 					[value]="value"
 					[attr.min]="min"
 					[attr.max]="max"
+					[attr.step]="step"
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
@@ -176,7 +177,14 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
-
+	/**
+	 * Sets the amount the number controls increment and decrement by.
+	 */
+	@Input() step = 1;
+	/**
+	 * If `step` is a decimal, we may want precision to be set to go around floating point precision.
+	 */
+	@Input() precision: number;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -258,21 +266,23 @@ export class NumberComponent implements ControlValueAccessor {
 	propagateChange = (_: any) => { };
 
 	/**
-	 * Adds 1 to the current `value`.
+	 * Adds `step` to the current `value`.
 	 */
 	onIncrement(): void {
-		if (this.max === null || this.value < this.max) {
-			this.value++;
+		if (this.max === null || this.value + this.step <= this.max) {
+			this.value += this.step;
+			this.value = parseFloat(this.value.toPrecision(this.precision));
 			this.emitChangeEvent();
 		}
 	}
 
 	/**
-	 * Subtracts 1 to the current `value`.
+	 * Subtracts `step` to the current `value`.
 	 */
 	onDecrement(): void {
-		if (this.min === null || this.value > this.min) {
-			this.value--;
+		if (this.min === null || this.value - this.step >= this.min) {
+			this.value -= this.step;
+			this.value = parseFloat(this.value.toPrecision(this.precision));
 			this.emitChangeEvent();
 		}
 	}
