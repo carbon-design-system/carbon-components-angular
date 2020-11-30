@@ -124,7 +124,9 @@ export default {
 		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
 		"PAGE": "page",
 		"OF_LAST_PAGES": "of {{last}} pages",
-		"OF_LAST_PAGE": "of {{last}} page"
+		"OF_LAST_PAGE": "of {{last}} page",
+		"NEXT": "Next",
+		"PREVIOUS": "Previous"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
