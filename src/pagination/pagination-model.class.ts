@@ -7,6 +7,7 @@ export class PaginationModel {
 	/**
 	 * Length of page.
 	 */
+	/* tslint:disable-next-line*/
 	pageLength? = 10;
 
 	/**
