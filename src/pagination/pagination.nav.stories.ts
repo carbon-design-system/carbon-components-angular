@@ -6,8 +6,8 @@ import {
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs/angular";
 
-import { NFormsModule } from "..";
-import { PaginationModule, PaginationNavModel } from "./index";
+import { NFormsModule } from "../index";
+import { PaginationModule, PaginationModel } from "./index";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
@@ -22,7 +22,7 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 	`
 })
 class PaginationNavStory implements OnInit {
-	@Input() model = new PaginationNavModel();
+	@Input() model = new PaginationModel();
 	@Input() disabled = false;
 	@Input() pageInputDisabled = false;
 	@Input() numOfItemsToShow = false;

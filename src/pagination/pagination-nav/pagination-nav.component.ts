@@ -151,7 +151,7 @@ export class PaginationNav {
 	@Output() selectPage = new EventEmitter<number>();
 
 	get totalNumbersArray() {
-		return range(this.totalDataLength, 1);
+		return range(this.totalDataLength + 1, 1);
 	}
 
 	get currentPage() {
