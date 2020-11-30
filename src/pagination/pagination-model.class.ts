@@ -7,7 +7,7 @@ export class PaginationModel {
 	/**
 	 * Length of page.
 	 */
-	pageLength ? = 10;
+	pageLength? = 10;
 
 	/**
 	 * Absolute total number of items needed to paginate.

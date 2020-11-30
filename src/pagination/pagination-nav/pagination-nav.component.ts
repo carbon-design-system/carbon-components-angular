@@ -9,6 +9,7 @@ import {
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
+import { range } from "../../common";
 
 export interface PaginationNavTranslations {
 	NEXT: string;
@@ -150,7 +151,7 @@ export class PaginationNav {
 	@Output() selectPage = new EventEmitter<number>();
 
 	get totalNumbersArray() {
-		return [...Array(this.totalDataLength).keys()].map(n => n + 1);
+		return range(this.totalDataLength, 1);
 	}
 
 	get currentPage() {
