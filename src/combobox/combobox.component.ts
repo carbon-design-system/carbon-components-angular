@@ -53,7 +53,8 @@ import { Observable } from "rxjs";
 				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
-			role="listbox"
+			role="combobox"
+			[id]="id"
 			[attr.data-invalid]="(invalid ? true : null)">
 			<div
 				[attr.aria-expanded]="open"
@@ -61,11 +62,9 @@ import { Observable } from "rxjs";
 				class="bx--list-box__field"
 				type="button"
 				tabindex="-1"
-				[attr.aria-label]="label"
 				aria-haspopup="true"
 				(click)="toggleDropdown()"
-				(blur)="onBlur()"
-				[id]="id">
+				(blur)="onBlur()">
 				<button
 					*ngIf="type === 'multi' && pills.length > 0"
 					type="button"
@@ -92,7 +91,7 @@ import { Observable } from "rxjs";
 				<input
 					#input
 					type="text"
-					role="combobox"
+					role="searchbox"
 					[disabled]="disabled"
 					(input)="onSearch($event.target.value)"
 					(blur)="onBlur()"
@@ -100,12 +99,11 @@ import { Observable } from "rxjs";
 					[value]="selectedValue"
 					class="bx--text-input"
 					[ngClass]="{'bx--text-input--empty': !showClearButton}"
-					role="searchbox"
 					tabindex="0"
 					[attr.aria-labelledby]="id"
 					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
-					[autocomplete]="autocomplete"
+					[attr.aria-autocomplete]="autocomplete"
 					[placeholder]="placeholder"/>
 				<svg
 					*ngIf="invalid"
@@ -375,7 +373,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	// @ts-ignore
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
-	@HostBinding("attr.role") role = "combobox";
+	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
