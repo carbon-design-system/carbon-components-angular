@@ -2,7 +2,7 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter, OnChanges, SimpleChanges
 } from "@angular/core";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { Step } from "./progress-indicator-step.interface";
@@ -59,7 +59,7 @@ import { Step } from "./progress-indicator-step.interface";
 	</ul>
 	`
 })
-export class ProgressIndicator {
+export class ProgressIndicator implements OnChanges {
 	static skeletonSteps(stepCount: number) {
 		const steps = [];
 		for (let i = 0; i < stepCount; i++) {
@@ -79,27 +79,42 @@ export class ProgressIndicator {
 		return this.steps.findIndex(step => step.state.includes("current"));
 	}
 	set current(current: number) {
-		if (current === undefined || current < 0) {
+		this._current = current;
+	}
+	private _current: number;
+
+	constructor(protected experimental: ExperimentalService) {}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes.steps || changes.current) {
+			this.setProgressIndicatorStates();
+		}
+	}
+
+	private setProgressIndicatorStates() {
+		if (this.steps === undefined) {
+			return;
+		}
+
+		if (this._current === undefined || this._current < 0) {
 			for (let i = 0; i < this.steps.length; i++) {
 				this.steps[i].state[0] = "incomplete";
 			}
 			return;
 		}
 
-		if (current > this.steps.length - 1) {
+		if (this._current > this.steps.length - 1) {
 			for (let i = 0; i < this.steps.length; i++) {
 				this.steps[i].state[0] = "complete";
 			}
 			return;
 		}
-		this.steps[current].state[0] = "current";
-		for (let i = 0; i < current; i++) {
+		this.steps[this._current].state[0] = "current";
+		for (let i = 0; i < this._current; i++) {
 			this.steps[i].state[0] = "complete";
 		}
-		for (let i = current + 1; i < this.steps.length; i++) {
+		for (let i = this._current + 1; i < this.steps.length; i++) {
 			this.steps[i].state[0] = "incomplete";
 		}
 	}
-
-	constructor(protected experimental: ExperimentalService) {}
 }
