@@ -20,9 +20,9 @@ import { Step } from "./progress-indicator-step.interface";
 		data-progress-current
 		class="bx--progress"
 		[ngClass]="{
-		'bx--skeleton': skeleton,
-		'bx--progress--vertical': (orientation === 'vertical')
-	}">
+			'bx--skeleton': skeleton,
+			'bx--progress--vertical': (orientation === 'vertical')
+		}">
 		<li
 			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
 			*ngFor="let step of steps; let i = index"
