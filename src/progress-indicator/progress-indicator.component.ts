@@ -74,6 +74,7 @@ export class ProgressIndicator implements OnInit, OnChanges {
 	@Input() steps: Array<Step>;
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 	@Input() skeleton = false;
+
 	@Input() get current() {
 		return this.steps.findIndex(step => step.state.includes("current"));
 	}
