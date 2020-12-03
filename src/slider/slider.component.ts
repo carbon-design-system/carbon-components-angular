@@ -170,8 +170,8 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 			v = [this.min];
 		}
 
-		if (typeof v === "number") {
-			v = [v];
+		if (typeof v === "number" || typeof v === "string") {
+			v = [Number(v)];
 		}
 
 		if (v[0] < this.min) {
