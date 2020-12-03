@@ -29,7 +29,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 @Component({
 	selector: "ibm-overflow-menu",
 	template: `
-		<div
+		<button
 			[ibmOverflowMenu]="options"
 			[ngClass]="{'bx--overflow-menu--open': open}"
 			class="bx--overflow-menu {{triggerClass}}"
@@ -39,13 +39,12 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			(isOpenChange)="handleOpenChange($event)"
 			[offset]="offset"
 			[wrapperClass]="wrapperClass"
-			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
-			[placement]="placement"
-			tabindex="0">
+			type="button"
+			[placement]="placement">
 			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
-		</div>
+		</button>
 		<ng-template #options>
 			<ng-content></ng-content>
 		</ng-template>

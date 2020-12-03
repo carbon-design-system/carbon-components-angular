@@ -18,6 +18,8 @@ storiesOf("Components|Number", module).addDecorator(
 				[theme]="theme"
 				[min]="min"
 				[max]="max"
+				[step]="step"
+				[precision]="precision"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[size]="size"
@@ -32,6 +34,8 @@ storiesOf("Components|Number", module).addDecorator(
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
 			max: number("max", 100),
+			step: number("step", 1),
+			precision: number("precision"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("disabled", false)
 		}
@@ -45,6 +49,8 @@ storiesOf("Components|Number", module).addDecorator(
 				[min]="min"
 				[size]="size"
 				[max]="max"
+				[step]="step"
+				[precision]="precision"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
@@ -61,6 +67,8 @@ storiesOf("Components|Number", module).addDecorator(
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
 			max: number("max", 100),
+			step: number("step", 1),
+			precision: number("precision"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("disabled", false)
 		}
