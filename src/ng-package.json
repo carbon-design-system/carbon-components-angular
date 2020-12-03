@@ -8,6 +8,7 @@
 		"@carbon/utils-position",
 		"flatpickr",
 		"@carbon/icon-helpers",
-		"@carbon/icons"
+		"@carbon/icons",
+		"@carbon/telemetry"
 	]
 }
