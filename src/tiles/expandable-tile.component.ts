@@ -21,7 +21,7 @@ export interface ExpandableTileTranslations {
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			type="button"
 			(click)="onClick()">
-			<div [attr.aria-label]="(expanded ? collapse : expand).subject | async" class="bx--tile__chevron">
+			<div class="bx--tile__chevron">
 				<svg *ngIf="!expanded" width="12" height="7" viewBox="0 0 12 7" title="{{expand.subject | async}}" role="img">
 					<title>{{expand.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
