@@ -72,7 +72,7 @@ import { TableRowSize } from "../table.types";
 					(sort)="sort.emit(i)">
 				</th>
 			</ng-container>
-			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" 
+			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth"
 				scope="col"
 				[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 				<!--
