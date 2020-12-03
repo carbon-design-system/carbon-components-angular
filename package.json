@@ -15,7 +15,7 @@
     "semantic-release": "semantic-release",
     "commit": "git-cz",
     "ng": "ng",
-	"ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build"
+    "ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build"
   },
   "husky": {
     "hooks": {
@@ -136,7 +136,7 @@
   "dependencies": {
     "@carbon/icon-helpers": "10.9.0",
     "@carbon/icons": "10.20.0",
-    "@carbon/telemetry": "0.0.0-alpha.2",
+    "@carbon/telemetry": "0.0.0-alpha.5",
     "@carbon/utils-position": "1.1.3",
     "flatpickr": "4.6.1"
   }
