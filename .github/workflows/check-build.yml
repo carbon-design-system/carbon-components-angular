@@ -54,6 +54,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dist
+        path: dist/carbon-components-angular-0.0.0.tgz
     - run: |
         npm i
         npm i carbon-components-angular-0.0.0.tgz
