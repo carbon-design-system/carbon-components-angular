@@ -67,114 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Build your table with this component by extending things that differ from default.</p>
-					</div>
-					<p><a href="../../?path=/story/table--basic">See demo</a></p>
-					<p>Instead of the usual write-your-own-html approach you had with <code>&lt;table&gt;</code>,
-					carbon table uses model-view-controller approach.</p>
-					<p>Here, you create a view (with built-in controller) and provide it a model.
-						Changes you make to the model are reflected in the view. Provide same model you use
-						in the table to the <code>&lt;ibm-pagination&gt;</code> components.
-					They provide a different view over the same data.</p>
-					<h2 id="basic-usage">Basic usage</h2>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-table</span> [<span class="hljs-attr">model</span>]=<span class="hljs-string">"model"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-table</span>&gt;</span></code></pre>
-					<pre><code class="language-typescript"><span class="hljs-keyword">public</span> model = <span class="hljs-keyword">new</span> TableModel();
-
-<span class="hljs-keyword">this</span>.model.data = [
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"asdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"qwer"</span>})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"csdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"zwer"</span>})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"bsdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"swer"</span>})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"csdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"twer"</span>})]
-];</code></pre>
-					<h2 id="customization">Customization</h2>
-					<p>If you have custom data in your table, you need a way to display it. You can do that
-					by providing a template to <code>TableItem</code>.</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">customTableItemTemplate</span> <span class="hljs-attr">let-data</span>=<span class="hljs-string">"data"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"data.link"</span>&gt;</span>{{data.name}} {{data.surname}}<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span></code></pre>
-					<pre><code class="language-typescript">customTableItemTemplate: TemplateRef&lt;<span class="hljs-built_in">any</span>&gt;;
-
-<span class="hljs-keyword">this</span>.customModel.data = [
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"asdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: {name: <span class="hljs-string">"Lessy"</span>, link: <span class="hljs-string">"/table"</span>}, template: <span class="hljs-keyword">this</span>.customTableItemTemplate})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"csdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"swer"</span>})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"bsdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: {name: <span class="hljs-string">"Alice"</span>, surname: <span class="hljs-string">"Bob"</span>}, template: <span class="hljs-keyword">this</span>.customTableItemTemplate})],
-    [<span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"csdf"</span>}), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"twer"</span>})],
-];</code></pre>
-					<h3 id="sorting-and-filtering">Sorting and filtering</h3>
-					<p>In case you need custom sorting and/or filtering you should subclass <code>TableHeaderItem</code>
-					and override needed functions.</p>
-					<pre><code class="language-typescript"><span class="hljs-keyword">class</span> FilterableHeaderItem <span class="hljs-keyword">extends</span> TableHeaderItem {
-    <span class="hljs-comment">// custom filter function</span>
-    filter(item: TableItem): <span class="hljs-built_in">boolean</span> {
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> item.data === <span class="hljs-string">"string"</span> &amp;&amp; item.data.toLowerCase().indexOf(<span class="hljs-keyword">this</span>.filterData.data.toLowerCase()) &gt;= <span class="hljs-number">0</span> ||
-        item.data.name &amp;&amp; item.data.name.toLowerCase().indexOf(<span class="hljs-keyword">this</span>.filterData.data.toLowerCase()) &gt;= <span class="hljs-number">0</span> ||
-        item.data.surname &amp;&amp; item.data.surname.toLowerCase().indexOf(<span class="hljs-keyword">this</span>.filterData.data.toLowerCase()) &gt;= <span class="hljs-number">0</span>) {
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-        }
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    }
-
-    <span class="hljs-keyword">set</span> filterCount(n) {}
-    <span class="hljs-keyword">get</span> filterCount() {
-        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.filterData &amp;&amp; <span class="hljs-keyword">this</span>.filterData.data &amp;&amp; <span class="hljs-keyword">this</span>.filterData.data.length &gt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
-    }
-
-    <span class="hljs-comment">// used for custom sorting</span>
-    compare(one: TableItem, two: TableItem) {
-        <span class="hljs-keyword">const</span> stringOne = (one.data.name || one.data.surname || one.data).toLowerCase();
-        <span class="hljs-keyword">const</span> stringTwo = (two.data.name || two.data.surname || two.data).toLowerCase();
-
-        <span class="hljs-keyword">if</span> (stringOne &gt; stringTwo) {
-            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stringOne &lt; stringTwo) {
-            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-        }
-    }
-}</code></pre>
-					<p>See <code>TableHeaderItem</code> class for more information.</p>
-					<h2 id="no-data-template">No data template</h2>
-					<p>When table has no data to show, it can show a message you provide it instead.</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-table</span> [<span class="hljs-attr">model</span>]=<span class="hljs-string">"model"</span>&gt;</span>No data.<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-table</span>&gt;</span></code></pre>
-					<p>... will show <code>No data.</code> message, but you can get creative and provide any template you want
-					to replace table&#39;s default <code>tbody</code>.</p>
-					<h2 id="use-pagination-as-table-footer">Use pagination as table footer</h2>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-pagination</span> [<span class="hljs-attr">model</span>]=<span class="hljs-string">"model"</span> (<span class="hljs-attr">selectPage</span>)=<span class="hljs-string">"selectPage($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-pagination</span>&gt;</span></code></pre>
-					<p><code>selectPage()</code> function should fetch the data from backend, create new <code>data</code>, apply it to <code>model.data</code>,
-					and update <code>model.currentPage</code>.</p>
-					<p>If the data your server returns is a two dimensional array of objects, it would look something like this:</p>
-					<pre><code class="language-typescript">selectPage(page) {
-    <span class="hljs-keyword">this</span>.getPage(page).then(<span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;&gt;</span>) =&gt;</span> {
-        <span class="hljs-comment">// set the data and update page</span>
-        <span class="hljs-keyword">this</span>.model.data = <span class="hljs-keyword">this</span>.prepareData(data);
-        <span class="hljs-keyword">this</span>.model.currentPage = page;
-    });
-}
-
-<span class="hljs-keyword">protected</span> prepareData(data: <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;&gt;) {
-    <span class="hljs-comment">// create new data from the service data</span>
-    <span class="hljs-keyword">let</span> newData = [];
-    data.forEach(<span class="hljs-function"><span class="hljs-params">dataRow</span> =&gt;</span> {
-        <span class="hljs-keyword">let</span> row = [];
-        dataRow.forEach(<span class="hljs-function"><span class="hljs-params">dataElement</span> =&gt;</span> {
-            row.push(<span class="hljs-keyword">new</span> TableItem({
-                data: dataElement,
-                template: <span class="hljs-keyword">typeof</span> dataElement === <span class="hljs-string">"string"</span> ? <span class="hljs-literal">undefined</span> : <span class="hljs-keyword">this</span>.paginationTableItemTemplate
-                <span class="hljs-comment">// your template can handle all the data types so you don't have to conditionally set it</span>
-                <span class="hljs-comment">// you can also set different templates for different columns based on index</span>
-            }));
-        });
-        newData.push(row);
-    });
-    <span class="hljs-keyword">return</span> newData;
-}</code></pre>
-					<p><example-url>../../iframe.html?id=table--basic</example-url></p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -581,14 +473,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L564">src/table/table.component.ts:564</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L564">src/table/table.component.ts:564</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates an instance of Table.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -614,7 +501,7 @@
 					<div class="tsd-signature tsd-kind-icon">_checkbox<wbr>Header<wbr>Label<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.CHECKBOX_HEADER&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L555">src/table/table.component.ts:555</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L555">src/table/table.component.ts:555</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -624,7 +511,7 @@
 					<div class="tsd-signature tsd-kind-icon">_checkbox<wbr>Row<wbr>Label<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.CHECKBOX_ROW&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L556">src/table/table.component.ts:556</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L556">src/table/table.component.ts:556</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -634,7 +521,7 @@
 					<div class="tsd-signature tsd-kind-icon">_end<wbr>OfData<wbr>Text<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.END_OF_DATA&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L557">src/table/table.component.ts:557</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L557">src/table/table.component.ts:557</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -644,7 +531,7 @@
 					<div class="tsd-signature tsd-kind-icon">_expand<wbr>Button<wbr>Aria<wbr>Label<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.EXPAND_BUTTON&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L552">src/table/table.component.ts:552</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L552">src/table/table.component.ts:552</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -654,7 +541,7 @@
 					<div class="tsd-signature tsd-kind-icon">_filter<wbr>Title<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.FILTER&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L559">src/table/table.component.ts:559</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L559">src/table/table.component.ts:559</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -664,7 +551,7 @@
 					<div class="tsd-signature tsd-kind-icon">_is<wbr>Data<wbr>Grid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L542">src/table/table.component.ts:542</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L542">src/table/table.component.ts:542</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -674,7 +561,7 @@
 					<div class="tsd-signature tsd-kind-icon">_model<span class="tsd-signature-symbol">:</span> <a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L541">src/table/table.component.ts:541</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L541">src/table/table.component.ts:541</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -684,7 +571,7 @@
 					<div class="tsd-signature tsd-kind-icon">_scroll<wbr>Top<wbr>Text<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.SCROLL_TOP&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L558">src/table/table.component.ts:558</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L558">src/table/table.component.ts:558</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -694,7 +581,7 @@
 					<div class="tsd-signature tsd-kind-icon">_sort<wbr>Ascending<wbr>Label<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L554">src/table/table.component.ts:554</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L554">src/table/table.component.ts:554</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -704,7 +591,7 @@
 					<div class="tsd-signature tsd-kind-icon">_sort<wbr>Descending<wbr>Label<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L553">src/table/table.component.ts:553</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L553">src/table/table.component.ts:553</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -714,7 +601,7 @@
 					<div class="tsd-signature tsd-kind-icon">application<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ApplicationRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L571">src/table/table.component.ts:571</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L571">src/table/table.component.ts:571</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -724,7 +611,7 @@
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Dragged<wbr>Hover<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L538">src/table/table.component.ts:538</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L538">src/table/table.component.ts:538</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -734,7 +621,7 @@
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Dragged<wbr>Position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L539">src/table/table.component.ts:539</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L539">src/table/table.component.ts:539</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -744,7 +631,7 @@
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Resize<wbr>MouseX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L562">src/table/table.component.ts:562</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L562">src/table/table.component.ts:562</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -754,7 +641,7 @@
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Resize<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L561">src/table/table.component.ts:561</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L561">src/table/table.component.ts:561</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -770,16 +657,9 @@
 					<div class="tsd-signature tsd-kind-icon">columns<wbr>Draggable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L404">src/table/table.component.ts:404</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L404">src/table/table.component.ts:404</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set to <code>true</code> to enable users to drag and drop columns.</p>
-						</div>
-						<p>Changing the column order in table changes table model. Be aware of it when you add additional data
-						to the model.</p>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="columnsresizable" class="tsd-anchor"></a>
@@ -793,15 +673,9 @@
 					<div class="tsd-signature tsd-kind-icon">columns<wbr>Resizable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L395">src/table/table.component.ts:395</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L395">src/table/table.component.ts:395</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set to <code>true</code> to enable users to resize columns.</p>
-						</div>
-						<p>Works for columns with width set in pixels.</p>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="deselectall" class="tsd-anchor"></a>
@@ -815,18 +689,9 @@
 					<div class="tsd-signature tsd-kind-icon">deselect<wbr>All<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;Object&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L495">src/table/table.component.ts:495</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L495">src/table/table.component.ts:495</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits if all rows are deselected.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd></dd>
-						</dl>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="deselectrow" class="tsd-anchor"></a>
@@ -840,19 +705,9 @@
 					<div class="tsd-signature tsd-kind-icon">deselect<wbr>Row<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;Object&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L509">src/table/table.component.ts:509</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L509">src/table/table.component.ts:509</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits if a single row is deselected.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>this.model, deselectedRowIndex: index})</p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="elementref" class="tsd-anchor"></a>
@@ -860,7 +715,7 @@
 					<div class="tsd-signature tsd-kind-icon">element<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L570">src/table/table.component.ts:570</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L570">src/table/table.component.ts:570</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -876,14 +731,9 @@
 					<div class="tsd-signature tsd-kind-icon">enable<wbr>Single<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L381">src/table/table.component.ts:381</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L381">src/table/table.component.ts:381</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls whether to enable multiple or single row selection.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="footertemplate" class="tsd-anchor"></a>
@@ -897,14 +747,9 @@
 					<div class="tsd-signature tsd-kind-icon">footer<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L463">src/table/table.component.ts:463</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L463">src/table/table.component.ts:463</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set footer template to customize what is displayed in the tfoot section of the table</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="i18n" class="tsd-anchor"></a>
@@ -912,7 +757,7 @@
 					<div class="tsd-signature tsd-kind-icon">i18n<span class="tsd-signature-symbol">:</span> <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L572">src/table/table.component.ts:572</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L572">src/table/table.component.ts:572</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -922,7 +767,7 @@
 					<div class="tsd-signature tsd-kind-icon">interaction<wbr>Model<span class="tsd-signature-symbol">:</span> <a href="src_table.datagridinteractionmodel.html" class="tsd-signature-type">DataGridInteractionModel</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L549">src/table/table.component.ts:549</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L549">src/table/table.component.ts:549</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -932,7 +777,7 @@
 					<div class="tsd-signature tsd-kind-icon">interaction<wbr>Position<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L550">src/table/table.component.ts:550</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L550">src/table/table.component.ts:550</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -942,7 +787,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Column<wbr>Dragging<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L537">src/table/table.component.ts:537</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L537">src/table/table.component.ts:537</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -952,7 +797,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>View<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L544">src/table/table.component.ts:544</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L544">src/table/table.component.ts:544</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -962,7 +807,7 @@
 					<div class="tsd-signature tsd-kind-icon">mouse<wbr>Move<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L563">src/table/table.component.ts:563</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L563">src/table/table.component.ts:563</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -972,7 +817,7 @@
 					<div class="tsd-signature tsd-kind-icon">mouse<wbr>UpSubscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L564">src/table/table.component.ts:564</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L564">src/table/table.component.ts:564</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -988,7 +833,7 @@
 					<div class="tsd-signature tsd-kind-icon">no<wbr>Border<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L367">src/table/table.component.ts:367</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L367">src/table/table.component.ts:367</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -998,7 +843,7 @@
 					<div class="tsd-signature tsd-kind-icon">position<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L547">src/table/table.component.ts:547</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L547">src/table/table.component.ts:547</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1014,14 +859,9 @@
 					<div class="tsd-signature tsd-kind-icon">row<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L514">src/table/table.component.ts:514</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L514">src/table/table.component.ts:514</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits if a row item excluding expandButtons, checkboxes, or radios is clicked.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="scrollload" class="tsd-anchor"></a>
@@ -1035,14 +875,9 @@
 					<div class="tsd-signature tsd-kind-icon">scroll<wbr>Load<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;TableModel&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L519">src/table/table.component.ts:519</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L519">src/table/table.component.ts:519</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits when table requires more data to be loaded.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="scrollloaddistance" class="tsd-anchor"></a>
@@ -1056,15 +891,9 @@
 					<div class="tsd-signature tsd-kind-icon">scroll<wbr>Load<wbr>Distance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L387">src/table/table.component.ts:387</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L387">src/table/table.component.ts:387</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Distance (in px) from the bottom that view has to reach before
-							<code>scrollLoad</code> event is emitted.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectall" class="tsd-anchor"></a>
@@ -1078,18 +907,9 @@
 					<div class="tsd-signature tsd-kind-icon">select<wbr>All<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;Object&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L488">src/table/table.component.ts:488</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L488">src/table/table.component.ts:488</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits if all rows are selected.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd></dd>
-						</dl>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectallcheckbox" class="tsd-anchor"></a>
@@ -1097,14 +917,9 @@
 					<div class="tsd-signature tsd-kind-icon">select<wbr>All<wbr>Checkbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L524">src/table/table.component.ts:524</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L524">src/table/table.component.ts:524</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls if all checkboxes are viewed as selected.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectallcheckboxsomeselected" class="tsd-anchor"></a>
@@ -1112,14 +927,9 @@
 					<div class="tsd-signature tsd-kind-icon">select<wbr>All<wbr>Checkbox<wbr>Some<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L529">src/table/table.component.ts:529</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L529">src/table/table.component.ts:529</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls the indeterminate state of the header checkbox.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectrow" class="tsd-anchor"></a>
@@ -1133,19 +943,9 @@
 					<div class="tsd-signature tsd-kind-icon">select<wbr>Row<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;Object&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L502">src/table/table.component.ts:502</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L502">src/table/table.component.ts:502</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits if a single row is selected.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>this.model, selectedRowIndex: index})</p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectionlabelcolumn" class="tsd-anchor"></a>
@@ -1159,18 +959,9 @@
 					<div class="tsd-signature tsd-kind-icon">selection<wbr>Label<wbr>Column<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L475">src/table/table.component.ts:475</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L475">src/table/table.component.ts:475</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Used to populate the row selection checkbox label with a useful value if set.</p>
-						</div>
-						<p>Example:</p>
-						<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">ibm-table</span> [<span class="hljs-attr">selectionLabelColumn</span>]=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-table</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- results in aria-label="Select first column value"
-(where "first column value" is the value of the first column in the row --&gt;</span></code></pre>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="showselectioncolumn" class="tsd-anchor"></a>
@@ -1184,14 +975,9 @@
 					<div class="tsd-signature tsd-kind-icon">show<wbr>Selection<wbr>Column<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L376">src/table/table.component.ts:376</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L376">src/table/table.component.ts:376</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls whether to show the selection checkboxes column or not.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="size" class="tsd-anchor"></a>
@@ -1205,14 +991,9 @@
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <a href="../modules/src_table.html#tablerowsize" class="tsd-signature-type">TableRowSize</a><span class="tsd-signature-symbol"> =&nbsp;&quot;md&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L342">src/table/table.component.ts:342</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L342">src/table/table.component.ts:342</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Size of the table rows.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="skeleton" class="tsd-anchor"></a>
@@ -1226,14 +1007,9 @@
 					<div class="tsd-signature tsd-kind-icon">skeleton<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L346">src/table/table.component.ts:346</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L346">src/table/table.component.ts:346</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set to <code>true</code> for a loading table.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="sort" class="tsd-anchor"></a>
@@ -1247,14 +1023,9 @@
 					<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L481">src/table/table.component.ts:481</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L481">src/table/table.component.ts:481</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits an index of the column that wants to be sorted.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="sortable" class="tsd-anchor"></a>
@@ -1268,15 +1039,9 @@
 					<div class="tsd-signature tsd-kind-icon">sortable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L365">src/table/table.component.ts:365</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L365">src/table/table.component.ts:365</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Setting sortable to false will disable all headers including headers which are sortable. Is is
-							possible to set the sortable state on the header item to disable/enable sorting for only some headers.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="stickyheader" class="tsd-anchor"></a>
@@ -1294,14 +1059,9 @@
 					<div class="tsd-signature tsd-kind-icon">sticky<wbr>Header<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L458">src/table/table.component.ts:458</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L458">src/table/table.component.ts:458</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set to <code>true</code> to stick the header to the top of the table</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="striped" class="tsd-anchor"></a>
@@ -1315,14 +1075,9 @@
 					<div class="tsd-signature tsd-kind-icon">striped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L453">src/table/table.component.ts:453</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L453">src/table/table.component.ts:453</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set to <code>false</code> to remove table rows (zebra) stripes.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="subscriptions" class="tsd-anchor"></a>
@@ -1330,7 +1085,7 @@
 					<div class="tsd-signature tsd-kind-icon">subscriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol"> =&nbsp;new Subscription()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L546">src/table/table.component.ts:546</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L546">src/table/table.component.ts:546</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1346,37 +1101,13 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> expandButtonAriaLabel<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> expandButtonAriaLabel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L410">src/table/table.component.ts:410</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L407">src/table/table.component.ts:407</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">expand<wbr>Button<wbr>Aria<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L407">src/table/table.component.ts:407</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L410">src/table/table.component.ts:410</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="isdatagrid" class="tsd-anchor"></a>
@@ -1387,44 +1118,13 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isDataGrid<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> isDataGrid<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L369">src/table/table.component.ts:369</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set to <code>true</code> for a data grid with keyboard interactions.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L350">src/table/table.component.ts:350</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set to <code>true</code> for a data grid with keyboard interactions.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Data<wbr>Grid<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L350">src/table/table.component.ts:350</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L369">src/table/table.component.ts:369</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="model" class="tsd-anchor"></a>
@@ -1435,61 +1135,23 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> model<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> model<span class="tsd-signature-symbol">(</span>m<span class="tsd-signature-symbol">: </span><a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L335">src/table/table.component.ts:335</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><code>TableModel</code> with data the table is to display.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L298">src/table/table.component.ts:298</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><code>TableModel</code> with data the table is to display.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>m: <a href="src_table.tablemodel.html" class="tsd-signature-type">TableModel</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">model<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L298">src/table/table.component.ts:298</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L335">src/table/table.component.ts:335</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="nodata" class="tsd-anchor"></a>
 					<h3>no<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> noData<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L531">src/table/table.component.ts:531</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">no<wbr>Data<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L531">src/table/table.component.ts:531</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="sortascendinglabel" class="tsd-anchor"></a>
@@ -1500,37 +1162,13 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sortAscendingLabel<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> sortAscendingLabel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L424">src/table/table.component.ts:424</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L421">src/table/table.component.ts:421</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">sort<wbr>Ascending<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L421">src/table/table.component.ts:421</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L424">src/table/table.component.ts:424</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="sortdescendinglabel" class="tsd-anchor"></a>
@@ -1541,37 +1179,13 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sortDescendingLabel<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> sortDescendingLabel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L417">src/table/table.component.ts:417</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L414">src/table/table.component.ts:414</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">sort<wbr>Descending<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L414">src/table/table.component.ts:414</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L417">src/table/table.component.ts:417</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
 					<a name="translations" class="tsd-anchor"></a>
@@ -1582,37 +1196,12 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> translations<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L441">src/table/table.component.ts:441</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Expects an object that contains some or all of:</p>
-									<pre><code>{
-        <span class="hljs-attr">"FILTER"</span>: <span class="hljs-string">"Filter"</span>,
-        <span class="hljs-attr">"END_OF_DATA"</span>: <span class="hljs-string">"You've reached the end of your content"</span>,
-        <span class="hljs-attr">"SCROLL_TOP"</span>: <span class="hljs-string">"Scroll to top"</span>,
-        <span class="hljs-attr">"CHECKBOX_HEADER"</span>: <span class="hljs-string">"Select all rows"</span>,
-        <span class="hljs-attr">"CHECKBOX_ROW"</span>: <span class="hljs-string">"Select row"</span>
-}</code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">translations<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L441">src/table/table.component.ts:441</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -1627,7 +1216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L734">src/table/table.component.ts:734</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L734">src/table/table.component.ts:734</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1653,7 +1242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L739">src/table/table.component.ts:739</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L739">src/table/table.component.ts:739</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1682,7 +1271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L744">src/table/table.component.ts:744</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L744">src/table/table.component.ts:744</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1711,7 +1300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L728">src/table/table.component.ts:728</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L728">src/table/table.component.ts:728</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1737,7 +1326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L748">src/table/table.component.ts:748</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L748">src/table/table.component.ts:748</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1766,7 +1355,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L756">src/table/table.component.ts:756</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L756">src/table/table.component.ts:756</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1795,7 +1384,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L709">src/table/table.component.ts:709</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L709">src/table/table.component.ts:709</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1821,7 +1410,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L704">src/table/table.component.ts:704</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L704">src/table/table.component.ts:704</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1847,7 +1436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L691">src/table/table.component.ts:691</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L691">src/table/table.component.ts:691</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1873,7 +1462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L619">src/table/table.component.ts:619</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L619">src/table/table.component.ts:619</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1890,7 +1479,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L589">src/table/table.component.ts:589</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L589">src/table/table.component.ts:589</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1907,7 +1496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L793">src/table/table.component.ts:793</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L793">src/table/table.component.ts:793</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1924,7 +1513,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L797">src/table/table.component.ts:797</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L797">src/table/table.component.ts:797</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1941,7 +1530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L801">src/table/table.component.ts:801</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L801">src/table/table.component.ts:801</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1958,7 +1547,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L783">src/table/table.component.ts:783</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L783">src/table/table.component.ts:783</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1975,7 +1564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L809">src/table/table.component.ts:809</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L809">src/table/table.component.ts:809</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1992,7 +1581,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L805">src/table/table.component.ts:805</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L805">src/table/table.component.ts:805</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2009,7 +1598,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L776">src/table/table.component.ts:776</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L776">src/table/table.component.ts:776</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2037,7 +1626,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L789">src/table/table.component.ts:789</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L789">src/table/table.component.ts:789</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2054,7 +1643,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L786">src/table/table.component.ts:786</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L786">src/table/table.component.ts:786</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2071,7 +1660,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L575">src/table/table.component.ts:575</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L575">src/table/table.component.ts:575</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2088,7 +1677,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L582">src/table/table.component.ts:582</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L582">src/table/table.component.ts:582</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2105,7 +1694,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L635">src/table/table.component.ts:635</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L635">src/table/table.component.ts:635</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2122,7 +1711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L654">src/table/table.component.ts:654</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L654">src/table/table.component.ts:654</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2145,15 +1734,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L718">src/table/table.component.ts:718</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L718">src/table/table.component.ts:718</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Triggered when the user scrolls on the <code>&lt;tbody&gt;</code> element.
-									Emits the <code>scrollLoad</code> event.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2174,7 +1757,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L630">src/table/table.component.ts:630</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L630">src/table/table.component.ts:630</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2191,7 +1774,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L640">src/table/table.component.ts:640</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L640">src/table/table.component.ts:640</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2214,7 +1797,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L674">src/table/table.component.ts:674</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L674">src/table/table.component.ts:674</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2237,15 +1820,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L771">src/table/table.component.ts:771</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L771">src/table/table.component.ts:771</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Triggered when the user scrolls on the <code>&lt;tbody&gt;</code> element.
-									Emits the <code>scrollLoad</code> event.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -2266,7 +1843,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L658">src/table/table.component.ts:658</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L658">src/table/table.component.ts:658</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2283,7 +1860,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L283">src/table/table.component.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L283">src/table/table.component.ts:283</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2306,7 +1883,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L272">src/table/table.component.ts:272</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L272">src/table/table.component.ts:272</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2332,16 +1909,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/table.component.ts#L253">src/table/table.component.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/table.component.ts#L253">src/table/table.component.ts:253</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a skeleton model with a row and column count specified by the user</p>
-								</div>
-								<p>Example:</p>
-								<pre><code class="language-typescript"><span class="hljs-keyword">this</span>.model = Table.skeletonModel(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>);</code></pre>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

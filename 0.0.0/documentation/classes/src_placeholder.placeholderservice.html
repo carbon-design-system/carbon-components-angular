@@ -67,14 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Singleton service used to register the container for out-of-flow components to insert into.
-						Also used to insert/remove components from that view.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -138,14 +130,9 @@
 					<div class="tsd-signature tsd-kind-icon">view<wbr>Container<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ViewContainerRef</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L22">src/placeholder/placeholder.service.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L22">src/placeholder/placeholder.service.ts:22</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Map of id&#39;s to secondary <code>ViewContainerRef</code>s</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="viewcontainerref" class="tsd-anchor"></a>
@@ -153,14 +140,9 @@
 					<div class="tsd-signature tsd-kind-icon">view<wbr>Container<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ViewContainerRef</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L18">src/placeholder/placeholder.service.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L18">src/placeholder/placeholder.service.ts:18</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Main <code>ViewContainerRef</code> to insert components into</p>
-						</div>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -169,13 +151,13 @@
 					<a name="appendelement" class="tsd-anchor"></a>
 					<h3>append<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">append<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span></li>
+						<li class="tsd-signature tsd-kind-icon">append<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L71">src/placeholder/placeholder.service.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L71">src/placeholder/placeholder.service.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,20 +177,15 @@
 					<a name="createcomponent" class="tsd-anchor"></a>
 					<h3>create<wbr>Component</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Component<span class="tsd-signature-symbol">(</span>componentFactory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentFactory</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, injector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Injector</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Component<span class="tsd-signature-symbol">(</span>componentFactory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentFactory</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, injector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Injector</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L37">src/placeholder/placeholder.service.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L37">src/placeholder/placeholder.service.ts:37</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates and returns component in the view.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -235,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L52">src/placeholder/placeholder.service.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L52">src/placeholder/placeholder.service.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -252,13 +229,13 @@
 					<a name="hascomponentref" class="tsd-anchor"></a>
 					<h3>has<wbr>Component<wbr>Ref</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Component<wbr>Ref<span class="tsd-signature-symbol">(</span>component<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Component<wbr>Ref<span class="tsd-signature-symbol">(</span>component<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ComponentRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L56">src/placeholder/placeholder.service.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L56">src/placeholder/placeholder.service.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -278,13 +255,13 @@
 					<a name="haselement" class="tsd-anchor"></a>
 					<h3>has<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L85">src/placeholder/placeholder.service.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L85">src/placeholder/placeholder.service.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -304,13 +281,13 @@
 					<a name="hasplaceholderref" class="tsd-anchor"></a>
 					<h3>has<wbr>Placeholder<wbr>Ref</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Placeholder<wbr>Ref<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Placeholder<wbr>Ref<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L64">src/placeholder/placeholder.service.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L64">src/placeholder/placeholder.service.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -327,20 +304,15 @@
 					<a name="registerviewcontainerref" class="tsd-anchor"></a>
 					<h3>register<wbr>View<wbr>Container<wbr>Ref</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">register<wbr>View<wbr>Container<wbr>Ref<span class="tsd-signature-symbol">(</span>vcRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ViewContainerRef</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">register<wbr>View<wbr>Container<wbr>Ref<span class="tsd-signature-symbol">(</span>vcRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ViewContainerRef</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L26">src/placeholder/placeholder.service.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L26">src/placeholder/placeholder.service.ts:26</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Used by <code>Placeholder</code> to register view-container reference.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -358,13 +330,13 @@
 					<a name="removeelement" class="tsd-anchor"></a>
 					<h3>remove<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Element<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/placeholder/placeholder.service.ts#L78">src/placeholder/placeholder.service.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/placeholder/placeholder.service.ts#L78">src/placeholder/placeholder.service.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

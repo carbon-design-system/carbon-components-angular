@@ -67,55 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Component to create modals for presenting content.</p>
-					</div>
-					<p><a href="../../?path=/story/modal--basic">See demo</a></p>
-					<p>Using a modal in your application requires <code>ibm-placeholder</code> which would generally be
-					placed near the end of your app component template (app.component.ts or app.component.html) as:</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-placeholder</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-placeholder</span>&gt;</span></code></pre>
-					<p>A more complete example for <code>Modal</code> is given as follows:</p>
-					<p>Example modal definition:</p>
-					<pre><code class="language-typescript"><span class="hljs-meta">@Component</span>({
-selector: <span class="hljs-string">"app-sample-modal"</span>,
-template: <span class="hljs-string">`
-&lt;ibm-modal size="xl" (overlaySelected)="closeModal()"&gt;
-&lt;ibm-modal-header (closeSelect)="closeModal()"&gt;Header text&lt;/ibm-modal-header&gt;
-&lt;section class="modal-body"&gt;
-&lt;h1&gt;Sample modal works.&lt;/h1&gt;
-&lt;button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true"&gt;
-&lt;svg ibmIcon="info" size="sm"&gt;&lt;/ibm-icon&gt;
-&lt;/button&gt;
-{{modalText}}
-&lt;/section&gt;
-&lt;ibm-modal-footer&gt;&lt;button ibmButton="primary" (click)="closeModal()"&gt;Close&lt;/button&gt;&lt;/ibm-modal-footer&gt;
-&lt;/ibm-modal&gt;`</span>,
-styleUrls: [<span class="hljs-string">"./sample-modal.component.scss"</span>]
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SampleModal <span class="hljs-keyword">extends</span> BaseModal {
-modalText: <span class="hljs-built_in">string</span>;
-<span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">protected</span> injector: Injector</span>) {
-<span class="hljs-keyword">super</span>();
-<span class="hljs-keyword">this</span>.modalText = <span class="hljs-keyword">this</span>.injector.get(<span class="hljs-string">"modalText"</span>);
-}
-}</code></pre>
-					<p>Example of opening the modal:</p>
-					<pre><code class="language-typescript"><span class="hljs-meta">@Component</span>({
-selector: <span class="hljs-string">"app-modal-demo"</span>,
-template: <span class="hljs-string">`
-&lt;button ibmButton="primary" (click)="openModal('drill')"&gt;Drill-down modal&lt;/button&gt;
-&lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;`</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ModalDemo {
-openModal() {
-<span class="hljs-keyword">this</span>.modalService.create({component: SampleModal, inputs: {modalText: <span class="hljs-string">"Hello universe."</span>}});
-}
-}</code></pre>
-					<p><example-url>../../iframe.html?id=modal--basic</example-url></p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -261,14 +212,9 @@ openModal() {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates an instance of <code>Modal</code>.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -294,7 +240,7 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;default&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L127">src/modal/modal.component.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L127">src/modal/modal.component.ts:127</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -310,14 +256,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L154">src/modal/modal.component.ts:154</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L154">src/modal/modal.component.ts:154</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>To emit the closing event of the modal window.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="hasscrollingcontent" class="tsd-anchor"></a>
@@ -331,17 +272,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Scrolling<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L145">src/modal/modal.component.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L145">src/modal/modal.component.ts:145</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Specify whether the modal contains scrolling content. This property overrides the automatic
-								detection of the existence of scrolling content. Set this property to <code>true</code> to force
-								overflow indicator to show up or to <code>false</code> to force overflow indicator to disappear.
-							It is set to <code>null</code> by default which indicates not to override automatic detection.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="modal" class="tsd-anchor"></a>
@@ -355,14 +288,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L159">src/modal/modal.component.ts:159</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L159">src/modal/modal.component.ts:159</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Maintains a reference to the view DOM element of the <code>Modal</code>.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="modalservice" class="tsd-anchor"></a>
@@ -370,7 +298,7 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">modal<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_modal.modalservice.html" class="tsd-signature-type">ModalService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L169">src/modal/modal.component.ts:169</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L169">src/modal/modal.component.ts:169</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -386,14 +314,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L132">src/modal/modal.component.ts:132</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L132">src/modal/modal.component.ts:132</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls the visibility of the modal when used directly in a template</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="overlayselected" class="tsd-anchor"></a>
@@ -407,14 +330,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">overlay<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L150">src/modal/modal.component.ts:150</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L150">src/modal/modal.component.ts:150</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Emits event when click occurs within <code>n-overlay</code> element. This is to track click events occurring outside bounds of the <code>Modal</code> object.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selectorprimaryfocus" class="tsd-anchor"></a>
@@ -422,14 +340,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">selector<wbr>Primary<wbr>Focus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;[modal-primary-focus]&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An element should have &#39;modal-primary-focus&#39; as an attribute to receive initial focus within the <code>Modal</code> component.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="size" class="tsd-anchor"></a>
@@ -443,14 +356,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"xs"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sm"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"lg"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L108">src/modal/modal.component.ts:108</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L108">src/modal/modal.component.ts:108</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Size of the modal to display.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="theme" class="tsd-anchor"></a>
@@ -464,14 +372,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"danger"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;default&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L112">src/modal/modal.component.ts:112</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L112">src/modal/modal.component.ts:112</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Classification of the modal.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="trigger" class="tsd-anchor"></a>
@@ -485,14 +388,9 @@ openModal() {
 					<div class="tsd-signature tsd-kind-icon">trigger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L137">src/modal/modal.component.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L137">src/modal/modal.component.ts:137</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The element that triggers the modal, which should receive focus when the modal closes</p>
-						</div>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -506,73 +404,23 @@ openModal() {
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> modalLabel<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> modalLabel<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L123">src/modal/modal.component.ts:123</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Label for the modal.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L119">src/modal/modal.component.ts:119</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Label for the modal.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>since v4</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">modal<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L119">src/modal/modal.component.ts:119</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L123">src/modal/modal.component.ts:123</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="shouldshowscrollbar" class="tsd-anchor"></a>
 					<h3>should<wbr>Show<wbr>Scrollbar</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> shouldShowScrollbar<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L217">src/modal/modal.component.ts:217</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This detects whether or not the modal contains scrolling content.</p>
-								</div>
-								<p>To force trigger a detection (ie. on window resize), change or reset the value of the modal content.</p>
-								<p>Use the <code>hasScrollingContent</code> input to manually override the overflow indicator.</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">should<wbr>Show<wbr>Scrollbar<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L217">src/modal/modal.component.ts:217</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -587,7 +435,7 @@ openModal() {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L228">src/modal/modal.component.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L228">src/modal/modal.component.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -610,14 +458,9 @@ openModal() {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L194">src/modal/modal.component.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L194">src/modal/modal.component.ts:194</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Handle keyboard events to close modal and tab through the content within the modal.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -638,14 +481,9 @@ openModal() {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L186">src/modal/modal.component.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L186">src/modal/modal.component.ts:186</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set document focus to be on the modal component after it is initialized.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -660,7 +498,7 @@ openModal() {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/modal/modal.component.ts#L171">src/modal/modal.component.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/modal/modal.component.ts#L171">src/modal/modal.component.ts:171</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

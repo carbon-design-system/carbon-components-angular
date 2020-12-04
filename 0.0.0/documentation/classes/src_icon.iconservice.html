@@ -67,34 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The icon service is a singleton service responsible for registering and retriving icons from <code>@carbon/icons</code>.</p>
-					</div>
-					<p>It&#39;s important to register icons before use. It&#39;s reccommended to register your icons early, likely in your app.component.</p>
-					<p>To allow for improved tree shaking <em>do not</em> import all the icons from <code>@carbon/icons</code> and register them.
-						Instead register only the icons in use by your application. If your application makes use of lazy loaded
-					modules you may also lazy load the icons used in that module by registering them early on in that module.</p>
-					<p><code>ngOnInit</code> should be sufficiantly early to register icons.</p>
-					<p>Example:</p>
-					<pre><code><span class="hljs-keyword">import</span> { Accessibility16 } <span class="hljs-keyword">from</span> <span class="hljs-string">"@carbon/icons"</span>;
-
-<span class="hljs-comment">// ...</span>
-
-<span class="hljs-keyword">class</span> MyComponent <span class="hljs-keyword">implements</span> OnInit {
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">protected</span> iconService: IconService</span>) {}
-
-    <span class="hljs-comment">// ...</span>
-
-    ngOnInit() {
-        <span class="hljs-keyword">this</span>.iconService.register(Accessibility16);
-    }
-
-    <span class="hljs-comment">// ...</span>
-}</code></pre><p>If needed it is possible to register an icon under a different name, via <code>registerAs</code>.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -146,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">icon<wbr>Cache<span class="tsd-signature-symbol">:</span> <a href="src_icon.iconcache.html" class="tsd-signature-type">IconCache</a><span class="tsd-signature-symbol"> =&nbsp;new IconMemoryCache()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L177">src/icon/icon.service.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L177">src/icon/icon.service.ts:177</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,14 +135,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L220">src/icon/icon.service.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L220">src/icon/icon.service.ts:220</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Configure various service settings (caching strategy ...)</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -196,14 +163,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L205">src/icon/icon.service.ts:205</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L205">src/icon/icon.service.ts:205</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets an icon, converts it to a string, and caches the result</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -227,14 +189,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L189">src/icon/icon.service.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L189">src/icon/icon.service.ts:189</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Registers an icon based on the metadata provided by <code>@carbon/icons</code></p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -255,14 +212,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L182">src/icon/icon.service.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L182">src/icon/icon.service.ts:182</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Registers an array of icons based on the metadata provided by <code>@carbon/cions</code></p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -283,14 +235,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/icon/icon.service.ts#L197">src/icon/icon.service.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/icon/icon.service.ts#L197">src/icon/icon.service.ts:197</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Registers an icon based on a uniqe name and metadata provided by <code>@carbon/icons</code></p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

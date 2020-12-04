@@ -67,55 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p><code>DataGridInteractionModel</code> provides centralized control over arbitrary 2d grids, following the w3 specs.</p>
-					</div>
-					<p>Refs:</p>
-					<ul>
-						<li><a href="https://www.w3.org/TR/wai-aria-practices/examples/grid/dataGrids.html">https://www.w3.org/TR/wai-aria-practices/examples/grid/dataGrids.html</a></li>
-						<li><a href="https://www.w3.org/TR/wai-aria-practices/#grid">https://www.w3.org/TR/wai-aria-practices/#grid</a></li>
-					</ul>
-					<p>Example usage (taken from <code>table.component</code>):</p>
-					<pre><code class="language-typescript"><span class="hljs-comment">// a standard HTML table</span>
-<span class="hljs-keyword">const</span> table = <span class="hljs-keyword">this</span>.elementRef.nativeElement.querySelector(<span class="hljs-string">"table"</span>) <span class="hljs-keyword">as</span> HTMLTableElement;
-
-<span class="hljs-comment">// `TableDomAdapter` implements `TableAdapter` and provides a consistent interface to query rows and columns in a table</span>
-<span class="hljs-keyword">const</span> tableAdapter = <span class="hljs-keyword">new</span> TableDomAdapter(table);
-
-<span class="hljs-comment">// the keydown events that we'll use for keyboard navigation of the table</span>
-<span class="hljs-keyword">const</span> keydownEventStream = fromEvent&lt;KeyboardEvent&gt;(table, <span class="hljs-string">"keydown"</span>);
-
-<span class="hljs-comment">// the click events we'll use to ensure focus is updated correctly on click</span>
-<span class="hljs-keyword">const</span> clickEventStream = fromEvent&lt;MouseEvent&gt;(table, <span class="hljs-string">"click"</span>);
-
-<span class="hljs-comment">// the `DataGridInteractionModel` instance!</span>
-<span class="hljs-keyword">this</span>.interactionModel = <span class="hljs-keyword">new</span> DataGridInteractionModel(keydownEventStream, clickEventStream, tableAdapter);
-
-<span class="hljs-comment">// subscribe to the combined position updates</span>
-<span class="hljs-keyword">this</span>.interactionModel.position.subscribe(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
-<span class="hljs-keyword">const</span> [currentRow, currentColumn] = event.current;
-<span class="hljs-keyword">const</span> [previousRow, previousColumn] = event.previous;
-
-<span class="hljs-comment">// query the TableAdapter for the cell at the current row and column ...</span>
-<span class="hljs-keyword">const</span> currentElement = tableAdapter.getCell(currentRow, currentColumn);
-<span class="hljs-comment">// ... and make it focusable it</span>
-Table.setTabIndex(currentElement, <span class="hljs-number">0</span>);
-
-<span class="hljs-comment">// if the model has just initialized don't focus or reset anything</span>
-<span class="hljs-keyword">if</span> (previousRow === <span class="hljs-number">-1</span> || previousColumn === <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span>; }
-
-<span class="hljs-comment">// query the TableAdapter for the cell at the previous row and column ...</span>
-<span class="hljs-keyword">const</span> previousElement = tableAdapter.getCell(previousRow, previousColumn);
-<span class="hljs-comment">// ... and make it unfocusable (now there is only a single focusable cell)</span>
-Table.setTabIndex(previousElement, <span class="hljs-number">-1</span>);
-
-<span class="hljs-comment">// finally, focus the current cell (skipped during initilzation)</span>
-Table.focus(currentElement);
-});</code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -223,39 +174,19 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L116">src/table/data-grid-interaction-model.class.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L116">src/table/data-grid-interaction-model.class.ts:116</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><code>DataGridInteractionModel</code> requires knowledge of events, and a representation of your table/grid to be useful.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>keyboardEventStream: <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>an Observable of KeyboardEvents. Should be scoped to the table container.</p>
-										</div>
-									</div>
 								</li>
 								<li>
 									<h5>clickEventStream: <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>an Observable of ClickEvents. should only include clicks that take action on items known by the TableAdapter</p>
-										</div>
-									</div>
 								</li>
 								<li>
 									<h5>tableAdapter: <a href="src_table.tableadapter.html" class="tsd-signature-type">TableAdapter</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>an instance of a concrete class that implements TableAdapter. The standard carbon table uses TableDomAdapter</p>
-										</div>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_table.datagridinteractionmodel.html" class="tsd-signature-type">DataGridInteractionModel</a></h4>
@@ -271,14 +202,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">click<wbr>Event<wbr>Stream<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L127">src/table/data-grid-interaction-model.class.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L127">src/table/data-grid-interaction-model.class.ts:127</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>an Observable of ClickEvents. should only include clicks that take action on items known by the TableAdapter</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="columnindex" class="tsd-anchor"></a>
@@ -286,14 +212,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L79">src/table/data-grid-interaction-model.class.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L79">src/table/data-grid-interaction-model.class.ts:79</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An Observable that provides the current and previous column indexes.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="columnsubject" class="tsd-anchor"></a>
@@ -301,14 +222,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">column<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new BehaviorSubject({ current: 0, previous: -1 })</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L88">src/table/data-grid-interaction-model.class.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L88">src/table/data-grid-interaction-model.class.ts:88</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Internal subject to handle changes in column</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="keyboardeventstream" class="tsd-anchor"></a>
@@ -316,14 +232,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">keyboard<wbr>Event<wbr>Stream<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L126">src/table/data-grid-interaction-model.class.ts:126</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L126">src/table/data-grid-interaction-model.class.ts:126</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>an Observable of KeyboardEvents. Should be scoped to the table container.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="position" class="tsd-anchor"></a>
@@ -331,14 +242,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_table.datagridposition.html" class="tsd-signature-type">DataGridPosition</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L71">src/table/data-grid-interaction-model.class.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L71">src/table/data-grid-interaction-model.class.ts:71</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An Observable that provides an aggregated view of the <code>rowIndex</code> and <code>columnIndex</code> Observables</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="rowindex" class="tsd-anchor"></a>
@@ -346,14 +252,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">row<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L75">src/table/data-grid-interaction-model.class.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L75">src/table/data-grid-interaction-model.class.ts:75</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An Observable that provides the current and previous row indexes.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="rowsubject" class="tsd-anchor"></a>
@@ -361,14 +262,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">row<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new BehaviorSubject({ current: 0, previous: -1 })</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L84">src/table/data-grid-interaction-model.class.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L84">src/table/data-grid-interaction-model.class.ts:84</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Internal subject to handle changes in row</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="tableadapter" class="tsd-anchor"></a>
@@ -376,14 +272,9 @@ Table.focus(currentElement);
 					<div class="tsd-signature tsd-kind-icon">table<wbr>Adapter<span class="tsd-signature-symbol">:</span> <a href="src_table.tableadapter.html" class="tsd-signature-type">TableAdapter</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L128">src/table/data-grid-interaction-model.class.ts:128</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L128">src/table/data-grid-interaction-model.class.ts:128</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>an instance of a concrete class that implements TableAdapter. The standard carbon table uses TableDomAdapter</p>
-						</div>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
@@ -391,90 +282,42 @@ Table.focus(currentElement);
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
 					<a name="currentcolumn" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> current<wbr>Column</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentColumn<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L100">src/table/data-grid-interaction-model.class.ts:100</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The latest value emitted by the columnSubject</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Column<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L100">src/table/data-grid-interaction-model.class.ts:100</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
 					<a name="currentrow" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> current<wbr>Row</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentRow<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L93">src/table/data-grid-interaction-model.class.ts:93</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The latest value emitted by the rowSubject</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Row<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L93">src/table/data-grid-interaction-model.class.ts:93</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
 					<a name="lastcolumn" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> last<wbr>Column</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> lastColumn<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L107">src/table/data-grid-interaction-model.class.ts:107</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The last column as reported by the adapter</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Column<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L107">src/table/data-grid-interaction-model.class.ts:107</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
 					<a name="lastrow" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> last<wbr>Row</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> lastRow<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L114">src/table/data-grid-interaction-model.class.ts:114</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The last row as reported by the adapter</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Row<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L114">src/table/data-grid-interaction-model.class.ts:114</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -489,14 +332,9 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L238">src/table/data-grid-interaction-model.class.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L238">src/table/data-grid-interaction-model.class.ts:238</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Jump to the specified row and column</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -525,21 +363,13 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L218">src/table/data-grid-interaction-model.class.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L218">src/table/data-grid-interaction-model.class.ts:218</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Jump to a specific column without changing the row</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>index: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>column to jump to</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -556,21 +386,13 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L228">src/table/data-grid-interaction-model.class.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L228">src/table/data-grid-interaction-model.class.ts:228</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Jump to a specific row without changing the column</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>index: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>row to jump to</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -587,21 +409,13 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L207">src/table/data-grid-interaction-model.class.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L207">src/table/data-grid-interaction-model.class.ts:207</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Handles moving the position to the clicked cell</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">MouseEvent</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the MouseEvent to handle</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -618,26 +432,13 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L152">src/table/data-grid-interaction-model.class.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L152">src/table/data-grid-interaction-model.class.ts:152</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Handles moving the position according to the w3 datagrid navigation specs</p>
-								</div>
-								<p>Refs:</p>
-								<ul>
-									<li><a href="https://www.w3.org/TR/wai-aria-practices/examples/grid/dataGrids.html">https://www.w3.org/TR/wai-aria-practices/examples/grid/dataGrids.html</a></li>
-									<li><a href="https://www.w3.org/TR/wai-aria-practices/#grid">https://www.w3.org/TR/wai-aria-practices/#grid</a></li>
-								</ul>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">KeyboardEvent</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the KeyboardEvent to handle</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -654,14 +455,9 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L263">src/table/data-grid-interaction-model.class.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L263">src/table/data-grid-interaction-model.class.ts:263</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Resets the models focus position</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -676,15 +472,9 @@ Table.focus(currentElement);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/24cfc0c/src/table/data-grid-interaction-model.class.ts#L247">src/table/data-grid-interaction-model.class.ts:247</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6bd1eed/src/table/data-grid-interaction-model.class.ts#L247">src/table/data-grid-interaction-model.class.ts:247</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Convenience method to reset the tab indexes on a standard carbon table.
-									For custom tables you may want to reset the indexes manually and simply call <code>.reset()</code></p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
