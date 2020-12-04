@@ -433,6 +433,7 @@ storiesOf("Components|Table", module).addDecorator(
 				<thead ibmTableHead>
 					<tr>
 						<th
+							scope="col"
 							ibmTableHeadCell
 							*ngFor="let column of model.header"
 							[column]="column">
