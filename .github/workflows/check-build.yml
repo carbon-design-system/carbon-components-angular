@@ -21,9 +21,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
+    - name: Run build
+      run: |
         npm i
         npm run ng:build --if-present
+        cd dist
         npm pack
     - name: Upload dist
       uses: actions/upload-artifact@v2
@@ -52,7 +54,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dist
-    - run: node scripts/apply-tmp-version.js
     - run: |
         npm i
         npm i carbon-components-angular-0.0.0.tgz
