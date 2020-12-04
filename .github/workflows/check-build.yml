@@ -57,7 +57,7 @@ jobs:
         path: dist/carbon-components-angular-0.0.0.tgz
     - run: |
         npm i
-        npm i carbon-components-angular-0.0.0.tgz
+        npm i ./dist/carbon-components-angular-0.0.0.tgz
         npm run build
         npm run build -- --prod
       working-directory: e2e/ng${{ matrix.angular-version }}
