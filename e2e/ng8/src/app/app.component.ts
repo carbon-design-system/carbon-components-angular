@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ListItem } from 'carbon-components-angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng8';
+  items: ListItem[] = [
+    {
+      content: 'One',
+      selected: false
+    },
+    {
+      content: 'Two',
+      selected: false
+    },
+    {
+      content: 'Three',
+      selected: false
+    },
+    {
+      content: 'Four',
+      selected: false
+    }
+  ];
 }
