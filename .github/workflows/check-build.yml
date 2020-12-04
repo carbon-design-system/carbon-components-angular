@@ -21,5 +21,42 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i
-    - run: npm run ng:build --if-present
+    - run: |
+        npm i
+        npm run ng:build --if-present
+        npm pack
+    - name: Upload dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist/carbon-components-angular-0.0.0.tgz
+        if-no-files-found: error
+
+  app-build:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        angular-version: [7, 8, 9, 10, 11]
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Download dist
+      uses: actions/download-artifact@v2
+      with:
+        name: dist
+    - run: node scripts/apply-tmp-version.js
+    - run: |
+        npm i
+        npm i carbon-components-angular-0.0.0.tgz
+        npm run build
+        npm run build -- --prod
+      working-directory: e2e/ng${{ matrix.angular-version }}
+
