@@ -7,6 +7,9 @@ rm -rf dist
 # run the angular/ng-packagr build
 npm run ng:build
 
+# restore the scripts to the dist package.json
+node scripts/add-package-scripts.js
+
 # move/generate/update meta files into dist
 gulp buildMeta
 
