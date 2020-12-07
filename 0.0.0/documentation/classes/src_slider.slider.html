@@ -143,11 +143,17 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_disabled"
 									class="tsd-kind-icon">_disabled</a>
 								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_focusedthumbindex"
+									class="tsd-kind-icon">_focused<wbr>Thumb<wbr>Index</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_max"
 									class="tsd-kind-icon">_max</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_min"
 									class="tsd-kind-icon">_min</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_previousvalue"
+									class="tsd-kind-icon">_previous<wbr>Value</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#_value"
 									class="tsd-kind-icon">_value</a>
@@ -176,8 +182,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_slider.slider.html#id"
 									class="tsd-kind-icon">id</a>
 								</li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#input"
-									class="tsd-kind-icon">input</a>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#inputs"
+									class="tsd-kind-icon">inputs</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#ismousedown"
 									class="tsd-kind-icon">is<wbr>Mouse<wbr>Down</a>
@@ -197,8 +203,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_slider.slider.html#step"
 									class="tsd-kind-icon">step</a>
 								</li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_slider.slider.html#thumb"
-									class="tsd-kind-icon">thumb</a>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_slider.slider.html#thumbs"
+									class="tsd-kind-icon">thumbs</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_slider.slider.html#toprangeid"
 									class="tsd-kind-icon">top<wbr>Range<wbr>Id</a>
@@ -246,8 +252,14 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#getfractioncomplete"
 									class="tsd-kind-icon">get<wbr>Fraction<wbr>Complete</a>
 								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="src_slider.slider.html#getinputs"
+									class="tsd-kind-icon">get<wbr>Inputs</a>
+								</li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#incrementvalue"
 									class="tsd-kind-icon">increment<wbr>Value</a>
+								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#isrange"
+									class="tsd-kind-icon">is<wbr>Range</a>
 								</li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#istemplate"
 									class="tsd-kind-icon">is<wbr>Template</a>
@@ -291,6 +303,12 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#scalex"
 									class="tsd-kind-icon">scaleX</a>
 								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#trackthumbsby"
+									class="tsd-kind-icon">track<wbr>Thumbs<wbr>By</a>
+								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#updatetrackrangewidth"
+									class="tsd-kind-icon">update<wbr>Track<wbr>Range<wbr>Width</a>
+								</li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_slider.slider.html#writevalue"
 									class="tsd-kind-icon">write<wbr>Value</a>
 								</li>
@@ -311,7 +329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L226">src/slider/slider.component.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L281">src/slider/slider.component.ts:281</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,7 +354,17 @@
 					<div class="tsd-signature tsd-kind-icon">_disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L226">src/slider/slider.component.ts:226</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L280">src/slider/slider.component.ts:280</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_focusedthumbindex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _focused<wbr>Thumb<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">_focused<wbr>Thumb<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L281">src/slider/slider.component.ts:281</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -346,7 +374,7 @@
 					<div class="tsd-signature tsd-kind-icon">_max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;100</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L224">src/slider/slider.component.ts:224</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L277">src/slider/slider.component.ts:277</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -356,17 +384,27 @@
 					<div class="tsd-signature tsd-kind-icon">_min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L223">src/slider/slider.component.ts:223</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L276">src/slider/slider.component.ts:276</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_previousvalue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _previous<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">_previous<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[this.min]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L279">src/slider/slider.component.ts:279</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="_value" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _value</h3>
-					<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.min</span></div>
+					<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[this.min]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L225">src/slider/slider.component.ts:225</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L278">src/slider/slider.component.ts:278</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -376,7 +414,7 @@
 					<div class="tsd-signature tsd-kind-icon">bottom<wbr>Range<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${this.id}-bottom-range&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L217">src/slider/slider.component.ts:217</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L270">src/slider/slider.component.ts:270</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -392,7 +430,7 @@
 					<div class="tsd-signature tsd-kind-icon">disable<wbr>Arrow<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L191">src/slider/slider.component.ts:191</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L245">src/slider/slider.component.ts:245</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -402,7 +440,7 @@
 					<div class="tsd-signature tsd-kind-icon">element<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L228">src/slider/slider.component.ts:228</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L283">src/slider/slider.component.ts:283</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -412,7 +450,7 @@
 					<div class="tsd-signature tsd-kind-icon">event<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_utils.eventservice.html" class="tsd-signature-type">EventService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L228">src/slider/slider.component.ts:228</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L283">src/slider/slider.component.ts:283</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -428,7 +466,7 @@
 					<div class="tsd-signature tsd-kind-icon">filled<wbr>Track<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L213">src/slider/slider.component.ts:213</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L266">src/slider/slider.component.ts:266</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -438,7 +476,7 @@
 					<div class="tsd-signature tsd-kind-icon">fraction<wbr>Complete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L219">src/slider/slider.component.ts:219</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L272">src/slider/slider.component.ts:272</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -454,7 +492,7 @@
 					<div class="tsd-signature tsd-kind-icon">host<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L207">src/slider/slider.component.ts:207</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L261">src/slider/slider.component.ts:261</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -470,17 +508,17 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;slider-${Slider.count++}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L183">src/slider/slider.component.ts:183</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L237">src/slider/slider.component.ts:237</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="input" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> input</h3>
-					<div class="tsd-signature tsd-kind-icon">input<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLInputElement</span></div>
+					<a name="inputs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> inputs</h3>
+					<div class="tsd-signature tsd-kind-icon">inputs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLInputElement</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L222">src/slider/slider.component.ts:222</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L275">src/slider/slider.component.ts:275</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -490,7 +528,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Mouse<wbr>Down<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L221">src/slider/slider.component.ts:221</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L274">src/slider/slider.component.ts:274</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -506,7 +544,7 @@
 					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L189">src/slider/slider.component.ts:189</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L243">src/slider/slider.component.ts:243</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -522,7 +560,7 @@
 					<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L215">src/slider/slider.component.ts:215</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L268">src/slider/slider.component.ts:268</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -538,7 +576,7 @@
 					<div class="tsd-signature tsd-kind-icon">shift<wbr>Multiplier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L185">src/slider/slider.component.ts:185</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L239">src/slider/slider.component.ts:239</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -554,7 +592,7 @@
 					<div class="tsd-signature tsd-kind-icon">skeleton<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L187">src/slider/slider.component.ts:187</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L241">src/slider/slider.component.ts:241</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -570,23 +608,23 @@
 					<div class="tsd-signature tsd-kind-icon">step<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L146">src/slider/slider.component.ts:146</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L166">src/slider/slider.component.ts:166</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="thumb" class="tsd-anchor"></a>
-					<h3>thumb</h3>
+					<a name="thumbs" class="tsd-anchor"></a>
+					<h3>thumbs</h3>
 					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
 						<span>
-							@ViewChild({&quot;selector&quot;:&quot;thumb&quot;,&quot;opts&quot;:&quot;{ static: false }&quot;})
+							@ViewChildren({&quot;selector&quot;:&quot;thumbs&quot;})
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">thumb<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
+					<div class="tsd-signature tsd-kind-icon">thumbs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryList</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ElementRef</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L209">src/slider/slider.component.ts:209</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L262">src/slider/slider.component.ts:262</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -596,7 +634,7 @@
 					<div class="tsd-signature tsd-kind-icon">top<wbr>Range<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${this.id}-top-range&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L218">src/slider/slider.component.ts:218</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L271">src/slider/slider.component.ts:271</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -612,7 +650,7 @@
 					<div class="tsd-signature tsd-kind-icon">track<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L211">src/slider/slider.component.ts:211</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L264">src/slider/slider.component.ts:264</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -625,10 +663,10 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">value<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
+					<div class="tsd-signature tsd-kind-icon">value<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L206">src/slider/slider.component.ts:206</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L260">src/slider/slider.component.ts:260</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -638,7 +676,7 @@
 					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L123">src/slider/slider.component.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L142">src/slider/slider.component.ts:142</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -657,8 +695,8 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L193">src/slider/slider.component.ts:193</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L202">src/slider/slider.component.ts:202</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L247">src/slider/slider.component.ts:247</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L256">src/slider/slider.component.ts:256</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -674,8 +712,8 @@
 					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L135">src/slider/slider.component.ts:135</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L142">src/slider/slider.component.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L155">src/slider/slider.component.ts:155</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L162">src/slider/slider.component.ts:162</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -691,8 +729,8 @@
 					<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L125">src/slider/slider.component.ts:125</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L131">src/slider/slider.component.ts:131</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L145">src/slider/slider.component.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L151">src/slider/slider.component.ts:151</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -708,8 +746,8 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L148">src/slider/slider.component.ts:148</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L179">src/slider/slider.component.ts:179</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L168">src/slider/slider.component.ts:168</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L229">src/slider/slider.component.ts:229</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -726,7 +764,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L304">src/slider/slider.component.ts:304</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L369">src/slider/slider.component.ts:369</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -749,7 +787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L293">src/slider/slider.component.ts:293</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L358">src/slider/slider.component.ts:358</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -766,19 +804,22 @@
 					<a name="decrementvalue" class="tsd-anchor"></a>
 					<h3>decrement<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">decrement<wbr>Value<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">decrement<wbr>Value<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L336">src/slider/slider.component.ts:336</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L402">src/slider/slider.component.ts:402</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> multiplier: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> index: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -795,7 +836,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L278">src/slider/slider.component.ts:278</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L343">src/slider/slider.component.ts:343</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -808,17 +849,34 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="incrementvalue" class="tsd-anchor"></a>
-					<h3>increment<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">increment<wbr>Value<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getinputs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Inputs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Inputs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLInputElement</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L327">src/slider/slider.component.ts:327</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L517">src/slider/slider.component.ts:517</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLInputElement</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="incrementvalue" class="tsd-anchor"></a>
+					<h3>increment<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">increment<wbr>Value<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L392">src/slider/slider.component.ts:392</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -826,8 +884,28 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> multiplier: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> index: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isrange" class="tsd-anchor"></a>
+					<h3>is<wbr>Range</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Range<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L410">src/slider/slider.component.ts:410</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -841,7 +919,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L407">src/slider/slider.component.ts:407</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L512">src/slider/slider.component.ts:512</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -864,7 +942,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L230">src/slider/slider.component.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L285">src/slider/slider.component.ts:285</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -875,19 +953,22 @@
 					<a name="onchange" class="tsd-anchor"></a>
 					<h3>on<wbr>Change</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L341">src/slider/slider.component.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L425">src/slider/slider.component.ts:425</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>index: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -904,7 +985,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L346">src/slider/slider.component.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L431">src/slider/slider.component.ts:431</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -927,7 +1008,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L353">src/slider/slider.component.ts:353</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L439">src/slider/slider.component.ts:439</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -949,19 +1030,22 @@
 					<a name="onkeydown" class="tsd-anchor"></a>
 					<h3>on<wbr>Key<wbr>Down</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Key<wbr>Down<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Key<wbr>Down<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KeyboardEvent</span>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L393">src/slider/slider.component.ts:393</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L496">src/slider/slider.component.ts:496</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">KeyboardEvent</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> index: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -972,19 +1056,22 @@
 					<a name="onmousedown" class="tsd-anchor"></a>
 					<h3>on<wbr>Mouse<wbr>Down</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Down<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Down<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L380">src/slider/slider.component.ts:380</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L478">src/slider/slider.component.ts:478</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> index: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1001,7 +1088,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L358">src/slider/slider.component.ts:358</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L444">src/slider/slider.component.ts:444</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1024,7 +1111,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L388">src/slider/slider.component.ts:388</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L487">src/slider/slider.component.ts:487</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1041,7 +1128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L263">src/slider/slider.component.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L328">src/slider/slider.component.ts:328</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1058,7 +1145,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L255">src/slider/slider.component.ts:255</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L320">src/slider/slider.component.ts:320</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1081,7 +1168,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L258">src/slider/slider.component.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L323">src/slider/slider.component.ts:323</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1104,7 +1191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L266">src/slider/slider.component.ts:266</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L331">src/slider/slider.component.ts:331</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1127,7 +1214,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L288">src/slider/slider.component.ts:288</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L353">src/slider/slider.component.ts:353</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1141,6 +1228,49 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="trackthumbsby" class="tsd-anchor"></a>
+					<h3>track<wbr>Thumbs<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">track<wbr>Thumbs<wbr>By<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L315">src/slider/slider.component.ts:315</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updatetrackrangewidth" class="tsd-anchor"></a>
+					<h3>update<wbr>Track<wbr>Range<wbr>Width</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Track<wbr>Range<wbr>Width<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L418">src/slider/slider.component.ts:418</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="writevalue" class="tsd-anchor"></a>
 					<h3>write<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1150,7 +1280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/da0dcc9/src/slider/slider.component.ts#L271">src/slider/slider.component.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/cc6bb10/src/slider/slider.component.ts#L336">src/slider/slider.component.ts:336</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1190,10 +1320,16 @@
 								<a href="src_slider.slider.html#_disabled" class="tsd-kind-icon">_disabled</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="src_slider.slider.html#_focusedthumbindex" class="tsd-kind-icon">_focused<wbr>Thumb<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="src_slider.slider.html#_max" class="tsd-kind-icon">_max</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="src_slider.slider.html#_min" class="tsd-kind-icon">_min</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="src_slider.slider.html#_previousvalue" class="tsd-kind-icon">_previous<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="src_slider.slider.html#_value" class="tsd-kind-icon">_value</a>
@@ -1223,7 +1359,7 @@
 								<a href="src_slider.slider.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="src_slider.slider.html#input" class="tsd-kind-icon">input</a>
+								<a href="src_slider.slider.html#inputs" class="tsd-kind-icon">inputs</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="src_slider.slider.html#ismousedown" class="tsd-kind-icon">is<wbr>Mouse<wbr>Down</a>
@@ -1244,7 +1380,7 @@
 								<a href="src_slider.slider.html#step" class="tsd-kind-icon">step</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="src_slider.slider.html#thumb" class="tsd-kind-icon">thumb</a>
+								<a href="src_slider.slider.html#thumbs" class="tsd-kind-icon">thumbs</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_slider.slider.html#toprangeid" class="tsd-kind-icon">top<wbr>Range<wbr>Id</a>
@@ -1282,8 +1418,14 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_slider.slider.html#getfractioncomplete" class="tsd-kind-icon">get<wbr>Fraction<wbr>Complete</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="src_slider.slider.html#getinputs" class="tsd-kind-icon">get<wbr>Inputs</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_slider.slider.html#incrementvalue" class="tsd-kind-icon">increment<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="src_slider.slider.html#isrange" class="tsd-kind-icon">is<wbr>Range</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_slider.slider.html#istemplate" class="tsd-kind-icon">is<wbr>Template</a>
@@ -1326,6 +1468,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_slider.slider.html#scalex" class="tsd-kind-icon">scaleX</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="src_slider.slider.html#trackthumbsby" class="tsd-kind-icon">track<wbr>Thumbs<wbr>By</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="src_slider.slider.html#updatetrackrangewidth" class="tsd-kind-icon">update<wbr>Track<wbr>Range<wbr>Width</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_slider.slider.html#writevalue" class="tsd-kind-icon">write<wbr>Value</a>
