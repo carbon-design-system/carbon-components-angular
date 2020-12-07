@@ -60,4 +60,3 @@ jobs:
         npm run build
         npm run build -- --prod
       working-directory: integration/ng${{ matrix.angular-version }}
-
