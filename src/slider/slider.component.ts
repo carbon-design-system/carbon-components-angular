@@ -221,8 +221,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 			});
 		}
 
-		this.propagateChange(v);
-		this.valueChange.emit(v);
+		const valueToEmit = this.isRange() ? v : v[0];
+		this.propagateChange(valueToEmit);
+		this.valueChange.emit(valueToEmit);
 	}
 
 	get value() {
