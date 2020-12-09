@@ -11,9 +11,7 @@ export function closestAttr(s, t, element) {
 	let el = element;
 
 	do {
-		if (
-			matchesAttr(el, s, t)
-		) {
+		if (matchesAttr(el, s, t)) {
 			return el;
 		}
 		el = el.parentElement || el.parentNode;
