@@ -133,10 +133,9 @@ export class DropdownService implements OnDestroy {
 		}
 
 		// If ibm-placeholder has a parent with a position(relative|fixed|absolute) account for the parent offset
-		const closestWithPos = closestAttr("position", ["relative", "fixed", "absolute"], parentRef);
 		const closestMenuWithPos = closestAttr("position", ["relative", "fixed", "absolute"], menuRef.parentElement);
-		const topPos = closestMenuWithPos ? parentRef.offsetTop - closestWithPos.getBoundingClientRect().top : this.offset.top;
-		const leftPos = closestMenuWithPos ? parentRef.offsetLeft - closestWithPos.getBoundingClientRect().left : this.offset.left + leftOffset;
+		const topPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().top * -1 : this.offset.top;
+		const leftPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().left * -1 : this.offset.left + leftOffset;
 
 		let pos = position.findAbsolute(parentRef, menuRef, "bottom");
 		pos = position.addOffset(pos, topPos, leftPos);
