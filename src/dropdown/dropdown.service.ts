@@ -3,7 +3,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
 import { AnimationFrameService } from "carbon-components-angular/utils";
-import { closestAttr } from "../utils/index";
+import { closestAttr } from "carbon-components-angular/utils";
 
 const defaultOffset = { top: 0, left: 0 };
 

@@ -12,8 +12,7 @@ export {
 	PLACEMENTS,
 	Position,
 	defaultPositions,
-	position,
-	closestAttr
+	position
 } from "./position";
 export {
 	getScrollableParents,
@@ -22,7 +21,10 @@ export {
 	isVisibleInContainer,
 	scrollableParentsObservable
 } from "./scroll";
-export { clone } from "./utils";
+export {
+	clone,
+	closestAttr
+} from "./utils";
 export {
 	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
 	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY,
