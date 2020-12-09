@@ -12,7 +12,8 @@ export {
 	PLACEMENTS,
 	Position,
 	defaultPositions,
-	position
+	position,
+	closestAttr
 } from "./position";
 export {
 	getScrollableParents,
