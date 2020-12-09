@@ -12,7 +12,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { ElementService } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
-import { closestAttr } from '../../utils/position';
+import { closestAttr } from "../../utils/position";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
