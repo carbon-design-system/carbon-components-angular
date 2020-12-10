@@ -10,6 +10,7 @@ import { getFocusElementList } from "carbon-components-angular/common";
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { ElementService } from "carbon-components-angular/utils";
+import { closestAttr } from "carbon-components-angular/utils";
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
@@ -58,17 +59,21 @@ export class Tooltip extends Dialog {
 	 * Check whether there is a template for the `Tooltip` content.
 	 */
 	onDialogInit() {
+		const closestWithPos = closestAttr("position", ["relative", "fixed", "absolute"], this.elementRef.nativeElement.parentElement);
+		const topPos = closestWithPos ? closestWithPos.getBoundingClientRect().top * -1 : 0;
+		const leftPos = closestWithPos ? closestWithPos.getBoundingClientRect().left * -1 : 0;
+
 		this.addGap["bottom"] = pos => {
-			return position.addOffset(pos, 3, 0);
+			return position.addOffset(pos, 3 + topPos, 0 + leftPos);
 		};
 		this.addGap["top"] = pos => {
-			return position.addOffset(pos, -10, 0);
+			return position.addOffset(pos, -10 + topPos, 0 + leftPos);
 		};
 		this.addGap["left"] = pos => {
-			return position.addOffset(pos, -3, -6);
+			return position.addOffset(pos, -3 + topPos, -6 + leftPos);
 		};
 		this.addGap["right"] = pos => {
-			return position.addOffset(pos, -3, 6);
+			return position.addOffset(pos, -3 + topPos, 6 + leftPos);
 		};
 
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
