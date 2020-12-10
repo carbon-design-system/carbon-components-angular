@@ -56,7 +56,7 @@ import { TableRowSize } from "../table.types";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
-					[title]="getItemTitle(item)"
+					[title]="item.title"
 					[class]="model.getHeader(j).className"
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
@@ -219,25 +219,5 @@ export class TableRowComponent {
 
 	getExpandButtonAriaLabel(): Observable<string> {
 		return this._expandButtonAriaLabel.subject;
-	}
-
-	getItemTitle(item) {
-		if (!item || !item.data) {
-			return "";
-		}
-
-		if (typeof item.data === "string") {
-			return item.data;
-		}
-
-		if (item.data.title) {
-			return item.data.title;
-		}
-
-		if (item.data.toString) {
-			return item.data.toString();
-		}
-
-		return JSON.stringify(item.data);
 	}
 }
