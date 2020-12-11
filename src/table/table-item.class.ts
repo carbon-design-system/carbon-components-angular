@@ -67,6 +67,32 @@ export class TableItem {
 	 */
 	colSpan = 1;
 
+	get title() {
+		if (this._title) {
+			return this._title;
+		}
+
+		if (!this.data) {
+			return "";
+		}
+
+		if (typeof this.data === "string") {
+			return this.data;
+		}
+
+		if (this.data.toString) {
+			return this.data.toString();
+		}
+
+		return JSON.stringify(this.data);
+	}
+
+	set title(title) {
+		this._title = title;
+	}
+
+	private _title: string;
+
 	/**
 	 * Creates an instance of TableItem.
 	 */
