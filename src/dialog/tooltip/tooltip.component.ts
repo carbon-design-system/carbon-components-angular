@@ -52,7 +52,7 @@ export class Tooltip extends Dialog {
 	constructor(
 		protected elementRef: ElementRef,
 		protected elementService: ElementService,
-		protected animationFrameService: AnimationFrameService) {
+		@Optional() protected animationFrameService: AnimationFrameService = null) {
 		super(elementRef, elementService, animationFrameService);
 	}
 

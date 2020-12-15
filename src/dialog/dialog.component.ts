@@ -8,7 +8,8 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener
+	HostListener,
+	Optional
 } from "@angular/core";
 import {
 	Observable,
@@ -84,7 +85,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	constructor(
 		protected elementRef: ElementRef,
 		protected elementService: ElementService,
-		protected animationFrameService: AnimationFrameService
+		@Optional() protected animationFrameService: AnimationFrameService = null
 	) {}
 
 	/**
@@ -120,9 +121,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
-		this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
-			this.placeDialog();
-		});
+		if (this.animationFrameService) {
+			this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
+				this.placeDialog();
+			});
+		}
 
 		if (this.dialogConfig.closeWhenHidden) {
 			this.visibilitySubscription = this.elementService
@@ -247,5 +250,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.visibilitySubscription.unsubscribe();
+		if (this.animationFrameSubscription) {
+			this.animationFrameSubscription.unsubscribe();
+		}
 	}
 }

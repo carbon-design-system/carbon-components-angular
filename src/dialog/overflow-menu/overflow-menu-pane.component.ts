@@ -43,7 +43,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected experimental: ExperimentalService,
-		protected animationFrameService: AnimationFrameService,
+		@Optional() protected animationFrameService: AnimationFrameService = null,
 		// mark `elementService` as optional since making it mandatory would be a breaking change
 		@Optional() protected elementService: ElementService = null) {
 		super(elementRef, elementService, animationFrameService);

@@ -27,7 +27,7 @@ export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
 	constructor(
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
-		protected animationFrameService: AnimationFrameService,
+		@Optional() protected animationFrameService: AnimationFrameService = null,
 		// mark `elementService` as optional since making it mandatory would be a breaking change
 		@Optional() protected elementService: ElementService = null
 	) {
