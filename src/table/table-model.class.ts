@@ -155,7 +155,8 @@ export class TableModel implements PaginationModel {
 	 * Set to `null` to reset to default behavior.
 	 */
 	set totalDataLength(length: number) {
-		this._totalDataLength = length;
+		// if this function is called without a parameter we need to set to null to avoid having undefined != null
+		this._totalDataLength = length || null;
 	}
 
 	/**
@@ -163,7 +164,7 @@ export class TableModel implements PaginationModel {
 	 */
 	get totalDataLength() {
 		// if manually set data length
-		if (this._totalDataLength && this._totalDataLength >= 0) {
+		if (this._totalDataLength !== null && this._totalDataLength >= 0) {
 			return this._totalDataLength;
 		}
 
