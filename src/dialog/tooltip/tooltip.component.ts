@@ -81,7 +81,7 @@ export class Tooltip extends Dialog {
 	}
 
 	getAdjustOffset() {
- 		const closestWithPos = closestAttr("position", ["relative", "fixed", "absolute"], this.elementRef.nativeElement.parentElement);
+		const closestWithPos = closestAttr("position", ["relative", "fixed", "absolute"], this.elementRef.nativeElement.parentElement);
 		const topPos = closestWithPos ? closestWithPos.getBoundingClientRect().top * -1 : 0;
 		const leftPos = closestWithPos ? closestWithPos.getBoundingClientRect().left * -1 : 0;
 
