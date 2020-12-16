@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "ng11"
+  "defaultProject": "ng11",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng9"
+    }
+  },
+  "defaultProject": "ng9",
+  "cli": {
+    "analytics": false
+  }
 }

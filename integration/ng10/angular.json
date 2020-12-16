@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng10"
+    }
+  },
+  "defaultProject": "ng10",
+  "cli": {
+    "analytics": false
+  }
 }
