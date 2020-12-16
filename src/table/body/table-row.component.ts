@@ -56,6 +56,7 @@ import { TableRowSize } from "../table.types";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="item.title"
 					[class]="model.getHeader(j).className"
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
@@ -69,6 +70,7 @@ import { TableRowSize } from "../table.types";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="getItemTitle(item)"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
 					[attr.rowspan]="item.rowSpan"

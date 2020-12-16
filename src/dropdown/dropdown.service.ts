@@ -3,6 +3,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
 import { AnimationFrameService } from "carbon-components-angular/utils";
+import { closestAttr } from "carbon-components-angular/utils";
 
 const defaultOffset = { top: 0, left: 0 };
 
@@ -131,8 +132,14 @@ export class DropdownService implements OnDestroy {
 			}
 		}
 
+		// If ibm-placeholder has a parent with a position(relative|fixed|absolute) account for the parent offset
+		const closestMenuWithPos = closestAttr("position", ["relative", "fixed", "absolute"], menuRef.parentElement);
+		const topPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().top * -1 : this.offset.top;
+		const leftPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().left * -1 : this.offset.left + leftOffset;
+
 		let pos = position.findAbsolute(parentRef, menuRef, "bottom");
-		pos = position.addOffset(pos, this.offset.top, this.offset.left + leftOffset);
+		pos = position.addOffset(pos, topPos, leftPos);
+
 		position.setElement(menuRef, pos);
 	}
 }
