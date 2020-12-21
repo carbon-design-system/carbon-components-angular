@@ -73,6 +73,11 @@ export class SideNavItem implements OnChanges {
 	@Input() routeExtras: any;
 
 	/**
+	 * Title attribute of the anchor element.
+	 */
+	@Input() title: string;
+
+	/**
 	 * Emits the navigation status promise when the link is activated
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
