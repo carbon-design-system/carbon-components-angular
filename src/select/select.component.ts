@@ -87,7 +87,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</svg>
 				<svg
 					*ngIf="invalid"
-					ibomIcon="warning--filled"
+					ibmIcon="warning--filled"
 					size="16"
 					class="bx--select__invalid-icon">
 				</svg>

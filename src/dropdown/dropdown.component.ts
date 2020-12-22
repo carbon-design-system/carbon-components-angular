@@ -114,7 +114,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<svg
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon"
-				ibomIcon="warning--filled"
+				ibmIcon="warning--filled"
 				size="16">
 			</svg>
 			<svg

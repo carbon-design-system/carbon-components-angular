@@ -10,6 +10,10 @@ function matchesAttr(el, attr, val) {
 export function closestAttr(s, t, element) {
 	let el = element;
 
+	if (!element) {
+		return null;
+	}
+
 	do {
 		if (matchesAttr(el, s, t)) {
 			return el;
