@@ -8,7 +8,8 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener
+	HostListener,
+	Optional
 } from "@angular/core";
 import {
 	Observable,
@@ -18,7 +19,7 @@ import {
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
-import { ElementService } from "carbon-components-angular/utils";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -55,6 +56,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	public placement: string;
 
 	protected visibilitySubscription = new Subscription();
+
+	protected animationFrameSubscription = new Subscription();
+
 	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
@@ -80,7 +84,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	constructor(
 		protected elementRef: ElementRef,
-		protected elementService: ElementService
+		protected elementService: ElementService,
+		@Optional() protected animationFrameService: AnimationFrameService = null
 	) {}
 
 	/**
@@ -115,6 +120,12 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		}
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
+
+		if (this.animationFrameService) {
+			this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
+				this.placeDialog();
+			});
+		}
 
 		if (this.dialogConfig.closeWhenHidden) {
 			this.visibilitySubscription = this.elementService
@@ -239,5 +250,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.visibilitySubscription.unsubscribe();
+		if (this.animationFrameSubscription) {
+			this.animationFrameSubscription.unsubscribe();
+		}
 	}
 }
