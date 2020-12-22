@@ -119,6 +119,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="src_dialog_tooltip.tooltip.html#animationframeservice"
+									class="tsd-kind-icon">animation<wbr>Frame<wbr>Service</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="src_dialog_tooltip.tooltip.html#animationframesubscription"
+									class="tsd-kind-icon">animation<wbr>Frame<wbr>Subscription</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="src_dialog_tooltip.tooltip.html#close"
 									class="tsd-kind-icon">close</a>
 								</li>
@@ -172,6 +178,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="src_dialog_tooltip.tooltip.html#escapeclose"
 									class="tsd-kind-icon">escape<wbr>Close</a>
 								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_dialog_tooltip.tooltip.html#getadjustoffset"
+									class="tsd-kind-icon">get<wbr>Adjust<wbr>Offset</a>
+								</li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="src_dialog_tooltip.tooltip.html#ngafterviewinit"
 									class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a>
 								</li>
@@ -206,14 +215,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tooltip<span class="tsd-signature-symbol">(</span>elementRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, elementService<span class="tsd-signature-symbol">: </span><a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_dialog_tooltip.tooltip.html" class="tsd-signature-type">Tooltip</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tooltip<span class="tsd-signature-symbol">(</span>elementRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, elementService<span class="tsd-signature-symbol">: </span><a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a>, animationFrameService<span class="tsd-signature-symbol">?: </span><a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_dialog_tooltip.tooltip.html" class="tsd-signature-type">Tooltip</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L49">src/dialog/tooltip/tooltip.component.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L50">src/dialog/tooltip/tooltip.component.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -224,6 +233,9 @@
 								<li>
 									<h5>elementService: <a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> animationFrameService: <a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_dialog_tooltip.tooltip.html" class="tsd-signature-type">Tooltip</a></h4>
 						</li>
@@ -232,6 +244,34 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="animationframeservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> animation<wbr>Frame<wbr>Service</h3>
+					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
+						<span>
+							@Optional()
+						</span>
+						<br />
+					</div>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a></div>
+					<aside class="tsd-sources">
+						<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#animationframeservice">animationFrameService</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L55">src/dialog/tooltip/tooltip.component.ts:55</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="animationframesubscription" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> animation<wbr>Frame<wbr>Subscription</h3>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol"> =&nbsp;new Subscription()</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#animationframesubscription">animationFrameSubscription</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L60">src/dialog/dialog.component.ts:60</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="close" class="tsd-anchor"></a>
 					<h3>close</h3>
@@ -245,7 +285,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#close">close</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L35">src/dialog/dialog.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L36">src/dialog/dialog.component.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -256,7 +296,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L50">src/dialog/dialog.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L51">src/dialog/dialog.component.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -278,7 +318,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#dialog">dialog</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L45">src/dialog/dialog.component.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L46">src/dialog/dialog.component.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -295,7 +335,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#dialogconfig">dialogConfig</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L40">src/dialog/dialog.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L41">src/dialog/dialog.component.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +346,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#elementref">elementRef</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L52">src/dialog/tooltip/tooltip.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L53">src/dialog/tooltip/tooltip.component.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,7 +357,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#elementservice">elementService</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L53">src/dialog/tooltip/tooltip.component.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L54">src/dialog/tooltip/tooltip.component.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -327,7 +367,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Content<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L44">src/dialog/tooltip/tooltip.component.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L45">src/dialog/tooltip/tooltip.component.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -338,7 +378,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#placement">placement</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L55">src/dialog/dialog.component.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L56">src/dialog/dialog.component.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -349,7 +389,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#placements">placements</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L74">src/dialog/dialog.component.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L78">src/dialog/dialog.component.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -359,7 +399,7 @@
 					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;tooltip&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L49">src/dialog/tooltip/tooltip.component.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L50">src/dialog/tooltip/tooltip.component.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -375,7 +415,7 @@
 					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;inline-block&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L40">src/dialog/tooltip/tooltip.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L41">src/dialog/tooltip/tooltip.component.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -386,7 +426,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#visibilitysubscription">visibilitySubscription</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L57">src/dialog/dialog.component.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L58">src/dialog/dialog.component.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -404,7 +444,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#afterdialogviewinit">afterDialogViewInit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L77">src/dialog/tooltip/tooltip.component.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L91">src/dialog/tooltip/tooltip.component.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -428,7 +468,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#clickclose">clickClose</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L220">src/dialog/dialog.component.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L231">src/dialog/dialog.component.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -452,7 +492,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#doclose">doClose</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L233">src/dialog/dialog.component.ts:233</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L244">src/dialog/dialog.component.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -482,7 +522,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#escapeclose">escapeClose</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L196">src/dialog/dialog.component.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L207">src/dialog/dialog.component.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -492,6 +532,31 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getadjustoffset" class="tsd-anchor"></a>
+					<h3>get<wbr>Adjust<wbr>Offset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Adjust<wbr>Offset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L83">src/dialog/tooltip/tooltip.component.ts:83</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>left<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>top<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -506,7 +571,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#ngafterviewinit">ngAfterViewInit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L101">src/dialog/dialog.component.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L106">src/dialog/dialog.component.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -524,7 +589,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#ngondestroy">ngOnDestroy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L240">src/dialog/dialog.component.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L251">src/dialog/dialog.component.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -542,7 +607,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#ngoninit">ngOnInit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L89">src/dialog/dialog.component.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L94">src/dialog/dialog.component.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -560,7 +625,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#ondialoginit">onDialogInit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/tooltip/tooltip.component.ts#L60">src/dialog/tooltip/tooltip.component.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/tooltip/tooltip.component.ts#L62">src/dialog/tooltip/tooltip.component.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -578,7 +643,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#placedialog">placeDialog</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L152">src/dialog/dialog.component.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L163">src/dialog/dialog.component.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -595,7 +660,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_dialog.dialog.html">Dialog</a>.<a href="src_dialog.dialog.html#addgap">addGap</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L62">src/dialog/dialog.component.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L66">src/dialog/dialog.component.ts:66</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -608,7 +673,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L66">src/dialog/dialog.component.ts:66</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L70">src/dialog/dialog.component.ts:70</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -631,7 +696,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L63">src/dialog/dialog.component.ts:63</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L67">src/dialog/dialog.component.ts:67</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -654,7 +719,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L67">src/dialog/dialog.component.ts:67</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L71">src/dialog/dialog.component.ts:71</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -677,7 +742,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L64">src/dialog/dialog.component.ts:64</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L68">src/dialog/dialog.component.ts:68</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -700,7 +765,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L68">src/dialog/dialog.component.ts:68</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L72">src/dialog/dialog.component.ts:72</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -723,7 +788,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L65">src/dialog/dialog.component.ts:65</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L69">src/dialog/dialog.component.ts:69</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -762,6 +827,12 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="src_dialog_tooltip.tooltip.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="src_dialog_tooltip.tooltip.html#animationframeservice" class="tsd-kind-icon">animation<wbr>Frame<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="src_dialog_tooltip.tooltip.html#animationframesubscription" class="tsd-kind-icon">animation<wbr>Frame<wbr>Subscription</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="src_dialog_tooltip.tooltip.html#close" class="tsd-kind-icon">close</a>
@@ -810,6 +881,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="src_dialog_tooltip.tooltip.html#escapeclose" class="tsd-kind-icon">escape<wbr>Close</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="src_dialog_tooltip.tooltip.html#getadjustoffset" class="tsd-kind-icon">get<wbr>Adjust<wbr>Offset</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="src_dialog_tooltip.tooltip.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a>

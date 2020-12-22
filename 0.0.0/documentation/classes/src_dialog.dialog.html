@@ -125,6 +125,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_dialog.dialog.html#animationframeservice"
+									class="tsd-kind-icon">animation<wbr>Frame<wbr>Service</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_dialog.dialog.html#animationframesubscription"
+									class="tsd-kind-icon">animation<wbr>Frame<wbr>Subscription</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_dialog.dialog.html#close"
 									class="tsd-kind-icon">close</a>
 								</li>
@@ -203,13 +209,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Dialog<span class="tsd-signature-symbol">(</span>elementRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, elementService<span class="tsd-signature-symbol">: </span><a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_dialog.dialog.html" class="tsd-signature-type">Dialog</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Dialog<span class="tsd-signature-symbol">(</span>elementRef<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, elementService<span class="tsd-signature-symbol">: </span><a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a>, animationFrameService<span class="tsd-signature-symbol">?: </span><a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_dialog.dialog.html" class="tsd-signature-type">Dialog</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L74">src/dialog/dialog.component.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L78">src/dialog/dialog.component.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -220,6 +226,9 @@
 								<li>
 									<h5>elementService: <a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> animationFrameService: <a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_dialog.dialog.html" class="tsd-signature-type">Dialog</a></h4>
 						</li>
@@ -228,6 +237,32 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="animationframeservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> animation<wbr>Frame<wbr>Service</h3>
+					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
+						<span>
+							@Optional()
+						</span>
+						<br />
+					</div>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L88">src/dialog/dialog.component.ts:88</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="animationframesubscription" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> animation<wbr>Frame<wbr>Subscription</h3>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol"> =&nbsp;new Subscription()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L60">src/dialog/dialog.component.ts:60</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="close" class="tsd-anchor"></a>
 					<h3>close</h3>
@@ -240,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dialog.closemeta.html" class="tsd-signature-type">CloseMeta</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L35">src/dialog/dialog.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L36">src/dialog/dialog.component.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -250,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L50">src/dialog/dialog.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L51">src/dialog/dialog.component.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -271,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">dialog<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L45">src/dialog/dialog.component.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L46">src/dialog/dialog.component.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -287,7 +322,7 @@
 					<div class="tsd-signature tsd-kind-icon">dialog<wbr>Config<span class="tsd-signature-symbol">:</span> <a href="../interfaces/src_dialog.dialogconfig.html" class="tsd-signature-type">DialogConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L40">src/dialog/dialog.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L41">src/dialog/dialog.component.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -297,7 +332,7 @@
 					<div class="tsd-signature tsd-kind-icon">element<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L82">src/dialog/dialog.component.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L86">src/dialog/dialog.component.ts:86</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -307,7 +342,7 @@
 					<div class="tsd-signature tsd-kind-icon">element<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_utils.elementservice.html" class="tsd-signature-type">ElementService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L83">src/dialog/dialog.component.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L87">src/dialog/dialog.component.ts:87</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,7 +352,7 @@
 					<div class="tsd-signature tsd-kind-icon">placement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L55">src/dialog/dialog.component.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L56">src/dialog/dialog.component.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -327,7 +362,7 @@
 					<div class="tsd-signature tsd-kind-icon">placements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Positions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L74">src/dialog/dialog.component.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L78">src/dialog/dialog.component.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -337,7 +372,7 @@
 					<div class="tsd-signature tsd-kind-icon">visibility<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol"> =&nbsp;new Subscription()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L57">src/dialog/dialog.component.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L58">src/dialog/dialog.component.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -354,7 +389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L147">src/dialog/dialog.component.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L158">src/dialog/dialog.component.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -377,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L220">src/dialog/dialog.component.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L231">src/dialog/dialog.component.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -400,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L233">src/dialog/dialog.component.ts:233</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L244">src/dialog/dialog.component.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -429,7 +464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L196">src/dialog/dialog.component.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L207">src/dialog/dialog.component.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -452,7 +487,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L101">src/dialog/dialog.component.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L106">src/dialog/dialog.component.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -469,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L240">src/dialog/dialog.component.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L251">src/dialog/dialog.component.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -486,7 +521,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L89">src/dialog/dialog.component.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L94">src/dialog/dialog.component.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -503,7 +538,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L141">src/dialog/dialog.component.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L152">src/dialog/dialog.component.ts:152</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -520,7 +555,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L152">src/dialog/dialog.component.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L163">src/dialog/dialog.component.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -536,7 +571,7 @@
 					<div class="tsd-signature tsd-kind-icon">add<wbr>Gap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L62">src/dialog/dialog.component.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L66">src/dialog/dialog.component.ts:66</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -549,7 +584,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L66">src/dialog/dialog.component.ts:66</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L70">src/dialog/dialog.component.ts:70</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -572,7 +607,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L63">src/dialog/dialog.component.ts:63</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L67">src/dialog/dialog.component.ts:67</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -595,7 +630,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L67">src/dialog/dialog.component.ts:67</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L71">src/dialog/dialog.component.ts:71</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -618,7 +653,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L64">src/dialog/dialog.component.ts:64</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L68">src/dialog/dialog.component.ts:68</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -641,7 +676,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L68">src/dialog/dialog.component.ts:68</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L72">src/dialog/dialog.component.ts:72</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -664,7 +699,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/2ba46d5/src/dialog/dialog.component.ts#L65">src/dialog/dialog.component.ts:65</a></li>
+										<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/368dbbb/src/dialog/dialog.component.ts#L69">src/dialog/dialog.component.ts:69</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -703,6 +738,12 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="src_dialog.dialog.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="src_dialog.dialog.html#animationframeservice" class="tsd-kind-icon">animation<wbr>Frame<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="src_dialog.dialog.html#animationframesubscription" class="tsd-kind-icon">animation<wbr>Frame<wbr>Subscription</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_dialog.dialog.html#close" class="tsd-kind-icon">close</a>
