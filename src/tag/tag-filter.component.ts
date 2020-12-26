@@ -44,7 +44,7 @@ export class TagFilter extends Tag {
 
 	onClose(event: any) {
 		event.stopImmediatePropagation();
-		this.click.emit();
+		this.click.emit(event);
 		this.close.emit();
 	}
 
