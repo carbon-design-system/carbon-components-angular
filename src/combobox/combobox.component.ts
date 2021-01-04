@@ -107,7 +107,7 @@ import { Observable } from "rxjs";
 					[placeholder]="placeholder"/>
 				<svg
 					*ngIf="invalid"
-					ibomIcon="warning--filled"
+					ibmIcon="warning--filled"
 					size="16"
 					class="bx--list-box__invalid-icon">
 				</svg>
