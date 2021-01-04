@@ -23,7 +23,7 @@ import { FileItem } from "./file-item.interface";
 			tabindex="0">
 			<svg
 				*ngIf="isInvalidText"
-				ibomIcon="warning--filled"
+				ibmIcon="warning--filled"
 				class="bx--file--invalid"
 				size="16">
 			</svg>
