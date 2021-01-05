@@ -10,7 +10,10 @@ import { Tag } from "./tag.component";
 @Component({
 	selector: "ibm-tag-filter",
 	template: `
-		<span class="bx--tag__label" [attr.title]="title ? title : null">
+		<span
+			class="bx--tag__label"
+			[attr.title]="title ? title : null"
+			(click)="onClick($event)">
 			<ng-content></ng-content>
 		</span>
 		<button
@@ -38,13 +41,19 @@ export class TagFilter extends Tag {
 	 * to prevent undesired effects when used within dialogs.
 	 *
 	 * We need to emit a click event on close to allow for clicks to be listened
-	 * to on the immediate close button element.
+	 * to on the immediate close button element. `action` distinguishes between clicks on
+	 * the tag vs. clicks on the close button.
 	 */
-	@Output() click = new EventEmitter<any>();
+	@Output() click = new EventEmitter<{ action: "click" | "close" }>();
+
+	onClick(event: any) {
+		event.stopImmediatePropagation();
+		this.click.emit({ action: "click" });
+	}
 
 	onClose(event: any) {
 		event.stopImmediatePropagation();
-		this.click.emit(event);
+		this.click.emit({ action: "close" });
 		this.close.emit();
 	}
 
