@@ -86,7 +86,7 @@ import { Tab } from "./tab.component";
 						draggable="false"
 						id="{{tab.id}}-header"
 						class="bx--tabs__nav-link"
-						[title]="tab.heading"
+						[title]="tab.title ? tab.title : tab.heading"
 						href="#"
 						role="tab">
 						<ng-container *ngIf="!tab.headingIsTemplate">
