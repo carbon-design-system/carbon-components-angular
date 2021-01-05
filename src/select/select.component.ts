@@ -63,6 +63,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				<select
 					[attr.id]="id"
 					[value]="value"
+					[attr.aria-label]="ariaLabel"
 					[disabled]="disabled"
 					(change)="onChange($event)"
 					[attr.aria-invalid]="invalid ? 'true' : null"
@@ -162,6 +163,7 @@ export class Select implements ControlValueAccessor {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+	@Input() ariaLabel: string;
 
 	@Output() valueChange = new EventEmitter();
 
