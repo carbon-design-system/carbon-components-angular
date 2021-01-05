@@ -57,7 +57,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
 	<div
-		[id]="id"
 		class="bx--list-box"
 		[ngClass]="{
 			'bx--dropdown': type !== 'multi',
@@ -75,6 +74,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		}">
 		<button
 			#dropdownButton
+			[id]="id"
 			type="button"
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
