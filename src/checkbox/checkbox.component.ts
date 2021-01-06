@@ -237,7 +237,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 *
 	 * @deprecated since v4 use `checked` and `checkedChange` instead
 	 */
-	@Output() change = new EventEmitter<CheckboxChange>();
+	@Output() change = new EventEmitter<any>();
 
 	/**
 	 * Emits an event when the value of the checkbox changes.
