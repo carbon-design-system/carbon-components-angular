@@ -702,7 +702,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.stopPropagation();
 		event.preventDefault();
 
-		if (this.type === "single") { // don't want to cleare selected or close if multi
+		if (this.type === "single") { // don't want to clear selected or close if multi
 			this.clearSelected();
 			this.closeDropdown();
 		}
