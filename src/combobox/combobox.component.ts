@@ -660,7 +660,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if (shouldEmitSearch) {
 			this.search.emit(searchString);
 		}
-		this.showClearButton = searchString && this.type === "single";
+		this.showClearButton = !!searchString;
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -702,14 +702,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.stopPropagation();
 		event.preventDefault();
 
-		this.clearSelected();
+		if (this.type === "single") { // don't want to cleare selected or close if multi
+			this.clearSelected();
+			this.closeDropdown();
+		}
+
 		this.selectedValue = "";
 		this.input.nativeElement.value = "";
-		this.closeDropdown();
 
 		this.showClearButton = false;
 		this.input.nativeElement.focus();
-		this.search.emit("");
+		this.onSearch(this.input.nativeElement.value);
 	}
 
 	public isTemplate(value) {
