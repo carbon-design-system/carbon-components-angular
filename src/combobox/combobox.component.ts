@@ -587,6 +587,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	}
 
 	/**
+	 * `ControlValueAccessor` method to programmatically disable the combobox.
+	 *
+	 * ex: `this.formGroup.get("myCoolCombobox").disable();`
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
+	/**
 	 * Called by `n-pill-input` when the selected pills have changed.
 	 */
 	public updatePills() {
