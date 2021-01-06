@@ -70,7 +70,7 @@ import { TableRowSize } from "../table.types";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
-					[title]="getItemTitle(item)"
+					[title]="item.title"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
 					[attr.rowspan]="item.rowSpan"
