@@ -38,7 +38,6 @@ import { LinkModule } from "../../link/index";
 			[model]="model"
 			size="sh"
 			[showSelectionColumn]="true"
-			[stickyHeader]="true"
 			[sortable]="false"
 			[striped]="false"
 			[isDataGrid]="false">
