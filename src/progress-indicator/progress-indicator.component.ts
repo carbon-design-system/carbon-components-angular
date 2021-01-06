@@ -21,7 +21,8 @@ import { Step } from "./progress-indicator-step.interface";
 		class="bx--progress"
 		[ngClass]="{
 			'bx--skeleton': skeleton,
-			'bx--progress--vertical': (orientation === 'vertical')
+			'bx--progress--vertical': (orientation === 'vertical'),
+			'bx--progress--space-equal': spaceEqually && orientation !== 'vertical'
 		}">
 		<li
 			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
@@ -74,6 +75,7 @@ export class ProgressIndicator implements OnChanges {
 	@Input() steps: Array<Step>;
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 	@Input() skeleton = false;
+	@Input() spaceEqually = false;
 
 	@Input() get current() {
 		return this.steps.findIndex(step => step.state.includes("current"));
