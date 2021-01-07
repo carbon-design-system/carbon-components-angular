@@ -37,7 +37,7 @@
 		"src/test.ts"
 	],
 	"include": [
-		"**/*.spec.ts"
+		"src/**/*.spec.ts"
 	],
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,
