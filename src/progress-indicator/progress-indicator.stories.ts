@@ -8,7 +8,7 @@ import { action } from "@storybook/addon-actions";
 import {
 	withKnobs,
 	number,
-	boolean
+	select
 } from "@storybook/addon-knobs/angular";
 
 import { ProgressIndicatorModule, PlaceholderModule } from "../";
@@ -51,7 +51,7 @@ storiesOf("Components|Progress Indicator", module)
 				[steps]="steps"
 				[current]="current"
 				(stepSelected)="stepSelected($event)"
-				[spaceEqually]="spaceEqually">
+				[spacing]="spacing">
 			</ibm-progress-indicator>
 			<ibm-placeholder></ibm-placeholder>
 		</div>
@@ -92,7 +92,7 @@ storiesOf("Components|Progress Indicator", module)
 			],
 			current: number("Current progress", 1),
 			stepSelected: action("stepSelected"),
-			spaceEqually: boolean("spaceEqually", false)
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Vertical", () => ({
@@ -102,7 +102,7 @@ storiesOf("Components|Progress Indicator", module)
 			[steps]="steps"
 			[current]="current"
 			(stepSelected)="stepSelected($event)"
-			[spaceEqually]="spaceEqually">
+			[spacing]="spacing">
 		</ibm-progress-indicator>
 		`,
 		props: {
@@ -131,7 +131,7 @@ storiesOf("Components|Progress Indicator", module)
 			],
 			current: number("Current progress", 1),
 			stepSelected: action("stepSelected"),
-			spaceEqually: boolean("spaceEqually", false)
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Skeleton", () => ({

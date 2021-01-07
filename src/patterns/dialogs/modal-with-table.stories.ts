@@ -1,6 +1,5 @@
 import {
 	Component,
-	OnChanges,
 	OnInit,
 	ViewEncapsulation
 } from "@angular/core";
@@ -46,7 +45,7 @@ import { LinkModule } from "../../link/index";
 	</ibm-table-container>
 	`
 })
-export class TableStory implements OnInit, OnChanges {
+export class TableStory implements OnInit {
 	model = new TableModel();
 
 	dataset = [
@@ -133,7 +132,7 @@ export class TableStory implements OnInit, OnChanges {
 					<ibm-progress-indicator
 						[steps]="steps"
 						[current]="current"
-						[spaceEqually]="true">
+						spacing="equal">
 					</ibm-progress-indicator>
 				</div>
 				<app-table size="sm">
