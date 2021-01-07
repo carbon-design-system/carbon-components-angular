@@ -53,8 +53,7 @@ import { RadioChange } from "./radio-change.class";
 			[ngClass]="{
 				'bx--radio-button-group--vertical': orientation === 'vertical',
 				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
-			}"
-			role="radiogroup">
+			}">
 			<ng-content></ng-content>
 		</div>
 	`,
