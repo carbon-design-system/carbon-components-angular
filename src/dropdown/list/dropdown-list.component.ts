@@ -222,9 +222,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	ngAfterViewInit() {
 		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
-		setTimeout(() => {
-			this.doEmitSelect();
-		});
 	}
 
 	/**
