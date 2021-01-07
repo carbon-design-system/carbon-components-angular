@@ -222,6 +222,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	ngAfterViewInit() {
 		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
+		setTimeout(() => {
+			this.doEmitSelect(false);
+		});
 	}
 
 	/**
@@ -236,14 +239,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		}
 	}
 
-	doEmitSelect() {
+	doEmitSelect(isUpdate = true) {
 		if (this.type === "single") {
-			this.select.emit({ item: this._items.find(item => item.selected), isUpdate: true });
+			this.select.emit({ item: this._items.find(item => item.selected), isUpdate: isUpdate });
 		} else {
 			// abuse javascripts object mutability until we can break the API and switch to
 			// { items: [], isUpdate: true }
 			const selected = this.getSelected() || [];
-			selected["isUpdate"] = true;
+			selected["isUpdate"] = isUpdate;
 			this.select.emit(selected);
 		}
 	}
