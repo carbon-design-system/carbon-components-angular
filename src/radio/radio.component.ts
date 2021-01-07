@@ -108,10 +108,6 @@ export class Radio {
 	 * emits when the state of the radio changes
 	 */
 	@Output() change = new EventEmitter<RadioChange>();
-	/**
-	 * Binds 'radio' value to the role attribute for `Radio`.
-	 */
-	@HostBinding("attr.role") role = "radio";
 
 	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
 
