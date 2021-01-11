@@ -458,13 +458,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					// only focus for "organic" selections
-					if (event && event.isUpdate) {
+					if (event && !event.isUpdate) {
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
 					}
 					this.closeDropdown();
 				}
-				if (event && event.isUpdate) {
+				if (event && !event.isUpdate) {
 					this.selected.emit(event);
 				}
 			});
