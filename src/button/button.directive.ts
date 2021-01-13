@@ -34,6 +34,19 @@ export class Button implements OnInit {
 	 * Specify the size of the button
 	 */
 	@Input() size: ButtonSize;
+	/**
+	 * If assistive text is used, this specifies the placement.
+	 * Possible placements are `top`, `bottom`, `left`, `right`.
+	 * If assistive text is not used, this can be left undefined.
+	 */
+	@Input() assistiveTextPlacement: string;
+	/**
+	 * If assistive text is used, this specifies the alignment.
+	 * Possible alignments are `center`, `start`, `end`.
+	 * If assistive text is not used, this can be left undefined.
+	 */
+	@Input() assistiveTextAlignment: string;
+
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.bx--btn") get baseClass() {
 		return !this.toolbarAction;
@@ -62,6 +75,53 @@ export class Button implements OnInit {
 	}
 	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
 	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
+	@HostBinding("class.bx--btn--icon-only") @Input() iconOnly = false;
+
+	/**
+	 * `hasAssistiveText` input specifies whether the button contains assistive text or not.
+	 * Assistive text can be utilized as follows:
+	 * ```typescript
+	 *	<button
+	 *		ibmButton="tertiary"
+	 *		[iconOnly]="true"
+	 *		[hasAssistiveText]="true"
+	 *		assistiveTextPlacement="top"
+	 *		assistiveTextAlignment="center">
+	 *		<svg class="bx--btn__icon" ibmIconCopy size="20"></svg>
+	 *		<span class="bx--assistive-text">Icon description</span>
+	 *	</button>
+	 * ```
+	 */
+	@HostBinding("class.bx--tooltip__trigger")
+	@HostBinding("class.bx--tooltip--a11y") @Input() hasAssistiveText = false;
+
+	@HostBinding("class.bx--tooltip--align-center") get isAssistiveTextCenterAligned() {
+		return this.assistiveTextAlignment === "center";
+	}
+
+	@HostBinding("class.bx--tooltip--align-start") get isAssistiveTextStartAligned() {
+		return this.assistiveTextAlignment === "start";
+	}
+
+	@HostBinding("class.bx--tooltip--align-end") get isAssistiveTextEndAligned() {
+		return this.assistiveTextAlignment === "end";
+	}
+
+	@HostBinding("class.bx--tooltip--top") get isAssistiveTextTopPositioned() {
+		return this.assistiveTextPlacement === "top";
+	}
+
+	@HostBinding("class.bx--tooltip--bottom") get isAssistiveTextBottomPositioned() {
+		return this.assistiveTextPlacement === "bottom";
+	}
+
+	@HostBinding("class.bx--tooltip--left") get isAssistiveTextLeftPositioned() {
+		return this.assistiveTextPlacement === "left";
+	}
+
+	@HostBinding("class.bx--tooltip--right") get isAssistiveTextRightPositioned() {
+		return this.assistiveTextPlacement === "right";
+	}
 
 	ngOnInit() {
 		if (!this.ibmButton) {
