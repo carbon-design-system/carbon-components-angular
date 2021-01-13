@@ -39,13 +39,13 @@ export class Button implements OnInit {
 	 * Possible placements are `top`, `bottom`, `left`, `right`.
 	 * If assistive text is not used, this can be left undefined.
 	 */
-	@Input() assistiveTextPlacement: string;
+	@Input() assistiveTextPlacement: "top" | "bottom" | "left" | "right";
 	/**
 	 * If assistive text is used, this specifies the alignment.
 	 * Possible alignments are `center`, `start`, `end`.
 	 * If assistive text is not used, this can be left undefined.
 	 */
-	@Input() assistiveTextAlignment: string;
+	@Input() assistiveTextAlignment: "center" | "start" | "end";
 
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.bx--btn") get baseClass() {
