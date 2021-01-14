@@ -134,16 +134,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		protected eventService: EventService
 	) {}
 
-	/**
-	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
-	 */
-	onTouchStart(event) {
-		event.stopImmediatePropagation();
-		this.toggle({
-			reason: CloseReasons.interaction
-		});
-	}
-
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
@@ -186,8 +176,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.dialogService.singletonClickListen();
 
 		const element = this.elementRef.nativeElement;
-
-		this.eventService.on(element, "touchstart", this.onTouchStart.bind(this));
 
 		this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
 			// "Esc" is an IE specific value
