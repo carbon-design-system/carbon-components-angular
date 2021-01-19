@@ -25,7 +25,10 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div class="bx--date-picker-input__wrapper">
+				<div class="bx--date-picker-input__wrapper"
+					[ngClass]="{
+						'bx--date-picker-input__wrapper--invalid': invalid
+					}">
 					<input
 						#input
 						*ngIf="!skeleton"
