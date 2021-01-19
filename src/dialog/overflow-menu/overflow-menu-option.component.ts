@@ -148,7 +148,8 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 
 	ngAfterViewInit() {
 		const button = this.elementRef.nativeElement.querySelector("button, a");
-		if (button.scrollWidth > button.offsetWidth) {
+		const textContainer = button.querySelector(".bx--overflow-menu-options__option-content");
+		if (textContainer.scrollWidth > textContainer.offsetWidth) {
 			this.title = button.textContent;
 		}
 	}
