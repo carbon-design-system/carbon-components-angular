@@ -98,7 +98,10 @@ storiesOf("Components|Select", module).addDecorator(
 	.add("With ngModel", () => ({
 		template: `
 			<div style="width: 165px">
-				<ibm-select [(ngModel)]="model" [size]="size">
+				<ibm-select
+					[(ngModel)]="model"
+					[size]="size"
+					ariaLabel='ngModel select'>
 					<option value="default" disabled selected hidden>Choose an option</option>
 					<option value="option1">Option 1</option>
 					<option value="option2">Option 2</option>

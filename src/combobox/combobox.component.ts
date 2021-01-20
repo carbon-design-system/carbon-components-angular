@@ -457,11 +457,16 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					}
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
-					this.elementRef.nativeElement.querySelector("input").focus();
-					this.view.filterBy("");
+					// only focus for "organic" selections
+					if (event && !event.isUpdate) {
+						this.elementRef.nativeElement.querySelector("input").focus();
+						this.view.filterBy("");
+					}
 					this.closeDropdown();
 				}
-				this.selected.emit(event);
+				if (event && !event.isUpdate) {
+					this.selected.emit(event);
+				}
 			});
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
@@ -587,6 +592,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	}
 
 	/**
+	 * `ControlValueAccessor` method to programmatically disable the combobox.
+	 *
+	 * ex: `this.formGroup.get("myCoolCombobox").disable();`
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
+	/**
 	 * Called by `n-pill-input` when the selected pills have changed.
 	 */
 	public updatePills() {
@@ -651,7 +665,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if (shouldEmitSearch) {
 			this.search.emit(searchString);
 		}
-		this.showClearButton = searchString && this.type === "single";
+		this.showClearButton = !!searchString;
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
@@ -693,14 +707,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.stopPropagation();
 		event.preventDefault();
 
-		this.clearSelected();
+		if (this.type === "single") { // don't want to clear selected or close if multi
+			this.clearSelected();
+			this.closeDropdown();
+		}
+
 		this.selectedValue = "";
 		this.input.nativeElement.value = "";
-		this.closeDropdown();
 
 		this.showClearButton = false;
 		this.input.nativeElement.focus();
-		this.search.emit("");
+		this.onSearch(this.input.nativeElement.value);
 	}
 
 	public isTemplate(value) {

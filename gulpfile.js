@@ -85,7 +85,7 @@ const buildReadme = () =>
 // =================================
 const build = gulp.series(buildAngular, buildI18n);
 
-const buildMeta = gulp.parallel(moveLicense, buildLicense);
+const buildMeta = gulp.parallel(moveLicense, buildLicense, buildReadme);
 
 module.exports = {
 	build,

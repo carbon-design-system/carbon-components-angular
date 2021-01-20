@@ -223,7 +223,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
 		setTimeout(() => {
-			this.doEmitSelect();
+			this.doEmitSelect(true);
 		});
 	}
 
@@ -239,14 +239,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		}
 	}
 
-	doEmitSelect() {
+	doEmitSelect(isUpdate = true) {
 		if (this.type === "single") {
-			this.select.emit({ item: this._items.find(item => item.selected), isUpdate: true });
+			this.select.emit({ item: this._items.find(item => item.selected), isUpdate: isUpdate });
 		} else {
 			// abuse javascripts object mutability until we can break the API and switch to
 			// { items: [], isUpdate: true }
 			const selected = this.getSelected() || [];
-			selected["isUpdate"] = true;
+			selected["isUpdate"] = isUpdate;
 			this.select.emit(selected);
 		}
 	}
@@ -486,22 +486,17 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doClick(event, item) {
 		event.preventDefault();
 		if (!item.disabled) {
-			let selected;
 			if (this.type === "single") {
 				item.selected = true;
 				// reset the selection
 				for (let otherItem of this.getListItems()) {
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
-
-				selected = {item};
 			} else {
 				item.selected = !item.selected;
-				// emit an array of selected items
-				selected = this.getSelected();
 			}
 			this.index = this.displayItems.indexOf(item);
-			this.select.emit(selected);
+			this.doEmitSelect(false);
 		}
 	}
 

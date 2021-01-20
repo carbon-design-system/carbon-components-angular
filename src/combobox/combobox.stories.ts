@@ -89,7 +89,7 @@ class DynamicListComboBox implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		setInterval(() => {
+		setTimeout(() => {
 			const newItems = JSON.parse(JSON.stringify(this.items));
 			newItems.push({ content: `New ${newItems.length}` });
 			this.items = newItems;

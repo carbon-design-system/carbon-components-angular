@@ -81,6 +81,13 @@ export class Tab implements OnInit {
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
+	 * Optional override for the `tabItem's`'s title attribute which is set in `TabHeaders`.
+	 * `tabItem`'s title attribute is automatically set to `heading`.
+	 *
+	 * You might want to use this if you set `heading` to a `TemplateRef`.
+	 */
+	@Input() title: string;
+	/**
 	 * Allows the user to pass data to the custom template for the `Tab` heading.
 	 */
 	@Input() context: any;

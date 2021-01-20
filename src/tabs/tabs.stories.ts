@@ -106,8 +106,14 @@ storiesOf("Components|Tabs", module)
 				</div>
 			</ng-template>
 			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
-				<ibm-tab [heading]="iconTab">Tab Content Custom</ibm-tab>
+				<ibm-tab
+					*ngFor="let item of data; let i = index;"
+					[heading]="customTabs"
+					title="Tab Content"
+					[context]="item">
+					Tab Content {{i + 1}}
+				</ibm-tab>
+				<ibm-tab [heading]="iconTab" title="Custom tab content">Tab Content Custom</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
