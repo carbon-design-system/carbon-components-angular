@@ -80,7 +80,10 @@ export class TableItem {
 			return this.data;
 		}
 
-		if (this.data.toString) {
+		if (
+			this.data.toString &&
+			this.data.constructor !== ({}).constructor
+		) {
 			return this.data.toString();
 		}
 
