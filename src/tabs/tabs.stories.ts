@@ -181,6 +181,6 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_tabs.tabs.html"></ibm-documentation>
 		`
 	}));

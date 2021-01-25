@@ -144,6 +144,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Tile.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_tiles.tile.html"></ibm-documentation>
 		`
 	}));

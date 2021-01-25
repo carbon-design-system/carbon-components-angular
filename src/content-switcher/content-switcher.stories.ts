@@ -29,6 +29,6 @@ storiesOf("Components|Content Switcher", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/ContentSwitcher.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_content_switcher.contentswitcher.html"></ibm-documentation>
 		`
 	}));

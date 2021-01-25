@@ -366,6 +366,6 @@ storiesOf("Components|Modal", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Modal.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_modal.modal.html"></ibm-documentation>
 		`
 	}));

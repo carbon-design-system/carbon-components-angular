@@ -134,6 +134,6 @@ storiesOf("Components|Select", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Select.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_select.select.html"></ibm-documentation>
 		`
 	}));

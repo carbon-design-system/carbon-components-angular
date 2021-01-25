@@ -33,6 +33,6 @@ storiesOf("Components|Time Picker Select", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/TimePickerSelect.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_timepicker_select.timepickerselect.html"></ibm-documentation>
 		`
 	}));

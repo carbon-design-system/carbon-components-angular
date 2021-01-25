@@ -91,6 +91,6 @@ storiesOf("Components|Input", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Label.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_input.label.html"></ibm-documentation>
 		`
 	}));

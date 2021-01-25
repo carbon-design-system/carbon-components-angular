@@ -470,6 +470,6 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Table.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_table.table.html"></ibm-documentation>
 		`
 	}));

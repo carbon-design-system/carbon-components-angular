@@ -55,6 +55,6 @@ storiesOf("Components|List", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/List.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_list.list.html"></ibm-documentation>
 		`
 	}));

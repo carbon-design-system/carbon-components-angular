@@ -179,7 +179,7 @@ storiesOf("Components|Structured List", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/StructuredList.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_structured_list.structuredlist.html"></ibm-documentation>
 		`
 	}));
 

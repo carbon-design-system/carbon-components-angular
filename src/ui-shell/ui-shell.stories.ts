@@ -464,11 +464,16 @@ storiesOf("Components|UI Shell", module)
 	))
 	.add("Header Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Header.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_ui_shell_header.header.html"></ibm-documentation>
+		`
+	}))
+	.add("Panel Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/classes/src_ui_shell_panel.panel.html"></ibm-documentation>
 		`
 	}))
 	.add("Side Nav Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/SideNav.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_ui_shell_sidenav.sidenav.html"></ibm-documentation>
 		`
 	}));

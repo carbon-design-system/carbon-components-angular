@@ -452,6 +452,6 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/ComboBox.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_combobox.combobox.html"></ibm-documentation>
 		`
 	}));

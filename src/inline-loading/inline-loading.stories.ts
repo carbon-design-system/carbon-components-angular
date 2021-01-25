@@ -64,6 +64,6 @@ storiesOf("Components|Inline Loading", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/InlineLoading.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_inline_loading.inlineloading.html"></ibm-documentation>
 		`
 	}));

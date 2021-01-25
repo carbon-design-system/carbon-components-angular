@@ -49,6 +49,6 @@ storiesOf("Components|Checkbox", module).addDecorator(
 }))
 .add("Documentation", () => ({
 	template: `
-		<ibm-documentation src="documentation/components/Checkbox.html"></ibm-documentation>
+		<ibm-documentation src="documentation/classes/src_checkbox.checkbox.html"></ibm-documentation>
 	`
 }));

@@ -23,6 +23,6 @@ storiesOf("Components|Loading", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Loading.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_loading.loading.html"></ibm-documentation>
 		`
 	}));

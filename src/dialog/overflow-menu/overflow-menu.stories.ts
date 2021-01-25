@@ -217,6 +217,6 @@ storiesOf("Components|Overflow Menu", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/OverflowMenu.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dialog_overflow_menu.overflowmenu.html"></ibm-documentation>
 		`
 	}));

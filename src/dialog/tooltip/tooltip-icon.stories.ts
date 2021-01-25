@@ -35,6 +35,6 @@ storiesOf("Components|Tooltip Icon", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/TooltipIcon.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dialog_tooltip.tooltipicon.html"></ibm-documentation>
 		`
 	}));

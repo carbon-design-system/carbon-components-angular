@@ -115,6 +115,6 @@ storiesOf("Components|Breadcrumb", module)
 }))
 .add("Documentation", () => ({
 	template: `
-		<ibm-documentation src="documentation/components/Breadcrumb.html"></ibm-documentation>
+		<ibm-documentation src="documentation/classes/src_breadcrumb.breadcrumb.html"></ibm-documentation>
 	`
 }));

@@ -63,6 +63,6 @@ storiesOf("Components|Button", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/Button.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_button.button.html"></ibm-documentation>
 		`
 	}));

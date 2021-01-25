@@ -338,11 +338,11 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Notification.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
 		`
 	}))
 	.add("Toast Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Toast.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_notification.toast.html"></ibm-documentation>
 		`
 	}));
