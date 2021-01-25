@@ -34,6 +34,6 @@ storiesOf("Components|Tooltip Definition", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/TooltipDefinition.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dialog_tooltip.tooltipdefinition.html"></ibm-documentation>
 		`
 	}));

@@ -131,6 +131,6 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 }))
 .add("Documentation", () => ({
 	template: `
-		<ibm-documentation src="documentation/components/Slider.html"></ibm-documentation>
+		<ibm-documentation src="documentation/classes/src_slider.slider.html"></ibm-documentation>
 	`
 }));

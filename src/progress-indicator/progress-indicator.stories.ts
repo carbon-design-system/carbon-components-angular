@@ -143,6 +143,6 @@ storiesOf("Components|Progress Indicator", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/ProgressIndicator.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_progress_indicator.progressindicator.html"></ibm-documentation>
 		`
 	}));

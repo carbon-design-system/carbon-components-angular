@@ -85,7 +85,7 @@ storiesOf("Components|PaginationNav", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Pagination.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_pagination.pagination.html"></ibm-documentation>
 		`
 	}));
 

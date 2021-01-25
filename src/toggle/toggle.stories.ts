@@ -54,6 +54,6 @@ storiesOf("Components|Toggle", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Toggle.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_toggle.toggle.html"></ibm-documentation>
 		`
 	}));

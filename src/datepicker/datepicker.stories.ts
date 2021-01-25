@@ -415,6 +415,6 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/DatePicker.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_datepicker.datepicker.html"></ibm-documentation>
 		`
 	}));

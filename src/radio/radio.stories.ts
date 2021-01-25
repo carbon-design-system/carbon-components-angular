@@ -142,6 +142,11 @@ storiesOf("Components|Radio", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/RadioGroup.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_radio.radio.html"></ibm-documentation>
+		`
+	}))
+	.add("Radio Group Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/classes/src_radio.radiogroup.html"></ibm-documentation>
 		`
 	}));

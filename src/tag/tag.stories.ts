@@ -46,6 +46,6 @@ storiesOf("Components|Tag", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Tag.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_tag.tag.html"></ibm-documentation>
 		`
 	}));

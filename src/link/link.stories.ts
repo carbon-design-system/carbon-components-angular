@@ -25,6 +25,6 @@ storiesOf("Components|Link", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/Link.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_link.link.html"></ibm-documentation>
 		`
 	}));

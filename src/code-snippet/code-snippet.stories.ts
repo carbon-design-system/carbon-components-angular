@@ -106,6 +106,6 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/CodeSnippet.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_code_snippet.codesnippet.html"></ibm-documentation>
 		`
 	}));

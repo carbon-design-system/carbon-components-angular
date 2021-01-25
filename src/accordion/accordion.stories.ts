@@ -96,6 +96,6 @@ storiesOf("Components|Accordion", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Accordion.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_accordion.accordion.html"></ibm-documentation>
 		`
 	}));

@@ -83,6 +83,6 @@ storiesOf("Components|Number", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Number.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_number_input.numbercomponent.html"></ibm-documentation>
 		`
 	}));

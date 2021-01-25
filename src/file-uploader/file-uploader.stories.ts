@@ -374,7 +374,7 @@ storiesOf("Components|File Uploader", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/FileUploader.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_file_uploader.fileuploader.html"></ibm-documentation>
 		`
 	}));
 

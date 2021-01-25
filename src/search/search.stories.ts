@@ -56,6 +56,6 @@ storiesOf("Components|Search", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Search.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_search.search.html"></ibm-documentation>
 		`
 	}));

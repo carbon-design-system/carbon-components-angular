@@ -382,6 +382,6 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Dropdown.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dropdown.dropdown.html"></ibm-documentation>
 		`
 	}));
