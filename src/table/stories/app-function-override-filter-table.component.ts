@@ -8,7 +8,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
 @Component({
-	selector: "app-subclassing-filter-table",
+	selector: "app-function-override-filter-table",
 	template: `
 	<ibm-table-container>
 		<ibm-table-header>
@@ -80,7 +80,7 @@ import { TableItem } from "../table-item.class";
 	</ng-template>
 	`
 })
-export class FilterWithSubclassingStory implements OnInit {
+export class FilterByFunctionOverrideStory implements OnInit {
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
 	@Input() enableSingleSelect = false;
