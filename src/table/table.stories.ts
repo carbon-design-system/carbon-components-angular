@@ -24,6 +24,7 @@ import { SearchModule } from "../search/index";
 import {
 	SettingsModule,
 	DeleteModule,
+	FilterModule,
 	SaveModule,
 	DownloadModule,
 	AddModule
@@ -33,6 +34,8 @@ import {
 	TableStory,
 	DynamicTableStory,
 	ExpansionTableStory,
+	FilterWithSubclassingStory,
+	FilterWithModelStory,
 	OverflowTableStory,
 	PaginationTableStory,
 	SkeletonTableStory,
@@ -90,6 +93,7 @@ storiesOf("Components|Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
+				FilterModule,
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
@@ -104,6 +108,8 @@ storiesOf("Components|Table", module).addDecorator(
 				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
+				FilterWithSubclassingStory,
+				FilterWithModelStory,
 				OverflowTableStory,
 				PaginationTableStory,
 				SkeletonTableStory,
@@ -311,7 +317,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="toolbar-action">
+					<button ibmButton="ghost" class="toolbar-action">
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
@@ -337,6 +343,32 @@ storiesOf("Components|Table", module).addDecorator(
 			description: text("Description", "With toolbar"),
 			enableSingleSelect: boolean("Enable single select", false)
 		})
+	}))
+	.add("Filtering with subclassing and isRowFiltered", () => ({
+		template: `
+		<app-subclassing-filter-table
+			[stickyHeader]="stickyHeader"
+			[size]="size"
+			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[isDataGrid]="isDataGrid">
+		</app-subclassing-filter-table>
+		`,
+		props: getProps({})
+	}))
+	.add("Filtering by alteration of model data", () => ({
+		template: `
+		<app-model-filter-table
+			[stickyHeader]="stickyHeader"
+			[size]="size"
+			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[isDataGrid]="isDataGrid">
+		</app-model-filter-table>
+		`,
+		props: getProps({})
 	}))
 	.add("With expansion", () => ({
 		template: `
