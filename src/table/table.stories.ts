@@ -344,7 +344,7 @@ storiesOf("Components|Table", module).addDecorator(
 			enableSingleSelect: boolean("Enable single select", false)
 		})
 	}))
-	.add("Filtering by overriding isRowFiltered - Recommended", () => ({
+	.add("Filtering by overriding isRowFiltered [Recommended]", () => ({
 		template: `
 		<app-function-override-filter-table
 			[stickyHeader]="stickyHeader"
