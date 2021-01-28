@@ -126,7 +126,7 @@ export class FilterWithModelStory implements OnInit {
 		],
 		[
 			new TableItem({ data: "15" }),
-			new TableItem({data: "Stoltenbergport"}),
+			new TableItem({ data: "Stoltenbergport" }),
 			new TableItem({ data: "Store" }),
 			new TableItem({ data: "Canada" })
 		],
