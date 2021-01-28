@@ -9,14 +9,6 @@ import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
-function sort(model, index: number) {
-	if (model.header[index].sorted) {
-		// if already sorted flip sorting direction
-		model.header[index].ascending = model.header[index].descending;
-	}
-	model.sort(index);
-}
-
 @Component({
 	selector: "app-table",
 	template: `
@@ -30,8 +22,7 @@ function sort(model, index: number) {
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid"
-			(sort)="simpleSort($event)">
+			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -85,9 +76,5 @@ export class TableStory implements OnInit, OnChanges {
 
 	onRowClick(index: number) {
 		console.log("Row item selected:", index);
-	}
-
-	simpleSort(index: number) {
-		sort(this.model, index);
 	}
 }
