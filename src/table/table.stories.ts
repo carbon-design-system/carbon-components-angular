@@ -24,6 +24,7 @@ import { SearchModule } from "../search/index";
 import {
 	SettingsModule,
 	DeleteModule,
+	FilterModule,
 	SaveModule,
 	DownloadModule,
 	AddModule
@@ -33,6 +34,8 @@ import {
 	TableStory,
 	DynamicTableStory,
 	ExpansionTableStory,
+	FilterByFunctionOverrideStory,
+	FilterWithModelStory,
 	OverflowTableStory,
 	PaginationTableStory,
 	SkeletonTableStory,
@@ -90,6 +93,7 @@ storiesOf("Components|Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
+				FilterModule,
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
@@ -104,6 +108,8 @@ storiesOf("Components|Table", module).addDecorator(
 				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
+				FilterByFunctionOverrideStory,
+				FilterWithModelStory,
 				OverflowTableStory,
 				PaginationTableStory,
 				SkeletonTableStory,
@@ -210,7 +216,7 @@ storiesOf("Components|Table", module).addDecorator(
 							<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
 						</ibm-overflow-menu>
 						<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-							Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+							Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 						</button>
 					</ibm-table-toolbar-content>
 				</ibm-table-toolbar>
@@ -272,7 +278,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -311,11 +317,11 @@ storiesOf("Components|Table", module).addDecorator(
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="toolbar-action">
+					<button ibmButton="ghost" class="toolbar-action">
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary Button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -337,6 +343,32 @@ storiesOf("Components|Table", module).addDecorator(
 			description: text("Description", "With toolbar"),
 			enableSingleSelect: boolean("Enable single select", false)
 		})
+	}))
+	.add("Filtering by overriding isRowFiltered [Recommended]", () => ({
+		template: `
+		<app-function-override-filter-table
+			[stickyHeader]="stickyHeader"
+			[size]="size"
+			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[isDataGrid]="isDataGrid">
+		</app-function-override-filter-table>
+		`,
+		props: getProps({})
+	}))
+	.add("Filtering by alteration of model data", () => ({
+		template: `
+		<app-model-filter-table
+			[stickyHeader]="stickyHeader"
+			[size]="size"
+			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[isDataGrid]="isDataGrid">
+		</app-model-filter-table>
+		`,
+		props: getProps({})
 	}))
 	.add("With expansion", () => ({
 		template: `
