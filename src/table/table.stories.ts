@@ -199,7 +199,7 @@ storiesOf("Components|Table", module).addDecorator(
 							<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
 						</button>
 					</ibm-table-toolbar-actions>
-					<ibm-table-toolbar-content>
+					<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 						<ibm-table-toolbar-search
 							ngDefaultControl
 							[expandable]="true"
@@ -257,7 +257,7 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText">
+			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
@@ -272,7 +272,7 @@ storiesOf("Components|Table", module).addDecorator(
 						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
 					</button>
 				</ibm-table-toolbar-actions>
-				<ibm-table-toolbar-content>
+				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
 						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
