@@ -2,7 +2,7 @@
 	"inputFiles": [ "./src" ],
 	"mode": "modules",
 	"out": "documentation",
-	"exclude": [ "**/node_modules/**" ],
+	"exclude": [ "**/node_modules/**", "**/integration/**" ],
 	"externalPattern": [ "@storybook/*" ],
 	"excludeExternals": true,
 	"ignoreCompilerErrors": true,

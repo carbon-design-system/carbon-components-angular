@@ -113,6 +113,9 @@ import { TableRowSize } from "./table.types";
  * }
  * ```
  *
+ * If you want to do your sorting on the backend or query for sorted data as a result of user
+ * clicking the table header, check table [`sort`](#sort) output documentation
+ *
  * See `TableHeaderItem` class for more information.
  *
  * ## No data template
@@ -183,7 +186,7 @@ import { TableRowSize } from "./table.types";
 			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
-			(sort)="sort.emit($event)"
+			(sort)="doSort($event)"
 			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
 			[filterTitle]="getFilterTitle()"
 			[model]="model"
@@ -477,6 +480,58 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Emits an index of the column that wants to be sorted.
 	 *
+	 * If no observers are provided (default), table will attempt to do a simple sort of the data loaded
+	 * into the model.
+	 *
+	 * If an observer is provided, table will not attempt any sorting of its own and it is up to the observer
+	 * to sort the table. This is what you typically want if you're using a backend query to get the sorted
+	 * data or want to sort data across multiple pages.
+	 *
+	 * Usage:
+	 *
+	 * ```typescript
+	 * @Component({
+	 * 	selector: "app-table",
+	 * 	template: `
+	 * 		<ibm-table
+	 * 			[model]="model"
+	 * 			(sort)="simpleSort($event)">
+	 * 			No data.
+	 * 		</ibm-table>
+	 * 	`
+	 * })
+	 * export class TableApp implements OnInit, OnChanges {
+	 * 	@Input() model = new TableModel();
+	 *
+	 * 	ngOnInit() {
+	 * 		this.model.header = [
+	 * 			new TableHeaderItem({ data: "Name" }),
+	 * 			new TableHeaderItem({ data: "hwer" })
+	 * 		];
+	 *
+	 * 		this.model.data = [
+	 * 			[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+	 * 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
+	 * 			[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
+	 * 			[new TableItem({ data: "Name 4" }), new TableItem({data: "twer"})],
+	 * 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
+	 * 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})]
+	 * 		];
+	 * 	}
+	 *
+	 * 	simpleSort(index: number) {
+	 * 		// this function does a simple sort, which is the default for the table and if that's
+	 * 		// all you want, you don't need to do this.
+	 *
+	 * 		// here you can query your backend and update the model.data based on the result
+	 * 		if (this.model.header[index].sorted) {
+	 * 			// if already sorted flip sorting direction
+	 * 			this.model.header[index].ascending = this.model.header[index].descending;
+	 * 		}
+	 * 		this.model.sort(index);
+	 * 	}
+	 * }
+	 * ```
 	 */
 	@Output() sort = new EventEmitter<number>();
 
@@ -764,6 +819,19 @@ export class Table implements AfterViewInit, OnDestroy {
 		);
 	}
 
+	doSort(index: number) {
+		if (this.sort.observers.length === 0) {
+			// no sort provided so do the simple sort
+			if (this.model.header[index].sorted) {
+				// if already sorted flip sorting direction
+				this.model.header[index].ascending = this.model.header[index].descending;
+			}
+			this.model.sort(index);
+		}
+
+		this.sort.emit(index);
+	}
+
 	/**
 	 * Triggered when the user scrolls on the `<tbody>` element.
 	 * Emits the `scrollLoad` event.
@@ -809,5 +877,4 @@ export class Table implements AfterViewInit, OnDestroy {
 	getFilterTitle() {
 		return this._filterTitle.subject;
 	}
-
 }
