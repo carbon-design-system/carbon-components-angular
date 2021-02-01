@@ -41,14 +41,26 @@ import { TableRowSize } from "../table.types";
 						'tbody_row--error': !model.isRowSelected(i) && model.getRowContext(i) === 'error'
 					}">
 				</tr>
-				<tr
-					*ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)"
-					ibmTableExpandedRow
-					ibmExpandedRowHover
-					[row]="row"
-					[expanded]="model.isRowExpanded(i)"
-					[skeleton]="skeleton">
-				</tr>
+				<ng-container *ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)">
+					<tr
+						*ngIf="!shouldExpandAsTable(row); else expandAsTableTemplate"
+						ibmTableExpandedRow
+						ibmExpandedRowHover
+						[row]="row"
+						[expanded]="model.isRowExpanded(i)"
+						[skeleton]="skeleton">
+					</tr>
+					<ng-template #expandAsTableTemplate>
+						<tr *ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
+							ibmTableRow
+							[model]="model"
+							[showSelectionColumnCheckbox]="false"
+							[row]="expandedDataRow"
+							[size]="size"
+							[skeleton]="skeleton">
+						</tr>
+					</ng-template>
+				</ng-container>
 			</ng-container>
 		</ng-container>
 		<ng-content></ng-content>
@@ -151,5 +163,17 @@ export class TableBody {
 
 	getExpandButtonAriaLabel(): Observable<string> {
 		return this._expandButtonAriaLabel.subject;
+	}
+
+	firstExpandedDataInRow(row) {
+		const found = row.find(d => d.expandedData);
+		if (found) {
+			return found.expandedData;
+		}
+		return found;
+	}
+
+	shouldExpandAsTable(row) {
+		return row.some(d => d.expandAsTable);
 	}
 }
