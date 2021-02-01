@@ -25,7 +25,7 @@ storiesOf("Components|Content Switcher", module)
 		`,
 		props: {
 			selected: action("selection changed"),
-			theme: select("theme", ["dark", "light"], "dark"),
+			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
 	.add("Documentation", () => ({
