@@ -34,6 +34,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 		<div
 			[attr.aria-label]="ariaLabel"
 			class="bx--content-switcher"
+			[class.bx--content-switcher--light]="theme === 'light'"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
@@ -41,6 +42,10 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
+	/**
+	 * `light` or `dark` dropdown theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`
