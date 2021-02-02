@@ -55,6 +55,7 @@ import { TableRowSize } from "../table.types";
 							ibmTableRow
 							[model]="model"
 							[showSelectionColumnCheckbox]="false"
+							[showSelectionColumn]="showSelectionColumn"
 							[row]="expandedDataRow"
 							[size]="size"
 							[skeleton]="skeleton">
