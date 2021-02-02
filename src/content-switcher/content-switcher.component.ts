@@ -43,7 +43,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
 	/**
-	 * `light` or `dark` dropdown theme
+	 * `light` or `dark` content switcher theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
