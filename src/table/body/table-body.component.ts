@@ -51,7 +51,8 @@ import { TableRowSize } from "../table.types";
 						[skeleton]="skeleton">
 					</tr>
 					<ng-template #expandAsTableTemplate>
-						<tr *ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
+						<tr
+							*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
 							ibmTableRow
 							[model]="model"
 							[showSelectionColumnCheckbox]="false"
