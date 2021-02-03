@@ -80,12 +80,28 @@ export class ExpansionTableStory implements OnInit {
 				}),
 				new TableItem({ data: "swer" })
 			],
+			[
+				new TableItem({
+					data: "Name 3.1",
+					expandedData: [
+						[
+							new TableItem({ data: "More names", expandedData: "No template" }),
+							new TableItem({ data: { name: "Morey", link: "#" }, template: this.customTableItemTemplate })
+						],
+						[
+							new TableItem({ data: "Core names", expandedData: "No template" }),
+							new TableItem({ data: { name: "Corey", link: "#" }, template: this.customTableItemTemplate })
+						]
+					],
+					expandAsTable: true
+				}),
+				new TableItem({ data: "swer" })
+			],
 			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
-
 		];
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),

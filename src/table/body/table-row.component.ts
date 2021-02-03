@@ -28,18 +28,24 @@ import { TableRowSize } from "../table.types";
 				[headers]="model.getHeaderId('expand')"
 				(expandRow)="expandRow.emit()">
 			</td>
-			<td
-				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
-				ibmTableCheckbox
-				class="bx--table-column-checkbox"
-				[size]="size"
-				[selected]="selected"
-				[label]="getCheckboxLabel()"
-				[row]="row"
-				[skeleton]="skeleton"
-				[headers]="model.getHeaderId('select')"
-				(change)="onSelectionChange()">
-			</td>
+			<ng-container *ngIf="!skeleton && showSelectionColumn && !enableSingleSelect">
+				<td
+					*ngIf="!showSelectionColumnCheckbox; else tableCheckboxTemplate">
+				</td>
+				<ng-template #tableCheckboxTemplate>
+					<td
+						ibmTableCheckbox
+						class="bx--table-column-checkbox"
+						[size]="size"
+						[selected]="selected"
+						[label]="getCheckboxLabel()"
+						[row]="row"
+						[skeleton]="skeleton"
+						[headers]="model.getHeaderId('select')"
+						(change)="onSelectionChange()">
+					</td>
+				</ng-template>
+			</ng-container>
 			<td
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				ibmTableRadio
@@ -128,6 +134,12 @@ export class TableRowComponent {
 	 * Controls whether to show the selection checkboxes column or not.
 	 */
 	@Input() showSelectionColumn = true;
+
+	/**
+	 * Shows or hide the checkbox in the selection column when `showSelectionColumn`
+	 * is set to true
+	 */
+	@Input() showSelectionColumnCheckbox = true;
 
 	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.
