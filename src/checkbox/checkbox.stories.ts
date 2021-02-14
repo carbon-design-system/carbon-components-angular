@@ -44,6 +44,55 @@ storiesOf("Components|Checkbox", module).addDecorator(
 			hideLabel: boolean("Hide labels", false)
 		}
 	}))
+	.add("Programmatically", () => ({
+		template: `
+			<ibm-checkbox
+				[indeterminate]="indeterminate"
+				[checked]="checked"
+				(checkedChange)="onChange($event)"
+				(indterminateChange)="onIndeterminateChange($event)">
+				Programmatic checkbox
+			</ibm-checkbox>
+
+			<button (click)="toggle()">Toggle</button>
+			<button (click)="setIndeterminate()">Set indeterminate</button>
+		`,
+		props: {
+			indeterminate: false,
+			checked: false,
+			toggle: function() {
+				this.checked = !this.checked;
+			},
+			setIndeterminate: function() {
+				this.indeterminate = !this.indeterminate;
+			},
+			onChange: function(checkboxChange: boolean) {
+				this.checked = checkboxChange;
+			},
+			onIndeterminateChange: function(indterminateChange: boolean) {
+				this.indeterminate = indterminateChange;
+			}
+		}
+	}))
+	.add("With ngModel", () => ({
+		template: `
+			<ibm-checkbox
+				[(ngModel)]="model">
+				ngModel checkbox
+			</ibm-checkbox>
+
+			<div style="display:flex; flex-direction: column; width: 150px">
+				<button (click)="toggleModel()">Set model</button>
+				Checked: {{ model }}
+			</div>
+		`,
+		props: {
+			model: true,
+			toggleModel: function() {
+				this.model = !this.model;
+			}
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
 }))

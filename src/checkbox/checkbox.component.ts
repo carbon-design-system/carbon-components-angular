@@ -59,7 +59,6 @@ export class CheckboxChange {
 				[required]="required"
 				[checked]="checked"
 				[disabled]="disabled"
-				[indeterminate]="indeterminate"
 				[attr.aria-labelledby]="ariaLabelledby"
 				[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 				(change)="onChange($event)"
@@ -178,20 +177,15 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `indeterminateChange` Output.
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
-		if (indeterminate === this._indeterminate) {
-			return;
-		}
-		// Set indeterminate and reset checked if indeterminate is true - only one of them can be true
 		this._indeterminate = indeterminate;
-		if (indeterminate && this._checked) {
-			this._checked = false;
-		}
 
 		if (this._indeterminate) {
 			this.transitionCheckboxState(CheckboxState.Indeterminate);
 		} else {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
+
+		this.inputCheckbox.nativeElement.indeterminate = indeterminate;
 		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
