@@ -126,7 +126,8 @@ export class TableItem {
 			return this.data.toString();
 		}
 
-		return JSON.stringify(this.data);
+		// data can’t be reasonably converted to an end user readable string
+		return "";
 	}
 
 	set title(title) {
