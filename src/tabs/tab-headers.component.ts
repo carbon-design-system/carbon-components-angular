@@ -365,13 +365,12 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnIni
 		const rightEdgeReached =
 			direction === 1 &&
 			scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-		if (leftEdgeReached || rightEdgeReached) {
-			if (leftEdgeReached) {
-				this.rightOverflowNavButton.nativeElement.focus();
-			}
-			if (rightEdgeReached) {
-				this.leftOverflowNavButton.nativeElement.focus();
-			}
+
+		if (leftEdgeReached) {
+			this.rightOverflowNavButton.nativeElement.focus();
+		}
+		if (rightEdgeReached) {
+			this.leftOverflowNavButton.nativeElement.focus();
 		}
 	}
 
