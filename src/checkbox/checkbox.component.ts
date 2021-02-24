@@ -177,6 +177,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `indeterminateChange` Output.
 	 */
 	@Input() set indeterminate(indeterminate: boolean) {
+		if (indeterminate === this._indeterminate) {
+			return;
+		}
+
 		this._indeterminate = indeterminate;
 
 		if (this._indeterminate) {
@@ -203,8 +207,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `checkedChange` Output.
 	 */
 	@Input() set checked (checked: boolean) {
-		// Set checked and reset indeterminate if checked is true - only one of them can be true
-		this.setChecked(checked, checked);
+		this.setChecked(checked, false);
 	}
 
 	/**
@@ -372,7 +375,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	ngAfterViewInit() {
 		if (this.indeterminate) {
 			this.inputCheckbox.nativeElement.indeterminate = true;
-			this.checked = false;
 		}
 	}
 

@@ -44,13 +44,42 @@ storiesOf("Components|Checkbox", module).addDecorator(
 			hideLabel: boolean("Hide labels", false)
 		}
 	}))
+	.add("Enforcing indeterminate to toggle to unchecked state", () => ({
+		template: `
+			<ibm-checkbox
+				[indeterminate]="indeterminate"
+				[checked]="checked"
+				(indeterminateChange)="onIndeterminateChange($event)"
+				(checkedChange)="onCheckedChange($event)">
+				Indeterminate
+			</ibm-checkbox>
+
+			<button (click)="setIndeterminate()">Set indeterminate</button>
+		`,
+		props: {
+			indeterminate: true,
+			checked: true,
+			setIndeterminate: function() {
+				this.indeterminate = true;
+				// sets `checked` to true so that when the checkbox is toggled,
+				// it goes to an unchecked state.
+				this.checked = true;
+			},
+			onIndeterminateChange: function(indeterminateState: boolean) {
+				this.indeterminate = indeterminateState;
+			},
+			onCheckedChange: function(checked: boolean) {
+				this.checked = checked;
+			}
+		}
+	}))
 	.add("Programmatically", () => ({
 		template: `
 			<ibm-checkbox
 				[indeterminate]="indeterminate"
 				[checked]="checked"
-				(checkedChange)="onChange($event)"
-				(indterminateChange)="onIndeterminateChange($event)">
+				(indeterminateChange)="onIndeterminateChange($event)"
+				(checkedChange)="onCheckedChange($event)">
 				Programmatic checkbox
 			</ibm-checkbox>
 
@@ -62,15 +91,16 @@ storiesOf("Components|Checkbox", module).addDecorator(
 			checked: false,
 			toggle: function() {
 				this.checked = !this.checked;
+				this.indeterminate = false;
 			},
 			setIndeterminate: function() {
-				this.indeterminate = !this.indeterminate;
+				this.indeterminate = true;
 			},
-			onChange: function(checkboxChange: boolean) {
-				this.checked = checkboxChange;
+			onIndeterminateChange: function(indeterminateState: boolean) {
+				this.indeterminate = indeterminateState;
 			},
-			onIndeterminateChange: function(indterminateChange: boolean) {
-				this.indeterminate = indterminateChange;
+			onCheckedChange: function(checked: boolean) {
+				this.checked = checked;
 			}
 		}
 	}))
