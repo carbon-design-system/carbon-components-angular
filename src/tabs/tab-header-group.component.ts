@@ -4,7 +4,6 @@ import {
 	Input,
 	HostListener,
 	ContentChildren,
-	OnDestroy,
 	AfterContentInit,
 	ElementRef,
 	TemplateRef,
