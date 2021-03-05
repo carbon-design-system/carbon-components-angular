@@ -12,11 +12,9 @@ import {
 	OnChanges,
 	SimpleChanges,
 	OnInit,
-	OnDestroy,
 	ChangeDetectorRef
 } from "@angular/core";
-import { fromEvent } from "rxjs";
-import { debounceTime } from "rxjs/operators";
+import { EventService } from "carbon-components-angular/utils";
 
 import { Tab } from "./tab.component";
 
@@ -131,7 +129,7 @@ import { Tab } from "./tab.component";
 	`
 })
 
-export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * List of `Tab` components.
 	 */
@@ -215,9 +213,12 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnIni
 	OVERFLOW_BUTTON_OFFSET = 40;
 
 	private overflowNavInterval;
-	private windowResizeSubscription;
 
-	constructor(protected elementRef: ElementRef, protected changeDetectorRef: ChangeDetectorRef) { }
+	constructor(
+		protected elementRef: ElementRef,
+		protected changeDetectorRef: ChangeDetectorRef,
+		protected eventService: EventService
+	) { }
 
 	// keyboard accessibility
 	/**
@@ -284,9 +285,7 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnIni
 	}
 
 	ngOnInit() {
-		this.windowResizeSubscription = fromEvent(window, "resize", { passive: true })
-			.pipe(debounceTime(200))
-			.subscribe(() => this.handleScroll());
+		this.eventService.on(window as any, "resize", () => this.handleScroll());
 	}
 
 	ngAfterContentInit() {
@@ -306,12 +305,6 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnIni
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.tabs && changes.cacheActive) {
 			this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
-		}
-	}
-
-	ngOnDestroy() {
-		if (this.windowResizeSubscription) {
-			this.windowResizeSubscription.unsubscribe();
 		}
 	}
 

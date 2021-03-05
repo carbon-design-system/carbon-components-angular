@@ -15,9 +15,10 @@ import {
 	OnInit
 } from "@angular/core";
 
+import { Subscription } from "rxjs";
+import { EventService } from "carbon-components-angular/utils";
+
 import { TabHeader } from "./tab-header.component";
-import { fromEvent, Subscription } from "rxjs";
-import { debounceTime } from "rxjs/operators";
 
 @Component({
 	selector: "ibm-tab-header-group",
@@ -93,7 +94,7 @@ import { debounceTime } from "rxjs/operators";
 	</nav>
 	`
 })
-export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges, OnInit {
+export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
@@ -166,9 +167,12 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges, O
 	private _cacheActive = false;
 
 	private overflowNavInterval;
-	private windowResizeSubscription;
 
-	constructor(protected elementRef: ElementRef, protected changeDetectorRef: ChangeDetectorRef) { }
+	constructor(
+		protected elementRef: ElementRef,
+		protected changeDetectorRef: ChangeDetectorRef,
+		protected eventService: EventService
+	) { }
 
 	// keyboard accessibility
 	/**
@@ -245,9 +249,7 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges, O
 	}
 
 	ngOnInit() {
-		this.windowResizeSubscription = fromEvent(window, "resize", { passive: true })
-			.pipe(debounceTime(200))
-			.subscribe(() => this.handleScroll());
+		this.eventService.on(window as any, "resize", () => this.handleScroll());
 	}
 
 	ngAfterContentInit() {
@@ -355,10 +357,5 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy, OnChanges, O
 
 	public handleOverflowNavMouseUp() {
 		clearInterval(this.overflowNavInterval);
-	}
-
-	ngOnDestroy() {
-		this.selectedSubscriptionTracker.unsubscribe();
-		this.windowResizeSubscription.unsubscribe();
 	}
 }
