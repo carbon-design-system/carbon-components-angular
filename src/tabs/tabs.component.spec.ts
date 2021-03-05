@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
 
+import { UtilsModule } from "carbon-components-angular/utils";
 import { Tabs } from "./tabs.component";
 import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
@@ -41,7 +42,8 @@ describe("Sample", () => {
 				TabsTest
 			],
 			imports: [
-				CommonModule
+				CommonModule,
+				UtilsModule
 			]
 		});
 	});
