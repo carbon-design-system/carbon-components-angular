@@ -15,23 +15,23 @@ import { EventEmitter } from "@angular/core";
 	template: `
 		<li
 			[ngClass]="{
-				'bx--tabs__nav-item--selected': active,
-				'bx--tabs__nav-item--disabled': disabled
+				'bx--tabs__nav-item--selected bx--tabs--scrollable__nav-item--selected': active,
+				'bx--tabs__nav-item--disabled bx--tabs--scrollable__nav-item--disabled': disabled
 			}"
-			class="bx--tabs__nav-item"
+			class="bx--tabs--scrollable__nav-item"
 			role="presentation"
 			(click)="selectTab()">
-			<a
+			<button
 				#tabItem
 				[attr.aria-selected]="active"
 				draggable="false"
-				class="bx--tabs__nav-link"
+				class="bx--tabs--scrollable__nav-link"
 				href="javascript:void(0)"
 				[title]="title"
 				[attr.tabindex]="(active? 0 : -1)"
 				role="tab">
 				<ng-content></ng-content>
-			</a>
+			</button>
 		</li>
 	`
 })

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { UtilsModule } from "carbon-components-angular/utils";
 
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
@@ -23,7 +24,8 @@ import { TabHeaderGroup } from "./tab-header-group.component";
 		TabHeaderGroup
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		UtilsModule
 	]
 })
 export class TabsModule {}
