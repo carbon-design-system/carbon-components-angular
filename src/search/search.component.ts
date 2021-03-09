@@ -108,6 +108,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() searchTitle = "";
 	/**
+	 * Sets the aria label on the `div` element with the `search` role.
+	 */
+	@Input() ariaLabel: string;
+	/**
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<string>();

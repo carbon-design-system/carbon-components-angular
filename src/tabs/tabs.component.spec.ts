@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
 
+import { UtilsModule } from "carbon-components-angular/utils";
 import { Tabs } from "./tabs.component";
 import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
@@ -41,7 +42,8 @@ describe("Sample", () => {
 				TabsTest
 			],
 			imports: [
-				CommonModule
+				CommonModule,
+				UtilsModule
 			]
 		});
 	});
@@ -64,13 +66,13 @@ describe("Sample", () => {
 
 	it("should emit the selected event on click and change selected tab on keydown", () => {
 		spyOn(wrapper, "onSelected");
-		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
 		navItem.click();
 		expect(wrapper.onSelected).toHaveBeenCalled();
 	});
 
 	it("should increment currentSelectedTab on right arrow and decrement on left arrow", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 
 		navItem.click();
@@ -87,7 +89,7 @@ describe("Sample", () => {
 	});
 
 	it("should set currentSelectedTab to the first tab on arrowRight when done on the last tab", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 
 		navItem.click();
@@ -101,7 +103,7 @@ describe("Sample", () => {
 	});
 
 	it("should set currentSelectedTab to the last tab on left arrow when done on the first tab", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 		navItem.click();
 		tabHeaders.nativeElement.dispatchEvent(arrowLeft);
@@ -124,14 +126,5 @@ describe("Sample", () => {
 		element.componentInstance.tabs.forEach(tab => {
 			expect(tab.tabIndex).toBe(0);
 		});
-	});
-
-	it("should set tabListVisible to true when tabs trigger is clicked", () => {
-		let tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
-		fixture.detectChanges();
-		let tabsTrigger = tabHeaders.nativeElement.querySelector(".bx--tabs-trigger");
-		tabsTrigger.click();
-		fixture.detectChanges();
-		expect(tabHeaders.componentInstance.tabListVisible).toBe(true);
 	});
 });
