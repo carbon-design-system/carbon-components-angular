@@ -59,7 +59,6 @@ export class CheckboxChange {
 				[required]="required"
 				[checked]="checked"
 				[disabled]="disabled"
-				[indeterminate]="indeterminate"
 				[attr.aria-labelledby]="ariaLabelledby"
 				[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 				(change)="onChange($event)"
@@ -181,17 +180,16 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		if (indeterminate === this._indeterminate) {
 			return;
 		}
-		// Set indeterminate and reset checked if indeterminate is true - only one of them can be true
+
 		this._indeterminate = indeterminate;
-		if (indeterminate && this._checked) {
-			this._checked = false;
-		}
 
 		if (this._indeterminate) {
 			this.transitionCheckboxState(CheckboxState.Indeterminate);
 		} else {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
+
+		this.inputCheckbox.nativeElement.indeterminate = indeterminate;
 		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
@@ -209,8 +207,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Allows double binding with the `checkedChange` Output.
 	 */
 	@Input() set checked (checked: boolean) {
-		// Set checked and reset indeterminate if checked is true - only one of them can be true
-		this.setChecked(checked, checked);
+		this.setChecked(checked, false);
 	}
 
 	/**
@@ -378,7 +375,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	ngAfterViewInit() {
 		if (this.indeterminate) {
 			this.inputCheckbox.nativeElement.indeterminate = true;
-			this.checked = false;
 		}
 	}
 
