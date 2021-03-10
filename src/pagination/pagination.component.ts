@@ -153,29 +153,37 @@ export interface PaginationTranslations {
 				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{pageText.subject | async}} {{currentPage}}
 			</span>
-			<button
-				class="bx--pagination__button bx--pagination__button--backward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage <= 1 || disabled
-				}"
-				tabindex="0"
-				[attr.aria-label]="backwardText.subject | async"
-				(click)="selectPage.emit(previousPage)"
-				[disabled]="(currentPage <= 1 || disabled ? true : null)">
-				<svg ibmIcon="caret--left" size="16"></svg>
-			</button>
+			<div class="bx--pagination__control-buttons">
+				<button
+					ibmButton="ghost"
+					iconOnly="true"
+					class="bx--pagination__button bx--pagination__button--backward"
+					[ngClass]="{
+						'bx--pagination__button--no-index': currentPage <= 1 || disabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="backwardText.subject | async"
+					(click)="selectPage.emit(previousPage)"
+					[disabled]="(currentPage <= 1 || disabled ? true : null)">
+					<svg ibmIcon="caret--left" size="16"></svg>
+				</button>
 
-			<button
-				class="bx--pagination__button bx--pagination__button--forward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage >= lastPage || disabled
-				}"
-				tabindex="0"
-				[attr.aria-label]="forwardText.subject | async"
-				(click)="selectPage.emit(nextPage)"
-				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-				<svg ibmIcon="caret--right" size="16"></svg>
-			</button>
+				<button
+					ibmButton="ghost"
+					iconOnly="true"
+					class="
+						bx--pagination__button
+						bx--pagination__button--forward"
+					[ngClass]="{
+						'bx--pagination__button--no-index': currentPage >= lastPage || disabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="forwardText.subject | async"
+					(click)="selectPage.emit(nextPage)"
+					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
+					<svg ibmIcon="caret--right" size="16"></svg>
+				</button>
+			</div>
 		</div>
 	</div>
 	`
