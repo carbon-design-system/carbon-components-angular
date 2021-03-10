@@ -156,7 +156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L30">src/dropdown/dropdown.service.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L30">src/dropdown/dropdown.service.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -181,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">_offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;defaultOffset</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L30">src/dropdown/dropdown.service.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L30">src/dropdown/dropdown.service.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -202,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_utils.animationframeservice.html" class="tsd-signature-type">AnimationFrameService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L34">src/dropdown/dropdown.service.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L34">src/dropdown/dropdown.service.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,9 +212,15 @@
 					<div class="tsd-signature tsd-kind-icon">animation<wbr>Frame<wbr>Subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol"> =&nbsp;new Subscription()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L28">src/dropdown/dropdown.service.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L28">src/dropdown/dropdown.service.ts:28</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maintains an Event Observable Subscription for the global requestAnimationFrame.
+							requestAnimationFrame is tracked only if the <code>Dropdown</code> is appended to the body otherwise we don&#39;t need it</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="menuinstance" class="tsd-anchor"></a>
@@ -222,9 +228,14 @@
 					<div class="tsd-signature tsd-kind-icon">menu<wbr>Instance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L22">src/dropdown/dropdown.service.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L22">src/dropdown/dropdown.service.ts:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>reference to the body appended menu</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="placeholderservice" class="tsd-anchor"></a>
@@ -232,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">placeholder<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_placeholder.placeholderservice.html" class="tsd-signature-type">PlaceholderService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L33">src/dropdown/dropdown.service.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L33">src/dropdown/dropdown.service.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -242,13 +253,50 @@
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="offset" class="tsd-anchor"></a>
 					<h3>offset</h3>
-					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L12">src/dropdown/dropdown.service.ts:12</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L16">src/dropdown/dropdown.service.ts:16</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> offset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> offset<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L16">src/dropdown/dropdown.service.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> left<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> top<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L12">src/dropdown/dropdown.service.ts:12</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> left<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> top<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -263,19 +311,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L44">src/dropdown/dropdown.service.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L44">src/dropdown/dropdown.service.ts:44</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Appends the menu to the body, or a <code>ibm-placeholder</code> (if defined)</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>parentRef: <span class="tsd-signature-type">HTMLElement</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>container to position relative to</p>
+									</div>
 								</li>
 								<li>
 									<h5>menuRef: <span class="tsd-signature-type">HTMLElement</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>menu to be appended to body</p>
+									</div>
 								</li>
 								<li>
 									<h5>classList: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>any extra classes we should wrap the container with</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElement</span></h4>
@@ -292,13 +354,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L77">src/dropdown/dropdown.service.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L77">src/dropdown/dropdown.service.ts:77</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reattach the dropdown menu to the parent container</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hostRef: <span class="tsd-signature-type">HTMLElement</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>container to append to</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElement</span></h4>
@@ -315,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L102">src/dropdown/dropdown.service.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L102">src/dropdown/dropdown.service.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -332,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L106">src/dropdown/dropdown.service.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L106">src/dropdown/dropdown.service.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -358,9 +428,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/dropdown.service.ts#L98">src/dropdown/dropdown.service.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/dropdown.service.ts#L98">src/dropdown/dropdown.service.ts:98</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>position an open dropdown relative to the given parentRef</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

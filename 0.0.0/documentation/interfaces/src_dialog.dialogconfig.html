@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Data structure for definig properties of a <code>Dialog</code> component.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -78,6 +85,11 @@
 			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module">
 				<h3 class="tsd-before-signature">Indexable</h3>
 				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>propName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Additional arbitrary properties (mostly for internal/extended component use)</p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -141,9 +153,14 @@
 					<div class="tsd-signature tsd-kind-icon">append<wbr>Inline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L81">src/dialog/dialog-config.interface.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L81">src/dialog/dialog-config.interface.ts:81</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to open the dialog next to the triggering component</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="closetrigger" class="tsd-anchor"></a>
@@ -151,9 +168,14 @@
 					<div class="tsd-signature tsd-kind-icon">close<wbr>Trigger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mouseout"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mouseleave"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L54">src/dialog/dialog-config.interface.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L54">src/dialog/dialog-config.interface.ts:54</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Parameter for triggering the <code>Dialog</code> close event.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="closewhenhidden" class="tsd-anchor"></a>
@@ -161,9 +183,16 @@
 					<div class="tsd-signature tsd-kind-icon">close<wbr>When<wbr>Hidden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L64">src/dialog/dialog-config.interface.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L64">src/dialog/dialog-config.interface.ts:64</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true the dialog will close when hidden (by scrolling or otherwise going out of the viewport)
+								If false the dialog will stay open until explicitly closed
+							When true this closure method can be picked up via <code>CloseReasons.hidden</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="content" class="tsd-anchor"></a>
@@ -171,9 +200,14 @@
 					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L46">src/dialog/dialog-config.interface.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L46">src/dialog/dialog-config.interface.ts:46</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Body content for the <code>Dialog</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="data" class="tsd-anchor"></a>
@@ -181,9 +215,14 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L85">src/dialog/dialog-config.interface.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L85">src/dialog/dialog-config.interface.ts:85</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Config object passed to the rendered component. (Optional)</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="disabled" class="tsd-anchor"></a>
@@ -191,9 +230,14 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L101">src/dialog/dialog-config.interface.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L101">src/dialog/dialog-config.interface.ts:101</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This prevents the dialog from being toggled</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="gap" class="tsd-anchor"></a>
@@ -201,9 +245,15 @@
 					<div class="tsd-signature tsd-kind-icon">gap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L73">src/dialog/dialog-config.interface.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L73">src/dialog/dialog-config.interface.ts:73</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Used to set the offset of the <code>Dialog</code> relative to the content it
+							is associated to.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="offset" class="tsd-anchor"></a>
@@ -211,9 +261,14 @@
 					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L97">src/dialog/dialog-config.interface.ts:97</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L97">src/dialog/dialog-config.interface.ts:97</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This specifies any vertical and horizontal offset for the position of the dialog</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -232,9 +287,14 @@
 					<div class="tsd-signature tsd-kind-icon">parent<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L77">src/dialog/dialog-config.interface.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L77">src/dialog/dialog-config.interface.ts:77</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Reference to the Parent element that links the <code>Dialog</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="placement" class="tsd-anchor"></a>
@@ -242,9 +302,14 @@
 					<div class="tsd-signature tsd-kind-icon">placement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L68">src/dialog/dialog-config.interface.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L68">src/dialog/dialog-config.interface.ts:68</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Parameter defining the placement in which the <code>Dialog</code> appears.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="shouldclose" class="tsd-anchor"></a>
@@ -252,15 +317,20 @@
 					<div class="tsd-signature tsd-kind-icon">should<wbr>Close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L58">src/dialog/dialog-config.interface.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L58">src/dialog/dialog-config.interface.ts:58</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Callback to control the closing behaviour. return <code>true</code> to close, and <code>false</code> to prevent closing</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>meta<span class="tsd-signature-symbol">: </span><a href="src_dialog.closemeta.html" class="tsd-signature-type">CloseMeta</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>meta<span class="tsd-signature-symbol">?: </span><a href="src_dialog.closemeta.html" class="tsd-signature-type">CloseMeta</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -283,9 +353,14 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L42">src/dialog/dialog-config.interface.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L42">src/dialog/dialog-config.interface.ts:42</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Title for the <code>Dialog</code> header.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="trigger" class="tsd-anchor"></a>
@@ -293,9 +368,14 @@
 					<div class="tsd-signature tsd-kind-icon">trigger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"click"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hover"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mouseenter"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L50">src/dialog/dialog-config.interface.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L50">src/dialog/dialog-config.interface.ts:50</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Parameter for triggering <code>Dialog</code> display.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="wrapperclass" class="tsd-anchor"></a>
@@ -303,9 +383,14 @@
 					<div class="tsd-signature tsd-kind-icon">wrapper<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dialog/dialog-config.interface.ts#L93">src/dialog/dialog-config.interface.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dialog/dialog-config.interface.ts#L93">src/dialog/dialog-config.interface.ts:93</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Classes to add to the dialog container</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>

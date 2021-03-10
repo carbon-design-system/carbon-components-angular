@@ -67,6 +67,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Use pagination when you have multiple pages of data to handle.</p>
+					</div>
+					<p><a href="../../?path=/story/pagination-nav--basic">See demo</a></p>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-pagination-nav</span> [<span class="hljs-attr">model</span>]=<span class="hljs-string">"model"</span> (<span class="hljs-attr">selectPage</span>)=<span class="hljs-string">"selectPage($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-pagination-nav</span>&gt;</span></code></pre>
+					<p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
+					you load the page.</p>
+					<pre><code class="language-typescript">selectPage(page) {
+    <span class="hljs-comment">// ... your code to load the page goes here</span>
+
+    <span class="hljs-keyword">this</span>.model.currentPage = page;
+
+    <span class="hljs-comment">// ... anything you want to do after page selection changes goes here</span>
+}</code></pre>
+					<p><example-url>../../iframe.html?id=pagination-nav--basic</example-url></p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -211,7 +230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L195">src/pagination/pagination-nav/pagination-nav.component.ts:195</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L195">src/pagination/pagination-nav/pagination-nav.component.ts:195</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -242,9 +261,14 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L123">src/pagination/pagination-nav/pagination-nav.component.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L123">src/pagination/pagination-nav/pagination-nav.component.ts:123</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to disable the backward/forward buttons.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="experimental" class="tsd-anchor"></a>
@@ -252,7 +276,7 @@
 					<div class="tsd-signature tsd-kind-icon">experimental<span class="tsd-signature-symbol">:</span> <a href="src_experimental.experimentalservice.html" class="tsd-signature-type">ExperimentalService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L197">src/pagination/pagination-nav/pagination-nav.component.ts:197</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L197">src/pagination/pagination-nav/pagination-nav.component.ts:197</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -262,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">i18n<span class="tsd-signature-symbol">:</span> <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L197">src/pagination/pagination-nav/pagination-nav.component.ts:197</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L197">src/pagination/pagination-nav/pagination-nav.component.ts:197</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,9 +302,14 @@
 					<div class="tsd-signature tsd-kind-icon">model<span class="tsd-signature-symbol">:</span> <a href="src_pagination.paginationmodel.html" class="tsd-signature-type">PaginationModel</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L119">src/pagination/pagination-nav/pagination-nav.component.ts:119</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L119">src/pagination/pagination-nav/pagination-nav.component.ts:119</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><code>PaginationNavModel</code> with the information about pages you&#39;re controlling.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="nextitemtext" class="tsd-anchor"></a>
@@ -288,7 +317,7 @@
 					<div class="tsd-signature tsd-kind-icon">next<wbr>Item<wbr>Text<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;PAGINATION.NEXT&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L194">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L194">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -304,9 +333,14 @@
 					<div class="tsd-signature tsd-kind-icon">num<wbr>OfItems<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L127">src/pagination/pagination-nav/pagination-nav.component.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L127">src/pagination/pagination-nav/pagination-nav.component.ts:127</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of items to show in pagination. Minimum is 4.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="previousitemtext" class="tsd-anchor"></a>
@@ -314,7 +348,7 @@
 					<div class="tsd-signature tsd-kind-icon">previous<wbr>Item<wbr>Text<span class="tsd-signature-symbol">:</span> <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a><span class="tsd-signature-symbol"> =&nbsp;this.i18n.getOverridable(&quot;PAGINATION.PREVIOUS&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L195">src/pagination/pagination-nav/pagination-nav.component.ts:195</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L195">src/pagination/pagination-nav/pagination-nav.component.ts:195</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -330,9 +364,16 @@
 					<div class="tsd-signature tsd-kind-icon">select<wbr>Page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L151">src/pagination/pagination-nav/pagination-nav.component.ts:151</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L151">src/pagination/pagination-nav/pagination-nav.component.ts:151</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Emits the new page number.</p>
+						</div>
+						<p>You should tie into this and update <code>model.currentPage</code> once the fresh
+						data is finally loaded.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="paginationcounter" class="tsd-anchor"></a>
@@ -340,7 +381,7 @@
 					<div class="tsd-signature tsd-kind-icon">pagination<wbr>Counter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L115">src/pagination/pagination-nav/pagination-nav.component.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L115">src/pagination/pagination-nav/pagination-nav.component.ts:115</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -350,83 +391,156 @@
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="backcuts" class="tsd-anchor"></a>
 					<h3>back<wbr>Cuts</h3>
-					<div class="tsd-signature tsd-kind-icon">back<wbr>Cuts<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L181">src/pagination/pagination-nav/pagination-nav.component.ts:181</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> backCuts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L181">src/pagination/pagination-nav/pagination-nav.component.ts:181</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="currentpage" class="tsd-anchor"></a>
 					<h3>current<wbr>Page</h3>
-					<div class="tsd-signature tsd-kind-icon">current<wbr>Page<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L157">src/pagination/pagination-nav/pagination-nav.component.ts:157</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L161">src/pagination/pagination-nav/pagination-nav.component.ts:161</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentPage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> currentPage<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L157">src/pagination/pagination-nav/pagination-nav.component.ts:157</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L161">src/pagination/pagination-nav/pagination-nav.component.ts:161</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="frontcuts" class="tsd-anchor"></a>
 					<h3>front<wbr>Cuts</h3>
-					<div class="tsd-signature tsd-kind-icon">front<wbr>Cuts<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L176">src/pagination/pagination-nav/pagination-nav.component.ts:176</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> frontCuts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L176">src/pagination/pagination-nav/pagination-nav.component.ts:176</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="leftarrowdisabled" class="tsd-anchor"></a>
 					<h3>left<wbr>Arrow<wbr>Disabled</h3>
-					<div class="tsd-signature tsd-kind-icon">left<wbr>Arrow<wbr>Disabled<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L186">src/pagination/pagination-nav/pagination-nav.component.ts:186</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> leftArrowDisabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L186">src/pagination/pagination-nav/pagination-nav.component.ts:186</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="rightarrowdisabled" class="tsd-anchor"></a>
 					<h3>right<wbr>Arrow<wbr>Disabled</h3>
-					<div class="tsd-signature tsd-kind-icon">right<wbr>Arrow<wbr>Disabled<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L190">src/pagination/pagination-nav/pagination-nav.component.ts:190</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rightArrowDisabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L190">src/pagination/pagination-nav/pagination-nav.component.ts:190</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="startoffset" class="tsd-anchor"></a>
 					<h3>start<wbr>Offset</h3>
-					<div class="tsd-signature tsd-kind-icon">start<wbr>Offset<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L172">src/pagination/pagination-nav/pagination-nav.component.ts:172</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> startOffset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">1</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L172">src/pagination/pagination-nav/pagination-nav.component.ts:172</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">0</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">1</span>
+							</h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="totaldatalength" class="tsd-anchor"></a>
 					<h3>total<wbr>Data<wbr>Length</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Data<wbr>Length<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L168">src/pagination/pagination-nav/pagination-nav.component.ts:168</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> totalDataLength<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L168">src/pagination/pagination-nav/pagination-nav.component.ts:168</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="totalnumbersarray" class="tsd-anchor"></a>
 					<h3>total<wbr>Numbers<wbr>Array</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Numbers<wbr>Array<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L153">src/pagination/pagination-nav/pagination-nav.component.ts:153</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> totalNumbersArray<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L153">src/pagination/pagination-nav/pagination-nav.component.ts:153</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
 					<a name="translations" class="tsd-anchor"></a>
@@ -437,12 +551,34 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">translations<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L139">src/pagination/pagination-nav/pagination-nav.component.ts:139</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> translations<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../interfaces/src_pagination_pagination_nav.paginationnavtranslations.html" class="tsd-signature-type">PaginationNavTranslations</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L139">src/pagination/pagination-nav/pagination-nav.component.ts:139</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Expects an object that contains some or all of:</p>
+									<pre><code>{
+        <span class="hljs-attr">"NEXT"</span>: <span class="hljs-string">"Next"</span>,
+        <span class="hljs-attr">"PREVIOUS"</span>: <span class="hljs-string">"Previous"</span>,
+}</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="../interfaces/src_pagination_pagination_nav.paginationnavtranslations.html" class="tsd-signature-type">PaginationNavTranslations</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -457,7 +593,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L223">src/pagination/pagination-nav/pagination-nav.component.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L223">src/pagination/pagination-nav/pagination-nav.component.ts:223</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -488,7 +624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L215">src/pagination/pagination-nav/pagination-nav.component.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L215">src/pagination/pagination-nav/pagination-nav.component.ts:215</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -505,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L201">src/pagination/pagination-nav/pagination-nav.component.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L201">src/pagination/pagination-nav/pagination-nav.component.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -528,7 +664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L207">src/pagination/pagination-nav/pagination-nav.component.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L207">src/pagination/pagination-nav/pagination-nav.component.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -545,7 +681,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/pagination/pagination-nav/pagination-nav.component.ts#L211">src/pagination/pagination-nav/pagination-nav.component.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/pagination/pagination-nav/pagination-nav.component.ts#L211">src/pagination/pagination-nav/pagination-nav.component.ts:211</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

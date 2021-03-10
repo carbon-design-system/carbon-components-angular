@@ -67,6 +67,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents an &quot;overridable&quot; translation value.</p>
+					</div>
+					<p>Largely an internal usecase. There are situations where we want an <code>Observable</code> that
+						can emit events from a centralized source <strong>OR</strong> an <code>Observable</code> that will emit events
+						from a component local source. The key example being on/off text in a <code>Toggle</code> - In some cases
+						we want the <code>Toggle</code> to use <code>I18n</code>s global translations, but in others we&#39;d prefer to use a local
+						override. We don&#39;t ever need to return to a non-overridden state, but we do need the ability to
+					switch <em>to</em> an overridden sate.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -147,7 +160,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L99">src/i18n/i18n.service.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L99">src/i18n/i18n.service.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -172,9 +185,14 @@
 					<div class="tsd-signature tsd-kind-icon">$override<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L86">src/i18n/i18n.service.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L86">src/i18n/i18n.service.ts:86</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Subject of overridden values. Initialized with our default value.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="_value" class="tsd-anchor"></a>
@@ -182,9 +200,14 @@
 					<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L82">src/i18n/i18n.service.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L82">src/i18n/i18n.service.ts:82</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Overridden value. Accessed by the readonly getter <code>value</code> and set through <code>override</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="basetranslation" class="tsd-anchor"></a>
@@ -192,9 +215,14 @@
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Translation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.i18n.get(this.path)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L90">src/i18n/i18n.service.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L90">src/i18n/i18n.service.ts:90</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Our base non-overridden translation.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="i18n" class="tsd-anchor"></a>
@@ -202,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">i18n<span class="tsd-signature-symbol">:</span> <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L101">src/i18n/i18n.service.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L101">src/i18n/i18n.service.ts:101</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,9 +240,14 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Overridden<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L99">src/i18n/i18n.service.ts:99</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L99">src/i18n/i18n.service.ts:99</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A boolean to flip between overridden and non-overridden states.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="path" class="tsd-anchor"></a>
@@ -222,7 +255,7 @@
 					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L101">src/i18n/i18n.service.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L101">src/i18n/i18n.service.ts:101</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,9 +265,14 @@
 					<div class="tsd-signature tsd-kind-icon">subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L95">src/i18n/i18n.service.ts:95</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L95">src/i18n/i18n.service.ts:95</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Subscription to the observable provided as an override (if any)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -242,23 +280,77 @@
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="subject" class="tsd-anchor"></a>
 					<h3>subject</h3>
-					<div class="tsd-signature tsd-kind-icon">subject<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L71">src/i18n/i18n.service.ts:71</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> subject<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L71">src/i18n/i18n.service.ts:71</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The translation subject. Returns either a stream of overridden values, or our base translation values.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>readonly</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="value" class="tsd-anchor"></a>
 					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L58">src/i18n/i18n.service.ts:58</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L62">src/i18n/i18n.service.ts:62</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> value<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L58">src/i18n/i18n.service.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The raw value of the translation. Defaults to the string value, but will return the value passed to <code>override</code></p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>readonly</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span>
+							</h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L62">src/i18n/i18n.service.ts:62</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The raw value of the translation. Defaults to the string value, but will return the value passed to <code>override</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>v: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -273,9 +365,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L114">src/i18n/i18n.service.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L114">src/i18n/i18n.service.ts:114</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Takes a string or an <code>Observable</code> that emits strings.
+									Overrides the value provided by the <code>I18n</code> service.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

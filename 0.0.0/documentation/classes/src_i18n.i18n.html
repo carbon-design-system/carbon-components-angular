@@ -67,6 +67,16 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The I18n service is a minimal internal singleton service used to supply our components with translated strings.</p>
+					</div>
+					<p>All the components that support I18n also support directly passed strings.
+						Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
+					are a better choice)</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -139,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new BehaviorSubject(&quot;en&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L155">src/i18n/i18n.service.ts:155</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L155">src/i18n/i18n.service.ts:155</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">translation<wbr>Strings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;EN</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L151">src/i18n/i18n.service.ts:151</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L151">src/i18n/i18n.service.ts:151</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -613,7 +623,7 @@
 					<div class="tsd-signature tsd-kind-icon">translations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L153">src/i18n/i18n.service.ts:153</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L153">src/i18n/i18n.service.ts:153</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -624,19 +634,28 @@
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L208">src/i18n/i18n.service.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L208">src/i18n/i18n.service.ts:208</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When a path is specified returns an observable that will resolve to the translation string value.</p>
+								</div>
+								<p>Returns the full translations object if path is not specified.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional, looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -653,9 +672,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L176">src/i18n/i18n.service.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L176">src/i18n/i18n.service.ts:176</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the current locale</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -670,9 +694,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L183">src/i18n/i18n.service.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L183">src/i18n/i18n.service.ts:183</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an observable that resolves to the current locale, and will update when changed</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -687,13 +716,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L220">src/i18n/i18n.service.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L220">src/i18n/i18n.service.ts:220</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns all descendents of some path fragment as an object.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>partialPath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a path fragment, for example <code>&quot;NOTIFICATION&quot;</code></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -715,13 +752,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L237">src/i18n/i18n.service.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L237">src/i18n/i18n.service.ts:237</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an instance of <code>Overridable</code> that can be used to optionally override the value provided by <code>I18n</code></p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_i18n.overridable.html" class="tsd-signature-type">Overridable</a></h4>
@@ -738,13 +783,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L284">src/i18n/i18n.service.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L284">src/i18n/i18n.service.ts:284</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper method that returns an observable from the internal cache based on the path</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -761,13 +814,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L267">src/i18n/i18n.service.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L267">src/i18n/i18n.service.ts:267</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Trys to resolve a value from the provided path.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
@@ -787,16 +848,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L258">src/i18n/i18n.service.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L258">src/i18n/i18n.service.ts:258</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Takes the <code>Observable</code> returned from <code>i18n.get</code> and an object of variables to replace.</p>
+								</div>
+								<p>The keys specify the variable name in the string.</p>
+								<p>Example:</p>
+								<pre><code><span class="hljs-class"><span class="hljs-keyword">service</span>.<span class="hljs-title">set</span>(</span>{ <span class="hljs-string">"TEST"</span>: <span class="hljs-string">"{{foo}} {{bar}}"</span> });
+
+<span class="hljs-class"><span class="hljs-keyword">service</span>.<span class="hljs-title">replace</span>(service.get("TEST"), </span>{ foo: <span class="hljs-string">"test"</span>, bar: <span class="hljs-string">"asdf"</span> })</code></pre><p>Produces: <code>&quot;test asdf&quot;</code></p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>subject: <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the translation to replace variables on</p>
+									</div>
 								</li>
 								<li>
 									<h5>variables: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>object of variables to replace</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
 											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
@@ -818,13 +895,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L192">src/i18n/i18n.service.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L192">src/i18n/i18n.service.ts:192</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set/update the translations from an object. Also notifies all participating components of the update.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>strings: <a href="../modules/src_i18n.html#translationstrings" class="tsd-signature-type">TranslationStrings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an object of strings, should follow the same format as src/i18n/en.json</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -835,22 +920,36 @@
 					<a name="setlocale" class="tsd-anchor"></a>
 					<h3>set<wbr>Locale</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Locale<span class="tsd-signature-symbol">(</span>language<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, strings<span class="tsd-signature-symbol">: </span><a href="../modules/src_i18n.html#translationstrings" class="tsd-signature-type">TranslationStrings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Locale<span class="tsd-signature-symbol">(</span>language<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, strings<span class="tsd-signature-symbol">?: </span><a href="../modules/src_i18n.html#translationstrings" class="tsd-signature-type">TranslationStrings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/i18n/i18n.service.ts#L166">src/i18n/i18n.service.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/i18n/i18n.service.ts#L166">src/i18n/i18n.service.ts:166</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the locale and optionally the translation strings. Locale is used by components that
+										are already locale aware (datepicker for example) while the translation strings are used
+									for components that are not.</p>
+								</div>
+								<p>Locales set here will override locales/languages set in components</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>language: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an ISO 639-1 language code - <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes</a></p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> strings: <a href="../modules/src_i18n.html#translationstrings" class="tsd-signature-type">TranslationStrings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an object of strings, optional</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

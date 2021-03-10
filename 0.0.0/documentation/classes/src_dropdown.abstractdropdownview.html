@@ -67,6 +67,15 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A component that intends to be used within <code>Dropdown</code> must provide an implementation that extends this base class.
+							It also must provide the base class in the <code>@Component</code> meta-data.
+						ex: <code>providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() =&gt; MyDropdownView)}]</code></p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -196,9 +205,20 @@
 					<div class="tsd-signature tsd-kind-icon">blur<wbr>Intent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L38">src/dropdown/abstract-dropdown-view.class.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L38">src/dropdown/abstract-dropdown-view.class.ts:38</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Event to suggest a blur on the view.
+								Emits <em>after</em> the first/last item has been focused.
+								ex.
+								ArrowUp -&gt; focus first item
+							ArrowUp -&gt; emit event</p>
+						</div>
+						<p>It&#39;s recommended that the implementing view include a specific type union of possible blurs
+						ex. <code>@Output() blurIntent = new EventEmitter&lt;&quot;top&quot; | &quot;bottom&quot;&gt;();</code></p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="select" class="tsd-anchor"></a>
@@ -212,9 +232,14 @@
 					<div class="tsd-signature tsd-kind-icon">select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L27">src/dropdown/abstract-dropdown-view.class.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L27">src/dropdown/abstract-dropdown-view.class.ts:27</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Emits selection events to controlling classes</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="size" class="tsd-anchor"></a>
@@ -222,9 +247,19 @@
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"sm"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"md"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"xl"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;md&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L49">src/dropdown/abstract-dropdown-view.class.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L49">src/dropdown/abstract-dropdown-view.class.ts:49</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies the render size of the items within the <code>AbstractDropdownView</code>.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>since v4</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="type" class="tsd-anchor"></a>
@@ -232,9 +267,15 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"single"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"multi"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;single&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L43">src/dropdown/abstract-dropdown-view.class.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L43">src/dropdown/abstract-dropdown-view.class.ts:43</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies whether or not the <code>DropdownList</code> supports selecting multiple items as opposed to single
+							item selection.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -248,13 +289,47 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L21">src/dropdown/abstract-dropdown-view.class.ts:21</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L23">src/dropdown/abstract-dropdown-view.class.ts:23</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> items<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> items<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L23">src/dropdown/abstract-dropdown-view.class.ts:23</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The items to be displayed in the list within the <code>AbstractDropDownView</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span>
+							</h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L21">src/dropdown/abstract-dropdown-view.class.ts:21</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The items to be displayed in the list within the <code>AbstractDropDownView</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -269,13 +344,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L98">src/dropdown/abstract-dropdown-view.class.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L98">src/dropdown/abstract-dropdown-view.class.ts:98</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value to filter the list by</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -292,9 +372,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L85">src/dropdown/abstract-dropdown-view.class.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L85">src/dropdown/abstract-dropdown-view.class.ts:85</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>HTMLElement</code> for the item that is selected within the <code>DropdownList</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElement</span></h4>
 						</li>
 					</ul>
@@ -309,9 +394,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L81">src/dropdown/abstract-dropdown-view.class.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L81">src/dropdown/abstract-dropdown-view.class.ts:81</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>ListItem</code> that is selected within <code>DropdownList</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a></h4>
 						</li>
 					</ul>
@@ -326,9 +416,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L89">src/dropdown/abstract-dropdown-view.class.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L89">src/dropdown/abstract-dropdown-view.class.ts:89</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Guaranteed to return the current items as an Array.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -343,9 +438,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L61">src/dropdown/abstract-dropdown-view.class.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L61">src/dropdown/abstract-dropdown-view.class.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>HTMLElement</code> for the item that is subsequent to the selected item.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElement</span></h4>
 						</li>
 					</ul>
@@ -360,9 +460,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L53">src/dropdown/abstract-dropdown-view.class.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L53">src/dropdown/abstract-dropdown-view.class.ts:53</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>ListItem</code> that is subsequent to the selected item in the <code>DropdownList</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a></h4>
 						</li>
 					</ul>
@@ -377,9 +482,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L73">src/dropdown/abstract-dropdown-view.class.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L73">src/dropdown/abstract-dropdown-view.class.ts:73</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>HTMLElement</code> for the item that precedes the selected item.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLElement</span></h4>
 						</li>
 					</ul>
@@ -394,9 +504,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L65">src/dropdown/abstract-dropdown-view.class.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L65">src/dropdown/abstract-dropdown-view.class.ts:65</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the <code>ListItem</code> that precedes the selected item within <code>DropdownList</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a></h4>
 						</li>
 					</ul>
@@ -411,9 +526,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L77">src/dropdown/abstract-dropdown-view.class.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L77">src/dropdown/abstract-dropdown-view.class.ts:77</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the selected leaf level item(s) within the <code>DropdownList</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
@@ -428,9 +548,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L57">src/dropdown/abstract-dropdown-view.class.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L57">src/dropdown/abstract-dropdown-view.class.ts:57</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a boolean if the currently selected item is preceded by another</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -445,9 +570,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L69">src/dropdown/abstract-dropdown-view.class.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L69">src/dropdown/abstract-dropdown-view.class.ts:69</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a boolean if the currently selected item is followed by another</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -462,9 +592,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L103">src/dropdown/abstract-dropdown-view.class.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L103">src/dropdown/abstract-dropdown-view.class.ts:103</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initializes focus in the list
+									In most cases this just calls <code>getCurrentElement().focus()</code></p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -479,9 +615,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L107">src/dropdown/abstract-dropdown-view.class.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L107">src/dropdown/abstract-dropdown-view.class.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Subscribe the function passed to an internal observable that will resolve once the items are ready</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -514,9 +655,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L93">src/dropdown/abstract-dropdown-view.class.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L93">src/dropdown/abstract-dropdown-view.class.ts:93</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transforms array input list of items to the correct state by updating the selected item(s).</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -531,15 +677,20 @@
 					<a name="reorderselected" class="tsd-anchor"></a>
 					<h3>reorder<wbr>Selected</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">reorder<wbr>Selected<span class="tsd-signature-symbol">(</span>moveFocus<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">reorder<wbr>Selected<span class="tsd-signature-symbol">(</span>moveFocus<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/dropdown/abstract-dropdown-view.class.ts#L111">src/dropdown/abstract-dropdown-view.class.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/dropdown/abstract-dropdown-view.class.ts#L111">src/dropdown/abstract-dropdown-view.class.ts:111</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reorder selected items bringing them to the top of the list</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>

@@ -181,7 +181,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_tag.tag.html">Tag</a>.<a href="src_tag.tag.html#class">class</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag.component.ts#L31">src/tag/tag.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag.component.ts#L31">src/tag/tag.component.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,9 +197,18 @@
 					<div class="tsd-signature tsd-kind-icon">click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;{ action: &quot;click&quot; | &quot;close&quot; }&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L47">src/tag/tag-filter.component.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L47">src/tag/tag-filter.component.ts:47</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>We need to stop the immedate propagation of click on the close button
+							to prevent undesired effects when used within dialogs.</p>
+						</div>
+						<p>We need to emit a click event on close to allow for clicks to be listened
+							to on the immediate close button element. <code>action</code> distinguishes between clicks on
+						the tag vs. clicks on the close button.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="close" class="tsd-anchor"></a>
@@ -213,9 +222,14 @@
 					<div class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;any&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L37">src/tag/tag-filter.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L37">src/tag/tag-filter.component.ts:37</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Function for close/delete the tag</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="closebuttonlabel" class="tsd-anchor"></a>
@@ -229,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">close<wbr>Button<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Clear Filter&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L30">src/tag/tag-filter.component.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L30">src/tag/tag-filter.component.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L31">src/tag/tag-filter.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L31">src/tag/tag-filter.component.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L32">src/tag/tag-filter.component.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L32">src/tag/tag-filter.component.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,9 +292,15 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_tag.tag.html">Tag</a>.<a href="src_tag.tag.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag.component.ts#L29">src/tag/tag.component.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag.component.ts#L29">src/tag/tag.component.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>type of the tag determines the styling</p>
+						</div>
+						<p>Reference <code>TagType</code> for v9 applications, and <code>TagTypeExperimental</code> for v10/v9 experimental mode applications</p>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -294,12 +314,19 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">attr<wbr>Aria<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L64">src/tag/tag-filter.component.ts:64</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> attrAriaLabel<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L64">src/tag/tag-filter.component.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
 					<a name="attrclass" class="tsd-anchor"></a>
@@ -310,13 +337,20 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">attr<wbr>Class<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<p>Overrides <a href="src_tag.tag.html">Tag</a>.<a href="src_tag.tag.html#attrclass">attrClass</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L60">src/tag/tag-filter.component.ts:60</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> attrClass<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="src_tag.tag.html">Tag</a>.<a href="src_tag.tag.html#attrclass">attrClass</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L60">src/tag/tag-filter.component.ts:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -331,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L49">src/tag/tag-filter.component.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L49">src/tag/tag-filter.component.ts:49</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -354,7 +388,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/tag/tag-filter.component.ts#L54">src/tag/tag-filter.component.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/tag/tag-filter.component.ts#L54">src/tag/tag-filter.component.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

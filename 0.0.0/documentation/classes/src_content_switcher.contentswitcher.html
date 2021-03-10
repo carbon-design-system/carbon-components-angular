@@ -67,6 +67,21 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The content switcher can be used for toggling between distinct options.
+						Similar to tabs, but without an associated content panel</p>
+					</div>
+					<p><a href="../../?path=/story/content-switcher--basic">See demo</a></p>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-content-switcher</span> (<span class="hljs-attr">selected</span>)=<span class="hljs-string">"selected($event)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ibmContentOption</span>&gt;</span>First section<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ibmContentOption</span>&gt;</span>Second section<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ibmContentOption</span>&gt;</span>Third section<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-content-switcher</span>&gt;</span></code></pre>
+					<p><example-url>../../iframe.html?id=content-switcher--basic</example-url></p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -90,6 +105,9 @@
 							<ul class="tsd-index-list">
 								<li>
 									<a href="src_content_switcher.contentswitcher.html#arialabel" class="tsd-kind-icon">ariaLabel</a>
+								</li>
+								<li>
+									<a href="src_content_switcher.contentswitcher.html#theme" class="tsd-kind-icon">theme</a>
 								</li>
 							</ul>
 						</section>
@@ -124,6 +142,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_content_switcher.contentswitcher.html#selected"
 									class="tsd-kind-icon">selected</a>
 								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_content_switcher.contentswitcher.html#theme"
+									class="tsd-kind-icon">theme</a>
+								</li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -152,7 +173,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L50">src/content-switcher/content-switcher.component.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L55">src/content-switcher/content-switcher.component.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -180,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;content switcher&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L43">src/content-switcher/content-switcher.component.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L44">src/content-switcher/content-switcher.component.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">element<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L52">src/content-switcher/content-switcher.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L57">src/content-switcher/content-switcher.component.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryList</span><span class="tsd-signature-symbol">&lt;</span><a href="src_content_switcher.contentswitcheroption.html" class="tsd-signature-type">ContentSwitcherOption</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L50">src/content-switcher/content-switcher.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L55">src/content-switcher/content-switcher.component.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -222,9 +243,35 @@
 					<div class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><a href="src_content_switcher.contentswitcheroption.html" class="tsd-signature-type">ContentSwitcherOption</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;ContentSwitcherOption&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L48">src/content-switcher/content-switcher.component.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L53">src/content-switcher/content-switcher.component.ts:53</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Emits the activated <code>ContentSwitcherOption</code></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="theme" class="tsd-anchor"></a>
+					<h3>theme</h3>
+					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
+						<span>
+							@Input()
+						</span>
+						<br />
+					</div>
+					<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dark"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;dark&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L48">src/content-switcher/content-switcher.component.ts:48</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><code>light</code> or <code>dark</code> content switcher theme</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -245,7 +292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L75">src/content-switcher/content-switcher.component.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L80">src/content-switcher/content-switcher.component.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -268,7 +315,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/content-switcher/content-switcher.component.ts#L54">src/content-switcher/content-switcher.component.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/content-switcher/content-switcher.component.ts#L59">src/content-switcher/content-switcher.component.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -309,6 +356,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_content_switcher.contentswitcher.html#selected" class="tsd-kind-icon">selected</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="src_content_switcher.contentswitcher.html#theme" class="tsd-kind-icon">theme</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_content_switcher.contentswitcher.html#hostkeys" class="tsd-kind-icon">hostkeys</a>

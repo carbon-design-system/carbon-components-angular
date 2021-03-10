@@ -67,6 +67,46 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Structured Lists represent related tabular data. For larger datasets consider a full <code>Table</code>.</p>
+					</div>
+					<p><a href="../../?path=/story/structured-list--basic">See demo</a></p>
+					<p>See <a href="https://www.carbondesignsystem.com/components/structured-list/usage">structured-list/usage</a> for usage guidance.</p>
+					<p>A basic structued list looks something like:</p>
+					<pre><code class="language-html">    <span class="hljs-tag">&lt;<span class="hljs-name">ibm-structured-list</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-header</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span> <span class="hljs-attr">nowrap</span>=<span class="hljs-string">"true"</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span> <span class="hljs-attr">nowrap</span>=<span class="hljs-string">"true"</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span>&gt;</span>Column 3<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-row</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span>&gt;</span>Row 1<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span> <span class="hljs-attr">nowrap</span>=<span class="hljs-string">"true"</span>&gt;</span>Row One<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span>&gt;</span>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nunc dui magna,
+                finibus id tortor sed, aliquet bibendum augue.
+                Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+                Pellentesque vulputate nisl a porttitor interdum.
+            <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-row</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-row</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span>&gt;</span>Row 2<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span> <span class="hljs-attr">nowrap</span>=<span class="hljs-string">"true"</span>&gt;</span>Row Two<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ibm-list-column</span>&gt;</span>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nunc dui magna,
+                finibus id tortor sed, aliquet bibendum augue.
+                Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+                Pellentesque vulputate nisl a porttitor interdum.
+            <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-column</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-list-row</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-structured-list</span>&gt;</span></code></pre>
+					<p><example-url>../../iframe.html?id=structured-list--basic</example-url></p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -197,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">_skeleton<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L141">src/structured-list/structured-list.component.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L141">src/structured-list/structured-list.component.ts:141</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,9 +253,14 @@
 					<div class="tsd-signature tsd-kind-icon">border<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L94">src/structured-list/structured-list.component.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L94">src/structured-list/structured-list.component.ts:94</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to apply a border and white background.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="condensed" class="tsd-anchor"></a>
@@ -229,9 +274,14 @@
 					<div class="tsd-signature tsd-kind-icon">condensed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L98">src/structured-list/structured-list.component.ts:98</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L98">src/structured-list/structured-list.component.ts:98</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to apply a condensed style to the headers and rows.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="headers" class="tsd-anchor"></a>
@@ -245,7 +295,7 @@
 					<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryList</span><span class="tsd-signature-symbol">&lt;</span><a href="src_structured_list.listheader.html" class="tsd-signature-type">ListHeader</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L139">src/structured-list/structured-list.component.ts:139</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L139">src/structured-list/structured-list.component.ts:139</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,9 +311,14 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;structured-list-${StructuredList.listCount++}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L106">src/structured-list/structured-list.component.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L106">src/structured-list/structured-list.component.ts:106</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Used when <code>selection = true</code> as the row radio group <code>name</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="nowrap" class="tsd-anchor"></a>
@@ -277,9 +332,14 @@
 					<div class="tsd-signature tsd-kind-icon">nowrap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L102">src/structured-list/structured-list.component.ts:102</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L102">src/structured-list/structured-list.component.ts:102</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to apply <code>white-space: nowrap</code> on <em>all</em> conent.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="rows" class="tsd-anchor"></a>
@@ -293,7 +353,7 @@
 					<div class="tsd-signature tsd-kind-icon">rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryList</span><span class="tsd-signature-symbol">&lt;</span><a href="src_structured_list.listrow.html" class="tsd-signature-type">ListRow</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L138">src/structured-list/structured-list.component.ts:138</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L138">src/structured-list/structured-list.component.ts:138</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -309,9 +369,20 @@
 					<div class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L136">src/structured-list/structured-list.component.ts:136</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L136">src/structured-list/structured-list.component.ts:136</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Emits an event when the row selection changes.</p>
+						</div>
+						<p>Emits an object that looks like:</p>
+						<pre><code class="language-javascript">{
+    <span class="hljs-attr">value</span>: <span class="hljs-string">"something"</span>,
+    <span class="hljs-attr">selected</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"structured-list-1"</span>
+}</code></pre>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selection" class="tsd-anchor"></a>
@@ -325,9 +396,14 @@
 					<div class="tsd-signature tsd-kind-icon">selection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L90">src/structured-list/structured-list.component.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L90">src/structured-list/structured-list.component.ts:90</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set to <code>true</code> to enable radio like selection of the rows.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="listcount" class="tsd-anchor"></a>
@@ -335,9 +411,14 @@
 					<div class="tsd-signature tsd-kind-icon">list<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L86">src/structured-list/structured-list.component.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L86">src/structured-list/structured-list.component.ts:86</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A counter to provide unique default values.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -351,13 +432,44 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">skeleton<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L112">src/structured-list/structured-list.component.ts:112</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L120">src/structured-list/structured-list.component.ts:120</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> skeleton<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> skeleton<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L120">src/structured-list/structured-list.component.ts:120</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the skeleton value in the <code>StructuredList</code> if there is one.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L112">src/structured-list/structured-list.component.ts:112</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the skeleton value for all <code>ListHeader</code> to the skeleton value of <code>StructuredList</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -372,7 +484,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L147">src/structured-list/structured-list.component.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L147">src/structured-list/structured-list.component.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -389,7 +501,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L143">src/structured-list/structured-list.component.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L143">src/structured-list/structured-list.component.ts:143</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -412,7 +524,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L145">src/structured-list/structured-list.component.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L145">src/structured-list/structured-list.component.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -429,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L180">src/structured-list/structured-list.component.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L180">src/structured-list/structured-list.component.ts:180</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -452,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L184">src/structured-list/structured-list.component.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L184">src/structured-list/structured-list.component.ts:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -475,7 +587,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L188">src/structured-list/structured-list.component.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L188">src/structured-list/structured-list.component.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -492,7 +604,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/structured-list/structured-list.component.ts#L169">src/structured-list/structured-list.component.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/structured-list/structured-list.component.ts#L169">src/structured-list/structured-list.component.ts:169</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

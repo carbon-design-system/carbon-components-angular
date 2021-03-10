@@ -99,6 +99,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table.tableitem.html#data"
 									class="tsd-kind-icon">data</a>
 								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table.tableitem.html#expandastable"
+									class="tsd-kind-icon">expand<wbr>AsTable</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table.tableitem.html#expandeddata"
 									class="tsd-kind-icon">expanded<wbr>Data</a>
 								</li>
@@ -130,15 +133,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Table<wbr>Item<span class="tsd-signature-symbol">(</span>rawData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_table.tableitem.html" class="tsd-signature-type">TableItem</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Table<wbr>Item<span class="tsd-signature-symbol">(</span>rawData<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_table.tableitem.html" class="tsd-signature-type">TableItem</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L97">src/table/table-item.class.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L137">src/table/table-item.class.ts:137</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of TableItem.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -158,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">_title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L97">src/table/table-item.class.ts:97</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L137">src/table/table-item.class.ts:137</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,9 +176,14 @@
 					<div class="tsd-signature tsd-kind-icon">col<wbr>Span<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L68">src/table/table-item.class.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L107">src/table/table-item.class.ts:107</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of columns to span</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="data" class="tsd-anchor"></a>
@@ -178,9 +191,55 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L9">src/table/table-item.class.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L9">src/table/table-item.class.ts:9</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Data for the table item.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="expandastable" class="tsd-anchor"></a>
+					<h3>expand<wbr>AsTable</h3>
+					<div class="tsd-signature tsd-kind-icon">expand<wbr>AsTable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L97">src/table/table-item.class.ts:97</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Setting this to <code>true</code> makes table interpret <code>expandedData</code> as additional rows to insert in place
+							for expanded data. <code>expandedTemplate</code> is then ignored.</p>
+						</div>
+						<p>You can apply the template for individual cells as usual.</p>
+						<p>Example model data:</p>
+						<pre><code class="language-typescript"><span class="hljs-keyword">this</span>.model.data = [
+    [<span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"Name 4"</span> }), <span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"twer"</span> })], <span class="hljs-comment">// regular row</span>
+    [
+        <span class="hljs-keyword">new</span> TableItem({
+            data: <span class="hljs-string">"Name 3.1"</span>,
+            <span class="hljs-comment">// `expandedData` mimics the format of the rest of the table</span>
+            expandedData: [
+                [
+                    <span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"More names"</span>, expandedData: <span class="hljs-string">"No template"</span> }),
+                    <span class="hljs-keyword">new</span> TableItem({ data: { name: <span class="hljs-string">"Morey"</span>, link: <span class="hljs-string">"#"</span> }, template: <span class="hljs-keyword">this</span>.customTableItemTemplate })
+                ],
+                [
+                    <span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"Core names"</span>, expandedData: <span class="hljs-string">"No template"</span> }),
+                    <span class="hljs-keyword">new</span> TableItem({ data: { name: <span class="hljs-string">"Corey"</span>, link: <span class="hljs-string">"#"</span> }, template: <span class="hljs-keyword">this</span>.customTableItemTemplate })
+                ]
+            ],
+            <span class="hljs-comment">// `expandAsTable` tells the table to interpret `expandedData` as table data</span>
+            expandAsTable: <span class="hljs-literal">true</span>
+        }),
+        <span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"swer"</span> })
+    ],
+    [<span class="hljs-keyword">new</span> TableItem({ data: <span class="hljs-string">"Name 7"</span> }), <span class="hljs-keyword">new</span> TableItem({data: <span class="hljs-string">"twer"</span>})] <span class="hljs-comment">// regular row</span>
+];</code></pre>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="expandeddata" class="tsd-anchor"></a>
@@ -188,9 +247,17 @@
 					<div class="tsd-signature tsd-kind-icon">expanded<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L16">src/table/table-item.class.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L19">src/table/table-item.class.ts:19</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Data for the expanded part of the row.</p>
+						</div>
+						<p>You only need to set it for the first item in the row.</p>
+						<p>See <code>expandAsTable</code> documentation if you need to the table to expand to additional
+						table rows.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="expandedtemplate" class="tsd-anchor"></a>
@@ -198,9 +265,15 @@
 					<div class="tsd-signature tsd-kind-icon">expanded<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L58">src/table/table-item.class.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L61">src/table/table-item.class.ts:61</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Template for rendering <code>expandedData</code></p>
+						</div>
+						<p>You only need to set it for the first item in the row.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="rowspan" class="tsd-anchor"></a>
@@ -208,9 +281,14 @@
 					<div class="tsd-signature tsd-kind-icon">row<wbr>Span<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L63">src/table/table-item.class.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L102">src/table/table-item.class.ts:102</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of rows to span</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="template" class="tsd-anchor"></a>
@@ -218,9 +296,29 @@
 					<div class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L50">src/table/table-item.class.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L53">src/table/table-item.class.ts:53</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Used to display data in a desired way.</p>
+						</div>
+						<p>If not provided, displays data as a simple string.</p>
+						<p>Usage:</p>
+						<p>In a component where you&#39;re using the table create a template like:</p>
+						<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">customItemTemplate</span> <span class="hljs-attr">let-data</span>=<span class="hljs-string">"data"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"data.link"</span>&gt;</span>{{data.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span></code></pre>
+						<p>where we assume your data contains <code>link</code> and <code>name</code>. <code>let-data=&quot;data&quot;</code> is
+						necessary for you to be able to access item&#39;s data in the template.</p>
+						<p>Create <code>ViewChild</code> property with:</p>
+						<pre><code class="language-typescript">(at)ViewChild(<span class="hljs-string">"customItemTemplate"</span>)
+<span class="hljs-keyword">protected</span> customItemTemplate: TemplateRef&lt;<span class="hljs-built_in">any</span>&gt;;</code></pre>
+						<p>Set the template to the table item, for example:</p>
+						<pre><code class="language-typescript"><span class="hljs-keyword">this</span>.model.data = [
+    [<span class="hljs-keyword">new</span> TableItem({data: {name: <span class="hljs-string">"Custom item"</span>, link: <span class="hljs-string">"/table"</span>}, template: <span class="hljs-keyword">this</span>.customItemTemplate})]
+];</code></pre>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -228,13 +326,34 @@
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="title" class="tsd-anchor"></a>
 					<h3>title</h3>
-					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> </div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L70">src/table/table-item.class.ts:70</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/c037e3c/src/table/table-item.class.ts#L93">src/table/table-item.class.ts:93</a></li>
-						</ul>
-					</aside>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> title<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> title<span class="tsd-signature-symbol">(</span>title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L109">src/table/table-item.class.ts:109</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/341c64d/src/table/table-item.class.ts#L133">src/table/table-item.class.ts:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>title: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -297,6 +416,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_table.tableitem.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="src_table.tableitem.html#expandastable" class="tsd-kind-icon">expand<wbr>AsTable</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_table.tableitem.html#expandeddata" class="tsd-kind-icon">expanded<wbr>Data</a>
