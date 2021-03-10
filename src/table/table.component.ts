@@ -718,7 +718,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = false;
 		} else if (selectedRowsCount < this.model.data.length) {
-			this.selectAllCheckbox = false;
+			this.selectAllCheckbox = true;
 			this.selectAllCheckboxSomeSelected = true;
 		} else {
 			this.selectAllCheckbox = true;
