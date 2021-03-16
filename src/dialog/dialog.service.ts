@@ -1,5 +1,4 @@
 import {
-	EventEmitter,
 	Injector,
 	ComponentRef,
 	ComponentFactory,
@@ -7,10 +6,10 @@ import {
 	Injectable,
 	ViewContainerRef
 } from "@angular/core";
-import { Subscription } from "rxjs";
-import { DialogConfig } from "./dialog-config.interface";
-import { PlaceholderService } from "./../placeholder/placeholder.module";
+import { CloseReasons, DialogConfig } from "./dialog-config.interface";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Dialog } from "./dialog.component";
+import { tabbableSelector } from "carbon-components-angular/common";
 
 /**
  * `Dialog` object to be injected into other components.
@@ -28,47 +27,19 @@ export class DialogService {
 	protected static dialogRefs = new Set<ComponentRef<Dialog>>();
 
 	/**
-	 * A `Subscription` that contains all `onClose` subscriptions
+	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
 	 */
-	protected static dialogCloseSubscription = new Subscription();
+	public static closeAll() {
+		DialogService.dialogRefs.forEach(ref => ref.instance.doClose({
+			reason: CloseReasons.programmatic
+		}));
+		DialogService.dialogRefs.clear();
+	}
 
 	/**
-	 * Reflects the open or closed state of the `Dialog`.
-	 *
-	 * @deprecated the open state of the dialog should be tracked by the component that creates it
-	 */
-	public isOpen = false;
-	/**
-	 * To be used to create the component using metadata.
-	 *
-	 * @deprecated
+	 * The default component factory to use when creating dialogs
 	 */
 	public componentFactory: ComponentFactory<any>;
-	/**
-	 * To emit the `Dialog` closing event.
-	 */
-	public onClose: EventEmitter<any> = new EventEmitter();
-	/**
-	 * Holds reference to the created `Dialog` component after creation.
-	 *
-	 * @deprecated components should track local `dialogRefs` themselves
-	 */
-	public dialogRef: ComponentRef<any>;
-
-	/**
-	 * Emits the state `true` if the Dialog is closed, false if `Dialog`
-	 * is opened/viewable.
-	 *
-	 * @deprecated components should simply bind to the dialogRefs `close` emitter
-	 */
-	isClosed: EventEmitter<any> = new EventEmitter();
-
-	/**
-	 * To watch the event that closes the `Dialog`.
-	 *
-	 * @deprecated in favor of `DialogService.dialogCloseSubscription`
-	 */
-	protected dialogSubscription: Subscription;
 
 	/**
 	 * Creates an instance of `DialogService`.
@@ -80,27 +51,12 @@ export class DialogService {
 	) {}
 
 	/**
-	 * Uses module `componentFactory` to create the `Dialog` component.
-	 *
-	 * Useful for components that extend `Dialog` and don't want to re-implement `open`
-	 *
-	 * @deprecated TODO: a better way for individual instances to hook into `DialogService#open`
+	 * Set the context for the service. For example, the `component` property can be used to set the
+	 * default component that should be created by the service, for a given instance of the service.
+	 * @param options `{ component: any }` where `component` is a component that extends `dialog.component`
 	 */
-	create(component) {
-		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-	}
-
-	/**
-	 * Toggles between `Dialog` open/close states.
-	 *
-	 * @deprecated components should implement their own `toggle` with the `close` and `open` methods
-	 */
-	toggle(viewContainer: ViewContainerRef, dialogConfig: DialogConfig) {
-		if (this.isOpen) {
-			this.close(viewContainer);
-		} else {
-			this.open(viewContainer, dialogConfig);
-		}
+	setContext(options: { component: any }) {
+		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(options.component);
 	}
 
 	/**
@@ -124,9 +80,11 @@ export class DialogService {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
 			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
-			setTimeout(() => {
-				window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
-			});
+			if (dialogRef) {
+				setTimeout(() => {
+					window.document.querySelector("body").appendChild(dialogRef.location.nativeElement);
+				});
+			}
 		} else {
 			dialogRef = this.placeholderService.createComponent(componentFactory, this.injector);
 		}
@@ -137,41 +95,19 @@ export class DialogService {
 		// initialize some extra options
 		dialogConfig["previouslyFocusedElement"] = document.activeElement;
 		dialogRef.instance.dialogConfig = dialogConfig;
-		this.onClose = dialogRef.instance.close;
-		this.isOpen = true;
-
-		const closeSubscription = this.onClose.subscribe(() => {
-			if (dialogConfig.shouldClose && dialogConfig.shouldClose()) {
-				this.close(viewContainer, dialogRef);
-			}
-		});
-
-		// keep track of all dialog subscriptions
-		DialogService.dialogCloseSubscription.add(closeSubscription);
 
 		dialogRef.instance.elementRef.nativeElement.focus();
 
-		// deprecated - kept for API compatibility
-		this.dialogRef = dialogRef;
-
-		// deprecated - kept for API compatibility
-		this.dialogSubscription = closeSubscription;
-
-		// return `this` for easy method chaining
-		// TODO v11: return `dialogRef` instead
-		return this;
+		return dialogRef as ComponentRef<Dialog>;
 	}
 
 	/**
 	 * On close of `Dialog` item, sets focus back to previous item, unsets
 	 * the current `dialogRef` item. Unsubscribes to the event of `Dialog` close.
 	 *
-	 * @param viewContainer deprecated - does nothing. null may safely be passed
 	 * @param dialogRef the dialogRef to close
 	 */
-	close(viewContainer: ViewContainerRef, dialogRef: ComponentRef<Dialog> = this.dialogRef) {
-		this.isClosed.emit(true);
-
+	close(dialogRef: ComponentRef<Dialog>) {
 		// to handle the case where we have a null `this.dialogRef`
 		if (!dialogRef) { return; }
 
@@ -179,33 +115,26 @@ export class DialogService {
 
 		dialogRef.destroy();
 
+		// update the globally tracked dialogRefs
 		if (DialogService.dialogRefs.has(dialogRef)) {
 			DialogService.dialogRefs.delete(dialogRef);
 		}
 
-		this.dialogRef = null;
-		this.isOpen = false;
-		elementToFocus.focus();
-
-		if (this.dialogSubscription) {
-			this.dialogSubscription.unsubscribe();
+		// Keeps the focus on the dialog trigger if there are no focusable elements. Change focus to previously focused element
+		// if there are focusable elements in the dialog.
+		if (!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector)) {
+			elementToFocus.focus();
 		}
 	}
 
 	/**
 	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
+	 *
+	 * @deprecated since v4. Use the static `DialogService.closeAll` instead
 	 */
 	closeAll() {
-		DialogService.dialogRefs.forEach(ref => ref.destroy());
-		DialogService.dialogRefs.clear();
-		DialogService.dialogCloseSubscription.unsubscribe();
-		this.isClosed.emit(true);
-
-		// kept for API compat
-		this.dialogRef = null;
-		this.isOpen = false;
+		DialogService.closeAll();
 	}
-
 	/**
 	 * Fix for safari hijacking clicks.
 	 *

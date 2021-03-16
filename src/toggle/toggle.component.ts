@@ -1,4 +1,4 @@
-import { Checkbox } from "../checkbox/checkbox.component";
+import { Checkbox } from "carbon-components-angular/checkbox";
 import {
 	ChangeDetectorRef,
 	Component,
@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/i18n.module";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -24,6 +24,8 @@ export enum ToggleState {
 
 /**
  * Used to emit changes performed on toggle components.
+ *
+ * @deprecated since v4
  */
 export class ToggleChange {
 	/**
@@ -53,10 +55,10 @@ export class ToggleChange {
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<input
-			class="bx--toggle"
+			class="bx--toggle-input"
 			type="checkbox"
 			[ngClass]="{
-				'bx--toggle--small': size === 'sm',
+				'bx--toggle-input--small': size === 'sm',
 				'bx--skeleton': skeleton
 			}"
 			[id]="id"
@@ -70,18 +72,15 @@ export class ToggleChange {
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label
-			class="bx--toggle__label"
+			class="bx--toggle-input__label"
 			[for]="id"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>
-			<span class="bx--toggle__appearance">
-				<svg *ngIf="size === 'sm'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
-					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
-				</svg>
+			<span class="bx--toggle__switch">
+				<span class="bx--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
+				<span class="bx--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
 			</span>
-			<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span>
 		</label>
 	`,
 	providers: [
@@ -142,6 +141,8 @@ export class Toggle extends Checkbox {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a
 	 * click.
+	 *
+	 * @deprecated since v4
 	 */
 	@Output() change = new EventEmitter<ToggleChange>();
 
@@ -167,12 +168,15 @@ export class Toggle extends Checkbox {
 	 * Creates instance of `ToggleChange` used to propagate the change event.
 	 */
 	emitChangeEvent() {
+		/* begin deprecation */
 		let event = new ToggleChange();
 		event.source = this;
 		event.checked = this.checked;
-
-		this.propagateChange(this.checked);
 		this.change.emit(event);
+		/* end deprecation */
+
+		this.checkedChange.emit(this.checked);
+		this.propagateChange(this.checked);
 	}
 
 	public isTemplate(value) {

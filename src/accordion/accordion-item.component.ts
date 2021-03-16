@@ -3,6 +3,7 @@ import {
 	Input,
 	HostBinding,
 	Output,
+	TemplateRef,
 	EventEmitter
 } from "@angular/core";
 
@@ -10,18 +11,24 @@ import {
 	selector: "ibm-accordion-item",
 	template: `
 		<button
+			type="button"
 			[attr.aria-expanded]="expanded"
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
 			class="bx--accordion__heading">
-			<ibm-icon-chevron-right16 class="bx--accordion__arrow"></ibm-icon-chevron-right16>
-			<p
+			<svg ibmIcon="chevron--right" size="16" class="bx--accordion__arrow"></svg>
+			<p *ngIf="!isTemplate(title)"
 				class="bx--accordion__title"
 				[ngClass]="{
 					'bx--skeleton__text': skeleton
 				}">
 				{{!skeleton ? title : null}}
 			</p>
+			<ng-template
+				*ngIf="isTemplate(title)"
+				[ngTemplateOutlet]="title"
+				[ngTemplateOutletContext]="context">
+			</ng-template>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
 			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
@@ -35,7 +42,8 @@ import {
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
-	@Input() title = `Title ${AccordionItem.accordionItemCount}`;
+	@Input() title: string | TemplateRef<any>;
+	@Input() context: Object | null = null;
 	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
 	@Input() skeleton = false;
 	@Output() selected = new EventEmitter();
@@ -55,5 +63,9 @@ export class AccordionItem {
 			this.expanded = !this.expanded;
 			this.selected.emit({id: this.id, expanded: this.expanded});
 		}
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

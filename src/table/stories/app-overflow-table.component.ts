@@ -27,7 +27,6 @@ import { TableHeaderItem } from "../table-header-item.class";
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -35,6 +34,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[stickyHeader]="stickyHeader"
 			[skeleton]="skeleton"
 			[isDataGrid]="isDataGrid"
+			(rowClick)="onRowClick($event)"
 			[striped]="striped">
 		</ibm-table>
 	`
@@ -49,7 +49,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("overflowMenuItemTemplate")
+	@ViewChild("overflowMenuItemTemplate", { static: false })
 	protected overflowMenuItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
@@ -68,5 +68,9 @@ export class OverflowTableStory implements OnInit {
 			new TableHeaderItem({ data: "Name" }),
 			new TableHeaderItem({ data: "Actions" })
 		];
+	}
+
+	onRowClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 }

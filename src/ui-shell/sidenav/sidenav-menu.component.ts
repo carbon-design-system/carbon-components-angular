@@ -3,9 +3,13 @@ import {
 	Component,
 	ContentChildren,
 	Input,
-	QueryList
+	QueryList,
+	OnDestroy
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
+import { Subscription } from "rxjs";
+import { SideNavItemInterface } from "./sidenav-item.interface";
+
 
 /**
  * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
@@ -13,7 +17,9 @@ import { SideNavItem } from "./sidenav-item.component";
 @Component({
 	selector: "ibm-sidenav-menu",
 	template: `
-		<li class="bx--side-nav__item bx--side-nav__item--icon">
+		<li
+			class="bx--side-nav__item bx--side-nav__item--icon"
+			[ngClass]="{ 'bx--side-nav__item--active': hasActiveChild }">
 			<button
 				(click)="toggle()"
 				class="bx--side-nav__submenu"
@@ -40,11 +46,20 @@ import { SideNavItem } from "./sidenav-item.component";
 			</button>
 			<ul class="bx--side-nav__menu" role="menu">
 				<ng-content></ng-content>
+				<ng-container *ngFor="let menuItem of menuItems">
+					<ibm-sidenav-item
+						[href]="menuItem.href"
+						[route]="menuItem.route"
+						[routeExtras]="menuItem.routeExtras"
+						[isSubMenu]="true">
+						{{ menuItem.content }}
+					</ibm-sidenav-item>
+				</ng-container>
 			</ul>
 		</li>
 	`
 })
-export class SideNavMenu implements AfterContentInit {
+export class SideNavMenu implements AfterContentInit, OnDestroy {
 	/**
 	 * Heading for the gorup
 	 */
@@ -53,18 +68,55 @@ export class SideNavMenu implements AfterContentInit {
 	 * Controls the visibility of the child `SideNavItem`s
 	 */
 	@Input() expanded = false;
+	/**
+	 * Controls the active status indicator on the menu if there is an active
+	 * child sidenav item.
+	 */
+	@Input() hasActiveChild = false;
+
+	@Input() menuItems: SideNavItemInterface[];
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
+
+	protected activeItemsSubscription = new Subscription();
 
 	ngAfterContentInit() {
 		setTimeout(() => {
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
+				this.findActiveChildren();
+				const activeItemSubscription = item.selected.subscribe(() => {
+					this.findActiveChildren();
+				});
+				this.activeItemsSubscription.add(activeItemSubscription);
+			});
+
+			this.sidenavItems.changes.subscribe(() => {
+				this.sidenavItems.forEach(item => {
+					item.isSubMenu = true;
+					this.findActiveChildren();
+					const activeItemSubscription = item.selected.subscribe(() => {
+						this.findActiveChildren();
+					});
+					this.activeItemsSubscription.add(activeItemSubscription);
+				});
 			});
 		});
 	}
 
+	ngOnDestroy() {
+		this.activeItemsSubscription.unsubscribe();
+	}
+
 	toggle() {
 		this.expanded = !this.expanded;
+	}
+
+	protected findActiveChildren() {
+		if (this.sidenavItems.some(item => item.active)) {
+			this.hasActiveChild = true;
+		} else {
+			this.hasActiveChild = false;
+		}
 	}
 }

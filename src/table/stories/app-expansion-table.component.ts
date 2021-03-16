@@ -36,7 +36,6 @@ class CustomHeaderItem extends TableHeaderItem {
 		</ng-template>
 
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -45,6 +44,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			[skeleton]="skeleton"
 			[striped]="striped"
 			(sort)="customSort($event)"
+			(rowClick)="onRowClick($event)"
 			[isDataGrid]="isDataGrid">
 		</ibm-table>
 	`
@@ -59,9 +59,11 @@ export class ExpansionTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("customHeaderTemplate")
+	// @ts-ignore
+	@ViewChild("customHeaderTemplate", { static: false })
 	protected customHeaderTemplate: TemplateRef<any>;
-	@ViewChild("customTableItemTemplate")
+	// @ts-ignore
+	@ViewChild("customTableItemTemplate", { static: false })
 	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
@@ -78,12 +80,28 @@ export class ExpansionTableStory implements OnInit {
 				}),
 				new TableItem({ data: "swer" })
 			],
+			[
+				new TableItem({
+					data: "Name 3.1",
+					expandedData: [
+						[
+							new TableItem({ data: "More names", expandedData: "No template" }),
+							new TableItem({ data: { name: "Morey", link: "#" }, template: this.customTableItemTemplate })
+						],
+						[
+							new TableItem({ data: "Core names", expandedData: "No template" }),
+							new TableItem({ data: { name: "Corey", link: "#" }, template: this.customTableItemTemplate })
+						]
+					],
+					expandAsTable: true
+				}),
+				new TableItem({ data: "swer" })
+			],
 			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 7" }), new TableItem({data: "twer"})]
-			
 		];
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),
@@ -96,6 +114,10 @@ export class ExpansionTableStory implements OnInit {
 
 	customSort(index: number) {
 		this.sort(this.model, index);
+	}
+
+	onRowClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 
 	sort(model, index: number) {

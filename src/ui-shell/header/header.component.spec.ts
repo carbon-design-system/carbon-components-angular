@@ -2,9 +2,10 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../../i18n/i18n.module";
+import { I18nModule } from "../../i18n/index";
 import { Header } from "./header.component";
-import { Hamburger } from "../ui-shell.module";
+import { Hamburger } from "../index";
+import { RouterModule } from "@angular/router";
 
 /**
  * Testing component for projecting an ibm-hamburger component
@@ -28,7 +29,7 @@ describe("UI Shell Header", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Hamburger, HamburgerTest, Header],
-			imports: [I18nModule],
+			imports: [I18nModule, RouterModule],
 			providers: []
 		});
 

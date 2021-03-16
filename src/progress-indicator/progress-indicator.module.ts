@@ -1,13 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CheckmarkOutline16Module } from "@carbon/icons-angular/lib/checkmark--outline/16";
-import { Warning16Module } from "@carbon/icons-angular/lib/warning/16";
 
 import { ProgressIndicator } from "./progress-indicator.component";
-import { DialogModule } from "./../dialog/dialog.module";
-import { ExperimentalModule } from "./../experimental.module";
-
-export { ProgressIndicator } from "./progress-indicator.component";
+import { DialogModule } from "carbon-components-angular/dialog";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -20,8 +17,7 @@ export { ProgressIndicator } from "./progress-indicator.component";
 		CommonModule,
 		DialogModule,
 		ExperimentalModule,
-		CheckmarkOutline16Module,
-		Warning16Module
+		IconModule
 	]
 })
 export class ProgressIndicatorModule { }

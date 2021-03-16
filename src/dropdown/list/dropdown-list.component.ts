@@ -11,12 +11,13 @@ import {
 	ViewChildren,
 	QueryList
 } from "@angular/core";
+import { Observable, isObservable, Subscription, of } from "rxjs";
+import { first } from "rxjs/operators";
 
-import { I18n } from "../../i18n/i18n.module";
-import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
-import { ListItem } from "./../list-item.interface";
-import { watchFocusJump } from "./../dropdowntools";
-import { Observable, isObservable, Subscription } from "rxjs";
+import { I18n } from "carbon-components-angular/i18n";
+import { AbstractDropdownView } from "../abstract-dropdown-view.class";
+import { ListItem } from "../list-item.interface";
+import { watchFocusJump } from "../dropdowntools";
 import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 
@@ -65,7 +66,8 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
-				}">
+				}"
+				[title]="item.content">
 				<div
 					#listItem
 					tabindex="-1"
@@ -87,6 +89,12 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
+					<svg
+						*ngIf="!listTpl && type === 'single'"
+						ibmIcon="checkmark"
+						size="16"
+						class="bx--list-box__menu-item__selected-icon">
+					</svg>
 					<ng-template
 						*ngIf="listTpl"
 						[ngTemplateOutletContext]="{item: item}"
@@ -112,7 +120,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this._itemsSubscription) {
 				this._itemsSubscription.unsubscribe();
 			}
-			this._itemsSubscription = value.subscribe(v => this.updateList(v));
+			this._itemsReady = new Observable<boolean>((observer) => {
+				this._itemsSubscription = value.subscribe(v => {
+					this.updateList(v);
+					observer.next(true);
+					observer.complete();
+				});
+			});
+			this.onItemsReady(null);
 		} else {
 			this.updateList(value);
 		}
@@ -129,11 +144,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Event to emit selection of a list item within the `DropdownList`.
 	 */
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() select: EventEmitter<{ item: ListItem, isUpdate?: boolean } | ListItem[]> = new EventEmitter();
 	/**
 	 * Event to emit scroll event of a list within the `DropdownList`.
 	 */
-	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter<ScrollCustomEvent>();
+	@Output() scroll: EventEmitter<ScrollCustomEvent> = new EventEmitter();
 	/**
 	 * Event to suggest a blur on the view.
 	 * Emits _after_ the first/last item has been focused.
@@ -147,7 +162,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
-	@ViewChild("list") list: ElementRef;
+	// @ts-ignore
+	@ViewChild("list", { static: true }) list: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -155,8 +171,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
+	 *
+	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "lg" = "md";
+	public size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Holds the list of items that will be displayed in the `DropdownList`.
 	 * It differs from the the complete set of items when filtering is used (but
@@ -187,6 +205,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Useful representation of the items, should be accessed via `getListItems`.
 	 */
 	protected _items: Array<ListItem> = [];
+	/**
+	 * Used to wait for items in case they are passed through an observable.
+	 */
+	protected _itemsReady: Observable<boolean>;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -200,6 +222,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	ngAfterViewInit() {
 		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
+		setTimeout(() => {
+			this.doEmitSelect(true);
+		});
 	}
 
 	/**
@@ -208,6 +233,21 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	ngOnDestroy() {
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
+		}
+		if (this._itemsSubscription) {
+			this._itemsSubscription.unsubscribe();
+		}
+	}
+
+	doEmitSelect(isUpdate = true) {
+		if (this.type === "single") {
+			this.select.emit({ item: this._items.find(item => item.selected), isUpdate: isUpdate });
+		} else {
+			// abuse javascripts object mutability until we can break the API and switch to
+			// { items: [], isUpdate: true }
+			const selected = this.getSelected() || [];
+			selected["isUpdate"] = isUpdate;
+			this.select.emit(selected);
 		}
 	}
 
@@ -221,15 +261,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.setupFocusObservable();
 		setTimeout(() => {
 			if (this.getSelected() !== []) { return; }
-			if (this.type === "single") {
-				this.select.emit({ item: this._items.find(item => item.selected), isUpdate: true });
-			} else {
-				// abuse javascripts object mutability until we can break the API and switch to
-				// { items: [], isUpdate: true }
-				const selected = this.getSelected() || [];
-				selected["isUpdate"] = true;
-				this.select.emit(selected);
-			}
+			this.doEmitSelect();
 		});
 	}
 
@@ -251,6 +283,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * key input matching the first letter of the item in the list.
 	 */
 	setupFocusObservable() {
+		if (!this.list) { return; }
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
 		}
@@ -273,7 +306,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the last item in the `DropdownList`.
-	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
 		if (this.index < this.displayItems.length - 1) {
@@ -309,7 +341,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Returns `true` if the selected item is not the first in the list.
-	 * TODO: standardize
 	 */
 	hasPrevElement(): boolean {
 		if (this.index > 0) {
@@ -379,31 +410,33 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (!Array.isArray(value)) {
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
 		}
-		// loop through the list items and update the `selected` state for matching items in `value`
-		for (let oldItem of this.getListItems()) {
-			// copy the item
-			let tempOldItem: string | ListItem = Object.assign({}, oldItem);
-			// deleted selected because it's what we _want_ to change
-			delete tempOldItem.selected;
-			// stringify for compare
-			tempOldItem = JSON.stringify(tempOldItem);
-			for (let newItem of value) {
+		this.onItemsReady(() => {
+			// loop through the list items and update the `selected` state for matching items in `value`
+			for (let oldItem of this.getListItems()) {
 				// copy the item
-				let tempNewItem: string | ListItem = Object.assign({}, newItem);
+				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 				// deleted selected because it's what we _want_ to change
-				delete tempNewItem.selected;
+				delete tempOldItem.selected;
 				// stringify for compare
-				tempNewItem = JSON.stringify(tempNewItem);
-				// do the compare
-				if (tempOldItem.includes(tempNewItem)) {
-					oldItem.selected = newItem.selected;
-					// if we've found a matching item, we can stop looping
-					break;
-				} else {
-					oldItem.selected = false;
+				tempOldItem = JSON.stringify(tempOldItem);
+				for (let newItem of value) {
+					// copy the item
+					let tempNewItem: string | ListItem = Object.assign({}, newItem);
+					// deleted selected because it's what we _want_ to change
+					delete tempNewItem.selected;
+					// stringify for compare
+					tempNewItem = JSON.stringify(tempNewItem);
+					// do the compare
+					if (tempOldItem.includes(tempNewItem)) {
+						oldItem.selected = newItem.selected;
+						// if we've found a matching item, we can stop looping
+						break;
+					} else {
+						oldItem.selected = false;
+					}
 				}
 			}
-		}
+		});
 	}
 
 	/**
@@ -459,14 +492,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				for (let otherItem of this.getListItems()) {
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
-
-				this.select.emit({item});
 			} else {
 				item.selected = !item.selected;
-				// emit an array of selected items
-				this.select.emit(this.getSelected());
 			}
-			this.index = this.getListItems().indexOf(item);
+			this.index = this.displayItems.indexOf(item);
+			this.doEmitSelect(false);
 		}
 	}
 
@@ -490,5 +520,20 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		const atBottom: boolean = event.srcElement.scrollHeight - event.srcElement.scrollTop === event.srcElement.clientHeight;
 		const customScrollEvent = { atTop, atBottom, event };
 		this.scroll.emit(customScrollEvent);
+	}
+
+	/**
+	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
+	 */
+	onItemsReady(subcription: () => void): void {
+		// this subscription will auto unsubscribe because of the `first()` pipe
+		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
+	}
+
+	reorderSelected(moveFocus = false): void {
+		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
+		if (moveFocus) {
+			setTimeout(() => this.getCurrentElement().focus());
+		}
 	}
 }

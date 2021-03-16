@@ -4,18 +4,16 @@ import {
 	Output,
 	EventEmitter,
 	Optional,
-  HostBinding
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 /**
  * Represents an item in a switcher list.
- *
- * **Note:** `ibm-product-x` selectors and components are deprecated and will be removed in the next major version
  */
 @Component({
-	selector: "ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item",
+	selector: "ibm-switcher-list-item",
 	template: `
 		<a
 			class="bx--switcher__item-link"
@@ -23,6 +21,7 @@ import { Router } from '@angular/router';
 				'bx--switcher__item-link--selected': active
 			}"
 			[href]="href"
+			[target]="target"
 			(click)="navigate($event)">
 			<ng-content></ng-content>
 		</a>
@@ -62,9 +61,23 @@ export class SwitcherListItem {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 
+	/**
+	 * Optional target for the underlying anchor.
+	 */
+	@Input() set target(value: string) {
+		this._target = value;
+	}
+
+	get target() {
+		return this._target;
+	}
+
 	@HostBinding("class.bx--switcher__item") itemClass = true;
 
+	@HostBinding("attr.role") itemRole = "listitem";
+
 	protected _href = "javascript:void(0)";
+	protected _target = "";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 

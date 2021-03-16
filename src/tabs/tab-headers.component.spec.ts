@@ -1,6 +1,6 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { UtilsModule } from "carbon-components-angular/utils";
 import { TabHeaders } from "./tab-headers.component";
 
 describe("TabHeadersComponent", () => {
@@ -10,7 +10,7 @@ describe("TabHeadersComponent", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [TabHeaders],
-			imports: [BrowserAnimationsModule],
+			imports: [UtilsModule],
 			providers: []
 		});
 

@@ -1,14 +1,12 @@
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
-import { ButtonModule } from "../button/button.module";
-import { LoadingModule } from "../loading/loading.module";
+import { ButtonModule } from "carbon-components-angular/button";
+import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
 import { FileComponent } from "./file.component";
 import { CommonModule } from "@angular/common";
-import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
-import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
+import { IconModule } from "../icon/index";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
 
@@ -42,9 +40,7 @@ describe("FileUploader", () => {
 				CommonModule,
 				ButtonModule,
 				LoadingModule,
-				Close16Module,
-				CheckmarkFilled16Module,
-				WarningFilled16Module
+				IconModule
 			]
 		});
 	});

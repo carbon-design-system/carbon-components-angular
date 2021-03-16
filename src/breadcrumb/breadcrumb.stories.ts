@@ -1,8 +1,9 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, number, text } from "@storybook/addon-knobs/angular";
 
-import { BreadcrumbModule, DialogModule, DocumentationModule } from "../";
+import { BreadcrumbModule, DialogModule } from "../";
 import { BreadcrumbItem } from "../breadcrumb/breadcrumb-item.interface";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 let breadcrumbItems;
 
@@ -114,6 +115,6 @@ storiesOf("Components|Breadcrumb", module)
 }))
 .add("Documentation", () => ({
 	template: `
-		<ibm-documentation src="documentation/components/Breadcrumb.html"></ibm-documentation>
+		<ibm-documentation src="documentation/classes/src_breadcrumb.breadcrumb.html"></ibm-documentation>
 	`
 }));

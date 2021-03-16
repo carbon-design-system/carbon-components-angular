@@ -1,7 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, select, text } from "@storybook/addon-knobs/angular";
 
-import { CodeSnippetModule, DocumentationModule } from "..";
+import {
+	CodeSnippetModule,
+	ButtonModule } from "..";
+import { Input, Component } from "@angular/core";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
@@ -33,11 +37,29 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 ) // that's it, no more after this line
 `;
 
+@Component({
+	selector: "app-dynamic-code-snippet",
+	template: `
+		<button ibmButton (click)="openCodeSnippet()">Show Code Snippet</button>
+		<ibm-code-snippet *ngIf="shouldShow" display="multi">{{displayedCode}}</ibm-code-snippet>
+	`
+})
+export class DynamicCodeSnippet {
+	shouldShow = false;
+
+	@Input() displayedCode = code;
+
+	openCodeSnippet() {
+		this.shouldShow = !this.shouldShow;
+	}
+}
+
 const inlineCode = "<inline code>";
 
 storiesOf("Components|Code Snippet", module).addDecorator(
 	moduleMetadata({
-		imports: [CodeSnippetModule, DocumentationModule]
+		declarations: [DynamicCodeSnippet],
+		imports: [CodeSnippetModule, ButtonModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -76,8 +98,14 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 			</div>
 		`
 	}))
+	.add("Dynamic", () => ({
+		template: `<app-dynamic-code-snippet [displayedCode]="displayedCode"></app-dynamic-code-snippet>`,
+		props: {
+			displayedCode: text("Displayed code", code)
+		}
+	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/CodeSnippet.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_code_snippet.codesnippet.html"></ibm-documentation>
 		`
 	}));

@@ -2,9 +2,11 @@ import {
 	Component,
 	Input,
 	HostListener,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { HeaderItemInterface } from "./header-navigation-items.interface";
 
 /**
  * Dropdown menu container for navigation items.
@@ -23,12 +25,23 @@ import { DomSanitizer } from "@angular/platform-browser";
 				aria-haspopup="true"
 				[attr.aria-expanded]="expanded">
 				{{title}}
-				<svg class="bx--header__menu-arrow" width="12" height="7" aria-hidden="true">
-					<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
-				</svg>
+				<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
+				<ng-template #defaultIcon>
+					<svg class="bx--header__menu-arrow" width="12" height="7" aria-hidden="true">
+						<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
+					</svg>
+				</ng-template>
 			</a>
 			<ul class="bx--header__menu" role="menu" [attr.aria-label]="title">
 				<ng-content></ng-content>
+				<ng-container *ngFor="let headerItem of headerItems">
+					<ibm-header-item
+						[href]="headerItem.href"
+						[route]="headerItem.route"
+						[routeExtras]="headerItem.routeExtras">
+						{{ headerItem.content }}
+					</ibm-header-item>
+				</ng-container>
 			</ul>
 		</li>
 	`
@@ -36,6 +49,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class HeaderMenu {
 	@Input() title: string;
 	@Input() set href(v: string) {
+		// Needed when component is created dynamically with a model.
+		if (v === undefined) {
+			return;
+		}
 		this._href = v;
 	}
 
@@ -43,6 +60,16 @@ export class HeaderMenu {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 	@Input() trigger: "click" | "mouseover" = "click";
+
+	/**
+	 * Used to create header items through a model.
+	 */
+	@Input() headerItems: HeaderItemInterface[];
+
+	/**
+	 * Optional icon
+	 */
+	@Input() icon: TemplateRef<any>;
 
 	public expanded = false;
 

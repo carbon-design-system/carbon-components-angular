@@ -2,36 +2,66 @@ import {
 	Component,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	Input
 } from "@angular/core";
 import { Tag } from "./tag.component";
 
 @Component({
 	selector: "ibm-tag-filter",
 	template: `
-		<ng-content></ng-content>
-		<svg
-			(click)="close.emit()"
-			focusable="false"
-			preserveAspectRatio="xMidYMid meet"
-			style="will-change: transform;"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-label="Clear filter"
-			width="16"
-			height="16"
-			viewBox="0 0 16 16"
-			role="img">
-			<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-		</svg>
+		<span
+			class="bx--tag__label"
+			[attr.title]="title ? title : null"
+			(click)="onClick($event)">
+			<ng-content></ng-content>
+		</span>
+		<button
+			class="bx--tag__close-icon"
+			(click)="onClose($event)"
+			[disabled]="disabled"
+			[title]="closeButtonLabel">
+			<span class="bx--visually-hidden">{{closeButtonLabel}}</span>
+			<svg ibmIcon="close" size="16"></svg>
+		</button>
 	`
 })
 export class TagFilter extends Tag {
+	@Input() closeButtonLabel = "Clear Filter";
+	@Input() disabled: boolean;
+	@Input() title: string;
+
 	/**
 	 * Function for close/delete the tag
 	 */
 	@Output() close = new EventEmitter<any>();
 
+	/**
+	 * We need to stop the immedate propagation of click on the close button
+	 * to prevent undesired effects when used within dialogs.
+	 *
+	 * We need to emit a click event on close to allow for clicks to be listened
+	 * to on the immediate close button element. `action` distinguishes between clicks on
+	 * the tag vs. clicks on the close button.
+	 */
+	@Output() click = new EventEmitter<{ action: "click" | "close" }>();
+
+	onClick(event: any) {
+		event.stopImmediatePropagation();
+		this.click.emit({ action: "click" });
+	}
+
+	onClose(event: any) {
+		event.stopImmediatePropagation();
+		this.click.emit({ action: "close" });
+		this.close.emit();
+	}
+
 	@HostBinding("attr.class") get attrClass() {
 		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}`;
+	}
+
+	@HostBinding("attr.aria-label") get attrAriaLabel() {
+		return `${this.title || ""} ${this.closeButtonLabel}`.trim();
 	}
 }

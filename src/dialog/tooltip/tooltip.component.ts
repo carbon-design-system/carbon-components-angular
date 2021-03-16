@@ -5,11 +5,12 @@ import {
 	ElementRef,
 	Optional
 } from "@angular/core";
-import { getFocusElementList } from "./../../common/tab.service";
+import { getFocusElementList } from "carbon-components-angular/common";
 
-import { Dialog } from "./../dialog.component";
+import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
-import { ElementService } from "./../../utils/utils.module";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
+import { closestAttr } from "carbon-components-angular/utils";
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
@@ -50,9 +51,9 @@ export class Tooltip extends Dialog {
 
 	constructor(
 		protected elementRef: ElementRef,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null) {
-		super(elementRef, elementService);
+		protected elementService: ElementService,
+		@Optional() protected animationFrameService: AnimationFrameService = null) {
+		super(elementRef, elementService, animationFrameService);
 	}
 
 	/**
@@ -60,19 +61,31 @@ export class Tooltip extends Dialog {
 	 */
 	onDialogInit() {
 		this.addGap["bottom"] = pos => {
-			return position.addOffset(pos, 3, 0);
+			const adjustedOffset = this.getAdjustOffset();
+			return position.addOffset(pos, 3 + adjustedOffset.top, 0 + adjustedOffset.left);
 		};
 		this.addGap["top"] = pos => {
-			return position.addOffset(pos, -10, 0);
+			const adjustedOffset = this.getAdjustOffset();
+			return position.addOffset(pos, -10 + adjustedOffset.top, 0 + adjustedOffset.left);
 		};
 		this.addGap["left"] = pos => {
-			return position.addOffset(pos, -3, -6);
+			const adjustedOffset = this.getAdjustOffset();
+			return position.addOffset(pos, -3 + adjustedOffset.top, -6 + adjustedOffset.left);
 		};
 		this.addGap["right"] = pos => {
-			return position.addOffset(pos, -3, 6);
+			const adjustedOffset = this.getAdjustOffset();
+			return position.addOffset(pos, -3 + adjustedOffset.top, 6 + adjustedOffset.left);
 		};
 
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
+	}
+
+	getAdjustOffset() {
+		const closestWithPos = closestAttr("position", ["relative", "fixed", "absolute"], this.elementRef.nativeElement.parentElement);
+		const topPos = closestWithPos ? closestWithPos.getBoundingClientRect().top * -1 : 0;
+		const leftPos = closestWithPos ? closestWithPos.getBoundingClientRect().left * -1 : 0;
+
+		return {top: topPos, left: leftPos};
 	}
 
 	afterDialogViewInit() {

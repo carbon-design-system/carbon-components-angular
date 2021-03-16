@@ -5,7 +5,8 @@ import {
 	QueryList,
 	AfterContentInit,
 	ContentChild,
-	Query
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
@@ -48,7 +49,8 @@ import { TabHeaders } from "./tab-headers.component";
 				[contentBefore]="before"
 				[contentAfter]="after"
 				[ariaLabel]="ariaLabel"
-				[ariaLabelledby]="ariaLabelledby">
+				[ariaLabelledby]="ariaLabelledby"
+				[type]="type">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
 			<ng-template #before>
@@ -61,11 +63,12 @@ import { TabHeaders } from "./tab-headers.component";
 				*ngIf="hasTabHeaders() && position === 'bottom'"
 				[skeleton]="skeleton"
 				[tabs]="tabs"
-				[cacheActive]="cacheActive">
+				[cacheActive]="cacheActive"
+				[type]="type">
 			</ibm-tab-headers>
-	 `
+	`
 })
-export class Tabs implements AfterContentInit {
+export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Takes either the string value 'top' or 'bottom' to place TabHeader
 	 * relative to the `TabPanel`s.
@@ -95,6 +98,10 @@ export class Tabs implements AfterContentInit {
 	 * Sets the aria labelledby on the `TabHeader`s nav element.
 	 */
 	@Input() ariaLabelledby: string;
+	/**
+	 * Sets the type of the `TabHeader`s
+	 */
+	@Input() type: "default" | "container" = "default";
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
@@ -103,7 +110,8 @@ export class Tabs implements AfterContentInit {
 	/**
 	 * Content child of the projected header component
 	 */
-	@ContentChild(TabHeaders) tabHeaders;
+	// @ts-ignore
+	@ContentChild(TabHeaders, { static: false }) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial
@@ -115,8 +123,20 @@ export class Tabs implements AfterContentInit {
 		}
 
 		this.tabs.forEach(tab => {
-			tab.tabIndex = this.isNavigation ? -1 : 0;
+			tab.tabIndex = this.isNavigation ? null : 0;
 		});
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.tabHeaders && changes.cacheActive) {
+			this.tabHeaders.cacheActive = this.cacheActive;
+		}
+
+		if (this.tabs && changes.isNavigation) {
+			this.tabs.forEach(tab => {
+				tab.tabIndex = this.isNavigation ? null : 0;
+			});
+		}
 	}
 
 	/**

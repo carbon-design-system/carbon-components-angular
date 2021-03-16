@@ -3,8 +3,6 @@ import { CommonModule } from "@angular/common";
 
 import { Link } from "./link.directive";
 
-export { Link } from "./link.directive";
-
 @NgModule({
 	declarations: [
 		Link

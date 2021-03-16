@@ -1,4 +1,8 @@
-import { Injectable, OnDestroy, NgZone } from "@angular/core";
+import {
+	Injectable,
+	OnDestroy,
+	NgZone
+} from "@angular/core";
 import { Observable, Subject, from } from "rxjs";
 
 @Injectable()

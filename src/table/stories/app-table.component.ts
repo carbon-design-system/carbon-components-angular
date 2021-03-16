@@ -9,29 +9,20 @@ import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
-function sort(model, index: number) {
-	if (model.header[index].sorted) {
-		// if already sorted flip sorting direction
-		model.header[index].ascending = model.header[index].descending;
-	}
-	model.sort(index);
-}
-
 @Component({
 	selector: "app-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
-			[showSelectionColumn]="true"
-			[enableSingleSelect]="false"
+			[showSelectionColumn]="showSelectionColumn"
+			[enableSingleSelect]="enableSingleSelect"
+			(rowClick)="onRowClick($event)"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid"
-			(sort)="simpleSort($event)">
+			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -40,6 +31,7 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
+	@Input() enableSingleSelect = false;
 	@Input() striped = true;
 	@Input() sortable = true;
 	@Input() isDataGrid = false;
@@ -59,6 +51,7 @@ export class TableStory implements OnInit, OnChanges {
 		];
 
 		this.model.rowsSelectedChange.subscribe(event => console.log(event));
+		this.model.selectAllChange.subscribe(event => console.log(event ? "All rows selected!" : "All rows deselected!"));
 
 		if (!this.noData && !this.skeleton) {
 			this.model.data = [
@@ -81,7 +74,7 @@ export class TableStory implements OnInit, OnChanges {
 		}
 	}
 
-	simpleSort(index: number) {
-		sort(this.model, index);
+	onRowClick(index: number) {
+		console.log("Row item selected:", index);
 	}
 }

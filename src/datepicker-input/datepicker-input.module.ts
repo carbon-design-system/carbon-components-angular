@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DatePickerInput } from "./datepicker-input.component";
-import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -12,7 +12,7 @@ import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
 	],
 	imports: [
 		CommonModule,
-		Calendar16Module
+		IconModule
 	]
 })
 export class DatePickerInputModule { }

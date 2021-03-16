@@ -4,8 +4,8 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
-import { TableItem } from "./../table-item.class";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
 
 @Component({
@@ -15,6 +15,7 @@ import { Observable } from "rxjs";
 		<ibm-radio
 			*ngIf="!skeleton"
 			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			(change)="change.emit()">
 		</ibm-radio>

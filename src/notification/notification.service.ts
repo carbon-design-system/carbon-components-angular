@@ -6,7 +6,8 @@ import {
 	EventEmitter,
 	Injectable,
 	Injector,
-	OnDestroy
+	OnDestroy,
+	NgZone
 } from "@angular/core";
 
 import { NotificationContent, ToastContent } from "./notification-content.interface";
@@ -38,7 +39,8 @@ export class NotificationService implements OnDestroy {
 	constructor(
 		protected injector: Injector,
 		protected componentFactoryResolver: ComponentFactoryResolver,
-		protected applicationRef: ApplicationRef) {
+		protected applicationRef: ApplicationRef,
+		protected ngZone: NgZone) {
 	}
 
 	/**
@@ -104,16 +106,24 @@ export class NotificationService implements OnDestroy {
 		}
 
 		if (notificationObj.duration && notificationObj.duration > 0) {
-			setTimeout(() => {
-				this.close(notificationRef);
-			}, notificationObj.duration);
+			this.ngZone.runOutsideAngular(() => {
+				setTimeout(() => {
+					this.ngZone.run(() => {
+						this.close(notificationRef);
+					});
+				}, notificationObj.duration);
+			});
 		}
 
 		if (notificationObj.smart) {
-			// let it disappear after calculated timeout
-			setTimeout(() => {
-				this.close(notificationRef);
-			}, this.getSmartTimeout(notificationObj));
+			this.ngZone.runOutsideAngular(() => {
+				// let it disappear after calculated timeout
+				setTimeout(() => {
+					this.ngZone.run(() => {
+						this.close(notificationRef);
+					});
+				}, this.getSmartTimeout(notificationObj));
+			});
 		}
 
 		this.onClose.subscribe(() => {
@@ -138,14 +148,12 @@ export class NotificationService implements OnDestroy {
 			if (notificationRef instanceof Notification) {
 				this.close(notificationRef.componentRef);
 			} else {
-				setTimeout( () => {
-					this.applicationRef.detachView(notificationRef.hostView);
-					notificationRef.destroy();
-					const index = this.notificationRefs.indexOf(notificationRef);
-					if (index !== -1) {
-						this.notificationRefs.splice(index, 1);
-					}
-				}, 200);
+				this.applicationRef.detachView(notificationRef.hostView);
+				notificationRef.destroy();
+				const index = this.notificationRefs.indexOf(notificationRef);
+				if (index !== -1) {
+					this.notificationRefs.splice(index, 1);
+				}
 			}
 		}
 	}

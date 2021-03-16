@@ -11,8 +11,8 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
-import { NotificationModule, NotificationService } from "./notification.module";
-import { ButtonModule } from "../button/button.module";
+import { NotificationModule, NotificationService } from "./index";
+import { ButtonModule } from "../button/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Subject } from "rxjs";
 
@@ -51,6 +51,15 @@ import { Subject } from "rxjs";
 			lowContrast: lowContrast,
 			actions: actions}">
 		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'error',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions,
+			links: links}">
+		</ibm-notification>
 		`,
 	providers: [NotificationService]
 })
@@ -66,6 +75,17 @@ class NotificationActionStory implements OnInit {
 		{
 			text: "Action",
 			click: this.actionSubject
+		}
+	];
+
+	links = [
+		{
+			href: "https://ibm.com",
+			text: "Link"
+		},
+		{
+			href: "https://ibm.com",
+			text: "Link"
 		}
 	];
 
@@ -225,10 +245,29 @@ storiesOf("Components|Notification", module)
 				lowContrast: lowContrast,
 				showClose: showClose
 			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'error',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				showClose: showClose,
+				links: links
+			}"></ibm-toast>
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
+			lowContrast: boolean("Low Contrast", false),
+			links: [
+				{
+					href: "https://ibm.com",
+					text: "Link"
+				},
+				{
+					href: "https://ibm.com",
+					text: "Link"
+				}
+			]
 		}
 	}))
 	.add("With custom content", () => ({
@@ -236,19 +275,28 @@ storiesOf("Components|Notification", module)
 			<ibm-toast [notificationObj]="{
 				type: 'error',
 				template: customToastContent,
+				title: 'Sample title',
+				myData: {
+					subtitle: 'Sample custom subtitle'
+				},
+				myCaption: 'Sample custom caption',
 				showClose: showClose
 			}">
 			</ibm-toast>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				template: customNotificationContent,
+				title: 'Sample notification',
+				myData: {
+					subtitle: 'Sample custom subtitle'
+				},
 				showClose: showClose
 			}">
 			</ibm-notification>
-			<ng-template #customToastContent>
-				<h3 ibmToastTitle>Sample custom toast</h3>
-				<p ibmToastSubtitle>Sample custom subtitle</p>
-				<p ibmToastCaption>Sample custom caption</p>
+			<ng-template #customToastContent let-data>
+				<h3 ibmToastTitle>{{data.title}}</h3>
+				<p ibmToastSubtitle>{{data.myData.subtitle}}</p>
+				<p ibmToastCaption>{{data.myCaption}}</p>
 				<div class="actions">
 					<div class="secondary-toast-button">
 						<button ibmButton="secondary" size="sm">Still Working</button>
@@ -258,9 +306,9 @@ storiesOf("Components|Notification", module)
 					</div>
 				</div>
 			</ng-template>
-			<ng-template #customNotificationContent>
-				<p ibmNotificationTitle>Sample custom notification</p>
-				<p ibmNotificationSubtitle>Sample custom caption</p>
+			<ng-template #customNotificationContent let-data>
+				<p ibmNotificationTitle>{{data.title}}</p>
+				<p ibmNotificationSubtitle>{{data.myData.subtitle}}</p>
 			</ng-template>
 		`,
 		encapsulation: ViewEncapsulation.None,
@@ -290,11 +338,11 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Notification.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
 		`
 	}))
 	.add("Toast Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Toast.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_notification.toast.html"></ibm-documentation>
 		`
 	}));

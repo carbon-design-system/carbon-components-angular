@@ -2,6 +2,7 @@ import { Subject } from "rxjs";
 import { TemplateRef } from "@angular/core";
 
 export interface NotificationContent {
+	[key: string]: any;
 	type: string;
 	title: string;
 	target?: string;
@@ -13,6 +14,7 @@ export interface NotificationContent {
 	lowContrast?: boolean;
 	template?: TemplateRef<any>;
 	actions?: NotificationAction[];
+	links?: NotificationLink[];
 }
 
 export interface ToastContent extends NotificationContent {
@@ -21,8 +23,13 @@ export interface ToastContent extends NotificationContent {
 	template?: TemplateRef<any>;
 }
 
-interface NotificationAction {
+export interface NotificationAction {
 	text: string;
 	click: Subject<{event: Event, action: any}> | ((event: {event: Event, action: any}) => any);
 	[x: string]: any;
+}
+
+export interface NotificationLink {
+	text: string;
+	href: string;
 }

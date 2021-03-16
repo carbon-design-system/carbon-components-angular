@@ -22,39 +22,65 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
-import { PlaceholderModule } from "../placeholder/placeholder.module";
+import { PlaceholderModule } from "../placeholder/index";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { DropdownModule } from "./dropdown.module";
+import { ModalModule } from "../modal";
+
+const modalText =
+	`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.`;
 
 const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
+	size: select("Size", ["sm", "md", "xl"], "md"),
 	invalidText: "This is not a validation text",
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
 	helperText: text("Helper text", "Optional helper text."),
 	items: object("items", [
 		{ content: "one" },
-		{ content: "two" },
+		{ content: "two", selected: true },
 		{ content: "three" },
 		{ content: "four" }
 	]),
 	selected: action("Selected fired for dropdown"),
 	onClose: action("Dropdown closed"),
-	theme: select("theme", ["dark", "light"], "dark")
+	theme: select("theme", ["dark", "light"], "dark"),
+	dropUp: boolean("Drop up", false)
 }, overrides);
 
 @Component({
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup">
-			<div style="text-align:center">
+			<div style="width: 300px">
 				<ibm-dropdown
 					[label]="label"
 					[helperText]="helperText"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[theme]="theme"
-					type="multi"
+					[selectionFeedback]="selectionFeedback"
 					placeholder="Multi-select"
 					value="oid"
 					(selected)="selected.emit($event)"
@@ -78,6 +104,7 @@ class ReactiveFormsStory implements OnInit {
 	@Input() helperText = "";
 	@Input() invalid = false;
 	@Input() invalidText = "";
+	@Input() selectionFeedback = "top-after-reopen";
 	@Input() set disabled(value) {
 		if (!this.formGroup) { return; }
 		if (value) {
@@ -89,7 +116,7 @@ class ReactiveFormsStory implements OnInit {
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
-	constructor(protected formBuilder: FormBuilder) {}
+	constructor(protected formBuilder: FormBuilder) { }
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
@@ -99,16 +126,40 @@ class ReactiveFormsStory implements OnInit {
 	}
 
 	private selectRoles() {
-		this.formGroup.get("roles").setValue([1, 2]);
+		this.formGroup.get("roles").setValue(1);
 	}
+}
+
+@Component({
+	selector: "app-dropdown-modal",
+	template: `
+        <ibm-modal [open]="true">
+            <ibm-modal-header>Header label</ibm-modal-header>
+            <section class="bx--modal-content">
+                <h1>Sample modal works.</h1>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+                <div style="width: 300px">
+					<ibm-dropdown placeholder="Select">
+						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+					</ibm-dropdown>
+				</div>
+                <p class="bx--modal-content__text">{{modalText}}</p>
+            </section>
+        </ibm-modal>
+    `
+})
+class DropdownModal {
+	@Input() modalText: string;
+	@Input() items: any[];
 }
 
 storiesOf("Components|Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ ReactiveFormsStory ],
+			declarations: [ReactiveFormsStory, DropdownModal],
 			imports: [
 				DropdownModule,
+				ModalModule,
 				PlaceholderModule,
 				DocumentationModule,
 				ReactiveFormsModule
@@ -122,6 +173,8 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[theme]="theme"
@@ -132,7 +185,6 @@ storiesOf("Components|Dropdown", module)
 				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 			</ibm-dropdown>
 		</div>
-		<ibm-placeholder></ibm-placeholder>
 	`,
 		props: getProps()
 	}))
@@ -142,8 +194,11 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[selectionFeedback]="selectionFeedback"
 				type="multi"
 				placeholder="Multi-select"
 				[disabled]="disabled"
@@ -153,7 +208,10 @@ storiesOf("Components|Dropdown", module)
 			</ibm-dropdown>
 		</div>
 	`,
-		props: getProps()
+		props: {
+			...getProps(),
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
+		}
 	}))
 	.add("Multi-select with ngModel", () => ({
 		template: `
@@ -162,8 +220,11 @@ storiesOf("Components|Dropdown", module)
 				type="multi"
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
+				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[selectionFeedback]="selectionFeedback"
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
@@ -180,7 +241,8 @@ storiesOf("Components|Dropdown", module)
 				{ content: "three", id: 2 },
 				{ content: "four", id: 3 }
 			]),
-			model: null
+			model: [2],
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
 		})
 	}))
 	.add("With ngModel", () => ({
@@ -189,6 +251,7 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				placeholder="Select"
@@ -201,10 +264,21 @@ storiesOf("Components|Dropdown", module)
 		</div>
 		`,
 		props: getProps({
-			model: null
+			model: "two"
 		})
 	}))
-	.add("Width reactive forms", () => ({
+	.add("In modal", () => ({
+		template: `
+			<app-dropdown-modal
+				[items]="items"
+				[modalText]="modalText">
+			</app-dropdown-modal>
+		`,
+		props: getProps({
+			modalText: text("modal text", modalText)
+		})
+	}))
+	.add("With reactive forms", () => ({
 		template: `
 			<app-reactive-forms
 				[label]="label"
@@ -213,16 +287,25 @@ storiesOf("Components|Dropdown", module)
 				[invalidText]="invalidText"
 				[disabled]="disabled"
 				[items]="items"
+				[selectionFeedback]="selectionFeedback"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">
 			</app-reactive-forms>
 		`,
 		props: getProps({
 			items: [
-				{ content: "role 1", oid: 1, selected: false },
-				{ content: "role 2", oid: 2, selected: false },
-				{ content: "role 3", oid: 3, selected: false }
+				{
+					content: "numerical value item 1",
+					oid: 1,
+					selected: false
+				},
+				{
+					content: "string value item 2",
+					oid: 2,
+					selected: false
+				}
 			],
+			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen"),
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
 		})
@@ -235,6 +318,7 @@ storiesOf("Components|Dropdown", module)
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[size]="size"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -247,7 +331,7 @@ storiesOf("Components|Dropdown", module)
 		props: getProps({
 			items: of([
 				{ content: "one" },
-				{ content: "two" },
+				{ content: "two", selected: true },
 				{ content: "three" },
 				{ content: "four" }
 			])
@@ -260,6 +344,7 @@ storiesOf("Components|Dropdown", module)
 				[theme]="theme"
 				placeholder="Select"
 				[displayValue]="dropdownRenderer"
+				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
@@ -297,6 +382,6 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Dropdown.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dropdown.dropdown.html"></ibm-documentation>
 		`
 	}));

@@ -15,6 +15,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
 			[ngClass]="{
+				'bx--date-picker--simple' : type === 'simple',
 				'bx--date-picker--single' : type === 'single',
 				'bx--date-picker--range' : type === 'range',
 				'bx--date-picker--light' : theme === 'light',
@@ -25,21 +26,28 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div class="bx--date-picker-input__wrapper">
+				<div class="bx--date-picker-input__wrapper"
+					[ngClass]="{
+						'bx--date-picker-input__wrapper--invalid': invalid
+					}">
 					<input
 						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
 						type="text"
 						class="bx--date-picker__input"
+						[ngClass]="{
+							'bx--date-picker__input--sm': size === 'sm',
+							'bx--date-picker__input--xl': size === 'xl'
+						}"
+						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
 						[pattern]="pattern"
 						[placeholder]="placeholder"
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-						<ibm-icon-calendar16 class="bx--date-picker__icon">
-						</ibm-icon-calendar16>
+						<svg *ngIf="type !== 'simple'" ibmIcon="calendar" size="16" class="bx--date-picker__icon"></svg>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
@@ -89,7 +97,10 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	@ViewChild("input") input: ElementRef;
+	@Input() size: "sm" | "md" | "xl" = "md";
+
+	// @ts-ignore
+	@ViewChild("input", { static: false }) input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) {}
 

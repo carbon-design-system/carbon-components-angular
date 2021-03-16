@@ -2,7 +2,8 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { LoadingModule, DocumentationModule } from "../";
+import { LoadingModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Loading", module).addDecorator(
 	moduleMetadata({
@@ -22,6 +23,6 @@ storiesOf("Components|Loading", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Loading.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_loading.loading.html"></ibm-documentation>
 		`
 	}));

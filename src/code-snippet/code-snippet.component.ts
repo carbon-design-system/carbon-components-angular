@@ -3,10 +3,11 @@ import {
 	Input,
 	HostBinding,
 	ViewChild,
-	HostListener
+	HostListener,
+	AfterViewInit
 } from "@angular/core";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n } from "carbon-components-angular/i18n";
 
 export enum SnippetType {
 	single = "single",
@@ -49,16 +50,16 @@ export enum SnippetType {
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
 				tabindex="0">
-				<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>
+				<svg ibmIcon="copy" size="16" class="bx--snippet__icon"></svg>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
-				*ngIf="display === 'multi' && shouldShowExpandButton"
+				*ngIf="shouldShowExpandButton"
 				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>
+				<svg ibmIcon="chevron--down" size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></svg>
 			</button>
 		</ng-template>
 
@@ -77,7 +78,7 @@ export enum SnippetType {
 		</ng-template>
 	`
 })
-export class CodeSnippet {
+export class CodeSnippet implements AfterViewInit {
 	/**
 	 * Variable used for creating unique ids for code-snippet components.
 	 */
@@ -134,13 +135,22 @@ export class CodeSnippet {
 		return this.display === SnippetType.inline ? "button" : null;
 	}
 
-	@ViewChild("code") code;
+	// @ts-ignore
+	@ViewChild("code", { static: false }) code;
 
 	get shouldShowExpandButton() {
-		return this.code ? this.code.nativeElement.getBoundingClientRect().height > 255 : false;
+		// Checks if `hasExpand` button has been initialized in `AfterViewInit` before detecting whether or not to
+		// show the expand button when the code displayed in the component changes during the life of the component.
+		// This is to avoid the `ExpressionChangedAfterItHasBeenCheckedError`.
+		if (this.hasExpandButton === null) {
+			return this.hasExpandButton;
+		}
+		return this.canExpand();
 	}
 
 	showFeedback = false;
+
+	hasExpandButton = null;
 
 	/**
 	 * Creates an instance of CodeSnippet.
@@ -193,6 +203,16 @@ export class CodeSnippet {
 		}, this.feedbackTimeout);
 	}
 
+	ngAfterViewInit() {
+		setTimeout(() => {
+			if (this.canExpand()) {
+				this.hasExpandButton = true;
+			} else {
+				this.hasExpandButton = false;
+			}
+		});
+	}
+
 	/**
 	 * Inline code snippet acts as button and makes the whole component clickable.
 	 *
@@ -205,5 +225,9 @@ export class CodeSnippet {
 		}
 
 		this.onCopyButtonClicked();
+	}
+
+	protected canExpand() {
+		return (this.code && this.code.nativeElement.getBoundingClientRect().height > 255) && this.display === "multi";
 	}
 }

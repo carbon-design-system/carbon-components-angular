@@ -1,5 +1,5 @@
 import { TemplateRef } from "@angular/core";
-import { DialogConfig } from "./../dialog/dialog-config.interface";
+import { DialogConfig } from "carbon-components-angular/dialog";
 
 export interface Step {
 	/**
@@ -18,4 +18,5 @@ export interface Step {
 	 * Determines whether the step is disabled or not
 	 */
 	disabled?: boolean;
+	optionalText?: string;
 }

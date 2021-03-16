@@ -3,10 +3,7 @@ import { Observable, from } from "rxjs";
 import { map } from "rxjs/operators";
 import { getScrollableParents, isVisibleInContainer } from "./scroll";
 import { AnimationFrameServiceSingleton } from "./animation-frame.service";
-
-export interface ElementVisibilityEvent {
-	visible: boolean;
-}
+import { ElementVisibilityEvent } from "./element.types";
 
 @Injectable()
 export class ElementService {

@@ -6,18 +6,20 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18n, Overridable } from "./../i18n/i18n.module";
-import { ExperimentalService } from "./../experimental.module";
-import { merge } from "./../utils/object";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { ExperimentalService } from "carbon-components-angular/experimental";
+import { merge } from "carbon-components-angular/utils";
 
 export interface PaginationTranslations {
 	ITEMS_PER_PAGE: string;
 	OPEN_LIST_OF_OPTIONS: string;
 	BACKWARD: string;
 	FORWARD: string;
+	TOTAL_ITEMS_UNKNOWN: string;
 	TOTAL_ITEMS: string;
-	TOTAL_PAGES: string;
+	TOTAL_ITEM: string;
 	OF_LAST_PAGES: string;
+	OF_LAST_PAGE: string;
 }
 
 /**
@@ -60,38 +62,42 @@ export interface PaginationTranslations {
 		</div>
 
 		<div *ngIf="!skeleton" class="bx--pagination__left">
-			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
-				{{itemsPerPageText.subject | async}}
-			</label>
-			<div class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__item-count': isExperimental
-				}">
-				<select
-					[id]="itemsPerPageSelectId"
-					[(ngModel)]="itemsPerPage"
-					class="bx--select-input">
-					<option
-						class="bx--select-option"
-						*ngFor="let option of itemsPerPageOptions"
-						[value]="option">
-							{{ option }}
-					</option>
-				</select>
-				<svg
-					ibmIconChevronDown16
-					style="display: inherit"
-					class="bx--select__arrow"
-					aria-hidden="true"
-					[ariaLabel]="optionsListText.subject | async">
-				</svg>
-			</div>
-			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
+			<ng-container *ngIf="showPageInput">
+				<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
+					{{itemsPerPageText.subject | async}}
+				</label>
+				<div
+					class="bx--select bx--select--inline bx--select__item-count"
+					[class.bx--select--disabled]="pageInputDisabled">
+					<select
+						[id]="itemsPerPageSelectId"
+						[(ngModel)]="itemsPerPage"
+						[disabled]="pageInputDisabled"
+						class="bx--select-input">
+						<option
+							class="bx--select-option"
+							*ngFor="let option of itemsPerPageOptions"
+							[value]="option">
+								{{ option }}
+						</option>
+					</select>
+					<svg
+						ibmIcon="chevron--down"
+						size="16"
+						style="display: inherit"
+						class="bx--select__arrow"
+						aria-hidden="true"
+						[attr.ariaLabel]="optionsListText.subject | async">
+					</svg>
+				</div>
+			</ng-container>
+			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+			</span>
+			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="pagesUnknown" class="bx--pagination__text">
-				<span *ngIf="!isExperimental">|&nbsp;</span>
+			<span *ngIf="pagesUnknown" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
@@ -101,71 +107,83 @@ export interface PaginationTranslations {
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__right"
-			[ngClass]="{
-				'bx--pagination--inline': !isExperimental
-			}">
-			<div
-				*ngIf="!pageInputDisabled"
-				class="bx--select bx--select--inline"
-				[ngClass]="{
-					'bx--select__page-number' : isExperimental
-				}">
-				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
-				<input
-					*ngIf="pageOptions.length > pageSelectThreshold"
-					style="padding-right: 1rem; margin-right: 1rem;"
-					[id]="currentPageSelectId"
-					type="number"
-					min="1"
-					[max]="pageOptions.length"
-					class="bx--select-input"
-					[(ngModel)]="currentPage">
-				<select
-					*ngIf="pageOptions.length <= pageSelectThreshold"
-					[id]="currentPageSelectId"
-					class="bx--select-input"
-					[(ngModel)]="currentPage">
-					<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
-				</select>
-				<svg
-					*ngIf="pageOptions.length <= 1000"
-					ibmIconChevronDown16
-					style="display: inherit;"
-					class="bx--select__arrow"
-					[ariaLabel]="optionsListText.subject | async">
-				</svg>
-			</div>
+		<div *ngIf="!skeleton" class="bx--pagination__right">
+			<ng-container *ngIf="showPageInput">
+				<div
+					class="bx--select bx--select--inline bx--select__page-number"
+					[class.bx--select--disabled]="pageInputDisabled">
+					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
+					<input
+						*ngIf="pageOptions.length > pageSelectThreshold"
+						style="padding-right: 1rem; margin-right: 1rem;"
+						[id]="currentPageSelectId"
+						type="number"
+						min="1"
+						[max]="pageOptions.length"
+						class="bx--select-input"
+						[(ngModel)]="currentPage">
+					<select
+						*ngIf="pageOptions.length <= pageSelectThreshold"
+						[id]="currentPageSelectId"
+						class="bx--select-input"
+						[disabled]="pageInputDisabled"
+						[(ngModel)]="currentPage">
+						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
+					</select>
+					<svg
+						*ngIf="pageOptions.length <= 1000"
+						ibmIcon="chevron--down"
+						size="16"
+						style="display: inherit;"
+						class="bx--select__arrow"
+						[attr.ariaLabel]="optionsListText.subject | async">
+					</svg>
+				</div>
+			</ng-container>
 
-			<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
+				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
+			</span>
+			<span *ngIf="!pagesUnknown && lastPage > 1" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{pageText.subject | async}} {{currentPage}}
 			</span>
-			<button
-				class="bx--pagination__button bx--pagination__button--backward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage <= 1 || disabled
-				}"
-				tabindex="0"
-				[attr.aria-label]="backwardText.subject | async"
-				(click)="selectPage.emit(previousPage)"
-				[disabled]="(currentPage <= 1 || disabled ? true : null)">
-				<ibm-icon-caret-left16></ibm-icon-caret-left16>
-			</button>
+			<div class="bx--pagination__control-buttons">
+				<button
+					ibmButton="ghost"
+					iconOnly="true"
+					class="bx--pagination__button bx--pagination__button--backward"
+					[ngClass]="{
+						'bx--pagination__button--no-index': currentPage <= 1 || disabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="backwardText.subject | async"
+					(click)="selectPage.emit(previousPage)"
+					[disabled]="(currentPage <= 1 || disabled ? true : null)">
+					<svg ibmIcon="caret--left" size="16"></svg>
+				</button>
 
-			<button
-				class="bx--pagination__button bx--pagination__button--forward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage >= lastPage || disabled
-				}"
-				tabindex="0"
-				[attr.aria-label]="forwardText.subject | async"
-				(click)="selectPage.emit(nextPage)"
-				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-				<ibm-icon-caret-right16></ibm-icon-caret-right16>
-			</button>
+				<button
+					ibmButton="ghost"
+					iconOnly="true"
+					class="
+						bx--pagination__button
+						bx--pagination__button--forward"
+					[ngClass]="{
+						'bx--pagination__button--no-index': currentPage >= lastPage || disabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="forwardText.subject | async"
+					(click)="selectPage.emit(nextPage)"
+					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
+					<svg ibmIcon="caret--right" size="16"></svg>
+				</button>
+			</div>
 		</div>
 	</div>
 	`
@@ -190,6 +208,10 @@ export class Pagination {
 	 */
 	@Input() pageInputDisabled = false;
 	/**
+	 * Controls wether or not to show the page selects
+	 */
+	@Input() showPageInput = true;
+	/**
 	 * Set to `true` if the total number of items is unknown.
 	 */
 	@Input() pagesUnknown = false;
@@ -203,9 +225,11 @@ export class Pagination {
 	 *		"OPEN_LIST_OF_OPTIONS": "Open list of options",
 	 *		"BACKWARD": "Backward",
 	 *		"FORWARD": "Forward",
+	 *		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 	 *		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-	 *		"TOTAL_PAGES": "{{current}} of {{last}} pages",
-	 *		"OF_LAST_PAGES": "of {{last}} pages"
+	 *		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
+	 *		"OF_LAST_PAGES": "of {{last}} pages",
+	 *		"OF_LAST_PAGE": "of {{last}} page"
 	 * }
 	 * ```
 	 */
@@ -217,10 +241,11 @@ export class Pagination {
 		this.backwardText.override(valueWithDefaults.BACKWARD);
 		this.forwardText.override(valueWithDefaults.FORWARD);
 		this.totalItemsText.override(valueWithDefaults.TOTAL_ITEMS);
+		this.totalItemText.override(valueWithDefaults.TOTAL_ITEM);
 		this.totalItemsUnknownText.override(valueWithDefaults.TOTAL_ITEMS_UNKNOWN);
-		this.totalPagesText.override(valueWithDefaults.TOTAL_PAGES);
 		this.pageText.override(valueWithDefaults.PAGE);
 		this.ofLastPagesText.override(valueWithDefaults.OF_LAST_PAGES);
+		this.ofLastPageText.override(valueWithDefaults.OF_LAST_PAGE);
 	}
 
 	/**
@@ -292,10 +317,6 @@ export class Pagination {
 		return this.currentPage >= lastPage ? lastPage : this.currentPage + 1;
 	}
 
-	get isExperimental() {
-		return this.experimental.isExperimental;
-	}
-
 	get pageOptions() {
 		if (this.totalDataLength && this._pageOptions.length !== this.totalDataLength) {
 			this._pageOptions = Array(Math.ceil(this.totalDataLength / this.itemsPerPage));
@@ -311,10 +332,11 @@ export class Pagination {
 	backwardText = this.i18n.getOverridable("PAGINATION.BACKWARD");
 	forwardText = this.i18n.getOverridable("PAGINATION.FORWARD");
 	totalItemsText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS");
+	totalItemText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEM");
 	totalItemsUnknownText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS_UNKNOWN");
-	totalPagesText = this.i18n.getOverridable("PAGINATION.TOTAL_PAGES");
 	pageText = this.i18n.getOverridable("PAGINATION.PAGE");
 	ofLastPagesText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGES");
+	ofLastPageText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGE");
 
 	protected _pageOptions = [];
 

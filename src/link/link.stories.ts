@@ -1,7 +1,8 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { LinkModule, DocumentationModule } from "../";
+import { LinkModule } from "../";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Link", module)
 	.addDecorator(
@@ -15,14 +16,15 @@ storiesOf("Components|Link", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="#" ibmLink [disabled]="disabled">link</a>
+			<a href="#" ibmLink [disabled]="disabled" [inline]="inline">link</a>
 		`,
 		props: {
-			disabled: boolean("disabled", false)
+			disabled: boolean("disabled", false),
+			inline: boolean("inline", false)
 		}
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/Link.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_link.link.html"></ibm-documentation>
 		`
 	}));

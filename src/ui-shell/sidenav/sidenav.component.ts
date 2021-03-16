@@ -4,7 +4,8 @@ import {
 	Input,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n } from "carbon-components-angular/i18n";
+import { NavigationItem } from "../header/header-navigation-items.interface";
 
 /**
  * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
@@ -16,12 +17,26 @@ import { I18n } from "../../i18n/i18n.module";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav
-			class="bx--side-nav__navigation"
-			role="navigation"
-			[attr.aria-label]="i18n.get('UI_SHELL.SIDE_NAV.LABEL')">
+		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
 			<ng-content select="ibm-sidenav-header"></ng-content>
 			<ul class="bx--side-nav__items">
+				<div
+					class="bx--side-nav__header-navigation bx--side-nav__header-divider">
+					<ng-container *ngFor="let navigationItem of navigationItems">
+						<ibm-sidenav-item
+							*ngIf="navigationItem.type === 'item'"
+							[href]="navigationItem.href"
+							[route]="navigationItem.route"
+							[routeExtras]="navigationItem.routeExtras">
+							{{ navigationItem.content }}
+						</ibm-sidenav-item>
+						<ibm-sidenav-menu
+							*ngIf="navigationItem.type === 'menu'"
+							[title]="navigationItem.title"
+							[menuItems]="navigationItem.menuItems">
+						</ibm-sidenav-menu>
+					</ng-container>
+				</div>
 				<ng-content></ng-content>
 			</ul>
 			<footer class="bx--side-nav__footer">
@@ -69,6 +84,7 @@ import { I18n } from "../../i18n/i18n.module";
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.bx--side-nav") hostClass = true;
+	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
 	/**
 	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
 	 */
@@ -80,6 +96,13 @@ export class SideNav {
 	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
 	@HostBinding("class.bx--side-nav--ux") ux = true;
 	@Input() allowExpansion = false;
+
+	/**
+	 * NavigationItems from the header navigation component which are displayed on the sidenav when the window
+	 * innerWidth is small enough. Sidenav items and menus are created using the model used to create header
+	 * navigation items.
+	 */
+	@Input() navigationItems: NavigationItem[];
 
 	constructor(public i18n: I18n) { }
 

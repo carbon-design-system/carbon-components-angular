@@ -1,42 +1,48 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 // imports
-import { ModalPlaceholder } from "./modal-placeholder.component";
 import { ModalService } from "./modal.service";
 import { Modal } from "./modal.component";
 import { ModalFooter } from "./modal-footer.component";
 import { Overlay } from "./overlay.component";
 import { ModalHeader } from "./modal-header.component";
 import { AlertModal } from "./alert-modal.component";
-import { ButtonModule } from "../forms/forms.module";
-import { I18nModule } from "./../i18n/i18n.module";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
-import { ExperimentalModule } from "./../experimental.module";
-
-// exports
-export { default as ModalDecorator } from "./modal.decorator";
-export { ModalService } from "./modal.service";
-export * from "./alert-modal.interface";
-export * from "./base-modal.class";
+import { ButtonModule } from "carbon-components-angular/forms";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { ModalContent } from "./modal-content.directive";
+import { ModalContentText } from "./modal-content-text.directive";
+import { ModalHeaderHeading } from "./modal-header-heading.directive";
+import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { BaseModal } from "./base-modal.class";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
 		AlertModal,
-		ModalPlaceholder,
 		Modal,
 		ModalHeader,
 		ModalFooter,
-		Overlay
+		Overlay,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel,
+		BaseModal
 	],
 	exports: [
 		AlertModal,
-		ModalPlaceholder,
 		Modal,
 		ModalHeader,
-		ModalFooter
+		ModalFooter,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel,
+		BaseModal
 	],
 	entryComponents: [
 		AlertModal,
@@ -51,7 +57,7 @@ export * from "./base-modal.class";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		Close16Module
+		IconModule
 	]
 })
 export class ModalModule { }

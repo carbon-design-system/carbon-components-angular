@@ -5,6 +5,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
+		"esModuleInterop": true,
 		"importHelpers": true,
 		"lib": [
 			"es2016",
@@ -22,13 +23,21 @@
 		"types": [
 			"jasmine",
 			"node"
-		]
+		],
+		"paths": {
+			"carbon-components-angular": [
+				"./src/index"
+			],
+			"carbon-components-angular/*": [
+				"./src/*/index"
+			]
+		},
 	},
 	"files": [
 		"src/test.ts"
 	],
 	"include": [
-		"**/*.spec.ts"
+		"src/**/*.spec.ts"
 	],
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,

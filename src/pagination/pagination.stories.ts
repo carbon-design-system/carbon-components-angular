@@ -7,8 +7,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs/angular";
 
 import { NFormsModule } from "..";
-import { PaginationModule } from "./pagination.module";
-import { PaginationModel } from "./pagination-model.class";
+import { PaginationModule, PaginationModel } from "./index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
@@ -19,6 +18,7 @@ import { DocumentationModule } from "./../documentation-component/documentation.
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
+			[showPageInput]="showPageInput"
 			[skeleton]="skeleton"
 			(selectPage)="selectPage($event)">
 		</ibm-pagination>
@@ -30,6 +30,7 @@ class PaginationStory implements OnInit {
 	@Input() disabled = false;
 	@Input() pageInputDisabled = false;
 	@Input() pagesUnknown = false;
+	@Input() showPageInput = true;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
@@ -70,15 +71,17 @@ storiesOf("Components|Pagination", module).addDecorator(
 					[disabled]="disabled"
 					[pageInputDisabled]="pageInputDisabled"
 					[pagesUnknown]="pagesUnknown"
-					[totalDataLength]="totalDataLength">
+					[totalDataLength]="totalDataLength"
+					[showPageInput]="showPageInput">
 				</app-pagination>
 			</div>
 		`,
 		props: {
-			disabled: boolean("Disabeld buttons", false),
+			disabled: boolean("Disabled buttons", false),
 			pageInputDisabled: boolean("Disable page input", false),
 			pagesUnknown: boolean("Total number of items unknown ", false),
-			totalDataLength: number("Total number of items", 105)
+			totalDataLength: number("Total number of items", 105),
+			showPageInput: boolean("Show the page selects", true)
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -93,7 +96,7 @@ storiesOf("Components|Pagination", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Pagination.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_pagination.pagination.html"></ibm-documentation>
 		`
 	}));
 

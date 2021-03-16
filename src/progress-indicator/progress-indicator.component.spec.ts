@@ -1,15 +1,19 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { DialogModule, ExperimentalModule } from "..";
-import { CheckmarkOutline16Module } from "@carbon/icons-angular/lib/checkmark--outline/16";
-import { Warning16Module } from "@carbon/icons-angular/lib/warning/16";
+import { IconModule } from "../icon/index";
+import { Step } from "./progress-indicator-step.interface";
 
 @Component({
-	template: `<ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>`
+	template: `<ibm-progress-indicator
+					[steps]="steps"
+					[current]="current"
+					(stepSelected)="stepSelected.emit($event)">
+				</ibm-progress-indicator>`
 })
 class ProgressIndicatorTest {
 	steps = [
@@ -44,6 +48,8 @@ class ProgressIndicatorTest {
 	];
 
 	current = 2;
+
+	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
 describe("ProgressIndicator", () => {
@@ -58,8 +64,7 @@ describe("ProgressIndicator", () => {
 				CommonModule,
 				DialogModule,
 				ExperimentalModule,
-				CheckmarkOutline16Module,
-				Warning16Module
+				IconModule
 			]
 		});
 	});
@@ -98,5 +103,45 @@ describe("ProgressIndicator", () => {
 		fixture.detectChanges();
 		expect(tooltipTrigger.getAttribute("aria-expanded")).toEqual("true");
 		expect(element.nativeElement.querySelector("ibm-tooltip").textContent).toContain("Test");
+	});
+
+	it("should emit the step and index when a step is clicked", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		spyOn(wrapper.stepSelected, "emit");
+		let index = 2;
+		wrapper.current = index;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		let step = element.nativeElement.querySelector(".bx--progress-step--current .bx--progress-label");
+		step.click();
+		fixture.detectChanges();
+		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
+	});
+
+	it("should handle current being set to 0 after the component is initialized",  () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		wrapper.current = 0;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("First step");
+	});
+
+	it("should handle steps and current being updated individually after the component is initialized", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		wrapper.steps = wrapper.steps.concat([{
+			text: "Sixth step",
+			state: ["incomplete"]
+		}]);
+		fixture.detectChanges();
+		wrapper.current = 5;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".bx--progress").children.length).toBe(6);
+		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Sixth step");
 	});
 });

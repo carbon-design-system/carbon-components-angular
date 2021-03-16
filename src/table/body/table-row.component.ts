@@ -6,10 +6,11 @@ import {
 	HostBinding,
 	HostListener
 } from "@angular/core";
-import { TableModel } from "./../table-model.class";
-import { I18n, Overridable } from "./../../i18n/i18n.module";
-import { TableItem } from "./../table-item.class";
+import { TableModel } from "../table-model.class";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -27,18 +28,24 @@ import { Observable } from "rxjs";
 				[headers]="model.getHeaderId('expand')"
 				(expandRow)="expandRow.emit()">
 			</td>
-			<td
-				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
-				ibmTableCheckbox
-				class="bx--table-column-checkbox"
-				[size]="size"
-				[selected]="selected"
-				[label]="getCheckboxLabel()"
-				[row]="row"
-				[skeleton]="skeleton"
-				[headers]="model.getHeaderId('select')"
-				(change)="onSelectionChange()">
-			</td>
+			<ng-container *ngIf="!skeleton && showSelectionColumn && !enableSingleSelect">
+				<td
+					*ngIf="!showSelectionColumnCheckbox; else tableCheckboxTemplate">
+				</td>
+				<ng-template #tableCheckboxTemplate>
+					<td
+						ibmTableCheckbox
+						class="bx--table-column-checkbox"
+						[size]="size"
+						[selected]="selected"
+						[label]="getCheckboxLabel()"
+						[row]="row"
+						[skeleton]="skeleton"
+						[headers]="model.getHeaderId('select')"
+						(change)="onSelectionChange()">
+					</td>
+				</ng-template>
+			</ng-container>
 			<td
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				ibmTableRadio
@@ -55,20 +62,26 @@ import { Observable } from "rxjs";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="item.title"
 					[class]="model.getHeader(j).className"
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan">
+					[attr.rowspan]="item.rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
 				</td>
 				<td
 					*ngIf="item && model.getHeader(j) == null"
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="item.title"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan">
+					[attr.rowspan]="item.rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
 				</td>
 			</ng-container>
 		</ng-container>
@@ -92,7 +105,7 @@ export class TableRowComponent {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: TableRowSize = "md";
 
 	/**
 	 * Controls whether to enable multiple or single row selection.
@@ -123,6 +136,12 @@ export class TableRowComponent {
 	@Input() showSelectionColumn = true;
 
 	/**
+	 * Shows or hide the checkbox in the selection column when `showSelectionColumn`
+	 * is set to true
+	 */
+	@Input() showSelectionColumnCheckbox = true;
+
+	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.
 	 *
 	 * Example:
@@ -151,6 +170,13 @@ export class TableRowComponent {
 	 */
 	@Output() expandRow = new EventEmitter();
 
+	/**
+	 * Emits when a row is clicked regardless of `enableSingleSelect` or `showSelectionColumn`.
+	 * Should only get emitted when a row item is selected excluding expand buttons,
+	 * checkboxes, or radios.
+	 */
+	@Output() rowClick = new EventEmitter();
+
 	@HostBinding("class.bx--data-table--selected") get selectedClass() {
 		return this.selected;
 	}
@@ -171,16 +197,24 @@ export class TableRowComponent {
 		return this.expandable ? true : null;
 	}
 
+	@HostBinding("attr.tabindex") get isAccessible() {
+		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
+	}
+
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
 	constructor(protected i18n: I18n) { }
 
 	@HostListener("click")
-	onRowClick() {
+	onHostClick() {
 		if (this.enableSingleSelect && !this.showSelectionColumn) {
 			this.onSelectionChange();
 		}
+	}
+
+	onRowClick() {
+		this.rowClick.emit();
 	}
 
 	onSelectionChange() {

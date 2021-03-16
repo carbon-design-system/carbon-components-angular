@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 
-import { TagModule } from "../tag/tag.module";
+import { TagModule } from "../tag/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Components|Tag", module)
@@ -37,11 +37,15 @@ storiesOf("Components|Tag", module)
 	}))
 	.add("Filter", () => ({
 		template: `
-			<ibm-tag-filter>filter</ibm-tag-filter>
+			<ibm-tag-filter
+				type="blue"
+				title="Filter"
+				closeButtonLabel="Clear"
+			>filter</ibm-tag-filter>
 		`
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Tag.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_tag.tag.html"></ibm-documentation>
 		`
 	}));

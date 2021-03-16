@@ -26,7 +26,7 @@ export class List {
 	}
 
 	@HostBinding("class.bx--list--nested") get nested() {
-		return this.elementRef.nativeElement.parentElement.tagName === "LI";
+		return !!(this.elementRef.nativeElement.parentElement && this.elementRef.nativeElement.parentElement.tagName === "LI");
 	}
 
 	constructor(protected elementRef: ElementRef) {}

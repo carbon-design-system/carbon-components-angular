@@ -2,8 +2,6 @@ import {
 	Component,
 	Input,
 	Output,
-	ViewChild,
-	ElementRef,
 	HostListener,
 	EventEmitter,
 	TemplateRef
@@ -32,16 +30,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
+			<ng-template [ngIf]="skeleton">
+				<div *ngIf="label" class="bx--label bx--skeleton"></div>
+				<div class="bx--select bx--skeleton"></div>
+			</ng-template>
 			<div
+				*ngIf="!skeleton"
+				class="bx--select"
 				[ngClass]="{
 					'bx--select--inline': display === 'inline',
 					'bx--select--light': theme === 'light',
-					'bx--skeleton': skeleton
-				}"
-				class="bx--select"
-				style="width: 100%">
-				<label *ngIf="skeleton && label" [for]="id" class="bx--label bx--skeleton"></label>
-				<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+					'bx--select--invalid': invalid,
+					'bx--select--disabled': disabled
+				}">
+				<label *ngIf="label" [for]="id" class="bx--label">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
@@ -49,44 +51,61 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
-				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
-					<select
-						#select
-						[attr.id]="id"
-						[disabled]="disabled"
-						(change)="onChange($event)"
-						class="bx--select-input">
-						<ng-content></ng-content>
-					</select>
-					<ibm-icon-warning-filled16
-						*ngIf="!skeleton && invalid"
-						class="bx--select__invalid-icon"
-						style="display: inherit;">
-					</ibm-icon-warning-filled16>
-					<svg
-						*ngIf="!skeleton"
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						style="will-change: transform;"
-						xmlns="http://www.w3.org/2000/svg"
-						class="bx--select__arrow"
-						width="10"
-						height="6"
-						viewBox="0 0 10 6"
-						aria-hidden="true">
-						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
-					</svg>
-				</div>
-				<div *ngIf="invalid" class="bx--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				<div *ngIf="display === 'inline'; else noInline" class="bx--select-input--inline__wrapper">
+					<ng-container *ngTemplateOutlet="noInline"></ng-container>
 				</div>
 			</div>
 		</div>
+
+		<!-- select element: dynamically projected based on 'display' variant -->
+		<ng-template #noInline>
+			<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
+				<select
+					[attr.id]="id"
+					[value]="value"
+					[attr.aria-label]="ariaLabel"
+					[disabled]="disabled"
+					(change)="onChange($event)"
+					[attr.aria-invalid]="invalid ? 'true' : null"
+					class="bx--select-input"
+					[ngClass]="{
+						'bx--select-input--xl': size === 'xl',
+						'bx--select-input--sm': size === 'sm'
+					}">
+					<ng-content></ng-content>
+				</select>
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					xmlns="http://www.w3.org/2000/svg"
+					class="bx--select__arrow"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
+				</svg>
+				<svg
+					*ngIf="invalid"
+					ibmIcon="warning--filled"
+					size="16"
+					class="bx--select__invalid-icon">
+				</svg>
+			</div>
+			<div *ngIf="invalid && invalidText" role="alert" class="bx--form-requirement" aria-live="polite">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+		</ng-template>
 	`,
 	styles: [`
-		[data-invalid] ~ .bx--select__arrow {
-			bottom: 2.25rem;
+		.bx--select--inline .bx--form__helper-text {
+			order: 4;
+		}
+
+		.bx--select--inline:not(.bx--select--invalid) .bx--form__helper-text {
+			margin-top: 0;
 		}
 	`],
 	providers: [
@@ -124,6 +143,10 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
 	/**
+	 * Number input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
+	/**
 	 * Set to true to disable component.
 	 */
 	@Input() disabled = false;
@@ -140,23 +163,19 @@ export class Select implements ControlValueAccessor {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
-	/**
-	 * emits the selected options `value`
-	 * @deprecated use `valueChange` instead
-	 */
-	@Output() selected = new EventEmitter();
+	@Input() ariaLabel: string;
 
 	@Output() valueChange = new EventEmitter();
 
-	@ViewChild("select") select: ElementRef;
-
 	get value() {
-		return this.select.nativeElement.value;
+		return this._value;
 	}
 
 	set value(v) {
-		this.select.nativeElement.value = v;
+		this._value = v;
 	}
+
+	protected _value = "";
 
 	/**
 	 * Receives a value from the model.
@@ -191,16 +210,16 @@ export class Select implements ControlValueAccessor {
 	 * Sends events to the change handler and emits a `selected` event.
 	 */
 	onChange(event) {
+		this.value = event.target.value;
 		this.onChangeHandler(event.target.value);
-		this.selected.emit(event.target.value);
 		this.valueChange.emit(event.target.value);
 	}
 
 	/**
 	 * Listens for the host blurring, and notifies the model
 	 */
-	@HostListener("blur")
-	blur() {
+	@HostListener("focusout")
+	focusOut() {
 		this.onTouchedHandler();
 	}
 

@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
@@ -6,8 +5,8 @@ import { DebugElement } from "@angular/core";
 import { Modal } from "./modal.component";
 import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
-import { I18nModule } from "../i18n/i18n.module";
-import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { I18nModule } from "../i18n/index";
+import { PlaceholderModule } from "./../placeholder/index";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -30,7 +29,6 @@ describe("Modal", () => {
 		TestBed.configureTestingModule({
 			declarations: [Modal, Overlay],
 			imports: [
-				BrowserAnimationsModule,
 				I18nModule,
 				PlaceholderModule
 			],
@@ -48,6 +46,7 @@ describe("Modal", () => {
 	});
 
 	it("should close modal when overlay is clicked", () => {
+		fixture.componentInstance.open = true;
 		fixture.detectChanges();
 		let overlay = fixture.debugElement.query(By.css(".bx--modal.bx--modal-tall.is-visible")).nativeElement;
 		spyOn(fixture.componentInstance.overlaySelected, "emit");

@@ -16,8 +16,8 @@ import {
 			[ngClass]="{
 				'bx--header__action--active': active
 			}"
-			[attr.aria-label]="title"
 			[title]="title"
+			[attr.aria-label]="ariaLabel"
 			(click)="onClick()">
 			<ng-content></ng-content>
 		</button>
@@ -29,13 +29,17 @@ export class HeaderAction {
 	 */
 	@Input() title = "";
 	/**
+	 * Sets the aria label on the nav element.
+	 */
+	@Input() ariaLabel: string;
+	/**
 	 * Toggles the active state. May be used to toggle a `Panel`s active state.
 	 */
 	@Input() active = false;
 	/**
 	 * "Change" emitter to allow double binding to the `active` Input.
 	 */
-	@Input() activeChange = new EventEmitter<boolean>();
+	@Output() activeChange = new EventEmitter<boolean>();
 	/**
 	 * Emits when the action has been clicked.
 	 */

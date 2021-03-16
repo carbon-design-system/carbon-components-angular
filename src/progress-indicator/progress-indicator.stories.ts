@@ -5,10 +5,15 @@ import {
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, number, object } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	number,
+	select
+} from "@storybook/addon-knobs/angular";
 
-import { ProgressIndicatorModule, PlaceholderModule, DocumentationModule } from "../";
+import { ProgressIndicatorModule, PlaceholderModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
+import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-skeleton-progress-indicator",
@@ -42,7 +47,12 @@ storiesOf("Components|Progress Indicator", module)
 	.add("Basic", () => ({
 		template: `
 		<div style="display: flex;">
-			<ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>
+			<ibm-progress-indicator
+				[steps]="steps"
+				[current]="current"
+				(stepSelected)="stepSelected($event)"
+				[spacing]="spacing">
+			</ibm-progress-indicator>
 			<ibm-placeholder></ibm-placeholder>
 		</div>
 		`,
@@ -80,12 +90,20 @@ storiesOf("Components|Progress Indicator", module)
 					disabled: true
 				}
 			],
-			current: number("Current progress", 1)
+			current: number("Current progress", 1),
+			stepSelected: action("stepSelected"),
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Vertical", () => ({
 		template: `
-		<ibm-progress-indicator orientation="vertical" [steps]="steps" [current]="current"></ibm-progress-indicator>
+		<ibm-progress-indicator
+			orientation="vertical"
+			[steps]="steps"
+			[current]="current"
+			(stepSelected)="stepSelected($event)"
+			[spacing]="spacing">
+		</ibm-progress-indicator>
 		`,
 		props: {
 			steps : [
@@ -111,7 +129,9 @@ storiesOf("Components|Progress Indicator", module)
 					disabled: true
 				}
 			],
-			current: number("Current progress", 1)
+			current: number("Current progress", 1),
+			stepSelected: action("stepSelected"),
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -123,6 +143,6 @@ storiesOf("Components|Progress Indicator", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/ProgressIndicator.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_progress_indicator.progressindicator.html"></ibm-documentation>
 		`
 	}));

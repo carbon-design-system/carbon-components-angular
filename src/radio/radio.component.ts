@@ -35,10 +35,12 @@ import { RadioChange } from "./radio-change.class";
 			[required]="required"
 			[value]="value"
 			[attr.aria-labelledby]="ariaLabelledby"
-			(change)="onChange($event)">
+			(change)="onChange($event)"
+			(click)="onClick($event)">
 		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
 		<label
 			class="bx--radio-button__label"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}"
@@ -80,6 +82,12 @@ export class Radio {
 		}
 		return `label-${this.id}`;
 	}
+
+	/**
+	 * Used to set the `aria-label` attribute on the input label.
+	 */
+	@Input() ariaLabel = "";
+
 	/**
 	 * Sets the HTML required attribute
 	 */
@@ -100,10 +108,6 @@ export class Radio {
 	 * emits when the state of the radio changes
 	 */
 	@Output() change = new EventEmitter<RadioChange>();
-	/**
-	 * Binds 'radio' value to the role attribute for `Radio`.
-	 */
-	@HostBinding("attr.role") role = "radio";
 
 	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
 
@@ -124,6 +128,9 @@ export class Radio {
 	 */
 	onChange(event: Event) {
 		event.stopPropagation();
+	}
+
+	onClick(event: Event) {
 		this.checked = (event.target as HTMLInputElement).checked;
 		const radioEvent = new RadioChange(this, this.value);
 		this.change.emit(radioEvent);
