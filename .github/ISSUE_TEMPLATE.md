@@ -24,11 +24,15 @@
 
 <!--
 Please try to re-create the issue using our Codesandbox template available here:
-https://codesandbox.io/s/x2mjypo6pp
+https://codesandbox.io/s/carbon-components-angular-0129r494ql
 
 This helps reduce the issue to an isolated case that helps us out when debugging.
 If you're able to reproduce using the codesandbox link above, please include the
 link in addition to the steps to reproduce. Thanks so much!
+
+If your use case is too complex to be replicated in codesandbox, you can provide
+a link to a public github repo where you replicated the issue, along with the steps
+it takes.
 -->
 
 <!-- [Codesandbox](<url>) -->
