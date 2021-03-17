@@ -47,7 +47,8 @@ import { Observable } from "rxjs";
 				'bx--list-box--disabled': disabled
 			}"
 			class="bx--combo-box bx--list-box"
-			role="listbox"
+			role="combobox"
+			[id]="id"
 			[attr.data-invalid]="(invalid ? true : null)">
 			<div
 				[attr.aria-expanded]="open"
@@ -55,10 +56,9 @@ import { Observable } from "rxjs";
 				class="bx--list-box__field"
 				type="button"
 				tabindex="-1"
-				[attr.aria-label]="label"
 				aria-haspopup="true"
 				(click)="toggleDropdown()"
-				[id]="id">
+				(blur)="onBlur()">
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
@@ -92,10 +92,10 @@ import { Observable } from "rxjs";
 					[ngClass]="{'bx--text-input--empty': !showClearButton}"
 					role="searchbox"
 					tabindex="0"
-					[attr.aria-aria-labelledby]="id"
+					[attr.aria-labelledby]="id"
 					[attr.maxlength]="maxLength"
 					aria-haspopup="true"
-					autocomplete="list"
+					[attr.aria-autocomplete]="autocomplete"
 					[placeholder]="placeholder"/>
 				<ibm-icon-warning-filled16 *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled16>
 				<div
@@ -313,7 +313,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@ViewChild("dropdownMenu") dropdownMenu;
 	@ViewChild("input") input: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
-	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
