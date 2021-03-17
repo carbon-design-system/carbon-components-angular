@@ -87,7 +87,8 @@ export class DynamicTableStory implements OnInit {
 			new TableHeaderItem({ data: "Very long title indeed" }),
 			new CustomHeaderItem({
 				data: { name: "Custom header", link: "#" },
-				template: this.customHeaderTemplate
+				template: this.customHeaderTemplate,
+				ariaSortLabel: "Custom header"
 			})
 		];
 	}
