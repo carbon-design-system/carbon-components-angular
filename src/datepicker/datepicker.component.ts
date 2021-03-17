@@ -224,6 +224,13 @@ export class DatePicker implements
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
+				if (this.flatpickrInstance.selectedDates.length !== 2) {
+					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
+					// in some cases, so instead we do this
+					this.setDateValues([]);
+					this.doSelect([]);
+					return;
+				}
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
 				if (inputValue || rangeInputValue) {
