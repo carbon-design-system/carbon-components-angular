@@ -311,6 +311,18 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		this.onTouched = fn;
 	}
 
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the checkbox.
+	 *
+	 * ex: `this.formGroup.get("myCheckbox").disable();`
+	 *
+	 * @param isDisabled `true` to disable the checkbox
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+		this.inputCheckbox.nativeElement.disabled = this.disabled;
+	}
+
 	@HostListener("focusout")
 	focusOut() {
 		this.onTouched();
