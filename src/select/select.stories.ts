@@ -68,6 +68,8 @@ storiesOf("Components|Select", module).addDecorator(
 				[size]="size"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[label]="label"
 				[helperText]="helperText"
 				[theme]="theme"
@@ -89,6 +91,8 @@ storiesOf("Components|Select", module).addDecorator(
 			size: select("Size", ["sm", "md", "xl"], "md"),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Please select an option."),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			label: text("Label text", "Select Label"),
 			helperText: text("Helper text", ""),
 			theme: select("Theme", ["dark", "light"], "dark"),

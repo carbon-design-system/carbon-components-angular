@@ -41,6 +41,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'bx--select--inline': display === 'inline',
 					'bx--select--light': theme === 'light',
 					'bx--select--invalid': invalid,
+					'bx--select--warning': warn,
 					'bx--select--disabled': disabled
 				}">
 				<label *ngIf="label" [for]="id" class="bx--label">
@@ -87,15 +88,25 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
 				<svg
-					*ngIf="invalid"
+					*ngIf="!warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
 					class="bx--select__invalid-icon">
 				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--select__invalid-icon bx--select__invalid-icon--warning">
+				</svg>
 			</div>
-			<div *ngIf="invalid && invalidText" role="alert" class="bx--form-requirement" aria-live="polite">
+			<div *ngIf="invalid && invalidText && !warn" role="alert" class="bx--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</ng-template>
 	`,
@@ -138,6 +149,14 @@ export class Select implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */

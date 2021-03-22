@@ -68,6 +68,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
+			'bx--dropdown--warning bx--list-box--warning': warn,
 			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
 			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
@@ -112,10 +113,16 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
 			<svg
-				*ngIf="invalid"
+				*ngIf="!warn && invalid"
 				class="bx--dropdown__invalid-icon"
 				ibmIcon="warning--filled"
 				size="16">
+			</svg>
+			<svg
+				*ngIf="!invalid && warn"
+				ibmIcon="warning--alt--filled"
+				size="16"
+				class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
 			</svg>
 			<svg
 				*ngIf="!skeleton"
@@ -134,13 +141,17 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+	<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
+	<div *ngIf="!warn && invalid" class="bx--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+	</div>
+	<div *ngIf="!invalid && warn" class="bx--form-requirement">
+		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 	</div>
 	`,
 	providers: [
@@ -213,6 +224,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */

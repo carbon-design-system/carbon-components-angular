@@ -22,12 +22,15 @@ storiesOf("Components|Input", module).addDecorator(
 		<ibm-label
 			[helperText]="helperText"
 			[invalid]="invalid"
-			[invalidText]="invalidText">
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText">
 			{{label}}
 			<input
 				ibmText
 				[size]="size"
 				[invalid]="invalid"
+				[warn]="warn"
 				[disabled]="disabled"
 				[theme]="theme"
 				[placeholder]="placeholder"
@@ -40,6 +43,8 @@ storiesOf("Components|Input", module).addDecorator(
 			disabled: boolean("Disabled", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			label: text("Label", "Text Input label"),
 			helperText: text("Helper text", "Optional helper text."),
 			placeholder: text("Placeholder text", "Placeholder text"),

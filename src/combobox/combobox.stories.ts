@@ -25,6 +25,8 @@ const getOptions = (override = {}) => {
 		disabled: boolean("disabled", false),
 		invalid: boolean("Invalid", false),
 		invalidText: text("Invalid text", "A valid value is required"),
+		warn: boolean("Show the warning state", false),
+		warnText: text("Text for the warning", "This is a warning"),
 		label: text("Label", "ComboBox label"),
 		helperText: text("Helper text", "Optional helper text."),
 		items: [
@@ -223,6 +225,8 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[appendInline]="false"
 					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
 					[label]="label"
 					[helperText]="helperText"
 					[items]="items"

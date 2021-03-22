@@ -34,6 +34,7 @@ import Search16 from "@carbon/icons/es/search/16";
 import Settings16 from "@carbon/icons/es/settings/16";
 import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
+import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -90,7 +91,8 @@ export class IconModule {
 			Search16,
 			Settings16,
 			Warning16,
-			WarningFilled16
+			WarningFilled16,
+			WarningAltFilled16
 		]);
 	}
 }
