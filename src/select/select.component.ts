@@ -63,7 +63,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 			<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 				<select
 					[attr.id]="id"
-					[value]="value"
+					[attr.value]="value"
 					[attr.aria-label]="ariaLabel"
 					[disabled]="disabled"
 					(change)="onChange($event)"
@@ -194,7 +194,7 @@ export class Select implements ControlValueAccessor {
 		this._value = v;
 	}
 
-	protected _value = "";
+	protected _value;
 
 	/**
 	 * Receives a value from the model.

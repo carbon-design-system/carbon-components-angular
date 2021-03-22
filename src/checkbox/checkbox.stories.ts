@@ -1,13 +1,55 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, text } from "@storybook/addon-knobs/angular";
+import { Component, OnInit } from "@angular/core";
+import {
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule
+} from "@angular/forms";
 
 import { CheckboxModule } from "../";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
+@Component({
+	selector: "app-reactive-forms",
+	template: `
+		<form [formGroup]="formGroup">
+			<ibm-checkbox formControlName="checkbox">
+				Checkbox in a reactive form
+			</ibm-checkbox>
+		</form>
+		<br>
+		<button (click)="toggleDisable()">Toggle disabled state</button>
+	`
+})
+class ReactiveFormsStory implements OnInit {
+	public formGroup: FormGroup;
+	disabled = false;
+
+	constructor(protected formBuilder: FormBuilder) { }
+
+	ngOnInit() {
+		this.formGroup = this.formBuilder.group({
+			checkbox: new FormControl()
+		});
+	}
+
+	toggleDisable() {
+		const checkbox = this.formGroup.get("checkbox");
+		checkbox.disabled ? checkbox.enable() : checkbox.disable();
+	}
+}
+
 storiesOf("Components|Checkbox", module).addDecorator(
 	moduleMetadata({
-		imports: [CheckboxModule, DocumentationModule]
+		declarations: [ReactiveFormsStory],
+		imports: [
+			CheckboxModule,
+			ReactiveFormsModule,
+			DocumentationModule
+		]
 	})
 )
 	.addDecorator(withKnobs)
@@ -122,6 +164,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 				this.model = !this.model;
 			}
 		}
+	}))
+	.add("With reactive forms", () => ({
+		template: `
+			<app-reactive-forms></app-reactive-forms>
+		`
 	}))
 	.add("Skeleton", () => ({
 		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`

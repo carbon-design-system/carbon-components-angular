@@ -217,13 +217,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		return this._checked;
 	}
 
-	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
-		return !this.inline;
-	}
-	@HostBinding("class.bx--form-item") get formItemClass() {
-		return !this.inline;
-	}
-
 	/**
 	 * Emits click event.
 	 */
@@ -309,6 +302,18 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the checkbox.
+	 *
+	 * ex: `this.formGroup.get("myCheckbox").disable();`
+	 *
+	 * @param isDisabled `true` to disable the checkbox
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+		this.inputCheckbox.nativeElement.disabled = this.disabled;
 	}
 
 	@HostListener("focusout")

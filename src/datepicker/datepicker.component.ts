@@ -138,6 +138,11 @@ export class DatePicker implements
 	@Input() placeholder = "mm/dd/yyyy";
 
 	/**
+	 * Aria label added to datepicker's calendar container.
+	 */
+	@Input() ariaLabel = "calendar container";
+
+	/**
 	 * The pattern for the underlying input element
 	 * @deprecated as of v4 - switch to inputPattern
 	 */
@@ -246,12 +251,20 @@ export class DatePicker implements
 		plugins: this.plugins,
 		onOpen: () => {
 			this.updateClassNames();
+			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
 		onClose: () => {
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
+				if (this.flatpickrInstance.selectedDates.length !== 2) {
+					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
+					// in some cases, so instead we do this
+					this.setDateValues([]);
+					this.doSelect([]);
+					return;
+				}
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
 				if (inputValue || rangeInputValue) {
@@ -505,6 +518,14 @@ export class DatePicker implements
 			} else if (element.classList.contains("today") && this.value.length === 0) {
 				element.classList.remove("no-border");
 			}
+		});
+	}
+
+	protected updateAttributes() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.setAttribute("role", "region");
+			calendar.setAttribute("aria-label", this.ariaLabel);
 		});
 	}
 

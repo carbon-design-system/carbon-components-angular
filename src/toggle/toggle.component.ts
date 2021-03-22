@@ -156,6 +156,17 @@ export class Toggle extends Checkbox {
 		Toggle.toggleCount++;
 	}
 
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the toggle input.
+	 *
+	 * ex: `this.formGroup.get("myToggle").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
 	getOffText(): Observable<string> {
 		return this._offValues.subject;
 	}
