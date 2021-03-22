@@ -119,7 +119,7 @@ export class DatePickerInput {
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
-	  * Set to `true` to show a warning (contents set by warningText)
+	  * Set to `true` to show a warning (contents set by warnText)
 	  */
 	@Input() warn = false;
 	/**
