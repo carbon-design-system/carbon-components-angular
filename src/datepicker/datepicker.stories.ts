@@ -149,6 +149,8 @@ storiesOf("Components|Date Picker", module)
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker-input>
 		`,
@@ -158,6 +160,8 @@ storiesOf("Components|Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			size: select("Size", ["sm", "md", "xl"], "md"),
 			disabled: boolean("Disabled", false),
 			valueChange: action("Date change fired!")
@@ -177,6 +181,8 @@ storiesOf("Components|Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
@@ -190,6 +196,8 @@ storiesOf("Components|Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
@@ -202,6 +210,8 @@ storiesOf("Components|Date Picker", module)
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -223,6 +233,8 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			[rangeInvalid]="invalid"
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
@@ -241,6 +253,10 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[rangeWarn]="warn"
+			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
@@ -253,6 +269,8 @@ storiesOf("Components|Date Picker", module)
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),

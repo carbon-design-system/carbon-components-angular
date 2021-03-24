@@ -50,9 +50,10 @@ import { Observable } from "rxjs";
 				'bx--list-box--expanded': open,
 				'bx--list-box--sm': size === 'sm',
 				'bx--list-box--xl': size === 'xl',
-				'bx--list-box--disabled': disabled
+				'bx--list-box--disabled': disabled,
+				'bx--combo-box--warning bx--list-box--warning': warn
 			}"
-			class="bx--combo-box bx--list-box"
+			class="bx--list-box"
 			role="combobox"
 			[id]="id"
 			[attr.data-invalid]="(invalid ? true : null)">
@@ -106,10 +107,16 @@ import { Observable } from "rxjs";
 					[attr.aria-autocomplete]="autocomplete"
 					[placeholder]="placeholder"/>
 				<svg
-					*ngIf="invalid"
+					*ngIf="!warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
 					class="bx--list-box__invalid-icon">
+				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
 				</svg>
 				<div
 					*ngIf="showClearButton"
@@ -137,15 +144,19 @@ import { Observable } from "rxjs";
 			</div>
 		</div>
 		<div
-			*ngIf="helperText && !invalid"
+			*ngIf="helperText && !invalid && !warn"
 			class="bx--form__helper-text"
 			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="invalid" class="bx--form-requirement">
+		<div *ngIf="!warn && invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+		</div>
+		<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 		</div>
 	`,
 	providers: [
@@ -283,13 +294,21 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() appendInline: boolean = null;
 	/**
-	 * Set to `true` for invalid state.
+	 * Set to `true` to show the invalid state.
 	 */
 	@Input() invalid = false;
 	/**
-	 * Value displayed if dropdown is in invalid state.
+	 * Value displayed if combobox is in an invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+ 	* Set to `true` to show a warning (contents set by warnText)
+ 	*/
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * Max length value to limit input characters
 	 */

@@ -51,7 +51,11 @@ export class NumberChange {
 				'bx--number--sm': size === 'sm',
 				'bx--number--xl': size === 'xl'
 			}">
-			<div class="bx--number__input-wrapper">
+			<div
+				class="bx--number__input-wrapper"
+				[ngClass]="{
+					'bx--number__input-wrapper--warning': warn
+				}">
 				<input
 					type="number"
 					[id]="id"
@@ -63,10 +67,16 @@ export class NumberChange {
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
 				<svg
-					*ngIf="!skeleton && invalid"
+					*ngIf="!skeleton && !warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
 					class="bx--number__invalid">
+				</svg>
+				<svg
+					*ngIf="!skeleton && !invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--number__invalid bx--number__invalid--warning">
 				</svg>
 				<div *ngIf="!skeleton" class="bx--number__controls">
 					<button
@@ -89,13 +99,17 @@ export class NumberChange {
 					</button>
 				</div>
 			</div>
-			<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+			<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="invalid" class="bx--form-requirement">
+			<div *ngIf="!warn && invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</div>
 	`,
@@ -185,6 +199,14 @@ export class NumberComponent implements ControlValueAccessor {
 	 * If `step` is a decimal, we may want precision to be set to go around floating point precision.
 	 */
 	@Input() precision: number;
+	/**
+	 * Set to `true` to show a warning (contents set by warningText)
+	 */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */

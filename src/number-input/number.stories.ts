@@ -22,6 +22,8 @@ storiesOf("Components|Number", module).addDecorator(
 				[precision]="precision"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[size]="size"
 				[disabled]="disabled">
 			</ibm-number>
@@ -31,6 +33,8 @@ storiesOf("Components|Number", module).addDecorator(
 			size: select("Size", ["sm", "md", "xl"], "md"),
 			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
 			max: number("max", 100),

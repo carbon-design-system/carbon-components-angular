@@ -57,6 +57,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[disabled]="disabled"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
 					[skeleton]="skeleton"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
@@ -76,6 +78,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[disabled]="disabled"
 					[invalid]="rangeInvalid"
 					[invalidText]="rangeInvalidText"
+					[warn]="rangeWarn"
+					[warnText]="rangeWarnText"
 					[skeleton]="skeleton"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
@@ -171,16 +175,40 @@ export class DatePicker implements
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
-
+	/**
+	 * Set to `true` to display the invalid state.
+	 */
 	@Input() invalid = false;
-
+	/**
+	 * Value displayed if datepicker is in an invalid state.
+	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 
 	@Input() size: "sm" | "md" | "xl" = "md";
-
+	/**
+	 * Set to `true` to display the invalid state for the second datepicker input.
+	 */
 	@Input() rangeInvalid = false;
-
+	/**
+	 * Value displayed if the second datepicker input is in an invalid state.
+	 */
 	@Input() rangeInvalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning in the second datepicker input (contents set by rangeWarningText)
+	  */
+	@Input() rangeWarn = false;
+	/**
+	 * Sets the warning text for the second datepicker input
+	 */
+	@Input() rangeWarnText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 

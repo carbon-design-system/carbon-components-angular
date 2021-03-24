@@ -54,6 +54,8 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
 	size: select("Size", ["sm", "md", "xl"], "md"),
 	invalidText: "This is not a validation text",
+	warn: boolean("Show the warning state", false),
+	warnText: text("Text for the warning", "This is a warning"),
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
 	helperText: text("Helper text", "Optional helper text."),
@@ -177,6 +179,8 @@ storiesOf("Components|Dropdown", module)
 				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
