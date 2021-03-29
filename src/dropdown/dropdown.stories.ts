@@ -141,7 +141,7 @@ class ReactiveFormsStory implements OnInit {
                 <h1>Sample modal works.</h1>
                 <p class="bx--modal-content__text">{{modalText}}</p>
                 <div style="width: 300px">
-					<ibm-dropdown placeholder="Select">
+					<ibm-dropdown placeholder="Select" [appendInline]="true">
 						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 					</ibm-dropdown>
 				</div>
@@ -153,6 +153,7 @@ class ReactiveFormsStory implements OnInit {
 class DropdownModal {
 	@Input() modalText: string;
 	@Input() items: any[];
+	@Input() appendInline: boolean;
 }
 
 storiesOf("Components|Dropdown", module)
@@ -275,7 +276,8 @@ storiesOf("Components|Dropdown", module)
 		template: `
 			<app-dropdown-modal
 				[items]="items"
-				[modalText]="modalText">
+				[modalText]="modalText"
+				[appendInline]="true">
 			</app-dropdown-modal>
 		`,
 		props: getProps({

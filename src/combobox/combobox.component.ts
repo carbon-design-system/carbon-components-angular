@@ -18,7 +18,11 @@ import { AbstractDropdownView, DropdownService } from "carbon-components-angular
 import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService, hasScrollableParents } from "carbon-components-angular/utils";
+import {
+	DocumentService,
+	getScrollableParents,
+	hasScrollableParents
+} from "carbon-components-angular/utils";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
@@ -139,7 +143,11 @@ import { Observable } from "rxjs";
 					[ariaLabel]="open ? closeMenuAria : openMenuAria">
 				</svg>
 			</div>
-			<div #dropdownMenu>
+			<div
+				#dropdownMenu
+				[ngClass]="{
+					'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				}">
 				<ng-content *ngIf="open"></ng-content>
 			</div>
 		</div>
@@ -302,8 +310,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
- 	* Set to `true` to show a warning (contents set by warnText)
- 	*/
+	* Set to `true` to show a warning (contents set by warnText)
+	*/
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -328,6 +336,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Specify autocomplete attribute of text input
 	 */
 	@Input() autocomplete = "list";
+	/**
+	 * Overrides the automatic dropUp.
+	 */
+	@Input() dropUp: boolean;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -405,6 +417,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	public selectedValue = "";
 
 	keyboardNav = this._keyboardNav.bind(this);
+	/**
+	 * controls whether the `drop-up` class is applied
+	 */
+	_dropUp = false;
 
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
@@ -661,9 +677,19 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	public openDropdown() {
 		if (this.disabled) { return; }
 		this.open = true;
+		this._dropUp = false;
+
 		if (!this.appendInline) {
 			this._appendToBody();
 		}
+
+		// set the dropdown menu to drop up if it is near the bottom of the screen
+		// setTimeout lets us do the calculations after it is visible in the DOM
+		setTimeout(() => {
+			if (this.dropUp === null || this.dropUp === undefined) {
+				this._dropUp = this._shouldDropUp();
+			}
+		}, 0);
 	}
 
 	/**
@@ -781,6 +807,27 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	_appendToDropdown() {
 		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
 		this.dropdownMenu.nativeElement.removeEventListener("keydown", this.keyboardNav, true);
+	}
+
+	/**
+	 * Detects whether or not the `Dropdown` list is visible within all scrollable parents.
+	 * This can be overridden by passing in a value to the `dropUp` input.
+	 */
+	_shouldDropUp() {
+		// check if dropdownMenu exists first.
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		// check if menu exists first.
+		const menuRect = menu && menu.getBoundingClientRect();
+		if (menu && menuRect) {
+			const scrollableParents = getScrollableParents(menu);
+			return scrollableParents.reduce((shouldDropUp: boolean, parent: HTMLElement) => {
+				const parentRect = parent.getBoundingClientRect();
+				const isBelowParent = !(menuRect.bottom <= parentRect.bottom);
+				return shouldDropUp || isBelowParent;
+			}, false);
+		}
+
+		return false;
 	}
 
 	protected updateSelected() {

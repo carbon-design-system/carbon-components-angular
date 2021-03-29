@@ -53,6 +53,28 @@ const getOptions = (override = {}) => {
 	return Object.assign({}, options, override);
 };
 
+const modalText =
+	`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non egestas neque.
+	Etiam aliquet nisl non volutpat vehicula.
+	Aliquam finibus sapien et erat suscipit euismod.
+	Sed dapibus condimentum nisl, eu condimentum felis tempor sit amet. Pellentesque tempus velit vel nisi scelerisque facilisis.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Ut dapibus nibh ac suscipit venenatis.
+	Aliquam ex purus, consequat eu volutpat vel, scelerisque vel leo. Nunc congue tellus lectus, pretium lobortis erat mattis congue.
+	Integer facilisis, erat nec iaculis gravida, est libero ornare mauris, venenatis mollis risus eros et metus.
+	Sed ornare massa tristique arcu pulvinar fermentum.`;
+
 @Component({
 	selector: "app-dynamic-list-combobox",
 	template: `
@@ -184,9 +206,12 @@ class MockQueryCombobox {
             <section class="bx--modal-content">
                 <h1>Sample modal works.</h1>
                 <p class="bx--modal-content__text">{{modalText}}</p>
-                <ibm-combo-box [items]="items">
-					<ibm-dropdown-list></ibm-dropdown-list>
-				</ibm-combo-box>
+				<div style="width: 300px">
+					<ibm-combo-box [items]="items" [appendInline]="true">
+						<ibm-dropdown-list></ibm-dropdown-list>
+					</ibm-combo-box>
+				</div>
+				<p class="bx--modal-content__text">{{modalText}}</p>
             </section>
 		</ibm-modal>
 		<ibm-placeholder></ibm-placeholder>
@@ -195,6 +220,7 @@ class MockQueryCombobox {
 class ComboBoxModal {
 	@Input() modalText: string;
 	@Input() items: any;
+	@Input() appendInline: boolean;
 }
 
 storiesOf("Components|Combobox", module)
@@ -449,9 +475,15 @@ storiesOf("Components|Combobox", module)
 		`
 	}))
 	.add("In modal", () => ({
-		template: `<app-combobox-modal [modalText]="modalText" [items]="items"></app-combobox-modal>`,
+		template: `
+			<app-combobox-modal
+				[modalText]="modalText"
+				[items]="items"
+				[appendInline]="true">
+			</app-combobox-modal>
+		`,
 		props: getOptions({
-			modalText: text("modal text", "Hello")
+			modalText: text("modal text", modalText)
 		})
 	}))
 	.add("Documentation", () => ({
