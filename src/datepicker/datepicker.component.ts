@@ -117,6 +117,11 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 */
 	@Input() language = "en";
 
+	/**
+	 * Aria label added to datepicker's calendar container.
+	 */
+	@Input() ariaLabel = "calendar container";
+
 	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
@@ -195,6 +200,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		plugins: this.plugins,
 		onOpen: () => {
 			this.updateClassNames();
+			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
 		value: this.value
@@ -397,6 +403,14 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			} else if (element.classList.contains("today") && this.value.length === 0) {
 				element.classList.remove("no-border");
 			}
+		});
+	}
+
+	protected updateAttributes() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.setAttribute("role", "region");
+			calendar.setAttribute("aria-label", this.ariaLabel);
 		});
 	}
 
