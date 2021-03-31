@@ -376,6 +376,17 @@ export class DatePicker implements
 		});
 	}
 
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the DatePicker.
+	 *
+	 * ex: `this.formGroup.get("myDatePicker").disable();`
+	 *
+	 * @param isDisabled `true` to disable the DatePicker
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
 	registerOnChange(fn: any) {
 		this.propagateChange = fn;
 	}

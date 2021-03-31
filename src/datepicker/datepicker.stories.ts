@@ -63,6 +63,8 @@ const modalText =
 			</ibm-date-picker>
 			<code>{{formGroup.controls["range"].value | json}}</code>
 		</form>
+
+		<button (click)="disableAll()">Disable all</button>
 	`
 })
 class DatePickerStory {
@@ -95,6 +97,14 @@ class DatePickerStory {
 				Validators.required
 			]
 		});
+	}
+
+	disableAll() {
+		const single = this.formGroup.get("single");
+		const range = this.formGroup.get("range");
+
+		single.disabled ? single.enable() : single.disable();
+		range.disabled ? range.enable() : range.disable();
 	}
 }
 
