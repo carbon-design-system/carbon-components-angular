@@ -462,31 +462,37 @@ export class DatePicker implements
 	 * Handles the initialization of event listeners for the datepicker input and range input fields.
 	 */
 	protected addInputListeners() {
-		if (this.isFlatpickrLoaded()) {
-			// Allows focus transition from the datepicker input or range field to
-			// flatpickr calendar using a keyboard.
-			const addFocusCalendarListener = (element: HTMLInputElement) => {
-				element.addEventListener("keydown", (event: KeyboardEvent) => {
-					if (event.key === "ArrowDown") {
-						if (!this.flatpickrInstance.isOpen) {
-							this.flatpickrInstance.open();
-						}
+		if (!this.isFlatpickrLoaded()) {
+			return;
+		}
 
-						(
-							this.flatpickrInstance.calendarContainer &&
-							this.flatpickrInstance.calendarContainer.querySelector(".flatpickr-day[tabindex]")
-						).focus();
+		// Allows focus transition from the datepicker input or range input field to
+		// flatpickr calendar using a keyboard.
+		const addFocusCalendarListener = (element: HTMLInputElement) => {
+			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "ArrowDown") {
+					if (!this.flatpickrInstance.isOpen) {
+						this.flatpickrInstance.open();
 					}
-				});
-			};
 
-			if (this.input && this.input.input) {
-				addFocusCalendarListener(this.input.input.nativeElement);
-			}
+					const calendarContainer = this.flatpickrInstance.calendarContainer;
+					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
 
-			if (this.rangeInput && this.rangeInput.input) {
-				addFocusCalendarListener(this.rangeInput.input.nativeElement);
-			}
+					if (dayElement) {
+						dayElement.focus();
+					} else if (calendarContainer) {
+						calendarContainer.focus();
+					}
+				}
+			});
+		};
+
+		if (this.input && this.input.input) {
+			addFocusCalendarListener(this.input.input.nativeElement);
+		}
+
+		if (this.rangeInput && this.rangeInput.input) {
+			addFocusCalendarListener(this.rangeInput.input.nativeElement);
 		}
 	}
 
