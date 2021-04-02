@@ -28,8 +28,13 @@ import {
 				<option value="option3">Option 3</option>
 			</ibm-select>
 		</form>
-
-		<button (click)="clearSelection()">Clear selection</button>
+		<div style="display: flex; flex-direction: column;">
+			selectedValue: {{ formGroup.get("selecterino").value }}
+			<div>
+				<button (click)="clearSelection()">Clear selection</button>
+				<button (click)="selectRandom()">Select random</button>
+			</div>
+		</div>
 	`
 })
 class ReactiveFormsSelect implements OnInit {
@@ -39,6 +44,15 @@ class ReactiveFormsSelect implements OnInit {
 
 	clearSelection() {
 		this.formGroup.get("selecterino").setValue("default");
+	}
+
+	selectRandom() {
+		this.formGroup.get("selecterino").setValue([
+			"default",
+			"option1",
+			"option2",
+			"option3"
+		][Math.floor(Math.random() * 4)]);
 	}
 
 	ngOnInit() {
@@ -112,16 +126,79 @@ storiesOf("Components|Select", module).addDecorator(
 					<option value="option3">Option 3</option>
 				</ibm-select>
 				<br>
-				<span>Selected: {{ model }}</span>
+				<div>
+					<span>Selected: {{ model }}</span>
+					<button (click)="selectRandom()">Select random</button>
+				</div>
 			</div>
 		`,
 		props: {
 			size: select("Size", ["sm", "md", "xl"], "md"),
-			model: "default"
+			model: "option2",
+			selectRandom: function() {
+				this.model = [
+					"default",
+					"option1",
+					"option2",
+					"option3"
+				][Math.floor(Math.random() * 4)];
+			}
 		}
 	}))
 	.add("With reactive forms", () => ({
 		template: `<app-reactive-form></app-reactive-form>`
+	}))
+	.add("Changing selected through option selected property", () => ({
+		template: `
+			<ibm-select label="Type">
+				<option
+					value="on-hand"
+					[selected]="selected === 'on-hand'">
+					On hand
+				</option>
+				<option
+					value="in-transit-inbound"
+					[selected]="selected === 'in-transit-inbound'">
+					Inbound in-transit
+				</option>
+				<option
+					value="in-transit-outbound"
+					[selected]="selected === 'in-transit-outbound'">
+					Outbound in-transit
+				</option>
+			</ibm-select>
+			<button (click)="selectRandom()">Select random</button>
+		`,
+		props: {
+			selected: "in-transit-inbound",
+			selectRandom: function() {
+				this.selected = [
+					"on-hand",
+					"in-transit-inbound",
+					"in-transit-outbound"
+				][Math.floor(Math.random() * 3)];
+			}
+		}
+	}))
+	.add("Changing selected through value property", () => ({
+		template: `
+			<ibm-select label="Type" [value]="selected">
+				<option value="on-hand">On hand</option>
+				<option value="in-transit-inbound">Inbound in-transit</option>
+				<option value="in-transit-outbound">Outbound in-transit</option>
+			</ibm-select>
+			<button (click)="selectRandom()">Select random</button>
+		`,
+		props: {
+			selected: "in-transit-outbound",
+			selectRandom: function() {
+				this.selected = [
+					"on-hand",
+					"in-transit-inbound",
+					"in-transit-outbound"
+				][Math.floor(Math.random() * 3)];
+			}
+		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
