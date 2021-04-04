@@ -288,7 +288,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	close(meta: CloseMeta = { reason: CloseReasons.interaction }) {
 		if (this.dialogRef) {
 			setTimeout(() => {
-				this.dialogRef.instance.doClose(meta);
+				if (this.dialogRef) {
+					this.dialogRef.instance.doClose(meta);
+				}
 			});
 		}
 	}
