@@ -38,7 +38,7 @@ import { TextArea } from "./text-area.directive";
 	selector: "ibm-label",
 	template: `
 		<label
-			[for]="labelInputID"
+			[for]="for"
 			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
@@ -87,15 +87,14 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	static labelCounter = 0;
 	/**
-	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
-	 * its input counterpart through the 'for' attribute.
-	 */
-	labelInputID = "ibm-label-" + Label.labelCounter;
-	/**
 	 * The class of the wrapper
 	 */
 	wrapperClass = "bx--text-input__field-wrapper";
-
+ 	/**
+        * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
+        * its input counterpart through the 'for' attribute.
+     */
+  	@Input() for: string;
 	/**
 	 * State of the `Label` will determine the styles applied.
 	 */
@@ -142,6 +141,9 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	constructor() {
 		Label.labelCounter++;
+		if (this.for === undefined) {
+            this.for = "ibm-label-" + Label.labelCounter;
+        }
 	}
 
 	/**
