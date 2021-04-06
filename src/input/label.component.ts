@@ -90,11 +90,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The class of the wrapper
 	 */
 	wrapperClass = "bx--text-input__field-wrapper";
- 	/**
-        * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
-        * its input counterpart through the 'for' attribute.
-     */
-  	@Input() for: string;
+	/**
+	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
+	 * its input counterpart through the 'for' attribute.
+	*/
+	@Input() for: string;
 	/**
 	 * State of the `Label` will determine the styles applied.
 	 */
@@ -142,8 +142,8 @@ export class Label implements AfterContentInit, AfterViewInit {
 	constructor() {
 		Label.labelCounter++;
 		if (this.for === undefined) {
-            this.for = "ibm-label-" + Label.labelCounter;
-        }
+			this.for = "ibm-label-" + Label.labelCounter;
+		}
 	}
 
 	/**
@@ -162,7 +162,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 		if (this.wrapper) {
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
 			if (inputElement) {
-				inputElement.setAttribute("id", this.labelInputID);
+				inputElement.setAttribute("id", this.for);
 			}
 		}
 	}
