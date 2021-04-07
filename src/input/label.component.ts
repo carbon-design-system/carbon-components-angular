@@ -94,7 +94,8 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() for: string;
+	@Input() labelInputID = "ibm-label-" + Label.labelCounter;
+
 	/**
 	 * State of the `Label` will determine the styles applied.
 	 */
@@ -141,9 +142,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	constructor() {
 		Label.labelCounter++;
-		if (this.for === undefined) {
-			this.for = "ibm-label-" + Label.labelCounter;
-		}
 	}
 
 	/**
@@ -162,7 +160,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 		if (this.wrapper) {
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
 			if (inputElement) {
-				inputElement.setAttribute("id", this.for);
+				inputElement.setAttribute("id", this.labelInputID);
 			}
 		}
 	}
