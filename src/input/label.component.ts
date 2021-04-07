@@ -38,7 +38,7 @@ import { TextArea } from "./text-area.directive";
 	selector: "ibm-label",
 	template: `
 		<label
-			[for]="for"
+			[for]="labelInputID"
 			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
