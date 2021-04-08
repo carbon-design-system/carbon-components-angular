@@ -131,8 +131,7 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Sets `true` when composing text via IME.
 	 */
-	isComposing = false;
-
+	protected isComposing = false;
 
 	protected _size: "sm" | "md" | "xl" = "md";
 
