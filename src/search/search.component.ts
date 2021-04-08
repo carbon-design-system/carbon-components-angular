@@ -181,9 +181,10 @@ export class Search implements ControlValueAccessor {
 	 * @param search The input text.
 	 */
 	onSearch(search: string) {
-		if (!this.isComposing) { // check for IME use
-			this.value = search;
+		if (this.isComposing) { // check for IME use
+			return;
 		}
+		this.value = search;
 		this.doValueChange();
 	}
 
