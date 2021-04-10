@@ -40,7 +40,7 @@ const REL = "noreferrer noopener";
 	template: `
 		<button
 			*ngIf="!href"
-			class="bx--overflow-menu-options__btn"
+			class="bx--overflow-menu-options__btn {{innerClass}}"
 			role="menuitem"
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
@@ -53,7 +53,7 @@ const REL = "noreferrer noopener";
 
 		<a
 			*ngIf="href"
-			class="bx--overflow-menu-options__btn"
+			class="bx--overflow-menu-options__btn {{innerClass}}"
 			role="menuitem"
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
@@ -75,7 +75,7 @@ const REL = "noreferrer noopener";
 	`
 })
 export class OverflowMenuOption implements AfterViewInit {
-	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
+	@HostBinding("class.bx--overflow-menu-options__option") optionClass = true;
 	@HostBinding("attr.role") role = "presentation";
 
 	@HostBinding("class.bx--overflow-menu-options__option--danger")
@@ -87,6 +87,10 @@ export class OverflowMenuOption implements AfterViewInit {
 	public get isDisabled(): Boolean {
 		return this.disabled;
 	}
+	/**
+	 * Set to `true` to display a dividing line above this option
+	 */
+	@HostBinding("class.bx--overflow-menu--divider") @Input() divider = false;
 	/**
 	 * toggles between `normal` and `danger` states
 	 */
@@ -112,6 +116,10 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 
 		this._target = value;
 	}
+	/**
+	 * Apply a custom class to the inner button/anchor
+	 */
+	@Input() innerClass = "";
 
 	get target() {
 		return this._target;
