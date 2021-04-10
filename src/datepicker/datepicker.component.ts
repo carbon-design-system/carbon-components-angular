@@ -318,6 +318,10 @@ export class DatePicker implements
 					}
 				}
 			});
+
+		setTimeout(() => {
+			this.addInputListeners();
+		}, 0);
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
@@ -455,6 +459,44 @@ export class DatePicker implements
 	}
 
 	/**
+	 * Handles the initialization of event listeners for the datepicker input and range input fields.
+	 */
+	protected addInputListeners() {
+		if (!this.isFlatpickrLoaded()) {
+			return;
+		}
+
+		// Allows focus transition from the datepicker input or range input field to
+		// flatpickr calendar using a keyboard.
+		const addFocusCalendarListener = (element: HTMLInputElement) => {
+			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "ArrowDown") {
+					if (!this.flatpickrInstance.isOpen) {
+						this.flatpickrInstance.open();
+					}
+
+					const calendarContainer = this.flatpickrInstance.calendarContainer;
+					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+
+					if (dayElement) {
+						dayElement.focus();
+					} else if (calendarContainer) {
+						calendarContainer.focus();
+					}
+				}
+			});
+		};
+
+		if (this.input && this.input.input) {
+			addFocusCalendarListener(this.input.input.nativeElement);
+		}
+
+		if (this.rangeInput && this.rangeInput.input) {
+			addFocusCalendarListener(this.rangeInput.input.nativeElement);
+		}
+	}
+
+	/**
 	 * Resets the flatpickr instance while keeping the date values (or updating them if newDates is provided)
 	 *
 	 * Used to pick up input changes or locale changes.
@@ -540,6 +582,10 @@ export class DatePicker implements
 
 			// set the date on the instance
 			this.flatpickrInstance.setDate(dates);
+			// `setDate` removes the focus on the selected date element.
+			if (this.flatpickrInstance.selectedDateElem) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
 
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
@@ -581,6 +627,11 @@ export class DatePicker implements
 		if (this.range && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 			this.flatpickrInstance.changeMonth(currentMonth, false);
+			// `changeMonth` removes the focus on the selected date element.
+			if (this.flatpickrInstance.selectedDateElem) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
+
 		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);
