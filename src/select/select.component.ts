@@ -207,12 +207,12 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	ngAfterViewInit() {
 		if (
-			this._value !== undefined &&
+			this.value !== undefined &&
 			this.value !== null &&
 			this.select &&
-			this.select.nativeElement.value !== this._value
+			this.select.nativeElement.value !== this.value
 		) {
-			this.select.nativeElement.value = this._value;
+			this.select.nativeElement.value = this.value;
 		}
 	}
 
