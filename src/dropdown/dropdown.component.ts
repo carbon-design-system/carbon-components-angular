@@ -331,7 +331,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	protected onTouchedCallback: () => void = this._noop;
 
 	// primarily used to capture and propagate input to `writeValue` before the content is available
-	protected writtenValue: any = [];
+	protected _writtenValue: any = [];
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
 
 	/**
 	 * Creates an instance of Dropdown.
@@ -592,7 +601,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	clearSelected() {
-		if (this.disabled) { return; }
+		if (this.disabled || this.getSelectedCount() === 0) {
+			return;
+		}
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
