@@ -252,6 +252,6 @@ export class Search implements ControlValueAccessor {
 	@HostListener("compositionend", ["$event"])
 	compositionEnd(event) {
 		this.isComposing = false;
-		this.onSearch(event.data);
+		this.onSearch(this.value + event.data);
 	}
 }
