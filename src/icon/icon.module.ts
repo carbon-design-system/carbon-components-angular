@@ -15,6 +15,7 @@ import CaretRight16 from "@carbon/icons/es/caret--right/16";
 import CaretUp16 from "@carbon/icons/es/caret--up/16";
 import Checkmark16 from "@carbon/icons/es/checkmark/16";
 import CheckmarkFilled16 from "@carbon/icons/es/checkmark--filled/16";
+import CheckmarkFilled20 from "@carbon/icons/es/checkmark--filled/20";
 import CheckmarkOutline16 from "@carbon/icons/es/checkmark--outline/16";
 import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16";
@@ -24,7 +25,9 @@ import Copy16 from "@carbon/icons/es/copy/16";
 import Delete16 from "@carbon/icons/es/delete/16";
 import Download16 from "@carbon/icons/es/download/16";
 import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
+import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
+import InformationFilled20 from "@carbon/icons/es/information--filled/20";
 import Menu16 from "@carbon/icons/es/menu/16";
 import Menu20 from "@carbon/icons/es/menu/20";
 import OverflowMenuVertical16 from "@carbon/icons/es/overflow-menu--vertical/16";
@@ -34,6 +37,7 @@ import Search16 from "@carbon/icons/es/search/16";
 import Settings16 from "@carbon/icons/es/settings/16";
 import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
+import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 
 // either provides a new instance of IconService, or returns the parent
@@ -73,6 +77,7 @@ export class IconModule {
 			CaretUp16,
 			Checkmark16,
 			CheckmarkFilled16,
+			CheckmarkFilled20,
 			CheckmarkOutline16,
 			ChevronDown16,
 			ChevronRight16,
@@ -82,7 +87,9 @@ export class IconModule {
 			Delete16,
 			Download16,
 			ErrorFilled16,
+			ErrorFilled20,
 			InformationFilled16,
+			InformationFilled20,
 			Menu16,
 			Menu20,
 			OverflowMenuVertical16,
@@ -92,6 +99,7 @@ export class IconModule {
 			Settings16,
 			Warning16,
 			WarningFilled16,
+			WarningFilled20,
 			WarningAltFilled16
 		]);
 	}

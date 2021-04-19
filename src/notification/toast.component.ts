@@ -23,25 +23,25 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<svg
 			ibmIcon="error--filled"
-			size="16"
+			size="20"
 			*ngIf="notificationObj.type === 'error'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="warning--filled"
-			size="16"
+			size="20"
 			*ngIf="notificationObj.type === 'warning'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="checkmark--filled"
-			size="16"
+			size="20"
 			*ngIf="notificationObj.type === 'success'"
 			class="bx--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="information--filled"
-			size="16"
+			size="20"
 			*ngIf="notificationObj.type === 'info'"
 			class="bx--toast-notification__icon">
 		</svg>
