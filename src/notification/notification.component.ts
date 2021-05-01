@@ -26,25 +26,25 @@ import { of, isObservable, Subject } from "rxjs";
 		<div class="bx--inline-notification__details">
 			<svg
 				ibmIcon="error--filled"
-				size="16"
+				size="20"
 				*ngIf="notificationObj.type === 'error'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="warning--filled"
-				size="16"
+				size="20"
 				*ngIf="notificationObj.type === 'warning'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="checkmark--filled"
-				size="16"
+				size="20"
 				*ngIf="notificationObj.type === 'success'"
 				class="bx--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="information--filled"
-				size="16"
+				size="20"
 				*ngIf="notificationObj.type === 'info'"
 				class="bx--inline-notification__icon">
 			</svg>
