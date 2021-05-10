@@ -55,10 +55,8 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 	) { }
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes.open) {
-			if (changes.open.currentValue) {
-				this.focusMenu();
-			}
+		if (changes.open && changes.open.currentValue) {
+			this.focusMenu();
 		}
 	}
 
