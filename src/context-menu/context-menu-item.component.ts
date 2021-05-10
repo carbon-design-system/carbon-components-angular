@@ -1,7 +1,8 @@
 import {
 	Component,
 	HostBinding,
-	Input, Output,
+	Input,
+	Output,
 	EventEmitter,
 	ElementRef,
 	HostListener,
