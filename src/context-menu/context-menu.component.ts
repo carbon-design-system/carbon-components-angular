@@ -86,9 +86,7 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 			// if the menu item is contained within any submenu then remove it from the array
 			return !subMenus.some(subMenu => {
 				// check if the menu item is contained within a submenu
-				return subMenu.menuItems.some(subMenuItem => {
-					return menuItem === subMenuItem;
-				});
+				return subMenu.menuItems.some(subMenuItem => menuItem === subMenuItem);
 			});
 		});
 		const currentIndex = menuItems.findIndex(menuItem => menuItem.tabindex === 0);
