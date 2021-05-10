@@ -55,10 +55,8 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 	) { }
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes.open) {
-			if (changes.open.currentValue) {
-				this.focusMenu();
-			}
+		if (changes.open && changes.open.currentValue) {
+			this.focusMenu();
 		}
 	}
 
@@ -88,9 +86,7 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 			// if the menu item is contained within any submenu then remove it from the array
 			return !subMenus.some(subMenu => {
 				// check if the menu item is contained within a submenu
-				return subMenu.menuItems.some(subMenuItem => {
-					return menuItem === subMenuItem;
-				});
+				return subMenu.menuItems.some(subMenuItem => menuItem === subMenuItem);
 			});
 		});
 		const currentIndex = menuItems.findIndex(menuItem => menuItem.tabindex === 0);
