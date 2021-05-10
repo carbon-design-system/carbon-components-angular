@@ -178,25 +178,6 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 		this.elementRef.nativeElement.focus();
 	}
 
-	// @HostListener('keydown', ['$event'])
-	// handleNavigation(event: KeyboardEvent) {
-	// 	const element: HTMLElement = this.elementRef.nativeElement;
-	// 	if (event.key === 'ArrowDown') {
-	// 		console.log('item down');
-	// 		let nextElement = element.nextElementSibling as HTMLElement;
-	// 		nextElement.focus();
-	// 		if (nextElement.classList.contains('bx--context-menu-divider')) {
-	// 			nextElement = nextElement.nextElementSibling as HTMLElement;
-	// 		}
-	// 		nextElement.focus();
-	// 	}
-
-	// 	if (event.key === 'ArrowUp') {
-	// 		console.log('item up');
-	// 		(element.previousElementSibling as HTMLElement).focus();
-	// 	}
-	// }
-
 	getDimensions() {
 		const element: HTMLElement = this.elementRef.nativeElement.querySelector(".bx--context-menu-option__content");
 		return element.getBoundingClientRect();
