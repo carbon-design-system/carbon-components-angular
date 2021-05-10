@@ -96,39 +96,42 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 		const currentIndex = menuItems.findIndex(menuItem => menuItem.tabindex === 0);
 		const list: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
 
-		if (event.key === "ArrowDown") {
-			if (document.activeElement === list) {
-				menuItems[0].focusItem();
-			} else {
-				if (currentIndex !== -1 && currentIndex < menuItems.length - 1) {
-					menuItems[currentIndex + 1].focusItem();
+		switch (event.key) {
+			case "ArrowDown": {
+				if (document.activeElement === list) {
+					menuItems[0].focusItem();
+				} else {
+					if (currentIndex !== -1 && currentIndex < menuItems.length - 1) {
+						menuItems[currentIndex + 1].focusItem();
+					}
 				}
+				break;
 			}
-		}
-
-		if (event.key === "ArrowUp") {
-			if (document.activeElement === list) {
-				menuItems[menuItems.length - 1].focusItem();
-			} else {
-				if (currentIndex !== -1 && currentIndex > 0) {
-					menuItems[currentIndex - 1].focusItem();
+			case "ArrowUp": {
+				if (document.activeElement === list) {
+					menuItems[menuItems.length - 1].focusItem();
+				} else {
+					if (currentIndex !== -1 && currentIndex > 0) {
+						menuItems[currentIndex - 1].focusItem();
+					}
 				}
+				break;
 			}
-		}
-
-		if (event.key === "ArrowRight") {
-			if (currentIndex !== -1 && menuItems[currentIndex].childContextMenu) {
-				menuItems[currentIndex].openSubMenu();
-				menuItems[currentIndex].childContextMenu.focusMenu();
+			case "ArrowRight": {
+				if (currentIndex !== -1 && menuItems[currentIndex].childContextMenu) {
+					menuItems[currentIndex].openSubMenu();
+					menuItems[currentIndex].childContextMenu.focusMenu();
+				}
+				break;
 			}
-		}
+			case "ArrowLeft": {
+				if (this.parentContextMenu) {
+					const parentItem = this.parentContextMenu.menuItems.find(item => item.childContextMenu === this);
+					parentItem.focusItem();
+					parentItem.closeSubMenu();
 
-		if (event.key === "ArrowLeft") {
-			if (this.parentContextMenu) {
-				const parentItem = this.parentContextMenu.menuItems.find(item => item.childContextMenu === this);
-				parentItem.focusItem();
-				parentItem.closeSubMenu();
-
+				}
+				break;
 			}
 		}
 	}
