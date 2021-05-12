@@ -111,7 +111,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@HostListener("click", ["$event"])
 	handleClick(event: MouseEvent & KeyboardEvent) {
 		event.stopPropagation();
-		if (this.hasChildren && (event.key === " " || event.key === "Enter")) {
+		if (this.hasChildren) {
 			this.openSubMenu();
 			this.childContextMenu.focusMenu();
 		}
@@ -167,6 +167,9 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@HostListener("focus")
 	handleFocus() {
 		this.tabindex = 0;
+		if (this.hasChildren && this.ariaExpanded) {
+			this.closeSubMenu();
+		}
 	}
 
 	@HostListener("blur")

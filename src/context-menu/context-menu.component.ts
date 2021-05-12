@@ -46,8 +46,6 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 
 	// tslint:disable-next-line
 	@ContentChildren(forwardRef(() => ContextMenuItemComponent), { descendants: true }) menuItems: QueryList<ContextMenuItemComponent>;
-	// tslint:disable-next-line
-	@ContentChildren(forwardRef(() => ContextMenuComponent), { descendants: true }) subMenus: QueryList<ContextMenuComponent>;
 
 	constructor(
 		@SkipSelf() @Optional() protected parentContextMenu: ContextMenuComponent,
@@ -70,62 +68,59 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 
 	focusMenu() {
 		// wait until the next tick to let the DOM settle before changing the focus
+		const list = this.elementRef.nativeElement.querySelector("ul") as HTMLElement;
 		setTimeout(() => {
 			if (this.root) {
-				this.elementRef.nativeElement.querySelector("ul").focus();
+				list.focus();
 			} else {
-				this.menuItems.first.focusItem();
+				const firstOption = list.querySelector(".bx--context-menu-option") as HTMLElement;
+				firstOption.focus();
 			}
 		});
 	}
 
 	@HostListener("keydown", ["$event"])
 	handleNavigation(event: KeyboardEvent) {
-		const subMenus = this.subMenus.toArray().filter(subMenu => subMenu !== this);
-		const menuItems = this.menuItems.toArray().filter(menuItem => {
-			// if the menu item is contained within any submenu then remove it from the array
-			return !subMenus.some(subMenu => {
-				// check if the menu item is contained within a submenu
-				return subMenu.menuItems.some(subMenuItem => menuItem === subMenuItem);
-			});
-		});
-		const currentIndex = menuItems.findIndex(menuItem => menuItem.tabindex === 0);
 		const list: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
+		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ul[role=menu]"));
+		const menuItems: HTMLElement[] = (Array.from(list.querySelectorAll(".bx--context-menu-option")) as HTMLElement[]).filter(menuItem => {
+			return !subMenus.some(subMenu => subMenu.contains(menuItem));
+		});
+		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
+		const currentMenuItem = menuItems[currentIndex];
 
 		switch (event.key) {
 			case "ArrowDown": {
 				if (document.activeElement === list) {
-					menuItems[0].focusItem();
+					menuItems[0].focus();
 				} else {
 					if (currentIndex !== -1 && currentIndex < menuItems.length - 1) {
-						menuItems[currentIndex + 1].focusItem();
+						menuItems[currentIndex + 1].focus();
 					}
 				}
 				break;
 			}
 			case "ArrowUp": {
 				if (document.activeElement === list) {
-					menuItems[menuItems.length - 1].focusItem();
+					menuItems[menuItems.length - 1].focus();
 				} else {
 					if (currentIndex !== -1 && currentIndex > 0) {
-						menuItems[currentIndex - 1].focusItem();
+						menuItems[currentIndex - 1].focus();
 					}
 				}
 				break;
 			}
 			case "ArrowRight": {
-				if (currentIndex !== -1 && menuItems[currentIndex].childContextMenu) {
-					menuItems[currentIndex].openSubMenu();
-					menuItems[currentIndex].childContextMenu.focusMenu();
+
+				if (currentIndex !== -1 && subMenus.some(subMenu => currentMenuItem.contains(subMenu))) {
+					currentMenuItem.click();
 				}
 				break;
 			}
 			case "ArrowLeft": {
 				if (this.parentContextMenu) {
-					const parentItem = this.parentContextMenu.menuItems.find(item => item.childContextMenu === this);
-					parentItem.focusItem();
-					parentItem.closeSubMenu();
-
+					const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option") as HTMLElement;
+					parent.focus();
 				}
 				break;
 			}
