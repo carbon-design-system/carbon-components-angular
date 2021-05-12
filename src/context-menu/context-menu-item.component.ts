@@ -103,6 +103,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 			this.hasChildren = true;
 			this.ariaHasPopup = true;
 			this.ariaExpanded = false;
+			this.childContextMenu.root = false;
 		}
 	}
 

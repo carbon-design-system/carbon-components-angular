@@ -32,6 +32,9 @@ export class ContextMenuSelectionService {
 	}
 
 	selectCheckboxes(value: any[]) {
+		if (!value) {
+			return;
+		}
 		this.value = value;
 		this.selectionSubject.next(value);
 	}

@@ -1,18 +1,11 @@
 import {
 	Component,
-	ContentChildren,
 	ElementRef,
 	HostListener,
 	Input,
-	OnInit,
-	Optional,
 	SimpleChanges,
-	SkipSelf,
-	QueryList,
-	forwardRef,
 	OnChanges
 } from "@angular/core";
-import { ContextMenuItemComponent } from "./context-menu-item.component";
 
 @Component({
 	selector: "ibm-context-menu",
@@ -24,7 +17,6 @@ import { ContextMenuItemComponent } from "./context-menu-item.component";
 				'bx--context-menu--open': open
 			}"
 			role="menu"
-			[attr.data-level]="level"
 			tabindex="-1"
 			[ngStyle]="{
 				'left.px': position.left,
@@ -34,7 +26,7 @@ import { ContextMenuItemComponent } from "./context-menu-item.component";
 		</ul>
 	`
 })
-export class ContextMenuComponent implements OnInit, OnChanges {
+export class ContextMenuComponent implements OnChanges {
 	@Input() root = true;
 	@Input() open = false;
 	@Input() position = {
@@ -42,27 +34,11 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 		top: 0
 	};
 
-	public level = 0;
-
-	// tslint:disable-next-line
-	@ContentChildren(forwardRef(() => ContextMenuItemComponent), { descendants: true }) menuItems: QueryList<ContextMenuItemComponent>;
-
-	constructor(
-		@SkipSelf() @Optional() protected parentContextMenu: ContextMenuComponent,
-		protected elementRef: ElementRef
-	) { }
+	constructor(protected elementRef: ElementRef) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.open && changes.open.currentValue) {
 			this.focusMenu();
-		}
-	}
-
-	ngOnInit() {
-		if (this.parentContextMenu && this.parentContextMenu.root) {
-			this.root = false;
-			this.open = false;
-			this.level = this.parentContextMenu.level + 1;
 		}
 	}
 
@@ -118,8 +94,8 @@ export class ContextMenuComponent implements OnInit, OnChanges {
 				break;
 			}
 			case "ArrowLeft": {
-				if (this.parentContextMenu) {
-					const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option") as HTMLElement;
+				const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option") as HTMLElement;
+				if (parent) {
 					parent.focus();
 				}
 				break;
