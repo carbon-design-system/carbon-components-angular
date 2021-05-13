@@ -48,7 +48,7 @@ import { Observable } from "rxjs";
 				'bx--list-box--light': theme === 'light',
 				'bx--list-box--expanded': open,
 				'bx--list-box--sm': size === 'sm',
-				'bx--list-box--xl': size === 'xl',
+				'bx--list-box--lg': size === 'xl',
 				'bx--list-box--disabled': disabled,
 				'bx--combo-box--warning bx--list-box--warning': warn
 			}"
