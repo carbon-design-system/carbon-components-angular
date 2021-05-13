@@ -87,7 +87,6 @@ export class ContextMenuComponent implements OnChanges {
 				break;
 			}
 			case "ArrowRight": {
-
 				if (currentIndex !== -1 && subMenus.some(subMenu => currentMenuItem.contains(subMenu))) {
 					currentMenuItem.click();
 				}
