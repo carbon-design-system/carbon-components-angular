@@ -44,8 +44,7 @@ import { Observable } from "rxjs";
 		<div
 			#listbox
 			[ngClass]="{
-				'bx--multi-select': type === 'multi',
-				'bx--combo-box': type === 'single' || !pills.length,
+				'bx--multi-select bx--multi-select--filterable': type === 'multi',
 				'bx--list-box--light': theme === 'light',
 				'bx--list-box--expanded': open,
 				'bx--list-box--sm': size === 'sm',
@@ -53,7 +52,7 @@ import { Observable } from "rxjs";
 				'bx--list-box--disabled': disabled,
 				'bx--combo-box--warning bx--list-box--warning': warn
 			}"
-			class="bx--list-box"
+			class="bx--list-box bx--combo-box"
 			role="combobox"
 			[id]="id"
 			[attr.data-invalid]="(invalid ? true : null)">
@@ -62,33 +61,36 @@ import { Observable } from "rxjs";
 				role="button"
 				class="bx--list-box__field"
 				type="button"
-				tabindex="-1"
 				aria-haspopup="true"
 				(click)="toggleDropdown()"
 				(blur)="onBlur()">
-				<button
+				<div
 					*ngIf="type === 'multi' && pills.length > 0"
-					type="button"
-					(click)="clearSelected()"
-					(blur)="onBlur()"
-					(keydown.enter)="clearSelected()"
-					class="bx--tag--filter bx--list-box__selection--multi"
-					[title]="clearSelectionsTitle"
-					[attr.aria-label]="clearSelectionAria">
-					{{ pills.length }}
-					<svg
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						style="will-change: transform;"
-						role="img"
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						aria-hidden="true">
-						<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-					</svg>
-				</button>
+					class="bx--tag bx--tag--filter bx--tag--high-contrast">
+					<span class="bx--tag__label">{{ pills.length }}</span>
+					<button
+						type="button"
+						(click)="clearSelected()"
+						(blur)="onBlur()"
+						(keydown.enter)="clearSelected()"
+						class="bx--tag__close-icon"
+						tabindex="0"
+						[title]="clearSelectionsTitle"
+						[attr.aria-label]="clearSelectionAria">
+						<svg
+							focusable="false"
+							preserveAspectRatio="xMidYMid meet"
+							style="will-change: transform;"
+							role="img"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 16 16"
+							aria-hidden="true">
+							<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+						</svg>
+					</button>
+				</div>
 				<input
 					#input
 					type="text"
@@ -130,14 +132,15 @@ import { Observable } from "rxjs";
 					(blur)="onBlur()">
 					<svg ibmIcon="close" size="16"></svg>
 				</div>
-				<svg
-					ibmIcon="chevron--down"
-					size="16"
-					[ngClass]="{'bx--list-box__menu-icon--open': open}"
+				<button
+					type="button"
+					role="button"
 					class="bx--list-box__menu-icon"
 					[title]="open ? closeMenuAria : openMenuAria"
-					[ariaLabel]="open ? closeMenuAria : openMenuAria">
-				</svg>
+					[attr.aria-label]="open ? closeMenuAria : openMenuAria"
+					[ngClass]="{'bx--list-box__menu-icon--open': open}">
+					<svg ibmIcon="chevron--down" size="16"></svg>
+				</button>
 			</div>
 			<div #dropdownMenu>
 				<ng-content *ngIf="open"></ng-content>
@@ -396,6 +399,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
+	public listBoxFocused = false;
 
 	public showClearButton = false;
 

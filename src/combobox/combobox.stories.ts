@@ -351,6 +351,8 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[warn]="warn"
+					[disabled]="disabled"
 					[size]="size"
 					[helperText]="helperText"
 					[appendInline]="false"
