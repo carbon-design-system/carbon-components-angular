@@ -399,7 +399,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
-	public listBoxFocused = false;
 
 	public showClearButton = false;
 
