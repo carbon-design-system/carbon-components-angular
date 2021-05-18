@@ -318,6 +318,10 @@ export class DatePicker implements
 					}
 				}
 			});
+
+		setTimeout(() => {
+			this.addInputListeners();
+		}, 0);
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
@@ -374,6 +378,17 @@ export class DatePicker implements
 				this.setDateValues(this.value);
 			}
 		});
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the DatePicker.
+	 *
+	 * ex: `this.formGroup.get("myDatePicker").disable();`
+	 *
+	 * @param isDisabled `true` to disable the DatePicker
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	registerOnChange(fn: any) {
@@ -452,6 +467,50 @@ export class DatePicker implements
 			calendar.removeEventListener("click", this.preventCalendarClose);
 			calendar.addEventListener("click", this.preventCalendarClose);
 		});
+	}
+
+	/**
+	 * Handles the initialization of event listeners for the datepicker input and range input fields.
+	 */
+	protected addInputListeners() {
+		if (!this.isFlatpickrLoaded()) {
+			return;
+		}
+
+		// Allows focus transition from the datepicker input or range input field to
+		// flatpickr calendar using a keyboard.
+		const addFocusCalendarListener = (element: HTMLInputElement) => {
+			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "ArrowDown") {
+					if (!this.flatpickrInstance.isOpen) {
+						this.flatpickrInstance.open();
+					}
+
+					const calendarContainer = this.flatpickrInstance.calendarContainer;
+					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+
+					if (dayElement) {
+						dayElement.focus();
+
+						// If the user manually inputs a value into the date field and presses arrow down,
+						// datepicker input onchange will be triggered when focus is removed from it and
+						// `flatpickrInstance.setDate` and `flatpickrInstance.changeMonth` will be invoked
+						// which will automatically change focus to the beginning of the document.
+						if (document.activeElement !== dayElement && this.flatpickrInstance.selectedDateElem) {
+							this.flatpickrInstance.selectedDateElem.focus();
+						}
+					}
+				}
+			});
+		};
+
+		if (this.input && this.input.input) {
+			addFocusCalendarListener(this.input.input.nativeElement);
+		}
+
+		if (this.rangeInput && this.rangeInput.input) {
+			addFocusCalendarListener(this.rangeInput.input.nativeElement);
+		}
 	}
 
 	/**
@@ -538,8 +597,17 @@ export class DatePicker implements
 			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}-input`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
 
+			// `flatpickrInstance.setDate` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.setDate` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
+
 			// set the date on the instance
 			this.flatpickrInstance.setDate(dates);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
 
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
@@ -580,7 +648,18 @@ export class DatePicker implements
 		// This will make sure the calendar is updated with the correct month.
 		if (this.range && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+
+			// `flatpickrInstance.changeMonth` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.changeMonth` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
+
 			this.flatpickrInstance.changeMonth(currentMonth, false);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
+
 		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);

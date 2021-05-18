@@ -3,6 +3,7 @@ import { position } from "@carbon/utils-position";
 import { I18n } from "carbon-components-angular/i18n";
 import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 import { closestAttr } from "carbon-components-angular/utils";
+import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
 
 @Component({
@@ -13,7 +14,7 @@ import { Dialog } from "../dialog.component";
 			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			(click)="doClose()"
+			(click)="onClick($event)"
 			#dialog
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
@@ -32,6 +33,13 @@ export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
 		@Optional() protected elementService: ElementService = null
 	) {
 		super(elementRef, elementService, animationFrameService);
+	}
+
+	onClick(event) {
+		this.doClose({
+			reason: CloseReasons.interaction,
+			target: event.target
+		});
 	}
 
 	onDialogInit() {
