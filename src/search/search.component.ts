@@ -128,6 +128,11 @@ export class Search implements ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
+	/**
+	 * Sets `true` when composing text via IME.
+	 */
+	protected isComposing = false;
+
 	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
@@ -176,6 +181,9 @@ export class Search implements ControlValueAccessor {
 	 * @param search The input text.
 	 */
 	onSearch(search: string) {
+		if (this.isComposing) { // check for IME use
+			return;
+		}
 		this.value = search;
 		this.doValueChange();
 	}
@@ -228,5 +236,22 @@ export class Search implements ControlValueAccessor {
 			this.active = false;
 			this.open.emit(this.active);
 		}
+	}
+
+	/**
+	 * Called when using IME composition.
+	 */
+	@HostListener("compositionstart", ["$event"])
+	compositionStart(event) {
+		this.isComposing = true;
+	}
+
+	/**
+	 * Called when IME composition finishes.
+	 */
+	@HostListener("compositionend", ["$event"])
+	compositionEnd(event) {
+		this.isComposing = false;
+		this.onSearch(this.value + event.data);
 	}
 }
