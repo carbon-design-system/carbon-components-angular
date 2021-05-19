@@ -67,23 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A generic structure that represents an item in a list.
-						A list item may contain additional lists with sub-items to represent a tree.</p>
-					</div>
-					<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ListItem {
-    content: <span class="hljs-built_in">string</span>;
-    selected: <span class="hljs-built_in">boolean</span>;
-    disabled?: <span class="hljs-built_in">boolean</span>;
-    items?: ListItem[];
-}</code></pre>
-					<p><code>content</code> and <code>selected</code> are the only <strong>required</strong> properties you <strong>must</strong> provide.
-						When using a custom item template (supported by all the Carbon-Angular item views, not required by AbstractDropdownView)
-					the entire ListItem will be passed to the template as <code>item</code>.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -95,20 +78,6 @@
 			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module">
 				<h3 class="tsd-before-signature">Indexable</h3>
 				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>x: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Allows for any other custom properties to be included in the ListItem</p>
-					</div>
-					<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ListItem {
-    content: <span class="hljs-built_in">string</span>;
-    selected: <span class="hljs-built_in">boolean</span>;
-    disabled?: <span class="hljs-built_in">boolean</span>;
-    items?: ListItem[];
-}</code></pre>
-					<p><code>content</code> and <code>selected</code> are the only <strong>required</strong> properties you <strong>must</strong> provide.
-						When using a custom item template (supported by all the Carbon-Angular item views, not required by AbstractDropdownView)
-					the entire ListItem will be passed to the template as <code>item</code>.</p>
-				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -142,14 +111,9 @@
 					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/dropdown/list-item.interface.ts#L22">src/dropdown/list-item.interface.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/dropdown/list-item.interface.ts#L22">src/dropdown/list-item.interface.ts:22</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Content to be displayed in the list.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="disabled" class="tsd-anchor"></a>
@@ -157,15 +121,9 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/dropdown/list-item.interface.ts#L31">src/dropdown/list-item.interface.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/dropdown/list-item.interface.ts#L31">src/dropdown/list-item.interface.ts:31</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>If the item is in a disabled state.
-							(Note: not all lists have to support disabled states, and not all lists behave the same with disabled items)</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="items" class="tsd-anchor"></a>
@@ -173,14 +131,9 @@
 					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <a href="src_dropdown.listitem.html" class="tsd-signature-type">ListItem</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/dropdown/list-item.interface.ts#L35">src/dropdown/list-item.interface.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/dropdown/list-item.interface.ts#L35">src/dropdown/list-item.interface.ts:35</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Optional nested items.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="selected" class="tsd-anchor"></a>
@@ -188,14 +141,9 @@
 					<div class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/dropdown/list-item.interface.ts#L26">src/dropdown/list-item.interface.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/dropdown/list-item.interface.ts#L26">src/dropdown/list-item.interface.ts:26</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Flag for the selected state of the item.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>

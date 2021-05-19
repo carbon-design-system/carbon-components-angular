@@ -67,42 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The <code>Tab</code> component is a child of the <code>Tabs</code> component.
-						It represents one <code>Tab</code> item and its content within a panel of other <code>Tab</code> items.</p>
-					</div>
-					<p><code>Tab</code> takes a string or <code>TemplateRef</code> for the header, and any content for the body of the tab.
-						Disabled states should be handled by the application (ie. switch to the tab, but display some
-					indication as to <em>why</em> the tab is disabled).</p>
-					<p>When the tab is selected the <code>select</code> output will be triggered.
-					The <code>select</code> output will also be triggered for the active tab when the tabs are loaded or updated.</p>
-					<p>Tab with string header:</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-tab</span> <span class="hljs-attr">heading</span>=<span class="hljs-string">'tab1'</span>&gt;</span>
-    tab 1 content
-<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-tab</span>&gt;</span></code></pre>
-					<p>Tab with custom header:</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">tabHeading</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">ibmIcon</span>=<span class="hljs-string">"facebook"</span>
-        <span class="hljs-attr">size</span>=<span class="hljs-string">"sm"</span>
-        <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-right: 7px;"</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
-    Hello Tab 1
-<span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">ibm-tabs</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ibm-tab</span> [<span class="hljs-attr">heading</span>]=<span class="hljs-string">"tabHeading"</span>&gt;</span>
-        Tab 1 content <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">ibmIcon</span>=<span class="hljs-string">"alert"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"lg"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-tab</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ibm-tab</span> <span class="hljs-attr">heading</span>=<span class="hljs-string">'Tab2'</span>&gt;</span>
-        Tab 2 content
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-tab</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ibm-tab</span> <span class="hljs-attr">heading</span>=<span class="hljs-string">'Tab3'</span>&gt;</span>
-        Tab 3 content
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ibm-tab</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ibm-tabs</span>&gt;</span></code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -229,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">_cache<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L132">src/tabs/tab.component.ts:132</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L132">src/tabs/tab.component.ts:132</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,15 +209,9 @@
 					<div class="tsd-signature tsd-kind-icon">active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L100">src/tabs/tab.component.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L100">src/tabs/tab.component.ts:100</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Indicates whether the <code>Tab</code> is active/selected.
-							Determines whether it&#39;s <code>TabPanel</code> is rendered.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="attrclass" class="tsd-anchor"></a>
@@ -267,14 +225,9 @@
 					<div class="tsd-signature tsd-kind-icon">attr<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.id</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L126">src/tabs/tab.component.ts:126</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L126">src/tabs/tab.component.ts:126</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Used to set the id property on the element.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="context" class="tsd-anchor"></a>
@@ -288,14 +241,9 @@
 					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L95">src/tabs/tab.component.ts:95</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L95">src/tabs/tab.component.ts:95</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Allows the user to pass data to the custom template for the <code>Tab</code> heading.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="disabled" class="tsd-anchor"></a>
@@ -309,14 +257,9 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L104">src/tabs/tab.component.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L104">src/tabs/tab.component.ts:104</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Indicates whether or not the <code>Tab</code> item is disabled.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="heading" class="tsd-anchor"></a>
@@ -330,14 +273,9 @@
 					<div class="tsd-signature tsd-kind-icon">heading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L84">src/tabs/tab.component.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L84">src/tabs/tab.component.ts:84</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The <code>Tab</code>&#39;s title to be displayed or custom temaplate for the <code>Tab</code> heading.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="headingistemplate" class="tsd-anchor"></a>
@@ -345,15 +283,9 @@
 					<div class="tsd-signature tsd-kind-icon">heading<wbr>IsTemplate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L79">src/tabs/tab.component.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L79">src/tabs/tab.component.ts:79</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Boolean value reflects if the <code>Tab</code> is using a custom template for the heading.
-							Default value is false.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="id" class="tsd-anchor"></a>
@@ -367,14 +299,9 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;n-tab-${nextId++}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L111">src/tabs/tab.component.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L111">src/tabs/tab.component.ts:111</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Sets the id of the <code>Tab</code>. Will be uniquely generated if not provided.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="selected" class="tsd-anchor"></a>
@@ -388,14 +315,9 @@
 					<div class="tsd-signature tsd-kind-icon">selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;void&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L121">src/tabs/tab.component.ts:121</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L121">src/tabs/tab.component.ts:121</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Value &#39;selected&#39; to be emitted after a new <code>Tab</code> is selected.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="tabindex" class="tsd-anchor"></a>
@@ -409,7 +331,7 @@
 					<div class="tsd-signature tsd-kind-icon">tab<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L106">src/tabs/tab.component.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L106">src/tabs/tab.component.ts:106</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -425,16 +347,9 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L91">src/tabs/tab.component.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L91">src/tabs/tab.component.ts:91</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Optional override for the <code>tabItem&#39;s</code>&#39;s title attribute which is set in <code>TabHeaders</code>.
-							<code>tabItem</code>&#39;s title attribute is automatically set to <code>heading</code>.</p>
-						</div>
-						<p>You might want to use this if you set <code>heading</code> to a <code>TemplateRef</code>.</p>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -448,44 +363,13 @@
 						</span>
 						<br />
 					</div>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cacheActive<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> cacheActive<span class="tsd-signature-symbol">(</span>shouldCache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L128">src/tabs/tab.component.ts:128</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set to true to have Tab items cached and not reloaded on tab switching.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L115">src/tabs/tab.component.ts:115</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set to true to have Tab items cached and not reloaded on tab switching.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>shouldCache: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">cache<wbr>Active<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L115">src/tabs/tab.component.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L128">src/tabs/tab.component.ts:128</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -500,14 +384,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L147">src/tabs/tab.component.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L147">src/tabs/tab.component.ts:147</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Emit the status of the <code>Tab</code>, specifically &#39;select&#39; and &#39;selected&#39; properties.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -522,15 +401,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L138">src/tabs/tab.component.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L138">src/tabs/tab.component.ts:138</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks for custom heading template on initialization and updates the value
-									of the boolean &#39;headingIsTemplate&#39;.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -545,14 +418,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/tabs/tab.component.ts#L154">src/tabs/tab.component.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/tabs/tab.component.ts#L154">src/tabs/tab.component.ts:154</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns value indicating whether this <code>Tab</code> should be rendered in a <code>TabPanel</code>.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>

@@ -67,40 +67,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Component to create standard modals for presenting content or asking for user&#39;s input.
-							It can show as a passive modal showing only text or show as a transactional modal with
-						multiple buttons for different actions for the user to choose from.</p>
-					</div>
-					<p>Using a modal in your application requires <code>ibm-placeholder</code> which would generally be
-					placed near the end of your app component template (app.component.ts or app.component.html) as:</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ibm-placeholder</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ibm-placeholder</span>&gt;</span></code></pre>
-					<p>Example of opening the modal:</p>
-					<pre><code class="language-typescript">\<span class="hljs-meta">@Component</span>({
- selector: <span class="hljs-string">"app-modal-demo"</span>,
- template: <span class="hljs-string">`
-  &lt;button class="btn--primary" (click)="openModal()"&gt;Open modal&lt;/button&gt;
-  &lt;ibm-placeholder&gt;&lt;/ibm-placeholder&gt;`</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ModalDemo {
-    openModal() {
-        <span class="hljs-keyword">this</span>.modalService.show({
-            modalType: <span class="hljs-string">"default"</span>,
-            label: <span class="hljs-string">"optional header text"</span>,
-            title: <span class="hljs-string">"Modal title"</span>,
-            text: <span class="hljs-string">"Modal text"</span>,
-            buttons: [{
-                text: <span class="hljs-string">"Button text"</span>,
-                <span class="hljs-keyword">type</span>: <span class="hljs-string">"primary"</span>,
-                click: clickFunction
-            }]
-        });
-    }
-}</code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -218,14 +184,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L81">src/modal/alert-modal.component.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L81">src/modal/alert-modal.component.ts:81</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates an instance of <code>AlertModal</code>.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -276,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">buttons<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L92">src/modal/alert-modal.component.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L92">src/modal/alert-modal.component.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -293,14 +254,9 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_modal.basemodal.html">BaseModal</a>.<a href="src_modal.basemodal.html#close">close</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/base-modal.class.ts#L18">src/modal/base-modal.class.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/base-modal.class.ts#L18">src/modal/base-modal.class.ts:18</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Base event emitter to propagate close events</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="content" class="tsd-anchor"></a>
@@ -318,7 +274,7 @@
 					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L89">src/modal/alert-modal.component.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L89">src/modal/alert-modal.component.ts:89</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -338,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Scrolling<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L91">src/modal/alert-modal.component.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L91">src/modal/alert-modal.component.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -358,7 +314,7 @@
 					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L87">src/modal/alert-modal.component.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L87">src/modal/alert-modal.component.ts:87</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -374,7 +330,7 @@
 					<div class="tsd-signature tsd-kind-icon">modal<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L81">src/modal/alert-modal.component.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L81">src/modal/alert-modal.component.ts:81</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -394,7 +350,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L93">src/modal/alert-modal.component.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L93">src/modal/alert-modal.component.ts:93</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -411,14 +367,9 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="src_modal.basemodal.html">BaseModal</a>.<a href="src_modal.basemodal.html#open">open</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/base-modal.class.ts#L23">src/modal/base-modal.class.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/base-modal.class.ts#L23">src/modal/base-modal.class.ts:23</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Controls the open state of the modal</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="size" class="tsd-anchor"></a>
@@ -436,7 +387,7 @@
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L90">src/modal/alert-modal.component.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L90">src/modal/alert-modal.component.ts:90</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -456,7 +407,7 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L88">src/modal/alert-modal.component.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L88">src/modal/alert-modal.component.ts:88</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -476,7 +427,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L86">src/modal/alert-modal.component.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L86">src/modal/alert-modal.component.ts:86</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -493,7 +444,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L117">src/modal/alert-modal.component.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L117">src/modal/alert-modal.component.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -517,14 +468,9 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="src_modal.basemodal.html">BaseModal</a>.<a href="src_modal.basemodal.html#closemodal">closeModal</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/base-modal.class.ts#L28">src/modal/base-modal.class.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/base-modal.class.ts#L28">src/modal/base-modal.class.ts:28</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Default method to handle closing the modal</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -539,7 +485,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L126">src/modal/alert-modal.component.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L126">src/modal/alert-modal.component.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -562,7 +508,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/6397797/src/modal/alert-modal.component.ts#L107">src/modal/alert-modal.component.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/71392a1/src/modal/alert-modal.component.ts#L107">src/modal/alert-modal.component.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
