@@ -37,137 +37,136 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label
-			*ngIf="label"
-			[for]="id"
-			class="bx--label"
-			[ngClass]="{'bx--label--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<div
-			#listbox
-			[ngClass]="{
-				'bx--multi-select bx--multi-select--filterable': type === 'multi',
-				'bx--list-box--light': theme === 'light',
-				'bx--list-box--expanded': open,
-				'bx--list-box--sm': size === 'sm',
-				'bx--list-box--lg': size === 'xl',
-				'bx--list-box--disabled': disabled,
-				'bx--combo-box--warning bx--list-box--warning': warn
-			}"
-			class="bx--list-box bx--combo-box"
-			role="combobox"
-			[id]="id"
-			[attr.data-invalid]="(invalid ? true : null)">
+		<div class="bx--list-box__wrapper">
+			<label
+				*ngIf="label"
+				[for]="id"
+				class="bx--label"
+				[ngClass]="{'bx--label--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+			</label>
 			<div
-				[attr.aria-expanded]="open"
-				role="button"
-				class="bx--list-box__field"
-				type="button"
-				aria-haspopup="true"
-				(click)="toggleDropdown()"
-				(blur)="onBlur()">
+				#listbox
+				[ngClass]="{
+					'bx--multi-select bx--multi-select--filterable': type === 'multi',
+					'bx--list-box--light': theme === 'light',
+					'bx--list-box--expanded': open,
+					'bx--list-box--sm': size === 'sm',
+					'bx--list-box--lg': size === 'xl',
+					'bx--list-box--disabled': disabled,
+					'bx--combo-box--warning bx--list-box--warning': warn
+				}"
+				class="bx--list-box bx--combo-box"
+				[attr.data-invalid]="(invalid ? true : null)">
 				<div
-					*ngIf="type === 'multi' && pills.length > 0"
-					class="bx--tag bx--tag--filter bx--tag--high-contrast">
-					<span class="bx--tag__label">{{ pills.length }}</span>
+					class="bx--list-box__field"
+					(click)="toggleDropdown()"
+					(blur)="onBlur()">
+					<div
+						*ngIf="type === 'multi' && pills.length > 0"
+						class="bx--tag bx--tag--filter bx--tag--high-contrast">
+						<span class="bx--tag__label">{{ pills.length }}</span>
+						<button
+							type="button"
+							(click)="clearSelected()"
+							(blur)="onBlur()"
+							(keydown.enter)="clearSelected()"
+							class="bx--tag__close-icon"
+							tabindex="0"
+							[title]="clearSelectionsTitle"
+							[attr.aria-label]="clearSelectionAria">
+							<svg
+								focusable="false"
+								preserveAspectRatio="xMidYMid meet"
+								style="will-change: transform;"
+								role="img"
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 16 16"
+								aria-hidden="true">
+								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+							</svg>
+						</button>
+					</div>
+					<input
+						#input
+						type="text"
+						role="combobox"
+						[disabled]="disabled"
+						(input)="onSearch($event.target.value)"
+						(blur)="onBlur()"
+						(keydown.enter)="onSubmit($event)"
+						[value]="selectedValue"
+						class="bx--text-input"
+						[ngClass]="{'bx--text-input--empty': !showClearButton}"
+						tabindex="0"
+						[id]="id"
+						[attr.aria-labelledby]="id"
+						[attr.aria-expanded]="open"
+						aria-haspopup="listbox"
+						[attr.maxlength]="maxLength"
+						aria-haspopup="true"
+						[attr.aria-autocomplete]="autocomplete"
+						[placeholder]="placeholder"/>
+					<svg
+						*ngIf="!warn && invalid"
+						ibmIcon="warning--filled"
+						size="16"
+						class="bx--list-box__invalid-icon">
+					</svg>
+					<svg
+						*ngIf="!invalid && warn"
+						ibmIcon="warning--alt--filled"
+						size="16"
+						class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
+					</svg>
+					<div
+						*ngIf="showClearButton"
+						role="button"
+						class="bx--list-box__selection"
+						tabindex="0"
+						[attr.aria-label]="clearSelectionAria"
+						[title]="clearSelectionTitle"
+						(keyup.enter)="clearInput($event)"
+						(click)="clearInput($event)"
+						(blur)="onBlur()">
+						<svg ibmIcon="close" size="16"></svg>
+					</div>
 					<button
 						type="button"
-						(click)="clearSelected()"
-						(blur)="onBlur()"
-						(keydown.enter)="clearSelected()"
-						class="bx--tag__close-icon"
-						tabindex="0"
-						[title]="clearSelectionsTitle"
-						[attr.aria-label]="clearSelectionAria">
-						<svg
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							style="will-change: transform;"
-							role="img"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 16 16"
-							aria-hidden="true">
-							<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-						</svg>
+						role="button"
+						class="bx--list-box__menu-icon"
+						[title]="open ? closeMenuAria : openMenuAria"
+						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
+						[ngClass]="{'bx--list-box__menu-icon--open': open}">
+						<svg ibmIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
-				<input
-					#input
-					type="text"
-					role="searchbox"
-					[disabled]="disabled"
-					(input)="onSearch($event.target.value)"
-					(blur)="onBlur()"
-					(keydown.enter)="onSubmit($event)"
-					[value]="selectedValue"
-					class="bx--text-input"
-					[ngClass]="{'bx--text-input--empty': !showClearButton}"
-					tabindex="0"
-					[attr.aria-labelledby]="id"
-					[attr.maxlength]="maxLength"
-					aria-haspopup="true"
-					[attr.aria-autocomplete]="autocomplete"
-					[placeholder]="placeholder"/>
-				<svg
-					*ngIf="!warn && invalid"
-					ibmIcon="warning--filled"
-					size="16"
-					class="bx--list-box__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					ibmIcon="warning--alt--filled"
-					size="16"
-					class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
-				</svg>
 				<div
-					*ngIf="showClearButton"
-					role="button"
-					class="bx--list-box__selection"
-					tabindex="0"
-					[attr.aria-label]="clearSelectionAria"
-					[title]="clearSelectionTitle"
-					(keyup.enter)="clearInput($event)"
-					(click)="clearInput($event)"
-					(blur)="onBlur()">
-					<svg ibmIcon="close" size="16"></svg>
+					#dropdownMenu
+					[ngClass]="{
+						'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+					}">
+					<ng-content *ngIf="open"></ng-content>
 				</div>
-				<button
-					type="button"
-					role="button"
-					class="bx--list-box__menu-icon"
-					[title]="open ? closeMenuAria : openMenuAria"
-					[attr.aria-label]="open ? closeMenuAria : openMenuAria"
-					[ngClass]="{'bx--list-box__menu-icon--open': open}">
-					<svg ibmIcon="chevron--down" size="16"></svg>
-				</button>
 			</div>
 			<div
-				#dropdownMenu
-				[ngClass]="{
-					'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
-				}">
-				<ng-content *ngIf="open"></ng-content>
+				*ngIf="helperText && !invalid && !warn"
+				class="bx--form__helper-text"
+				[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-		</div>
-		<div
-			*ngIf="helperText && !invalid && !warn"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div *ngIf="!warn && invalid" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
-		<div *ngIf="!invalid && warn" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
 		</div>
 	`,
 	providers: [
