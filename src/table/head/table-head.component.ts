@@ -29,11 +29,13 @@ import { Observable } from "rxjs";
 			<th
 				ibmTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
+				scope="col"
 				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')">
 			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
+				scope="col"
 				style="width: 0;"
 				[id]="model.getId('select')">
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
@@ -41,6 +43,7 @@ import { Observable } from "rxjs";
 			<th
 				ibmTableHeadCheckbox
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
+				scope="col"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
@@ -55,6 +58,7 @@ import { Observable } from "rxjs";
 					*ngIf="column && column.visible"
 					[ngStyle]="column.style"
 					ibmTableHeadCell
+					scope="col"
 					[class]="column.className"
 					[sortable]="sortable"
 					[skeleton]="skeleton"
@@ -67,7 +71,10 @@ import { Observable } from "rxjs";
 					(sort)="sort.emit(i)">
 				</th>
 			</ng-container>
-			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+			<th
+				*ngIf="!skeleton && stickyHeader && scrollbarWidth"
+				[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}"
+				scope="col">
 				<!--
 					Scrollbar pushes body to the left so this header column is added to push
 					the title bar the same amount and keep the header and body columns aligned.
