@@ -42,7 +42,8 @@ export class TableStory implements OnInit, OnChanges {
 	ngOnInit() {
 		this.model.header = [
 			new TableHeaderItem({
-				data: "Name"
+				data: "Name",
+				title: "Table header title"
 			}),
 			new TableHeaderItem({
 				data: "hwer",
@@ -55,7 +56,7 @@ export class TableStory implements OnInit, OnChanges {
 
 		if (!this.noData && !this.skeleton) {
 			this.model.data = [
-				[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+				[new TableItem({ data: "Name 1", title: "Table item title" }), new TableItem({ data: "qwer" })],
 				[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
 				[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
 				[new TableItem({ data: "Name 4" }), new TableItem({data: "twer"})],

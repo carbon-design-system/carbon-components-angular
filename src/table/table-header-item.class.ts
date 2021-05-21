@@ -207,6 +207,36 @@ export class TableHeaderItem {
 	 */
 	protected _ascending = true;
 
+	get title() {
+		if (this._title) {
+			return this._title;
+		}
+
+		if (!this.data) {
+			return "";
+		}
+
+		if (typeof this.data === "string") {
+			return this.data;
+		}
+
+		if (
+			this.data.toString &&
+			this.data.constructor !== ({}).constructor
+		) {
+			return this.data.toString();
+		}
+
+		// data can’t be reasonably converted to an end user readable string
+		return "";
+	}
+
+	set title(title) {
+		this._title = title;
+	}
+
+	private _title: string;
+
 	/**
 	 * Creates an instance of TableHeaderItem.
 	 */
