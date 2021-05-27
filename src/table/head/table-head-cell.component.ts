@@ -27,7 +27,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			(click)="onClick()">
 			<span
 				class="bx--table-sort__flex"
-				[title]="column.data"
+				[title]="column.title"
 				tabindex="-1">
 				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
 					{{column.data}}
