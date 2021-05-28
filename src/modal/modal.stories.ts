@@ -268,6 +268,10 @@ storiesOf("Components|Modal", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-modal-story [modalText]="modalText" [size]="size"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
@@ -280,6 +284,10 @@ storiesOf("Components|Modal", module)
 	}))
 	.add("Transactional", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
@@ -307,6 +315,10 @@ storiesOf("Components|Modal", module)
 	}))
 	.add("Passive", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
@@ -326,6 +338,10 @@ storiesOf("Components|Modal", module)
 	}))
 	.add("Data passing", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-data-passing-modal
 				[modalText]="modalText"
 				[size]="size">

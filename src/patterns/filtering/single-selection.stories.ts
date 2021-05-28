@@ -130,5 +130,11 @@ storiesOf("Patterns|Filtering", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Single Selection", () => ({
-		template: `<app-sample-single-selection></app-sample-single-selection>`
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-sample-single-selection></app-sample-single-selection>
+		`
 	}));

@@ -99,7 +99,13 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 		`
 	}))
 	.add("Dynamic", () => ({
-		template: `<app-dynamic-code-snippet [displayedCode]="displayedCode"></app-dynamic-code-snippet>`,
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-dynamic-code-snippet [displayedCode]="displayedCode"></app-dynamic-code-snippet>
+		`,
 		props: {
 			displayedCode: text("Displayed code", code)
 		}

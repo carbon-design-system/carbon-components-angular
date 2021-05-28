@@ -182,5 +182,11 @@ storiesOf("Components|Welcome", module)
 )
 
 .add("to Carbon Angular", () => ({
-	template: `<app-welcome></app-welcome>`
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-welcome></app-welcome>
+	`
 }));

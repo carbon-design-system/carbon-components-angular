@@ -131,7 +131,13 @@ storiesOf("Components|Radio", module).addDecorator(
 		}
 	}))
 	.add("With reactive forms", () => ({
-		template: `<app-reactive-forms></app-reactive-forms>`
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-reactive-forms></app-reactive-forms>
+		`
 	}))
 	.add("Skeleton", () => ({
 		template: `

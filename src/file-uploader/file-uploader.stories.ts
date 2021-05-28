@@ -288,6 +288,10 @@ storiesOf("Components|File Uploader", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-file-uploader
 				[title]="title"
 				[description]="description"
@@ -318,6 +322,10 @@ storiesOf("Components|File Uploader", module)
 	}))
 	.add("Drag and drop", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-drop-file-uploader
 			[title]="title"
 			[description]="description"
@@ -339,6 +347,10 @@ storiesOf("Components|File Uploader", module)
 	}))
 	.add("Using ngModel", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-ngmodel-file-uploader
 				[title]="title"
 				[description]="description"
@@ -369,6 +381,10 @@ storiesOf("Components|File Uploader", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-file-uploader skeleton="true"></app-file-uploader>
 		`
 	}))

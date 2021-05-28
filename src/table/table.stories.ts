@@ -125,6 +125,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-table
 				[model]="model"
 				[stickyHeader]="stickyHeader"
@@ -149,6 +153,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-no-data-table
 				[model]="model"
 				[size]="size"
@@ -220,7 +228,10 @@ storiesOf("Components|Table", module).addDecorator(
 						</button>
 					</ibm-table-toolbar-content>
 				</ibm-table-toolbar>
-
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-table
 					[model]="model"
 					[size]="size"
@@ -282,7 +293,10 @@ storiesOf("Components|Table", module).addDecorator(
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
-
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-no-data-table
 				[model]="model"
 				[size]="lg"
@@ -325,7 +339,10 @@ storiesOf("Components|Table", module).addDecorator(
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
-
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-table
 				[model]="model"
 				[size]="size"
@@ -346,6 +363,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Filtering by overriding isRowFiltered [Recommended]", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-function-override-filter-table
 			[stickyHeader]="stickyHeader"
 			[size]="size"
@@ -359,6 +380,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Filtering by alteration of model data", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-model-filter-table
 			[stickyHeader]="stickyHeader"
 			[size]="size"
@@ -377,6 +402,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -399,6 +428,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -421,6 +454,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -443,6 +480,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-pagination-table
 				[skeleton]="skeleton"
 				[sortable]="sortable"
@@ -492,6 +533,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-skeleton-table
 				[skeletonModel]="skeletonModel"
 				[size]="size"

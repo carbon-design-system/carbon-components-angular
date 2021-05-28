@@ -194,6 +194,10 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("With Actions", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-notification-action-story
 				[showClose]="showClose"
 				[lowContrast]="lowContrast"
@@ -208,6 +212,10 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("Dynamic", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-notification-story></app-notification-story>
 		`
 	}))
@@ -333,6 +341,10 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("Dynamic toast", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-toast-story></app-toast-story>
 		`
 	}))

@@ -135,6 +135,10 @@ export class TableStory implements OnInit {
 						spacing="equal">
 					</ibm-progress-indicator>
 				</div>
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-table size="sm">
 				</app-table>
 			</section>
@@ -215,6 +219,10 @@ storiesOf("Patterns|Dialogs", module)
 	.addDecorator(withKnobs)
 	.add("With data table", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-modal-with-table></app-modal-with-table>
 			`
 	}));

@@ -136,8 +136,16 @@ storiesOf("Components|Progress Indicator", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		&nbsp;&nbsp;
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
 		`
 	}))
