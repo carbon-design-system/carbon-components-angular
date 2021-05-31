@@ -60,6 +60,10 @@ storiesOf("Components|PaginationNav", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 			<div style="width: 800px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-pagination
 					[disabled]="disabled"
 					[totalDataLength]="totalDataLength"
@@ -76,6 +80,10 @@ storiesOf("Components|PaginationNav", module).addDecorator(
 	.add("Skeleton", () => ({
 		template: `
 			<div style="width: 800px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
 			</div>
 		`,

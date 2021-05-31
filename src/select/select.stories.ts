@@ -146,7 +146,13 @@ storiesOf("Components|Select", module).addDecorator(
 		}
 	}))
 	.add("With reactive forms", () => ({
-		template: `<app-reactive-form></app-reactive-form>`
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-reactive-form></app-reactive-form>
+		`
 	}))
 	.add("Changing selected through option selected property", () => ({
 		template: `

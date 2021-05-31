@@ -268,6 +268,10 @@ storiesOf("Components|Combobox", module)
 	.add("Dynamically added list items", () => ({
 		template: `
 			<div style="width: 300px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-dynamic-list-combobox></app-dynamic-list-combobox>
 			</div>
 		`
@@ -400,6 +404,10 @@ storiesOf("Components|Combobox", module)
 	.add("With reactive forms", () => ({
 		template: `
 			<div style="width: 300px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-reactive-combobox
 					[items]="items"
 					[size]="size"
@@ -473,11 +481,19 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Mock query search", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-mock-query-search></app-mock-query-search>
 		`
 	}))
 	.add("In modal", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-combobox-modal
 				[modalText]="modalText"
 				[items]="items"

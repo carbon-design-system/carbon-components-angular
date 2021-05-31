@@ -274,6 +274,10 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("In modal", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-dropdown-modal
 				[items]="items"
 				[modalText]="modalText"
@@ -286,6 +290,10 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-reactive-forms
 				[label]="label"
 				[helperText]="helperText"
