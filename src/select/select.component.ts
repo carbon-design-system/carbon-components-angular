@@ -190,7 +190,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Output() valueChange = new EventEmitter();
 
 	// @ts-ignore
-	@ViewChild("select", { static: true }) select: ElementRef;
+	@ViewChild("select", { static: false }) select: ElementRef;
 
 	@Input() set value(v) {
 		this._value = v;
