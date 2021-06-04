@@ -10,7 +10,7 @@
 		'bx--toolbar-search--active': toolbar && active
 	}"
 	role="search"
-	[attr.aria-label]="ariaLabel"
+	[attr.aria-label]="ariaLabel ? ariaLabel : id"
 	tabindex="0"
 	(click)="openSearch()">
 	<label class="bx--label" [for]="id">{{label}}</label>
