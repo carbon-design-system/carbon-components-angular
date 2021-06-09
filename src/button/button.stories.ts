@@ -32,7 +32,10 @@ storiesOf("Components|Button", module)
 			</ibm-button-set>
 		`,
 		props: {
-			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"], "primary"),
+			ibmButton: select(
+				"Button kind",
+				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
+				"primary"),
 			isExpressive: boolean("Expressive button style", false),
 			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal")
 		}
@@ -51,7 +54,10 @@ storiesOf("Components|Button", module)
 			</button>
 		`,
 		props: {
-			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"], "tertiary"),
+			ibmButton: select(
+				"Button kind",
+				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
+				"tertiary"),
 			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
 			assistiveTextPlacement: select("Placement of assistive text", ["top", "bottom", "left", "right"], "top"),
 			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center")
