@@ -1,19 +1,16 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, select, boolean } from "@storybook/addon-knobs/angular";
 
-import { ButtonModule } from "../";
+import { ButtonModule } from "./button.module";
+import { IconModule } from "../icon/icon.module";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-
-import { AddModule, CopyModule } from "@carbon/icons-angular";
-
 
 storiesOf("Components|Button", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				AddModule,
 				ButtonModule,
-				CopyModule,
+				IconModule,
 				DocumentationModule
 			]
 		})
@@ -21,17 +18,23 @@ storiesOf("Components|Button", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<button [ibmButton]="ibmButton" [size]="size">Button</button>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" disabled="true">Button</button>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size">
-				With icon<svg class="bx--btn__icon" ibmIconAdd size="20"></svg>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
+				With icon<svg class="bx--btn__icon" ibmIcon="add" size="16"></svg>
 			</button>
+			<br><br>
+			<ibm-button-set>
+				<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
+				<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
+			</ibm-button-set>
 		`,
 		props: {
-			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "primary"),
-			size: select("Size of the buttons", ["normal", "sm", "field"], "normal")
+			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"], "primary"),
+			isExpressive: boolean("Expressive button style", false),
+			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal")
 		}
 	}))
 	.add("Icon only", () => ({
@@ -43,13 +46,13 @@ storiesOf("Components|Button", module)
 				[hasAssistiveText]="true"
 				[assistiveTextPlacement]="assistiveTextPlacement"
 				[assistiveTextAlignment]="assistiveTextAlignment">
-				<svg class="bx--btn__icon" ibmIconCopy size="20"></svg>
+				<svg class="bx--btn__icon" ibmIcon="copy" size="16"></svg>
 				<span class="bx--assistive-text">Icon description</span>
 			</button>
 		`,
 		props: {
-			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "tertiary"),
-			size: select("Size of the buttons", ["normal", "sm", "field"], "normal"),
+			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"], "tertiary"),
+			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
 			assistiveTextPlacement: select("Placement of assistive text", ["top", "bottom", "left", "right"], "top"),
 			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center")
 		}
