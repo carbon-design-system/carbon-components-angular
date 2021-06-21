@@ -54,7 +54,7 @@ import { EventService } from "carbon-components-angular/utils";
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label *ngIf="label" [for]="id" class="bx--label">
+			<label *ngIf="label" [for]="id" [id]="labelId" class="bx--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -70,6 +70,7 @@ import { EventService } from "carbon-components-angular/utils";
 							#thumbs
 							role="slider"
 							[id]="id"
+							[attr.aria-labelledby]="labelId"
 							class="bx--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
 							tabindex="0"
@@ -83,6 +84,7 @@ import { EventService } from "carbon-components-angular/utils";
 							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
 							role="slider"
 							[id]="id + (i > 0 ? '-' + i : '')"
+							[attr.aria-labelledby]="labelId"
 							class="bx--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
 							tabindex="0"
@@ -267,6 +269,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("range", { static: false }) range: ElementRef;
 
+	public labelId = `${this.id}-label`;
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;
 	public fractionComplete = 0;
