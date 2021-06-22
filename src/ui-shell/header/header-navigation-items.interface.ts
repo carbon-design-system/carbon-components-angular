@@ -10,6 +10,7 @@ export interface NavigationItem {
 	route?: any[];
 	routeExtras?: any[];
 	content?: string;
+	isCurrentPage?: boolean;
 	menuItems?: HeaderItemInterface[];
 }
 
