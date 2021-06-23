@@ -57,7 +57,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			(keydown)="navigateList($event)"
 			tabindex="-1"
 			[attr.aria-label]="ariaLabel"
-			[attr.aria-activedescendant]="listId + '-' + index">
+			[attr.aria-activedescendant]="highlightedItem">
 			<li
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
@@ -67,7 +67,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[id]="listId + '-' + i"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
-					'bx--list-box__menu-item--highlighted': index === i,
+					'bx--list-box__menu-item--highlighted': highlightedItem === (listId + '-' + index),
 					disabled: item.disabled
 				}">
 				<div
@@ -179,6 +179,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	public size: "sm" | "md" | "xl" = "md";
 	public listId = `listbox-${DropdownList.listCount++}`;
+	public highlightedItem = null;
 	/**
 	 * Holds the list of items that will be displayed in the `DropdownList`.
 	 * It differs from the the complete set of items when filtering is used (but
@@ -515,6 +516,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					this.blurIntent.emit("top");
 				}
 			}
+			setTimeout(() => {
+				this.highlightedItem = `${this.listId}-${this.index}`;
+			});
 		}
 	}
 
