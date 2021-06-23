@@ -54,20 +54,22 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			role="listbox"
 			class="bx--list-box__menu bx--multi-select"
 			(scroll)="emitScroll($event)"
-			[attr.aria-label]="ariaLabel">
+			(keydown)="navigateList($event)"
+			tabindex="-1"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-activedescendant]="listId + '-' + index">
 			<li
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
-				(keydown)="doKeyDown($event, item)"
-				(focus)="onItemFocus(i)"
-				(blur)="onItemBlur(i)"
 				class="bx--list-box__menu-item"
+				[attr.aria-selected]="item.selected"
+				[id]="listId + '-' + i"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
+					'bx--list-box__menu-item--highlighted': index === i,
 					disabled: item.disabled
-				}"
-				[title]="item.content">
+				}">
 				<div
 					#listItem
 					tabindex="-1"
@@ -111,6 +113,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 	]
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
+	static listCount = 0;
 	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
@@ -175,6 +178,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * @deprecated since v4
 	 */
 	public size: "sm" | "md" | "xl" = "md";
+	public listId = `listbox-${DropdownList.listCount++}`;
 	/**
 	 * Holds the list of items that will be displayed in the `DropdownList`.
 	 * It differs from the the complete set of items when filtering is used (but
@@ -447,11 +451,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index < 0) {
 			this.index = 0;
 		}
-		this.getCurrentElement().focus();
+		// this.getCurrentElement().focus();
+		this.list.nativeElement.focus();
 	}
 
 	/**
 	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
+	 * @deprecated since v4
 	 */
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// "Spacebar", "Down", and "Up" are IE specific values
@@ -466,13 +472,45 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key === "ArrowDown" || event.key === "Down") {
 				if (this.hasNextElement()) {
-					this.getNextElement().focus();
+					// this.getNextElement().focus();
+					this.getNextElement();
 				} else {
 					this.blurIntent.emit("bottom");
 				}
 			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement().focus();
+					// this.getPrevElement().focus();
+					this.getPrevElement();
+				} else {
+					this.blurIntent.emit("top");
+				}
+			}
+		}
+	}
+
+	/**
+	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
+	 */
+	navigateList(event: KeyboardEvent) {
+		// "Spacebar", "Down", and "Up" are IE specific values
+		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+			if (this.listElementList.some(option => option.nativeElement === event.target)) {
+				event.preventDefault();
+			}
+			if (event.key === "Enter") {
+				this.doClick(event, this.getCurrentItem());
+			}
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
+			event.preventDefault();
+			if (event.key === "ArrowDown" || event.key === "Down") {
+				if (this.hasNextElement()) {
+					this.getNextElement();
+				} else {
+					this.blurIntent.emit("bottom");
+				}
+			} else if (event.key === "ArrowUp" || event.key === "Up") {
+				if (this.hasPrevElement()) {
+					this.getPrevElement();
 				} else {
 					this.blurIntent.emit("top");
 				}
