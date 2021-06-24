@@ -18,7 +18,8 @@ import { NavigationItem } from "./header-navigation-items.interface";
 						*ngIf="navigationItem.type === 'item'"
 						[href]="navigationItem.href"
 						[route]="navigationItem.route"
-						[routeExtras]="navigationItem.routeExtras">
+						[routeExtras]="navigationItem.routeExtras"
+						[isCurrentPage]="!!navigationItem.isCurrentPage">
 						{{ navigationItem.content }}
 					</ibm-header-item>
 					<ibm-header-menu

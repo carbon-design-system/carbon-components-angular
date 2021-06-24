@@ -121,6 +121,8 @@
     "ng-packagr": "4.7.1",
     "rxjs": "6.4.0",
     "sass": "^1.26.10",
+    "sass-loader": "10.1.1",
+    "node-sass": "6.0.0",
     "semantic-release": "17.2.3",
     "ts-helpers": "1.1.2",
     "tsickle": "0.35.0",
