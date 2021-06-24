@@ -31,5 +31,7 @@ export {
 	ButtonModule,
 	Button,
 	ButtonSize,
-	ButtonType
+	ButtonType,
+	ButtonSet,
+	DangerButtonType
 } from "carbon-components-angular/button";
