@@ -289,6 +289,10 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-date-picker
 			(valueChange)="valueChange($event)">
 		</app-date-picker>
@@ -428,7 +432,13 @@ storiesOf("Components|Date Picker", module)
 		}
 	}))
 	.add("In modal", () => ({
-		template: `<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>`,
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>
+		`,
 		props: {
 			modalText: text("modal text", modalText)
 		}

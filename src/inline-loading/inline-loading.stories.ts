@@ -48,6 +48,10 @@ storiesOf("Components|Inline Loading", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-inline-loading
 				#loading
 				(onSuccess)="onSuccess()"

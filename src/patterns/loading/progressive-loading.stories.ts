@@ -167,5 +167,11 @@ storiesOf("Patterns|Loading", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Progressive Loading", () => ({
-		template: `<app-sample-progressive-loading></app-sample-progressive-loading>`
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-sample-progressive-loading></app-sample-progressive-loading>
+		`
 	}));

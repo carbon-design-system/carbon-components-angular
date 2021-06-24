@@ -1,10 +1,13 @@
 import {
+	AfterViewInit,
 	Component,
+	ElementRef,
 	Input,
 	Output,
 	HostListener,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -62,8 +65,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		<ng-template #noInline>
 			<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 				<select
+					#select
 					[attr.id]="id"
-					[attr.value]="value"
 					[attr.aria-label]="ariaLabel"
 					[disabled]="disabled"
 					(change)="onChange($event)"
@@ -127,7 +130,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		}
 	]
 })
-export class Select implements ControlValueAccessor {
+export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -186,15 +189,32 @@ export class Select implements ControlValueAccessor {
 
 	@Output() valueChange = new EventEmitter();
 
+	// @ts-ignore
+	@ViewChild("select", { static: false }) select: ElementRef;
+
+	@Input() set value(v) {
+		this._value = v;
+		if (this.select) {
+			this.select.nativeElement.value = this._value;
+		}
+	}
+
 	get value() {
 		return this._value;
 	}
 
-	set value(v) {
-		this._value = v;
-	}
-
 	protected _value;
+
+	ngAfterViewInit() {
+		if (
+			this.value !== undefined &&
+			this.value !== null &&
+			this.select &&
+			this.select.nativeElement.value !== this.value
+		) {
+			this.select.nativeElement.value = this.value;
+		}
+	}
 
 	/**
 	 * Receives a value from the model.

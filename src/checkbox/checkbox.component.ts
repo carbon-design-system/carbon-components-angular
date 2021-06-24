@@ -189,7 +189,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
 
-		this.inputCheckbox.nativeElement.indeterminate = indeterminate;
+		if (this.inputCheckbox && this.inputCheckbox.nativeElement) {
+			this.inputCheckbox.nativeElement.indeterminate = indeterminate;
+		}
 		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
@@ -378,7 +380,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Updates the checkbox if it is in the indeterminate state.
 	 */
 	ngAfterViewInit() {
-		if (this.indeterminate) {
+		if (this.indeterminate && this.inputCheckbox && this.inputCheckbox.nativeElement) {
 			this.inputCheckbox.nativeElement.indeterminate = true;
 		}
 	}

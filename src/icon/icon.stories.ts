@@ -79,6 +79,10 @@ storiesOf("Components|Icon", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-demo-icon></app-demo-icon>
 			<svg ibmIcon="accessibility" size="16" title="Hello!"></svg>
 		`,
@@ -88,6 +92,10 @@ storiesOf("Components|Icon", module).addDecorator(
 	}))
 	.add("With non-svg root element", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-demo-icon></app-demo-icon>
 			<div ibmIcon="accessibility" size="16"></div>
 		`,
@@ -97,6 +105,10 @@ storiesOf("Components|Icon", module).addDecorator(
 	}))
 	.add("All icons", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-demo-many-icon></app-demo-many-icon>
 		`
 	}));

@@ -26,7 +26,13 @@ export class TableExpandedRow {
 
 	@HostBinding("class.bx--expandable-row") expandableRowClass = true;
 
-	@HostBinding("attr.data-child-row") @Input() expanded = false;
+	@HostBinding("attr.data-child-row") dataChildRow = true;
+
+	@Input() expanded = false;
+
+	@HostBinding("style.display") get displayStyle() {
+		return this.expanded ? null : "none";
+	}
 
 	firstExpandedTemplateInRow(row) {
 		const found = row.find(d => d.expandedTemplate);

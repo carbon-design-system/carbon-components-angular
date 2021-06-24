@@ -194,5 +194,11 @@ storiesOf("Patterns|Loading", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Large Loading", () => ({
-		template: `<app-sample-large-loading></app-sample-large-loading>`
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-sample-large-loading></app-sample-large-loading>
+		`
 	}));
