@@ -8,6 +8,7 @@ import { IconService } from "./icon.service";
 
 // icon imports
 import Add16 from "@carbon/icons/es/add/16";
+import Subtract16 from "@carbon/icons/es/subtract/16";
 import Calendar16 from "@carbon/icons/es/calendar/16";
 import CaretDown16 from "@carbon/icons/es/caret--down/16";
 import CaretLeft16 from "@carbon/icons/es/caret--left/16";
@@ -70,6 +71,7 @@ export class IconModule {
 	constructor(protected iconService: IconService) {
 		iconService.registerAll([
 			Add16,
+			Subtract16,
 			Calendar16,
 			CaretDown16,
 			CaretLeft16,

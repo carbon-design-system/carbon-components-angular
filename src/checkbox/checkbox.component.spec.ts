@@ -96,7 +96,7 @@ describe("Checkbox", () => {
 		expect(wrapper.onIndeterminateChange).toHaveBeenCalled();
 	});
 
-	describe("PAL exported tests", () => {
+	xdescribe("PAL exported tests", () => {
 		// Get checkbox from the fixture
 		element = setupFixture.debugElement.query(By.css("ibm-checkbox"));
 		setupFixture.detectChanges();

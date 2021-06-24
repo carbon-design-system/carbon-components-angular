@@ -64,7 +64,7 @@ describe("Table", () => {
 		expect(fixture.componentInstance.simpleSort).toHaveBeenCalled();
 	});
 
-	it("should call the row filter function", () => {});
+	xit("should call the row filter function", () => {});
 
 	it("should emit a select all event", () => {
 		spyOn(tableInstance.componentInstance.selectAll, "emit");
