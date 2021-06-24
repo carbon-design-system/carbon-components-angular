@@ -2,11 +2,11 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { UIShellModule } from "./index";
+import { NavigationItem, UIShellModule } from "./index";
 import { SearchModule } from "./../search/index";
 import { DialogModule } from "./../dialog/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
 	CarbonModule,
@@ -26,10 +26,30 @@ class BarComponent { }
 })
 class FooComponent { }
 
+@Component({
+	selector: "app-header-fluid",
+	template: `
+		<ibm-header name="[Platform]">
+			<ibm-hamburger
+				(selected)="hasHamburger = !hasHamburger"
+				class="bx--header__menu-toggle__hidden"></ibm-hamburger>
+			<ibm-header-navigation [navigationItems]="headerItems"></ibm-header-navigation>
+			<ibm-sidenav
+				*ngIf="hasHamburger"
+				[navigationItems]="headerItems"
+				class="bx--header__menu-toggle__hidden"></ibm-sidenav>
+		</ibm-header>
+	`
+})
+class HeaderFluidComponent {
+	@Input() headerItems: NavigationItem[];
+	hasHamburger = false;
+}
+
 storiesOf("Components|UI Shell", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [BarComponent, FooComponent],
+			declarations: [BarComponent, FooComponent, HeaderFluidComponent],
 			imports: [
 				UIShellModule,
 				CarbonModule,
@@ -81,6 +101,46 @@ storiesOf("Components|UI Shell", module)
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
 			expanded: action("Menu clicked")
+		}
+	}))
+	.add("Header fluid items to side navigation", () => ({
+		template: `
+			<app-header-fluid [headerItems]="headerItems"></app-header-fluid>
+		`,
+		props: {
+			headerItems: <NavigationItem[]>[
+				{
+					type: "item",
+					content: "Catalog"
+				},
+				{
+					type: "item",
+					content: "Docs",
+					isCurrentPage: true
+				},
+				{
+					type: "item",
+					content: "Support"
+				},
+				{
+					type: "menu",
+					title: "Manage",
+					menuItems: [
+						{
+							type: "item",
+							content: "Link 1"
+						},
+						{
+							type: "item",
+							content: "Link 2"
+						},
+						{
+							type: "item",
+							content: "Link 3"
+						}
+					]
+				}
+			]
 		}
 	}))
 	.add("Header with template", () => ({
@@ -408,37 +468,37 @@ storiesOf("Components|UI Shell", module)
 				}
 			],
 			headerItems: [{
-					type: "item",
-					route: ["foo"],
-					content: "Catalog"
-				},
-				{
-					type: "item",
-					route: ["bar"],
-					content: "Docs"
-				},
-				{
-					type: "item",
-					route: ["foo"],
-					content: "Support"
-				},
-				{
-					type: "menu",
-					title: "Manage",
-					trigger: "click",
-					menuItems: [
-						{
-							type: "item",
-							route: ["foo"],
-							content: "Link 1"
-						},
-						{
-							type: "item",
-							route: ["bar"],
-							content: "Link 2"
-						}
-					]
-				}
+				type: "item",
+				route: ["foo"],
+				content: "Catalog"
+			},
+			{
+				type: "item",
+				route: ["bar"],
+				content: "Docs"
+			},
+			{
+				type: "item",
+				route: ["foo"],
+				content: "Support"
+			},
+			{
+				type: "menu",
+				title: "Manage",
+				trigger: "click",
+				menuItems: [
+					{
+						type: "item",
+						route: ["foo"],
+						content: "Link 1"
+					},
+					{
+						type: "item",
+						route: ["bar"],
+						content: "Link 2"
+					}
+				]
+			}
 			]
 		}
 	}))
