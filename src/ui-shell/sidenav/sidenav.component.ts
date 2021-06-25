@@ -27,7 +27,8 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							*ngIf="navigationItem.type === 'item'"
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
-							[routeExtras]="navigationItem.routeExtras">
+							[routeExtras]="navigationItem.routeExtras"
+							[title]="navigationItem.title">
 							{{ navigationItem.content }}
 						</ibm-sidenav-item>
 						<ibm-sidenav-menu
