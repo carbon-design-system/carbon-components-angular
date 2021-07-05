@@ -34,11 +34,6 @@ export class NumberChange {
 @Component({
 	selector: "ibm-number",
 	template: `
-		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -51,6 +46,11 @@ export class NumberChange {
 				'bx--number--sm': size === 'sm',
 				'bx--number--xl': size === 'xl'
 			}">
+			<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
+			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+			</label>
 			<div
 				class="bx--number__input-wrapper"
 				[ngClass]="{
@@ -80,23 +80,25 @@ export class NumberChange {
 				</svg>
 				<div *ngIf="!skeleton" class="bx--number__controls">
 					<button
-						class="bx--number__control-btn up-icon"
-						type="button"
-						aria-live="polite"
-						aria-atomic="true"
-						[attr.aria-label]="getIncrementLabel() | async"
-						(click)="onIncrement()">
-						<svg ibmIcon="caret--up" size="16"></svg>
-					</button>
-					<button
 						class="bx--number__control-btn down-icon"
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<svg ibmIcon="caret--down" size="16"></svg>
+						<svg ibmIcon="subtract" size="16"></svg>
 					</button>
+					<div class="bx--number__rule-divider"></div>
+					<button
+						class="bx--number__control-btn up-icon"
+						type="button"
+						aria-live="polite"
+						aria-atomic="true"
+						[attr.aria-label]="getIncrementLabel() | async"
+						(click)="onIncrement()">
+						<svg ibmIcon="add" size="16"></svg>
+					</button>
+					<div class="bx--number__rule-divider"></div>
 				</div>
 			</div>
 			<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">

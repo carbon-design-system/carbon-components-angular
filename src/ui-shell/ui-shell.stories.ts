@@ -111,7 +111,8 @@ storiesOf("Components|UI Shell", module)
 			headerItems: <NavigationItem[]>[
 				{
 					type: "item",
-					content: "Catalog"
+					content: "Catalog",
+					title: "Catalog"
 				},
 				{
 					type: "item",

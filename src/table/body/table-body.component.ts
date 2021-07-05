@@ -41,27 +41,26 @@ import { TableRowSize } from "../table.types";
 						'tbody_row--error': !model.isRowSelected(i) && model.getRowContext(i) === 'error'
 					}">
 				</tr>
-				<ng-container *ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)">
+				<tr
+					*ngIf="model.isRowExpandable(i) && !shouldExpandAsTable(row) && !model.isRowFiltered(i)"
+					ibmTableExpandedRow
+					ibmExpandedRowHover
+					[row]="row"
+					[expanded]="model.isRowExpanded(i)"
+					[skeleton]="skeleton">
+				</tr>
+				<ng-container
+					*ngIf="model.isRowExpandable(i) && shouldExpandAsTable(row) && model.isRowExpanded(i) && !model.isRowFiltered(i)">
 					<tr
-						*ngIf="!shouldExpandAsTable(row); else expandAsTableTemplate"
-						ibmTableExpandedRow
-						ibmExpandedRowHover
-						[row]="row"
-						[expanded]="model.isRowExpanded(i)"
+						*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
+						ibmTableRow
+						[model]="model"
+						[showSelectionColumnCheckbox]="false"
+						[showSelectionColumn]="showSelectionColumn"
+						[row]="expandedDataRow"
+						[size]="size"
 						[skeleton]="skeleton">
 					</tr>
-					<ng-template #expandAsTableTemplate>
-						<tr
-							*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
-							ibmTableRow
-							[model]="model"
-							[showSelectionColumnCheckbox]="false"
-							[showSelectionColumn]="showSelectionColumn"
-							[row]="expandedDataRow"
-							[size]="size"
-							[skeleton]="skeleton">
-						</tr>
-					</ng-template>
 				</ng-container>
 			</ng-container>
 		</ng-container>

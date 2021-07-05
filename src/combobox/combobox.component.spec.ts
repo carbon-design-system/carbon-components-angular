@@ -118,6 +118,7 @@ describe("Combo box", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
 		element.componentInstance.open = false;
+		fixture.detectChanges();
 
 		element.nativeElement.dispatchEvent(keyDown);
 		fixture.detectChanges();
