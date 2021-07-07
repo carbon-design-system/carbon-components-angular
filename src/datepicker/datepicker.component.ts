@@ -363,7 +363,10 @@ export class DatePicker implements
 				this.flatpickrInstance.changeMonth(currentMonth, false);
 			}
 		}
+	}
 
+	@HostListener("focusout")
+	onFocusOut() {
 		this.onTouched();
 	}
 

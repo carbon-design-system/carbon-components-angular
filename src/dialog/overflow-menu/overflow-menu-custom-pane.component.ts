@@ -11,6 +11,7 @@ import { Dialog } from "../dialog.component";
 	template: `
 		<div
 			[attr.aria-label]="dialogConfig.menuLabel"
+			[attr.data-floating-menu-direction]="placement ? placement : null"
 			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"

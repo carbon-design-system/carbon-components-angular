@@ -46,6 +46,25 @@ export class Button implements OnInit {
 	 * If assistive text is not used, this can be left undefined.
 	 */
 	@Input() assistiveTextAlignment: "center" | "start" | "end" = "center";
+	/**
+	 * Set to `true` for a skeleton state button
+	 */
+	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
+	/**
+	 * Set to `true` if the button contains only an icon, and a span with `.bx--assistive-text` containing the content
+	 * For example:
+	 *
+	 * <button ibmButton="primary" [iconOnly]="true" [hasAssistiveText]="true">
+	 *    <svg class="bx--btn__icon" ibmIconCopy size="20"></svg>
+	 *    <span class="bx--assistive-text">Icon description</span>
+	 * </button>
+	 */
+	@HostBinding("class.bx--btn--icon-only") @Input() iconOnly = false;
+
+	/**
+	 * Set to `true` for a "expressive" style button
+	 */
+	@HostBinding("class.bx--btn--expressive") @Input() isExpressive = false;
 
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.bx--btn") get baseClass() {
@@ -66,16 +85,27 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--btn--danger") get dangerButton() {
 		return this.ibmButton === "danger" || this.ibmButton === "danger--primary";
 	}
-	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
+	@HostBinding("class.bx--btn--danger--tertiary") get dangerTertiary() {
+		return this.ibmButton === "danger--tertiary";
+	}
+	@HostBinding("class.bx--btn--danger--ghost") get dangerGhost() {
+		return this.ibmButton === "danger--ghost";
+	}
 	@HostBinding("class.bx--btn--sm") get smallSize() {
 		return this.size === "sm";
+	}
+	@HostBinding("class.bx--btn--lg") get largeSize() {
+		return this.size === "lg";
+	}
+	@HostBinding("class.bx--btn--xl") get extraLargeSize() {
+		return this.size === "xl";
 	}
 	@HostBinding("class.bx--btn--field") get fieldSize() {
 		return this.size === "field";
 	}
 	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
 	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
-	@HostBinding("class.bx--btn--icon-only") @Input() iconOnly = false;
+
 
 	/**
 	 * `hasAssistiveText` input specifies whether the button contains assistive text or not.
