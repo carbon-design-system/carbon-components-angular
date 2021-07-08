@@ -47,8 +47,8 @@ storiesOf("Components|UI Shell", module)
 		moduleMetadata({
 			declarations: [BarComponent, FooComponent, HeaderFluidComponent],
 			imports: [
-				UIShellModule,				
-				SearchModule,				
+				UIShellModule,
+				SearchModule,
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
