@@ -7,6 +7,8 @@ import {
 	EventEmitter
 } from "@angular/core";
 
+import { IconModule } from "../icon/icon.module";
+
 @Component({
 	selector: "ibm-accordion-item",
 	template: `

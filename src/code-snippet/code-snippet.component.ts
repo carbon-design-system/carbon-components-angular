@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
+import { IconModule } from "../icon/icon.module";
 
 export enum SnippetType {
 	single = "single",

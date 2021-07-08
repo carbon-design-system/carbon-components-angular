@@ -28,7 +28,7 @@ import { LinkModule } from "../../link/index";
 					(valueChange)="onSearch($event)">
 				</ibm-table-toolbar-search>
 				<button ibmButton="ghost" class="toolbar-action" size="sm">
-					<svg size="16" class="bx--toolbar-action__icon" ibmIconData_2></svg>
+					<svg size="16" class="bx--toolbar-action__icon" ibmIcon="Data_2"></svg>
 				</button>
 			</ibm-table-toolbar-content>
 		</ibm-table-toolbar>
