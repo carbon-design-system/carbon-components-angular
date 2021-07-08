@@ -2,7 +2,6 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { InformationFilledModule } from "@carbon/icons-angular";
 import { DialogModule } from "../dialog.module";
 import { TagModule } from "../../tag/tag.module";
 import { PlaceholderModule } from "../../placeholder/index";
@@ -15,7 +14,6 @@ storiesOf("Components|Tooltip", module)
 			imports: [
 				DialogModule,
 				PlaceholderModule,
-				InformationFilledModule,
 				TagModule,
 				DocumentationModule
 			]

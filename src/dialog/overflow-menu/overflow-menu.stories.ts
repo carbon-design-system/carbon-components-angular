@@ -11,7 +11,6 @@ import { PlaceholderModule } from "../../placeholder";
 import { DocumentationModule } from "./../../documentation-component/documentation.module";
 import { CheckboxModule } from "../../checkbox";
 
-import { DocumentModule, SettingsModule } from "@carbon/icons-angular";
 import { ViewEncapsulation } from "@angular/core";
 
 let options;

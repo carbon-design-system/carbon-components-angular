@@ -21,14 +21,6 @@ import { NFormsModule, ButtonModule } from "../forms/index";
 import { DialogModule } from "../dialog/index";
 import { SearchModule } from "../search/index";
 
-import {
-	SettingsModule,
-	DeleteModule,
-	FilterModule,
-	SaveModule,
-	DownloadModule,
-	AddModule
-} from "@carbon/icons-angular";
 
 import {
 	TableStory,
@@ -93,15 +85,9 @@ storiesOf("Components|Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
-				FilterModule,
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
-				SettingsModule,
-				DeleteModule,
-				SaveModule,
-				DownloadModule,
-				AddModule,
 				DocumentationModule
 			],
 			declarations: [

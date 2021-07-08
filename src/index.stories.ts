@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./";
-import { BeeModule, DocumentModule } from "@carbon/icons-angular";
+
 
 @Component({
 	selector: "app-welcome",

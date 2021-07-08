@@ -8,10 +8,6 @@ import { DialogModule } from "./../dialog/index";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Component, Input } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import {
-	CarbonModule,
-	FadeModule
-} from "@carbon/icons-angular";
 
 
 @Component({
@@ -51,10 +47,8 @@ storiesOf("Components|UI Shell", module)
 		moduleMetadata({
 			declarations: [BarComponent, FooComponent, HeaderFluidComponent],
 			imports: [
-				UIShellModule,
-				CarbonModule,
-				SearchModule,
-				FadeModule,
+				UIShellModule,				
+				SearchModule,				
 				DialogModule,
 				DocumentationModule,
 				RouterModule.forRoot([
