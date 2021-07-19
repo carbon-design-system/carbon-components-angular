@@ -454,10 +454,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
-			// If new items are added into the combobox while there is search input,
-			// repeat the search.
-			this.onSearch(this.input.nativeElement.value, false);
 			this.updateSelected();
+			// If new items are added into the combobox while there is search input,
+			// repeat the search. Search should only trigger for type 'single' when there is no value selected.
+			if ( this.type === "multi" || (this.type === "single" && !this.selectedValue)) {
+				this.onSearch(this.input.nativeElement.value, false);
+			}
 		}
 	}
 
