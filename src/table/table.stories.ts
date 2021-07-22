@@ -210,7 +210,7 @@ storiesOf("Components|Table", module).addDecorator(
 					<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 						<ibm-table-toolbar-search
 							ngDefaultControl
-							[expandable]="true"
+							[expandable]="searchExpandable"
 							[(ngModel)]="searchModel">
 						</ibm-table-toolbar-search>
 						<ibm-overflow-menu
@@ -253,6 +253,7 @@ storiesOf("Components|Table", module).addDecorator(
 			},
 			description: text("Description", "With toolbar"),
 			searchModel: text("Search model", "Initial search value"),
+			searchExpandable: boolean("Expandable Search", true),
 			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",

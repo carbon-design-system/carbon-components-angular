@@ -6,11 +6,13 @@
 		'bx--search--xl': size === 'xl',
 		'bx--search--light': theme === 'light',
 		'bx--skeleton': skeleton,
-		'bx--toolbar-search': toolbar && !tableSearch,
-		'bx--toolbar-search--active': toolbar && !tableSearch && active,
-		'bx--toolbar-search-container-persistent': tableSearch && !toolbar,
-		'bx--toolbar-search-container-expandable': tableSearch && toolbar,
-		'bx--toolbar-search-container-active': tableSearch && toolbar && active
+		'bx--search--expandable': expandable && !tableSearch,
+		'bx--search--expanded': expandable && !tableSearch && active,
+		'bx--toolbar-search': toolbar && !expandable,
+		'bx--toolbar-search--active': toolbar && !expandable && active,
+		'bx--toolbar-search-container-persistent': tableSearch && !expandable,
+		'bx--toolbar-search-container-expandable': tableSearch && expandable,
+		'bx--toolbar-search-container-active': tableSearch && expandable && active
 	}"
 	role="search"
 	[attr.aria-label]="ariaLabel"
