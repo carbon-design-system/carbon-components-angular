@@ -60,6 +60,7 @@ export class Search implements ControlValueAccessor {
 	@Input() toolbar = false;
 	/**
 	 * Set to `true` to make the search component expandable.
+	 * `expandable` would override `toolbar` property behaviours.
 	 */
 	@Input() expandable = false;
 	/**
