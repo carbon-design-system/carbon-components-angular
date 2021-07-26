@@ -19,23 +19,10 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 		}
 	]
 })
-export class TableToolbarSearch extends Search implements OnInit, AfterViewInit {
+export class TableToolbarSearch extends Search implements AfterViewInit {
 	tableSearch = true;
 
-	@HostBinding("class.bx--toolbar-search-container-expandable") @Input() expandable = false;
-
-	@HostBinding("class.bx--toolbar-search-container-persistent") get persistentClass() { return !this.expandable; }
-
-	@HostBinding("class.bx--toolbar-search-container-active") get activeClass() {
-		return this.active && (this.value !== null || this.value !== "");
-	}
-
-	ngOnInit() {
-		this.size = "sm";
-		if (this.expandable) {
-			this.toolbar = true;
-		}
-	}
+	@HostBinding("class.bx--toolbar-content") hostClass = true;
 
 	ngAfterViewInit() {
 		setTimeout(() => {
