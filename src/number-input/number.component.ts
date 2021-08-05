@@ -65,6 +65,7 @@ export class NumberChange {
 					[attr.step]="step"
 					[disabled]="disabled"
 					[required]="required"
+					[attr.aria-label]="ariaLabel"
 					(input)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
@@ -209,6 +210,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the warning text
 	 */
 	@Input() warnText: string | TemplateRef<any>;
+	/**
+	 * Sets the arialabel for input
+	 */
+	@Input() ariaLabel: string;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
