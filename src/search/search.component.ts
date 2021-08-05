@@ -33,7 +33,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") get containerClass() { return !this.toolbar; }
+	@HostBinding("class.bx--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
 	 * `light` or `dark` search theme.
@@ -58,6 +58,11 @@ export class Search implements ControlValueAccessor {
 	 * Set to `true` for a toolbar search component.
 	 */
 	@Input() toolbar = false;
+	/**
+	 * Set to `true` to make the search component expandable.
+	 * `expandable` would override `toolbar` property behaviours.
+	 */
+	@Input() expandable = false;
 	/**
 	 * Set to `true` for a loading search component.
 	 */
@@ -217,7 +222,7 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("keydown", ["$event"])
 	keyDown(event: KeyboardEvent) {
-		if (this.toolbar) {
+		if (this.toolbar || this.expandable) {
 			if (event.key === "Escape") {
 				this.active = false;
 			} else if (event.key === "Enter") {
@@ -229,10 +234,10 @@ export class Search implements ControlValueAccessor {
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
 		this.onTouched();
-		if (this.toolbar &&
+		if ((this.expandable || this.toolbar) &&
 			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
-			event.relatedTarget === null) {
+			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget)) {
 			this.active = false;
 			this.open.emit(this.active);
 		}
