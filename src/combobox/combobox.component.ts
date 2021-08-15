@@ -345,7 +345,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/**
 	 * Set to `true` to disable combobox.
 	 */
-	@HostBinding("attr.aria-disabled") @Input() disabled = false;
+	@Input() disabled = false;
 	/**
 	 * Emits a ListItem
 	 *
