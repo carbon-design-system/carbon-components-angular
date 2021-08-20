@@ -40,6 +40,10 @@ export interface AlertModalData {
 	 * Property trigger has a value of `overlay` or `close`
 	 */
 	close?: (trigger?: "overlay" | "close") => boolean;
+	/**
+	 * Set to `false` to hide the header's close button.
+	 */
+	showCloseButton?: boolean;
 }
 
 export enum ModalButtonType {
