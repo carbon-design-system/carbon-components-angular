@@ -28,7 +28,7 @@ import { ButtonModule } from "../forms";
 			[size]="size"
 			[open]="open"
 			(overlaySelected)="closeModal()">
-			<ibm-modal-header (closeSelect)="closeModal()">
+			<ibm-modal-header (closeSelect)="closeModal()" [showCloseButton]="showCloseButton">
 				<h2 ibmModalHeaderLabel>Label</h2>
 				<h3 ibmModalHeaderHeading>Modal</h3>
 			</ibm-modal-header>
@@ -47,6 +47,7 @@ class SampleModal extends BaseModal {
 	constructor(
 		@Inject("modalText") public modalText,
 		@Inject("size") public size,
+		@Inject("showCloseButton") public showCloseButton = true,
 		protected modalService: ModalService) {
 		super();
 	}
@@ -120,6 +121,8 @@ class ModalStory {
 
 	@Input() size = "default";
 
+	@Input() showCloseButton = true;
+
 	constructor(protected modalService: ModalService) { }
 
 	openModal() {
@@ -127,7 +130,8 @@ class ModalStory {
 			component: SampleModal,
 			inputs: {
 				modalText: this.modalText,
-				size: this.size
+				size: this.size,
+				showCloseButton: this.showCloseButton
 			}
 		});
 	}
@@ -219,6 +223,7 @@ class AlertModalStory {
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
 	@Input() size: "xs" | "sm" | "lg";
+	@Input() showCloseButton: boolean;
 
 	constructor(protected modalService: ModalService) { }
 
@@ -229,7 +234,8 @@ class AlertModalStory {
 			title: this.modalTitle,
 			content: this.modalContent,
 			size: this.size,
-			buttons: this.buttons
+			buttons: this.buttons,
+			showCloseButton: this.showCloseButton
 		});
 	}
 }
@@ -272,11 +278,12 @@ storiesOf("Components|Modal", module)
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source as an example.
 		-->
-		<app-modal-story [modalText]="modalText" [size]="size"></app-modal-story>
+		<app-modal-story [modalText]="modalText" [size]="size" [showCloseButton]="showCloseButton"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
 		`,
 		props: getOptions({
-			modalText: text("modalText", "Hello, World!")
+			modalText: text("modalText", "Hello, World!"),
+			showCloseButton: boolean("showCloseButton", true)
 		})
 	}))
 	.add("Form modal", () => ({
@@ -294,6 +301,7 @@ storiesOf("Components|Modal", module)
 			[modalTitle]="modalTitle"
 			[modalContent]="modalContent"
 			[size]="size"
+			[showCloseButton]="showCloseButton"
 			[buttons]="buttons">
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
@@ -310,7 +318,8 @@ storiesOf("Components|Modal", module)
 				text: "Delete",
 				type: "primary",
 				click: () => alert("Delete button clicked")
-			}]
+			}],
+			showCloseButton: boolean("showCloseButton", true)
 		})
 	}))
 	.add("Passive", () => ({
@@ -357,7 +366,7 @@ storiesOf("Components|Modal", module)
 		template: `
 			<button #trigger ibmButton="primary" (click)="open = true">Open</button>
 			<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
-				<ibm-modal-header (closeSelect)="open = false">
+				<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="showCloseButton">
 					<p class="bx--modal-header__label bx--type-delta">No service required</p>
 					<p class="bx--modal-header__heading bx--type-beta">A very simple modal</p>
 				</ibm-modal-header>
@@ -377,7 +386,8 @@ storiesOf("Components|Modal", module)
 			</ibm-modal>
 		`,
 		props: {
-			open: false
+			open: false,
+			showCloseButton: boolean("showCloseButton", true)
 		}
 	}))
 	.add("Documentation", () => ({

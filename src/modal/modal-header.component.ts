@@ -24,6 +24,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 		<header class="{{theme}} bx--modal-header">
 			<ng-content></ng-content>
 			<button
+				*ngIf="showCloseButton"
 				type="button"
 				class="bx--modal-close"
 				(click)="onClose()">
@@ -44,6 +45,10 @@ export class ModalHeader {
 	 * Defaults to the `MODAL.CLOSE` value from the i18n service.
 	 */
 	@Input() closeLabel = this.i18n.get().MODAL.CLOSE;
+	/**
+	 * Set to `false` to hide the close button.
+	 */
+	@Input() showCloseButton = true;
 
 	/**
 	 * To emit the event of clicking on the close icon within the modal.
