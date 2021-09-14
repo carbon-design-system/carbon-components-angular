@@ -374,17 +374,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 		this.view.type = this.type;
 		this.view.size = this.size;
+
+		// function to check if the event is organic (isUpdate === false) or programattic
+		const isUpdate = event => event && event.isUpdate;
+
 		this.view.select.subscribe(event => {
-			if (this.type === "multi") {
-				// if we have a `value` selector and selected items map them appropriately
-				if (this.itemValueKey && this.view.getSelected()) {
-					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
-				// otherwise just pass up the values from `getSelected`
-				} else {
-					this.propagateChange(this.view.getSelected());
-				}
-			} else {
+			if (this.type === "single" && !isUpdate(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {
@@ -396,8 +391,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.propagateChange(null);
 				}
 			}
+
+			if (this.type === "multi" && !isUpdate(event)) {
+				// if we have a `value` selector and selected items map them appropriately
+				if (this.itemValueKey && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+					this.propagateChange(values);
+				// otherwise just pass up the values from `getSelected`
+				} else {
+					this.propagateChange(this.view.getSelected());
+				}
+			}
 			// only emit selected for "organic" selections
-			if (event && !event.isUpdate) {
+			if (!isUpdate(event)) {
 				this.checkForReorder();
 				this.selected.emit(event);
 			}

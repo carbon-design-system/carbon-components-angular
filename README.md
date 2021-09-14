@@ -75,6 +75,9 @@ How to read this table:
 
 ### Contributing
 
+#### IBMers contributing
+**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/IBM/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
+
 #### Quickstart
 - fork IBM/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
