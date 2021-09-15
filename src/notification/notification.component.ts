@@ -16,9 +16,9 @@ import { of, isObservable, Subject } from "rxjs";
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
- * [See demo](../../?path=/story/notification--basic)
+ * [See demo](../../?path=/story/components-notification--basic)
  *
- * <example-url>../../iframe.html?id=notification--basic</example-url>
+ * <example-url>../../iframe.html?id=components-notification--basic</example-url>
  */
 @Component({
 	selector: "ibm-notification",

@@ -30,9 +30,9 @@ import { Observable } from "rxjs";
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
- * [See demo](../../?path=/story/combobox--basic)
+ * [See demo](../../?path=/story/components-combobox--basic)
  *
- * <example-url>../../iframe.html?id=combobox--basic</example-url>
+ * <example-url>../../iframe.html?id=components-combobox--basic</example-url>
  */
 @Component({
 	selector: "ibm-combo-box",
