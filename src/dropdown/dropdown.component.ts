@@ -124,14 +124,15 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				size="16"
 				class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
 			</svg>
-			<svg
-				*ngIf="!skeleton"
-				ibmIcon="chevron--down"
-				size="16"
-				class="bx--list-box__menu-icon"
-				[attr.aria-label]="menuButtonLabel"
-				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</svg>
+			<span class="bx--list-box__menu-icon">
+				<svg
+					*ngIf="!skeleton"
+					ibmIcon="chevron--down"
+					size="16"
+					[attr.aria-label]="menuButtonLabel"
+					[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				</svg>
+			</span>
 		</button>
 		<div
 			#dropdownMenu
@@ -375,7 +376,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		this.view.type = this.type;
 		this.view.size = this.size;
 
-		// function to check if the event is organic (isUpdate === false) or programattic
+		// function to check if the event is organic (isUpdate === false) or programmatic
 		const isUpdate = event => event && event.isUpdate;
 
 		this.view.select.subscribe(event => {
