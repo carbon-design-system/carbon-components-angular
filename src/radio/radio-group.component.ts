@@ -15,7 +15,7 @@ import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
 
 /**
- * [See demo](../../?path=/story/radio--basic)
+ * [See demo](../../?path=/story/components-radio--basic)
  *
  * class: RadioGroup
  *
@@ -41,7 +41,7 @@ import { RadioChange } from "./radio-change.class";
  *
  * Also see: [`Radio`](#ibm-radio)
  *
- * <example-url>../../iframe.html?id=radio--basic</example-url>
+ * <example-url>../../iframe.html?id=components-radio--basic</example-url>
  */
 @Component({
 	selector: "ibm-radio-group",

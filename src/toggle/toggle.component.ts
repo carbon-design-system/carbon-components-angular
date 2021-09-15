@@ -39,13 +39,13 @@ export class ToggleChange {
 }
 
 /**
- * [See demo](../../?path=/story/toggle--basic)
+ * [See demo](../../?path=/story/components-toggle--basic)
  *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
  *
- * <example-url>../../iframe.html?id=toggle--basic</example-url>
+ * <example-url>../../iframe.html?id=components-toggle--basic</example-url>
  */
 @Component({
 	selector: "ibm-toggle",

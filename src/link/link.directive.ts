@@ -7,7 +7,7 @@ import {
 /**
  * A convenience directive for applying styling to a link.
  *
- * [See demo](../../?path=/story/link--basic)
+ * [See demo](../../?path=/story/components-link--basic)
  *
  * Example:
  *
@@ -17,7 +17,7 @@ import {
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
  *
- * <example-url>../../iframe.html?id=link--basic</example-url>
+ * <example-url>../../iframe.html?id=components-link--basic</example-url>
  */
 @Directive({
 	selector: "[ibmLink]"

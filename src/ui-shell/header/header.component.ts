@@ -15,9 +15,9 @@ import { I18n } from "carbon-components-angular/i18n";
  * Header may contain a Hamburger menu to toggle the side navigation, navigation actions,
  * and global actions (generally in the form of `Panel`s).
  *
- * [See demo](../../?path=/story/ui-shell--header)
+ * [See demo](../../?path=/story/components-ui-shell--header)
  *
- * <example-url>../../iframe.html?id=ui-shell--header</example-url>
+ * <example-url>../../iframe.html?id=components-ui-shell--header</example-url>
  */
 @Component({
 	selector: "ibm-header",
