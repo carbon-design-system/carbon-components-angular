@@ -17,7 +17,7 @@ import { EventService } from "carbon-components-angular/utils";
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
- * [See demo](../../?path=/story/tooltip--basic)
+ * [See demo](../../?path=/story/components-tooltip--basic)
  *
  * class: TooltipDirective (extends PopoverDirective)
  *
@@ -30,7 +30,7 @@ import { EventService } from "carbon-components-angular/utils";
  * <button nTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
  * ```
  *
- * <example-url>../../iframe.html?id=tooltip--basic</example-url>
+ * <example-url>../../iframe.html?id=components-tooltip--basic</example-url>
  */
 @Directive({
 	selector: "[ibmTooltip]",

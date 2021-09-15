@@ -17,7 +17,7 @@ import { EventService } from "carbon-components-angular/utils";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * [See demo](../../?path=/story/slider--advanced)
+ * [See demo](../../?path=/story/components-slider--advanced)
  *
  * The simplest possible slider usage looks something like:
  * ```html
@@ -48,7 +48,7 @@ import { EventService } from "carbon-components-angular/utils";
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  *
- * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ * <example-url>../../iframe.html?id=components-slider--advanced</example-url>
  */
 @Component({
 	selector: "ibm-slider",

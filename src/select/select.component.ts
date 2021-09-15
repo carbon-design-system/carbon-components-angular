@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * `ibm-select` provides a styled `select` component.
  *
- * [See demo](../../?path=/story/select--basic)
+ * [See demo](../../?path=/story/components-select--basic)
  *
  * Example:
  *
@@ -27,7 +27,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * </ibm-select>
  *	```
  *
- * <example-url>../../iframe.html?id=select--basic</example-url>
+ * <example-url>../../iframe.html?id=components-select--basic</example-url>
  */
 @Component({
 	selector: "ibm-select",

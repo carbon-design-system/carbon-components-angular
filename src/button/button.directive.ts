@@ -9,7 +9,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 /**
  * A convenience directive for applying styling to a button.
  *
- * [See demo](../../?path=/story/button--basic)
+ * [See demo](../../?path=/story/components-button--basic)
  *
  * Example:
  *
@@ -20,7 +20,7 @@ import { ButtonSize, ButtonType } from "./button.types";
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/button/code) for more detail.
  *
- * <example-url>../../iframe.html?id=button--basic</example-url>
+ * <example-url>../../iframe.html?id=components-button--basic</example-url>
  */
 @Directive({
 	selector: "[ibmButton]"
