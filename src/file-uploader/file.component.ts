@@ -19,19 +19,20 @@ import { FileItem } from "./file-item.interface";
 			class="bx--file__state-container"
 			(click)="remove.emit()"
 			(keyup.enter)="remove.emit()"
-			(keyup.space)="remove.emit()"
-			tabindex="0">
+			(keyup.space)="remove.emit()">
 			<svg
 				*ngIf="isInvalidText"
 				ibmIcon="warning--filled"
 				class="bx--file--invalid"
-				size="16">
+				size="16"
+				tabindex="0">
 			</svg>
 			<svg
 				ibmIcon="close"
 				size="16"
 				class="bx--file-close"
-				[ariaLabel]="translations.REMOVE_BUTTON">
+				[ariaLabel]="translations.REMOVE_BUTTON"
+				tabindex="0">
 			</svg>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">

@@ -26,7 +26,7 @@ import { TableRowSize } from "./table.types";
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * [See demo](../../?path=/story/table--basic)
+ * [See demo](../../?path=/story/components-table--basic)
  *
  * Instead of the usual write-your-own-html approach you had with `<table>`,
  * carbon table uses model-view-controller approach.
@@ -168,7 +168,7 @@ import { TableRowSize } from "./table.types";
  * }
  * ```
  *
- * <example-url>../../iframe.html?id=table--basic</example-url>
+ * <example-url>../../iframe.html?id=components-table--basic</example-url>
  */
 @Component({
 	selector: "ibm-table",

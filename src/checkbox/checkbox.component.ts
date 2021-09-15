@@ -41,9 +41,9 @@ export class CheckboxChange {
 }
 
 /**
- * [See demo](../../?path=/story/checkbox--basic)
+ * [See demo](../../?path=/story/components-checkbox--basic)
  *
- * <example-url>../../iframe.html?id=checkbox--basic</example-url>
+ * <example-url>../../iframe.html?id=components-checkbox--basic</example-url>
  */
 @Component({
 	selector: "ibm-checkbox",
