@@ -45,9 +45,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * - `[appendInline]="false"` will always append to the body/`ibm-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
- * [See demo](../../?path=/story/dropdown--basic)
+ * [See demo](../../?path=/story/components-dropdown--basic)
  *
- * <example-url>../../iframe.html?id=dropdown--basic</example-url>
+ * <example-url>../../iframe.html?id=components-dropdown--basic</example-url>
  */
 @Component({
 	selector: "ibm-dropdown",

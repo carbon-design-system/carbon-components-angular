@@ -20,9 +20,9 @@ export enum InlineLoadingState {
 }
 
 /**
- * [See demo](../../?path=/story/inline-loading--basic)
+ * [See demo](../../?path=/story/components-inline-loading--basic)
  *
- * <example-url>../../iframe.html?id=inline-loading--basic</example-url>
+ * <example-url>../../iframe.html?id=components-inline-loading--basic</example-url>
  */
 @Component({
 	selector: "ibm-inline-loading",

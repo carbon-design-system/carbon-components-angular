@@ -28,9 +28,9 @@ import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/date-picker--single)
+ * [See demo](../../?path=/story/components-date-picker--single)
  *
- * <example-url>../../iframe.html?id=date-picker--single</example-url>
+ * <example-url>../../iframe.html?id=components-date-picker--single</example-url>
  */
 @Component({
 	selector: "ibm-date-picker",

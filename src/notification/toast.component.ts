@@ -14,9 +14,9 @@ import { I18n } from "carbon-components-angular/i18n";
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
- * [See demo](../../?path=/story/notification--toast)
+ * [See demo](../../?path=/story/components-notification--toast)
  *
- * <example-url>../../iframe.html?id=notification--toast</example-url>
+ * <example-url>../../iframe.html?id=components-notification--toast</example-url>
  */
 @Component({
 	selector: "ibm-toast",

@@ -18,9 +18,9 @@ import { Router } from "@angular/router";
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
- *  [See demo](../../?path=/story/breadcrumb--basic)
+ *  [See demo](../../?path=/story/components-breadcrumb--basic)
  *
- * <example-url>../../iframe.html?id=breadcrumb--basic</example-url>
+ * <example-url>../../iframe.html?id=components-breadcrumb--basic</example-url>
  */
 @Component({
 	selector: "ibm-breadcrumb",
