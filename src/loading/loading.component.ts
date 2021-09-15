@@ -2,9 +2,9 @@ import { Component, Input, HostBinding } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/loading--basic)
+ * [See demo](../../?path=/story/components-loading--basic)
  *
- * <example-url>../../iframe.html?id=loading--basic</example-url>
+ * <example-url>../../iframe.html?id=components-loading--basic</example-url>
  */
 @Component({
 	selector: "ibm-loading",

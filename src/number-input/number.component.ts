@@ -27,9 +27,9 @@ export class NumberChange {
 }
 
 /**
- * [See demo](../../?path=/story/number--basic)
+ * [See demo](../../?path=/story/components-number--basic)
  *
- * <example-url>../../iframe.html?id=number--basic</example-url>
+ * <example-url>../../iframe.html?id=components-number--basic</example-url>
  */
 @Component({
 	selector: "ibm-number",

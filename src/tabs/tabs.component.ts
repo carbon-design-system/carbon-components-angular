@@ -16,7 +16,7 @@ import { TabHeaders } from "./tab-headers.component";
  * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
  *
- * [See demo](../../?path=/story/tabs--basic)
+ * [See demo](../../?path=/story/components-tabs--basic)
  *
  * `Tabs` expects a set of `n-tab` elements
  *
@@ -35,7 +35,7 @@ import { TabHeaders } from "./tab-headers.component";
  * </ibm-tabs>
  * ```
  *
- * <example-url>../../iframe.html?id=tabs--basic</example-url>
+ * <example-url>../../iframe.html?id=components-tabs--basic</example-url>
  */
 @Component({
 	selector: "ibm-tabs",

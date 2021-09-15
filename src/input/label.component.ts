@@ -13,7 +13,7 @@ import {
 import { TextArea } from "./text-area.directive";
 
 /**
- * [See demo](../../?path=/story/input--label)
+ * [See demo](../../?path=/story/components-input--label)
  *
  * ```html
  * <ibm-label labelState="success">
@@ -32,7 +32,7 @@ import { TextArea } from "./text-area.directive";
  * </ibm-label>
  * ```
  *
- * <example-url>../../iframe.html?id=input--label</example-url>
+ * <example-url>../../iframe.html?id=components-input--label</example-url>
  */
 @Component({
 	selector: "ibm-label",

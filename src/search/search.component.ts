@@ -12,9 +12,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/search--basic)
+ * [See demo](../../?path=/story/components-search--basic)
  *
- * <example-url>../../iframe.html?id=search--basic</example-url>
+ * <example-url>../../iframe.html?id=components-search--basic</example-url>
  */
 @Component({
 	selector: "ibm-search",
