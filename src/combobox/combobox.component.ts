@@ -93,6 +93,7 @@ import { Observable } from "rxjs";
 					<input
 						#input
 						type="text"
+						autocomplete="off"
 						role="combobox"
 						[disabled]="disabled"
 						(input)="onSearch($event.target.value)"
