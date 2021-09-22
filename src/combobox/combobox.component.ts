@@ -336,7 +336,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
-	 * Specify autocomplete attribute of text input
+	 * Specify aria-autocomplete attribute of text input.
+	 * "list", is the expected value for a combobox that invokes a drop-down list
 	 */
 	@Input() autocomplete = "list";
 	/**
