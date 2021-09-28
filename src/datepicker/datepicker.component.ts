@@ -28,9 +28,9 @@ import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/date-picker--single)
+ * [See demo](../../?path=/story/components-date-picker--single)
  *
- * <example-url>../../iframe.html?id=date-picker--single</example-url>
+ * <example-url>../../iframe.html?id=components-date-picker--single</example-url>
  */
 @Component({
 	selector: "ibm-date-picker",
@@ -57,6 +57,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[disabled]="disabled"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
 					[skeleton]="skeleton"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
@@ -76,6 +78,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[disabled]="disabled"
 					[invalid]="rangeInvalid"
 					[invalidText]="rangeInvalidText"
+					[warn]="rangeWarn"
+					[warnText]="rangeWarnText"
 					[skeleton]="skeleton"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
@@ -134,6 +138,11 @@ export class DatePicker implements
 	@Input() placeholder = "mm/dd/yyyy";
 
 	/**
+	 * Aria label added to datepicker's calendar container.
+	 */
+	@Input() ariaLabel = "calendar container";
+
+	/**
 	 * The pattern for the underlying input element
 	 * @deprecated as of v4 - switch to inputPattern
 	 */
@@ -166,16 +175,40 @@ export class DatePicker implements
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
-
+	/**
+	 * Set to `true` to display the invalid state.
+	 */
 	@Input() invalid = false;
-
+	/**
+	 * Value displayed if datepicker is in an invalid state.
+	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 
 	@Input() size: "sm" | "md" | "xl" = "md";
-
+	/**
+	 * Set to `true` to display the invalid state for the second datepicker input.
+	 */
 	@Input() rangeInvalid = false;
-
+	/**
+	 * Value displayed if the second datepicker input is in an invalid state.
+	 */
 	@Input() rangeInvalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning in the second datepicker input (contents set by rangeWarningText)
+	  */
+	@Input() rangeWarn = false;
+	/**
+	 * Sets the warning text for the second datepicker input
+	 */
+	@Input() rangeWarnText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 
@@ -218,6 +251,7 @@ export class DatePicker implements
 		plugins: this.plugins,
 		onOpen: () => {
 			this.updateClassNames();
+			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
 		onClose: () => {
@@ -284,6 +318,10 @@ export class DatePicker implements
 					}
 				}
 			});
+
+		setTimeout(() => {
+			this.addInputListeners();
+		}, 0);
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
@@ -325,7 +363,10 @@ export class DatePicker implements
 				this.flatpickrInstance.changeMonth(currentMonth, false);
 			}
 		}
+	}
 
+	@HostListener("focusout")
+	onFocusOut() {
 		this.onTouched();
 	}
 
@@ -340,6 +381,17 @@ export class DatePicker implements
 				this.setDateValues(this.value);
 			}
 		});
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the DatePicker.
+	 *
+	 * ex: `this.formGroup.get("myDatePicker").disable();`
+	 *
+	 * @param isDisabled `true` to disable the DatePicker
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	registerOnChange(fn: any) {
@@ -421,6 +473,50 @@ export class DatePicker implements
 	}
 
 	/**
+	 * Handles the initialization of event listeners for the datepicker input and range input fields.
+	 */
+	protected addInputListeners() {
+		if (!this.isFlatpickrLoaded()) {
+			return;
+		}
+
+		// Allows focus transition from the datepicker input or range input field to
+		// flatpickr calendar using a keyboard.
+		const addFocusCalendarListener = (element: HTMLInputElement) => {
+			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "ArrowDown") {
+					if (!this.flatpickrInstance.isOpen) {
+						this.flatpickrInstance.open();
+					}
+
+					const calendarContainer = this.flatpickrInstance.calendarContainer;
+					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+
+					if (dayElement) {
+						dayElement.focus();
+
+						// If the user manually inputs a value into the date field and presses arrow down,
+						// datepicker input onchange will be triggered when focus is removed from it and
+						// `flatpickrInstance.setDate` and `flatpickrInstance.changeMonth` will be invoked
+						// which will automatically change focus to the beginning of the document.
+						if (document.activeElement !== dayElement && this.flatpickrInstance.selectedDateElem) {
+							this.flatpickrInstance.selectedDateElem.focus();
+						}
+					}
+				}
+			});
+		};
+
+		if (this.input && this.input.input) {
+			addFocusCalendarListener(this.input.input.nativeElement);
+		}
+
+		if (this.rangeInput && this.rangeInput.input) {
+			addFocusCalendarListener(this.rangeInput.input.nativeElement);
+		}
+	}
+
+	/**
 	 * Resets the flatpickr instance while keeping the date values (or updating them if newDates is provided)
 	 *
 	 * Used to pick up input changes or locale changes.
@@ -487,6 +583,14 @@ export class DatePicker implements
 		});
 	}
 
+	protected updateAttributes() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.setAttribute("role", "region");
+			calendar.setAttribute("aria-label", this.ariaLabel);
+		});
+	}
+
 	/**
 	 * Applies the given date value array to both the flatpickr instance and the `input`(s)
 	 * @param dates the date values to apply
@@ -496,8 +600,17 @@ export class DatePicker implements
 			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}-input`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
 
+			// `flatpickrInstance.setDate` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.setDate` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
+
 			// set the date on the instance
 			this.flatpickrInstance.setDate(dates);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
 
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
@@ -538,7 +651,18 @@ export class DatePicker implements
 		// This will make sure the calendar is updated with the correct month.
 		if (this.range && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+
+			// `flatpickrInstance.changeMonth` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.changeMonth` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
+
 			this.flatpickrInstance.changeMonth(currentMonth, false);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
+
 		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);

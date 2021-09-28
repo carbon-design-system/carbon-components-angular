@@ -19,7 +19,7 @@ export interface PaginationNavTranslations {
 /**
  * Use pagination when you have multiple pages of data to handle.
  *
- * [See demo](../../?path=/story/pagination-nav--basic)
+ * [See demo](../../?path=/story/components-pagination-nav--basic)
  *
  * ```html
  * <ibm-pagination-nav [model]="model" (selectPage)="selectPage($event)"></ibm-pagination-nav>
@@ -38,7 +38,7 @@ export interface PaginationNavTranslations {
  * }
  * ```
  *
- * <example-url>../../iframe.html?id=pagination-nav--basic</example-url>
+ * <example-url>../../iframe.html?id=components-pagination-nav--basic</example-url>
  */
 @Component({
 	selector: "ibm-pagination-nav",

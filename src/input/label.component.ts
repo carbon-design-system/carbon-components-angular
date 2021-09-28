@@ -13,7 +13,7 @@ import {
 import { TextArea } from "./text-area.directive";
 
 /**
- * [See demo](../../?path=/story/input--label)
+ * [See demo](../../?path=/story/components-input--label)
  *
  * ```html
  * <ibm-label labelState="success">
@@ -32,7 +32,7 @@ import { TextArea } from "./text-area.directive";
  * </ibm-label>
  * ```
  *
- * <example-url>../../iframe.html?id=input--label</example-url>
+ * <example-url>../../iframe.html?id=components-input--label</example-url>
  */
 @Component({
 	selector: "ibm-label",
@@ -46,22 +46,38 @@ import { TextArea } from "./text-area.directive";
 			}">
 			<ng-content></ng-content>
 		</label>
-		<div [class]="wrapperClass" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
+		<div
+			[class]="wrapperClass"
+			[ngClass]="{
+				'bx--text-input__field-wrapper--warning': warn
+			}"
+			[attr.data-invalid]="(invalid ? true : null)"
+			#wrapper>
 			<svg
-				*ngIf="invalid"
+				*ngIf="!warn && invalid"
 				ibmIcon="warning--filled"
 				size="16"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
 			</svg>
+			<svg
+				*ngIf="!invalid && warn"
+				ibmIcon="warning--alt--filled"
+				size="16"
+				class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
+			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
-		<div *ngIf="!skeleton && helperText && !invalid" class="bx--form__helper-text">
+		<div *ngIf="!skeleton && helperText && !invalid && !warn" class="bx--form__helper-text">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="invalid" class="bx--form-requirement">
+		<div *ngIf="!warn && invalid" class="bx--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+		</div>
+		<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 		</div>
 	`
 })
@@ -71,14 +87,14 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	static labelCounter = 0;
 	/**
-	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
-	 * its input counterpart through the 'for' attribute.
-	 */
-	labelInputID = "ibm-label-" + Label.labelCounter;
-	/**
 	 * The class of the wrapper
 	 */
 	wrapperClass = "bx--text-input__field-wrapper";
+	/**
+	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
+	 * its input counterpart through the 'for' attribute.
+	*/
+	@Input() labelInputID = "ibm-label-" + Label.labelCounter;
 
 	/**
 	 * State of the `Label` will determine the styles applied.
@@ -100,6 +116,14 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Set to `true` for an invalid label component.
 	 */
 	@Input() invalid = false;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * Set the arialabel for label
 	 */

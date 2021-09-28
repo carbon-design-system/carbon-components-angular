@@ -38,6 +38,29 @@ storiesOf("Components|Search", module).addDecorator(
 			clear: action("clear fired!")
 		}
 	}))
+	.add("Expandable", () => ({
+		template: `
+			<ibm-search
+				[expandable]="true"
+				[theme]="theme"
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete"
+				[disabled]="disabled"
+				[size]="size"
+				(valueChange)="valueChange($event)"
+				(clear)="clear()">
+			</ibm-search>
+		`,
+		props: {
+			size: select("size", ["sm", "md", "xl"], "md"),
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false),
+			autocomplete: text("autocomplete", "on"),
+			placeholder: text("placeholder", "Search"),
+			valueChange: action("value change fired!"),
+			clear: action("clear fired!")
+		}
+	}))
 	.add("Toolbar search", () => ({
 		template: `
 		<div class="bx--toolbar">

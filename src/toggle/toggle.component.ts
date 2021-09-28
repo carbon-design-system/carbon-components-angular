@@ -39,13 +39,13 @@ export class ToggleChange {
 }
 
 /**
- * [See demo](../../?path=/story/toggle--basic)
+ * [See demo](../../?path=/story/components-toggle--basic)
  *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
  *
- * <example-url>../../iframe.html?id=toggle--basic</example-url>
+ * <example-url>../../iframe.html?id=components-toggle--basic</example-url>
  */
 @Component({
 	selector: "ibm-toggle",
@@ -154,6 +154,17 @@ export class Toggle extends Checkbox {
 	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the toggle input.
+	 *
+	 * ex: `this.formGroup.get("myToggle").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	getOffText(): Observable<string> {

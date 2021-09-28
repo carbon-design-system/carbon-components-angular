@@ -17,7 +17,7 @@ import { EventService } from "carbon-components-angular/utils";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * [See demo](../../?path=/story/slider--advanced)
+ * [See demo](../../?path=/story/components-slider--advanced)
  *
  * The simplest possible slider usage looks something like:
  * ```html
@@ -48,13 +48,13 @@ import { EventService } from "carbon-components-angular/utils";
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  *
- * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ * <example-url>../../iframe.html?id=components-slider--advanced</example-url>
  */
 @Component({
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label *ngIf="label" [for]="id" class="bx--label">
+			<label *ngIf="label" [for]="id" [id]="labelId" class="bx--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -70,6 +70,7 @@ import { EventService } from "carbon-components-angular/utils";
 							#thumbs
 							role="slider"
 							[id]="id"
+							[attr.aria-labelledby]="labelId"
 							class="bx--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
 							tabindex="0"
@@ -83,6 +84,7 @@ import { EventService } from "carbon-components-angular/utils";
 							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
 							role="slider"
 							[id]="id + (i > 0 ? '-' + i : '')"
+							[attr.aria-labelledby]="labelId"
 							class="bx--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
 							tabindex="0"
@@ -267,6 +269,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("range", { static: false }) range: ElementRef;
 
+	public labelId = `${this.id}-label`;
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;
 	public fractionComplete = 0;

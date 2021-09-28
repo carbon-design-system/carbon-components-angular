@@ -14,9 +14,9 @@ import { FileItem } from "./file-item.interface";
 const noop = () => { };
 
 /**
- * [See demo](../../?path=/story/file-uploader--basic)
+ * [See demo](../../?path=/story/components-file-uploader--basic)
  *
- * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
+ * <example-url>../../iframe.html?id=components-file-uploader--basic</example-url>
  */
 @Component({
 	selector: "ibm-file-uploader",

@@ -63,6 +63,8 @@ const modalText =
 			</ibm-date-picker>
 			<code>{{formGroup.controls["range"].value | json}}</code>
 		</form>
+
+		<button (click)="disableAll()">Disable all</button>
 	`
 })
 class DatePickerStory {
@@ -95,6 +97,14 @@ class DatePickerStory {
 				Validators.required
 			]
 		});
+	}
+
+	disableAll() {
+		const single = this.formGroup.get("single");
+		const range = this.formGroup.get("range");
+
+		single.disabled ? single.enable() : single.disable();
+		range.disabled ? range.enable() : range.disable();
 	}
 }
 
@@ -149,6 +159,8 @@ storiesOf("Components|Date Picker", module)
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker-input>
 		`,
@@ -158,6 +170,8 @@ storiesOf("Components|Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			size: select("Size", ["sm", "md", "xl"], "md"),
 			disabled: boolean("Disabled", false),
 			valueChange: action("Date change fired!")
@@ -177,6 +191,8 @@ storiesOf("Components|Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
@@ -190,6 +206,8 @@ storiesOf("Components|Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
@@ -202,6 +220,8 @@ storiesOf("Components|Date Picker", module)
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -223,6 +243,8 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			[rangeInvalid]="invalid"
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
@@ -241,6 +263,10 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[rangeWarn]="warn"
+			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
@@ -253,6 +279,8 @@ storiesOf("Components|Date Picker", module)
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -261,6 +289,10 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-date-picker
 			(valueChange)="valueChange($event)">
 		</app-date-picker>
@@ -400,7 +432,13 @@ storiesOf("Components|Date Picker", module)
 		}
 	}))
 	.add("In modal", () => ({
-		template: `<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>`,
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>
+		`,
 		props: {
 			modalText: text("modal text", modalText)
 		}

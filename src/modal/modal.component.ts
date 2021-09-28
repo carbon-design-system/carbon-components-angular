@@ -16,7 +16,7 @@ import { cycleTabs, getFocusElementList } from "carbon-components-angular/common
 /**
  * Component to create modals for presenting content.
  *
- * [See demo](../../?path=/story/modal--basic)
+ * [See demo](../../?path=/story/components-modal--basic)
  *
  * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
@@ -38,7 +38,7 @@ import { cycleTabs, getFocusElementList } from "carbon-components-angular/common
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
 							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
-								<svg ibmIcon="info" size="sm"></ibm-icon>
+								<svg ibmIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
 						</section>
@@ -71,7 +71,7 @@ export class ModalDemo {
 }
 ```
  *
- * <example-url>../../iframe.html?id=modal--basic</example-url>
+ * <example-url>../../iframe.html?id=components-modal--basic</example-url>
  */
 @Component({
 	selector: "ibm-modal",
@@ -217,7 +217,8 @@ export class Modal implements AfterViewInit, OnChanges {
 	get shouldShowScrollbar() {
 		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
 		if (modalContent) {
-			const modalContentHeight = modalContent.getBoundingClientRect().height;
+			// get rounded value from height to match integer returned from scrollHeight
+			const modalContentHeight = Math.round(modalContent.getBoundingClientRect().height);
 			const modalContentScrollHeight = modalContent.scrollHeight;
 			return modalContentScrollHeight > modalContentHeight;
 		} else {

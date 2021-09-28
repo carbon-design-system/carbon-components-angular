@@ -93,8 +93,8 @@ describe("Number", () => {
 
 	it("should display control buttons", () => {
 		fixture.detectChanges();
-		buttonUp = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
-		buttonDown = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
+		buttonUp = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
+		buttonDown = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
 		expect(buttonUp.className.includes("bx--number__control-btn")).toEqual(true);
 		expect(buttonUp.className.includes("up-icon")).toEqual(true);
 		expect(buttonDown.className.includes("bx--number__control-btn")).toEqual(true);

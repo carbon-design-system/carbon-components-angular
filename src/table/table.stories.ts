@@ -21,14 +21,6 @@ import { NFormsModule, ButtonModule } from "../forms/index";
 import { DialogModule } from "../dialog/index";
 import { SearchModule } from "../search/index";
 
-import {
-	SettingsModule,
-	DeleteModule,
-	FilterModule,
-	SaveModule,
-	DownloadModule,
-	AddModule
-} from "@carbon/icons-angular";
 
 import {
 	TableStory,
@@ -93,15 +85,9 @@ storiesOf("Components|Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
-				FilterModule,
 				PaginationModule,
 				SearchModule,
 				ButtonModule,
-				SettingsModule,
-				DeleteModule,
-				SaveModule,
-				DownloadModule,
-				AddModule,
 				DocumentationModule
 			],
 			declarations: [
@@ -125,6 +111,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-table
 				[model]="model"
 				[stickyHeader]="stickyHeader"
@@ -149,6 +139,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-no-data-table
 				[model]="model"
 				[size]="size"
@@ -188,21 +182,21 @@ storiesOf("Components|Table", module).addDecorator(
 					<ibm-table-toolbar-actions>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Delete
-							<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+							<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
 						</button>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Save
-							<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+							<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
 						</button>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Download
-							<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+							<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
 						</button>
 					</ibm-table-toolbar-actions>
 					<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 						<ibm-table-toolbar-search
 							ngDefaultControl
-							[expandable]="true"
+							[expandable]="searchExpandable"
 							[(ngModel)]="searchModel">
 						</ibm-table-toolbar-search>
 						<ibm-overflow-menu
@@ -216,11 +210,14 @@ storiesOf("Components|Table", module).addDecorator(
 							<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
 						</ibm-overflow-menu>
 						<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-							Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+							Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
 						</button>
 					</ibm-table-toolbar-content>
 				</ibm-table-toolbar>
-
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-table
 					[model]="model"
 					[size]="size"
@@ -232,7 +229,7 @@ storiesOf("Components|Table", module).addDecorator(
 					[stickyHeader]="stickyHeader"
 					[isDataGrid]="isDataGrid">
 				</app-table>
-				<ng-template #customTrigger><svg ibmIconSettings size="16"></svg></ng-template>
+				<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
 			</ibm-table-container>
 		</section>
 	`,
@@ -242,6 +239,7 @@ storiesOf("Components|Table", module).addDecorator(
 			},
 			description: text("Description", "With toolbar"),
 			searchModel: text("Search model", "Initial search value"),
+			searchExpandable: boolean("Expandable Search", true),
 			enableSingleSelect: boolean("Enable single select", false),
 			batchText: object("Toolbar batch text", {
 				SINGLE: "1 item selected",
@@ -261,28 +259,31 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
+						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
-
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-no-data-table
 				[model]="model"
 				[size]="lg"
@@ -318,14 +319,17 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
+						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
-
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-table
 				[model]="model"
 				[size]="size"
@@ -346,6 +350,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Filtering by overriding isRowFiltered [Recommended]", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-function-override-filter-table
 			[stickyHeader]="stickyHeader"
 			[size]="size"
@@ -359,6 +367,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Filtering by alteration of model data", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-model-filter-table
 			[stickyHeader]="stickyHeader"
 			[size]="size"
@@ -377,6 +389,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -399,6 +415,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -421,6 +441,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
@@ -443,6 +467,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-pagination-table
 				[skeleton]="skeleton"
 				[sortable]="sortable"
@@ -492,6 +520,10 @@ storiesOf("Components|Table", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-skeleton-table
 				[skeletonModel]="skeletonModel"
 				[size]="size"

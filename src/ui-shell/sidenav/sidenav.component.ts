@@ -10,9 +10,9 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 /**
  * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
  *
- * [See demo](../../?path=/story/ui-shell--side-navigation)
+ * [See demo](../../?path=/story/components-ui-shell--side-navigation)
  *
- * <example-url>../../iframe.html?id=ui-shell--side-navigation</example-url>
+ * <example-url>../../iframe.html?id=components-ui-shell--side-navigation</example-url>
  */
 @Component({
 	selector: "ibm-sidenav",
@@ -27,7 +27,8 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							*ngIf="navigationItem.type === 'item'"
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
-							[routeExtras]="navigationItem.routeExtras">
+							[routeExtras]="navigationItem.routeExtras"
+							[title]="navigationItem.title">
 							{{ navigationItem.content }}
 						</ibm-sidenav-item>
 						<ibm-sidenav-menu

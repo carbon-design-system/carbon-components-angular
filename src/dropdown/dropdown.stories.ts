@@ -54,6 +54,8 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
 	size: select("Size", ["sm", "md", "xl"], "md"),
 	invalidText: "This is not a validation text",
+	warn: boolean("Show the warning state", false),
+	warnText: text("Text for the warning", "This is a warning"),
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
 	helperText: text("Helper text", "Optional helper text."),
@@ -139,7 +141,7 @@ class ReactiveFormsStory implements OnInit {
                 <h1>Sample modal works.</h1>
                 <p class="bx--modal-content__text">{{modalText}}</p>
                 <div style="width: 300px">
-					<ibm-dropdown placeholder="Select">
+					<ibm-dropdown placeholder="Select" [appendInline]="true">
 						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 					</ibm-dropdown>
 				</div>
@@ -151,6 +153,7 @@ class ReactiveFormsStory implements OnInit {
 class DropdownModal {
 	@Input() modalText: string;
 	@Input() items: any[];
+	@Input() appendInline: boolean;
 }
 
 storiesOf("Components|Dropdown", module)
@@ -177,6 +180,8 @@ storiesOf("Components|Dropdown", module)
 				[dropUp]="dropUp"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -269,9 +274,14 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("In modal", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-dropdown-modal
 				[items]="items"
-				[modalText]="modalText">
+				[modalText]="modalText"
+				[appendInline]="true">
 			</app-dropdown-modal>
 		`,
 		props: getProps({
@@ -280,6 +290,10 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
 			<app-reactive-forms
 				[label]="label"
 				[helperText]="helperText"

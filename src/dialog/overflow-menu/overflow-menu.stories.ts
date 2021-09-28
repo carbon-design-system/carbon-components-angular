@@ -10,8 +10,8 @@ import { DialogModule } from "../../dialog";
 import { PlaceholderModule } from "../../placeholder";
 import { DocumentationModule } from "./../../documentation-component/documentation.module";
 import { CheckboxModule } from "../../checkbox";
-
-import { DocumentModule, SettingsModule } from "@carbon/icons-angular";
+import { ViewEncapsulation } from "@angular/core";
+import { IconModule } from "../../icon/icon.module";
 
 let options;
 
@@ -28,11 +28,10 @@ storiesOf("Components|Overflow Menu", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
-				DocumentModule,
 				PlaceholderModule,
 				DocumentationModule,
 				CheckboxModule,
-				SettingsModule
+				IconModule
 			]
 		})
 	)
@@ -47,12 +46,12 @@ storiesOf("Components|Overflow Menu", module)
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
 					<li class="bx--overflow-menu-options__option">
 						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
 					</li>
 					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
@@ -66,12 +65,12 @@ storiesOf("Components|Overflow Menu", module)
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
 					<li class="bx--overflow-menu-options__option">
 						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
 					</li>
 					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
@@ -82,7 +81,12 @@ storiesOf("Components|Overflow Menu", module)
 			selected: () => console.log("selected"),
 			flip: boolean("Flipped", false),
 			offset: object("Horizontal and vertical offset", { x: 0, y: 0 })
-		}
+		},
+		styles: [`
+			::ng-deep .a-custom-class {
+				color: #0f62fe;
+			}
+		`]
 	}))
 	.add("With links", () => ({
 		template: `
@@ -144,7 +148,7 @@ storiesOf("Components|Overflow Menu", module)
 					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
-				<ng-template #customTrigger><svg ibmIconDocument size="16"></svg></ng-template>
+				<ng-template #customTrigger><svg ibmIcon="document" size="16"></svg></ng-template>
 		`,
 		props: {
 			click: () => console.log("click"),
@@ -205,7 +209,7 @@ storiesOf("Components|Overflow Menu", module)
 				[customPane]="true"
 				placement="bottom"
 				[offset]="{ x: -8, y: 0 }"
-			><svg ibmIconSettings size="16"></svg></button>
+			><svg ibmIcon="settings" size="16"></svg></button>
 			<ng-template #templateRef>
 				<div style="padding: 0 1rem;">
 					<div style="padding-top: 0.5rem; color: grey;">Columns</div>

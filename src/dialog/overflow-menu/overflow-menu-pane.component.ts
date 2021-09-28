@@ -24,6 +24,7 @@ import { closestAttr } from "carbon-components-angular/utils";
 	template: `
 		<ul
 			[attr.aria-label]="dialogConfig.menuLabel"
+			[attr.data-floating-menu-direction]="placement ? placement : null"
 			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
 			role="menu"
 			#dialog

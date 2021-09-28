@@ -41,9 +41,9 @@ export class CheckboxChange {
 }
 
 /**
- * [See demo](../../?path=/story/checkbox--basic)
+ * [See demo](../../?path=/story/components-checkbox--basic)
  *
- * <example-url>../../iframe.html?id=checkbox--basic</example-url>
+ * <example-url>../../iframe.html?id=components-checkbox--basic</example-url>
  */
 @Component({
 	selector: "ibm-checkbox",
@@ -189,7 +189,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 			this.transitionCheckboxState(this.checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 		}
 
-		this.inputCheckbox.nativeElement.indeterminate = indeterminate;
+		if (this.inputCheckbox && this.inputCheckbox.nativeElement) {
+			this.inputCheckbox.nativeElement.indeterminate = indeterminate;
+		}
 		this.changeDetectorRef.markForCheck();
 		this.indeterminateChange.emit(this._indeterminate);
 	}
@@ -215,13 +217,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	get checked() {
 		return this._checked;
-	}
-
-	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
-		return !this.inline;
-	}
-	@HostBinding("class.bx--form-item") get formItemClass() {
-		return !this.inline;
 	}
 
 	/**
@@ -311,6 +306,18 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		this.onTouched = fn;
 	}
 
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the checkbox.
+	 *
+	 * ex: `this.formGroup.get("myCheckbox").disable();`
+	 *
+	 * @param isDisabled `true` to disable the checkbox
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+		this.inputCheckbox.nativeElement.disabled = this.disabled;
+	}
+
 	@HostListener("focusout")
 	focusOut() {
 		this.onTouched();
@@ -373,7 +380,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Updates the checkbox if it is in the indeterminate state.
 	 */
 	ngAfterViewInit() {
-		if (this.indeterminate) {
+		if (this.indeterminate && this.inputCheckbox && this.inputCheckbox.nativeElement) {
 			this.inputCheckbox.nativeElement.indeterminate = true;
 		}
 	}

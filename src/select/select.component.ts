@@ -1,17 +1,20 @@
 import {
+	AfterViewInit,
 	Component,
+	ElementRef,
 	Input,
 	Output,
 	HostListener,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * `ibm-select` provides a styled `select` component.
  *
- * [See demo](../../?path=/story/select--basic)
+ * [See demo](../../?path=/story/components-select--basic)
  *
  * Example:
  *
@@ -24,7 +27,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * </ibm-select>
  *	```
  *
- * <example-url>../../iframe.html?id=select--basic</example-url>
+ * <example-url>../../iframe.html?id=components-select--basic</example-url>
  */
 @Component({
 	selector: "ibm-select",
@@ -41,6 +44,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'bx--select--inline': display === 'inline',
 					'bx--select--light': theme === 'light',
 					'bx--select--invalid': invalid,
+					'bx--select--warning': warn,
 					'bx--select--disabled': disabled
 				}">
 				<label *ngIf="label" [for]="id" class="bx--label">
@@ -61,8 +65,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		<ng-template #noInline>
 			<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 				<select
+					#select
 					[attr.id]="id"
-					[value]="value"
 					[attr.aria-label]="ariaLabel"
 					[disabled]="disabled"
 					(change)="onChange($event)"
@@ -87,15 +91,25 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
 				<svg
-					*ngIf="invalid"
+					*ngIf="!warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
 					class="bx--select__invalid-icon">
 				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--select__invalid-icon bx--select__invalid-icon--warning">
+				</svg>
 			</div>
-			<div *ngIf="invalid && invalidText" role="alert" class="bx--form-requirement" aria-live="polite">
+			<div *ngIf="invalid && invalidText && !warn" role="alert" class="bx--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</ng-template>
 	`,
@@ -116,7 +130,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		}
 	]
 })
-export class Select implements ControlValueAccessor {
+export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -138,6 +152,14 @@ export class Select implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
@@ -167,15 +189,32 @@ export class Select implements ControlValueAccessor {
 
 	@Output() valueChange = new EventEmitter();
 
+	// @ts-ignore
+	@ViewChild("select", { static: false }) select: ElementRef;
+
+	@Input() set value(v) {
+		this._value = v;
+		if (this.select) {
+			this.select.nativeElement.value = this._value;
+		}
+	}
+
 	get value() {
 		return this._value;
 	}
 
-	set value(v) {
-		this._value = v;
-	}
+	protected _value;
 
-	protected _value = "";
+	ngAfterViewInit() {
+		if (
+			this.value !== undefined &&
+			this.value !== null &&
+			this.select &&
+			this.select.nativeElement.value !== this.value
+		) {
+			this.select.nativeElement.value = this.value;
+		}
+	}
 
 	/**
 	 * Receives a value from the model.

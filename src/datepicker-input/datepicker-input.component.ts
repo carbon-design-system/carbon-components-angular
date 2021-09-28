@@ -28,7 +28,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				</label>
 				<div class="bx--date-picker-input__wrapper"
 					[ngClass]="{
-						'bx--date-picker-input__wrapper--invalid': invalid
+						'bx--date-picker-input__wrapper--invalid': invalid,
+						'bx--date-picker-input__wrapper--warn': warn
 					}">
 					<input
 						#input
@@ -47,11 +48,32 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-						<svg *ngIf="type !== 'simple'" ibmIcon="calendar" size="16" class="bx--date-picker__icon"></svg>
+						<svg
+							*ngIf="type !== 'simple' && !warn && !invalid"
+							ibmIcon="calendar"
+							size="16"
+							class="bx--date-picker__icon">
+						</svg>
+						<svg
+							*ngIf="!warn && invalid"
+							class="bx--date-picker__icon bx--date-picker__icon--invalid"
+							ibmIcon="warning--filled"
+							size="16">
+						</svg>
+						<svg
+							*ngIf="!invalid && warn"
+							ibmIcon="warning--alt--filled"
+							size="16"
+							class="bx--date-picker__icon bx--date-picker__icon--warn">
+						</svg>
 				</div>
-				<div *ngIf="invalid" class="bx--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<div *ngIf="!warn && invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
+				<div *ngIf="!invalid && warn" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 				</div>
 			</div>
 		</div>
@@ -88,10 +110,22 @@ export class DatePickerInput {
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
-
+	/**
+	 * Set to `true` for invalid state.
+	 */
 	@Input() invalid = false;
-
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warnText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 

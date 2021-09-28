@@ -45,9 +45,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * - `[appendInline]="false"` will always append to the body/`ibm-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
- * [See demo](../../?path=/story/dropdown--basic)
+ * [See demo](../../?path=/story/components-dropdown--basic)
  *
- * <example-url>../../iframe.html?id=dropdown--basic</example-url>
+ * <example-url>../../iframe.html?id=components-dropdown--basic</example-url>
  */
 @Component({
 	selector: "ibm-dropdown",
@@ -68,6 +68,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
+			'bx--dropdown--warning bx--list-box--warning': warn,
 			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
 			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
 			'bx--list-box--expanded': !menuIsClosed
@@ -112,19 +113,26 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
 			<svg
-				*ngIf="invalid"
+				*ngIf="!warn && invalid"
 				class="bx--dropdown__invalid-icon"
 				ibmIcon="warning--filled"
 				size="16">
 			</svg>
 			<svg
-				*ngIf="!skeleton"
-				ibmIcon="chevron--down"
+				*ngIf="!invalid && warn"
+				ibmIcon="warning--alt--filled"
 				size="16"
-				class="bx--list-box__menu-icon"
-				[attr.aria-label]="menuButtonLabel"
-				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
 			</svg>
+			<span class="bx--list-box__menu-icon">
+				<svg
+					*ngIf="!skeleton"
+					ibmIcon="chevron--down"
+					size="16"
+					[attr.aria-label]="menuButtonLabel"
+					[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				</svg>
+			</span>
 		</button>
 		<div
 			#dropdownMenu
@@ -134,13 +142,17 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="helperText && !invalid" class="bx--form__helper-text">
+	<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
+	<div *ngIf="!warn && invalid" class="bx--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+	</div>
+	<div *ngIf="!invalid && warn" class="bx--form-requirement">
+		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 	</div>
 	`,
 	providers: [
@@ -213,6 +225,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Value displayed if dropdown is in invalid state.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
@@ -312,7 +332,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	protected onTouchedCallback: () => void = this._noop;
 
 	// primarily used to capture and propagate input to `writeValue` before the content is available
-	protected writtenValue: any = [];
+	private _writtenValue: any = [];
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
 
 	/**
 	 * Creates an instance of Dropdown.
@@ -346,17 +375,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 		this.view.type = this.type;
 		this.view.size = this.size;
+
+		// function to check if the event is organic (isUpdate === false) or programmatic
+		const isUpdate = event => event && event.isUpdate;
+
 		this.view.select.subscribe(event => {
-			if (this.type === "multi") {
-				// if we have a `value` selector and selected items map them appropriately
-				if (this.itemValueKey && this.view.getSelected()) {
-					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
-				// otherwise just pass up the values from `getSelected`
-				} else {
-					this.propagateChange(this.view.getSelected());
-				}
-			} else {
+			if (this.type === "single" && !isUpdate(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {
@@ -368,8 +392,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.propagateChange(null);
 				}
 			}
+
+			if (this.type === "multi" && !isUpdate(event)) {
+				// if we have a `value` selector and selected items map them appropriately
+				if (this.itemValueKey && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+					this.propagateChange(values);
+				// otherwise just pass up the values from `getSelected`
+				} else {
+					this.propagateChange(this.view.getSelected());
+				}
+			}
 			// only emit selected for "organic" selections
-			if (event && !event.isUpdate) {
+			if (!isUpdate(event)) {
 				this.checkForReorder();
 				this.selected.emit(event);
 			}
@@ -573,7 +608,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	clearSelected() {
-		if (this.disabled) { return; }
+		if (this.disabled || this.getSelectedCount() === 0) {
+			return;
+		}
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
