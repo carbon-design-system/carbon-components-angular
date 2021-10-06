@@ -5,4 +5,5 @@ import { Directive, HostBinding } from "@angular/core";
 })
 export class TableHeaderTitle {
 	@HostBinding("class.bx--data-table-header__title") titleClass = true;
+	@HostBinding("attr.role") role = "caption";
 }
