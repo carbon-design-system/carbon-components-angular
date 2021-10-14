@@ -107,7 +107,7 @@ export class TableItem {
 	colSpan = 1;
 
 	get title() {
-		if (this._title) {
+		if (typeof this._title === "string") {
 			return this._title;
 		}
 
