@@ -65,6 +65,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				class="bx--list-box__menu-item"
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
+				[attr.title]=" showTitles ? item.content : null"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
 					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i),
@@ -172,6 +173,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * item selection.
 	 */
 	@Input() type: "single" | "multi" = "single";
+
+	/**
+	 * Defines whether to show title attribute or not
+	 */
+	@Input() showTitles = true;
+
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
 	 *
