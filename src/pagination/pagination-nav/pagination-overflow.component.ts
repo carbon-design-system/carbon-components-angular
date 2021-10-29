@@ -21,7 +21,6 @@ import {
 				class="bx--pagination-nav__page bx--pagination-nav__page--select" (change)="handleChange($event)">
 				<option value="" hidden></option>
 				<option
-				(click)="change.emit(fromIndex + i + 1)"
 				*ngFor="let item of countAsArray; let i = index">
 					{{fromIndex + i + 1}}
 				</option>
@@ -59,6 +58,7 @@ export class PaginationOverflow {
 	constructor() {}
 
 	handleChange(event) {
+		this.change.emit(+event.target.value);
 		event.target.value = "";
 	}
 }
