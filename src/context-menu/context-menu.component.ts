@@ -11,10 +11,12 @@ import {
 	selector: "ibm-context-menu",
 	template: `
 		<ul
-			class="bx--context-menu"
+			class="bx--context-menu bx--menu-option"
 			[ngClass]="{
 				'bx--context-menu--root': root,
-				'bx--context-menu--open': open
+				'bx--menu--root': root,
+				'bx--context-menu--open': open,
+				'bx--menu--open': open
 			}"
 			role="menu"
 			tabindex="-1"
@@ -49,7 +51,7 @@ export class ContextMenuComponent implements OnChanges {
 			if (this.root) {
 				list.focus();
 			} else {
-				const firstOption = list.querySelector(".bx--context-menu-option") as HTMLElement;
+				const firstOption = list.querySelector(".bx--context-menu-option, .bx--menu-option") as HTMLElement;
 				firstOption.focus();
 			}
 		});
@@ -59,9 +61,10 @@ export class ContextMenuComponent implements OnChanges {
 	handleNavigation(event: KeyboardEvent) {
 		const list: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ul[role=menu]"));
-		const menuItems: HTMLElement[] = (Array.from(list.querySelectorAll(".bx--context-menu-option")) as HTMLElement[]).filter(menuItem => {
-			return !subMenus.some(subMenu => subMenu.contains(menuItem));
-		});
+		const menuItems: HTMLElement[] = (
+			Array.from(list.querySelectorAll(".bx--context-menu-option, .bx--menu-option")) as HTMLElement[])
+			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
+		);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
 
@@ -93,7 +96,7 @@ export class ContextMenuComponent implements OnChanges {
 				break;
 			}
 			case "ArrowLeft": {
-				const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option") as HTMLElement;
+				const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option, .bx--menu-option") as HTMLElement;
 				if (parent) {
 					parent.focus();
 				}
