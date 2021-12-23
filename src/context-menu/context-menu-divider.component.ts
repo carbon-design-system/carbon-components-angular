@@ -11,6 +11,7 @@ import { Component, HostBinding } from "@angular/core";
 	`]
 })
 export class ContextMenuDividerComponent {
-	@HostBinding("class.bx--context-menu-divider") dividerClass = true;
+	@HostBinding("class.bx--context-menu-divider") dividerContextClass = true; // deprecated
+	@HostBinding("class.bx--menu-divider") dividerClass = true;
 	@HostBinding("attr.role") role = "separator";
 }
