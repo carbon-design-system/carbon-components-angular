@@ -472,40 +472,50 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	ngAfterContentInit() {
 		if (this.view) {
 			this.view.type = this.type;
+
+			// function to check if the event is organic (isUpdate === false) or programmatic
+			const isUpdate = event => event && event.isUpdate;
+
 			this.view.select.subscribe(event => {
 				if (this.type === "multi") {
 					this.updatePills();
-					if (this.itemValueKey && this.view.getSelected()) {
-						const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-						this.propagateChangeCallback(values);
-					// otherwise just pass up the values from `getSelected`
-					} else {
-						this.propagateChangeCallback(this.view.getSelected());
+					if (!isUpdate(event)) {
+						if (this.itemValueKey && this.view.getSelected()) {
+							const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+							this.propagateChangeCallback(values);
+						// otherwise just pass up the values from `getSelected`
+						} else {
+							this.propagateChangeCallback(this.view.getSelected());
+						}
 					}
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
 						this.selectedValue = event.item.content;
 
-						if (this.itemValueKey) {
-							this.propagateChangeCallback(event.item[this.itemValueKey]);
-						} else {
-							this.propagateChangeCallback(event.item);
+						if (!isUpdate(event)) {
+							if (this.itemValueKey) {
+								this.propagateChangeCallback(event.item[this.itemValueKey]);
+							} else {
+								this.propagateChangeCallback(event.item);
+							}
 						}
 					} else {
 						this.selectedValue = "";
-						this.propagateChangeCallback(null);
+						if (!isUpdate(event)) {
+							this.propagateChangeCallback(null);
+						}
 					}
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					// only focus for "organic" selections
-					if (event && !event.isUpdate) {
+					if (!isUpdate(event)) {
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
 					}
 					this.closeDropdown();
 				}
-				if (event && !event.isUpdate) {
+				if (!isUpdate(event)) {
 					this.selected.emit(event);
 				}
 			});

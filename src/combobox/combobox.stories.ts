@@ -17,6 +17,7 @@ import {
 	Input,
 	AfterViewInit
 } from "@angular/core";
+import isEqual from "lodash-es/isEqual";
 import { ModalModule } from "../modal";
 import { PlaceholderModule } from "../placeholder";
 
@@ -132,7 +133,11 @@ class DynamicListComboBox implements AfterViewInit {
 				[helperText]="helperText"
 				itemValueKey="content"
 				[theme]="theme"
-				[items]="items">
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[items]="_items">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 			selected: {{ sampleForm.get("combobox").value | json }}
@@ -144,7 +149,11 @@ class DynamicListComboBox implements AfterViewInit {
 				itemValueKey="content"
 				[helperText]="helperText"
 				type="multi"
-				[items]="items">
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[items]="_items">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 			selected: {{ sampleForm.get("multibox").value | json }}
@@ -153,11 +162,30 @@ class DynamicListComboBox implements AfterViewInit {
 })
 class ReactiveFormsCombobox implements OnInit {
 	public sampleForm: FormGroup;
-	@Input() items = [];
+	@Input() invalid = false;
+	@Input() invalidText = "";
+	@Input() warn = false;
+	@Input() warnText = "";
 	@Input() label = "";
 	@Input() helperText = "";
 	@Input() size = "md";
 	@Input() theme = "dark";
+	@Input() set items(newItems = []) {
+		if (!isEqual(this._items, newItems)) {
+			this._items = newItems;
+		}
+	}
+	@Input() set disabled(isDisabled: boolean) {
+		if (this.sampleForm) {
+			if (isDisabled) {
+				this.sampleForm.disable();
+			} else {
+				this.sampleForm.enable();
+			}
+		}
+	}
+
+	_items = [];
 
 	constructor(private fb: FormBuilder) {}
 
@@ -409,11 +437,16 @@ storiesOf("Components|Combobox", module)
 					You can create your own implementation by using the component source as an example.
 				-->
 				<app-reactive-combobox
-					[items]="items"
+					[disabled]="disabled"
+					[invalid]="invalid"
 					[size]="size"
+					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
 					[label]="label"
-					[theme]="theme"
-					[helperText]="helperText">
+					[helperText]="helperText"
+					[items]="items"
+					[theme]="theme">
 				</app-reactive-combobox>
 			</div>
 		`,
