@@ -11,7 +11,7 @@ import {
 	selector: "ibm-context-menu",
 	template: `
 		<ul
-			class="bx--context-menu bx--menu-option"
+			class="bx--context-menu bx--menu"
 			[ngClass]="{
 				'bx--context-menu--root': root,
 				'bx--menu--root': root,
