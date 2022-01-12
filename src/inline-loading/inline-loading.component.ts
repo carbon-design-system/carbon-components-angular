@@ -35,9 +35,9 @@ export enum InlineLoadingState {
 				[ngClass]="{
 					'bx--loading--stop': state === InlineLoadingState.Inactive
 				}">
-				<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-					<circle class="bx--loading__background" cx="0" cy="0" r="30" />
-					<circle class="bx--loading__stroke" cx="0" cy="0" r="30" />
+				<svg class="bx--loading__svg" viewBox="0 0 100 100">
+					<circle class="bx--loading__background" cx="50%" cy="50%" r="44" />
+					<circle class="bx--loading__stroke" cx="50%" cy="50%" r="44" />
 				</svg>
 			</div>
 			<svg
