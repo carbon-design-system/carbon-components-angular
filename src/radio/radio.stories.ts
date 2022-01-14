@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, select, boolean } from "@storybook/addon-knobs/angular";
 
 import { RadioModule } from "../";
 import { DocumentationModule } from "../documentation-component/documentation.module";
@@ -27,6 +27,7 @@ import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule } from "@angul
 		</form>
 
 		<button (click)="changeSelected()">Set selected to three</button>
+		<button (click)="disableGroup()">Set group disabled</button>
 	`
 })
 class ReactiveFormsStory implements AfterViewInit, OnInit {
@@ -43,6 +44,10 @@ class ReactiveFormsStory implements AfterViewInit, OnInit {
 
 	changeSelected() {
 		this.formGroup.get("radioGroup").setValue("three");
+	}
+
+	disableGroup() {
+		this.formGroup.get("radioGroup").disable();
 	}
 
 	ngOnInit() {
@@ -68,6 +73,7 @@ storiesOf("Components|Radio", module).addDecorator(
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">{{label}}</legend>
 			<ibm-radio-group
+				[disabled]="disabled"
 				aria-label="radiogroup"
 				[(ngModel)]="radio"
 				(change)="onChange($event)">
@@ -83,6 +89,7 @@ storiesOf("Components|Radio", module).addDecorator(
 				</ibm-radio>
 			</ibm-radio-group>
 		</fieldset>
+		<button (click)="disabled = !disabled">Toggle group disabled</button>
 		`,
 		props: {
 			onChange: action("Radio change"),
