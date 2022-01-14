@@ -29,7 +29,7 @@ import { RadioChange } from "./radio-change.class";
 			class="bx--radio-button"
 			type="radio"
 			[checked]="checked"
-			[disabled]="disabled"
+			[disabled]="disabled || disabledFromGroup"
 			[name]="name"
 			[id]="id"
 			[required]="required"
@@ -115,6 +115,11 @@ export class Radio {
 		return this.labelPlacement === "left";
 	}
 
+	/**
+	 * Reflects whether or not the input is disabled at `RadioGroup` level.
+	 */
+	disabledFromGroup = false;
+
 	protected _labelledby = "";
 
 	/**
@@ -143,5 +148,9 @@ export class Radio {
 	 */
 	registerRadioChangeHandler(fn: (event: RadioChange) => void) {
 		this.radioChangeHandler = fn;
+	}
+
+	setDisabledFromGroup(disabled: boolean) {
+		this.disabledFromGroup = disabled;
 	}
 }
