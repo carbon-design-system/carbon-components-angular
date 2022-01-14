@@ -305,18 +305,17 @@ export class DatePicker implements
 
 	ngOnChanges(changes: SimpleChanges) {
 		// Reset the flatpickr instance on input changes that affect flatpickr.
-		const resetOnInputs = [
+		const flatpickrChangeKeys = [
 			"range",
 			"dateFormat",
 			"language",
 			"id",
 			"value",
-			"theme",
 			"plugins",
 			"flatpickrOptions"
 		];
 		const changeKeys = Object.keys(changes);
-		if (changeKeys.some(key => resetOnInputs.includes(key))) {
+		if (changeKeys.some(key => flatpickrChangeKeys.includes(key))) {
 			this.resetFlatpickrInstance(changes.value);
 		}
 	}
