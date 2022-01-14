@@ -152,7 +152,17 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * Set to true to disable the whole radio group
 	 */
-	@Input() disabled = false;
+	@Input()
+	set disabled(disabled: boolean) {
+		this._disabled = disabled;
+		this.updateRadios();
+	}
+	/**
+	 * Returns the disabled value for the `RadioGroup`.
+	 */
+	get disabled(): boolean {
+		return this._disabled;
+	}
 
 	/**
 	 * Returns the skeleton value in the `RadioGroup` if there is one.
@@ -225,6 +235,17 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	/**
+	 * `ControlValueAccessor` method to programmatically disable the `RadioGroup`.
+	 *
+	 * ex: `this.formGroup.get("myRadioGroup").disable();`
+	 *
+	 * @param isDisabled `true` to disable the inputs
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
+	/**
 	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
 	 */
 	emitChangeEvent(event: RadioChange) {
@@ -239,10 +260,13 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	updateRadios() {
 		if (this.radios) {
 			setTimeout(() => {
-				this.radios.forEach(radio => radio.name = this.name);
-				if (this.labelPlacement === "left") {
-					this.radios.forEach(radio => radio.labelPlacement = "left");
-				}
+				this.radios.forEach(radio => {
+					radio.name = this.name;
+					radio.setDisabledFromGroup(this.disabled);
+					if (this.labelPlacement === "left") {
+						radio.labelPlacement = "left";
+					}
+				});
 			});
 		}
 	}
