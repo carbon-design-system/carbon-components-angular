@@ -273,7 +273,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	updateList(items) {
 		this._items = items.map(item => Object.assign({}, item));
 		this.displayItems = this._items;
-		this.index = this._items.findIndex(item => item.selected);
+		this.updateIndex();
 		this.setupFocusObservable();
 		setTimeout(() => {
 			if (this.getSelected() !== []) { return; }
@@ -290,8 +290,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		} else {
 			this.displayItems = this.getListItems();
 		}
-		// reset the index since the list has changed visually
-		this.index = 0;
+
+		this.updateIndex();
 	}
 
 	/**
@@ -324,10 +324,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns `true` if the selected item is not the last item in the `DropdownList`.
 	 */
 	hasNextElement(): boolean {
-		if (this.index < this.displayItems.length - 1) {
-			return true;
-		}
-		return false;
+		return this.index < this.displayItems.length - 1 &&
+			(!(this.index === this.displayItems.length - 2) || !this.displayItems[this.index + 1].disabled);
 	}
 
 	/**
@@ -337,12 +335,20 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index < this.displayItems.length - 1) {
 			this.index++;
 		}
-		let elem = this.listElementList.toArray()[this.index].nativeElement;
 		let item = this.displayItems[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
 		}
-		return elem;
+
+		let elemList = this.listElementList ? this.listElementList.toArray() : [];
+
+		// TODO: update to optional chaining after upgrading typescript
+		// to v3.7+
+		if (elemList[this.index] && elemList[this.index].nativeElement) {
+			return elemList[this.index].nativeElement;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -359,10 +365,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns `true` if the selected item is not the first in the list.
 	 */
 	hasPrevElement(): boolean {
-		if (this.index > 0) {
-			return true;
-		}
-		return false;
+		return this.index > 0 && (!(this.index === 1) || !this.displayItems[0].disabled);
 	}
 
 	/**
@@ -372,12 +375,20 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index > 0) {
 			this.index--;
 		}
-		let elem = this.listElementList.toArray()[this.index].nativeElement;
 		let item = this.displayItems[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
 		}
-		return elem;
+
+		let elemList = this.listElementList ? this.listElementList.toArray() : [];
+
+		// TODO: update to optional chaining after upgrading typescript
+		// to v3.7+
+		if (elemList[this.index] && elemList[this.index].nativeElement) {
+			return elemList[this.index].nativeElement;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -459,12 +470,25 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Initializes focus in the list, effectively a wrapper for `getCurrentElement().focus()`
 	 */
 	initFocus() {
-		// ensure we start at this first item if nothing is already selected
 		if (this.index < 0) {
-			this.index = 0;
+			this.updateIndex();
 		}
-		// this.getCurrentElement().focus();
+
 		this.list.nativeElement.focus();
+		setTimeout(() => {
+			this.highlightedItem = this.getItemId(this.index);
+		});
+	}
+
+	updateIndex() {
+		// initialize index on the first selected item or
+		// on the next non disabled item if no items are selected
+		const selected = this.getSelected();
+		if (selected.length) {
+			this.index = this.displayItems.indexOf(selected[0]);
+		} else if (this.hasNextElement()) {
+			this.getNextElement();
+		}
 	}
 
 	/**
@@ -539,6 +563,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doClick(event, item) {
 		event.preventDefault();
 		if (!item.disabled) {
+			this.list.nativeElement.focus();
 			if (this.type === "single") {
 				item.selected = true;
 				// reset the selection
@@ -549,6 +574,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				item.selected = !item.selected;
 			}
 			this.index = this.displayItems.indexOf(item);
+			this.highlightedItem = this.getItemId(this.index);
 			this.doEmitSelect(false);
 		}
 	}
@@ -583,10 +609,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
 	}
 
-	reorderSelected(moveFocus = false): void {
+	reorderSelected(moveFocus = true): void {
 		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
 		if (moveFocus) {
-			setTimeout(() => this.getCurrentElement().focus());
+			setTimeout(() => {
+				this.updateIndex();
+				this.highlightedItem = this.getItemId(this.index);
+			});
 		}
 	}
 }
