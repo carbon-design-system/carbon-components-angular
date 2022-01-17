@@ -575,7 +575,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
-			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+			setTimeout(() => { this.view.initFocus(); }, 0);
 		}
 
 		if (
@@ -861,7 +861,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	protected checkForReorder() {
 		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
-			this.view.reorderSelected(this.selectionFeedback === "top");
+			this.view.reorderSelected(true);
 		}
 	}
 }
