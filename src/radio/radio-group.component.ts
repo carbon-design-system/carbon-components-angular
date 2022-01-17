@@ -103,6 +103,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	@Input()
 	set selected(selected: Radio | null) {
+		if (this._selected) {
+			this._selected.checked = false;
+		}
 		this._selected = selected;
 		this.value = selected ? selected.value : null;
 		this.checkSelectedRadio();
@@ -226,6 +229,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
 		if (this.radios && !alreadySelected) {
+			if (this.selected) {
+				this.selected.checked = false;
+			}
 			this._selected = null;
 			this.radios.forEach(radio => {
 				if (radio.checked || radio.value === this._value) {
@@ -336,6 +342,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	protected updateRadioChangeHandler() {
 		this.radios.forEach(radio => {
 			radio.registerRadioChangeHandler((event: RadioChange) => {
+				// deselect previous radio
+				if (this.selected) {
+					this.selected.checked = false;
+				}
 				// update selected and value from the event
 				this._selected = event.source;
 				this._value = event.value;
