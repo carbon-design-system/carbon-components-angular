@@ -802,7 +802,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	protected checkForReorder() {
 		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
-			this.view.reorderSelected(this.selectionFeedback === "top");
+			this.view.reorderSelected();
 		}
 	}
 }

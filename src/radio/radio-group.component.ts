@@ -8,7 +8,8 @@ import {
 	Output,
 	QueryList,
 	HostBinding,
-	AfterViewInit
+	AfterViewInit,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
@@ -315,6 +316,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
 	}
 
 	/**

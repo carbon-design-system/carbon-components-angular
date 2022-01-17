@@ -298,13 +298,26 @@ export class DatePicker implements
 		if (this.i18n.getLocale() !== "en") {
 			this.i18n.getLocaleObservable().subscribe(locale => {
 				this.language = locale;
-				this.resetFlackpickrInstance();
+				this.resetFlatpickrInstance();
 			});
 		}
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		this.resetFlackpickrInstance(changes.value);
+		// Reset the flatpickr instance on input changes that affect flatpickr.
+		const flatpickrChangeKeys = [
+			"range",
+			"dateFormat",
+			"language",
+			"id",
+			"value",
+			"plugins",
+			"flatpickrOptions"
+		];
+		const changeKeys = Object.keys(changes);
+		if (changeKeys.some(key => flatpickrChangeKeys.includes(key))) {
+			this.resetFlatpickrInstance(changes.value);
+		}
 	}
 
 	ngAfterViewInit() {
@@ -523,7 +536,7 @@ export class DatePicker implements
 	 *
 	 * @param newDates An optional SimpleChange of date values
 	 */
-	protected resetFlackpickrInstance(newDates?: SimpleChange) {
+	protected resetFlatpickrInstance(newDates?: SimpleChange) {
 		if (this.isFlatpickrLoaded()) {
 			let dates = this.flatpickrInstance.selectedDates;
 			if (newDates && this.didDateValueChange(newDates.currentValue, newDates.previousValue)) {
