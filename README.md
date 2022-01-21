@@ -51,12 +51,13 @@ That's it! Now we can run `npm start` and start building out our application!
 Angular version support matrix:
 | Angular | v3 | v4 | v5 (future release) |
 | ------- | -- | -- | ------------------- |
-| 6       | ✅ | ❎ | ❌                   |
+| 6       | ✅ | ❌ | ❌                   |
 | 7       | ✅ | ✅ | ❌                   |
 | 8       | ✅ | ✅ | ❌                   |
 | 9       | ❌ | ✅ | ❌                   |
 | 10      | ❌ | ✅ | ✅                   |
 | 11      | ❌ | ✅ | ✅                   |
+| 12      | ❌ | ✅ | ✅                   |
 | 13      | ❌ | ✅ | ✅                   |
 
 Carbon Components Angular version support matrix:
