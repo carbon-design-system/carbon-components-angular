@@ -165,7 +165,7 @@ export interface PaginationTranslations {
 					[attr.aria-label]="backwardText.subject | async"
 					(click)="selectPage.emit(previousPage)"
 					[disabled]="(currentPage <= 1 || disabled ? true : null)">
-					<svg ibmIcon="caret--left" size="16"></svg>
+					<svg ibmIcon="caret--left" size="16" class="bx--btn__icon"></svg>
 				</button>
 
 				<button
@@ -181,7 +181,7 @@ export interface PaginationTranslations {
 					[attr.aria-label]="forwardText.subject | async"
 					(click)="selectPage.emit(nextPage)"
 					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-					<svg ibmIcon="caret--right" size="16"></svg>
+					<svg ibmIcon="caret--right" size="16" class="bx--btn__icon"></svg>
 				</button>
 			</div>
 		</div>
