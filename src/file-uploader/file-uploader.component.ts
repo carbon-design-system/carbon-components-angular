@@ -260,11 +260,15 @@ export class FileUploader {
 	}
 
 	removeFile(fileItem) {
+		let shouldEmit = true;
 		if (this.files) {
+			shouldEmit = this.files.has(fileItem);
 			this.files.delete(fileItem);
 		}
 		this.fileInput.nativeElement.value = "";
-		this.filesChange.emit(this.files);
+		if (shouldEmit) {
+			this.filesChange.emit(this.files);
+		}
 	}
 
 	public isTemplate(value) {
