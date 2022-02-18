@@ -241,6 +241,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 					this._selected = radio;
 				}
 			});
+			if (this.selected && !this.value) {
+				this._value = this.selected.value;
+			}
 		}
 	}
 
@@ -345,7 +348,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	protected updateRadioChangeHandler() {
 		this.radios.forEach(radio => {
 			radio.registerRadioChangeHandler((event: RadioChange) => {
-				if (this.value !== event.value) {
+				if (this.selected.value !== event.value) {
 					// deselect previous radio
 					if (this.selected) {
 						this.selected.checked = false;
