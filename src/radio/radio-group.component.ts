@@ -348,7 +348,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	protected updateRadioChangeHandler() {
 		this.radios.forEach(radio => {
 			radio.registerRadioChangeHandler((event: RadioChange) => {
-				if (this.selected.value !== event.value) {
+				if ((this.selected && this.selected.value) !== event.value) {
 					// deselect previous radio
 					if (this.selected) {
 						this.selected.checked = false;
