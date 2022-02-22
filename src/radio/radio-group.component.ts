@@ -104,14 +104,17 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input()
 	set selected(selected: Radio | null) {
 		const alreadySelected = (this._selected && this._selected.value) === (selected && selected.value);
-		if (!alreadySelected) {
-			if (this._selected) {
-				this._selected.checked = false;
-			}
-			this._selected = selected;
-			this.value = selected ? selected.value : null;
-			this.checkSelectedRadio();
+		if (alreadySelected) {
+			// no need to redo
+			return;
 		}
+
+		if (this._selected) {
+			this._selected.checked = false;
+		}
+		this._selected = selected;
+		this.value = selected ? selected.value : null;
+		this.checkSelectedRadio();
 	}
 
 	/**
@@ -348,17 +351,19 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	protected updateRadioChangeHandler() {
 		this.radios.forEach(radio => {
 			radio.registerRadioChangeHandler((event: RadioChange) => {
-				if ((this.selected && this.selected.value) !== event.value) {
-					// deselect previous radio
-					if (this.selected) {
-						this.selected.checked = false;
-					}
-					// update selected and value from the event
-					this._selected = event.source;
-					this._value = event.value;
-					// bubble the event
-					this.emitChangeEvent(event);
+				if ((this.selected && this.selected.value) === event.value) {
+					// no need to redo
+					return;
 				}
+				// deselect previous radio
+				if (this.selected) {
+					this.selected.checked = false;
+				}
+				// update selected and value from the event
+				this._selected = event.source;
+				this._value = event.value;
+				// bubble the event
+				this.emitChangeEvent(event);
 			});
 		});
 	}
