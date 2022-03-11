@@ -223,7 +223,6 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 		protected changeDetectorRef: ChangeDetectorRef,
 		protected eventService: EventService,
 		protected i18n: I18n
-	
 	) { }
 
 	// keyboard accessibility
