@@ -15,7 +15,7 @@ import {
 	ChangeDetectorRef
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
-
+import { I18n } from "carbon-components-angular/i18n";
 import { Tab } from "./tab.component";
 
 /**
@@ -37,7 +37,7 @@ import { Tab } from "./tab.component";
 			<button
 				#leftOverflowNavButton
 				type="button"
-				title="previous"
+				title="translations.PREVIOUS"
 				[ngClass]="{
 					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
 					'bx--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
@@ -107,7 +107,7 @@ import { Tab } from "./tab.component";
 			<button
 				#rightOverflowNavButton
 				type="button"
-				title="next"
+				title="translations.NEXT"
 				[ngClass]="{
 					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
 					'bx--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
@@ -165,6 +165,8 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 
 	@Input() type: "default" | "container" = "default";
 
+	@Input() translations = this.i18n.get().PAGINATION;
+
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
@@ -219,7 +221,9 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService
+		protected eventService: EventService,
+		protected i18n: I18n
+	
 	) { }
 
 	// keyboard accessibility
