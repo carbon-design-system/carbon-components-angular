@@ -64,7 +64,7 @@
     "@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26 || ^0.9.0 || ^0.10.0",
-    "carbon-components": "^10.0.0"
+    "@carbon/styles": "^0.16.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.9",
@@ -80,6 +80,7 @@
     "@angular/platform-browser-dynamic": "7.2.16",
     "@angular/router": "7.2.16",
     "@babel/core": "7.4.3",
+    "@carbon/styles": "^0.16.2",
     "@carbon/themes": "10.15.0",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
@@ -95,7 +96,6 @@
     "@types/jasmine": "2.8.2",
     "@types/node": "11.13.0",
     "babel-loader": "8.0.5",
-    "carbon-components": "10.34.0",
     "chai": "4.2.0",
     "codelyzer": "5.0.0",
     "commitizen": "4.2.4",
