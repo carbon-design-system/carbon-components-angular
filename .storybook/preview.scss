@@ -1,4 +1,6 @@
-@use '@carbon/styles';
+@use '@carbon/styles' with (
+	$use-flexbox-grid: true,
+);
 
 html {
 	height: 100%;
