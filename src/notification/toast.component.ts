@@ -25,27 +25,27 @@ import { I18n } from "carbon-components-angular/i18n";
 			ibmIcon="error--filled"
 			size="20"
 			*ngIf="notificationObj.type === 'error'"
-			class="bx--toast-notification__icon">
+			class="cds--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="warning--filled"
 			size="20"
 			*ngIf="notificationObj.type === 'warning'"
-			class="bx--toast-notification__icon">
+			class="cds--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="checkmark--filled"
 			size="20"
 			*ngIf="notificationObj.type === 'success'"
-			class="bx--toast-notification__icon">
+			class="cds--toast-notification__icon">
 		</svg>
 		<svg
 			ibmIcon="information--filled"
 			size="20"
 			*ngIf="notificationObj.type === 'info'"
-			class="bx--toast-notification__icon">
+			class="cds--toast-notification__icon">
 		</svg>
-		<div class="bx--toast-notification__details">
+		<div class="cds--toast-notification__details">
 			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
 			<div *ngIf="!notificationObj.template" ibmToastSubtitle>
 				<span [innerHTML]="notificationObj.subtitle"></span>
@@ -58,11 +58,11 @@ import { I18n } from "carbon-components-angular/i18n";
 		</div>
 		<button
 			*ngIf="!isCloseHidden"
-			class="bx--toast-notification__close-button"
+			class="cds--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<svg ibmIcon="close" size="16" class="bx--toast-notification__close-icon"></svg>
+			<svg ibmIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
 		</button>
 	`
 })
@@ -76,14 +76,14 @@ export class Toast extends Notification implements OnInit {
 	@Input() notificationObj: ToastContent;
 
 	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
-	@HostBinding("class.bx--toast-notification") toastClass = true;
+	@HostBinding("class.cds--toast-notification") toastClass = true;
 	@HostBinding("attr.role") role = "alert";
 
-	@HostBinding("class.bx--toast-notification--error") get isError() { return this.notificationObj["type"] === "error"; }
-	@HostBinding("class.bx--toast-notification--info") get isInfo() { return this.notificationObj["type"] === "info"; }
-	@HostBinding("class.bx--toast-notification--success") get isSuccess() { return this.notificationObj["type"] === "success"; }
-	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
-	@HostBinding("class.bx--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
+	@HostBinding("class.cds--toast-notification--error") get isError() { return this.notificationObj["type"] === "error"; }
+	@HostBinding("class.cds--toast-notification--info") get isInfo() { return this.notificationObj["type"] === "info"; }
+	@HostBinding("class.cds--toast-notification--success") get isSuccess() { return this.notificationObj["type"] === "success"; }
+	@HostBinding("class.cds--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
+	@HostBinding("class.cds--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 
 	constructor(
 		protected notificationDisplayService: NotificationDisplayService,

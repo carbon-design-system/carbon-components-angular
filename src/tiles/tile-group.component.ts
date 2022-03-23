@@ -51,7 +51,7 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Output() selected: EventEmitter<TileSelection> = new EventEmitter();
 
-	@HostBinding("class.bx--tile-group") tileGroupClass = true;
+	@HostBinding("class.cds--tile-group") tileGroupClass = true;
 
 	@ContentChildren(SelectionTile) selectionTiles: QueryList<SelectionTile>;
 

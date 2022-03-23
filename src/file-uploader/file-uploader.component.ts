@@ -22,19 +22,19 @@ const noop = () => { };
 	selector: "ibm-file-uploader",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
-			<p class="bx--label-description">{{description}}</p>
-			<div class="bx--file">
+			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
+			<p class="cds--label-description">{{description}}</p>
+			<div class="cds--file">
 				<label
 					*ngIf="drop"
-					class="bx--file-browse-btn"
+					class="cds--file-browse-btn"
 					(keyup.enter)="fileInput.click()"
 					(keyup.space)="fileInput.click()"
-					[ngClass]="{'bx--file-browse-btn--disabled': disabled}"
+					[ngClass]="{'cds--file-browse-btn--disabled': disabled}"
 					tabindex="0">
 					<div
-						class="bx--file__drop-container"
-						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
+						class="cds--file__drop-container"
+						[ngClass]="{'cds--file__drop-container--drag-over': dragOver}"
 						role="button"
 						(click)="fileInput.click()"
 						[attr.for]="fileUploaderId"
@@ -58,17 +58,17 @@ const noop = () => { };
 				<input
 					#fileInput
 					type="file"
-					class="bx--file-input"
+					class="cds--file-input"
 					[accept]="accept"
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
 					(change)="onFilesAdded()"
 					[disabled]="disabled"/>
-				<div class="bx--file-container">
+				<div class="cds--file-container">
 					<ng-container *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
-						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
+						<div *ngIf="fileItem.invalid" class="cds--form-requirement">
 							{{fileItem.invalidText}}
 						</div>
 					</ng-container>
@@ -77,8 +77,8 @@ const noop = () => { };
 		</ng-container>
 
 		<ng-template #skeletonTemplate>
-			<div class="bx--skeleton__text" style="width: 100px"></div>
-			<div class="bx--skeleton__text" style="width: 225px"></div>
+			<div class="cds--skeleton__text" style="width: 100px"></div>
+			<div class="cds--skeleton__text" style="width: 225px"></div>
 			<button ibmButton skeleton="true"></button>
 		</ng-template>
 	`,

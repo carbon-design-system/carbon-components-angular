@@ -28,11 +28,11 @@ describe("Toggle", () => {
 		expect(component instanceof Toggle).toBe(true);
 	});
 
-	it("should have input with class 'bx--toggle-input'", () => {
-		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
+	it("should have input with class 'cds--toggle-input'", () => {
+		expect(buttonElement.className.includes("cds--toggle-input")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
+		expect(buttonElement.className.includes("cds--toggle-input")).toEqual(true);
 	});
 
 	it("should change state", () => {
@@ -46,10 +46,10 @@ describe("Toggle", () => {
 	});
 
 	it("should display small version of toggle when size equals sm", () => {
-		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(false);
+		expect(buttonElement.className.includes("cds--toggle-input--small")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(true);
+		expect(buttonElement.className.includes("cds--toggle-input--small")).toEqual(true);
 	});
 
 	it("should match the input checked value", () => {

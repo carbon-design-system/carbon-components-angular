@@ -35,7 +35,7 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`,
 	props: {
@@ -76,8 +76,8 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`,
 	props: {
@@ -106,8 +106,8 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			[disabled]="disabled">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 		<span>model: {{model}}</span>
 	`,

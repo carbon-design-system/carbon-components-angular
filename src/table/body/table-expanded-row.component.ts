@@ -24,7 +24,7 @@ export class TableExpandedRow {
 
 	@Input() skeleton = false;
 
-	@HostBinding("class.bx--expandable-row") expandableRowClass = true;
+	@HostBinding("class.cds--expandable-row") expandableRowClass = true;
 
 	@HostBinding("attr.data-child-row") dataChildRow = true;
 

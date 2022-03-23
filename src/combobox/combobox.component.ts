@@ -37,42 +37,42 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<div class="bx--list-box__wrapper">
+		<div class="cds--list-box__wrapper">
 			<label
 				*ngIf="label"
 				[for]="id"
-				class="bx--label"
-				[ngClass]="{'bx--label--disabled': disabled}">
+				class="cds--label"
+				[ngClass]="{'cds--label--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
 			<div
 				#listbox
 				[ngClass]="{
-					'bx--multi-select bx--multi-select--filterable': type === 'multi',
-					'bx--list-box--light': theme === 'light',
-					'bx--list-box--expanded': open,
-					'bx--list-box--sm': size === 'sm',
-					'bx--list-box--lg': size === 'xl',
-					'bx--list-box--disabled': disabled,
-					'bx--combo-box--warning bx--list-box--warning': warn
+					'cds--multi-select cds--multi-select--filterable': type === 'multi',
+					'cds--list-box--light': theme === 'light',
+					'cds--list-box--expanded': open,
+					'cds--list-box--sm': size === 'sm',
+					'cds--list-box--lg': size === 'xl',
+					'cds--list-box--disabled': disabled,
+					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
-				class="bx--list-box bx--combo-box"
+				class="cds--list-box cds--combo-box"
 				[attr.data-invalid]="(invalid ? true : null)">
 				<div
-					class="bx--list-box__field"
+					class="cds--list-box__field"
 					(click)="toggleDropdown()"
 					(blur)="onBlur()">
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
-						class="bx--tag bx--tag--filter bx--tag--high-contrast">
-						<span class="bx--tag__label">{{ pills.length }}</span>
+						class="cds--tag cds--tag--filter cds--tag--high-contrast">
+						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
 							(click)="clearSelected()"
 							(blur)="onBlur()"
 							(keydown.enter)="clearSelected()"
-							class="bx--tag__close-icon"
+							class="cds--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
 							[attr.aria-label]="clearSelectionAria">
@@ -100,8 +100,8 @@ import { Observable } from "rxjs";
 						(blur)="onBlur()"
 						(keydown.enter)="onSubmit($event)"
 						[value]="selectedValue"
-						class="bx--text-input"
-						[ngClass]="{'bx--text-input--empty': !showClearButton}"
+						class="cds--text-input"
+						[ngClass]="{'cds--text-input--empty': !showClearButton}"
 						tabindex="0"
 						[id]="id"
 						[attr.aria-labelledby]="id"
@@ -115,18 +115,18 @@ import { Observable } from "rxjs";
 						*ngIf="!warn && invalid"
 						ibmIcon="warning--filled"
 						size="16"
-						class="bx--list-box__invalid-icon">
+						class="cds--list-box__invalid-icon">
 					</svg>
 					<svg
 						*ngIf="!invalid && warn"
 						ibmIcon="warning--alt--filled"
 						size="16"
-						class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
+						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
 					</svg>
 					<div
 						*ngIf="showClearButton"
 						role="button"
-						class="bx--list-box__selection"
+						class="cds--list-box__selection"
 						tabindex="0"
 						[attr.aria-label]="clearSelectionAria"
 						[title]="clearSelectionTitle"
@@ -138,33 +138,33 @@ import { Observable } from "rxjs";
 					<button
 						type="button"
 						role="button"
-						class="bx--list-box__menu-icon"
+						class="cds--list-box__menu-icon"
 						[title]="open ? closeMenuAria : openMenuAria"
 						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
-						[ngClass]="{'bx--list-box__menu-icon--open': open}">
+						[ngClass]="{'cds--list-box__menu-icon--open': open}">
 						<svg ibmIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
 				<div
 					#dropdownMenu
 					[ngClass]="{
-						'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 					}">
 					<ng-content *ngIf="open"></ng-content>
 				</div>
 			</div>
 			<div
 				*ngIf="helperText && !invalid && !warn"
-				class="bx--form__helper-text"
-				[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+				class="cds--form__helper-text"
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!warn && invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -407,7 +407,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("input", { static: true }) input: ElementRef;
 	// @ts-ignore
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
-	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
+	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
 	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
@@ -526,7 +526,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			});
 
 			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
-				this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
+				this.elementRef.nativeElement.querySelector(".cds--text-input").focus();
 			});
 		}
 	}
@@ -813,7 +813,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		this.dropdownService.appendToBody(
 			this.listbox.nativeElement,
 			this.dropdownMenu.nativeElement,
-			`${this.elementRef.nativeElement.className}${this.open ? " bx--list-box--expanded" : ""}`);
+			`${this.elementRef.nativeElement.className}${this.open ? " cds--list-box--expanded" : ""}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 
@@ -831,7 +831,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	_shouldDropUp() {
 		// check if dropdownMenu exists first.
-		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".cds--list-box__menu");
 		// check if menu exists first.
 		const menuRect = menu && menu.getBoundingClientRect();
 		if (menu && menuRect) {

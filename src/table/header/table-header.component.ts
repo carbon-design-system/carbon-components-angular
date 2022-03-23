@@ -7,6 +7,6 @@ import { Component, HostBinding } from "@angular/core";
 	`
 })
 export class TableHeader {
-	@HostBinding("class.bx--data-table-header") headerClass = true;
+	@HostBinding("class.cds--data-table-header") headerClass = true;
 	@HostBinding("style.display") displayStyle = "block";
 }

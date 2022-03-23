@@ -99,7 +99,7 @@ class NotificationActionStory implements OnInit {
 @Component({
 	selector: "app-notification-story",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="showNotification()">Show info notification</button>
+		<button class="cds--btn cds--btn--primary" (click)="showNotification()">Show info notification</button>
 		<div class="notification-container"></div>
 	`,
 	providers: [NotificationService]
@@ -120,7 +120,7 @@ class NotificationStory {
 @Component({
 	selector: "app-toast-story",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="showToast()">Show info toast</button>
+		<button class="cds--btn cds--btn--primary" (click)="showToast()">Show info toast</button>
 		<div class="notification-container"></div>
 	`,
 	providers: [NotificationService]

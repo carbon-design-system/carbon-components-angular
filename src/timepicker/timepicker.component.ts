@@ -17,18 +17,18 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 @Component({
 	selector: "ibm-timepicker",
 	template: `
-		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+		<label *ngIf="!skeleton && label" [for]="id" class="cds--label">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<div
-			class="bx--time-picker"
-			[ngClass]="{'bx--time-picker--invalid' : invalid}">
-			<div class="bx--time-picker__input">
+			class="cds--time-picker"
+			[ngClass]="{'cds--time-picker--invalid' : invalid}">
+			<div class="cds--time-picker__input">
 				<input
 					[ngClass]="{
-						'bx--text-input--light': theme === 'light',
-						'bx--skeleton': skeleton
+						'cds--text-input--light': theme === 'light',
+						'cds--skeleton': skeleton
 					}"
 					[value]="value"
 					[placeholder]="placeholder"
@@ -39,11 +39,11 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					maxlength="5"
 					(change)="onChange($event)"
 					type="text"
-					class="bx--time-picker__input-field bx--text-input">
+					class="cds--time-picker__input-field cds--text-input">
 			</div>
 			<ng-content></ng-content>
 		</div>
-		<div *ngIf="invalid" class="bx--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>

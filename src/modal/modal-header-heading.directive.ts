@@ -4,5 +4,5 @@ import { Directive, HostBinding, Input } from "@angular/core";
 	selector: "[ibmModalHeaderHeading]"
 })
 export class ModalHeaderHeading {
-	@HostBinding("class.bx--modal-header__heading") modalHeaderHeadingClass = true;
+	@HostBinding("class.cds--modal-header__heading") modalHeaderHeadingClass = true;
 }

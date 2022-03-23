@@ -19,13 +19,13 @@ import { ContextMenuComponent } from "./context-menu.component";
 @Component({
 	selector: "ibm-context-menu-item",
 	template: `
-		<div class="bx--context-menu-option__content bx--menu-option__content">
-			<div class="bx--context-menu-option__icon bx--menu-option__icon">
+		<div class="cds--context-menu-option__content cds--menu-option__content">
+			<div class="cds--context-menu-option__icon cds--menu-option__icon">
 				<svg *ngIf="selectable && checked" ibmIcon="checkmark" size="16"></svg>
 				<svg *ngIf="!selectable && icon" [ibmIcon]="icon" size="16"></svg>
 			</div>
-			<span class="bx--context-menu-option__label bx--menu-option__label" [title]="label">{{label}}</span>
-			<div class="bx--context-menu-option__info bx--menu-option__info">
+			<span class="cds--context-menu-option__label cds--menu-option__label" [title]="label">{{label}}</span>
+			<div class="cds--context-menu-option__info cds--menu-option__info">
 				{{info}}
 				<svg *ngIf="hasChildren" ibmIcon="caret--right" size="16"></svg>
 			</div>
@@ -40,8 +40,8 @@ import { ContextMenuComponent } from "./context-menu.component";
 	`]
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
-	@HostBinding("class.bx--context-menu-option") optionContextClass = true; // deprecated
-	@HostBinding("class.bx--menu-option") optionClass = true;
+	@HostBinding("class.cds--context-menu-option") optionContextClass = true; // deprecated
+	@HostBinding("class.cds--menu-option") optionClass = true;
 	@HostBinding("attr.role") role = "menuitem";
 	@HostBinding("attr.tabindex") tabindex = -1;
 	@HostBinding("attr.aria-haspopup") ariaHasPopup = null;
@@ -184,7 +184,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	}
 
 	getDimensions() {
-		const element: HTMLElement = this.elementRef.nativeElement.querySelector(".bx--context-menu-option__content, .bx--menu-option__content");
+		const element: HTMLElement = this.elementRef.nativeElement.querySelector(".cds--context-menu-option__content, .cds--menu-option__content");
 		return element.getBoundingClientRect();
 	}
 

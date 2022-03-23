@@ -41,8 +41,8 @@ export class ContentSwitcherOption {
 
 	@Output() onFocus = new EventEmitter<FocusEvent>();
 
-	@HostBinding("class") switcherClass = "bx--content-switcher-btn";
-	@HostBinding("class.bx--content-switcher--selected") selectedClass = false;
+	@HostBinding("class") switcherClass = "cds--content-switcher-btn";
+	@HostBinding("class.cds--content-switcher--selected") selectedClass = false;
 	@HostBinding("attr.role") role = "tab";
 	@HostBinding("attr.aria-selected") ariaSelected = false;
 	@HostBinding("attr.tabIndex") tabindex = "-1";

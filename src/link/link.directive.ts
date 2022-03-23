@@ -25,7 +25,7 @@ import {
 
 
 export class Link {
-	@HostBinding("class.bx--link") baseClass = true;
+	@HostBinding("class.cds--link") baseClass = true;
 
 	/**
 	 * Automatically set to `-1` when link is disabled.
@@ -36,14 +36,14 @@ export class Link {
 	 * Set to true to show links inline in a sentence or paragraph.
 	 */
 	@Input()
-	@HostBinding("class.bx--link--inline") inline = false;
+	@HostBinding("class.cds--link--inline") inline = false;
 
 	/**
 	 * Set to true to disable link.
 	 */
 	@Input()
 	@HostBinding("attr.aria-disabled")
-	@HostBinding("class.bx--link--disabled")
+	@HostBinding("class.cds--link--disabled")
 	set disabled(disabled: boolean) {
 		this._disabled = disabled;
 		this.tabindex = this.disabled ? -1 : null;

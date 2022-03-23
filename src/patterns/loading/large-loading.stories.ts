@@ -31,7 +31,7 @@ import {
 		</div>
 		<div ibmRow class="form">
 			<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<ibm-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('input')"
@@ -43,7 +43,7 @@ import {
 							placeholder="Optional placeholder text">
 					</ibm-label>
 				</div>
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<ibm-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('textArea')"
@@ -56,7 +56,7 @@ import {
 						</textarea>
 					</ibm-label>
 				</div>
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<div class="dropdown-wrapper">
 						<ibm-dropdown
 							label="Choose one option"
@@ -68,7 +68,7 @@ import {
 						</ibm-dropdown>
 					</div>
 				</div>
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<button
 						class="form-button"
 						ibmButton

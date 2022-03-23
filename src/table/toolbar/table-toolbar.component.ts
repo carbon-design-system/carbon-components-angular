@@ -18,25 +18,25 @@ import { TableRowSize } from "../table.types";
  *		<ibm-table-toolbar-actions>
  *			<button ibmButton="primary">
  *				Delete
- *				<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+ *				<svg ibmIcon="delete" size="16" class="cds--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Save
- *				<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+ *				<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Download
- *				<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+ *				<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-actions>
  *			<ibm-table-toolbar-content>
  *			<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
  *			<button ibmButton="toolbar-action">
- *				<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+ *				<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
  *			</button>
  *			<button ibmButton="primary" size="sm">
  *				Primary Button
- *				<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+ *				<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-content>
  *	</ibm-table-toolbar>
@@ -47,27 +47,27 @@ import { TableRowSize } from "../table.types";
 	selector: "ibm-table-toolbar",
 	template: `
 	<section
-		class="bx--table-toolbar"
-		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}">
+		class="cds--table-toolbar"
+		[ngClass]="{'cds--table-toolbar--small' : size === 'sm'}">
 		<div
 			*ngIf="model"
-			class="bx--batch-actions"
+			class="cds--batch-actions"
 			[ngClass]="{
-				'bx--batch-actions--active': selected
+				'cds--batch-actions--active': selected
 			}"
 			[attr.aria-label]="actionBarLabel.subject | async">
-			<div class="bx--action-list">
+			<div class="cds--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
 				<button
 					ibmButton="primary"
-					class="bx--batch-summary__cancel"
+					class="cds--batch-summary__cancel"
 					[tabindex]="selected ? 0 : -1"
 					(click)="onCancel()">
 					{{_cancelText.subject | async}}
 				</button>
 			</div>
-			<div class="bx--batch-summary">
-				<p class="bx--batch-summary__para" *ngIf="count as n">
+			<div class="cds--batch-summary">
+				<p class="cds--batch-summary__para" *ngIf="count as n">
 					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
 						<span>{{n}}</span> {{legacyText}}
 					</ng-container>

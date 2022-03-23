@@ -12,8 +12,8 @@ import { Dialog } from "../dialog.component";
 		<div
 			[attr.aria-label]="dialogConfig.menuLabel"
 			[attr.data-floating-menu-direction]="placement ? placement : null"
-			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
-			class="bx--overflow-menu-options bx--overflow-menu-options--open"
+			[ngClass]="{'cds--overflow-menu--flip': dialogConfig.flip}"
+			class="cds--overflow-menu-options cds--overflow-menu-options--open"
 			role="menu"
 			(click)="onClick($event)"
 			#dialog

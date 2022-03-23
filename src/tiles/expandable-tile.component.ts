@@ -16,12 +16,12 @@ export interface ExpandableTileTranslations {
 	selector: "ibm-expandable-tile",
 	template: `
 		<button
-			class="bx--tile bx--tile--expandable"
-			[ngClass]="{'bx--tile--is-expanded' : expanded}"
+			class="cds--tile cds--tile--expandable"
+			[ngClass]="{'cds--tile--is-expanded' : expanded}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			type="button"
 			(click)="onClick()">
-			<div class="bx--tile__chevron">
+			<div class="cds--tile__chevron">
 				<svg *ngIf="!expanded" width="12" height="7" viewBox="0 0 12 7" [attr.title]="expand.subject | async" role="img">
 					<title>{{expand.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
@@ -31,9 +31,9 @@ export interface ExpandableTileTranslations {
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
 				</svg>
 			</div>
-			<div class="bx--tile-content">
-				<ng-content select=".bx--tile-content__above-the-fold"></ng-content>
-				<ng-content select=".bx--tile-content__below-the-fold"></ng-content>
+			<div class="cds--tile-content">
+				<ng-content select=".cds--tile-content__above-the-fold"></ng-content>
+				<ng-content select=".cds--tile-content__below-the-fold"></ng-content>
 			</div>
 		</button>
 	`
@@ -70,7 +70,7 @@ export class ExpandableTile implements AfterContentInit {
 	}
 
 	get expandedHeight() {
-		const tile = this.element.querySelector(".bx--tile");
+		const tile = this.element.querySelector(".cds--tile");
 		const tilePadding
 			= parseInt(getComputedStyle(tile).paddingBottom, 10) + parseInt(getComputedStyle(tile).paddingTop, 10);
 		const expandedHeight = this.tileMaxHeight + tilePadding;
@@ -82,9 +82,9 @@ export class ExpandableTile implements AfterContentInit {
 
 	updateMaxHeight() {
 		if (this.expanded) {
-			this.tileMaxHeight = this.element.querySelector(".bx--tile-content").getBoundingClientRect().height;
+			this.tileMaxHeight = this.element.querySelector(".cds--tile-content").getBoundingClientRect().height;
 		} else {
-			this.tileMaxHeight = this.element.querySelector(".bx--tile-content__above-the-fold").getBoundingClientRect().height;
+			this.tileMaxHeight = this.element.querySelector(".cds--tile-content__above-the-fold").getBoundingClientRect().height;
 		}
 	}
 

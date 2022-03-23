@@ -35,7 +35,7 @@ describe("UI Shell Header", () => {
 
 		fixture = TestBed.createComponent(Header);
 		component = fixture.componentInstance;
-		element = fixture.debugElement.query(By.css(".bx--header")).nativeElement;
+		element = fixture.debugElement.query(By.css(".cds--header")).nativeElement;
 		fixture.detectChanges();
 	});
 
@@ -44,7 +44,7 @@ describe("UI Shell Header", () => {
 	});
 
 	it("should have a default brand of 'IBM'", () => {
-		const brandElement = element.querySelector(".bx--header__name--prefix");
+		const brandElement = element.querySelector(".cds--header__name--prefix");
 		expect(brandElement).toBeDefined();
 		expect(brandElement.textContent.trim()).toEqual("IBM");
 	});
@@ -54,7 +54,7 @@ describe("UI Shell Header", () => {
 		component.brand = brand;
 		fixture.detectChanges();
 
-		const brandElement = element.querySelector(".bx--header__name--prefix");
+		const brandElement = element.querySelector(".cds--header__name--prefix");
 		expect(brandElement).toBeDefined();
 		expect(brandElement.textContent.trim()).toEqual(brand);
 	});
@@ -64,7 +64,7 @@ describe("UI Shell Header", () => {
 		component.name = name;
 		fixture.detectChanges();
 
-		const nameElement = element.querySelector(".bx--header__name");
+		const nameElement = element.querySelector(".cds--header__name");
 		expect(nameElement).toBeDefined();
 		expect(nameElement.textContent).toContain(name);
 	});

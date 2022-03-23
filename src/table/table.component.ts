@@ -177,7 +177,7 @@ import { TableRowSize } from "./table.types";
 		ibmTable
 		[sortable]="sortable"
 		[noBorder]="noBorder"
-		[ngClass]="{'bx--data-table--sticky-header': stickyHeader}"
+		[ngClass]="{'cds--data-table--sticky-header': stickyHeader}"
 		[size]="size"
 		[striped]="striped"
 		[skeleton]="skeleton">
@@ -224,9 +224,9 @@ import { TableRowSize } from "./table.types";
 			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
-					<div class="bx--loading bx--loading--small">
-						<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-							<circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+					<div class="cds--loading cds--loading--small">
+						<svg class="cds--loading__svg" viewBox="-75 -75 150 150">
+							<circle class="cds--loading__stroke" cx="0" cy="0" r="37.5" />
 						</svg>
 					</div>
 				</td>
@@ -274,7 +274,7 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static setTabIndex(element: HTMLElement, index: -1 | 0) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 1) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("cds--table-sort") && focusElementList.length > 1) {
 			focusElementList[1].tabIndex = index;
 		} else if (focusElementList.length > 0) {
 			focusElementList[0].tabIndex = index;
@@ -285,7 +285,7 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static focus(element: HTMLElement) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 1) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("cds--table-sort") && focusElementList.length > 1) {
 			focusElementList[1].focus();
 		} else if (focusElementList.length > 0) {
 			focusElementList[0].focus();
@@ -323,7 +323,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			const expandedChange = this._model.rowsExpandedChange.subscribe(() => {
 				// Allows the expanded row to have a focus state when it exists in the DOM
 				setTimeout(() => {
-					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row:not(.bx--parent-row)");
+					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".cds--expandable-row:not(.cds--parent-row)");
 					Array.from<any>(expandedRows).forEach(row => {
 						if (row.firstElementChild.tabIndex === undefined || row.firstElementChild.tabIndex !== -1) {
 							row.firstElementChild.tabIndex = -1;
@@ -458,7 +458,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Set to `true` to stick the header to the top of the table
 	 */
-	@HostBinding("class.bx--data-table_inner-container") @Input() stickyHeader = false;
+	@HostBinding("class.cds--data-table_inner-container") @Input() stickyHeader = false;
 
 	/**
 	 * Set footer template to customize what is displayed in the tfoot section of the table

@@ -20,10 +20,10 @@ export class TextArea {
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
-	@HostBinding("class.bx--text-area") baseClass = true;
-	@HostBinding("class.bx--text-area--invalid") @Input() invalid = false;
-	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
-	@HostBinding("class.bx--text-area--light") get isLightTheme() {
+	@HostBinding("class.cds--text-area") baseClass = true;
+	@HostBinding("class.cds--text-area--invalid") @Input() invalid = false;
+	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
+	@HostBinding("class.cds--text-area--light") get isLightTheme() {
 		return this.theme === "light";
 	}
 }

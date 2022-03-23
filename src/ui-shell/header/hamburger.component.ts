@@ -15,8 +15,8 @@ import { I18n } from "carbon-components-angular/i18n";
 		<button
 			type="button"
 			(click)="doClick()"
-			[ngClass]="{'bx--header__action--active': active}"
-			class="bx--header__menu-trigger bx--header__action bx--header__menu-toggle"
+			[ngClass]="{'cds--header__action--active': active}"
+			class="cds--header__menu-trigger cds--header__action cds--header__menu-toggle"
 			[attr.aria-label]="active
 				? (i18n.get('UI_SHELL.HEADER.CLOSE_MENU') | async)
 				: (i18n.get('UI_SHELL.HEADER.OPEN_MENU') | async)"

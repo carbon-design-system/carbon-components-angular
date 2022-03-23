@@ -19,21 +19,21 @@ import { Router } from "@angular/router";
 				<ng-template #content><ng-content></ng-content></ng-template>
 				<a
 					*ngSwitchCase="false"
-					class="bx--header__menu-item"
+					class="cds--header__menu-item"
 					role="menuitem"
 					tabindex="0"
-					[ngClass]="{'bx--header__menu-item--current' : isCurrentPage}"
+					[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 					[href]="href"
 					(click)="navigate($event)">
 					<ng-container *ngTemplateOutlet="content"></ng-container>
 				</a>
 				<a
 					*ngSwitchCase="true"
-					class="bx--header__menu-item"
+					class="cds--header__menu-item"
 					role="menuitem"
-					[routerLinkActive]="['bx--header__menu-item--current']"
+					[routerLinkActive]="['cds--header__menu-item--current']"
 					tabindex="0"
-					[ngClass]="{'bx--header__menu-item--current' : isCurrentPage}"
+					[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 					[routerLink]="route"
 					[routerLinkActive]="activeLinkClass">
 					<ng-container *ngTemplateOutlet="content"></ng-container>

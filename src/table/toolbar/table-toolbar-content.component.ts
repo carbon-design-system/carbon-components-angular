@@ -5,5 +5,5 @@ import { Component, HostBinding } from "@angular/core";
 	template: `<ng-content></ng-content>`
 })
 export class TableToolbarContent {
-	@HostBinding("class.bx--toolbar-content") class = true;
+	@HostBinding("class.cds--toolbar-content") class = true;
 }

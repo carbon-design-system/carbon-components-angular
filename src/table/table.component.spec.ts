@@ -59,7 +59,7 @@ describe("Table", () => {
 
 	it("should call the row sort function", () => {
 		spyOn(fixture.componentInstance, "simpleSort");
-		tableInstance.nativeElement.querySelector("thead .bx--table-sort").click();
+		tableInstance.nativeElement.querySelector("thead .cds--table-sort").click();
 		fixture.detectChanges();
 		expect(fixture.componentInstance.simpleSort).toHaveBeenCalled();
 	});
@@ -110,8 +110,8 @@ describe("Table", () => {
 		expect(tableInstance.componentInstance.deselectRow.emit).toHaveBeenCalled();
 	});
 
-	it("should set the .bx--data-table--short class", () => {
-		expect(tableInstance.nativeElement.querySelector(".bx--data-table--short")).toBeTruthy();
+	it("should set the .cds--data-table--short class", () => {
+		expect(tableInstance.nativeElement.querySelector(".cds--data-table--short")).toBeTruthy();
 	});
 
 	it("should not show checkboxes when showSelectionColumn is false", () => {

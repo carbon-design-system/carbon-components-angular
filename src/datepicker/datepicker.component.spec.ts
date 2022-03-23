@@ -103,7 +103,7 @@ describe("DatePicker", () => {
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
 		fixture.detectChanges();
 		expect(element.componentInstance.theme).toEqual("light");
-		expect(element.nativeElement.querySelector(".bx--date-picker--light")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--date-picker--light")).toBeTruthy();
 	});
 
 	it("should set invalid to true and set the invalidText to 'invalid text'", () => {
@@ -113,7 +113,7 @@ describe("DatePicker", () => {
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
 		expect(element.nativeElement.getAttribute("invalidText")).toEqual("invalid text");
-		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toEqual("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual("invalid text");
 	});
 
 	it("should call onValueChange on valueChange event", () => {

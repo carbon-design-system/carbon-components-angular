@@ -48,10 +48,10 @@ export class CheckboxChange {
 @Component({
 	selector: "ibm-checkbox",
 	template: `
-		<div class="bx--form-item bx--checkbox-wrapper">
+		<div class="cds--form-item cds--checkbox-wrapper">
 			<input
 				#inputCheckbox
-				class="bx--checkbox"
+				class="cds--checkbox"
 				type="checkbox"
 				[id]="id + '_input'"
 				[value]="value"
@@ -66,11 +66,11 @@ export class CheckboxChange {
 			<label
 				[for]="id + '_input'"
 				[attr.aria-label]="ariaLabel"
-				class="bx--checkbox-label"
+				class="cds--checkbox-label"
 				[ngClass]="{
-					'bx--skeleton' : skeleton
+					'cds--skeleton' : skeleton
 				}">
-				<span [ngClass]="{'bx--visually-hidden' : hideLabel}" class="bx--checkbox-label-text">
+				<span [ngClass]="{'cds--visually-hidden' : hideLabel}" class="cds--checkbox-label-text">
 					<ng-content></ng-content>
 				</span>
 			</label>

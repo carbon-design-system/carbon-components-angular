@@ -137,15 +137,15 @@ class ReactiveFormsStory implements OnInit {
 	template: `
         <ibm-modal [open]="true">
             <ibm-modal-header>Header label</ibm-modal-header>
-            <section class="bx--modal-content">
+            <section class="cds--modal-content">
                 <h1>Sample modal works.</h1>
-                <p class="bx--modal-content__text">{{modalText}}</p>
+                <p class="cds--modal-content__text">{{modalText}}</p>
                 <div style="width: 300px">
 					<ibm-dropdown placeholder="Select" [appendInline]="true">
 						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 					</ibm-dropdown>
 				</div>
-                <p class="bx--modal-content__text">{{modalText}}</p>
+                <p class="cds--modal-content__text">{{modalText}}</p>
             </section>
         </ibm-modal>
     `

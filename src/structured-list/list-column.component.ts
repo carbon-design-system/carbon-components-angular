@@ -20,10 +20,10 @@ import { Component, HostBinding, Input } from "@angular/core";
 export class ListColumn {
 	@Input() skeleton = false;
 
-	@HostBinding("class.bx--structured-list-th") isHeaderColumn = true;
-	@HostBinding("class.bx--structured-list-td") isBodyColumn = true;
+	@HostBinding("class.cds--structured-list-th") isHeaderColumn = true;
+	@HostBinding("class.cds--structured-list-td") isBodyColumn = true;
 	/**
 	 * Applies `white-space: nowrap` to the content of this `ListColumn`
 	 */
-	@HostBinding("class.bx--structured-list-content--nowrap") @Input() nowrap = false;
+	@HostBinding("class.cds--structured-list-content--nowrap") @Input() nowrap = false;
 }

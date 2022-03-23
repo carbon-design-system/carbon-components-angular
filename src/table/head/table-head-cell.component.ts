@@ -16,17 +16,17 @@ import { TableHeaderItem } from "../table-header-item.class";
 	selector: "[ibmTableHeadCell]",
 	template: `
 		<button
-			class="bx--table-sort"
+			class="cds--table-sort"
 			*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"
 			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
-				'bx--table-sort--active': column.sorted,
-				'bx--table-sort--ascending': column.ascending
+				'cds--table-sort--active': column.sorted,
+				'cds--table-sort--ascending': column.ascending
 			}"
 			(click)="onClick()">
 			<span
-				class="bx--table-sort__flex"
+				class="cds--table-sort__flex"
 				[title]="column.title"
 				tabindex="-1">
 				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
@@ -43,7 +43,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 					preserveAspectRatio="xMidYMid meet"
 					style="will-change: transform;"
 					xmlns="http://www.w3.org/2000/svg"
-					class="bx--table-sort__icon"
+					class="cds--table-sort__icon"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16"
@@ -56,7 +56,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 					preserveAspectRatio="xMidYMid meet"
 					style="will-change: transform;"
 					xmlns="http://www.w3.org/2000/svg"
-					class="bx--table-sort__icon-unsorted"
+					class="cds--table-sort__icon-unsorted"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16"
@@ -66,7 +66,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			</span>
 		</button>
 		<div
-			class="bx--table-header-label"
+			class="cds--table-header-label"
 			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">
 			<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 			<ng-template

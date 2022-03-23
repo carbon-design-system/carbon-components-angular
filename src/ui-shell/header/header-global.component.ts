@@ -10,5 +10,5 @@ import { Component, HostBinding } from "@angular/core";
 	`
 })
 export class HeaderGlobal {
-	@HostBinding("class.bx--header__global") hostClass = true;
+	@HostBinding("class.cds--header__global") hostClass = true;
 }

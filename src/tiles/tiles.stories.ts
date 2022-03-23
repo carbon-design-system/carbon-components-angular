@@ -119,8 +119,8 @@ storiesOf("Components|Tiles", module)
 	.add("Expandable", () => ({
 		template: `
 		<ibm-expandable-tile>
-			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
-			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
+			<span class="cds--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
+			<span class="cds--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
 		</ibm-expandable-tile>
 		`
 	}))

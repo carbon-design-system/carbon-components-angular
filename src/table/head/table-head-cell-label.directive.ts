@@ -9,5 +9,5 @@ import {
 
 
 export class TableHeadCellLabel {
-	@HostBinding("class.bx--table-header-label") baseClass = true;
+	@HostBinding("class.cds--table-header-label") baseClass = true;
 }

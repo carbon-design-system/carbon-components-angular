@@ -57,16 +57,16 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 	selector: "ibm-structured-list",
 	template: `
 		<section
-			class="bx--structured-list"
+			class="cds--structured-list"
 			[ngClass]="{
-				'bx--structured-list--border': border,
-				'bx--structured-list--selection': selection,
-				'bx--structured-list--condensed': condensed,
-				'bx--structured-list-content--nowrap': nowrap,
-				'bx--skeleton': skeleton
+				'cds--structured-list--border': border,
+				'cds--structured-list--selection': selection,
+				'cds--structured-list--condensed': condensed,
+				'cds--structured-list-content--nowrap': nowrap,
+				'cds--skeleton': skeleton
 			}">
 			<ng-content select="ibm-list-header"></ng-content>
-			<div class="bx--structured-list-tbody">
+			<div class="cds--structured-list-tbody">
 				<ng-content></ng-content>
 			</div>
 		</section>

@@ -13,42 +13,42 @@ import { FileItem } from "./file-item.interface";
 @Component({
 	selector: "ibm-file",
 	template: `
-		<p class="bx--file-filename">{{fileItem.file.name}}</p>
+		<p class="cds--file-filename">{{fileItem.file.name}}</p>
 		<span
 			*ngIf="fileItem.state === 'edit'"
-			class="bx--file__state-container"
+			class="cds--file__state-container"
 			(click)="remove.emit()"
 			(keyup.enter)="remove.emit()"
 			(keyup.space)="remove.emit()">
 			<svg
 				*ngIf="isInvalidText"
 				ibmIcon="warning--filled"
-				class="bx--file--invalid"
+				class="cds--file--invalid"
 				size="16"
 				tabindex="0">
 			</svg>
 			<svg
 				ibmIcon="close"
 				size="16"
-				class="bx--file-close"
+				class="cds--file-close"
 				[ariaLabel]="translations.REMOVE_BUTTON"
 				tabindex="0">
 			</svg>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
-			<div class="bx--inline-loading__animation">
+			<div class="cds--inline-loading__animation">
 				<ibm-loading size="sm"></ibm-loading>
 			</div>
 		</span>
 		<span
 			*ngIf="fileItem.state === 'complete'"
-			class="bx--file__state-container"
+			class="cds--file__state-container"
 			tabindex="0">
 
 			<svg
 				ibmIcon="checkmark--filled"
 				size="16"
-				class="bx--file-complete"
+				class="cds--file-complete"
 				[ariaLabel]="translations.CHECKMARK">
 			</svg>
 		</span>
@@ -66,9 +66,9 @@ export class FileComponent implements OnDestroy {
 
 	@Output() remove = new EventEmitter();
 
-	@HostBinding("class.bx--file__selected-file") selectedFile = true;
+	@HostBinding("class.cds--file__selected-file") selectedFile = true;
 
-	@HostBinding("class.bx--file__selected-file--invalid") get isInvalidText() {
+	@HostBinding("class.cds--file__selected-file--invalid") get isInvalidText() {
 		return this.fileItem.invalidText;
 	}
 

@@ -23,14 +23,14 @@ import { ListColumn } from "./list-column.component";
 @Component({
 	selector: "ibm-list-header",
 	template: `
-		<div class="bx--structured-list-row bx--structured-list-row--header-row">
+		<div class="cds--structured-list-row cds--structured-list-row--header-row">
 			<ng-content></ng-content>
-			<div *ngIf="selection" class="bx--structured-list-th"></div>
+			<div *ngIf="selection" class="cds--structured-list-th"></div>
 		</div>
 	`
 })
 export class ListHeader implements AfterContentInit {
-	@HostBinding("class.bx--structured-list-thead") wrapper = true;
+	@HostBinding("class.cds--structured-list-thead") wrapper = true;
 
 	@Input()
 	set skeleton(value: any) {

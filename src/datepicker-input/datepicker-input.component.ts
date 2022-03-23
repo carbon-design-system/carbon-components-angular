@@ -12,34 +12,34 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "ibm-date-picker-input",
 	template: `
-	<div class="bx--form-item">
-		<div class="bx--date-picker"
+	<div class="cds--form-item">
+		<div class="cds--date-picker"
 			[ngClass]="{
-				'bx--date-picker--simple' : type === 'simple',
-				'bx--date-picker--single' : type === 'single',
-				'bx--date-picker--range' : type === 'range',
-				'bx--date-picker--light' : theme === 'light',
-				'bx--skeleton' : skeleton
+				'cds--date-picker--simple' : type === 'simple',
+				'cds--date-picker--single' : type === 'single',
+				'cds--date-picker--range' : type === 'range',
+				'cds--date-picker--light' : theme === 'light',
+				'cds--skeleton' : skeleton
 			}">
-			<div class="bx--date-picker-container">
-				<label *ngIf="label" [for]="id" class="bx--label">
+			<div class="cds--date-picker-container">
+				<label *ngIf="label" [for]="id" class="cds--label">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div class="bx--date-picker-input__wrapper"
+				<div class="cds--date-picker-input__wrapper"
 					[ngClass]="{
-						'bx--date-picker-input__wrapper--invalid': invalid,
-						'bx--date-picker-input__wrapper--warn': warn
+						'cds--date-picker-input__wrapper--invalid': invalid,
+						'cds--date-picker-input__wrapper--warn': warn
 					}">
 					<input
 						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
 						type="text"
-						class="bx--date-picker__input"
+						class="cds--date-picker__input"
 						[ngClass]="{
-							'bx--date-picker__input--sm': size === 'sm',
-							'bx--date-picker__input--xl': size === 'xl'
+							'cds--date-picker__input--sm': size === 'sm',
+							'cds--date-picker__input--xl': size === 'xl'
 						}"
 						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
@@ -52,11 +52,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							*ngIf="type !== 'simple' && !warn && !invalid"
 							ibmIcon="calendar"
 							size="16"
-							class="bx--date-picker__icon">
+							class="cds--date-picker__icon">
 						</svg>
 						<svg
 							*ngIf="!warn && invalid"
-							class="bx--date-picker__icon bx--date-picker__icon--invalid"
+							class="cds--date-picker__icon cds--date-picker__icon--invalid"
 							ibmIcon="warning--filled"
 							size="16">
 						</svg>
@@ -64,14 +64,14 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							*ngIf="!invalid && warn"
 							ibmIcon="warning--alt--filled"
 							size="16"
-							class="bx--date-picker__icon bx--date-picker__icon--warn">
+							class="cds--date-picker__icon cds--date-picker__icon--warn">
 						</svg>
 				</div>
-				<div *ngIf="!warn && invalid" class="bx--form-requirement">
+				<div *ngIf="!warn && invalid" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 				</div>
-				<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<div *ngIf="!invalid && warn" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 				</div>

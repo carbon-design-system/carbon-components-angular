@@ -11,5 +11,5 @@ import {
 	`
 })
 export class TableHeadExpand {
-	@HostBinding("class.bx--table-expand") hostClass = true;
+	@HostBinding("class.cds--table-expand") hostClass = true;
 }

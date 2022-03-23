@@ -15,10 +15,10 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 	selector: "ibm-header-menu",
 	template: `
 		<li
-			class="bx--header__submenu"
+			class="cds--header__submenu"
 			style="height: 100%">
 			<a
-				class="bx--header__menu-item bx--header__menu-title"
+				class="cds--header__menu-item cds--header__menu-title"
 				[href]="href"
 				role="menuitem"
 				tabindex="0"
@@ -27,12 +27,12 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 				{{title}}
 				<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
 				<ng-template #defaultIcon>
-					<svg class="bx--header__menu-arrow" width="12" height="7" aria-hidden="true">
+					<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">
 						<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
 					</svg>
 				</ng-template>
 			</a>
-			<ul class="bx--header__menu" role="menu" [attr.aria-label]="title">
+			<ul class="cds--header__menu" role="menu" [attr.aria-label]="title">
 				<ng-content></ng-content>
 				<ng-container *ngFor="let headerItem of headerItems">
 					<ibm-header-item

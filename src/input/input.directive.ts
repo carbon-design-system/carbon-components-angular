@@ -25,17 +25,17 @@ export class TextInput {
 	 */
 	@Input() size: "sm" | "md" | "xl" = "md";
 
-	@HostBinding("class.bx--text-input") inputClass = true;
-	@HostBinding("class.bx--text-input--xl") get isSizeXl() {
+	@HostBinding("class.cds--text-input") inputClass = true;
+	@HostBinding("class.cds--text-input--xl") get isSizeXl() {
 		return this.size === "xl";
 	}
-	@HostBinding("class.bx--text-input--sm") get isSizeSm() {
+	@HostBinding("class.cds--text-input--sm") get isSizeSm() {
 		return this.size === "sm";
 	}
-	@HostBinding("class.bx--text-input--invalid") @Input() invalid = false;
-	@HostBinding("class.bx--text-input__field-wrapper--warning") @Input() warn = false;
-	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
-	@HostBinding("class.bx--text-input--light") get isLightTheme() {
+	@HostBinding("class.cds--text-input--invalid") @Input() invalid = false;
+	@HostBinding("class.cds--text-input__field-wrapper--warning") @Input() warn = false;
+	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
+	@HostBinding("class.cds--text-input--light") get isLightTheme() {
 		return this.theme === "light";
 	}
 }

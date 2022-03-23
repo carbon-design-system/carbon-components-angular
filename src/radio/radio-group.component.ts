@@ -48,12 +48,12 @@ import { RadioChange } from "./radio-change.class";
 	selector: "ibm-radio-group",
 	template: `
 		<div
-			class="bx--radio-button-group"
+			class="cds--radio-button-group"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
 			[ngClass]="{
-				'bx--radio-button-group--vertical': orientation === 'vertical',
-				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
+				'cds--radio-button-group--vertical': orientation === 'vertical',
+				'cds--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
 			}">
 			<ng-content></ng-content>
 		</div>
@@ -191,9 +191,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	/**
-	 * Binds 'bx--form-item' value to the class for `RadioGroup`.
+	 * Binds 'cds--form-item' value to the class for `RadioGroup`.
 	 */
-	@HostBinding("class.bx--form-item") radioButtonGroupClass = true;
+	@HostBinding("class.cds--form-item") radioButtonGroupClass = true;
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
