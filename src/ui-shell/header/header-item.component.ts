@@ -14,7 +14,8 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "ibm-header-item",
 	template: `
-		<li style="height: 100%"
+		<li
+			style="height: 100%"
 			role="menuitem">
 			<ng-container [ngSwitch]="useRouter">
 				<ng-template #content><ng-content></ng-content></ng-template>
