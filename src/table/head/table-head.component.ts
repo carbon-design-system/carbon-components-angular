@@ -7,10 +7,10 @@ import {
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
-import { getScrollbarWidth } from "../../utils/window-tools";
-import { I18n, Overridable } from "../../i18n/index";
+import { getScrollbarWidth } from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -30,11 +30,13 @@ import { TableRowSize } from "../table.component";
 			<th
 				ibmTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
+				scope="col"
 				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')">
 			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
+				scope="col"
 				style="width: 0;"
 				[id]="model.getId('select')">
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
@@ -42,11 +44,13 @@ import { TableRowSize } from "../table.component";
 			<th
 				ibmTableHeadCheckbox
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
+				scope="col"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
+				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
 				[id]="model.getId('select')">
 			</th>
@@ -55,6 +59,7 @@ import { TableRowSize } from "../table.component";
 					*ngIf="column && column.visible"
 					[ngStyle]="column.style"
 					ibmTableHeadCell
+					scope="col"
 					[class]="column.className"
 					[sortable]="sortable"
 					[skeleton]="skeleton"
@@ -67,7 +72,9 @@ import { TableRowSize } from "../table.component";
 					(sort)="sort.emit(i)">
 				</th>
 			</ng-container>
-			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth"
+				scope="col"
+				[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 				<!--
 					Scrollbar pushes body to the left so this header column is added to push
 					the title bar the same amount and keep the header and body columns aligned.
@@ -178,7 +185,7 @@ export class TableHead implements AfterViewInit {
 	}
 
 	onSelectAllCheckboxChange() {
-		if (!this.selectAllCheckbox) {
+		if (!this.selectAllCheckbox && !this.selectAllCheckboxSomeSelected) {
 			this.selectAll.emit(this.model);
 		} else {
 			this.deselectAll.emit(this.model);

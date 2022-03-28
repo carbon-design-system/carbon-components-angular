@@ -5,9 +5,9 @@ import {
 	Output
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { I18n, Overridable } from "./../../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -42,13 +42,26 @@ import { TableRowSize } from "../table.component";
 					}">
 				</tr>
 				<tr
-					*ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)"
+					*ngIf="model.isRowExpandable(i) && !shouldExpandAsTable(row) && !model.isRowFiltered(i)"
 					ibmTableExpandedRow
 					ibmExpandedRowHover
 					[row]="row"
 					[expanded]="model.isRowExpanded(i)"
 					[skeleton]="skeleton">
 				</tr>
+				<ng-container
+					*ngIf="model.isRowExpandable(i) && shouldExpandAsTable(row) && model.isRowExpanded(i) && !model.isRowFiltered(i)">
+					<tr
+						*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
+						ibmTableRow
+						[model]="model"
+						[showSelectionColumnCheckbox]="false"
+						[showSelectionColumn]="showSelectionColumn"
+						[row]="expandedDataRow"
+						[size]="size"
+						[skeleton]="skeleton">
+					</tr>
+				</ng-container>
 			</ng-container>
 		</ng-container>
 		<ng-content></ng-content>
@@ -151,5 +164,17 @@ export class TableBody {
 
 	getExpandButtonAriaLabel(): Observable<string> {
 		return this._expandButtonAriaLabel.subject;
+	}
+
+	firstExpandedDataInRow(row) {
+		const found = row.find(d => d.expandedData);
+		if (found) {
+			return found.expandedData;
+		}
+		return found;
+	}
+
+	shouldExpandAsTable(row) {
+		return row.some(d => d.expandAsTable);
 	}
 }

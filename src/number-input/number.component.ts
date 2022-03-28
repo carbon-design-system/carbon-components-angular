@@ -4,11 +4,12 @@ import {
 	HostBinding,
 	EventEmitter,
 	Output,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -26,22 +27,13 @@ export class NumberChange {
 }
 
 /**
- * [See demo](../../?path=/story/number--basic)
+ * [See demo](../../?path=/story/components-number--basic)
  *
- * <example-url>../../iframe.html?id=number--basic</example-url>
+ * <example-url>../../iframe.html?id=components-number--basic</example-url>
  */
 @Component({
 	selector: "ibm-number",
 	template: `
-		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -50,34 +42,44 @@ export class NumberChange {
 				'bx--number--light': theme === 'light',
 				'bx--number--nolabel': !label,
 				'bx--number--helpertext': helperText,
-				'bx--skeleton' : skeleton
+				'bx--skeleton' : skeleton,
+				'bx--number--sm': size === 'sm',
+				'bx--number--xl': size === 'xl'
 			}">
-			<div class="bx--number__input-wrapper">
+			<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
+			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+			</label>
+			<div
+				class="bx--number__input-wrapper"
+				[ngClass]="{
+					'bx--number__input-wrapper--warning': warn
+				}">
 				<input
 					type="number"
 					[id]="id"
 					[value]="value"
 					[attr.min]="min"
 					[attr.max]="max"
+					[attr.step]="step"
 					[disabled]="disabled"
 					[required]="required"
+					[attr.aria-label]="ariaLabel"
 					(input)="onNumberInputChange($event)"/>
-				<ibm-icon-warning-filled
+				<svg
+					*ngIf="!skeleton && !warn && invalid"
+					ibmIcon="warning--filled"
 					size="16"
-					*ngIf="!skeleton && invalid"
-					class="bx--number__invalid"
-					style="display: inherit;">
-				</ibm-icon-warning-filled>
+					class="bx--number__invalid">
+				</svg>
+				<svg
+					*ngIf="!skeleton && !invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--number__invalid bx--number__invalid--warning">
+				</svg>
 				<div *ngIf="!skeleton" class="bx--number__controls">
-					<button
-						class="bx--number__control-btn up-icon"
-						type="button"
-						aria-live="polite"
-						aria-atomic="true"
-						[attr.aria-label]="getIncrementLabel() | async"
-						(click)="onIncrement()">
-						<ibm-icon-caret-up size="16"></ibm-icon-caret-up>
-					</button>
 					<button
 						class="bx--number__control-btn down-icon"
 						type="button"
@@ -85,13 +87,32 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<ibm-icon-caret-down size="16"></ibm-icon-caret-down>
+						<svg ibmIcon="subtract" size="16"></svg>
 					</button>
+					<div class="bx--number__rule-divider"></div>
+					<button
+						class="bx--number__control-btn up-icon"
+						type="button"
+						aria-live="polite"
+						aria-atomic="true"
+						[attr.aria-label]="getIncrementLabel() | async"
+						(click)="onIncrement()">
+						<svg ibmIcon="add" size="16"></svg>
+					</button>
+					<div class="bx--number__rule-divider"></div>
 				</div>
 			</div>
-			<div *ngIf="invalid" class="bx--form-requirement">
+			<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+			</div>
+			<div *ngIf="!warn && invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</div>
 	`,
@@ -132,6 +153,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() id = `number-${NumberComponent.numberCount}`;
 	/**
+	 * Number input field render size
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
+	/**
 	 * Reflects the required attribute of the `input` element.
 	 */
 	@Input() required: boolean;
@@ -169,7 +194,26 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the invalid text.
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
-
+	/**
+	 * Sets the amount the number controls increment and decrement by.
+	 */
+	@Input() step = 1;
+	/**
+	 * If `step` is a decimal, we may want precision to be set to go around floating point precision.
+	 */
+	@Input() precision: number;
+	/**
+	 * Set to `true` to show a warning (contents set by warningText)
+	 */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
+	/**
+	 * Sets the arialabel for input
+	 */
+	@Input() ariaLabel: string;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -228,6 +272,11 @@ export class NumberComponent implements ControlValueAccessor {
 		this.onTouched = fn;
 	}
 
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
+	}
+
 	/**
 	 * Sets the disabled state through the model
 	 */
@@ -246,21 +295,23 @@ export class NumberComponent implements ControlValueAccessor {
 	propagateChange = (_: any) => { };
 
 	/**
-	 * Adds 1 to the current `value`.
+	 * Adds `step` to the current `value`.
 	 */
 	onIncrement(): void {
-		if (this.max === null || this.value < this.max) {
-			this.value++;
+		if (this.max === null || this.value + this.step <= this.max) {
+			this.value += this.step;
+			this.value = parseFloat(this.value.toPrecision(this.precision));
 			this.emitChangeEvent();
 		}
 	}
 
 	/**
-	 * Subtracts 1 to the current `value`.
+	 * Subtracts `step` to the current `value`.
 	 */
 	onDecrement(): void {
-		if (this.min === null || this.value > this.min) {
-			this.value--;
+		if (this.min === null || this.value - this.step >= this.min) {
+			this.value -= this.step;
+			this.value = parseFloat(this.value.toPrecision(this.precision));
 			this.emitChangeEvent();
 		}
 	}

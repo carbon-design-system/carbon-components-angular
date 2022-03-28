@@ -5,7 +5,11 @@ import {
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, number } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	number,
+	select
+} from "@storybook/addon-knobs/angular";
 
 import { ProgressIndicatorModule, PlaceholderModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
@@ -43,7 +47,12 @@ storiesOf("Components|Progress Indicator", module)
 	.add("Basic", () => ({
 		template: `
 		<div style="display: flex;">
-			<ibm-progress-indicator [steps]="steps" [current]="current" (stepSelected)="stepSelected($event)"></ibm-progress-indicator>
+			<ibm-progress-indicator
+				[steps]="steps"
+				[current]="current"
+				(stepSelected)="stepSelected($event)"
+				[spacing]="spacing">
+			</ibm-progress-indicator>
 			<ibm-placeholder></ibm-placeholder>
 		</div>
 		`,
@@ -82,12 +91,18 @@ storiesOf("Components|Progress Indicator", module)
 				}
 			],
 			current: number("Current progress", 1),
-			stepSelected: action("stepSelected")
+			stepSelected: action("stepSelected"),
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Vertical", () => ({
 		template: `
-		<ibm-progress-indicator orientation="vertical" [steps]="steps" [current]="current" (stepSelected)="stepSelected($event)">
+		<ibm-progress-indicator
+			orientation="vertical"
+			[steps]="steps"
+			[current]="current"
+			(stepSelected)="stepSelected($event)"
+			[spacing]="spacing">
 		</ibm-progress-indicator>
 		`,
 		props: {
@@ -115,18 +130,27 @@ storiesOf("Components|Progress Indicator", module)
 				}
 			],
 			current: number("Current progress", 1),
-			stepSelected: action("stepSelected")
+			stepSelected: action("stepSelected"),
+			spacing: select("Spacing", ["default", "equal"], "default")
 		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		&nbsp;&nbsp;
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
 		`
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/ProgressIndicator.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_progress_indicator.progressindicator.html"></ibm-documentation>
 		`
 	}));

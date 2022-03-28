@@ -5,19 +5,19 @@ import {
 } from "@angular/core";
 
 /**
- * A convinence directive for applying styling to a link.
+ * A convenience directive for applying styling to a link.
  *
- * [See demo](../../?path=/story/link--basic)
+ * [See demo](../../?path=/story/components-link--basic)
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <a href="#" ibmLink>A link</a>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
  *
- * <example-url>../../iframe.html?id=link--basic</example-url>
+ * <example-url>../../iframe.html?id=components-link--basic</example-url>
  */
 @Directive({
 	selector: "[ibmLink]"
@@ -31,6 +31,12 @@ export class Link {
 	 * Automatically set to `-1` when link is disabled.
 	 */
 	@HostBinding("attr.tabindex") tabindex;
+
+	/**
+	 * Set to true to show links inline in a sentence or paragraph.
+	 */
+	@Input()
+	@HostBinding("class.bx--link--inline") inline = false;
 
 	/**
 	 * Set to true to disable link.

@@ -23,7 +23,7 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save carbon-components-angular carbon-components @carbon/icons-angular
+$ npm i --save carbon-components-angular carbon-components
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
@@ -40,7 +40,45 @@ That's it! Now we can run `npm start` and start building out our application!
 
 [![Edit Carbon Components Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0129r494ql)
 
+### Support
+
+- For general usage questions, or other discussions visit our [Github Discussions](https://github.com/IBM/carbon-components-angular/discussions)
+- For things that are broken or need enhancement, [open an issue](https://github.com/IBM/carbon-components-angular/issues/new)
+- For quick usage questions:
+  - Join the [Carbon Design System Discord](https://discord.gg/Wys7J95Mhw)!
+  - IBMers should use our #carbon-ng Slack channel
+
+Angular version support matrix:
+| Angular | v3 | v4 | v5 (future release) |
+| ------- | -- | -- | ------------------- |
+| 6       | ✅ | ❌ | ❌                   |
+| 7       | ✅ | ✅ | ❌                   |
+| 8       | ✅ | ✅ | ❌                   |
+| 9       | ❌ | ✅ | ❌                   |
+| 10      | ❌ | ✅ | ✅                   |
+| 11      | ❌ | ✅ | ✅                   |
+| 12      | ❌ | ✅ | ✅                   |
+| 13      | ❌ | ✅ | ✅                   |
+
+Carbon Components Angular version support matrix:
+| Carbon Components Angular version | Community support | Active support |
+| --------------------------------- | ----------------- | -------------- |
+| v1                                | ❌                 | ❌             |
+| v2                                | ❌                 | ❌             |
+| v3                                | ✅                 | ❌             |
+| v4                                | ✅                 | ✅             |
+
+**Not supported versions: Out of support. We plan to support our latest, and previous release. Beyond that we make no guarantees of continued support - these include v1, v2**
+
+How to read this table:
+
+- Community support: We depend primarily on community issue reports, and contributions to help maintain our components. A version with only community support is especially reliant on contributions, though we will backport small fixes when applicable.
+- Active support: We will actively maintain and update these versions with new features, new components, bug fixes, and ensure it's compatible with the Carbon Design System and latest Angular versions
+
 ### Contributing
+
+#### IBMers contributing
+**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/IBM/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
 
 #### Quickstart
 - fork IBM/carbon-components-angular and clone it locally

@@ -25,7 +25,14 @@ storiesOf("Components|Time Picker", module)
 	.addDecorator(withKnobs)
 	.add("Simple", () => ({
 		template: `
-		<ibm-timepicker [theme]="theme" (valueChange)="timePickerChange($event)" [value]="value" [disabled]="disableTime" label="Select a time">
+		<ibm-timepicker
+			[theme]="theme"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			(valueChange)="timePickerChange($event)"
+			[value]="value"
+			[disabled]="disableTime"
+			label="Select a time">
 			<ibm-timepicker-select [theme]="theme" (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
@@ -43,7 +50,9 @@ storiesOf("Components|Time Picker", module)
 			value: text("Time in 12hr format", "12:12"),
 			disableTime: boolean("disabled time", false),
 			disabledSelect: boolean("disabled selects", false),
-			theme: select("Theme", ["dark", "light"], "dark")
+			theme: select("Theme", ["dark", "light"], "dark"),
+			invalid: boolean("Show form validation", false),
+			invalidText: text("Form validation text", "A valid value is required")
 		}
 	}))
 	.add("With ngModel", () => ({
@@ -90,6 +99,6 @@ storiesOf("Components|Time Picker", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/TimePicker.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_timepicker.timepicker.html"></ibm-documentation>
 		`
 	}));

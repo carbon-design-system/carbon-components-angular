@@ -25,11 +25,11 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService } from "./../utils/utils.module";
-import { hasScrollableParents } from "../utils";
+import { ElementService, getScrollableParents } from "carbon-components-angular/utils";
+import { hasScrollableParents } from "carbon-components-angular/utils";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -45,9 +45,9 @@ import { hasScrollableParents } from "../utils";
  * - `[appendInline]="false"` will always append to the body/`ibm-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
- * [See demo](../../?path=/story/dropdown--basic)
+ * [See demo](../../?path=/story/components-dropdown--basic)
  *
- * <example-url>../../iframe.html?id=dropdown--basic</example-url>
+ * <example-url>../../iframe.html?id=components-dropdown--basic</example-url>
  */
 @Component({
 	selector: "ibm-dropdown",
@@ -56,37 +56,40 @@ import { hasScrollableParents } from "../utils";
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
-	<div *ngIf="helperText" class="bx--form__helper-text">
-		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-	</div>
 	<div
-		[id]="id"
-		class="bx--dropdown bx--list-box"
+		class="bx--list-box"
 		[ngClass]="{
+			'bx--dropdown': type !== 'multi',
+			'bx--multiselect': type === 'multi',
+			'bx--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
 			'bx--dropdown--light': theme === 'light',
+			'bx--list-box--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton,
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid,
-			'bx--list-box--up': dropUp
+			'bx--dropdown--warning bx--list-box--warning': warn,
+			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
+			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
+			'bx--list-box--expanded': !menuIsClosed
 		}">
-		<div
-			type="button"
+		<button
 			#dropdownButton
+			[id]="id"
+			type="button"
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
+			aria-haspopup="listbox"
 			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[attr.disabled]="disabled ? true : null"
-			[tabindex]="disabled ? -1 : 0">
+			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
 				(keydown.enter)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="bx--tag--filter bx--list-box__selection--multi"
+				class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"
 				tabindex="0"
 				[title]="clearText">
 				{{getSelectedCount()}}
@@ -109,29 +112,47 @@ import { hasScrollableParents } from "../utils";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg ibmIconWarningFilled
-				size="16"
-				*ngIf="invalid"
-				class="bx--dropdown__invalid-icon">
+			<svg
+				*ngIf="!warn && invalid"
+				class="bx--dropdown__invalid-icon"
+				ibmIcon="warning--filled"
+				size="16">
 			</svg>
-			<ibm-icon-chevron-down
+			<svg
+				*ngIf="!invalid && warn"
+				ibmIcon="warning--alt--filled"
 				size="16"
-				*ngIf="!skeleton"
-				class="bx--list-box__menu-icon"
-				[attr.aria-label]="menuButtonLabel"
-				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-			</ibm-icon-chevron-down>
-		</div>
+				class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
+			</svg>
+			<span class="bx--list-box__menu-icon">
+				<svg
+					*ngIf="!skeleton"
+					ibmIcon="chevron--down"
+					size="16"
+					[attr.aria-label]="menuButtonLabel"
+					[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				</svg>
+			</span>
+		</button>
 		<div
 			#dropdownMenu
 			[ngClass]="{
-				'drop-up': dropUp
+				'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="invalid" class="bx--form-requirement">
-		{{invalidText}}
+	<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+	</div>
+	<div *ngIf="!warn && invalid" class="bx--form-requirement">
+		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+	</div>
+	<div *ngIf="!invalid && warn" class="bx--form-requirement">
+		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 	</div>
 	`,
 	providers: [
@@ -170,7 +191,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 *
 	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -203,7 +224,15 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
-	@Input() invalidText = "";
+	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
@@ -231,6 +260,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() itemValueKey: string;
 	/**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     * `top-after-reopen`: selected item jump to top after reopen dropdown
+     */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
+	/**
 	 * Accessible label for the button that opens the dropdown list.
 	 * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
 	 */
@@ -240,6 +276,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Defaults to the `DROPDOWN.SELECTED` value from the i18n service.
 	 */
 	@Input() selectedLabel = this.i18n.get().DROPDOWN.SELECTED;
+	/**
+	 * Overrides the automatic dropUp.
+	 */
+	@Input() dropUp: boolean;
 	/**
 	 * Emits selection events.
 	 */
@@ -262,12 +302,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownButton", { static: false }) dropdownButton;
+	@ViewChild("dropdownButton", { static: true }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
 	// @ts-ignore
-	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
 	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**
@@ -276,9 +316,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	menuIsClosed = true;
 
 	/**
-	 * controls wether the `drop-up` class is applied
+	 * controls whether the `drop-up` class is applied
 	 */
-	dropUp = false;
+	_dropUp = false;
 
 	// .bind creates a new function, so we declare the methods below
 	// but .bind them up here
@@ -292,7 +332,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	protected onTouchedCallback: () => void = this._noop;
 
 	// primarily used to capture and propagate input to `writeValue` before the content is available
-	protected writtenValue = [];
+	private _writtenValue: any = [];
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
 
 	/**
 	 * Creates an instance of Dropdown.
@@ -321,22 +370,17 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.view) {
 			return;
 		}
-		if (this.writtenValue && this.writtenValue.length) {
+		if ((this.writtenValue && this.writtenValue.length) || typeof this.writtenValue === "number") {
 			this.writeValue(this.writtenValue);
 		}
 		this.view.type = this.type;
 		this.view.size = this.size;
+
+		// function to check if the event is organic (isUpdate === false) or programmatic
+		const isUpdate = event => event && event.isUpdate;
+
 		this.view.select.subscribe(event => {
-			if (this.type === "multi") {
-				// if we have a `value` selector and selected items map them appropriately
-				if (this.itemValueKey && this.view.getSelected()) {
-					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
-				// otherwise just pass up the values from `getSelected`
-				} else {
-					this.propagateChange(this.view.getSelected());
-				}
-			} else {
+			if (this.type === "single" && !isUpdate(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {
@@ -348,8 +392,20 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.propagateChange(null);
 				}
 			}
+
+			if (this.type === "multi" && !isUpdate(event)) {
+				// if we have a `value` selector and selected items map them appropriately
+				if (this.itemValueKey && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+					this.propagateChange(values);
+				// otherwise just pass up the values from `getSelected`
+				} else {
+					this.propagateChange(this.view.getSelected());
+				}
+			}
 			// only emit selected for "organic" selections
-			if (event && !event.isUpdate) {
+			if (!isUpdate(event)) {
+				this.checkForReorder();
 				this.selected.emit(event);
 			}
 			// manually tick the app so the view picks up any changes
@@ -368,6 +424,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		} else if (this.appendInline === null) {
 			this.appendInline = true;
 		}
+		this.checkForReorder();
 	}
 
 	/**
@@ -417,6 +474,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.view.propagateSelected(value);
 				}
 			}
+			this.checkForReorder();
 		});
 	}
 
@@ -550,7 +608,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	clearSelected() {
-		if (this.disabled) { return; }
+		if (this.disabled || this.getSelectedCount() === 0) {
+			return;
+		}
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
@@ -616,11 +676,34 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
+		const lightClass = this.theme === "light" ? " bx--list-box--light" : "";
+		const expandedClass = !this.menuIsClosed ? " bx--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
-			this.elementRef.nativeElement.className);
+			`${this.elementRef.nativeElement.className}${lightClass}${expandedClass}`);
 		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
+	}
+
+	/**
+	 * Detects whether or not the `Dropdown` list is visible within all scrollable parents.
+	 * This can be overridden by passing in a value to the `dropUp` input.
+	 */
+	_shouldDropUp() {
+		// check if dropdownMenu exists first.
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		// check if menu exists first.
+		const menuRect = menu && menu.getBoundingClientRect();
+		if (menu && menuRect) {
+			const scrollableParents = getScrollableParents(menu);
+			return scrollableParents.reduce((shouldDropUp: boolean, parent: HTMLElement) => {
+				const parentRect = parent.getBoundingClientRect();
+				const isBelowParent = !(menuRect.bottom <= parentRect.bottom);
+				return shouldDropUp || isBelowParent;
+			}, false);
+		}
+
+		return false;
 	}
 
 	/**
@@ -632,6 +715,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			return;
 		}
 
+		this._dropUp = false;
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if we're not appending inline
@@ -653,13 +737,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// set the dropdown menu to drop up if it's near the bottom of the screen
 		// setTimeout lets us measure after it's visible in the DOM
 		setTimeout(() => {
-			const button = this.dropdownButton.nativeElement;
-			const boundingClientRect = button.getBoundingClientRect();
-			// +100 to give the dropUp some buffer
-			if ((boundingClientRect.bottom + 100) > window.innerHeight) {
-				this.dropUp = true;
-			} else {
-				this.dropUp = false;
+			if (this.dropUp === null || this.dropUp === undefined) {
+				this._dropUp = this._shouldDropUp();
 			}
 		}, 0);
 
@@ -679,6 +758,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// return early if the menu is already closed
 		if (this.menuIsClosed) { return; }
 		this.menuIsClosed = true;
+		this.checkForReorder();
 		this.onClose.emit();
 		this.close.emit();
 
@@ -714,5 +794,15 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Controls when it's needed to apply the selection feedback
+	 */
+	protected checkForReorder() {
+		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected();
+		}
 	}
 }

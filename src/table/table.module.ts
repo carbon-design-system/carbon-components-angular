@@ -3,19 +3,13 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-// icons
-import {
-	ChevronRightModule,
-	SearchModule as SearchIconModule,
-	CloseModule
-} from "@carbon/icons-angular";
-
 // internal module imports
-import { NFormsModule } from "./../forms/forms.module";
-import { DialogModule } from "./../dialog/dialog.module";
-import { I18nModule } from "./../i18n/index";
-import { ButtonModule } from "./../button/button.module";
-import { SearchModule } from "./../search/search.module";
+import { NFormsModule } from "carbon-components-angular/forms";
+import { DialogModule } from "carbon-components-angular/dialog";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { ButtonModule } from "carbon-components-angular/button";
+import { SearchModule } from "carbon-components-angular/search";
+import { IconModule } from "carbon-components-angular/icon";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
@@ -44,9 +38,11 @@ import { TableData } from "./cell/table-data.component";
 import { TableCheckbox } from "./cell/table-checkbox.component";
 import { TableRadio } from "./cell/table-radio.component";
 import { TableExpandButton } from "./cell/table-expand-button.component";
+import { TableHeadCellLabel } from "./head/table-head-cell-label.directive";
 
 // model exports
 export { TableModel } from "./table-model.class";
+export { TableRow } from "./table-row.class";
 export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 export * from "./table-adapter.class";
@@ -60,6 +56,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
@@ -86,6 +83,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
@@ -113,9 +111,7 @@ export * from "./data-grid-interaction-model.class";
 		ButtonModule,
 		SearchModule,
 		I18nModule,
-		ChevronRightModule,
-		SearchIconModule,
-		CloseModule
+		IconModule
 	]
 })
 export class TableModule {}

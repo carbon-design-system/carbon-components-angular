@@ -7,48 +7,62 @@ import {
 
 import { ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
-import { ExperimentalService } from "./../experimental.module";
+import { ExperimentalService } from "carbon-components-angular/experimental";
 import { NotificationDisplayService } from "./notification-display.service";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
- * [See demo](../../?path=/story/notification--toast)
+ * [See demo](../../?path=/story/components-notification--toast)
  *
- * <example-url>../../iframe.html?id=notification--toast</example-url>
+ * <example-url>../../iframe.html?id=components-notification--toast</example-url>
  */
 @Component({
 	selector: "ibm-toast",
 	template: `
-		<ibm-icon-error-filled
-			size="16"
+		<svg
+			ibmIcon="error--filled"
+			size="20"
 			*ngIf="notificationObj.type === 'error'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-error-filled>
-		<ibm-icon-warning-filled
-			size="16"
+		</svg>
+		<svg
+			ibmIcon="warning--filled"
+			size="20"
 			*ngIf="notificationObj.type === 'warning'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-warning-filled>
-		<ibm-icon-checkmark-filled
-			size="16"
+		</svg>
+		<svg
+			ibmIcon="checkmark--filled"
+			size="20"
 			*ngIf="notificationObj.type === 'success'"
 			class="bx--toast-notification__icon">
-		</ibm-icon-checkmark-filled>
+		</svg>
+		<svg
+			ibmIcon="information--filled"
+			size="20"
+			*ngIf="notificationObj.type === 'info'"
+			class="bx--toast-notification__icon">
+		</svg>
 		<div class="bx--toast-notification__details">
 			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
-			<p *ngIf="!notificationObj.template" ibmToastSubtitle [innerHTML]="notificationObj.subtitle"></p>
+			<div *ngIf="!notificationObj.template" ibmToastSubtitle>
+				<span [innerHTML]="notificationObj.subtitle"></span>
+				<ng-container *ngFor="let link of notificationObj.links">
+					<a ibmLink [href]="link.href"> {{link.text}}</a>
+				</ng-container>
+			</div>
 			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 		</div>
 		<button
-			*ngIf="showClose"
+			*ngIf="!isCloseHidden"
 			class="bx--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<ibm-icon-close size="16" class="bx--toast-notification__close-icon"></ibm-icon-close>
+			<svg ibmIcon="close" size="16" class="bx--toast-notification__close-icon"></svg>
 		</button>
 	`
 })

@@ -1,7 +1,8 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { DialogModule, PlaceholderModule } from "../../";
+import { DialogModule } from "../dialog.module";
+import { PlaceholderModule } from "../../placeholder/index";
 import { DocumentationModule } from "../../documentation-component/documentation.module";
 
 storiesOf("Components|Tooltip Definition", module)
@@ -33,6 +34,6 @@ storiesOf("Components|Tooltip Definition", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/TooltipDefinition.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_dialog_tooltip.tooltipdefinition.html"></ibm-documentation>
 		`
 	}));

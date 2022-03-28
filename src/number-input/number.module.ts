@@ -2,15 +2,11 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import {
-	CaretUpModule,
-	CaretDownModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
 
 // imports
 import { Number } from "./number.component";
-import { I18nModule } from "../i18n/index";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -23,9 +19,7 @@ import { I18nModule } from "../i18n/index";
 		FormsModule,
 		CommonModule,
 		I18nModule,
-		CaretUpModule,
-		CaretDownModule,
-		WarningFilledModule
+		IconModule
 	]
 })
 export class NumberModule { }

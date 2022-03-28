@@ -6,13 +6,13 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { Select } from "../select/select.component";
+import { Select } from "carbon-components-angular/select";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
- * [See demo](../../?path=/story/time-picker-select--simple)
+ * [See demo](../../?path=/story/components-time-picker-select--simple)
  *
- * <example-url>../../iframe.html?id=time-picker-select--simple</example-url>
+ * <example-url>../../iframe.html?id=components-time-picker-select--simple</example-url>
  */
 @Component({
 	selector: "ibm-timepicker-select",
@@ -27,7 +27,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="bx--select-input">
 				<ng-content></ng-content>
 			</select>
-			<ibm-icon-chevron-down size="16" *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down>
+			<svg ibmIcon="chevron--down" size="16" *ngIf="!skeleton" class="bx--select__arrow"></svg>
 		</div>
 	`,
 	providers: [

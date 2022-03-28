@@ -6,11 +6,11 @@ import {
 	HostBinding,
 	HostListener
 } from "@angular/core";
-import { TableModel } from "./../table-model.class";
-import { I18n, Overridable } from "./../../i18n/index";
-import { TableItem } from "./../table-item.class";
+import { TableModel } from "../table-model.class";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.component";
+import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -28,18 +28,24 @@ import { TableRowSize } from "../table.component";
 				[headers]="model.getHeaderId('expand')"
 				(expandRow)="expandRow.emit()">
 			</td>
-			<td
-				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
-				ibmTableCheckbox
-				class="bx--table-column-checkbox"
-				[size]="size"
-				[selected]="selected"
-				[label]="getCheckboxLabel()"
-				[row]="row"
-				[skeleton]="skeleton"
-				[headers]="model.getHeaderId('select')"
-				(change)="onSelectionChange()">
-			</td>
+			<ng-container *ngIf="!skeleton && showSelectionColumn && !enableSingleSelect">
+				<td
+					*ngIf="!showSelectionColumnCheckbox; else tableCheckboxTemplate">
+				</td>
+				<ng-template #tableCheckboxTemplate>
+					<td
+						ibmTableCheckbox
+						class="bx--table-column-checkbox"
+						[size]="size"
+						[selected]="selected"
+						[label]="getCheckboxLabel()"
+						[row]="row"
+						[skeleton]="skeleton"
+						[headers]="model.getHeaderId('select')"
+						(change)="onSelectionChange()">
+					</td>
+				</ng-template>
+			</ng-container>
 			<td
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				ibmTableRadio
@@ -56,6 +62,7 @@ import { TableRowSize } from "../table.component";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="item.title"
 					[class]="model.getHeader(j).className"
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
@@ -69,6 +76,7 @@ import { TableRowSize } from "../table.component";
 					ibmTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
+					[title]="item.title"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
 					[attr.rowspan]="item.rowSpan"
@@ -128,6 +136,12 @@ export class TableRowComponent {
 	@Input() showSelectionColumn = true;
 
 	/**
+	 * Shows or hide the checkbox in the selection column when `showSelectionColumn`
+	 * is set to true
+	 */
+	@Input() showSelectionColumnCheckbox = true;
+
+	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.
 	 *
 	 * Example:
@@ -181,6 +195,10 @@ export class TableRowComponent {
 
 	@HostBinding("attr.data-parent-row") get isParentRow() {
 		return this.expandable ? true : null;
+	}
+
+	@HostBinding("attr.tabindex") get isAccessible() {
+		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
 	}
 
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");

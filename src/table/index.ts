@@ -7,12 +7,14 @@ export { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 export { TableContainer } from "./table-container.component";
 export { TableHeader } from "./header/table-header.component";
 export { TableHeaderTitle } from "./header/table-header-title.directive";
+export { TableHeadCellLabel } from "./head/table-head-cell-label.directive";
 export { TableHeaderDescription } from "./header/table-header-description.directive";
 
 export { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports
-export { Table, TableRowSize, TableTranslations } from "./table.component";
+export { Table } from "./table.component";
+export { TableRowSize, TableTranslations } from "./table.types";
 export { TableDirective } from "./table.directive";
 export { TableHead } from "./head/table-head.component";
 export { TableHeadCell } from "./head/table-head-cell.component";

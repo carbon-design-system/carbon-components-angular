@@ -1,6 +1,37 @@
-export { CheckboxModule } from "../checkbox/index";
-export { ToggleModule } from "../toggle/index";
-export { RadioModule } from "../radio/index";
-export { InputModule } from "../input/index";
-export { ButtonModule } from "../button/index";
-export * from "./forms.module";
+// export the forms module
+export { NFormsModule } from "./forms.module";
+
+// re-export from form related modules and components
+export {
+	CheckboxModule,
+	Checkbox,
+	CheckboxChange,
+	CheckboxState,
+	CheckboxValue
+} from "carbon-components-angular/checkbox";
+export {
+	ToggleModule,
+	Toggle,
+	ToggleChange,
+	ToggleState
+} from "carbon-components-angular/toggle";
+export {
+	RadioModule,
+	Radio,
+	RadioChange,
+	RadioGroup
+} from "carbon-components-angular/radio";
+export {
+	InputModule,
+	Label,
+	TextArea,
+	TextInput
+} from "carbon-components-angular/input";
+export {
+	ButtonModule,
+	Button,
+	ButtonSize,
+	ButtonType,
+	ButtonSet,
+	DangerButtonType
+} from "carbon-components-angular/button";

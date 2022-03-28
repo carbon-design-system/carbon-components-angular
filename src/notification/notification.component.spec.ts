@@ -2,13 +2,7 @@ import { TestBed } from "@angular/core/testing";
 
 import { Notification, NotificationDisplayService } from "./index";
 import { I18nModule } from "../i18n/index";
-import {
-	CloseModule,
-	ErrorFilledModule,
-	CheckmarkFilledModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
-
+import { IconModule } from "../icon/index";
 
 describe("Notification", () => {
 	beforeEach(() => {
@@ -17,10 +11,7 @@ describe("Notification", () => {
 			providers: [NotificationDisplayService],
 			imports: [
 				I18nModule,
-				CloseModule,
-				ErrorFilledModule,
-				CheckmarkFilledModule,
-				WarningFilledModule
+				IconModule
 			]
 		});
 	});
@@ -87,7 +78,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector(".bx--inline-notification__text-wrapper").querySelectorAll("p")[1];
+		let p = fixture.nativeElement.querySelector(".bx--inline-notification__text-wrapper div span");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});

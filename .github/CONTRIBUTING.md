@@ -2,6 +2,7 @@
 
 Want to contribute to this repository? Please read below first:
 
+* [IBMers Contributing](#ibmers-contributing)
 * [Issues and Bugs](#issues-and-bugs)
 * [Feature Requests](#feature-requests)
 * [Doc Fixes](#doc-fixes)
@@ -9,6 +10,15 @@ Want to contribute to this repository? Please read below first:
 * [Coding Standards](#coding-standards)
 * [Commit Message Guidelines](#commit-message-guidlines)
 * [Testing](#testing)
+
+## IBMers Contributing
+
+**If you are an IBMer**, complete these steps, before contributing to any open source project:
+1. Complete your [yearly training](https://ibm.biz/BdzGnB).
+2. Map your identity using [IBM's GitHub mapper tool](https://gh-user-map.dal1a.cirrus.ibm.com/). This will generate an email and invite you to join the IBM org on Github.
+3. Get your manager’s approval.
+
+You can find out more at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/).
 
 ## Issues and Bugs
 

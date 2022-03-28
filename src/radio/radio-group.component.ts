@@ -8,14 +8,15 @@ import {
 	Output,
 	QueryList,
 	HostBinding,
-	AfterViewInit
+	AfterViewInit,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
 
 /**
- * [See demo](../../?path=/story/radio--basic)
+ * [See demo](../../?path=/story/components-radio--basic)
  *
  * class: RadioGroup
  *
@@ -41,7 +42,7 @@ import { RadioChange } from "./radio-change.class";
  *
  * Also see: [`Radio`](#ibm-radio)
  *
- * <example-url>../../iframe.html?id=radio--basic</example-url>
+ * <example-url>../../iframe.html?id=components-radio--basic</example-url>
  */
 @Component({
 	selector: "ibm-radio-group",
@@ -53,8 +54,7 @@ import { RadioChange } from "./radio-change.class";
 			[ngClass]="{
 				'bx--radio-button-group--vertical': orientation === 'vertical',
 				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
-			}"
-			role="radiogroup">
+			}">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -103,6 +103,15 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	@Input()
 	set selected(selected: Radio | null) {
+		const alreadySelected = (this._selected && this._selected.value) === (selected && selected.value);
+		if (alreadySelected) {
+			// no need to redo
+			return;
+		}
+
+		if (this._selected) {
+			this._selected.checked = false;
+		}
 		this._selected = selected;
 		this.value = selected ? selected.value : null;
 		this.checkSelectedRadio();
@@ -153,7 +162,17 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * Set to true to disable the whole radio group
 	 */
-	@Input() disabled = false;
+	@Input()
+	set disabled(disabled: boolean) {
+		this._disabled = disabled;
+		this.updateRadios();
+	}
+	/**
+	 * Returns the disabled value for the `RadioGroup`.
+	 */
+	get disabled(): boolean {
+		return this._disabled;
+	}
 
 	/**
 	 * Returns the skeleton value in the `RadioGroup` if there is one.
@@ -215,15 +234,31 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
-
 		if (this.radios && !alreadySelected) {
+			if (this.selected && this.value) {
+				this.selected.checked = false;
+			}
 			this._selected = null;
 			this.radios.forEach(radio => {
-				if (radio.checked) {
+				if (radio.checked || radio.value === this._value) {
 					this._selected = radio;
 				}
 			});
+			if (this.selected && !this.value) {
+				this._value = this.selected.value;
+			}
 		}
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the `RadioGroup`.
+	 *
+	 * ex: `this.formGroup.get("myRadioGroup").disable();`
+	 *
+	 * @param isDisabled `true` to disable the inputs
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	/**
@@ -241,10 +276,13 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	updateRadios() {
 		if (this.radios) {
 			setTimeout(() => {
-				this.radios.forEach(radio => radio.name = this.name);
-				if (this.labelPlacement === "left") {
-					this.radios.forEach(radio => radio.labelPlacement = "left");
-				}
+				this.radios.forEach(radio => {
+					radio.name = this.name;
+					radio.setDisabledFromGroup(this.disabled);
+					if (this.labelPlacement === "left") {
+						radio.labelPlacement = "left";
+					}
+				});
 			});
 		}
 	}
@@ -254,6 +292,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	writeValue(value: any) {
 		this.value = value;
+		setTimeout(() => {
+			this.updateSelectedRadioFromValue();
+			this.checkSelectedRadio();
+		});
 	}
 
 	ngAfterContentInit() {
@@ -285,6 +327,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.onTouched = fn;
 	}
 
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
+	}
+
 	/**
 	 * Needed to properly implement ControlValueAccessor.
 	 */
@@ -304,6 +351,14 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	protected updateRadioChangeHandler() {
 		this.radios.forEach(radio => {
 			radio.registerRadioChangeHandler((event: RadioChange) => {
+				if ((this.selected && this.selected.value) === event.value) {
+					// no need to redo
+					return;
+				}
+				// deselect previous radio
+				if (this.selected) {
+					this.selected.checked = false;
+				}
 				// update selected and value from the event
 				this._selected = event.source;
 				this._value = event.value;

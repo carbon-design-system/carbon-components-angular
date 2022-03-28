@@ -7,7 +7,7 @@ import {
 	AfterViewInit
 } from "@angular/core";
 
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 export enum SnippetType {
 	single = "single",
@@ -16,13 +16,13 @@ export enum SnippetType {
 }
 
 /**
- * [See demo](../../?path=/story/code-snippet--basic)
+ * [See demo](../../?path=/story/components-code-snippet--basic)
  *
  * ```html
  * <ibm-code-snippet>Code</ibm-code-snippet>
  * ```
  *
- * <example-url>../../iframe.html?id=code-snippet--basic</example-url>
+ * <example-url>../../iframe.html?id=components-code-snippet--basic</example-url>
  */
 @Component({
 	selector: "ibm-code-snippet",
@@ -50,7 +50,7 @@ export enum SnippetType {
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
 				tabindex="0">
-				<ibm-icon-copy size="16" class="bx--snippet__icon"></ibm-icon-copy>
+				<svg ibmIcon="copy" size="16" class="bx--snippet__icon"></svg>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
@@ -59,7 +59,7 @@ export enum SnippetType {
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<ibm-icon-chevron-down size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down>
+				<svg ibmIcon="chevron--down" size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></svg>
 			</button>
 		</ng-template>
 

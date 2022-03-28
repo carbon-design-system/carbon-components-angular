@@ -63,6 +63,8 @@ const modalText =
 			</ibm-date-picker>
 			<code>{{formGroup.controls["range"].value | json}}</code>
 		</form>
+
+		<button (click)="disableAll()">Disable all</button>
 	`
 })
 class DatePickerStory {
@@ -95,6 +97,14 @@ class DatePickerStory {
 				Validators.required
 			]
 		});
+	}
+
+	disableAll() {
+		const single = this.formGroup.get("single");
+		const range = this.formGroup.get("range");
+
+		single.disabled ? single.enable() : single.disable();
+		range.disabled ? range.enable() : range.disable();
 	}
 }
 
@@ -146,8 +156,11 @@ storiesOf("Components|Date Picker", module)
 			[label]="label"
 			[placeholder]="placeholder"
 			[disabled]="disabled"
+			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker-input>
 		`,
@@ -157,6 +170,9 @@ storiesOf("Components|Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			disabled: boolean("Disabled", false),
 			valueChange: action("Date change fired!")
 		}
@@ -166,13 +182,17 @@ storiesOf("Components|Date Picker", module)
 			<p>With initial value</p>
 			<ibm-date-picker
 				[label]="label"
+				id="initial-value-datepicker"
 				[placeholder]="placeholder"
 				[language]="language"
+				[size]="size"
 				[theme]="theme"
 				[value]="value"
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
@@ -181,21 +201,27 @@ storiesOf("Components|Date Picker", module)
 				[label]="label"
 				[placeholder]="placeholder"
 				[language]="language"
+				[size]="size"
 				[theme]="theme"
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
 				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
 		`,
 		props: {
 			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -208,13 +234,19 @@ storiesOf("Components|Date Picker", module)
 		<ibm-date-picker
 			[label]="label"
 			[rangeLabel]="label"
+			[size]="size"
 			range="true"
+			id="initial-value-datepicker"
 			[placeholder]="placeholder"
 			[language]="language"
 			[theme]="theme"
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[rangeInvalid]="invalid"
+			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
 			[value]="value"
 			(valueChange)="valueChange($event)">
@@ -223,6 +255,7 @@ storiesOf("Components|Date Picker", module)
 		<ibm-date-picker
 			[label]="label"
 			[rangeLabel]="label"
+			[size]="size"
 			range="true"
 			[language]="language"
 			[placeholder]="placeholder"
@@ -230,17 +263,24 @@ storiesOf("Components|Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[rangeWarn]="warn"
+			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
 		`,
 		props: {
 			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -249,6 +289,10 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
 		<app-date-picker
 			(valueChange)="valueChange($event)">
 		</app-date-picker>
@@ -262,6 +306,7 @@ storiesOf("Components|Date Picker", module)
 			<div>
 				<ibm-date-picker
 					label="Date picker label"
+					[size]="size"
 					[(ngModel)]="single">
 				</ibm-date-picker>
 				<button
@@ -281,6 +326,7 @@ storiesOf("Components|Date Picker", module)
 			</div>
 			<div style="margin-top: 15px;">
 				<ibm-date-picker
+					[size]="size"
 					label="Date picker"
 					rangeLabel="Range label"
 					range="true"
@@ -304,6 +350,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			date: new Date(new Date().getFullYear(), 5, 15),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			rangeDates: [
 				new Date(new Date().getFullYear(), 5, 15),
 				new Date(new Date().getFullYear(), 8, 19)
@@ -318,6 +365,7 @@ storiesOf("Components|Date Picker", module)
 					<p>With initial value</p>
 					<ibm-date-picker
 						[label]="label"
+						[size]="size"
 						[placeholder]="placeholder"
 						[theme]="theme"
 						[value]="value"
@@ -330,6 +378,7 @@ storiesOf("Components|Date Picker", module)
 					<p style="margin-top: 20px;">Without initial value</p>
 					<ibm-date-picker
 						[label]="label"
+						[size]="size"
 						[placeholder]="placeholder"
 						[theme]="theme"
 						[disabled]="disabled"
@@ -344,6 +393,7 @@ storiesOf("Components|Date Picker", module)
 					<ibm-date-picker
 						[label]="label"
 						[placeholder]="placeholder"
+						[size]="size"
 						[theme]="theme"
 						[value]="value"
 						[disabled]="disabled"
@@ -356,6 +406,7 @@ storiesOf("Components|Date Picker", module)
 					<ibm-date-picker
 						[label]="label"
 						[placeholder]="placeholder"
+						[size]="size"
 						[theme]="theme"
 						[disabled]="disabled"
 						[invalid]="invalid"
@@ -369,6 +420,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			valueChange: action("Date change fired!"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
@@ -380,7 +432,13 @@ storiesOf("Components|Date Picker", module)
 		}
 	}))
 	.add("In modal", () => ({
-		template: `<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>`,
+		template: `
+			<!--
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source as an example.
+			-->
+			<app-date-picker-modal [modalText]="modalText"></app-date-picker-modal>
+		`,
 		props: {
 			modalText: text("modal text", modalText)
 		}
@@ -395,6 +453,6 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/DatePicker.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_datepicker.datepicker.html"></ibm-documentation>
 		`
 	}));

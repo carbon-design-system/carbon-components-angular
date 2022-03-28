@@ -1,4 +1,9 @@
-import { Input, Output, EventEmitter } from "@angular/core";
+import {
+	Input,
+	Output,
+	EventEmitter,
+	Directive
+} from "@angular/core";
 import { ListItem } from "./list-item.interface";
 import { Observable } from "rxjs";
 
@@ -8,6 +13,7 @@ import { Observable } from "rxjs";
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
+@Directive({ selector: "[ibmAbstractDropdownView]" })
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
@@ -40,7 +46,7 @@ export class AbstractDropdownView {
 	 *
 	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "lg" = "md";
+	public size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
@@ -99,4 +105,8 @@ export class AbstractDropdownView {
 	 * Subscribe the function passed to an internal observable that will resolve once the items are ready
 	 */
 	onItemsReady(subcription: () => void): void {}
+	/**
+	 * Reorder selected items bringing them to the top of the list
+	 */
+	reorderSelected(moveFocus?: boolean): void {}
 }

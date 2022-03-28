@@ -4,11 +4,7 @@ import { By } from "@angular/platform-browser";
 import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/index";
-import {
-	CaretUpModule,
-	CaretDownModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 
 describe("Number", () => {
 	let component: Number;
@@ -26,9 +22,7 @@ describe("Number", () => {
 			imports: [
 				I18nModule,
 				FormsModule,
-				CaretUpModule,
-				CaretDownModule,
-				WarningFilledModule
+				IconModule
 			],
 			providers: []
 		});
@@ -99,8 +93,8 @@ describe("Number", () => {
 
 	it("should display control buttons", () => {
 		fixture.detectChanges();
-		buttonUp = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
-		buttonDown = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
+		buttonUp = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
+		buttonDown = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
 		expect(buttonUp.className.includes("bx--number__control-btn")).toEqual(true);
 		expect(buttonUp.className.includes("up-icon")).toEqual(true);
 		expect(buttonDown.className.includes("bx--number__control-btn")).toEqual(true);

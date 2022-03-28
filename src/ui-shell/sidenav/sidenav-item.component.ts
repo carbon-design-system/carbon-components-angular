@@ -19,15 +19,16 @@ import { Router } from "@angular/router";
 			'bx--side-nav__item': !isSubMenu,
 			'bx--side-nav__menu-item': isSubMenu
 		}"
-		[attr.role]="(isSubMenu ? 'none' : null)">
+		[attr.role]="(isSubMenu ? 'listitem' : null)">
 			<a
 				class="bx--side-nav__link"
 				[href]="href"
 				[attr.role]="(isSubMenu ? 'menuitem' : null)"
 				[attr.aria-current]="(active ? 'page' : null)"
+				[attr.title]="title ? title : null"
 				(click)="navigate($event)">
 				<div *ngIf="!isSubMenu" class="bx--side-nav__icon">
-					<ng-content select="[icon]"></ng-content>
+					<ng-content select="svg, [icon]"></ng-content>
 				</div>
 				<span class="bx--side-nav__link-text">
 					<ng-content></ng-content>
@@ -70,6 +71,11 @@ export class SideNavItem implements OnChanges {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	/**
+	 * Title attribute of the anchor element.
+	 */
+	@Input() title: string;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

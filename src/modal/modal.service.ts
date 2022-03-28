@@ -8,7 +8,7 @@ import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
-import { PlaceholderService } from "./../placeholder/index";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { tap, delay } from "rxjs/operators";
 
 
@@ -100,7 +100,8 @@ export class ModalService {
 				hasScrollingContent: data.hasScrollingContent || null,
 				size: data.size,
 				buttons: data.buttons || [],
-				close: data.close || (() => {})
+				close: data.close || (() => {}),
+				showCloseButton: data.showCloseButton
 			}
 		});
 	}

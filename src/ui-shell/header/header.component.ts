@@ -8,23 +8,22 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { I18n } from "../../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * A fixed header and navigation.
  * Header may contain a Hamburger menu to toggle the side navigation, navigation actions,
  * and global actions (generally in the form of `Panel`s).
  *
- * [See demo](../../?path=/story/ui-shell--header)
+ * [See demo](../../?path=/story/components-ui-shell--header)
  *
- * <example-url>../../iframe.html?id=ui-shell--header</example-url>
+ * <example-url>../../iframe.html?id=components-ui-shell--header</example-url>
  */
 @Component({
 	selector: "ibm-header",
 	template: `
 		<header
 			class="bx--header"
-			role="banner"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
 				*ngIf="skipTo"
@@ -38,14 +37,23 @@ import { I18n } from "../../i18n/index";
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
 			</ng-template>
-			<a
-				*ngIf="!isTemplate(brand)"
-				class="bx--header__name"
-				[href]="href"
-				(click)="navigate($event)">
-				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
-				{{name}}
-			</a>
+			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
+				<a
+					*ngSwitchCase="false"
+					class="bx--header__name"
+					[href]="href"
+					(click)="navigate($event)">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+				<a
+					*ngSwitchCase="true"
+					class="bx--header__name"
+					[routerLink]="route">
+					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					{{name}}
+				</a>
+			</ng-container>
 			<ng-content></ng-content>
 		</header>
 	`
@@ -85,6 +93,11 @@ export class Header {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

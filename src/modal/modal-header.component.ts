@@ -4,8 +4,8 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-import { I18n } from "./../i18n/index";
-import { ExperimentalService } from "./../experimental.service";
+import { I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService } from "carbon-components-angular/experimental";
 
 /**
  * ***Inputs***
@@ -24,11 +24,12 @@ import { ExperimentalService } from "./../experimental.service";
 		<header class="{{theme}} bx--modal-header">
 			<ng-content></ng-content>
 			<button
+				*ngIf="showCloseButton"
 				type="button"
 				class="bx--modal-close"
-				[attr.aria-label]="closeLabel"
 				(click)="onClose()">
-				<ibm-icon-close size="16" class="bx--modal-close__icon"></ibm-icon-close>
+				<span class="bx--assistive-text">{{ closeLabel }}</span>
+				<svg ibmIcon="close" size="20" class="bx--modal-close__icon"></svg>
 			</button>
 		</header>
 
@@ -44,6 +45,10 @@ export class ModalHeader {
 	 * Defaults to the `MODAL.CLOSE` value from the i18n service.
 	 */
 	@Input() closeLabel = this.i18n.get().MODAL.CLOSE;
+	/**
+	 * Set to `false` to hide the close button.
+	 */
+	@Input() showCloseButton = true;
 
 	/**
 	 * To emit the event of clicking on the close icon within the modal.

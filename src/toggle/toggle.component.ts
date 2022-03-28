@@ -1,4 +1,4 @@
-import { Checkbox } from "../checkbox/checkbox.component";
+import { Checkbox } from "carbon-components-angular/checkbox";
 import {
 	ChangeDetectorRef,
 	Component,
@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n, Overridable } from "../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -39,13 +39,13 @@ export class ToggleChange {
 }
 
 /**
- * [See demo](../../?path=/story/toggle--basic)
+ * [See demo](../../?path=/story/components-toggle--basic)
  *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
  *
- * <example-url>../../iframe.html?id=toggle--basic</example-url>
+ * <example-url>../../iframe.html?id=components-toggle--basic</example-url>
  */
 @Component({
 	selector: "ibm-toggle",
@@ -55,10 +55,10 @@ export class ToggleChange {
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<input
-			class="bx--toggle"
+			class="bx--toggle-input"
 			type="checkbox"
 			[ngClass]="{
-				'bx--toggle--small': size === 'sm',
+				'bx--toggle-input--small': size === 'sm',
 				'bx--skeleton': skeleton
 			}"
 			[id]="id"
@@ -70,20 +70,17 @@ export class ToggleChange {
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
-			(click)="onClick()">
+			(click)="onClick($event)">
 		<label
-			class="bx--toggle__label"
+			class="bx--toggle-input__label"
 			[for]="id"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{(!skeleton ? getOffText() : null) | async }}</span>
-			<span class="bx--toggle__appearance">
-				<svg *ngIf="size === 'sm'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
-					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
-				</svg>
+			<span class="bx--toggle__switch">
+				<span class="bx--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
+				<span class="bx--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
 			</span>
-			<span class="bx--toggle__text--right">{{(!skeleton ? getOnText() : null) | async}}</span>
 		</label>
 	`,
 	providers: [
@@ -157,6 +154,17 @@ export class Toggle extends Checkbox {
 	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the toggle input.
+	 *
+	 * ex: `this.formGroup.get("myToggle").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	getOffText(): Observable<string> {

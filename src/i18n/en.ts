@@ -121,9 +121,12 @@ export default {
 		"FORWARD": "Forward",
 		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"TOTAL_ITEM": "{{start}}-{{end}} of {{total}} item",
 		"PAGE": "page",
-		"OF_LAST_PAGES": "of {{last}} pages"
+		"OF_LAST_PAGES": "of {{last}} pages",
+		"OF_LAST_PAGE": "of {{last}} page",
+		"NEXT": "Next",
+		"PREVIOUS": "Previous"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
@@ -164,7 +167,8 @@ export default {
 	"UI_SHELL": {
 		"SKIP_TO": "Skip to content",
 		"HEADER": {
-			"MENU": "Open menu"
+			"OPEN_MENU": "Open menu",
+			"CLOSE_MENU": "Close menu"
 		},
 		"SIDE_NAV": {
 			"LABEL": "Side navigation",

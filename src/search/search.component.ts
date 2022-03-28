@@ -9,12 +9,12 @@ import {
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/search--basic)
+ * [See demo](../../?path=/story/components-search--basic)
  *
- * <example-url>../../iframe.html?id=search--basic</example-url>
+ * <example-url>../../iframe.html?id=components-search--basic</example-url>
  */
 @Component({
 	selector: "ibm-search",
@@ -33,7 +33,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") get containerClass() { return !this.toolbar; }
+	@HostBinding("class.bx--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
 	 * `light` or `dark` search theme.
@@ -42,11 +42,12 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() set size(value: "sm" | "xl") {
+
+	@Input() set size(value: "sm" | "md" | "xl") {
 		this._size = value;
 	}
 
-	get size(): "sm" | "xl" {
+	get size(): "sm" | "md" | "xl" {
 		return this._size;
 	}
 	/**
@@ -57,6 +58,11 @@ export class Search implements ControlValueAccessor {
 	 * Set to `true` for a toolbar search component.
 	 */
 	@Input() toolbar = false;
+	/**
+	 * Set to `true` to make the search component expandable.
+	 * `expandable` would override `toolbar` property behaviours.
+	 */
+	@Input() expandable = false;
 	/**
 	 * Set to `true` for a loading search component.
 	 */
@@ -103,6 +109,14 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
+	 * Title for the search trigger
+	 */
+	@Input() searchTitle = "";
+	/**
+	 * Sets the aria label on the `div` element with the `search` role.
+	 */
+	@Input() ariaLabel: string;
+	/**
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<string>();
@@ -111,11 +125,20 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when the clear button is clicked.
 	 */
 	@Output() clear = new EventEmitter();
+	/**
+	 * Emits an event on enter.
+	 */
+	@Output() search = new EventEmitter<string>();
 
 	// @ts-ignore
 	@ViewChild("input", { static: false }) inputRef: ElementRef;
 
-	protected _size: "sm" | "xl" = "xl";
+	/**
+	 * Sets `true` when composing text via IME.
+	 */
+	protected isComposing = false;
+
+	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
 	 * Creates an instance of `Search`.
@@ -163,8 +186,18 @@ export class Search implements ControlValueAccessor {
 	 * @param search The input text.
 	 */
 	onSearch(search: string) {
+		if (this.isComposing) { // check for IME use
+			return;
+		}
 		this.value = search;
 		this.doValueChange();
+	}
+
+	/**
+	 * Called on enter.
+	 */
+	onEnter() {
+		this.search.emit(this.value);
 	}
 
 	/**
@@ -189,7 +222,7 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("keydown", ["$event"])
 	keyDown(event: KeyboardEvent) {
-		if (this.toolbar) {
+		if (this.toolbar || this.expandable) {
 			if (event.key === "Escape") {
 				this.active = false;
 			} else if (event.key === "Enter") {
@@ -200,11 +233,30 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
-		if (this.toolbar &&
+		this.onTouched();
+		if ((this.expandable || this.toolbar) &&
+			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
-			event.relatedTarget === null) {
+			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget)) {
 			this.active = false;
 			this.open.emit(this.active);
 		}
+	}
+
+	/**
+	 * Called when using IME composition.
+	 */
+	@HostListener("compositionstart", ["$event"])
+	compositionStart(event) {
+		this.isComposing = true;
+	}
+
+	/**
+	 * Called when IME composition finishes.
+	 */
+	@HostListener("compositionend", ["$event"])
+	compositionEnd(event) {
+		this.isComposing = false;
+		this.onSearch(this.value + event.data);
 	}
 }

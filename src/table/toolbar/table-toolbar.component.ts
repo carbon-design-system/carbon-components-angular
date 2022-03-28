@@ -5,7 +5,8 @@ import {
 	Input,
 	Output
 } from "@angular/core";
-import { I18n, Overridable } from "../../i18n/index";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { TableRowSize } from "../table.types";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -17,25 +18,25 @@ import { I18n, Overridable } from "../../i18n/index";
  *		<ibm-table-toolbar-actions>
  *			<button ibmButton="primary">
  *				Delete
- *				<ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete>
+ *				<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Save
- *				<ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save>
+ *				<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Download
- *				<ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download>
+ *				<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-actions>
  *			<ibm-table-toolbar-content>
  *			<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
  *			<button ibmButton="toolbar-action">
- *				<ibm-icon-settings size="16" class="bx--toolbar-action__icon"></ibm-icon-settings>
+ *				<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
  *			</button>
  *			<button ibmButton="primary" size="sm">
  *				Primary Button
- *				<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+ *				<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
  *			</button>
  *		</ibm-table-toolbar-content>
  *	</ibm-table-toolbar>
@@ -45,7 +46,9 @@ import { I18n, Overridable } from "../../i18n/index";
 @Component({
 	selector: "ibm-table-toolbar",
 	template: `
-	<section class="bx--table-toolbar">
+	<section
+		class="bx--table-toolbar"
+		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}">
 		<div
 			*ngIf="model"
 			class="bx--batch-actions"
@@ -55,7 +58,13 @@ import { I18n, Overridable } from "../../i18n/index";
 			[attr.aria-label]="actionBarLabel.subject | async">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
-				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>
+				<button
+					ibmButton="primary"
+					class="bx--batch-summary__cancel"
+					[tabindex]="selected ? 0 : -1"
+					(click)="onCancel()">
+					{{_cancelText.subject | async}}
+				</button>
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para" *ngIf="count as n">
@@ -91,10 +100,13 @@ export class TableToolbar {
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
+	@Input() size: TableRowSize = "md";
 
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
+
+	@Output() cancel = new EventEmitter();
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
@@ -113,5 +125,6 @@ export class TableToolbar {
 
 	onCancel() {
 		this.model.selectAll(false);
+		this.cancel.emit();
 	}
 }

@@ -1,2 +1,2 @@
-export * from "./number.component";
-export * from "./number.module";
+export { Number, NumberChange, NumberComponent } from "./number.component";
+export { NumberModule } from "./number.module";

@@ -8,7 +8,11 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 @Component({
 	selector: "ibm-header-group",
 	template: `
-		<ibm-tab-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive">
+		<ibm-tab-header-group
+			[type]="type"
+			[followFocus]="followFocus"
+			[cacheActive]="cacheActive"
+			[isNavigation]="isNavigation">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -40,6 +44,7 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
+	@Input() isNavigation = true;
 	@Input() type = "default";
 }
 
@@ -101,8 +106,14 @@ storiesOf("Components|Tabs", module)
 				</div>
 			</ng-template>
 			<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
-				<ibm-tab [heading]="iconTab">Tab Content Custom</ibm-tab>
+				<ibm-tab
+					*ngFor="let item of data; let i = index;"
+					[heading]="customTabs"
+					title="Tab Content"
+					[context]="item">
+					Tab Content {{i + 1}}
+				</ibm-tab>
+				<ibm-tab [heading]="iconTab" title="Custom tab content">Tab Content Custom</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -146,11 +157,17 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("With TabHeaderGroup", () => ({
 		template: `
-			<ibm-header-group [type]="type" [followFocus]="followFocus" [cacheActive]="cacheActive"></ibm-header-group>
+			<ibm-header-group
+				[type]="type"
+				[followFocus]="followFocus"
+				[cacheActive]="cacheActive"
+				[isNavigation]="isNavigation">
+			</ibm-header-group>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
 			cacheActive: boolean("Cache active", true),
+			isNavigation: boolean("isNavigation", true),
 			type: select("type", ["default", "container"], "default")
 		}
 	}))
@@ -164,6 +181,6 @@ storiesOf("Components|Tabs", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_tabs.tabs.html"></ibm-documentation>
 		`
 	}));

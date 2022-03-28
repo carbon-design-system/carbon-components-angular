@@ -1,32 +1,66 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, select, boolean } from "@storybook/addon-knobs/angular";
 
-import { ButtonModule } from "../";
+import { ButtonModule } from "./button.module";
+import { IconModule } from "../icon/icon.module";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Button", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [ButtonModule, DocumentationModule]
+			imports: [
+				ButtonModule,
+				IconModule,
+				DocumentationModule
+			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<button [ibmButton]="ibmButton" [size]="size">Button</button>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" disabled="true">Button</button>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size">
-				With icon
-				<svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-					<path d="M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" fill-rule="evenodd" />
-				</svg>
+			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
+				With icon<svg class="bx--btn__icon" ibmIcon="add" size="16"></svg>
+			</button>
+			<br><br>
+			<ibm-button-set>
+				<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
+				<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
+			</ibm-button-set>
+		`,
+		props: {
+			ibmButton: select(
+				"Button kind",
+				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
+				"primary"),
+			isExpressive: boolean("Expressive button style", false),
+			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal")
+		}
+	}))
+	.add("Icon only", () => ({
+		template: `
+			<button
+				[ibmButton]="ibmButton"
+				[size]="size"
+				[iconOnly]="true"
+				[hasAssistiveText]="true"
+				[assistiveTextPlacement]="assistiveTextPlacement"
+				[assistiveTextAlignment]="assistiveTextAlignment">
+				<svg class="bx--btn__icon" ibmIcon="copy" size="16"></svg>
+				<span class="bx--assistive-text">Icon description</span>
 			</button>
 		`,
 		props: {
-			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "primary"),
-			size: select("Size of the buttons", ["normal", "sm", "field"], "normal")
+			ibmButton: select(
+				"Button kind",
+				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
+				"tertiary"),
+			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
+			assistiveTextPlacement: select("Placement of assistive text", ["top", "bottom", "left", "right"], "top"),
+			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center")
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -38,6 +72,6 @@ storiesOf("Components|Button", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/Button.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_button.button.html"></ibm-documentation>
 		`
 	}));

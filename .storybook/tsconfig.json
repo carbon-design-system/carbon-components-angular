@@ -1,4 +1,5 @@
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": "",
 		"declaration": true,
@@ -22,7 +23,12 @@
 		"typeRoots": [
 			"./../node_modules/@types",
 			"./../demo/typings.d.ts"
-		]
+		],
+		"paths": {
+			"carbon-components-angular/*": [
+				"./../src/*/index"
+			]
+		}
 	},
 	"files": [
 		"./../src/index.ts"

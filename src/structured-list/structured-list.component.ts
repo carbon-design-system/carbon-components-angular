@@ -14,7 +14,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
  *
- * [See demo](../../?path=/story/structured-list--basic)
+ * [See demo](../../?path=/story/components-structured-list--basic)
  *
  * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *
@@ -51,7 +51,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *	</ibm-structured-list>
  * ```
  *
- * <example-url>../../iframe.html?id=structured-list--basic</example-url>
+ * <example-url>../../iframe.html?id=components-structured-list--basic</example-url>
  */
 @Component({
 	selector: "ibm-structured-list",
@@ -153,6 +153,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 		this.rows.forEach(row => {
 			setSelection(row);
 			row.name = this.name;
+			row.tabindex = this.selection ? "0" : "null";
 			row.change.subscribe(() => {
 				this.selected.emit({
 					value: row.value,

@@ -18,6 +18,7 @@ import { DocumentationModule } from "./../documentation-component/documentation.
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
+			[showPageInput]="showPageInput"
 			[skeleton]="skeleton"
 			(selectPage)="selectPage($event)">
 		</ibm-pagination>
@@ -29,6 +30,7 @@ class PaginationStory implements OnInit {
 	@Input() disabled = false;
 	@Input() pageInputDisabled = false;
 	@Input() pagesUnknown = false;
+	@Input() showPageInput = true;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
@@ -65,24 +67,34 @@ storiesOf("Components|Pagination", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 			<div style="width: 800px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-pagination
 					[disabled]="disabled"
 					[pageInputDisabled]="pageInputDisabled"
 					[pagesUnknown]="pagesUnknown"
-					[totalDataLength]="totalDataLength">
+					[totalDataLength]="totalDataLength"
+					[showPageInput]="showPageInput">
 				</app-pagination>
 			</div>
 		`,
 		props: {
-			disabled: boolean("Disabeld buttons", false),
+			disabled: boolean("Disabled buttons", false),
 			pageInputDisabled: boolean("Disable page input", false),
 			pagesUnknown: boolean("Total number of items unknown ", false),
-			totalDataLength: number("Total number of items", 105)
+			totalDataLength: number("Total number of items", 105),
+			showPageInput: boolean("Show the page selects", true)
 		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
 			<div style="width: 800px">
+				<!--
+					app-* components are for demo purposes only.
+					You can create your own implementation by using the component source as an example.
+				-->
 				<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
 			</div>
 		`,
@@ -92,7 +104,7 @@ storiesOf("Components|Pagination", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Pagination.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_pagination.pagination.html"></ibm-documentation>
 		`
 	}));
 

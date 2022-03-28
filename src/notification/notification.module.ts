@@ -1,12 +1,6 @@
 import { NgModule } from "@angular/core";
-import { ButtonModule } from "../button/button.module";
+import { ButtonModule } from "carbon-components-angular/button";
 import { CommonModule } from "@angular/common";
-import {
-	CloseModule,
-	ErrorFilledModule,
-	CheckmarkFilledModule,
-	WarningFilledModule
-} from "@carbon/icons-angular";
 
 import { Toast } from "./toast.component";
 import { ToastTitle } from "./toast-title.directive";
@@ -17,8 +11,10 @@ import { NotificationSubtitle } from "./notification-subtitle.directive";
 import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
-import { I18nModule } from "./../i18n/index";
-import { ExperimentalModule } from "./../experimental.module";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { LinkModule } from "carbon-components-angular/link";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -45,10 +41,8 @@ import { ExperimentalModule } from "./../experimental.module";
 		CommonModule,
 		I18nModule,
 		ExperimentalModule,
-		CloseModule,
-		ErrorFilledModule,
-		CheckmarkFilledModule,
-		WarningFilledModule
+		LinkModule,
+		IconModule
 	],
 	providers: [NotificationService, NotificationDisplayService]
 })

@@ -11,117 +11,163 @@ import {
 	AfterViewInit,
 	AfterContentInit,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	OnDestroy
 } from "@angular/core";
-import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
-import { ListItem } from "./../dropdown/list-item.interface";
+import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
+import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
-import { DocumentService } from "../utils/utils.module";
-import { I18n, Overridable } from "../i18n/index";
+import {
+	DocumentService,
+	getScrollableParents,
+	hasScrollableParents
+} from "carbon-components-angular/utils";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
- * [See demo](../../?path=/story/combobox--basic)
+ * [See demo](../../?path=/story/components-combobox--basic)
  *
- * <example-url>../../iframe.html?id=combobox--basic</example-url>
+ * <example-url>../../iframe.html?id=components-combobox--basic</example-url>
  */
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label *ngIf="label" [for]="id" class="bx--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div
-			[ngClass]="{
-				'bx--multi-select': type === 'multi',
-				'bx--combo-box': type === 'single' || !pills.length
-			}"
-			class="bx--combo-box bx--list-box"
-			role="listbox"
-			[attr.data-invalid]="(invalid ? true : null)">
+		<div class="bx--list-box__wrapper">
+			<label
+				*ngIf="label"
+				[for]="id"
+				class="bx--label"
+				[ngClass]="{'bx--label--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+			</label>
 			<div
-				[attr.aria-expanded]="open"
-				role="button"
-				class="bx--list-box__field"
-				type="button"
-				tabindex="-1"
-				[attr.aria-label]="label"
-				aria-haspopup="true"
-				(click)="toggleDropdown()"
-				[id]="id">
+				#listbox
+				[ngClass]="{
+					'bx--multi-select bx--multi-select--filterable': type === 'multi',
+					'bx--list-box--light': theme === 'light',
+					'bx--list-box--expanded': open,
+					'bx--list-box--sm': size === 'sm',
+					'bx--list-box--lg': size === 'xl',
+					'bx--list-box--disabled': disabled,
+					'bx--combo-box--warning bx--list-box--warning': warn
+				}"
+				class="bx--list-box bx--combo-box"
+				[attr.data-invalid]="(invalid ? true : null)">
 				<div
-					*ngIf="type === 'multi' && pills.length > 0"
-					(click)="clearSelected()"
-					(keydown.enter)="clearSelected()"
-					role="button"
-					class="bx--tag--filter bx--list-box__selection--multi"
-					tabindex="0"
-					[title]="clearSelectionsTitle"
-					[attr.aria-label]="clearSelectionAria">
-					{{ pills.length }}
+					class="bx--list-box__field"
+					(click)="toggleDropdown()"
+					(blur)="onBlur()">
+					<div
+						*ngIf="type === 'multi' && pills.length > 0"
+						class="bx--tag bx--tag--filter bx--tag--high-contrast">
+						<span class="bx--tag__label">{{ pills.length }}</span>
+						<button
+							type="button"
+							(click)="clearSelected()"
+							(blur)="onBlur()"
+							(keydown.enter)="clearSelected()"
+							class="bx--tag__close-icon"
+							tabindex="0"
+							[title]="clearSelectionsTitle"
+							[attr.aria-label]="clearSelectionAria">
+							<svg
+								focusable="false"
+								preserveAspectRatio="xMidYMid meet"
+								style="will-change: transform;"
+								role="img"
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 16 16"
+								aria-hidden="true">
+								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+							</svg>
+						</button>
+					</div>
+					<input
+						#input
+						type="text"
+						autocomplete="off"
+						role="combobox"
+						[disabled]="disabled"
+						(input)="onSearch($event.target.value)"
+						(blur)="onBlur()"
+						(keydown.enter)="onSubmit($event)"
+						[value]="selectedValue"
+						class="bx--text-input"
+						[ngClass]="{'bx--text-input--empty': !showClearButton}"
+						tabindex="0"
+						[id]="id"
+						[attr.aria-labelledby]="id"
+						[attr.aria-expanded]="open"
+						aria-haspopup="listbox"
+						[attr.maxlength]="maxLength"
+						aria-haspopup="true"
+						[attr.aria-autocomplete]="autocomplete"
+						[placeholder]="placeholder"/>
 					<svg
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						style="will-change: transform;"
-						role="img"
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						aria-hidden="true">
-						<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+						*ngIf="!warn && invalid"
+						ibmIcon="warning--filled"
+						size="16"
+						class="bx--list-box__invalid-icon">
 					</svg>
+					<svg
+						*ngIf="!invalid && warn"
+						ibmIcon="warning--alt--filled"
+						size="16"
+						class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
+					</svg>
+					<div
+						*ngIf="showClearButton"
+						role="button"
+						class="bx--list-box__selection"
+						tabindex="0"
+						[attr.aria-label]="clearSelectionAria"
+						[title]="clearSelectionTitle"
+						(keyup.enter)="clearInput($event)"
+						(click)="clearInput($event)"
+						(blur)="onBlur()">
+						<svg ibmIcon="close" size="16"></svg>
+					</div>
+					<button
+						type="button"
+						role="button"
+						class="bx--list-box__menu-icon"
+						[title]="open ? closeMenuAria : openMenuAria"
+						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
+						[ngClass]="{'bx--list-box__menu-icon--open': open}">
+						<svg ibmIcon="chevron--down" size="16"></svg>
+					</button>
 				</div>
-				<input
-					#input
-					[disabled]="disabled"
-					(keyup)="onSearch($event.target.value)"
-					(keydown.enter)="onSubmit($event)"
-					[value]="selectedValue"
-					class="bx--text-input"
-					role="searchbox"
-					tabindex="0"
-					[attr.aria-aria-labelledby]="id"
-					[attr.maxlength]="maxLength"
-					aria-haspopup="true"
-					autocomplete="list"
-					[placeholder]="placeholder"/>
-				<ibm-icon-warning-filled size="16" *ngIf="invalid" class="bx--list-box__invalid-icon"></ibm-icon-warning-filled>
 				<div
-					*ngIf="showClearButton"
-					role="button"
-					class="bx--list-box__selection"
-					tabindex="0"
-					[attr.aria-label]="clearSelectionAria"
-					[title]="clearSelectionTitle"
-					(click)="clearInput($event)">
-					<ibm-icon-close size="16"></ibm-icon-close>
+					#dropdownMenu
+					[ngClass]="{
+						'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+					}">
+					<ng-content *ngIf="open"></ng-content>
 				</div>
-				<ibm-icon-chevron-down size="16"
-					[ngClass]="{'bx--list-box__menu-icon--open': open}"
-					class="bx--list-box__menu-icon"
-					[title]="open ? closeMenuAria : openMenuAria"
-					[ariaLabel]="open ? closeMenuAria : openMenuAria">
-				</ibm-icon-chevron-down>
 			</div>
 			<div
-				#dropdownMenu
-				*ngIf="open">
-				<ng-content></ng-content>
+				*ngIf="helperText && !invalid && !warn"
+				class="bx--form__helper-text"
+				[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-		</div>
-		<div *ngIf="invalid">
-			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
 		</div>
 	`,
 	providers: [
@@ -132,36 +178,7 @@ import { Observable } from "rxjs";
 		}
 	]
 })
-export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
-	static comboBoxCount = 0;
-	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
-	/**
-	 * List of items to fill the content with.
-	 *
-	 * **Example:**
-	 * ```javascript
-	 * items = [
-	 *		{
-	 *			content: "Abacus",
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: "Byte",
-	 *			selected: false,
-	 *		},
-	 *		{
-	 *			content: "Computer",
-	 *			selected: false
-	 *		},
-	 *		{
-	 *			content: "Digital",
-	 *			selected: false
-	 *		}
-	 * ];
-	 * ```
-	 *
-	 */
-	@Input() items: Array<ListItem> = [];
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -172,36 +189,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get placeholder() {
 		return this._placeholder.value;
 	}
-	/**
-	 * Combo box type (supporting single or multi selection of items).
-	 */
-	@Input() type: "single" | "multi" = "single";
-	/**
-	 * Combo box render size.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
-	/**
-	 * Label for the combobox.
-	 */
-	@Input() label: string | TemplateRef<any>;
-	/**
-	 * Sets the optional helper text.
-	 */
-	@Input() helperText: string | TemplateRef<any>;
-	/**
-	 * Set to `true` for invalid state.
-	 */
-	@Input() invalid = false;
-	/**
-	 * Value displayed if dropdown is in invalid state.
-	 */
-	@Input() invalidText: string | TemplateRef<any>;
-	/**
-	 * Max length value to limit input characters
-	 */
-	@Input() maxLength: number = null;
 	/**
 	 * Value to display for accessibility purposes on the combobox control menu when closed
 	 */
@@ -262,10 +249,105 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	get clearSelectionAria() {
 		return this._clearSelectionAria.value;
 	}
+	static comboBoxCount = 0;
+	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
+	/**
+	 * List of items to fill the content with.
+	 *
+	 * **Example:**
+	 * ```javascript
+	 * items = [
+	 *		{
+	 *			content: "Abacus",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Byte",
+	 *			selected: false,
+	 *		},
+	 *		{
+	 *			content: "Computer",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Digital",
+	 *			selected: false
+	 *		}
+	 * ];
+	 * ```
+	 *
+	 */
+	@Input() items: Array<ListItem> = [];
+	/**
+	 * Combo box type (supporting single or multi selection of items).
+	 */
+	@Input() type: "single" | "multi" = "single";
+	/**
+	 * Combo box render size.
+	 *
+	 * @deprecated since v4
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
+	/**
+	 * Specifies the property to be used as the return value to `ngModel`
+	 */
+	@Input() itemValueKey: string;
+	/**
+	 * Label for the combobox.
+	 */
+	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * set to `true` to place the dropdown view inline with the component
+	 */
+	@Input() appendInline: boolean = null;
+	/**
+	 * Set to `true` to show the invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if combobox is in an invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	* Set to `true` to show a warning (contents set by warnText)
+	*/
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
+	/**
+	 * Max length value to limit input characters
+	 */
+	@Input() maxLength: number = null;
+	/**
+	 * `light` or `dark` dropdown theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * Specify feedback (mode) of the selection.
+	 * `top`: selected item jumps to top
+	 * `fixed`: selected item stays at its position
+	 * `top-after-reopen`: selected item jump to top after reopen dropdown
+	 */
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
+	/**
+	 * Specify aria-autocomplete attribute of text input.
+	 * "list", is the expected value for a combobox that invokes a drop-down list
+	 */
+	@Input() autocomplete = "list";
+	/**
+	 * Overrides the automatic dropUp.
+	 */
+	@Input() dropUp: boolean;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
-	@HostBinding("attr.aria-disabled") @Input() disabled = false;
+	@Input() disabled = false;
 	/**
 	 * Emits a ListItem
 	 *
@@ -304,19 +386,29 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * }
 	 * ```
 	 */
-	@Output() submit = new EventEmitter<any>();
+	@Output() submit = new EventEmitter <{
+		items: ListItem[],
+		index: number,
+		value: {
+			content: string,
+			selected: boolean
+		}
+	}>();
 	/** emits an empty event when the menu is closed */
-	@Output() close = new EventEmitter<any>();
-	@Output() search = new EventEmitter<any>();
+	@Output() close = new EventEmitter<void>();
+	/** emits the search string from the input */
+	@Output() search = new EventEmitter<string>();
 	/** ContentChild reference to the instantiated dropdown list */
 	// @ts-ignore
-	@ContentChild(AbstractDropdownView, { static: false }) view: AbstractDropdownView;
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	// @ts-ignore
 	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: ElementRef;
+	@ViewChild("input", { static: true }) input: ElementRef;
+	// @ts-ignore
+	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
-	@HostBinding("attr.role") role = "combobox";
+	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
@@ -327,6 +419,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public pills = [];
 	/** used to update the displayValue */
 	public selectedValue = "";
+
+	keyboardNav = this._keyboardNav.bind(this);
+	/**
+	 * controls whether the `drop-up` class is applied
+	 */
+	_dropUp = false;
 
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
@@ -346,6 +444,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	constructor(
 		protected elementRef: ElementRef,
 		protected documentService: DocumentService,
+		protected dropdownService: DropdownService,
 		protected i18n: I18n
 	) {}
 
@@ -357,10 +456,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
-			// If new items are added into the combobox while there is search input,
-			// repeat the search.
-			this.onSearch(this.input.nativeElement.value);
 			this.updateSelected();
+			// If new items are added into the combobox while there is search input,
+			// repeat the search. Search should only trigger for type 'single' when there is no value selected.
+			if ( this.type === "multi" || (this.type === "single" && !this.selectedValue)) {
+				this.onSearch(this.input.nativeElement.value, false);
+			}
 		}
 	}
 
@@ -371,26 +472,52 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngAfterContentInit() {
 		if (this.view) {
 			this.view.type = this.type;
+
+			// function to check if the event is organic (isUpdate === false) or programmatic
+			const isUpdate = event => event && event.isUpdate;
+
 			this.view.select.subscribe(event => {
 				if (this.type === "multi") {
 					this.updatePills();
-					this.propagateChangeCallback(this.view.getSelected());
+					if (!isUpdate(event)) {
+						if (this.itemValueKey && this.view.getSelected()) {
+							const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+							this.propagateChangeCallback(values);
+						// otherwise just pass up the values from `getSelected`
+						} else {
+							this.propagateChangeCallback(this.view.getSelected());
+						}
+					}
 				} else {
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
 						this.selectedValue = event.item.content;
-						this.propagateChangeCallback(event.item);
+
+						if (!isUpdate(event)) {
+							if (this.itemValueKey) {
+								this.propagateChangeCallback(event.item[this.itemValueKey]);
+							} else {
+								this.propagateChangeCallback(event.item);
+							}
+						}
 					} else {
 						this.selectedValue = "";
-						this.propagateChangeCallback(null);
+						if (!isUpdate(event)) {
+							this.propagateChangeCallback(null);
+						}
 					}
 					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
-					this.elementRef.nativeElement.querySelector("input").focus();
-					this.view.filterBy("");
+					// only focus for "organic" selections
+					if (!isUpdate(event)) {
+						this.elementRef.nativeElement.querySelector("input").focus();
+						this.view.filterBy("");
+					}
 					this.closeDropdown();
 				}
-				this.selected.emit(event);
+				if (!isUpdate(event)) {
+					this.selected.emit(event);
+				}
 			});
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
@@ -409,16 +536,36 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	ngAfterViewInit() {
 		this.documentService.handleClick(event => {
-			if (!this.elementRef.nativeElement.contains(event.target)) {
+			if (!this.elementRef.nativeElement.contains(event.target) &&
+				!this.dropdownMenu.nativeElement.contains(event.target)) {
 				if (this.open) {
 					this.closeDropdown();
 				}
 			}
 		});
+		// if appendInline is default valued (null) we should:
+		// 1. if there are scrollable parents (not including body) don't append inline
+		//    this should also cover the case where the dropdown is in a modal
+		//    (where we _do_ want to append to the placeholder)
+		if (this.appendInline === null && hasScrollableParents(this.elementRef.nativeElement)) {
+			this.appendInline = false;
+		// 2. otherwise we should append inline
+		} else if (this.appendInline === null) {
+			this.appendInline = true;
+		}
 	}
 
 	/**
-	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
+	 * Removing the `Dropdown` from the body if it is appended to the body.
+	 */
+	ngOnDestroy() {
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
+	}
+
+	/**
+	 * Handles `Escape/Tab` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
@@ -428,7 +575,18 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
-			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+			setTimeout(() => { this.view.initFocus(); }, 0);
+		}
+
+		if (
+			this.open && ev.key === "Tab" &&
+			(this.dropdownMenu.nativeElement.contains(ev.target as Node) || ev.target === this.input.nativeElement)
+		) {
+			this.closeDropdown();
+		}
+
+		if (this.open && ev.key === "Tab" && ev.shiftKey) {
+			this.closeDropdown();
 		}
 	}
 
@@ -441,13 +599,35 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
-		if (value) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
+		if (this.type === "single") {
+			if (this.itemValueKey) {
+				// clone the specified item and update its state
+				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.itemValueKey] === value));
+				newValue.selected = true;
+				this.view.propagateSelected([newValue]);
 			} else {
-				this.view.propagateSelected(value);
+				// all items in propagateSelected must be iterable
+				this.view.propagateSelected([value || ""]);
+			}
+			this.showClearButton = !!(value && this.view.getSelected().length);
+		} else {
+			if (this.itemValueKey) {
+				// clone the items and update their state based on the received value array
+				// this way we don't lose any additional metadata that may be passed in via the `items` Input
+				let newValues = [];
+				for (const v of value) {
+					for (const item of this.view.getListItems()) {
+						if (item[this.itemValueKey] === v) {
+							newValues.push(Object.assign({}, item, { selected: true }));
+						}
+					}
+				}
+				this.view.propagateSelected(newValues);
+			} else {
+				this.view.propagateSelected(value ? value : [""]);
 			}
 		}
+		this.updateSelected();
 	}
 
 	onBlur() {
@@ -463,11 +643,20 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
+	 * `ControlValueAccessor` method to programmatically disable the combobox.
+	 *
+	 * ex: `this.formGroup.get("myCoolCombobox").disable();`
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
+
+	/**
 	 * Called by `n-pill-input` when the selected pills have changed.
 	 */
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
-		this.propagateChangeCallback(this.view.getSelected());
+		this.checkForReorder();
 	}
 
 	public clearSelected() {
@@ -481,7 +670,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.updatePills();
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
-		this.selected.emit(this.view.getSelected() as any);
+		const selected = this.view.getSelected();
+		this.propagateChangeCallback(selected);
+		this.selected.emit(selected as any);
 	}
 
 	/**
@@ -489,7 +680,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	public closeDropdown() {
 		this.open = false;
+		this.checkForReorder();
 		this.close.emit();
+		if (!this.appendInline) {
+			this._appendToDropdown();
+		}
 	}
 
 	/**
@@ -498,6 +693,19 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	public openDropdown() {
 		if (this.disabled) { return; }
 		this.open = true;
+		this._dropUp = false;
+
+		if (!this.appendInline) {
+			this._appendToBody();
+		}
+
+		// set the dropdown menu to drop up if it is near the bottom of the screen
+		// setTimeout lets us do the calculations after it is visible in the DOM
+		setTimeout(() => {
+			if (this.dropUp === null || this.dropUp === undefined) {
+				this._dropUp = this._shouldDropUp();
+			}
+		}, 0);
 	}
 
 	/**
@@ -514,18 +722,20 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Sets the list group filter, and manages single select item selection.
 	 */
-	public onSearch(searchString) {
-		this.search.emit(searchString);
-		if (searchString && this.type === "single") {
-			this.showClearButton = true;
-		} else {
-			this.showClearButton = false;
+	public onSearch(searchString, shouldEmitSearch = true) {
+		if (shouldEmitSearch) {
+			this.search.emit(searchString);
 		}
+		this.showClearButton = !!searchString;
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
 		} else {
 			this.selectedValue = "";
+			if (this.type === "multi" &&
+				(this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
+				this.view.reorderSelected();
+			}
 		}
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
@@ -533,12 +743,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
-				if (selected && selected[0]) {
-					selected[0].selected = false;
-					// notify that the selection has changed
-					this.view.select.emit({ item: selected[0] });
-					this.propagateChangeCallback(null);
-				} else {
+				if (!selected || !selected[0]) {
 					this.view.filterBy("");
 				}
 			}
@@ -563,24 +768,100 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		event.stopPropagation();
 		event.preventDefault();
 
-		this.clearSelected();
+		if (this.type === "single") { // don't want to clear selected or close if multi
+			this.clearSelected();
+			this.closeDropdown();
+		}
+
 		this.selectedValue = "";
-		this.closeDropdown();
+		this.input.nativeElement.value = "";
 
 		this.showClearButton = false;
+		this.input.nativeElement.focus();
+		this.onSearch(this.input.nativeElement.value);
 	}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 
+	/**
+	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
+	 */
+	_keyboardNav(event: KeyboardEvent) {
+		// "Esc" is an IE specific value
+		if ((event.key === "Escape" || event.key === "Esc") && this.open) {
+			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
+		if (event.key === "Escape" || event.key === "Esc") {
+			event.preventDefault();
+			this.closeDropdown();
+			this.input.nativeElement.focus();
+		} else if (this.open && event.key === "Tab") {
+			// this way focus will start on the next focusable item from the dropdown
+			// not the top of the body!
+			this.input.nativeElement.focus();
+			this.input.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.closeDropdown();
+		}
+	}
+
+	/**
+	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
+	 */
+	_appendToBody() {
+		this.dropdownService.appendToBody(
+			this.listbox.nativeElement,
+			this.dropdownMenu.nativeElement,
+			`${this.elementRef.nativeElement.className}${this.open ? " bx--list-box--expanded" : ""}`);
+		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
+	}
+
+	/**
+	 * Creates the `Dropdown` list appending it to the dropdown parent object instead of the body.
+	 */
+	_appendToDropdown() {
+		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
+		this.dropdownMenu.nativeElement.removeEventListener("keydown", this.keyboardNav, true);
+	}
+
+	/**
+	 * Detects whether or not the `Dropdown` list is visible within all scrollable parents.
+	 * This can be overridden by passing in a value to the `dropUp` input.
+	 */
+	_shouldDropUp() {
+		// check if dropdownMenu exists first.
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		// check if menu exists first.
+		const menuRect = menu && menu.getBoundingClientRect();
+		if (menu && menuRect) {
+			const scrollableParents = getScrollableParents(menu);
+			return scrollableParents.reduce((shouldDropUp: boolean, parent: HTMLElement) => {
+				const parentRect = parent.getBoundingClientRect();
+				const isBelowParent = !(menuRect.bottom <= parentRect.bottom);
+				return shouldDropUp || isBelowParent;
+			}, false);
+		}
+
+		return false;
+	}
+
 	protected updateSelected() {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected && selected[0]) {
-			this.selectedValue = selected[0].content;
-			this.propagateChangeCallback(selected[0]);
+		} else if (selected) {
+			const value = selected[0] ? selected[0].content : "";
+			const changeCallbackValue = selected[0] ? selected[0] : "";
+			this.selectedValue = value;
+			this.showClearButton = !!value;
+		}
+	}
+
+	protected checkForReorder() {
+		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
+			this.view.reorderSelected(true);
 		}
 	}
 }

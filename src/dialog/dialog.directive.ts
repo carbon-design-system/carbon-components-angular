@@ -14,8 +14,8 @@ import {
 	ComponentRef
 } from "@angular/core";
 import { DialogService } from "./dialog.service";
-import { DialogConfig } from "./dialog-config.interface";
-import { EventService } from "../utils/utils.module";
+import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
+import { EventService } from "carbon-components-angular/utils";
 import { Dialog } from "./dialog.component";
 
 /**
@@ -63,6 +63,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() placement = "left";
 	/**
+	 * This specifies any vertical and horizontal offset for the position of the dialog
+	 */
+	@Input() offset: { x: number, y: number };
+	/**
 	 * Classes to add to the dialog container
 	 */
 	@Input() wrapperClass: string;
@@ -80,6 +84,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() data = {};
 
 	@Input() @HostBinding("attr.aria-expanded") isOpen = false;
+	/**
+	 * This prevents the dialog from being toggled
+	 */
+	@Input() disabled = false;
+	/**
+	 * This input allows explicit control over how the dialog should close
+	 */
+	@Input() shouldClose: (meta: CloseMeta) => boolean;
 	/**
 	 * Config object passed to the rendered component
 	 */
@@ -122,15 +134,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		protected eventService: EventService
 	) {}
 
-	/**
-	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
-	 */
-	onTouchStart(event) {
-		event.stopImmediatePropagation();
-		event.preventDefault();
-		this.toggle();
-	}
-
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
@@ -141,17 +144,21 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			gap: this.gap,
 			trigger: this.trigger,
 			closeTrigger: this.closeTrigger,
-			shouldClose: () => true,
+			shouldClose: this.shouldClose || (() => true),
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
-			data: this.data
+			data: this.data,
+			offset: this.offset,
+			disabled: this.disabled
 		};
 
 		if (changes.isOpen) {
 			if (changes.isOpen.currentValue) {
 				this.open();
 			} else {
-				this.close();
+				this.close({
+					reason: CloseReasons.programmatic
+				});
 			}
 		}
 
@@ -170,25 +177,41 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		const element = this.elementRef.nativeElement;
 
-		this.eventService.on(element, "touchstart", this.onTouchStart.bind(this));
-
 		this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
 			// "Esc" is an IE specific value
 			if (event.target === this.dialogConfig.parentRef.nativeElement &&
 				(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
 				event.key === "Escape" || event.key === "Esc") {
-				this.close();
+				this.close({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
 			}
 		});
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
 			this.eventService.on(element, "mouseenter", this.open.bind(this));
-			this.eventService.on(element, this.closeTrigger, this.close.bind(this));
+			this.eventService.on(element, this.closeTrigger, (event) => {
+				this.close({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
+			});
 			this.eventService.on(element, "focus", this.open.bind(this));
-			this.eventService.on(element, "blur", this.close.bind(this));
+			this.eventService.on(element, "blur", (event) => {
+				this.close({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
+			});
 		} else {
-			this.eventService.on(element, "click", this.toggle.bind(this));
+			this.eventService.on(element, "click", (event) => {
+				this.toggle({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
+			});
 			this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
 				// "Spacebar" is an IE specific value
 				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
@@ -212,7 +235,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * - Useful for use in a modal or similar.
 	 */
 	ngOnDestroy() {
-		this.close();
+		this.close({
+			reason: CloseReasons.destroyed
+		});
 	}
 
 	/**
@@ -221,7 +246,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	open() {
 		// don't allow dialogs to be opened if they're already open
-		if (this.dialogRef) { return; }
+		if (this.dialogRef || this.disabled) { return; }
 
 		// actually open the dialog, emit events, and set the open state
 		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig);
@@ -231,9 +256,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		// Handles emitting all the close events to clean everything up
 		// Also enforce accessibility on close by updating an aria attr on the nativeElement.
-		this.dialogRef.instance.close.subscribe(() => {
+		this.dialogRef.instance.close.subscribe((meta: CloseMeta) => {
 			if (!this.dialogRef) { return; }
-			if (this.dialogConfig.shouldClose && this.dialogConfig.shouldClose()) {
+			if (this.dialogConfig.shouldClose && this.dialogConfig.shouldClose(meta)) {
 				// close the dialog, emit events, and clear out the open states
 				this.dialogService.close(this.dialogRef);
 				this.dialogRef = null;
@@ -249,21 +274,23 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Helper method to toggle the open state of the dialog
 	 */
-	toggle() {
+	toggle(meta: CloseMeta = { reason: CloseReasons.interaction }) {
 		if (!this.isOpen) {
 			this.open();
 		} else {
-			this.close();
+			this.close(meta);
 		}
 	}
 
 	/**
 	 * Helper method to close the dialogRef.
 	 */
-	close() {
-		if (this.dialogRef) {
-			this.dialogRef.instance.doClose();
-		}
+	close(meta: CloseMeta = { reason: CloseReasons.interaction }) {
+		setTimeout(() => {
+			if (this.dialogRef) {
+				this.dialogRef.instance.doClose(meta);
+			}
+		});
 	}
 
 	/**

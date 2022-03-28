@@ -7,15 +7,17 @@ import {
 	AfterViewInit,
 	ViewChild,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	ViewChildren,
+	QueryList
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { EventService } from "../utils/utils.module";
+import { EventService } from "carbon-components-angular/utils";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * [See demo](../../?path=/story/slider--advanced)
+ * [See demo](../../?path=/story/components-slider--advanced)
  *
  * The simplest possible slider usage looks something like:
  * ```html
@@ -46,13 +48,13 @@ import { EventService } from "../utils/utils.module";
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  *
- * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ * <example-url>../../iframe.html?id=components-slider--advanced</example-url>
  */
 @Component({
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label *ngIf="label" for="slider" class="bx--label">
+			<label *ngIf="label" [for]="id" [id]="labelId" class="bx--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -63,15 +65,33 @@ import { EventService } from "../utils/utils.module";
 				<div
 					class="bx--slider"
 					[ngClass]="{'bx--slider--disabled': disabled}">
-					<div
-						#thumb
-						role="slider"
-						id="slider"
-						class="bx--slider__thumb"
-						tabindex="0"
-						(mousedown)="onMouseDown($event)"
-						(keydown)="onKeyDown($event)">
-					</div>
+					<ng-container *ngIf="!isRange()">
+						<div
+							#thumbs
+							role="slider"
+							[id]="id"
+							[attr.aria-labelledby]="labelId"
+							class="bx--slider__thumb"
+							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
+							tabindex="0"
+							(mousedown)="onMouseDown($event)"
+							(keydown)="onKeyDown($event)">
+						</div>
+					</ng-container>
+					<ng-container *ngIf="isRange()">
+						<div
+							#thumbs
+							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
+							role="slider"
+							[id]="id + (i > 0 ? '-' + i : '')"
+							[attr.aria-labelledby]="labelId"
+							class="bx--slider__thumb"
+							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
+							tabindex="0"
+							(mousedown)="onMouseDown($event, i)"
+							(keydown)="onKeyDown($event, i)">
+						</div>
+					</ng-container>
 					<div
 						#track
 						class="bx--slider__track"
@@ -83,6 +103,7 @@ import { EventService } from "../utils/utils.module";
 					</div>
 					<input
 						#range
+						aria-label="slider"
 						class="bx--slider__input"
 						type="range"
 						[step]="step"
@@ -121,6 +142,7 @@ import { EventService } from "../utils/utils.module";
 export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Used to generate unique IDs */
 	private static count = 0;
+
 	/** The lower bound of our range */
 	@Input() set min(v) {
 		if (!v) { return; }
@@ -147,38 +169,72 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Set the initial value. Available for two way binding */
 	@Input() set value(v) {
 		if (!v) {
-			v = this.min;
+			v = [this.min];
 		}
 
-		if (v > this.max) {
-			v = this.max;
+		if (typeof v === "number" || typeof v === "string") {
+			v = [Number(v)];
 		}
 
-		if (v < this.min) {
-			v = this.min;
+		if (v[0] < this.min) {
+			v[0] = this.min;
 		}
 
-		this._value = v;
-
-		if (this.thumb) {
-			this.thumb.nativeElement.style.left = `${this.getFractionComplete(v) * 100}%`;
+		if (v[0] > this.max) {
+			v[0] = this.max;
 		}
 
-		if (this.filledTrack) {
-			this.filledTrack.nativeElement.style.transform = `translate(0%, -50%) ${this.scaleX(this.getFractionComplete(v))}`;
+		if (this.isRange()) {
+			if (this._previousValue[0] !== v[0]) { // left moved
+				if (v[0] > v[1] - this.step) {
+					// stop the left handle if surpassing the right one
+					v[0] = v[1] - this.step;
+				} else if (v[0] > this.max) {
+					v[0] = this.max;
+				} else if (v[0] < this.min) {
+					v[0] = this.min;
+				}
+			}
+
+			if (this._previousValue[1] !== v[1]) { // right moved
+				if (v[1] > this.max) {
+					v[1] = this.max;
+				} else if (v[1] < this._value[0] + this.step) {
+					// stop the right handle if surpassing the left one
+					v[1] = this._value[0] + this.step;
+				} else if (v[1] < this.min) {
+					v[1] = this.min;
+				}
+			}
 		}
 
-		if (this.input) {
-			this.input.value = v.toString();
+		this._previousValue = [...this._value]; // store a copy, enable detection which handle moved
+		this._value = [...v]; // triggers change detection when ngModel value is an array (for range)
+
+		if (this.isRange() && this.filledTrack) {
+			this.updateTrackRangeWidth();
+		} else if (this.filledTrack) {
+			this.filledTrack.nativeElement.style.transform = `translate(0%, -50%) ${this.scaleX(this.getFractionComplete(v[0]))}`;
 		}
 
-		this.propagateChange(v);
-		this.valueChange.emit(v);
+		if (this.inputs && this.inputs.length) {
+			this.inputs.forEach((input, index) => {
+				input.value = this._value[index].toString();
+			});
+		}
+
+		const valueToEmit = this.isRange() ? v : v[0];
+		this.propagateChange(valueToEmit);
+		this.valueChange.emit(valueToEmit);
 	}
 
 	get value() {
-		return this._value;
+		if (this.isRange()) {
+			return this._value;
+		}
+		return this._value[0];
 	}
+
 	/** Base ID for the slider. The min and max labels get IDs `${this.id}-bottom-range` and `${this.id}-top-range` respectively */
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
@@ -193,9 +249,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	@Input() set disabled(v) {
 		this._disabled = v;
 		// for some reason `this.input` never exists here, so we have to query for it here too
-		const input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
-		if (input) {
-			input.disabled = v;
+		const inputs = this.getInputs();
+		if (inputs && inputs.length > 0) {
+			inputs.forEach(input => input.disabled = v);
 		}
 	}
 
@@ -203,10 +259,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		return this._disabled;
 	}
 	/** Emits every time a new value is selected */
-	@Output() valueChange: EventEmitter<number> = new EventEmitter();
+	@Output() valueChange: EventEmitter<number | number[]> = new EventEmitter();
 	@HostBinding("class.bx--form-item") hostClass = true;
-	// @ts-ignore
-	@ViewChild("thumb", { static: false }) thumb: ElementRef;
+	@ViewChildren("thumbs") thumbs: QueryList<ElementRef>;
 	// @ts-ignore
 	@ViewChild("track", { static: false }) track: ElementRef;
 	// @ts-ignore
@@ -214,16 +269,19 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	// @ts-ignore
 	@ViewChild("range", { static: false }) range: ElementRef;
 
+	public labelId = `${this.id}-label`;
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;
 	public fractionComplete = 0;
 
 	protected isMouseDown = false;
-	protected input: HTMLInputElement;
+	protected inputs: HTMLInputElement[];
 	protected _min = 0;
 	protected _max = 100;
-	protected _value = this.min;
+	protected _value = [this.min];
+	protected _previousValue = [this.min];
 	protected _disabled = false;
+	protected _focusedThumbIndex = 0;
 
 	constructor(protected elementRef: ElementRef, protected eventService: EventService) {}
 
@@ -238,17 +296,27 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		// TODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
-		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
-		if (this.input) {
-			this.input.type = "number";
-			this.input.classList.add("bx--slider-text-input");
-			this.input.classList.add("bx--text-input");
-			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
-			this.input.value = this.value.toString();
-			// bind events on our optional input
-			this.eventService.on(this.input, "change", this.onChange.bind(this));
-			this.eventService.on(this.input, "focus", this.onFocus.bind(this));
+		this.inputs = this.getInputs();
+		if (this.inputs && this.inputs.length > 0) {
+			this.inputs.forEach((input, index) => {
+				input.type = "number";
+				input.classList.add("bx--slider-text-input");
+				input.classList.add("bx--text-input");
+				input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
+
+				input.value = index < this._value.length ? this._value[index].toString() : this.max.toString();
+				// bind events on our optional input
+				this.eventService.on(input, "change", event => this.onChange(event, index));
+
+				if (index === 0) {
+					this.eventService.on(input, "focus", this.onFocus.bind(this));
+				}
+			});
 		}
+	}
+
+	trackThumbsBy(index: number, item: any) {
+		return index;
 	}
 
 	/** Send changes back to the model */
@@ -324,8 +392,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 *
 	 * @argument multiplier Defaults to `1`, multiplied with the step value.
 	 */
-	incrementValue(multiplier = 1) {
-		this.value = this.value + (this.step * multiplier);
+	incrementValue(multiplier = 1, index = 0) {
+		this._value[index] = this._value[index] + (this.step * multiplier);
+		this.value = this.value; // run the setter
 	}
 
 	/**
@@ -333,20 +402,40 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 *
 	 * @argument multiplier Defaults to `1`, multiplied with the step value.
 	 */
-	decrementValue(multiplier = 1) {
-		this.value = this.value - (this.step * multiplier);
+	decrementValue(multiplier = 1, index = 0) {
+		this._value[index] = this._value[index] - (this.step * multiplier);
+		this.value = this.value; // run the setter
+	}
+
+	/**
+	 * Determines if the slider is in range mode.
+	 */
+	isRange(): boolean {
+		return this._value.length > 1;
+	}
+
+	/**
+	 * Range mode only.
+	 * Updates the track width to span from the low thumb to the high thumb
+	 */
+	updateTrackRangeWidth() {
+		const fraction = this.getFractionComplete(this._value[0]);
+		const fraction2 = this.getFractionComplete(this._value[1]);
+		this.filledTrack.nativeElement.style.transform = `translate(${fraction * 100}%, -50%) ${this.scaleX(fraction2 - fraction)}`;
 	}
 
 	/** Change handler for the optional input */
-	onChange(event) {
-		this.value = event.target.value;
+	onChange(event, index) {
+		this._value[index] = Number(event.target.value);
+		this.value = this.value;
 	}
 
 	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
 	onClick(event) {
 		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
-		this.value = this.convertToValue(event.clientX - trackLeft);
+		this._value[0] = this.convertToValue(event.clientX - trackLeft);
+		this.value = this.value;
 	}
 
 	/** Focus handler for the optional input */
@@ -358,29 +447,42 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	onMouseMove(event) {
 		if (this.disabled || !this.isMouseDown) { return; }
 		const track = this.track.nativeElement.getBoundingClientRect();
+
+		let value;
+
 		if (
 			event.clientX - track.left <= track.width
 			&& event.clientX - track.left >= 0
 		) {
-			this.value = this.convertToValue(event.clientX - track.left);
+			value = this.convertToValue(event.clientX - track.left);
 		}
 
 		// if the mouse is beyond the max, set the value to `max`
 		if (event.clientX - track.left > track.width) {
-			this.value = this.max;
+			value = this.max;
 		}
 
 		// if the mouse is below the min, set the value to `min`
 		if (event.clientX - track.left < 0) {
-			this.value = this.min;
+			value = this.min;
+		}
+
+		if (value !== undefined) {
+			this._value[this._focusedThumbIndex] = value;
+			this.value = this.value;
 		}
 	}
 
-	/** Enables the `onMouseMove` handler */
-	onMouseDown(event) {
+	/**
+	 * Enables the `onMouseMove` handler
+	 *
+	 * @param {boolean} thumb If true then `thumb` is clicked down, otherwise `thumb2` is clicked down.
+	 */
+	onMouseDown(event, index = 0) {
 		event.preventDefault();
 		if (this.disabled) { return; }
-		this.thumb.nativeElement.focus();
+		this._focusedThumbIndex = index;
+		this.thumbs.toArray()[index].nativeElement.focus();
 		this.isMouseDown = true;
 	}
 
@@ -389,22 +491,33 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.isMouseDown = false;
 	}
 
-	/** Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown */
-	onKeyDown(event: KeyboardEvent) {
+	/**
+	 * Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown.
+	 *
+	 * @param {boolean} thumb If true then `thumb` is pressed down, otherwise `thumb2` is pressed down.
+	 */
+	onKeyDown(event: KeyboardEvent, index = 0) {
 		if (this.disableArrowKeys) {
 			return;
 		}
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
-			this.decrementValue(multiplier);
+			this.decrementValue(multiplier, index);
+			this.thumbs.toArray()[index].nativeElement.focus();
 			event.preventDefault();
 		} else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
-			this.incrementValue(multiplier);
+			this.incrementValue(multiplier, index);
+			this.thumbs.toArray()[index].nativeElement.focus();
 			event.preventDefault();
 		}
 	}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/** Get optional input fields */
+	protected getInputs(): HTMLInputElement[] {
+		return this.elementRef.nativeElement.querySelectorAll("input:not([type=range])");
 	}
 }

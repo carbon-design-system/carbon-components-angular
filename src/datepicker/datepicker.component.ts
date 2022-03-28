@@ -12,7 +12,10 @@ import {
 	SimpleChanges,
 	AfterViewChecked,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	AfterContentInit,
+	OnInit,
+	SimpleChange
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -20,62 +23,67 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { ElementService } from "../utils/element.service";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
+import { ElementService } from "carbon-components-angular/utils";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/date-picker--single)
+ * [See demo](../../?path=/story/components-date-picker--single)
  *
- * <example-url>../../iframe.html?id=date-picker--single</example-url>
+ * <example-url>../../iframe.html?id=components-date-picker--single</example-url>
  */
 @Component({
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<div class="bx--form-item">
-			<div
-				class="bx--date-picker"
-				[ngClass]="{
-					'bx--date-picker--range' : range,
-					'bx--date-picker--single' : !range,
-					'bx--date-picker--light' : theme === 'light',
-					'bx--skeleton' : skeleton
-				}">
-				<div class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#input
-						[label]="label"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[id]="id"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? false : true)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)"
-						(click)="openCalendar(input)">
-					</ibm-date-picker-input>
-				</div>
+		<div
+			class="bx--date-picker"
+			[ngClass]="{
+				'bx--date-picker--range' : range,
+				'bx--date-picker--single' : !range,
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
+			<div class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#input
+					[label]="label"
+					[placeholder]="placeholder"
+					[pattern]="inputPattern"
+					[id]="id + '-input'"
+					[size]="size"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? false : true)"
+					[disabled]="disabled"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
+					[skeleton]="skeleton"
+					(valueChange)="onValueChange($event)"
+					(click)="openCalendar(input)">
+				</ibm-date-picker-input>
+			</div>
 
-				<div *ngIf="range" class="bx--date-picker-container">
-					<ibm-date-picker-input
-						#rangeInput
-						[label]="rangeLabel"
-						[placeholder]="placeholder"
-						[pattern]="pattern"
-						[id]="id + '-rangeInput'"
-						[type]="(range ? 'range' : 'single')"
-						[hasIcon]="(range ? true : null)"
-						[disabled]="disabled"
-						[invalid]="invalid"
-						[invalidText]="invalidText"
-						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)"
-						(click)="openCalendar(rangeInput)">
-					</ibm-date-picker-input>
-				</div>
+			<div *ngIf="range" class="bx--date-picker-container">
+				<ibm-date-picker-input
+					#rangeInput
+					[label]="rangeLabel"
+					[placeholder]="placeholder"
+					[pattern]="inputPattern"
+					[id]="id + '-rangeInput'"
+					[size]="size"
+					[type]="(range ? 'range' : 'single')"
+					[hasIcon]="(range ? true : null)"
+					[disabled]="disabled"
+					[invalid]="rangeInvalid"
+					[invalidText]="rangeInvalidText"
+					[warn]="rangeWarn"
+					[warnText]="rangeWarnText"
+					[skeleton]="skeleton"
+					(valueChange)="onRangeValueChange($event)"
+					(click)="openCalendar(rangeInput)">
+				</ibm-date-picker-input>
 			</div>
 		</div>
 	</div>
@@ -94,7 +102,13 @@ import { ElementService } from "../utils/element.service";
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit {
+export class DatePicker implements
+	OnInit,
+	OnDestroy,
+	OnChanges,
+	AfterViewChecked,
+	AfterViewInit,
+	AfterContentInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -123,7 +137,27 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	@Input() placeholder = "mm/dd/yyyy";
 
+	/**
+	 * Aria label added to datepicker's calendar container.
+	 */
+	@Input() ariaLabel = "calendar container";
+
+	/**
+	 * The pattern for the underlying input element
+	 * @deprecated as of v4 - switch to inputPattern
+	 */
 	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
+
+	/**
+	 * The pattern for the underlying input element
+	 */
+	@Input() set inputPattern(value: string) {
+		this.pattern = value;
+	}
+
+	get inputPattern() {
+		return this.pattern;
+	}
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -141,10 +175,40 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
-
+	/**
+	 * Set to `true` to display the invalid state.
+	 */
 	@Input() invalid = false;
-
+	/**
+	 * Value displayed if datepicker is in an invalid state.
+	 */
 	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning (contents set by warningText)
+	  */
+	@Input() warn = false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
+
+	@Input() size: "sm" | "md" | "xl" = "md";
+	/**
+	 * Set to `true` to display the invalid state for the second datepicker input.
+	 */
+	@Input() rangeInvalid = false;
+	/**
+	 * Value displayed if the second datepicker input is in an invalid state.
+	 */
+	@Input() rangeInvalidText: string | TemplateRef<any>;
+	/**
+	  * Set to `true` to show a warning in the second datepicker input (contents set by rangeWarningText)
+	  */
+	@Input() rangeWarn = false;
+	/**
+	 * Sets the warning text for the second datepicker input
+	 */
+	@Input() rangeWarnText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 
@@ -168,7 +232,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	}
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: DatePickerInput;
+	@ViewChild("input", { static: true }) input: DatePickerInput;
 
 	// @ts-ignore
 	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
@@ -187,8 +251,34 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		plugins: this.plugins,
 		onOpen: () => {
 			this.updateClassNames();
+			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
+		onClose: () => {
+			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
+			// the inputs when the calendar closes.
+			if (this.range && this.flatpickrInstance) {
+				if (this.flatpickrInstance.selectedDates.length !== 2) {
+					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
+					// in some cases, so instead we do this
+					this.setDateValues([]);
+					this.doSelect([]);
+					return;
+				}
+				const inputValue = this.input.input.nativeElement.value;
+				const rangeInputValue = this.rangeInput.input.nativeElement.value;
+				if (inputValue || rangeInputValue) {
+					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
+					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.doSelect(this.flatpickrInstance.selectedDates);
+				}
+			}
+		},
+		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
+			dayElem.classList.add("bx--date-picker__day");
+		},
+		nextArrow: this.rightArrowHTML(),
+		prevArrow: this.leftArrowHTML(),
 		value: this.value
 	};
 
@@ -196,17 +286,37 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 
 	protected visibilitySubscription = new Subscription();
 
-	constructor(protected elementRef: ElementRef, protected elementService: ElementService) { }
+	constructor(
+		protected elementRef: ElementRef,
+		protected elementService: ElementService,
+		protected i18n: I18n
+	) { }
+
+	ngOnInit() {
+		// if i18n is set to anything other than en we'll want to change the language
+		// otherwise we'll just use the local setting
+		if (this.i18n.getLocale() !== "en") {
+			this.i18n.getLocaleObservable().subscribe(locale => {
+				this.language = locale;
+				this.resetFlatpickrInstance();
+			});
+		}
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (this.isFlatpickrLoaded()) {
-			let dates = this.flatpickrInstance.selectedDates;
-			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
-				dates = changes.value.currentValue;
-			}
-			// only reset the flatpickr instance on Input changes
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-			this.setDateValues(dates);
+		// Reset the flatpickr instance on input changes that affect flatpickr.
+		const flatpickrChangeKeys = [
+			"range",
+			"dateFormat",
+			"language",
+			"id",
+			"value",
+			"plugins",
+			"flatpickrOptions"
+		];
+		const changeKeys = Object.keys(changes);
+		if (changeKeys.some(key => flatpickrChangeKeys.includes(key))) {
+			this.resetFlatpickrInstance(changes.value);
 		}
 	}
 
@@ -215,12 +325,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
 			.subscribe(value => {
 				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
-					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}`));
+					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}-input`));
 					if (!value.visible) {
 						this.flatpickrInstance.close();
 					}
 				}
 			});
+
+		setTimeout(() => {
+			this.addInputListeners();
+		}, 0);
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
@@ -228,7 +342,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
-			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			/// @ts-ignore ts is unhappy with the below call to `flatpickr`
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
 				if (this.value.length > 0) {
@@ -236,6 +351,16 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 				}
 			}
 		}
+	}
+
+	ngAfterContentInit() {
+		(languages.default.en.weekdays.shorthand as string[])
+			= languages.default.en.weekdays.longhand.map(day => {
+				if (day === "Thursday") {
+					return "Th";
+				}
+				return day.charAt(0);
+			});
 	}
 
 	@HostListener("focusin")
@@ -251,7 +376,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 				this.flatpickrInstance.changeMonth(currentMonth, false);
 			}
 		}
+	}
 
+	@HostListener("focusout")
+	onFocusOut() {
 		this.onTouched();
 	}
 
@@ -261,9 +389,22 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
-		if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
-			this.setDateValues(this.value);
-		}
+		setTimeout(() => {
+			if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
+				this.setDateValues(this.value);
+			}
+		});
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the DatePicker.
+	 *
+	 * ex: `this.formGroup.get("myDatePicker").disable();`
+	 *
+	 * @param isDisabled `true` to disable the DatePicker
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	registerOnChange(fn: any) {
@@ -306,7 +447,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	 * Handles the `valueChange` event from the range input
 	 */
 	onRangeValueChange(event: string) {
-		if (this.isFlatpickrLoaded()) {
+		if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
 			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
 			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
 			this.doSelect(this.flatpickrInstance.selectedDates);
@@ -342,6 +483,69 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 			calendar.removeEventListener("click", this.preventCalendarClose);
 			calendar.addEventListener("click", this.preventCalendarClose);
 		});
+	}
+
+	/**
+	 * Handles the initialization of event listeners for the datepicker input and range input fields.
+	 */
+	protected addInputListeners() {
+		if (!this.isFlatpickrLoaded()) {
+			return;
+		}
+
+		// Allows focus transition from the datepicker input or range input field to
+		// flatpickr calendar using a keyboard.
+		const addFocusCalendarListener = (element: HTMLInputElement) => {
+			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "ArrowDown") {
+					if (!this.flatpickrInstance.isOpen) {
+						this.flatpickrInstance.open();
+					}
+
+					const calendarContainer = this.flatpickrInstance.calendarContainer;
+					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+
+					if (dayElement) {
+						dayElement.focus();
+
+						// If the user manually inputs a value into the date field and presses arrow down,
+						// datepicker input onchange will be triggered when focus is removed from it and
+						// `flatpickrInstance.setDate` and `flatpickrInstance.changeMonth` will be invoked
+						// which will automatically change focus to the beginning of the document.
+						if (document.activeElement !== dayElement && this.flatpickrInstance.selectedDateElem) {
+							this.flatpickrInstance.selectedDateElem.focus();
+						}
+					}
+				}
+			});
+		};
+
+		if (this.input && this.input.input) {
+			addFocusCalendarListener(this.input.input.nativeElement);
+		}
+
+		if (this.rangeInput && this.rangeInput.input) {
+			addFocusCalendarListener(this.rangeInput.input.nativeElement);
+		}
+	}
+
+	/**
+	 * Resets the flatpickr instance while keeping the date values (or updating them if newDates is provided)
+	 *
+	 * Used to pick up input changes or locale changes.
+	 *
+	 * @param newDates An optional SimpleChange of date values
+	 */
+	protected resetFlatpickrInstance(newDates?: SimpleChange) {
+		if (this.isFlatpickrLoaded()) {
+			let dates = this.flatpickrInstance.selectedDates;
+			if (newDates && this.didDateValueChange(newDates.currentValue, newDates.previousValue)) {
+				dates = newDates.currentValue;
+			}
+			// only reset the flatpickr instance on Input changes
+			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
+			this.setDateValues(dates);
+		}
 	}
 
 	/**
@@ -392,17 +596,34 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 		});
 	}
 
+	protected updateAttributes() {
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		Array.from(calendarContainer).forEach(calendar => {
+			calendar.setAttribute("role", "region");
+			calendar.setAttribute("aria-label", this.ariaLabel);
+		});
+	}
+
 	/**
 	 * Applies the given date value array to both the flatpickr instance and the `input`(s)
 	 * @param dates the date values to apply
 	 */
 	protected setDateValues(dates: (Date | string)[]) {
 		if (this.isFlatpickrLoaded()) {
-			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
+			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}-input`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
+
+			// `flatpickrInstance.setDate` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.setDate` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
 
 			// set the date on the instance
 			this.flatpickrInstance.setDate(dates);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
 
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
@@ -438,6 +659,24 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
+		// In range mode, if a date is selected from the first calendar that is from the previous month,
+		// the month will not be updated on the calendar until the calendar is re-opened.
+		// This will make sure the calendar is updated with the correct month.
+		if (this.range && this.flatpickrInstance.selectedDates[0]) {
+			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
+
+			// `flatpickrInstance.changeMonth` removes the focus on the selected date element and will
+			// automatically change focus to the beginning of the document. If a selected date is
+			// focused before `flatpickrInstance.changeMonth` is invoked then it should remain focused.
+			let shouldRefocusDateElement = this.flatpickrInstance.selectedDateElem === document.activeElement;
+
+			this.flatpickrInstance.changeMonth(currentMonth, false);
+
+			if (shouldRefocusDateElement) {
+				this.flatpickrInstance.selectedDateElem.focus();
+			}
+
+		}
 		this.valueChange.emit(selectedValue);
 		this.propagateChange(selectedValue);
 	}
@@ -452,5 +691,27 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	protected isFlatpickrLoaded() {
 		// cast the instance to a boolean, and some method that has to exist for the library to be loaded in this case `setDate`
 		return !!this.flatpickrInstance && !!this.flatpickrInstance.setDate;
+	}
+
+	/**
+	 * Right arrow HTML passed to flatpickr
+	 */
+	protected rightArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="11,8 6,13 5.3,12.3 9.6,8 5.3,3.7 6,3 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
+	}
+
+	/**
+	 * Left arrow HTML passed to flatpickr
+	 */
+	protected leftArrowHTML() {
+		return `
+			<svg width="16px" height="16px" viewBox="0 0 16 16">
+				<polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
+				<rect width="16" height="16" style="fill:none" />
+			</svg>`;
 	}
 }

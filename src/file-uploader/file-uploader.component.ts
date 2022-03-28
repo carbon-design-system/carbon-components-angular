@@ -8,15 +8,15 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n } from "../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
 
 const noop = () => { };
 
 /**
- * [See demo](../../?path=/story/file-uploader--basic)
+ * [See demo](../../?path=/story/components-file-uploader--basic)
  *
- * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
+ * <example-url>../../iframe.html?id=components-file-uploader--basic</example-url>
  */
 @Component({
 	selector: "ibm-file-uploader",
@@ -25,7 +25,13 @@ const noop = () => { };
 			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
-				<label *ngIf="drop" class="bx--file-browse-btn">
+				<label
+					*ngIf="drop"
+					class="bx--file-browse-btn"
+					(keyup.enter)="fileInput.click()"
+					(keyup.space)="fileInput.click()"
+					[ngClass]="{'bx--file-browse-btn--disabled': disabled}"
+					tabindex="0">
 					<div
 						class="bx--file__drop-container"
 						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
@@ -45,7 +51,8 @@ const noop = () => { };
 					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
-					[size]="size">
+					[size]="size"
+					[disabled]="disabled">
 					{{buttonText}}
 				</button>
 				<input
@@ -56,14 +63,15 @@ const noop = () => { };
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
-					(change)="onFilesAdded()"/>
+					(change)="onFilesAdded()"
+					[disabled]="disabled"/>
 				<div class="bx--file-container">
-					<div *ngFor="let fileItem of files">
+					<ng-container *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
 						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
 							{{fileItem.invalidText}}
 						</div>
-					</div>
+					</ng-container>
 				</div>
 			</div>
 		</ng-container>
@@ -144,6 +152,10 @@ export class FileUploader {
 	 * The list of files that have been submitted to be uploaded
 	 */
 	@Input() files = new Set<FileItem>();
+	/**
+	 * Set to `true` to disable upload button
+	 */
+	@Input() disabled = false;
 
 	@Output() filesChange = new EventEmitter<any>();
 
@@ -206,9 +218,9 @@ export class FileUploader {
 		for (let file of this.fileList) {
 			const fileItem = this.createFileItem(file);
 			this.files.add(fileItem);
-			this.filesChange.emit(this.files);
 		}
 
+		this.filesChange.emit(this.files);
 		this.value = this.files;
 	}
 
@@ -239,18 +251,24 @@ export class FileUploader {
 			if (!this.files.size || this.multiple) {
 				const fileItem = this.createFileItem(file);
 				this.files.add(fileItem);
-				this.filesChange.emit(this.files);
 			}
 		});
 
+		this.filesChange.emit(this.files);
 		this.value = this.files;
 		this.dragOver = false;
 	}
 
 	removeFile(fileItem) {
-		this.files.delete(fileItem);
+		let shouldEmit = true;
+		if (this.files) {
+			shouldEmit = this.files.has(fileItem);
+			this.files.delete(fileItem);
+		}
 		this.fileInput.nativeElement.value = "";
-		this.filesChange.emit(this.files);
+		if (shouldEmit) {
+			this.filesChange.emit(this.files);
+		}
 	}
 
 	public isTemplate(value) {

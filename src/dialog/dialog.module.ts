@@ -15,14 +15,14 @@ import { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
 import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+import { OverflowMenuCustomPane } from "./overflow-menu/overflow-menu-custom-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
-import { ExperimentalModule } from "./../experimental.module";
-import { UtilsModule } from "./../utils/utils.module";
-
-import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { UtilsModule } from "carbon-components-angular/utils";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -32,6 +32,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
+		OverflowMenuCustomPane,
 		DialogDirective,
 		TooltipDirective,
 		EllipsisTooltip,
@@ -45,6 +46,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
+		OverflowMenuCustomPane,
 		DialogDirective,
 		TooltipDirective,
 		EllipsisTooltip,
@@ -55,7 +57,8 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 	entryComponents: [
 		Dialog,
 		Tooltip,
-		OverflowMenuPane
+		OverflowMenuPane,
+		OverflowMenuCustomPane
 	],
 	imports: [
 		CommonModule,
@@ -63,7 +66,7 @@ import { OverflowMenuVerticalModule } from "@carbon/icons-angular";
 		PlaceholderModule,
 		ExperimentalModule,
 		UtilsModule,
-		OverflowMenuVerticalModule
+		IconModule
 	]
 })
 export class DialogModule {}

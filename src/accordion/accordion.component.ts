@@ -8,19 +8,23 @@ import {
 import { AccordionItem } from "./accordion-item.component";
 
 /**
- * [See demo](../../?path=/story/accordion--basic)
+ * [See demo](../../?path=/story/components-accordion--basic)
  *
- * <example-url>../../iframe.html?id=accordion--basic</example-url>
+ * <example-url>../../iframe.html?id=components-accordion--basic</example-url>
  */
 @Component({
 	selector: "ibm-accordion",
 	template: `
-		<ul class="bx--accordion">
+		<ul class="bx--accordion"
+			[class.bx--accordion--end]="align == 'end'"
+			[class.bx--accordion--start]="align == 'start'">
 			<ng-content></ng-content>
 		</ul>
 	`
 })
 export class Accordion implements AfterContentInit {
+	@Input() align: "start" | "end" = "end";
+
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 
 	protected _skeleton = false;

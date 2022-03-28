@@ -8,26 +8,16 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 
-function sort(model, index: number) {
-	if (model.header[index].sorted) {
-		// if already sorted flip sorting direction
-		model.header[index].ascending = model.header[index].descending;
-	}
-	model.sort(index);
-}
-
 @Component({
 	selector: "app-no-data-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[skeleton]="skeleton"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid"
-			(sort)="simpleSort($event)">
+			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -59,9 +49,5 @@ export class TableNoDataStory implements OnInit, OnChanges {
 				column.sortable = changes.sortable.currentValue;
 			}
 		}
-	}
-
-	simpleSort(index: number) {
-		sort(this.model, index);
 	}
 }

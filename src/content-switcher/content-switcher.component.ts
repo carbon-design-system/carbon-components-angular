@@ -10,13 +10,13 @@ import {
 	ElementRef
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
-import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
+import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
 
 /**
  * The content switcher can be used for toggling between distinct options.
  * Similar to tabs, but without an associated content panel
  *
- * [See demo](../../?path=/story/content-switcher--basic)
+ * [See demo](../../?path=/story/components-content-switcher--basic)
  *
  * ```html
  * <ibm-content-switcher (selected)="selected($event)">
@@ -26,7 +26,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
  *	</ibm-content-switcher>
  *	```
  *
- * <example-url>../../iframe.html?id=content-switcher--basic</example-url>
+ * <example-url>../../iframe.html?id=components-content-switcher--basic</example-url>
  */
 @Component({
 	selector: "ibm-content-switcher",
@@ -34,6 +34,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 		<div
 			[attr.aria-label]="ariaLabel"
 			class="bx--content-switcher"
+			[class.bx--content-switcher--light]="theme === 'light'"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
@@ -41,11 +42,15 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
+	/**
+	 * `light` or `dark` content switcher theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`
 	 */
-	@Output() selected = new EventEmitter();
+	@Output() selected = new EventEmitter<ContentSwitcherOption>();
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
 
@@ -59,7 +64,7 @@ export class ContentSwitcher implements AfterViewInit {
 		}
 		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option => {
-			option.selected.subscribe(_ => {
+			option.selected.subscribe((_: boolean) => {
 				const active = option;
 				this.options.forEach(option => {
 					if (option !== active) {

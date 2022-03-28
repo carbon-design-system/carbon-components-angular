@@ -4,10 +4,10 @@ import {
 	Output,
 	EventEmitter,
 	Optional,
-  HostBinding
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 /**
  * Represents an item in a switcher list.
@@ -73,6 +73,8 @@ export class SwitcherListItem {
 	}
 
 	@HostBinding("class.bx--switcher__item") itemClass = true;
+
+	@HostBinding("attr.role") itemRole = "listitem";
 
 	protected _href = "javascript:void(0)";
 	protected _target = "";

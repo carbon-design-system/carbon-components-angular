@@ -11,18 +11,18 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { cycleTabs, getFocusElementList } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 
 /**
  * Component to create modals for presenting content.
  *
- * [See demo](../../?path=/story/modal--basic)
+ * [See demo](../../?path=/story/components-modal--basic)
  *
  * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
 ```html
-<ibm-modal-placeholder></ibm-modal-placeholder>
+<ibm-placeholder></ibm-placeholder>
 ```
  *
  * A more complete example for `Modal` is given as follows:
@@ -38,7 +38,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
 							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
-								<ibm-icon icon="info" size="sm"></ibm-icon>
+								<svg ibmIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
 						</section>
@@ -71,7 +71,7 @@ export class ModalDemo {
 }
 ```
  *
- * <example-url>../../iframe.html?id=modal--basic</example-url>
+ * <example-url>../../iframe.html?id=components-modal--basic</example-url>
  */
 @Component({
 	selector: "ibm-modal",
@@ -156,7 +156,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
 	// @ts-ignore
-	@ViewChild("modal", { static: false }) modal: ElementRef;
+	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
@@ -179,7 +179,6 @@ export class Modal implements AfterViewInit, OnChanges {
 			}
 		}
 	}
-
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
@@ -216,9 +215,10 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
 	 */
 	get shouldShowScrollbar() {
-		const modalContent = this.modal.nativeElement.querySelector(".bx--modal-content");
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
 		if (modalContent) {
-			const modalContentHeight = modalContent.getBoundingClientRect().height;
+			// get rounded value from height to match integer returned from scrollHeight
+			const modalContentHeight = Math.round(modalContent.getBoundingClientRect().height);
 			const modalContentScrollHeight = modalContent.scrollHeight;
 			return modalContentScrollHeight > modalContentHeight;
 		} else {

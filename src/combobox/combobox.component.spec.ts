@@ -1,11 +1,8 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import {
-	ChevronDownModule,
-	WarningFilledModule,
-	CloseModule
-} from "@carbon/icons-angular";
+
+import { IconModule } from "../icon/index";
 import { I18nModule } from "../i18n/index";
 
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -13,6 +10,9 @@ import { ComboBox } from "./combobox.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
 import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
+import { UtilsModule } from "../utils";
+import { DropdownService } from "./../dropdown/index";
+import { PlaceholderModule } from "./../placeholder/index";
 
 
 @Component({
@@ -45,12 +45,13 @@ describe("Combo box", () => {
 				ScrollableList
 			],
 			imports: [
-				ChevronDownModule,
-				WarningFilledModule,
-				CloseModule,
+				IconModule,
 				I18nModule,
-				FormsModule
-			]
+				FormsModule,
+				UtilsModule,
+				PlaceholderModule
+			],
+			providers: [ DropdownService ]
 		});
 	});
 
@@ -84,6 +85,30 @@ describe("Combo box", () => {
 		expect(wrapper.model).toEqual([]);
 	});
 
+	it("should call clearInput on clear selection button keyup event", () => {
+		const keyupEnter = new KeyboardEvent("keyup", { "key": "Enter" });
+		fixture = TestBed.createComponent(ComboboxTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		spyOn(element.componentInstance, "clearInput");
+
+		// Select an item from the dropdown
+		const dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+		const dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		// Attempt clear by keyboard event
+		const clearBtn = element.nativeElement.querySelector(".bx--list-box__selection");
+		clearBtn.dispatchEvent(keyupEnter);
+		fixture.detectChanges();
+
+		expect(element.componentInstance.clearInput).toHaveBeenCalled();
+	});
+
 	it("should open dropdown on ArrowDown and close dropdown on Escape", () => {
 		const keyDown = new KeyboardEvent("keydown", { "key": "ArrowDown" });
 		const escape = new KeyboardEvent("keydown", { "key": "Escape" });
@@ -93,6 +118,7 @@ describe("Combo box", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
 		element.componentInstance.open = false;
+		fixture.detectChanges();
 
 		element.nativeElement.dispatchEvent(keyDown);
 		fixture.detectChanges();
@@ -105,9 +131,7 @@ describe("Combo box", () => {
 		expect(element.componentInstance.open).toBe(false);
 	});
 
-	it("should call onSearch on keyup event", () => {
-		const keyupT = new KeyboardEvent("keyup", { "key": "t" });
-
+	it("should call onSearch on input event", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
@@ -115,7 +139,7 @@ describe("Combo box", () => {
 		spyOn(element.componentInstance, "onSearch");
 
 		const textInput = element.nativeElement.querySelector(".bx--text-input");
-		textInput.dispatchEvent(keyupT);
+		textInput.dispatchEvent(new Event("input"));
 		fixture.detectChanges();
 
 		expect(element.componentInstance.onSearch).toHaveBeenCalled();
@@ -126,7 +150,7 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-combo-box"));
-		expect(element.nativeElement.textContent).toBe("labelopen menu");
+		expect(element.nativeElement.textContent).toBe("label");
 	});
 
 	it("should set placeholder to 'placeholder'", () => {

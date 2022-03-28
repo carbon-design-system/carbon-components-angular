@@ -1,10 +1,10 @@
 import { Component, Input, HostBinding } from "@angular/core";
-import { I18n } from "./../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 
 /**
- * [See demo](../../?path=/story/loading--basic)
+ * [See demo](../../?path=/story/components-loading--basic)
  *
- * <example-url>../../iframe.html?id=loading--basic</example-url>
+ * <example-url>../../iframe.html?id=components-loading--basic</example-url>
  */
 @Component({
 	selector: "ibm-loading",
@@ -16,9 +16,9 @@ import { I18n } from "./../i18n/index";
 				'bx--loading-overlay--stop': !isActive && overlay
 			}"
 			class="bx--loading">
-			<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+			<svg class="bx--loading__svg" viewBox="0 0 100 100">
 				<title>{{title}}</title>
-				<circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+				<circle class="bx--loading__stroke" cx="50%" cy="50%" r="44" />
 			</svg>
 		</div>
 	`

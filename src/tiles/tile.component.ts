@@ -1,12 +1,13 @@
 import {
 	Component,
-	HostBinding
+	HostBinding,
+	Input
 } from "@angular/core";
 
 /**
  * Build application's tiles using this component.
  *
- * [See demo](../../?path=/story/tiles--basic)
+ * [See demo](../../?path=/story/components-tiles--basic)
  *
  * ## Basic usage
  *
@@ -16,7 +17,7 @@ import {
  * </ibm-tile>
  * ```
  *
- * <example-url>../../iframe.html?id=tiles--basic</example-url>
+ * <example-url>../../iframe.html?id=components-tiles--basic</example-url>
  */
 @Component({
 	selector: "ibm-tile",
@@ -24,4 +25,10 @@ import {
 })
 export class Tile {
 	@HostBinding("class.bx--tile") tileClass = true;
+
+	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+		return this.theme === "light";
+	}
+
+	@Input() theme: "light" | "dark" = "dark";
 }

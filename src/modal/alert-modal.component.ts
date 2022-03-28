@@ -2,7 +2,8 @@ import {
 	Component,
 	Inject,
 	ViewChild,
-	AfterViewInit
+	AfterViewInit,
+	Optional
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 
@@ -11,11 +12,11 @@ import { BaseModal } from "./base-modal.class";
  * It can show as a passive modal showing only text or show as a transactional modal with
  * multiple buttons for different actions for the user to choose from.
  *
- * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
+ * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
- * <ibm-modal-placeholder></ibm-modal-placeholder>
+ * <ibm-placeholder></ibm-placeholder>
  * ```
  *
  * Example of opening the modal:
@@ -25,7 +26,7 @@ import { BaseModal } from "./base-modal.class";
  *  selector: "app-modal-demo",
  *  template: `
  *   <button class="btn--primary" (click)="openModal()">Open modal</button>
- *   <ibm-modal-placeholder></ibm-modal-placeholder>`
+ *   <ibm-placeholder></ibm-placeholder>`
  * })
  * export class ModalDemo {
  * 	openModal() {
@@ -54,11 +55,11 @@ import { BaseModal } from "./base-modal.class";
 			[hasScrollingContent]="hasScrollingContent"
 			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
-			<ibm-modal-header (closeSelect)="dismissModal('close')">
-				<p class="bx--modal-header__label bx--type-delta">{{label}}</p>
-      			<p class="bx--modal-header__heading bx--type-beta">{{title}}</p>
+			<ibm-modal-header (closeSelect)="dismissModal('close')" [showCloseButton]="showCloseButton">
+				<p ibmModalHeaderLabel class="bx--type-delta">{{label}}</p>
+				<p ibmModalHeaderHeading class="bx--type-beta">{{title}}</p>
 			</ibm-modal-header>
-			<div #modalContent class="bx--modal-content">
+			<div ibmModalContent #modalContent>
 				<p [innerHTML]="content"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
@@ -77,19 +78,20 @@ import { BaseModal } from "./base-modal.class";
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
 	// @ts-ignore
-	@ViewChild("modalContent", { static: false }) modalContent;
+	@ViewChild("modalContent", { static: true }) modalContent;
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
 	constructor(
-		@Inject("type") public type = "default",
-		@Inject("label") public label: string,
-		@Inject("title") public title: string,
-		@Inject("content") public content: string,
-		@Inject("size") public size: string,
-		@Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
-		@Inject("buttons") public buttons = [],
-		@Inject("close") public onClose: Function
+		@Optional() @Inject("type") public type = "default",
+		@Optional() @Inject("label") public label: string,
+		@Optional() @Inject("title") public title: string,
+		@Optional() @Inject("content") public content: string,
+		@Optional() @Inject("size") public size: string,
+		@Optional() @Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
+		@Optional() @Inject("buttons") public buttons = [],
+		@Optional() @Inject("close") public onClose: Function,
+		@Optional() @Inject("showCloseButton") public showCloseButton = true
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {

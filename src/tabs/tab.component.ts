@@ -37,16 +37,15 @@ let nextId = 0;
 *
 * ```html
 * <ng-template #tabHeading>
-* 	<ibm-icon
-* 		icon="facebook"
+* 	<svg ibmIcon="facebook"
 * 		size="sm"
 * 		style="margin-right: 7px;">
-* 	</ibm-icon>
+* 	</svg>
 * 	Hello Tab 1
 * </ng-template>
 * <ibm-tabs>
 * 	<ibm-tab [heading]="tabHeading">
-* 		Tab 1 content <ibm-icon icon="alert" size="lg"></ibm-icon>
+* 		Tab 1 content <svg ibmIcon="alert" size="lg"></svg>
 * 	</ibm-tab>
 * 	<ibm-tab heading='Tab2'>
 * 		Tab 2 content
@@ -61,11 +60,13 @@ let nextId = 0;
 	selector: "ibm-tab",
 	template: `
 		<div
-			[tabindex]="tabIndex"
+			[attr.tabindex]="tabIndex"
 			role="tabpanel"
 			*ngIf="shouldRender()"
+			class="bx--tab-content"
 			[ngStyle]="{'display': active ? null : 'none'}"
-			[attr.aria-labelledby]="id + '-header'">
+			[attr.aria-labelledby]="id + '-header'"
+			aria-live="polite">
 			<ng-content></ng-content>
 		</div>
 	`
@@ -81,6 +82,13 @@ export class Tab implements OnInit {
 	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
 	 */
 	@Input() heading: string | TemplateRef<any>;
+	/**
+	 * Optional override for the `tabItem's`'s title attribute which is set in `TabHeaders`.
+	 * `tabItem`'s title attribute is automatically set to `heading`.
+	 *
+	 * You might want to use this if you set `heading` to a `TemplateRef`.
+	 */
+	@Input() title: string;
 	/**
 	 * Allows the user to pass data to the custom template for the `Tab` heading.
 	 */

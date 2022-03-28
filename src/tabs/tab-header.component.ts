@@ -3,7 +3,8 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	Output
+	Output,
+	AfterViewInit
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -14,27 +15,28 @@ import { EventEmitter } from "@angular/core";
 	template: `
 		<li
 			[ngClass]="{
-				'bx--tabs__nav-item--selected': active,
-				'bx--tabs__nav-item--disabled': disabled
+				'bx--tabs__nav-item--selected bx--tabs--scrollable__nav-item--selected': active,
+				'bx--tabs__nav-item--disabled bx--tabs--scrollable__nav-item--disabled': disabled
 			}"
-			class="bx--tabs__nav-item"
+			class="bx--tabs--scrollable__nav-item"
 			role="presentation"
 			(click)="selectTab()">
-			<a
+			<button
 				#tabItem
 				[attr.aria-selected]="active"
 				draggable="false"
-				class="bx--tabs__nav-link"
+				class="bx--tabs--scrollable__nav-link"
 				href="javascript:void(0)"
+				[title]="title"
 				[attr.tabindex]="(active? 0 : -1)"
 				role="tab">
 				<ng-content></ng-content>
-			</a>
+			</button>
 		</li>
 	`
 })
 
-export class TabHeader {
+export class TabHeader implements AfterViewInit {
 	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
@@ -48,6 +50,7 @@ export class TabHeader {
 	 * Reference to the corresponsing tab pane.
 	 */
 	@Input() paneReference: Tab;
+	@Input() title;
 	/**
 	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
 	 */
@@ -57,6 +60,12 @@ export class TabHeader {
 		// Updates the pane references associated with the tab header when cache active is changed.
 		if (this.paneReference) {
 			this.paneReference.cacheActive = this.cacheActive;
+		}
+	}
+
+	@Input() set paneTabIndex(tabIndex: number | null) {
+		if (this.paneReference) {
+			this.paneReference.tabIndex = tabIndex;
 		}
 	}
 
@@ -71,9 +80,15 @@ export class TabHeader {
 	@Output() selected = new EventEmitter<any>();
 
 	// @ts-ignore
-	@ViewChild("tabItem", { static: false }) tabItem: ElementRef;
+	@ViewChild("tabItem", { static: true }) tabItem: ElementRef;
 
 	protected _cacheActive = false;
+
+	ngAfterViewInit() {
+		setTimeout(() => {
+			this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
+		});
+	}
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();

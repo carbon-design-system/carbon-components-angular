@@ -10,18 +10,21 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
- * [See demo](../../?path=/story/time-picker--simple)
+ * [See demo](../../?path=/story/components-time-picker--simple)
  *
- * <example-url>../../iframe.html?id=time-picker--simple</example-url>
+ * <example-url>../../iframe.html?id=components-time-picker--simple</example-url>
  */
 @Component({
 	selector: "ibm-timepicker",
 	template: `
+		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
+		<div
+			class="bx--time-picker"
+			[ngClass]="{'bx--time-picker--invalid' : invalid}">
 			<div class="bx--time-picker__input">
-				<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-				</label>
 				<input
 					[ngClass]="{
 						'bx--text-input--light': theme === 'light',
@@ -29,6 +32,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					}"
 					[value]="value"
 					[placeholder]="placeholder"
+					[attr.data-invalid]="invalid ? true : undefined"
 					[pattern]="pattern"
 					[attr.id]="id"
 					[disabled]="disabled"
@@ -38,6 +42,11 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					class="bx--time-picker__input-field bx--text-input">
 			</div>
 			<ng-content></ng-content>
+		</div>
+		<div *ngIf="invalid" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+		</div>
 	`,
 	providers: [
 		{
@@ -53,8 +62,8 @@ export class TimePicker implements ControlValueAccessor {
 	 */
 	static timePickerCount = 0;
 
-	@HostBinding("class.bx--time-picker") timePicker = true;
-
+	@Input() invalid = false;
+	@Input() invalidText: string | TemplateRef<any>;
 	@Input() label: string | TemplateRef<any>;
 	@Input() placeholder = "hh:mm";
 	@Input() pattern = "(1[012]|[0-9]):[0-5][0-9]";
@@ -95,8 +104,8 @@ export class TimePicker implements ControlValueAccessor {
 		this.valueChange.emit(event.target.value);
 	}
 
-	@HostListener("blur")
-	blur() {
+	@HostListener("focusout")
+	focusOut() {
 		this.onTouchedHandler();
 	}
 

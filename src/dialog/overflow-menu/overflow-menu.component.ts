@@ -1,19 +1,20 @@
 import {
 	Component,
-	ElementRef,
-	Input,
-	ViewEncapsulation,
 	ContentChild,
+	ElementRef,
+	EventEmitter,
+	Input,
 	Output,
-	EventEmitter
+	TemplateRef,
+	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "./../../i18n/index";
+import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
  *
- * [See demo](../../?path=/story/overflow-menu--basic)
+ * [See demo](../../?path=/story/components-overflow-menu--basic)
  *
  * html:
  * ```
@@ -23,29 +24,32 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  * </ibm-overflow-menu>
  * ```
  *
- * <example-url>../../iframe.html?id=overflow-menu--basic</example-url>
+ * <example-url>../../iframe.html?id=components-overflow-menu--basic</example-url>
  */
 @Component({
 	selector: "ibm-overflow-menu",
 	template: `
-		<div
+		<button
 			[ibmOverflowMenu]="options"
 			[ngClass]="{'bx--overflow-menu--open': open}"
+			class="bx--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
 			[isOpen]="open"
 			(isOpenChange)="handleOpenChange($event)"
 			[offset]="offset"
 			[wrapperClass]="wrapperClass"
-			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
-			[placement]="placement"
-			tabindex="0">
-			<svg ibmIconOverflowMenuVertical size="16" class="bx--overflow-menu__icon"></svg>
-		</div>
+			type="button"
+			[placement]="placement">
+			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
+		</button>
 		<ng-template #options>
 			<ng-content></ng-content>
+		</ng-template>
+		<ng-template #defaultIcon>
+			<svg ibmIcon="overflow-menu--vertical" size="16" class="bx--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`
@@ -78,11 +82,21 @@ export class OverflowMenu {
 
 	@Output() openChange = new EventEmitter<boolean>();
 	/**
+	 * Sets the custom overflow menu trigger
+	 */
+	@Input() customTrigger: TemplateRef<any>;
+
+	/**
 	 * This specifies any vertical and horizontal offset for the position of the dialog
 	 */
 	@Input() offset: { x: number, y: number };
 
 	@Input() wrapperClass = "";
+
+	/**
+	 * This appends additional classes to the overflow trigger/button.
+	 */
+	@Input() triggerClass = "";
 
 	// @ts-ignore
 	@ContentChild(OverflowMenuDirective, { static: false }) overflowMenuDirective: OverflowMenuDirective;

@@ -1,0 +1,62 @@
+name: Check build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Run build
+      run: |
+        npm i
+        npm run ng:build --if-present
+        cd dist
+        npm pack
+    - name: Upload dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist/carbon-components-angular-0.0.0.tgz
+        if-no-files-found: error
+
+  app-build:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        angular-version: [7, 8, 9, 10, 11, 12, 13]
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Download dist
+      uses: actions/download-artifact@v2
+      with:
+        name: dist
+    - run: |
+        npm i
+        npm i ./../../carbon-components-angular-0.0.0.tgz
+        npm run build
+        npm run build -- --prod
+      working-directory: integration/ng${{ matrix.angular-version }}

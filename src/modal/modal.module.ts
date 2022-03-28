@@ -1,7 +1,6 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CloseModule } from "@carbon/icons-angular";
 
 // imports
 import { ModalService } from "./modal.service";
@@ -10,10 +9,16 @@ import { ModalFooter } from "./modal-footer.component";
 import { Overlay } from "./overlay.component";
 import { ModalHeader } from "./modal-header.component";
 import { AlertModal } from "./alert-modal.component";
-import { ButtonModule } from "../forms/index";
-import { I18nModule } from "./../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
-import { ExperimentalModule } from "./../experimental.module";
+import { ButtonModule } from "carbon-components-angular/forms";
+import { I18nModule } from "carbon-components-angular/i18n";
+import { PlaceholderModule } from "carbon-components-angular/placeholder";
+import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { ModalContent } from "./modal-content.directive";
+import { ModalContentText } from "./modal-content-text.directive";
+import { ModalHeaderHeading } from "./modal-header-heading.directive";
+import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { BaseModal } from "./base-modal.class";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
@@ -21,13 +26,23 @@ import { ExperimentalModule } from "./../experimental.module";
 		Modal,
 		ModalHeader,
 		ModalFooter,
-		Overlay
+		Overlay,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel,
+		BaseModal
 	],
 	exports: [
 		AlertModal,
 		Modal,
 		ModalHeader,
-		ModalFooter
+		ModalFooter,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel,
+		BaseModal
 	],
 	entryComponents: [
 		AlertModal,
@@ -42,7 +57,7 @@ import { ExperimentalModule } from "./../experimental.module";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		CloseModule
+		IconModule
 	]
 })
 export class ModalModule { }

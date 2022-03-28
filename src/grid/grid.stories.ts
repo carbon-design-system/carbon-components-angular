@@ -37,6 +37,6 @@ storiesOf("Components|Grid", module)
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/GridDirective.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_grid.griddirective.html"></ibm-documentation>
 		`
 	}));

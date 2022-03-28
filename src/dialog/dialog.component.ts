@@ -8,19 +8,18 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener
+	HostListener,
+	Optional
 } from "@angular/core";
 import {
 	Observable,
-	Subscription,
-	fromEvent
+	Subscription
 } from "rxjs";
-import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
 import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
-import { cycleTabs, getFocusElementList } from "./../common/tab.service";
-import { DialogConfig } from "./dialog-config.interface";
-import { ElementService } from "./../utils/utils.module";
+import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
+import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -34,7 +33,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 */
-	@Output() close: EventEmitter<any> = new EventEmitter();
+	@Output() close: EventEmitter<CloseMeta> = new EventEmitter();
 	/**
 	 * Receives `DialogConfig` interface object with properties of `Dialog`
 	 * explicitly defined.
@@ -57,6 +56,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	public placement: string;
 
 	protected visibilitySubscription = new Subscription();
+
+	protected animationFrameSubscription = new Subscription();
+
 	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
@@ -82,7 +84,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	constructor(
 		protected elementRef: ElementRef,
-		protected elementService: ElementService
+		protected elementService: ElementService,
+		@Optional() protected animationFrameService: AnimationFrameService = null
 	) {}
 
 	/**
@@ -118,15 +121,25 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
-		this.visibilitySubscription = this.elementService
-			.visibility(parentElement, parentElement)
-			.subscribe(value => {
+		if (this.animationFrameService) {
+			this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
 				this.placeDialog();
-				if (!value.visible) {
-					this.doClose();
+			});
+		}
+
+		if (this.dialogConfig.closeWhenHidden) {
+			this.visibilitySubscription = this.elementService
+				.visibility(parentElement, parentElement)
+				.subscribe(value => {
+					this.placeDialog();
+					if (!value.visible) {
+						this.doClose({
+							reason: CloseReasons.hidden
+						});
+					}
 				}
-			}
-		);
+			);
+		}
 
 		this.placeDialog();
 		// run afterDialogViewInit on the next tick
@@ -196,7 +209,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			case "Esc": // IE specific value
 			case "Escape": {
 				event.stopImmediatePropagation();
-				this.doClose();
+				this.doClose({
+					reason: CloseReasons.interaction,
+					target: event.target
+				});
 				break;
 			}
 			case "Tab": {
@@ -215,15 +231,18 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	clickClose(event) {
 		if (!this.elementRef.nativeElement.contains(event.target)
 			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
-			this.doClose();
+			this.doClose({
+				reason: CloseReasons.interaction,
+				target: event.target
+			});
 		}
 	}
 
 	/**
 	 * Closes `Dialog` object by emitting the close event upwards to parents.
 	 */
-	public doClose() {
-		this.close.emit();
+	public doClose(meta: CloseMeta = { reason: CloseReasons.interaction }) {
+		this.close.emit(meta);
 	}
 
 	/**
@@ -231,5 +250,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.visibilitySubscription.unsubscribe();
+		if (this.animationFrameSubscription) {
+			this.animationFrameSubscription.unsubscribe();
+		}
 	}
 }

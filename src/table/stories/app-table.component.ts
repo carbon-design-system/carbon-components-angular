@@ -9,30 +9,20 @@ import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
-function sort(model, index: number) {
-	if (model.header[index].sorted) {
-		// if already sorted flip sorting direction
-		model.header[index].ascending = model.header[index].descending;
-	}
-	model.sort(index);
-}
-
 @Component({
 	selector: "app-table",
 	template: `
 		<ibm-table
-			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
-			[enableSingleSelect]="false"
+			[enableSingleSelect]="enableSingleSelect"
 			(rowClick)="onRowClick($event)"
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid"
-			(sort)="simpleSort($event)">
+			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -41,6 +31,7 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
+	@Input() enableSingleSelect = false;
 	@Input() striped = true;
 	@Input() sortable = true;
 	@Input() isDataGrid = false;
@@ -51,7 +42,8 @@ export class TableStory implements OnInit, OnChanges {
 	ngOnInit() {
 		this.model.header = [
 			new TableHeaderItem({
-				data: "Name"
+				data: "Name",
+				title: "Table header title"
 			}),
 			new TableHeaderItem({
 				data: "hwer",
@@ -64,7 +56,7 @@ export class TableStory implements OnInit, OnChanges {
 
 		if (!this.noData && !this.skeleton) {
 			this.model.data = [
-				[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+				[new TableItem({ data: "Name 1", title: "Table item title" }), new TableItem({ data: "qwer" })],
 				[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
 				[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
 				[new TableItem({ data: "Name 4" }), new TableItem({data: "twer"})],
@@ -85,9 +77,5 @@ export class TableStory implements OnInit, OnChanges {
 
 	onRowClick(index: number) {
 		console.log("Row item selected:", index);
-	}
-
-	simpleSort(index: number) {
-		sort(this.model, index);
 	}
 }

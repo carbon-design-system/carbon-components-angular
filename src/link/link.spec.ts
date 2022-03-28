@@ -4,6 +4,24 @@ import { By } from "@angular/platform-browser";
 
 import { Link } from "./link.directive";
 
+@Component({
+	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
+})
+class TestLinkComponent {
+}
+
+@Component({
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
+})
+class TestDisabledLinkComponent {
+}
+
+@Component({
+	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" ibmLink>link</a>`
+})
+class TestInlineLinkComponent {
+}
+
 describe("Link", () => {
 	it("should create a Link", () => {
 		TestBed.configureTestingModule({
@@ -35,16 +53,16 @@ describe("Link", () => {
 		expect(directiveEl.attributes["aria-disabled"]).toBe("true");
 		expect(directiveEl.attributes["tabindex"]).toBe("-1");
 	});
+
+	it("should create an inline link", () => {
+		TestBed.configureTestingModule({
+			declarations: [TestInlineLinkComponent, Link]
+		});
+
+		let fixture: ComponentFixture<TestInlineLinkComponent> = TestBed.createComponent(TestInlineLinkComponent);
+		fixture.detectChanges();
+
+		const directiveEl = fixture.debugElement.query(By.directive(Link));
+		expect(directiveEl.nativeElement.classList.contains("bx--link--inline")).toBeTruthy();
+	});
 });
-
-@Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
-})
-class TestLinkComponent {
-}
-
-@Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
-})
-class TestDisabledLinkComponent {
-}

@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CheckmarkModule } from "@carbon/icons-angular";
 
 import { InlineLoading } from "./inline-loading.component";
+import { IconModule } from "carbon-components-angular/icon";
+
 
 @NgModule({
 	declarations: [InlineLoading],
 	exports: [InlineLoading],
-	imports: [CommonModule, CheckmarkModule]
+	imports: [CommonModule, IconModule]
 })
 export class InlineLoadingModule { }

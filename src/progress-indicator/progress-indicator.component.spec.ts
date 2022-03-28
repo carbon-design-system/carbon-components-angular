@@ -5,7 +5,7 @@ import { By } from "@angular/platform-browser";
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { DialogModule, ExperimentalModule } from "..";
-import { CheckmarkOutlineModule, WarningModule } from "@carbon/icons-angular";
+import { IconModule } from "../icon/index";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
@@ -64,8 +64,7 @@ describe("ProgressIndicator", () => {
 				CommonModule,
 				DialogModule,
 				ExperimentalModule,
-				CheckmarkOutlineModule,
-				WarningModule
+				IconModule
 			]
 		});
 	});
@@ -118,5 +117,31 @@ describe("ProgressIndicator", () => {
 		step.click();
 		fixture.detectChanges();
 		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
+	});
+
+	it("should handle current being set to 0 after the component is initialized",  () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		wrapper.current = 0;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("First step");
+	});
+
+	it("should handle steps and current being updated individually after the component is initialized", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		wrapper.steps = wrapper.steps.concat([{
+			text: "Sixth step",
+			state: ["incomplete"]
+		}]);
+		fixture.detectChanges();
+		wrapper.current = 5;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".bx--progress").children.length).toBe(6);
+		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Sixth step");
 	});
 });
