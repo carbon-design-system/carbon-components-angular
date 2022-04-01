@@ -156,7 +156,7 @@ export class TableModel implements PaginationModel {
 	 */
 	set totalDataLength(length: number) {
 		// if this function is called without a parameter we need to set to null to avoid having undefined != null
-		this._totalDataLength = length || null;
+		this._totalDataLength = isNaN(length) ? null : length;
 	}
 
 	/**
