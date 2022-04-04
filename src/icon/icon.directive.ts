@@ -68,7 +68,7 @@ export class IconDirective implements AfterViewInit {
 		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
 		const attributes = getAttributes({
-			width: icon.attrs.height,
+			width: icon.attrs.width,
 			height: icon.attrs.height,
 			viewBox: icon.attrs.viewBox,
 			title: this.title,
