@@ -13,7 +13,9 @@
 		<a href="https://www.netlify.com" target="_blank">
 			<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
 		</a>
-    <a href="https://bestpractices.coreinfrastructure.org/projects/5887"><img src="https://bestpractices.coreinfrastructure.org/projects/5887/badge"></a>
+    <a href="https://bestpractices.coreinfrastructure.org/projects/5887">
+      <img src="https://bestpractices.coreinfrastructure.org/projects/5887/badge">
+    </a>
 	</p>
 </p>
 
