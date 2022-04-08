@@ -30,7 +30,6 @@ import Copy16 from "@carbon/icons/es/copy/16";
 import Copy20 from "@carbon/icons/es/copy/20";
 import Data216 from "@carbon/icons/es/data--2/16";
 import Data220 from "@carbon/icons/es/data--2/20";
-import Delete16 from "@carbon/icons/es/delete/16";
 import Document16 from "@carbon/icons/es/document/16";
 import Document20 from "@carbon/icons/es/document/20";
 import Download16 from "@carbon/icons/es/download/16";
@@ -106,7 +105,6 @@ export class IconModule {
 			Copy20,
 			Data216,
 			Data220,
-			Delete16,
 			Document16,
 			Document20,
 			Download16,
