@@ -37,7 +37,7 @@ import { Tab } from "./tab.component";
 			<button
 				#leftOverflowNavButton
 				type="button"
-				title="translations.PREVIOUS"
+				[title]="translations.PREVIOUS"
 				[ngClass]="{
 					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
 					'bx--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
@@ -107,7 +107,7 @@ import { Tab } from "./tab.component";
 			<button
 				#rightOverflowNavButton
 				type="button"
-				title="translations.NEXT"
+				[title]="translations.NEXT"
 				[ngClass]="{
 					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
 					'bx--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
