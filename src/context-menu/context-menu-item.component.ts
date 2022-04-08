@@ -184,7 +184,8 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	}
 
 	getDimensions() {
-		const element: HTMLElement = this.elementRef.nativeElement.querySelector(".cds--context-menu-option__content, .cds--menu-option__content");
+		const element: HTMLElement = this.elementRef.nativeElement
+			.querySelector(".cds--context-menu-option__content, .cds--menu-option__content");
 		return element.getBoundingClientRect();
 	}
 
