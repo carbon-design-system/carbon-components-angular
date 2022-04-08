@@ -18,7 +18,7 @@ import { TableRowSize } from "../table.types";
  *		<ibm-table-toolbar-actions>
  *			<button ibmButton="primary">
  *				Delete
- *				<svg ibmIcon="delete" size="16" class="cds--btn__icon"></svg>
+ *				<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
  *			</button>
  *			<button ibmButton="primary">
  *				Save
