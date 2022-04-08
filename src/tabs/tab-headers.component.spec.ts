@@ -11,7 +11,8 @@ describe("TabHeadersComponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [TabHeaders],
 			imports: [
-				UtilsModule,I18nModule
+				UtilsModule,
+				I18nModule
 			],
 			providers: []
 		});
