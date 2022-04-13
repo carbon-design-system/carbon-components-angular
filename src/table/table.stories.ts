@@ -184,7 +184,7 @@ storiesOf("Components|Table", module).addDecorator(
 					<ibm-table-toolbar-actions>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Delete
-							<div ibmIcon="trash-can" size="16" class="cds--btn__icon"></div>
+							<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 						</button>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Save
