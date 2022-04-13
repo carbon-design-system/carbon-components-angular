@@ -28,13 +28,13 @@ storiesOf("Components|Tooltip", module)
 				<ng-template #template let-tooltip="tooltip">
 					<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
 						If more room is needed please use a modal instead.</p>
-					<div class="bx--tooltip__footer">
-						<a href="/" class="bx--link">Learn More</a>
-						<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
+					<div class="cds--tooltip__footer">
+						<a href="/" class="cds--link">Learn More</a>
+						<button class="cds--btn cds--btn--primary" (click)="tooltip.doClose()">Close</button>
 					</div>
 				</ng-template>
 
-				<div class="bx--tooltip__label">
+				<div class="cds--tooltip__label">
 					{{triggerText}}
 					<span
 						[ibmTooltip]="template"
@@ -61,9 +61,9 @@ storiesOf("Components|Tooltip", module)
 					<ng-template #template let-tooltip="tooltip">
 						<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
 							If more room is needed please use a modal instead.</p>
-						<div class="bx--tooltip__footer">
-							<a href="/" class="bx--link">Learn More</a>
-							<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
+						<div class="cds--tooltip__footer">
+							<a href="/" class="cds--link">Learn More</a>
+							<button class="cds--btn cds--btn--primary" (click)="tooltip.doClose()">Close</button>
 						</div>
 					</ng-template>
 
@@ -89,9 +89,9 @@ storiesOf("Components|Tooltip", module)
 					<ng-template #template let-tooltip="tooltip">
 						<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
 							If more room is needed please use a modal instead.</p>
-						<div class="bx--tooltip__footer">
-							<a href="/" class="bx--link">Learn More</a>
-							<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
+						<div class="cds--tooltip__footer">
+							<a href="/" class="cds--link">Learn More</a>
+							<button class="cds--btn cds--btn--primary" (click)="tooltip.doClose()">Close</button>
 						</div>
 					</ng-template>
 
@@ -100,7 +100,7 @@ storiesOf("Components|Tooltip", module)
 						[offset]="offset"
 						trigger="click"
 						[placement]="placement">
-						<div role="button" class="bx--tooltip__trigger">
+						<div role="button" class="cds--tooltip__trigger">
 							<svg focusable="false" aria-label="tooltip" width="16" height="16" viewBox="0 0 16 16" role="img" style="will-change: transform;">
 								<circle cx="8" cy="3" r="1"></circle><circle cx="8" cy="8" r="1"></circle><circle cx="8" cy="13" r="1"></circle>
 							</svg>
@@ -121,7 +121,7 @@ storiesOf("Components|Tooltip", module)
 					<ng-template #template let-tooltip="tooltip">
 						<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
 							If more room is needed please use a modal instead.</p>
-						<div class="bx--tooltip__footer">
+						<div class="cds--tooltip__footer">
 						</div>
 					</ng-template>
 					<span
@@ -137,7 +137,7 @@ storiesOf("Components|Tooltip", module)
 					<ng-template #template2 let-tooltip="tooltip">
 						<p>This is some tooltip text. This box shows the maximum amount of text that should appear inside.
 							If more room is needed please use a modal instead.</p>
-						<div class="bx--tooltip__footer">
+						<div class="cds--tooltip__footer">
 						</div>
 					</ng-template>
 					<span
@@ -159,7 +159,7 @@ storiesOf("Components|Tooltip", module)
 	.add("Programmatically", () => ({
 		template: `
 			<div>
-				<div class="bx--tooltip__label">
+				<div class="cds--tooltip__label">
 					{{triggerText}}
 					<span
 						ibmTooltip="Hello, World"
@@ -224,7 +224,7 @@ storiesOf("Components|Tooltip", module)
 						{{ tag.content }}
 					</ibm-tag-filter>
 				</ng-template>
-				<div class="bx--tooltip__label">
+				<div class="cds--tooltip__label">
 					{{triggerText}}
 					<span
 						[ibmTooltip]="template"

@@ -28,7 +28,7 @@ import { LinkModule } from "../../link/index";
 					(valueChange)="onSearch($event)">
 				</ibm-table-toolbar-search>
 				<button ibmButton="ghost" class="toolbar-action" size="sm">
-					<svg size="16" class="bx--toolbar-action__icon" ibmIcon="Data_2"></svg>
+					<svg size="16" class="cds--toolbar-action__icon" ibmIcon="Data_2"></svg>
 				</button>
 			</ibm-table-toolbar-content>
 		</ibm-table-toolbar>
@@ -152,7 +152,7 @@ export class TableStory implements OnInit {
 	`,
 	encapsulation: ViewEncapsulation.None,
 	styles: [`
-		.bx--modal-content {
+		.cds--modal-content {
 			/* !important is needed to prevent override from media queries. */
 			padding-left: 0 !important;
 			padding-right: 0 !important;
@@ -174,7 +174,7 @@ export class TableStory implements OnInit {
 			width: 50%;
 		}
 
-		.bx--link {
+		.cds--link {
 			position: absolute;
 			align-self: center;
 			left: 1rem;

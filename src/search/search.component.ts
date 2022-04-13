@@ -33,7 +33,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
+	@HostBinding("class.cds--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
 	 * `light` or `dark` search theme.

@@ -47,8 +47,8 @@ storiesOf("Components|Overflow Menu", module)
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
-					<li class="bx--overflow-menu-options__option">
-						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+					<li class="cds--overflow-menu-options__option">
+						<button class="cds--overflow-menu-options__btn">A fully custom option</button>
 					</li>
 					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
@@ -66,8 +66,8 @@ storiesOf("Components|Overflow Menu", module)
 						An example option that is really long to show what should be done to handle long text
 					</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
-					<li class="bx--overflow-menu-options__option">
-						<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+					<li class="cds--overflow-menu-options__option">
+						<button class="cds--overflow-menu-options__btn">A fully custom option</button>
 					</li>
 					<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
@@ -183,8 +183,8 @@ storiesOf("Components|Overflow Menu", module)
 					An example option that is really long to show what should be done to handle long text
 				</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-				<li class="bx--overflow-menu-options__option">
-					<button class="bx--overflow-menu-options__btn">A fully custom option</button>
+				<li class="cds--overflow-menu-options__option">
+					<button class="cds--overflow-menu-options__btn">A fully custom option</button>
 				</li>
 				<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>

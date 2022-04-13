@@ -37,24 +37,24 @@ export class NumberChange {
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
-			class="bx--number"
+			class="cds--number"
 			[ngClass]="{
-				'bx--number--light': theme === 'light',
-				'bx--number--nolabel': !label,
-				'bx--number--helpertext': helperText,
-				'bx--skeleton' : skeleton,
-				'bx--number--sm': size === 'sm',
-				'bx--number--xl': size === 'xl'
+				'cds--number--light': theme === 'light',
+				'cds--number--nolabel': !label,
+				'cds--number--helpertext': helperText,
+				'cds--skeleton' : skeleton,
+				'cds--number--sm': size === 'sm',
+				'cds--number--xl': size === 'xl'
 			}">
-			<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
+			<label *ngIf="!skeleton && label" [for]="id" class="cds--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
 			<div
-				class="bx--number__input-wrapper"
+				class="cds--number__input-wrapper"
 				[ngClass]="{
-					'bx--number__input-wrapper--warning': warn
+					'cds--number__input-wrapper--warning': warn
 				}">
 				<input
 					type="number"
@@ -71,17 +71,17 @@ export class NumberChange {
 					*ngIf="!skeleton && !warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
-					class="bx--number__invalid">
+					class="cds--number__invalid">
 				</svg>
 				<svg
 					*ngIf="!skeleton && !invalid && warn"
 					ibmIcon="warning--alt--filled"
 					size="16"
-					class="bx--number__invalid bx--number__invalid--warning">
+					class="cds--number__invalid cds--number__invalid--warning">
 				</svg>
-				<div *ngIf="!skeleton" class="bx--number__controls">
+				<div *ngIf="!skeleton" class="cds--number__controls">
 					<button
-						class="bx--number__control-btn down-icon"
+						class="cds--number__control-btn down-icon"
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
@@ -89,9 +89,9 @@ export class NumberChange {
 						(click)="onDecrement()">
 						<svg ibmIcon="subtract" size="16"></svg>
 					</button>
-					<div class="bx--number__rule-divider"></div>
+					<div class="cds--number__rule-divider"></div>
 					<button
-						class="bx--number__control-btn up-icon"
+						class="cds--number__control-btn up-icon"
 						type="button"
 						aria-live="polite"
 						aria-atomic="true"
@@ -99,18 +99,18 @@ export class NumberChange {
 						(click)="onIncrement()">
 						<svg ibmIcon="add" size="16"></svg>
 					</button>
-					<div class="bx--number__rule-divider"></div>
+					<div class="cds--number__rule-divider"></div>
 				</div>
 			</div>
-			<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+			<div *ngIf="helperText && !invalid && !warn" class="cds--form__helper-text">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!warn && invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -130,7 +130,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	static numberCount = 0;
 
-	@HostBinding("class.bx--form-item") containerClass = true;
+	@HostBinding("class.cds--form-item") containerClass = true;
 
 	/**
 	 * `light` or `dark` number input theme.

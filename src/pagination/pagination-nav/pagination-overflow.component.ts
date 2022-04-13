@@ -15,22 +15,22 @@ import {
 @Component({
 	selector: "ibm-pagination-overflow",
 	template: `
-		<li class="bx--pagination-nav__list-item" *ngIf="count > 1">
-			<div class="bx--pagination-nav__select">
+		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
+			<div class="cds--pagination-nav__select">
 			<select
-				class="bx--pagination-nav__page bx--pagination-nav__page--select" (change)="handleChange($event)">
+				class="cds--pagination-nav__page cds--pagination-nav__page--select" (change)="handleChange($event)">
 				<option value="" hidden></option>
 				<option
 				*ngFor="let item of countAsArray; let i = index">
 					{{fromIndex + i + 1}}
 				</option>
 			</select>
-			<div class="bx--pagination-nav__select-icon-wrapper">
+			<div class="cds--pagination-nav__select-icon-wrapper">
 				<svg
 					ibmIcon="overflow-menu--horizontal"
 					size="16"
 					style="display: inherit"
-					class="bx--pagination-nav__select-icon">
+					class="cds--pagination-nav__select-icon">
 				</svg>
 			</div>
 			</div>

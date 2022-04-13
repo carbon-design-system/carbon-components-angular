@@ -81,12 +81,12 @@ describe("PaginationNav", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		paginationComponent.nativeElement.querySelector(".bx--pagination-nav-next").click();
+		paginationComponent.nativeElement.querySelector(".cds--pagination-nav-next").click();
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		paginationComponent.nativeElement.querySelector(".bx--pagination-nav-previous").click();
+		paginationComponent.nativeElement.querySelector(".cds--pagination-nav-previous").click();
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
@@ -97,8 +97,8 @@ describe("PaginationNav", () => {
 		wrapper.disabled = true;
 		fixture.detectChanges();
 		paginationComponent.componentInstance.currentPage = 5;
-		const buttonForward = paginationComponent.nativeElement.querySelector(".bx--pagination-nav-next");
-		const buttonBackward = paginationComponent.nativeElement.querySelector(".bx--pagination-nav-previous");
+		const buttonForward = paginationComponent.nativeElement.querySelector(".cds--pagination-nav-next");
+		const buttonBackward = paginationComponent.nativeElement.querySelector(".cds--pagination-nav-previous");
 
 		buttonForward.click();
 		fixture.detectChanges();

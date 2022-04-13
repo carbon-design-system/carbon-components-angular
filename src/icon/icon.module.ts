@@ -30,7 +30,6 @@ import Copy16 from "@carbon/icons/es/copy/16";
 import Copy20 from "@carbon/icons/es/copy/20";
 import Data216 from "@carbon/icons/es/data--2/16";
 import Data220 from "@carbon/icons/es/data--2/20";
-import Delete16 from "@carbon/icons/es/delete/16";
 import Document16 from "@carbon/icons/es/document/16";
 import Document20 from "@carbon/icons/es/document/20";
 import Download16 from "@carbon/icons/es/download/16";
@@ -49,6 +48,7 @@ import Search16 from "@carbon/icons/es/search/16";
 import Settings16 from "@carbon/icons/es/settings/16";
 import SettingsAdjust16 from "@carbon/icons/es/settings--adjust/16";
 import Subtract16 from "@carbon/icons/es/subtract/16";
+import TrashCan16 from "@carbon/icons/es/trash-can/16";
 import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
@@ -106,7 +106,6 @@ export class IconModule {
 			Copy20,
 			Data216,
 			Data220,
-			Delete16,
 			Document16,
 			Document20,
 			Download16,
@@ -125,6 +124,7 @@ export class IconModule {
 			Settings16,
 			SettingsAdjust16,
 			Subtract16,
+			TrashCan16,
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,

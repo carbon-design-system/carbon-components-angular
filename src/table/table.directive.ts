@@ -5,30 +5,30 @@ import { TableRowSize } from "./table.types";
 	selector: "[ibmTable]"
 })
 export class TableDirective {
-	@Input() @HostBinding("class.bx--data-table--sort") sortable = true;
+	@Input() @HostBinding("class.cds--data-table--sort") sortable = true;
 
-	@Input() @HostBinding("class.bx--data-table--no-border") noBorder = true;
+	@Input() @HostBinding("class.cds--data-table--no-border") noBorder = true;
 
-	@Input() @HostBinding("class.bx--data-table--zebra") striped = false;
+	@Input() @HostBinding("class.cds--data-table--zebra") striped = false;
 
-	@Input() @HostBinding("class.bx--skeleton") skeleton = false;
+	@Input() @HostBinding("class.cds--skeleton") skeleton = false;
 
 	/**
 	 * Size of the table rows.
 	 */
 	@Input() size: TableRowSize = "md";
 
-	@HostBinding("class.bx--data-table") tableClass = true;
+	@HostBinding("class.cds--data-table") tableClass = true;
 
-	@HostBinding("class.bx--data-table--compact") get compactClass() {
+	@HostBinding("class.cds--data-table--compact") get compactClass() {
 		return this.size === "sm";
 	}
 
-	@HostBinding("class.bx--data-table--tall") get tallClass() {
+	@HostBinding("class.cds--data-table--tall") get tallClass() {
 		return this.size === "lg";
 	}
 
-	@HostBinding("class.bx--data-table--short") get shortClass() {
+	@HostBinding("class.cds--data-table--short") get shortClass() {
 		return this.size === "sh";
 	}
 }

@@ -23,7 +23,7 @@ storiesOf("Components|Button", module)
 			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
 			&nbsp;
 			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
-				With icon<svg class="bx--btn__icon" ibmIcon="add" size="16"></svg>
+				With icon<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
 			</button>
 			<br><br>
 			<ibm-button-set>
@@ -49,8 +49,8 @@ storiesOf("Components|Button", module)
 				[hasAssistiveText]="true"
 				[assistiveTextPlacement]="assistiveTextPlacement"
 				[assistiveTextAlignment]="assistiveTextAlignment">
-				<svg class="bx--btn__icon" ibmIcon="copy" size="16"></svg>
-				<span class="bx--assistive-text">Icon description</span>
+				<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
+				<span class="cds--assistive-text">Icon description</span>
 			</button>
 		`,
 		props: {

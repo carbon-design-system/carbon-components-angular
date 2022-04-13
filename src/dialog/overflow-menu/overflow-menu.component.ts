@@ -31,8 +31,8 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 	template: `
 		<button
 			[ibmOverflowMenu]="options"
-			[ngClass]="{'bx--overflow-menu--open': open}"
-			class="bx--overflow-menu {{triggerClass}}"
+			[ngClass]="{'cds--overflow-menu--open': open}"
+			class="cds--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
 			[isOpen]="open"
@@ -40,7 +40,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			[offset]="offset"
 			[wrapperClass]="wrapperClass"
 			aria-haspopup="true"
-			class="bx--overflow-menu"
+			class="cds--overflow-menu"
 			type="button"
 			[placement]="placement">
 			<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
@@ -49,11 +49,11 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			<ng-content></ng-content>
 		</ng-template>
 		<ng-template #defaultIcon>
-			<svg ibmIcon="overflow-menu--vertical" size="16" class="bx--overflow-menu__icon"></svg>
+			<svg ibmIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`
-		.bx--overflow-menu--open {
+		.cds--overflow-menu--open {
 			opacity: 1
 		}
 
@@ -61,11 +61,11 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 		Rotate the overflow menu container as well as the icon, since
 		we calculate our menu position based on the container, not the icon.
 		*/
-		.bx--data-table-v2 .bx--overflow-menu {
+		.cds--data-table-v2 .cds--overflow-menu {
 			transform: rotate(90deg);
 		}
 
-		.bx--data-table-v2 .bx--overflow-menu__icon {
+		.cds--data-table-v2 .cds--overflow-menu__icon {
 			transform: rotate(180deg);
 		}
 	`],

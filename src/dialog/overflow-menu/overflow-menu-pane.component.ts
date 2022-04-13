@@ -25,10 +25,10 @@ import { closestAttr } from "carbon-components-angular/utils";
 		<ul
 			[attr.aria-label]="dialogConfig.menuLabel"
 			[attr.data-floating-menu-direction]="placement ? placement : null"
-			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
+			[ngClass]="{'cds--overflow-menu--flip': dialogConfig.flip}"
 			role="menu"
 			#dialog
-			class="bx--overflow-menu-options bx--overflow-menu-options--open"
+			class="cds--overflow-menu-options cds--overflow-menu-options--open"
 			role="menu"
 			(click)="onClose($event)"
 			[attr.aria-label]="dialogConfig.menuLabel">
@@ -150,7 +150,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	protected listItems() {
-		const selector = ".bx--overflow-menu-options__option:not([disabled]) .bx--overflow-menu-options__btn";
+		const selector = ".cds--overflow-menu-options__option:not([disabled]) .cds--overflow-menu-options__btn";
 		return Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll(selector));
 	}
 }

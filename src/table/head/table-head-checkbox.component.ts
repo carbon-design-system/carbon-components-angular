@@ -54,7 +54,7 @@ export class TableHeadCheckbox {
 
 	@Output() change = new EventEmitter<void>();
 
-	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
+	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 

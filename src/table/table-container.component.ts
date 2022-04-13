@@ -8,5 +8,5 @@ import { Component, HostBinding } from "@angular/core";
 	`]
 })
 export class TableContainer {
-	@HostBinding("class.bx--data-table-container") containerClass = true;
+	@HostBinding("class.cds--data-table-container") containerClass = true;
 }

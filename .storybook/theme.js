@@ -1,18 +1,18 @@
 import { create } from "@storybook/theming";
 import { g100 } from "@carbon/themes";
 
-const { field01, interactive01, text01, text04, ui01, ui03, ui04, uiBackground } = g100;
+const { field01, backgroundBrand, textPrimary, textOnColor, layer01, borderSubtle01, layerSelected03, background } = g100;
 
 export const CarbonG100 = create({
 	base: "dark",
 
-	colorPrimary: interactive01,
-	colorSecondary: ui04,
+	colorPrimary: backgroundBrand,
+	colorSecondary: layerSelected03,
 
 	// UI
-	appBg: ui01,
-	appContentBg: uiBackground,
-	appBorderColor: ui04,
+	appBg: layer01,
+	appContentBg: background,
+	appBorderColor: layerSelected03,
 	appBorderRadius: 0,
 
 	// Typography
@@ -20,18 +20,18 @@ export const CarbonG100 = create({
 	fontCode: "'IBM Plex Mono', monospace",
 
 	// Text colors
-	textColor: text01,
-	textInverseColor: text04,
+	textColor: textPrimary,
+	textInverseColor: textOnColor,
 
 	// Toolbar default and active colors
-	barTextColor: text01,
-	barSelectedColor: interactive01,
-	barBg: uiBackground,
+	barTextColor: textPrimary,
+	barSelectedColor: backgroundBrand,
+	barBg: background,
 
 	// Form colors
 	inputBg: field01,
-	inputBorder: ui03,
-	inputTextColor: text01,
+	inputBorder: borderSubtle01,
+	inputTextColor: textPrimary,
 	inputBorderRadius: 0,
 
 	brandTitle: "carbon components angular",

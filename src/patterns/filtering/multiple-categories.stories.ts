@@ -23,8 +23,8 @@ import { UIShellModule } from "../../ui-shell/index";
 		<div ibmRow>
 			<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
 				<button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
-				<fieldset class="bx--fieldset">
-					<legend class="bx--label">Radio button label</legend>
+				<fieldset class="cds--fieldset">
+					<legend class="cds--label">Radio button label</legend>
 					<ibm-radio-group
 						aria-label="radiogroup"
 						orientation="vertical"
@@ -38,10 +38,10 @@ import { UIShellModule } from "../../ui-shell/index";
 						</ibm-radio>
 					</ibm-radio-group>
 				</fieldset>
-				<fieldset class="bx--fieldset">
+				<fieldset class="cds--fieldset">
 					<div ibmRow>
 						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<legend class="bx--label">Type</legend>
+							<legend class="cds--label">Type</legend>
 						</div>
 						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
 							<ibm-tag-filter

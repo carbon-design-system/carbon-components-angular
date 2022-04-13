@@ -76,7 +76,7 @@ describe("GridDirective", () => {
 
 			const directiveInstance = directiveEl.injector.get(ColumnDirective);
 			expect(directiveInstance.columnClasses).toBe(
-				"bx--col-lg-3 bx--col-md bx--offset-md-2 custom-class-example"
+				"cds--col-lg-3 cds--col-md cds--offset-md-2 custom-class-example"
 			);
 		});
 	}));

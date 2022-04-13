@@ -23,32 +23,32 @@ import { of, isObservable, Subject } from "rxjs";
 @Component({
 	selector: "ibm-notification",
 	template: `
-		<div class="bx--inline-notification__details">
+		<div class="cds--inline-notification__details">
 			<svg
 				ibmIcon="error--filled"
 				size="20"
 				*ngIf="notificationObj.type === 'error'"
-				class="bx--inline-notification__icon">
+				class="cds--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="warning--filled"
 				size="20"
 				*ngIf="notificationObj.type === 'warning'"
-				class="bx--inline-notification__icon">
+				class="cds--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="checkmark--filled"
 				size="20"
 				*ngIf="notificationObj.type === 'success'"
-				class="bx--inline-notification__icon">
+				class="cds--inline-notification__icon">
 			</svg>
 			<svg
 				ibmIcon="information--filled"
 				size="20"
 				*ngIf="notificationObj.type === 'info'"
-				class="bx--inline-notification__icon">
+				class="cds--inline-notification__icon">
 			</svg>
-			<div class="bx--inline-notification__text-wrapper">
+			<div class="cds--inline-notification__text-wrapper">
 				<p *ngIf="!notificationObj.template" ibmNotificationTitle [innerHTML]="notificationObj.title"></p>
 				<div *ngIf="!notificationObj.template" ibmNotificationSubtitle>
 					<span [innerHTML]="notificationObj.message"></span>
@@ -64,7 +64,7 @@ import { of, isObservable, Subject } from "rxjs";
 				(click)="onClick(action, $event)"
 				ibmButton="ghost"
 				size="sm"
-				class="bx--inline-notification__action-button"
+				class="cds--inline-notification__action-button"
 				type="button">
 				{{action.text}}
 			</button>
@@ -72,10 +72,10 @@ import { of, isObservable, Subject } from "rxjs";
 		<button
 			*ngIf="!isCloseHidden"
 			(click)="onClose()"
-			class="bx--inline-notification__close-button"
+			class="cds--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<svg ibmIcon="close" size="16" class="bx--inline-notification__close-icon"></svg>
+			<svg ibmIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
 		</button>
 	`
 })
@@ -109,15 +109,15 @@ export class Notification {
 	@ViewChild("notification", { static: false }) notification;
 
 	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
-	@HostBinding("class.bx--inline-notification") notificationClass = true;
+	@HostBinding("class.cds--inline-notification") notificationClass = true;
 	@HostBinding("attr.role") role = "alert";
 
-	@HostBinding("class.bx--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
-	@HostBinding("class.bx--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
-	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
-	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
-	@HostBinding("class.bx--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
-	@HostBinding("class.bx--inline-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
+	@HostBinding("class.cds--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
+	@HostBinding("class.cds--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
+	@HostBinding("class.cds--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
+	@HostBinding("class.cds--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
+	@HostBinding("class.cds--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
+	@HostBinding("class.cds--inline-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
 
 	protected defaultNotificationObj = {
 		title: "",

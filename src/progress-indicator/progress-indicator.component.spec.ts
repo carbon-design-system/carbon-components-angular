@@ -79,7 +79,7 @@ describe("ProgressIndicator", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.componentInstance.current).toBe(2);
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Third step");
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Third step");
 	});
 
 	it("should set current step to Fourth step and set warning icon when step is in error state", () => {
@@ -88,8 +88,8 @@ describe("ProgressIndicator", () => {
 		wrapper.current = 3;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Fourth step");
-		expect(element.nativeElement.querySelector(".bx--progress__warning")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
+		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
 	});
 
 	it("should expand the tooltip when tooltip trigger is clicked", () => {
@@ -98,7 +98,7 @@ describe("ProgressIndicator", () => {
 		wrapper.current = 2;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let tooltipTrigger = element.nativeElement.querySelector(".bx--progress-step--current .bx--tooltip__trigger");
+		let tooltipTrigger = element.nativeElement.querySelector(".cds--progress-step--current .cds--tooltip__trigger");
 		tooltipTrigger.click();
 		fixture.detectChanges();
 		expect(tooltipTrigger.getAttribute("aria-expanded")).toEqual("true");
@@ -113,7 +113,7 @@ describe("ProgressIndicator", () => {
 		wrapper.current = index;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let step = element.nativeElement.querySelector(".bx--progress-step--current .bx--progress-label");
+		let step = element.nativeElement.querySelector(".cds--progress-step--current .cds--progress-label");
 		step.click();
 		fixture.detectChanges();
 		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
@@ -126,7 +126,7 @@ describe("ProgressIndicator", () => {
 		wrapper.current = 0;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("First step");
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("First step");
 	});
 
 	it("should handle steps and current being updated individually after the component is initialized", () => {
@@ -141,7 +141,7 @@ describe("ProgressIndicator", () => {
 		wrapper.current = 5;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress").children.length).toBe(6);
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Sixth step");
+		expect(element.nativeElement.querySelector(".cds--progress").children.length).toBe(6);
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Sixth step");
 	});
 });

@@ -5,7 +5,7 @@ import { Component, Input, OnChanges } from "@angular/core";
 	template: `
 		<p
 			*ngFor="let width of lineWidths"
-			class="bx--skeleton__text"
+			class="cds--skeleton__text"
 			[style.width]="width">
 		</p>
 	`

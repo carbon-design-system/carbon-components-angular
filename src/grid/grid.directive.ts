@@ -9,8 +9,8 @@ import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 	selector: "[ibmGrid]"
 })
 export class GridDirective {
-	@HostBinding("class.bx--grid") baseClass = true;
-	@HostBinding("class.bx--grid--condensed") @Input() condensed = false;
+	@HostBinding("class.cds--grid") baseClass = true;
+	@HostBinding("class.cds--grid--condensed") @Input() condensed = false;
 }
 
 @Directive({
@@ -21,15 +21,15 @@ export class RowDirective {
 	@Input() leftGutter = true;
 	@Input() rightGutter = true;
 
-	@HostBinding("class.bx--row") baseClass = true;
-	@HostBinding("class.bx--row--condensed") @Input() condensed = false;
-	@HostBinding("class.bx--no-gutter") get showGutter() {
+	@HostBinding("class.cds--row") baseClass = true;
+	@HostBinding("class.cds--row--condensed") @Input() condensed = false;
+	@HostBinding("class.cds--no-gutter") get showGutter() {
 		return !this.gutter;
 	}
-	@HostBinding("class.bx--no-gutter--left") get showLeftGutter() {
+	@HostBinding("class.cds--no-gutter--left") get showLeftGutter() {
 		return !this.leftGutter;
 	}
-	@HostBinding("class.bx--no-gutter--right") get showRightGutter() {
+	@HostBinding("class.cds--no-gutter--right") get showRightGutter() {
 		return !this.rightGutter;
 	}
 }
@@ -59,19 +59,19 @@ export class ColumnDirective implements OnInit {
 		try {
 			const columnKeys = Object.keys(this.columnNumbers);
 			if (columnKeys.length <= 0) {
-				this._columnClasses.push("bx--col");
+				this._columnClasses.push("cds--col");
 			}
 
 			columnKeys.forEach(key => {
 				if (this.columnNumbers[key] === "nobreak") {
-					this._columnClasses.push(`bx--col-${key}`);
+					this._columnClasses.push(`cds--col-${key}`);
 				} else {
-					this._columnClasses.push(`bx--col-${key}-${this.columnNumbers[key]}`);
+					this._columnClasses.push(`cds--col-${key}-${this.columnNumbers[key]}`);
 				}
 			});
 
 			Object.keys(this.offsets).forEach(key => {
-				this._columnClasses.push(`bx--offset-${key}-${this.offsets[key]}`);
+				this._columnClasses.push(`cds--offset-${key}-${this.offsets[key]}`);
 			});
 		} catch (err) {
 			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);

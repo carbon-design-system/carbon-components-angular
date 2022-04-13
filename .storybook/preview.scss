@@ -1,4 +1,6 @@
-@import '~carbon-components/css/carbon-components';
+@use '@carbon/styles' with (
+	$use-flexbox-grid: true,
+);
 
 html {
 	height: 100%;
@@ -10,10 +12,11 @@ html {
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
+	background: styles.$background;
 }
-
 
 #root {
 	display: block;
 	width: 100%;
+	@include styles.theme(styles.$white);
 }

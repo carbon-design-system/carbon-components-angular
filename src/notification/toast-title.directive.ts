@@ -4,5 +4,5 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "[ibmToastTitle]"
 })
 export class ToastTitle {
-	@HostBinding("class.bx--toast-notification__title") baseClass = true;
+	@HostBinding("class.cds--toast-notification__title") baseClass = true;
 }

@@ -33,7 +33,7 @@ export enum SnippetType {
 		</ng-container>
 
 		<ng-template #notInline>
-			<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">
+			<div class="cds--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">
 				<ng-container *ngIf="skeleton">
 					<span *ngIf="display === 'single'; else multiSkeleton"></span>
 					<ng-template #multiSkeleton>
@@ -46,20 +46,20 @@ export enum SnippetType {
 			</div>
 			<button
 				*ngIf="!skeleton"
-				class="bx--snippet-button"
+				class="cds--snippet-button"
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
 				tabindex="0">
-				<svg ibmIcon="copy" size="16" class="bx--snippet__icon"></svg>
+				<svg ibmIcon="copy" size="16" class="cds--snippet__icon"></svg>
 				<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>
 			</button>
 			<button
 				*ngIf="shouldShowExpandButton"
-				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+				class="cds--btn cds--btn--ghost cds--btn--sm cds--snippet-btn--expand"
 				(click)="toggleSnippetExpansion()"
 				type="button">
-				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<svg ibmIcon="chevron--down" size="16" class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></svg>
+				<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
+				<svg ibmIcon="chevron--down" size="16" class="cds--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></svg>
 			</button>
 		</ng-template>
 
@@ -69,9 +69,9 @@ export enum SnippetType {
 
 		<ng-template #feedbackTemplate>
 			<div
-			class="bx--btn--copy__feedback"
+			class="cds--btn--copy__feedback"
 			[ngClass]="{
-				'bx--btn--copy__feedback--displayed': showFeedback
+				'cds--btn--copy__feedback--displayed': showFeedback
 			}"
 			[attr.data-feedback]="feedbackText">
 			</div>
@@ -108,23 +108,23 @@ export class CodeSnippet implements AfterViewInit {
 	 */
 	@Input() feedbackTimeout = 2000;
 
-	@HostBinding("class.bx--snippet--expand") @Input() expanded = false;
-	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
+	@HostBinding("class.cds--snippet--expand") @Input() expanded = false;
+	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 
-	@HostBinding("class.bx--snippet") snippetClass = true;
-	@HostBinding("class.bx--snippet--single") get snippetSingleClass() {
+	@HostBinding("class.cds--snippet") snippetClass = true;
+	@HostBinding("class.cds--snippet--single") get snippetSingleClass() {
 		return this.display === SnippetType.single;
 	}
-	@HostBinding("class.bx--snippet--multi") get snippetMultiClass() {
+	@HostBinding("class.cds--snippet--multi") get snippetMultiClass() {
 		return this.display === SnippetType.multi;
 	}
-	@HostBinding("class.bx--snippet--inline") get snippetInlineClass() {
+	@HostBinding("class.cds--snippet--inline") get snippetInlineClass() {
 		return this.display === SnippetType.inline;
 	}
-	@HostBinding("class.bx--snippet--light") get snippetInlineLightClass() {
+	@HostBinding("class.cds--snippet--light") get snippetInlineLightClass() {
 		return this.display === SnippetType.inline && this.theme === "light";
 	}
-	@HostBinding("class.bx--btn--copy") get btnCopyClass() {
+	@HostBinding("class.cds--btn--copy") get btnCopyClass() {
 		return this.display === SnippetType.inline;
 	}
 

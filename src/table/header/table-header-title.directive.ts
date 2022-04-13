@@ -4,6 +4,6 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "[ibmTableHeaderTitle]"
 })
 export class TableHeaderTitle {
-	@HostBinding("class.bx--data-table-header__title") titleClass = true;
+	@HostBinding("class.cds--data-table-header__title") titleClass = true;
 	@HostBinding("attr.role") role = "caption";
 }

@@ -23,8 +23,8 @@ import { closestAttr } from "carbon-components-angular/utils";
 			[id]="dialogConfig.compID"
 			[attr.role]="role"
 			[attr.data-floating-menu-direction]="placement"
-			class="bx--tooltip bx--tooltip--shown">
-			<span class="bx--tooltip__caret" aria-hidden="true"></span>
+			class="cds--tooltip cds--tooltip--shown">
+			<span class="cds--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
 					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="dialogConfig.content"

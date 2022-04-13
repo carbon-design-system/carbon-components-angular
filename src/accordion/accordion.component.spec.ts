@@ -44,7 +44,7 @@ describe("Accordion", () => {
 
 	it("should call onClick on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		let debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
+		let debugElement = fixture.debugElement.query(By.css(".cds--accordion__heading"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.selected, "emit");
 		debugElement.triggerEventHandler("click", null);
@@ -56,7 +56,7 @@ describe("Accordion", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
+		debugElement = fixture.debugElement.query(By.css(".cds--accordion__heading"));
 		debugElement.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("true");
@@ -66,7 +66,7 @@ describe("Accordion", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__content"));
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .cds--accordion__content"));
 		expect(debugElement.nativeElement.textContent).toContain("test-content");
 	});
 
@@ -74,7 +74,7 @@ describe("Accordion", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .cds--accordion__title"));
 		expect(debugElement.nativeElement.textContent).toContain("Section 1");
 	});
 });

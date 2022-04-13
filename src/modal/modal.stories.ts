@@ -37,8 +37,8 @@ import { ButtonModule } from "../forms";
 				<p ibmModalContentText>{{modalText}}</p>
 			</section>
 			<ibm-modal-footer>
-				<button class="bx--btn bx--btn--secondary" (click)="showSecondaryModal()">Show secondary modal</button>
-				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
+				<button class="cds--btn cds--btn--secondary" (click)="showSecondaryModal()">Show secondary modal</button>
+				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`
@@ -81,11 +81,11 @@ class SampleModal extends BaseModal {
 				<h3 ibmModalHeaderHeading>Modal</h3>
 			</ibm-modal-header>
 			<section ibmModalContent hasForm="true">
-				<h1 ibmModalContentText class="bx--modal-content__regular-content modal-text">
+				<h1 ibmModalContentText class="cds--modal-content__regular-content modal-text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus erat vel aliquam sodales.
 					Phasellus porta velit vel libero pulvinar, sit amet semper purus volutpat.
 				</h1>
-				<div class="bx--text-input__field-wrapper">
+				<div class="cds--text-input__field-wrapper">
 					<ibm-label helperText="Helper text">
 						{{label}}
 						<input
@@ -96,8 +96,8 @@ class SampleModal extends BaseModal {
 				</div>
 			</section>
 			<ibm-modal-footer>
-				<button class="bx--btn bx--btn--secondary" (click)="closeModal()">Show secondary modal</button>
-				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
+				<button class="cds--btn cds--btn--secondary" (click)="closeModal()">Show secondary modal</button>
+				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`,
@@ -112,7 +112,7 @@ class SampleFormModal extends BaseModal {}
 @Component({
 	selector: "app-modal-story",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
+		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
 	`
 })
 class ModalStory {
@@ -145,7 +145,7 @@ class ModalStory {
 			[open]="open"
 			(overlaySelected)="closeModal()">
 			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
-			<section class="bx--modal-content">
+			<section class="cds--modal-content">
 				<ibm-label>
 					Account name
 					<input
@@ -155,8 +155,8 @@ class ModalStory {
 				</ibm-label>
 			</section>
 			<ibm-modal-footer>
-				<button class="bx--btn bx--btn--secondary" (click)="closeModal()">Cancel</button>
-				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
+				<button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancel</button>
+				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`
@@ -179,7 +179,7 @@ class InputModal extends BaseModal {
 @Component({
 	selector: "app-data-passing-modal",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
+		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
 		<h3>Data passed from input modal on input change: </h3>{{ modalInputValue }}
 	`
 })
@@ -213,7 +213,7 @@ class DataPassingModal implements AfterContentInit {
 @Component({
 	selector: "app-alert-modal-story",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
+		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
 	`
 })
 class AlertModalStory {
@@ -367,10 +367,10 @@ storiesOf("Components|Modal", module)
 			<button #trigger ibmButton="primary" (click)="open = true">Open</button>
 			<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
 				<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="showCloseButton">
-					<p class="bx--modal-header__label bx--type-delta">No service required</p>
-					<p class="bx--modal-header__heading bx--type-beta">A very simple modal</p>
+					<p class="cds--modal-header__label cds--type-delta">No service required</p>
+					<p class="cds--modal-header__heading cds--type-beta">A very simple modal</p>
 				</ibm-modal-header>
-				<div class="bx--modal-content">
+				<div class="cds--modal-content">
 					<p>hello world</p>
 				</div>
 				<ibm-modal-footer>

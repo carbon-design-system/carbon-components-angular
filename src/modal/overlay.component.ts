@@ -18,9 +18,9 @@ import {
 	selector: "ibm-overlay",
 	template: `
 		<section
-			class="bx--modal bx--modal-tall"
+			class="cds--modal cds--modal-tall"
 			[ngClass]="{
-				'bx--modal--danger': theme === 'danger',
+				'cds--modal--danger': theme === 'danger',
 				'is-visible': open
 			}"
 			(click)="overlayClick($event)"

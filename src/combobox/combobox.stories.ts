@@ -231,15 +231,15 @@ class MockQueryCombobox {
 	template: `
         <ibm-modal [open]="true" [hasScrollingContent]="false">
             <ibm-modal-header>Header label</ibm-modal-header>
-            <section class="bx--modal-content">
+            <section class="cds--modal-content">
                 <h1>Sample modal works.</h1>
-                <p class="bx--modal-content__text">{{modalText}}</p>
+                <p class="cds--modal-content__text">{{modalText}}</p>
 				<div style="width: 300px">
 					<ibm-combo-box [items]="items" [appendInline]="true">
 						<ibm-dropdown-list></ibm-dropdown-list>
 					</ibm-combo-box>
 				</div>
-				<p class="bx--modal-content__text">{{modalText}}</p>
+				<p class="cds--modal-content__text">{{modalText}}</p>
             </section>
 		</ibm-modal>
 		<ibm-placeholder></ibm-placeholder>
@@ -381,7 +381,7 @@ storiesOf("Components|Combobox", module)
 				</ibm-combo-box>
 
 				<ng-template #invalidText>
-					<div class="bx--form-requirement">This is a template</div>
+					<div class="cds--form-requirement">This is a template</div>
 				</ng-template>
 			</div>
 		`,

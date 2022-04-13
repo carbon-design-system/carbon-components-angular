@@ -53,21 +53,21 @@ describe("FileUploader", () => {
 	it("should set title to 'title'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--file--label"));
+		element = fixture.debugElement.query(By.css(".cds--file--label"));
 		expect(element.nativeElement.textContent).toEqual("title");
 	});
 
 	it("should set description to 'description'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--label-description"));
+		element = fixture.debugElement.query(By.css(".cds--label-description"));
 		expect(element.nativeElement.textContent).toEqual("description");
 	});
 
 	it("should set buttonText to 'buttonText'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--file")).nativeElement.querySelector(".bx--btn");
+		element = fixture.debugElement.query(By.css(".cds--file")).nativeElement.querySelector(".cds--btn");
 		expect(element.textContent).toContain("buttonText");
 	});
 
@@ -75,7 +75,7 @@ describe("FileUploader", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-file-uploader"));
-		expect(element.nativeElement.querySelector(".bx--file-input").getAttribute("accept")).toEqual(".txt");
+		expect(element.nativeElement.querySelector(".cds--file-input").getAttribute("accept")).toEqual(".txt");
 	});
 
 	it("should propagate the change in files back to the form", () => {
@@ -96,11 +96,11 @@ describe("FileUploader", () => {
 		expect(wrapper.files.has(fileItem)).toBe(true);
 		expect(element
 			.nativeElement
-			.querySelector(".bx--file-container .bx--file-filename")
+			.querySelector(".cds--file-container .cds--file-filename")
 			.textContent).toEqual("test-filename");
 	});
 
-	it("should set bx--file--invalid class on invalid file items", () => {
+	it("should set cds--file--invalid class on invalid file items", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
@@ -118,7 +118,7 @@ describe("FileUploader", () => {
 		element.componentInstance.value = testFiles;
 		fixture.detectChanges();
 
-		expect(element.nativeElement.querySelector(".bx--file__state-container .bx--file--invalid")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--file__state-container .cds--file--invalid")).toBeTruthy();
 	});
 });
 

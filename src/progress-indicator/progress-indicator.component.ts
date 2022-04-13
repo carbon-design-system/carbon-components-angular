@@ -18,17 +18,17 @@ import { Step } from "./progress-indicator-step.interface";
 	<ul
 		data-progress
 		data-progress-current
-		class="bx--progress"
+		class="cds--progress"
 		[ngClass]="{
-			'bx--skeleton': skeleton,
-			'bx--progress--vertical': (orientation === 'vertical'),
-			'bx--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
+			'cds--skeleton': skeleton,
+			'cds--progress--vertical': (orientation === 'vertical'),
+			'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
 		}">
 		<li
-			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
+			class="cds--progress-step cds--progress-step--{{step.state[0]}}"
 			*ngFor="let step of steps; let i = index"
-			[ngClass]="{'bx--progress-step--disabled' : step.disabled}">
-			<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
+			[ngClass]="{'cds--progress-step--disabled' : step.disabled}">
+			<div class="cds--progress-step-button cds--progress-step-button--unclickable" role="button" tabindex="-1">
 				<svg ibmIcon="checkmark--outline" size="16" *ngIf="step.state.includes('complete')"></svg>
 				<svg *ngIf="step.state.includes('current')">
 					<path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>
@@ -38,9 +38,9 @@ import { Step } from "./progress-indicator-step.interface";
 						d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
 					</path>
 				</svg>
-				<svg ibmIcon="warning" size="16" *ngIf="step.state.includes('error')" class="bx--progress__warning"></svg>
+				<svg ibmIcon="warning" size="16" *ngIf="step.state.includes('error')" class="cds--progress__warning"></svg>
 				<p
-					class="bx--progress-label"
+					class="cds--progress-label"
 					*ngIf="step.tooltip"
 					[ibmTooltip]="step.tooltip.content"
 					[trigger]="step.tooltip.trigger"
@@ -52,9 +52,9 @@ import { Step } from "./progress-indicator-step.interface";
 					(click)="stepSelected.emit({ step: step, index: i })">
 					{{step.text}}
 				</p>
-				<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
-				<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
-				<span class="bx--progress-line"></span>
+				<p class="cds--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
+				<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
+				<span class="cds--progress-line"></span>
 			</div>
 		</li>
 	</ul>

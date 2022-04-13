@@ -71,11 +71,11 @@ storiesOf("Components|Accordion", module)
 			</div>
 
 			<ng-template #title>
-				<p class="bx--accordion__title">Section 1 title</p>
+				<p class="cds--accordion__title">Section 1 title</p>
 			</ng-template>
 
 			<ng-template #titleWithContext let-index="index">
-				<p class="bx--accordion__title">Section {{ index }} title</p>
+				<p class="cds--accordion__title">Section {{ index }} title</p>
 			</ng-template>
 		`,
 		props: {

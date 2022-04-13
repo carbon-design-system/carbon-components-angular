@@ -50,16 +50,16 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+		<label *ngIf="label" [id]="ariaLabelledby" class="cds--label">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<input
-			class="bx--toggle-input"
+			class="cds--toggle-input"
 			type="checkbox"
 			[ngClass]="{
-				'bx--toggle-input--small': size === 'sm',
-				'bx--skeleton': skeleton
+				'cds--toggle-input--small': size === 'sm',
+				'cds--skeleton': skeleton
 			}"
 			[id]="id"
 			[value]="value"
@@ -72,14 +72,14 @@ export class ToggleChange {
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label
-			class="bx--toggle-input__label"
+			class="cds--toggle-input__label"
 			[for]="id"
 			[ngClass]="{
-				'bx--skeleton': skeleton
+				'cds--skeleton': skeleton
 			}">
-			<span class="bx--toggle__switch">
-				<span class="bx--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
-				<span class="bx--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
+			<span class="cds--toggle__switch">
+				<span class="cds--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
+				<span class="cds--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
 			</span>
 		</label>
 	`,

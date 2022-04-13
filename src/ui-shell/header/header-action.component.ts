@@ -12,9 +12,9 @@ import {
 	selector: "ibm-header-action",
 	template: `
 		<button
-			class="bx--header__action"
+			class="cds--header__action"
 			[ngClass]="{
-				'bx--header__action--active': active
+				'cds--header__action--active': active
 			}"
 			[title]="title"
 			[attr.aria-label]="ariaLabel"

@@ -55,8 +55,8 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<fieldset class="bx--fieldset">
-			<legend class="bx--label">{{label}}</legend>
+		<fieldset class="cds--fieldset">
+			<legend class="cds--label">{{label}}</legend>
 			<ibm-checkbox
 				checked="true"
 				[hideLabel]="hideLabel"

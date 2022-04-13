@@ -19,6 +19,7 @@ import {
 
 import { NFormsModule, ButtonModule } from "../forms/index";
 import { DialogModule } from "../dialog/index";
+import { IconModule } from "../icon/icon.module";
 import { SearchModule } from "../search/index";
 
 
@@ -87,6 +88,7 @@ storiesOf("Components|Table", module).addDecorator(
 				DialogModule,
 				PaginationModule,
 				SearchModule,
+				IconModule,
 				ButtonModule,
 				DocumentationModule
 			],
@@ -182,15 +184,15 @@ storiesOf("Components|Table", module).addDecorator(
 					<ibm-table-toolbar-actions>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Delete
-							<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+							<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 						</button>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Save
-							<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+							<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
 						</button>
 						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 							Download
-							<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+							<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
 						</button>
 					</ibm-table-toolbar-actions>
 					<ibm-table-toolbar-content *ngIf="!toolbar.selected">
@@ -200,7 +202,7 @@ storiesOf("Components|Table", module).addDecorator(
 							[(ngModel)]="searchModel">
 						</ibm-table-toolbar-search>
 						<ibm-overflow-menu
-							triggerClass="bx--toolbar-action"
+							triggerClass="cds--toolbar-action"
 							[customTrigger]="customTrigger"
 							placement="bottom"
 							[offset]="size === 'sm' ? null : offset">
@@ -210,7 +212,7 @@ storiesOf("Components|Table", module).addDecorator(
 							<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
 						</ibm-overflow-menu>
 						<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-							Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+							Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 						</button>
 					</ibm-table-toolbar-content>
 				</ibm-table-toolbar>
@@ -259,24 +261,24 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -319,10 +321,10 @@ storiesOf("Components|Table", module).addDecorator(
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>

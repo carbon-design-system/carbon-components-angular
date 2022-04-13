@@ -32,7 +32,7 @@ describe("Number", () => {
 		fixture = TestBed.createComponent(Number);
 		component = fixture.componentInstance;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
-		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
+		containerElement = fixture.debugElement.query(By.css(".cds--number")).nativeElement;
 	});
 
 	it("should work", () => {
@@ -73,21 +73,21 @@ describe("Number", () => {
 	it("should bind input label", () => {
 		component.label = "Number Input";
 		fixture.detectChanges();
-		labelElement = fixture.debugElement.query(By.css(".bx--label")).nativeElement;
+		labelElement = fixture.debugElement.query(By.css(".cds--label")).nativeElement;
 		expect(labelElement.innerHTML.includes("Number Input")).toEqual(true);
-		expect(containerElement.className.includes("bx--number--nolabel")).toEqual(false);
+		expect(containerElement.className.includes("cds--number--nolabel")).toEqual(false);
 
 		component.label = null;
 		fixture.detectChanges();
-		expect(fixture.debugElement.query(By.css(".bx--label"))).toBeNull();
-		expect(containerElement.className.includes("bx--number--nolabel")).toEqual(true);
+		expect(fixture.debugElement.query(By.css(".cds--label"))).toBeNull();
+		expect(containerElement.className.includes("cds--number--nolabel")).toEqual(true);
 	});
 
 	it("should bind input helperText", () => {
 		component.helperText = "Helper text here.";
 		fixture.detectChanges();
-		helperTextElement = fixture.debugElement.query(By.css(".bx--form__helper-text")).nativeElement;
-		expect(containerElement.className.includes("bx--number--helpertext")).toEqual(true);
+		helperTextElement = fixture.debugElement.query(By.css(".cds--form__helper-text")).nativeElement;
+		expect(containerElement.className.includes("cds--number--helpertext")).toEqual(true);
 		expect(helperTextElement.innerHTML.includes("Helper text here.")).toEqual(true);
 	});
 
@@ -95,9 +95,9 @@ describe("Number", () => {
 		fixture.detectChanges();
 		buttonUp = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		buttonDown = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
-		expect(buttonUp.className.includes("bx--number__control-btn")).toEqual(true);
+		expect(buttonUp.className.includes("cds--number__control-btn")).toEqual(true);
 		expect(buttonUp.className.includes("up-icon")).toEqual(true);
-		expect(buttonDown.className.includes("bx--number__control-btn")).toEqual(true);
+		expect(buttonDown.className.includes("cds--number__control-btn")).toEqual(true);
 		expect(buttonDown.className.includes("down-icon")).toEqual(true);
 	});
 
@@ -142,9 +142,9 @@ describe("Number", () => {
 	it("should have dark and light theme", () => {
 		component.theme = "dark";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--number--light")).toEqual(false);
+		expect(containerElement.className.includes("cds--number--light")).toEqual(false);
 		component.theme = "light";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--number--light")).toEqual(true);
+		expect(containerElement.className.includes("cds--number--light")).toEqual(true);
 	});
 });

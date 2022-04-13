@@ -5,5 +5,5 @@ import { Component, HostBinding } from "@angular/core";
 	template: "<ng-content></ng-content>"
 })
 export class ButtonSet {
-	@HostBinding("class.bx--btn-set") buttonSetClass = true;
+	@HostBinding("class.cds--btn-set") buttonSetClass = true;
 }

@@ -49,62 +49,62 @@ export class Button implements OnInit {
 	/**
 	 * Set to `true` for a skeleton state button
 	 */
-	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
+	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 	/**
-	 * Set to `true` if the button contains only an icon, and a span with `.bx--assistive-text` containing the content
+	 * Set to `true` if the button contains only an icon, and a span with `.cds--assistive-text` containing the content
 	 * For example:
 	 *
 	 * <button ibmButton="primary" [iconOnly]="true" [hasAssistiveText]="true">
-	 *    <svg class="bx--btn__icon" ibmIconCopy size="20"></svg>
-	 *    <span class="bx--assistive-text">Icon description</span>
+	 *    <svg class="cds--btn__icon" ibmIconCopy size="20"></svg>
+	 *    <span class="cds--assistive-text">Icon description</span>
 	 * </button>
 	 */
-	@HostBinding("class.bx--btn--icon-only") @Input() iconOnly = false;
+	@HostBinding("class.cds--btn--icon-only") @Input() iconOnly = false;
 
 	/**
 	 * Set to `true` for a "expressive" style button
 	 */
-	@HostBinding("class.bx--btn--expressive") @Input() isExpressive = false;
+	@HostBinding("class.cds--btn--expressive") @Input() isExpressive = false;
 
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
-	@HostBinding("class.bx--btn") get baseClass() {
+	@HostBinding("class.cds--btn") get baseClass() {
 		return !this.toolbarAction;
 	}
-	@HostBinding("class.bx--btn--primary") get primaryButton() {
+	@HostBinding("class.cds--btn--primary") get primaryButton() {
 		return this.ibmButton === "primary";
 	}
-	@HostBinding("class.bx--btn--secondary") get secondaryButton() {
+	@HostBinding("class.cds--btn--secondary") get secondaryButton() {
 		return this.ibmButton === "secondary";
 	}
-	@HostBinding("class.bx--btn--tertiary") get tertiaryButton() {
+	@HostBinding("class.cds--btn--tertiary") get tertiaryButton() {
 		return this.ibmButton === "tertiary";
 	}
-	@HostBinding("class.bx--btn--ghost") get ghostButton() {
+	@HostBinding("class.cds--btn--ghost") get ghostButton() {
 		return this.ibmButton === "ghost";
 	}
-	@HostBinding("class.bx--btn--danger") get dangerButton() {
+	@HostBinding("class.cds--btn--danger") get dangerButton() {
 		return this.ibmButton === "danger" || this.ibmButton === "danger--primary";
 	}
-	@HostBinding("class.bx--btn--danger--tertiary") get dangerTertiary() {
+	@HostBinding("class.cds--btn--danger--tertiary") get dangerTertiary() {
 		return this.ibmButton === "danger--tertiary";
 	}
-	@HostBinding("class.bx--btn--danger--ghost") get dangerGhost() {
+	@HostBinding("class.cds--btn--danger--ghost") get dangerGhost() {
 		return this.ibmButton === "danger--ghost";
 	}
-	@HostBinding("class.bx--btn--sm") get smallSize() {
+	@HostBinding("class.cds--btn--sm") get smallSize() {
 		return this.size === "sm";
 	}
-	@HostBinding("class.bx--btn--lg") get largeSize() {
+	@HostBinding("class.cds--btn--lg") get largeSize() {
 		return this.size === "lg";
 	}
-	@HostBinding("class.bx--btn--xl") get extraLargeSize() {
+	@HostBinding("class.cds--btn--xl") get extraLargeSize() {
 		return this.size === "xl";
 	}
-	@HostBinding("class.bx--btn--field") get fieldSize() {
+	@HostBinding("class.cds--btn--field") get fieldSize() {
 		return this.size === "field";
 	}
-	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
-	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
+	@HostBinding("class.cds--toolbar-action") toolbarAction = false;
+	@HostBinding("class.cds--overflow-menu") overflowMenu = false;
 
 
 	/**
@@ -117,39 +117,39 @@ export class Button implements OnInit {
 	 *		[hasAssistiveText]="true"
 	 *		assistiveTextPlacement="top"
 	 *		assistiveTextAlignment="center">
-	 *		<svg class="bx--btn__icon" ibmIcon="copy" size="20"></svg>
-	 *		<span class="bx--assistive-text">Icon description</span>
+	 *		<svg class="cds--btn__icon" ibmIcon="copy" size="20"></svg>
+	 *		<span class="cds--assistive-text">Icon description</span>
 	 *	</button>
 	 * ```
 	 */
-	@HostBinding("class.bx--tooltip__trigger")
-	@HostBinding("class.bx--tooltip--a11y") @Input() hasAssistiveText = false;
+	@HostBinding("class.cds--tooltip__trigger")
+	@HostBinding("class.cds--tooltip--a11y") @Input() hasAssistiveText = false;
 
-	@HostBinding("class.bx--tooltip--align-center") get isAssistiveTextCenterAligned() {
+	@HostBinding("class.cds--tooltip--align-center") get isAssistiveTextCenterAligned() {
 		return this.hasAssistiveText && this.assistiveTextAlignment === "center";
 	}
 
-	@HostBinding("class.bx--tooltip--align-start") get isAssistiveTextStartAligned() {
+	@HostBinding("class.cds--tooltip--align-start") get isAssistiveTextStartAligned() {
 		return this.hasAssistiveText && this.assistiveTextAlignment === "start";
 	}
 
-	@HostBinding("class.bx--tooltip--align-end") get isAssistiveTextEndAligned() {
+	@HostBinding("class.cds--tooltip--align-end") get isAssistiveTextEndAligned() {
 		return this.hasAssistiveText && this.assistiveTextAlignment === "end";
 	}
 
-	@HostBinding("class.bx--tooltip--top") get isAssistiveTextTopPositioned() {
+	@HostBinding("class.cds--tooltip--top") get isAssistiveTextTopPositioned() {
 		return this.hasAssistiveText && this.assistiveTextPlacement === "top";
 	}
 
-	@HostBinding("class.bx--tooltip--bottom") get isAssistiveTextBottomPositioned() {
+	@HostBinding("class.cds--tooltip--bottom") get isAssistiveTextBottomPositioned() {
 		return this.hasAssistiveText && this.assistiveTextPlacement === "bottom";
 	}
 
-	@HostBinding("class.bx--tooltip--left") get isAssistiveTextLeftPositioned() {
+	@HostBinding("class.cds--tooltip--left") get isAssistiveTextLeftPositioned() {
 		return this.hasAssistiveText && this.assistiveTextPlacement === "left";
 	}
 
-	@HostBinding("class.bx--tooltip--right") get isAssistiveTextRightPositioned() {
+	@HostBinding("class.cds--tooltip--right") get isAssistiveTextRightPositioned() {
 		return this.hasAssistiveText && this.assistiveTextPlacement === "right";
 	}
 

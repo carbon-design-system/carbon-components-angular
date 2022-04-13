@@ -68,7 +68,7 @@ describe("Select", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
-		expect(element.nativeElement.querySelector(".bx--label").textContent).toBe("label");
+		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe("label");
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {
@@ -93,8 +93,8 @@ describe("Select", () => {
 		wrapper.invalid = true;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
-		expect(element.nativeElement.querySelector(".bx--form-requirement")).toBeTruthy();
-		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toBe("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe("invalid text");
 	});
 
 	it("should set theme to dark", () => {

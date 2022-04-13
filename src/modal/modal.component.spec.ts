@@ -48,7 +48,7 @@ describe("Modal", () => {
 	it("should close modal when overlay is clicked", () => {
 		fixture.componentInstance.open = true;
 		fixture.detectChanges();
-		let overlay = fixture.debugElement.query(By.css(".bx--modal.bx--modal-tall.is-visible")).nativeElement;
+		let overlay = fixture.debugElement.query(By.css(".cds--modal.cds--modal-tall.is-visible")).nativeElement;
 		spyOn(fixture.componentInstance.overlaySelected, "emit");
 		overlay.click();
 		expect(fixture.componentInstance.overlaySelected.emit).toHaveBeenCalled();

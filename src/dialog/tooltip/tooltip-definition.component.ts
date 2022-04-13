@@ -6,17 +6,17 @@ import { Component, Input, HostBinding } from "@angular/core";
 		<button
 			type="button"
 			[ngClass]="{
-				'bx--tooltip--bottom' : placement === 'bottom',
-				'bx--tooltip--top' : placement === 'top',
-				'bx--tooltip--align-start' : alignment === 'start',
-				'bx--tooltip--align-center' : alignment === 'center',
-				'bx--tooltip--align-end' : alignment === 'end'
+				'cds--tooltip--bottom' : placement === 'bottom',
+				'cds--tooltip--top' : placement === 'top',
+				'cds--tooltip--align-start' : alignment === 'start',
+				'cds--tooltip--align-center' : alignment === 'center',
+				'cds--tooltip--align-end' : alignment === 'end'
 			}"
-			class="bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition"
+			class="cds--tooltip__trigger cds--tooltip--a11y cds--tooltip__trigger--definition"
 			[attr.aria-describedby]="id">
 			<ng-content></ng-content>
 		</button>
-		<div class="bx--assistive-text" [id]="id" role="tooltip">{{content}}</div>
+		<div class="cds--assistive-text" [id]="id" role="tooltip">{{content}}</div>
 	`
 })
 export class TooltipDefinition {
@@ -35,6 +35,6 @@ export class TooltipDefinition {
 
 	@Input() alignment: "start" | "center" | "end" = "start";
 
-	@HostBinding("class.bx--tooltip--definition") className = true;
-	@HostBinding("class.bx--tooltip--a11y") accessibility = true;
+	@HostBinding("class.cds--tooltip--definition") className = true;
+	@HostBinding("class.cds--tooltip--a11y") accessibility = true;
 }

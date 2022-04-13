@@ -41,7 +41,7 @@ describe("TimePickerSelect", () => {
 		fixture = TestBed.createComponent(TimePickerSelectTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--select-input"));
+		element = fixture.debugElement.query(By.css(".cds--select-input"));
 		spyOn(wrapper, "onChange");
 		element.triggerEventHandler("change", {target: {value : ""}});
 		fixture.detectChanges();
@@ -63,7 +63,7 @@ describe("TimePickerSelect", () => {
 		}).createComponent(TimePickerSelectTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-timepicker-select")).nativeElement;
-		expect(element.querySelector(".bx--label").textContent).toEqual("test-label");
+		expect(element.querySelector(".cds--label").textContent).toEqual("test-label");
 	});
 
 	it("should set disabled on the underlying select to true", () => {
@@ -73,7 +73,7 @@ describe("TimePickerSelect", () => {
 			}
 		}).createComponent(TimePickerSelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--select-input")).nativeElement;
+		element = fixture.debugElement.query(By.css(".cds--select-input")).nativeElement;
 		expect(element.disabled).toEqual(true);
 	});
 });

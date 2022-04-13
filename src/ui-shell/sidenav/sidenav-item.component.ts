@@ -16,21 +16,21 @@ import { Router } from "@angular/router";
 	selector: "ibm-sidenav-item",
 	template: `
 		<li [ngClass]="{
-			'bx--side-nav__item': !isSubMenu,
-			'bx--side-nav__menu-item': isSubMenu
+			'cds--side-nav__item': !isSubMenu,
+			'cds--side-nav__menu-item': isSubMenu
 		}"
 		[attr.role]="(isSubMenu ? 'listitem' : null)">
 			<a
-				class="bx--side-nav__link"
+				class="cds--side-nav__link"
 				[href]="href"
 				[attr.role]="(isSubMenu ? 'menuitem' : null)"
 				[attr.aria-current]="(active ? 'page' : null)"
 				[attr.title]="title ? title : null"
 				(click)="navigate($event)">
-				<div *ngIf="!isSubMenu" class="bx--side-nav__icon">
+				<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
 					<ng-content select="svg, [icon]"></ng-content>
 				</div>
-				<span class="bx--side-nav__link-text">
+				<span class="cds--side-nav__link-text">
 					<ng-content></ng-content>
 				</span>
 			</a>

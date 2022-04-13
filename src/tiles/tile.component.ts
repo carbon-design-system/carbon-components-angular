@@ -24,9 +24,9 @@ import {
 	template: `<ng-content></ng-content>`
 })
 export class Tile {
-	@HostBinding("class.bx--tile") tileClass = true;
+	@HostBinding("class.cds--tile") tileClass = true;
 
-	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+	@HostBinding("class.cds--tile--light") get lightThemeEnabled() {
 		return this.theme === "light";
 	}
 
