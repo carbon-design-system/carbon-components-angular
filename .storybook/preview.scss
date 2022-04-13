@@ -18,4 +18,5 @@ html {
 #root {
 	display: block;
 	width: 100%;
+	@include styles.theme(styles.$white);
 }
