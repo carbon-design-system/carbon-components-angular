@@ -190,7 +190,7 @@ assets:
   loading:
     status: stable
     framework: angular
-    externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+    externalDocsUrl: https://carbondesignsystem.com/components/link/usage
     demoLinks:
       - type: storybook
         name: Storybook
