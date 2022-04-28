@@ -3,7 +3,7 @@ library:
   id: carbon-components-angular
   name: Carbon Components Angular
   description: Angular implementation of Carbon Components.
-  externalDocsUrl: https://angular.carbondesignsystem.com/?path=/story/components-welcome--to-carbon-angular
+  externalDocsUrl: https://angular.carbondesignsystem.com
   inherits: carbon-styles
 assets:
   accordion:
