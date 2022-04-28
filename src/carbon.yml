@@ -59,7 +59,7 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-combobox
-  conent-switcher:
+  content-switcher:
     status: stable
     framework: angular
     externalDocsUrl: https://www.carbondesignsystem.com/components/content-switcher/usage
