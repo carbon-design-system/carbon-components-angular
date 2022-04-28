@@ -120,7 +120,7 @@ assets:
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-grid
   icon:
-    name: icon
+    name: Icon
     status: stable
     type: component
     platform: web
