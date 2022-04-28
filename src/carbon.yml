@@ -1,0 +1,388 @@
+# yaml-language-server: $schema=https://unpkg.com/@carbon-platform/schemas@v1/carbon-resources.schema.json
+library:
+  id: carbon-components-angular
+  name: Carbon Components Angular
+  description: Angular implementation of Carbon Components.
+  externalDocsUrl: https://angular.carbondesignsystem.com/?path=/story/components-welcome--to-carbon-angular
+  inherits: carbon-styles
+assets:
+  accordion:
+      status: stable
+      externalDocsUrl: https://www.carbondesignsystem.com/components/accordion/usage
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-accordion--basic
+  breadcrumb:
+      status: stable
+      externalDocsUrl: https://www.carbondesignsystem.com/components/breadcrumb/usage
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-breadcrumb--basic
+  button:
+      status: stable
+      externalDocsUrl: https://www.carbondesignsystem.com/components/button/usage
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-button--basic
+  checkbox:
+      status: stable
+      externalDocsUrl: https://www.carbondesignsystem.com/components/checkbox/usage
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-checkbox--basic
+  code-snippet:
+      status: stable
+      externalDocsUrl: https://www.carbondesignsystem.com/components/code-snippet/usage
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic
+  combo-box:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-combobox--basic
+  conent-switcher:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/content-switcher/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-content-switcher--basic
+  #TODO: update
+  context-menu:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/content-switcher/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-context-menu--basic
+  date-picker:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/date-picker/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-date-picker--simple
+  dropdown:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/dropdown/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-dropdown--basic
+  file-uploader:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/file-uploader/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--basic
+  grid:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-grid--basic
+  #TODO: update
+  icon:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/file-uploader/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-icon--basic
+  inline-loading:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-inline-loading--basic
+  #TODO: update - text input?
+  input:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-input--label
+  link:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-link--basic
+  #TODO: update
+  list:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-link--basic
+  #TODO: update - inline?
+  loading:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/inline-loading/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-link--basic
+  modal:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/modal/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-modal--basic
+  notification:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/notification/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-notification--basic
+  #TODO: update
+  number:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/notification/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-number--basic
+  overflow-menu:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/overflow-menu/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-overflow-menu--basic
+  pagination-nav:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-paginationnav--basic
+  pagination:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/pagination/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-pagination--basic
+  progress-indicator:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/progress-indicator/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-progress-indicator--basic
+  #TODO: update
+  radio:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/progress-indicator/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-radio--basic
+  search:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/search/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-search--basic
+  select:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/select/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-select--basic
+  skeleton:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-skeleton--skeleton-placeholder
+  slider:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/slider/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-slider--basic
+  structured-list:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/structured-list/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-structured-list--basic
+  #TODO: update
+  table:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/structured-list/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-table--basic
+  tabs:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/tabs/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tabs--basic
+  tag:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/tag/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tag--basic
+  tile:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/tile/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tiles--basic
+  #TODO: update
+  time-picker-select:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-time-picker-select--simple
+  time-picker:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-time-picker--simple
+  toggle:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/toggle/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-toggle--basic
+  tooltip-definition:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition--basic
+  #TODO: update tooltip
+  tooltip-icon:
+      status: stable
+      framework: angular
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-icon--basic
+  tooltip:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/tooltip/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip--basic
+  ui-shell-header:
+      status: stable
+      framework: angular
+      externalDocsUrl: https://www.carbondesignsystem.com/components/UI-shell-header/usage
+      demoLinks:
+        - type: storybook
+          name: Storybook
+          action: link
+          url: https://angular.carbondesignsystem.com/?path=/story/components-ui-shell--header
