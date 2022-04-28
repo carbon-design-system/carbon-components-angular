@@ -195,7 +195,7 @@ assets:
       - type: storybook
         name: Storybook
         action: link
-        url: https://angular.carbondesignsystem.com/?path=/story/components-link
+        url: https://angular.carbondesignsystem.com/?path=/story/components-loading
   modal:
     status: stable
     framework: angular
