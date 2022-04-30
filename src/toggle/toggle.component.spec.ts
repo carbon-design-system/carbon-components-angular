@@ -46,10 +46,10 @@ describe("Toggle", () => {
 	});
 
 	it("should display small version of toggle when size equals sm", () => {
-		expect(labelElement.querySelector('div').className.includes("cds--toggle__appearance--sm")).toEqual(false);
+		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(labelElement.querySelector('div').className.includes("cds--toggle__appearance--sm")).toEqual(true);
+		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(true);
 	});
 
 	it("should match the input checked value", () => {
