@@ -16,7 +16,6 @@ import { Observable } from "rxjs";
  */
 export enum ToggleState {
 	Init,
-	Indeterminate,
 	Checked,
 	Unchecked
 }
@@ -48,7 +47,7 @@ export enum ToggleState {
 			<span
 				class="cds--toggle__label-text"
 				[ngClass]="{
-					'cds--visually--hidden': hideLabel
+					'cds--visually-hidden': hideLabel
 				}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
@@ -73,9 +72,7 @@ export enum ToggleState {
 					</svg>
 				</div>
 				<span class="cds--toggle__text">
-					{{
-						(hideLabel ? label : (getCheckedText() | async))
-					}}
+					{{(hideLabel ? label : (getCheckedText() | async))}}
 				</span>
 			</div>
 		</label>
@@ -182,6 +179,7 @@ export class Toggle extends Checkbox {
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
+		console.log(this.checked);
 	}
 
 	public isTemplate(value) {
