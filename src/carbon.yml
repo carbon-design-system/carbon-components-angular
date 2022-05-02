@@ -74,8 +74,7 @@ assets:
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/context-menu.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -125,8 +124,7 @@ assets:
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/icon.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -144,15 +142,13 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-inline-loading
-  #TODO: update - text input?
   input:
     name: Input
     status: stable
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/input.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -176,8 +172,7 @@ assets:
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/list.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -186,11 +181,10 @@ assets:
     #TODO: @aubrey check tag
     tags:
       - data-display
-  #TODO: update - inline?
   loading:
     status: stable
     framework: angular
-    externalDocsUrl: https://carbondesignsystem.com/components/link/usage
+    externalDocsUrl: https://carbondesignsystem.com/components/loading/usage
     demoLinks:
       - type: storybook
         name: Storybook
@@ -214,11 +208,10 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-notification
-  #TODO: update
-  number:
+  number-input:
       status: stable
       framework: angular
-      externalDocsUrl: https://www.carbondesignsystem.com/components/notification/usage
+      externalDocsUrl: https://carbondesignsystem.com/components/number-input/usage/
       demoLinks:
         - type: storybook
           name: Storybook
@@ -259,15 +252,13 @@ assets:
           name: Storybook
           action: link
           url: https://angular.carbondesignsystem.com/?path=/story/components-progress-indicator
-  #TODO: update
   radio:
     name: Radio
     status: stable
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/radio.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -295,13 +286,20 @@ assets:
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-select
   skeleton:
+    name: Skeleton
     status: stable
+    type: component
+    platform: web
     framework: angular
+    thumbnailPath: './thumbnails/skeleton.svg'
     demoLinks:
       - type: storybook
         name: Storybook
         action: link
-        url: https://angular.carbondesignsystem.com/?path=/story/components-skeleton--skeleton-placeholder
+        url: https://angular.carbondesignsystem.com/?path=/story/components-skeleton
+    #TODO: @aubrey check tag
+    tags:
+      - data-display
   slider:
     status: stable
     framework: angular
@@ -326,8 +324,7 @@ assets:
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/table.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -354,15 +351,13 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-tiles
-  #TODO: update
   time-picker-select:
     name: Time picker select
     status: stable
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails/time-picker-select.svg'
     demoLinks:
       - type: storybook
         name: Storybook
@@ -396,15 +391,13 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition
-  #TODO: update tooltip
   tooltip-icon:
     name: Tooltip icon
     status: stable
     type: component
     platform: web
     framework: angular
-    #TODO: add thumbnail
-    thumbnailPath: ''
+    thumbnailPath: './thumbnails.tooltip-icon.svg'
     demoLinks:
       - type: storybook
         name: Storybook
