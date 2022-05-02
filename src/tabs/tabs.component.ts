@@ -43,12 +43,13 @@ import { TabHeaders } from "./tab-headers.component";
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
 				[skeleton]="skeleton"
+				[theme]="theme"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
 				[cacheActive]="cacheActive"
 				[contentBefore]="before"
 				[contentAfter]="after"
-				[ariaLabel]="ariaLabel"
+				[ariaLabel]="ariaLabel || 'List of tabs'"
 				[ariaLabelledby]="ariaLabelledby"
 				[type]="type">
 			</ibm-tab-headers>
@@ -102,6 +103,10 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 * Sets the type of the `TabHeader`s
 	 */
 	@Input() type: "default" | "container" = "default";
+	/**
+	 * Sets the theme of `TabHeader`s
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
@@ -110,8 +115,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Content child of the projected header component
 	 */
-	// @ts-ignore
-	@ContentChild(TabHeaders, { static: false }) tabHeaders;
+	@ContentChild(TabHeaders) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial

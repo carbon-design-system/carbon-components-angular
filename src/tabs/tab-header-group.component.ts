@@ -11,7 +11,8 @@ import {
 	SimpleChanges,
 	ChangeDetectorRef,
 	ViewChild,
-	OnInit
+	OnInit,
+	HostBinding
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
@@ -22,75 +23,73 @@ import { TabHeader } from "./tab-header.component";
 @Component({
 	selector: "ibm-tab-header-group",
 	template: `
-	<nav
-		class="cds--tabs cds--tabs--scrollable"
-		[ngClass]="{
-			'cds--skeleton': skeleton,
-			'cds--tabs--container cds--tabs--scrollable--container': type === 'container'
-		}"
-		role="navigation"
-		[attr.aria-label]="ariaLabel"
-		[attr.aria-labelledby]="ariaLabelledby">
-		<button
-			#leftOverflowNavButton
-			type="button"
-			[ngClass]="{
-				'cds--tab--overflow-nav-button': hasHorizontalOverflow,
-				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
-			}"
-			(click)="handleOverflowNavClick(-1)"
-			(mousedown)="handleOverflowNavMouseDown(-1)"
-			(mouseup)="handleOverflowNavMouseUp()">
-			<svg
-				focusable="false"
-				preserveAspectRatio="xMidYMid meet"
-				xmlns="http://www.w3.org/2000/svg"
-				fill="currentColor"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16"
-				aria-hidden="true">
-				<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
-			</svg>
-		</button>
-		<div *ngIf="!leftOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--left"></div>
-		<ul
-			#tabList
-			class="cds--tabs--scrollable__nav"
-			role="tablist"
-			(scroll)="handleScroll()">
-			<li role="presentation">
+		<ng-template [ngIf]="skeleton">
+			<ul class="cds--tabs__nav">
+				<li
+					*ngFor="let i of numOfSkeletonTabs"
+					class="cds--tabs__nav-item">
+					<div class="cds--tabs__nav-link">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+		</ng-template>
+		<ng-template [ngIf]="!skeleton">
+			<button
+				#leftOverflowNavButton
+				type="button"
+				[ngClass]="{
+					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+					'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+				}"
+				(click)="handleOverflowNavClick(-1)"
+				(mousedown)="handleOverflowNavMouseDown(-1)"
+				(mouseup)="handleOverflowNavMouseUp()">
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
+				</svg>
+			</button>
+			<div
+				class="cds--tab--list"
+				role="tablist"
+				[attr.aria-label]="ariaLabel"
+				(scroll)="handleScroll()"
+				#tabList>
 				<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
-			</li>
-			<ng-content></ng-content>
-			<li role="presentation">
+				<ng-content></ng-content>
 				<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
-			</li>
-		</ul>
-		<div *ngIf="!rightOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--right"></div>
-		<button
-			#rightOverflowNavButton
-			type="button"
-			[ngClass]="{
-				'cds--tab--overflow-nav-button': hasHorizontalOverflow,
-				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
-			}"
-			(click)="handleOverflowNavClick(1)"
-			(mousedown)="handleOverflowNavMouseDown(1)"
-			(mouseup)="handleOverflowNavMouseUp()">
-			<svg
-				focusable="false"
-				preserveAspectRatio="xMidYMid meet"
-				xmlns="http://www.w3.org/2000/svg"
-				fill="currentColor"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16"
-				aria-hidden="true">
-				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
-			</svg>
-		</button>
-	</nav>
+			</div>
+			<button
+				#rightOverflowNavButton
+				type="button"
+				[ngClass]="{
+					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+					'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+				}"
+				(click)="handleOverflowNavClick(1)"
+				(mousedown)="handleOverflowNavMouseDown(1)"
+				(mouseup)="handleOverflowNavMouseUp()">
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
+				</svg>
+			</button>
+		</ng-template>
 	`
 })
 export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
@@ -98,10 +97,6 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus: boolean;
-	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
 	/**
 	 * Sets the aria label on the nav element.
 	 */
@@ -122,7 +117,22 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	@Input() cacheActive = false;
 
 	@Input() isNavigation = false;
-	@Input() type: "default" | "container" = "default";
+
+	@Input() type: "line" | "contained" = "line";
+	@Input() theme: "dark" | "light" = "dark";
+
+	@HostBinding("class.cds--tabs") tabsClass = true;
+	@HostBinding("class.cds--tabs--contained") get containedClass() {
+		return this.type === "contained";
+	}
+	@HostBinding("class.cds--tabs--light") get themeClass() {
+		return this.theme === "light";
+	}
+	/**
+	 * Set to `true` to put tabs in a loading state.
+	 */
+	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
+	numOfSkeletonTabs = new Array(5);
 
 	/**
 	 * ContentChildren of all the tabHeaders.
@@ -156,12 +166,13 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 
 	public get rightOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
+		console.log((tabList.scrollLeft + this.OVERFLOW_BUTTON_OFFSET + tabList.clientWidth), tabList.scrollWidth);
 		return !this.hasHorizontalOverflow ||
-			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
+			(tabList.scrollLeft + this.OVERFLOW_BUTTON_OFFSET + tabList.clientWidth) < tabList.scrollWidth;
 	}
 
 	// width of the overflow buttons
-	OVERFLOW_BUTTON_OFFSET = 40;
+	OVERFLOW_BUTTON_OFFSET = 44;
 
 	private _cacheActive = false;
 
@@ -179,7 +190,7 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		let tabHeadersArray = Array.from<any>(this.tabHeaderQuery);
+		let tabHeadersArray = this.tabHeaderQuery.toArray();
 
 		if (event.key === "Right" || event.key === "ArrowRight") {
 			if (this.currentSelectedIndex < tabHeadersArray.length - 1) {
@@ -295,7 +306,7 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	}
 
 	public getSelectedTab(): any {
-		const selected =  this.tabHeaderQuery.toArray()[this.currentSelectedIndex];
+		const selected = this.tabHeaderQuery.toArray()[this.currentSelectedIndex];
 		if (selected) {
 			return selected;
 		}

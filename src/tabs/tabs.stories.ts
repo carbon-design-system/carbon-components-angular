@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { TabsModule } from "../";
+import { TabsModule } from "./";
 import { Component, Input } from "@angular/core";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
@@ -12,7 +12,8 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			[type]="type"
 			[followFocus]="followFocus"
 			[cacheActive]="cacheActive"
-			[isNavigation]="isNavigation">
+			[isNavigation]="isNavigation"
+			[skeleton]="true">
 			<ibm-tab-header [paneReference]="content1">
 				Content 1
 			</ibm-tab-header>
@@ -25,6 +26,25 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			<ibm-tab-header [paneReference]="content4">
 				Content 4
 			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content5">
+				Content 5
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content6">
+				Content 6
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content7">
+				Content 7
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content8">
+				Content 8
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content9">
+				Content 9
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content10">
+				Content 10
+			</ibm-tab-header>
+			<span before>Is before</span>
 		</ibm-tab-header-group>
 
 		<ibm-tab #content1>
@@ -39,13 +59,32 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 		<ibm-tab #content4>
 			Tab Content 4
 		</ibm-tab>
+		<ibm-tab #content5>
+			Tab Content 4
+		</ibm-tab>
+		<ibm-tab #content6>
+			Tab Content 4
+		</ibm-tab>
+		<ibm-tab #content7>
+			Tab Content 4
+		</ibm-tab>
+		<ibm-tab #content8>
+			Tab Content 4
+		</ibm-tab>
+		<ibm-tab #content9>
+			Tab Content 4
+		</ibm-tab>
+		<ibm-tab #content10>
+			Tab Content 4
+		</ibm-tab>
+
 	`
 })
 class TabStory {
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
 	@Input() isNavigation = true;
-	@Input() type = "default";
+	@Input() type = "line";
 }
 
 storiesOf("Components|Tabs", module)
@@ -74,13 +113,26 @@ storiesOf("Components|Tabs", module)
 			cacheActive: boolean("Cache active", true)
 		}
 	}))
-	.add("Container", () => ({
+	.add("Contained", () => ({
 		template: `
-			<ibm-tabs type="container" [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
-				<ibm-tab heading="one">Tab Content 1</ibm-tab>
-				<ibm-tab heading="two">Tab Content 2</ibm-tab>
-				<ibm-tab heading="three">Tab Content 3</ibm-tab>
-				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
+			<ibm-tabs type="contained" [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
+				<ibm-tab heading="Content one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="Content two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="Content three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="Content four" disabled="true">Tab Content 4</ibm-tab>
+				<ibm-tab heading="Content five" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content six" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content seven" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content eight" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content nine" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content ten" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content eleven" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content twelve" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content thirteen" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content fourteen" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content fiften" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content sixteen" disabled="true">Tab Content 5</ibm-tab>
+				<ibm-tab heading="Content seventeen" disabled="true">Tab Content 5</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -124,7 +176,7 @@ storiesOf("Components|Tabs", module)
 				{ name: "two" },
 				{ name: "three" }
 			],
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("Width before and after content", () => ({
@@ -152,7 +204,7 @@ storiesOf("Components|Tabs", module)
 		props: {
 			followFocus: boolean("followFocus", true),
 			isNavigation: boolean("isNavigation", false),
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("With TabHeaderGroup", () => ({
@@ -168,7 +220,7 @@ storiesOf("Components|Tabs", module)
 			followFocus: boolean("followFocus", true),
 			cacheActive: boolean("Cache active", true),
 			isNavigation: boolean("isNavigation", true),
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("Skeleton", () => ({

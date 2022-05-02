@@ -12,7 +12,8 @@ import {
 	OnChanges,
 	SimpleChanges,
 	OnInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	HostBinding
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
 
@@ -25,7 +26,87 @@ import { Tab } from "./tab.component";
 @Component({
 	selector: "ibm-tab-headers",
 	template: `
-		<nav
+		<button
+			#leftOverflowNavButton
+			type="button"
+			(click)="handleOverflowNavClick(-1)"
+			(mousedown)="handleOverflowNavMouseDown(-1)"
+			(mouseup)="handleOverflowNavMouseUp()"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"
+			[ngClass]="{
+				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+			}">
+			<svg
+				focusable="false"
+				preserveAspectRatio="xMidYMid meet"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="currentColor"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				aria-hidden="true">
+				<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
+			</svg>
+		</button>
+		<div
+			class="cds--tab--list"
+			role="tablist"
+			[attr.aria-label]="ariaLabel"
+			(scroll)="handleScroll()"
+			#tabList>
+			<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
+			<button
+				*ngFor="let tab of tabs; let i = index;"
+				#tabItem
+				role="tab"
+				[attr.aria-selected]="tab.active"
+				[attr.tabindex]="(tab.active?0:-1)"
+				[attr.aria-controls]="tab.id"
+				[attr.aria-disabled]="tab.disabled"
+				[ngClass]="{
+					'cds--tabs__nav-item--selected': tab.active,
+					'cds--tabs__nav-item--disabled': tab.disabled
+				}"
+				class="cds--tabs__nav-item cds--tabs__nav-link"
+				type="button"
+				draggable="false"
+				id="{{tab.id}}-header"
+				(focus)="onTabFocus(tabItem, i)"
+				(click)="selectTab(tabItem, tab, i)">
+				<ng-container *ngIf="!tab.headingIsTemplate">
+					{{ tab.heading }}
+				</ng-container>
+				<ng-template
+					*ngIf="tab.headingIsTemplate"
+					[ngTemplateOutlet]="tab.heading"
+					[ngTemplateOutletContext]="{$implicit: tab.context}">
+				</ng-template>
+			</button>
+			<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
+		</div>
+		<button
+			#rightOverflowNavButton
+			type="button"
+			(click)="handleOverflowNavClick(1)"
+			(mousedown)="handleOverflowNavMouseDown(1)"
+			(mouseup)="handleOverflowNavMouseUp()"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"
+			[ngClass]="{
+				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+			}">
+			<svg
+				focusable="false"
+				preserveAspectRatio="xMidYMid meet"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="currentColor"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				aria-hidden="true">
+				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
+			</svg>
+		</button>
+		<!-- <nav
 			class="cds--tabs--scrollable"
 			[ngClass]="{
 				'cds--skeleton': skeleton,
@@ -125,7 +206,7 @@ import { Tab } from "./tab.component";
 					<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 				</svg>
 			</button>
-		</nav>
+		</nav> -->
 	`
 })
 
@@ -161,7 +242,16 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	@Input() contentBefore: TemplateRef<any>;
 	@Input() contentAfter: TemplateRef<any>;
 
-	@Input() type: "default" | "container" = "default";
+	@Input() type: "line" | "contained" = "line";
+	@Input() theme: "dark" | "light" = "dark";
+
+	@HostBinding("class.cds--tabs") tabsClass = true;
+	@HostBinding("class.cds--tabs--contained") get containedClass() {
+		return this.type === "contained";
+	}
+	@HostBinding("class.cds--tabs--light") get themeClass() {
+		return this.theme === "light";
+	}
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
@@ -210,7 +300,7 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	}
 
 	// width of the overflow buttons
-	OVERFLOW_BUTTON_OFFSET = 40;
+	OVERFLOW_BUTTON_OFFSET = 44;
 
 	private overflowNavInterval;
 
@@ -226,7 +316,7 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		let tabsArray = Array.from<any>(this.tabs);
+		let tabsArray = this.tabs.toArray();
 
 		// "Right" is an ie11 specific value
 		if (event.key === "Right" || event.key === "ArrowRight") {
@@ -347,24 +437,33 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 		const tabList = this.headerContainer.nativeElement;
 
 		const { clientWidth, scrollLeft, scrollWidth } = tabList;
-		if (direction === 1 && !scrollLeft) {
-			tabList.scrollLeft += this.OVERFLOW_BUTTON_OFFSET;
+		if (direction === 1) {
+			tabList.scrollLeft += Math.min(scrollLeft + (scrollWidth / this.tabs.length) * 1.5,
+				scrollWidth - clientWidth);
 		}
 
-		tabList.scrollLeft += direction * multiplier;
 
-		const leftEdgeReached =
-			direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-		const rightEdgeReached =
-			direction === 1 &&
-			scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
 
-		if (leftEdgeReached) {
-			this.rightOverflowNavButton.nativeElement.focus();
-		}
-		if (rightEdgeReached) {
-			this.leftOverflowNavButton.nativeElement.focus();
-		}
+		// const { clientWidth, scrollLeft, scrollWidth } = tabList;
+		// console.log(clientWidth, scrollLeft, scrollWidth);
+		// if (direction === 1 && !scrollLeft) {
+		// 	tabList.scrollLeft += this.OVERFLOW_BUTTON_OFFSET;
+		// }
+
+		// tabList.scrollLeft += direction * multiplier;
+
+		// const leftEdgeReached =
+		// 	direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
+		// const rightEdgeReached =
+		// 	direction === 1 &&
+		// 	scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
+
+		// if (leftEdgeReached) {
+		// 	this.rightOverflowNavButton.nativeElement.focus();
+		// }
+		// if (rightEdgeReached) {
+		// 	this.leftOverflowNavButton.nativeElement.focus();
+		// }
 	}
 
 	public handleOverflowNavMouseDown(direction: number) {

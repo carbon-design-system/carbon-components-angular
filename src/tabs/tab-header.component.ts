@@ -13,27 +13,31 @@ import { EventEmitter } from "@angular/core";
 @Component({
 	selector: "ibm-tab-header",
 	template: `
-		<li
+		<button
+			#tabItem
+			role="tab"
+			[attr.aria-selected]="active"
+			[title]="title"
+			[attr.tabindex]="(active? 0 : -1)"
+			[attr.aria-disabled]="disabled"
 			[ngClass]="{
-				'cds--tabs__nav-item--selected cds--tabs--scrollable__nav-item--selected': active,
-				'cds--tabs__nav-item--disabled cds--tabs--scrollable__nav-item--disabled': disabled
+				'cds--tabs__nav-item--selected': active,
+				'cds--tabs__nav-item--disabled': disabled
 			}"
-			class="cds--tabs--scrollable__nav-item"
-			role="presentation"
+			class="cds--tabs__nav-item cds--tabs__nav-link"
+			type="button"
+			draggable="false"
 			(click)="selectTab()">
-			<button
-				#tabItem
-				[attr.aria-selected]="active"
-				draggable="false"
-				class="cds--tabs--scrollable__nav-link"
-				href="javascript:void(0)"
-				[title]="title"
-				[attr.tabindex]="(active? 0 : -1)"
-				role="tab">
-				<ng-content></ng-content>
-			</button>
-		</li>
-	`
+			<ng-content></ng-content>
+		</button>
+	`,
+	styles: [`
+	:host {
+		display: inline-flex;
+		max-width: 10rem;
+		flex: 1 0 auto;
+	}
+`]
 })
 
 export class TabHeader implements AfterViewInit {
@@ -85,6 +89,7 @@ export class TabHeader implements AfterViewInit {
 	protected _cacheActive = false;
 
 	ngAfterViewInit() {
+		this.paneReference.shouldRender();
 		setTimeout(() => {
 			this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
 		});
