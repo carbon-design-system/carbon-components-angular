@@ -82,7 +82,7 @@ assets:
         url: https://angular.carbondesignsystem.com/?path=/story/components-context-menu
     #TODO: @aubrey check tag
     tags:
-      - contextual-navigation
+      - input-control
   date-picker:
     status: stable
     framework: angular
