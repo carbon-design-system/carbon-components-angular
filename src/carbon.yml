@@ -132,7 +132,8 @@ assets:
         url: https://angular.carbondesignsystem.com/?path=/story/components-icon
     #TODO: @aubrey check tag
     tags:
-      - contextual-navigation
+      - media
+      - content-element
   inline-loading:
     status: stable
     framework: angular
