@@ -367,7 +367,7 @@ assets:
         url: https://angular.carbondesignsystem.com/?path=/story/components-time-picker-select
     #TODO: @aubrey check tag
     tags:
-      - data-display
+      - input-control
   time-picker:
     status: stable
     framework: angular
