@@ -182,6 +182,7 @@ assets:
     #TODO: @aubrey check tag
     tags:
       - data-display
+      - content-element
   loading:
     status: stable
     framework: angular
