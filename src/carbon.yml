@@ -179,6 +179,7 @@ assets:
     tags:
       - data-display
       - content-element
+      - content-element
   loading:
     status: stable
     framework: angular
