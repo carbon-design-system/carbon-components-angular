@@ -80,7 +80,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-context-menu
-    #TODO: @aubrey check tag
     tags:
       - input-control
   date-picker:
@@ -130,7 +129,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-icon
-    #TODO: @aubrey check tag
     tags:
       - media
       - content-element
@@ -155,7 +153,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-input
-    #TODO: @aubrey check tag
     tags:
       - input-control
   link:
@@ -179,7 +176,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-list
-    #TODO: @aubrey check tag
     tags:
       - data-display
       - content-element
@@ -266,7 +262,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-radio
-    #TODO: @aubrey check tag
     tags:
       - data-display
   search:
@@ -299,7 +294,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-skeleton
-    #TODO: @aubrey check tag
     tags:
       - data-display
   slider:
@@ -332,7 +326,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-table
-    #TODO: @aubrey check tag
     tags:
       - data-display
   tag:
@@ -365,7 +358,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-time-picker-select
-    #TODO: @aubrey check tag
     tags:
       - input-control
   time-picker:
@@ -405,7 +397,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-icon
-    #TODO: @aubrey check tag
     tags:
       - data-display
   tooltip:
