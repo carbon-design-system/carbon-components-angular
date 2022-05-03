@@ -180,6 +180,7 @@ assets:
       - data-display
       - content-element
       - content-element
+      - content-element
   loading:
     status: stable
     framework: angular
