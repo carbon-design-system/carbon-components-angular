@@ -5,14 +5,17 @@ import {
 	HostListener,
 	OnChanges,
 	SimpleChanges,
-	AfterViewInit
+	AfterViewInit,
+	OnDestroy
 } from "@angular/core";
+import { fromEvent, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Directive({
 	selector: "[ibmScrollableList]",
 	exportAs: "scrollable-list"
 })
-export class ScrollableList implements OnChanges, AfterViewInit {
+export class ScrollableList implements OnChanges, AfterViewInit, OnDestroy {
 	/**
 	 * Optional target list to scroll
 	 */
@@ -42,6 +45,8 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	protected canScrollUp = false;
 	protected canScrollDown = false;
 	protected list = this.elementRef.nativeElement;
+
+	private destroy$ = new Subject<void>();
 
 	constructor(protected elementRef: ElementRef) {}
 
@@ -74,10 +79,23 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 		if (this.nScrollableList) {
 			this.list = this.elementRef.nativeElement.querySelector(this.nScrollableList);
 		}
-		this.scrollUpTarget.addEventListener("mouseover", () => this.onHoverUp(true));
-		this.scrollUpTarget.addEventListener("mouseout", () => this.onHoverUp(false));
-		this.scrollDownTarget.addEventListener("mouseover", () => this.onHoverDown(true));
-		this.scrollDownTarget.addEventListener("mouseout", () => this.onHoverDown(false));
+
+		fromEvent(this.scrollUpTarget, "mouseover")
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(() => this.onHoverUp(true));
+		fromEvent(this.scrollUpTarget, "mouseout")
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(() => this.onHoverUp(false));
+		fromEvent(this.scrollDownTarget, "mouseover")
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(() => this.onHoverDown(true));
+		fromEvent(this.scrollDownTarget, "mouseout")
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(() => this.onHoverDown(false));
+	}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
 	}
 
 	public updateScrollHeight() {
