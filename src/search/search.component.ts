@@ -6,7 +6,8 @@ import {
 	HostBinding,
 	ElementRef,
 	HostListener,
-	ViewChild
+	ViewChild,
+	NgZone
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -33,7 +34,9 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
+	@HostBinding("class.bx--form-item") get containerClass() {
+		return !(this.toolbar || this.expandable);
+	}
 
 	/**
 	 * `light` or `dark` search theme.
@@ -144,7 +147,11 @@ export class Search implements ControlValueAccessor {
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected ngZone: NgZone
+	) {
 		Search.searchCount++;
 	}
 
@@ -186,7 +193,8 @@ export class Search implements ControlValueAccessor {
 	 * @param search The input text.
 	 */
 	onSearch(search: string) {
-		if (this.isComposing) { // check for IME use
+		if (this.isComposing) {
+			// check for IME use
 			return;
 		}
 		this.value = search;
@@ -217,7 +225,14 @@ export class Search implements ControlValueAccessor {
 	openSearch() {
 		this.active = true;
 		this.open.emit(this.active);
-		setTimeout(() => this.inputRef.nativeElement.focus());
+		// Note: this is being run outside of the Angular zone because `element.focus()` doesn't require
+		// running change detection.
+		this.ngZone.runOutsideAngular(() =>
+			// Note: `element.focus()` causes re-layout and this may lead to frame drop on slower devices.
+			// `setTimeout` is a macrotask and macrotasks are executed within the current rendering frame.
+			// Animation tasks are executed within the next rendering frame.
+			requestAnimationFrame(() => this.inputRef.nativeElement.focus())
+		);
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -234,10 +249,14 @@ export class Search implements ControlValueAccessor {
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
 		this.onTouched();
-		if ((this.expandable || this.toolbar) &&
+		if (
+			(this.expandable || this.toolbar) &&
 			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
-			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget)) {
+			!(this.elementRef.nativeElement as HTMLElement).contains(
+				event.relatedTarget
+			)
+		) {
 			this.active = false;
 			this.open.emit(this.active);
 		}
