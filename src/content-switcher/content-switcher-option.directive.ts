@@ -6,7 +6,8 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	OnInit
+	OnInit,
+	Renderer2
 } from "@angular/core";
 
 @Directive({
@@ -51,7 +52,7 @@ export class ContentSwitcherOption implements OnInit {
 
 	protected _active = false;
 
-	constructor(private hostElement: ElementRef) {}
+	constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
 
 	@HostListener("click", ["$event"])
 	hostClick(event: MouseEvent) {
@@ -77,10 +78,14 @@ export class ContentSwitcherOption implements OnInit {
 	*/
 	ngOnInit(): void {
 		const hostNativeElement = (this.hostElement.nativeElement as HTMLElement);
-		const spanWrapper = document.createElement("span");
-		spanWrapper.className = "bx--content-switcher__label";
-		spanWrapper.innerHTML = hostNativeElement.innerHTML;
-		hostNativeElement.innerHTML = "";
-		hostNativeElement.appendChild(spanWrapper);
+		const spanWrapper = this.renderer.createElement("span");
+		this.renderer.addClass(spanWrapper, "bx--content-switcher__label");
+		const hostChildren: ChildNode[] = [];
+		hostNativeElement.childNodes.forEach(node => hostChildren.push(node));
+		hostChildren.forEach(node => {
+			this.renderer.removeChild(hostNativeElement, node);
+			this.renderer.appendChild(spanWrapper, node);
+		});
+		this.renderer.appendChild(hostNativeElement, spanWrapper);
 	}
 }
