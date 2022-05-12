@@ -6,7 +6,8 @@ import {
 	SkipSelf,
 	Optional
 } from "@angular/core";
-import { LEVELENUM, MAX_LEVEL } from "./layer.types";
+
+const MAX_LEVEL = 2;
 
 /**
  * Applies layering styles to the div container it is applied to.
@@ -14,53 +15,71 @@ import { LEVELENUM, MAX_LEVEL } from "./layer.types";
  * [See demo](../../?path=/story/layer-default)
  */
 @Directive({
-	selector: "div[ibmLayer]",
-	exportAs: "ibmLayer"
+	selector: "[ibmLayer]",
+	exportAs: "layer"
 })
-export class Layer implements OnInit {
-
+export class LayerDirective implements OnInit {
 	/**
 	 * Override layer class
 	 */
-	@Input() ibmLayer: LEVELENUM;
+	@Input() ibmLayer: 0 | 1 | 2;
 
 	/**
 	 * Using host bindings with classes to ensure we do not
 	 * overwrite user added classes
 	 */
 	@HostBinding("class.cds--layer-one") get layerOneClass() {
-		return this._level === 0 ? true : false;
+		return this.level === 0 ? true : false;
 	}
 
 	@HostBinding("class.cds--layer-two") get layerTwoClass() {
-		return this._level === 1 ? true : false;
+		return this.level === 1 ? true : false;
 	}
 
 	@HostBinding("class.cds--layer-three") get layerThreeClass() {
-		return this._level === 2 ? true : false;
+		return this.level === 2 ? true : false;
 	}
 
 	private _level = 0;
 
-	private get level(): number {
+	public get level(): number {
 		return Math.max(0, Math.min(this._level, MAX_LEVEL));
 	}
 
-	private set level(num: number) {
-		if (num && (num >= 0 && num <= MAX_LEVEL)) {
-			this._level = num;
-		}
+	public set level(num: number) {
+		this._level = Math.max(0, Math.min(num, MAX_LEVEL));
+	}
+
+	/**
+	 * Holds the next level, this allows for themes to reset
+	 */
+	private _nextLevel = 1;
+
+	private get nextLevel(): number {
+		return this._nextLevel;
+	}
+
+	private set nextLevel(num: number) {
+		this._nextLevel = Math.max(0, Math.min(num, MAX_LEVEL));
 	}
 
 	/**
 	 * Hierarchical dependency injection to get parent instance of layer
 	 * to determine the current layer level
 	 */
-	constructor(@SkipSelf() @Optional() protected parent: Layer) { }
+	constructor(@SkipSelf() @Optional() protected parent: LayerDirective) { }
 
 	ngOnInit() {
-
+		/**
+		 * @todo
+		 * Use nullish coalescing, users should be able to set ibmLayer to 0
+		 */
 		this._level = this.ibmLayer ? this.ibmLayer
-			: (this.parent ? this.parent.level + 1 : 1);
+			: (this.parent ? this.parent.nextLevel : 1);
+		this.nextLevel = this._level + 1;
+	}
+
+	setNextLevel(level: 0 | 1 | 2) {
+		this._nextLevel = level;
 	}
 }

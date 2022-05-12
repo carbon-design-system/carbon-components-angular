@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from "@angular/core/testing";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
-import { Layer } from "./layer.directive";
+import { LayerDirective } from "./layer.directive";
 
 @Component({
 	template: `<div ibmLayer></div>`
@@ -13,17 +13,16 @@ class TestLayerComponent {
 @Component({
 	template: `
 		<div ibmLayer>
-			<div ibmLayer></div>
+			<div ibmLayer class="test"></div>
 		</div>
 	`
 })
-class TestNestedLayerComponent {
-}
+class TestNestedLayerComponent { }
 
-fdescribe("Layer", () => {
+describe("Layer", () => {
 	it("should create a Layer", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestLayerComponent, Layer]
+			declarations: [TestLayerComponent, LayerDirective]
 		});
 
 		let fixture: ComponentFixture<TestLayerComponent> = TestBed.createComponent(TestLayerComponent);
@@ -31,20 +30,32 @@ fdescribe("Layer", () => {
 		fixture.detectChanges();
 
 		expect(component).toBeTruthy();
-		const directiveEl = fixture.debugElement.query(By.directive(Layer));
+		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective));
 		expect(directiveEl).not.toBeNull();
 		expect(directiveEl.nativeElement.classList.contains("cds--layer-two")).toBeTruthy();
 	});
 
 	it("should create a nested Layer", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestNestedLayerComponent, Layer]
+			declarations: [TestNestedLayerComponent, LayerDirective]
 		});
 
 		let fixture: ComponentFixture<TestNestedLayerComponent> = TestBed.createComponent(TestNestedLayerComponent);
 		fixture.detectChanges();
 
-		const directiveEl = fixture.debugElement.query(By.directive(Layer)).nativeElement;
+		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective)).nativeElement;
 		expect(directiveEl.querySelector("div").className.includes("cds--layer-three")).toBeTruthy();
+	});
+
+	it("should have additional user provided classes", () => {
+		TestBed.configureTestingModule({
+			declarations: [TestNestedLayerComponent, LayerDirective]
+		});
+
+		let fixture: ComponentFixture<TestNestedLayerComponent> = TestBed.createComponent(TestNestedLayerComponent);
+		fixture.detectChanges();
+
+		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective)).nativeElement;
+		expect(directiveEl.querySelector("div").className.includes("test")).toBeTruthy();
 	});
 });
