@@ -70,11 +70,7 @@ export class LayerDirective implements OnInit {
 	constructor(@SkipSelf() @Optional() protected parent: LayerDirective) { }
 
 	ngOnInit() {
-		/**
-		 * @todo
-		 * Use nullish coalescing, users should be able to set ibmLayer to 0
-		 */
-		this._level = this.ibmLayer ? this.ibmLayer
+		this._level = [0, 1, 2].includes(this.ibmLayer) ? this.ibmLayer
 			: (this.parent ? this.parent.nextLevel : 1);
 		this.nextLevel = this._level + 1;
 	}
