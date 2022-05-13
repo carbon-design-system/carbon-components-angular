@@ -107,9 +107,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() value: CheckboxValue;
 	// tslint:disable-next-line:no-input-rename
-	@Input("ariaLabel") ariaLabel = "";
+	@Input() ariaLabel = "";
 	// tslint:disable-next-line:no-input-rename
-	@Input("ariaLabelledby") ariaLabelledby: string;
+	@Input() ariaLabelledby: string;
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.

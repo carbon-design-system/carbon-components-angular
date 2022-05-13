@@ -179,7 +179,6 @@ export class Toggle extends Checkbox {
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
-		console.log(this.checked);
 	}
 
 	public isTemplate(value) {
