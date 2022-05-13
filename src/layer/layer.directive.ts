@@ -70,7 +70,7 @@ export class LayerDirective implements OnInit {
 	constructor(@SkipSelf() @Optional() protected parent: LayerDirective) { }
 
 	ngOnInit() {
-		this._level = [0, 1, 2].includes(this.ibmLayer) ? this.ibmLayer
+		this._level = typeof this.ibmLayer === "number" ? this.ibmLayer
 			: (this.parent ? this.parent.nextLevel : 1);
 		this.nextLevel = this._level + 1;
 	}
