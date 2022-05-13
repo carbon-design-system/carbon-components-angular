@@ -17,6 +17,7 @@ export * from "carbon-components-angular/grid";
 export * from "carbon-components-angular/i18n";
 export * from "carbon-components-angular/inline-loading";
 export * from "carbon-components-angular/input";
+export * from "carbon-components-angular/layer";
 export * from "carbon-components-angular/link";
 export * from "carbon-components-angular/list";
 export * from "carbon-components-angular/loading";
