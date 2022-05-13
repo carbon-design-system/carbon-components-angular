@@ -1,9 +1,11 @@
 import {
+	AfterContentChecked,
+	ContentChildren,
 	Directive,
 	HostBinding,
 	Input,
 	OnInit,
-	Optional
+	QueryList
 } from "@angular/core";
 import { LayerDirective } from "carbon-components-angular/layer";
 
@@ -16,11 +18,13 @@ import { LayerDirective } from "carbon-components-angular/layer";
 	selector: "[ibmTheme]",
 	exportAs: "theme"
 })
-export class ThemeDirective implements OnInit {
+export class ThemeDirective implements OnInit, AfterContentChecked {
 	/**
 	 * Sets the theme for the content
 	 */
 	@Input() ibmTheme: "white" | "g10" | "g90" | "g100" = "white";
+
+	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	/**
 	 * Using host bindings with classes to ensure we do not
@@ -44,15 +48,21 @@ export class ThemeDirective implements OnInit {
 
 	@HostBinding("class.cds--layer-one") layerClass = true;
 
-	constructor(@Optional() private layer: LayerDirective) { }
-
-	ngOnInit() {
+	ngAfterContentChecked(): void {
 		/**
 		 * Resets next layer level in theme
 		 * If not found, the layer will be 1 by default
 		 */
-		if (this.layer) {
-			this.layer.setNextLevel(1);
+		this.layerChildren.toArray().forEach(layer => {
+			if (typeof layer.ibmLayer !== "number") {
+				layer.ibmLayer = 1;
+			}
+		});
+	}
+
+	ngOnInit(): void {
+		if (!this.ibmTheme) {
+			this.ibmTheme = "white";
 		}
 	}
 }
