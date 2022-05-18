@@ -36,6 +36,7 @@ export * from "carbon-components-angular/structured-list";
 export * from "carbon-components-angular/table";
 export * from "carbon-components-angular/tabs";
 export * from "carbon-components-angular/tag";
+export * from "carbon-components-angular/theme";
 export * from "carbon-components-angular/toggle";
 export * from "carbon-components-angular/tiles";
 export * from "carbon-components-angular/timepicker";

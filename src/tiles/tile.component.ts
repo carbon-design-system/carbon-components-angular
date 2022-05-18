@@ -30,5 +30,10 @@ export class Tile {
 		return this.theme === "light";
 	}
 
-	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * @deprecated
+	 * Theme property binding will be deprecated in next major version
+	 * Use layers instead
+	 */
+	@Input() theme: "light" | "dark";
 }
