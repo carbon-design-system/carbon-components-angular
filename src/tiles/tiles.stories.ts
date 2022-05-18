@@ -100,9 +100,6 @@ storiesOf("Components|Tiles", module)
 		`
 	}))
 	.add("Multiple", () => ({
-		/**
-		 * @todo - What is the point of this?
-		 */
 		template: `
 		<div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
 			<ibm-tile>
