@@ -3,13 +3,12 @@ import {
 	ChangeDetectorRef,
 	Component,
 	Input,
-	Output,
-	EventEmitter,
+	HostBinding,
 	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -17,25 +16,8 @@ import { Observable } from "rxjs";
  */
 export enum ToggleState {
 	Init,
-	Indeterminate,
 	Checked,
 	Unchecked
-}
-
-/**
- * Used to emit changes performed on toggle components.
- *
- * @deprecated since v4
- */
-export class ToggleChange {
-	/**
-	 * Contains the `Toggle` that has been changed.
-	 */
-	source: Toggle;
-	/**
-	 * The state of the `Toggle` encompassed in the `ToggleChange` class.
-	 */
-	checked: boolean;
 }
 
 /**
@@ -50,37 +32,49 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<label *ngIf="label" [id]="ariaLabelledby" class="cds--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<input
-			class="cds--toggle-input"
-			type="checkbox"
-			[ngClass]="{
-				'cds--toggle-input--small': size === 'sm',
-				'cds--skeleton': skeleton
-			}"
-			[id]="id"
-			[value]="value"
-			[name]="name"
-			[required]="required"
-			[checked]="checked"
+		<button
+			class="cds--toggle__button"
 			[disabled]="disabled"
-			[attr.aria-labelledby]="ariaLabelledby"
+			[id]="id"
+			role="switch"
+			type="button"
 			[attr.aria-checked]="checked"
-			(change)="onChange($event)"
 			(click)="onClick($event)">
+		</button>
 		<label
-			class="cds--toggle-input__label"
-			[for]="id"
-			[ngClass]="{
-				'cds--skeleton': skeleton
-			}">
-			<span class="cds--toggle__switch">
-				<span class="cds--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
-				<span class="cds--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
+			class="cds--toggle__label"
+			[for]="id">
+			<span
+				class="cds--toggle__label-text"
+				[ngClass]="{
+					'cds--visually-hidden': hideLabel
+				}">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</span>
+			<div
+				class="cds--toggle__appearance"
+				[ngClass]="{
+					'cds--toggle__appearance--sm': size === 'sm'
+				}">
+				<div
+					class="cds--toggle__switch"
+					[ngClass]="{
+						'cds--toggle__switch--checked': checked
+					}">
+					<svg
+						*ngIf="size === 'sm'"
+						class='cds--toggle__check'
+						width="6px"
+						height="5px"
+						viewBox="0 0 6 5">
+						<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
+					</svg>
+				</div>
+				<span class="cds--toggle__text">
+					{{(hideLabel ? label : (getCheckedText() | async))}}
+				</span>
+			</div>
 		</label>
 	`,
 	providers: [
@@ -129,22 +123,19 @@ export class Toggle extends Checkbox {
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
-	 * Set to `true` for a loading toggle.
+	 * Set to `true` to hide the toggle label & set toggle on/off text to label.
 	 */
-	@Input() skeleton = false;
+	@Input() hideLabel = false;
+
+	@HostBinding("class.cds--toggle") toggleClass = true;
+	@HostBinding("class.cds--toggle--disabled") get disabledClass () {
+		return this.disabled;
+	}
 
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 */
 	id = "toggle-" + Toggle.toggleCount;
-
-	/**
-	 * Emits event notifying other classes when a change in state occurs on a toggle after a
-	 * click.
-	 *
-	 * @deprecated since v4
-	 */
-	@Output() change = new EventEmitter<ToggleChange>();
 
 	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
 	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
@@ -175,17 +166,17 @@ export class Toggle extends Checkbox {
 		return this._onValues.subject;
 	}
 
+	getCheckedText(): Observable<string> {
+		if (this.checked) {
+			return this._onValues.subject;
+		}
+		return this._offValues.subject;
+	}
+
 	/**
 	 * Creates instance of `ToggleChange` used to propagate the change event.
 	 */
 	emitChangeEvent() {
-		/* begin deprecation */
-		let event = new ToggleChange();
-		event.source = this;
-		event.checked = this.checked;
-		this.change.emit(event);
-		/* end deprecation */
-
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
 	}
