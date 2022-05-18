@@ -16,11 +16,11 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 	template: `
 		<li
 			class="bx--header__submenu"
-			style="height: 100%">
+			style="height: 100%"
+			role="menuitem">
 			<a
 				class="bx--header__menu-item bx--header__menu-title"
 				[href]="href"
-				role="menuitem"
 				tabindex="0"
 				aria-haspopup="true"
 				[attr.aria-expanded]="expanded">
