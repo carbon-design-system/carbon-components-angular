@@ -36,9 +36,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 			class="bx--content-switcher"
 			[class.bx--content-switcher--light]="theme === 'light'"
 			role="tablist">
-			<span class="bx--content-switcher__label">
-				<ng-content></ng-content>
-			</span>
+			<ng-content></ng-content>
 		</div>
 	`
 })
