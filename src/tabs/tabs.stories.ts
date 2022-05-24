@@ -12,39 +12,46 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			[type]="type"
 			[followFocus]="followFocus"
 			[cacheActive]="cacheActive"
-			[isNavigation]="isNavigation"
-			[skeleton]="true">
+			[isNavigation]="isNavigation">
 			<ibm-tab-header [paneReference]="content1">
-				Content 1
+				Content 01
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content2">
-				Content 2
+				Content 02
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content3" disabled="true">
-				Content 3
+				Content 03
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content4">
-				Content 4
+				Content 04
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content5">
-				Content 5
+				Content 05
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content6">
-				Content 6
+				Content 06
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content7">
-				Content 7
+				Content 07
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content8">
-				Content 8
+				Content 08
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content9">
-				Content 9
+				Content 09
 			</ibm-tab-header>
 			<ibm-tab-header [paneReference]="content10">
 				Content 10
 			</ibm-tab-header>
-			<span before>Is before</span>
+			<ibm-tab-header [paneReference]="content10">
+				Content 11
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content10">
+				Content 12
+			</ibm-tab-header>
+			<ibm-tab-header [paneReference]="content10">
+				Content 13
+			</ibm-tab-header>
 		</ibm-tab-header-group>
 
 		<ibm-tab #content1>

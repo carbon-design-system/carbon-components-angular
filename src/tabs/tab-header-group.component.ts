@@ -12,7 +12,8 @@ import {
 	ChangeDetectorRef,
 	ViewChild,
 	OnInit,
-	HostBinding
+	HostBinding,
+	Renderer2
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
@@ -23,7 +24,9 @@ import { TabHeader } from "./tab-header.component";
 @Component({
 	selector: "ibm-tab-header-group",
 	template: `
-		<ng-template [ngIf]="skeleton">
+		<!--
+			Will need to use ChangeDetectorRef in all applicable functions to fix this??
+			<ng-template [ngIf]="skeleton">
 			<ul class="cds--tabs__nav">
 				<li
 					*ngFor="let i of numOfSkeletonTabs"
@@ -34,7 +37,7 @@ import { TabHeader } from "./tab-header.component";
 				</li>
 			</ul>
 		</ng-template>
-		<ng-template [ngIf]="!skeleton">
+		<ng-template [ngIf]="!skeleton"> -->
 			<button
 				#leftOverflowNavButton
 				type="button"
@@ -89,7 +92,7 @@ import { TabHeader } from "./tab-header.component";
 					<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 				</svg>
 			</button>
-		</ng-template>
+		<!-- </ng-template> -->
 	`
 })
 export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
@@ -166,22 +169,21 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 
 	public get rightOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
-		console.log((tabList.scrollLeft + this.OVERFLOW_BUTTON_OFFSET + tabList.clientWidth), tabList.scrollWidth);
 		return !this.hasHorizontalOverflow ||
-			(tabList.scrollLeft + this.OVERFLOW_BUTTON_OFFSET + tabList.clientWidth) < tabList.scrollWidth;
+			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
 	}
 
 	// width of the overflow buttons
 	OVERFLOW_BUTTON_OFFSET = 44;
 
-	private _cacheActive = false;
-
-	private overflowNavInterval;
+	private longPressInterval;
+	private tickInterval;
 
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService
+		protected eventService: EventService,
+		private renderer: Renderer2
 	) { }
 
 	// keyboard accessibility
@@ -320,35 +322,26 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		this.changeDetectorRef.markForCheck();
 	}
 
-	public handleOverflowNavClick(direction: number, multiplier = 15) {
+	public handleOverflowNavClick(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
 		const { clientWidth, scrollLeft, scrollWidth } = tabList;
-		if (direction === 1 && !scrollLeft) {
-			tabList.scrollLeft += this.OVERFLOW_BUTTON_OFFSET;
-		}
-
-		tabList.scrollLeft += direction * multiplier;
-
-		const leftEdgeReached =
-			direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-		const rightEdgeReached =
-			direction === 1 &&
-			scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-
-		if (leftEdgeReached) {
-			this.rightOverflowNavButton.nativeElement.focus();
-		}
-		if (rightEdgeReached) {
-			this.leftOverflowNavButton.nativeElement.focus();
+		if (direction === 1) {
+			tabList.scrollLeft = Math.min(scrollLeft + (scrollWidth / this.tabHeaderQuery.length) * 1.5,
+				scrollWidth - clientWidth);
+		} else if (direction === -1) {
+			tabList.scrollLeft = Math.max(scrollLeft - (scrollWidth / this.tabHeaderQuery.length) * 1.5, 0);
 		}
 	}
 
 	public handleOverflowNavMouseDown(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
-		this.overflowNavInterval = setInterval(() => {
+		this.longPressInterval = setInterval(() => {
 			const { clientWidth, scrollLeft, scrollWidth } = tabList;
+
+			// Manually overriding scroll behvior to `auto` to make animation work correctly
+			this.renderer.setStyle(tabList, "scroll-behavior", "auto");
 
 			// clear interval if scroll reaches left or right edge
 			const leftEdgeReached = direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
@@ -356,16 +349,21 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 				direction === 1 &&
 				scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
 
-			if (leftEdgeReached || rightEdgeReached) {
-				clearInterval(this.overflowNavInterval);
-			}
+			this.tickInterval = setInterval(() => {
+				tabList.scrollLeft += (direction * 5);
+			});
 
-			// account for overflow button appearing and causing tablist width change
-			this.handleOverflowNavClick(direction);
-		});
+			if (leftEdgeReached || rightEdgeReached) {
+				this.handleOverflowNavMouseUp();
+			}
+		}, 500);
 	}
 
 	public handleOverflowNavMouseUp() {
-		clearInterval(this.overflowNavInterval);
+		clearInterval(this.tickInterval);
+		clearInterval(this.longPressInterval);
+
+		// Reset scroll behavior
+		this.renderer.setStyle(this.headerContainer.nativeElement, "scroll-behavior", "smooth");
 	}
 }
