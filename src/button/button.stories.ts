@@ -44,8 +44,7 @@ storiesOf("Components|Button", module)
 		template: `
 			<button
 				[ibmButton]="ibmButton"
-				[size]="size"
-				[iconOnly]="true">
+				[size]="size">
 				<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
 				<span class="cds--assistive-text">Icon description</span>
 			</button>
