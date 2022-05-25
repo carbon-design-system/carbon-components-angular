@@ -38,16 +38,6 @@ export class Button implements OnInit {
 	 * Set to `true` for a skeleton state button
 	 */
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
-	/**
-	 * Set to `true` if the button contains only an icon, and a span with `.cds--assistive-text` containing the content
-	 * For example:
-	 *
-	 * <button ibmButton="primary" [iconOnly]="true" [hasAssistiveText]="true">
-	 *    <svg class="cds--btn__icon" ibmIconCopy size="20"></svg>
-	 *    <span class="cds--assistive-text">Icon description</span>
-	 * </button>
-	 */
-	@HostBinding("class.cds--btn--icon-only") @Input() iconOnly = false;
 
 	/**
 	 * Set to `true` for a "expressive" style button
