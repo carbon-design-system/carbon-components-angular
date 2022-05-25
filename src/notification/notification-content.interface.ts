@@ -1,9 +1,12 @@
 import { Subject } from "rxjs";
 import { TemplateRef } from "@angular/core";
 
+export type NotificationType = "error" | "info" | "info-square" | "success" | "warning" | "warning-alt";
+export type NotificationVariants = "inline" | "toast";
+
 export interface NotificationContent {
 	[key: string]: any;
-	type: string;
+	type: NotificationType;
 	title: string;
 	target?: string;
 	duration?: number;
@@ -13,19 +16,22 @@ export interface NotificationContent {
 	showClose?: boolean;
 	lowContrast?: boolean;
 	template?: TemplateRef<any>;
+}
+
+export interface ActionableContent extends NotificationContent {
 	actions?: NotificationAction[];
 	links?: NotificationLink[];
+	variant?: NotificationVariants;
 }
 
 export interface ToastContent extends NotificationContent {
 	subtitle: string;
 	caption: string;
-	template?: TemplateRef<any>;
 }
 
 export interface NotificationAction {
 	text: string;
-	click: Subject<{event: Event, action: any}> | ((event: {event: Event, action: any}) => any);
+	click: Subject<{ event: Event, action: any }> | ((event: { event: Event, action: any }) => any);
 	[x: string]: any;
 }
 
