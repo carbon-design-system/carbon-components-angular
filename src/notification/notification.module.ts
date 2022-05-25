@@ -2,6 +2,9 @@ import { NgModule } from "@angular/core";
 import { ButtonModule } from "carbon-components-angular/button";
 import { CommonModule } from "@angular/common";
 
+import { ActionableNotification } from "./actionable-notification.component";
+import { ActionableTitle } from "./actionable-title.directive";
+import { ActionableSubtitle } from "./actionable-subtitle.directive";
 import { Toast } from "./toast.component";
 import { ToastTitle } from "./toast-title.directive";
 import { ToastSubtitle } from "./toast-subtitle.directive";
@@ -18,6 +21,9 @@ import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
+		ActionableNotification,
+		ActionableTitle,
+		ActionableSubtitle,
 		Notification,
 		Toast,
 		ToastTitle,
@@ -28,6 +34,9 @@ import { IconModule } from "carbon-components-angular/icon";
 	],
 	exports: [
 		Notification,
+		ActionableNotification,
+		ActionableTitle,
+		ActionableSubtitle,
 		Toast,
 		ToastTitle,
 		ToastSubtitle,
@@ -35,7 +44,7 @@ import { IconModule } from "carbon-components-angular/icon";
 		NotificationTitle,
 		NotificationSubtitle
 	],
-	entryComponents: [Notification, Toast],
+	entryComponents: [ActionableNotification, Notification, Toast],
 	imports: [
 		ButtonModule,
 		CommonModule,
