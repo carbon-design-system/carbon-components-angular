@@ -12,7 +12,7 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 	template: `
 	<ibm-checkbox
 		[hideLabel]="hideLabel"
-		(change)="onChange()"
+		(checkedChange)="onChange()"
 		(indeterminateChange)="onIndeterminateChange()"
 		[indeterminate]="indeterminate"
 		[(ngModel)]="model">
@@ -61,7 +61,7 @@ describe("Checkbox", () => {
 		expect(element.componentInstance.checked).toBe(false);
 	});
 
-	it("should emit a change event on click and propagate the change back to the form", () => {
+	it("should emit a checkedChange event on click and propagate the change back to the form", () => {
 		fixture = TestBed.createComponent(CheckboxTest);
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "onChange");

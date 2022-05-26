@@ -2,8 +2,9 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { select, withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
-import { TilesModule } from "../";
-import { SkeletonModule } from "../skeleton/index";
+import { TilesModule } from "./";
+import { SkeletonModule } from "../skeleton";
+import { LayerModule } from "../layer";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";
@@ -19,7 +20,7 @@ class BarComponent { }
 	selector: "app-foo",
 	template: "<h1>foo</h1>"
 })
-class FooComponent {}
+class FooComponent { }
 
 storiesOf("Components|Tiles", module)
 	.addDecorator(
@@ -29,6 +30,7 @@ storiesOf("Components|Tiles", module)
 				TilesModule,
 				DocumentationModule,
 				SkeletonModule,
+				LayerModule,
 				RouterModule.forRoot([
 					{
 						path: "bar",
@@ -44,20 +46,58 @@ storiesOf("Components|Tiles", module)
 				})
 			],
 			providers: [
-				{provide: APP_BASE_HREF, useValue: "/"}
+				{ provide: APP_BASE_HREF, useValue: "/" }
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-tile [theme]="theme">
+		<ibm-tile>
 			tile content goes here...
 		</ibm-tile>
-		`,
-		props: {
-			theme: select("theme", ["dark", "light"], "dark")
-		}
+		`
+	}))
+	.add("Tiles with layers", () => ({
+		template: `
+		<ibm-tile>
+			First layer
+		</ibm-tile>
+		<div ibmLayer>
+			<ibm-tile>
+				Second layer
+			</ibm-tile>
+			<div ibmLayer>
+				<ibm-tile>Third layer</ibm-tile>
+			</div>
+		</div>
+		`
+	}))
+	.add("Clickable", () => ({
+		template: `
+		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
+			Click the tile to open the Carbon Design System
+		</ibm-clickable-tile>
+		`
+	}))
+	.add("Clickable routable", () => ({
+		template: `
+			<ibm-clickable-tile [route]="['foo']">
+				Click to trigger the <code>foo</code> route
+			</ibm-clickable-tile>
+			<ibm-clickable-tile [route]="['bar']">
+				Click to trigger the <code>bar</code> route
+			</ibm-clickable-tile>
+			<router-outlet></router-outlet>
+		`
+	}))
+	.add("Expandable", () => ({
+		template: `
+		<ibm-expandable-tile>
+			<span class="cds--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
+			<span class="cds--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
+		</ibm-expandable-tile>
+		`
 	}))
 	.add("Multiple", () => ({
 		template: `
@@ -74,36 +114,6 @@ storiesOf("Components|Tiles", module)
 		</div>
 		`
 	}))
-	.add("Clickable", () => ({
-		template: `
-		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
-			Click the tile to open the Carbon Design System
-		</ibm-clickable-tile>
-		`
-	}))
-	.add("Routable", () => ({
-		template: `
-			<ibm-clickable-tile [route]="['foo']">
-				Click to trigger the <code>foo</code> route
-			</ibm-clickable-tile>
-			<ibm-clickable-tile [route]="['bar']">
-				Click to trigger the <code>bar</code> route
-			</ibm-clickable-tile>
-			<router-outlet></router-outlet>
-		`
-	}))
-	.add("Selectable", () => ({
-		template: `
-			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
-			</ibm-tile-group>
-		`,
-		props: {
-			selected: action("tile selected")
-		}
-	}))
 	.add("Multi-select", () => ({
 		template: `
 			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
@@ -116,13 +126,17 @@ storiesOf("Components|Tiles", module)
 			selected: action("tile selected")
 		}
 	}))
-	.add("Expandable", () => ({
+	.add("Selectable", () => ({
 		template: `
-		<ibm-expandable-tile>
-			<span class="cds--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
-			<span class="cds--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
-		</ibm-expandable-tile>
-		`
+			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
+				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
+			</ibm-tile-group>
+		`,
+		props: {
+			selected: action("tile selected")
+		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
