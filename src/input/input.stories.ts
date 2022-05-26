@@ -24,6 +24,7 @@ storiesOf("Components|Input", module).addDecorator(
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
+			[disabled]="disabled"
 			[warnText]="warnText">
 			{{label}}
 			<input
@@ -56,6 +57,7 @@ storiesOf("Components|Input", module).addDecorator(
 		<ibm-label
 			[helperText]="helperText"
 			[invalid]="invalid"
+			[disabled]="disabled"
 			[invalidText]="invalidText">
 			{{label}}
 			<textarea

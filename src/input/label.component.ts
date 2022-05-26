@@ -42,7 +42,8 @@ import { TextArea } from "./text-area.directive";
 			[attr.aria-label]="ariaLabel"
 			class="cds--label"
 			[ngClass]="{
-				'cds--skeleton': skeleton
+				'cds--skeleton': skeleton,
+				'cds--label--disabled': disabled && !skeleton
 			}">
 			<ng-content></ng-content>
 		</label>
@@ -67,7 +68,12 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
-		<div *ngIf="!skeleton && helperText && !invalid && !warn" class="cds--form__helper-text">
+		<div
+			*ngIf="!skeleton && helperText && !invalid && !warn"
+			class="cds--form__helper-text"
+			[ngClass]="{
+				'cds--form__helper-text--disabled': disabled
+			}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
@@ -82,6 +88,13 @@ import { TextArea } from "./text-area.directive";
 	`
 })
 export class Label implements AfterContentInit, AfterViewInit {
+	@Input() set disabled(disable: boolean) {
+		this._disabled = disable;
+	}
+
+	get disabled(): boolean {
+		return this._disabled;
+	}
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -94,7 +107,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() labelInputID = "ibm-label-" + Label.labelCounter;
+	@Input() labelInputID = `ibm-label-${Label.labelCounter++}`;
 
 	/**
 	 * State of the `Label` will determine the styles applied.
@@ -136,13 +149,10 @@ export class Label implements AfterContentInit, AfterViewInit {
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
-
 	/**
-	 * Creates an instance of Label.
+	 * Set to `true` for disabled state.
 	 */
-	constructor() {
-		Label.labelCounter++;
-	}
+	private _disabled = false;
 
 	/**
 	 * Update wrapper class if a textarea is hosted.
@@ -157,6 +167,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Sets the id on the input item associated with the `Label`.
 	 */
 	ngAfterViewInit() {
+		/**
+		 * @todo
+		 * Perhaps user can pass disabled in here & we can programmatically set it in input/textarea?
+		 * Not sure how that would work for reactive forms
+		 */
 		if (this.wrapper) {
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
 			if (inputElement) {

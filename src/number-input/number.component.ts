@@ -47,7 +47,11 @@ export class NumberChange {
 				'cds--number--xl': size === 'xl'
 			}">
 			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
-			<label *ngIf="!skeleton && label" [for]="id" class="cds--label">
+			<label
+				*ngIf="!skeleton && label"
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{'cds--label--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -102,7 +106,12 @@ export class NumberChange {
 					<div class="cds--number__rule-divider"></div>
 				</div>
 			</div>
-			<div *ngIf="helperText && !invalid && !warn" class="cds--form__helper-text">
+			<div
+				*ngIf="helperText && !invalid && !warn"
+				class="cds--form__helper-text"
+				[ngClass]="{
+					'cds--form__helper-text--disabled': disabled
+				}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>

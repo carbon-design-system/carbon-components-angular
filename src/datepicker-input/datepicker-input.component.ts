@@ -22,7 +22,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				'cds--skeleton' : skeleton
 			}">
 			<div class="cds--date-picker-container">
-				<label *ngIf="label" [for]="id" class="cds--label">
+				<label
+					*ngIf="label"
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
