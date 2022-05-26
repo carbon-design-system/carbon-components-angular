@@ -284,10 +284,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
-	 *
-	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */

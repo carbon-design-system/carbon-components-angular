@@ -128,14 +128,6 @@ export class DialogService {
 	}
 
 	/**
-	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
-	 *
-	 * @deprecated since v4. Use the static `DialogService.closeAll` instead
-	 */
-	closeAll() {
-		DialogService.closeAll();
-	}
-	/**
 	 * Fix for safari hijacking clicks.
 	 *
 	 * Runs on `ngOnInit` of every dialog. Ensures we don't have multiple listeners

@@ -188,10 +188,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() clearText: string = this.i18n.get().DROPDOWN.CLEAR;
 	/**
 	 * Size to render the dropdown field.
-	 *
-	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -242,19 +240,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Used to trigger closing the dropdown if it scrolls outside of the viewport of the `scrollableContainer`.
 	 */
 	@Input() scrollableContainer: string;
-	/**
-	 * Deprecated. Use `itemValueKey` instead.
-	 * Specifies the property to be used as the return value to `ngModel`
-	 * @deprecated since v4 use itemValueKey instead
-	 */
-	@Input() set value (newValue: string) {
-		console.warn("Dropdown `value` property has been deprecated. Use `itemValueKey` instead");
-		this.itemValueKey = newValue;
-	}
-
-	get value() {
-		return this.itemValueKey;
-	}
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */
