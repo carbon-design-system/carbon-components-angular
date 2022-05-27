@@ -57,7 +57,10 @@ import { TextArea } from "./text-area.directive";
 				*ngIf="!warn && invalid"
 				ibmIcon="warning--filled"
 				size="16"
-				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
+				[ngClass]="{
+					'bx--text-input__invalid-icon': !textArea,
+					'bx--text-area__invalid-icon': textArea
+				}">
 			</svg>
 			<svg
 				*ngIf="!invalid && warn"
