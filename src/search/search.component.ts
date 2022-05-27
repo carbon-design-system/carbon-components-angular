@@ -244,11 +244,12 @@ export class Search implements ControlValueAccessor {
 	}
 
 	@HostListener("focusin", ["$event"])
-	focusin(event) {
+	focusIn(event) {
 		this.onTouched();
+		// set input focus if search icon get focus from tab key press event.
 		if ((this.expandable || this.toolbar) &&
-			this.inputRef &&
-			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget) && !event.relatedTarget) {
+			this.inputRef && !event.relatedTarget &&
+			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget) ) {
 			this.openSearch();
 		}
 	}
