@@ -54,24 +54,24 @@ import { EventService } from "carbon-components-angular/utils";
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label *ngIf="label" [for]="id" [id]="labelId" class="bx--label">
+			<label *ngIf="label" [for]="id" [id]="labelId" class="cds--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
-			<div class="bx--slider-container">
-				<label [id]="bottomRangeId" class="bx--slider__range-label">
+			<div class="cds--slider-container">
+				<label [id]="bottomRangeId" class="cds--slider__range-label">
 					<ng-content select="[minLabel]"></ng-content>
 				</label>
 				<div
-					class="bx--slider"
-					[ngClass]="{'bx--slider--disabled': disabled}">
+					class="cds--slider"
+					[ngClass]="{'cds--slider--disabled': disabled}">
 					<ng-container *ngIf="!isRange()">
 						<div
 							#thumbs
 							role="slider"
 							[id]="id"
 							[attr.aria-labelledby]="labelId"
-							class="bx--slider__thumb"
+							class="cds--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
 							tabindex="0"
 							(mousedown)="onMouseDown($event)"
@@ -85,7 +85,7 @@ import { EventService } from "carbon-components-angular/utils";
 							role="slider"
 							[id]="id + (i > 0 ? '-' + i : '')"
 							[attr.aria-labelledby]="labelId"
-							class="bx--slider__thumb"
+							class="cds--slider__thumb"
 							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
 							tabindex="0"
 							(mousedown)="onMouseDown($event, i)"
@@ -94,24 +94,24 @@ import { EventService } from "carbon-components-angular/utils";
 					</ng-container>
 					<div
 						#track
-						class="bx--slider__track"
+						class="cds--slider__track"
 						(click)="onClick($event)">
 					</div>
 					<div
 						#filledTrack
-						class="bx--slider__filled-track">
+						class="cds--slider__filled-track">
 					</div>
 					<input
 						#range
 						aria-label="slider"
-						class="bx--slider__input"
+						class="cds--slider__input"
 						type="range"
 						[step]="step"
 						[min]="min"
 						[max]="max"
 						[value]="value.toString()">
 				</div>
-				<label [id]="topRangeId" class="bx--slider__range-label">
+				<label [id]="topRangeId" class="cds--slider__range-label">
 					<ng-content select="[maxLabel]"></ng-content>
 				</label>
 				<ng-content select="input"></ng-content>
@@ -119,15 +119,15 @@ import { EventService } from "carbon-components-angular/utils";
 		</ng-container>
 
 		<ng-template #skeletonTemplate>
-			<label *ngIf="label" class="bx--label bx--skeleton"></label>
-			<div class="bx--slider-container bx--skeleton">
-				<span class="bx--slider__range-label"></span>
-				<div class="bx--slider">
-					<div class="bx--slider__thumb"></div>
-					<div class="bx--slider__track"></div>
-					<div class="bx--slider__filled-track"></div>
+			<label *ngIf="label" class="cds--label cds--skeleton"></label>
+			<div class="cds--slider-container cds--skeleton">
+				<span class="cds--slider__range-label"></span>
+				<div class="cds--slider">
+					<div class="cds--slider__thumb"></div>
+					<div class="cds--slider__track"></div>
+					<div class="cds--slider__filled-track"></div>
 				</div>
-				<span class="bx--slider__range-label"></span>
+				<span class="cds--slider__range-label"></span>
 			</div>
 		</ng-template>
 	`,
@@ -260,7 +260,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number | number[]> = new EventEmitter();
-	@HostBinding("class.bx--form-item") hostClass = true;
+	@HostBinding("class.cds--form-item") hostClass = true;
 	@ViewChildren("thumbs") thumbs: QueryList<ElementRef>;
 	// @ts-ignore
 	@ViewChild("track", { static: false }) track: ElementRef;
@@ -300,8 +300,8 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		if (this.inputs && this.inputs.length > 0) {
 			this.inputs.forEach((input, index) => {
 				input.type = "number";
-				input.classList.add("bx--slider-text-input");
-				input.classList.add("bx--text-input");
+				input.classList.add("cds--slider-text-input");
+				input.classList.add("cds--text-input");
 				input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
 
 				input.value = index < this._value.length ? this._value[index].toString() : this.max.toString();

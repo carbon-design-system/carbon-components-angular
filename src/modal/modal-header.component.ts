@@ -21,15 +21,15 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 @Component({
 	selector: "ibm-modal-header",
 	template: `
-		<header class="{{theme}} bx--modal-header">
+		<header class="{{theme}} cds--modal-header">
 			<ng-content></ng-content>
 			<button
 				*ngIf="showCloseButton"
 				type="button"
-				class="bx--modal-close"
+				class="cds--modal-close"
 				(click)="onClose()">
-				<span class="bx--assistive-text">{{ closeLabel }}</span>
-				<svg ibmIcon="close" size="20" class="bx--modal-close__icon"></svg>
+				<span class="cds--assistive-text">{{ closeLabel }}</span>
+				<svg ibmIcon="close" size="20" class="cds--modal-close__icon"></svg>
 			</button>
 		</header>
 

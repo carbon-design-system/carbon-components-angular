@@ -20,7 +20,7 @@ import { TableRowSize } from "../table.types";
 			<td
 				*ngIf="model.hasExpandableRows()"
 				ibmTableExpandButton
-				class="bx--table-expand-v2"
+				class="cds--table-expand-v2"
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
@@ -35,7 +35,7 @@ import { TableRowSize } from "../table.types";
 				<ng-template #tableCheckboxTemplate>
 					<td
 						ibmTableCheckbox
-						class="bx--table-column-checkbox"
+						class="cds--table-column-checkbox"
 						[size]="size"
 						[selected]="selected"
 						[label]="getCheckboxLabel()"
@@ -177,15 +177,15 @@ export class TableRowComponent {
 	 */
 	@Output() rowClick = new EventEmitter();
 
-	@HostBinding("class.bx--data-table--selected") get selectedClass() {
+	@HostBinding("class.cds--data-table--selected") get selectedClass() {
 		return this.selected;
 	}
 
-	@HostBinding("class.bx--parent-row") get parentRowClass() {
+	@HostBinding("class.cds--parent-row") get parentRowClass() {
 		return this.expandable;
 	}
 
-	@HostBinding("class.bx--expandable-row") get expandableRowClass() {
+	@HostBinding("class.cds--expandable-row") get expandableRowClass() {
 		return this.expanded;
 	}
 

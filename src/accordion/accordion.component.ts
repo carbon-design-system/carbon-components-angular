@@ -15,9 +15,9 @@ import { AccordionItem } from "./accordion-item.component";
 @Component({
 	selector: "ibm-accordion",
 	template: `
-		<ul class="bx--accordion"
-			[class.bx--accordion--end]="align == 'end'"
-			[class.bx--accordion--start]="align == 'start'">
+		<ul class="cds--accordion"
+			[class.cds--accordion--end]="align == 'end'"
+			[class.cds--accordion--start]="align == 'start'">
 			<ng-content></ng-content>
 		</ul>
 	`

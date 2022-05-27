@@ -63,7 +63,7 @@ storiesOf("Components|Search", module).addDecorator(
 	}))
 	.add("Toolbar search", () => ({
 		template: `
-		<div class="bx--toolbar">
+		<div class="cds--toolbar">
 			<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
 		</div>
 		`

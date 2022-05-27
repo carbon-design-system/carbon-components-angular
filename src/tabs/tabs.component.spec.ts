@@ -67,13 +67,13 @@ describe("Sample", () => {
 
 	it("should emit the selected event on click and change selected tab on keydown", () => {
 		spyOn(wrapper, "onSelected");
-		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
+		const navItem = element.nativeElement.querySelector(".cds--tabs--scrollable__nav-item");
 		navItem.click();
 		expect(wrapper.onSelected).toHaveBeenCalled();
 	});
 
 	it("should increment currentSelectedTab on right arrow and decrement on left arrow", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
+		const navItem = element.nativeElement.querySelector(".cds--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 
 		navItem.click();
@@ -90,7 +90,7 @@ describe("Sample", () => {
 	});
 
 	it("should set currentSelectedTab to the first tab on arrowRight when done on the last tab", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
+		const navItem = element.nativeElement.querySelector(".cds--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 
 		navItem.click();
@@ -104,7 +104,7 @@ describe("Sample", () => {
 	});
 
 	it("should set currentSelectedTab to the last tab on left arrow when done on the first tab", () => {
-		const navItem = element.nativeElement.querySelector(".bx--tabs--scrollable__nav-item");
+		const navItem = element.nativeElement.querySelector(".cds--tabs--scrollable__nav-item");
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 		navItem.click();
 		tabHeaders.nativeElement.dispatchEvent(arrowLeft);

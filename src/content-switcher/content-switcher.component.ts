@@ -33,8 +33,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 	template: `
 		<div
 			[attr.aria-label]="ariaLabel"
-			class="bx--content-switcher"
-			[class.bx--content-switcher--light]="theme === 'light'"
+			class="cds--content-switcher"
+			[class.cds--content-switcher--light]="theme === 'light'"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>

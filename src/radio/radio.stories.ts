@@ -70,8 +70,8 @@ storiesOf("Components|Radio", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<fieldset class="bx--fieldset">
-			<legend class="bx--label">{{label}}</legend>
+		<fieldset class="cds--fieldset">
+			<legend class="cds--label">{{label}}</legend>
 			<ibm-radio-group
 				[disabled]="disabled"
 				aria-label="radiogroup"
@@ -104,8 +104,8 @@ storiesOf("Components|Radio", module).addDecorator(
 	}))
 	.add("Vertical", () => ({
 		template: `
-		<fieldset class="bx--fieldset">
-			<legend class="bx--label">Radio button label</legend>
+		<fieldset class="cds--fieldset">
+			<legend class="cds--label">Radio button label</legend>
 
 			<ibm-radio-group
 				aria-label="radiogroup"

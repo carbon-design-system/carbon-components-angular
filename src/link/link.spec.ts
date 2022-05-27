@@ -63,6 +63,6 @@ describe("Link", () => {
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
-		expect(directiveEl.nativeElement.classList.contains("bx--link--inline")).toBeTruthy();
+		expect(directiveEl.nativeElement.classList.contains("cds--link--inline")).toBeTruthy();
 	});
 });

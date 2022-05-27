@@ -35,16 +35,16 @@ import { I18n } from "carbon-components-angular/i18n";
 @Component({
 	selector: "ibm-date-picker",
 	template: `
-	<div class="bx--form-item">
+	<div class="cds--form-item">
 		<div
-			class="bx--date-picker"
+			class="cds--date-picker"
 			[ngClass]="{
-				'bx--date-picker--range' : range,
-				'bx--date-picker--single' : !range,
-				'bx--date-picker--light' : theme === 'light',
-				'bx--skeleton' : skeleton
+				'cds--date-picker--range' : range,
+				'cds--date-picker--single' : !range,
+				'cds--date-picker--light' : theme === 'light',
+				'cds--skeleton' : skeleton
 			}">
-			<div class="bx--date-picker-container">
+			<div class="cds--date-picker-container">
 				<ibm-date-picker-input
 					#input
 					[label]="label"
@@ -65,7 +65,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				</ibm-date-picker-input>
 			</div>
 
-			<div *ngIf="range" class="bx--date-picker-container">
+			<div *ngIf="range" class="cds--date-picker-container">
 				<ibm-date-picker-input
 					#rangeInput
 					[label]="rangeLabel"
@@ -275,7 +275,7 @@ export class DatePicker implements
 			}
 		},
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
-			dayElem.classList.add("bx--date-picker__day");
+			dayElem.classList.add("cds--date-picker__day");
 		},
 		nextArrow: this.rightArrowHTML(),
 		prevArrow: this.leftArrowHTML(),
@@ -571,20 +571,20 @@ export class DatePicker implements
 		};
 
 		// add classes (but only if they don't exist, small perf win)
-		addClassIfNotExists("bx--date-picker__calendar", calendarContainer);
-		addClassIfNotExists("bx--date-picker__month", monthContainer);
-		addClassIfNotExists("bx--date-picker__weekdays", weekdaysContainer);
-		addClassIfNotExists("bx--date-picker__days", daysContainer);
+		addClassIfNotExists("cds--date-picker__calendar", calendarContainer);
+		addClassIfNotExists("cds--date-picker__month", monthContainer);
+		addClassIfNotExists("cds--date-picker__weekdays", weekdaysContainer);
+		addClassIfNotExists("cds--date-picker__days", daysContainer);
 
 		// add weekday classes and format the text
 		Array.from(weekdayContainer).forEach(element => {
 			element.innerHTML = element.innerHTML.replace(/\s+/g, "");
-			element.classList.add("bx--date-picker__weekday");
+			element.classList.add("cds--date-picker__weekday");
 		});
 
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
-			element.classList.add("bx--date-picker__day");
+			element.classList.add("cds--date-picker__day");
 			if (!this.value) {
 				return;
 			}

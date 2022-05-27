@@ -26,10 +26,10 @@ import { Tab } from "./tab.component";
 	selector: "ibm-tab-headers",
 	template: `
 		<nav
-			class="bx--tabs--scrollable"
+			class="cds--tabs--scrollable"
 			[ngClass]="{
-				'bx--skeleton': skeleton,
-				'bx--tabs--container bx--tabs--scrollable--container': type === 'container'
+				'cds--skeleton': skeleton,
+				'cds--tabs--container cds--tabs--scrollable--container': type === 'container'
 			}"
 			role="navigation"
 			[attr.aria-label]="ariaLabel"
@@ -39,8 +39,8 @@ import { Tab } from "./tab.component";
 				type="button"
 				[title]="translations.PREVIOUS"
 				[ngClass]="{
-					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-					'bx--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+					'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 				}"
 				(click)="handleOverflowNavClick(-1)"
 				(mousedown)="handleOverflowNavMouseDown(-1)"
@@ -57,10 +57,10 @@ import { Tab } from "./tab.component";
 					<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
 				</svg>
 			</button>
-			<div *ngIf="!leftOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--left"></div>
+			<div *ngIf="!leftOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--left"></div>
 			<ul
 				#tabList
-				class="bx--tabs--scrollable__nav"
+				class="cds--tabs--scrollable__nav"
 				role="tablist"
 				(scroll)="handleScroll()">
 				<li role="presentation">
@@ -69,10 +69,10 @@ import { Tab } from "./tab.component";
 				<li
 					*ngFor="let tab of tabs; let i = index;"
 					[ngClass]="{
-						'bx--tabs__nav-item--selected bx--tabs--scrollable__nav-item--selected': tab.active,
-						'bx--tabs__nav-item--disabled bx--tabs--scrollable__nav-item--disabled': tab.disabled
+						'cds--tabs__nav-item--selected cds--tabs--scrollable__nav-item--selected': tab.active,
+						'cds--tabs__nav-item--disabled cds--tabs--scrollable__nav-item--disabled': tab.disabled
 					}"
-					class="bx--tabs--scrollable__nav-item"
+					class="cds--tabs--scrollable__nav-item"
 					role="presentation"
 					(click)="selectTab(tabItem, tab, i)">
 					<button
@@ -85,7 +85,7 @@ import { Tab } from "./tab.component";
 						(click)="$event.preventDefault()"
 						draggable="false"
 						id="{{tab.id}}-header"
-						class="bx--tabs--scrollable__nav-link"
+						class="cds--tabs--scrollable__nav-link"
 						[title]="tab.title ? tab.title : tab.heading"
 						href="#"
 						role="tab">
@@ -103,14 +103,14 @@ import { Tab } from "./tab.component";
 					<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
 				</li>
 			</ul>
-			<div *ngIf="!rightOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--right"></div>
+			<div *ngIf="!rightOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--right"></div>
 			<button
 				#rightOverflowNavButton
 				type="button"
 				[title]="translations.NEXT"
 				[ngClass]="{
-					'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-					'bx--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+					'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 				}"
 				(click)="handleOverflowNavClick(1)"
 				(mousedown)="handleOverflowNavMouseDown(1)"

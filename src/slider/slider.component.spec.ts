@@ -52,7 +52,7 @@ describe("Slider", () => {
 	});
 
 	it("should set isMouseDown to true on mousedown event", () => {
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(new Event("mousedown"));
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(new Event("mousedown"));
 		expect(element.componentInstance.isMouseDown).toBe(true);
 	});
 
@@ -61,7 +61,7 @@ describe("Slider", () => {
 		const arrowRight = new KeyboardEvent("keydown", {
 			"key": "ArrowRight"
 		});
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowRight);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(1);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
@@ -73,7 +73,7 @@ describe("Slider", () => {
 			"key": "ArrowLeft"
 		});
 		element.componentInstance.value = 100;
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowLeft);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(99);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
@@ -85,14 +85,14 @@ describe("Slider", () => {
 			"key": "ArrowRight",
 			shiftKey: true
 		});
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowRight);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(28);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
 
 		wrapper.shiftMultiplier = 5;
 		fixture.detectChanges();
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowRight);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(33);
 	});
@@ -104,14 +104,14 @@ describe("Slider", () => {
 			shiftKey: true
 		});
 		element.componentInstance.value = 100;
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowLeft);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(72);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
 
 		wrapper.shiftMultiplier = 5;
 		fixture.detectChanges();
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
+		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(arrowLeft);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(67);
 	});
@@ -132,9 +132,9 @@ describe("Slider", () => {
 		expect(wrapper.onValueChange).toHaveBeenCalled();
 	});
 
-	it("should set bx--slider--disabled class", () => {
+	it("should set cds--slider--disabled class", () => {
 		wrapper.disabled = true;
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".bx--slider--disabled")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--slider--disabled")).toBeTruthy();
 	});
 });

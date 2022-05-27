@@ -110,7 +110,7 @@ export class DropdownService implements OnDestroy {
 
 		let leftOffset = 0;
 
-		const boxMenu = menuRef.querySelector(".bx--list-box__menu");
+		const boxMenu = menuRef.querySelector(".cds--list-box__menu");
 
 		if (boxMenu) {
 			// If the parentRef and boxMenu are in a different left position relative to the

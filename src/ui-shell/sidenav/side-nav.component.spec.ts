@@ -74,7 +74,7 @@ describe("SideNav", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "onNavigation").and.callThrough();
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--side-nav__link"));
+		element = fixture.debugElement.query(By.css(".cds--side-nav__link"));
 		element.nativeElement.click();
 		fixture.detectChanges();
 		expect(wrapper.onNavigation).toHaveBeenCalled();
@@ -86,7 +86,7 @@ describe("SideNav", () => {
 		fixture = TestBed.createComponent(SideNavTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--side-nav__submenu"));
+		element = fixture.debugElement.query(By.css(".cds--side-nav__submenu"));
 		element.nativeElement.click();
 		fixture.detectChanges();
 		expect(element.nativeElement.getAttribute("aria-expanded")).toBe("true");
@@ -110,7 +110,7 @@ describe("SideNav", () => {
 		wrapper.allowExpansion = true;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-sidenav"));
-		let sidenavButton = element.nativeElement.querySelector(".bx--side-nav__toggle");
+		let sidenavButton = element.nativeElement.querySelector(".cds--side-nav__toggle");
 		element.componentInstance.expanded = false;
 		sidenavButton.click();
 		fixture.detectChanges();

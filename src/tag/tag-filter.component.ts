@@ -11,17 +11,17 @@ import { Tag } from "./tag.component";
 	selector: "ibm-tag-filter",
 	template: `
 		<span
-			class="bx--tag__label"
+			class="cds--tag__label"
 			[attr.title]="title ? title : null"
 			(click)="onClick($event)">
 			<ng-content></ng-content>
 		</span>
 		<button
-			class="bx--tag__close-icon"
+			class="cds--tag__close-icon"
 			(click)="onClose($event)"
 			[disabled]="disabled"
 			[title]="closeButtonLabel">
-			<span class="bx--visually-hidden">{{closeButtonLabel}}</span>
+			<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
 			<svg ibmIcon="close" size="16"></svg>
 		</button>
 	`
@@ -58,7 +58,7 @@ export class TagFilter extends Tag {
 	}
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}`;
+		return `cds--tag cds--tag--filter cds--tag--${this.type} ${this.class}`;
 	}
 
 	@HostBinding("attr.aria-label") get attrAriaLabel() {

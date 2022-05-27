@@ -17,11 +17,11 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
+		<nav class="cds--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
 			<ng-content select="ibm-sidenav-header"></ng-content>
-			<ul class="bx--side-nav__items">
+			<ul class="cds--side-nav__items">
 				<div
-					class="bx--side-nav__header-navigation bx--side-nav__header-divider">
+					class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
 						<ibm-sidenav-item
 							*ngIf="navigationItem.type === 'item'"
@@ -40,14 +40,14 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 				</div>
 				<ng-content></ng-content>
 			</ul>
-			<footer class="bx--side-nav__footer">
+			<footer class="cds--side-nav__footer">
 				<button
 					*ngIf="allowExpansion"
-					class="bx--side-nav__toggle"
+					class="cds--side-nav__toggle"
 					type="button"
 					[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
 					(click)="toggle()">
-					<div class="bx--side-nav__icon">
+					<div class="cds--side-nav__icon">
 						<svg
 							*ngIf="expanded"
 							focusable="false"
@@ -73,7 +73,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>
 						</svg>
 					</div>
-					<span class="bx--assistive-text">
+					<span class="cds--assistive-text">
 						{{(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async}}
 					</span>
 				</button>
@@ -84,18 +84,18 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 })
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
-	@HostBinding("class.bx--side-nav") hostClass = true;
+	@HostBinding("class.cds--side-nav") hostClass = true;
 	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
 	/**
 	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
 	 */
-	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = true;
+	@HostBinding("class.cds--side-nav--expanded") @Input() expanded = true;
 	/**
 	 * Controls the hidden (`true`) or visible (`false`) state
 	 */
-	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
-	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
-	@HostBinding("class.bx--side-nav--ux") ux = true;
+	@HostBinding("class.cds--side-nav--hidden") @Input() hidden = false;
+	@HostBinding("class.cds--side-nav--rail") @Input() rail = false;
+	@HostBinding("class.cds--side-nav--ux") ux = true;
 	@Input() allowExpansion = false;
 
 	/**

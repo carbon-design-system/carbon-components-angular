@@ -98,12 +98,12 @@ import { IconModule } from "./icon/icon.module";
 			<div class="banner__links">
 				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
 					Documentation
-					<svg ibmIcon="document" size="16" class="bx--btn__icon"></svg>
+					<svg ibmIcon="document" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
 					Starter App
-					<svg ibmIcon="bee" size="16" class="bx--btn__icon"></svg>
+					<svg ibmIcon="bee" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">

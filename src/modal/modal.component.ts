@@ -81,11 +81,11 @@ export class ModalDemo {
 			[open]="open"
 			(overlaySelect)="overlaySelected.emit()">
 			<div
-				class="bx--modal-container"
+				class="cds--modal-container"
 				[ngClass]="{
-					'bx--modal-container--xs': size === 'xs',
-					'bx--modal-container--sm': size === 'sm',
-					'bx--modal-container--lg': size === 'lg'
+					'cds--modal-container--xs': size === 'xs',
+					'cds--modal-container--sm': size === 'sm',
+					'cds--modal-container--lg': size === 'lg'
 				}"
 				role="dialog"
 				aria-modal="true"
@@ -95,7 +95,7 @@ export class ModalDemo {
 				<ng-content></ng-content>
 				<div
 					*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"
-					class="bx--modal-content--overflow-indicator">
+					class="cds--modal-content--overflow-indicator">
 				</div>
 			</div>
 		</ibm-overlay>
@@ -215,7 +215,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
 	 */
 	get shouldShowScrollbar() {
-		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".cds--modal-content") : null;
 		if (modalContent) {
 			// get rounded value from height to match integer returned from scrollHeight
 			const modalContentHeight = Math.round(modalContent.getBoundingClientRect().height);

@@ -44,20 +44,20 @@ export interface PaginationNavTranslations {
 	selector: "ibm-pagination-nav",
 	template: `
 	<div>
-		<div class="bx--pagination-nav">
-			<ul class="bx--pagination-nav__list">
-				<li class="bx--pagination-nav__list-item">
+		<div class="cds--pagination-nav">
+			<ul class="cds--pagination-nav__list">
+				<li class="cds--pagination-nav__list-item">
 					<button
-						class="bx--btn bx--btn--ghost bx--pagination-nav-previous
-						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+						class="cds--btn cds--btn--ghost cds--pagination-nav-previous
+						cds--btn--icon-only cds--tooltip__trigger cds--tooltip--a11y cds--tooltip--bottom cds--tooltip--align-center"
 						[disabled]="leftArrowDisabled"
 						(click)="jumpToPrevious()">
-						<span class="bx--assistive-text">{{previousItemText.subject | async}}</span>
+						<span class="cds--assistive-text">{{previousItemText.subject | async}}</span>
 						<svg
 							ibmIcon="caret--left"
 							size="16"
 							style="display: inherit"
-							class="bx--btn__icon">
+							class="cds--btn__icon">
 						</svg>
 					</button>
 				</li>
@@ -91,18 +91,18 @@ export interface PaginationNavTranslations {
 					(click)="currentPage = totalNumbersArray.length"
 					[isActive]="currentPage == totalNumbersArray.length">
 				</ibm-pagination-nav-item>
-				<li class="bx--pagination-nav__list-item">
+				<li class="cds--pagination-nav__list-item">
 					<button
-						class="bx--btn bx--btn--ghost bx--pagination-nav-next
-						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+						class="cds--btn cds--btn--ghost cds--pagination-nav-next
+						cds--btn--icon-only cds--tooltip__trigger cds--tooltip--a11y cds--tooltip--bottom cds--tooltip--align-center"
 						[disabled]="rightArrowDisabled"
 						(click)="jumpToNext()">
-						<span class="bx--assistive-text">{{nextItemText.subject | async}}</span>
+						<span class="cds--assistive-text">{{nextItemText.subject | async}}</span>
 						<svg
 							ibmIcon="caret--right"
 							size="16"
 							style="display: inherit"
-							class="bx--btn__icon">
+							class="cds--btn__icon">
 						</svg>
 					</button>
 				</li>

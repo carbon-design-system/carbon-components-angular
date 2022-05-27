@@ -28,36 +28,36 @@ export enum InlineLoadingState {
 	selector: "ibm-inline-loading",
 	template: `
 		<div *ngIf="state !== InlineLoadingState.Hidden"
-			class="bx--inline-loading__animation">
+			class="cds--inline-loading__animation">
 			<div
 				*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"
-				class="bx--loading bx--loading--small"
+				class="cds--loading cds--loading--small"
 				[ngClass]="{
-					'bx--loading--stop': state === InlineLoadingState.Inactive
+					'cds--loading--stop': state === InlineLoadingState.Inactive
 				}">
-				<svg class="bx--loading__svg" viewBox="0 0 100 100">
-					<circle class="bx--loading__background" cx="50%" cy="50%" r="44" />
-					<circle class="bx--loading__stroke" cx="50%" cy="50%" r="44" />
+				<svg class="cds--loading__svg" viewBox="0 0 100 100">
+					<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
+					<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 				</svg>
 			</div>
 			<svg
 				*ngIf="state === InlineLoadingState.Finished"
 				ibmIcon="checkmark--filled"
 				size="16"
-				class="bx--inline-loading__checkmark-container">
+				class="cds--inline-loading__checkmark-container">
 			</svg>
 			<svg
 				*ngIf="state === InlineLoadingState.Error"
 				ibmIcon="error--filled"
 				size="16"
-				class="bx--inline-loading--error">
+				class="cds--inline-loading--error">
 			</svg>
 		</div>
 		<p
 			*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"
-			class="bx--inline-loading__text">{{loadingText}}</p>
-		<p *ngIf="state === InlineLoadingState.Finished" class="bx--inline-loading__text">{{successText}}</p>
-		<p *ngIf="state === InlineLoadingState.Error" class="bx--inline-loading__text">{{errorText}}</p>
+			class="cds--inline-loading__text">{{loadingText}}</p>
+		<p *ngIf="state === InlineLoadingState.Finished" class="cds--inline-loading__text">{{successText}}</p>
+		<p *ngIf="state === InlineLoadingState.Error" class="cds--inline-loading__text">{{errorText}}</p>
 	`
 })
 export class InlineLoading {
@@ -116,5 +116,5 @@ export class InlineLoading {
 	 */
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
-	@HostBinding("class.bx--inline-loading") loadingClass = true;
+	@HostBinding("class.cds--inline-loading") loadingClass = true;
 }

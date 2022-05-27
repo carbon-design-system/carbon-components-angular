@@ -10,8 +10,8 @@ import { NavigationItem } from "./header-navigation-items.interface";
 @Component({
 	selector: "ibm-header-navigation",
 	template: `
-		<nav class="bx--header__nav" [attr.aria-label]="ariaLabel">
-			<ul class="bx--header__menu-bar" role="menubar">
+		<nav class="cds--header__nav" [attr.aria-label]="ariaLabel">
+			<ul class="cds--header__menu-bar" role="menubar">
 				<ng-content></ng-content>
 				<ng-container *ngFor="let navigationItem of navigationItems">
 					<ibm-header-item

@@ -52,32 +52,32 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label *ngIf="label" [for]="id" class="bx--label">
+	<label *ngIf="label" [for]="id" class="cds--label">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
 	<div
-		class="bx--list-box"
+		class="cds--list-box"
 		[ngClass]="{
-			'bx--dropdown': type !== 'multi',
-			'bx--multiselect': type === 'multi',
-			'bx--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
-			'bx--dropdown--light': theme === 'light',
-			'bx--list-box--light': theme === 'light',
-			'bx--list-box--inline': inline,
-			'bx--skeleton': skeleton,
-			'bx--dropdown--disabled bx--list-box--disabled': disabled,
-			'bx--dropdown--invalid': invalid,
-			'bx--dropdown--warning bx--list-box--warning': warn,
-			'bx--dropdown--xl bx--list-box--xl': size === 'xl',
-			'bx--dropdown--sm bx--list-box--sm': size === 'sm',
-			'bx--list-box--expanded': !menuIsClosed
+			'cds--dropdown': type !== 'multi',
+			'cds--multiselect': type === 'multi',
+			'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
+			'cds--dropdown--light': theme === 'light',
+			'cds--list-box--light': theme === 'light',
+			'cds--list-box--inline': inline,
+			'cds--skeleton': skeleton,
+			'cds--dropdown--disabled cds--list-box--disabled': disabled,
+			'cds--dropdown--invalid': invalid,
+			'cds--dropdown--warning cds--list-box--warning': warn,
+			'cds--dropdown--xl cds--list-box--xl': size === 'xl',
+			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
+			'cds--list-box--expanded': !menuIsClosed
 		}">
 		<button
 			#dropdownButton
 			[id]="id"
 			type="button"
-			class="bx--list-box__field"
+			class="cds--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
@@ -89,7 +89,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				(click)="clearSelected()"
 				(keydown.enter)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="bx--list-box__selection bx--tag--filter bx--list-box__selection--multi"
+				class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
 				tabindex="0"
 				[title]="clearText">
 				{{getSelectedCount()}}
@@ -106,7 +106,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
 				</svg>
 			</div>
-			<span *ngIf="isRenderString()" class="bx--list-box__label">{{getDisplayStringValue() | async}}</span>
+			<span *ngIf="isRenderString()" class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
 			<ng-template
 				*ngIf="!isRenderString()"
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
@@ -114,7 +114,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			</ng-template>
 			<svg
 				*ngIf="!warn && invalid"
-				class="bx--dropdown__invalid-icon"
+				class="cds--dropdown__invalid-icon"
 				ibmIcon="warning--filled"
 				size="16">
 			</svg>
@@ -122,35 +122,35 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				*ngIf="!invalid && warn"
 				ibmIcon="warning--alt--filled"
 				size="16"
-				class="bx--list-box__invalid-icon bx--list-box__invalid-icon--warning">
+				class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
 			</svg>
-			<span class="bx--list-box__menu-icon">
+			<span class="cds--list-box__menu-icon">
 				<svg
 					*ngIf="!skeleton"
 					ibmIcon="chevron--down"
 					size="16"
 					[attr.aria-label]="menuButtonLabel"
-					[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+					[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
 				</svg>
 			</span>
 		</button>
 		<div
 			#dropdownMenu
 			[ngClass]="{
-				'bx--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+	<div *ngIf="helperText && !invalid && !warn" class="cds--form__helper-text">
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
-	<div *ngIf="!warn && invalid" class="bx--form-requirement">
+	<div *ngIf="!warn && invalid" class="cds--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 	</div>
-	<div *ngIf="!invalid && warn" class="bx--form-requirement">
+	<div *ngIf="!invalid && warn" class="cds--form-requirement">
 		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 	</div>
@@ -309,7 +309,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// @ts-ignore
 	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
-	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
+	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
@@ -676,8 +676,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
-		const lightClass = this.theme === "light" ? " bx--list-box--light" : "";
-		const expandedClass = !this.menuIsClosed ? " bx--list-box--expanded" : "";
+		const lightClass = this.theme === "light" ? " cds--list-box--light" : "";
+		const expandedClass = !this.menuIsClosed ? " cds--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
@@ -691,7 +691,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	_shouldDropUp() {
 		// check if dropdownMenu exists first.
-		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".bx--list-box__menu");
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".cds--list-box__menu");
 		// check if menu exists first.
 		const menuRect = menu && menu.getBoundingClientRect();
 		if (menu && menuRect) {

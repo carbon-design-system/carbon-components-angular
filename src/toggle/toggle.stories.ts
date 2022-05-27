@@ -5,6 +5,7 @@ import {
 	select,
 	text
 } from "@storybook/addon-knobs/angular";
+import { action } from "@storybook/addon-actions";
 
 import {
 	FormBuilder,
@@ -14,7 +15,7 @@ import {
 } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 
-import { ToggleModule } from "../";
+import { ToggleModule } from "./";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
 @Component({
@@ -68,30 +69,24 @@ storiesOf("Components|Toggle", module).addDecorator(
 		template: `
 			<ibm-toggle
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[onText]="onText"
 				[offText]="offText"
 				[disabled]="disabled"
 				[checked]="checked"
-				[size]="size">
-			</ibm-toggle>
-			<ibm-toggle
-				[label]="label"
-				[onText]="altOnText"
-				[offText]="altOffText"
-				[disabled]="disabled"
-				[checked]="checked"
+				(checkedChange)="onChange($event)"
 				[size]="size">
 			</ibm-toggle>
 		`,
 		props: {
 			disabled: boolean("Disabled", false),
 			checked: boolean("Checked", false),
+			hideLabel: boolean("Hide label", false),
 			size: select("Size", ["md", "sm"], "md"),
-			label: text("Label text", ""),
+			label: text("Label text", "Toggle element label"),
 			onText: text("On text", "On"),
 			offText: text("Off text", "Off"),
-			altOffText: text("Alternative off text", "Dark"),
-			altOnText: text("Alternative on text", "Light")
+			onChange: action("On change fired!")
 		}
 	}))
 	.add("With reactive forms", () => ({
@@ -101,13 +96,6 @@ storiesOf("Components|Toggle", module).addDecorator(
 				You can create your own implementation by using the component source as an example.
 			-->
 			<app-reactive-forms></app-reactive-forms>
-		`
-	}))
-	.add("Skeleton", () => ({
-		template: `
-			<ibm-toggle skeleton="true"></ibm-toggle>
-			&nbsp;
-			<ibm-toggle skeleton="true" size="sm"></ibm-toggle>
 		`
 	}))
 	.add("Documentation", () => ({

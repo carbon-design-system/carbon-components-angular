@@ -29,12 +29,12 @@ class FooComponent { }
 		<ibm-header name="[Platform]">
 			<ibm-hamburger
 				(selected)="hasHamburger = !hasHamburger"
-				class="bx--header__menu-toggle__hidden"></ibm-hamburger>
+				class="cds--header__menu-toggle__hidden"></ibm-hamburger>
 			<ibm-header-navigation [navigationItems]="headerItems"></ibm-header-navigation>
 			<ibm-sidenav
 				*ngIf="hasHamburger"
 				[navigationItems]="headerItems"
-				class="bx--header__menu-toggle__hidden"></ibm-sidenav>
+				class="cds--header__menu-toggle__hidden"></ibm-sidenav>
 		</ibm-header>
 	`
 })
@@ -165,9 +165,9 @@ storiesOf("Components|UI Shell", module)
 			</ibm-header>
 
 			<ng-template #brandTemplate>
-				<a class="bx--header__name">
+				<a class="cds--header__name">
 					<svg ibmIcon="carbon" size="32" style="stroke:white;fill:white"></svg>
-					<span class="bx--header__name--prefix">IBM</span>
+					<span class="cds--header__name--prefix">IBM</span>
 					[Platform]
 				</a>
 			</ng-template>

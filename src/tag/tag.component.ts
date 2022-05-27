@@ -31,6 +31,6 @@ export class Tag {
 	@Input() class = "";
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--${this.type} ${this.class}`;
+		return `cds--tag cds--tag--${this.type} ${this.class}`;
 	}
 }

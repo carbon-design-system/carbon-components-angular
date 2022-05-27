@@ -113,15 +113,15 @@ class DatePickerStory {
 	template: `
         <ibm-modal [open]="true">
             <ibm-modal-header>Header label</ibm-modal-header>
-            <section class="bx--modal-content">
+            <section class="cds--modal-content">
                 <h1>Sample modal works.</h1>
-                <p class="bx--modal-content__text">{{modalText}}</p>
+                <p class="cds--modal-content__text">{{modalText}}</p>
                 <ibm-date-picker
                     label="Date Picker Label"
                     rangeLabel="Date Picker Label"
                     invalidText="Invalid date format">
                 </ibm-date-picker>
-                <p class="bx--modal-content__text">{{modalText}}</p>
+                <p class="cds--modal-content__text">{{modalText}}</p>
             </section>
         </ibm-modal>
     `

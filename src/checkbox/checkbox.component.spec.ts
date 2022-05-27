@@ -12,7 +12,7 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 	template: `
 	<ibm-checkbox
 		[hideLabel]="hideLabel"
-		(change)="onChange()"
+		(checkedChange)="onChange()"
 		(indeterminateChange)="onIndeterminateChange()"
 		[indeterminate]="indeterminate"
 		[(ngModel)]="model">
@@ -61,12 +61,12 @@ describe("Checkbox", () => {
 		expect(element.componentInstance.checked).toBe(false);
 	});
 
-	it("should emit a change event on click and propagate the change back to the form", () => {
+	it("should emit a checkedChange event on click and propagate the change back to the form", () => {
 		fixture = TestBed.createComponent(CheckboxTest);
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "onChange");
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--checkbox-label"));
+		element = fixture.debugElement.query(By.css(".cds--checkbox-label"));
 		element.nativeElement.click();
 		element.nativeElement.dispatchEvent(new Event("change"));
 		fixture.detectChanges();
@@ -75,13 +75,13 @@ describe("Checkbox", () => {
 		expect(element.componentInstance.checked).toBe(true);
 	});
 
-	it("should set bx--visually-hidden class when hideLabel is true", () => {
+	it("should set cds--visually-hidden class when hideLabel is true", () => {
 		fixture = TestBed.createComponent(CheckboxTest);
 		wrapper = fixture.componentInstance;
 		wrapper.hideLabel = true;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-checkbox"));
-		expect(element.nativeElement.querySelector(".bx--visually-hidden")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--visually-hidden")).toBeTruthy();
 	});
 
 	it("should emit an indeterminateChange event when there is a change on an indeterminate checkbox", () => {
@@ -90,7 +90,7 @@ describe("Checkbox", () => {
 		spyOn(wrapper, "onIndeterminateChange");
 		wrapper.indeterminate = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--checkbox"));
+		element = fixture.debugElement.query(By.css(".cds--checkbox"));
 		element.nativeElement.click();
 		fixture.detectChanges();
 		expect(wrapper.onIndeterminateChange).toHaveBeenCalled();

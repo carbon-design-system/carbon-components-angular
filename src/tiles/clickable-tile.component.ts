@@ -23,7 +23,7 @@ import { Router } from "@angular/router";
 	template: `
 	<a
 		ibmLink
-		class="bx--tile bx--tile--clickable"
+		class="cds--tile cds--tile--clickable"
 		tabindex="0"
 		(click)="navigate($event)"
 		[href]="href"

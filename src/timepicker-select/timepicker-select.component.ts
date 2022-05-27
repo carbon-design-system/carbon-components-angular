@@ -17,17 +17,17 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "ibm-timepicker-select",
 	template: `
-		<label *ngIf="!skeleton && label" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
-		<div class="bx--select-input__wrapper">
+		<label *ngIf="!skeleton && label" [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
+		<div class="cds--select-input__wrapper">
 			<select
 				#select
 				[attr.id]="id"
 				[disabled]="disabled"
 				(change)="onChange($event)"
-				class="bx--select-input">
+				class="cds--select-input">
 				<ng-content></ng-content>
 			</select>
-			<svg ibmIcon="chevron--down" size="16" *ngIf="!skeleton" class="bx--select__arrow"></svg>
+			<svg ibmIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg>
 		</div>
 	`,
 	providers: [
@@ -39,8 +39,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 	]
 })
 export class TimePickerSelect extends Select {
-	@HostBinding("class.bx--select") timeSelect = true;
-	@HostBinding("class.bx--time-picker__select") timePickerSelect = true;
+	@HostBinding("class.cds--select") timeSelect = true;
+	@HostBinding("class.cds--time-picker__select") timePickerSelect = true;
 
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
 
@@ -56,9 +56,9 @@ export class TimePickerSelect extends Select {
 
 	@Input() label: string;
 
-	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
+	@HostBinding("class.cds--skeleton") timePickerSelectSkeleton = this.skeleton;
 
-	@HostBinding("class.bx--select--light") get timePickerSelectLight() {
+	@HostBinding("class.cds--select--light") get timePickerSelectLight() {
 		return this.theme === "light";
 	}
 }

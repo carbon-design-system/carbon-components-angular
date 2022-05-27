@@ -52,7 +52,7 @@ export class TooltipDirective extends DialogDirective {
 
 	@HostBinding("tabindex") tabIndex = 0;
 
-	@HostBinding("class.bx--tooltip__trigger") className = true;
+	@HostBinding("class.cds--tooltip__trigger") className = true;
 
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
 		return this.isOpen ? this.dialogConfig.compID : null;

@@ -56,8 +56,8 @@ import { BaseModal } from "./base-modal.class";
 			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
 			<ibm-modal-header (closeSelect)="dismissModal('close')" [showCloseButton]="showCloseButton">
-				<p ibmModalHeaderLabel class="bx--type-delta">{{label}}</p>
-				<p ibmModalHeaderHeading class="bx--type-beta">{{title}}</p>
+				<p ibmModalHeaderLabel class="cds--type-delta">{{label}}</p>
+				<p ibmModalHeaderHeading class="cds--type-beta">{{title}}</p>
 			</ibm-modal-header>
 			<div ibmModalContent #modalContent>
 				<p [innerHTML]="content"></p>

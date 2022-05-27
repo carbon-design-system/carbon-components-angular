@@ -14,7 +14,7 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "ibm-switcher-list",
 	template: `
-		<ul class="bx--switcher">
+		<ul class="cds--switcher">
 			<ng-content></ng-content>
 		</ul>
 	`

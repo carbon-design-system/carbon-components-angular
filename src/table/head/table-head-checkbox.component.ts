@@ -16,12 +16,11 @@ import { TableRowSize } from "../table.types";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
-			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(checkedChange)="change.emit()"
-			[aria-label]="getAriaLabel() | async">
+			[ariaLabel]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
 	styles: [`
@@ -54,7 +53,7 @@ export class TableHeadCheckbox {
 
 	@Output() change = new EventEmitter<void>();
 
-	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
+	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 

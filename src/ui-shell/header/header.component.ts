@@ -23,11 +23,11 @@ import { I18n } from "carbon-components-angular/i18n";
 	selector: "ibm-header",
 	template: `
 		<header
-			class="bx--header"
+			class="cds--header"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
 				*ngIf="skipTo"
-				class="bx--skip-to-content"
+				class="cds--skip-to-content"
 				[href]="skipTo"
 				tabindex="0">
 				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
@@ -40,17 +40,17 @@ import { I18n } from "carbon-components-angular/i18n";
 			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
 				<a
 					*ngSwitchCase="false"
-					class="bx--header__name"
+					class="cds--header__name"
 					[href]="href"
 					(click)="navigate($event)">
-					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
 					{{name}}
 				</a>
 				<a
 					*ngSwitchCase="true"
-					class="bx--header__name"
+					class="cds--header__name"
 					[routerLink]="route">
-					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
 					{{name}}
 				</a>
 			</ng-container>

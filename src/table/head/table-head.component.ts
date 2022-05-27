@@ -31,7 +31,7 @@ import { TableRowSize } from "../table.types";
 				ibmTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
-				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
+				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')">
 			</th>
 			<th
@@ -85,7 +85,7 @@ import { TableRowSize } from "../table.types";
 	<ng-content></ng-content>
 	`,
 	styles: [`
-		.bx--table-expand-v2 {
+		.cds--table-expand-v2 {
 			padding-left: 2.5rem;
 		}
 	`]

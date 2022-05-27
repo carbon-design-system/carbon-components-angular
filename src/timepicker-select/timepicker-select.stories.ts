@@ -17,8 +17,8 @@ storiesOf("Components|Time Picker Select", module)
 	.addDecorator(withKnobs)
 	.add("Simple", () => ({
 		template: `
-		<div class="bx--form-item">
-			<div class="bx--time-picker">
+		<div class="cds--form-item">
+			<div class="cds--time-picker">
 				<ibm-timepicker-select>
 					<option selected value="AM">AM</option>
 					<option value="PM">PM</option>

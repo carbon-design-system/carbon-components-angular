@@ -107,12 +107,12 @@ describe("Pagination", () => {
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		element.nativeElement.querySelector(".bx--pagination__button--forward").click();
+		element.nativeElement.querySelector(".cds--pagination__button--forward").click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		element.nativeElement.querySelector(".bx--pagination__button--backward").click();
+		element.nativeElement.querySelector(".cds--pagination__button--backward").click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
@@ -123,7 +123,7 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--backward");
+		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--backward");
 		buttonBackward.click();
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
@@ -137,8 +137,8 @@ describe("Pagination", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-pagination"));
 		element.componentInstance.currentPage = 5;
-		const buttonForward = element.nativeElement.querySelector(".bx--pagination__button--forward");
-		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--forward");
+		const buttonForward = element.nativeElement.querySelector(".cds--pagination__button--forward");
+		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--forward");
 
 		buttonForward.click();
 		fixture.detectChanges();

@@ -44,8 +44,8 @@ export class ContentSwitcherOption implements OnInit {
 
 	@Output() onFocus = new EventEmitter<FocusEvent>();
 
-	@HostBinding("class") switcherClass = "bx--content-switcher-btn";
-	@HostBinding("class.bx--content-switcher--selected") selectedClass = false;
+	@HostBinding("class") switcherClass = "cds--content-switcher-btn";
+	@HostBinding("class.cds--content-switcher--selected") selectedClass = false;
 	@HostBinding("attr.role") role = "tab";
 	@HostBinding("attr.aria-selected") ariaSelected = false;
 	@HostBinding("attr.tabIndex") tabindex = "-1";
@@ -79,7 +79,7 @@ export class ContentSwitcherOption implements OnInit {
 	ngOnInit(): void {
 		const hostNativeElement = (this.hostElement.nativeElement as HTMLElement);
 		const spanWrapper = this.renderer.createElement("span");
-		this.renderer.addClass(spanWrapper, "bx--content-switcher__label");
+		this.renderer.addClass(spanWrapper, "cds--content-switcher__label");
 		const hostChildren: ChildNode[] = [];
 		hostNativeElement.childNodes.forEach(node => hostChildren.push(node));
 		hostChildren.forEach(node => {

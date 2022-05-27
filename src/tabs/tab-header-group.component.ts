@@ -23,10 +23,10 @@ import { TabHeader } from "./tab-header.component";
 	selector: "ibm-tab-header-group",
 	template: `
 	<nav
-		class="bx--tabs bx--tabs--scrollable"
+		class="cds--tabs cds--tabs--scrollable"
 		[ngClass]="{
-			'bx--skeleton': skeleton,
-			'bx--tabs--container bx--tabs--scrollable--container': type === 'container'
+			'cds--skeleton': skeleton,
+			'cds--tabs--container cds--tabs--scrollable--container': type === 'container'
 		}"
 		role="navigation"
 		[attr.aria-label]="ariaLabel"
@@ -35,8 +35,8 @@ import { TabHeader } from "./tab-header.component";
 			#leftOverflowNavButton
 			type="button"
 			[ngClass]="{
-				'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-				'bx--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+				'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
 			(click)="handleOverflowNavClick(-1)"
 			(mousedown)="handleOverflowNavMouseDown(-1)"
@@ -53,10 +53,10 @@ import { TabHeader } from "./tab-header.component";
 				<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
 			</svg>
 		</button>
-		<div *ngIf="!leftOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--left"></div>
+		<div *ngIf="!leftOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--left"></div>
 		<ul
 			#tabList
-			class="bx--tabs--scrollable__nav"
+			class="cds--tabs--scrollable__nav"
 			role="tablist"
 			(scroll)="handleScroll()">
 			<li role="presentation">
@@ -67,13 +67,13 @@ import { TabHeader } from "./tab-header.component";
 				<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
 			</li>
 		</ul>
-		<div *ngIf="!rightOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--right"></div>
+		<div *ngIf="!rightOverflowNavButtonHidden" class="cds--tabs__overflow-indicator--right"></div>
 		<button
 			#rightOverflowNavButton
 			type="button"
 			[ngClass]="{
-				'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-				'bx--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+				'cds--tab--overflow-nav-button': hasHorizontalOverflow,
+				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
 			(click)="handleOverflowNavClick(1)"
 			(mousedown)="handleOverflowNavMouseDown(1)"

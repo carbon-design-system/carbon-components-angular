@@ -7,5 +7,5 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "[ibmListItem]"
 })
 export class ListItemDirective {
-	@HostBinding("class.bx--list__item") wrapper = true;
+	@HostBinding("class.cds--list__item") wrapper = true;
 }

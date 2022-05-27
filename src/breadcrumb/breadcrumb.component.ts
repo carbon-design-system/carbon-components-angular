@@ -25,10 +25,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 @Component({
 	selector: "ibm-breadcrumb",
 	template: `
-	<nav #nav class="bx--breadcrumb"
+	<nav #nav class="cds--breadcrumb"
 		[ngClass]="{
-			'bx--skeleton' : skeleton,
-			'bx--breadcrumb--no-trailing-slash' : noTrailingSlash
+			'cds--skeleton' : skeleton,
+			'cds--breadcrumb--no-trailing-slash' : noTrailingSlash
 		}"
 		[attr.aria-label]="ariaLabel">
 		<ng-template [ngIf]="shouldShowContent">
@@ -68,9 +68,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item>
 				<ibm-overflow-menu>
-					<li class="bx--overflow-menu-options__option"
+					<li class="cds--overflow-menu-options__option"
 						*ngFor="let item of overflowItems">
-						<a class="bx--overflow-menu-options__btn"
+						<a class="cds--overflow-menu-options__btn"
 							href="{{item?.href}}"
 							(click)="navigate($event, item)"
 							style="text-decoration: none;">

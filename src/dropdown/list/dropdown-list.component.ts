@@ -52,7 +52,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 		<ul
 			#list
 			role="listbox"
-			class="bx--list-box__menu bx--multi-select"
+			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
 			tabindex="-1"
@@ -62,33 +62,33 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
-				class="bx--list-box__menu-item"
+				class="cds--list-box__menu-item"
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
 				[ngClass]="{
-					'bx--list-box__menu-item--active': item.selected,
-					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i),
+					'cds--list-box__menu-item--active': item.selected,
+					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i),
 					disabled: item.disabled
 				}">
 				<div
 					#listItem
 					tabindex="-1"
-					class="bx--list-box__menu-item__option">
+					class="cds--list-box__menu-item__option">
 					<div
 						*ngIf="!listTpl && type === 'multi'"
-						class="bx--form-item bx--checkbox-wrapper">
+						class="cds--form-item cds--checkbox-wrapper">
 						<label
 							[attr.data-contained-checkbox-state]="item.selected"
-							class="bx--checkbox-label">
+							class="cds--checkbox-label">
 							<input
-								class="bx--checkbox"
+								class="cds--checkbox"
 								type="checkbox"
 								[checked]="item.selected"
 								[disabled]="item.disabled"
 								tabindex="-1">
-							<span class="bx--checkbox-appearance"></span>
-							<span class="bx--checkbox-label-text">{{item.content}}</span>
+							<span class="cds--checkbox-appearance"></span>
+							<span class="cds--checkbox-label-text">{{item.content}}</span>
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
@@ -96,7 +96,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 						*ngIf="!listTpl && type === 'single'"
 						ibmIcon="checkmark"
 						size="16"
-						class="bx--list-box__menu-item__selected-icon">
+						class="cds--list-box__menu-item__selected-icon">
 					</svg>
 					<ng-template
 						*ngIf="listTpl"
@@ -581,13 +581,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	onItemFocus(index) {
 		const element = this.listElementList.toArray()[index].nativeElement;
-		element.classList.add("bx--list-box__menu-item--highlighted");
+		element.classList.add("cds--list-box__menu-item--highlighted");
 		element.tabIndex = 0;
 	}
 
 	onItemBlur(index) {
 		const element = this.listElementList.toArray()[index].nativeElement;
-		element.classList.remove("bx--list-box__menu-item--highlighted");
+		element.classList.remove("cds--list-box__menu-item--highlighted");
 		element.tabIndex = -1;
 	}
 

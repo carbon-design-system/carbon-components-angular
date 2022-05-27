@@ -18,19 +18,19 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 	selector: "ibm-sidenav-menu",
 	template: `
 		<li
-			class="bx--side-nav__item bx--side-nav__item--icon"
-			[ngClass]="{ 'bx--side-nav__item--active': hasActiveChild }">
+			class="cds--side-nav__item cds--side-nav__item--icon"
+			[ngClass]="{ 'cds--side-nav__item--active': hasActiveChild }">
 			<button
 				(click)="toggle()"
-				class="bx--side-nav__submenu"
+				class="cds--side-nav__submenu"
 				aria-haspopup="true"
 				[attr.aria-expanded]="expanded"
 				type="button">
-				<div class="bx--side-nav__icon">
+				<div class="cds--side-nav__icon">
 					<ng-content select="[icon]"></ng-content>
 				</div>
-				<span class="bx--side-nav__submenu-title">{{title}}</span>
-				<div class="bx--side-nav__icon bx--side-nav__icon--small bx--side-nav__submenu-chevron">
+				<span class="cds--side-nav__submenu-title">{{title}}</span>
+				<div class="cds--side-nav__icon cds--side-nav__icon--small cds--side-nav__submenu-chevron">
 					<svg
 						focusable="false"
 						preserveAspectRatio="xMidYMid meet"
@@ -44,7 +44,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 					</svg>
 				</div>
 			</button>
-			<ul class="bx--side-nav__menu" role="menu">
+			<ul class="cds--side-nav__menu" role="menu">
 				<ng-content></ng-content>
 				<ng-container *ngFor="let menuItem of menuItems">
 					<ibm-sidenav-item

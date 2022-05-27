@@ -39,21 +39,21 @@ import { ListColumn } from "./list-column.component";
 			<input
 				#input
 				tabindex="-1"
-				class="bx--structured-list-input"
+				class="cds--structured-list-input"
 				type="radio"
 				[value]="value"
 				[name]="name"
 				[title]="label"
 				(change)="onChange($event)"
 				[checked]="selected"/>
-			<div class="bx--structured-list-td">
-				<svg ibmIcon="checkmark--filled" size="16" class="bx--structured-list-svg"></svg>
+			<div class="cds--structured-list-td">
+				<svg ibmIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
 			</div>
 		</ng-container>
 	`
 })
 export class ListRow implements AfterContentInit {
-	@Input() @HostBinding("class.bx--structured-list-row--selected") selected = false;
+	@Input() @HostBinding("class.cds--structured-list-row--selected") selected = false;
 	/**
 	 * Applies an accessible label to the row. Defaults to no label.
 	 */
@@ -76,7 +76,7 @@ export class ListRow implements AfterContentInit {
 	 */
 	name = "list";
 
-	@HostBinding("class.bx--structured-list-row") wrapper = true;
+	@HostBinding("class.cds--structured-list-row") wrapper = true;
 	@HostBinding("attr.tabindex") tabindex = this.selection ? "0" : null;
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;

@@ -23,7 +23,7 @@ storiesOf("Components|Button", module)
 			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
 			&nbsp;
 			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
-				With icon<svg class="bx--btn__icon" ibmIcon="add" size="16"></svg>
+				With icon<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
 			</button>
 			<br><br>
 			<ibm-button-set>
@@ -37,20 +37,16 @@ storiesOf("Components|Button", module)
 				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
 				"primary"),
 			isExpressive: boolean("Expressive button style", false),
-			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal")
+			size: select("Size of the buttons", ["sm", "md", "lg", "xl", "2xl"], "lg")
 		}
 	}))
 	.add("Icon only", () => ({
 		template: `
 			<button
 				[ibmButton]="ibmButton"
-				[size]="size"
-				[iconOnly]="true"
-				[hasAssistiveText]="true"
-				[assistiveTextPlacement]="assistiveTextPlacement"
-				[assistiveTextAlignment]="assistiveTextAlignment">
-				<svg class="bx--btn__icon" ibmIcon="copy" size="16"></svg>
-				<span class="bx--assistive-text">Icon description</span>
+				[size]="size">
+				<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
+				<span class="cds--assistive-text">Icon description</span>
 			</button>
 		`,
 		props: {

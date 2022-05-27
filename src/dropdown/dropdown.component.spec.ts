@@ -66,7 +66,7 @@ describe("Dropdown", () => {
 		fixture = TestBed.createComponent(DropdownTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--list-box__field"));
+		element = fixture.debugElement.query(By.css(".cds--list-box__field"));
 		element.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(element.nativeElement.getAttribute("aria-expanded")).toEqual("true");
@@ -80,9 +80,9 @@ describe("Dropdown", () => {
 		element = fixture.debugElement.query(By.css("ibm-dropdown"));
 		element.componentInstance.menuIsClosed = false;
 		fixture.detectChanges();
-		element.nativeElement.querySelector(".bx--list-box__menu-item__option").click();
+		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("one");
+		expect(element.nativeElement.querySelector(".cds--list-box__label").textContent).toEqual("one");
 		expect(wrapper.onSelect).toHaveBeenCalled();
 		expect(wrapper.model.content).toEqual("one");
 		expect(wrapper.model.selected).toBe(true);
@@ -92,7 +92,7 @@ describe("Dropdown", () => {
 		fixture = TestBed.createComponent(DropdownTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-dropdown"));
-		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("test");
+		expect(element.nativeElement.querySelector(".cds--list-box__label").textContent).toEqual("test");
 	});
 
 	it("should keep custom classes on the host el", () => {

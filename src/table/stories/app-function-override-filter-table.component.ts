@@ -32,10 +32,10 @@ import { TableItem } from "../table-item.class";
 					placement="bottom"
 					[flip]="true"
 					[offset]="{ x: 3, y: 0 }">
-					<svg ibmIcon="filter" size="16" class="bx--toolbar-action__icon"></svg>
+					<svg ibmIcon="filter" size="16" class="cds--toolbar-action__icon"></svg>
 				</button>
 				<button ibmButton="primary" size="sm">
-					Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+					Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 				</button>
 			</ibm-table-toolbar-content>
 		</ibm-table-toolbar>
