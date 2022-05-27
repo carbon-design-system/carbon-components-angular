@@ -243,6 +243,16 @@ export class Search implements ControlValueAccessor {
 		}
 	}
 
+	@HostListener("focusin", ["$event"])
+	focusin(event) {
+		this.onTouched();
+		if ((this.expandable || this.toolbar) &&
+			this.inputRef &&
+			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget) && !event.relatedTarget) {
+			this.openSearch();
+		}
+	}
+
 	/**
 	 * Called when using IME composition.
 	 */
