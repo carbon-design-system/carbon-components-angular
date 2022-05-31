@@ -46,7 +46,7 @@ const getOptions = (override = {}) => {
 		],
 		selected: action("selection changed"),
 		submit: action("submit"),
-		size: select("size", ["sm", "md", "xl"], "md"),
+		size: select("size", ["sm", "md", "lg"], "md"),
 		theme: select("theme", ["dark", "light"], "dark"),
 		search: action("search")
 	};

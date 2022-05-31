@@ -172,7 +172,7 @@ storiesOf("Components|Date Picker", module)
 			invalid: boolean("Show form validation", false),
 			warn: boolean("Show the warning state", false),
 			warnText: text("Text for the warning", "This is a warning"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			disabled: boolean("Disabled", false),
 			valueChange: action("Date change fired!")
 		}
@@ -214,7 +214,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -273,7 +273,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -350,7 +350,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			date: new Date(new Date().getFullYear(), 5, 15),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			rangeDates: [
 				new Date(new Date().getFullYear(), 5, 15),
 				new Date(new Date().getFullYear(), 8, 19)
@@ -420,7 +420,7 @@ storiesOf("Components|Date Picker", module)
 		`,
 		props: {
 			valueChange: action("Date change fired!"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),

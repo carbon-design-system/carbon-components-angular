@@ -82,8 +82,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[attr.aria-invalid]="invalid ? 'true' : null"
 					class="cds--select-input"
 					[ngClass]="{
-						'cds--select-input--xl': size === 'xl',
-						'cds--select-input--sm': size === 'sm'
+						'cds--select-input--sm': size === 'sm',
+						'cds--select-input--md': size === 'md',
+						'cds--select-input--lg': size === 'lg'
 					}">
 					<ng-content></ng-content>
 				</select>
@@ -177,7 +178,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to true to disable component.
 	 */

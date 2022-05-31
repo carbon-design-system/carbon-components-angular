@@ -73,8 +73,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'cds--dropdown--disabled cds--list-box--disabled': disabled,
 			'cds--dropdown--invalid': invalid,
 			'cds--dropdown--warning cds--list-box--warning': warn,
-			'cds--dropdown--xl cds--list-box--xl': size === 'xl',
 			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
+			'cds--dropdown--md cds--list-box--md': size === 'md',
+			'cds--dropdown--lg cds--list-box--lg': size === 'lg',
 			'cds--list-box--expanded': !menuIsClosed
 		}">
 		<button

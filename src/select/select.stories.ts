@@ -102,7 +102,7 @@ storiesOf("Components|Select", module).addDecorator(
 	`,
 		props: {
 			disabled: boolean("Disabled", false),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Please select an option."),
 			warn: boolean("Show the warning state", false),
@@ -133,7 +133,7 @@ storiesOf("Components|Select", module).addDecorator(
 			</div>
 		`,
 		props: {
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			model: "option2",
 			selectRandom: function() {
 				this.model = [

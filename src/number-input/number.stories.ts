@@ -30,7 +30,7 @@ storiesOf("Components|Number", module).addDecorator(
 		`,
 		props: {
 			label: text("label", "Number Input Label"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
 			warn: boolean("Show the warning state", false),
@@ -65,7 +65,7 @@ storiesOf("Components|Number", module).addDecorator(
 		props: {
 			value: 0,
 			label: text("label", "Number Input Label"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),

@@ -40,7 +40,7 @@ storiesOf("Components|Input", module).addDecorator(
 	`,
 		props: {
 			theme: select("Theme", ["dark", "light"], "dark"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			disabled: boolean("Disabled", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),

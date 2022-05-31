@@ -44,7 +44,8 @@ export class NumberChange {
 				'cds--number--helpertext': helperText,
 				'cds--skeleton' : skeleton,
 				'cds--number--sm': size === 'sm',
-				'cds--number--xl': size === 'xl'
+				'cds--number--md': size === 'md',
+				'cds--number--lg': size === 'lg'
 			}">
 			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
 			<label
@@ -164,7 +165,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */

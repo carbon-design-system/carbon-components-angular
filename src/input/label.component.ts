@@ -167,11 +167,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Sets the id on the input item associated with the `Label`.
 	 */
 	ngAfterViewInit() {
-		/**
-		 * @todo
-		 * Perhaps user can pass disabled in here & we can programmatically set it in input/textarea?
-		 * Not sure how that would work for reactive forms
-		 */
 		if (this.wrapper) {
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
 			if (inputElement) {
