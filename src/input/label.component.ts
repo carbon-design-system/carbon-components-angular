@@ -88,13 +88,6 @@ import { TextArea } from "./text-area.directive";
 	`
 })
 export class Label implements AfterContentInit, AfterViewInit {
-	@Input() set disabled(disable: boolean) {
-		this._disabled = disable;
-	}
-
-	get disabled(): boolean {
-		return this._disabled;
-	}
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -108,7 +101,10 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * its input counterpart through the 'for' attribute.
 	*/
 	@Input() labelInputID = `ibm-label-${Label.labelCounter++}`;
-
+	/**
+	 * Set to `true` for disabled state.
+	 */
+	@Input() disabled = false;
 	/**
 	 * State of the `Label` will determine the styles applied.
 	 */
@@ -149,10 +145,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
-	/**
-	 * Set to `true` for disabled state.
-	 */
-	private _disabled = false;
 
 	/**
 	 * Update wrapper class if a textarea is hosted.
