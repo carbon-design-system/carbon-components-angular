@@ -61,13 +61,6 @@ storiesOf("Components|Search", module).addDecorator(
 			clear: action("clear fired!")
 		}
 	}))
-	.add("Toolbar search", () => ({
-		template: `
-		<div class="cds--toolbar">
-			<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
-		</div>
-		`
-	}))
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 200px;">
