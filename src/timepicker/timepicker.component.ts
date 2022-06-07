@@ -17,35 +17,47 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 @Component({
 	selector: "ibm-timepicker",
 	template: `
-		<label *ngIf="!skeleton && label" [for]="id" class="cds--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<div
-			class="cds--time-picker"
-			[ngClass]="{'cds--time-picker--invalid' : invalid}">
-			<div class="cds--time-picker__input">
-				<input
-					[ngClass]="{
-						'cds--text-input--light': theme === 'light',
-						'cds--skeleton': skeleton
-					}"
-					[value]="value"
-					[placeholder]="placeholder"
-					[attr.data-invalid]="invalid ? true : undefined"
-					[pattern]="pattern"
-					[attr.id]="id"
-					[disabled]="disabled"
-					maxlength="5"
-					(change)="onChange($event)"
-					type="text"
-					class="cds--time-picker__input-field cds--text-input">
+		<div class="cds--form-item">
+			<label
+			*ngIf="!skeleton && label"
+			[for]="id"
+			class="cds--label"
+			[ngClass]="{'cds--label--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+			</label>
+			<div
+				class="cds--time-picker"
+				[ngClass]="{
+					'cds--time-picker--invalid' : invalid,
+					'cds--time-picker--sm': size === 'sm',
+					'cds--time-picker--md': size === 'md',
+					'cds--time-picker--lg': size === 'lg',
+					'cds--time-picker--light': theme === 'light'
+				}">
+				<div class="cds--time-picker__input">
+					<input
+						[ngClass]="{
+							'cds--text-input--light': theme === 'light',
+							'cds--skeleton': skeleton
+						}"
+						[value]="value"
+						[placeholder]="placeholder"
+						[attr.data-invalid]="invalid ? true : undefined"
+						[pattern]="pattern"
+						[attr.id]="id"
+						[disabled]="disabled"
+						maxlength="5"
+						(change)="onChange($event)"
+						type="text"
+						class="cds--time-picker__input-field cds--text-input">
+				</div>
+				<ng-content></ng-content>
 			</div>
-			<ng-content></ng-content>
-		</div>
-		<div *ngIf="invalid" class="cds--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			<div *ngIf="invalid" class="cds--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
 		</div>
 	`,
 	providers: [
@@ -77,9 +89,13 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() skeleton = false;
 
 	/**
-	 * `light` or `dark` select theme
+	 * @deprecated
+	 * Theme property binding will be deprecated in next major version
+	 * Use layers instead
 	 */
-	@Input() theme: "light" | "dark" = "dark";
+	@Input() theme: "light" | "dark";
+
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
