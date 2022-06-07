@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { Step } from "./progress-indicator-step.interface";
+import { DEFAULT_TOOLTIP_CONFIG } from "carbon-components-angular/tooltip";
 
 /**
  * [See demo](../../?path=/story/components-progress-indicator--basic)
@@ -39,19 +40,22 @@ import { Step } from "./progress-indicator-step.interface";
 					</path>
 				</svg>
 				<svg ibmIcon="warning" size="16" *ngIf="step.state.includes('error')" class="cds--progress__warning"></svg>
-				<p
-					class="cds--progress-label"
+				<ibm-tooltip
 					*ngIf="step.tooltip"
-					[ibmTooltip]="step.tooltip.content"
-					[trigger]="step.tooltip.trigger"
-					[placement]="step.tooltip.placement"
-					[title]="step.tooltip.title"
-					[gap]="step.tooltip.gap"
-					[appendInline]="step.tooltip.appendInline"
-					[data]="step.tooltip.data"
-					(click)="stepSelected.emit({ step: step, index: i })">
-					{{step.text}}
-				</p>
+					[description]="step.tooltip.description"
+					[align]="step.tooltip.align"
+					[caret]="step.tooltip.caret"
+					[dropShadow]="step.tooltip.dropShadow"
+					[highContrast]="step.tooltip.highContrast"
+					[isOpen]="step.tooltip.isOpen"
+					[enterDelayMs]="step.tooltip.enterDelayMs"
+					[leaveDelayMs]="step.tooltip.leaveDelayMs">
+					<p
+						class="cds--progress-label"
+						(click)="stepSelected.emit({ step: step, index: i })">
+						{{step.text}}
+					</p>
+				</ibm-tooltip>
 				<p class="cds--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
 				<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
 				<span class="cds--progress-line"></span>
@@ -61,21 +65,17 @@ import { Step } from "./progress-indicator-step.interface";
 	`
 })
 export class ProgressIndicator implements OnChanges {
-	static skeletonSteps(stepCount: number) {
-		const steps = [];
-		for (let i = 0; i < stepCount; i++) {
-			steps.push({"state": ["incomplete"]});
-		}
-
-		return steps;
+	@Input() set steps(steps: Array<Step>) {
+		this._steps = steps.map((step: Step) => {
+			if (step.tooltip) {
+				step.tooltip = Object.assign({}, DEFAULT_TOOLTIP_CONFIG, step.tooltip);
+			}
+			return step;
+		});
 	}
-
-	@Output() stepSelected = new EventEmitter<{ step: Step, index: number }>();
-
-	@Input() steps: Array<Step>;
-	@Input() orientation: "horizontal" | "vertical" = "horizontal";
-	@Input() skeleton = false;
-	@Input() spacing: "default" | "equal" = "default";
+	get steps() {
+		return this._steps;
+	}
 
 	@Input() get current() {
 		return this.steps.findIndex(step => step.state.includes("current"));
@@ -83,9 +83,25 @@ export class ProgressIndicator implements OnChanges {
 	set current(current: number) {
 		this._current = current;
 	}
+	static skeletonSteps(stepCount: number) {
+		const steps = [];
+		for (let i = 0; i < stepCount; i++) {
+			steps.push({ "state": ["incomplete"] });
+		}
+
+		return steps;
+	}
+
+	@Output() stepSelected = new EventEmitter<{ step: Step, index: number }>();
+
+	@Input() orientation: "horizontal" | "vertical" = "horizontal";
+	@Input() skeleton = false;
+	@Input() spacing: "default" | "equal" = "default";
+
+	private _steps: Array<Step> = [];
 	private _current: number;
 
-	constructor(protected experimental: ExperimentalService) {}
+	constructor(protected experimental: ExperimentalService) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.steps || changes.current) {
