@@ -21,15 +21,18 @@ import { PopoverContainer } from "../popover";
 	template: `
 		<ng-content></ng-content>
 		<span
+			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
 			[attr.aria-hidden]="isOpen"
 			role="tooltip">
-			<span class="cds--popover-content cds--tooltip-content">
-				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
-			</span>
-			<span class="cds--popover-caret"></span>
+			<ng-container *ngIf="!disabled">
+				<span class="cds--popover-content cds--tooltip-content">
+					<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
+					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+				</span>
+				<span class="cds--popover-caret"></span>
+			</ng-container>
 		</span>
 	`
 })
@@ -37,9 +40,18 @@ export class Tooltip extends PopoverContainer implements AfterViewInit {
 	static tooltipCount = 0;
 
 	@Input() id = `tooltip-${Tooltip.tooltipCount++}`;
+	/**
+	 * Set delay before tooltip is shown
+	 */
 	@Input() enterDelayMs = 100;
+	/**
+	 * Set delay when tooltip disappears
+	 */
 	@Input() leaveDelayMs = 300;
-
+	/**
+	 * Prevent tooltip from showing, used by icon button
+	 */
+	@Input() disabled = false;
 	/**
 	 * The string or template content to be exposed by the tooltip.
 	 */

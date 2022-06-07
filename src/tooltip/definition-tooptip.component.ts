@@ -24,6 +24,7 @@ import { PopoverContainer } from "../popover";
 			<ng-content></ng-content>
 		</button>
 		<span
+			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
 			[attr.aria-hidden]="isOpen"
@@ -73,7 +74,6 @@ export class TooltipDefinition extends PopoverContainer {
 			this.handleChange(false);
 		}
 	}
-
 
 	@HostListener("mouseleave", ["$event"])
 	mouseleave() {
