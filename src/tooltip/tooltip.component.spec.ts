@@ -37,7 +37,6 @@ describe("Tooltip", () => {
 		tooltipEl = fixture.debugElement.query(By.css("ibm-tooltip"));
 	});
 
-
 	it("should create a tooltip component", () => {
 		expect(component).toBeTruthy();
 		expect(tooltipEl).not.toBeNull();
@@ -46,12 +45,13 @@ describe("Tooltip", () => {
 
 	it("should open/close tooltip on content mouseenter/mouseleave", fakeAsync(() => {
 		spyOn(tooltipEl.componentInstance.isOpenChange, "emit");
-		tooltipEl.nativeElement.dispatchEvent(new MouseEvent("mouseenter"));
+		const wrapper = tooltipEl.nativeElement.querySelector("span");
+		wrapper.dispatchEvent(new MouseEvent("mouseenter"));
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 		expect(tooltipEl.componentInstance.isOpen).toBeTruthy();
-		tooltipEl.nativeElement.dispatchEvent(new MouseEvent("mouseleave"));
+		wrapper.dispatchEvent(new MouseEvent("mouseleave"));
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
