@@ -113,17 +113,7 @@ export class Modal implements AfterViewInit, OnChanges {
 
 	/**
 	 * Label for the modal.
-	 *
-	 * @deprecated since v4
 	 */
-	@Input() set modalLabel(value: string) {
-		this.ariaLabel = value;
-	}
-
-	get modalLabel() {
-		return this.ariaLabel;
-	}
-
 	@Input() ariaLabel = "default";
 
 	/**

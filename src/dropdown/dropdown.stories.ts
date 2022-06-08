@@ -52,7 +52,7 @@ const modalText =
 
 const getProps = (overrides = {}) => Object.assign({}, {
 	invalid: boolean("Invalid", false),
-	size: select("Size", ["sm", "md", "xl"], "md"),
+	size: select("Size", ["sm", "md", "lg"], "md"),
 	invalidText: "This is not a validation text",
 	warn: boolean("Show the warning state", false),
 	warnText: text("Text for the warning", "This is a warning"),

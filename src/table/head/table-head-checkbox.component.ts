@@ -16,12 +16,11 @@ import { TableRowSize } from "../table.types";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
-			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(checkedChange)="change.emit()"
-			[aria-label]="getAriaLabel() | async">
+			[ariaLabel]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`,
 	styles: [`

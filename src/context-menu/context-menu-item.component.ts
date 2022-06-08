@@ -40,7 +40,6 @@ import { ContextMenuComponent } from "./context-menu.component";
 	`]
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
-	@HostBinding("class.cds--context-menu-option") optionContextClass = true; // deprecated
 	@HostBinding("class.cds--menu-option") optionClass = true;
 	@HostBinding("attr.role") role = "menuitem";
 	@HostBinding("attr.tabindex") tabindex = -1;

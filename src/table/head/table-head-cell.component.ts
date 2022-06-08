@@ -73,29 +73,6 @@ import { TableHeaderItem } from "../table-header-item.class";
 				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 			</ng-template>
 		</div>
-		<button
-			[ngClass]="{'active': column.filterCount > 0}"
-			*ngIf="column.filterTemplate"
-			type="button"
-			aria-expanded="false"
-			aria-haspopup="true"
-			[ibmTooltip]="column.filterTemplate"
-			trigger="click"
-			[title]="getFilterTitle() | async"
-			placement="bottom,top"
-			[data]="column.filterData">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="icon--sm"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
-			</svg>
-			<span *ngIf="column.filterCount > 0">
-				{{column.filterCount}}
-			</span>
-		</button>
 	`
 })
 export class TableHeadCell implements OnChanges {
@@ -157,10 +134,6 @@ export class TableHeadCell implements OnChanges {
 
 	getSortAscendingLabel(): Observable<string> {
 		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
-	}
-
-	getFilterTitle(): Observable<string> {
-		return this._filterTitle.subject;
 	}
 
 	onClick() {

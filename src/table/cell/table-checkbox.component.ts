@@ -18,11 +18,10 @@ import { TableRowSize } from "../table.types";
 			*ngIf="!skeleton"
 			inline="true"
 			[name]="name"
-			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[size]="(size !== 'sm' ? 'md' : 'sm')"
+			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			[disabled]="disabled"
-			(change)="change.emit()">
+			(checkedChange)="change.emit()">
 		</ibm-checkbox>
 	`
 })

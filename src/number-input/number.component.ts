@@ -44,10 +44,15 @@ export class NumberChange {
 				'cds--number--helpertext': helperText,
 				'cds--skeleton' : skeleton,
 				'cds--number--sm': size === 'sm',
-				'cds--number--xl': size === 'xl'
+				'cds--number--md': size === 'md',
+				'cds--number--lg': size === 'lg'
 			}">
 			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
-			<label *ngIf="!skeleton && label" [for]="id" class="cds--label">
+			<label
+				*ngIf="!skeleton && label"
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{'cds--label--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -102,7 +107,12 @@ export class NumberChange {
 					<div class="cds--number__rule-divider"></div>
 				</div>
 			</div>
-			<div *ngIf="helperText && !invalid && !warn" class="cds--form__helper-text">
+			<div
+				*ngIf="helperText && !invalid && !warn"
+				class="cds--form__helper-text"
+				[ngClass]="{
+					'cds--form__helper-text--disabled': disabled
+				}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
@@ -155,7 +165,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */
