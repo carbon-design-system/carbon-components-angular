@@ -24,6 +24,7 @@ storiesOf("Components|Input", module).addDecorator(
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
+			[disabled]="disabled"
 			[warnText]="warnText">
 			{{label}}
 			<input
@@ -39,7 +40,7 @@ storiesOf("Components|Input", module).addDecorator(
 	`,
 		props: {
 			theme: select("Theme", ["dark", "light"], "dark"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			disabled: boolean("Disabled", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),
@@ -56,6 +57,7 @@ storiesOf("Components|Input", module).addDecorator(
 		<ibm-label
 			[helperText]="helperText"
 			[invalid]="invalid"
+			[disabled]="disabled"
 			[invalidText]="invalidText">
 			{{label}}
 			<textarea

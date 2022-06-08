@@ -53,7 +53,8 @@ import { Observable } from "rxjs";
 					'cds--list-box--light': theme === 'light',
 					'cds--list-box--expanded': open,
 					'cds--list-box--sm': size === 'sm',
-					'cds--list-box--lg': size === 'xl',
+					'cds--list-box--md': size === 'md',
+					'cds--list-box--lg': size === 'lg',
 					'cds--list-box--disabled': disabled,
 					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
@@ -284,10 +285,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
-	 *
-	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */

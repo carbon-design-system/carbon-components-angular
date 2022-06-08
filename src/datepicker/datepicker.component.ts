@@ -139,20 +139,8 @@ export class DatePicker implements
 
 	/**
 	 * The pattern for the underlying input element
-	 * @deprecated as of v4 - switch to inputPattern
 	 */
-	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
-
-	/**
-	 * The pattern for the underlying input element
-	 */
-	@Input() set inputPattern(value: string) {
-		this.pattern = value;
-	}
-
-	get inputPattern() {
-		return this.pattern;
-	}
+	@Input() inputPattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -187,7 +175,7 @@ export class DatePicker implements
 	 */
 	@Input() warnText: string | TemplateRef<any>;
 
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` to display the invalid state for the second datepicker input.
 	 */

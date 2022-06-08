@@ -16,14 +16,27 @@ import { AccordionItem } from "./accordion-item.component";
 	selector: "ibm-accordion",
 	template: `
 		<ul class="cds--accordion"
-			[class.cds--accordion--end]="align == 'end'"
-			[class.cds--accordion--start]="align == 'start'">
+			[ngClass]="{
+				'cds--accordion--end': align === 'end',
+				'cds--accordion--start': align === 'start',
+				'cds--accordion--sm': size === 'sm',
+				'cds--accordion--md': size ==='md',
+				'cds--accordion--lg': size === 'lg'
+			}">
 			<ng-content></ng-content>
 		</ul>
 	`
 })
 export class Accordion implements AfterContentInit {
+	/**
+	 * Sets the alignment of the chevron icon
+	 */
 	@Input() align: "start" | "end" = "end";
+
+	/**
+	 * Sets the size of all accordian items
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 

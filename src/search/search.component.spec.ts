@@ -58,9 +58,9 @@ describe("Search", () => {
 
 	it("should display component of the correct size", () => {
 		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
-		component.size = "xl";
+		component.size = "lg";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("cds--search--xl")).toEqual(true);
+		expect(containerElement.className.includes("cds--search--lg")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("cds--search--sm")).toEqual(true);
