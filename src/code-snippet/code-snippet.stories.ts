@@ -1,29 +1,45 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, select, text } from "@storybook/addon-knobs/angular";
 
-import {
-	CodeSnippetModule,
-	ButtonModule } from "..";
+import { CodeSnippetModule } from "./";
+import { ButtonModule } from "../button";
 import { Input, Component } from "@angular/core";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
-const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
-
-import { CodeSnippetModule } from "..";
-
-storiesOf("Components|CodeSnippet", module).addDecorator(
-	moduleMetadata({
-		imports: [CodeSnippetModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: \`<ibm-code-snippet>code</ibm-code-snippet>\`,
-		props: { // there's more
-			// disabled: boolean("disabled", false)
-		}
-	}));`;
+const code = `{
+	"name": "carbon-components-angular",
+	"version": "0.0.0",
+	"description": "Next generation components",
+	"main": "index.js",
+	"scripts": {
+		"build": "bash scripts/build.sh",
+		"storybook": "start-storybook -s .storybook/public -p 6006",
+		"docs:build": "typedoc",
+		"lint": "tslint 'src/**/*.ts'",
+		"lint:fix": "tslint --fix 'src/**/*.ts'",
+		"test": "ng test --no-watch",
+		"test:watch": "ng test --watch",
+		"build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
+		"semantic-release": "semantic-release",
+		"commit": "git-cz",
+		"ng": "ng",
+		"ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:IBM/carbon-components-angular.git"
+	},
+	"license": "Apache-2.0",
+	"author": "IBM",
+	"peerDependencies": {
+		"@angular/common": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0",
+		"@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0",
+		"@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0",
+		"rxjs": "^6.0.0",
+		"zone.js": "^0.8.26 || ^0.9.0 || ^0.10.0",
+		"@carbon/styles": "^1.2.0"
+	}
+}`;
 
 const lessCode = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
