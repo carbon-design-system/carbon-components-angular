@@ -68,7 +68,7 @@ export class ProgressIndicator implements OnChanges {
 	@Input() set steps(steps: Array<Step>) {
 		this._steps = steps.map((step: Step) => {
 			if (step.tooltip) {
-				step.tooltip = Object.assign({}, DEFAULT_TOOLTIP_CONFIG, step.tooltip);
+				step.tooltip = {...DEFAULT_TOOLTIP_CONFIG, ...step.tooltip};
 			}
 			return step;
 		});
