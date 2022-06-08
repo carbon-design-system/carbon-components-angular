@@ -20,7 +20,6 @@ storiesOf("Components|Input", module).addDecorator(
 	.add("Label", () => ({
 		template: `
 		<ibm-label
-			[disabled]="disabled"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -56,7 +55,6 @@ storiesOf("Components|Input", module).addDecorator(
 	.add("TextArea", () => ({
 		template: `
 		<ibm-label
-			[disabled]="disabled"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[disabled]="disabled"
