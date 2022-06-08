@@ -42,7 +42,8 @@ import { TextArea } from "./text-area.directive";
 			[attr.aria-label]="ariaLabel"
 			class="cds--label"
 			[ngClass]="{
-				'cds--skeleton': skeleton
+				'cds--skeleton': skeleton,
+				'cds--label--disabled': disabled && !skeleton
 			}">
 			<ng-content></ng-content>
 		</label>
@@ -70,7 +71,12 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
-		<div *ngIf="!skeleton && helperText && !invalid && !warn" class="cds--form__helper-text">
+		<div
+			*ngIf="!skeleton && helperText && !invalid && !warn"
+			class="cds--form__helper-text"
+			[ngClass]="{
+				'cds--form__helper-text--disabled': disabled
+			}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
@@ -97,8 +103,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() labelInputID = "ibm-label-" + Label.labelCounter;
-
+	@Input() labelInputID = `ibm-label-${Label.labelCounter++}`;
+	/**
+	 * Set to `true` for disabled state.
+	 */
+	@Input() disabled = false;
 	/**
 	 * State of the `Label` will determine the styles applied.
 	 */
@@ -139,13 +148,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
-
-	/**
-	 * Creates an instance of Label.
-	 */
-	constructor() {
-		Label.labelCounter++;
-	}
 
 	/**
 	 * Update wrapper class if a textarea is hosted.

@@ -47,11 +47,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'cds--select--warning': warn,
 					'cds--select--disabled': disabled
 				}">
-				<label *ngIf="label" [for]="id" class="cds--label">
+				<label
+					*ngIf="label"
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div *ngIf="helperText" class="cds--form__helper-text">
+				<div
+					*ngIf="helperText"
+					class="cds--form__helper-text"
+					[ngClass]="{
+						'cds--form__helper-text--disabled': disabled
+					}">
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
@@ -73,8 +82,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[attr.aria-invalid]="invalid ? 'true' : null"
 					class="cds--select-input"
 					[ngClass]="{
-						'cds--select-input--xl': size === 'xl',
-						'cds--select-input--sm': size === 'sm'
+						'cds--select-input--sm': size === 'sm',
+						'cds--select-input--md': size === 'md',
+						'cds--select-input--lg': size === 'lg'
 					}">
 					<ng-content></ng-content>
 				</select>
@@ -103,7 +113,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>
 			</div>
-			<div *ngIf="invalid && invalidText && !warn" role="alert" class="cds--form-requirement" aria-live="polite">
+			<div
+				*ngIf="invalid && invalidText && !warn" role="alert" class="cds--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
@@ -167,7 +178,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to true to disable component.
 	 */
