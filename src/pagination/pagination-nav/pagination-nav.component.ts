@@ -47,19 +47,18 @@ export interface PaginationNavTranslations {
 		<div class="cds--pagination-nav">
 			<ul class="cds--pagination-nav__list">
 				<li class="cds--pagination-nav__list-item">
-					<button
-						class="cds--btn cds--btn--ghost cds--pagination-nav-previous
-						cds--btn--icon-only cds--tooltip__trigger cds--tooltip--a11y cds--tooltip--bottom cds--tooltip--align-center"
+					<ibm-icon-button
+						kind="ghost"
+						size="md"
+						(click)="jumpToPrevious()"
 						[disabled]="leftArrowDisabled"
-						(click)="jumpToPrevious()">
-						<span class="cds--assistive-text">{{previousItemText.subject | async}}</span>
+						[description]="previousItemText.subject | async">
 						<svg
 							ibmIcon="caret--left"
 							size="16"
-							style="display: inherit"
 							class="cds--btn__icon">
 						</svg>
-					</button>
+					</ibm-icon-button>
 				</li>
 				<ibm-pagination-nav-item
 					*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"
@@ -92,19 +91,17 @@ export interface PaginationNavTranslations {
 					[isActive]="currentPage == totalNumbersArray.length">
 				</ibm-pagination-nav-item>
 				<li class="cds--pagination-nav__list-item">
-					<button
-						class="cds--btn cds--btn--ghost cds--pagination-nav-next
-						cds--btn--icon-only cds--tooltip__trigger cds--tooltip--a11y cds--tooltip--bottom cds--tooltip--align-center"
+					<ibm-icon-button
+						kind="ghost"
+						(click)="jumpToNext()"
 						[disabled]="rightArrowDisabled"
-						(click)="jumpToNext()">
-						<span class="cds--assistive-text">{{nextItemText.subject | async}}</span>
+						[description]="nextItemText.subject | async">
 						<svg
 							ibmIcon="caret--right"
 							size="16"
-							style="display: inherit"
 							class="cds--btn__icon">
 						</svg>
-					</button>
+					</ibm-icon-button>
 				</li>
 			</ul>
 		</div>
@@ -118,7 +115,7 @@ export class PaginationNav {
 	 */
 	@Input() model: PaginationModel;
 	/**
- 	 * Set to `true` to disable the backward/forward buttons.
+	   * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() disabled = false;
 	/**
@@ -136,7 +133,7 @@ export class PaginationNav {
 	 * ```
 	 */
 	@Input()
-	set translations (value: PaginationNavTranslations) {
+	set translations(value: PaginationNavTranslations) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("PAGINATION"), value);
 		this.nextItemText.override(valueWithDefaults.NEXT);
 		this.previousItemText.override(valueWithDefaults.PREVIOUS);
