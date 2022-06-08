@@ -57,7 +57,7 @@ storiesOf("Components|Progress Indicator", module)
 		</div>
 		`,
 		props: {
-			steps : [
+			steps: [
 				{
 					text: "First step",
 					state: ["complete"],
@@ -66,18 +66,19 @@ storiesOf("Components|Progress Indicator", module)
 				{
 					text: "Second step",
 					state: ["current"],
-					tooltip: { content: "Overflow tooltip content.", trigger: "click", placement: "bottom" }
+					tooltip: {
+						description: "Overflow tooltip content."
+					}
 				},
 				{
 					text: "Third step",
 					state: ["incomplete"],
 					tooltip: {
-						content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+						description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 							Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
 							blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
 							Laboriosam, consequatur.`,
-						trigger: "click",
-						placement: "bottom"
+							align: "bottom-left"
 					}
 				},
 				{
@@ -106,7 +107,7 @@ storiesOf("Components|Progress Indicator", module)
 		</ibm-progress-indicator>
 		`,
 		props: {
-			steps : [
+			steps: [
 				{
 					text: "First step",
 					state: ["complete"]

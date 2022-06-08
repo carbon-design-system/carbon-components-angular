@@ -55,6 +55,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
+				<div *ngIf="display === 'inline'; else noInline" class="cds--select-input--inline__wrapper">
+					<ng-container *ngTemplateOutlet="noInline"></ng-container>
+				</div>
 				<div
 					*ngIf="helperText"
 					class="cds--form__helper-text"
@@ -63,9 +66,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					}">
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
-				<div *ngIf="display === 'inline'; else noInline" class="cds--select-input--inline__wrapper">
-					<ng-container *ngTemplateOutlet="noInline"></ng-container>
 				</div>
 			</div>
 		</div>
@@ -124,15 +124,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 			</div>
 		</ng-template>
 	`,
-	styles: [`
-		.cds--select--inline .cds--form__helper-text {
-			order: 4;
-		}
-
-		.cds--select--inline:not(.cds--select--invalid) .cds--form__helper-text {
-			margin-top: 0;
-		}
-	`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,

@@ -38,6 +38,15 @@ export class Button implements OnInit {
 	 * Set to `true` for a skeleton state button
 	 */
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
+	/**
+	 * Set to `true` if the button contains only an icon
+	 * This should only be used for creating custom icon buttons, otherwise use <ibm-icon-button> component
+	 *
+	 * <button ibmButton="primary" [iconOnly]="true">
+	 *    <svg class="cds--btn__icon" ibmIconCopy size="20"></svg>
+	 * </button>
+	 */
+	@HostBinding("class.cds--btn--icon-only") @Input() iconOnly = false;
 
 	/**
 	 * Set to `true` for a "expressive" style button

@@ -1,4 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
+import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean } from "@storybook/addon-knobs/angular";
 
 import { ButtonModule } from "./button.module";
@@ -42,21 +43,56 @@ storiesOf("Components|Button", module)
 	}))
 	.add("Icon only", () => ({
 		template: `
-			<button
-				[ibmButton]="ibmButton"
-				[size]="size">
+			<ibm-icon-button
+				id="icon-btn1"
+				type="button"
+				[kind]="kind"
+				[size]="size"
+				[align]="align"
+				[btnNgClass]="{
+					'example-global-class': true
+				}"
+				[btnAttributes]="{
+					'aria-label': 'Example button aria-label'
+				}"
+				[disabled]="disabled"
+				description="Icon Description"
+				(click)="onClick($event)"
+				(mouseenter)="onMouseenter($event)"
+				(mouseleave)="onMouseleave($event)"
+				(focus)="onFocus($event)"
+				(blur)="onBlur($event)">
 				<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
-				<span class="cds--assistive-text">Icon description</span>
-			</button>
+			</ibm-icon-button>
 		`,
 		props: {
-			ibmButton: select(
+			kind: select(
 				"Button kind",
 				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
-				"tertiary"),
-			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
-			assistiveTextPlacement: select("Placement of assistive text", ["top", "bottom", "left", "right"], "top"),
-			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center")
+				"primary"),
+			size: select("Size of the buttons", ["sm", "md", "lg"], "lg"),
+			align: select("Alignment of popover",
+				[
+					"top",
+					"top-left",
+					"top-right",
+					"bottom",
+					"bottom-left",
+					"bottom-right",
+					"left",
+					"left-top",
+					"left-bottom",
+					"right",
+					"right-top",
+					"right-bottom"
+				]
+				, "top"),
+			disabled: boolean("Disable button", false),
+			onClick: action("click"),
+			onMouseenter: action("Mouseenter"),
+			onMouseleave: action("Mouseleave"),
+			onFocus: action("Focus"),
+			onBlur: action("Blur")
 		}
 	}))
 	.add("Skeleton", () => ({
