@@ -48,7 +48,7 @@ export interface TooltipConfig {
  * Default tooltip configuration for components to populate missing interface attributes
  */
 export const DEFAULT_TOOLTIP_CONFIG = {
-	align: "bottom",
+	align: "bottom" as TooltipAlignments,
 	caret: true,
 	dropShadow: true,
 	highContrast: true,
