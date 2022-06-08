@@ -88,11 +88,6 @@ import { I18n } from "carbon-components-angular/i18n";
 		</div>
 	</div>
 	`,
-	styles: [
-		`.dayContainer {
-			justify-content: initial;
-		}`
-	],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
