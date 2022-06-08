@@ -21,6 +21,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			(click)="onClick()"
 			[align]="align"
 			[caret]="caret"
+			[dropShadow]="dropShadow"
 			[highContrast]="highContrast"
 			[isOpen]="isOpen"
 			[enterDelayMs]="enterDelayMs"
