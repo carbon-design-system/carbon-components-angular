@@ -40,10 +40,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	ngAfterViewInit(): void {
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")
-			.subscribe(() => {
-				this.handleChange(!this.isOpen);
-				this.updateChildProperties();
-			});
+			.subscribe((event: Event) => this.handleExpansion(!this.isOpen, event));
 
 		if (this.btn) {
 			this.renderer.setAttribute(this.btn.nativeElement, "aria-controls", this.id);
@@ -54,20 +51,19 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	hostkeys(event: KeyboardEvent) {
 		if (open && event.key === "Escape") {
 			event.stopPropagation();
-			this.handleChange(false);
-			this.updateChildProperties();
+			this.handleExpansion(false, event);
 		}
 	}
 
 	@HostListener("document:click", ["$event"])
 	handleFocusOut(event) {
 		if (!this.hostElement.nativeElement.contains(event.target)) {
-			this.handleChange(false);
-			this.updateChildProperties();
+			this.handleExpansion(false, event);
 		}
 	}
 
-	private updateChildProperties() {
+	private handleExpansion(state = false, event: Event) {
+		this.handleChange(state, event);
 		if (this.btn) {
 			this.renderer.setAttribute(this.btn.nativeElement, "aria-expanded", this.isOpen.toString());
 		}

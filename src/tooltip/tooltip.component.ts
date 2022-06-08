@@ -1,14 +1,10 @@
 import {
-	AfterViewInit,
 	Component,
-	ElementRef,
+	HostBinding,
 	HostListener,
 	Input,
-	Renderer2,
 	TemplateRef
 } from "@angular/core";
-import { fromEvent } from "rxjs";
-import { debounceTime } from "rxjs/operators";
 import { PopoverContainer } from "../popover";
 
 /**
@@ -19,7 +15,13 @@ import { PopoverContainer } from "../popover";
 @Component({
 	selector: "ibm-tooltip",
 	template: `
-		<ng-content></ng-content>
+		<span
+			[attr.aria-labelledby]="this.isTemplate(this.description) ? id : null"
+			[attr.aria-describedby]="!this.isTemplate(this.description) ? id : null"
+			(mouseenter)="mouseenter($event)"
+			(mouseleave)="mouseleave($event)">
+			<ng-content></ng-content>
+		</span>
 		<span
 			*ngIf="description"
 			class="cds--popover"
@@ -36,8 +38,10 @@ import { PopoverContainer } from "../popover";
 		</span>
 	`
 })
-export class Tooltip extends PopoverContainer implements AfterViewInit {
+export class Tooltip extends PopoverContainer {
 	static tooltipCount = 0;
+
+	@HostBinding("class.cds--tooltip") tooltipClass = true;
 
 	@Input() id = `tooltip-${Tooltip.tooltipCount++}`;
 	/**
@@ -57,42 +61,41 @@ export class Tooltip extends PopoverContainer implements AfterViewInit {
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
+	constructor() {
 		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
 
-	ngAfterViewInit(): void {
-		fromEvent(this.hostElement.nativeElement, "mouseenter")
-			.pipe(debounceTime(this.enterDelayMs))
-			.subscribe(() => this.handleChange(true));
+	mouseenter(event) {
+		setTimeout(() => {
+			this.handleChange(true, event);
+		}, this.enterDelayMs);
+	}
 
-		fromEvent(this.hostElement.nativeElement, "mouseleave")
-			.pipe(debounceTime(this.leaveDelayMs))
-			.subscribe(() => this.handleChange(false));
-
-		const ariaProp = this.isTemplate(this.description) ? "aria-labelledby" : "aria-describedby";
-		this.renderer.setAttribute(this.hostElement.nativeElement.firstElementChild, ariaProp, this.id);
+	mouseleave(event) {
+		setTimeout(() => {
+			this.handleChange(false, event);
+		}, this.leaveDelayMs);
 	}
 
 	@HostListener("keyup", ["$event"])
 	hostkeys(event: KeyboardEvent) {
 		if (open && event.key === "Escape") {
 			event.stopPropagation();
-			this.handleChange(false);
+			this.handleChange(false, event);
 		}
 	}
 
 	// We are not focusing on entire popover, only the trigger
-	@HostListener("focusin")
-	handleFocus() {
-		this.handleChange(true);
+	@HostListener("focusin", ["$event"])
+	handleFocus(event: Event) {
+		this.handleChange(true, event);
 	}
 
-	@HostListener("focusout")
-	handleFocusOut() {
-		this.handleChange(false);
+	@HostListener("focusout", ["$event"])
+	handleFocusOut(event: Event) {
+		this.handleChange(false, event);
 	}
 
 	public isTemplate(value) {

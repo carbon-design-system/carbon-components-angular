@@ -18,8 +18,8 @@ import { PopoverContainer } from "../popover";
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
 			[attr.aria-expanded]="isOpen"
-			(blur)="onBlur()"
-			(click)="onClick()"
+			(blur)="onBlur($event)"
+			(click)="onClick($event)"
 			type="button">
 			<ng-content></ng-content>
 		</button>
@@ -59,25 +59,25 @@ export class TooltipDefinition extends PopoverContainer {
 		this.dropShadow = false;
 	}
 
-	onBlur() {
-		this.handleChange(false);
+	onBlur(event: Event) {
+		this.handleChange(false, event);
 	}
 
-	onClick() {
-		this.handleChange(!this.isOpen);
+	onClick(event: Event) {
+		this.handleChange(!this.isOpen, event);
 	}
 
 	@HostListener("keyup", ["$event"])
 	hostkeys(event: KeyboardEvent) {
 		if (this.isOpen && event.key === "Escape") {
 			event.stopPropagation();
-			this.handleChange(false);
+			this.handleChange(false, event);
 		}
 	}
 
 	@HostListener("mouseleave", ["$event"])
-	mouseleave() {
-		this.handleChange(false);
+	mouseleave(event) {
+		this.handleChange(false, event);
 	}
 
 	public isTemplate(value) {

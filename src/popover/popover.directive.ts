@@ -17,7 +17,6 @@ import {
 	selector: "[ibmPopover]"
 })
 export class PopoverContainer {
-
 	// Top
 	@HostBinding("class.cds--popover--top") get alignmentTopClass() {
 		return this.align === "top";
@@ -73,11 +72,11 @@ export class PopoverContainer {
 	/**
 	 * Emits an event when the dialog is closed
 	 */
-	@Output() onClose: EventEmitter<any> = new EventEmitter();
+	@Output() onClose: EventEmitter<Event> = new EventEmitter();
 	/**
 	 * Emits an event when the dialog is opened
 	 */
-	@Output() onOpen: EventEmitter<any> = new EventEmitter();
+	@Output() onOpen: EventEmitter<Event> = new EventEmitter();
 	/**
 	 * Emits an event when the state of `isOpen` changes. Allows `isOpen` to be double bound
 	 */
@@ -94,21 +93,15 @@ export class PopoverContainer {
 		"left" | "left-bottom" | "left-top" |
 		"right" | "right-bottom" | "right-top" = "bottom";
 
-	handleChange(open: boolean) {
+	handleChange(open: boolean, event: Event) {
 		if (this.isOpen !== open) {
 			this.isOpenChange.emit(open);
 		}
 
 		if (open) {
-			this.onOpen.emit(true);
+			this.onOpen.emit(event);
 		} else {
-			/**
-			 * @todo
-			 * Do we also need on close, considering we are only emitting boolean?
-			 * Previously for dialog, we had "CloseReasons" interface, doesn't make sense to have "CloseReasons" anymore since
-			 * we aren't programatically creating tooltips in placeholder
-			 */
-			this.onClose.emit(false);
+			this.onClose.emit(event);
 		}
 		this.isOpen = open;
 	}
