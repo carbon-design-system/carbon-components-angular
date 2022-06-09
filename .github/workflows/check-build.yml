@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -58,5 +58,5 @@ jobs:
         npm i
         npm i ./../../carbon-components-angular-0.0.0.tgz
         npm run build
-        npm run build -- --prod
+        npm run build -- --configuration production
       working-directory: integration/ng${{ matrix.angular-version }}
