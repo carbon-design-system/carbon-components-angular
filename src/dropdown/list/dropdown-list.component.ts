@@ -576,7 +576,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
 			} else {
-				// Checks if a maxSelected is set, if we are unseleceting an item or if we under the maxSelect limit
+				// Checks if a maxSelected is set, if we are unselecting an item or if the # of selected items is under the maxSelect limit
 				if (
 					!this.maxSelected ||
 					item.selected ||
