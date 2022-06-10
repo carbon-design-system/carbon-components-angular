@@ -22,6 +22,11 @@ export class AbstractDropdownView {
 
 	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
+	 * Defines whether there is a maximum number of items
+	 * that can be selected simultaneously
+	 */
+	@Input() maxSelected: number = null;
+	/**
 	 * Emits selection events to controlling classes
 	 */
 	@Output() select: EventEmitter<{item: ListItem } | ListItem[]>;

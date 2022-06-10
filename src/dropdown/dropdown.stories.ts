@@ -19,7 +19,8 @@ import {
 	select,
 	boolean,
 	object,
-	text
+	text,
+	number
 } from "@storybook/addon-knobs/angular";
 
 import { of } from "rxjs";
@@ -249,6 +250,37 @@ storiesOf("Components|Dropdown", module)
 			model: [2],
 			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen")
 		})
+	}))
+	.add("Multi-select with maxSelected", () => ({
+			template: `
+			<div style="width: 300px">
+				<ibm-dropdown
+					[label]="label"
+					[helperText]="helperText"
+					[size]="size"
+					[dropUp]="dropUp"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[selectionFeedback]="selectionFeedback"
+					[maxSelected]="maxSelected"
+					type="multi"
+					placeholder="Multi-select"
+					[disabled]="disabled"
+					(selected)="selected($event)"
+					(onClose)="onClose($event)">
+					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+				</ibm-dropdown>
+			</div>
+		`,
+		props: {
+			...getProps(),
+			selectionFeedback: select(
+				"Selection feedback",
+				["top", "fixed", "top-after-reopen"],
+				"top-after-reopen"
+			),
+			maxSelected: number("maxSelected", 2)
+		}
 	}))
 	.add("With ngModel", () => ({
 		template: `

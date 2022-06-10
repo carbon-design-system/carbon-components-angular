@@ -180,6 +180,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() showTitles = true;
 
 	/**
+	 * Defines whether there is a maximum number of items that can be selected simultaneously
+	 */
+	@Input() maxSelected: number = null;
+
+	/**
 	 * Defines the rendering size of the `DropdownList` input component.
 	 *
 	 * @deprecated since v4
@@ -571,7 +576,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
 			} else {
-				item.selected = !item.selected;
+				// Checks if a maxSelected is set, if we are unseleceting an item or if we under the maxSelect limit
+				if (
+					!this.maxSelected ||
+					item.selected ||
+					(this.maxSelected &&
+						this.getSelected().length < this.maxSelected)
+				) {
+					item.selected = !item.selected;
+				}
 			}
 			this.index = this.displayItems.indexOf(item);
 			this.highlightedItem = this.getItemId(this.index);

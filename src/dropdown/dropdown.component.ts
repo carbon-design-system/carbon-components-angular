@@ -281,6 +281,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() dropUp: boolean;
 	/**
+	 * Defines the maximum number of selected items
+	 * for a multi-select dropdown list
+	 */
+	@Input() set maxSelected(value: number) {
+		this._maxSelected = value;
+		this.view.maxSelected = this._maxSelected;
+	}
+
+	get maxSelected() {
+		return this._maxSelected;
+	}
+	/**
 	 * Emits selection events.
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
@@ -319,6 +331,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * controls whether the `drop-up` class is applied
 	 */
 	_dropUp = false;
+
+	/**
+	 * controls the maximum number of items that can simultaneously be selected
+	 */
+	_maxSelected = null;
 
 	// .bind creates a new function, so we declare the methods below
 	// but .bind them up here
