@@ -5,7 +5,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -132,6 +133,8 @@ export class Toggle extends Checkbox {
 	 * Set to `true` for a loading toggle.
 	 */
 	@Input() skeleton = false;
+
+	@HostBinding("class.bx--form-item") formItem = true;
 
 	/**
 	 * The unique id allocated to the `Toggle`.
