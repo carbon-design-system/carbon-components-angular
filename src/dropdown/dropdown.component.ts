@@ -52,7 +52,11 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label *ngIf="label" [for]="id" class="bx--label">
+	<label
+		*ngIf="label"
+		[for]="id"
+		class="bx--label"
+		[ngClass]="{'bx--label--disabled': disabled}">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
@@ -142,7 +146,10 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
-	<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+	<div
+		*ngIf="helperText && !invalid && !warn"
+		class="bx--form__helper-text"
+		[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
