@@ -71,6 +71,7 @@ Carbon Components Angular version support matrix:
 | v2                                | ❌                 | ❌             |
 | v3                                | ✅                 | ❌             |
 | v4                                | ✅                 | ✅             |
+| v5                                | ✅                 | ✅             |
 
 **Not supported versions: Out of support. We plan to support our latest, and previous release. Beyond that we make no guarantees of continued support - these include v1, v2**
 
