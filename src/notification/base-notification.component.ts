@@ -2,27 +2,29 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	Input
+	Component,
+	ComponentRef
 } from "@angular/core";
 import { isObservable, Subject } from "rxjs";
 import { I18n } from "carbon-components-angular/i18n";
-import {
-	NotificationContent,
-	NotificationType,
-	ToastContent,
-	ActionableContent
-} from "./notification-content.interface";
+import { NotificationContent, NotificationType } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
 
 /**
  * Base class for `Notification`, `ActionableNotification`, & `Toast`
  * consisting of common functionality
  */
+@Component({
+	template: ""
+})
 export class BaseNotification {
-
-	@Input() role: string;
+	/**
+	 * Set role attribute for component
+	 * `Status` is default for inline-notification & toast component
+	 * `alertdialog` is default for actionable-notification
+	 */
 	@HostBinding("attr.role") get roleAttr(): string {
-		return this.role;
+		return this._notificationObj.role;
 	}
 
 	/**
@@ -30,15 +32,19 @@ export class BaseNotification {
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
-	protected defaultNotificationObj: NotificationContent | ToastContent | ActionableContent = {
+	// Provides access to the component instance
+	componentRef: ComponentRef<BaseNotification>;
+
+	protected defaultNotificationObj: NotificationContent = {
 		title: "",
 		message: "",
 		type: "info" as NotificationType,
 		showClose: true,
-		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
+		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON"),
+		role: "status"
 	};
 
-	protected _notificationObj: NotificationContent | ToastContent | ActionableContent = Object.assign({}, this.defaultNotificationObj);
+	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
 
 	constructor(
 		protected notificationDisplayService: NotificationDisplayService,
@@ -67,6 +73,10 @@ export class BaseNotification {
 		this.notificationDisplayService.close(this);
 	}
 
+	/**
+	 * Get icon name for icon service
+	 * @param type Notification Type
+	 */
 	getIconName(type: NotificationType) {
 		switch (type) {
 			case "error":

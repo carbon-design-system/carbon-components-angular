@@ -1,15 +1,13 @@
 import {
 	Component,
 	Input,
-	ComponentRef,
-	ViewChild,
 	HostBinding
 } from "@angular/core";
 
-import { NotificationType, ActionableContent, NotificationVariants } from "./notification-content.interface";
+import { of } from "rxjs";
+import { ActionableContent, NotificationVariants } from "./notification-content.interface";
 import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
-import { of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
 
 /**
@@ -42,31 +40,28 @@ import { BaseNotification } from "./base-notification.component";
 							<a ibmLink [href]="link.href"> {{link.text}}</a>
 						</ng-container>
 					</div>
-					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
+					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 				</div>
 			</div>
 		</div>
-		<!--
-			Since the button has to be outside actionable wrapper, might be a good idea to create a directive for notification
-			& use that in custom templates to select in ng-content?
-		-->
-		<button
-			*ngFor="let action of notificationObj.actions"
-			(click)="onClick(action, $event)"
-			[ibmButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
-			size="sm"
-			class="cds--actionable-notification__action-button"
-			type="button">
-			{{action.text}}
-		</button>
+		<ng-container *ngIf="!notificationObj.actionsTemplate">
+			<button
+				*ngFor="let action of notificationObj.actions"
+				(click)="onClick(action, $event)"
+				[ibmButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
+				size="sm"
+				ibmActionableButton>
+				{{action.text}}
+			</button>
+		</ng-container>
+		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }"></ng-container>
 		<button
 			*ngIf="!isCloseHidden"
 			(click)="onClose()"
 			class="cds--actionable-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<svg ibmIcon="close" size="16" class="cds--actionable-notification__close-icon">
-			</svg>
+			<svg ibmIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
 		</button>
 	`
 })
@@ -89,18 +84,7 @@ export class ActionableNotification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	/**
-	 * Default role is `alertdialog`, you can provide an alternative if it makes sense
-	 */
-	@Input() role = "alertdialog";
-
-	// componentRef: ComponentRef<Notification>;
-
-	// // @ts-ignore
-	// @ViewChild("notification", { static: false }) notification;
-
 	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount++}`;
-	@HostBinding("attr.role") setRole = this.role;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 
@@ -113,17 +97,16 @@ export class ActionableNotification extends BaseNotification {
 	@HostBinding("class.cds--actionable-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--actionable-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
 
-	protected defaultNotificationObj = {
-		title: "",
-		message: "",
-		type: "info" as NotificationType,
-		showClose: true,
-		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON"),
-		variant: "inline" as NotificationVariants
+	/**
+	 * Set default variant & role, alternatives can be provided through notificationObj property
+	 */
+	defaultNotificationObj = {
+		...this.defaultNotificationObj,
+		variant: "inline" as NotificationVariants,
+		role: "alertdialog"
 	};
-	protected _notificationObj: ActionableContent = Object.assign({}, this.defaultNotificationObj);
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n ) {
+	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
 		super(notificationDisplayService, i18n);
 	}
 }

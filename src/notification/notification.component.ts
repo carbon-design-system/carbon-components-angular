@@ -1,12 +1,10 @@
 import {
 	Component,
 	Input,
-	ComponentRef,
-	ViewChild,
 	HostBinding
 } from "@angular/core";
 
-import { NotificationContent, NotificationType } from "./notification-content.interface";
+import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { of } from "rxjs";
@@ -20,7 +18,7 @@ import { BaseNotification } from "./base-notification.component";
  * <example-url>../../iframe.html?id=components-notification--basic</example-url>
  */
 @Component({
-	selector: "ibm-notification",
+	selector: "ibm-notification,ibm-inline-notification",
 	template: `
 		<div class="cds--inline-notification__details">
 			<svg
@@ -65,16 +63,9 @@ export class Notification extends BaseNotification {
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
-	@Input() role: "alert" | "log" | "status" = "status";
-
-	componentRef: ComponentRef<Notification>;
-
-	// @ts-ignore
-	@ViewChild("notification", { static: false }) notification;
 
 	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
 	@HostBinding("class.cds--inline-notification") notificationClass = true;
-	@HostBinding("attr.role") setRole = this.role;
 
 	@HostBinding("class.cds--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
@@ -84,15 +75,6 @@ export class Notification extends BaseNotification {
 	@HostBinding("class.cds--inline-notification--warning-alt") get isWarningAlt() { return this.notificationObj.type === "warning-alt"; }
 	@HostBinding("class.cds--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--inline-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
-
-	protected defaultNotificationObj = {
-		title: "",
-		message: "",
-		type: "info" as NotificationType,
-		showClose: true,
-		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
-	};
-	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
 
 	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
 		super(notificationDisplayService, i18n);

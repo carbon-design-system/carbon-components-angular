@@ -33,7 +33,7 @@ import { BaseNotification } from "./base-notification.component";
 				<span [innerHTML]="notificationObj.subtitle"></span>
 			</div>
 			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
-			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
+			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 		</div>
 		<button
 			*ngIf="!isCloseHidden"
@@ -53,11 +53,9 @@ export class Toast extends BaseNotification implements OnInit {
 	 * `type` can be one of `"error"`, `"info"`, `"info-square"`, `"warning"`, `"warning-alt"`, or `"success"`
 	 */
 	@Input() notificationObj: ToastContent;
-	@Input() role: "alert" | "log" | "status" = "status";
 
 	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.cds--toast-notification") toastClass = true;
-	@HostBinding("attr.role") setRole = this.role;
 
 	@HostBinding("class.cds--toast-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--toast-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
