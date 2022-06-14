@@ -132,6 +132,8 @@ export class Toggle extends Checkbox {
 		return this.disabled;
 	}
 
+	@HostBinding("class.cds--form-item") formItem = true;
+
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 */
