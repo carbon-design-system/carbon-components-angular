@@ -51,7 +51,11 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+		<label
+			*ngIf="label"
+			[id]="ariaLabelledby"
+			class="bx--label"
+			[ngClass]="{'bx--label--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
