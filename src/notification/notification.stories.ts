@@ -82,11 +82,17 @@ import { Subject } from "rxjs";
 				showClose: showClose,
 				lowContrast: lowContrast,
 				actions: actions,
-				variant: variant
+				variant: variant,
+				links: links
 			}">
 		</ibm-actionable-notification>
 		`,
-	providers: [NotificationService]
+	providers: [NotificationService],
+	styles: [`
+		ibm-actionable-notification {
+			margin-bottom: 1rem;
+		}
+	`]
 })
 class NotificationActionStory implements OnInit {
 	@Input() showClose = true;
@@ -212,13 +218,13 @@ storiesOf("Components|Notification", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-notification [notificationObj]="{
+			<ibm-inline-notification [notificationObj]="{
 				type: 'error',
 				title: 'Sample notification',
 				message: 'Sample error message',
 				showClose: showClose,
 				lowContrast: lowContrast}">
-			</ibm-notification>
+			</ibm-inline-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'info',
 				title: 'Sample notification',
@@ -258,7 +264,12 @@ storiesOf("Components|Notification", module)
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false)
-		}
+		},
+		styles: [`
+			ibm-notification, ibm-inline-notification {
+				margin-bottom: 1rem;
+			}
+		`]
 	}))
 	.add("Dynamic inline", () => ({
 		template: `
@@ -348,8 +359,13 @@ storiesOf("Components|Notification", module)
 				lowContrast: lowContrast,
 				showClose: showClose
 			}"></ibm-toast>
-
 		`,
+		styles: [`
+			ibm-toast {
+				margin-bottom: 1rem;
+			}
+
+		`],
 		props: {
 			showClose: boolean("Show close icon", true),
 			lowContrast: boolean("Low Contrast", false),
@@ -400,6 +416,7 @@ storiesOf("Components|Notification", module)
 			<ibm-actionable-notification [notificationObj]="{
 				type: 'success',
 				template: customActionableContent,
+				actionsTemplate: customActionableTrigger,
 				title: 'Sample notification',
 				myData: {
 					subtitle: 'Sample custom subtitle'
@@ -420,11 +437,24 @@ storiesOf("Components|Notification", module)
 				<p ibmActionableTitle>{{data.title}}</p>
 				<p ibmActionableSubtitle>{{data.myData.subtitle}}</p>
 			</ng-template>
+			<ng-template #customActionableTrigger>
+				<button
+					ibmActionableButton
+					ibmButton="ghost"
+					size="sm">
+					Action
+				</button>
+			</ng-template>
 		`,
 		encapsulation: ViewEncapsulation.None,
 		styles: [`
 			ibm-toast {
 				width: 450px;
+				margin-bottom: 1rem;
+			}
+
+			ibm-notification {
+				margin-bottom: 1rem;
 			}
 
 			.secondary-toast-button {
