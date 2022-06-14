@@ -19,6 +19,7 @@ export interface NotificationContent {
 }
 
 export interface ActionableContent extends NotificationContent {
+	actionsTemplate?: TemplateRef<any>;
 	actions?: NotificationAction[];
 	links?: NotificationLink[];
 	variant?: NotificationVariants;
@@ -32,7 +33,7 @@ export interface ToastContent extends NotificationContent {
 export interface NotificationAction {
 	text: string;
 	click: Subject<{ event: Event, action: any }> | ((event: { event: Event, action: any }) => any);
-	[x: string]: any;
+	[key: string]: any;
 }
 
 export interface NotificationLink {
