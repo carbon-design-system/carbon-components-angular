@@ -65,7 +65,8 @@ import { Observable } from "rxjs";
 					(blur)="onBlur()">
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
-						class="bx--tag bx--tag--filter bx--tag--high-contrast">
+						class="bx--tag bx--tag--filter bx--tag--high-contrast"
+						[ngClass]="{'bx--tag--disabled': disabled}">
 						<span class="bx--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
@@ -75,6 +76,7 @@ import { Observable } from "rxjs";
 							class="bx--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
+							[disabled]="disabled"
 							[attr.aria-label]="clearSelectionAria">
 							<svg
 								focusable="false"
