@@ -4,7 +4,6 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ContentChild,
 	TemplateRef,
 	HostBinding
 } from "@angular/core";

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -23,7 +23,7 @@ class TabsTest {
 	onSelected() {}
 }
 
-describe("Sample", () => {
+describe("Tabs", () => {
 	let fixture, wrapper, element;
 
 	const arrowRight = new KeyboardEvent("keydown", {
@@ -44,7 +44,8 @@ describe("Sample", () => {
 			imports: [
 				CommonModule,
 				UtilsModule
-			]
+			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 	});
 

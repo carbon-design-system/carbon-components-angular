@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { UtilsModule } from "carbon-components-angular/utils";
@@ -11,7 +12,7 @@ describe("TabHeadersComponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [TabHeaders],
 			imports: [UtilsModule],
-			providers: []
+			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 
 		fixture = TestBed.createComponent(TabHeaders);

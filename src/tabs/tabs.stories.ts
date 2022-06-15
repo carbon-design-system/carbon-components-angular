@@ -28,30 +28,6 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			<ibm-tab-header [paneReference]="content5">
 				Content 05
 			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content6">
-				Content 06
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content7">
-				Content 07
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content8">
-				Content 08
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content9">
-				Content 09
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content10">
-				Content 10
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content10">
-				Content 11
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content10">
-				Content 12
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content10">
-				Content 13
-			</ibm-tab-header>
 		</ibm-tab-header-group>
 
 		<ibm-tab #content1>
@@ -67,27 +43,13 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			Tab Content 4
 		</ibm-tab>
 		<ibm-tab #content5>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content6>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content7>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content8>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content9>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content10>
-			Tab Content 4
+			Tab Content 5
 		</ibm-tab>
 
 	`
 })
 class TabStory {
+	@Input() skeleton = false;
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
 	@Input() isNavigation = true;
@@ -128,18 +90,6 @@ storiesOf("Components|Tabs", module)
 				<ibm-tab heading="Content three">Tab Content 3</ibm-tab>
 				<ibm-tab heading="Content four" disabled="true">Tab Content 4</ibm-tab>
 				<ibm-tab heading="Content five" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content six" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content seven" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content eight" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content nine" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content ten" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content eleven" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content twelve" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content thirteen" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content fourteen" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content fiften" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content sixteen" disabled="true">Tab Content 5</ibm-tab>
-				<ibm-tab heading="Content seventeen" disabled="true">Tab Content 5</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -236,6 +186,11 @@ storiesOf("Components|Tabs", module)
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+
+			<div style="margin-top: 5rem">
+				<p>Tab skeleton component for ibm-tab-header-group:</p>
+				<ibm-tabs-skeleton></ibm-tabs-skeleton>
+			</div>
 		`
 	}))
 	.add("Documentation", () => ({

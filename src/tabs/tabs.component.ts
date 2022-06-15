@@ -40,9 +40,12 @@ import { TabHeaders } from "./tab-headers.component";
 @Component({
 	selector: "ibm-tabs",
 	template: `
+		<ng-container *ngIf="skeleton">
+			<ibm-tabs-skeleton></ibm-tabs-skeleton>
+		</ng-container>
+		<ng-container *ngIf="!skeleton">
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
-				[skeleton]="skeleton"
 				[theme]="theme"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
@@ -62,11 +65,11 @@ import { TabHeaders } from "./tab-headers.component";
 			</ng-template>
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
-				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive"
 				[type]="type">
 			</ibm-tab-headers>
+		</ng-container>
 	`
 })
 export class Tabs implements AfterContentInit, OnChanges {
@@ -83,10 +86,6 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus = true;
-	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
 	/**
 	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
 	 */
@@ -107,6 +106,10 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 * Sets the theme of `TabHeader`s
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * Set state of tabs to skeleton
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.

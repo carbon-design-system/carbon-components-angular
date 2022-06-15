@@ -28,11 +28,12 @@ import { Tab } from "./tab.component";
 	selector: "ibm-tab-headers",
 	template: `
 		<button
-			#leftOverflowNavButton
 			type="button"
 			(click)="handleOverflowNavClick(-1)"
-			(mousedown)="handleOverflowNavMouseDown(-1)"
-			(mouseup)="handleOverflowNavMouseUp()"
+			(pointerdown)="handleOverflowNavMouseDown(-1)"
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
 			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
@@ -86,11 +87,12 @@ import { Tab } from "./tab.component";
 			<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
 		</div>
 		<button
-			#rightOverflowNavButton
 			type="button"
 			(click)="handleOverflowNavClick(1)"
-			(mousedown)="handleOverflowNavMouseDown(1)"
-			(mouseup)="handleOverflowNavMouseUp()"
+			(pointerdown)="handleOverflowNavMouseDown(1)"
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
 			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
@@ -126,10 +128,7 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus: boolean;
-	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
+
 	/**
 	 * Sets the aria label on the nav element.
 	 */
@@ -158,10 +157,6 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	 */
 	// @ts-ignore
 	@ViewChild("tabList", { static: true }) headerContainer;
-	// @ts-ignore
-	@ViewChild("rightOverflowNavButton", { static: true }) rightOverflowNavButton;
-	// @ts-ignore
-	@ViewChild("leftOverflowNavButton", { static: true }) leftOverflowNavButton;
 	/**
 	 * ContentChild of all the n-tabs
 	 */
@@ -169,11 +164,11 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * set to tabQuery if tabInput is empty
 	 */
-	public tabs: QueryList<Tab>;
+	tabs: QueryList<Tab>;
 	/**
 	 * The index of the first visible tab.
 	 */
-	public firstVisibleTab = 0;
+	firstVisibleTab = 0;
 	/**
 	 * The DOM element containing the `Tab` headings displayed.
 	 */
@@ -181,19 +176,19 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Controls the manual focusing done by tabbing through headings.
 	 */
-	public currentSelectedTab: number;
+	currentSelectedTab: number;
 
-	public get hasHorizontalOverflow() {
+	get hasHorizontalOverflow() {
 		const tabList = this.headerContainer.nativeElement;
 		return tabList.scrollWidth > tabList.clientWidth;
 	}
 
-	public get leftOverflowNavButtonHidden() {
+	get leftOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
 		return !this.hasHorizontalOverflow || !tabList.scrollLeft;
 	}
 
-	public get rightOverflowNavButtonHidden() {
+	get rightOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
 		return !this.hasHorizontalOverflow ||
 			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
@@ -202,8 +197,8 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	// width of the overflow buttons
 	OVERFLOW_BUTTON_OFFSET = 44;
 
-	private longPressInterval;
-	private tickInterval;
+	private longPressInterval = null;
+	private tickInterval = null;
 
 	constructor(
 		protected elementRef: ElementRef,
@@ -303,13 +298,13 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Controls manually focusing tabs.
 	 */
-	public onTabFocus(ref: HTMLElement, index: number) {
+	onTabFocus(ref: HTMLElement, index: number) {
 		this.currentSelectedTab = index;
 		// reset scroll left because we're already handling it
 		this.headerContainer.nativeElement.parentElement.scrollLeft = 0;
 	}
 
-	public getSelectedTab(): any {
+	getSelectedTab(): any {
 		const selected = this.tabs.find(tab => tab.active);
 		if (selected) {
 			return selected;
@@ -320,7 +315,7 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
 	 */
-	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
+	selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
 			return;
 		}
@@ -331,11 +326,11 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 		tab.doSelect();
 	}
 
-	public handleScroll() {
+	handleScroll() {
 		this.changeDetectorRef.markForCheck();
 	}
 
-	public handleOverflowNavClick(direction: number) {
+	handleOverflowNavClick(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
 		const { clientWidth, scrollLeft, scrollWidth } = tabList;
@@ -347,34 +342,36 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 		}
 	}
 
-	public handleOverflowNavMouseDown(direction: number) {
+	handleOverflowNavMouseDown(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
-		this.longPressInterval = setInterval(() => {
-			const { clientWidth, scrollLeft, scrollWidth } = tabList;
-
+		this.longPressInterval = setTimeout(() => {
 			// Manually overriding scroll behvior to `auto` to make animation work correctly
 			this.renderer.setStyle(tabList, "scroll-behavior", "auto");
 
-			// clear interval if scroll reaches left or right edge
-			const leftEdgeReached = direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-			const rightEdgeReached =
-				direction === 1 &&
-				scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-
 			this.tickInterval = setInterval(() => {
-				tabList.scrollLeft += (direction * 5);
+				tabList.scrollLeft += (direction * 3);
+				// clear interval if scroll reaches left or right edge
+				if (this.leftOverflowNavButtonHidden || this.rightOverflowNavButtonHidden) {
+					return () => {
+						clearInterval(this.tickInterval);
+						this.handleOverflowNavMouseUp();
+					};
+				}
 			});
 
-			if (leftEdgeReached || rightEdgeReached) {
-				this.handleOverflowNavMouseUp();
-			}
+			return () => {
+				clearInterval(this.longPressInterval);
+			};
 		}, 500);
 	}
 
-	public handleOverflowNavMouseUp() {
+	/**
+	 * Clear intervals/Timeout & reset scroll behavior
+	 */
+	handleOverflowNavMouseUp() {
 		clearInterval(this.tickInterval);
-		clearInterval(this.longPressInterval);
+		clearTimeout(this.longPressInterval);
 
 		// Reset scroll behavior
 		this.renderer.setStyle(this.headerContainer.nativeElement, "scroll-behavior", "smooth");

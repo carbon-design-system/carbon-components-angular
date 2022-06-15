@@ -24,75 +24,64 @@ import { TabHeader } from "./tab-header.component";
 @Component({
 	selector: "ibm-tab-header-group",
 	template: `
-		<!--
-			Will need to use ChangeDetectorRef in all applicable functions to fix this??
-			<ng-template [ngIf]="skeleton">
-			<ul class="cds--tabs__nav">
-				<li
-					*ngFor="let i of numOfSkeletonTabs"
-					class="cds--tabs__nav-item">
-					<div class="cds--tabs__nav-link">
-						<span></span>
-					</div>
-				</li>
-			</ul>
-		</ng-template>
-		<ng-template [ngIf]="!skeleton"> -->
-			<button
-				#leftOverflowNavButton
-				type="button"
-				[ngClass]="{
-					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
-					'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
-				}"
-				(click)="handleOverflowNavClick(-1)"
-				(mousedown)="handleOverflowNavMouseDown(-1)"
-				(mouseup)="handleOverflowNavMouseUp()">
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="currentColor"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
-				</svg>
-			</button>
-			<div
-				class="cds--tab--list"
-				role="tablist"
-				[attr.aria-label]="ariaLabel"
-				(scroll)="handleScroll()"
-				#tabList>
-				<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
-				<ng-content></ng-content>
-				<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
-			</div>
-			<button
-				#rightOverflowNavButton
-				type="button"
-				[ngClass]="{
-					'cds--tab--overflow-nav-button': hasHorizontalOverflow,
-					'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
-				}"
-				(click)="handleOverflowNavClick(1)"
-				(mousedown)="handleOverflowNavMouseDown(1)"
-				(mouseup)="handleOverflowNavMouseUp()">
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="currentColor"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
-				</svg>
-			</button>
-		<!-- </ng-template> -->
+		<button
+			type="button"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"
+			[ngClass]="{
+				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+			}"
+			(click)="handleOverflowNavClick(-1)"
+			(pointerdown)="handleOverflowNavMouseDown(-1)"
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
+			(pointercancel)="handleOverflowNavMouseUp()">
+			<svg
+				focusable="false"
+				preserveAspectRatio="xMidYMid meet"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="currentColor"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				aria-hidden="true">
+				<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
+			</svg>
+		</button>
+		<div
+			class="cds--tab--list"
+			role="tablist"
+			[attr.aria-label]="ariaLabel"
+			(scroll)="handleScroll()"
+			#tabList>
+			<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
+			<ng-content></ng-content>
+			<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
+		</div>
+		<button
+			type="button"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"
+			[ngClass]="{
+				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+			}"
+			(click)="handleOverflowNavClick(1)"
+			(pointerdown)="handleOverflowNavMouseDown(1)"
+			(pointerup)="handleOverflowNavMouseUp($event)"
+			(pointerleave)="handleOverflowNavMouseUp($event)"
+			(pointerout)="handleOverflowNavMouseUp($event)"
+			(pointercancel)="handleOverflowNavMouseUp($event)">
+			<svg
+				focusable="false"
+				preserveAspectRatio="xMidYMid meet"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="currentColor"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				aria-hidden="true">
+				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
+			</svg>
+		</button>
 	`
 })
 export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
@@ -131,11 +120,6 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	@HostBinding("class.cds--tabs--light") get themeClass() {
 		return this.theme === "light";
 	}
-	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
-	numOfSkeletonTabs = new Array(5);
 
 	/**
 	 * ContentChildren of all the tabHeaders.
@@ -143,10 +127,6 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	@ContentChildren(TabHeader) tabHeaderQuery: QueryList<TabHeader>;
 	// @ts-ignore
 	@ViewChild("tabList", { static: true }) headerContainer;
-	// @ts-ignore
-	@ViewChild("rightOverflowNavButton", { static: true }) rightOverflowNavButton;
-	// @ts-ignore
-	@ViewChild("leftOverflowNavButton", { static: true }) leftOverflowNavButton;
 	/**
 	 * Keeps track of all the subscriptions to the tab header selection events.
 	 */
@@ -155,19 +135,19 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Controls the manual focusing done by tabbing through headings.
 	 */
-	public currentSelectedIndex = 0;
+	currentSelectedIndex = 0;
 
-	public get hasHorizontalOverflow() {
+	get hasHorizontalOverflow() {
 		const tabList = this.headerContainer.nativeElement;
 		return tabList.scrollWidth > tabList.clientWidth;
 	}
 
-	public get leftOverflowNavButtonHidden() {
+	get leftOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
 		return !this.hasHorizontalOverflow || !tabList.scrollLeft;
 	}
 
-	public get rightOverflowNavButtonHidden() {
+	get rightOverflowNavButtonHidden() {
 		const tabList = this.headerContainer.nativeElement;
 		return !this.hasHorizontalOverflow ||
 			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
@@ -307,7 +287,7 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		}
 	}
 
-	public getSelectedTab(): any {
+	getSelectedTab(): any {
 		const selected = this.tabHeaderQuery.toArray()[this.currentSelectedIndex];
 		if (selected) {
 			return selected;
@@ -318,11 +298,11 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		};
 	}
 
-	public handleScroll() {
+	handleScroll() {
 		this.changeDetectorRef.markForCheck();
 	}
 
-	public handleOverflowNavClick(direction: number) {
+	handleOverflowNavClick(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
 		const { clientWidth, scrollLeft, scrollWidth } = tabList;
@@ -334,34 +314,36 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		}
 	}
 
-	public handleOverflowNavMouseDown(direction: number) {
+	handleOverflowNavMouseDown(direction: number) {
 		const tabList = this.headerContainer.nativeElement;
 
-		this.longPressInterval = setInterval(() => {
-			const { clientWidth, scrollLeft, scrollWidth } = tabList;
-
+		this.longPressInterval = setTimeout(() => {
 			// Manually overriding scroll behvior to `auto` to make animation work correctly
 			this.renderer.setStyle(tabList, "scroll-behavior", "auto");
 
-			// clear interval if scroll reaches left or right edge
-			const leftEdgeReached = direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-			const rightEdgeReached =
-				direction === 1 &&
-				scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-
 			this.tickInterval = setInterval(() => {
-				tabList.scrollLeft += (direction * 5);
+				tabList.scrollLeft += (direction * 3);
+				// clear interval if scroll reaches left or right edge
+				if (this.leftOverflowNavButtonHidden || this.rightOverflowNavButtonHidden) {
+					return () => {
+						clearInterval(this.tickInterval);
+						this.handleOverflowNavMouseUp();
+					};
+				}
 			});
 
-			if (leftEdgeReached || rightEdgeReached) {
-				this.handleOverflowNavMouseUp();
-			}
+			return () => {
+				clearInterval(this.longPressInterval);
+			};
 		}, 500);
 	}
 
-	public handleOverflowNavMouseUp() {
+	/**
+	 * Clear intervals/Timeout & reset scroll behavior
+	 */
+	handleOverflowNavMouseUp() {
 		clearInterval(this.tickInterval);
-		clearInterval(this.longPressInterval);
+		clearTimeout(this.longPressInterval);
 
 		// Reset scroll behavior
 		this.renderer.setStyle(this.headerContainer.nativeElement, "scroll-behavior", "smooth");
