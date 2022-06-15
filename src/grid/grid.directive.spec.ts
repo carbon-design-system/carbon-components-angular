@@ -80,7 +80,7 @@ describe("GridDirective", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-					`<div ibmCol [offsets]="{'md': 2}" [columnNumbers]="{'lg': 3, 'md': 'nobreak'}" class='custom-class-example'></div>`
+					`<div ibmCol [offsets]="{md: 2}" [columnNumbers]="{lg: 3, md: 'nobreak'}" class="custom-class-example"></div>`
 			}
 		});
 
@@ -106,7 +106,7 @@ describe("GridDirective", () => {
 			set: {
 				template: `
 					<div ibmGrid [useCssGrid]="true">
-						<div ibmCol [columnNumbers]="{'md': 3}" class='custom-class-example'></div>
+						<div ibmCol [columnNumbers]="{md: 3}" class="custom-class-example"></div>
 					</div>`
 			}
 		});
