@@ -37,7 +37,7 @@ import { BaseNotification } from "./base-notification.component";
 					<div *ngIf="!notificationObj.template" ibmActionableSubtitle>
 						<span [innerHTML]="notificationObj.message"></span>
 						<ng-container *ngFor="let link of notificationObj.links">
-							<a ibmLink [href]="link.href"> {{link.text}}</a>
+							<a ibmLink [href]="link.href">{{link.text}}</a>
 						</ng-container>
 					</div>
 					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
