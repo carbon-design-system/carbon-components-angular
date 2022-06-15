@@ -478,7 +478,7 @@ storiesOf("Components|Notification", module)
 	}))
 	.add("Actionable Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/classes/src_notification.actionable.html"></ibm-documentation>
+			<ibm-documentation src="documentation/classes/src_notification.actionablenotification.html"></ibm-documentation>
 		`
 	}))
 	.add("Toast Documentation", () => ({
