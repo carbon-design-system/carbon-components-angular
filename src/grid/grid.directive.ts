@@ -12,11 +12,15 @@ import {
 	selector: "[ibmCol]"
 })
 export class ColumnDirective implements OnInit {
-
 	@HostBinding("class")
 	get columnClasses(): string {
 		return this._columnClasses.join(" ");
 	}
+
+	set columnClasses(classes: string) {
+		this._columnClasses = classes.split(" ");
+	}
+
 	@Input() class = "";
 
 	@Input() columnNumbers = {};
@@ -30,6 +34,8 @@ export class ColumnDirective implements OnInit {
 	/**
 	 * Set to `true` to use css grid column hang class
 	 * This will only work when `isCss` property is set to true
+	 *
+	 * Useful when trying to align content across different grid modes
 	 */
 	@Input() columnHang = false;
 
@@ -44,10 +50,6 @@ export class ColumnDirective implements OnInit {
 	isCss = false;
 
 	protected _columnClasses: string[] = [];
-
-	set(classes: string) {
-		this._columnClasses = classes.split(" ");
-	}
 
 	ngOnInit() {
 		// Using setTimeout to simulate a tick to capture an update isCss property
@@ -66,16 +68,16 @@ export class ColumnDirective implements OnInit {
 
 					columnKeys.forEach(key => {
 						/**
-						 * Passing in `auto` to a breakpoint as such: {'md': "auto" }
+						 * Passing in `auto` to a breakpoint as such: {'md': 'auto'}
 						 * will assign the element which will automatically determine the width of the column
-						 * for the breakpoint passsed
+						 * for the breakpoint passed
 						 */
 						if (this.columnNumbers[key] === "auto") {
 							this._columnClasses.push(`cds--${key}:col-span-auto`);
 						} else if (typeof this.columnNumbers[key] === "object") {
 							/**
 							 * In css grid, objects can be passed to the keys in the following format:
-							 * {'md': { 'start': 3} }
+							 * {'md': {'start': 3}}
 							 *
 							 * These objects are used to position the column
 							 */
@@ -220,7 +222,7 @@ export class GridDirective implements AfterContentInit {
 			}
 
 			if (this.columnChildren) {
-				this.columnChildren.forEach((column) => column.isCss = true);
+				this.columnChildren.forEach(column => column.isCss = true);
 			}
 		}
 	}
