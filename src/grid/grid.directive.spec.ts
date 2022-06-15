@@ -126,6 +126,4 @@ describe("GridDirective", () => {
 			});
 		});
 	}));
-
-
 });
