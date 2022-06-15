@@ -471,9 +471,14 @@ storiesOf("Components|Notification", module)
 			showClose: boolean("Show close icon", true)
 		}
 	}))
-	.add("Documentation", () => ({
+	.add("Inline Documentation", () => ({
 		template: `
 			<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
+		`
+	}))
+	.add("Actionable Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/classes/src_notification.actionable.html"></ibm-documentation>
 		`
 	}))
 	.add("Toast Documentation", () => ({
