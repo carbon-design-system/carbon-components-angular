@@ -35,6 +35,16 @@ export class BaseNotification {
 	// Provides access to the component instance
 	componentRef: ComponentRef<BaseNotification>;
 
+	// Get icon name(value) for service based on the notification type (key)
+	readonly iconDictionary = {
+		"error": "error--filled",
+		"info": "information--filled",
+		"info-square": "information--square--filled",
+		"success": "checkmark--filled",
+		"warning": "warning--filled",
+		"warning-alt": "warning--alt--filled"
+	};
+
 	protected defaultNotificationObj: NotificationContent = {
 		title: "",
 		message: "",
@@ -71,28 +81,5 @@ export class BaseNotification {
 
 	destroy() {
 		this.notificationDisplayService.close(this);
-	}
-
-	/**
-	 * Get icon name for icon service
-	 * @param type Notification Type
-	 */
-	getIconName(type: NotificationType) {
-		switch (type) {
-			case "error":
-				return "error--filled";
-			case "info":
-				return "information--filled";
-			case "info-square":
-				return "information--square--filled";
-			case "success":
-				return "checkmark--filled";
-			case "warning":
-				return "warning--filled";
-			case "warning-alt":
-				return "warning--alt--filled";
-			default:
-				return "";
-		}
 	}
 }

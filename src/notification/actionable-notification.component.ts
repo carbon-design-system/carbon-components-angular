@@ -22,7 +22,7 @@ import { BaseNotification } from "./base-notification.component";
 	template: `
 		<div class="cds--actionable-notification__details">
 			<svg
-				[ibmIcon]="getIconName(notificationObj.type)"
+				[ibmIcon]="iconDictionary[notificationObj.type]"
 				size="20"
 				*ngIf="notificationObj.type"
 				[ngClass]="{
@@ -87,7 +87,6 @@ export class ActionableNotification extends BaseNotification {
 	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount++}`;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
-
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--actionable-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
 	@HostBinding("class.cds--actionable-notification--info-square") get isInfoSquare() { return this.notificationObj.type === "info-square"; }

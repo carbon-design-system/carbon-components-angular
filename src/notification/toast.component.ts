@@ -22,7 +22,7 @@ import { BaseNotification } from "./base-notification.component";
 	selector: "ibm-toast",
 	template: `
 		<svg
-			[ibmIcon]="getIconName(notificationObj.type)"
+			[ibmIcon]="iconDictionary[notificationObj.type]"
 			size="20"
 			*ngIf="notificationObj.type"
 			class="cds--toast-notification__icon">
@@ -56,7 +56,6 @@ export class Toast extends BaseNotification implements OnInit {
 
 	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.cds--toast-notification") toastClass = true;
-
 	@HostBinding("class.cds--toast-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--toast-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
 	@HostBinding("class.cds--toast-notification--info-square") get isInfoSquare() { return this.notificationObj.type === "info-square"; }
