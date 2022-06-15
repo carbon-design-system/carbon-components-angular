@@ -16,18 +16,33 @@ export class ColumnDirective implements OnInit {
 	get columnClasses(): string {
 		return this._columnClasses.join(" ");
 	}
-
 	set columnClasses(classes: string) {
 		this._columnClasses = classes.split(" ");
 	}
 
 	@Input() class = "";
 
+	/**
+	 * Defines columns width for specified breakpoint
+	 * Accepts the following formats:
+	 * - {[breakpoint]: number}
+	 * - {[breakpoint]: "auto"} - css only
+	 * - {[breakpoint]: {[start|end]: number}} - css only
+	 *
+	 * Example:
+	 * <div ibmCol [columnNumbers]={md: 3, lg: 4}></div>
+	 */
 	@Input() columnNumbers = {};
 
 	/**
-	 * Offset only applies to flex grid,
-	 * pass in start with the
+	 * Defines columns offset, which increases the left margin of the column.
+	 * This field will only work with flexbox grid.
+	 *
+	 * Accepts the following formats:
+	 * - {[breakpoint]: number}
+	 *
+	 * Example:
+	 * <div ibmCol [offsets]={md: 3, lg: 4}></div>
 	 */
 	@Input() offsets = {};
 
@@ -35,9 +50,10 @@ export class ColumnDirective implements OnInit {
 	 * Set to `true` to use css grid column hang class
 	 * This will only work when `isCss` property is set to true
 	 *
-	 * Useful when trying to align content across different grid modes
+	 * Useful when trying to align content across css grid/subgrid
 	 */
 	@Input() columnHang = false;
+
 	isCss = false;
 
 	protected _columnClasses: string[] = [];
