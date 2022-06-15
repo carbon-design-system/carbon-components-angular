@@ -193,10 +193,7 @@ export class NotificationService implements OnDestroy {
 				timeout += 3000;
 				break;
 			}
-			case "warning": {
-				timeout += 1500;
-				break;
-			}
+			case "warning":
 			case "warning-alt": {
 				timeout += 1500;
 				break;
