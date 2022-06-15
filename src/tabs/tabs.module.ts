@@ -7,6 +7,7 @@ import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 import { TabHeader } from "./tab-header.component";
 import { TabHeaderGroup } from "./tab-header-group.component";
+import { TabSkeleton } from "./tab-skeleton.component";
 
 @NgModule({
 	declarations: [
@@ -14,14 +15,16 @@ import { TabHeaderGroup } from "./tab-header-group.component";
 		Tab,
 		TabHeaders,
 		TabHeader,
-		TabHeaderGroup
+		TabHeaderGroup,
+		TabSkeleton
 	],
 	exports: [
 		Tabs,
 		Tab,
 		TabHeaders,
 		TabHeader,
-		TabHeaderGroup
+		TabHeaderGroup,
+		TabSkeleton
 	],
 	imports: [
 		CommonModule,
