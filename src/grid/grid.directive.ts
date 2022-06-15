@@ -38,15 +38,6 @@ export class ColumnDirective implements OnInit {
 	 * Useful when trying to align content across different grid modes
 	 */
 	@Input() columnHang = false;
-
-	/**
-	 * @todo - In future might be a good idea to make this a subject & subscribe to it
-	 * In ngOnInit, we can continue to have flexGrid only classes,
-	 * believe this would takeaway the need for setTimeout
-	 *
-	 * Will wait to see how this performs in terms of performance & feel - currently
-	 * there is a slight delay (tick) before classes are assigned
-	 */
 	isCss = false;
 
 	protected _columnClasses: string[] = [];
