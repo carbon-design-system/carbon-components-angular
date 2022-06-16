@@ -13,21 +13,21 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			[followFocus]="followFocus"
 			[cacheActive]="cacheActive"
 			[isNavigation]="isNavigation">
-			<ibm-tab-header [paneReference]="content1">
-				Content 01
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content2">
-				Content 02
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content3" disabled="true">
-				Content 03
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content4">
-				Content 04
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content5">
-				Content 05
-			</ibm-tab-header>
+			<button ibmTabHeader [paneReference]="content1">
+				Content 1
+			</button>
+			<button ibmTabHeader [paneReference]="content2">
+				Content 2
+			</button>
+			<button ibmTabHeader [paneReference]="content3" disabled="true">
+				Content 3
+			</button>
+			<button ibmTabHeader [paneReference]="content4">
+				Content 4
+			</button>
+			<button ibmTabHeader [paneReference]="content5">
+				Content 5
+			</button>
 		</ibm-tab-header-group>
 
 		<ibm-tab #content1>
@@ -45,7 +45,6 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 		<ibm-tab #content5>
 			Tab Content 5
 		</ibm-tab>
-
 	`
 })
 class TabStory {
@@ -73,7 +72,7 @@ storiesOf("Components|Tabs", module)
 				<ibm-tab heading="one">Tab Content 1</ibm-tab>
 				<ibm-tab heading="two">Tab Content 2</ibm-tab>
 				<ibm-tab heading="three">Tab Content 3</ibm-tab>
-				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
