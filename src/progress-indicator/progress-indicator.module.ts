@@ -2,9 +2,9 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ProgressIndicator } from "./progress-indicator.component";
-import { DialogModule } from "carbon-components-angular/dialog";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { IconModule } from "carbon-components-angular/icon";
+import { TooltipModule } from "carbon-components-angular/tooltip";
 
 @NgModule({
 	declarations: [
@@ -15,9 +15,9 @@ import { IconModule } from "carbon-components-angular/icon";
 	],
 	imports: [
 		CommonModule,
-		DialogModule,
 		ExperimentalModule,
-		IconModule
+		IconModule,
+		TooltipModule
 	]
 })
 export class ProgressIndicatorModule { }

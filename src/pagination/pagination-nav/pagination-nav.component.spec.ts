@@ -3,8 +3,8 @@ import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { I18nModule } from "carbon-components-angular/i18n";
-import { ExperimentalModule } from "carbon-components-angular/experimental";
+import { I18nModule } from "../../i18n";
+import { ExperimentalModule } from "../../experimental";
 import { PaginationNav } from "./index";
 import { PaginationModule } from "../index";
 import { PaginationModel } from "../pagination-model.class";
@@ -34,7 +34,7 @@ class PaginationNavTest implements OnInit {
 }
 
 describe("PaginationNav", () => {
-	let fixture, wrapper, element, paginationComponent;
+	let fixture, wrapper, paginationComponent;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ PaginationNavTest ],
@@ -79,14 +79,15 @@ describe("PaginationNav", () => {
 
 	it("should get next page and previous page from the current page when forward/backwards button is clicked", () => {
 		wrapper = fixture.componentInstance;
+		const buttons = paginationComponent.queryAll(By.css("ibm-icon-button"));
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		paginationComponent.nativeElement.querySelector(".cds--pagination-nav-next").click();
+		buttons[1].nativeElement.querySelector("button").click();
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		paginationComponent.nativeElement.querySelector(".cds--pagination-nav-previous").click();
+		buttons[0].nativeElement.querySelector("button").click();
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
@@ -97,8 +98,9 @@ describe("PaginationNav", () => {
 		wrapper.disabled = true;
 		fixture.detectChanges();
 		paginationComponent.componentInstance.currentPage = 5;
-		const buttonForward = paginationComponent.nativeElement.querySelector(".cds--pagination-nav-next");
-		const buttonBackward = paginationComponent.nativeElement.querySelector(".cds--pagination-nav-previous");
+		const buttons = paginationComponent.queryAll(By.css("ibm-icon-button"));
+		const buttonBackward = buttons[0].nativeElement.querySelector("button");
+		const buttonForward = buttons[1].nativeElement.querySelector("button");
 
 		buttonForward.click();
 		fixture.detectChanges();

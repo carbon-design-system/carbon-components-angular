@@ -39,17 +39,12 @@ export class Search implements ControlValueAccessor {
 	 * `light` or `dark` search theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * Size of the search field.
 	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 
-	@Input() set size(value: "sm" | "md" | "xl") {
-		this._size = value;
-	}
-
-	get size(): "sm" | "md" | "xl" {
-		return this._size;
-	}
 	/**
 	 * Set to `true` for a disabled search input.
 	 */
@@ -137,8 +132,6 @@ export class Search implements ControlValueAccessor {
 	 * Sets `true` when composing text via IME.
 	 */
 	protected isComposing = false;
-
-	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
 	 * Creates an instance of `Search`.
@@ -240,6 +233,17 @@ export class Search implements ControlValueAccessor {
 			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget)) {
 			this.active = false;
 			this.open.emit(this.active);
+		}
+	}
+
+	@HostListener("focusin", ["$event"])
+	focusIn(event) {
+		this.onTouched();
+		// set input focus if search icon get focus from tab key press event.
+		if ((this.expandable || this.toolbar) &&
+			this.inputRef && !event.relatedTarget &&
+			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget) ) {
+			this.openSearch();
 		}
 	}
 

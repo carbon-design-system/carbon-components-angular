@@ -53,7 +53,8 @@ import { Observable } from "rxjs";
 					'cds--list-box--light': theme === 'light',
 					'cds--list-box--expanded': open,
 					'cds--list-box--sm': size === 'sm',
-					'cds--list-box--lg': size === 'xl',
+					'cds--list-box--md': size === 'md',
+					'cds--list-box--lg': size === 'lg',
 					'cds--list-box--disabled': disabled,
 					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
@@ -65,7 +66,8 @@ import { Observable } from "rxjs";
 					(blur)="onBlur()">
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
-						class="cds--tag cds--tag--filter cds--tag--high-contrast">
+						class="cds--tag cds--tag--filter cds--tag--high-contrast"
+						[ngClass]="{'cds--tag--disabled': disabled}">
 						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
@@ -75,6 +77,7 @@ import { Observable } from "rxjs";
 							class="cds--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
+							[disabled]="disabled"
 							[attr.aria-label]="clearSelectionAria">
 							<svg
 								focusable="false"
@@ -284,10 +287,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
-	 *
-	 * @deprecated since v4
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */

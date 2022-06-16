@@ -1,5 +1,4 @@
-import { TemplateRef } from "@angular/core";
-import { DialogConfig } from "carbon-components-angular/dialog";
+import { TooltipConfig } from "carbon-components-angular/tooltip";
 
 export interface Step {
 	/**
@@ -13,7 +12,7 @@ export interface Step {
 	/**
 	 * Defines the tooltip
 	 */
-	tooltip?: DialogConfig;
+	tooltip?: TooltipConfig;
 	/**
 	 * Determines whether the step is disabled or not
 	 */

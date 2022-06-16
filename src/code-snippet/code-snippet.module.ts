@@ -1,10 +1,10 @@
 // modules
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { ButtonModule } from "carbon-components-angular/button";
 import { IconModule } from "carbon-components-angular/icon";
-
 import { I18nModule } from "carbon-components-angular/i18n";
+import { UtilsModule } from "carbon-components-angular/utils";
 
 // imports
 import { CodeSnippet } from "./code-snippet.component";
@@ -18,8 +18,9 @@ import { CodeSnippet } from "./code-snippet.component";
 	],
 	imports: [
 		CommonModule,
-		FormsModule,
+		ButtonModule,
 		I18nModule,
+		UtilsModule,
 		IconModule
 	]
 })

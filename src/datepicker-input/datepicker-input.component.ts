@@ -22,7 +22,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				'cds--skeleton' : skeleton
 			}">
 			<div class="cds--date-picker-container">
-				<label *ngIf="label" [for]="id" class="cds--label">
+				<label
+					*ngIf="label"
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
@@ -39,7 +43,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="cds--date-picker__input"
 						[ngClass]="{
 							'cds--date-picker__input--sm': size === 'sm',
-							'cds--date-picker__input--xl': size === 'xl'
+							'cds--date-picker__input--md': size === 'md',
+							'cds--date-picker__input--lg': size === 'lg'
 						}"
 						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
@@ -131,7 +136,7 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	// @ts-ignore
 	@ViewChild("input", { static: false }) input: ElementRef;

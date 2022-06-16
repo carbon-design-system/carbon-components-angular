@@ -8,17 +8,16 @@ import {
 	AfterContentInit,
 	ViewChildren,
 	ElementRef,
-	TemplateRef,
 	OnChanges,
 	SimpleChanges,
 	OnInit,
 	ChangeDetectorRef,
-	HostBinding,
 	Renderer2
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
-import { BaseTabHeader } from "./base-tab-header.component";
+import { I18n } from "carbon-components-angular/i18n";
 
+import { BaseTabHeader } from "./base-tab-header.component";
 import { Tab } from "./tab.component";
 
 /**
@@ -38,7 +37,8 @@ import { Tab } from "./tab.component";
 			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
-			}">
+			}"
+			[title]="translations.PREVIOUS">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -97,7 +97,8 @@ import { Tab } from "./tab.component";
 			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
-			}">
+			}"
+			[title]="translations.NEXT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -120,6 +121,8 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	// disable the next line because we need to rename the input
 	// tslint:disable-next-line
 	@Input("tabs") tabInput: QueryList<Tab>;
+
+	@Input() translations = this.i18n.get().PAGINATION;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
@@ -147,7 +150,8 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
 		protected eventService: EventService,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected i18n: I18n
 	) {
 		super(elementRef, changeDetectorRef, eventService, renderer);
 	}

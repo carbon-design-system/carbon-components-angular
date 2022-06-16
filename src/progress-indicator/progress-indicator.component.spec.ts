@@ -1,11 +1,12 @@
-import { Component, EventEmitter } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
-import { DialogModule, ExperimentalModule } from "..";
-import { IconModule } from "../icon/index";
+import { ExperimentalModule } from "../experimental";
+import { TooltipModule } from "../tooltip";
+import { IconModule } from "../icon";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
@@ -25,15 +26,17 @@ class ProgressIndicatorTest {
 		{
 			text: "Second step",
 			state: ["current"],
-			tooltip: { content: "Overflow tooltip content.", trigger: "click", placement: "bottom" }
+			tooltip: {
+				description: "Overflow tooltip content.",
+				align: "bottom"
+			}
 		},
 		{
 			text: "Third step",
 			state: ["incomplete"],
 			tooltip: {
-				content: `Test`,
-				trigger: "click",
-				placement: "bottom"
+				description: "Test",
+				align: "bottom"
 			}
 		},
 		{
@@ -56,13 +59,14 @@ describe("ProgressIndicator", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			declarations: [
 				ProgressIndicator,
 				ProgressIndicatorTest
 			],
 			imports: [
 				CommonModule,
-				DialogModule,
+				TooltipModule,
 				ExperimentalModule,
 				IconModule
 			]
@@ -98,11 +102,10 @@ describe("ProgressIndicator", () => {
 		wrapper.current = 2;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let tooltipTrigger = element.nativeElement.querySelector(".cds--progress-step--current .cds--tooltip__trigger");
-		tooltipTrigger.click();
+		let tooltipTrigger = element.nativeElement.querySelector(".cds--progress-step--current");
+		tooltipTrigger.dispatchEvent(new MouseEvent("mouseenter"));
 		fixture.detectChanges();
-		expect(tooltipTrigger.getAttribute("aria-expanded")).toEqual("true");
-		expect(element.nativeElement.querySelector("ibm-tooltip").textContent).toContain("Test");
+		expect(tooltipTrigger.querySelector(".cds--popover-content").textContent).toContain("Test");
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
@@ -119,7 +122,7 @@ describe("ProgressIndicator", () => {
 		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
 	});
 
-	it("should handle current being set to 0 after the component is initialized",  () => {
+	it("should handle current being set to 0 after the component is initialized", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
