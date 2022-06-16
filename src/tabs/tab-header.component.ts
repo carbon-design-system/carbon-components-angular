@@ -2,6 +2,7 @@ import {
 	Directive,
 	Input,
 	ElementRef,
+	EventEmitter,
 	Output,
 	AfterViewInit,
 	HostBinding,
@@ -9,7 +10,6 @@ import {
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
-import { EventEmitter } from "@angular/core";
 
 @Directive({ selector: "[ibmTabHeader]" })
 export class TabHeader implements AfterViewInit {
