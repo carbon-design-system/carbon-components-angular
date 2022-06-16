@@ -1,60 +1,29 @@
 import {
-	Component,
+	Directive,
 	Input,
-	ViewChild,
 	ElementRef,
 	Output,
-	AfterViewInit
+	AfterViewInit,
+	HostBinding,
+	HostListener
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
 import { EventEmitter } from "@angular/core";
 
-@Component({
-	selector: "ibm-tab-header",
-	template: `
-		<button
-			#tabItem
-			role="tab"
-			[attr.aria-selected]="active"
-			[title]="title"
-			[attr.tabindex]="(active? 0 : -1)"
-			[attr.aria-disabled]="disabled"
-			[ngClass]="{
-				'cds--tabs__nav-item--selected': active,
-				'cds--tabs__nav-item--disabled': disabled
-			}"
-			class="cds--tabs__nav-item cds--tabs__nav-link"
-			type="button"
-			draggable="false"
-			(click)="selectTab()">
-			<ng-content></ng-content>
-		</button>
-	`,
-	styles: [`
-	:host {
-		display: inline-flex;
-		max-width: 10rem;
-		flex: 1 0 auto;
-	}
-`]
-})
-
+@Directive({ selector: "[ibmTabHeader]" })
 export class TabHeader implements AfterViewInit {
-	/**
-	 * Indicates whether the `Tab` is active/selected.
-	 * Determines whether it's `TabPanel` is rendered.
-	 */
-	@Input() active = false;
-	/**
-	 * Indicates whether or not the `Tab` item is disabled.
-	 */
-	@Input() disabled = false;
-	/**
-	 * Reference to the corresponsing tab pane.
-	 */
-	@Input() paneReference: Tab;
-	@Input() title;
+	@HostBinding("attr.tabIndex") get tabIndex() {
+		return this.active ? 0 : -1;
+	}
+
+	@HostBinding("class.cds--tabs__nav-item--selected") get isSelected() {
+		return this.active;
+	}
+
+	@HostBinding("class.cds--tabs__nav-item--disabled") get isDisabled() {
+		return this.disabled;
+	}
 	/**
 	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
 	 */
@@ -76,6 +45,27 @@ export class TabHeader implements AfterViewInit {
 	get cacheActive() {
 		return this._cacheActive;
 	}
+	/**
+	 * Indicates whether the `Tab` is active/selected.
+	 * Determines whether it's `TabPanel` is rendered.
+	 */
+	@Input() active = false;
+	/**
+	 * Indicates whether or not the `Tab` item is disabled.
+	 */
+	@Input() disabled = false;
+
+	@HostBinding("attr.type") type = "button";
+	@HostBinding("attr.aria-selected") ariaSelected = this.active;
+	@HostBinding("attr.aria-disabled") ariaDisabled = this.disabled;
+	@HostBinding("class.cds--tabs__nav-item") navItem = true;
+	@HostBinding("class.cds--tabs__nav-link") navLink = true;
+
+	/**
+	 * Reference to the corresponsing tab pane.
+	 */
+	@Input() paneReference: Tab;
+	@HostBinding("attr.title") @Input() title;
 
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
@@ -83,20 +73,26 @@ export class TabHeader implements AfterViewInit {
 
 	@Output() selected = new EventEmitter<any>();
 
-	// @ts-ignore
-	@ViewChild("tabItem", { static: true }) tabItem: ElementRef;
-
 	protected _cacheActive = false;
 
+	constructor(private host: ElementRef) {}
+
+	@HostListener("click")
+	onClick() {
+		this.selectTab();
+	}
+
 	ngAfterViewInit() {
-		this.paneReference.shouldRender();
+		if (this.paneReference) {
+			this.paneReference.shouldRender();
+		}
 		setTimeout(() => {
-			this.title = this.title ? this.title : this.tabItem.nativeElement.textContent;
+			this.title = this.title ? this.title : this.host.nativeElement.textContent;
 		});
 	}
 
 	selectTab() {
-		this.tabItem.nativeElement.focus();
+		this.focus();
 		if (!this.disabled) {
 			this.selected.emit();
 			this.active = true;
@@ -104,5 +100,9 @@ export class TabHeader implements AfterViewInit {
 				this.paneReference.active = true;
 			}
 		}
+	}
+
+	focus() {
+		this.host.nativeElement.focus();
 	}
 }
