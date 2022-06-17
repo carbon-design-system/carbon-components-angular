@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
-import { I18nModule } from "../i18n/index";
-import { UtilsModule } from "carbon-components-angular/utils";
+import { I18nModule } from "../i18n";
+import { UtilsModule } from "../utils";
 import { Tabs } from "./tabs.component";
 import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
