@@ -17,7 +17,7 @@ import {
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
 
-import { TabHeader } from "./tab-header.component";
+import { TabHeader } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
 
 @Component({

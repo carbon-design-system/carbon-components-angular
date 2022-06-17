@@ -8,18 +8,18 @@ import { BaseTabHeader } from "./base-tab-header.component";
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
-import { TabHeader } from "./tab-header.component";
+import { TabHeader } from "./tab-header.directive";
 import { TabHeaderGroup } from "./tab-header-group.component";
 
 @NgModule({
 	declarations: [
+		TabSkeleton,
 		BaseTabHeader,
 		Tabs,
 		Tab,
 		TabHeaders,
 		TabHeader,
-		TabHeaderGroup,
-		TabSkeleton
+		TabHeaderGroup
 	],
 	exports: [
 		Tabs,
