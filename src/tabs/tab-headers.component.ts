@@ -122,7 +122,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	// tslint:disable-next-line
 	@Input("tabs") tabInput: QueryList<Tab>;
 
-	@Input() translations = this.i18n.get().tabs;
+	@Input() translations = this.i18n.get().TABS;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
@@ -219,6 +219,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 
 	ngOnInit() {
 		this.eventService.on(window as any, "resize", () => this.handleScroll());
+		console.log(this.translations);
 	}
 
 	ngAfterContentInit() {
