@@ -8,7 +8,6 @@ import {
 	HostBinding
 } from "@angular/core";
 
-
 let nextId = 0;
 
 /**

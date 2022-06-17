@@ -16,7 +16,7 @@ import { EventService } from "carbon-components-angular/utils";
  */
 @Component({
 	selector: "ibm-base-tab-header",
-	template: ``
+	template: ""
 })
 export class BaseTabHeader {
 	/**
