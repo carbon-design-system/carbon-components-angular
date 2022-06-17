@@ -11,7 +11,6 @@ import {
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
-
 /**
  * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
@@ -52,7 +51,7 @@ import { TabHeaders } from "./tab-headers.component";
 				[cacheActive]="cacheActive"
 				[contentBefore]="before"
 				[contentAfter]="after"
-				[ariaLabel]="ariaLabel || 'List of tabs'"
+				[ariaLabel]="ariaLabel"
 				[ariaLabelledby]="ariaLabelledby"
 				[type]="type">
 			</ibm-tab-headers>

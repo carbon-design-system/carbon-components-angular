@@ -38,7 +38,7 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
-			[title]="translations.PREVIOUS">
+			[title]="translations.BUTTON_ARIA_RIGHT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -55,7 +55,7 @@ import { Tab } from "./tab.component";
 			#tabList
 			class="cds--tab--list"
 			role="tablist"
-			[attr.aria-label]="ariaLabel"
+			[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"
 			(scroll)="handleScroll()">
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
 			<button
@@ -98,7 +98,7 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
-			[title]="translations.NEXT">
+			[title]="translations.BUTTON_ARIA_RIGHT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -122,7 +122,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	// tslint:disable-next-line
 	@Input("tabs") tabInput: QueryList<Tab>;
 
-	@Input() translations = this.i18n.get().PAGINATION;
+	@Input() translations = this.i18n.get().tabs;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
