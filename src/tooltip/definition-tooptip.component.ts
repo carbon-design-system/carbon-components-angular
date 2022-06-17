@@ -4,7 +4,7 @@ import {
 	Input,
 	TemplateRef
 } from "@angular/core";
-import { PopoverContainer } from "../popover";
+import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
  * [See demo](../../?path=/story/components-tooltip-definition--basic)
