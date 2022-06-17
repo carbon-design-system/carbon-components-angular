@@ -85,10 +85,10 @@ storiesOf("Components|UI Shell", module)
 					</ibm-header-menu>
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action title="action">
+					<ibm-header-action description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
-					<ibm-header-action title="action">
+					<ibm-header-action description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
@@ -155,10 +155,10 @@ storiesOf("Components|UI Shell", module)
 					</ibm-header-menu>
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action title="action">
+					<ibm-header-action description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
-					<ibm-header-action title="action">
+					<ibm-header-action description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
@@ -211,7 +211,7 @@ storiesOf("Components|UI Shell", module)
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" size="16"></svg>
+					<svg ibmIcon="fade" icon size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -247,7 +247,7 @@ storiesOf("Components|UI Shell", module)
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" size="16"></svg>
+					<svg ibmIcon="fade" icon size="16"></svg>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
@@ -288,10 +288,10 @@ storiesOf("Components|UI Shell", module)
 					</ibm-header-menu>
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action #firstAction title="action">
+					<ibm-header-action #firstAction description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
-					<ibm-header-action [(active)]="secondAction" title="action">
+					<ibm-header-action [(active)]="secondAction" description="action">
 						<svg ibmIcon="fade" size="20"></svg>
 					</ibm-header-action>
 				</ibm-header-global>
@@ -355,7 +355,7 @@ storiesOf("Components|UI Shell", module)
 					Link
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" size="16"></svg>
+					<svg ibmIcon="fade" icon size="16"></svg>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
@@ -386,7 +386,7 @@ storiesOf("Components|UI Shell", module)
 				<ibm-header-navigation [navigationItems]="headerItems">
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action #firstAction title="action">
+					<ibm-header-action #firstAction description="action">
 						<svg
 							width="20"
 							height="20"
@@ -402,7 +402,7 @@ storiesOf("Components|UI Shell", module)
 								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 						</svg>
 					</ibm-header-action>
-					<ibm-header-action #secondAction title="action">
+					<ibm-header-action #secondAction description="action">
 						<svg
 							width="20"
 							height="20"

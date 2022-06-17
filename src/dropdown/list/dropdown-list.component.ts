@@ -181,10 +181,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
-	 *
-	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "xl" = "md";
+	public size: "sm" | "md" | "lg" = "md";
 	public listId = `listbox-${DropdownList.listCount++}`;
 	public highlightedItem = null;
 	/**
@@ -488,39 +486,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index = this.displayItems.indexOf(selected[0]);
 		} else if (this.hasNextElement()) {
 			this.getNextElement();
-		}
-	}
-
-	/**
-	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
-	 * @deprecated since v4
-	 */
-	doKeyDown(event: KeyboardEvent, item: ListItem) {
-		// "Spacebar", "Down", and "Up" are IE specific values
-		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-				if (this.listElementList.some(option => option.nativeElement === event.target)) {
-					event.preventDefault();
-				}
-				if (event.key === "Enter") {
-					this.doClick(event, item);
-				}
-		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
-			event.preventDefault();
-			if (event.key === "ArrowDown" || event.key === "Down") {
-				if (this.hasNextElement()) {
-					// this.getNextElement().focus();
-					this.getNextElement();
-				} else {
-					this.blurIntent.emit("bottom");
-				}
-			} else if (event.key === "ArrowUp" || event.key === "Up") {
-				if (this.hasPrevElement()) {
-					// this.getPrevElement().focus();
-					this.getPrevElement();
-				} else {
-					this.blurIntent.emit("top");
-				}
-			}
 		}
 	}
 

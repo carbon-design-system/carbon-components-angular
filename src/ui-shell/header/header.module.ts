@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
+import { ButtonModule } from "carbon-components-angular/button";
 import { I18nModule } from "carbon-components-angular/i18n";
 import { IconModule } from "carbon-components-angular/icon";
 
@@ -38,6 +39,7 @@ export {
 	],
 	imports: [
 		CommonModule,
+		ButtonModule,
 		I18nModule,
 		IconModule,
 		RouterModule

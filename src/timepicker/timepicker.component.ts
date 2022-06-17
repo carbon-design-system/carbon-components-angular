@@ -89,7 +89,7 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() skeleton = false;
 
 	/**
-	 * @deprecated
+	 * @deprecated since v5
 	 * Theme property binding will be deprecated in next major version
 	 * Use layers instead
 	 */

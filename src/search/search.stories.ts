@@ -29,7 +29,7 @@ storiesOf("Components|Search", module).addDecorator(
 			</ibm-search>
 		`,
 		props: {
-			size: select("size", ["sm", "md", "xl"], "md"),
+			size: select("size", ["sm", "md", "lg"], "md"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			autocomplete: text("autocomplete", "on"),
@@ -52,7 +52,7 @@ storiesOf("Components|Search", module).addDecorator(
 			</ibm-search>
 		`,
 		props: {
-			size: select("size", ["sm", "md", "xl"], "md"),
+			size: select("size", ["sm", "md", "lg"], "md"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			autocomplete: text("autocomplete", "on"),
@@ -60,13 +60,6 @@ storiesOf("Components|Search", module).addDecorator(
 			valueChange: action("value change fired!"),
 			clear: action("clear fired!")
 		}
-	}))
-	.add("Toolbar search", () => ({
-		template: `
-		<div class="cds--toolbar">
-			<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
-		</div>
-		`
 	}))
 	.add("Skeleton", () => ({
 		template: `

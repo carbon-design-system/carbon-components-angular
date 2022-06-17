@@ -39,7 +39,7 @@ import { ListColumn } from "./list-column.component";
 			<input
 				#input
 				tabindex="-1"
-				class="cds--structured-list-input"
+				class="cds--structured-list-input cds--visually-hidden"
 				type="radio"
 				[value]="value"
 				[name]="name"
@@ -53,6 +53,9 @@ import { ListColumn } from "./list-column.component";
 	`
 })
 export class ListRow implements AfterContentInit {
+	@HostBinding("class.cds--structured-list-row--focused-within") get focusClass() {
+		return this.isFocused;
+	}
 	@Input() @HostBinding("class.cds--structured-list-row--selected") selected = false;
 	/**
 	 * Applies an accessible label to the row. Defaults to no label.
@@ -78,11 +81,14 @@ export class ListRow implements AfterContentInit {
 
 	@HostBinding("class.cds--structured-list-row") wrapper = true;
 	@HostBinding("attr.tabindex") tabindex = this.selection ? "0" : null;
+	@HostBinding("attr.role") role = "row";
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	// @ts-ignore
 	@ViewChild("input", { static: false }) input: ElementRef;
+
+	private isFocused = false;
 
 	ngAfterContentInit() {
 		this.columns.forEach(column => {
@@ -96,6 +102,16 @@ export class ListRow implements AfterContentInit {
 		if (this.selection) {
 			this.input.nativeElement.click();
 		}
+	}
+
+	@HostListener("focus")
+	onfocus() {
+		this.isFocused = true;
+	}
+
+	@HostListener("blur")
+	onblur() {
+		this.isFocused = false;
 	}
 
 	onChange(event) {

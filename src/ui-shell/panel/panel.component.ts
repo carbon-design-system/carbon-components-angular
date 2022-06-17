@@ -8,10 +8,10 @@ import { Component, Input } from "@angular/core";
 	selector: "ibm-panel",
 	template: `
 		<div
-			class="cds--panel--overlay"
+			class="cds--header-panel"
 			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
-				'cds--panel--expanded': expanded
+				'cds--header-panel--expanded': expanded
 			}">
 			<ng-content></ng-content>
 		</div>
