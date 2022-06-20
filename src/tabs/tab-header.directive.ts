@@ -83,9 +83,6 @@ export class TabHeader implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		if (this.paneReference) {
-			this.paneReference.shouldRender();
-		}
 		setTimeout(() => {
 			this.title = this.title ? this.title : this.host.nativeElement.textContent;
 		});
