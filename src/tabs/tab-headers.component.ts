@@ -219,7 +219,6 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 
 	ngOnInit() {
 		this.eventService.on(window as any, "resize", () => this.handleScroll());
-		console.log(this.translations);
 	}
 
 	ngAfterContentInit() {
