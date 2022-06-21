@@ -39,6 +39,7 @@ import Fade16 from "@carbon/icons/es/fade/16";
 import Fade20 from "@carbon/icons/es/fade/20";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
+import InformationSquareFilled20 from "@carbon/icons/es/information--square--filled/20";
 import Menu16 from "@carbon/icons/es/menu/16";
 import Menu20 from "@carbon/icons/es/menu/20";
 import OverflowMenuVertical16 from "@carbon/icons/es/overflow-menu--vertical/16";
@@ -53,6 +54,7 @@ import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
+import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -115,6 +117,7 @@ export class IconModule {
 			Fade20,
 			InformationFilled16,
 			InformationFilled20,
+			InformationSquareFilled20,
 			Menu16,
 			Menu20,
 			OverflowMenuVertical16,
@@ -128,7 +131,8 @@ export class IconModule {
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,
-			WarningAltFilled16
+			WarningAltFilled16,
+			WarningAltFilled20
 		]);
 	}
 }
