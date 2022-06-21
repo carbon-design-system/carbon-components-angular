@@ -1,6 +1,5 @@
 import {
 	ApplicationRef,
-	ComponentFactory,
 	ComponentFactoryResolver,
 	ComponentRef,
 	EventEmitter,
@@ -10,9 +9,10 @@ import {
 	NgZone
 } from "@angular/core";
 
-import { NotificationContent, ToastContent } from "./notification-content.interface";
+import { NotificationContent, ToastContent, ActionableContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
 import { Toast } from "./toast.component";
+import { ActionableNotification } from "./actionable-notification.component";
 
 /**
  * Provides a way to use the notification component.
@@ -73,7 +73,10 @@ export class NotificationService implements OnDestroy {
 	 *
 	 * @param [notificationComp=Notification] If provided, used to resolve component factory
 	 */
-	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp = Notification) {
+	showNotification(
+		notificationObj: NotificationContent | ToastContent | ActionableContent,
+		notificationComp = Notification
+	) {
 		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(notificationComp);
 
 		let notificationRef = componentFactory.create(this.injector);
@@ -138,6 +141,10 @@ export class NotificationService implements OnDestroy {
 		return this.showNotification(notificationObj, notificationComp as any);
 	}
 
+	showActionable(notificationObj: ActionableContent, notificationComp = ActionableNotification) {
+		return this.showNotification(notificationObj, notificationComp as any);
+	}
+
 	/**
 	 * Programatically closes notification based on `notificationRef`.
 	 *
@@ -177,6 +184,7 @@ export class NotificationService implements OnDestroy {
 		// message type
 		switch (notificationObj.type) {
 			case "info":
+			case "info-square":
 			case "success":
 			default: {
 				break;
@@ -185,7 +193,8 @@ export class NotificationService implements OnDestroy {
 				timeout += 3000;
 				break;
 			}
-			case "warning": {
+			case "warning":
+			case "warning-alt": {
 				timeout += 1500;
 				break;
 			}
