@@ -153,7 +153,8 @@ export default {
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
-		"BUTTON_ARIA_RIGHT": "Go to the next tab"
+		"BUTTON_ARIA_RIGHT": "Go to the next tab",
+		"HEADER_ARIA_LABEL": "List of tabs"
 	},
 	"TILES": {
 		"TILE": "tile",

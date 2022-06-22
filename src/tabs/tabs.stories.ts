@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { TabsModule } from "../";
+import { TabsModule } from "./";
 import { Component, Input } from "@angular/core";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
@@ -13,18 +13,21 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 			[followFocus]="followFocus"
 			[cacheActive]="cacheActive"
 			[isNavigation]="isNavigation">
-			<ibm-tab-header [paneReference]="content1">
+			<button ibmTabHeader [paneReference]="content1">
 				Content 1
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content2">
+			</button>
+			<button ibmTabHeader [paneReference]="content2">
 				Content 2
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content3" disabled="true">
+			</button>
+			<button ibmTabHeader [paneReference]="content3" disabled="true">
 				Content 3
-			</ibm-tab-header>
-			<ibm-tab-header [paneReference]="content4">
+			</button>
+			<button ibmTabHeader [paneReference]="content4">
 				Content 4
-			</ibm-tab-header>
+			</button>
+			<button ibmTabHeader [paneReference]="content5">
+				Content 5
+			</button>
 		</ibm-tab-header-group>
 
 		<ibm-tab #content1>
@@ -39,13 +42,17 @@ import { DocumentationModule } from "../documentation-component/documentation.mo
 		<ibm-tab #content4>
 			Tab Content 4
 		</ibm-tab>
+		<ibm-tab #content5>
+			Tab Content 5
+		</ibm-tab>
 	`
 })
 class TabStory {
+	@Input() skeleton = false;
 	@Input() followFocus = true;
 	@Input() cacheActive = false;
 	@Input() isNavigation = true;
-	@Input() type = "default";
+	@Input() type = "line";
 }
 
 storiesOf("Components|Tabs", module)
@@ -65,7 +72,7 @@ storiesOf("Components|Tabs", module)
 				<ibm-tab heading="one">Tab Content 1</ibm-tab>
 				<ibm-tab heading="two">Tab Content 2</ibm-tab>
 				<ibm-tab heading="three">Tab Content 3</ibm-tab>
-				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -74,13 +81,14 @@ storiesOf("Components|Tabs", module)
 			cacheActive: boolean("Cache active", true)
 		}
 	}))
-	.add("Container", () => ({
+	.add("Contained", () => ({
 		template: `
-			<ibm-tabs type="container" [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
-				<ibm-tab heading="one">Tab Content 1</ibm-tab>
-				<ibm-tab heading="two">Tab Content 2</ibm-tab>
-				<ibm-tab heading="three">Tab Content 3</ibm-tab>
-				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
+			<ibm-tabs type="contained" [followFocus]="followFocus" [isNavigation]="isNavigation" [cacheActive]="cacheActive">
+				<ibm-tab heading="Content one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="Content two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="Content three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="Content four" disabled="true">Tab Content 4</ibm-tab>
+				<ibm-tab heading="Content five" disabled="true">Tab Content 5</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -124,7 +132,7 @@ storiesOf("Components|Tabs", module)
 				{ name: "two" },
 				{ name: "three" }
 			],
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("Width before and after content", () => ({
@@ -152,7 +160,7 @@ storiesOf("Components|Tabs", module)
 		props: {
 			followFocus: boolean("followFocus", true),
 			isNavigation: boolean("isNavigation", false),
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("With TabHeaderGroup", () => ({
@@ -168,7 +176,7 @@ storiesOf("Components|Tabs", module)
 			followFocus: boolean("followFocus", true),
 			cacheActive: boolean("Cache active", true),
 			isNavigation: boolean("isNavigation", true),
-			type: select("type", ["default", "container"], "default")
+			type: select("type", ["line", "contained"], "line")
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -177,6 +185,11 @@ storiesOf("Components|Tabs", module)
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+
+			<div style="margin-top: 5rem">
+				<p>Tab skeleton component for ibm-tab-header-group:</p>
+				<ibm-tabs-skeleton></ibm-tabs-skeleton>
+			</div>
 		`
 	}))
 	.add("Documentation", () => ({

@@ -4,11 +4,9 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ContentChild,
 	TemplateRef,
 	HostBinding
 } from "@angular/core";
-
 
 let nextId = 0;
 

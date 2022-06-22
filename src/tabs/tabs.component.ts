@@ -11,7 +11,6 @@ import {
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
-
 /**
  * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
@@ -40,9 +39,13 @@ import { TabHeaders } from "./tab-headers.component";
 @Component({
 	selector: "ibm-tabs",
 	template: `
+		<ng-container *ngIf="skeleton">
+			<ibm-tabs-skeleton></ibm-tabs-skeleton>
+		</ng-container>
+		<ng-container *ngIf="!skeleton">
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
-				[skeleton]="skeleton"
+				[theme]="theme"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
 				[cacheActive]="cacheActive"
@@ -61,11 +64,11 @@ import { TabHeaders } from "./tab-headers.component";
 			</ng-template>
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
-				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive"
 				[type]="type">
 			</ibm-tab-headers>
+		</ng-container>
 	`
 })
 export class Tabs implements AfterContentInit, OnChanges {
@@ -83,10 +86,6 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 */
 	@Input() followFocus = true;
 	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
-	/**
 	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
 	 */
 	@Input() isNavigation = false;
@@ -102,6 +101,14 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 * Sets the type of the `TabHeader`s
 	 */
 	@Input() type: "default" | "container" = "default";
+	/**
+	 * Sets the theme of `TabHeader`s
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * Set state of tabs to skeleton
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
@@ -110,8 +117,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Content child of the projected header component
 	 */
-	// @ts-ignore
-	@ContentChild(TabHeaders, { static: false }) tabHeaders;
+	@ContentChild(TabHeaders) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial
