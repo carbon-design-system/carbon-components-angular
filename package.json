@@ -120,7 +120,7 @@
     "ng-packagr": "4.7.1",
     "node-sass": "7.0.0",
     "rxjs": "6.4.0",
-    "sass": "^1.26.10",
+    "sass": "1.26.10",
     "sass-loader": "10.1.1",
     "semantic-release": "17.2.3",
     "ts-helpers": "1.1.2",
@@ -128,7 +128,7 @@
     "tslib": "1.9.3",
     "tslint": "5.15.0",
     "typedoc": "0.14.2",
-    "typedoc-plugin-external-module-name": "^4.0.3",
+    "typedoc-plugin-external-module-name": "4.0.3",
     "typescript": "3.2.4",
     "whatwg-fetch": "3.0.0",
     "zone.js": "0.8.26"
