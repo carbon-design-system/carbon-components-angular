@@ -138,6 +138,7 @@ import { Observable } from "rxjs";
 					<button
 						type="button"
 						role="button"
+						tabindex="-1"
 						class="bx--list-box__menu-icon"
 						[title]="open ? closeMenuAria : openMenuAria"
 						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
