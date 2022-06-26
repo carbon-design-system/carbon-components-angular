@@ -64,11 +64,11 @@ export class IconButton extends BaseIconButton {
 	@Input() set buttonAttributes(obj: { [key: string]: string }) {
 		// Remove old attributes
 		Object.keys(this.attributeList).forEach((key: string) => {
-			this.renderer.removeAttribute(this.btn.nativeElement, key);
+			this.renderer.removeAttribute(this.button.nativeElement, key);
 		});
 		// Set new attributes
 		Object.keys(obj).forEach((key: string) => {
-			this.renderer.setAttribute(this.btn.nativeElement, key, obj[key]);
+			this.renderer.setAttribute(this.button.nativeElement, key, obj[key]);
 		});
 		// Set new attributes
 		this.attributeList = obj;
@@ -80,7 +80,7 @@ export class IconButton extends BaseIconButton {
 
 	static iconButtonCounter = 0;
 
-	@ViewChild("button") btn: ElementRef;
+	@ViewChild("button") button: ElementRef;
 
 	/**
 	 * Override id
