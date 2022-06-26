@@ -400,16 +400,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/** emits the search string from the input */
 	@Output() search = new EventEmitter<string>();
 	/** ContentChild reference to the instantiated dropdown list */
-	// @ts-ignore
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
-	// @ts-ignore
 	@ViewChild("dropdownMenu") dropdownMenu;
-	// @ts-ignore
 	@ViewChild("input", { static: true }) input: ElementRef;
-	// @ts-ignore
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
+
 	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
-	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;

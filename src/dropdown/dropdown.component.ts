@@ -291,17 +291,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Maintains a reference to the `AbstractDropdownView` object within the content DOM.
 	 */
-	// @ts-ignore
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	/**
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 */
-	// @ts-ignore
 	@ViewChild("dropdownButton", { static: true }) dropdownButton;
 	/**
 	 * ViewChid of the dropdown view.
 	 */
-	// @ts-ignore
 	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;

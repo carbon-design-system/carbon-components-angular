@@ -214,10 +214,7 @@ export class DatePicker implements
 		});
 	}
 
-	// @ts-ignore
 	@ViewChild("input", { static: true }) input: DatePickerInput;
-
-	// @ts-ignore
 	@ViewChild("rangeInput") rangeInput: DatePickerInput;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
@@ -325,7 +322,7 @@ export class DatePicker implements
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
-			/// @ts-ignore ts is unhappy with the below call to `flatpickr`
+			// @ts-ignore ts is unhappy with the below call to `flatpickr`
 			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {

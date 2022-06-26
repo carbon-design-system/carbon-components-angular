@@ -57,7 +57,6 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	hasChildren = false;
 	selectable = false;
 
-	// @ts-ignore
 	@ContentChild(ContextMenuComponent, { static: true }) childContextMenu: ContextMenuComponent;
 	private subscriptions = new Subscription();
 

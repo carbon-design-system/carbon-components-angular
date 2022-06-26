@@ -201,11 +201,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 	styles: any = {};
 
-	// @ts-ignore
 	@ViewChild("code") code;
-	// @ts-ignore
 	@ViewChild("codeContent") codeContent;
-	// @ts-ignore
 	@ViewChild("codeContainer") codeContainer;
 
 	showFeedback = false;

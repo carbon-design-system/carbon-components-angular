@@ -98,7 +98,6 @@ export class OverflowMenu {
 	 */
 	@Input() triggerClass = "";
 
-	// @ts-ignore
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}

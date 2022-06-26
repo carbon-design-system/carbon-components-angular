@@ -145,7 +145,6 @@ export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
-	// @ts-ignore
 	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**

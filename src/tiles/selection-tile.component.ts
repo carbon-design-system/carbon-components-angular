@@ -82,7 +82,6 @@ export class SelectionTile implements AfterViewInit {
 	multiple = true;	// Set to true because of the way tile group sets it up.
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
-	// @ts-ignore
 	@ViewChild("input", { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save

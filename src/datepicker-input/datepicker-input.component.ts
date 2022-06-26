@@ -138,7 +138,6 @@ export class DatePickerInput {
 
 	@Input() size: "sm" | "md" | "lg" = "md";
 
-	// @ts-ignore
 	@ViewChild("input") input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) {}

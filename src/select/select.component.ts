@@ -191,7 +191,6 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	@Output() valueChange = new EventEmitter();
 
-	// @ts-ignore
 	@ViewChild("select") select: ElementRef;
 
 	@Input() set value(v) {

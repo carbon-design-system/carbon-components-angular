@@ -59,11 +59,9 @@ export class ExpansionTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	// @ts-ignore
-	@ViewChild("customHeaderTemplate", { static: false })
+	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
-	// @ts-ignore
-	@ViewChild("customTableItemTemplate", { static: false })
+	@ViewChild("customTableItemTemplate")
 	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

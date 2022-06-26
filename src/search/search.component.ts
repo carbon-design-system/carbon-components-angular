@@ -125,7 +125,6 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() search = new EventEmitter<string>();
 
-	// @ts-ignore
 	@ViewChild("input") inputRef: ElementRef;
 
 	/**

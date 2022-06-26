@@ -42,7 +42,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the `Dialog`.
 	 */
-	// @ts-ignore
 	@ViewChild("dialog") dialog: ElementRef;
 
 	/**

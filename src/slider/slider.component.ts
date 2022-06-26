@@ -267,11 +267,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	@Output() valueChange: EventEmitter<number | number[]> = new EventEmitter();
 	@HostBinding("class.cds--form-item") hostClass = true;
 	@ViewChildren("thumbs") thumbs: QueryList<ElementRef>;
-	// @ts-ignore
+
 	@ViewChild("track") track: ElementRef;
-	// @ts-ignore
 	@ViewChild("filledTrack") filledTrack: ElementRef;
-	// @ts-ignore
 	@ViewChild("range") range: ElementRef;
 
 	public labelId = `${this.id}-label`;
