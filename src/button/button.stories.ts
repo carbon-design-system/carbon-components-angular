@@ -49,10 +49,10 @@ storiesOf("Components|Button", module)
 				[kind]="kind"
 				[size]="size"
 				[align]="align"
-				[btnNgClass]="{
+				[buttonNgClass]="{
 					'example-global-class': true
 				}"
-				[btnAttributes]="{
+				[buttonAttributes]="{
 					'aria-label': 'Example button aria-label'
 				}"
 				[disabled]="disabled"
