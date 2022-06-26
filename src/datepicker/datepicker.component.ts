@@ -523,6 +523,7 @@ export class DatePicker implements
 				dates = newDates.currentValue;
 			}
 			// only reset the flatpickr instance on Input changes
+			// @ts-ignore ts is unhappy with the below call to `flatpickr`
 			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			this.setDateValues(dates);
 		}
