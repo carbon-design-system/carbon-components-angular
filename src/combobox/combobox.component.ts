@@ -403,7 +403,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	// @ts-ignore
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	// @ts-ignore
-	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
+	@ViewChild("dropdownMenu") dropdownMenu;
 	// @ts-ignore
 	@ViewChild("input", { static: true }) input: ElementRef;
 	// @ts-ignore

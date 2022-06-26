@@ -86,7 +86,7 @@ export class ListRow implements AfterContentInit {
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	// @ts-ignore
-	@ViewChild("input", { static: false }) input: ElementRef;
+	@ViewChild("input") input: ElementRef;
 
 	private isFocused = false;
 

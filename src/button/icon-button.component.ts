@@ -80,7 +80,7 @@ export class IconButton extends BaseIconButton {
 
 	static iconButtonCounter = 0;
 
-	@ViewChild("button", { static: false }) button: ElementRef;
+	@ViewChild("button") button: ElementRef;
 
 	/**
 	 * Override id

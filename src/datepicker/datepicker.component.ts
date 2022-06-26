@@ -218,7 +218,7 @@ export class DatePicker implements
 	@ViewChild("input", { static: true }) input: DatePickerInput;
 
 	// @ts-ignore
-	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
+	@ViewChild("rangeInput") rangeInput: DatePickerInput;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 

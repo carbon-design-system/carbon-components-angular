@@ -268,11 +268,11 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	@HostBinding("class.cds--form-item") hostClass = true;
 	@ViewChildren("thumbs") thumbs: QueryList<ElementRef>;
 	// @ts-ignore
-	@ViewChild("track", { static: false }) track: ElementRef;
+	@ViewChild("track") track: ElementRef;
 	// @ts-ignore
-	@ViewChild("filledTrack", { static: false }) filledTrack: ElementRef;
+	@ViewChild("filledTrack") filledTrack: ElementRef;
 	// @ts-ignore
-	@ViewChild("range", { static: false }) range: ElementRef;
+	@ViewChild("range") range: ElementRef;
 
 	public labelId = `${this.id}-label`;
 	public bottomRangeId = `${this.id}-bottom-range`;

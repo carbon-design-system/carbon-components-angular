@@ -202,11 +202,11 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	styles: any = {};
 
 	// @ts-ignore
-	@ViewChild("code", { static: false }) code;
+	@ViewChild("code") code;
 	// @ts-ignore
-	@ViewChild("codeContent", { static: false }) codeContent;
+	@ViewChild("codeContent") codeContent;
 	// @ts-ignore
-	@ViewChild("codeContainer", { static: false }) codeContainer;
+	@ViewChild("codeContainer") codeContainer;
 
 	showFeedback = false;
 	animating = false;

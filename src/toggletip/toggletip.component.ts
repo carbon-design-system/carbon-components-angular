@@ -29,7 +29,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	@HostBinding("class.cds--toggletip") toggletipClass = true;
 	@HostBinding("class.cds--toggletip--open") @Input() isOpen = false;
 
-	@ContentChild(ToggletipButton, { read: ElementRef, static: false }) btn!: ElementRef;
+	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
 	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
 		super();
