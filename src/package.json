@@ -20,6 +20,7 @@
     "@carbon/icons": "11.0.2",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
-    "flatpickr": "4.6.1"
+    "flatpickr": "4.6.1",
+    "tslib": "^2.0.0"
   }
 }
