@@ -13,7 +13,7 @@
 		],
 		"sourceMap": true,
 		"inlineSources": true,
-		"module": "esnext",
+		"module": "es2020",
 		"moduleResolution": "node",
 		"outDir": "./dist-pkg",
 		"rootDir": ".",
