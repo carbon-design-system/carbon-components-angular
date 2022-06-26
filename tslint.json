@@ -9,7 +9,10 @@
 			"check-space"
 		],
 		"curly": true,
-		"eofline": true,
+    "eofline": true,
+    "deprecation": {
+      "severity": "warning"
+    },
 		"forin": true,
 		"import-spacing": true,
 		"indent": [
