@@ -94,10 +94,10 @@
     "@storybook/angular": "5.3.19",
     "@storybook/theming": "5.3.19",
     "@types/jasmine": "2.8.2",
-    "@types/node": "11.13.0",
+    "@types/node": "^12.11.1",
     "babel-loader": "8.0.5",
     "chai": "4.2.0",
-    "codelyzer": "^5.0.1",
+    "codelyzer": "^5.1.2",
     "commitizen": "4.2.4",
     "core-js": "2.6.11",
     "cz-conventional-changelog-components": "1.0.0",
@@ -117,26 +117,25 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "1.4.2",
     "lodash-es": "4.17.21",
-    "ng-packagr": "^9.1.5",
+    "ng-packagr": "^9.0.0",
     "rxjs": "6.6.7",
     "sass": "1.49.9",
     "sass-loader": "10.1.1",
     "semantic-release": "17.2.3",
     "ts-helpers": "1.1.2",
-    "tsickle": "^0.38.1",
-    "tslib": "1.14.1",
     "tslint": "5.15.0",
     "typedoc": "0.14.2",
     "typedoc-plugin-external-module-name": "^4.0.3",
     "typescript": "3.8.3",
     "whatwg-fetch": "3.0.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.2"
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.30.0",
     "@carbon/icons": "11.4.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
-    "flatpickr": "4.6.13"
+    "flatpickr": "4.6.13",
+    "tslib": "^1.10.0"
   }
 }
