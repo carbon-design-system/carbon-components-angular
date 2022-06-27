@@ -83,7 +83,6 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		const listItems = this.listItems();
 
 		switch (event.key) {
-			case "Down": // IE specific value
 			case "ArrowDown":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, listItems))  {
@@ -94,7 +93,6 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				}
 				break;
 
-			case "Up": // IE specific value
 			case "ArrowUp":
 				event.preventDefault();
 				if (!isFocusInFirstItem(event, listItems))  {
@@ -115,7 +113,6 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				listItems[listItems.length - 1].focus();
 				break;
 
-			case "Esc": // IE specific value
 			case "Escape":
 			case "Tab":
 				event.stopImmediatePropagation();

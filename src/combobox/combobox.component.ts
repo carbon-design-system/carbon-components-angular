@@ -568,7 +568,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
+		} else if ((ev.key === "ArrowDown")
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
@@ -786,11 +786,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		// "Esc" is an IE specific value
-		if ((event.key === "Escape" || event.key === "Esc") && this.open) {
+		if ((event.key === "Escape") && this.open) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (event.key === "Escape" || event.key === "Esc") {
+		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeDropdown();
 			this.input.nativeElement.focus();

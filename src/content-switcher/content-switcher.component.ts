@@ -81,7 +81,6 @@ export class ContentSwitcher implements AfterViewInit {
 		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[ibmContentOption]"));
 
 		switch (event.key) {
-			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, buttonList))  {
@@ -92,7 +91,6 @@ export class ContentSwitcher implements AfterViewInit {
 				}
 				break;
 
-			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
 				if (!isFocusInFirstItem(event, buttonList))  {

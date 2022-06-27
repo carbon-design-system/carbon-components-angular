@@ -492,23 +492,22 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
 	 */
 	navigateList(event: KeyboardEvent) {
-		// "Spacebar", "Down", and "Up" are IE specific values
-		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+		if (event.key === "Enter" || event.key === " ") {
 			if (this.listElementList.some(option => option.nativeElement === event.target)) {
 				event.preventDefault();
 			}
 			if (event.key === "Enter") {
 				this.doClick(event, this.getCurrentItem());
 			}
-		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
 			event.preventDefault();
-			if (event.key === "ArrowDown" || event.key === "Down") {
+			if (event.key === "ArrowDown") {
 				if (this.hasNextElement()) {
 					this.getNextElement();
 				} else {
 					this.blurIntent.emit("bottom");
 				}
-			} else if (event.key === "ArrowUp" || event.key === "Up") {
+			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
 					this.getPrevElement();
 				} else {
