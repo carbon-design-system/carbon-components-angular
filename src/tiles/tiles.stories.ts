@@ -41,7 +41,7 @@ storiesOf("Components|Tiles", module)
 						component: FooComponent
 					}
 				], {
-					initialNavigation: false,
+					initialNavigation: "enabledNonBlocking",
 					useHash: true
 				})
 			],

@@ -63,7 +63,7 @@ storiesOf("Components|UI Shell", module)
 						component: FooComponent
 					}
 				], {
-					initialNavigation: false,
+					initialNavigation: "disabled",
 					useHash: true
 				})
 			]
