@@ -264,10 +264,6 @@ storiesOf("Components|Modal", module)
 				ButtonModule,
 				DocumentationModule,
 				InputModule
-			],
-			entryComponents: [
-				SampleModal,
-				InputModal
 			]
 		})
 	)

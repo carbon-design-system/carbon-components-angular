@@ -44,12 +44,6 @@ import { IconModule } from "carbon-components-angular/icon";
 		ModalHeaderLabel,
 		BaseModal
 	],
-	entryComponents: [
-		AlertModal,
-		Modal,
-		ModalFooter,
-		ModalHeader
-	],
 	providers: [ ModalService ],
 	imports: [
 		CommonModule,

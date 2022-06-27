@@ -42,7 +42,6 @@ describe("ClickableTile", () => {
 	template: `
 	<ibm-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
 		Test Clickable Tile
-	</ibm-clickable-tile>`,
-	entryComponents: [ClickableTile]
+	</ibm-clickable-tile>`
 })
 class ClickableTileTest {}

@@ -29,8 +29,7 @@ import { OverflowMenu } from "carbon-components-angular/dialog";
 		<ibm-breadcrumb-item href="#">
 			Breadcrumb 5
 		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+	</ibm-breadcrumb>`
 })
 class TestBreadcrumb {
 	noTrailingSlash = true;
@@ -43,8 +42,7 @@ class TestBreadcrumb {
 		[noTrailingSlash]="noTrailingSlash"
 		[threshold]="threshold"
 		[items]="items">
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+	</ibm-breadcrumb>`
 })
 class TestBreadcrumbModel {
 	noTrailingSlash = true;

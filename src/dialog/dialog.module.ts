@@ -38,11 +38,6 @@ import { IconModule } from "carbon-components-angular/icon";
 		OverflowMenuOption
 	],
 	providers: [ DialogService ],
-	entryComponents: [
-		Dialog,
-		OverflowMenuPane,
-		OverflowMenuCustomPane
-	],
 	imports: [
 		CommonModule,
 		I18nModule,
