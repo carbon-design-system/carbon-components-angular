@@ -9,10 +9,10 @@
 			"check-space"
 		],
 		"curly": true,
-    "eofline": true,
-    "deprecation": {
-      "severity": "warning"
-    },
+		"eofline": true,
+		"deprecation": {
+			"severity": "warning"
+		},
 		"forin": true,
 		"import-spacing": true,
 		"indent": [
@@ -28,22 +28,22 @@
 		"member-ordering": [
 			true,
 			{
-			"order": [
-				"public-static-field",
-				"protected-static-field",
-				"private-static-field",
-				"public-static-method",
-				"protected-static-method",
-				"private-static-method",
-				"public-instance-field",
-				"protected-instance-field",
-				"private-instance-field",
-				"public-constructor",
-				"protected-constructor",
-				"private-constructor",
-				"public-instance-method",
-				"protected-instance-method",
-				"private-instance-method"
+				"order": [
+					"public-static-field",
+					"protected-static-field",
+					"private-static-field",
+					"public-static-method",
+					"protected-static-method",
+					"private-static-method",
+					"public-instance-field",
+					"protected-instance-field",
+					"private-instance-field",
+					"public-constructor",
+					"protected-constructor",
+					"private-constructor",
+					"public-instance-method",
+					"protected-instance-method",
+					"private-instance-method"
 				]
 			}
 		],
@@ -67,7 +67,7 @@
 		"no-string-literal": false,
 		"no-switch-case-fall-through": true,
 		"no-trailing-whitespace": true,
-    "no-unused-expression": true,
+		"no-unused-expression": true,
 		"no-var-keyword": true,
 		"object-literal-sort-keys": false,
 		"one-line": [
@@ -125,9 +125,26 @@
 			"check-type",
 			"check-preblock"
 		],
-		"directive-selector": [true, "attribute", ["ibm", "app", "test"], "camelCase"],
-		"component-selector": [true, "element", ["ibm", "app", "test"], "kebab-case"],
-
+		"directive-selector": [
+			true,
+			"attribute",
+			[
+				"ibm",
+				"app",
+				"test"
+			],
+			"camelCase"
+		],
+		"component-selector": [
+			true,
+			"element",
+			[
+				"ibm",
+				"app",
+				"test"
+			],
+			"kebab-case"
+		],
 		"no-inputs-metadata-property": true,
 		"no-outputs-metadata-property": true,
 		"no-host-metadata-property": true,
