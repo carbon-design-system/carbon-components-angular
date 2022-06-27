@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { Component, Input, DebugElement } from "@angular/core";
+import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
 import { Link } from "./link.directive";
@@ -35,8 +35,8 @@ describe("Link", () => {
 		expect(component).toBeTruthy();
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
 		expect(directiveEl).not.toBeNull();
-		expect(directiveEl.attributes["aria-disabled"]).toBe(null);
-		expect(directiveEl.attributes["tabindex"]).toBe(null);
+		expect(directiveEl.attributes["aria-disabled"]).toBeUndefined();
+		expect(directiveEl.attributes["tabindex"]).toBeUndefined();
 		expect(directiveEl.attributes["href"]).toBe("https://angular.carbondesignsystem.com/");
 	});
 
