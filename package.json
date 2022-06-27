@@ -11,7 +11,7 @@
     "lint:fix": "tslint --fix 'src/**/*.ts'",
     "test": "ng test --no-watch",
     "test:watch": "ng test --watch",
-    "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
+    "build-storybook": "ng run carbon-components-angular:build-storybook",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
     "ng": "ng",

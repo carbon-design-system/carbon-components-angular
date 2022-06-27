@@ -51,6 +51,18 @@
 						],
 						"compodoc": false
 					}
+				},
+				"build-storybook": {
+					"builder": "@storybook/angular:build-storybook",
+					"options": {
+						"browserTarget": "carbon-components-angular:build",
+						"styles": [
+							"./.storybook/preview.scss"
+						],
+						"compodoc": false,
+						"configDir": ".storybook",
+						"outputDir": "dist/docs/storybook"
+					}
 				}
 			}
 		},
