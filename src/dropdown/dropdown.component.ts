@@ -372,7 +372,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		const isUpdate = event => event && event.isUpdate;
 
 		this.view.select.subscribe(event => {
-			if (this.type === "single" && !isUpdate(event)) {
+			if (this.type === "single" && !isUpdate(event) && !Array.isArray(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {

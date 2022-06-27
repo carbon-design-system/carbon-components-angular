@@ -404,7 +404,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("dropdownMenu") dropdownMenu;
 	@ViewChild("input", { static: true }) input: ElementRef;
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
-
 	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
 	@HostBinding("style.display") display = "block";
 
@@ -474,7 +473,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			const isUpdate = event => event && event.isUpdate;
 
 			this.view.select.subscribe(event => {
-				if (this.type === "multi") {
+				if (Array.isArray(event)) {
 					this.updatePills();
 					if (!isUpdate(event)) {
 						if (this.itemValueKey && this.view.getSelected()) {
@@ -486,6 +485,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						}
 					}
 				} else {
+					// If type is single, dropdown list will emit an object
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
 						this.selectedValue = event.item.content;
@@ -512,8 +512,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					}
 					this.closeDropdown();
 				}
-				if (!isUpdate(event)) {
-					this.selected.emit(event);
+				if (!isUpdate(event) && !Array.isArray(event)) {
+					this.selected.emit(event.item);
 				}
 			});
 			// update the rest of combobox with any pre-selected items
