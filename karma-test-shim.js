@@ -2,7 +2,7 @@ Error.stackTraceLimit = Infinity;
 
 require('core-js');
 
-require('zone.js/dist/zone');
+require('zone.js');
 require('zone.js/dist/long-stack-trace-zone');
 require('zone.js/dist/proxy');
 require('zone.js/dist/sync-test');
