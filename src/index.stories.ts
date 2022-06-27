@@ -1,4 +1,7 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
+/* tslint:disable variable-name */
+
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./button";
@@ -151,7 +154,7 @@ import { IconModule } from "./icon/icon.module";
 		}
 		@media screen and (min-width: 1515px) {
 			.banner__title {
-			   font-size: 50px;
+				font-size: 50px;
 			}
 			.banner__subtitle {
 				font-size: 28px;
@@ -168,19 +171,19 @@ class WelcomeStory implements OnInit, OnDestroy {
 	}
 }
 
+// Story starts here
+export default {
+	title: "Welcome",
+	decorators: [
+		moduleMetadata({
+			imports: [ButtonModule, IconModule],
+			declarations: [WelcomeStory]
+		})
+	]
+} as Meta;
 
-storiesOf("Components|Welcome", module)
-.addDecorator(
-	moduleMetadata({
-		imports: [
-			ButtonModule,
-			IconModule
-		],
-		declarations: [WelcomeStory]
-	})
-)
-
-.add("to Carbon Angular", () => ({
+const Template: Story = (args) => ({
+	props: args,
 	template: `
 		<!--
 			app-* components are for demo purposes only.
@@ -188,4 +191,6 @@ storiesOf("Components|Welcome", module)
 		-->
 		<app-welcome></app-welcome>
 	`
-}));
+});
+export const Welcome = Template.bind({});
+Welcome.storyName = "to Carbon Angular";

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "storybook": "start-storybook -s .storybook/public -p 6006",
+    "storybook": "ng run carbon-components-angular:storybook",
     "docs:build": "typedoc",
     "lint": "tslint 'src/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts'",
