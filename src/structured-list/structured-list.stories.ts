@@ -1,185 +1,144 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+/* tslint:disable variable-name */
 
-import { StructuredListModule } from "../";
+import { FormsModule } from "@angular/forms";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { StructuredListModule, StructuredList } from "./";
 
-storiesOf("Components|Structured List", module).addDecorator(
-	moduleMetadata({
-		imports: [StructuredListModule, DocumentationModule]
-	}))
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
-				<ibm-list-header>
-					<ibm-list-column nowrap="true">Column 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Column 2</ibm-list-column>
-					<ibm-list-column>Column 3</ibm-list-column>
-				</ibm-list-header>
-				<ibm-list-row>
-					<ibm-list-column>Row 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Row One</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-				<ibm-list-row>
-					<ibm-list-column>Row 2</ibm-list-column>
-					<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-			</ibm-structured-list>
-		`,
-		props: {
-			border: boolean("border", false),
-			condensed: boolean("condensed", false),
-			nowrap: boolean("nowrap", false)
-		}
-	}))
-	.add("With selection", () => ({
-		template: `
-			<ibm-structured-list
-				[border]="border"
-				[condensed]="condensed"
-				[nowrap]="nowrap"
-				selection="true"
-				(selected)="selected($event)">
-				<ibm-list-header>
-					<ibm-list-column nowrap="true">Column 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Column 2</ibm-list-column>
-					<ibm-list-column>Column 3</ibm-list-column>
-				</ibm-list-header>
-				<ibm-list-row value="row1">
-					<ibm-list-column>Row 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Row One</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-				<ibm-list-row value="row2">
-					<ibm-list-column>Row 2</ibm-list-column>
-					<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-			</ibm-structured-list>
-		`,
-		props: {
-			selected: action("row selected"),
-			border: boolean("border", true),
-			condensed: boolean("condensed", false),
-			nowrap: boolean("nowrap", false)
-		}
-	}))
-	.add("With ngModel", () => ({
-		template: `
-			<ibm-structured-list
-				[border]="border"
-				[condensed]="condensed"
-				[nowrap]="nowrap"
-				selection="true"
-				[(ngModel)]="valueSelected">
-				<ibm-list-header>
-					<ibm-list-column nowrap="true">Column 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Column 2</ibm-list-column>
-					<ibm-list-column>Column 3</ibm-list-column>
-				</ibm-list-header>
-				<ibm-list-row value="row1">
-					<ibm-list-column>Row 1</ibm-list-column>
-					<ibm-list-column nowrap="true">Row One</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-				<ibm-list-row value="row2">
-					<ibm-list-column>Row 2</ibm-list-column>
-					<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-					<ibm-list-column>
-						Lorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nunc dui magna,
-						finibus id tortor sed, aliquet bibendum augue.
-						Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-						Pellentesque vulputate nisl a porttitor interdum.
-					</ibm-list-column>
-				</ibm-list-row>
-			</ibm-structured-list>
-			<p>{{valueSelected}}</p>
-		`,
-		props: {
-			border: boolean("border", true),
-			condensed: boolean("condensed", false),
-			nowrap: boolean("nowrap", false)
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-		<div style="width: 800px">
-			<ibm-structured-list skeleton="true">
-				<ibm-list-header>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-header>
-				<ibm-list-row>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-row>
-				<ibm-list-row>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-row>
-			</ibm-structured-list>
+export default {
+	title: "Components/Structured List",
+	decorators: [
+		moduleMetadata({
+			imports: [
+				StructuredListModule,
+				DocumentationModule,
+				FormsModule
+			]
+		})
+	]
+} as Meta;
 
-			<ibm-structured-list skeleton="true" border="true">
-				<ibm-list-header>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-header>
-				<ibm-list-row>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-row>
-				<ibm-list-row>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-					<ibm-list-column></ibm-list-column>
-				</ibm-list-row>
-			</ibm-structured-list>
-		</div>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_structured_list.structuredlist.html"></ibm-documentation>
-		`
-	}));
+const Template: Story<StructuredList> = (args) => ({
+	props: args,
+	template: `
+		<ibm-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
+			<ibm-list-header>
+				<ibm-list-column nowrap="true">Column 1</ibm-list-column>
+				<ibm-list-column nowrap="true">Column 2</ibm-list-column>
+				<ibm-list-column>Column 3</ibm-list-column>
+			</ibm-list-header>
+			<ibm-list-row>
+				<ibm-list-column>Row 1</ibm-list-column>
+				<ibm-list-column nowrap="true">Row One</ibm-list-column>
+				<ibm-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</ibm-list-column>
+			</ibm-list-row>
+			<ibm-list-row>
+				<ibm-list-column>Row 2</ibm-list-column>
+				<ibm-list-column nowrap="true">Row Two</ibm-list-column>
+				<ibm-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</ibm-list-column>
+			</ibm-list-row>
+		</ibm-structured-list>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	border: false,
+	condensed: false,
+	nowrap: false
+};
 
+const SelectionTemplate: Story<StructuredList> = (args) => ({
+	props: args,
+	template: `
+		<ibm-structured-list
+			[border]="border"
+			[condensed]="condensed"
+			[nowrap]="nowrap"
+			selection="true"
+			[(ngModel)]="valueSelected">
+			<ibm-list-header>
+				<ibm-list-column nowrap="true">Column 1</ibm-list-column>
+				<ibm-list-column nowrap="true">Column 2</ibm-list-column>
+				<ibm-list-column>Column 3</ibm-list-column>
+			</ibm-list-header>
+			<ibm-list-row value="row1">
+				<ibm-list-column>Row 1</ibm-list-column>
+				<ibm-list-column nowrap="true">Row One</ibm-list-column>
+				<ibm-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</ibm-list-column>
+			</ibm-list-row>
+			<ibm-list-row value="row2">
+				<ibm-list-column>Row 2</ibm-list-column>
+				<ibm-list-column nowrap="true">Row Two</ibm-list-column>
+				<ibm-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</ibm-list-column>
+			</ibm-list-row>
+		</ibm-structured-list>
+		<p>{{valueSelected}}</p>
+	`
+});
+export const Selection = SelectionTemplate.bind({});
+Selection.args = {
+	...Basic.args
+};
+
+const SkeletonTemplate: Story<StructuredList> = (args) => ({
+	props: args,
+	template: `
+		<ibm-structured-list
+			skeleton="true"
+			[border]="border"
+			[condensed]="condensed"
+			[nowrap]="nowrap">
+			<ibm-list-header>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+			</ibm-list-header>
+			<ibm-list-row>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+			</ibm-list-row>
+			<ibm-list-row>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+				<ibm-list-column></ibm-list-column>
+			</ibm-list-row>
+		</ibm-structured-list>
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});
+Skeleton.args = {
+	...Basic.args
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_structured_list.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

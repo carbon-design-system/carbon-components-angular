@@ -1,13 +1,18 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, select, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { ButtonModule } from "./button.module";
-import { IconModule } from "../icon/icon.module";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { IconModule } from "../icon";
+import {
+	ButtonModule,
+	Button,
+	IconButton as IconButtonComponent
+} from "./";
 
-storiesOf("Components|Button", module)
-	.addDecorator(
+export default {
+	title: "Components/Button",
+	decorators: [
 		moduleMetadata({
 			imports: [
 				ButtonModule,
@@ -15,95 +20,137 @@ storiesOf("Components|Button", module)
 				DocumentationModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
+	],
+	argTypes: {
+		kind: {
+			options: [
+				"primary",
+				"secondary",
+				"tertiary",
+				"ghost",
+				"danger",
+				"danger--primary",
+				"danger--tertiary",
+				"danger--ghost"
+			],
+			defaultValue: "primary",
+			control: { type: "select" }
+		},
+		size: {
+			options: ["sm", "md", "lg", "xl", "2xl"],
+			defaultValue: "md",
+			control: { type: "select" }
+		},
+		isExpressive: {
+			type: "boolean",
+			defaultValue: false
+		},
+		disabled: {
+			type: "boolean",
+			defaultValue: false
+		},
+		// Actions
+		onClick: { action: "clicked!" },
+		onMouseenter: { action: "Mouseenter!" },
+		onMouseleave: { action: "Mouseleave!" },
+		onFocus: { action: "Focus!" },
+		onBlur: { action: "Blur!" }
+	}
+} as Meta;
+
+const Template: Story<Button> = (args) => ({
+	props: args,
+	template: `
+		<button
+			[ibmButton]="kind"
+			[size]="size"
+			[isExpressive]="isExpressive"
+			[disabled]="disabled"
+			(click)="onClick($event)"
+			(mouseenter)="onMouseenter($event)"
+			(mouseleave)="onMouseleave($event)"
+			(focus)="onFocus($event)"
+			(blur)="onBlur($event)">
+			Button
+		</button>
+	`
+});
+export const Basic = Template.bind({});
+
+const WithIconTemplate: Story<Button> = (args) => ({
+	props: args,
+	template: `
+		<button
+			[ibmButton]="kind"
+			[size]="size"
+			[isExpressive]="isExpressive"
+			[disabled]="disabled"
+			(click)="onClick($event)"
+			(mouseenter)="onMouseenter($event)"
+			(mouseleave)="onMouseleave($event)"
+			(focus)="onFocus($event)"
+			(blur)="onBlur($event)">
+			With icon
+			<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
+		</button>
+	`
+});
+export const WithIcon = WithIconTemplate.bind({});
+
+const IconButtonTemplate: Story<IconButtonComponent> = (args) => ({
+	props: args,
+	template: `
+		<ibm-icon-button
+			id="icon-btn1"
+			type="button"
+			[kind]="kind"
+			[size]="size"
+			[align]="align"
+			[buttonNgClass]="buttonNgClass"
+			[buttonAttributes]="buttonAttributes"
+			[disabled]="disabled"
+			description="Icon Description"
+			(click)="onClick($event)"
+			(mouseenter)="onMouseenter($event)"
+			(mouseleave)="onMouseleave($event)"
+			(focus)="onFocus($event)"
+			(blur)="onBlur($event)">
+			<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
+		</ibm-icon-button>
+	`
+});
+export const IconButton = IconButtonTemplate.bind({});
+IconButton.args = {
+	buttonAttributes: {
+		"aria-label": "Example button aria-label"
+	},
+	buttonNgClass: {
+		"example-global-class": true
+	}
+};
+
+IconButton.argTypes = {
+		align: {
+		options: ["top", "left", "bottom", "right"],
+		defaultValue: "bottom",
+		control: { type: "select" }
+	}
+};
+
+const ButtonSetTemplate: Story<Button> = (args) => ({
+	props: args,
+	template: `
+		<ibm-button-set>
+			<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
 			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
-			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
-			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
-				With icon<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
-			</button>
-			<br><br>
-			<ibm-button-set>
-				<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
-				<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
-			</ibm-button-set>
-		`,
-		props: {
-			ibmButton: select(
-				"Button kind",
-				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
-				"primary"),
-			isExpressive: boolean("Expressive button style", false),
-			size: select("Size of the buttons", ["sm", "md", "lg", "xl", "2xl"], "lg")
-		}
-	}))
-	.add("Icon only", () => ({
-		template: `
-			<ibm-icon-button
-				id="icon-btn1"
-				type="button"
-				[kind]="kind"
-				[size]="size"
-				[align]="align"
-				[buttonNgClass]="{
-					'example-global-class': true
-				}"
-				[buttonAttributes]="{
-					'aria-label': 'Example button aria-label'
-				}"
-				[disabled]="disabled"
-				description="Icon Description"
-				(click)="onClick($event)"
-				(mouseenter)="onMouseenter($event)"
-				(mouseleave)="onMouseleave($event)"
-				(focus)="onFocus($event)"
-				(blur)="onBlur($event)">
-				<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
-			</ibm-icon-button>
-		`,
-		props: {
-			kind: select(
-				"Button kind",
-				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
-				"primary"),
-			size: select("Size of the buttons", ["sm", "md", "lg"], "lg"),
-			align: select("Alignment of popover",
-				[
-					"top",
-					"top-left",
-					"top-right",
-					"bottom",
-					"bottom-left",
-					"bottom-right",
-					"left",
-					"left-top",
-					"left-bottom",
-					"right",
-					"right-top",
-					"right-bottom"
-				]
-				, "top"),
-			disabled: boolean("Disable button", false),
-			onClick: action("click"),
-			onMouseenter: action("Mouseenter"),
-			onMouseleave: action("Mouseleave"),
-			onFocus: action("Focus"),
-			onBlur: action("Blur")
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-			<button ibmButton skeleton="true"></button>
-			&nbsp;
-			<button ibmButton skeleton="true" size="sm"></button>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_button.button.html"></ibm-documentation>
-		`
-	}));
+		</ibm-button-set>
+	`
+});
+export const ButtonSet = ButtonSetTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/classes/src_accordion.accordion.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

@@ -173,7 +173,7 @@ class WelcomeStory implements OnInit, OnDestroy {
 
 // Story starts here
 export default {
-	title: "Welcome",
+	title: "Getting Started",
 	decorators: [
 		moduleMetadata({
 			imports: [ButtonModule, IconModule],
@@ -193,4 +193,3 @@ const Template: Story = (args) => ({
 	`
 });
 export const Welcome = Template.bind({});
-Welcome.storyName = "to Carbon Angular";

@@ -1,27 +1,24 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	number,
-	text,
-	boolean,
-	select
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { SliderModule } from "./index";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { SliderModule, Slider } from "./";
 
-storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
-	imports: [SliderModule, DocumentationModule]
-}))
-.addDecorator(withKnobs)
-.add("Basic", () => ({
-	template: `<ibm-slider [disabled]="disabled" aria-Label="Label for slider value"></ibm-slider>`,
-	props: {
-		disabled: boolean("disabled", false)
-	}
-}))
-.add("Advanced", () => ({
+export default {
+	title: "Components/Slider",
+	decorators: [
+		moduleMetadata({
+			imports: [
+				SliderModule,
+				DocumentationModule
+			]
+		})
+	]
+} as Meta;
+
+const Template: Story<Slider> = (args) => ({
+	props: args,
 	template: `
 		<ibm-slider
 			[label]="label"
@@ -37,33 +34,32 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			<span maxLabel>{{maxLabel}}</span>
 			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
-	`,
-	props: {
-		min: number("min", 0),
-		max: number("max", 100),
-		step: number("step", 1),
-		value: number("value", 0),
-		label: text("Label text", "Slider Label"),
-		minLabel: text("minLabel", "0"),
-		maxLabel: text("maxLabel", "100"),
-		theme: select("Theme", ["dark", "light"], "dark"),
-		disabled: boolean("disabled", false),
-		shiftMultiplier: number("shiftMultiplier", 4),
-		valueChange: action("Value changed")
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	min: 0,
+	max: 100,
+	step: 1,
+	value: 0,
+	minLabel: "0",
+	maxLabel: "100",
+	disabled: false,
+	shiftMultiplier: 4
+};
+Basic.argTypes = {
+	valueChange: {
+		control: "Value changed!"
+	},
+	theme: {
+		options: ["light", "dark"],
+		defaultValue: "dark",
+		control: "radio"
 	}
-}))
-.add("With NgModel", () => ({
-	template: `
-		<ibm-slider [(ngModel)]="model" [disabled]="disabled" aria-Label="Label for slider value"></ibm-slider>
-		<br>
-		<span>model: {{model}}</span>
-	`,
-	props: {
-		model: 0,
-		disabled: boolean("disabled", false)
-	}
-}))
-.add("Range", () => ({
+};
+
+const RangeTemplate: Story<Slider> = (args) => ({
+	props: args,
 	template: `
 		<ibm-slider
 			[label]="label"
@@ -73,64 +69,26 @@ storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 			[value]="value"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
+			aria-Label="Label for slider value"
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
 			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
-			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
-	`,
-	props: {
-		min: number("min", 0),
-		max: number("max", 100),
-		step: number("step", 1),
-		value: [number("value", 20), number("value2", 80)],
-		label: text("Label text", "Slider Label"),
-		minLabel: text("minLabel", "0"),
-		maxLabel: text("maxLabel", "100"),
-		theme: select("Theme", ["dark", "light"], "dark"),
-		disabled: boolean("disabled", false),
-		shiftMultiplier: number("shiftMultiplier", 4),
-		valueChange: action("Value changed")
-	}
-}))
-.add("Range with ngModel", () => ({
-	template: `
-		<ibm-slider
-			[label]="label"
-			[min]="min"
-			[max]="max"
-			[step]="step"
-			[(ngModel)]="model"
-			[shiftMultiplier]="shiftMultiplier"
-			[disabled]="disabled">
-			<span minLabel>{{minLabel}}</span>
-			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
-			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
-		</ibm-slider>
-		<span>model: {{model}}</span>
-	`,
-	props: {
-		min: number("min", 0),
-		max: number("max", 100),
-		step: number("step", 1),
-		model: [number("value", 20), number("value2", 80)],
-		label: text("Label text", "Slider Label"),
-		minLabel: text("minLabel", "0"),
-		maxLabel: text("maxLabel", "100"),
-		theme: select("Theme", ["dark", "light"], "dark"),
-		disabled: boolean("disabled", false),
-		shiftMultiplier: number("shiftMultiplier", 4)
-	}
-}))
-.add("Skeleton", () => ({
-	template: `
-		<ibm-slider skeleton="true"></ibm-slider>
 	`
-}))
-.add("Documentation", () => ({
+});
+export const Range = RangeTemplate.bind({});
+Range.args = {
+	...Basic.args,
+	value: [20, 80]
+};
+Range.argTypes = {
+	...Basic.argTypes
+};
+
+const DocumentationTemplate: Story = () => ({
 	template: `
-		<ibm-documentation src="documentation/classes/src_slider.slider.html"></ibm-documentation>
+		<ibm-documentation src="documentation/modules/src_slider.html"></ibm-documentation>
 	`
-}));
+});
+export const Documentation = DocumentationTemplate.bind({});

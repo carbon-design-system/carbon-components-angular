@@ -1,11 +1,14 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, text, object } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { InlineLoadingModule, ButtonModule } from "../";
+import { Component, Input } from "@angular/core";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { InlineLoadingState } from "./inline-loading.component";
-import { Component, OnInit, Input } from "@angular/core";
+import {
+	InlineLoadingModule,
+	InlineLoading,
+	InlineLoadingState
+} from "./";
 
 @Component({
 	selector: "app-inline-loading",
@@ -21,7 +24,7 @@ import { Component, OnInit, Input } from "@angular/core";
 		<p>State: {{ state }}</p>
 	`
 })
-class InlineLoadingStory implements OnInit {
+class InlineLoadingStory {
 	@Input() loadingText = "";
 	@Input() successText = "";
 	@Input() errorText = "";
@@ -38,36 +41,58 @@ class InlineLoadingStory implements OnInit {
 	}
 }
 
-storiesOf("Components|Inline Loading", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Components/Inline loading",
+	decorators: [
 		moduleMetadata({
-			declarations: [InlineLoadingStory],
-			imports: [InlineLoadingModule, ButtonModule, DocumentationModule]
+			declarations: [
+				InlineLoadingStory
+			],
+			imports: [
+				InlineLoadingModule,
+				DocumentationModule
+			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-inline-loading
-				#loading
-				(onSuccess)="onSuccess()"
-				[loadingText]="loadingText"
-				[successText]="successText"
-				[errorText]="errorText"></app-inline-loading>
-		`,
-		props: {
-			onSuccess: action("onSuccess"),
-			loadingText: text("The loading text", "Loading data..."),
-			successText: text("The success text", "Data loaded."),
-			errorText: text("The error text", "Data not found.")
+	],
+	args: {
+		loadingText: "Loading data...",
+		successText: "Data loaded!",
+		errorText: "Data not found"
+	},
+	argTypes: {
+		onSuccess: {
+			action: "Success!"
 		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_inline_loading.inlineloading.html"></ibm-documentation>
-		`
-	}));
+	}
+} as Meta;
+
+const Template: Story<InlineLoading> = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-inline-loading
+			#loading
+			(onSuccess)="onSuccess()"
+			[loadingText]="loadingText"
+			[successText]="successText"
+			[errorText]="errorText">
+		</app-inline-loading>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	gutter: true,
+	rowCondensed: false,
+	gridCondensed: false
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_inline_loading.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

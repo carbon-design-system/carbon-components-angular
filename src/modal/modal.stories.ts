@@ -1,25 +1,27 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import {
-	withKnobs,
-	text,
-	select,
-	boolean
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { ModalModule } from "../";
-import { Component, Input, Inject } from "@angular/core";
-import { ModalService } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
 import {
+	Component,
+	AfterContentInit,
+	Inject,
+	Input
+} from "@angular/core";
+import { Observable, Subject } from "rxjs";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { PlaceholderModule } from "../placeholder";
+import { InputModule } from "../input";
+import { ButtonModule } from "../button";
+import {
+	ModalModule,
+	Modal,
+	ModalService,
+	BaseModal,
 	ModalButton,
 	AlertModalType,
 	ModalButtonType
-} from "./alert-modal.interface";
-import { PlaceholderModule } from "./../placeholder/index";
-import { BaseModal } from "./base-modal.class";
-import { Observable, Subject } from "rxjs";
-import { InputModule } from "../input";
-import { ButtonModule } from "../forms";
+} from "./";
 
 @Component({
 	selector: "app-sample-modal",
@@ -107,7 +109,7 @@ class SampleModal extends BaseModal {
 		}
 	`]
 })
-class SampleFormModal extends BaseModal {}
+class SampleFormModal extends BaseModal { }
 
 @Component({
 	selector: "app-modal-story",
@@ -116,11 +118,8 @@ class SampleFormModal extends BaseModal {}
 	`
 })
 class ModalStory {
-
 	@Input() modalText = "Hello, World";
-
 	@Input() size = "default";
-
 	@Input() showCloseButton = true;
 
 	constructor(protected modalService: ModalService) { }
@@ -185,7 +184,6 @@ class InputModal extends BaseModal {
 })
 class DataPassingModal implements AfterContentInit {
 	@Input() modalText = "Hello, World";
-
 	@Input() size = "default";
 
 	protected modalInputValue = "";
@@ -240,14 +238,10 @@ class AlertModalStory {
 	}
 }
 
-const getOptions = (options = {}) => {
-	return Object.assign({}, {
-		size: select("size", [null, "xs", "sm", "lg"], null)
-	}, options);
-};
-
-storiesOf("Components|Modal", module)
-	.addDecorator(
+// Story starts here
+export default {
+	title: "Components/Modal",
+	decorators: [
 		moduleMetadata({
 			declarations: [
 				ModalStory,
@@ -259,37 +253,44 @@ storiesOf("Components|Modal", module)
 			],
 			imports: [
 				ModalModule,
-				PlaceholderModule,
+				DocumentationModule,
 				InputModule,
 				ButtonModule,
-				DocumentationModule,
-				InputModule
+				PlaceholderModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
+	]
+} as Meta;
+
+const Template: Story<Modal> = (args) => ({
+	props: args,
+	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source as an example.
 		-->
 		<app-modal-story [modalText]="modalText" [size]="size" [showCloseButton]="showCloseButton"></app-modal-story>
 		<ibm-placeholder></ibm-placeholder>
-		`,
-		props: getOptions({
-			modalText: text("modalText", "Hello, World!"),
-			showCloseButton: boolean("showCloseButton", true)
-		})
-	}))
-	.add("Form modal", () => ({
-		template: `<app-form-modal></app-form-modal>`
-	}))
-	.add("Transactional", () => ({
-		template: `
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	modalText: "Hello, world!",
+	showCloseButton: true
+};
+
+const FormTemplate: Story<Modal> = (args) => ({
+	props: args,
+	template: `<app-form-modal></app-form-modal>`
+});
+export const FormModal = FormTemplate.bind({});
+
+const TransactionTemplate: Story<Modal> = (args) => ({
+	props: args,
+	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source as an example.
 		-->
 		<app-alert-modal-story
 			[modalType]="modalType"
@@ -301,28 +302,32 @@ storiesOf("Components|Modal", module)
 			[buttons]="buttons">
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
-		`,
-		props: getOptions({
-			modalType: select("modalType", ["default", "danger"], "default"),
-			modalLabel: text("modalLabel", "optional label"),
-			modalTitle: text("modalTitle", "Delete service from application"),
-			modalContent: text("modalContent", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
-			buttons: [{
-				text: "Cancel",
-				type: "secondary"
-			}, {
-				text: "Delete",
-				type: "primary",
-				click: () => alert("Delete button clicked")
-			}],
-			showCloseButton: boolean("showCloseButton", true)
-		})
-	}))
-	.add("Passive", () => ({
-		template: `
+	`
+});
+export const Transactional = TransactionTemplate.bind({});
+Transactional.args = {
+	modalLabel: "Optional label",
+	modalTitle: "Delete service from application",
+	modalContent: "Are you sure you want to remove the Speech to Text service from the node-test app?",
+	showCloseButton: true,
+	buttons: [{
+		text: "Cancel",
+		type: "Secondary"
+	}, {
+		text: "Delete",
+		type: "primary",
+		click: () => {
+			alert("Delete button clicked!");
+		}
+	}]
+};
+
+const PassiveTemplate: Story<Modal> = (args) => ({
+	props: args,
+	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source as an example.
 		-->
 		<app-alert-modal-story
 			[modalType]="modalType"
@@ -332,62 +337,82 @@ storiesOf("Components|Modal", module)
 			[modalContent]="modalContent">
 		</app-alert-modal-story>
 		<ibm-placeholder></ibm-placeholder>
-		`,
-		props: getOptions({
-			modalType: select("modalType", ["default", "danger"], "default"),
-			modalLabel: text("modalLabel", "optional label"),
-			modalTitle: text("modalTitle", "Passive modal title"),
-			modalContent: text("modalContent", "Passive modal notifications should only appear if there is an action " +
-				"the user needs to address immediately. Passive modal notifications are persistent on screen")
-		})
-	}))
-	.add("Data passing", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-data-passing-modal
-				[modalText]="modalText"
-				[size]="size">
-			</app-data-passing-modal>
-			<ibm-placeholder></ibm-placeholder>
-		`,
-		props: {
-			modalText: text("modalText", "Hello, World!"),
-			size: select("size", ["xs", "sm", "default", "lg"], "default")
-		}
-	}))
-	.add("Simple modal", () => ({
-		template: `
-			<button #trigger ibmButton="primary" (click)="open = true">Open</button>
-			<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
-				<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="showCloseButton">
-					<p class="cds--modal-header__label cds--type-delta">No service required</p>
-					<p class="cds--modal-header__heading cds--type-beta">A very simple modal</p>
-				</ibm-modal-header>
-				<div class="cds--modal-content">
-					<p>hello world</p>
-				</div>
-				<ibm-modal-footer>
-					<ng-container>
-						<button
-							ibmButton="primary"
-							(click)="open = false"
-							[attr.modal-primary-focus]="true">
-							Okay
-						</button>
-					</ng-container>
-				</ibm-modal-footer>
-			</ibm-modal>
-		`,
-		props: {
-			open: false,
-			showCloseButton: boolean("showCloseButton", true)
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_modal.modal.html"></ibm-documentation>
-		`
-	}));
+	`
+});
+export const Passive = PassiveTemplate.bind({});
+Passive.args = {
+	modalLabel: "Optional label",
+	modalTitle: "Delete service from application",
+	modalContent: "Are you sure you want to remove the Speech to Text service from the node-test app?"
+};
+Passive.argTypes = {
+	modalType: {
+		defaultValue: "default",
+		options: ["default", "danger"],
+		control: "select"
+	}
+};
+
+const DataPassingTemplate: Story<Modal> = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-data-passing-modal
+			[modalText]="modalText"
+			[size]="size">
+		</app-data-passing-modal>
+		<ibm-placeholder></ibm-placeholder>
+	`
+});
+export const DataPassing = DataPassingTemplate.bind({});
+Passive.args = {
+	modalText: "Hello, world!"
+};
+Passive.argTypes = {
+	modalType: {
+		defaultValue: "default",
+		options: ["xs", "sm", "default", "lg"],
+		control: "select"
+	}
+};
+
+const SimpleTemplate: Story<Modal> = (args) => ({
+	props: args,
+	template: `
+		<button #trigger ibmButton="primary" (click)="open = true">Open</button>
+		<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
+			<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="showCloseButton">
+				<p class="cds--modal-header__label cds--type-delta">No service required</p>
+				<p class="cds--modal-header__heading cds--type-beta">A very simple modal</p>
+			</ibm-modal-header>
+			<div class="cds--modal-content">
+				<p>hello world</p>
+			</div>
+			<ibm-modal-footer>
+				<ng-container>
+					<button
+						ibmButton="primary"
+						(click)="open = false"
+						[attr.modal-primary-focus]="true">
+						Okay
+					</button>
+				</ng-container>
+			</ibm-modal-footer>
+		</ibm-modal>
+	`
+});
+export const Simple = SimpleTemplate.bind({});
+Simple.args = {
+	open: true,
+	showCloseButton: true
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_modal.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

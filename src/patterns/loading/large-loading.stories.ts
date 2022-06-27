@@ -1,14 +1,16 @@
+/* tslint:disable variable-name */
+
 import { Component } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { GridModule } from "../../grid/index";
-import { UIShellModule } from "../../ui-shell/index";
-import { ProgressIndicatorModule } from "../../progress-indicator/index";
-import { PlaceholderModule } from "../../placeholder/index";
-import { InputModule } from "../../input/index";
-import { DropdownModule } from "../../dropdown/index";
-import { LoadingModule } from "../../loading/index";
-import { ButtonModule } from "../../button/index";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { GridModule } from "../../grid";
+import { UIShellModule } from "../../ui-shell";
+import { ProgressIndicatorModule } from "../../progress-indicator";
+import { PlaceholderModule } from "../../placeholder";
+import { InputModule } from "../../input";
+import { DropdownModule } from "../../dropdown";
+import { LoadingModule } from "../../loading";
+import { ButtonModule } from "../../button";
 import {
 	FormGroup,
 	FormControl,
@@ -106,9 +108,9 @@ class SampleLargeLoading {
 	overlay = false;
 
 	formGroup = new FormGroup({
-		input: new FormControl("", [ Validators.required ]),
-		textArea: new FormControl("", [ Validators.required ]),
-		dropdown: new FormControl("", [ Validators.required ])
+		input: new FormControl("", [Validators.required]),
+		textArea: new FormControl("", [Validators.required]),
+		dropdown: new FormControl("", [Validators.required])
 	});
 
 	steps = [
@@ -170,14 +172,16 @@ class SampleLargeLoading {
 	isInvalid(controlName: string): boolean {
 		const control = this.formGroup.get(controlName);
 
-		return control && control.invalid && (control.dirty || control.touched);
+		return (control && control.invalid && (control.dirty || control.touched)) as boolean;
 	}
 }
 
-storiesOf("Patterns|Loading", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Loading",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleLargeLoading ],
+			declarations: [SampleLargeLoading],
 			imports: [
 				DropdownModule,
 				GridModule,
@@ -191,14 +195,17 @@ storiesOf("Patterns|Loading", module)
 				ButtonModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Large Loading", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-large-loading></app-sample-large-loading>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-large-loading></app-sample-large-loading>
+	`
+});
+export const LargeLoading = Template.bind({});

@@ -1,22 +1,27 @@
-import { TimePickerSelectModule } from "./index";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { ExperimentalModule } from "../";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+/* tslint:disable variable-name */
 
-storiesOf("Components|Time Picker Select", module)
-	.addDecorator(
+import { FormsModule } from "@angular/forms";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { TimePickerSelectModule, TimePickerSelect } from "./";
+
+export default {
+	title: "Components/Timepicker Select",
+	decorators: [
 		moduleMetadata({
 			imports: [
 				TimePickerSelectModule,
-				ExperimentalModule,
+				FormsModule,
 				DocumentationModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Simple", () => ({
-		template: `
+	]
+} as Meta;
+
+const Template: Story<TimePickerSelect> = (args) => ({
+	props: args,
+	template: `
 		<div class="cds--form-item">
 			<div class="cds--time-picker">
 				<ibm-timepicker-select>
@@ -29,10 +34,13 @@ storiesOf("Components|Time Picker Select", module)
 				</ibm-timepicker-select>
 			</div>
 		</div>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_timepicker_select.timepickerselect.html"></ibm-documentation>
-		`
-	}));
+	`
+});
+export const Basic = Template.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_timepicker_select.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

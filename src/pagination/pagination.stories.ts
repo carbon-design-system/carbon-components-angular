@@ -1,14 +1,18 @@
+/* tslint:disable variable-name */
+
 import {
 	Component,
-	OnInit,
-	Input
+	Input,
+	OnInit
 } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, number, boolean } from "@storybook/addon-knobs/angular";
-
-import { NFormsModule } from "..";
-import { PaginationModule, PaginationModel } from "./index";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import {
+	PaginationModule,
+	Pagination,
+	PaginationModel
+} from "./";
 
 @Component({
 	selector: "app-pagination",
@@ -50,61 +54,49 @@ class PaginationStory implements OnInit {
 	}
 }
 
-
-storiesOf("Components|Pagination", module).addDecorator(
+// Storybook starts here
+export default {
+	title: "Components/Pagination",
+	decorators: [
 		moduleMetadata({
 			imports: [
-				NFormsModule,
 				PaginationModule,
 				DocumentationModule
-			],
-			declarations: [
-				PaginationStory
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<div style="width: 800px">
-				<!--
-					app-* components are for demo purposes only.
-					You can create your own implementation by using the component source as an example.
-				-->
-				<app-pagination
-					[disabled]="disabled"
-					[pageInputDisabled]="pageInputDisabled"
-					[pagesUnknown]="pagesUnknown"
-					[totalDataLength]="totalDataLength"
-					[showPageInput]="showPageInput">
-				</app-pagination>
-			</div>
-		`,
-		props: {
-			disabled: boolean("Disabled buttons", false),
-			pageInputDisabled: boolean("Disable page input", false),
-			pagesUnknown: boolean("Total number of items unknown ", false),
-			totalDataLength: number("Total number of items", 105),
-			showPageInput: boolean("Show the page selects", true)
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-			<div style="width: 800px">
-				<!--
-					app-* components are for demo purposes only.
-					You can create your own implementation by using the component source as an example.
-				-->
-				<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
-			</div>
-		`,
-		props: {
-			totalDataLength: number("totalDataLength", 105)
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_pagination.pagination.html"></ibm-documentation>
-		`
-	}));
+	]
+} as Meta;
 
+const Template: Story<Pagination> = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-pagination
+			[disabled]="disabled"
+			[pageInputDisabled]="pageInputDisabled"
+			[pagesUnknown]="pagesUnknown"
+			[totalDataLength]="totalDataLength"
+			[showPageInput]="showPageInput"
+			[skeleton]="skeleton">
+		</app-pagination>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	disabled: false,
+	pageInputDisabled: false,
+	pageUnknown: false,
+	totalDataLength: 105,
+	showPageInput: true,
+	skeleton: false
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_pagination.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

@@ -1,51 +1,60 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { TagModule } from "../tag/index";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { TagModule, Tag } from "./";
 
-storiesOf("Components|Tag", module)
-	.addDecorator(
+export default {
+	title: "Components/Tag",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				TagModule,
-				DocumentationModule
-			]
+			imports: [TagModule, DocumentationModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-tag type="warm-gray">Warm-gray</ibm-tag>
-			<br><br>
-			<ibm-tag type="red">Red</ibm-tag>
-			<br><br>
-			<ibm-tag type="magenta">Magenta</ibm-tag>
-			<br><br>
-			<ibm-tag type="purple">Purple</ibm-tag>
-			<br><br>
-			<ibm-tag type="blue">Blue</ibm-tag>
-			<br><br>
-			<ibm-tag type="cyan">Cyan</ibm-tag>
-			<br><br>
-			<ibm-tag type="teal">Teal</ibm-tag>
-			<br><br>
-			<ibm-tag type="green">Green</ibm-tag>
-			<br><br>
-			<ibm-tag type="cool-gray">Cool-gray</ibm-tag>
-		`
-	}))
-	.add("Filter", () => ({
-		template: `
-			<ibm-tag-filter
-				type="blue"
-				title="Filter"
-				closeButtonLabel="Clear"
-			>filter</ibm-tag-filter>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_tag.tag.html"></ibm-documentation>
-		`
-	}));
+	],
+	argTypes: {
+		type: {
+			options: [
+				"warm-gray",
+				"red",
+				"magenta",
+				"purple",
+				"blue",
+				"cyan",
+				"teal",
+				"green",
+				"cool-gray"
+			],
+			defaultValue: "red",
+			control: "select"
+		}
+	}
+} as Meta;
+
+const Template: Story<Tag> = (args) => ({
+	props: args,
+	template: `
+		<ibm-tag [type]="type">Tag</ibm-tag>
+	`
+});
+export const Basic = Template.bind({});
+
+const FilteredTemplate: Story<Tag> = (args) => ({
+	props: args,
+	template: `
+		<ibm-tag-filter
+			[type]="type"
+			title="Filter"
+			closeButtonLabel="Clear">
+			filter
+		</ibm-tag-filter>
+	`
+});
+export const Filter = FilteredTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_tag.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

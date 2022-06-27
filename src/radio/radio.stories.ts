@@ -1,165 +1,75 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { RadioModule } from "../";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule } from "@angular/forms";
+import { RadioModule, Radio } from "./";
 
-@Component({
-	selector: "app-reactive-forms",
+export default {
+	title: "Components/Radio",
+	decorators: [
+		moduleMetadata({
+			imports: [RadioModule, DocumentationModule]
+		})
+	]
+} as Meta;
+
+const Template: Story<Radio> = (args) => ({
+	props: args,
 	template: `
-		<form [formGroup]="formGroup">
-			<ibm-radio-group
-				aria-label="radiogroup"
-				formControlName="radioGroup">
-				<ibm-radio
-					value="radio">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</form>
-
-		<button (click)="changeSelected()">Set selected to three</button>
-		<button (click)="disableGroup()">Set group disabled</button>
+	<fieldset class="cds--fieldset">
+		<legend class="cds--label">{{label}}</legend>
+		<ibm-radio-group
+			[disabled]="disabled"
+			aria-label="radiogroup"
+			[orientation]="orientation"
+			[labelPlacement]="labelPlacement"
+			[(ngModel)]="radio"
+			(change)="onChange($event)">
+			<ibm-radio
+				value="Zero"
+				[checked]="true">
+				Zero
+			</ibm-radio>
+			<ibm-radio [value]="One">One</ibm-radio>
+			<ibm-radio [value]="Two">Two</ibm-radio>
+			<ibm-radio [value]="Three">Three</ibm-radio>
+			<ibm-radio [value]="Four" [disabled]="true">Four</ibm-radio>
+		</ibm-radio-group>
+	</fieldset>
+	<button (click)="disabled = !disabled">Toggle group disabled</button>
 	`
-})
-class ReactiveFormsStory implements AfterViewInit, OnInit {
-	public formGroup: FormGroup;
-
-	manyRadios = [
-		{ num: "one" },
-		{ num: "two" },
-		{ num: "three" },
-		{ num: "four", disabled: true }
-	];
-
-	constructor(protected formBuilder: FormBuilder) {}
-
-	changeSelected() {
-		this.formGroup.get("radioGroup").setValue("three");
+});
+export const Basic = Template.bind({});
+Basic.argTypes = {
+	onChange: {
+		control: "Changed!"
+	},
+	orientation: {
+		options: ["horizontal", "vertical"],
+		defaultValue: "horizontal",
+		control: "radio"
+	},
+	labelPlacement: {
+		options: ["left", "right"],
+		defaultValue: "right",
+		control: "radio"
 	}
+};
 
-	disableGroup() {
-		this.formGroup.get("radioGroup").disable();
-	}
-
-	ngOnInit() {
-		this.formGroup = this.formBuilder.group({
-			radioGroup: new FormControl()
-		});
-	}
-
-	ngAfterViewInit() {
-		this.formGroup.get("radioGroup").setValue("one");
-	}
-}
-
-storiesOf("Components|Radio", module).addDecorator(
-	moduleMetadata({
-		declarations: [ReactiveFormsStory],
-		imports: [RadioModule, DocumentationModule, ReactiveFormsModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-		<fieldset class="cds--fieldset">
-			<legend class="cds--label">{{label}}</legend>
-			<ibm-radio-group
-				[disabled]="disabled"
-				aria-label="radiogroup"
-				[(ngModel)]="radio"
-				(change)="onChange($event)">
-				<ibm-radio
-					value="radio"
-					[checked]="true">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</fieldset>
-		<button (click)="disabled = !disabled">Toggle group disabled</button>
-		`,
-		props: {
-			onChange: action("Radio change"),
-			label: text("Label text", "Radio Button heading"),
-			manyRadios: [
-				{ num: "one" },
-				{ num: "two" },
-				{ num: "three" },
-				{ num: "four", disabled: true }
-			]
-		}
-	}))
-	.add("Vertical", () => ({
-		template: `
-		<fieldset class="cds--fieldset">
-			<legend class="cds--label">Radio button label</legend>
-
-			<ibm-radio-group
-				aria-label="radiogroup"
-				orientation="vertical"
-				[labelPlacement]="labelPlacement"
-				[(ngModel)]="radio"
-				(change)="onChange($event)">
-				<ibm-radio
-					value="radio"
-					[checked]="true">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</fieldset>
-		`,
-		props: {
-			onChange: action("Radio change"),
-			labelPlacement: select("Label placement", ["right", "left"], "right"),
-			manyRadios: [
-				{ num: "one" },
-				{ num: "two" },
-				{ num: "three" },
-				{ num: "four", disabled: true }
-			]
-		}
-	}))
-	.add("With reactive forms", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-reactive-forms></app-reactive-forms>
-		`
-	}))
-	.add("Skeleton", () => ({
-		template: `
+const SkeletonTemplate: Story<Radio> = (args) => ({
+	props: args,
+	template: `
 		<ibm-radio-group skeleton="true">
 			<ibm-radio></ibm-radio>
 		</ibm-radio-group>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_radio.radio.html"></ibm-documentation>
-		`
-	}))
-	.add("Radio Group Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_radio.radiogroup.html"></ibm-documentation>
-		`
-	}));
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_radio.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

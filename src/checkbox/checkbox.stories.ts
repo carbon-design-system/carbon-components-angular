@@ -1,16 +1,17 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
+
 import { Component, OnInit } from "@angular/core";
 import {
 	FormBuilder,
 	FormControl,
 	FormGroup,
+	FormsModule,
 	ReactiveFormsModule
 } from "@angular/forms";
-
-import { CheckboxModule } from "../";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { CheckboxModule, Checkbox } from "./";
 
 @Component({
 	selector: "app-reactive-forms",
@@ -38,147 +39,89 @@ class ReactiveFormsStory implements OnInit {
 
 	toggleDisable() {
 		const checkbox = this.formGroup.get("checkbox");
-		checkbox.disabled ? checkbox.enable() : checkbox.disable();
+		checkbox?.disabled ? checkbox.enable() : checkbox?.disable();
 	}
 }
 
-storiesOf("Components|Checkbox", module).addDecorator(
-	moduleMetadata({
-		declarations: [ReactiveFormsStory],
-		imports: [
-			CheckboxModule,
-			ReactiveFormsModule,
-			DocumentationModule
-		]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
+// Storybook starts here
+export default {
+	title: "Components/Checkbox",
+	decorators: [
+		moduleMetadata({
+			declarations: [ReactiveFormsStory],
+			imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				CheckboxModule,
+				DocumentationModule
+			]
+		})
+	]
+} as Meta;
+
+const Template: Story<Checkbox> = (args) => ({
+	props: args,
+	template: `
 		<fieldset class="cds--fieldset">
 			<legend class="cds--label">{{label}}</legend>
 			<ibm-checkbox
-				checked="true"
-				[hideLabel]="hideLabel"
-				(change)="onChange($event)">
-				Checkbox
-			</ibm-checkbox>
-			<ibm-checkbox
-				indeterminate="true"
-				(change)="onChange($event)"
+				[disabled]="disabled"
+				[indeterminate]="indeterminate"
+				[checked]="checked"
+				(checkedChange)="onChange($event)"
 				[hideLabel]="hideLabel"
 				(indeterminateChange)="onIndeterminateChange($event)">
 				Indeterminate checkbox
 			</ibm-checkbox>
-			<ibm-checkbox
-				disabled="true"
-				(change)="onChange($event)"
-				[hideLabel]="hideLabel"
-				(indeterminateChange)="onIndeterminateChange($event)">
-				Disabled checkbox
-			</ibm-checkbox>
 		</fieldset>
-	`,
-		props: {
-			onChange: action("Change fired!"),
-			onIndeterminateChange: action("Indeterminate change fired!"),
-			label: text("Label text", "Checkbox"),
-			hideLabel: boolean("Hide labels", false)
-		}
-	}))
-	.add("Enforcing indeterminate to toggle to unchecked state", () => ({
-		template: `
-			<ibm-checkbox
-				[indeterminate]="indeterminate"
-				[checked]="checked"
-				(indeterminateChange)="onIndeterminateChange($event)"
-				(checkedChange)="onCheckedChange($event)">
-				Indeterminate
-			</ibm-checkbox>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	label: "Label",
+	hideLabel: false,
+	indeterminate: true,
+	checked: true,
+	disabled: false
+};
+Basic.argTypes = {
+	onChange: { action: "Changed!" },
+	onIndeterminateChange: { action: "Indeterminate Change!" }
+};
 
-			<button (click)="setIndeterminate()">Set indeterminate</button>
-		`,
-		props: {
-			indeterminate: true,
-			checked: true,
-			setIndeterminate: function() {
-				this.indeterminate = true;
-				// sets `checked` to true so that when the checkbox is toggled,
-				// it goes to an unchecked state.
-				this.checked = true;
-			},
-			onIndeterminateChange: function(indeterminateState: boolean) {
-				this.indeterminate = indeterminateState;
-			},
-			onCheckedChange: function(checked: boolean) {
-				this.checked = checked;
-			}
-		}
-	}))
-	.add("Programmatically", () => ({
-		template: `
-			<ibm-checkbox
-				[indeterminate]="indeterminate"
-				[checked]="checked"
-				(indeterminateChange)="onIndeterminateChange($event)"
-				(checkedChange)="onCheckedChange($event)">
-				Programmatic checkbox
-			</ibm-checkbox>
+const ModelTemplate: Story<Checkbox> = (args) => ({
+	props: args,
+	template: `
+		<ibm-checkbox
+			[(ngModel)]="model">
+			ngModel checkbox
+		</ibm-checkbox>
 
-			<button (click)="toggle()">Toggle</button>
-			<button (click)="setIndeterminate()">Set indeterminate</button>
-		`,
-		props: {
-			indeterminate: false,
-			checked: false,
-			toggle: function() {
-				this.checked = !this.checked;
-				this.indeterminate = false;
-			},
-			setIndeterminate: function() {
-				this.indeterminate = true;
-			},
-			onIndeterminateChange: function(indeterminateState: boolean) {
-				this.indeterminate = indeterminateState;
-			},
-			onCheckedChange: function(checked: boolean) {
-				this.checked = checked;
-			}
-		}
-	}))
-	.add("With ngModel", () => ({
-		template: `
-			<ibm-checkbox
-				[(ngModel)]="model">
-				ngModel checkbox
-			</ibm-checkbox>
+		<div style="display:flex; flex-direction: column; width: 150px">
+			<button (click)="model=!model">Set model</button>
+			Checked: {{ model }}
+		</div>
+	`
+});
+export const WithNgModel = ModelTemplate.bind({});
+WithNgModel.storyName = "With NgModel";
+WithNgModel.args = {
+	model: true
+};
 
-			<div style="display:flex; flex-direction: column; width: 150px">
-				<button (click)="toggleModel()">Set model</button>
-				Checked: {{ model }}
-			</div>
-		`,
-		props: {
-			model: true,
-			toggleModel: function() {
-				this.model = !this.model;
-			}
-		}
-	}))
-	.add("With reactive forms", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-reactive-forms></app-reactive-forms>
-		`
-	}))
-	.add("Skeleton", () => ({
-		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
-}))
-.add("Documentation", () => ({
+const ReactiveTemplate: Story = (args) => ({
+	props: args,
+	template: `
+	<!-- app-* components are for demo purposes only.
+	You can create your own implementation by using the component source as an example. -->
+	<app-reactive-forms></app-reactive-forms>
+	`
+});
+export const WithReactiveForms = ReactiveTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
 	template: `
 		<ibm-documentation src="documentation/classes/src_checkbox.checkbox.html"></ibm-documentation>
 	`
-}));
+});
+export const Documentation = DocumentationTemplate.bind({});

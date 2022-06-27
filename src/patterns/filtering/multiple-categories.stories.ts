@@ -1,15 +1,17 @@
+/* tslint:disable variable-name */
+
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
-import { DropdownModule } from "../../dropdown/index";
-import { StructuredListModule } from "../../structured-list/index";
-import { GridModule } from "../../grid/index";
-import { RadioModule } from "../../radio/index";
-import { CheckboxModule } from "../../checkbox/index";
-import { ButtonModule } from "../../forms/index";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table";
+import { DropdownModule } from "../../dropdown";
+import { StructuredListModule } from "../../structured-list";
+import { GridModule } from "../../grid";
+import { RadioModule } from "../../radio";
+import { CheckboxModule } from "../../checkbox";
+import { ButtonModule } from "../../button";
 import { TagModule } from "../../tag/index";
-import { UIShellModule } from "../../ui-shell/index";
+import { UIShellModule } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-multi-categories",
@@ -92,7 +94,7 @@ import { UIShellModule } from "../../ui-shell/index";
 })
 class SampleMultiCategories implements OnInit, OnDestroy {
 	model = new TableModel();
-	checkBoxFilters = [];
+	checkBoxFilters: any = [];
 	radioFilter = null;
 
 	dataset = [
@@ -113,9 +115,9 @@ class SampleMultiCategories implements OnInit, OnDestroy {
 	];
 
 	checkboxList = [
-		{ value: "Fruit", checked: false},
-		{ value: "Vegetable", checked: false},
-		{ value: "Meat", checked: false}
+		{ value: "Fruit", checked: false },
+		{ value: "Vegetable", checked: false },
+		{ value: "Meat", checked: false }
 	];
 
 	onCheckboxChange(event) {
@@ -163,26 +165,28 @@ class SampleMultiCategories implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 
 		this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
 		this.model.data = this.dataset.map(datapoint =>
 			[
-				new TableItem({ data: datapoint.name}),
+				new TableItem({ data: datapoint.name }),
 				new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
 			]
 		);
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Filtering", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Filtering",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleMultiCategories ],
+			declarations: [SampleMultiCategories],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -195,14 +199,17 @@ storiesOf("Patterns|Filtering", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multiple Categories", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-multi-categories></app-sample-multi-categories>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-multi-categories></app-sample-multi-categories>
+	`
+});
+export const MultipleCategories = Template.bind({});

@@ -1,35 +1,39 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { select, withKnobs } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { ContentSwitcherModule } from "./content-switcher.module";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { ContentSwitcherModule, ContentSwitcher } from "./";
 
-storiesOf("Components|Content Switcher", module)
-	.addDecorator(
+export default {
+	title: "Components/Content Switcher",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				ContentSwitcherModule,
-				DocumentationModule
-			]
+			imports: [ContentSwitcherModule, DocumentationModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-content-switcher (selected)="selected($event)" [theme]="theme">
-				<button ibmContentOption name="First">First section</button>
-				<button ibmContentOption name="Second">Second section</button>
-				<button ibmContentOption name="Third">Third section</button>
-			</ibm-content-switcher>
-		`,
-		props: {
-			selected: action("selection changed"),
-			theme: select("theme", ["dark", "light"], "dark")
+	],
+	argTypes: {
+		code: {
+			control: false
 		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_content_switcher.contentswitcher.html"></ibm-documentation>
-		`
-	}));
+	}
+} as Meta;
+
+const Template: Story<ContentSwitcher> = (args) => ({
+	props: args,
+	template: `
+		<ibm-content-switcher (selected)="selected($event)" [theme]="theme">
+			<button ibmContentOption name="First">First section</button>
+			<button ibmContentOption name="Second">Second section</button>
+			<button ibmContentOption name="Third">Third section</button>
+		</ibm-content-switcher>
+	`
+});
+export const Basic = Template.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/classes/src_content_switcher.contentswitcher.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});
