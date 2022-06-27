@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-    "declaration": true,
+		"declaration": true,
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
 		"esModuleInterop": true,
