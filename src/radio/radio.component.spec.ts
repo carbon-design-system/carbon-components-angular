@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
@@ -21,7 +21,7 @@ class RadioTest {
 }
 
 describe("RadioGroup", () => {
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio, RadioGroup, RadioTest],
 			imports: [FormsModule]
@@ -55,7 +55,7 @@ describe("RadioComponent", () => {
 	let de: DebugElement;
 	let el: HTMLElement;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio]
 		}).compileComponents();

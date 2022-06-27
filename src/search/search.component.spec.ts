@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
@@ -13,7 +13,7 @@ describe("Search", () => {
 	let containerElement: HTMLElement;
 	let clearButtonElement: HTMLButtonElement;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
 			imports: [

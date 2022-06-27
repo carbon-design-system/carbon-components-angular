@@ -1,4 +1,4 @@
-import { TestBed, async, fakeAsync } from "@angular/core/testing";
+import { TestBed, fakeAsync, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
