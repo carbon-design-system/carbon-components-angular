@@ -57,9 +57,10 @@ describe("SideNav", () => {
 					}
 				],
 				{
-					initialNavigation: 'disabled',
-					useHash: true
-				})
+    initialNavigation: 'disabled',
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+})
 			]
 		});
 	});
