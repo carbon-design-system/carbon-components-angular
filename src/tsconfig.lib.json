@@ -5,6 +5,7 @@
 	  "rootDir": "."
   },
   "angularCompilerOptions": {
-    "enableIvy": false
+    "enableIvy": true,
+    "compliationMode": "partial"
   }
 }
