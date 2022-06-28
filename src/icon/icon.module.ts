@@ -24,6 +24,7 @@ import CheckmarkFilled20 from "@carbon/icons/es/checkmark--filled/20";
 import CheckmarkOutline16 from "@carbon/icons/es/checkmark--outline/16";
 import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16";
+import CircleDash16 from "@carbon/icons/es/circle-dash/16";
 import Close16 from "@carbon/icons/es/close/16";
 import Close20 from "@carbon/icons/es/close/20";
 import Copy16 from "@carbon/icons/es/copy/16";
@@ -37,6 +38,7 @@ import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
 import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import Fade16 from "@carbon/icons/es/fade/16";
 import Fade20 from "@carbon/icons/es/fade/20";
+import Incomplete16 from "@carbon/icons/es/incomplete/16";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
 import InformationSquareFilled20 from "@carbon/icons/es/information--square--filled/20";
@@ -102,6 +104,7 @@ export class IconModule {
 			CheckmarkOutline16,
 			ChevronDown16,
 			ChevronRight16,
+			CircleDash16,
 			Close16,
 			Close20,
 			Copy16,
@@ -115,6 +118,7 @@ export class IconModule {
 			ErrorFilled20,
 			Fade16,
 			Fade20,
+			Incomplete16,
 			InformationFilled16,
 			InformationFilled20,
 			InformationSquareFilled20,
