@@ -29,6 +29,44 @@ import {
 	TableRow
 } from "./";
 
+const simpleModel = new TableModel();
+simpleModel.data = [
+	[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
+	[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],
+	[new TableItem({ data: "Name 2" }), new TableItem({ data: "swer" })],
+	[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })]
+];
+simpleModel.header = [
+	new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "hwer" })
+];
+
+const emptyModel = new TableModel();
+emptyModel.header = [
+	new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "hwer", style: { "width": "auto" } })
+];
+
+const getProps = (more = {}, type: "args" | "argTypes") => {
+	const defaultProps = type === "args" ? {
+		model: simpleModel,
+		title: "Table title",
+		description: "",
+		size: "md",
+		showSelectionColumn: true,
+		striped: false,
+		sortable: true,
+		isDataGrid: true,
+		stickyHeader: false,
+		skeleton: false
+	} : {
+		size: {
+			options: ["sm", "sh", "md", "lg"],
+			control: "select"
+		}
+	};
+	return { ...defaultProps, ...more };
+};
+
+// Story starts here
 export default {
 	title: "Components/Table",
 	decorators: [
@@ -86,13 +124,10 @@ const Template: Story = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	enableSingleSelect: false
+	...getProps({
+		enableSingleSelect: false
+	}, "args")
 };
-
-const emptyModel = new TableModel();
-emptyModel.header = [
-	new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "hwer", style: { "width": "auto" } })
-];
 
 const NoDataTemplate: Story = (args) => ({
 	props: args,
@@ -126,12 +161,9 @@ const NoDataTemplate: Story = (args) => ({
 });
 export const WithoutData = NoDataTemplate.bind({});
 WithoutData.args = {
-	model: emptyModel
-};
-WithoutData.argTypes = {
-	model: {
-		control: false
-	}
+	...getProps({
+		model: emptyModel
+	}, "args")
 };
 
 const ToolbarTemplate: Story = (args) => ({
@@ -206,27 +238,31 @@ const ToolbarTemplate: Story = (args) => ({
 });
 export const WithToolbar = ToolbarTemplate.bind({});
 WithToolbar.args = {
-	description: "With toolbar",
-	searchModel: "Initial search value",
-	searchExpandable: true,
-	enableSingleSelect: false,
-	batchText: {
-		SINGLE: "1 item selected",
-		MULTIPLE: "{{count}} items selected"
-	},
-	offset: {
-		x: -9,
-		y: 0
-	}
+	...getProps({
+		description: "With toolbar",
+		searchModel: "Initial search value",
+		searchExpandable: true,
+		enableSingleSelect: false,
+		batchText: {
+			SINGLE: "1 item selected",
+			MULTIPLE: "{{count}} items selected"
+		},
+		offset: {
+			x: -9,
+			y: 0
+		}
+	}, "args")
 };
 WithToolbar.argTypes = {
-	canelMethod: {
-		type: "function",
-		control: false,
-		defaultValue: () => {
-			console.log("Custom cancel method");
+	...getProps({
+		canelMethod: {
+			type: "function",
+			control: false,
+			defaultValue: () => {
+				console.log("Custom cancel method");
+			}
 		}
-	}
+	}, "argTypes")
 };
 
 const WithActionTemplate: Story = (args) => ({
@@ -268,8 +304,10 @@ const WithActionTemplate: Story = (args) => ({
 });
 export const WithToolbarWithoutToolbarAction = WithActionTemplate.bind({});
 WithToolbarWithoutToolbarAction.args = {
-	description: "With toolbar",
-	enableSingleSeelct: false
+	...getProps({
+		description: "With toolbar",
+		enableSingleSeelct: false
+	}, "args")
 };
 
 const FilteringTemplate: Story = (args) => ({
@@ -292,8 +330,10 @@ const FilteringTemplate: Story = (args) => ({
 export const Filtering = FilteringTemplate.bind({});
 Filtering.storyName = "Filtering by alteration of model data";
 WithToolbarWithoutToolbarAction.args = {
-	description: "With toolbar",
-	enableSingleSeelct: false
+	...getProps({
+		description: "With toolbar",
+		enableSingleSeelct: false
+	}, "args")
 };
 
 const DocumentationTemplate: Story = () => ({
