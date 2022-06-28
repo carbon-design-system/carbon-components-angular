@@ -16,4 +16,25 @@ module.exports = {
 	"core": {
 		"builder": "webpack5"
 	},
+	webpack(config) {
+		config.module.rules.push({
+			test: /\.scss$/,
+			sideEffects: true,
+			use: [
+				"style-loader",
+				"css-loader",
+				"postcss-loader",
+				{
+					loader: "sass-loader",
+					options: {
+						implementation: require("sass")
+					}
+				}
+			]
+		});
+
+		config.mode = "development";
+		config.devtool = "source-map";
+		return config;
+	}
 }
