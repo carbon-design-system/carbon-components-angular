@@ -18,4 +18,8 @@ export interface Step {
 	 */
 	disabled?: boolean;
 	optionalText?: string;
+	/**
+	 * Icon description
+	 */
+	description?: string;
 }

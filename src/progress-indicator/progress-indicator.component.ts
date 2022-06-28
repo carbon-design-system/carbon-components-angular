@@ -29,37 +29,61 @@ import { DEFAULT_TOOLTIP_CONFIG } from "carbon-components-angular/tooltip";
 			class="cds--progress-step cds--progress-step--{{step.state[0]}}"
 			*ngFor="let step of steps; let i = index"
 			[ngClass]="{'cds--progress-step--disabled' : step.disabled}">
-			<div class="cds--progress-step-button cds--progress-step-button--unclickable" role="button" tabindex="-1">
-				<svg ibmIcon="checkmark--outline" size="16" *ngIf="step.state.includes('complete')"></svg>
-				<svg *ngIf="step.state.includes('current')">
-					<path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>
+			<button
+				type="button"
+				class="cds--progress-step-button cds--progress-step-button--unclickable"
+				[disabled]="step.disabled"
+				[attr.aria-disabled]="step.disabled"
+				tabindex="-1"
+				title="step.text">
+				<span class="cds--assistive-text">SOME i18n text based on current state</span>
+				<svg
+					ibmIcon="incomplete"
+					*ngIf="step.state.includes('current')"
+					size="16">
+					<title *ngIf="step.description">{{step.description}}</title>
 				</svg>
-				<svg *ngIf="step.state.includes('incomplete')">
-					<path
-						d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
-					</path>
+				<svg
+					ibmIcon="checkmark--outline"
+					*ngIf="step.state.includes('complete')"
+					size="16">
+					<title *ngIf="step.description">{{step.description}}</title>
 				</svg>
-				<svg ibmIcon="warning" size="16" *ngIf="step.state.includes('error')" class="cds--progress__warning"></svg>
-				<ibm-tooltip
-					*ngIf="step.tooltip"
-					[description]="step.tooltip.description"
-					[align]="step.tooltip.align"
-					[caret]="step.tooltip.caret"
-					[dropShadow]="step.tooltip.dropShadow"
-					[highContrast]="step.tooltip.highContrast"
-					[isOpen]="step.tooltip.isOpen"
-					[enterDelayMs]="step.tooltip.enterDelayMs"
-					[leaveDelayMs]="step.tooltip.leaveDelayMs">
-					<p
-						class="cds--progress-label"
-						(click)="stepSelected.emit({ step: step, index: i })">
-						{{step.text}}
-					</p>
-				</ibm-tooltip>
-				<p class="cds--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
-				<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
+				<svg
+					ibmIcon="circle-dash"
+					*ngIf="step.state.includes('incomplete')"
+					size="16">
+					<title *ngIf="step.description">{{step.description}}</title>
+				</svg>
+				<svg
+					ibmIcon="warning"
+					size="16"
+					*ngIf="step.state.includes('error')"
+					class="cds--progress__warning">
+					<title *ngIf="step.description">{{step.description}}</title>
+				</svg>
+				<div class="cds--progress-text">
+					<ibm-tooltip
+						*ngIf="step.tooltip"
+						[description]="step.tooltip.description"
+						[align]="step.tooltip.align"
+						[caret]="step.tooltip.caret"
+						[dropShadow]="step.tooltip.dropShadow"
+						[highContrast]="step.tooltip.highContrast"
+						[isOpen]="step.tooltip.isOpen"
+						[enterDelayMs]="step.tooltip.enterDelayMs"
+						[leaveDelayMs]="step.tooltip.leaveDelayMs">
+						<p
+							class="cds--progress-label"
+							(click)="stepSelected.emit({ step: step, index: i })">
+							{{step.text}}
+						</p>
+					</ibm-tooltip>
+					<p *ngIf="!step.tooltip" class="cds--progress-label">{{step.text}}</p>
+					<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
+				</div>
 				<span class="cds--progress-line"></span>
-			</div>
+			</button>
 		</li>
 	</ul>
 	`
@@ -68,7 +92,7 @@ export class ProgressIndicator implements OnChanges {
 	@Input() set steps(steps: Array<Step>) {
 		this._steps = steps.map((step: Step) => {
 			if (step.tooltip) {
-				step.tooltip = {...DEFAULT_TOOLTIP_CONFIG, ...step.tooltip};
+				step.tooltip = { ...DEFAULT_TOOLTIP_CONFIG, ...step.tooltip };
 			}
 			return step;
 		});
