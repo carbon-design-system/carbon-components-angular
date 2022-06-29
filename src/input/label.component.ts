@@ -42,6 +42,7 @@ import { TextArea } from "./text-area.directive";
 			[attr.aria-label]="ariaLabel"
 			class="bx--label"
 			[ngClass]="{
+				'bx--label--disabled': disabled,
 				'bx--skeleton': skeleton
 			}">
 			<ng-content></ng-content>
@@ -70,7 +71,10 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<ng-content select="input,textarea,div"></ng-content>
 		</div>
-		<div *ngIf="!skeleton && helperText && !invalid && !warn" class="bx--form__helper-text">
+		<div
+			*ngIf="!skeleton && helperText && !invalid && !warn"
+			class="bx--form__helper-text"
+			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
@@ -103,6 +107,10 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * State of the `Label` will determine the styles applied.
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
+	/**
+	 * Set to `true` for a disabled label.
+	 */
+	@Input() disabled = false;
 	/**
 	 * Set to `true` for a loading label.
 	 */

@@ -5,7 +5,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -50,7 +51,11 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+		<label
+			*ngIf="label"
+			[id]="ariaLabelledby"
+			class="bx--label"
+			[ngClass]="{'bx--label--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
@@ -132,6 +137,8 @@ export class Toggle extends Checkbox {
 	 * Set to `true` for a loading toggle.
 	 */
 	@Input() skeleton = false;
+
+	@HostBinding("class.bx--form-item") formItem = true;
 
 	/**
 	 * The unique id allocated to the `Toggle`.
