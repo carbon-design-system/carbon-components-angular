@@ -128,7 +128,7 @@
     "tslib": "1.9.3",
     "tslint": "5.15.0",
     "typedoc": "0.14.2",
-    "typedoc-plugin-external-module-name": "4.0.3",
+    "typedoc-plugin-external-module-name": "4.0.6",
     "typescript": "3.2.4",
     "whatwg-fetch": "3.0.0",
     "zone.js": "0.8.26"
