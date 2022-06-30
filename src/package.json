@@ -16,10 +16,10 @@
     "carbon-components": "^10.0.0"
   },
   "dependencies": {
-    "@carbon/icon-helpers": "10.29.0",
-    "@carbon/icons": "11.0.2",
+    "@carbon/icon-helpers": "10.31.0",
+    "@carbon/icons": "11.5.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
-    "flatpickr": "4.6.1"
+    "flatpickr": "4.6.13"
   }
 }
