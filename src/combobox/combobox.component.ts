@@ -142,6 +142,7 @@ import { Observable } from "rxjs";
 						type="button"
 						role="button"
 						class="cds--list-box__menu-icon"
+						tabindex="-1"
 						[title]="open ? closeMenuAria : openMenuAria"
 						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
 						[ngClass]="{'cds--list-box__menu-icon--open': open}">
