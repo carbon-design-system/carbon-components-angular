@@ -60,7 +60,6 @@ export class CheckboxChange {
 				[checked]="checked"
 				[disabled]="disabled"
 				[attr.aria-labelledby]="ariaLabelledby"
-				[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 				(change)="onChange($event)"
 				(click)="onClick($event)">
 			<label
