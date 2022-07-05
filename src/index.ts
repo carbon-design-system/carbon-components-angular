@@ -27,6 +27,7 @@ export * from "carbon-components-angular/number-input";
 export * from "carbon-components-angular/pagination";
 export * from "carbon-components-angular/placeholder";
 export * from "carbon-components-angular/popover";
+export * from "carbon-components-angular/progress-bar";
 export * from "carbon-components-angular/progress-indicator";
 export * from "carbon-components-angular/radio";
 export * from "carbon-components-angular/search";
