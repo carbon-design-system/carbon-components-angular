@@ -83,6 +83,7 @@ export class NumberChange {
 					<button
 						class="bx--number__control-btn down-icon"
 						type="button"
+						[attr.disabled]="disabled ? true : null"
 						aria-live="polite"
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
@@ -93,6 +94,7 @@ export class NumberChange {
 					<button
 						class="bx--number__control-btn up-icon"
 						type="button"
+						[attr.disabled]="disabled ? true : null"
 						aria-live="polite"
 						aria-atomic="true"
 						[attr.aria-label]="getIncrementLabel() | async"
