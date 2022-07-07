@@ -37,7 +37,7 @@ import {
 			[attr.describedby]="helperText ? helperId: null"
 			[attr.aria-valuemin]="!indeterminate ? 0 : null"
 			[attr.aria-valuemax]="!indeterminate ? max : null"
-			[attr.aria-valuenow]="!indeterminate ? cappedValue : null">
+			[attr.aria-valuenow]="!indeterminate ? value : null">
 			<div
 				class="cds--progress-bar__bar"
 				[ngStyle]="{
@@ -108,7 +108,6 @@ export class ProgressBar {
 		return this.status === "error";
 	}
 	@HostBinding("class.cds--progress-bar--indeterminate") get indeterminate() {
-		console.log(this.value);
 		return this.value === undefined && !this.isFinished && !this.isError;
 	}
 	static progressBarCounter = 0;
@@ -139,8 +138,6 @@ export class ProgressBar {
 	 * Size of the progress bar, default is `big`
 	 */
 	@Input() size: "small" | "big" = "big";
-
-	cappedValue = 0;
 
 	@HostBinding("class.cds--progress-bar") defaultClass = true;
 	private _value = undefined;
