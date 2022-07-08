@@ -1,5 +1,3 @@
-import { TooltipConfig } from "carbon-components-angular/tooltip";
-
 export interface Step {
 	/**
 	 * The label of the `step`
@@ -10,9 +8,9 @@ export interface Step {
 	 */
 	state: Array<string>;
 	/**
-	 * Defines the tooltip
+	 * Function to execute on click
 	 */
-	tooltip?: TooltipConfig;
+	onClick?: Function;
 	/**
 	 * Determines whether the step is disabled or not
 	 */

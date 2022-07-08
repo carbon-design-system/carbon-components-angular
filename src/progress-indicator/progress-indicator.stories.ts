@@ -35,25 +35,18 @@ Basic.args = {
 		{
 			text: "First step",
 			state: ["complete"],
-			optionalText: "optional"
+			optionalText: "optional text",
+			onClick: () => {
+				alert("First step clicked!");
+			}
 		},
 		{
 			text: "Second step",
-			state: ["current"],
-			tooltip: {
-				description: "Overflow tooltip content."
-			}
+			state: ["current"]
 		},
 		{
 			text: "Third step",
-			state: ["incomplete"],
-			tooltip: {
-				description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-					Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
-					blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
-					Laboriosam, consequatur.`,
-				align: "bottom-left"
-			}
+			state: ["incomplete"]
 		},
 		{
 			text: "Fourth step",
@@ -68,6 +61,9 @@ Basic.args = {
 
 };
 Basic.argTypes = {
+	steps: {
+		control: false
+	},
 	StepSelected: {
 		control: "Step selected!"
 	},

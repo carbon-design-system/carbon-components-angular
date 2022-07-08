@@ -5,8 +5,8 @@ import {
 	EventEmitter, OnChanges, SimpleChanges
 } from "@angular/core";
 import { ExperimentalService } from "carbon-components-angular/experimental";
+import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
-import { DEFAULT_TOOLTIP_CONFIG } from "carbon-components-angular/tooltip";
 
 /**
  * [See demo](../../?path=/story/components-progress-indicator--basic)
@@ -31,55 +31,28 @@ import { DEFAULT_TOOLTIP_CONFIG } from "carbon-components-angular/tooltip";
 			[ngClass]="{'cds--progress-step--disabled' : step.disabled}">
 			<button
 				type="button"
-				class="cds--progress-step-button cds--progress-step-button--unclickable"
+				class="cds--progress-step-button"
+				[ngClass]="{
+					'cds--progress-step-button--unclickable': !step.onClick || current === i
+				}"
 				[disabled]="step.disabled"
 				[attr.aria-disabled]="step.disabled"
-				tabindex="-1"
-				title="step.text">
-				<span class="cds--assistive-text">SOME i18n text based on current state</span>
+				[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
+				[title]="step.text"
+				(click)="onClick(i)">
+				<span class="cds--assistive-text">
+					{{this.translations[getCurrentState(i)?.toUpperCase()]}}
+				</span>
 				<svg
-					ibmIcon="incomplete"
-					*ngIf="step.state.includes('current')"
-					size="16">
-					<title *ngIf="step.description">{{step.description}}</title>
-				</svg>
-				<svg
-					ibmIcon="checkmark--outline"
-					*ngIf="step.state.includes('complete')"
-					size="16">
-					<title *ngIf="step.description">{{step.description}}</title>
-				</svg>
-				<svg
-					ibmIcon="circle-dash"
-					*ngIf="step.state.includes('incomplete')"
-					size="16">
-					<title *ngIf="step.description">{{step.description}}</title>
-				</svg>
-				<svg
-					ibmIcon="warning"
+					[ibmIcon]="statusIcons[getCurrentState(i)]"
 					size="16"
-					*ngIf="step.state.includes('error')"
-					class="cds--progress__warning">
+					[ngClass]="{
+						'cds--progress__warning': step.state.includes('error')
+					}">
 					<title *ngIf="step.description">{{step.description}}</title>
 				</svg>
 				<div class="cds--progress-text">
-					<ibm-tooltip
-						*ngIf="step.tooltip"
-						[description]="step.tooltip.description"
-						[align]="step.tooltip.align"
-						[caret]="step.tooltip.caret"
-						[dropShadow]="step.tooltip.dropShadow"
-						[highContrast]="step.tooltip.highContrast"
-						[isOpen]="step.tooltip.isOpen"
-						[enterDelayMs]="step.tooltip.enterDelayMs"
-						[leaveDelayMs]="step.tooltip.leaveDelayMs">
-						<p
-							class="cds--progress-label"
-							(click)="stepSelected.emit({ step: step, index: i })">
-							{{step.text}}
-						</p>
-					</ibm-tooltip>
-					<p *ngIf="!step.tooltip" class="cds--progress-label">{{step.text}}</p>
+					<p class="cds--progress-label">{{step.text}}</p>
 					<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
 				</div>
 				<span class="cds--progress-line"></span>
@@ -89,17 +62,6 @@ import { DEFAULT_TOOLTIP_CONFIG } from "carbon-components-angular/tooltip";
 	`
 })
 export class ProgressIndicator implements OnChanges {
-	@Input() set steps(steps: Array<Step>) {
-		this._steps = steps.map((step: Step) => {
-			if (step.tooltip) {
-				step.tooltip = { ...DEFAULT_TOOLTIP_CONFIG, ...step.tooltip };
-			}
-			return step;
-		});
-	}
-	get steps() {
-		return this._steps;
-	}
 
 	@Input() get current() {
 		return this.steps.findIndex(step => step.state.includes("current"));
@@ -116,21 +78,62 @@ export class ProgressIndicator implements OnChanges {
 		return steps;
 	}
 
+	@Input() steps: Array<Step>;
 	@Output() stepSelected = new EventEmitter<{ step: Step, index: number }>();
 
+	@Input() translations = this.i18n.get().PROGRESS_INDICATOR;
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 	@Input() skeleton = false;
 	@Input() spacing: "default" | "equal" = "default";
 
-	private _steps: Array<Step> = [];
+	// Get icon names based for each status
+	statusIcons = {
+		current: "incomplete",
+		complete: "checkmark--outline",
+		error: "warning",
+		incomplete: "circle-dash"
+	};
+
 	private _current: number;
 
-	constructor(protected experimental: ExperimentalService) { }
+	constructor(protected experimental: ExperimentalService, protected i18n: I18n) { }
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.steps || changes.current) {
 			this.setProgressIndicatorStates();
 		}
+	}
+
+	/**
+	 * Executes click function if `onClick` exists for step
+	 * `Current` step functions will not be executed
+	 * @param index number
+	 */
+	onClick(index: number) {
+		if (index !== this.current && typeof this.steps[index].onClick === "function") {
+			this.steps[index].onClick();
+		}
+		this.stepSelected.emit({ step: this.steps[index], index });
+	}
+
+	/**
+	 * Gets current state based on weight of the state
+	 * Weight of state goes from error, incomplete, current, and complete
+	 *
+	 * This function is used to determine which icon & translation string to display
+	 * @param index number
+	 * @returns string
+	 */
+	getCurrentState(index: number) {
+		if (this.steps[index].state.includes("error")) {
+			return "error";
+		} else if (this.steps[index].state.includes("incomplete")) {
+			return "incomplete";
+		} else if (this.steps[index].state.includes("current")) {
+			return "current";
+		}
+
+		return "complete";
 	}
 
 	private setProgressIndicatorStates() {

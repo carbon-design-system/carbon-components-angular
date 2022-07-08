@@ -5,16 +5,18 @@ import { By } from "@angular/platform-browser";
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { ExperimentalModule } from "../experimental";
-import { TooltipModule } from "../tooltip";
 import { IconModule } from "../icon";
+import { I18nModule } from "../i18n";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
-	template: `<ibm-progress-indicator
-					[steps]="steps"
-					[current]="current"
-					(stepSelected)="stepSelected.emit($event)">
-				</ibm-progress-indicator>`
+	template: `
+		<ibm-progress-indicator
+			[steps]="steps"
+			[current]="current"
+			(stepSelected)="stepSelected.emit($event)">
+		</ibm-progress-indicator>
+	`
 })
 class ProgressIndicatorTest {
 	steps = [
@@ -25,19 +27,11 @@ class ProgressIndicatorTest {
 		},
 		{
 			text: "Second step",
-			state: ["current"],
-			tooltip: {
-				description: "Overflow tooltip content.",
-				align: "bottom"
-			}
+			state: ["current"]
 		},
 		{
 			text: "Third step",
-			state: ["incomplete"],
-			tooltip: {
-				description: "Test",
-				align: "bottom"
-			}
+			state: ["incomplete"]
 		},
 		{
 			text: "Fourth step",
@@ -55,7 +49,7 @@ class ProgressIndicatorTest {
 	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
-describe("ProgressIndicator", () => {
+describe("Progress Indicator", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -66,9 +60,9 @@ describe("ProgressIndicator", () => {
 			],
 			imports: [
 				CommonModule,
-				TooltipModule,
 				ExperimentalModule,
-				IconModule
+				IconModule,
+				I18nModule
 			]
 		});
 	});
@@ -94,18 +88,6 @@ describe("ProgressIndicator", () => {
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
 		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
-	});
-
-	it("should expand the tooltip when tooltip trigger is clicked", () => {
-		fixture = TestBed.createComponent(ProgressIndicatorTest);
-		wrapper = fixture.componentInstance;
-		wrapper.current = 2;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let tooltipTrigger = element.nativeElement.querySelector(".cds--progress-step--current");
-		tooltipTrigger.dispatchEvent(new MouseEvent("mouseenter"));
-		fixture.detectChanges();
-		expect(tooltipTrigger.querySelector(".cds--popover-content").textContent).toContain("Test");
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
