@@ -12,7 +12,9 @@ module.exports = {
 				"refactor",
 				"perf",
 				"test",
+				"build",
 				"chore",
+				"ci",
 				"revert"
 			]
 		]
