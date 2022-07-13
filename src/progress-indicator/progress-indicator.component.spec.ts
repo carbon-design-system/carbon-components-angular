@@ -95,7 +95,6 @@ describe("Progress Indicator", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
-		// expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
