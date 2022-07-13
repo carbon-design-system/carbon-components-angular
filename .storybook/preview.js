@@ -34,7 +34,7 @@ export const parameters = {
 					height: '100%',
 				},
 			},
-			Max: {
+			max: {
 				name: 'Max',
 				styles: {
 					width: breakpoints.max.width,
