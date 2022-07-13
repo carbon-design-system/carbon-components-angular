@@ -2,11 +2,19 @@ export interface Step {
 	/**
 	 * The label of the `step`
 	 */
-	text: string;
+	label: string;
 	/**
-	 * An array of strings to determine the progress of the step
+	 * Optional label with additional information
 	 */
-	state: Array<string>;
+	secondaryLabel?: string;
+	/**
+	 * Determines whether the step is complete or incomplete
+	 */
+	complete?: boolean;
+	/**
+	 * Determines whether the step is invalid or valid
+	 */
+	invalid?: boolean;
 	/**
 	 * Function to execute on click
 	 */
@@ -15,7 +23,6 @@ export interface Step {
 	 * Determines whether the step is disabled or not
 	 */
 	disabled?: boolean;
-	optionalText?: string;
 	/**
 	 * Icon description
 	 */

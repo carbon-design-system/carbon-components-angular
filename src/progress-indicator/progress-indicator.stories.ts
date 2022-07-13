@@ -33,28 +33,30 @@ Basic.args = {
 	current: 1,
 	steps: [
 		{
-			text: "First step",
-			state: ["complete"],
-			optionalText: "optional text",
+			label: "First step",
+			complete: true,
+			secondaryLabel: "optional text",
 			onClick: () => {
 				alert("First step clicked!");
 			}
 		},
 		{
-			text: "Second step",
-			state: ["current"]
+			label: "Second step",
+			complete: false,
+			current: true
 		},
 		{
-			text: "Third step",
-			state: ["incomplete"]
+			label: "Third step",
+			complete: false
 		},
 		{
-			text: "Fourth step",
-			state: ["incomplete", "error"]
+			label: "Fourth step",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Fifth step",
-			state: ["incomplete"],
+			label: "Fifth step",
+			complete: false,
 			disabled: true
 		}
 	]

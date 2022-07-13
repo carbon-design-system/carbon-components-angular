@@ -21,25 +21,26 @@ import { Step } from "./progress-indicator-step.interface";
 class ProgressIndicatorTest {
 	steps = [
 		{
-			text: "First step",
-			state: ["complete"],
-			optionalText: "optional"
+			label: "First step",
+			complete: true,
+			secondaryLabel: "optional"
 		},
 		{
-			text: "Second step",
-			state: ["current"]
+			label: "Second step",
+			complete: false
 		},
 		{
-			text: "Third step",
-			state: ["incomplete"]
+			label: "Third step",
+			complete: false
 		},
 		{
-			text: "Fourth step",
-			state: ["incomplete", "error"]
+			label: "Fourth step",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Fifth step",
-			state: ["incomplete"],
+			label: "Fifth step",
+			complete: false,
 			disabled: true
 		}
 	];
@@ -80,14 +81,21 @@ describe("Progress Indicator", () => {
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Third step");
 	});
 
-	it("should set current step to Fourth step and set warning icon when step is in error state", () => {
+	it("should set warning icon when step is in error state", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
+	});
+
+	it("should set current step to fourth step", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
 		wrapper.current = 3;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
-		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
+		// expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
@@ -119,8 +127,8 @@ describe("Progress Indicator", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		wrapper.steps = wrapper.steps.concat([{
-			text: "Sixth step",
-			state: ["incomplete"]
+			label: "Sixth step",
+			complete: false
 		}]);
 		fixture.detectChanges();
 		wrapper.current = 5;

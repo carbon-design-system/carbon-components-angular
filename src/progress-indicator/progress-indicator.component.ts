@@ -2,7 +2,7 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter, OnChanges, SimpleChanges
+	EventEmitter
 } from "@angular/core";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { I18n } from "carbon-components-angular/i18n";
@@ -26,9 +26,14 @@ import { Step } from "./progress-indicator-step.interface";
 			'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
 		}">
 		<li
-			class="cds--progress-step cds--progress-step--{{step.state[0]}}"
+			class="cds--progress-step"
 			*ngFor="let step of steps; let i = index"
-			[ngClass]="{'cds--progress-step--disabled' : step.disabled}">
+			[ngClass]="{
+				'cds--progress-step--disabled' : step.disabled,
+				'cds--progress-step--complete' : step.complete,
+				'cds--progress-step--incomplete' : !step.complete && i !== current,
+				'cds--progress-step--current': i === current
+			}">
 			<button
 				type="button"
 				class="cds--progress-step-button"
@@ -38,7 +43,7 @@ import { Step } from "./progress-indicator-step.interface";
 				[disabled]="step.disabled"
 				[attr.aria-disabled]="step.disabled"
 				[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
-				[title]="step.text"
+				[title]="step.label"
 				(click)="onClick(i)">
 				<span class="cds--assistive-text">
 					{{this.translations[getCurrentState(i)?.toUpperCase()]}}
@@ -47,13 +52,13 @@ import { Step } from "./progress-indicator-step.interface";
 					[ibmIcon]="statusIcons[getCurrentState(i)]"
 					size="16"
 					[ngClass]="{
-						'cds--progress__warning': step.state.includes('error')
+						'cds--progress__warning': step.invalid && i !== current
 					}">
 					<title *ngIf="step.description">{{step.description}}</title>
 				</svg>
 				<div class="cds--progress-text">
-					<p class="cds--progress-label">{{step.text}}</p>
-					<p *ngIf="step.optionalText" class="cds--progress-optional">{{step.optionalText}}</p>
+					<p class="cds--progress-label">{{step.label}}</p>
+					<p *ngIf="step.secondaryLabel" class="cds--progress-optional">{{step.secondaryLabel}}</p>
 				</div>
 				<span class="cds--progress-line"></span>
 			</button>
@@ -61,18 +66,18 @@ import { Step } from "./progress-indicator-step.interface";
 	</ul>
 	`
 })
-export class ProgressIndicator implements OnChanges {
-
+export class ProgressIndicator {
 	@Input() get current() {
-		return this.steps.findIndex(step => step.state.includes("current"));
+		return this._current;
 	}
 	set current(current: number) {
 		this._current = current;
+		this.setProgressIndicatorStates();
 	}
 	static skeletonSteps(stepCount: number) {
 		const steps = [];
 		for (let i = 0; i < stepCount; i++) {
-			steps.push({ "state": ["incomplete"] });
+			steps.push({ complete: false });
 		}
 
 		return steps;
@@ -87,22 +92,16 @@ export class ProgressIndicator implements OnChanges {
 	@Input() spacing: "default" | "equal" = "default";
 
 	// Get icon names based for each status
-	statusIcons = {
+	readonly statusIcons = {
 		current: "incomplete",
 		complete: "checkmark--outline",
-		error: "warning",
+		invalid: "warning",
 		incomplete: "circle-dash"
 	};
 
 	private _current: number;
 
 	constructor(protected experimental: ExperimentalService, protected i18n: I18n) { }
-
-	ngOnChanges(changes: SimpleChanges) {
-		if (changes.steps || changes.current) {
-			this.setProgressIndicatorStates();
-		}
-	}
 
 	/**
 	 * Executes click function if `onClick` exists for step
@@ -125,15 +124,15 @@ export class ProgressIndicator implements OnChanges {
 	 * @returns string
 	 */
 	getCurrentState(index: number) {
-		if (this.steps[index].state.includes("error")) {
-			return "error";
-		} else if (this.steps[index].state.includes("incomplete")) {
-			return "incomplete";
-		} else if (this.steps[index].state.includes("current")) {
+		if (index === this.current) {
 			return "current";
+		} else if (this.steps[index].invalid) {
+			return "invalid";
+		} else if (this.steps[index].complete) {
+			return "complete";
 		}
 
-		return "complete";
+		return "incomplete";
 	}
 
 	private setProgressIndicatorStates() {
@@ -141,25 +140,13 @@ export class ProgressIndicator implements OnChanges {
 			return;
 		}
 
-		if (this._current === undefined || this._current < 0) {
-			for (let i = 0; i < this.steps.length; i++) {
-				this.steps[i].state[0] = "incomplete";
+		// Set all preceding steps to `complete` & following to `incomplete`
+		this.steps.forEach((step: Step, index) => {
+			if (index < this.current) {
+				step.complete = true;
+			} else {
+				step.complete = false;
 			}
-			return;
-		}
-
-		if (this._current > this.steps.length - 1) {
-			for (let i = 0; i < this.steps.length; i++) {
-				this.steps[i].state[0] = "complete";
-			}
-			return;
-		}
-		this.steps[this._current].state[0] = "current";
-		for (let i = 0; i < this._current; i++) {
-			this.steps[i].state[0] = "complete";
-		}
-		for (let i = this._current + 1; i < this.steps.length; i++) {
-			this.steps[i].state[0] = "incomplete";
-		}
+		});
 	}
 }
