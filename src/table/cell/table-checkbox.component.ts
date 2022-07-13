@@ -21,7 +21,7 @@ import { TableRowSize } from "../table.types";
 			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			[disabled]="disabled"
-			(checkedChange)="change.emit()">
+			(checkedChange)="selectedChange.emit()">
 		</ibm-checkbox>
 	`
 })
@@ -67,7 +67,7 @@ export class TableCheckbox {
 	/**
 	 * Emits if a single row is selected.
 	 */
-	@Output() change = new EventEmitter();
+	@Output() selectedChange = new EventEmitter();
 
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
