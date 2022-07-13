@@ -45,7 +45,8 @@
         "range": "4.x"
       }
     ],
-    "tagFormat": "v${version}"
+    "tagFormat": "v${version}",
+	"dryRun": true
   },
   "config": {
     "commitizen": {
