@@ -1,157 +1,89 @@
-import {
-	Component,
-	Input,
-	OnInit
-} from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	number,
-	select
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { ProgressIndicatorModule, PlaceholderModule } from "../";
-import { ProgressIndicator } from "./progress-indicator.component";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { ProgressIndicatorModule, ProgressIndicator } from "./";
 
-@Component({
-	selector: "app-skeleton-progress-indicator",
-	template: `
-		<ibm-progress-indicator [steps]="skeletonSteps" [orientation]="orientation" skeleton="true">
-		</ibm-progress-indicator>
-	`
-})
-class SkeletonStory implements OnInit {
-	@Input() skeletonSteps = [];
-	@Input() orientation = "horizontal";
-
-	ngOnInit() {
-		// Creates an empty progress indicator with 4 steps
-		this.skeletonSteps = ProgressIndicator.skeletonSteps(4);
-	}
-}
-
-storiesOf("Components|Progress Indicator", module)
-	.addDecorator(
+export default {
+	title: "Components/Progress Indicator",
+	decorators: [
 		moduleMetadata({
-			declarations: [SkeletonStory],
-			imports: [
-				ProgressIndicatorModule,
-				PlaceholderModule,
-				DocumentationModule
-			]
+			imports: [ProgressIndicatorModule, DocumentationModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-		<div style="display: flex;">
-			<ibm-progress-indicator
-				[steps]="steps"
-				[current]="current"
-				(stepSelected)="stepSelected($event)"
-				[spacing]="spacing">
-			</ibm-progress-indicator>
-			<ibm-placeholder></ibm-placeholder>
-		</div>
-		`,
-		props: {
-			steps: [
-				{
-					text: "First step",
-					state: ["complete"],
-					optionalText: "optional"
-				},
-				{
-					text: "Second step",
-					state: ["current"],
-					tooltip: {
-						description: "Overflow tooltip content."
-					}
-				},
-				{
-					text: "Third step",
-					state: ["incomplete"],
-					tooltip: {
-						description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-							Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
-							blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
-							Laboriosam, consequatur.`,
-							align: "bottom-left"
-					}
-				},
-				{
-					text: "Fourth step",
-					state: ["incomplete", "error"]
-				},
-				{
-					text: "Fifth step",
-					state: ["incomplete"],
-					disabled: true
-				}
-			],
-			current: number("Current progress", 1),
-			stepSelected: action("stepSelected"),
-			spacing: select("Spacing", ["default", "equal"], "default")
-		}
-	}))
-	.add("Vertical", () => ({
-		template: `
+	]
+} as Meta;
+
+const Template: Story<ProgressIndicator> = (args) => ({
+	props: args,
+	template: `
 		<ibm-progress-indicator
-			orientation="vertical"
+			[skeleton]="skeleton"
 			[steps]="steps"
+			[orientation]="orientation"
 			[current]="current"
 			(stepSelected)="stepSelected($event)"
 			[spacing]="spacing">
 		</ibm-progress-indicator>
-		`,
-		props: {
-			steps: [
-				{
-					text: "First step",
-					state: ["complete"]
-				},
-				{
-					text: "Second step",
-					state: ["current"]
-				},
-				{
-					text: "Third step",
-					state: ["incomplete"]
-				},
-				{
-					text: "Fourth step",
-					state: ["incomplete", "error"]
-				},
-				{
-					text: "Fifth step",
-					state: ["incomplete"],
-					disabled: true
-				}
-			],
-			current: number("Current progress", 1),
-			stepSelected: action("stepSelected"),
-			spacing: select("Spacing", ["default", "equal"], "default")
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	skeleton: false,
+	current: 1,
+	steps: [
+		{
+			label: "First step",
+			complete: true,
+			secondaryLabel: "optional text",
+			onClick: () => {
+				alert("First step clicked!");
+			}
+		},
+		{
+			label: "Second step",
+			complete: false,
+			current: true
+		},
+		{
+			label: "Third step",
+			complete: false
+		},
+		{
+			label: "Fourth step",
+			complete: false,
+			invalid: true
+		},
+		{
+			label: "Fifth step",
+			complete: false,
+			disabled: true
 		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
-		-->
-		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
-		&nbsp;&nbsp;
-		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
-		-->
-		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_progress_indicator.progressindicator.html"></ibm-documentation>
-		`
-	}));
+	]
+
+};
+Basic.argTypes = {
+	steps: {
+		control: false
+	},
+	StepSelected: {
+		control: "Step selected!"
+	},
+	align: {
+		options: ["default", "equal"],
+		defaultValue: "default",
+		control: "radio"
+	},
+	orientation: {
+		options: ["horizontal", "veritcal"],
+		defaultValue: "horizontal",
+		control: "radio"
+	}
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_progress_indicator.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

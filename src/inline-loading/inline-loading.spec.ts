@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { InlineLoading, InlineLoadingState } from "./inline-loading.component";
 import { I18nModule } from "../i18n/i18n.module";

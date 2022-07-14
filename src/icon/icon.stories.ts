@@ -1,19 +1,11 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	text,
-	boolean,
-	select,
-	number
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { IconModule } from "./icon.module";
-import { IconService } from "./icon.service";
 import { Component, OnInit } from "@angular/core";
-
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { IconModule, IconService } from "./";
 import { Accessibility16 } from "@carbon/icons";
-
 import * as Icons from "@carbon/icons";
 
 @Component({
@@ -23,7 +15,7 @@ import * as Icons from "@carbon/icons";
 	`
 })
 class IconDemo implements OnInit {
-	constructor(protected iconService: IconService) {}
+	constructor(protected iconService: IconService) { }
 
 	ngOnInit() {
 		this.iconService.register(Accessibility16);
@@ -53,62 +45,84 @@ class IconDemo implements OnInit {
 	]
 })
 class ManyIconDemo implements OnInit {
-	groupedIcons = [];
+	groupedIcons: any = [];
 
 	constructor(protected iconService: IconService) { }
 
 	ngOnInit() {
 		const iconMap = new Map();
-		for (const [key, descriptor] of Object.entries(Icons)) {
-			this.iconService.register(descriptor as object);
-			if (!iconMap.has(descriptor["name"])) {
-				iconMap.set(descriptor["name"], []);
+		for (const [_, descriptor] of Object.entries(Icons)) {
+			this.iconService.register(descriptor as any);
+			if (typeof descriptor === "object" && descriptor) {
+				if (!iconMap.has(descriptor["name"])) {
+					iconMap.set(descriptor["name"], []);
+				}
+				iconMap.get(descriptor["name"]).push(descriptor);
 			}
-			iconMap.get(descriptor["name"]).push(descriptor);
 		}
 		this.groupedIcons = Array.from(iconMap.values());
 	}
 }
 
-storiesOf("Components|Icon", module).addDecorator(
-	moduleMetadata({
-		declarations: [IconDemo, ManyIconDemo],
-		imports: [IconModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-icon></app-demo-icon>
-			<svg ibmIcon="accessibility" size="16" title="Hello!"></svg>
-		`,
-		props: {
+// Story starts here
+export default {
+	title: "Components/Icon",
+	decorators: [
+		moduleMetadata({
+			declarations: [
+				IconDemo,
+				ManyIconDemo
+			],
+			imports: [
+				IconModule,
+				DocumentationModule
+			]
+		})
+	]
+} as Meta;
 
-		}
-	}))
-	.add("With non-svg root element", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-icon></app-demo-icon>
-			<div ibmIcon="accessibility" size="16"></div>
-		`,
-		props: {
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-demo-icon></app-demo-icon>
+		<svg ibmIcon="accessibility" size="16" title="Hello!"></svg>
+	`
+});
+export const Basic = Template.bind({});
 
-		}
-	}))
-	.add("All icons", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-many-icon></app-demo-many-icon>
-		`
-	}));
+const NonSVGRootTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-demo-icon></app-demo-icon>
+		<div ibmIcon="accessibility" size="16"></div>
+	`
+});
+export const RootElement = NonSVGRootTemplate.bind({});
+RootElement.storyName = "Non-svg root element";
+
+const AllIconTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-demo-many-icon></app-demo-many-icon>
+	`
+});
+export const AllIcon = AllIconTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_icon.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

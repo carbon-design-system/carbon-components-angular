@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
@@ -54,7 +54,7 @@ describe("Modal", () => {
 		expect(fixture.componentInstance.overlaySelected.emit).toHaveBeenCalled();
 	});
 
-	it("should close modal when escape is pressed", async(() => {
+	it("should close modal when escape is pressed", waitForAsync(() => {
 		let modalService = fixture.debugElement.injector.get(ModalService);
 
 		spyOn(modalService, "destroy");

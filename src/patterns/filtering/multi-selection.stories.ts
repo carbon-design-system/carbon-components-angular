@@ -1,6 +1,8 @@
+/* tslint:disable variable-name */
+
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
 import { DropdownModule } from "../../dropdown/index";
 import { GridModule } from "../../grid/index";
@@ -99,8 +101,7 @@ class SampleMultiSelection implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
-
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 		this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
 		this.model.data = this.dataset.map(datapoint =>
@@ -112,14 +113,16 @@ class SampleMultiSelection implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Filtering", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Filtering",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleMultiSelection ],
+			declarations: [SampleMultiSelection],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -127,14 +130,17 @@ storiesOf("Patterns|Filtering", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multi Selection", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-multi-selection></app-sample-multi-selection>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-multi-selection></app-sample-multi-selection>
+	`
+});
+export const MultiSelection = Template.bind({});

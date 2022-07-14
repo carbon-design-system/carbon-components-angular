@@ -42,7 +42,7 @@ import { TableRowSize } from "../table.types";
 						[row]="row"
 						[skeleton]="skeleton"
 						[headers]="model.getHeaderId('select')"
-						(change)="onSelectionChange()">
+						(selectedChange)="onSelectionChange()">
 					</td>
 				</ng-template>
 			</ng-container>

@@ -34,7 +34,6 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 		<div
 			[attr.aria-label]="ariaLabel"
 			class="cds--content-switcher"
-			[class.cds--content-switcher--light]="theme === 'light'"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
@@ -42,10 +41,6 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
-	/**
-	 * `light` or `dark` content switcher theme
-	 */
-	@Input() theme: "light" | "dark" = "dark";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`
@@ -81,7 +76,6 @@ export class ContentSwitcher implements AfterViewInit {
 		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[ibmContentOption]"));
 
 		switch (event.key) {
-			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, buttonList))  {
@@ -92,7 +86,6 @@ export class ContentSwitcher implements AfterViewInit {
 				}
 				break;
 
-			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
 				if (!isFocusInFirstItem(event, buttonList))  {

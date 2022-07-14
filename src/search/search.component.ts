@@ -125,8 +125,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() search = new EventEmitter<string>();
 
-	// @ts-ignore
-	@ViewChild("input", { static: false }) inputRef: ElementRef;
+	@ViewChild("input") inputRef: ElementRef;
 
 	/**
 	 * Sets `true` when composing text via IME.

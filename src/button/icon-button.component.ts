@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -44,7 +45,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 	</ibm-tooltip>
 	`
 })
-export class IconButton extends BaseIconButton {
+export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**
 	 * Pass global carbon classes to icon button
 	 */
@@ -62,14 +63,16 @@ export class IconButton extends BaseIconButton {
 	 * Key is the attribute name & value is the attribute value for the button
 	 */
 	@Input() set buttonAttributes(obj: { [key: string]: string }) {
-		// Remove old attributes
-		Object.keys(this.attributeList).forEach((key: string) => {
-			this.renderer.removeAttribute(this.button.nativeElement, key);
-		});
-		// Set new attributes
-		Object.keys(obj).forEach((key: string) => {
-			this.renderer.setAttribute(this.button.nativeElement, key, obj[key]);
-		});
+		if (this.button) {
+			// Remove old attributes
+			Object.keys(this.attributeList).forEach((key: string) => {
+				this.renderer.removeAttribute(this.button.nativeElement, key);
+			});
+			// Set new attributes
+			Object.keys(obj).forEach((key: string) => {
+				this.renderer.setAttribute(this.button.nativeElement, key, obj[key]);
+			});
+		}
 		// Set new attributes
 		this.attributeList = obj;
 	}
@@ -127,6 +130,11 @@ export class IconButton extends BaseIconButton {
 
 	constructor(private renderer: Renderer2) {
 		super();
+	}
+
+	ngAfterViewInit(): void {
+		// Set attributes once element is found
+		this.buttonAttributes = this.attributeList;
 	}
 
 	/**

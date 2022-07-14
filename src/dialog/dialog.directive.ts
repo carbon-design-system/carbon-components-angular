@@ -178,10 +178,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		const element = this.elementRef.nativeElement;
 
 		this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-			// "Esc" is an IE specific value
 			if (event.target === this.dialogConfig.parentRef.nativeElement &&
 				(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
-				event.key === "Escape" || event.key === "Esc") {
+				event.key === "Escape") {
 				this.close({
 					reason: CloseReasons.interaction,
 					target: event.target
@@ -213,8 +212,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				});
 			});
 			this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-				// "Spacebar" is an IE specific value
-				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+				if (event.key === "Enter" || event.key === " ") {
 					setTimeout(() => {
 						this.open();
 					});

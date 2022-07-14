@@ -4,7 +4,7 @@
 	"lib": {
 		"entryFile": "index.ts"
 	},
-	"whitelistedNonPeerDependencies": [
+	"allowedNonPeerDependencies": [
 		"@carbon/utils-position",
 		"flatpickr",
 		"@carbon/icon-helpers",

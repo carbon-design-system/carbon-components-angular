@@ -401,16 +401,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/** emits the search string from the input */
 	@Output() search = new EventEmitter<string>();
 	/** ContentChild reference to the instantiated dropdown list */
-	// @ts-ignore
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
-	// @ts-ignore
-	@ViewChild("dropdownMenu", { static: false }) dropdownMenu;
-	// @ts-ignore
+	@ViewChild("dropdownMenu") dropdownMenu;
 	@ViewChild("input", { static: true }) input: ElementRef;
-	// @ts-ignore
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
-	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
@@ -479,7 +474,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			const isUpdate = event => event && event.isUpdate;
 
 			this.view.select.subscribe(event => {
-				if (this.type === "multi") {
+				if (Array.isArray(event)) {
 					this.updatePills();
 					if (!isUpdate(event)) {
 						if (this.itemValueKey && this.view.getSelected()) {
@@ -491,6 +486,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						}
 					}
 				} else {
+					// If type is single, dropdown list will emit an object
 					if (event.item && event.item.selected) {
 						this.showClearButton = true;
 						this.selectedValue = event.item.content;
@@ -517,8 +513,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					}
 					this.closeDropdown();
 				}
-				if (!isUpdate(event)) {
-					this.selected.emit(event);
+				if (!isUpdate(event) && !Array.isArray(event)) {
+					this.selected.emit(event.item);
 				}
 			});
 			// update the rest of combobox with any pre-selected items
@@ -573,7 +569,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
+		} else if ((ev.key === "ArrowDown")
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
@@ -791,11 +787,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		// "Esc" is an IE specific value
-		if ((event.key === "Escape" || event.key === "Esc") && this.open) {
+		if ((event.key === "Escape") && this.open) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (event.key === "Escape" || event.key === "Esc") {
+		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeDropdown();
 			this.input.nativeElement.focus();

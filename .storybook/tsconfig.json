@@ -1,36 +1,15 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"baseUrl": "",
-		"declaration": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"lib": [
-			"es2016",
-			"dom"
+		"types": [
+			"node"
 		],
-		"sourceMap": true,
-		"mapRoot": "./../",
-		"module": "es2015",
-		"moduleResolution": "node",
-		"outDir": "./../dist",
-		"rootDirs": [
-			"./../src",
-			"./../stories"
-		],
-		"target": "es5",
-		"inlineSources": true,
-		"typeRoots": [
-			"./../node_modules/@types",
-			"./../demo/typings.d.ts"
-		],
-		"paths": {
-			"carbon-components-angular/*": [
-				"./../src/*/index"
-			]
-		}
+		"allowSyntheticDefaultImports": true,
 	},
-	"files": [
-		"./../src/index.ts"
-	]
+	"include": [
+		"**/*.stories.ts",
+		"../src/**/*",
+		"../projects/**/*"
+	],
+	"exclude": [],
 }

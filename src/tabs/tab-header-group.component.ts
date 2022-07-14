@@ -65,10 +65,10 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			}"
 			(click)="handleOverflowNavClick(1, tabHeaderQuery.length)"
 			(pointerdown)="handleOverflowNavMouseDown(1)"
-			(pointerup)="handleOverflowNavMouseUp($event)"
-			(pointerleave)="handleOverflowNavMouseUp($event)"
-			(pointerout)="handleOverflowNavMouseUp($event)"
-			(pointercancel)="handleOverflowNavMouseUp($event)">
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
+			(pointercancel)="handleOverflowNavMouseUp()">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -91,7 +91,6 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	 */
 	@ContentChildren(TabHeader) tabHeaderQuery: QueryList<TabHeader>;
 
-	// @ts-ignore
 	@ViewChild("tabList", { static: true }) headerContainer;
 	/**
 	 * Keeps track of all the subscriptions to the tab header selection events.

@@ -1,131 +1,12 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import {
-	Component,
-	Input,
-	EventEmitter,
-	Output,
-	OnInit,
-	ViewEncapsulation
-} from "@angular/core";
-
-import { NotificationModule, NotificationService } from "./index";
-import { ButtonModule } from "../button/index";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
-
-@Component({
-	selector: "app-actionable-story",
-	template: `
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'error',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant
-			}">
-		</ibm-actionable-notification>
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'info',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant
-			}">
-		</ibm-actionable-notification>
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'info-square',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant
-			}">
-		</ibm-actionable-notification>
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'success',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant
-			}">
-		</ibm-actionable-notification>
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'warning',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant
-			}">
-		</ibm-actionable-notification>
-		<ibm-actionable-notification
-			[notificationObj]="{
-				type: 'warning-alt',
-				title: 'Sample notification',
-				message: 'Sample error message',
-				showClose: showClose,
-				lowContrast: lowContrast,
-				actions: actions,
-				variant: variant,
-				links: links
-			}">
-		</ibm-actionable-notification>
-		`,
-	providers: [NotificationService],
-	styles: [`
-		ibm-actionable-notification {
-			margin-bottom: 1rem;
-		}
-	`]
-})
-class NotificationActionStory implements OnInit {
-	@Input() showClose = true;
-	@Input() lowContrast = false;
-	@Input() variant = "inline";
-	@Output() actionClicked = new EventEmitter();
-
-	actionSubject = new Subject<any>();
-
-	actions = [
-		{
-			text: "Action",
-			click: this.actionSubject
-		}
-	];
-
-	links = [
-		{
-			href: "https://ibm.com",
-			text: "Link"
-		},
-		{
-			href: "https://ibm.com",
-			text: "Link"
-		}
-	];
-
-	constructor(protected notificationService: NotificationService) { }
-
-	ngOnInit() {
-		this.actions.forEach(action => action.click.subscribe({ next: () => this.actionClicked.emit() }));
-	}
-}
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { DocumentationModule } from "../documentation-component/documentation.module";
+import { ButtonModule } from "../button";
+import { NotificationModule, NotificationService } from "./";
 
 @Component({
 	selector: "app-dynamic-actionable-story",
@@ -199,13 +80,13 @@ class ToastStory {
 	}
 }
 
-storiesOf("Components|Notification", module)
-	.addDecorator(
+export default {
+	title: "Components/Notification",
+	decorators: [
 		moduleMetadata({
 			declarations: [
 				DyanmicActionableStory,
 				NotificationStory,
-				NotificationActionStory,
 				ToastStory
 			],
 			imports: [
@@ -214,275 +95,237 @@ storiesOf("Components|Notification", module)
 				DocumentationModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-inline-notification [notificationObj]="{
-				type: 'error',
+	]
+} as Meta;
+
+const InlineTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-inline-notification [notificationObj]="{
+			type: type,
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast}">
+		</ibm-inline-notification>
+	`
+});
+export const InlineNotification = InlineTemplate.bind({});
+InlineNotification.args = {
+	showClose: true,
+	lowContrast: false
+};
+InlineNotification.argTypes = {
+	type: {
+		options: [
+			"error",
+			"info",
+			"info-square",
+			"success",
+			"warning",
+			"warning-alt"
+		],
+		control: "select",
+		defaultValue: "info"
+	}
+};
+
+const ToastTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-toast [notificationObj]="{
+			type: type,
+			title: 'Sample toast',
+			subtitle: 'Sample subtitle message',
+			caption: 'Sample caption',
+			lowContrast: lowContrast,
+			showClose: showClose
+		}"></ibm-toast>
+	`
+});
+export const Toast = ToastTemplate.bind({});
+Toast.args = {
+	...InlineNotification.args
+};
+Toast.argTypes = {
+	...InlineNotification.argTypes
+};
+
+const ActionableTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-actionable-notification
+			[notificationObj]="{
+				type: type,
 				title: 'Sample notification',
 				message: 'Sample error message',
 				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-inline-notification>
-			<ibm-notification [notificationObj]="{
-				type: 'info',
-				title: 'Sample notification',
-				message: 'Sample info message',
-				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-notification>
-			<ibm-notification [notificationObj]="{
-				type: 'info-square',
-				title: 'Sample notification',
-				message: 'Sample info message',
-				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-notification>
-			<ibm-notification [notificationObj]="{
-				type: 'success',
-				title: 'Sample notification',
-				message: 'Sample success message',
-				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-notification>
-			<ibm-notification [notificationObj]="{
-				type: 'warning',
-				title: 'Sample notification',
-				message: 'Sample warning message',
-				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-notification>
-			<ibm-notification [notificationObj]="{
-				type: 'warning-alt',
-				title: 'Sample notification',
-				message: 'Sample warning message',
-				showClose: showClose,
-				lowContrast: lowContrast}">
-			</ibm-notification>
-		`,
-		props: {
-			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
-		},
-		styles: [`
-			ibm-notification, ibm-inline-notification {
-				margin-bottom: 1rem;
-			}
-		`]
-	}))
-	.add("Dynamic inline", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-notification-story></app-notification-story>
-		`
-	}))
-	.add("Actionable notification", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-actionable-story
-				[showClose]="showClose"
-				[lowContrast]="lowContrast"
-				[variant]="variant"
-				(actionClicked)="selected()">
-			</app-actionable-story>
-		`,
-		props: {
-			variant: select("Variant", ["inline", "toast"], "inline"),
-			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false),
-			selected: action("Action button clicked!")
-		}
-	}))
-	.add("Dynamic actionable", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-dynamic-actionable-story></app-dynamic-actionable-story>
-		`
-	}))
-	.add("Toast", () => ({
-		template: `
-			<ibm-toast [notificationObj]="{
-				type: 'error',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
 				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-			<ibm-toast [notificationObj]="{
-				type: 'info',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-			<ibm-toast [notificationObj]="{
-				type: 'info-square',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-			<ibm-toast [notificationObj]="{
-				type: 'success',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-			<ibm-toast [notificationObj]="{
-				type: 'warning',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-			<ibm-toast [notificationObj]="{
-				type: 'warning-alt',
-				title: 'Sample toast',
-				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption',
-				lowContrast: lowContrast,
-				showClose: showClose
-			}"></ibm-toast>
-		`,
-		styles: [`
-			ibm-toast {
-				margin-bottom: 1rem;
-			}
-
-		`],
-		props: {
-			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false),
-			links: [
-				{
-					href: "https://ibm.com",
-					text: "Link"
-				},
-				{
-					href: "https://ibm.com",
-					text: "Link"
-				}
-			]
-		}
-	}))
-	.add("Dynamic toast", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-toast-story></app-toast-story>
-		`
-	}))
-	.add("With custom content", () => ({
-		template: `
-			<ibm-toast [notificationObj]="{
-				type: 'error',
-				template: customToastContent,
-				title: 'Sample title',
-				myData: {
-					subtitle: 'Sample custom subtitle'
-				},
-				myCaption: 'Sample custom caption',
-				showClose: showClose
+				actions: actions,
+				variant: variant
 			}">
-			</ibm-toast>
-			<ibm-notification [notificationObj]="{
-				type: 'warning',
-				template: customNotificationContent,
-				title: 'Sample notification',
-				myData: {
-					subtitle: 'Sample custom subtitle'
-				},
-				showClose: showClose
-			}">
-			</ibm-notification>
-			<ibm-actionable-notification [notificationObj]="{
-				type: 'success',
-				template: customActionableContent,
-				actionsTemplate: customActionableTrigger,
-				title: 'Sample notification',
-				myData: {
-					subtitle: 'Sample custom subtitle'
-				},
-				showClose: showClose
-			}">
-			</ibm-actionable-notification>
-			<ng-template #customToastContent let-data>
-				<h3 ibmToastTitle>{{data.title}}</h3>
-				<p ibmToastSubtitle>{{data.myData.subtitle}}</p>
-				<p ibmToastCaption>{{data.myCaption}}</p>
-			</ng-template>
-			<ng-template #customNotificationContent let-data>
-				<p ibmNotificationTitle>{{data.title}}</p>
-				<p ibmNotificationSubtitle>{{data.myData.subtitle}}</p>
-			</ng-template>
-			<ng-template #customActionableContent let-data>
-				<p ibmActionableTitle>{{data.title}}</p>
-				<p ibmActionableSubtitle>{{data.myData.subtitle}}</p>
-			</ng-template>
-			<ng-template #customActionableTrigger>
-				<button
-					ibmActionableButton
-					ibmButton="ghost"
-					size="sm">
-					Action
-				</button>
-			</ng-template>
-		`,
-		encapsulation: ViewEncapsulation.None,
-		styles: [`
-			ibm-toast {
-				width: 450px;
-				margin-bottom: 1rem;
+		</ibm-actionable-notification>
+	`
+});
+export const Actionable = ActionableTemplate.bind({});
+Actionable.args = {
+	...InlineNotification.args
+};
+Actionable.argTypes = {
+	...InlineNotification.argTypes,
+	variant: {
+		options: ["toast", "inline"],
+		defaultValue: "inline",
+		control: "radio"
+	},
+	actions: {
+		control: "object",
+		defaultValue: [
+			{
+				text: "Action",
+				click: new Subject<any>()
 			}
+		]
+	}
+};
 
-			ibm-notification {
-				margin-bottom: 1rem;
-			}
+const DynamicActionableTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-dynamic-actionable-story></app-dynamic-actionable-story>
+	`
+});
+export const DynamicActionable = DynamicActionableTemplate.bind({});
 
-			.secondary-toast-button {
-				margin-right: 10px;
-			}
+const DynamicToastTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-toast-story></app-toast-story>
+	`
+});
+export const DynamicToast = DynamicToastTemplate.bind({});
 
-			.actions {
-				margin-bottom: 25px;
-				display: flex;
-				justify-content: flex-end;
-			}
-		`],
-		props: {
-			showClose: boolean("Show close icon", true)
+const DynamicInlineTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-notification-story></app-notification-story>
+	`
+});
+export const DynamicInline = DynamicInlineTemplate.bind({});
+
+const CustomTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-toast [notificationObj]="{
+			type: 'error',
+			template: customToastContent,
+			title: 'Sample title',
+			myData: {
+				subtitle: 'Sample custom subtitle'
+			},
+			myCaption: 'Sample custom caption',
+			showClose: showClose
+		}">
+		</ibm-toast>
+		<ibm-notification [notificationObj]="{
+			type: 'warning',
+			template: customNotificationContent,
+			title: 'Sample notification',
+			myData: {
+				subtitle: 'Sample custom subtitle'
+			},
+			showClose: showClose
+		}">
+		</ibm-notification>
+		<ibm-actionable-notification [notificationObj]="{
+			type: 'success',
+			template: customActionableContent,
+			actionsTemplate: customActionableTrigger,
+			title: 'Sample notification',
+			myData: {
+				subtitle: 'Sample custom subtitle'
+			},
+			showClose: showClose
+		}">
+		</ibm-actionable-notification>
+		<ng-template #customToastContent let-data>
+			<h3 ibmToastTitle>{{data.title}}</h3>
+			<p ibmToastSubtitle>{{data.myData.subtitle}}</p>
+			<p ibmToastCaption>{{data.myCaption}}</p>
+		</ng-template>
+		<ng-template #customNotificationContent let-data>
+			<p ibmNotificationTitle>{{data.title}}</p>
+			<p ibmNotificationSubtitle>{{data.myData.subtitle}}</p>
+		</ng-template>
+		<ng-template #customActionableContent let-data>
+			<p ibmActionableTitle>{{data.title}}</p>
+			<p ibmActionableSubtitle>{{data.myData.subtitle}}</p>
+		</ng-template>
+		<ng-template #customActionableTrigger>
+			<button
+				ibmActionableButton
+				ibmButton="ghost"
+				size="sm">
+				Action
+			</button>
+		</ng-template>
+	`,
+	encapsulation: ViewEncapsulation.None,
+	styles: [`
+		ibm-toast {
+			width: 450px;
+			margin-bottom: 1rem;
 		}
-	}))
-	.add("Inline Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
-		`
-	}))
-	.add("Actionable Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_notification.actionablenotification.html"></ibm-documentation>
-		`
-	}))
-	.add("Toast Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_notification.toast.html"></ibm-documentation>
-		`
-	}));
+
+		ibm-notification {
+			margin-bottom: 1rem;
+		}
+
+		.secondary-toast-button {
+			margin-right: 10px;
+		}
+
+		.actions {
+			margin-bottom: 25px;
+			display: flex;
+			justify-content: flex-end;
+		}
+	`]
+});
+export const CustomContent = CustomTemplate.bind({});
+CustomContent.args = {
+	showClose: true
+};
+
+const ActionableDocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/classes/src_notification.actionablenotification.html"></ibm-documentation>
+	`
+});
+export const ActionableDocumentation = ActionableDocumentationTemplate.bind({});
+
+const InlineDocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
+	`
+});
+export const InlineDocumentation = InlineDocumentationTemplate.bind({});
+
+const ToastDocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/classes/src_notification.toast.html"></ibm-documentation>
+	`
+});
+export const ToastDocumentation = ToastDocumentationTemplate.bind({});

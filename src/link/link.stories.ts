@@ -1,30 +1,34 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { LinkModule } from "../";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { LinkModule, Link } from "./";
 
-storiesOf("Components|Link", module)
-	.addDecorator(
+export default {
+	title: "Components/Link",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				LinkModule,
-				DocumentationModule
-			]
+			imports: [LinkModule, DocumentationModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<a href="#" ibmLink [disabled]="disabled" [inline]="inline">link</a>
-		`,
-		props: {
-			disabled: boolean("disabled", false),
-			inline: boolean("inline", false)
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_link.link.html"></ibm-documentation>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story<Link> = (args) => ({
+	props: args,
+	template: `
+		<a href="#" ibmLink [disabled]="disabled" [inline]="inline">link</a>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	disabled: false,
+	inline: false
+};
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_link.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

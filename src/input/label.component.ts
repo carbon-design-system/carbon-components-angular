@@ -141,11 +141,9 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	@Input() ariaLabel: string;
 
-	// @ts-ignore
-	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
-	// @ts-ignore
-	@ContentChild(TextArea, { static: false }) textArea: TextArea;
+	@ContentChild(TextArea) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 

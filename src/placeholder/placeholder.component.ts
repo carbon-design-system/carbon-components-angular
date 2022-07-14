@@ -26,7 +26,6 @@ export class Placeholder implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `Placeholder`.
 	 */
-	// @ts-ignore
 	@ViewChild("placeholder", { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
 	/**

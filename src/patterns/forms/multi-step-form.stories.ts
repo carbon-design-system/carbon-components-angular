@@ -1,17 +1,15 @@
-import {
-	Component,
-	OnInit,
-	OnDestroy
-} from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { GridModule } from "../../grid/index";
-import { UIShellModule } from "../../ui-shell/index";
-import { DropdownModule } from "../../dropdown/index";
-import { ButtonModule } from "../../button/index";
-import { InputModule } from "../../input/index";
-import { ProgressIndicatorModule } from "../../progress-indicator/index";
-import { BreadcrumbModule } from "../../breadcrumb/index";
+/* tslint:disable variable-name */
+
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { GridModule } from "../../grid";
+import { UIShellModule } from "../../ui-shell";
+import { DropdownModule } from "../../dropdown";
+import { ButtonModule } from "../../button";
+import { InputModule } from "../../input";
+import { ProgressIndicatorModule } from "../../progress-indicator";
+import { BreadcrumbModule } from "../../breadcrumb";
 import {
 	FormBuilder,
 	FormControl,
@@ -173,7 +171,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	resourceGroups = [
 		{ content: "None" },
-		{ content: "Resource group 1"},
+		{ content: "Resource group 1" },
 		{ content: "Resource group 2" }
 	];
 
@@ -182,7 +180,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 	constructor(protected formBuilder: FormBuilder) { }
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 
 		this.step2FormGroup = this.formBuilder.group({
 			workspaceName: new FormControl(),
@@ -190,11 +188,11 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 			purpose: new FormControl()
 		});
 
-		this.step2FormGroup.get("resourceGroup").setValue("None");
+		this.step2FormGroup.get("resourceGroup")?.setValue("None");
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 
 	changeStep(step: number) {
@@ -202,8 +200,10 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 	}
 }
 
-storiesOf("Patterns|Forms", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Forms",
+	decorators: [
 		moduleMetadata({
 			declarations: [ MultiStepFormStory ],
 			imports: [
@@ -217,14 +217,17 @@ storiesOf("Patterns|Forms", module)
 				DropdownModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multi step", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-multi-step-form></app-multi-step-form>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-multi-step-form></app-multi-step-form>
+	`
+});
+export const MultiStep = Template.bind({});

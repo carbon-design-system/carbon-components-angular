@@ -135,10 +135,6 @@ export class ColumnDirective implements OnInit {
 	selector: "[ibmRow]"
 })
 export class RowDirective {
-	@Input() gutter = true;
-	@Input() leftGutter = true;
-	@Input() rightGutter = true;
-
 	@HostBinding("class.cds--row") baseClass = true;
 	@HostBinding("class.cds--row--condensed") @Input() condensed = false;
 	@HostBinding("class.cds--row--narrow") @Input() narrow = false;

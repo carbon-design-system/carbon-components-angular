@@ -128,6 +128,12 @@ export default {
 		"NEXT": "Next",
 		"PREVIOUS": "Previous"
 	},
+	"PROGRESS_INDICATOR": {
+		"CURRENT": "Current",
+		"INCOMPLETE": "Incomplete",
+		"COMPLETE": "Complete",
+		"INVALID": "Invalid"
+	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
 		"PREVIOUS_PAGE": "Previous page",

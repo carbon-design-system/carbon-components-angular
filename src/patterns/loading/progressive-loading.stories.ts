@@ -1,15 +1,22 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
+
+import {
+	Component,
+	OnInit,
+	OnDestroy
+} from "@angular/core";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import {
 	TableModule,
 	TableModel,
 	TableHeaderItem,
-	TableItem } from "../../table/index";
-import { DropdownModule } from "../../dropdown/index";
-import { GridModule } from "../../grid/index";
-import { ButtonModule } from "../../forms/index";
-import { UIShellModule } from "../../ui-shell/index";
+	TableItem
+} from "../../table";
+import { DropdownModule } from "../../dropdown";
+import { GridModule } from "../../grid";
+import { ButtonModule } from "../../button";
+import { UIShellModule } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-progressive-loading",
@@ -93,7 +100,7 @@ class SampleProgressiveLoading implements OnInit, OnDestroy {
 	model = new TableModel();
 	skeletonStateTable = true;
 	skeletonStateDropdown = true;
-	placeholder = null;
+	placeholder: string | null = null;
 
 	dataset = [
 		{ name: "Apple", type: "Fruit" },
@@ -143,19 +150,21 @@ class SampleProgressiveLoading implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 		this.loadScreen();
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Loading", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Loading",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleProgressiveLoading ],
+			declarations: [SampleProgressiveLoading],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -164,14 +173,17 @@ storiesOf("Patterns|Loading", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Progressive Loading", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-progressive-loading></app-sample-progressive-loading>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-progressive-loading></app-sample-progressive-loading>
+	`
+});
+export const ProgressiveLoading = Template.bind({});

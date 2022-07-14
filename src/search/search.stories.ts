@@ -1,77 +1,67 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	boolean,
-	select,
-	text
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { SearchModule } from "../";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { SearchModule, Search } from "./";
 
-storiesOf("Components|Search", module).addDecorator(
-	moduleMetadata({
-		imports: [SearchModule, DocumentationModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-search
-				[theme]="theme"
-				[placeholder]="placeholder"
-				[autocomplete]="autocomplete"
-				[disabled]="disabled"
-				[size]="size"
-				(valueChange)="valueChange($event)"
-				(clear)="clear()">
-			</ibm-search>
-		`,
-		props: {
-			size: select("size", ["sm", "md", "lg"], "md"),
-			theme: select("theme", ["dark", "light"], "dark"),
-			disabled: boolean("disabled", false),
-			autocomplete: text("autocomplete", "on"),
-			placeholder: text("placeholder", "Search"),
-			valueChange: action("value change fired!"),
-			clear: action("clear fired!")
+export default {
+	title: "Components/Search",
+	decorators: [
+		moduleMetadata({
+			imports: [SearchModule, DocumentationModule]
+		})
+	],
+	args: {
+		expandable: false,
+		placeholder: "Search",
+		disabled: false,
+		skeleton: false
+	},
+	argTypes: {
+		size: {
+			options: ["sm", "md", "lg"],
+			defaultValue: "md",
+			control: "radio"
+		},
+		theme: {
+			options: ["light", "dark"],
+			defaultValue: "dark",
+			control: "radio"
+		},
+		autocomplete: {
+			options: ["on", "off"],
+			defaultValue: "on",
+			control: "radio"
+		},
+		clear: {
+			action: "Cleared!"
+		},
+		valueChange: {
+			action: "Value changed!"
 		}
-	}))
-	.add("Expandable", () => ({
-		template: `
-			<ibm-search
-				[expandable]="true"
-				[theme]="theme"
-				[placeholder]="placeholder"
-				[autocomplete]="autocomplete"
-				[disabled]="disabled"
-				[size]="size"
-				(valueChange)="valueChange($event)"
-				(clear)="clear()">
-			</ibm-search>
-		`,
-		props: {
-			size: select("size", ["sm", "md", "lg"], "md"),
-			theme: select("theme", ["dark", "light"], "dark"),
-			disabled: boolean("disabled", false),
-			autocomplete: text("autocomplete", "on"),
-			placeholder: text("placeholder", "Search"),
-			valueChange: action("value change fired!"),
-			clear: action("clear fired!")
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-		<div style="width: 200px;">
-			<ibm-search skeleton="true"></ibm-search>
-			&nbsp;
-			<ibm-search skeleton="true" size="sm"></ibm-search>
-		</div>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_search.search.html"></ibm-documentation>
-		`
-	}));
+	}
+} as Meta;
+
+const Template: Story<Search> = (args) => ({
+	props: args,
+	template: `
+		<ibm-search
+			[theme]="theme"
+			[placeholder]="placeholder"
+			[autocomplete]="autocomplete"
+			[disabled]="disabled"
+			[size]="size"
+			(valueChange)="valueChange($event)"
+			(clear)="clear()">
+		</ibm-search>
+	`
+});
+export const Basic = Template.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_search.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

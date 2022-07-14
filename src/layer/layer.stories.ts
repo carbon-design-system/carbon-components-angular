@@ -1,33 +1,43 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
+/* tslint:disable variable-name */
 
-import { LayerModule } from "./";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { LayerModule, LayerDirective } from "./";
 
-storiesOf("Components|Layer", module).addDecorator(
-	moduleMetadata({
-		imports: [LayerModule, DocumentationModule]
-	}))
-	.add("Basic", () => ({
-		template: `
-			<div class="example-layer">Layer 1</div>
+export default {
+	title: "Components/Layer",
+	decorators: [
+		moduleMetadata({
+			imports: [LayerModule, DocumentationModule]
+		})
+	]
+} as Meta;
+
+const Template: Story<LayerDirective> = (args) => ({
+	props: args,
+	template: `
+		<div class="example-layer">Layer 1</div>
+		<div ibmLayer>
+			<div class="example-layer">Layer 2</div>
 			<div ibmLayer>
-				<div class="example-layer">Layer 2</div>
-				<div ibmLayer>
-					<div class="example-layer">Layer 3</div>
-				</div>
+				<div class="example-layer">Layer 3</div>
 			</div>
-		`,
+		</div>
+	`,
 	styles: [
 		`.example-layer {
 			padding: 1rem;
 			background: var(--cds-layer);
 			color: theme.$text-primary;
-		}
-		`
+		}`
 	]
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_layer.layer.html"></ibm-documentation>
-		`
-	}));
+});
+export const Basic = Template.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_layer.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

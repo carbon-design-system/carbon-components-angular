@@ -5,47 +5,42 @@ import { By } from "@angular/platform-browser";
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
 import { ExperimentalModule } from "../experimental";
-import { TooltipModule } from "../tooltip";
 import { IconModule } from "../icon";
+import { I18nModule } from "../i18n";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
-	template: `<ibm-progress-indicator
-					[steps]="steps"
-					[current]="current"
-					(stepSelected)="stepSelected.emit($event)">
-				</ibm-progress-indicator>`
+	template: `
+		<ibm-progress-indicator
+			[steps]="steps"
+			[current]="current"
+			(stepSelected)="stepSelected.emit($event)">
+		</ibm-progress-indicator>
+	`
 })
 class ProgressIndicatorTest {
 	steps = [
 		{
-			text: "First step",
-			state: ["complete"],
-			optionalText: "optional"
+			label: "First step",
+			complete: true,
+			secondaryLabel: "optional"
 		},
 		{
-			text: "Second step",
-			state: ["current"],
-			tooltip: {
-				description: "Overflow tooltip content.",
-				align: "bottom"
-			}
+			label: "Second step",
+			complete: false
 		},
 		{
-			text: "Third step",
-			state: ["incomplete"],
-			tooltip: {
-				description: "Test",
-				align: "bottom"
-			}
+			label: "Third step",
+			complete: false
 		},
 		{
-			text: "Fourth step",
-			state: ["incomplete", "error"]
+			label: "Fourth step",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Fifth step",
-			state: ["incomplete"],
+			label: "Fifth step",
+			complete: false,
 			disabled: true
 		}
 	];
@@ -55,7 +50,7 @@ class ProgressIndicatorTest {
 	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
-describe("ProgressIndicator", () => {
+describe("Progress Indicator", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -66,9 +61,9 @@ describe("ProgressIndicator", () => {
 			],
 			imports: [
 				CommonModule,
-				TooltipModule,
 				ExperimentalModule,
-				IconModule
+				IconModule,
+				I18nModule
 			]
 		});
 	});
@@ -86,26 +81,20 @@ describe("ProgressIndicator", () => {
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Third step");
 	});
 
-	it("should set current step to Fourth step and set warning icon when step is in error state", () => {
+	it("should set warning icon when step is in error state", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
+	});
+
+	it("should set current step to fourth step", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
 		wrapper.current = 3;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
-		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
-	});
-
-	it("should expand the tooltip when tooltip trigger is clicked", () => {
-		fixture = TestBed.createComponent(ProgressIndicatorTest);
-		wrapper = fixture.componentInstance;
-		wrapper.current = 2;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let tooltipTrigger = element.nativeElement.querySelector(".cds--progress-step--current");
-		tooltipTrigger.dispatchEvent(new MouseEvent("mouseenter"));
-		fixture.detectChanges();
-		expect(tooltipTrigger.querySelector(".cds--popover-content").textContent).toContain("Test");
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
@@ -137,8 +126,8 @@ describe("ProgressIndicator", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		wrapper.steps = wrapper.steps.concat([{
-			text: "Sixth step",
-			state: ["incomplete"]
+			label: "Sixth step",
+			complete: false
 		}]);
 		fixture.detectChanges();
 		wrapper.current = 5;

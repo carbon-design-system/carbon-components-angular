@@ -49,7 +49,6 @@ import { IconModule } from "carbon-components-angular/icon";
 		NotificationTitle,
 		NotificationSubtitle
 	],
-	entryComponents: [ActionableNotification, Notification, Toast],
 	imports: [
 		ButtonModule,
 		CommonModule,

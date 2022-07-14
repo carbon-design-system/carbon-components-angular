@@ -1,51 +1,61 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { GridModule } from "./";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
+import { GridModule, GridDirective } from "./";
 
-storiesOf("Components|Grid", module)
-	.addDecorator(
+export default {
+	title: "Components/Grid",
+	decorators: [
 		moduleMetadata({
 			imports: [GridModule, DocumentationModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic flex grid", () => ({
-		template: `
-			<div ibmGrid [condensed]="gridCondensed">
-				<div
-					ibmRow
-					[gutter]="gutter"
-					[leftGutter]="leftGutter"
-					[rightGutter]="rightGutter"
-					[condensed]="rowCondensed">
-					<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">First Column</div>
-					<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">Second column</div>
-					<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">Third Column</div>
-				</div>
+	]
+} as Meta;
+
+const Template: Story<GridDirective> = (args) => ({
+	props: args,
+	template: `
+		<div ibmGrid [condensed]="gridCondensed">
+			<div
+				ibmRow
+				[gutter]="gutter"
+				[condensed]="rowCondensed">
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
 			</div>
-		`,
-		props: {
-			gutter: boolean("Gutter", true),
-			rowCondensed: boolean("Row condensed", false),
-			gridCondensed: boolean("Grid condensed", false)
-		}
-	}))
-	.add("Basic css grid", () => ({
-		template: `
-			<div ibmGrid [useCssGrid]="true">
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">First Column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">Second column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 12}">Third Column</div>
-				<div ibmCol>
-					<div ibmGrid>Should be css subgrid</div>
-				</div>
+		</div>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	gutter: true,
+	rowCondensed: false,
+	gridCondensed: false
+};
+
+const CSSGridTemplate: Story<GridDirective> = (args) => ({
+	props: args,
+	template: `
+		<div ibmGrid [condensed]="gridCondensed">
+			<div
+				ibmRow
+				[gutter]="gutter"
+				[condensed]="rowCondensed">
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
 			</div>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_grid.griddirective.html"></ibm-documentation>
-		`
-	}));
+		</div>
+	`
+});
+export const CssGrid = CSSGridTemplate.bind({});
+
+const DocumentationTemplate: Story = () => ({
+	template: `
+		<ibm-documentation src="documentation/modules/src_grid.html"></ibm-documentation>
+	`
+});
+export const Documentation = DocumentationTemplate.bind({});

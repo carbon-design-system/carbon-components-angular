@@ -53,7 +53,6 @@ export class BaseTabHeader {
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
-	// @ts-ignore
 	@ViewChild("tabList", { static: true }) headerContainer;
 
 	/**

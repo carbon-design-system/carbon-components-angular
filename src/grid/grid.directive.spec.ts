@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { async, TestBed } from "@angular/core/testing";
+import { TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
 
@@ -21,7 +21,7 @@ describe("GridDirective", () => {
 		});
 	});
 
-	it("should render a grid", async(() => {
+	it("should render a grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template: `<div ibmGrid></div>`
@@ -39,7 +39,7 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a css grid", async(() => {
+	it("should render a css grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template: `<div ibmGrid [useCssGrid]="true"></div>`
@@ -58,7 +58,7 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a row", async(() => {
+	it("should render a row", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template: `<div ibmRow></div>`
@@ -76,7 +76,7 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a column", async(() => {
+	it("should render a column", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
@@ -101,7 +101,7 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a column", async(() => {
+	it("should render a column", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template: `

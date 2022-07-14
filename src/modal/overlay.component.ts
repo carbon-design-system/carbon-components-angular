@@ -42,7 +42,6 @@ export class Overlay {
 	/**
 	 * Maintains a reference to the view DOM element of the `Overlay`.
 	 */
-	// @ts-ignore
 	@ViewChild("overlay", { static: true }) overlay: ElementRef;
 
 	/**

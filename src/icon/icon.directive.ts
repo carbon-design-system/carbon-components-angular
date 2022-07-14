@@ -1,4 +1,9 @@
-import { AfterViewInit, Directive, ElementRef, HostBinding, Input } from "@angular/core";
+import {
+	AfterViewInit,
+	Directive,
+	ElementRef,
+	Input
+} from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
 
@@ -17,9 +22,12 @@ import { getAttributes } from "@carbon/icon-helpers";
 	selector: "[ibmIcon]"
 })
 export class IconDirective implements AfterViewInit {
-	static titleIdCounter = 0;
 
-	@Input() ibmIcon = "";
+	@Input() set ibmIcon(iconName: string) {
+		this.iconName = iconName;
+		this.renderIcon(iconName);
+	}
+	static titleIdCounter = 0;
 
 	@Input() size = "16";
 
@@ -33,17 +41,19 @@ export class IconDirective implements AfterViewInit {
 
 	@Input() isFocusable = false;
 
+	private iconName: string;
+
 	constructor(
 		protected elementRef: ElementRef,
 		protected iconService: IconService
-	) {}
+	) { }
 
-	ngAfterViewInit() {
+	renderIcon(iconName: string) {
 		const root = this.elementRef.nativeElement as HTMLElement;
 
 		let icon;
 		try {
-			icon = this.iconService.get(this.ibmIcon, this.size.toString());
+			icon = this.iconService.get(iconName, this.size.toString());
 		} catch (error) {
 			console.warn(error);
 			// bail out
@@ -55,6 +65,7 @@ export class IconDirective implements AfterViewInit {
 		const svgElement = domParser.parseFromString(rawSVG, "image/svg+xml").documentElement;
 
 		let node: ChildNode = root.tagName.toUpperCase() !== "SVG" ? svgElement : svgElement.firstChild;
+		root.innerHTML = ""; // Clear root element
 		while (node) {
 			// importNode makes a clone of the node
 			// this ensures we keep looping over the nodes in the parsed document
@@ -101,5 +112,9 @@ export class IconDirective implements AfterViewInit {
 			svg.insertBefore(title, svg.firstElementChild);
 			svg.setAttribute("aria-labelledby", `${icon.name}-title-${IconDirective.titleIdCounter}`);
 		}
+	}
+
+	ngAfterViewInit() {
+		this.renderIcon(this.iconName);
 	}
 }

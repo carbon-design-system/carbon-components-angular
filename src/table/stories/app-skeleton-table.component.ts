@@ -1,11 +1,7 @@
 import {
-	TemplateRef,
 	Component,
-	ViewChild,
 	OnInit,
-	Input,
-	OnChanges,
-	SimpleChanges
+	Input
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { Table } from "../index";
@@ -23,7 +19,7 @@ import { Table } from "../index";
 		</ibm-table>
 	`
 })
-export class SkeletonTableStory implements OnInit, OnChanges {
+export class SkeletonTableStory implements OnInit {
 	@Input() size = "md";
 	@Input() striped = false;
 	@Input() skeleton = true;

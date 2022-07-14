@@ -17,9 +17,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	template: `
 		<span
 			[attr.aria-labelledby]="this.isTemplate(this.description) ? id : null"
-			[attr.aria-describedby]="!this.isTemplate(this.description) ? id : null"
-			(mouseenter)="mouseenter($event)"
-			(mouseleave)="mouseleave($event)">
+			[attr.aria-describedby]="!this.isTemplate(this.description) ? id : null">
 			<ng-content></ng-content>
 		</span>
 		<span
@@ -67,12 +65,14 @@ export class Tooltip extends PopoverContainer {
 		this.dropShadow = false;
 	}
 
+	@HostListener("mouseenter", ["$event"])
 	mouseenter(event) {
 		setTimeout(() => {
 			this.handleChange(true, event);
 		}, this.enterDelayMs);
 	}
 
+	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
 		setTimeout(() => {
 			this.handleChange(false, event);

@@ -13,7 +13,7 @@ import { Tooltip } from "./tooltip.component";
 			[description]="description">
 			<button>A</button>
 		</ibm-tooltip>
-		`
+	`
 })
 class TestTooltipComponent {
 	@Input() isOpen = false;
@@ -45,13 +45,12 @@ describe("Tooltip", () => {
 
 	it("should open/close tooltip on content mouseenter/mouseleave", fakeAsync(() => {
 		spyOn(tooltipEl.componentInstance.isOpenChange, "emit");
-		const wrapper = tooltipEl.nativeElement.querySelector("span");
-		wrapper.dispatchEvent(new MouseEvent("mouseenter"));
+		tooltipEl.nativeElement.dispatchEvent(new MouseEvent("mouseenter"));
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 		expect(tooltipEl.componentInstance.isOpen).toBeTruthy();
-		wrapper.dispatchEvent(new MouseEvent("mouseleave"));
+		tooltipEl.nativeElement.dispatchEvent(new MouseEvent("mouseleave"));
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();

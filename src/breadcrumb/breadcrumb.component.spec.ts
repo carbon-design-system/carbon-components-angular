@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
@@ -29,8 +29,7 @@ import { OverflowMenu } from "carbon-components-angular/dialog";
 		<ibm-breadcrumb-item href="#">
 			Breadcrumb 5
 		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+	</ibm-breadcrumb>`
 })
 class TestBreadcrumb {
 	noTrailingSlash = true;
@@ -43,8 +42,7 @@ class TestBreadcrumb {
 		[noTrailingSlash]="noTrailingSlash"
 		[threshold]="threshold"
 		[items]="items">
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+	</ibm-breadcrumb>`
 })
 class TestBreadcrumbModel {
 	noTrailingSlash = true;
@@ -56,7 +54,7 @@ describe("Breadcrumb", () => {
 	let component: Breadcrumb;
 	let fixture: ComponentFixture<Breadcrumb>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.resetTestEnvironment();
 		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 

@@ -1,120 +1,22 @@
+/* tslint:disable variable-name */
+
 import {
 	Component,
 	OnInit,
 	ViewEncapsulation
 } from "@angular/core";
-import { moduleMetadata, storiesOf } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { BaseModal, ModalModule } from "../../modal/index";
+import { moduleMetadata } from "@storybook/angular";
+import { Story, Meta } from "@storybook/angular/types-6-0";
+import { BaseModal, ModalModule } from "../../modal";
 import {
 	TableHeaderItem,
 	TableItem,
 	TableModel,
 	TableModule
 } from "../../table/index";
-import { ButtonModule } from "../../button/index";
+import { ButtonModule } from "../../button";
 import { ProgressIndicatorModule } from "../../progress-indicator";
-import { LinkModule } from "../../link/index";
-
-@Component({
-	selector: "app-table",
-	template: `
-	<ibm-table-container>
-		<ibm-table-toolbar size="md">
-			<ibm-table-toolbar-content>
-				<ibm-table-toolbar-search
-					[expandable]="true"
-					placeholder="Search node ID"
-					(valueChange)="onSearch($event)">
-				</ibm-table-toolbar-search>
-				<button ibmButton="ghost" class="toolbar-action" size="sm">
-					<svg size="16" class="cds--toolbar-action__icon" ibmIcon="Data_2"></svg>
-				</button>
-			</ibm-table-toolbar-content>
-		</ibm-table-toolbar>
-		<ibm-table
-			[model]="model"
-			size="sh"
-			[showSelectionColumn]="true"
-			[sortable]="false"
-			[striped]="false"
-			[isDataGrid]="false">
-			<ng-content></ng-content>
-		</ibm-table>
-	</ibm-table-container>
-	`
-})
-export class TableStory implements OnInit {
-	model = new TableModel();
-
-	dataset = [
-		[
-			new TableItem({ data: "800" }),
-			new TableItem({ data: "East Sadye" }),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "US" })
-		],
-		[
-			new TableItem({ data: "500" }),
-			new TableItem({ data: "Lueilwitzview" }),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "US" })
-		],
-		[
-			new TableItem({ data: "120" }),
-			new TableItem({ data: "East Arcelyside" }),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "France" })
-		],
-		[
-			new TableItem({ data: "119" }),
-			new TableItem({data: "West Dylan"}),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "Argentina" })
-		],
-		[
-			new TableItem({ data: "54" }),
-			new TableItem({data: "Brandynberg"}),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "Japan" })
-		],
-		[
-			new TableItem({ data: "15" }),
-			new TableItem({data: "Stoltenbergport"}),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "Canada" })
-		],
-		[
-			new TableItem({ data: "12" }),
-			new TableItem({data: "Rheabury"}),
-			new TableItem({ data: "Store" }),
-			new TableItem({ data: "US" })
-		]
-	];
-
-	ngOnInit() {
-		this.model.header = [
-			new TableHeaderItem({
-				data: "Node ID"
-			}),
-			new TableHeaderItem({
-				data: "Node name"
-			}),
-			new TableHeaderItem({
-				data: "Node type"
-			}),
-			new TableHeaderItem({
-				data: "Country"
-			})
-		];
-
-		this.model.data = this.dataset;
-	}
-
-	onSearch(searchString: string) {
-		this.model.data = this.dataset.filter(row => row[0].data.toLowerCase().includes(searchString));
-	}
-}
+import { LinkModule } from "../../link";
 
 @Component({
 	selector: "app-modal-with-table",
@@ -134,12 +36,29 @@ export class TableStory implements OnInit {
 						spacing="equal">
 					</ibm-progress-indicator>
 				</div>
-				<!--
-					app-* components are for demo purposes only.
-					You can create your own implementation by using the component source as an example.
-				-->
-				<app-table size="sm">
-				</app-table>
+				<ibm-table-container>
+					<ibm-table-toolbar size="md">
+						<ibm-table-toolbar-content>
+							<ibm-table-toolbar-search
+								[expandable]="true"
+								placeholder="Search node ID"
+								(valueChange)="onSearch($event)">
+							</ibm-table-toolbar-search>
+							<button ibmButton="ghost" class="toolbar-action" size="sm">
+								<svg size="16" class="cds--toolbar-action__icon" ibmIcon="Data_2"></svg>
+							</button>
+						</ibm-table-toolbar-content>
+					</ibm-table-toolbar>
+					<ibm-table
+						[model]="model"
+						size="sh"
+						[showSelectionColumn]="true"
+						[sortable]="false"
+						[striped]="false"
+						[isDataGrid]="false">
+						<ng-content></ng-content>
+					</ibm-table>
+				</ibm-table-container>
 			</section>
 			<ibm-modal-footer>
 				<a href="#" ibmLink [disabled]="disabled" [inline]="inline">Cancel</a>
@@ -182,7 +101,7 @@ export class TableStory implements OnInit {
 	`
 	]
 })
-class ModalWithTableStory extends BaseModal {
+class ModalWithTableStory extends BaseModal implements OnInit {
 	steps = [
 		{
 			text: "General",
@@ -199,12 +118,84 @@ class ModalWithTableStory extends BaseModal {
 	];
 
 	current = 1;
+
+	model = new TableModel();
+
+	dataset = [
+		[
+			new TableItem({ data: "800" }),
+			new TableItem({ data: "East Sadye" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		],
+		[
+			new TableItem({ data: "500" }),
+			new TableItem({ data: "Lueilwitzview" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		],
+		[
+			new TableItem({ data: "120" }),
+			new TableItem({ data: "East Arcelyside" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "France" })
+		],
+		[
+			new TableItem({ data: "119" }),
+			new TableItem({ data: "West Dylan" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Argentina" })
+		],
+		[
+			new TableItem({ data: "54" }),
+			new TableItem({ data: "Brandynberg" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Japan" })
+		],
+		[
+			new TableItem({ data: "15" }),
+			new TableItem({ data: "Stoltenbergport" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Canada" })
+		],
+		[
+			new TableItem({ data: "12" }),
+			new TableItem({ data: "Rheabury" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		]
+	];
+
+	ngOnInit() {
+		this.model.header = [
+			new TableHeaderItem({
+				data: "Node ID"
+			}),
+			new TableHeaderItem({
+				data: "Node name"
+			}),
+			new TableHeaderItem({
+				data: "Node type"
+			}),
+			new TableHeaderItem({
+				data: "Country"
+			})
+		];
+
+		this.model.data = this.dataset;
+	}
+
+	onSearch(searchString: string) {
+		this.model.data = this.dataset.filter(row => row[0].data.toLowerCase().includes(searchString));
+	}
 }
 
-storiesOf("Patterns|Dialogs", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Dialogs",
+	decorators: [
 		moduleMetadata({
-			declarations: [ ModalWithTableStory, TableStory ],
+			declarations: [ModalWithTableStory],
 			imports: [
 				ModalModule,
 				TableModule,
@@ -213,14 +204,17 @@ storiesOf("Patterns|Dialogs", module)
 				LinkModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("With data table", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-modal-with-table></app-modal-with-table>
-			`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source as an example.
+		-->
+		<app-modal-with-table></app-modal-with-table>
+	`
+});
+export const WithDataTable = Template.bind({});

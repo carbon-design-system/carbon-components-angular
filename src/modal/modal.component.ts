@@ -85,6 +85,7 @@ export class ModalDemo {
 				[ngClass]="{
 					'cds--modal-container--xs': size === 'xs',
 					'cds--modal-container--sm': size === 'sm',
+					'cds--modal-container--md': size === 'md',
 					'cds--modal-container--lg': size === 'lg'
 				}"
 				role="dialog"
@@ -105,7 +106,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Size of the modal to display.
 	 */
-	@Input() size: "xs" | "sm" | "lg";
+	@Input() size: "xs" | "sm"| "md" | "lg" = "md";
 	/**
 	 * Classification of the modal.
 	 */
@@ -145,7 +146,6 @@ export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
-	// @ts-ignore
 	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**

@@ -57,13 +57,10 @@ export class PaginationTableStory implements OnInit {
 
 	@Input() stickyHeader = false;
 
-	// @ts-ignore
-	@ViewChild("filter", { static: false }) filter: TemplateRef<any>;
-	// @ts-ignore
-	@ViewChild("filterableHeaderTemplate", { static: false })
+	@ViewChild("filter") filter: TemplateRef<any>;
+	@ViewChild("filterableHeaderTemplate")
 	protected filterableHeaderTemplate: TemplateRef<any>;
-	// @ts-ignore
-	@ViewChild("paginationTableItemTemplate", { static: false })
+	@ViewChild("paginationTableItemTemplate")
 	protected paginationTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {

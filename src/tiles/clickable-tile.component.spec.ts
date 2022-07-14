@@ -1,17 +1,13 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
 import { Component } from "@angular/core";
-import {
-	async,
-	ComponentFixture,
-	TestBed
-} from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ClickableTile } from "./clickable-tile.component";
 
 describe("ClickableTile", () => {
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [ClickableTile, ClickableTileTest]
 		}).compileComponents();
@@ -42,7 +38,6 @@ describe("ClickableTile", () => {
 	template: `
 	<ibm-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
 		Test Clickable Tile
-	</ibm-clickable-tile>`,
-	entryComponents: [ClickableTile]
+	</ibm-clickable-tile>`
 })
 class ClickableTileTest {}
