@@ -119,7 +119,7 @@ class SampleFormModal extends BaseModal { }
 })
 class ModalStory {
 	@Input() modalText = "Hello, World";
-	@Input() size = "default";
+	@Input() size = "md";
 	@Input() showCloseButton = true;
 
 	constructor(protected modalService: ModalService) { }
@@ -184,7 +184,7 @@ class InputModal extends BaseModal {
 })
 class DataPassingModal implements AfterContentInit {
 	@Input() modalText = "Hello, World";
-	@Input() size = "default";
+	@Input() size = "md";
 
 	protected modalInputValue = "";
 	protected data: Observable<string> = new Subject<string>();
@@ -220,7 +220,7 @@ class AlertModalStory {
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
-	@Input() size: "xs" | "sm" | "lg";
+	@Input() size: "xs" | "sm" | "md" | "lg";
 	@Input() showCloseButton: boolean;
 
 	constructor(protected modalService: ModalService) { }
@@ -368,13 +368,13 @@ const DataPassingTemplate: Story<Modal> = (args) => ({
 	`
 });
 export const DataPassing = DataPassingTemplate.bind({});
-Passive.args = {
+DataPassing.args = {
 	modalText: "Hello, world!"
 };
-Passive.argTypes = {
-	modalType: {
-		defaultValue: "default",
-		options: ["xs", "sm", "default", "lg"],
+DataPassing.argTypes = {
+	size: {
+		defaultValue: "md",
+		options: ["xs", "sm", "md", "lg"],
 		control: "select"
 	}
 };
