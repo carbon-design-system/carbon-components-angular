@@ -77,7 +77,7 @@ import { BaseModal } from "./base-modal.class";
 	`
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
-	@ViewChild("modalContent", { static: true }) modalContent;
+	@ViewChild("modalContent", { static: true }) modalContent: { nativeElement: any; };
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
@@ -114,7 +114,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		}
 	}
 
-	buttonClicked(buttonIndex) {
+	buttonClicked(buttonIndex: string | number) {
 		const button = this.buttons[buttonIndex];
 		if (button.click) {
 			button.click();
@@ -123,7 +123,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 		this.closeModal();
 	}
 
-	dismissModal(trigger) {
+	dismissModal(trigger: any) {
 		if (this.onClose && this.onClose(trigger) === false) {
 			return;
 		}

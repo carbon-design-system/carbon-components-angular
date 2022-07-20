@@ -1,4 +1,3 @@
-import { ModalService } from "./modal.service";
 import {
 	AfterViewInit,
 	Component,
@@ -12,6 +11,7 @@ import {
 	OnChanges
 } from "@angular/core";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
+import { BaseModalService } from "./base-modal.service";
 
 /**
  * Component to create modals for presenting content.
@@ -156,7 +156,7 @@ export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Creates an instance of `Modal`.
 	 */
-	constructor(public modalService: ModalService) {}
+	constructor(public modalService: BaseModalService) {}
 
 	ngOnChanges({ open }: SimpleChanges) {
 		if (open) {

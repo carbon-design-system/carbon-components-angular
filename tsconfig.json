@@ -16,7 +16,7 @@
 		"moduleResolution": "node",
 		"outDir": "./dist-pkg",
 		"rootDir": ".",
-		"target": "es2015",
+		"target": "es2020",
 		"skipLibCheck": true,
 		"typeRoots": [
 			"./node_modules/@types"
@@ -37,6 +37,8 @@
 	"angularCompilerOptions": {
 		"skipTemplateCodegen": true,
 		"strictMetadataEmit": false,
-		"fullTemplateTypeCheck": false
+		"fullTemplateTypeCheck": false,
+		"enableIvy": true,
+		"compilationMode": "partial"
 	}
 }

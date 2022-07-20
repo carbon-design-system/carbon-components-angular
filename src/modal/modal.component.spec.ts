@@ -7,6 +7,7 @@ import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
 import { I18nModule } from "../i18n/index";
 import { PlaceholderModule } from "./../placeholder/index";
+import { BaseModalService } from "./base-modal.service";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -32,7 +33,7 @@ describe("Modal", () => {
 				I18nModule,
 				PlaceholderModule
 			],
-			providers: [ModalService]
+			providers: [ModalService, BaseModalService]
 		});
 
 		fixture = TestBed.createComponent(Modal);
@@ -55,7 +56,8 @@ describe("Modal", () => {
 	});
 
 	it("should close modal when escape is pressed", waitForAsync(() => {
-		let modalService = fixture.debugElement.injector.get(ModalService);
+		// Have to check BaseModalService since ModalService extends it
+		let modalService = fixture.debugElement.injector.get(BaseModalService);
 
 		spyOn(modalService, "destroy");
 
