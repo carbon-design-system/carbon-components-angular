@@ -6,7 +6,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { BaseModalService } from "./base-modal.service";
 
 /**
- * Extends Modal Service to create Alert Modal with a function call. Placed in a seperate service
+ * Extends Base Modal Service to create Alert Modal with a function call. Placed in a seperate service
  * to prevent remote scoping (NG3003) which has side effects. Hence, import cycles are not allowed when
  * compilationMode is set to `partial`.
  *
