@@ -103,7 +103,7 @@
     "cz-conventional-changelog-components": "1.0.0",
     "element-closest-polyfill": "1.0.0",
     "exported-tests": "1.0.1",
-    "file-type": "12.4.0",
+    "file-type": "16.5.4",
     "gulp": "4.0.0",
     "gulp-concat": "2.6.1",
     "gulp-tap": "1.0.1",
