@@ -4,7 +4,6 @@ import {
 	ContentChildren,
 	QueryList,
 	AfterContentInit,
-	TemplateRef,
 	Optional,
 	Output,
 	EventEmitter
