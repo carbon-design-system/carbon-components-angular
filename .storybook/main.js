@@ -1,20 +1,22 @@
 module.exports = {
-	"stories": [
+	stories: [
 		"../src/**/*.stories.mdx",
 		"../src/**/*.stories.@(js|jsx|ts|tsx)"
 	],
-	"addons": [
+	addons: [
 		"@storybook/addon-links",
 		{
 			name: "@storybook/addon-essentials",
 			options: {
 				backgrounds: false
 			}
-		}
+		},
+		"@storybook/addon-a11y"
 	],
-	"framework": "@storybook/angular",
-	"core": {
-		"builder": "webpack5"
+	framework: "@storybook/angular",
+	core: {
+		builder: "webpack5",
+		disableTelemetry: true,
 	},
 	webpack(config) {
 		config.module.rules.push({
