@@ -2,6 +2,11 @@
 import "!style-loader!css-loader!postcss-loader!sass-loader!./preview.scss";
 import { breakpoints } from '@carbon/layout';
 
+// Add compodoc
+import { setCompodocJson } from "@storybook/addon-docs/angular";
+import docJson from "../documentation.json";
+setCompodocJson(docJson);
+
 // Set carbon viewports options
 export const parameters = {
 	viewport: {
@@ -42,6 +47,9 @@ export const parameters = {
 				},
 			},
 		},
+	},
+	controls: {
+		expanded: true
 	}
 };
 
