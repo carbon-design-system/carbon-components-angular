@@ -3,7 +3,13 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { ContextMenuModule, ContextMenuComponent } from "./";
+import {
+	ContextMenuModule,
+	ContextMenuComponent,
+	ContextMenuDividerComponent,
+	ContextMenuItemComponent,
+	ContextMenuGroupComponent
+} from "./";
 
 export default {
 	title: "Components/Context Menu",
@@ -24,6 +30,12 @@ export default {
 	argTypes: {
 		onRadioChange: { action: "Radio menu change!" },
 		onCheckboxChange: { action: "Radio menu change!" }
+	},
+	component: ContextMenuComponent,
+	subcomponents: {
+		ContextMenuDividerComponent,
+		ContextMenuItemComponent,
+		ContextMenuGroupComponent
 	}
 } as Meta;
 

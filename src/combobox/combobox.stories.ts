@@ -51,7 +51,8 @@ export default {
 		selected: { action: "Selection changed!" },
 		submit: { action: "Submit" },
 		search: { action: "Search" }
-	}
+	},
+	component: ComboBox
 } as Meta;
 
 const Template: Story<ComboBox> = (args) => ({

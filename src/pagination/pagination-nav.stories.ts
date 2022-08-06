@@ -59,7 +59,8 @@ export default {
 			],
 			declarations: [PaginationNavStory]
 		})
-	]
+	],
+	component: PaginationNav
 } as Meta;
 
 const Template: Story<PaginationNav> = (args) => ({

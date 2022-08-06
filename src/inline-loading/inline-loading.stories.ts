@@ -64,7 +64,8 @@ export default {
 		onSuccess: {
 			action: "Success!"
 		}
-	}
+	},
+	component: InlineLoading
 } as Meta;
 
 const Template: Story<InlineLoading> = (args) => ({
@@ -84,11 +85,6 @@ const Template: Story<InlineLoading> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-Basic.args = {
-	gutter: true,
-	rowCondensed: false,
-	gridCondensed: false
-};
 
 const DocumentationTemplate: Story = () => ({
 	template: `

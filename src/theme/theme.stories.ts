@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [ThemeModule, DocumentationModule]
 		})
-	]
+	],
+	component: ThemeDirective
 } as Meta;
 
 const Template: Story<ThemeDirective> = (args) => ({

@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [NumberModule, DocumentationModule]
 		})
-	]
+	],
+	component: NumberComponent
 } as Meta;
 
 const Template: Story<NumberComponent> = (args) => ({

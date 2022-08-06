@@ -14,7 +14,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: Toggle
 } as Meta;
 
 const Template: Story<Toggle> = (args) => ({

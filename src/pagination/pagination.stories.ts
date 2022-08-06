@@ -62,9 +62,13 @@ export default {
 			imports: [
 				PaginationModule,
 				DocumentationModule
+			],
+			declarations: [
+				PaginationStory
 			]
 		})
-	]
+	],
+	component: Pagination
 } as Meta;
 
 const Template: Story<Pagination> = (args) => ({

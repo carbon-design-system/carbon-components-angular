@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [LoadingModule, DocumentationModule]
 		})
-	]
+	],
+	component: Loading
 } as Meta;
 
 const Template: Story<Loading> = (args) => ({

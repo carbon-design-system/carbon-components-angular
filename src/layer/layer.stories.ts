@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [LayerModule, DocumentationModule]
 		})
-	]
+	],
+	component: LayerDirective
 } as Meta;
 
 const Template: Story<LayerDirective> = (args) => ({

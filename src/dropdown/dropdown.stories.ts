@@ -60,7 +60,8 @@ export default {
 		},
 		selected: { action: "Selection changed!" },
 		onClose: { action: "Closed!" }
-	}
+	},
+	component: Dropdown
 } as Meta;
 
 const Template: Story<Dropdown> = (args) => ({

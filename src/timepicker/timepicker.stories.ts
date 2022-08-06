@@ -18,7 +18,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: TimePicker
 } as Meta;
 
 const Template: Story<TimePicker> = (args) => ({

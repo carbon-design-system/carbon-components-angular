@@ -3,7 +3,11 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { PopoverModule, PopoverContainer } from "./";
+import {
+	PopoverModule,
+	PopoverContainer,
+	PopoverContent
+} from "./";
 
 export default {
 	title: "Components/Popover",
@@ -11,7 +15,9 @@ export default {
 		moduleMetadata({
 			imports: [PopoverModule, DocumentationModule]
 		})
-	]
+	],
+	component: PopoverContainer,
+	subcomponents: { PopoverContent }
 } as Meta;
 
 const Template: Story<PopoverContainer> = (args) => ({

@@ -3,7 +3,11 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { ContentSwitcherModule, ContentSwitcher } from "./";
+import {
+	ContentSwitcherModule,
+	ContentSwitcher,
+	ContentSwitcherOption
+} from "./";
 
 export default {
 	title: "Components/Content Switcher",
@@ -16,7 +20,9 @@ export default {
 		code: {
 			control: false
 		}
-	}
+	},
+	component: ContentSwitcher,
+	subcomponents: ContentSwitcherOption
 } as Meta;
 
 const Template: Story<ContentSwitcher> = (args) => ({

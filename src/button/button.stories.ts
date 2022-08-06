@@ -50,12 +50,14 @@ export default {
 			defaultValue: false
 		},
 		// Actions
-		onClick: { action: "clicked!" },
-		onMouseenter: { action: "Mouseenter!" },
-		onMouseleave: { action: "Mouseleave!" },
-		onFocus: { action: "Focus!" },
-		onBlur: { action: "Blur!" }
-	}
+		onClick: { action: "clicked" },
+		onMouseEnter: { action: "mouseenter" },
+		onMouseLeave: { action: "mouseleave" },
+		onFocus: { action: "focus" },
+		onBlur: { action: "blur" }
+	},
+	component: Button,
+	subcomponents: { IconButtonComponent }
 } as Meta;
 
 const Template: Story<Button> = (args) => ({
@@ -67,8 +69,8 @@ const Template: Story<Button> = (args) => ({
 			[isExpressive]="isExpressive"
 			[disabled]="disabled"
 			(click)="onClick($event)"
-			(mouseenter)="onMouseenter($event)"
-			(mouseleave)="onMouseleave($event)"
+			(mouseenter)="onMouseEnter($event)"
+			(mouseleave)="onMouseLeave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
 			Button
@@ -86,7 +88,7 @@ const WithIconTemplate: Story<Button> = (args) => ({
 			[isExpressive]="isExpressive"
 			[disabled]="disabled"
 			(click)="onClick($event)"
-			(mouseenter)="onMouseenter($event)"
+			(mouseenter)="onMouseEnter($event)"
 			(mouseleave)="onMouseleave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
@@ -111,7 +113,7 @@ const IconButtonTemplate: Story<IconButtonComponent> = (args) => ({
 			[disabled]="disabled"
 			description="Icon Description"
 			(click)="onClick($event)"
-			(mouseenter)="onMouseenter($event)"
+			(mouseenter)="onMouseEnter($event)"
 			(mouseleave)="onMouseleave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">

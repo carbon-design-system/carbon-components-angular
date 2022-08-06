@@ -56,7 +56,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: Checkbox
 } as Meta;
 
 const Template: Story<Checkbox> = (args) => ({

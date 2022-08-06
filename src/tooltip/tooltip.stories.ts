@@ -45,7 +45,8 @@ export default {
 			defaultValue: "bottom",
 			control: "select"
 		}
-	}
+	},
+	component: Tooltip
 } as Meta;
 
 const Template: Story<Tooltip> = (args) => ({

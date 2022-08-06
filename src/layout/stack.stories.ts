@@ -3,7 +3,7 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { LayoutModule } from "./";
+import { LayoutModule, StackDirective } from "./";
 
 export default {
 	title: "Layout/Stack",
@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [LayoutModule, DocumentationModule]
 		})
-	]
+	],
+	component: StackDirective
 } as Meta;
 
 const Template: Story = (args) => ({

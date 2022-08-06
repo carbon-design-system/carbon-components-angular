@@ -63,7 +63,8 @@ Basic.argTypes = {
 		options: ["sm", "md", "lg"],
 		defaultValue: "md",
 		contorl: "select"
-	}
+	},
+	component: Label
 };
 
 const TextareaTemplate: Story<Label> = (args) => ({

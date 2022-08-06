@@ -25,7 +25,8 @@ export default {
 		code: {
 			control: false
 		}
-	}
+	},
+	component: OverflowMenu
 } as Meta;
 
 const Template: Story<OverflowMenu> = (args) => ({

@@ -3,7 +3,7 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { RadioModule, Radio } from "./";
+import { RadioModule, RadioGroup, Radio } from "./";
 
 export default {
 	title: "Components/Radio",
@@ -11,7 +11,9 @@ export default {
 		moduleMetadata({
 			imports: [RadioModule, DocumentationModule]
 		})
-	]
+	],
+	component: RadioGroup,
+	subcomponents: Radio
 } as Meta;
 
 const Template: Story<Radio> = (args) => ({

@@ -3,7 +3,12 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { GridModule, GridDirective } from "./";
+import {
+	GridModule,
+	GridDirective,
+	RowDirective,
+	ColumnDirective
+} from "./";
 
 export default {
 	title: "Components/Grid",
@@ -11,7 +16,12 @@ export default {
 		moduleMetadata({
 			imports: [GridModule, DocumentationModule]
 		})
-	]
+	],
+	component: GridDirective,
+	subcomponents: {
+		RowDirective,
+		ColumnDirective
+	}
 } as Meta;
 
 const Template: Story<GridDirective> = (args) => ({

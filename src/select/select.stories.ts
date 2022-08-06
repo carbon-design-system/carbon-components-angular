@@ -4,7 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { SelectModule, Select } from "./";
+import {
+	SelectModule,
+	Select,
+	Option,
+	OptGroup
+} from "./";
 
 export default {
 	title: "Components/Select",
@@ -43,6 +48,11 @@ export default {
 			defaultValue: "on",
 			control: "radio"
 		}
+	},
+	component: Select,
+	subcomponents: {
+		Option,
+		OptGroup
 	}
 } as Meta;
 

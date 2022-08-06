@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [ListModule, DocumentationModule]
 		})
-	]
+	],
+	component: List
 } as Meta;
 
 const Template: Story<List> = (args) => ({

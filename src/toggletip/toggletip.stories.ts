@@ -5,8 +5,14 @@ import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { LinkModule } from "../link";
 import { ButtonModule } from "../button";
-import { ToggletipModule, Toggletip } from "./";
-
+import {
+	ToggletipModule,
+	Toggletip,
+	ToggletipAction,
+	ToggletipButton,
+	ToggletipContent,
+	ToggletipLabel
+} from "./";
 
 export default {
 	title: "Components/Toggletip",
@@ -19,7 +25,14 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: Toggletip,
+	subcomponents: {
+		ToggletipAction,
+		ToggletipButton,
+		ToggletipContent,
+		ToggletipLabel
+	}
 } as Meta;
 
 const Template: Story<Toggletip> = (args) => ({

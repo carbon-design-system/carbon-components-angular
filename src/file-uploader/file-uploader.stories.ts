@@ -391,7 +391,8 @@ export default {
 			defaultValue: "primary",
 			control: "select"
 		}
-	}
+	},
+	component: FileUploader
 } as Meta;
 
 const Template: Story<FileUploader> = (args) => ({

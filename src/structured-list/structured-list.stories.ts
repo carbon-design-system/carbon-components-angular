@@ -4,7 +4,13 @@ import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { StructuredListModule, StructuredList } from "./";
+import {
+	StructuredListModule,
+	StructuredList,
+	ListColumn,
+	ListHeader,
+	ListRow
+} from "./";
 
 export default {
 	title: "Components/Structured List",
@@ -16,7 +22,13 @@ export default {
 				FormsModule
 			]
 		})
-	]
+	],
+	component: StructuredList,
+	subcomponents: {
+		ListHeader,
+		ListRow,
+		ListColumn
+	}
 } as Meta;
 
 const Template: Story<StructuredList> = (args) => ({

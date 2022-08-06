@@ -16,7 +16,8 @@ export default {
 		lines: 5,
 		minLineWidth: 100,
 		maxLineWidth: 300
-	}
+	},
+	component: SkeletonPlaceholder
 } as Meta;
 
 const Template: Story<SkeletonPlaceholder> = (args) => ({

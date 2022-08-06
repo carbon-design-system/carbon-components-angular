@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [LinkModule, DocumentationModule]
 		})
-	]
+	],
+	component: Link
 } as Meta;
 
 const Template: Story<Link> = (args) => ({

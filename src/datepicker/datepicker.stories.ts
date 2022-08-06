@@ -35,7 +35,8 @@ export default {
 		valueChange: {
 			action: "Date changed!"
 		}
-	}
+	},
+	component: DatePicker
 } as Meta;
 
 const Template: Story<DatePicker> = (args) => ({

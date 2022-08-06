@@ -3,7 +3,7 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { BreadcrumbModule, Breadcrumb } from "./";
+import { BreadcrumbModule, Breadcrumb, BreadcrumbItemComponent } from "./";
 
 export default {
 	title: "Components/Breadcrumb",
@@ -17,7 +17,9 @@ export default {
 			type: "boolean",
 			defaultValue: true
 		}
-	}
+	},
+	component: Breadcrumb,
+	subcomponents: { BreadcrumbItemComponent }
 } as Meta;
 
 const Template: Story<Breadcrumb> = (args) => ({

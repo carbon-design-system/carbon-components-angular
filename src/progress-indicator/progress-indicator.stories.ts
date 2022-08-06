@@ -11,7 +11,8 @@ export default {
 		moduleMetadata({
 			imports: [ProgressIndicatorModule, DocumentationModule]
 		})
-	]
+	],
+	component: ProgressIndicator
 } as Meta;
 
 const Template: Story<ProgressIndicator> = (args) => ({

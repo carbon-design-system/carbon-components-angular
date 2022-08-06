@@ -16,7 +16,8 @@ export default {
 		code: {
 			control: false
 		}
-	}
+	},
+	component: CodeSnippet
 } as Meta;
 
 const Template: Story<CodeSnippet> = (args) => ({

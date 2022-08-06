@@ -3,7 +3,7 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { AccordionModule, Accordion } from "./";
+import { AccordionModule, Accordion, AccordionItem } from "./";
 
 export default {
 	title: "Components/Accordion",
@@ -11,13 +11,15 @@ export default {
 		moduleMetadata({
 			imports: [AccordionModule, DocumentationModule]
 		})
-	]
+	],
+	component: Accordion,
+	subcomponents: { AccordionItem }
 } as Meta;
 
-const Template: Story<Accordion> = (args) => ({
+const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-accordion [align]="align">
+		<ibm-accordion [size]="size" [align]="align">
 			<ibm-accordion-item title="Section 1 title" (selected)="selected($event)">
 				Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
@@ -43,7 +45,13 @@ export const Basic = Template.bind({});
 Basic.argTypes = {
 	align: {
 		options: ["start", "end"],
-		control: { type: "radio" }
+		control: { type: "radio" },
+		defaultValue: "end"
+	},
+	size: {
+		options: ["sm", "md", "lg"],
+		control: { type: "radio" },
+		defaultValue: "md"
 	},
 	selected: { action: "Selected" }
 };

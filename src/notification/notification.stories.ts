@@ -6,7 +6,11 @@ import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ButtonModule } from "../button";
-import { NotificationModule, NotificationService } from "./";
+import {
+	NotificationModule,
+	NotificationService,
+	BaseNotification
+} from "./";
 
 @Component({
 	selector: "app-dynamic-actionable-story",
@@ -95,7 +99,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: BaseNotification
 } as Meta;
 
 const InlineTemplate: Story = (args) => ({

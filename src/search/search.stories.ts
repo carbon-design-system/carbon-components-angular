@@ -40,7 +40,8 @@ export default {
 		valueChange: {
 			action: "Value changed!"
 		}
-	}
+	},
+	component: Search
 } as Meta;
 
 const Template: Story<Search> = (args) => ({

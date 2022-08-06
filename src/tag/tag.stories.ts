@@ -28,7 +28,8 @@ export default {
 			defaultValue: "red",
 			control: "select"
 		}
-	}
+	},
+	component: Tag
 } as Meta;
 
 const Template: Story<Tag> = (args) => ({

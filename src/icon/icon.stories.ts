@@ -4,9 +4,13 @@ import { Component, OnInit } from "@angular/core";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
-import { IconModule, IconService } from "./";
 import { Accessibility16 } from "@carbon/icons";
 import * as Icons from "@carbon/icons";
+import {
+	IconModule,
+	IconService,
+	IconDirective
+} from "./";
 
 @Component({
 	selector: "app-demo-icon",
@@ -78,7 +82,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: IconDirective
 } as Meta;
 
 const Template: Story = (args) => ({

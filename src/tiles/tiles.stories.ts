@@ -23,7 +23,14 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: Tile,
+	subcomponents: {
+		TileGroup,
+		ClickableTile,
+		SelectionTile,
+		ExpandableTile
+	}
 } as Meta;
 
 const Template: Story<Tile> = (args) => ({

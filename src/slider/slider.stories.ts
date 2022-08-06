@@ -14,7 +14,8 @@ export default {
 				DocumentationModule
 			]
 		})
-	]
+	],
+	component: Slider
 } as Meta;
 
 const Template: Story<Slider> = (args) => ({
