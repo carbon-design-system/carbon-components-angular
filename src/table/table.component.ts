@@ -274,9 +274,7 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static setTabIndex(element: HTMLElement, index: -1 | 0) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 1) {
-			focusElementList[1].tabIndex = index;
-		} else if (focusElementList.length > 0) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 0) {
 			focusElementList[0].tabIndex = index;
 		} else {
 			element.tabIndex = index;
@@ -285,9 +283,7 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static focus(element: HTMLElement) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 1) {
-			focusElementList[1].focus();
-		} else if (focusElementList.length > 0) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") && focusElementList.length > 0) {
 			focusElementList[0].focus();
 		} else {
 			element.focus();
@@ -642,7 +638,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	}
 
 	enableDataGridInteractions() {
-		// if we have an `interactioModel` we've already enabled datagrid
+		// if we have an `interactionModel` we've already enabled datagrid
 		if (this.interactionModel) {
 			return;
 		}
@@ -660,7 +656,7 @@ export class Table implements AfterViewInit, OnDestroy {
 
 			// if the model has just initialized don't focus or reset anything
 			if (previousRow === -1 || previousColumn === -1) { return; }
-			// Make the previous cell unfocusable (if it's not the current)
+			// Make the previous cell un-focusable (if it's not the current)
 			if (previousRow !== currentRow || previousColumn !== currentColumn) {
 				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
 				Table.setTabIndex(previousElement, -1);
