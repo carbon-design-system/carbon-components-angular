@@ -74,10 +74,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	static checkboxCount = 0;
 
 	/**
-	 * Set to `true` for checkbox to be rendered without any classes on the host element.
-	 */
-	@Input() inline = false;
-	/**
 	 * Set to `true` for a disabled checkbox.
 	 */
 	@Input() disabled = false;
@@ -297,7 +293,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
+		console.log("emittingChange");
 		this.propagateChange(this.checked);
+		console.log("done emitting change");
 	}
 
 	/**
