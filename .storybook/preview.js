@@ -4,8 +4,34 @@ import { breakpoints } from '@carbon/layout';
 
 // Add compodoc
 import { setCompodocJson } from "@storybook/addon-docs/angular";
-import docJson from "../documentation.json";
-setCompodocJson(docJson);
+import {
+	classes,
+	components,
+	directives,
+	interfaces,
+	miscellaneous
+} from "../documentation.json";
+
+/**
+ * Remove public properties from docs Json for each component.
+ * This is to prevent properties like `onTouched = () => {...}` & `propagateChange = () => {}`
+ * from being rewritten as string by storybook.
+ */
+components = components.map(comp => {
+	return {
+		...comp,
+		// Removes properties
+		propertiesClass: [],
+		outputsClass: comp.outputsClass.map((output) => {
+			return {
+				...output,
+				// Prevents control type appearing as `string`
+				defaultValue: undefined
+			}
+		})
+	}
+});
+setCompodocJson({ classes, components, directives, interfaces, miscellaneous });
 
 // Set carbon viewports options
 export const parameters = {
