@@ -16,13 +16,15 @@ export default {
 	decorators: [
 		moduleMetadata({
 			declarations: [
-				FormsModule,
-				ReactiveFormsModule,
 				DynamicListComboBox,
 				ReactiveFormsCombobox,
 				MockQueryCombobox
 			],
-			imports: [ComboBoxModule]
+			imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				ComboBoxModule
+			]
 		})
 	],
 	args: {
