@@ -3,7 +3,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ComboBoxModule, ComboBox } from "./";
 
 import {
@@ -23,7 +22,7 @@ export default {
 				ReactiveFormsCombobox,
 				MockQueryCombobox
 			],
-			imports: [ComboBoxModule, DocumentationModule]
+			imports: [ComboBoxModule]
 		})
 	],
 	args: {
@@ -224,10 +223,3 @@ MockQuerySearch.parameters = {
 		disabled: true
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_combobox.combobox.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

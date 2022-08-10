@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { IconModule } from "../icon";
 import {
 	ButtonModule,
@@ -16,8 +15,7 @@ export default {
 		moduleMetadata({
 			imports: [
 				ButtonModule,
-				IconModule,
-				DocumentationModule
+				IconModule
 			]
 		})
 	],
@@ -34,7 +32,8 @@ export default {
 				"danger--ghost"
 			],
 			defaultValue: "primary",
-			control: { type: "select" }
+			control: { type: "select" },
+			name: "ibmButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
@@ -98,6 +97,9 @@ const WithIconTemplate: Story<Button> = (args) => ({
 	`
 });
 export const WithIcon = WithIconTemplate.bind({});
+WithIcon.parameters = {
+	layout: "centered"
+};
 
 const IconButtonTemplate: Story<IconButtonComponent> = (args) => ({
 	props: args,
@@ -149,10 +151,3 @@ const ButtonSetTemplate: Story<Button> = (args) => ({
 	`
 });
 export const ButtonSet = ButtonSetTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_accordion.accordion.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

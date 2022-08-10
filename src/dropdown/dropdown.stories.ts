@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DropdownModule, Dropdown } from "./";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { PlaceholderModule } from "../placeholder";
 
 import { ReactiveFormsStory } from "./stories";
@@ -18,8 +17,7 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				DropdownModule,
-				PlaceholderModule,
-				DocumentationModule
+				PlaceholderModule
 			]
 		})
 	],
@@ -169,10 +167,3 @@ const NgTemplate: Story<Dropdown> = (args) => ({
 	`
 });
 export const WithTemplate = NgTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_dropdown.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

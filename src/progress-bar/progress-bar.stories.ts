@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ProgressBarModule, ProgressBar } from "./";
 
 export default {
 	title: "Components/Progress Bar",
 	decorators: [
 		moduleMetadata({
-			imports: [ProgressBarModule, DocumentationModule]
+			imports: [ProgressBarModule]
 		})
 	],
 	component: ProgressBar
@@ -81,10 +80,3 @@ Indeterminate.argTypes = {
 		control: false
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_progress_bar.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

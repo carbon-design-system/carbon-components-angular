@@ -2,7 +2,8 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+
+
 import { PaginationModule, Pagination } from "./";
 
 import { PaginationStory } from "./stories";
@@ -11,10 +12,7 @@ export default {
 	title: "Components/Pagination",
 	decorators: [
 		moduleMetadata({
-			imports: [
-				PaginationModule,
-				DocumentationModule
-			],
+			imports: [PaginationModule],
 			declarations: [
 				PaginationStory
 			]
@@ -50,10 +48,3 @@ Basic.args = {
 	showPageInput: true,
 	skeleton: false
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_pagination.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

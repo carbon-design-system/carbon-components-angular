@@ -3,7 +3,6 @@
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TimePickerModule, TimePicker } from "./";
 import { TimePickerSelectModule } from "../timepicker-select";
 
@@ -14,8 +13,7 @@ export default {
 			imports: [
 				TimePickerModule,
 				TimePickerSelectModule,
-				FormsModule,
-				DocumentationModule
+				FormsModule
 			]
 		})
 	],
@@ -79,10 +77,3 @@ Basic.argTypes = {
 		control: "radio"
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_timepicker.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

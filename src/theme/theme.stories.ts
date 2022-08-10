@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ThemeModule, ThemeDirective } from "./";
 
 export default {
 	title: "Components/Theme",
 	decorators: [
 		moduleMetadata({
-			imports: [ThemeModule, DocumentationModule]
+			imports: [ThemeModule]
 		})
 	],
 	component: ThemeDirective
@@ -118,10 +117,3 @@ const LayeredTemplate: Story<ThemeDirective> = (args) => ({
 	`]
 });
 export const WithLayer = LayeredTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_theme.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

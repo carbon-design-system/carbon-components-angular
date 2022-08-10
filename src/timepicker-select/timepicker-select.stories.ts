@@ -3,7 +3,6 @@
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TimePickerSelectModule, TimePickerSelect } from "./";
 
 export default {
@@ -12,8 +11,7 @@ export default {
 		moduleMetadata({
 			imports: [
 				TimePickerSelectModule,
-				FormsModule,
-				DocumentationModule
+				FormsModule
 			]
 		})
 	],
@@ -38,10 +36,3 @@ const Template: Story<TimePickerSelect> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_timepicker_select.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

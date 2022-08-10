@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import {
 	ContextMenuModule,
 	ContextMenuComponent,
@@ -15,7 +14,7 @@ export default {
 	title: "Components/Context Menu",
 	decorators: [
 		moduleMetadata({
-			imports: [ContextMenuModule, DocumentationModule]
+			imports: [ContextMenuModule]
 		})
 	],
 	args: {
@@ -85,10 +84,3 @@ const Template: Story<ContextMenuComponent> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_context_menu.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { InputModule, Label } from "./";
 
 export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule, DocumentationModule]
+			imports: [InputModule]
 		})
 	]
 } as Meta;
@@ -113,10 +112,3 @@ const SkeletonTemplate: Story<Label> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_input.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { DatePickerModule, DatePicker } from "./";
 
 export default {
 	title: "Components/Date Picker",
 	decorators: [
 		moduleMetadata({
-			imports: [DatePickerModule, DocumentationModule]
+			imports: [DatePickerModule]
 		})
 	],
 	args: {
@@ -175,10 +174,3 @@ const SkeletonTemplate: Story<DatePicker> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_datepicker.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

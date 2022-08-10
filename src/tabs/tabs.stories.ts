@@ -2,7 +2,8 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+
+
 import { TabsModule } from "./";
 
 import { TabStory } from "./stories";
@@ -12,8 +13,7 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TabsModule,
-				DocumentationModule
+				TabsModule
 			],
 			declarations: [TabStory]
 		})
@@ -166,10 +166,3 @@ const SkeletonTemplate: Story = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_tabs.tabs.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

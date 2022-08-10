@@ -2,14 +2,17 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
-import { BreadcrumbModule, Breadcrumb, BreadcrumbItemComponent } from "./";
+import {
+	BreadcrumbModule,
+	Breadcrumb,
+	BreadcrumbItemComponent
+} from "./";
 
 export default {
 	title: "Components/Breadcrumb",
 	decorators: [
 		moduleMetadata({
-			imports: [BreadcrumbModule, DocumentationModule]
+			imports: [BreadcrumbModule]
 		})
 	],
 	argTypes: {
@@ -25,7 +28,7 @@ export default {
 const Template: Story<Breadcrumb> = (args) => ({
 	props: args,
 	template: `
-		<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<ibm-breadcrumb [skeleton]="true" [noTrailingSlash]="noTrailingSlash">
 			<ibm-breadcrumb-item href="#1">
 				Breadcrumb 1
 			</ibm-breadcrumb-item>
@@ -39,6 +42,12 @@ const Template: Story<Breadcrumb> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+Basic.argsTypes = {
+	skeleton: {
+		type: "boolean",
+		defaultValue: false
+	}
+};
 
 const WithSkeleton: Story<Breadcrumb> = (args) => ({
 	props: args,
@@ -53,9 +62,3 @@ const WithSkeleton: Story<Breadcrumb> = (args) => ({
 });
 export const Skeleton = WithSkeleton.bind({});
 
-const DocumentationTemplate: Story = () => ({
-	template: `
-	<ibm-documentation src="documentation/classes/src_button.button.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

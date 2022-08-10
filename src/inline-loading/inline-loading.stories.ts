@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { InlineLoadingModule, InlineLoading } from "./";
 
 import { InlineLoadingStory } from "./stories";
@@ -11,13 +10,8 @@ export default {
 	title: "Components/Inline loading",
 	decorators: [
 		moduleMetadata({
-			declarations: [
-				InlineLoadingStory
-			],
-			imports: [
-				InlineLoadingModule,
-				DocumentationModule
-			]
+			declarations: [InlineLoadingStory],
+			imports: [InlineLoadingModule]
 		})
 	],
 	args: {
@@ -51,10 +45,3 @@ const Template: Story<InlineLoading> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_inline_loading.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

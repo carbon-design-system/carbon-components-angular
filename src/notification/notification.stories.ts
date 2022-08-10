@@ -4,7 +4,6 @@ import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ButtonModule } from "../button";
 import { NotificationModule, BaseNotification } from "./";
 
@@ -25,8 +24,7 @@ export default {
 			],
 			imports: [
 				NotificationModule,
-				ButtonModule,
-				DocumentationModule
+				ButtonModule
 			]
 		})
 	],
@@ -246,24 +244,3 @@ export const CustomContent = CustomTemplate.bind({});
 CustomContent.args = {
 	showClose: true
 };
-
-const ActionableDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_notification.actionablenotification.html"></ibm-documentation>
-	`
-});
-export const ActionableDocumentation = ActionableDocumentationTemplate.bind({});
-
-const InlineDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_notification.notification.html"></ibm-documentation>
-	`
-});
-export const InlineDocumentation = InlineDocumentationTemplate.bind({});
-
-const ToastDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_notification.toast.html"></ibm-documentation>
-	`
-});
-export const ToastDocumentation = ToastDocumentationTemplate.bind({});

@@ -3,7 +3,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { CheckboxModule, Checkbox } from "./";
 import { ReactiveFormsStory } from "./stories";
 
@@ -15,8 +14,7 @@ export default {
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				CheckboxModule,
-				DocumentationModule
+				CheckboxModule
 			]
 		})
 	],
@@ -88,10 +86,3 @@ const ReactiveTemplate: Story = (args) => ({
 	`
 });
 export const WithReactiveForms = ReactiveTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_checkbox.checkbox.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

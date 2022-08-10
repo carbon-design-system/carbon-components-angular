@@ -3,7 +3,6 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DialogModule, OverflowMenu } from "../";
-import { DocumentationModule } from "../../documentation-component/documentation.module";
 import { PlaceholderModule } from "../../placeholder";
 import { IconModule } from "../../icon";
 import { CheckboxModule } from "../../checkbox";
@@ -17,7 +16,6 @@ export default {
 				DialogModule,
 				PlaceholderModule,
 				IconModule,
-				DocumentationModule,
 				CheckboxModule
 			]
 		})
@@ -171,10 +169,3 @@ const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
 });
 export const CustomTrigger = CustomTriggerTemplate.bind({});
 CustomTrigger.storyName = "With Custom Template";
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_dialog_overflow_menu.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

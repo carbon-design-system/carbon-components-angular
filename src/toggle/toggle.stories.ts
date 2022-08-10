@@ -2,17 +2,15 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+
+
 import { ToggleModule, Toggle } from "./";
 
 export default {
 	title: "Components/Toggle",
 	decorators: [
 		moduleMetadata({
-			imports: [
-				ToggleModule,
-				DocumentationModule
-			]
+			imports: [ToggleModule]
 		})
 	],
 	component: Toggle
@@ -52,10 +50,3 @@ Basic.argTypes = {
 		control: "radio"
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_toggle.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

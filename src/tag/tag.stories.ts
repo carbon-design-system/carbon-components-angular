@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TagModule, Tag } from "./";
 
 export default {
 	title: "Components/Tag",
 	decorators: [
 		moduleMetadata({
-			imports: [TagModule, DocumentationModule]
+			imports: [TagModule]
 		})
 	],
 	argTypes: {
@@ -52,10 +51,3 @@ const FilteredTemplate: Story<Tag> = (args) => ({
 	`
 });
 export const Filter = FilteredTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_tag.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

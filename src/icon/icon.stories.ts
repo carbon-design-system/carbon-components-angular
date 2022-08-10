@@ -3,7 +3,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { IconModule, IconDirective } from "./";
 import { IconDemo, ManyIconDemo } from "./stories";
 
@@ -16,8 +15,7 @@ export default {
 				ManyIconDemo
 			],
 			imports: [
-				IconModule,
-				DocumentationModule
+				IconModule
 			]
 		})
 	],
@@ -62,10 +60,3 @@ const AllIconTemplate: Story = (args) => ({
 	`
 });
 export const AllIcon = AllIconTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_icon.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

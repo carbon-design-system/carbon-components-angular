@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { NFormsModule } from "../forms";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon/icon.module";
@@ -89,8 +88,7 @@ export default {
 				DialogModule,
 				SearchModule,
 				IconModule,
-				ButtonModule,
-				DocumentationModule
+				ButtonModule
 			],
 			declarations: [
 				TableStory,
@@ -634,12 +632,3 @@ const SkeletonTemplate: Story = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_popover.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

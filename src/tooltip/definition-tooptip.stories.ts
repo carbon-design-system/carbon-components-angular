@@ -2,17 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TooltipModule, TooltipDefinition } from "./";
 
 export default {
 	title: "Components/Definition Tooltip",
 	decorators: [
 		moduleMetadata({
-			imports: [
-				TooltipModule,
-				DocumentationModule
-			]
+			imports: [TooltipModule]
 		})
 	]
 } as Meta;
@@ -87,10 +83,3 @@ Basic.argTypes = {
 		control: "select"
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_tooltip.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

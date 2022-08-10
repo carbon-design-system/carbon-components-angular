@@ -3,7 +3,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { FileUploaderModule, FileUploader } from "./";
 import { NotificationModule } from "../notification";
 import { ButtonModule } from "../button";
@@ -29,8 +28,7 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				NotificationModule,
-				ButtonModule,
-				DocumentationModule
+				ButtonModule
 			]
 		})
 	],
@@ -166,10 +164,3 @@ const SkeletonTemplate: Story<FileUploader> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_file_uploader.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

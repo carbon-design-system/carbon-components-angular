@@ -3,7 +3,6 @@
 import { RouterModule } from "@angular/router";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { SearchModule } from "../search";
 import { IconModule } from "../icon";
 import { UIShellModule, NavigationItem } from "./";
@@ -25,7 +24,6 @@ export default {
 			],
 			imports: [
 				UIShellModule,
-				DocumentationModule,
 				IconModule,
 				SearchModule,
 				RouterModule.forRoot([
@@ -571,25 +569,3 @@ const AngularRoutingTemplate: Story = (args) => ({
 });
 export const AngularRouting = AngularRoutingTemplate.bind({});
 AngularRouting.storyName = "Use angular router attributes for routing";
-
-
-const HeaderDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_ui_shell_header.header.html"></ibm-documentation>
-	`
-});
-export const HeaderDocumentation = HeaderDocumentationTemplate.bind({});
-
-const PanelDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_ui_shell_panel.panel.html"></ibm-documentation>
-	`
-});
-export const PanelDocumentation = PanelDocumentationTemplate.bind({});
-
-const SideNavDocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_ui_shell_sidenav.sidenav.html"></ibm-documentation>
-	`
-});
-export const SideNavDocumentation = SideNavDocumentationTemplate.bind({});

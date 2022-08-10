@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import {
 	ContentSwitcherModule,
 	ContentSwitcher,
@@ -13,7 +12,7 @@ export default {
 	title: "Components/Content Switcher",
 	decorators: [
 		moduleMetadata({
-			imports: [ContentSwitcherModule, DocumentationModule]
+			imports: [ContentSwitcherModule]
 		})
 	],
 	argTypes: {
@@ -36,10 +35,3 @@ const Template: Story<ContentSwitcher> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_content_switcher.contentswitcher.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

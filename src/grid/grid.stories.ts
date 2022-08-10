@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import {
 	GridModule,
 	GridDirective,
@@ -14,7 +13,7 @@ export default {
 	title: "Components/Grid",
 	decorators: [
 		moduleMetadata({
-			imports: [GridModule, DocumentationModule]
+			imports: [GridModule]
 		})
 	],
 	component: GridDirective,
@@ -62,10 +61,3 @@ const CSSGridTemplate: Story<GridDirective> = (args) => ({
 	`
 });
 export const CssGrid = CSSGridTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_grid.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TooltipModule, Tooltip } from "./";
 
 export default {
 	title: "Components/Tooltip",
 	decorators: [
 		moduleMetadata({
-			imports: [TooltipModule, DocumentationModule]
+			imports: [TooltipModule]
 		})
 	],
 	args: {
@@ -132,10 +131,3 @@ Ellipses.argTypes = {
 		control: false
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_tooltip.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

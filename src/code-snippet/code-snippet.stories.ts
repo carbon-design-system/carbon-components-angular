@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { CodeSnippetModule, CodeSnippet } from "./";
 
 export default {
 	title: "Components/Code Snippet",
 	decorators: [
 		moduleMetadata({
-			imports: [CodeSnippetModule, DocumentationModule]
+			imports: [CodeSnippetModule]
 		})
 	],
 	argTypes: {
@@ -95,10 +94,3 @@ const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_code_snippet.codesnippet.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

@@ -3,7 +3,6 @@
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import {
 	StructuredListModule,
 	StructuredList,
@@ -18,7 +17,6 @@ export default {
 		moduleMetadata({
 			imports: [
 				StructuredListModule,
-				DocumentationModule,
 				FormsModule
 			]
 		})
@@ -147,10 +145,3 @@ export const Skeleton = SkeletonTemplate.bind({});
 Skeleton.args = {
 	...Basic.args
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_structured_list.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

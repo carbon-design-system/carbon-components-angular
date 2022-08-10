@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { PlaceholderModule } from "../placeholder";
 import { InputModule } from "../input";
 import { ButtonModule } from "../button";
@@ -31,7 +30,6 @@ export default {
 			],
 			imports: [
 				ModalModule,
-				DocumentationModule,
 				InputModule,
 				ButtonModule,
 				PlaceholderModule
@@ -198,10 +196,3 @@ Simple.args = {
 	open: true,
 	showCloseButton: true
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_modal.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

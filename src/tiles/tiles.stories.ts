@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { LayerModule } from "../layer";
 import {
 	TilesModule,
@@ -17,11 +16,7 @@ export default {
 	title: "Components/Tiles",
 	decorators: [
 		moduleMetadata({
-			imports: [
-				TilesModule,
-				LayerModule,
-				DocumentationModule
-			]
+			imports: [TilesModule, LayerModule]
 		})
 	],
 	component: Tile,
@@ -135,10 +130,3 @@ const SkeletonTemplate: Story<Tile> = (args) => ({
 	`]
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_tiles.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

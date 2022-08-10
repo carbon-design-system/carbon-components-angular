@@ -2,14 +2,13 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { SearchModule, Search } from "./";
 
 export default {
 	title: "Components/Search",
 	decorators: [
 		moduleMetadata({
-			imports: [SearchModule, DocumentationModule]
+			imports: [SearchModule]
 		})
 	],
 	args: {
@@ -59,10 +58,3 @@ const Template: Story<Search> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_search.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

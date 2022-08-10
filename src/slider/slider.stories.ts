@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { SliderModule, Slider } from "./";
 
 export default {
@@ -10,8 +9,7 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				SliderModule,
-				DocumentationModule
+				SliderModule
 			]
 		})
 	],
@@ -88,10 +86,3 @@ Range.args = {
 Range.argTypes = {
 	...Basic.argTypes
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_slider.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

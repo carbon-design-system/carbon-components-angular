@@ -3,7 +3,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import {
 	SelectModule,
 	Select,
@@ -18,8 +17,7 @@ export default {
 			imports: [
 				SelectModule,
 				FormsModule,
-				ReactiveFormsModule,
-				DocumentationModule
+				ReactiveFormsModule
 			]
 		})
 	],
@@ -201,10 +199,3 @@ ValueProperty.storyName = "Changing selected through value property";
 ValueProperty.args = {
 	selected: "in-tarnsit-outbound"
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_select.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});
