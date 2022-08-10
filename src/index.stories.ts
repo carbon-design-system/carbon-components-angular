@@ -197,4 +197,4 @@ Welcome.parameters = {
 	controls: {
 		disabled: true
 	}
-}
+};

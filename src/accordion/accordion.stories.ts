@@ -80,7 +80,7 @@ WithTitle.parameters = {
 	controls: {
 		disabled: true
 	}
-}
+};
 
 const WithSkeleton: Story<Accordion> = (args) => ({
 	props: args,
@@ -100,4 +100,4 @@ WithSkeleton.parameters = {
 	controls: {
 		disabled: true
 	}
-}
+};
