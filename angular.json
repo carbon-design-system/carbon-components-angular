@@ -56,7 +56,9 @@
 							"--disablePrivate",
 							"--disableProtected",
 							"--disableLifeCycleHooks",
-							"--disableInternal"
+							"--disableInternal",
+							"-d",
+							"dist/docs/"
 						],
 						"configDir": ".storybook"
 					}
@@ -69,6 +71,16 @@
 							"./.storybook/preview.scss"
 						],
 						"compodoc": true,
+						"compodocArgs": [
+							"-e",
+							"json",
+							"--disablePrivate",
+							"--disableProtected",
+							"--disableLifeCycleHooks",
+							"--disableInternal",
+							"-d",
+							"dist/docs/"
+						],
 						"configDir": ".storybook",
 						"outputDir": "dist/docs/storybook"
 					}

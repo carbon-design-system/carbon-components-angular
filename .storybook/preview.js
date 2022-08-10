@@ -10,7 +10,7 @@ import {
 	directives,
 	interfaces,
 	miscellaneous
-} from "../documentation.json";
+} from "../dist/docs/documentation.json";
 
 /**
  * Remove public properties from docs Json for each component.
