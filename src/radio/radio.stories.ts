@@ -1,15 +1,24 @@
 /* tslint:disable variable-name */
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { RadioModule, RadioGroup, Radio } from "./";
 
+import { ReactiveFormsStory } from "./stories";
+
 export default {
 	title: "Components/Radio",
 	decorators: [
 		moduleMetadata({
-			imports: [RadioModule, DocumentationModule]
+			declarations: [ReactiveFormsStory],
+			imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				RadioModule,
+				DocumentationModule
+			]
 		})
 	],
 	component: RadioGroup,
@@ -26,11 +35,8 @@ const Template: Story<Radio> = (args) => ({
 			aria-label="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
-			[(ngModel)]="radio"
 			(change)="onChange($event)">
-			<ibm-radio
-				value="Zero"
-				[checked]="true">
+			<ibm-radio value="Zero" [checked]="true">
 				Zero
 			</ibm-radio>
 			<ibm-radio [value]="One">One</ibm-radio>
@@ -39,10 +45,12 @@ const Template: Story<Radio> = (args) => ({
 			<ibm-radio [value]="Four" [disabled]="true">Four</ibm-radio>
 		</ibm-radio-group>
 	</fieldset>
-	<button (click)="disabled = !disabled">Toggle group disabled</button>
 	`
 });
 export const Basic = Template.bind({});
+Basic.args = {
+	label: "Radio button heading"
+};
 Basic.argTypes = {
 	onChange: {
 		control: "Changed!"
@@ -68,6 +76,25 @@ const SkeletonTemplate: Story<Radio> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+const ReactiveFormsTemplate: Story<Radio> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/radio/stories/app-reactive-form.component.ts
+		-->
+		<app-reactive-forms></app-reactive-forms>
+	`
+});
+export const ReactiveForms = ReactiveFormsTemplate.bind({});
+ReactiveForms.parameters = {
+	controls: {
+		disabled: true
+	}
+};
+
 
 const DocumentationTemplate: Story = () => ({
 	template: `

@@ -1,6 +1,5 @@
 /* tslint:disable variable-name */
 
-import { Component, Input } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
@@ -9,44 +8,21 @@ import { SearchModule } from "../search";
 import { IconModule } from "../icon";
 import { UIShellModule, NavigationItem } from "./";
 
-@Component({
-	selector: "app-bar",
-	template: "<h1>bar</h1>"
-})
-class BarComponent { }
+import {
+	BarComponent,
+	FooComponent,
+	HeaderFluidComponent
+} from "./stories";
 
-@Component({
-	selector: "app-foo",
-	template: "<h1>foo</h1>"
-})
-class FooComponent { }
-
-@Component({
-	selector: "app-header-fluid",
-	template: `
-		<ibm-header name="[Platform]">
-			<ibm-hamburger
-				(selected)="hasHamburger = !hasHamburger"
-				class="cds--header__menu-toggle__hidden"></ibm-hamburger>
-			<ibm-header-navigation [navigationItems]="headerItems"></ibm-header-navigation>
-			<ibm-sidenav
-				*ngIf="hasHamburger"
-				[navigationItems]="headerItems"
-				class="cds--header__menu-toggle__hidden"></ibm-sidenav>
-		</ibm-header>
-	`
-})
-class HeaderFluidComponent {
-	@Input() headerItems: NavigationItem[];
-	hasHamburger = false;
-}
-
-// Story starts here
 export default {
 	title: "Components/UI Shell",
 	decorators: [
 		moduleMetadata({
-			declarations: [BarComponent, FooComponent, HeaderFluidComponent],
+			declarations: [
+				BarComponent,
+				FooComponent,
+				HeaderFluidComponent
+			],
 			imports: [
 				UIShellModule,
 				DocumentationModule,
@@ -109,6 +85,11 @@ Header.argTypes = {
 const HeaderFluidTemplate: Story = (args) => ({
 	props: args,
 	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell/stories/header-fluid.component.ts
+		-->
 		<app-header-fluid [headerItems]="headerItems"></app-header-fluid>
 	`
 });

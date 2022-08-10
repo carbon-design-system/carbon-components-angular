@@ -1,14 +1,28 @@
 /* tslint:disable variable-name */
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ComboBoxModule, ComboBox } from "./";
 
+import {
+	DynamicListComboBox,
+	ReactiveFormsCombobox,
+	MockQueryCombobox
+} from "./stories";
+
 export default {
 	title: "Components/Combobox",
 	decorators: [
 		moduleMetadata({
+			declarations: [
+				FormsModule,
+				ReactiveFormsModule,
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
+			],
 			imports: [ComboBoxModule, DocumentationModule]
 		})
 	],
@@ -35,7 +49,8 @@ export default {
 			}
 		],
 		appendInline: false,
-		dropUp: false
+		dropUp: false,
+		selectionFeedback: "top-after-reopen"
 	},
 	argTypes: {
 		size: {
@@ -48,9 +63,18 @@ export default {
 			defaultValue: "dark",
 			control: "radio"
 		},
+		maxLength: {
+			control: false
+		},
+		type: {
+			control: false
+		},
 		selected: { action: "Selection changed!" },
 		submit: { action: "Submit" },
 		search: { action: "Search" }
+	},
+	parameters: {
+		layout: "centered"
 	},
 	component: ComboBox
 } as Meta;
@@ -59,6 +83,7 @@ const Template: Story<ComboBox> = (args) => ({
 	props: args,
 	template: `
 		<ibm-combo-box
+			[(ngModel)]="model"
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[size]="size"
@@ -71,17 +96,132 @@ const Template: Story<ComboBox> = (args) => ({
 			[items]="items"
 			[theme]="theme"
 			[dropUp]="dropUp"
+			[type]="type"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)">
 			<ibm-dropdown-list></ibm-dropdown-list>
 		</ibm-combo-box>
+		<span>{{model | json}}</span>
 	`
 });
 export const Basic = Template.bind({});
 Basic.argTypes = {
 	items: {
 		controls: false
+	}
+};
+
+const BasicMaxTemplate: Story<ComboBox> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/combobox/stories/app-dynamic-list-combobox.component.ts
+		-->
+		<app-dynamic-list-combobox></app-dynamic-list-combobox>
+	`
+});
+export const BasicMax = BasicMaxTemplate.bind({});
+BasicMax.storyName = "Basic with max length";
+BasicMax.args = {
+	maxLength: 4
+};
+BasicMax.argTypes = {
+	maxLength: {
+		control: "number"
+	}
+};
+
+const DynamicTemplate: Story<ComboBox> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/combobox/stories/app-dynamic-list-combobox.component.ts
+		-->
+		<app-dynamic-list-combobox></app-dynamic-list-combobox>
+	`
+});
+export const Dynamic = DynamicTemplate.bind({});
+Dynamic.storyName = "Dynamically added list items";
+Dynamic.parameters = {
+	controls: {
+		disabled: true
+	}
+};
+
+
+const MultiTemplate: Story<ComboBox> = (args) => ({
+	props: args,
+	template: `
+		<ibm-combo-box
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[label]="label"
+			[warn]="warn"
+			[disabled]="disabled"
+			[size]="size"
+			[helperText]="helperText"
+			[appendInline]="false"
+			[items]="items"
+			[theme]="theme"
+			[selectionFeedback]="selectionFeedback"
+			[dropUp]="dropUp"
+			[appendInline]="appendInline"
+			type="multi"
+			(selected)="selected($event)"
+			(submit)="submit($event)">
+			<ibm-dropdown-list></ibm-dropdown-list>
+		</ibm-combo-box>
+	`
+});
+export const Multiselect = MultiTemplate.bind({});
+Multiselect.argTypes = {
+	selectionFeedback: "top-after-reopen"
+};
+
+const ReactiveTemplate: Story<ComboBox> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/combobox/stories/app-reactive-combobox.component.ts
+		-->
+		<app-reactive-combobox
+			[disabled]="disabled"
+			[invalid]="invalid"
+			[size]="size"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[label]="label"
+			[helperText]="helperText"
+			[items]="items"
+			[theme]="theme">
+		</app-reactive-combobox>
+	`
+});
+export const ReactiveForms = ReactiveTemplate.bind({});
+
+const MockQueryTemplate: Story<ComboBox> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/combobox/stories/app-mock-query-search.component.ts
+		-->
+		<app-mock-query-search></app-mock-query-search>
+	`
+});
+export const MockQuerySearch = MockQueryTemplate.bind({});
+MockQuerySearch.parameters = {
+	controls: {
+		disabled: true
 	}
 };
 

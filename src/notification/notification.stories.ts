@@ -1,88 +1,18 @@
 /* tslint:disable variable-name */
 
-import { Component, ViewEncapsulation } from "@angular/core";
+import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ButtonModule } from "../button";
+import { NotificationModule, BaseNotification } from "./";
+
 import {
-	NotificationModule,
-	NotificationService,
-	BaseNotification
-} from "./";
-
-@Component({
-	selector: "app-dynamic-actionable-story",
-	template: `
-		<button class="cds--btn cds--btn--primary" (click)="showNotification()">Show info notification</button>
-		<div class="notification-container"></div>
-	`,
-	providers: [NotificationService]
-})
-class DyanmicActionableStory {
-	actionSubject = new Subject<any>();
-	constructor(protected notificationService: NotificationService) { }
-
-	showNotification() {
-		this.notificationService.showActionable({
-			type: "info",
-			title: "Actionable notification",
-			message: "Sample info message",
-			target: ".notification-container",
-			actions: [
-				{
-					text: "Action",
-					click: this.actionSubject
-				}
-			]
-		});
-	}
-}
-
-@Component({
-	selector: "app-notification-story",
-	template: `
-		<button class="cds--btn cds--btn--primary" (click)="showNotification()">Show info notification</button>
-		<div class="notification-container"></div>
-	`,
-	providers: [NotificationService]
-})
-class NotificationStory {
-	constructor(protected notificationService: NotificationService) { }
-
-	showNotification() {
-		this.notificationService.showNotification({
-			type: "info",
-			title: "Sample notification",
-			message: "Sample info message",
-			target: ".notification-container"
-		});
-	}
-}
-
-@Component({
-	selector: "app-toast-story",
-	template: `
-		<button class="cds--btn cds--btn--primary" (click)="showToast()">Show info toast</button>
-		<div class="notification-container"></div>
-	`,
-	providers: [NotificationService]
-})
-class ToastStory {
-	constructor(protected notificationService: NotificationService) { }
-
-	showToast() {
-		this.notificationService.showToast({
-			type: "info",
-			title: "Sample toast",
-			subtitle: "Sample subtitle message",
-			caption: "Sample caption",
-			target: ".notification-container",
-			message: "message"
-		});
-	}
-}
+	DyanmicActionableStory,
+	NotificationStory,
+	ToastStory
+} from "./story";
 
 export default {
 	title: "Components/Notification",
@@ -198,8 +128,9 @@ const DynamicActionableTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/dynamic-actionable.component.ts
 		-->
 		<app-dynamic-actionable-story></app-dynamic-actionable-story>
 	`
@@ -210,8 +141,9 @@ const DynamicToastTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/toast.component.ts
 		-->
 		<app-toast-story></app-toast-story>
 	`
@@ -222,8 +154,9 @@ const DynamicInlineTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/notification.component.ts
 		-->
 		<app-notification-story></app-notification-story>
 	`

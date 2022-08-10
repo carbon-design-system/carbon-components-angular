@@ -22,7 +22,6 @@ import {
 } from "./stories";
 import {
 	TableModule,
-	Table,
 	TableModel,
 	TableItem,
 	TableHeaderItem,
@@ -66,6 +65,18 @@ const getProps = (more = {}, type: "args" | "argTypes") => {
 	return { ...defaultProps, ...more };
 };
 
+function getModelWithDisabledRows() {
+	const disabledModel = new TableModel();
+	const row1 = new TableRow(new TableItem({ data: "Name 1" }), new TableItem({ data: "Disabled 1" }));
+	row1.disabled = true;
+	const row2 = new TableRow(new TableItem({ data: "Name 3" }), new TableItem({ data: "Disabled 2" }));
+	row2.disabled = true;
+	const row3 = new TableRow(new TableItem({ data: "Name 2" }), new TableItem({ data: "Enabled 1" }));
+	const row4 = new TableRow(new TableItem({ data: "Name 4" }), new TableItem({ data: "Enabled 2" }));
+	disabledModel.data = [row1, row2, row3, row4];
+	return disabledModel;
+}
+
 // Story starts here
 export default {
 	title: "Components/Table",
@@ -104,9 +115,11 @@ const Template: Story = (args) => ({
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
+
 			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-table.component.ts
 			-->
 			<app-table
 				[model]="model"
@@ -137,9 +150,11 @@ const NoDataTemplate: Story = (args) => ({
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>With no data</p>
 			</ibm-table-header>
+
 			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-no-data.component.ts
 			-->
 			<app-no-data-table
 				[model]="model"
@@ -216,9 +231,11 @@ const ToolbarTemplate: Story = (args) => ({
 						</button>
 					</ibm-table-toolbar-content>
 				</ibm-table-toolbar>
+
 				<!--
-					app-* components are for demo purposes only.
-					You can create your own implementation by using the component source as an example.
+				app-* components are for demo purposes only.
+				You can create your own implementation by using the component source found at:
+				https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-table.component.ts
 				-->
 				<app-table
 					[model]="model"
@@ -265,7 +282,80 @@ WithToolbar.argTypes = {
 	}, "argTypes")
 };
 
-const WithActionTemplate: Story = (args) => ({
+const DisabledRowsTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
+				<ibm-table-toolbar-actions>
+					<button ibmButton="primary">
+						Delete
+						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+					</button>
+					<button ibmButton="primary">
+						Save
+						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+					</button>
+					<button ibmButton="primary">
+						Download
+						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+					</button>
+				</ibm-table-toolbar-actions>
+				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
+					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
+					<button ibmButton="ghost" class="toolbar-action">
+						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+					</button>
+					<button ibmButton="primary" size="sm">
+						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+					</button>
+				</ibm-table-toolbar-content>
+			</ibm-table-toolbar>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-no-data-table.component.ts
+			-->
+			<app-no-data-table
+				[model]="model"
+				[size]="lg"
+				[showSelectionColumn]="true"
+				[striped]="striped"
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
+			</app-no-data-table>
+		</ibm-table-container>
+	`
+});
+export const WithDisabledRows = DisabledRowsTemplate.bind({});
+WithDisabledRows.storyName = "With toolbar and disabled rows";
+WithDisabledRows.args = {
+	...getProps({
+		model: getModelWithDisabledRows(),
+		size: "md",
+		title: "Table title",
+		description: "With toolbar & disabled rows",
+		striped: false,
+		sortable: true,
+		isDataGrid: true,
+		batchText: {
+			SINGLE: "1 item selected",
+			MULTIPLE: "{{count}} items selected"
+		}
+	}, "args")
+};
+WithDisabledRows.argTypes = {
+	size: {
+		options: ["sm", "sh", "md", "lg"],
+		control: "select"
+	}
+};
+
+const WithoutActionTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<ibm-table-container>
@@ -284,9 +374,11 @@ const WithActionTemplate: Story = (args) => ({
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
+
 			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-table.component.ts
 			-->
 			<app-table
 				[model]="model"
@@ -302,7 +394,7 @@ const WithActionTemplate: Story = (args) => ({
 		</ibm-table-container>
 	`
 });
-export const WithToolbarWithoutToolbarAction = WithActionTemplate.bind({});
+export const WithToolbarWithoutToolbarAction = WithoutActionTemplate.bind({});
 WithToolbarWithoutToolbarAction.args = {
 	...getProps({
 		description: "With toolbar",
@@ -310,12 +402,37 @@ WithToolbarWithoutToolbarAction.args = {
 	}, "args")
 };
 
+const FilteringOverridingTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-function-override-filter-table.component.ts
+		-->
+		<app-function-override-filter-table
+			[stickyHeader]="stickyHeader"
+			[size]="size"
+			[skeleton]="skeleton"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[isDataGrid]="isDataGrid">
+		</app-function-override-filter-table>
+	`
+});
+export const FilteringOverriding = FilteringOverridingTemplate.bind({});
+FilteringOverriding.storyName = "Filtering by overriding isRowFiltered [Recommended]";
+FilteringOverriding.args = {
+	...getProps({}, "args")
+};
+
 const FilteringTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<!--
-			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-model-filter-table.component.ts
 		-->
 		<app-model-filter-table
 			[stickyHeader]="stickyHeader"
@@ -329,12 +446,196 @@ const FilteringTemplate: Story = (args) => ({
 });
 export const Filtering = FilteringTemplate.bind({});
 Filtering.storyName = "Filtering by alteration of model data";
-WithToolbarWithoutToolbarAction.args = {
+Filtering.args = {
 	...getProps({
 		description: "With toolbar",
 		enableSingleSeelct: false
 	}, "args")
 };
+
+const ExpansionTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-expansion-table.component.ts
+			-->
+			<app-expansion-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
+				[stickyHeader]="stickyHeader"
+				[skeleton]="skeleton"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-expansion-table>
+		</ibm-table-container>
+	`
+});
+export const WithExpansion = ExpansionTemplate.bind({});
+WithExpansion.args = {
+	...getProps({
+		description: "With expansion"
+	}, "args")
+};
+
+const DyanmicContentTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-custom-table.component.ts
+			-->
+			<app-custom-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
+				[stickyHeader]="stickyHeader"
+				[skeleton]="skeleton"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-custom-table>
+		</ibm-table-container>
+	`
+});
+export const WithDynamicContent = DyanmicContentTemplate.bind({});
+WithDynamicContent.args = {
+	...getProps({
+		description: "With dynamic content"
+	}, "args")
+};
+
+const OverflowMenuTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-overflow-table.component.ts
+			-->
+			<app-overflow-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
+				[stickyHeader]="stickyHeader"
+				[skeleton]="skeleton"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-overflow-table>
+		</ibm-table-container>
+	`
+});
+export const WithOverflowMenu = OverflowMenuTemplate.bind({});
+WithOverflowMenu.args = {
+	...getProps({
+		description: "With overflow menu"
+	}, "args")
+};
+
+const PaginationTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<ibm-table-container>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-pagination-table.component.ts
+			-->
+			<app-pagination-table
+				[skeleton]="skeleton"
+				[sortable]="sortable"
+				[totalDataLength]="totalDataLength"
+				[showSelectionColumn]="showSelectionColumn"
+				[stickyHeader]="stickyHeader"
+				[skeleton]="skeleton"
+				[model]="model">
+			</app-pagination-table>
+		</ibm-table-container>
+	`
+});
+export const WithPagination = PaginationTemplate.bind({});
+WithPagination.args = {
+	...getProps({
+		totalDataLength: 105,
+		description: "With pagination"
+	}, "args")
+};
+
+const FromComponentsTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<table ibmTable [sortable]="false" style="width: 650px;">
+			<thead ibmTableHead>
+				<tr>
+					<th
+						scope="col"
+						ibmTableHeadCell
+						*ngFor="let column of model.header"
+						[column]="column">
+					</th>
+				</tr>
+			</thead>
+			<tbody ibmTableBody>
+				<tr
+					*ngFor="let row of model.data"
+					ibmTableRow
+					[row]="row">
+					<td
+						*ngFor="let item of row; let j = index"
+						ibmTableData
+						[item]="item"
+						[class]="model.header[j].className"
+						[ngStyle]="model.header[j].style">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	`
+});
+export const FromComponents = FromComponentsTemplate.bind({});
+FromComponents.args = {
+	...getProps({}, "args")
+};
+
+const SkeletonTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-skeleton-table.component.ts
+		-->
+		<app-skeleton-table
+			[skeletonModel]="skeletonModel"
+			[size]="size"
+			[striped]="striped">
+		</app-skeleton-table>
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});
+
+
 
 const DocumentationTemplate: Story = () => ({
 	template: `

@@ -50,7 +50,14 @@
 							"./.storybook/preview.scss"
 						],
 						"compodoc": true,
-						"compodocArgs": ["-e", "json", "--disablePrivate", "--disableProtected", "--disableLifeCycleHooks", "--disableInternal"],
+						"compodocArgs": [
+							"-e",
+							"json",
+							"--disablePrivate",
+							"--disableProtected",
+							"--disableLifeCycleHooks",
+							"--disableInternal"
+						],
 						"configDir": ".storybook"
 					}
 				},

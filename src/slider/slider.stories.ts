@@ -27,6 +27,7 @@ const Template: Story<Slider> = (args) => ({
 			[max]="max"
 			[step]="step"
 			[value]="value"
+			[skeleton]="skeleton"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
 			aria-Label="Label for slider value"
@@ -74,7 +75,8 @@ const RangeTemplate: Story<Slider> = (args) => ({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`
 });
