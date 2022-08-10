@@ -30,7 +30,7 @@ import { EventService } from "carbon-components-angular/utils";
  *
  * ex:
  * ```html
- * <!-- full example -->
+ * Full example
  * <ibm-slider>
  *		<span minLabel>0GB</span>
  *		<span maxLabel>100GB</span>
@@ -47,8 +47,6 @@ import { EventService } from "carbon-components-angular/utils";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
- *
- * <example-url>../../iframe.html?id=components-slider--advanced</example-url>
  */
 @Component({
 	selector: "ibm-slider",

@@ -14,8 +14,6 @@ import { BaseNotification } from "./base-notification.component";
  * Actionable notification allows for interactive elements within a notification. There are two variants offered, inline & toast.
  *
  * [See demo](../../?path=/story/components-notification--actionable-notification)
- *
- * <example-url>../../iframe.html?id=components-notification--actionable-notification</example-url>
  */
 @Component({
 	selector: "ibm-actionable-notification",

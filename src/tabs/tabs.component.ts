@@ -33,8 +33,6 @@ import { TabHeaders } from "./tab-headers.component";
  * 	</ibm-tab>
  * </ibm-tabs>
  * ```
- *
- * <example-url>../../iframe.html?id=components-tabs--basic</example-url>
  */
 @Component({
 	selector: "ibm-tabs",

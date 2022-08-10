@@ -16,8 +16,6 @@ import {
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
- *
- * <example-url>../../iframe.html?id=components-link--basic</example-url>
  */
 @Directive({
 	selector: "[ibmLink]"

@@ -15,8 +15,6 @@ const noop = () => { };
 
 /**
  * [See demo](../../?path=/story/components-file-uploader--basic)
- *
- * <example-url>../../iframe.html?id=components-file-uploader--basic</example-url>
  */
 @Component({
 	selector: "ibm-file-uploader",

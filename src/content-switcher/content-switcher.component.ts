@@ -25,8 +25,6 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
  *		<button ibmContentOption>Third section</button>
  *	</ibm-content-switcher>
  *	```
- *
- * <example-url>../../iframe.html?id=components-content-switcher--basic</example-url>
  */
 @Component({
 	selector: "ibm-content-switcher",

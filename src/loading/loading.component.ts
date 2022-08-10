@@ -3,8 +3,6 @@ import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/components-loading--basic)
- *
- * <example-url>../../iframe.html?id=components-loading--basic</example-url>
  */
 @Component({
 	selector: "ibm-loading",

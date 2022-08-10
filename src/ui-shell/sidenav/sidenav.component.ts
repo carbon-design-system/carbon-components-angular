@@ -11,8 +11,6 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
  * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
  *
  * [See demo](../../?path=/story/components-ui-shell--side-navigation)
- *
- * <example-url>../../iframe.html?id=components-ui-shell--side-navigation</example-url>
  */
 @Component({
 	selector: "ibm-sidenav",

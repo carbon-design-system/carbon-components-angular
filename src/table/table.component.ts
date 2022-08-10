@@ -167,8 +167,6 @@ import { TableRowSize } from "./table.types";
  * 	return newData;
  * }
  * ```
- *
- * <example-url>../../iframe.html?id=components-table--basic</example-url>
  */
 @Component({
 	selector: "ibm-table",

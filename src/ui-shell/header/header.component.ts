@@ -16,8 +16,6 @@ import { I18n } from "carbon-components-angular/i18n";
  * and global actions (generally in the form of `Panel`s).
  *
  * [See demo](../../?path=/story/components-ui-shell--header)
- *
- * <example-url>../../iframe.html?id=components-ui-shell--header</example-url>
  */
 @Component({
 	selector: "ibm-header",

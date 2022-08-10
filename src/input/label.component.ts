@@ -31,8 +31,6 @@ import { TextArea } from "./text-area.directive";
  * 	<input type="text" class="input-field">
  * </ibm-label>
  * ```
- *
- * <example-url>../../iframe.html?id=components-input--label</example-url>
  */
 @Component({
 	selector: "ibm-label",

@@ -26,8 +26,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * 	<option value="option3">Option 3</option>
  * </ibm-select>
  *	```
- *
- * <example-url>../../iframe.html?id=components-select--basic</example-url>
  */
 @Component({
 	selector: "ibm-select",

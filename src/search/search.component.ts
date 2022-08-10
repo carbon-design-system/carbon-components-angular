@@ -13,8 +13,6 @@ import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/components-search--basic)
- *
- * <example-url>../../iframe.html?id=components-search--basic</example-url>
  */
 @Component({
 	selector: "ibm-search",

@@ -142,8 +142,6 @@ export class RowDirective {
 
 /**
  * [See demo](../../?path=/story/components-grid--basic)
- *
- * <example-url>../../iframe.html?id=components-grid--basic</example-url>
  */
 @Directive({
 	selector: "[ibmGrid]"

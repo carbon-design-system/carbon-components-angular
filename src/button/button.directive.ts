@@ -19,8 +19,6 @@ import { ButtonSize, ButtonType } from "./button.types";
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/button/code) for more detail.
- *
- * <example-url>../../iframe.html?id=components-button--basic</example-url>
  */
 @Directive({
 	selector: "[ibmButton]"

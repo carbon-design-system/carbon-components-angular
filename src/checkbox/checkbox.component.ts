@@ -25,8 +25,6 @@ export enum CheckboxState {
 
 /**
  * [See demo](../../?path=/story/components-checkbox--basic)
- *
- * <example-url>../../iframe.html?id=components-checkbox--basic</example-url>
  */
 @Component({
 	selector: "ibm-checkbox",

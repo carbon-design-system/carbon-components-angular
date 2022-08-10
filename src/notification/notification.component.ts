@@ -14,8 +14,6 @@ import { BaseNotification } from "./base-notification.component";
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * [See demo](../../?path=/story/components-notification--basic)
- *
- * <example-url>../../iframe.html?id=components-notification--basic</example-url>
  */
 @Component({
 	selector: "ibm-notification,ibm-inline-notification",

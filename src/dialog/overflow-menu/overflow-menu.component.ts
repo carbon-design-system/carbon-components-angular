@@ -23,8 +23,6 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  *	<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
  * </ibm-overflow-menu>
  * ```
- *
- * <example-url>../../iframe.html?id=components-overflow-menu--basic</example-url>
  */
 @Component({
 	selector: "ibm-overflow-menu",
