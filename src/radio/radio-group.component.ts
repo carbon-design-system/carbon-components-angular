@@ -53,7 +53,7 @@ import { RadioChange } from "./radio-change.class";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[ngClass]="{
 				'cds--radio-button-group--vertical': orientation === 'vertical',
-				'cds--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
+				'cds--radio-button-group--label-left': labelPlacement === 'left'
 			}">
 			<ng-content></ng-content>
 		</div>
