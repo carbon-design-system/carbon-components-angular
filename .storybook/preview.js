@@ -9,7 +9,8 @@ import {
 	components,
 	directives,
 	interfaces,
-	miscellaneous
+	miscellaneous,
+	pipes
 } from "../dist/docs/documentation.json";
 
 /**
@@ -31,7 +32,16 @@ components = components.map(comp => {
 		})
 	}
 });
-setCompodocJson({ classes, components, directives, interfaces, miscellaneous });
+
+// Integrate compodoc documentation with storybook
+setCompodocJson({
+	classes,
+	components,
+	directives,
+	interfaces,
+	miscellaneous,
+	pipes
+});
 
 // Set carbon viewports options
 export const parameters = {
