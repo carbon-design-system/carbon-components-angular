@@ -3,10 +3,13 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { IconModule } from "../icon";
-import { ButtonModule, Button } from "./";
+import {
+	ButtonModule,
+	IconButton
+} from "./";
 
 export default {
-	title: "Components/Button",
+	title: "Components/Button/Icon Button",
 	decorators: [
 		moduleMetadata({
 			imports: [
@@ -54,44 +57,44 @@ export default {
 	parameters: {
 		layout: "centered"
 	},
-	component: Button
+	component: IconButton
 } as Meta;
 
-const Template: Story<Button> = (args) => ({
+const Template: Story<IconButton> = (args) => ({
 	props: args,
 	template: `
-		<button
-			[ibmButton]="kind"
+		<ibm-icon-button
+			id="icon-btn1"
+			type="button"
+			[kind]="kind"
 			[size]="size"
-			[isExpressive]="isExpressive"
+			[align]="align"
+			[buttonNgClass]="buttonNgClass"
+			[buttonAttributes]="buttonAttributes"
 			[disabled]="disabled"
-			(click)="onClick($event)"
-			(mouseenter)="onMouseEnter($event)"
-			(mouseleave)="onMouseLeave($event)"
-			(focus)="onFocus($event)"
-			(blur)="onBlur($event)">
-			Button
-		</button>
-	`
-});
-export const Basic = Template.bind({});
-
-const WithIconTemplate: Story<Button> = (args) => ({
-	props: args,
-	template: `
-		<button
-			[ibmButton]="kind"
-			[size]="size"
-			[isExpressive]="isExpressive"
-			[disabled]="disabled"
+			description="Icon Description"
 			(click)="onClick($event)"
 			(mouseenter)="onMouseEnter($event)"
 			(mouseleave)="onMouseleave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
-			With icon
-			<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
-		</button>
+			<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
+		</ibm-icon-button>
 	`
 });
-export const WithIcon = WithIconTemplate.bind({});
+export const Basic = Template.bind({});
+Basic.args = {
+	buttonAttributes: {
+		"aria-label": "Example button aria-label"
+	},
+	buttonNgClass: {
+		"example-global-class": true
+	}
+};
+Basic.argTypes = {
+		align: {
+		options: ["top", "left", "bottom", "right"],
+		defaultValue: "bottom",
+		control: { type: "select" }
+	}
+};

@@ -3,29 +3,21 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { LayerModule } from "../layer";
-import {
-	TilesModule,
-	Tile,
-	ClickableTile,
-	ExpandableTile,
-	SelectionTile,
-	TileGroup
-} from "./";
+import { SkeletonModule } from "../skeleton";
+import { TilesModule, Tile } from "./";
 
 export default {
 	title: "Components/Tiles",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule]
+			imports: [
+				TilesModule,
+				LayerModule,
+				SkeletonModule
+			]
 		})
 	],
-	component: Tile,
-	subcomponents: {
-		TileGroup,
-		ClickableTile,
-		SelectionTile,
-		ExpandableTile
-	}
+	component: Tile
 } as Meta;
 
 const Template: Story<Tile> = (args) => ({
@@ -55,61 +47,6 @@ const LayerTemplate: Story<Tile> = (args) => ({
 	`
 });
 export const WithLayers = LayerTemplate.bind({});
-
-const ClickableTemplate: Story<ClickableTile> = (args) => ({
-	props: args,
-	template: `
-		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
-			Click the tile to open the Carbon Design System
-		</ibm-clickable-tile>
-	`
-});
-export const Clickable = ClickableTemplate.bind({});
-
-const ExpandableTemplate: Story<ExpandableTile> = (args) => ({
-	props: args,
-	template: `
-		<ibm-expandable-tile>
-			<span class="cds--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
-			<span class="cds--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
-		</ibm-expandable-tile>
-	`
-});
-export const Expandable = ExpandableTemplate.bind({});
-
-const MultiTemplate: Story<TileGroup> = (args) => ({
-	props: args,
-	template: `
-		<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-			<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
-		</ibm-tile-group>
-	`
-});
-export const Multiselect = MultiTemplate.bind({});
-Multiselect.argTypes = {
-	selected: {
-		action: "Tile selected!"
-	}
-};
-
-const SelectableTemplate: Story<SelectionTile> = (args) => ({
-	props: args,
-	template: `
-		<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-			<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
-		</ibm-tile-group>
-	`
-});
-export const Selectable = SelectableTemplate.bind({});
-Multiselect.argTypes = {
-	selected: {
-		action: "Tile selected!"
-	}
-};
 
 const SkeletonTemplate: Story<Tile> = (args) => ({
 	props: args,
