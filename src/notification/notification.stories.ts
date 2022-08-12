@@ -11,7 +11,7 @@ import {
 	DyanmicActionableStory,
 	NotificationStory,
 	ToastStory
-} from "./story";
+} from "./stories";
 
 export default {
 	title: "Components/Notification",
