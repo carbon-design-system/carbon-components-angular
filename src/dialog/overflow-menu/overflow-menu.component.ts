@@ -16,8 +16,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  *
  * [See demo](../../?path=/story/components-overflow-menu--basic)
  *
- * html:
- * ```
+ * ```html
  * <ibm-overflow-menu>
  *	<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
  *	<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>

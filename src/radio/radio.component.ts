@@ -16,7 +16,7 @@ import { RadioChange } from "./radio-change.class";
  * source: `src/forms/radio.component.ts`
  *
  * ```html
- * <ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
+ *	<ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
  * ```
  *
  * Also see: [`RadioGroup`](#ibm-radio-group)

@@ -20,8 +20,9 @@ import { EventService } from "carbon-components-angular/utils";
  * [See demo](../../?path=/story/components-slider--advanced)
  *
  * The simplest possible slider usage looks something like:
+ *
  * ```html
- * <ibm-slider></ibm-slider>
+ *	<ibm-slider></ibm-slider>
  * ```
  *
  * That will render a slider without labels or alternative value input. Labels can be provided by
@@ -29,21 +30,24 @@ import { EventService } from "carbon-components-angular/utils";
  * for use as an alternative value field.
  *
  * ex:
+ *
  * ```html
- * Full example
+ * <!-- Full example -->
  * <ibm-slider>
  *		<span minLabel>0GB</span>
  *		<span maxLabel>100GB</span>
  *		<input/>
- *	</ibm-slider>
+ * </ibm-slider>
+ *
  * <!-- with just an input -->
  * <ibm-slider>
  *		<input/>
- *	</ibm-slider>
+ * </ibm-slider>
+ *
  * <!-- with just one label -->
  * <ibm-slider>
  *		<span maxLabel>Maximum</span>
- *	</ibm-slider>
+ * </ibm-slider>
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.

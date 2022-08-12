@@ -24,8 +24,8 @@ import { RadioChange } from "./radio-change.class";
  *
  * source: `src/forms/radio.component.ts`
  *
- *
  * Ex:
+ *
  * ```html
  * <ibm-radio-group [(ngModel)]="radio">
  * 	<ibm-radio *ngFor="let one of manyRadios" [value]="one">
@@ -36,11 +36,11 @@ import { RadioChange } from "./radio-change.class";
  * Radio selected: {{radio}}
  * ```
  *
- * ```typescript
- * manyRadios = ["one", "two", "three", "four", "five", "six"];
+ * ```ts
+ *	const manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [`Radio`](#ibm-radio)
+ * Also see: [Radio](#ibm-radio)
  */
 @Component({
 	selector: "ibm-radio-group",
