@@ -24,6 +24,9 @@ export default {
 			]
 		})
 	],
+	parameters: {
+		layout: "centered"
+	},
 	component: Toggletip,
 	subcomponents: {
 		ToggletipAction,
@@ -36,40 +39,31 @@ export default {
 const Template: Story<Toggletip> = (args) => ({
 	props: args,
 	template: `
-		<div class="container">
-			<span ibmToggletipLabel>Toggletip label</span>
-			<ibm-toggletip
-				[isOpen]="isOpen"
-				[align]="align"
-				(isOpenChange)="isOpenChange($event)"
-				(onClose)="onClose($event)"
-				(onOpen)="onOpen($event)">
-				<button ibmToggletipButton>
-					<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
-						<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
-					</svg>
-				</button>
-				<div ibmToggletipContent>
-					<p>
-						Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
-					</p>
-					<div ibmToggletipAction>
-						<a href="#" ibmLink>Link action</a>
-						<button ibmButton size="sm">Some button</button>
-					</div>
+		<span ibmToggletipLabel>Toggletip label</span>
+		<ibm-toggletip
+			[isOpen]="isOpen"
+			[align]="align"
+			(isOpenChange)="isOpenChange($event)"
+			(onClose)="onClose($event)"
+			(onOpen)="onOpen($event)">
+			<button ibmToggletipButton>
+				<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+					<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
+				</svg>
+			</button>
+			<div ibmToggletipContent>
+				<p>
+					Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+				</p>
+				<div ibmToggletipAction>
+					<a href="#" ibmLink>Link action</a>
+					<button ibmButton size="sm">Some button</button>
 				</div>
-			</ibm-toggletip>
-		</div>
+			</div>
+		</ibm-toggletip>
 	`,
 	styles: [`
-		.container {
-			width: 100%;
-			height: 300px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 		.tooltip-trigger {
 			box-sizing: border-box;
 			margin: 0;

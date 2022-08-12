@@ -11,6 +11,9 @@ export default {
 			imports: [ListModule]
 		})
 	],
+	parameters: {
+		layout: "centered"
+	},
 	component: List
 } as Meta;
 

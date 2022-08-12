@@ -15,6 +15,9 @@ export default {
 			imports: [PopoverModule]
 		})
 	],
+	parameters: {
+		layout: "centered"
+	},
 	component: PopoverContainer,
 	subcomponents: { PopoverContent }
 } as Meta;
@@ -22,39 +25,30 @@ export default {
 const Template: Story<PopoverContainer> = (args) => ({
 	props: args,
 	template: `
-		<div class="container">
-			<div
-				ibmPopover
-				[isOpen]="isOpen"
-				[dropShadow]="dropShadow"
-				[align]="align"
-				[caret]="caret"
-				[highContrast]="highContrast"
-				(onOpen)="onOpen($event)"
-				(onClose)="onClose($event)"
-				(isOpenChange)="isOpenChange($event)">
-				<div class="popover-trigger">
-					<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
-						<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
-					</svg>
-				</div>
-				<ibm-popover-content>
-					<div style="padding: 1rem">
-						<p class="popover-title">Available storage</p>
-						<p class="popover-content">This server has 150GB of block storage remaining</p>
-					</div>
-				</ibm-popover-content>
+		<div
+			ibmPopover
+			[isOpen]="isOpen"
+			[dropShadow]="dropShadow"
+			[align]="align"
+			[caret]="caret"
+			[highContrast]="highContrast"
+			(onOpen)="onOpen($event)"
+			(onClose)="onClose($event)"
+			(isOpenChange)="isOpenChange($event)">
+			<div class="popover-trigger">
+				<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+					<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
+				</svg>
 			</div>
+			<ibm-popover-content>
+				<div style="padding: 1rem">
+					<p class="popover-title">Available storage</p>
+					<p class="popover-content">This server has 150GB of block storage remaining</p>
+				</div>
+			</ibm-popover-content>
 		</div>
 	`,
 	styles: [`
-		.container {
-			width: 100%;
-			height: 300px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 		.popover-trigger {
 			box-sizing: border-box;
 			margin: 0;

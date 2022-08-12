@@ -10,35 +10,30 @@ export default {
 		moduleMetadata({
 			imports: [TooltipModule]
 		})
-	]
+	],
+	parameters: {
+		layout: "centered"
+	},
+	component: TooltipDefinition
 } as Meta;
 
 const Template: Story<TooltipDefinition> = (args) => ({
 	props: args,
 	template: `
-		<div class="container">
-			<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
-			<ibm-tooltip-definition
-				[isOpen]="isOpen"
-				[caret]="caret"
-				[align]="align"
-				(onOpen)="onOpen($event)"
-				(onClose)="onClose($event)"
-				(isOpenChange)="isOpenChange($event)"
-				[description]="description">
-				URL
-			</ibm-tooltip-definition>
-			that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host.</p>
-		</div>
+		<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
+		<ibm-tooltip-definition
+			[isOpen]="isOpen"
+			[caret]="caret"
+			[align]="align"
+			(onOpen)="onOpen($event)"
+			(onClose)="onClose($event)"
+			(isOpenChange)="isOpenChange($event)"
+			[description]="description">
+			URL
+		</ibm-tooltip-definition>
+		that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host.</p>
 	`,
 	styles: [`
-		.container {
-			width: 100%;
-			height: 300px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 		.tooltip-trigger {
 			box-sizing: border-box;
 			margin: 0;
