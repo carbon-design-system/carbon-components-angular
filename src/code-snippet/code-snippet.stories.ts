@@ -14,6 +14,27 @@ export default {
 	argTypes: {
 		code: {
 			control: false
+		},
+		display: {
+			control: false
+		},
+		feedbackText: {
+			control: false
+		},
+		maxCollapsedNumberOfRows: {
+			controls: false
+		},
+		maxExpandedNumberOfRows: {
+			controls: false
+		},
+		minCollapsedNumberOfRows: {
+			controls: false
+		},
+		minExpandedNumberOfRows: {
+			controls: false
+		},
+		expanded: {
+			control: false
 		}
 	},
 	component: CodeSnippet
@@ -83,6 +104,23 @@ Multi.args = {
 			"@carbon/styles": "^1.2.0"
 		}
 	}`
+};
+Multi.argTypes = {
+	maxCollapsedNumberOfRows: {
+		controls: true
+	},
+	maxExpandedNumberOfRows: {
+		controls: true
+	},
+	minCollapsedNumberOfRows: {
+		controls: true
+	},
+	minExpandedNumberOfRows: {
+		controls: true
+	},
+	expanded: {
+		control: true
+	}
 };
 
 const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
