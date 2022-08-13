@@ -87,20 +87,19 @@ CurrentPage.parameters = {
 	}
 };
 
-const ModelTemplate: Story<Breadcrumb> = (args) => {
-	// Load functions into story
-	args.createBreadcrumbItems = createBreadcrumbItems;
-	return {
-		props: args,
-		template: `
-			<ibm-breadcrumb
-				[noTrailingSlash]="noTrailingSlash"
-				[threshold]="threshold"
-				[items]="createBreadcrumbItems(itemCount, content)">
-			</ibm-breadcrumb>
-		`
-	};
-};
+const ModelTemplate: Story<Breadcrumb> = (args) => ({
+	props: {
+		...args,
+		createBreadcrumbItems
+	},
+	template: `
+		<ibm-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="createBreadcrumbItems(itemCount, content)">
+		</ibm-breadcrumb>
+	`
+});
 export const Model = ModelTemplate.bind({});
 Model.args = {
 	itemCount: 10,
@@ -109,25 +108,23 @@ Model.args = {
 	content: "breadcrumb"
 };
 
-const ModelWTemplate: Story<Breadcrumb> = (args) => {
-	// Load functions into story
-	args.createBreadcrumbItems = createBreadcrumbItems;
-	args.withTemplate = withTemplate;
-
-	return {
-		props: args,
-		template: `
-			<ng-template #breadcrumbTemplate let-item>
-				{{ templateContent }}{{ item.content }}
-			</ng-template>
-			<ibm-breadcrumb
-				[noTrailingSlash]="noTrailingSlash"
-				[threshold]="threshold"
-				[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
-			</ibm-breadcrumb>
-		`
-	};
-};
+const ModelWTemplate: Story<Breadcrumb> = (args) => ({
+	props: {
+		...args,
+		createBreadcrumbItems,
+		withTemplate
+	},
+	template: `
+		<ng-template #breadcrumbTemplate let-item>
+			{{ templateContent }}{{ item.content }}
+		</ng-template>
+		<ibm-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
+		</ibm-breadcrumb>
+	`
+});
 export const ModelWithTemplate = ModelWTemplate.bind({});
 ModelWithTemplate.args = {
 	itemCount: 10,
