@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash scripts/build.sh",
     "storybook": "ng run carbon-components-angular:storybook",
-    "docs:build": "typedoc",
+    "docs:build": "compodoc -p tsconfig.doc.json -t",
     "lint": "tslint 'src/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts'",
     "test": "ng test --no-watch",
@@ -83,7 +83,7 @@
     "@carbon/themes": "11.0.1",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@compodoc/compodoc": "^1.1.19",
+    "@compodoc/compodoc": "1.1.19",
     "@storybook/addon-a11y": "6.5.10",
     "@storybook/addon-actions": "6.5.10",
     "@storybook/addon-essentials": "6.5.10",
@@ -127,8 +127,6 @@
     "semantic-release": "17.2.3",
     "ts-helpers": "1.1.2",
     "tslint": "6.1.0",
-    "typedoc": "0.14.2",
-    "typedoc-plugin-external-module-name": "4.0.6",
     "typescript": "4.3.5",
     "whatwg-fetch": "3.0.0",
     "zone.js": "0.11.4"
