@@ -31,9 +31,9 @@ const Template: Story<GridDirective> = (args) => ({
 				ibmRow
 				[gutter]="gutter"
 				[condensed]="rowCondensed">
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
+				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
 			</div>
 		</div>
 	`
@@ -48,15 +48,10 @@ Basic.args = {
 const CSSGridTemplate: Story<GridDirective> = (args) => ({
 	props: args,
 	template: `
-		<div ibmGrid [condensed]="gridCondensed">
-			<div
-				ibmRow
-				[gutter]="gutter"
-				[condensed]="rowCondensed">
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
-			</div>
+		<div ibmGrid [condensed]="gridCondensed" [useCssGrid]="true">
+			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
+			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
+			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
 		</div>
 	`
 });
