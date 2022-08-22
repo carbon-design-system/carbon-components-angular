@@ -2,6 +2,9 @@ export default {
 	"BANNER": {
 		"CLOSE_BUTTON": "Close alert banner"
 	},
+	"BREADCRUMB": {
+		"LABEL": "Breadcrumb"
+	},
 	"CALENDAR": {
 		"MONTHS": {
 			"JANUARY": "January",
