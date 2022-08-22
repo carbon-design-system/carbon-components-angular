@@ -291,9 +291,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
-		console.log("emittingChange");
 		this.propagateChange(this.checked);
-		console.log("done emitting change");
 	}
 
 	/**
