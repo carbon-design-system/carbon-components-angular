@@ -13,7 +13,7 @@
     "test:watch": "ng test --watch",
     "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
-    "commit": "git-cz",
+    "commit": "git-cz -s",
     "ng": "ng",
     "ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build"
   },
