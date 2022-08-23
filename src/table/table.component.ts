@@ -388,21 +388,23 @@ export class Table implements AfterViewInit, OnDestroy {
 	@Input() scrollLoadDistance = 0;
 
 	/**
+	 * @todo - Enable column resize when Carbon officially supports feature
 	 * Set to `true` to enable users to resize columns.
 	 *
 	 * Works for columns with width set in pixels.
 	 *
 	 */
-	@Input() columnsResizable = false;
+	// @Input() columnsResizable = false;
 
 	/**
+	 * @todo - Enable columns drag & drop when Carbon officially supports feature
 	 * Set to `true` to enable users to drag and drop columns.
 	 *
 	 * Changing the column order in table changes table model. Be aware of it when you add additional data
 	 * to the model.
 	 *
 	 */
-	@Input() columnsDraggable = false;
+	// @Input() columnsDraggable = false;
 
 	@Input()
 	set expandButtonAriaLabel(value: string | Observable<string>) {
@@ -439,7 +441,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * ```
 	 */
 	@Input()
-	set translations (value) {
+	set translations(value) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("TABLE"), value);
 		this._filterTitle.override(valueWithDefaults.FILTER);
 		this._endOfDataText.override(valueWithDefaults.END_OF_DATA);
@@ -602,7 +604,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	protected interactionModel: DataGridInteractionModel;
 	protected interactionPositionSubscription: Subscription;
 
-	protected _expandButtonAriaLabel  = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
+	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
@@ -623,7 +625,7 @@ export class Table implements AfterViewInit, OnDestroy {
 		protected elementRef: ElementRef,
 		protected applicationRef: ApplicationRef,
 		protected i18n: I18n
-	) {}
+	) { }
 
 	ngAfterViewInit() {
 		this.isViewReady = true;
