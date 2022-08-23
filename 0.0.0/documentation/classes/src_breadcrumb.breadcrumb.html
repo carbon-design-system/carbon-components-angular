@@ -136,8 +136,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_breadcrumb.breadcrumb.html#children"
 									class="tsd-kind-icon">children</a>
 								</li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_breadcrumb.breadcrumb.html#domsanitizer"
-									class="tsd-kind-icon">dom<wbr>Sanitizer</a>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_breadcrumb.breadcrumb.html#i18n"
+									class="tsd-kind-icon">i18n</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_breadcrumb.breadcrumb.html#items"
 									class="tsd-kind-icon">items</a>
@@ -205,19 +205,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Breadcrumb<span class="tsd-signature-symbol">(</span>domSanitizer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DomSanitizer</span>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_breadcrumb.breadcrumb.html" class="tsd-signature-type">Breadcrumb</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Breadcrumb<span class="tsd-signature-symbol">(</span>i18n<span class="tsd-signature-symbol">: </span><a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_breadcrumb.breadcrumb.html" class="tsd-signature-type">Breadcrumb</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L182">src/breadcrumb/breadcrumb.component.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L182">src/breadcrumb/breadcrumb.component.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>domSanitizer: <span class="tsd-signature-type">DomSanitizer</span></h5>
+									<h5>i18n: <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></h5>
 								</li>
 								<li>
 									<h5>router: <span class="tsd-signature-type">Router</span></h5>
@@ -236,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">_skeleton<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L182">src/breadcrumb/breadcrumb.component.ts:182</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L182">src/breadcrumb/breadcrumb.component.ts:182</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -246,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">_threshold<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L181">src/breadcrumb/breadcrumb.component.ts:181</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L181">src/breadcrumb/breadcrumb.component.ts:181</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -259,10 +259,10 @@
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.i18n.get().BREADCRUMB.LABEL</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L125">src/breadcrumb/breadcrumb.component.ts:125</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L125">src/breadcrumb/breadcrumb.component.ts:125</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,17 +278,17 @@
 					<div class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryList</span><span class="tsd-signature-symbol">&lt;</span><a href="src_breadcrumb.breadcrumbitemcomponent.html" class="tsd-signature-type">BreadcrumbItemComponent</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L119">src/breadcrumb/breadcrumb.component.ts:119</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L119">src/breadcrumb/breadcrumb.component.ts:119</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="domsanitizer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> dom<wbr>Sanitizer</h3>
-					<div class="tsd-signature tsd-kind-icon">dom<wbr>Sanitizer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DomSanitizer</span></div>
+					<a name="i18n" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> i18n</h3>
+					<div class="tsd-signature tsd-kind-icon">i18n<span class="tsd-signature-symbol">:</span> <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L184">src/breadcrumb/breadcrumb.component.ts:184</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L184">src/breadcrumb/breadcrumb.component.ts:184</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -304,7 +304,7 @@
 					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/src_breadcrumb.breadcrumbitem.html" class="tsd-signature-type">BreadcrumbItem</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L121">src/breadcrumb/breadcrumb.component.ts:121</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L121">src/breadcrumb/breadcrumb.component.ts:121</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -320,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">navigation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;Promise&lt;boolean&gt;&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L152">src/breadcrumb/breadcrumb.component.ts:152</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L152">src/breadcrumb/breadcrumb.component.ts:152</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -336,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">no<wbr>Trailing<wbr>Slash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L123">src/breadcrumb/breadcrumb.component.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L123">src/breadcrumb/breadcrumb.component.ts:123</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -352,7 +352,7 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L184">src/breadcrumb/breadcrumb.component.ts:184</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L184">src/breadcrumb/breadcrumb.component.ts:184</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -365,7 +365,7 @@
 					<div class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L165">src/breadcrumb/breadcrumb.component.ts:165</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L165">src/breadcrumb/breadcrumb.component.ts:165</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -375,7 +375,7 @@
 					<div class="tsd-signature tsd-kind-icon">last<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L177">src/breadcrumb/breadcrumb.component.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L177">src/breadcrumb/breadcrumb.component.ts:177</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -385,7 +385,7 @@
 					<div class="tsd-signature tsd-kind-icon">overflow<wbr>Items<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L169">src/breadcrumb/breadcrumb.component.ts:169</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L169">src/breadcrumb/breadcrumb.component.ts:169</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -395,7 +395,7 @@
 					<div class="tsd-signature tsd-kind-icon">second<wbr>Last<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L173">src/breadcrumb/breadcrumb.component.ts:173</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L173">src/breadcrumb/breadcrumb.component.ts:173</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -405,7 +405,7 @@
 					<div class="tsd-signature tsd-kind-icon">should<wbr>Show<wbr>Content<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L154">src/breadcrumb/breadcrumb.component.ts:154</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L154">src/breadcrumb/breadcrumb.component.ts:154</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -415,7 +415,7 @@
 					<div class="tsd-signature tsd-kind-icon">should<wbr>Show<wbr>Overflow<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L158">src/breadcrumb/breadcrumb.component.ts:158</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L158">src/breadcrumb/breadcrumb.component.ts:158</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -431,8 +431,8 @@
 					<div class="tsd-signature tsd-kind-icon">skeleton<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L128">src/breadcrumb/breadcrumb.component.ts:128</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L133">src/breadcrumb/breadcrumb.component.ts:133</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L128">src/breadcrumb/breadcrumb.component.ts:128</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L133">src/breadcrumb/breadcrumb.component.ts:133</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -448,8 +448,8 @@
 					<div class="tsd-signature tsd-kind-icon">threshold<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L138">src/breadcrumb/breadcrumb.component.ts:138</a></li>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L145">src/breadcrumb/breadcrumb.component.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L138">src/breadcrumb/breadcrumb.component.ts:138</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L145">src/breadcrumb/breadcrumb.component.ts:145</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -466,7 +466,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L190">src/breadcrumb/breadcrumb.component.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L190">src/breadcrumb/breadcrumb.component.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -492,7 +492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L186">src/breadcrumb/breadcrumb.component.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L186">src/breadcrumb/breadcrumb.component.ts:186</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -509,7 +509,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/18dc480/src/breadcrumb/breadcrumb.component.ts#L198">src/breadcrumb/breadcrumb.component.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/64010af/src/breadcrumb/breadcrumb.component.ts#L198">src/breadcrumb/breadcrumb.component.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -552,7 +552,7 @@
 								<a href="src_breadcrumb.breadcrumb.html#children" class="tsd-kind-icon">children</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="src_breadcrumb.breadcrumb.html#domsanitizer" class="tsd-kind-icon">dom<wbr>Sanitizer</a>
+								<a href="src_breadcrumb.breadcrumb.html#i18n" class="tsd-kind-icon">i18n</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_breadcrumb.breadcrumb.html#items" class="tsd-kind-icon">items</a>
