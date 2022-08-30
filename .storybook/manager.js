@@ -8,7 +8,6 @@ addons.setConfig({
 		fontCode:
 			"'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace",
 		brandTitle: `carbon components angular`,
-		brandUrl:
-			'https://github.com/carbon-design-system/carbon/tree/main/packages/react',
+		brandUrl: 'https://github.com/IBM/carbon-components-angular',
 	})
 });
