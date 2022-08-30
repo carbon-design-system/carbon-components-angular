@@ -150,7 +150,7 @@ export const Dynamic = DynamicTemplate.bind({});
 Dynamic.storyName = "Dynamically added list items";
 Dynamic.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };
 
@@ -222,6 +222,6 @@ const MockQueryTemplate: Story<ComboBox> = (args) => ({
 export const MockQuerySearch = MockQueryTemplate.bind({});
 MockQuerySearch.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };

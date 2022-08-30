@@ -195,6 +195,6 @@ const Template: Story = (args) => ({
 export const Welcome = Template.bind({});
 Welcome.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };

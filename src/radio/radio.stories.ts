@@ -89,6 +89,6 @@ const ReactiveFormsTemplate: Story<Radio> = (args) => ({
 export const ReactiveForms = ReactiveFormsTemplate.bind({});
 ReactiveForms.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };

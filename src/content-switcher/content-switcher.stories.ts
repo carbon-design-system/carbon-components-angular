@@ -27,7 +27,7 @@ export default {
 const Template: Story<ContentSwitcher> = (args) => ({
 	props: args,
 	template: `
-		<ibm-content-switcher (selected)="selected($event)" [theme]="theme">
+		<ibm-content-switcher (selected)="selected($event)">
 			<button ibmContentOption name="First">First section</button>
 			<button ibmContentOption name="Second">Second section</button>
 			<button ibmContentOption name="Third">Third section</button>

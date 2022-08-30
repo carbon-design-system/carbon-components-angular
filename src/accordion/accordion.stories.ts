@@ -78,7 +78,7 @@ const WithTitleTemplate: Story<Accordion> = (args) => ({
 export const WithTitle = WithTitleTemplate.bind({});
 WithTitle.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };
 
@@ -96,8 +96,8 @@ const WithSkeleton: Story<Accordion> = (args) => ({
 	`
 });
 export const Skeleton = WithSkeleton.bind({});
-WithSkeleton.parameters = {
+Skeleton.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };

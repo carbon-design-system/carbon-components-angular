@@ -83,7 +83,7 @@ const CurrentPageTemplate: Story<Breadcrumb> = (args) => ({
 export const CurrentPage = CurrentPageTemplate.bind({});
 CurrentPage.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };
 
@@ -147,7 +147,7 @@ const WithSkeleton: Story<Breadcrumb> = (args) => ({
 export const Skeleton = WithSkeleton.bind({});
 Skeleton.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };
 

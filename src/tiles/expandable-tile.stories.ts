@@ -62,6 +62,6 @@ const LayerTemplate: Story<ExpandableTile> = (args) => ({
 export const WithLayers = LayerTemplate.bind({});
 WithLayers.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };

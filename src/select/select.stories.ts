@@ -145,8 +145,8 @@ const ReactiveTemplate: Story<Select> = (args) => ({
 });
 export const ReactiveForms = ReactiveTemplate.bind({});
 ReactiveForms.parameters = {
-	control: {
-		disabled: true
+	controls: {
+		disable: true
 	}
 };
 

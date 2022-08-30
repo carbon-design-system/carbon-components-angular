@@ -50,6 +50,6 @@ const LayerTemplate: Story<ClickableTile> = (args) => ({
 export const WithLayers = LayerTemplate.bind({});
 WithLayers.parameters = {
 	controls: {
-		disabled: true
+		disable: true
 	}
 };
