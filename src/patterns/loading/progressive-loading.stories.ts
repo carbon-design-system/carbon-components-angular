@@ -67,7 +67,7 @@ import { UIShellModule } from "../../ui-shell";
 		</div>
 		<div ibmRow>
 			<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
-				<ibm-table-container>
+				<div ibmTableContainer>
 					<ibm-table
 						class="data-table"
 						[skeleton]="skeletonStateTable"
@@ -76,7 +76,7 @@ import { UIShellModule } from "../../ui-shell";
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
 					</ibm-table>
-				</ibm-table-container>
+				<div>
 			</div>
 		</div>
 	</div>

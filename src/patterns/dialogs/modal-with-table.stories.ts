@@ -36,7 +36,7 @@ import { LinkModule } from "../../link";
 						spacing="equal">
 					</ibm-progress-indicator>
 				</div>
-				<ibm-table-container>
+				<div ibmTableContainer>
 					<ibm-table-toolbar size="md">
 						<ibm-table-toolbar-content>
 							<ibm-table-toolbar-search
@@ -58,7 +58,7 @@ import { LinkModule } from "../../link";
 						[isDataGrid]="false">
 						<ng-content></ng-content>
 					</ibm-table>
-				</ibm-table-container>
+				</div>
 			</section>
 			<ibm-modal-footer>
 				<a href="#" ibmLink [disabled]="disabled" [inline]="inline">Cancel</a>
