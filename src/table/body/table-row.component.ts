@@ -20,7 +20,6 @@ import { TableRowSize } from "../table.types";
 			<td
 				*ngIf="model.hasExpandableRows()"
 				ibmTableExpandButton
-				class="cds--table-expand-v2"
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
