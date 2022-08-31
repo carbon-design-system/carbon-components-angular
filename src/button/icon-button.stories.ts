@@ -64,7 +64,7 @@ const Template: Story<IconButton> = (args) => ({
 	props: args,
 	template: `
 		<ibm-icon-button
-			id="icon-btn1"
+			buttonId="icon-btn1"
 			type="button"
 			[kind]="kind"
 			[size]="size"
