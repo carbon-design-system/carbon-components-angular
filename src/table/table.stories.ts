@@ -182,73 +182,71 @@ WithoutData.args = {
 const ToolbarTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<section>
-			<div ibmTableContainer>
-				<ibm-table-header>
-					<h4 ibmTableHeaderTitle>{{title}}</h4>
-					<p ibmTableHeaderDescription>{{description}}</p>
-				</ibm-table-header>
-				<ibm-table-toolbar
-					[model]="model"
-					[batchText]="batchText"
-					[size]="size"
-					(cancel)="cancelMethod()"
-					#toolbar>
-					<ibm-table-toolbar-actions>
-						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-							Delete
-							<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
-						</button>
-						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-							Save
-							<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
-						</button>
-						<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
-							Download
-							<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
-						</button>
-					</ibm-table-toolbar-actions>
-					<ibm-table-toolbar-content *ngIf="!toolbar.selected">
-						<ibm-table-toolbar-search
-							ngDefaultControl
-							[expandable]="searchExpandable"
-							[(ngModel)]="searchModel">
-						</ibm-table-toolbar-search>
-						<ibm-overflow-menu
-							triggerClass="cds--toolbar-action"
-							[customTrigger]="customTrigger"
-							placement="bottom"
-							[offset]="size === 'sm' ? null : offset">
-							<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
-							<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
-							<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
-							<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
-						</ibm-overflow-menu>
-						<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-							Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
-						</button>
-					</ibm-table-toolbar-content>
-				</ibm-table-toolbar>
+		<div ibmTableContainer>
+			<ibm-table-header>
+				<h4 ibmTableHeaderTitle>{{title}}</h4>
+				<p ibmTableHeaderDescription>{{description}}</p>
+			</ibm-table-header>
+			<ibm-table-toolbar
+				[model]="model"
+				[batchText]="batchText"
+				[size]="size"
+				(cancel)="cancelMethod()"
+				#toolbar>
+				<ibm-table-toolbar-actions>
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+						Delete
+						<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
+					</button>
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+						Save
+						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
+					</button>
+					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+						Download
+						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
+					</button>
+				</ibm-table-toolbar-actions>
+				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
+					<ibm-table-toolbar-search
+						ngDefaultControl
+						[expandable]="searchExpandable"
+						[(ngModel)]="searchModel">
+					</ibm-table-toolbar-search>
+					<ibm-overflow-menu
+						triggerClass="cds--toolbar-action"
+						[customTrigger]="customTrigger"
+						placement="bottom"
+						[offset]="size === 'sm' ? null : offset">
+						<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
+						<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+					</ibm-overflow-menu>
+					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+					</button>
+				</ibm-table-toolbar-content>
+			</ibm-table-toolbar>
 
-				<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source found at:
-				https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-table.component.ts
-				-->
-				<app-table
-					[model]="model"
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[enableSingleSelect]="enableSingleSelect"
-					[striped]="striped"
-					[sortable]="sortable"
-					[skeleton]="skeleton"
-					[stickyHeader]="stickyHeader"
-					[isDataGrid]="isDataGrid">
-				</app-table>
-				<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
-			<div>
-		</section>
+			<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/table/stories/app-table.component.ts
+			-->
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[enableSingleSelect]="enableSingleSelect"
+				[striped]="striped"
+				[sortable]="sortable"
+				[skeleton]="skeleton"
+				[stickyHeader]="stickyHeader"
+				[isDataGrid]="isDataGrid">
+			</app-table>
+			<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
+		<div>
 	`
 });
 export const WithToolbar = ToolbarTemplate.bind({});
