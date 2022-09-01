@@ -5,8 +5,7 @@ import {
 	EventEmitter,
 	Input,
 	Output,
-	TemplateRef,
-	ViewEncapsulation
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
@@ -48,25 +47,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 		<ng-template #defaultIcon>
 			<svg ibmIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
 		</ng-template>
-	`,
-	styles: [`
-		.cds--overflow-menu--open {
-			opacity: 1
-		}
-
-		/*
-		Rotate the overflow menu container as well as the icon, since
-		we calculate our menu position based on the container, not the icon.
-		*/
-		.cds--data-table-v2 .cds--overflow-menu {
-			transform: rotate(90deg);
-		}
-
-		.cds--data-table-v2 .cds--overflow-menu__icon {
-			transform: rotate(180deg);
-		}
-	`],
-	encapsulation: ViewEncapsulation.None
+	`
 })
 export class OverflowMenu {
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
