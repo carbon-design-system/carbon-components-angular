@@ -115,10 +115,10 @@ const Template: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -150,10 +150,10 @@ const NoDataTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>With no data</p>
-			</ibm-table-header>
+			</div>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -189,10 +189,10 @@ const ToolbarTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar
 				[model]="model"
 				[batchText]="batchText"
@@ -288,10 +288,10 @@ const DisabledRowsTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
@@ -361,10 +361,10 @@ const WithoutActionTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
@@ -459,10 +459,10 @@ const ExpansionTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -491,10 +491,10 @@ const DyanmicContentTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -527,10 +527,10 @@ const OverflowMenuTemplate: Story = (args) => ({
 	},
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -559,10 +559,10 @@ const PaginationTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:

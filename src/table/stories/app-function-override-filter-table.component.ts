@@ -11,13 +11,13 @@ import { TableItem } from "../table-item.class";
 	selector: "app-function-override-filter-table",
 	template: `
 	<div ibmTableContainer>
-		<ibm-table-header>
+		<div ibmTableHeader>
 			<h4 ibmTableHeaderTitle>Filter table</h4>
 			<p ibmTableHeaderDescription>
 				Use the toolbar's search functionality to filter node names
 				or click the filter icon to filter country names
 			</p>
-		</ibm-table-header>
+		</div>
 		<ibm-table-toolbar>
 			<ibm-table-toolbar-content>
 				<ibm-table-toolbar-search

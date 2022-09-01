@@ -1,12 +1,8 @@
-import { Component, HostBinding } from "@angular/core";
+import { Directive, HostBinding } from "@angular/core";
 
-@Component({
-	selector: "ibm-table-header",
-	template: `
-		<ng-content></ng-content>
-	`
+@Directive({
+	selector: "[ibmTableHeader]"
 })
 export class TableHeader {
 	@HostBinding("class.cds--data-table-header") headerClass = true;
-	@HostBinding("style.display") displayStyle = "block";
 }
