@@ -102,7 +102,13 @@ export default {
 				TableNoDataStory
 			]
 		})
-	]
+	],
+	argTypes: {
+		model: {
+			control: false,
+			disabled: true
+		}
+	}
 } as Meta;
 
 const Template: Story = (args) => ({
@@ -514,7 +520,11 @@ WithDynamicContent.args = {
 };
 
 const OverflowMenuTemplate: Story = (args) => ({
-	props: args,
+	props: {
+		...getProps({
+			description: "With overflow menu"
+		}, "args")
+	},
 	template: `
 		<div ibmTableContainer>
 			<ibm-table-header>
@@ -539,11 +549,11 @@ const OverflowMenuTemplate: Story = (args) => ({
 	`
 });
 export const WithOverflowMenu = OverflowMenuTemplate.bind({});
-WithOverflowMenu.args = {
-	...getProps({
-		description: "With overflow menu"
-	}, "args")
-};
+// WithOverflowMenu.args = {
+// 	...getProps({
+// 		description: "With overflow menu"
+// 	}, "args")
+// };
 
 const PaginationTemplate: Story = (args) => ({
 	props: args,

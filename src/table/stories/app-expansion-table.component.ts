@@ -2,8 +2,8 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
-	Input
+	Input,
+	AfterViewInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
@@ -49,7 +49,7 @@ class CustomHeaderItem extends TableHeaderItem {
 		</ibm-table>
 	`
 })
-export class ExpansionTableStory implements OnInit {
+export class ExpansionTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -64,7 +64,7 @@ export class ExpansionTableStory implements OnInit {
 	@ViewChild("customTableItemTemplate")
 	protected customTableItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[
 				new TableItem({ data: "Name 1", expandedData: "No template" }),
