@@ -20,6 +20,9 @@ export default {
 			]
 		})
 	],
+	args: {
+			placement: "bottom"
+	},
 	argTypes: {
 		code: {
 			control: false
@@ -52,7 +55,6 @@ const Template: Story<OverflowMenu> = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	placement: "bottom",
 	open: false,
 	flip: false,
 	offset: {
@@ -156,7 +158,7 @@ const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
 			[flip]="flip"
 			[open]="open"
 			[customTrigger]="customTrigger"
-			[placement]="bottom"
+			[placement]="placement"
 			[offset]="offset">
 			<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
 			<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
@@ -168,4 +170,4 @@ const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
 	`
 });
 export const CustomTrigger = CustomTriggerTemplate.bind({});
-CustomTrigger.storyName = "With Custom Template";
+CustomTrigger.storyName = "With Custom Trigger";
