@@ -35,141 +35,139 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<div class="cds--list-box__wrapper">
-			<label
-				*ngIf="label"
-				[for]="id"
-				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+		<label
+			*ngIf="label"
+			[for]="id"
+			class="cds--label"
+			[ngClass]="{'cds--label--disabled': disabled}">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
+		<div
+			#listbox
+			[ngClass]="{
+				'cds--multi-select cds--multi-select--filterable': type === 'multi',
+				'cds--list-box--light': theme === 'light',
+				'cds--list-box--expanded': open,
+				'cds--list-box--sm': size === 'sm',
+				'cds--list-box--md': size === 'md',
+				'cds--list-box--lg': size === 'lg',
+				'cds--list-box--disabled': disabled,
+				'cds--combo-box--warning cds--list-box--warning': warn
+			}"
+			class="cds--list-box cds--combo-box"
+			[attr.data-invalid]="(invalid ? true : null)">
 			<div
-				#listbox
-				[ngClass]="{
-					'cds--multi-select cds--multi-select--filterable': type === 'multi',
-					'cds--list-box--light': theme === 'light',
-					'cds--list-box--expanded': open,
-					'cds--list-box--sm': size === 'sm',
-					'cds--list-box--md': size === 'md',
-					'cds--list-box--lg': size === 'lg',
-					'cds--list-box--disabled': disabled,
-					'cds--combo-box--warning cds--list-box--warning': warn
-				}"
-				class="cds--list-box cds--combo-box"
-				[attr.data-invalid]="(invalid ? true : null)">
+				class="cds--list-box__field"
+				(click)="toggleDropdown()"
+				(blur)="onBlur()">
 				<div
-					class="cds--list-box__field"
-					(click)="toggleDropdown()"
-					(blur)="onBlur()">
-					<div
-						*ngIf="type === 'multi' && pills.length > 0"
-						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{'cds--tag--disabled': disabled}">
-						<span class="cds--tag__label">{{ pills.length }}</span>
-						<button
-							type="button"
-							(click)="clearSelected()"
-							(blur)="onBlur()"
-							(keydown.enter)="clearSelected()"
-							class="cds--tag__close-icon"
-							tabindex="0"
-							[title]="clearSelectionsTitle"
-							[disabled]="disabled"
-							[attr.aria-label]="clearSelectionAria">
-							<svg
-								focusable="false"
-								preserveAspectRatio="xMidYMid meet"
-								style="will-change: transform;"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16"
-								aria-hidden="true">
-								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-							</svg>
-						</button>
-					</div>
-					<input
-						#input
-						type="text"
-						autocomplete="off"
-						role="combobox"
-						[disabled]="disabled"
-						(input)="onSearch($event.target.value)"
-						(blur)="onBlur()"
-						(keydown.enter)="onSubmit($event)"
-						[value]="selectedValue"
-						class="cds--text-input"
-						[ngClass]="{'cds--text-input--empty': !showClearButton}"
-						tabindex="0"
-						[id]="id"
-						[attr.aria-labelledby]="id"
-						[attr.aria-expanded]="open"
-						aria-haspopup="listbox"
-						[attr.maxlength]="maxLength"
-						aria-haspopup="true"
-						[attr.aria-autocomplete]="autocomplete"
-						[placeholder]="placeholder"/>
-					<svg
-						*ngIf="!warn && invalid"
-						ibmIcon="warning--filled"
-						size="16"
-						class="cds--list-box__invalid-icon">
-					</svg>
-					<svg
-						*ngIf="!invalid && warn"
-						ibmIcon="warning--alt--filled"
-						size="16"
-						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-					</svg>
-					<div
-						*ngIf="showClearButton"
-						role="button"
-						class="cds--list-box__selection"
-						tabindex="0"
-						[attr.aria-label]="clearSelectionAria"
-						[title]="clearSelectionTitle"
-						(keyup.enter)="clearInput($event)"
-						(click)="clearInput($event)"
-						(blur)="onBlur()">
-						<svg ibmIcon="close" size="16"></svg>
-					</div>
+					*ngIf="type === 'multi' && pills.length > 0"
+					class="cds--tag cds--tag--filter cds--tag--high-contrast"
+					[ngClass]="{'cds--tag--disabled': disabled}">
+					<span class="cds--tag__label">{{ pills.length }}</span>
 					<button
 						type="button"
-						role="button"
-						class="cds--list-box__menu-icon"
-						tabindex="-1"
-						[title]="open ? closeMenuAria : openMenuAria"
-						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
-						[ngClass]="{'cds--list-box__menu-icon--open': open}">
-						<svg ibmIcon="chevron--down" size="16"></svg>
+						(click)="clearSelected()"
+						(blur)="onBlur()"
+						(keydown.enter)="clearSelected()"
+						class="cds--tag__close-icon"
+						tabindex="0"
+						[title]="clearSelectionsTitle"
+						[disabled]="disabled"
+						[attr.aria-label]="clearSelectionAria">
+						<svg
+							focusable="false"
+							preserveAspectRatio="xMidYMid meet"
+							style="will-change: transform;"
+							role="img"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 16 16"
+							aria-hidden="true">
+							<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+						</svg>
 					</button>
 				</div>
+				<input
+					#input
+					type="text"
+					autocomplete="off"
+					role="combobox"
+					[disabled]="disabled"
+					(input)="onSearch($event.target.value)"
+					(blur)="onBlur()"
+					(keydown.enter)="onSubmit($event)"
+					[value]="selectedValue"
+					class="cds--text-input"
+					[ngClass]="{'cds--text-input--empty': !showClearButton}"
+					tabindex="0"
+					[id]="id"
+					[attr.aria-labelledby]="id"
+					[attr.aria-expanded]="open"
+					aria-haspopup="listbox"
+					[attr.maxlength]="maxLength"
+					aria-haspopup="true"
+					[attr.aria-autocomplete]="autocomplete"
+					[placeholder]="placeholder"/>
+				<svg
+					*ngIf="!warn && invalid"
+					ibmIcon="warning--filled"
+					size="16"
+					class="cds--list-box__invalid-icon">
+				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+				</svg>
 				<div
-					#dropdownMenu
-					[ngClass]="{
-						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
-					}">
-					<ng-content *ngIf="open"></ng-content>
+					*ngIf="showClearButton"
+					role="button"
+					class="cds--list-box__selection"
+					tabindex="0"
+					[attr.aria-label]="clearSelectionAria"
+					[title]="clearSelectionTitle"
+					(keyup.enter)="clearInput($event)"
+					(click)="clearInput($event)"
+					(blur)="onBlur()">
+					<svg ibmIcon="close" size="16"></svg>
 				</div>
+				<button
+					type="button"
+					role="button"
+					class="cds--list-box__menu-icon"
+					tabindex="-1"
+					[title]="open ? closeMenuAria : openMenuAria"
+					[attr.aria-label]="open ? closeMenuAria : openMenuAria"
+					[ngClass]="{'cds--list-box__menu-icon--open': open}">
+					<svg ibmIcon="chevron--down" size="16"></svg>
+				</button>
 			</div>
 			<div
-				*ngIf="helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				#dropdownMenu
+				[ngClass]="{
+					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				}">
+				<ng-content *ngIf="open"></ng-content>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+		</div>
+		<div
+			*ngIf="helperText && !invalid && !warn"
+			class="cds--form__helper-text"
+			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		</div>
+		<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+		</div>
+		<div *ngIf="!invalid && warn" class="cds--form-requirement">
+			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 		</div>
 	`,
 	providers: [
