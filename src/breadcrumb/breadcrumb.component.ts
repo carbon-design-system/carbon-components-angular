@@ -12,8 +12,8 @@ import {
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
-import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { I18n } from "carbon-components-angular/i18n";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
@@ -122,7 +122,7 @@ export class Breadcrumb implements AfterContentInit {
 
 	@Input() noTrailingSlash = false;
 
-	@Input() ariaLabel: string;
+	@Input() ariaLabel: string = this.i18n.get().BREADCRUMB.LABEL;
 
 	@Input()
 	set skeleton(value: any) {
@@ -181,7 +181,7 @@ export class Breadcrumb implements AfterContentInit {
 	protected _threshold: number;
 	protected _skeleton = false;
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected i18n: I18n, @Optional() protected router: Router) { }
 
 	ngAfterContentInit() {
 		this.updateChildren();
