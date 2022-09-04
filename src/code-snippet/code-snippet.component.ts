@@ -122,7 +122,7 @@ export class CodeSnippet implements AfterViewInit {
 		return this.display === SnippetType.inline;
 	}
 	@HostBinding("class.bx--snippet--light") get snippetInlineLightClass() {
-		return this.display === SnippetType.inline && this.theme === "light";
+		return this.theme === "light";
 	}
 	@HostBinding("class.bx--btn--copy") get btnCopyClass() {
 		return this.display === SnippetType.inline;
