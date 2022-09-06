@@ -17,8 +17,8 @@ import { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 import { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 
-import { TableContainer } from "./table-container.component";
-import { TableHeader } from "./header/table-header.component";
+import { TableContainer } from "./table-container.directive";
+import { TableHeader } from "./header/table-header.directive";
 import { TableHeaderTitle } from "./header/table-header-title.directive";
 import { TableHeaderDescription } from "./header/table-header-description.directive";
 
