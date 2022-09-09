@@ -29,7 +29,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 		(click)="emitClickEvent($event, 'tooltip')">
 		<button
 			#button
-			[id]="buttonId"
+			[id]="id"
 			[disabled]="disabled"
 			[attr.type]="type"
 			[iconOnly]="true"
@@ -88,7 +88,7 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**
 	 * Override id
 	 */
-	@Input() buttonId = `icon-btn-${IconButton.iconButtonCounter++}`;
+	@Input() id = `icon-btn-${IconButton.iconButtonCounter++}`;
 	/**
 	 * Sets the button type.
 	 */
