@@ -14,9 +14,8 @@
 		'bx--toolbar-search-container-expandable': tableSearch && expandable,
 		'bx--toolbar-search-container-active': tableSearch && expandable && active
 	}"
-	role="searchbox"
+	role="search"
 	[attr.aria-label]="ariaLabel"
-	tabindex="0"
 	(click)="openSearch()">
 	<label class="bx--label" [for]="id">{{label}}</label>
 
