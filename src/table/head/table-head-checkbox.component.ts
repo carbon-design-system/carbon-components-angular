@@ -22,7 +22,10 @@ import { TableRowSize } from "../table.types";
 			(checkedChange)="change.emit()"
 			[ariaLabel]="getAriaLabel() | async">
 		</ibm-checkbox>
-	`
+	`,
+	styles: [`
+        :host { width: 10px; }
+    `]
 })
 export class TableHeadCheckbox {
 	private static tableSelectAllCount = 0;
