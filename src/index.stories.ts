@@ -179,7 +179,23 @@ export default {
 			imports: [ButtonModule, IconModule],
 			declarations: [WelcomeStory]
 		})
-	]
+	],
+	parameters: {
+		previewTabs: {
+			"storybook/docs/panel": {
+				hidden: true
+			}
+		},
+		controls: {
+			disable: true
+		},
+		actions: {
+			disable: true
+		},
+		a11y: {
+			disable: true
+		}
+	}
 } as Meta;
 
 const Template: Story = (args) => ({
@@ -193,8 +209,3 @@ const Template: Story = (args) => ({
 	`
 });
 export const Welcome = Template.bind({});
-Welcome.parameters = {
-	controls: {
-		disable: true
-	}
-};
