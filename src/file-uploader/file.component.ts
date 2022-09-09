@@ -24,8 +24,7 @@ import { FileItem } from "./file-item.interface";
 				*ngIf="isInvalidText"
 				ibmIcon="warning--filled"
 				class="bx--file--invalid"
-				size="16"
-				tabindex="0">
+				size="16">
 			</svg>
 			<svg
 				ibmIcon="close"
