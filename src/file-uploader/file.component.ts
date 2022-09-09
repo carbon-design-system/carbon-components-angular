@@ -25,7 +25,7 @@ import { FileItem } from "./file-item.interface";
 				ibmIcon="warning--filled"
 				class="bx--file--invalid"
 				size="16"
-				tabindex="0">
+				tabindex="-1">
 			</svg>
 			<svg
 				ibmIcon="close"
