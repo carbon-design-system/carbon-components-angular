@@ -10,7 +10,7 @@ import { TableItem } from "../table-item.class";
 @Component({
 	selector: "app-function-override-filter-table",
 	template: `
-	<div ibmTableContainer>
+	<ibm-table-container>
 		<ibm-table-header>
 			<h4 ibmTableHeaderTitle>Filter table</h4>
 			<p ibmTableHeaderDescription>
@@ -51,7 +51,7 @@ import { TableItem } from "../table-item.class";
 			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</ibm-table>
-	<div>
+	</ibm-table-container>
 
 	<ng-template #templateRef>
 		<div style="padding: 0 1rem;" (click)="overflowOnClick($event)">

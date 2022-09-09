@@ -64,7 +64,7 @@ import { UIShellModule } from "../../ui-shell";
 				</fieldset>
 			</div>
 			<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
-				<div ibmTableContainer>
+				<ibm-table-container>
 					<ibm-table
 						class="data-table"
 						[model]="model"
@@ -72,7 +72,7 @@ import { UIShellModule } from "../../ui-shell";
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
 					</ibm-table>
-				<div>
+				</ibm-table-container>
 			</div>
 		</div>
 	</div>
