@@ -13,9 +13,7 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [PaginationModule],
-			declarations: [
-				PaginationStory
-			]
+			declarations: [PaginationStory]
 		})
 	],
 	component: Pagination
