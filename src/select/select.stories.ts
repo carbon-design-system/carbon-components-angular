@@ -170,15 +170,18 @@ const OptionsSelectedTemplate: Story<Select> = (args) => ({
 				Outbound in-transit
 			</option>
 		</ibm-select>
-		<button (click)="["on-hand","in-transit-inbound","in-transit-outbound"][Math.floor(Math.random() * 3)]">
-			Select random
-		</button>
 	`
 });
 export const OptionsSelected = OptionsSelectedTemplate.bind({});
 OptionsSelected.storyName = "Changing selected through option selected property";
 OptionsSelected.args = {
 	selected: "in-transit-inbound"
+};
+OptionsSelected.argTypes = {
+	selected: {
+		options: ["on-hand", "in-transit-inbound", "in-transit-outbound"],
+		control: "select"
+	}
 };
 
 const ValuePropertyTemplate: Story<Select> = (args) => ({
@@ -189,13 +192,16 @@ const ValuePropertyTemplate: Story<Select> = (args) => ({
 			<option value="in-transit-inbound">Inbound in-transit</option>
 			<option value="in-transit-outbound">Outbound in-transit</option>
 		</ibm-select>
-		<button (click)="selected = ["on-hand","in-transit-inbound","in-transit-outbound"][Math.floor(Math.random() * 3)];">
-			Select random
-		</button>
 	`
 });
 export const ValueProperty = ValuePropertyTemplate.bind({});
 ValueProperty.storyName = "Changing selected through value property";
 ValueProperty.args = {
-	selected: "in-tarnsit-outbound"
+	selected: "in-transit-outbound"
+};
+ValueProperty.argTypes = {
+	selected: {
+		options: ["on-hand", "in-transit-inbound", "in-transit-outbound"],
+		control: "select"
+	}
 };
