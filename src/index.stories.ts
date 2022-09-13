@@ -164,10 +164,10 @@ import { IconModule } from "./icon/icon.module";
 })
 class WelcomeStory implements OnInit, OnDestroy {
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
@@ -179,7 +179,23 @@ export default {
 			imports: [ButtonModule, IconModule],
 			declarations: [WelcomeStory]
 		})
-	]
+	],
+	parameters: {
+		previewTabs: {
+			"storybook/docs/panel": {
+				hidden: true
+			}
+		},
+		controls: {
+			disable: true
+		},
+		actions: {
+			disable: true
+		},
+		a11y: {
+			disable: true
+		}
+	}
 } as Meta;
 
 const Template: Story = (args) => ({

@@ -3,10 +3,10 @@
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { DialogModule, OverflowMenu } from "../";
-import { DocumentationModule } from "../../documentation-component/documentation.module";
 import { PlaceholderModule } from "../../placeholder";
 import { IconModule } from "../../icon";
 import { CheckboxModule } from "../../checkbox";
+
 
 export default {
 	title: "Components/Overflow Menu",
@@ -16,62 +16,46 @@ export default {
 				DialogModule,
 				PlaceholderModule,
 				IconModule,
-				DocumentationModule,
 				CheckboxModule
 			]
 		})
 	],
+	args: {
+			placement: "bottom"
+	},
 	argTypes: {
 		code: {
 			control: false
 		}
-	}
+	},
+	component: OverflowMenu
 } as Meta;
 
 const Template: Story<OverflowMenu> = (args) => ({
 	props: args,
 	template: `
-		<div>
-			<h1 style="margin-bottom: 1rem">Bottom placement</h1>
-			<ibm-overflow-menu
-				[flip]="flip"
-				[offset]="offset">
-				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
-				<li class="cds--overflow-menu-options__option">
-					<button class="cds--overflow-menu-options__btn">A fully custom option</button>
-				</li>
-				<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-			<ibm-placeholder></ibm-placeholder>
-		</div>
-		<div style="margin-top: 8rem">
-			<h1 style="margin-bottom: 1rem">Top placement</h1>
-			<ibm-overflow-menu
-				[flip]="flip"
-				placement="top"
-				[offset]="offset">
-				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
-				<li class="cds--overflow-menu-options__option">
-					<button class="cds--overflow-menu-options__btn">A fully custom option</button>
-				</li>
-				<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-			<ibm-placeholder></ibm-placeholder>
-		</div>
+		<ibm-overflow-menu
+			[placement]="placement"
+			[open]="open"
+			[flip]="flip"
+			[offset]="offset">
+			<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
+				An example option that is really long to show what should be done to handle long text
+			</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
+			<li class="cds--overflow-menu-options__option">
+				<button class="cds--overflow-menu-options__btn">A fully custom option</button>
+			</li>
+			<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+		</ibm-overflow-menu>
+		<ibm-placeholder></ibm-placeholder>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
+	open: false,
 	flip: false,
 	offset: {
 		x: 0,
@@ -90,6 +74,9 @@ Basic.argTypes = {
 		control: false
 	}
 };
+Basic.parameters = {
+	layout: "centered"
+};
 
 const LinkTemplate: Story<OverflowMenu> = (args) => ({
 	props: args,
@@ -103,24 +90,6 @@ const LinkTemplate: Story<OverflowMenu> = (args) => ({
 					An example option that is really long to show what should be done to handle long text
 				</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" target="_blank" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
-					Danger option
-				</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-		</div>
-		<div style="margin-top: 8rem">
-			<h1 style="margin-bottom: 1rem">Top placement</h1>
-			<ibm-overflow-menu
-				[flip]="flip"
-				placement="top"
-				[offset]="offset">
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
@@ -181,9 +150,24 @@ const CustomTemplate: Story<OverflowMenu> = (args) => ({
 export const Custom = CustomTemplate.bind({});
 Custom.storyName = "Custom Template";
 
-const DocumentationTemplate: Story = () => ({
+const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
+	props: args,
 	template: `
-		<ibm-documentation src="documentation/modules/src_dialog_overflow_menu.html"></ibm-documentation>
+		<span>Overflow menu with custom trigger icon</span>
+		<ibm-overflow-menu
+			[flip]="flip"
+			[open]="open"
+			[customTrigger]="customTrigger"
+			[placement]="placement"
+			[offset]="offset">
+			<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+			<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+		</ibm-overflow-menu>
+		<ibm-placeholder></ibm-placeholder>
+		<ng-template #customTrigger><svg ibmIcon="document" size="16"></svg></ng-template>
 	`
 });
-export const Documentation = DocumentationTemplate.bind({});
+export const CustomTrigger = CustomTriggerTemplate.bind({});
+CustomTrigger.storyName = "With custom trigger";

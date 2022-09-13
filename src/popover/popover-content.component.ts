@@ -2,8 +2,6 @@ import { Component, HostBinding } from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-popover--basic)
- *
- * <example-url>../../iframe.html?id=components-popover--basic</example-url>
  */
 @Component({
 	selector: "ibm-popover-content",

@@ -26,8 +26,6 @@ export enum ToggleState {
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
- *
- * <example-url>../../iframe.html?id=components-toggle--basic</example-url>
  */
 @Component({
 	selector: "ibm-toggle",

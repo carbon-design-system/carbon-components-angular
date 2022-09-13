@@ -70,8 +70,6 @@ export class ModalDemo {
 	}
 }
 ```
- *
- * <example-url>../../iframe.html?id=components-modal--basic</example-url>
  */
 @Component({
 	selector: "ibm-modal",

@@ -2,47 +2,38 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { TooltipModule, TooltipDefinition } from "./";
 
 export default {
 	title: "Components/Definition Tooltip",
 	decorators: [
 		moduleMetadata({
-			imports: [
-				TooltipModule,
-				DocumentationModule
-			]
+			imports: [TooltipModule]
 		})
-	]
+	],
+	parameters: {
+		layout: "centered"
+	},
+	component: TooltipDefinition
 } as Meta;
 
 const Template: Story<TooltipDefinition> = (args) => ({
 	props: args,
 	template: `
-		<div class="container">
-			<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
-			<ibm-tooltip-definition
-				[isOpen]="isOpen"
-				[caret]="caret"
-				[align]="align"
-				(onOpen)="onOpen($event)"
-				(onClose)="onClose($event)"
-				(isOpenChange)="isOpenChange($event)"
-				[description]="description">
-				URL
-			</ibm-tooltip-definition>
-			that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host.</p>
-		</div>
+		<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
+		<ibm-tooltip-definition
+			[isOpen]="isOpen"
+			[caret]="caret"
+			[align]="align"
+			(onOpen)="onOpen($event)"
+			(onClose)="onClose($event)"
+			(isOpenChange)="isOpenChange($event)"
+			[description]="description">
+			URL
+		</ibm-tooltip-definition>
+		that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host.</p>
 	`,
 	styles: [`
-		.container {
-			width: 100%;
-			height: 300px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 		.tooltip-trigger {
 			box-sizing: border-box;
 			margin: 0;
@@ -87,10 +78,3 @@ Basic.argTypes = {
 		control: "select"
 	}
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_tooltip.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

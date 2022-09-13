@@ -2,16 +2,16 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { NumberModule, NumberComponent } from "./";
 
 export default {
 	title: "Components/Number Input",
 	decorators: [
 		moduleMetadata({
-			imports: [NumberModule, DocumentationModule]
+			imports: [NumberModule]
 		})
-	]
+	],
+	component: NumberComponent
 } as Meta;
 
 const Template: Story<NumberComponent> = (args) => ({
@@ -96,10 +96,3 @@ const SkeletonTemplate: Story<NumberComponent> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_number_input.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

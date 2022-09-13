@@ -2,16 +2,19 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { ListModule, List } from "./";
 
 export default {
 	title: "Components/List",
 	decorators: [
 		moduleMetadata({
-			imports: [ListModule, DocumentationModule]
+			imports: [ListModule]
 		})
-	]
+	],
+	parameters: {
+		layout: "centered"
+	},
+	component: List
 } as Meta;
 
 const Template: Story<List> = (args) => ({
@@ -65,10 +68,3 @@ const NestingTemplate: Story<List> = (args) => ({
 	`
 });
 export const Nesting = NestingTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_list.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

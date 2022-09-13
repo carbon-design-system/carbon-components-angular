@@ -67,7 +67,6 @@ const WithTitleTemplate: Story<Accordion> = (args) => ({
 				</ibm-accordion-item>
 			</ibm-accordion>
 		</div>
-
 		<ng-template #title>
 			<p class="cds--accordion__title">Section 1 title</p>
 		</ng-template>
@@ -77,6 +76,11 @@ const WithTitleTemplate: Story<Accordion> = (args) => ({
 	`
 });
 export const WithTitle = WithTitleTemplate.bind({});
+WithTitle.parameters = {
+	controls: {
+		disable: true
+	}
+};
 
 const WithSkeleton: Story<Accordion> = (args) => ({
 	props: args,
@@ -92,11 +96,8 @@ const WithSkeleton: Story<Accordion> = (args) => ({
 	`
 });
 export const Skeleton = WithSkeleton.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_accordion.accordion.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});
-
+Skeleton.parameters = {
+	controls: {
+		disable: true
+	}
+};

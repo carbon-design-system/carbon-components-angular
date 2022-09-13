@@ -23,8 +23,6 @@ export enum SnippetType {
  * ```html
  * <ibm-code-snippet>Code</ibm-code-snippet>
  * ```
- *
- * <example-url>../../iframe.html?id=components-code-snippet--basic</example-url>
  */
 @Component({
 	selector: "ibm-code-snippet",

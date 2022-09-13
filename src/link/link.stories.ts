@@ -2,16 +2,16 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { LinkModule, Link } from "./";
 
 export default {
 	title: "Components/Link",
 	decorators: [
 		moduleMetadata({
-			imports: [LinkModule, DocumentationModule]
+			imports: [LinkModule]
 		})
-	]
+	],
+	component: Link
 } as Meta;
 
 const Template: Story<Link> = (args) => ({
@@ -25,10 +25,3 @@ Basic.args = {
 	disabled: false,
 	inline: false
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_link.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

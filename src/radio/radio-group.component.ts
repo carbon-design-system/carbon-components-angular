@@ -24,8 +24,8 @@ import { RadioChange } from "./radio-change.class";
  *
  * source: `src/forms/radio.component.ts`
  *
- *
  * Ex:
+ *
  * ```html
  * <ibm-radio-group [(ngModel)]="radio">
  * 	<ibm-radio *ngFor="let one of manyRadios" [value]="one">
@@ -36,13 +36,11 @@ import { RadioChange } from "./radio-change.class";
  * Radio selected: {{radio}}
  * ```
  *
- * ```typescript
- * manyRadios = ["one", "two", "three", "four", "five", "six"];
+ * ```ts
+ *	const manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [`Radio`](#ibm-radio)
- *
- * <example-url>../../iframe.html?id=components-radio--basic</example-url>
+ * Also see: [Radio](#ibm-radio)
  */
 @Component({
 	selector: "ibm-radio-group",
@@ -53,7 +51,7 @@ import { RadioChange } from "./radio-change.class";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[ngClass]="{
 				'cds--radio-button-group--vertical': orientation === 'vertical',
-				'cds--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
+				'cds--radio-button-group--label-left': labelPlacement === 'left'
 			}">
 			<ng-content></ng-content>
 		</div>

@@ -50,8 +50,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *		</ibm-list-row>
  *	</ibm-structured-list>
  * ```
- *
- * <example-url>../../iframe.html?id=components-structured-list--basic</example-url>
  */
 @Component({
 	selector: "ibm-structured-list",

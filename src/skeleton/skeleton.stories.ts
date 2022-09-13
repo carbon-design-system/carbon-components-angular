@@ -2,21 +2,21 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { SkeletonModule, SkeletonPlaceholder } from "./";
 
 export default {
 	title: "Components/Skeleton",
 	decorators: [
 		moduleMetadata({
-			imports: [SkeletonModule, DocumentationModule]
+			imports: [SkeletonModule]
 		})
 	],
 	args: {
 		lines: 5,
 		minLineWidth: 100,
 		maxLineWidth: 300
-	}
+	},
+	component: SkeletonPlaceholder
 } as Meta;
 
 const Template: Story<SkeletonPlaceholder> = (args) => ({
@@ -30,10 +30,3 @@ const Template: Story<SkeletonPlaceholder> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_skeleton.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

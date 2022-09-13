@@ -37,8 +37,6 @@ export interface PaginationNavTranslations {
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * ```
- *
- * <example-url>../../iframe.html?id=components-pagination-nav--basic</example-url>
  */
 @Component({
 	selector: "ibm-pagination-nav",

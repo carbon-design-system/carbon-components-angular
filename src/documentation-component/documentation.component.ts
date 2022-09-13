@@ -7,6 +7,11 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 
+/**
+ * @Ignore
+ * Documentation component that is no longer used as we switch from typedoc to compodoc.
+ * Keeping component for documentation specific use cases.
+ */
 @Component({
 	selector: "ibm-documentation",
 	template: `

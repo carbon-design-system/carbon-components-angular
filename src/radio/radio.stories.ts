@@ -1,17 +1,26 @@
 /* tslint:disable variable-name */
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
-import { RadioModule, Radio } from "./";
+import { RadioModule, RadioGroup, Radio } from "./";
+
+import { ReactiveFormsStory } from "./stories";
 
 export default {
 	title: "Components/Radio",
 	decorators: [
 		moduleMetadata({
-			imports: [RadioModule, DocumentationModule]
+			declarations: [ReactiveFormsStory],
+			imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				RadioModule
+			]
 		})
-	]
+	],
+	component: RadioGroup,
+	subcomponents: Radio
 } as Meta;
 
 const Template: Story<Radio> = (args) => ({
@@ -24,11 +33,8 @@ const Template: Story<Radio> = (args) => ({
 			aria-label="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
-			[(ngModel)]="radio"
 			(change)="onChange($event)">
-			<ibm-radio
-				value="Zero"
-				[checked]="true">
+			<ibm-radio value="Zero" [checked]="true">
 				Zero
 			</ibm-radio>
 			<ibm-radio [value]="One">One</ibm-radio>
@@ -37,10 +43,12 @@ const Template: Story<Radio> = (args) => ({
 			<ibm-radio [value]="Four" [disabled]="true">Four</ibm-radio>
 		</ibm-radio-group>
 	</fieldset>
-	<button (click)="disabled = !disabled">Toggle group disabled</button>
 	`
 });
 export const Basic = Template.bind({});
+Basic.args = {
+	label: "Radio button heading"
+};
 Basic.argTypes = {
 	onChange: {
 		control: "Changed!"
@@ -67,9 +75,20 @@ const SkeletonTemplate: Story<Radio> = (args) => ({
 });
 export const Skeleton = SkeletonTemplate.bind({});
 
-const DocumentationTemplate: Story = () => ({
+const ReactiveFormsTemplate: Story<Radio> = (args) => ({
+	props: args,
 	template: `
-		<ibm-documentation src="documentation/modules/src_radio.html"></ibm-documentation>
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/radio/stories/app-reactive-form.component.ts
+		-->
+		<app-reactive-forms></app-reactive-forms>
 	`
 });
-export const Documentation = DocumentationTemplate.bind({});
+export const ReactiveForms = ReactiveFormsTemplate.bind({});
+ReactiveForms.parameters = {
+	controls: {
+		disable: true
+	}
+};

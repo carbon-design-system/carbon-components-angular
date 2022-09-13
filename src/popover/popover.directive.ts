@@ -10,8 +10,6 @@ import {
  * Applies popover container styling to the element it is applied to.
  *
  * [See demo](../../?path=/story/components-popover--basic)
- *
- * <example-url>../../iframe.html?id=components-popover--basic</example-url>
  */
 @Directive({
 	selector: "[ibmPopover]"

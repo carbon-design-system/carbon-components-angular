@@ -8,8 +8,6 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
  * [See demo](../../?path=/story/components-tooltip-definition--basic)
- *
- * <example-url>../../iframe.html?id=components-tooltip-definition--basic</example-url>
  */
 @Component({
 	selector: "ibm-tooltip-definition",

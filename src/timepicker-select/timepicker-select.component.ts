@@ -11,8 +11,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * [See demo](../../?path=/story/components-time-picker-select--simple)
- *
- * <example-url>../../iframe.html?id=components-time-picker-select--simple</example-url>
  */
 @Component({
 	selector: "ibm-timepicker-select",

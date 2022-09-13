@@ -2,14 +2,19 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
-import { ContextMenuModule, ContextMenuComponent } from "./";
+import {
+	ContextMenuModule,
+	ContextMenuComponent,
+	ContextMenuDividerComponent,
+	ContextMenuItemComponent,
+	ContextMenuGroupComponent
+} from "./";
 
 export default {
 	title: "Components/Context Menu",
 	decorators: [
 		moduleMetadata({
-			imports: [ContextMenuModule, DocumentationModule]
+			imports: [ContextMenuModule]
 		})
 	],
 	args: {
@@ -24,6 +29,12 @@ export default {
 	argTypes: {
 		onRadioChange: { action: "Radio menu change!" },
 		onCheckboxChange: { action: "Radio menu change!" }
+	},
+	component: ContextMenuComponent,
+	subcomponents: {
+		ContextMenuDividerComponent,
+		ContextMenuItemComponent,
+		ContextMenuGroupComponent
 	}
 } as Meta;
 
@@ -73,10 +84,3 @@ const Template: Story<ContextMenuComponent> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_context_menu.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

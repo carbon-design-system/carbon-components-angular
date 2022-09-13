@@ -2,7 +2,6 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { SliderModule, Slider } from "./";
 
 export default {
@@ -10,11 +9,11 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				SliderModule,
-				DocumentationModule
+				SliderModule
 			]
 		})
-	]
+	],
+	component: Slider
 } as Meta;
 
 const Template: Story<Slider> = (args) => ({
@@ -26,6 +25,7 @@ const Template: Story<Slider> = (args) => ({
 			[max]="max"
 			[step]="step"
 			[value]="value"
+			[skeleton]="skeleton"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
 			aria-Label="Label for slider value"
@@ -73,7 +73,8 @@ const RangeTemplate: Story<Slider> = (args) => ({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`
 });
@@ -85,10 +86,3 @@ Range.args = {
 Range.argTypes = {
 	...Basic.argTypes
 };
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/modules/src_slider.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

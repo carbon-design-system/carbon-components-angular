@@ -8,8 +8,6 @@ import { Directive, ElementRef, HostBinding } from "@angular/core";
  * For `ul`s it will apply unordered list styles, and for `ol`s it will apply ordered list styles.
  *
  * If a `ul` or `ol` is nested within a `li` the directive will apply nested list styling.
- *
- * <example-url>../../iframe.html?id=components-list--basic</example-url>
  */
 @Directive({
 	selector: "[ibmList]"

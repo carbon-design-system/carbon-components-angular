@@ -31,8 +31,6 @@ import { Observable } from "rxjs";
  * Multi-select comboboxes also provide "pills" of selected items.
  *
  * [See demo](../../?path=/story/components-combobox--basic)
- *
- * <example-url>../../iframe.html?id=components-combobox--basic</example-url>
  */
 @Component({
 	selector: "ibm-combo-box",

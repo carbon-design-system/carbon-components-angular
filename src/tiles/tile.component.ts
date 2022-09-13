@@ -16,8 +16,6 @@ import {
  * 		tile content
  * </ibm-tile>
  * ```
- *
- * <example-url>../../iframe.html?id=components-tiles--basic</example-url>
  */
 @Component({
 	selector: "ibm-tile",

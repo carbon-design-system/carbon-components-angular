@@ -25,8 +25,6 @@ export enum CheckboxState {
 
 /**
  * [See demo](../../?path=/story/components-checkbox--basic)
- *
- * <example-url>../../iframe.html?id=components-checkbox--basic</example-url>
  */
 @Component({
 	selector: "ibm-checkbox",
@@ -73,10 +71,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	static checkboxCount = 0;
 
-	/**
-	 * Set to `true` for checkbox to be rendered without any classes on the host element.
-	 */
-	@Input() inline = false;
 	/**
 	 * Set to `true` for a disabled checkbox.
 	 */

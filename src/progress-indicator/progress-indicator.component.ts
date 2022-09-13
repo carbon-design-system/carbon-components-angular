@@ -10,8 +10,6 @@ import { Step } from "./progress-indicator-step.interface";
 
 /**
  * [See demo](../../?path=/story/components-progress-indicator--basic)
- *
- * <example-url>../../iframe.html?id=components-progress-indicator--basic</example-url>
  */
 @Component({
 	selector: "ibm-progress-indicator",

@@ -1,69 +1,19 @@
 /* tslint:disable variable-name */
 
-import { Component, Input } from "@angular/core";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+
+
 import { TabsModule } from "./";
 
-@Component({
-	selector: "ibm-header-group",
-	template: `
-		<ibm-tab-header-group
-			[type]="type"
-			[followFocus]="followFocus"
-			[cacheActive]="cacheActive"
-			[isNavigation]="isNavigation">
-			<button ibmTabHeader [paneReference]="content1">
-				Content 1
-			</button>
-			<button ibmTabHeader [paneReference]="content2">
-				Content 2
-			</button>
-			<button ibmTabHeader [paneReference]="content3" disabled="true">
-				Content 3
-			</button>
-			<button ibmTabHeader [paneReference]="content4">
-				Content 4
-			</button>
-			<button ibmTabHeader [paneReference]="content5">
-				Content 5
-			</button>
-		</ibm-tab-header-group>
+import { TabStory } from "./stories";
 
-		<ibm-tab #content1>
-			Tab Content 1
-		</ibm-tab>
-		<ibm-tab #content2>
-			Tab Content 2
-		</ibm-tab>
-		<ibm-tab #content3>
-			Tab Content 3
-		</ibm-tab>
-		<ibm-tab #content4>
-			Tab Content 4
-		</ibm-tab>
-		<ibm-tab #content5>
-			Tab Content 5
-		</ibm-tab>
-	`
-})
-class TabStory {
-	@Input() skeleton = false;
-	@Input() followFocus = true;
-	@Input() cacheActive = false;
-	@Input() isNavigation = true;
-	@Input() type = "line";
-}
-
-// Storybook starts here
 export default {
 	title: "Components/Tabs",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TabsModule,
-				DocumentationModule
+				TabsModule
 			],
 			declarations: [TabStory]
 		})
@@ -180,12 +130,17 @@ BeforeAndAfter.argTypes = {
 const TabHeaderGroupTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-header-group
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/pagination/stories/pagination.component.ts
+		-->
+		<app-header-group
 			[type]="type"
 			[followFocus]="followFocus"
 			[cacheActive]="cacheActive"
 			[isNavigation]="isNavigation">
-		</ibm-header-group>
+		</app-header-group>
 	`
 });
 export const TabheaderGroup = TabHeaderGroupTemplate.bind({});
@@ -211,10 +166,3 @@ const SkeletonTemplate: Story = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_tabs.tabs.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

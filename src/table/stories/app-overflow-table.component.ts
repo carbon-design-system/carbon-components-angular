@@ -2,7 +2,7 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
+	AfterViewInit,
 	Input
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
@@ -39,7 +39,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 		</ibm-table>
 	`
 })
-export class OverflowTableStory implements OnInit {
+export class OverflowTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -52,7 +52,7 @@ export class OverflowTableStory implements OnInit {
 	@ViewChild("overflowMenuItemTemplate", { static: false })
 	protected overflowMenuItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: { id: "1" }, template: this.overflowMenuItemTemplate })],
 			[new TableItem({ data: "Name 2" }), new TableItem({ data: { id: "2" }, template: this.overflowMenuItemTemplate })],

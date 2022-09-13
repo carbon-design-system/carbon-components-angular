@@ -15,8 +15,6 @@ import { BaseNotification } from "./base-notification.component";
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * [See demo](../../?path=/story/components-notification--toast)
- *
- * <example-url>../../iframe.html?id=components-notification--toast</example-url>
  */
 @Component({
 	selector: "ibm-toast",

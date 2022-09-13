@@ -2,21 +2,42 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { DocumentationModule } from "../documentation-component/documentation.module";
 import { CodeSnippetModule, CodeSnippet } from "./";
 
 export default {
 	title: "Components/Code Snippet",
 	decorators: [
 		moduleMetadata({
-			imports: [CodeSnippetModule, DocumentationModule]
+			imports: [CodeSnippetModule]
 		})
 	],
 	argTypes: {
 		code: {
 			control: false
+		},
+		display: {
+			control: false
+		},
+		feedbackText: {
+			control: false
+		},
+		maxCollapsedNumberOfRows: {
+			controls: false
+		},
+		maxExpandedNumberOfRows: {
+			controls: false
+		},
+		minCollapsedNumberOfRows: {
+			controls: false
+		},
+		minExpandedNumberOfRows: {
+			controls: false
+		},
+		expanded: {
+			control: false
 		}
-	}
+	},
+	component: CodeSnippet
 } as Meta;
 
 const Template: Story<CodeSnippet> = (args) => ({
@@ -84,6 +105,23 @@ Multi.args = {
 		}
 	}`
 };
+Multi.argTypes = {
+	maxCollapsedNumberOfRows: {
+		controls: true
+	},
+	maxExpandedNumberOfRows: {
+		controls: true
+	},
+	minCollapsedNumberOfRows: {
+		controls: true
+	},
+	minExpandedNumberOfRows: {
+		controls: true
+	},
+	expanded: {
+		control: true
+	}
+};
 
 const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
 	props: args,
@@ -94,10 +132,3 @@ const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
-
-const DocumentationTemplate: Story = () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_code_snippet.codesnippet.html"></ibm-documentation>
-	`
-});
-export const Documentation = DocumentationTemplate.bind({});

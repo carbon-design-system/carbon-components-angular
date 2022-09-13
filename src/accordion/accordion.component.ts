@@ -9,8 +9,6 @@ import { AccordionItem } from "./accordion-item.component";
 
 /**
  * [See demo](../../?path=/story/components-accordion--basic)
- *
- * <example-url>../../iframe.html?id=components-accordion--basic</example-url>
  */
 @Component({
 	selector: "ibm-accordion",
