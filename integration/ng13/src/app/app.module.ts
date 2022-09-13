@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DropdownModule } from 'carbon-components-angular/dropdown';
-import { ButtonModule } from 'carbon-components-angular';
+import { ButtonModule, DropdownModule } from 'carbon-components-angular';
 
 @NgModule({
   declarations: [
