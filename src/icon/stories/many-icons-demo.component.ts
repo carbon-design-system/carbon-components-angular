@@ -32,7 +32,7 @@ export class ManyIconDemo implements OnInit {
 
 	ngOnInit() {
 		const iconMap = new Map();
-		for (const [_, descriptor] of Object.entries(Icons)) {
+		for (const descriptor of Object.values(Icons)) {
 			this.iconService.register(descriptor as any);
 			if (typeof descriptor === "object" && descriptor) {
 				if (!iconMap.has(descriptor["name"])) {
