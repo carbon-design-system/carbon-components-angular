@@ -170,4 +170,4 @@ const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
 	`
 });
 export const CustomTrigger = CustomTriggerTemplate.bind({});
-CustomTrigger.storyName = "With Custom Trigger";
+CustomTrigger.storyName = "With custom trigger";
