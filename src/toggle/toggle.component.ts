@@ -75,7 +75,8 @@ export class ToggleChange {
 			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
-			(click)="onClick($event)">
+			(click)="onClick($event)"
+			(keyup.enter)="onClick($event)">
 		<label
 			class="bx--toggle-input__label"
 			[for]="id"
