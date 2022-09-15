@@ -12,7 +12,7 @@
     "lint:fix": "tslint --fix 'src/**/*.ts'",
     "test": "ng test --no-watch",
     "test:watch": "ng test --watch",
-    "build-storybook": "build-storybook -o dist/docs/storybook",
+    "build-storybook": "npm run docs:json && build-storybook -o dist/docs/storybook",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
     "ng": "ng",
