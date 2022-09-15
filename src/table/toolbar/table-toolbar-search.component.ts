@@ -24,6 +24,12 @@ export class TableToolbarSearch extends Search implements AfterViewInit {
 
 	@HostBinding("class.cds--toolbar-content") hostClass = true;
 
+	/**
+	 * Override default size to "lg"
+	 * - Ensures magnifying icon is centered
+	 */
+	size: "sm" | "md" | "lg" = "lg";
+
 	ngAfterViewInit() {
 		setTimeout(() => {
 			if (this.value) {

@@ -1,5 +1,6 @@
 /* tslint:disable variable-name */
 
+import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { NFormsModule } from "../forms";
@@ -88,7 +89,8 @@ export default {
 				DialogModule,
 				SearchModule,
 				IconModule,
-				ButtonModule
+				ButtonModule,
+				FormsModule
 			],
 			declarations: [
 				TableStory,
