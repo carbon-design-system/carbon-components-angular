@@ -4,7 +4,8 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	ElementRef
 } from "@angular/core";
 
 const MAX_LEVEL = 2;
@@ -23,7 +24,21 @@ export class LayerDirective implements AfterContentInit {
 	/**
 	 * Override layer level
 	 */
-	@Input() set ibmLayer(level: number) {
+	@Input() set ibmLayer(level: 0 | 1 | 2) {
+		if (typeof level === "number") {
+			this._passedLevel = level;
+			this.layer = level;
+		}
+	}
+
+	get ibmLayer() {
+		return this._passedLevel;
+	}
+
+	/**
+	 * If ibmLayer is undefined, auto increment & iterate level
+	 */
+	set layer(level: number) {
 		if (typeof level === "number") {
 			this._level = Math.max(0, Math.min(level, MAX_LEVEL));
 			if (this.layerChildren) {
@@ -32,39 +47,42 @@ export class LayerDirective implements AfterContentInit {
 					if (layer === this) {
 						return;
 					}
-					layer.ibmLayer = this.ibmLayer + 1;
+					layer.layer = typeof layer._passedLevel === "number" ? layer.layer = layer._passedLevel : this.layer + 1;
 				});
 			}
 		}
 	}
 
-	get ibmLayer() {
+	get layer() {
 		return this._level;
 	}
-
-	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	/**
 	 * Using host bindings with classes to ensure we do not
 	 * overwrite user added classes
 	 */
 	@HostBinding("class.cds--layer-one") get layerOneClass() {
-		return this.ibmLayer === 0;
+		return this.layer === 0;
 	}
 
 	@HostBinding("class.cds--layer-two") get layerTwoClass() {
-		return this.ibmLayer === 1;
+		return this.layer === 1;
 	}
 
 	@HostBinding("class.cds--layer-three") get layerThreeClass() {
-		return this.ibmLayer === 2;
+		return this.layer === 2;
 	}
 
+	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
+
+	// Holds user passsed level
+	private _passedLevel;
+	// Holds current level
 	private _level;
 
 	ngAfterContentInit(): void {
 		if (typeof this.ibmLayer !== "number") {
-			this.ibmLayer = 1;
+			this.layer = 1;
 		}
 	}
 }
