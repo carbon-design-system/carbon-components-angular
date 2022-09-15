@@ -4,7 +4,7 @@ export { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 export { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 export { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 
-export { TableContainer } from "./table-container.component";
+export { TableContainer } from "./table-container.directive";
 export { TableHeader } from "./header/table-header.component";
 export { TableHeaderTitle } from "./header/table-header-title.directive";
 export { TableHeadCellLabel } from "./head/table-head-cell-label.directive";

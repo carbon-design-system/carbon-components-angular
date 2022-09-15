@@ -114,7 +114,7 @@ export default {
 const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -136,7 +136,7 @@ const Template: Story = (args) => ({
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
 			</app-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const Basic = Template.bind({});
@@ -149,7 +149,7 @@ Basic.args = {
 const NoDataTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>With no data</p>
@@ -168,7 +168,7 @@ const NoDataTemplate: Story = (args) => ({
 				[striped]="striped">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
 			</app-no-data-table>
-		</ibm-table-container>
+		</div>
 	`,
 	styles: [`
 		.no-data {
@@ -188,7 +188,7 @@ WithoutData.args = {
 const ToolbarTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -251,7 +251,7 @@ const ToolbarTemplate: Story = (args) => ({
 				[isDataGrid]="isDataGrid">
 			</app-table>
 			<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithToolbar = ToolbarTemplate.bind({});
@@ -286,7 +286,7 @@ WithToolbar.argTypes = {
 const DisabledRowsTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -329,7 +329,7 @@ const DisabledRowsTemplate: Story = (args) => ({
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
 			</app-no-data-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithDisabledRows = DisabledRowsTemplate.bind({});
@@ -359,7 +359,7 @@ WithDisabledRows.argTypes = {
 const WithoutActionTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -392,7 +392,7 @@ const WithoutActionTemplate: Story = (args) => ({
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
 			</app-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithToolbarWithoutToolbarAction = WithoutActionTemplate.bind({});
@@ -457,7 +457,7 @@ Filtering.args = {
 const ExpansionTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -476,7 +476,7 @@ const ExpansionTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-expansion-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithExpansion = ExpansionTemplate.bind({});
@@ -489,7 +489,7 @@ WithExpansion.args = {
 const DyanmicContentTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -508,7 +508,7 @@ const DyanmicContentTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-custom-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithDynamicContent = DyanmicContentTemplate.bind({});
@@ -525,7 +525,7 @@ const OverflowMenuTemplate: Story = (args) => ({
 		}, "args")
 	},
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -544,7 +544,7 @@ const OverflowMenuTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-overflow-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithOverflowMenu = OverflowMenuTemplate.bind({});
@@ -557,7 +557,7 @@ export const WithOverflowMenu = OverflowMenuTemplate.bind({});
 const PaginationTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
+		<div ibmTableContainer>
 			<ibm-table-header>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
@@ -576,7 +576,7 @@ const PaginationTemplate: Story = (args) => ({
 				[skeleton]="skeleton"
 				[model]="model">
 			</app-pagination-table>
-		</ibm-table-container>
+		</div>
 	`
 });
 export const WithPagination = PaginationTemplate.bind({});
