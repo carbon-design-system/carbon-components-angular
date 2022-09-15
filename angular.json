@@ -49,7 +49,7 @@
 						"styles": [
 							"./.storybook/preview.scss"
 						],
-						"compodoc": true,
+						"compodoc": false,
 						"compodocArgs": [
 							"-e",
 							"json",
