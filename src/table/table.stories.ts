@@ -115,10 +115,10 @@ const Template: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -150,10 +150,10 @@ const NoDataTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>With no data</p>
-			</ibm-table-header>
+			</div>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -189,10 +189,10 @@ const ToolbarTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar
 				[model]="model"
 				[batchText]="batchText"
@@ -287,32 +287,32 @@ const DisabledRowsTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -360,10 +360,10 @@ const WithoutActionTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
@@ -458,10 +458,10 @@ const ExpansionTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -490,10 +490,10 @@ const DyanmicContentTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -526,10 +526,10 @@ const OverflowMenuTemplate: Story = (args) => ({
 	},
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -548,20 +548,15 @@ const OverflowMenuTemplate: Story = (args) => ({
 	`
 });
 export const WithOverflowMenu = OverflowMenuTemplate.bind({});
-// WithOverflowMenu.args = {
-// 	...getProps({
-// 		description: "With overflow menu"
-// 	}, "args")
-// };
 
 const PaginationTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div ibmTableContainer>
-			<ibm-table-header>
+			<div ibmTableHeader>
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+			</div>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:

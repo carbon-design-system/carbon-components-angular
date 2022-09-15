@@ -11,13 +11,13 @@ import { TableItem } from "../table-item.class";
 	selector: "app-model-filter-table",
 	template: `
 	<div ibmTableContainer>
-		<ibm-table-header>
+		<div ibmTableHeader>
 			<h4 ibmTableHeaderTitle>Filter table</h4>
 			<p ibmTableHeaderDescription>
 				Use the toolbar's search functionality to filter node names
 				or click the filter icon to filter country names
 			</p>
-		</ibm-table-header>
+		</div>
 		<ibm-table-toolbar>
 			<ibm-table-toolbar-content>
 				<ibm-table-toolbar-search
@@ -35,7 +35,7 @@ import { TableItem } from "../table-item.class";
 					<svg ibmIcon="filter" size="16" class="cds--toolbar-action__icon"></svg>
 				</button>
 				<button ibmButton="primary" size="sm">
-					Primary Button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+					Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 				</button>
 			</ibm-table-toolbar-content>
 		</ibm-table-toolbar>
