@@ -16,39 +16,37 @@ import { FileItem } from "./file-item.interface";
 		<p class="bx--file-filename">{{fileItem.file.name}}</p>
 		<span
 			*ngIf="fileItem.state === 'edit'"
-			class="bx--file__state-container"
-			(click)="remove.emit()"
-			(keyup.enter)="remove.emit()"
-			(keyup.space)="remove.emit()">
+			class="bx--file__state-container">
 			<svg
 				*ngIf="isInvalidText"
 				ibmIcon="warning--filled"
 				class="bx--file--invalid"
 				size="16">
 			</svg>
-			<svg
-				ibmIcon="close"
-				size="16"
+			<button
+				type="button"
 				class="bx--file-close"
-				[ariaLabel]="translations.REMOVE_BUTTON"
-				tabindex="0">
-			</svg>
+				[attr.aria-label]="translations.REMOVE_BUTTON"
+				tabindex="0"
+				(click)="remove.emit()"
+				(keyup.enter)="remove.emit()"
+				(keyup.space)="remove.emit()">
+				<svg ibmIcon="close" size="16"></svg>
+			</button>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
 			<div class="bx--inline-loading__animation">
 				<ibm-loading size="sm"></ibm-loading>
 			</div>
 		</span>
-		<span
-			*ngIf="fileItem.state === 'complete'"
-			class="bx--file__state-container"
-			tabindex="0">
-
+		<span *ngIf="fileItem.state === 'complete'" class="bx--file__state-container">
 			<svg
 				ibmIcon="checkmark--filled"
 				size="16"
 				class="bx--file-complete"
-				[ariaLabel]="translations.CHECKMARK">
+				[ariaLabel]="translations.CHECKMARK"
+				tabindex="0"
+				[isFocusable]="true">
 			</svg>
 		</span>
 	`
