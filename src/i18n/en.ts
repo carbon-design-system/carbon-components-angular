@@ -129,7 +129,8 @@ export default {
 		"OF_LAST_PAGES": "of {{last}} pages",
 		"OF_LAST_PAGE": "of {{last}} page",
 		"NEXT": "Next",
-		"PREVIOUS": "Previous"
+		"PREVIOUS": "Previous",
+		"SELECT_ARIA": "Select page number"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
