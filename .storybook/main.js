@@ -62,7 +62,7 @@ module.exports = {
 
 function isStylingRule(rule) {
 	const { test } = rule;
-	if (!test || !(test instanceof RegExp)) {
+	if (!(test instanceof RegExp)) {
 		return false;
 	}
 	return test.test('.css') || test.test('.scss') || test.test('.sass');
