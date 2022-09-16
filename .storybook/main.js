@@ -35,7 +35,7 @@ module.exports = {
 		disableTelemetry: true,
 	},
 	webpackFinal: async config => {
-		// remove all styling rules
+		// remove all styling rules to ensure styles get loaded
 		config.module.rules = config.module.rules.filter((rule) => !isStylingRule(rule));
 
 		config.module.rules.push({
@@ -62,10 +62,7 @@ module.exports = {
 
 function isStylingRule(rule) {
 	const { test } = rule;
-	if (!test) {
-		return false;
-	}
-	if (!(test instanceof RegExp)) {
+	if (!test || !(test instanceof RegExp)) {
 		return false;
 	}
 	return test.test('.css') || test.test('.scss') || test.test('.sass');
