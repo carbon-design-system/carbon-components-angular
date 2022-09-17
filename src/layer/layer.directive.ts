@@ -25,10 +25,8 @@ export class LayerDirective implements AfterContentInit {
 	 * Override layer level
 	 */
 	@Input() set ibmLayer(level: 0 | 1 | 2) {
-		if (typeof level === "number") {
-			this._passedLevel = level;
-			this.layer = level;
-		}
+		this._passedLevel = level;
+		this.layer = level;
 	}
 
 	get ibmLayer() {
@@ -47,7 +45,7 @@ export class LayerDirective implements AfterContentInit {
 					if (layer === this) {
 						return;
 					}
-					layer.layer = typeof layer._passedLevel === "number" ? layer.layer = layer._passedLevel : this.layer + 1;
+					layer.layer = typeof layer._passedLevel === "number" ? layer._passedLevel : this.layer + 1;
 				});
 			}
 		}
