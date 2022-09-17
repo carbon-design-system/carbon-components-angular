@@ -194,6 +194,9 @@ export default {
 		},
 		a11y: {
 			disable: true
+		},
+		storysource: {
+			disable: true
 		}
 	}
 } as Meta;
