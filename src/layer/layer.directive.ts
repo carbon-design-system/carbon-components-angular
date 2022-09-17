@@ -4,8 +4,7 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit,
-	ElementRef
+	AfterContentInit
 } from "@angular/core";
 
 const MAX_LEVEL = 2;
