@@ -180,7 +180,9 @@ import { TableRowSize } from "./table.types";
 		[ngClass]="{'bx--data-table--sticky-header': stickyHeader}"
 		[size]="size"
 		[striped]="striped"
-		[skeleton]="skeleton">
+		[skeleton]="skeleton"
+		[attr.aria-labelledby]="ariaLabelledby"
+		[attr.aria-describedby]="ariaDescribedby">
 		<thead
 			ibmTableHead
 			[sortable]="sortable"
@@ -294,6 +296,15 @@ export class Table implements AfterViewInit, OnDestroy {
 			element.focus();
 		}
 	}
+
+	/**
+	 * Id of the table header title element
+	 */
+	@Input() ariaLabelledby: string;
+	/**
+	 * Id of the table header description element
+	 */
+	@Input() ariaDescribedby: string;
 
 	/**
 	 * `TableModel` with data the table is to display.
