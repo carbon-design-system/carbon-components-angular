@@ -56,16 +56,6 @@ import { TableRowSize } from "../table.types";
 				'cds--batch-actions--active': selected
 			}"
 			[attr.aria-label]="actionBarLabel.subject | async">
-			<div class="cds--action-list">
-				<ng-content select="ibm-table-toolbar-actions"></ng-content>
-				<button
-					ibmButton="primary"
-					class="cds--batch-summary__cancel"
-					[tabindex]="selected ? 0 : -1"
-					(click)="onCancel()">
-					{{_cancelText.subject | async}}
-				</button>
-			</div>
 			<div class="cds--batch-summary">
 				<p class="cds--batch-summary__para" *ngIf="count as n">
 					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
@@ -76,6 +66,16 @@ import { TableRowSize } from "../table.types";
 						<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
 					</ng-template>
 				</p>
+			</div>
+			<div class="cds--action-list">
+				<ng-content select="ibm-table-toolbar-actions"></ng-content>
+				<button
+					ibmButton="primary"
+					class="cds--batch-summary__cancel"
+					[tabindex]="selected ? 0 : -1"
+					(click)="onCancel()">
+					{{_cancelText.subject | async}}
+				</button>
 			</div>
 		</div>
 		<ng-content></ng-content>
