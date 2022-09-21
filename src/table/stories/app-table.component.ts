@@ -22,7 +22,9 @@ import { TableItem } from "../table-item.class";
 			[sortable]="sortable"
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid">
+			[isDataGrid]="isDataGrid"
+			[ariaLabelledby]="ariaLabelledby"
+			[ariaDescribedby]="ariaDescribedby">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -38,6 +40,8 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() noData = false;
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
+	@Input() ariaLabelledby;
+	@Input() ariaDescribedby;
 
 	ngOnInit() {
 		this.model.header = [
