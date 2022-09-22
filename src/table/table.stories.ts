@@ -295,24 +295,24 @@ const DisabledRowsTemplate: Story = (args) => ({
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="delete" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>

@@ -463,7 +463,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Allows table content to scroll horizontally
 	 */
-	@HostBinding("class.bx--data-table-content") tableContent = true;
+	@HostBinding("class.cds--data-table-content") tableContent = true;
 
 	/**
 	 * Set to `true` to stick the header to the top of the table
