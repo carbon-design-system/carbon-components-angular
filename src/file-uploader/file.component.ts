@@ -45,7 +45,6 @@ import { FileItem } from "./file-item.interface";
 				size="16"
 				class="bx--file-complete"
 				[ariaLabel]="translations.CHECKMARK"
-				tabindex="0"
 				[isFocusable]="true">
 			</svg>
 		</span>

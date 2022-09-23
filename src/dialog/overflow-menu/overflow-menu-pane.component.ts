@@ -23,13 +23,13 @@ import { closestAttr } from "carbon-components-angular/utils";
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
+			[attr.id]="dialogConfig.compID"
 			[attr.aria-label]="dialogConfig.menuLabel"
 			[attr.data-floating-menu-direction]="placement ? placement : null"
 			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
 			role="menu"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
-			role="menu"
 			(click)="onClose($event)"
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
