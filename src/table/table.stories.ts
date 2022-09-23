@@ -151,8 +151,8 @@ const NoDataTemplate: Story = (args) => ({
 	template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>With no data</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 
 			<!--
@@ -165,7 +165,9 @@ const NoDataTemplate: Story = (args) => ({
 				[size]="size"
 				[skeleton]="skeleton"
 				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
+				[striped]="striped"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
 			</app-no-data-table>
 		</ibm-table-container>
@@ -361,8 +363,8 @@ const WithoutActionTemplate: Story = (args) => ({
 	template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
@@ -390,7 +392,9 @@ const WithoutActionTemplate: Story = (args) => ({
 				[skeleton]="skeleton"
 				[striped]="striped"
 				[sortable]="sortable"
-				[isDataGrid]="isDataGrid">
+				[isDataGrid]="isDataGrid"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 			</app-table>
 		</ibm-table-container>
 	`
