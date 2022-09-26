@@ -77,6 +77,7 @@ import { Tab } from "./tab.component";
 					(click)="selectTab(tabItem, tab, i)">
 					<button
 						#tabItem
+						type="button"
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
