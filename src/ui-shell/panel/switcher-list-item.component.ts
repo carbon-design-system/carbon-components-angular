@@ -76,7 +76,7 @@ export class SwitcherListItem {
 
 	@HostBinding("attr.role") itemRole = "listitem";
 
-	protected _href = "javascript:void(0)";
+	protected _href = "#";
 	protected _target = "";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
@@ -86,6 +86,8 @@ export class SwitcherListItem {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
+		} else if (this._href === "#") {
+			return false;
 		}
 	}
 }

@@ -104,7 +104,7 @@ export class Header {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	protected _href = "javascript:void(0)";
+	protected _href = "#";
 
 	constructor(
 		public i18n: I18n,
@@ -120,6 +120,8 @@ export class Header {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
+		} else if (this._href === "#") {
+			return false;
 		}
 	}
 }
