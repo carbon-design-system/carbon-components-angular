@@ -17,7 +17,7 @@ storiesOf("Components|Accordion", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-accordion [align]="align">
+			<ibm-accordion [align]="align" [size]="size">
 				<ibm-accordion-item title="Section 1 title" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
 				et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \
@@ -52,7 +52,8 @@ storiesOf("Components|Accordion", module)
 				}
 			],
 			selected: action("item expanded"),
-			align: select("Align", ["start", "end"], "end")
+			align: select("Align", ["start", "end"], "end"),
+			size: select("Size", ["sm", "md", "lg"], "md")
 		}
 	}))
 	.add("With title template", () => ({

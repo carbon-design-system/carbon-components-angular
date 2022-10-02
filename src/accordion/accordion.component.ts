@@ -16,14 +16,20 @@ import { AccordionItem } from "./accordion-item.component";
 	selector: "ibm-accordion",
 	template: `
 		<ul class="bx--accordion"
-			[class.bx--accordion--end]="align == 'end'"
-			[class.bx--accordion--start]="align == 'start'">
+			[ngClass]="{
+				'bx--accordion--end': align == 'end',
+				'bx--accordion--start': align == 'start',
+				'bx--accordion--sm': size == 'sm',
+				'bx--accordion--md': size == 'md',
+				'bx--accordion--lg': size == 'lg'
+			}">
 			<ng-content></ng-content>
 		</ul>
 	`
 })
 export class Accordion implements AfterContentInit {
 	@Input() align: "start" | "end" = "end";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 

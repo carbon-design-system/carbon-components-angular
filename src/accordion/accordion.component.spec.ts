@@ -8,7 +8,7 @@ import { Accordion } from "./accordion.component";
 
 @Component({
 	template: `
-	<ibm-accordion>
+	<ibm-accordion [size]="size">
 		<ibm-accordion-item
 		[title]="title"
 		[skeleton]="skeleton">
@@ -19,6 +19,7 @@ import { Accordion } from "./accordion.component";
 class AccordionTest {
 	title = "Section 1";
 	skeleton = "false";
+	size = "md";
 }
 
 describe("Accordion", () => {
@@ -76,5 +77,13 @@ describe("Accordion", () => {
 		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
 		expect(debugElement.nativeElement.textContent).toContain("Section 1");
+	});
+
+	it("should apply style for specified size (md)", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion"));
+		expect(debugElement.nativeElement.classList).toContain("bx--accordion--md");
 	});
 });
