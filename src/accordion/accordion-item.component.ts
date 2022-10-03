@@ -12,6 +12,7 @@ import {
 	template: `
 		<button
 			type="button"
+			[disabled]="disabled"
 			[attr.aria-expanded]="expanded"
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
@@ -50,6 +51,7 @@ export class AccordionItem {
 
 	@HostBinding("class.bx--accordion__item") itemClass = true;
 	@HostBinding("class.bx--accordion__item--active") @Input() expanded = false;
+	@HostBinding("class.bx--accordion__item--disabled") @Input() disabled = false;
 	@HostBinding("style.display") itemType = "list-item";
 	@HostBinding("attr.role") role = "heading";
 	@HostBinding("attr.aria-level") @Input() ariaLevel = 3;
