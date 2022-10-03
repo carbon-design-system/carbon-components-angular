@@ -169,9 +169,16 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
-			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea,div");
+			// Prioritize setting id to `input` & `textarea` over div
+			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea");
 			if (inputElement) {
 				inputElement.setAttribute("id", this.labelInputID);
+				return;
+			}
+
+			const divElement = this.wrapper.nativeElement.querySelector("div");
+			if (divElement) {
+				divElement.setAttribute("id", this.labelInputID);
 			}
 		}
 	}
