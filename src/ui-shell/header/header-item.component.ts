@@ -98,7 +98,7 @@ export class HeaderItem {
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
 		} else if (this._href === "#") {
-			return false;
+			event.preventDefault();
 		}
 	}
 }

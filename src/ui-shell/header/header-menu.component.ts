@@ -24,7 +24,7 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 				tabindex="0"
 				aria-haspopup="true"
 				[attr.aria-expanded]="expanded"
-				(click)="navigate()">
+				(click)="navigate($event)">
 				{{title}}
 				<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
 				<ng-template #defaultIcon>
@@ -106,9 +106,9 @@ export class HeaderMenu {
 		}
 	}
 
-	navigate() {
+	navigate(event) {
 		if (this._href === "#") {
-			return false;
+			event.preventDefault();
 		}
 	}
 }
