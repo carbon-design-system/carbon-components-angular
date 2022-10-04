@@ -10,7 +10,6 @@ import {
 } from "@storybook/addon-knobs/angular";
 
 import {
-	Table,
 	TableModule,
 	TableModel,
 	TableItem,
@@ -136,8 +135,8 @@ storiesOf("Components|Table", module).addDecorator(
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 			<!--
 				app-* components are for demo purposes only.
@@ -148,7 +147,9 @@ storiesOf("Components|Table", module).addDecorator(
 				[size]="size"
 				[skeleton]="skeleton"
 				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
+				[striped]="striped"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
 			</app-no-data-table>
 		</ibm-table-container>
@@ -170,8 +171,8 @@ storiesOf("Components|Table", module).addDecorator(
 		<section>
 			<ibm-table-container>
 				<ibm-table-header>
-					<h4 ibmTableHeaderTitle>{{title}}</h4>
-					<p ibmTableHeaderDescription>{{description}}</p>
+					<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+					<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 				</ibm-table-header>
 				<ibm-table-toolbar
 					[model]="model"
@@ -227,7 +228,9 @@ storiesOf("Components|Table", module).addDecorator(
 					[sortable]="sortable"
 					[skeleton]="skeleton"
 					[stickyHeader]="stickyHeader"
-					[isDataGrid]="isDataGrid">
+					[isDataGrid]="isDataGrid"
+					ariaLabelledby="table-header"
+					ariaDescribedby="table-description">
 				</app-table>
 				<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
 			</ibm-table-container>
@@ -312,8 +315,8 @@ storiesOf("Components|Table", module).addDecorator(
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
@@ -339,7 +342,9 @@ storiesOf("Components|Table", module).addDecorator(
 				[skeleton]="skeleton"
 				[striped]="striped"
 				[sortable]="sortable"
-				[isDataGrid]="isDataGrid">
+				[isDataGrid]="isDataGrid"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 			</app-table>
 		</ibm-table-container>
 	`,

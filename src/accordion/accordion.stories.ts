@@ -55,6 +55,14 @@ storiesOf("Components|Accordion", module)
 			align: select("Align", ["start", "end"], "end")
 		}
 	}))
+	.add("With disabled item", () => ({
+		template: `
+			<ibm-accordion>
+				<ibm-accordion-item title="Enabled"></ibm-accordion-item>
+				<ibm-accordion-item title="Disabled" disabled="true"></ibm-accordion-item>
+			</ibm-accordion>
+		`
+	}))
 	.add("With title template", () => ({
 		template: `
 			<div style="width: 500px">
