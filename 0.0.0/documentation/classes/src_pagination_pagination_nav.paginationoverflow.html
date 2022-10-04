@@ -83,6 +83,9 @@
 							<h3>Inputs</h3>
 							<ul class="tsd-index-list">
 								<li>
+									<a href="src_pagination_pagination_nav.paginationoverflow.html#arialabel" class="tsd-kind-icon">ariaLabel</a>
+								</li>
+								<li>
 									<a href="src_pagination_pagination_nav.paginationoverflow.html#count" class="tsd-kind-icon">count</a>
 								</li>
 								<li>
@@ -109,6 +112,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_pagination_pagination_nav.paginationoverflow.html#arialabel"
+									class="tsd-kind-icon">aria<wbr>Label</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_pagination_pagination_nav.paginationoverflow.html#change"
 									class="tsd-kind-icon">change</a>
 								</li>
@@ -117,6 +123,9 @@
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_pagination_pagination_nav.paginationoverflow.html#fromindex"
 									class="tsd-kind-icon">from<wbr>Index</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="src_pagination_pagination_nav.paginationoverflow.html#i18n"
+									class="tsd-kind-icon">i18n</a>
 								</li>
 							</ul>
 						</section>
@@ -145,15 +154,21 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Pagination<wbr>Overflow<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_pagination_pagination_nav.paginationoverflow.html" class="tsd-signature-type">PaginationOverflow</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Pagination<wbr>Overflow<span class="tsd-signature-symbol">(</span>i18n<span class="tsd-signature-symbol">: </span><a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_pagination_pagination_nav.paginationoverflow.html" class="tsd-signature-type">PaginationOverflow</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L56">src/pagination/pagination-nav/pagination-overflow.component.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L62">src/pagination/pagination-nav/pagination-overflow.component.ts:62</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>i18n: <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_pagination_pagination_nav.paginationoverflow.html" class="tsd-signature-type">PaginationOverflow</a></h4>
 						</li>
 					</ul>
@@ -161,6 +176,22 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="arialabel" class="tsd-anchor"></a>
+					<h3>aria<wbr>Label</h3>
+					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
+						<span>
+							@Input()
+						</span>
+						<br />
+					</div>
+					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this.i18n.get().PAGINATION.SELECT_ARIA</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L53">src/pagination/pagination-nav/pagination-overflow.component.ts:53</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="change" class="tsd-anchor"></a>
 					<h3>change</h3>
@@ -173,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L52">src/pagination/pagination-nav/pagination-overflow.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L58">src/pagination/pagination-nav/pagination-overflow.component.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L47">src/pagination/pagination-nav/pagination-overflow.component.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L51">src/pagination/pagination-nav/pagination-overflow.component.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +236,17 @@
 					<div class="tsd-signature tsd-kind-icon">from<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L45">src/pagination/pagination-nav/pagination-overflow.component.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L49">src/pagination/pagination-nav/pagination-overflow.component.ts:49</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="i18n" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> i18n</h3>
+					<div class="tsd-signature tsd-kind-icon">i18n<span class="tsd-signature-symbol">:</span> <a href="src_i18n.i18n.html" class="tsd-signature-type">I18n</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L64">src/pagination/pagination-nav/pagination-overflow.component.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">count<wbr>AsArray<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L54">src/pagination/pagination-nav/pagination-overflow.component.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L60">src/pagination/pagination-nav/pagination-overflow.component.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/pagination/pagination-nav/pagination-overflow.component.ts#L60">src/pagination/pagination-nav/pagination-overflow.component.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/pagination/pagination-nav/pagination-overflow.component.ts#L66">src/pagination/pagination-nav/pagination-overflow.component.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -278,6 +319,9 @@
 								<a href="src_pagination_pagination_nav.paginationoverflow.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="src_pagination_pagination_nav.paginationoverflow.html#arialabel" class="tsd-kind-icon">aria<wbr>Label</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_pagination_pagination_nav.paginationoverflow.html#change" class="tsd-kind-icon">change</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -285,6 +329,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_pagination_pagination_nav.paginationoverflow.html#fromindex" class="tsd-kind-icon">from<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="src_pagination_pagination_nav.paginationoverflow.html#i18n" class="tsd-kind-icon">i18n</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="src_pagination_pagination_nav.paginationoverflow.html#countasarray" class="tsd-kind-icon">count<wbr>AsArray</a>

@@ -79,14 +79,25 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section">
+							<h3>Inputs</h3>
+							<ul class="tsd-index-list">
+								<li>
+									<a href="src_table_header.tableheaderdescription.html#id" class="tsd-kind-icon">id</a>
+								</li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table_header.tableheaderdescription.html#descriptionclass"
 									class="tsd-kind-icon">description<wbr>Class</a>
 								</li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table_header.tableheaderdescription.html#role"
-									class="tsd-kind-icon">role</a>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_table_header.tableheaderdescription.html#id"
+									class="tsd-kind-icon">id</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="src_table_header.tableheaderdescription.html#counter"
+									class="tsd-kind-icon">counter</a>
 								</li>
 							</ul>
 						</section>
@@ -107,23 +118,37 @@
 					<div class="tsd-signature tsd-kind-icon">description<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/table/header/table-header-description.directive.ts#L7">src/table/header/table-header-description.directive.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/table/header/table-header-description.directive.ts#L10">src/table/header/table-header-description.directive.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="role" class="tsd-anchor"></a>
-					<h3>role</h3>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
 					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
 						<span>
-							@HostBinding({&quot;hostPropertyName&quot;:&quot;attr.role&quot;})
+							@HostBinding({&quot;hostPropertyName&quot;:&quot;attr.id&quot;})
+						</span>
+						<br />
+						<span>
+							@Input()
 						</span>
 						<br />
 					</div>
-					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;summary&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;table-description-${TableHeaderDescription.counter++}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/7819d90/src/table/header/table-header-description.directive.ts#L8">src/table/header/table-header-description.directive.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/table/header/table-header-description.directive.ts#L9">src/table/header/table-header-description.directive.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="counter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> counter</h3>
+					<div class="tsd-signature tsd-kind-icon">counter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/IBM/carbon-components-angular/blob/840ac1c/src/table/header/table-header-description.directive.ts#L7">src/table/header/table-header-description.directive.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -154,7 +179,10 @@
 								<a href="src_table_header.tableheaderdescription.html#descriptionclass" class="tsd-kind-icon">description<wbr>Class</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="src_table_header.tableheaderdescription.html#role" class="tsd-kind-icon">role</a>
+								<a href="src_table_header.tableheaderdescription.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="src_table_header.tableheaderdescription.html#counter" class="tsd-kind-icon">counter</a>
 							</li>
 						</ul>
 					</li>
