@@ -189,7 +189,7 @@ export class FileUploader {
 	}
 
 	get fileList() {
-		return Array.from(this.fileInput.nativeElement.files);
+		return Array.from<File>(this.fileInput.nativeElement.files);
 	}
 
 	/**
@@ -216,12 +216,21 @@ export class FileUploader {
 			this.files.clear();
 		}
 		for (let file of this.fileList) {
+			this.files.forEach(item => {
+				if (file.name === item.file.name && item.state === "edit") {
+					this.files.delete(item);
+				}
+			});
+
 			const fileItem = this.createFileItem(file);
 			this.files.add(fileItem);
 		}
 
 		this.filesChange.emit(this.files);
 		this.value = this.files;
+
+		// Clear out the value if the input element. This enables us to re-upload the same file
+		this.fileInput.nativeElement.value = "";
 	}
 
 	onDragOver(event) {

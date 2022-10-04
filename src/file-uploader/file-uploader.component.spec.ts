@@ -1,6 +1,6 @@
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { ButtonModule } from "carbon-components-angular/button";
 import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
@@ -24,6 +24,8 @@ import { FileItem } from "./file-item.interface";
 })
 class FileUploaderTest {
 	files = null;
+
+	@ViewChild(FileUploader) uploader!: FileUploader;
 }
 
 describe("FileUploader", () => {
@@ -119,6 +121,64 @@ describe("FileUploader", () => {
 		fixture.detectChanges();
 
 		expect(element.nativeElement.querySelector(".bx--file__state-container .bx--file--invalid")).toBeTruthy();
+	});
+
+	it("should trigger change event in file upload when the same file is uploaded [#2268]", () => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+
+		const testFiles = new Set();
+
+		const uploaderSpy = spyOn(wrapper.uploader, "onFilesAdded").and.callThrough();
+		const setDeleteSpy = spyOn(testFiles, "delete").and.callThrough();
+
+		element = fixture.debugElement.query(By.css("ibm-file-uploader"));
+		const fileInput = element.nativeElement.querySelector(
+			".bx--file-input"
+		);
+
+		element.componentInstance.value = testFiles;
+
+		// initial upload
+		const dt1 = new DataTransfer();
+		dt1.items.add(new File([""], "test-filename-1", { type: "text/html" }));
+		dt1.items.add(new File([""], "test-filename-2", { type: "text/html" }));
+		fileInput.files = dt1.files;
+		fileInput.dispatchEvent(new Event("change"));
+
+		fixture.detectChanges();
+
+		let filenameEls = element.nativeElement.querySelectorAll(
+			".bx--file-container .bx--file-filename"
+		);
+
+		expect(filenameEls.length).toBe(2);
+		expect(filenameEls[0].textContent).toEqual("test-filename-1");
+		expect(filenameEls[1].textContent).toEqual("test-filename-2");
+		expect(uploaderSpy).toHaveBeenCalled();
+		expect(setDeleteSpy).not.toHaveBeenCalled();
+
+		uploaderSpy.calls.reset();
+		setDeleteSpy.calls.reset();
+
+		// upload same filename
+		const dt2 = new DataTransfer();
+		dt2.items.add(new File([""], "test-filename-1", { type: "text/html" }));
+		fileInput.files = dt2.files;
+		fileInput.dispatchEvent(new Event("change"));
+
+		fixture.detectChanges();
+
+		filenameEls = element.nativeElement.querySelectorAll(
+			".bx--file-container .bx--file-filename"
+		);
+
+		expect(filenameEls.length).toBe(2);
+		expect(filenameEls[0].textContent).toEqual("test-filename-2");
+		expect(filenameEls[1].textContent).toEqual("test-filename-1");
+		expect(uploaderSpy).toHaveBeenCalled();
+		expect(setDeleteSpy).toHaveBeenCalled();
 	});
 });
 
