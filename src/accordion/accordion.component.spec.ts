@@ -10,6 +10,7 @@ import { Accordion } from "./accordion.component";
 	template: `
 	<ibm-accordion [size]="size">
 		<ibm-accordion-item
+		[disabled]="disabled"
 		[title]="title"
 		[skeleton]="skeleton">
 			test-content
@@ -17,6 +18,7 @@ import { Accordion } from "./accordion.component";
 	<ibm-accordion>`
 })
 class AccordionTest {
+	disabled = false;
 	title = "Section 1";
 	skeleton = "false";
 	size = "md";
@@ -61,6 +63,17 @@ describe("Accordion", () => {
 		debugElement.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("true");
+	});
+
+	it("should not expand disabled items", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		wrapper.disabled = true;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
+		debugElement.nativeElement.click();
+		fixture.detectChanges();
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("false");
 	});
 
 	it("should set test-content into accordion item", () => {
