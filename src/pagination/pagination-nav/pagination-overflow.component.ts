@@ -4,6 +4,8 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
+import { I18n } from "carbon-components-angular/i18n";
+
 /**
  * Used to present a selection of pages when there is an overflow
  * in the pagination list
@@ -18,7 +20,9 @@ import {
 		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
 			<div class="cds--pagination-nav__select">
 			<select
-				class="cds--pagination-nav__page cds--pagination-nav__page--select" (change)="handleChange($event)">
+				[attr.aria-label]="ariaLabel"
+				class="cds--pagination-nav__page cds--pagination-nav__page--select"
+				(change)="handleChange($event)">
 				<option value="" hidden></option>
 				<option
 				*ngFor="let item of countAsArray; let i = index">
@@ -46,6 +50,8 @@ export class PaginationOverflow {
 
 	@Input() count: number;
 
+	@Input() ariaLabel: string = this.i18n.get().PAGINATION.SELECT_ARIA;
+
 	/**
 	 * Emits click event
 	 */
@@ -55,7 +61,7 @@ export class PaginationOverflow {
 		return [...Array(this.count)];
 	}
 
-	constructor() {}
+	constructor(protected i18n: I18n) {}
 
 	handleChange(event) {
 		this.change.emit(+event.target.value);

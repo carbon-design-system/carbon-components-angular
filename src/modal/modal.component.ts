@@ -206,7 +206,7 @@ export class Modal implements AfterViewInit, OnChanges {
 		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".cds--modal-content") : null;
 		if (modalContent) {
 			// get rounded value from height to match integer returned from scrollHeight
-			const modalContentHeight = Math.round(modalContent.getBoundingClientRect().height);
+			const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
 			const modalContentScrollHeight = modalContent.scrollHeight;
 			return modalContentScrollHeight > modalContentHeight;
 		} else {

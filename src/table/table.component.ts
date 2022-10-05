@@ -178,7 +178,9 @@ import { TableRowSize } from "./table.types";
 		[ngClass]="{'cds--data-table--sticky-header': stickyHeader}"
 		[size]="size"
 		[striped]="striped"
-		[skeleton]="skeleton">
+		[skeleton]="skeleton"
+		[attr.aria-labelledby]="ariaLabelledby"
+		[attr.aria-describedby]="ariaDescribedby">
 		<thead
 			ibmTableHead
 			[sortable]="sortable"
@@ -239,7 +241,12 @@ import { TableRowSize } from "./table.types";
 			</tr>
 		</tfoot>
 	</table>
-	`
+	`,
+	styles: [`
+		:host {
+			display: block;
+		}
+	`]
 })
 export class Table implements AfterViewInit, OnDestroy {
 	/**
@@ -291,6 +298,15 @@ export class Table implements AfterViewInit, OnDestroy {
 			element.focus();
 		}
 	}
+
+	/**
+	 * Id of the table header title element
+	 */
+	@Input() ariaLabelledby: string;
+	/**
+	 * Id of the table header description element
+	 */
+	@Input() ariaDescribedby: string;
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -454,6 +470,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * Set to `false` to remove table rows (zebra) stripes.
 	 */
 	@Input() striped = true;
+
+	/**
+	 * Allows table content to scroll horizontally
+	 */
+	@HostBinding("class.cds--data-table-content") tableContent = true;
 
 	/**
 	 * Set to `true` to stick the header to the top of the table
