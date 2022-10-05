@@ -3,7 +3,8 @@ import {
 	Input,
 	HostListener,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HeaderItemInterface } from "./header-navigation-items.interface";
@@ -14,39 +15,42 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 @Component({
 	selector: "ibm-header-menu",
 	template: `
-		<li
-			class="cds--header__submenu"
-			style="height: 100%"
-			role="menuitem">
-			<a
-				class="cds--header__menu-item cds--header__menu-title"
-				[href]="href"
-				tabindex="0"
-				aria-haspopup="true"
-				[attr.aria-expanded]="expanded">
-				{{title}}
-				<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
-				<ng-template #defaultIcon>
-					<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">
-						<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
-					</svg>
-				</ng-template>
-			</a>
-			<ul class="cds--header__menu" role="menu" [attr.aria-label]="title">
-				<ng-content></ng-content>
-				<ng-container *ngFor="let headerItem of headerItems">
-					<ibm-header-item
-						[href]="headerItem.href"
-						[route]="headerItem.route"
-						[routeExtras]="headerItem.routeExtras">
-						{{ headerItem.content }}
-					</ibm-header-item>
-				</ng-container>
-			</ul>
-		</li>
-	`
+		<a
+			class="cds--header__menu-item cds--header__menu-title"
+			[href]="href"
+			tabindex="0"
+			aria-haspopup="menu"
+			[attr.aria-expanded]="expanded">
+			{{title}}
+			<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
+			<ng-template #defaultIcon>
+				<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">
+					<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
+				</svg>
+			</ng-template>
+		</a>
+		<div class="cds--header__menu" [attr.aria-label]="title">
+			<ng-content></ng-content>
+			<ng-container *ngFor="let headerItem of headerItems">
+				<ibm-header-item
+					[href]="headerItem.href"
+					[route]="headerItem.route"
+					[routeExtras]="headerItem.routeExtras">
+					{{ headerItem.content }}
+				</ibm-header-item>
+			</ng-container>
+		</div>
+	`,
+	styles: [`
+		:host {
+			display: list-item;
+		}
+	`]
 })
 export class HeaderMenu {
+	@HostBinding("class.cds--header__submenu") subMenu = true;
+	@HostBinding("attr.role") role = "listitem";
+
 	@Input() title: string;
 	@Input() set href(v: string) {
 		// Needed when component is created dynamically with a model.

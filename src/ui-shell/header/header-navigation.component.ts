@@ -11,7 +11,7 @@ import { NavigationItem } from "./header-navigation-items.interface";
 	selector: "ibm-header-navigation",
 	template: `
 		<nav class="cds--header__nav" [attr.aria-label]="ariaLabel">
-			<ul class="cds--header__menu-bar" role="menubar">
+			<div class="cds--header__menu-bar" role="list">
 				<ng-content></ng-content>
 				<ng-container *ngFor="let navigationItem of navigationItems">
 					<ibm-header-item
@@ -30,7 +30,7 @@ import { NavigationItem } from "./header-navigation-items.interface";
 						[headerItems]="navigationItem.menuItems">
 					</ibm-header-menu>
 				</ng-container>
-			</ul>
+			</div>
 		</nav>
 	`
 })

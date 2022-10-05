@@ -15,9 +15,9 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "ibm-sidenav",
 	template: `
-		<nav class="cds--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
+		<nav class="cds--side-nav__navigation" [attr.aria-label]="ariaLabel">
 			<ng-content select="ibm-sidenav-header"></ng-content>
-			<ul class="cds--side-nav__items">
+			<div class="cds--side-nav__items" role="list">
 				<div
 					class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
@@ -37,7 +37,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 					</ng-container>
 				</div>
 				<ng-content></ng-content>
-			</ul>
+			</div>
 			<footer class="cds--side-nav__footer">
 				<button
 					*ngIf="allowExpansion"
@@ -81,7 +81,6 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 	encapsulation: ViewEncapsulation.None
 })
 export class SideNav {
-	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.cds--side-nav") hostClass = true;
 	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
 	/**

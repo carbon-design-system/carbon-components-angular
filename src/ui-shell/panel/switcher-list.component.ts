@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostBinding } from "@angular/core";
 
 /**
  * Container for switcher items.
@@ -14,9 +14,15 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "ibm-switcher-list",
 	template: `
-		<ul class="cds--switcher">
 			<ng-content></ng-content>
-		</ul>
-	`
+	`,
+	styles: [`
+		:host {
+			display: block;
+		}
+	`]
 })
-export class SwitcherList {}
+export class SwitcherList {
+	@HostBinding("class.cds--switcher") switcher = true;
+	@HostBinding("attr.role") role = "list";
+}

@@ -4,7 +4,8 @@ import {
 	Optional,
 	Output,
 	EventEmitter,
-	OnChanges
+	OnChanges,
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -15,27 +16,25 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "ibm-sidenav-item",
 	template: `
-		<li [ngClass]="{
-			'cds--side-nav__item': !isSubMenu,
-			'cds--side-nav__menu-item': isSubMenu
-		}"
-		[attr.role]="(isSubMenu ? 'listitem' : null)">
-			<a
-				class="cds--side-nav__link"
-				[href]="href"
-				[attr.role]="(isSubMenu ? 'menuitem' : null)"
-				[attr.aria-current]="(active ? 'page' : null)"
-				[attr.title]="title ? title : null"
-				(click)="navigate($event)">
-				<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
-					<ng-content select="svg, [icon]"></ng-content>
-				</div>
-				<span class="cds--side-nav__link-text">
-					<ng-content></ng-content>
-				</span>
-			</a>
-		</li>
-	`
+		<a
+			class="cds--side-nav__link"
+			[href]="href"
+			[attr.aria-current]="(active ? 'page' : null)"
+			[attr.title]="title ? title : null"
+			(click)="navigate($event)">
+			<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
+				<ng-content select="svg, [icon]"></ng-content>
+			</div>
+			<span class="cds--side-nav__link-text">
+				<ng-content></ng-content>
+			</span>
+		</a>
+	`,
+	styles: [`
+		:host {
+			display: list-item;
+		}
+	`]
 })
 export class SideNavItem implements OnChanges {
 	/**
@@ -51,6 +50,14 @@ export class SideNavItem implements OnChanges {
 
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
+	}
+
+	@HostBinding("class.cds--side-nav__item") get sideNav() {
+		return !this.isSubMenu;
+	}
+
+	@HostBinding("class.cds--side-nav__menu-item") get menuItem() {
+		return this.isSubMenu;
 	}
 
 	/**
@@ -88,9 +95,11 @@ export class SideNavItem implements OnChanges {
 	 */
 	@Output() selected = new EventEmitter<boolean>();
 
+	@HostBinding("attr.role") role = "listitem";
+
 	protected _href = "javascript:void(0)";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
 	ngOnChanges(changes) {
 		if (changes.active) {
