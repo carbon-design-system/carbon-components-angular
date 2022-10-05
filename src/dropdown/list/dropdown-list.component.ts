@@ -56,6 +56,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
 			tabindex="-1"
+			[attr.id]="listId"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
 			<li
