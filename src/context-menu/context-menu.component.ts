@@ -4,29 +4,20 @@ import {
 	HostListener,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
+	HostBinding
 } from "@angular/core";
 
 @Component({
 	selector: "ibm-context-menu",
 	template: `
-		<ul
-			class="cds--context-menu cds--menu"
-			[ngClass]="{
-				'cds--context-menu--root': root,
-				'cds--menu--root': root,
-				'cds--context-menu--open': open,
-				'cds--menu--open': open
-			}"
-			role="menu"
-			tabindex="-1"
-			[ngStyle]="{
-				'left.px': position.left,
-				'top.px': position.top
-			}">
 			<ng-content></ng-content>
-		</ul>
-	`
+	`,
+	styles: [`
+		:host {
+			display: block;
+		}
+	`]
 })
 export class ContextMenuComponent implements OnChanges {
 	@Input() root = true;
@@ -35,6 +26,17 @@ export class ContextMenuComponent implements OnChanges {
 		left: 0,
 		top: 0
 	};
+
+	@HostBinding("class.cds--context-menu") contextMenu = true;
+	@HostBinding("class.cds--menu") menu = true;
+	@HostBinding("class.cds--context-menu--root") get contextMenuRoot() { return this.root; }
+	@HostBinding("class.cds--menu--root") get menuRoot() { return this.root; }
+	@HostBinding("class.cds--context-menu--open") get contextMenuOpen() { return this.open; }
+	@HostBinding("class.cds--menu--open") get menuOpen() { return this.open; }
+	@HostBinding("attr.role") role = "menu";
+	@HostBinding("attr.tabindex") tabindex = "-1";
+	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
+	@HostBinding("style.top.px") get topPosition() { return this.position.top; }
 
 	constructor(protected elementRef: ElementRef) { }
 
@@ -46,7 +48,7 @@ export class ContextMenuComponent implements OnChanges {
 
 	focusMenu() {
 		// wait until the next tick to let the DOM settle before changing the focus
-		const list = this.elementRef.nativeElement.querySelector("ul") as HTMLElement;
+		const list: HTMLElement = this.elementRef.nativeElement;
 		setTimeout(() => {
 			if (this.root) {
 				list.focus();
@@ -59,12 +61,16 @@ export class ContextMenuComponent implements OnChanges {
 
 	@HostListener("keydown", ["$event"])
 	handleNavigation(event: KeyboardEvent) {
-		const list: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
-		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ul[role=menu]"));
+		/**
+		 * @todo update this
+		 */
+		const list: HTMLElement = this.elementRef.nativeElement;
+		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ibm-context-menu[role=menu]"));
+		console.log(subMenus);
 		const menuItems: HTMLElement[] = (
 			Array.from(list.querySelectorAll(".cds--context-menu-option, .cds--menu-option")) as HTMLElement[])
 			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
-		);
+			);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
 
@@ -91,6 +97,7 @@ export class ContextMenuComponent implements OnChanges {
 			}
 			case "ArrowRight": {
 				if (currentIndex !== -1 && subMenus.some(subMenu => currentMenuItem.contains(subMenu))) {
+					console.log(currentMenuItem);
 					currentMenuItem.click();
 				}
 				break;
