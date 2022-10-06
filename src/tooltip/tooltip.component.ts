@@ -105,7 +105,6 @@ export class Tooltip extends PopoverContainer implements AfterViewInit {
 
 	ngAfterViewInit() {
 		if (this.wrapper) {
-			// Buttons
 			const buttonElement = this.wrapper.nativeElement.querySelector("button");
 			if (buttonElement && !buttonElement.getAttribute("aria-labelledby")) {
 				buttonElement.setAttribute("aria-labelledby", this.id);
