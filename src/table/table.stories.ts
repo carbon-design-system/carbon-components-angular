@@ -151,8 +151,8 @@ const NoDataTemplate: Story = (args) => ({
 	template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>With no data</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 
 			<!--
@@ -165,7 +165,9 @@ const NoDataTemplate: Story = (args) => ({
 				[size]="size"
 				[skeleton]="skeleton"
 				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
+				[striped]="striped"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
 			</app-no-data-table>
 		</ibm-table-container>
@@ -295,24 +297,24 @@ const DisabledRowsTemplate: Story = (args) => ({
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<svg ibmIcon="delete" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="delete" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<svg ibmIcon="save" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<svg ibmIcon="download" size="16" class="bx--btn__icon"></svg>
+						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-actions>
 				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="bx--toolbar-action__icon"></svg>
+						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="bx--btn__icon"></svg>
+						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
@@ -361,8 +363,8 @@ const WithoutActionTemplate: Story = (args) => ({
 	template: `
 		<ibm-table-container>
 			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
+				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
+				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
 			</ibm-table-header>
 			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
@@ -390,7 +392,9 @@ const WithoutActionTemplate: Story = (args) => ({
 				[skeleton]="skeleton"
 				[striped]="striped"
 				[sortable]="sortable"
-				[isDataGrid]="isDataGrid">
+				[isDataGrid]="isDataGrid"
+				ariaLabelledby="table-header"
+				ariaDescribedby="table-description">
 			</app-table>
 		</ibm-table-container>
 	`
