@@ -44,7 +44,7 @@ storiesOf("Components|Tag", module)
 			>filter</ibm-tag-filter>
 			<ibm-tag-filter
 				type="blue"
-				title="Disabled Filter"
+				title="Disabled filter"
 				closeButtonLabel="Clear"
 				[disabled]="true"
 			>disabled filter</ibm-tag-filter>
