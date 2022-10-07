@@ -110,7 +110,7 @@ import { Observable } from "rxjs";
 						[attr.aria-expanded]="open"
 						aria-haspopup="listbox"
 						[attr.maxlength]="maxLength"
-						aria-haspopup="true"
+						[attr.aria-controls]="open ? view.listId : null"
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
 					<svg
