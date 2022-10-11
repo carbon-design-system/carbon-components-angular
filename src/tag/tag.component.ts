@@ -37,9 +37,14 @@ export class Tag {
 	 */
 	@Input() type: TagType = "gray";
 
+	/**
+	 * Tag render size
+	 */
+	@Input() size: "sm" | "md" = "md";
+
 	@Input() class = "";
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--${this.type} ${this.class}`;
+		return `bx--tag bx--tag--${this.type} ${this.size === "md" ? "bx--tag--md" : "bx--tag--sm"} ${this.class}`;
 	}
 }
