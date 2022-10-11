@@ -61,16 +61,12 @@ export class ContextMenuComponent implements OnChanges {
 
 	@HostListener("keydown", ["$event"])
 	handleNavigation(event: KeyboardEvent) {
-		/**
-		 * @todo update this
-		 */
 		const list: HTMLElement = this.elementRef.nativeElement;
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ibm-context-menu[role=menu]"));
-		console.log(subMenus);
 		const menuItems: HTMLElement[] = (
 			Array.from(list.querySelectorAll(".cds--context-menu-option, .cds--menu-option")) as HTMLElement[])
 			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
-			);
+		);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
 
@@ -97,7 +93,6 @@ export class ContextMenuComponent implements OnChanges {
 			}
 			case "ArrowRight": {
 				if (currentIndex !== -1 && subMenus.some(subMenu => currentMenuItem.contains(subMenu))) {
-					console.log(currentMenuItem);
 					currentMenuItem.click();
 				}
 				break;
