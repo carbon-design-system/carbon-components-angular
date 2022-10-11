@@ -73,8 +73,8 @@ const RangeTemplate: Story<Slider> = (args) => ({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
-			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
+			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`
 });

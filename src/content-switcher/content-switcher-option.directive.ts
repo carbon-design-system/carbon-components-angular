@@ -73,7 +73,7 @@ export class ContentSwitcherOption implements OnInit {
 	}
 
 	/*
-	* encapsulating the content in a span with bx--content-switcher__label class
+	* encapsulating the content in a span with cds--content-switcher__label class
 	* to mimic what is done in the react version
 	*/
 	ngOnInit(): void {
