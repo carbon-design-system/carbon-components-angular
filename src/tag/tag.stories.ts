@@ -46,6 +46,12 @@ storiesOf("Components|Tag", module)
 				title="Filter"
 				closeButtonLabel="Clear"
 			>filter</ibm-tag-filter>
+			<ibm-tag-filter
+				type="blue"
+				title="Disabled filter"
+				closeButtonLabel="Clear"
+				[disabled]="true"
+			>disabled filter</ibm-tag-filter>
 		`
 	}))
 	.add("Documentation", () => ({
