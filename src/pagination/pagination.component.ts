@@ -112,7 +112,7 @@ export interface PaginationTranslations {
 				<div
 					class="bx--select bx--select--inline bx--select__page-number"
 					[class.bx--select--disabled]="pageInputDisabled">
-					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
+					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{pageText.subject | async}}</label>
 					<input
 						*ngIf="pageOptions.length > pageSelectThreshold"
 						style="padding-right: 1rem; margin-right: 1rem;"

@@ -8,8 +8,9 @@ import { Accordion } from "./accordion.component";
 
 @Component({
 	template: `
-	<ibm-accordion>
+	<ibm-accordion [size]="size">
 		<ibm-accordion-item
+		[disabled]="disabled"
 		[title]="title"
 		[skeleton]="skeleton">
 			test-content
@@ -17,8 +18,10 @@ import { Accordion } from "./accordion.component";
 	<ibm-accordion>`
 })
 class AccordionTest {
+	disabled = false;
 	title = "Section 1";
 	skeleton = "false";
+	size = "md";
 }
 
 describe("Accordion", () => {
@@ -62,6 +65,17 @@ describe("Accordion", () => {
 		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("true");
 	});
 
+	it("should not expand disabled items", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		wrapper.disabled = true;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
+		debugElement.nativeElement.click();
+		fixture.detectChanges();
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("false");
+	});
+
 	it("should set test-content into accordion item", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
@@ -76,5 +90,13 @@ describe("Accordion", () => {
 		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
 		expect(debugElement.nativeElement.textContent).toContain("Section 1");
+	});
+
+	it("should apply style for specified size (md)", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion"));
+		expect(debugElement.nativeElement.classList).toContain("bx--accordion--md");
 	});
 });
