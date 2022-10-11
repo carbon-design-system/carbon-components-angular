@@ -39,7 +39,7 @@ storiesOf("Components|Tag", module)
 			<ibm-tag type="outline" [size]="size">Outline</ibm-tag>
 		`,
 		props: {
-			size: select("size", ["sm", "md"], "md"),
+			size: select("size", ["sm", "md"], "md")
 		}
 	}))
 	.add("Filter", () => ({
