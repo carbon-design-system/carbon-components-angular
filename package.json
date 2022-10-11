@@ -95,7 +95,7 @@
     "@types/jasmine": "2.8.2",
     "@types/node": "11.13.0",
     "babel-loader": "8.0.5",
-    "carbon-components": "10.34.0",
+    "carbon-components": "10.58.3",
     "chai": "4.2.0",
     "codelyzer": "5.0.0",
     "commitizen": "4.2.4",
