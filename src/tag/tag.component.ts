@@ -7,7 +7,18 @@ import {
 /**
  * Supported tag types for carbon v10
  */
-export type TagType = "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | "green" | "gray" | "cool-gray" | "warm-gray";
+export type TagType = "red" |
+	"magenta" |
+	"purple" |
+	"blue" |
+	"cyan" |
+	"teal" |
+	"green" |
+	"gray" |
+	"cool-gray" |
+	"warm-gray" |
+	"high-contrast" |
+	"outline";
 
 /**
  * Component that represents a tag for labelling/categorizing using keywords
@@ -22,9 +33,7 @@ export type TagType = "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | 
 })
 export class Tag {
 	/**
-	 * type of the tag determines the styling
-	 *
-	 * Reference `TagType` for v9 applications, and `TagTypeExperimental` for v10/v9 experimental mode applications
+	 * Type of the tag determines the styling
 	 */
 	@Input() type: TagType = "gray";
 

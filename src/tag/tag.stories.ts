@@ -33,6 +33,10 @@ storiesOf("Components|Tag", module)
 			<ibm-tag type="green">Green</ibm-tag>
 			<br><br>
 			<ibm-tag type="cool-gray">Cool-gray</ibm-tag>
+			<br><br>
+			<ibm-tag type="high-contrast">High contrast</ibm-tag>
+			<br><br>
+			<ibm-tag type="outline">Outline</ibm-tag>
 		`
 	}))
 	.add("Filter", () => ({
