@@ -11,9 +11,8 @@ import { IconModule } from "../icon/index";
 @Component({
 	template: `
 		<ibm-structured-list
-			border="true"
+			flushed="true"
 			[condensed]="condensed"
-			nowrap="false"
 			selection="true"
 			[(ngModel)]="valueSelected"
 			(selected)="onSelected()">
@@ -64,11 +63,11 @@ describe("StructuredList", () => {
 		expect(fixture.componentInstance instanceof StructuredList).toBe(true);
 	});
 
-	it("should set cds--structured-list--border class", () => {
+	it("should set cds--structured-list--flushed class", () => {
 		fixture = TestBed.createComponent(StructuredListTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-structured-list"));
-		expect(element.nativeElement.querySelector(".cds--structured-list--border")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--structured-list--flush")).toBeTruthy();
 	});
 
 	it("should change valueSelected to row1 on click and emit selected event", () => {
@@ -83,12 +82,12 @@ describe("StructuredList", () => {
 		expect(wrapper.onSelected).toHaveBeenCalled();
 	});
 
-	it("should set cds--structured-list-content--nowrap class", () => {
+	it("should set cds--structured-list--condensed class", () => {
 		fixture = TestBed.createComponent(StructuredListTest);
-		fixture.detectChanges();
 		wrapper = fixture.componentInstance;
 		wrapper.condensed = true;
+		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-structured-list"));
-		expect(element.nativeElement.querySelector(".cds--structured-list-content--nowrap")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--structured-list--condensed")).toBeTruthy();
 	});
 });
