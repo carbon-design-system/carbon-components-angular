@@ -51,6 +51,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 	template: `
 		<ul
 			#list
+			[id]="listId"
 			role="listbox"
 			class="bx--list-box__menu bx--multi-select"
 			(scroll)="emitScroll($event)"
