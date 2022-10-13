@@ -20,6 +20,7 @@ import { Component, HostBinding, Input } from "@angular/core";
 export class ListColumn {
 	@Input() skeleton = false;
 
+	@HostBinding("attr.role") role = "cell";
 	@HostBinding("class.cds--structured-list-th") isHeaderColumn = true;
 	@HostBinding("class.cds--structured-list-td") isBodyColumn = true;
 	/**
