@@ -54,20 +54,20 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 @Component({
 	selector: "ibm-structured-list",
 	template: `
-		<section
+		<div
 			class="cds--structured-list"
+			role="table"
 			[ngClass]="{
-				'cds--structured-list--border': border,
+				'cds--structured-list--flush': flushed,
 				'cds--structured-list--selection': selection,
 				'cds--structured-list--condensed': condensed,
-				'cds--structured-list-content--nowrap': nowrap,
 				'cds--skeleton': skeleton
 			}">
 			<ng-content select="ibm-list-header"></ng-content>
-			<div class="cds--structured-list-tbody">
+			<div class="cds--structured-list-tbody" role="rowgroup">
 				<ng-content></ng-content>
 			</div>
-		</section>
+		</div>
 	`,
 	providers: [
 		{
@@ -87,17 +87,13 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	@Input() selection = false;
 	/**
-	 * Set to `true` to apply a border and white background.
+	 * Set to `true` to align content with margin
 	 */
-	@Input() border = false;
+	@Input() flushed = false;
 	/**
 	 * Set to `true` to apply a condensed style to the headers and rows.
 	 */
 	@Input() condensed = false;
-	/**
-	 * Set to `true` to apply `white-space: nowrap` on _all_ conent.
-	 */
-	@Input() nowrap = false;
 	/**
 	 * Used when `selection = true` as the row radio group `name`
 	 */
@@ -151,7 +147,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 		this.rows.forEach(row => {
 			setSelection(row);
 			row.name = this.name;
-			row.tabindex = this.selection ? "0" : "null";
+			row.tabindex = this.selection ? "0" : null;
 			row.change.subscribe(() => {
 				this.selected.emit({
 					value: row.value,
