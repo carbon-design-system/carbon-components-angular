@@ -10,6 +10,7 @@ import { Dialog } from "../dialog.component";
 	selector: "ibm-overflow-custom-menu-pane",
 	template: `
 		<div
+			[attr.id]="dialogConfig.compID"
 			[attr.aria-label]="dialogConfig.menuLabel"
 			[attr.data-floating-menu-direction]="placement ? placement : null"
 			[ngClass]="{'cds--overflow-menu--flip': dialogConfig.flip}"

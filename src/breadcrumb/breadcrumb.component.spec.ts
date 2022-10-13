@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
+import { I18nModule } from "../i18n/index";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
 
@@ -59,7 +60,10 @@ describe("Breadcrumb", () => {
 		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 
 		TestBed.configureTestingModule({
-			imports: [FormsModule],
+			imports: [
+				FormsModule,
+				I18nModule
+			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			declarations: [
 				Breadcrumb,

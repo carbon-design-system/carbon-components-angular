@@ -2,6 +2,9 @@ export default {
 	"BANNER": {
 		"CLOSE_BUTTON": "Close alert banner"
 	},
+	"BREADCRUMB": {
+		"LABEL": "Breadcrumb"
+	},
 	"CALENDAR": {
 		"MONTHS": {
 			"JANUARY": "January",
@@ -126,7 +129,8 @@ export default {
 		"OF_LAST_PAGES": "of {{last}} pages",
 		"OF_LAST_PAGE": "of {{last}} page",
 		"NEXT": "Next",
-		"PREVIOUS": "Previous"
+		"PREVIOUS": "Previous",
+		"SELECT_ARIA": "Select page number"
 	},
 	"PROGRESS_INDICATOR": {
 		"CURRENT": "Current",
