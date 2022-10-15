@@ -117,7 +117,7 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "1.4.2",
     "lodash-es": "4.17.21",
-    "ng-packagr": "4.7.1",
+    "ng-packagr": "14.2.1",
     "node-sass": "7.0.0",
     "rxjs": "6.4.0",
     "sass": "1.26.10",
