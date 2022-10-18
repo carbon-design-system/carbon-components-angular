@@ -1,5 +1,5 @@
 import {
-	AfterViewInit,
+	AfterContentChecked,
 	Component,
 	ElementRef,
 	HostBinding,
@@ -35,7 +35,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		</span>
 	`
 })
-export class Tooltip extends PopoverContainer implements AfterViewInit {
+export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	static tooltipCount = 0;
 
 	@HostBinding("class.cds--tooltip") tooltipClass = true;
@@ -99,11 +99,14 @@ export class Tooltip extends PopoverContainer implements AfterViewInit {
 		this.handleChange(false, event);
 	}
 
-	public isTemplate(value) {
+	isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 
-	ngAfterViewInit() {
+	/**
+	 * Check for any changes in the projected content & apply accessibility attribute if needed
+	 */
+	ngAfterContentChecked() {
 		if (this.wrapper) {
 			const buttonElement = this.wrapper.nativeElement.querySelector("button");
 			if (buttonElement && !buttonElement.getAttribute("aria-labelledby")) {
