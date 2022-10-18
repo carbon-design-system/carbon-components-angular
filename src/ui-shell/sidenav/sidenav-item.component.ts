@@ -99,7 +99,7 @@ export class SideNavItem implements OnChanges {
 
 	protected _href = "javascript:void(0)";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	ngOnChanges(changes) {
 		if (changes.active) {
