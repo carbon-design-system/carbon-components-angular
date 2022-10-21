@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { NotificationService } from "../../notification";
 import { FileItem } from "../";
 import * as fileType from "file-type";
 
@@ -16,21 +15,22 @@ import * as fileType from "file-type";
 			[skeleton]="skeleton"
 			[(files)]="files"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			drop="true"
 			[dropText]="dropText"
 			(filesChange)="onDropped($event)"
 			[disabled]="disabled">
 		</ibm-file-uploader>
-		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()">
+		<button
+			ibmButton
+			*ngIf="files && files.size > 0"
+			(click)="onUpload()"
+			style="margin-top:20px">
 			Upload
 		</button>
 	`
 })
 export class DragAndDropStory {
-	static notificationCount = 0;
-
-	@Input() notificationId = `notification-${DragAndDropStory.notificationCount++}`;
 	@Input() files = new Set<FileItem>();
 	@Input() title;
 	@Input() description;
@@ -38,10 +38,9 @@ export class DragAndDropStory {
 	@Input() multiple;
 	@Input() dropText = "Drag and drop files here of upload";
 	@Input() disabled = false;
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 
 	protected maxSize = 500000;
-
-	constructor(protected notificationService: NotificationService) { }
 
 	// This is an example of further filtration which can take place after
 	// preliminary filtration and is optional.

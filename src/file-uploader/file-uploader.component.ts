@@ -65,10 +65,11 @@ const noop = () => { };
 					[disabled]="disabled"/>
 				<div class="cds--file-container">
 					<ng-container *ngFor="let fileItem of files">
-						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
-						<div *ngIf="fileItem.invalid" class="cds--form-requirement">
-							{{fileItem.invalidText}}
-						</div>
+						<ibm-file
+							[fileItem]="fileItem"
+							(remove)="removeFile(fileItem)"
+							[size]="fileItemSize">
+						</ibm-file>
 					</ng-container>
 				</div>
 			</div>
@@ -128,7 +129,11 @@ export class FileUploader {
 	/**
 	 * Sets the size of the button.
 	 */
-	@Input() size: "sm" | "normal";
+	@Input() size: "sm" | "md" | "lg";
+	/**
+	 * Sets the size of the file items
+	 */
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 	/**
 	 * Set to `true` to enable drag and drop.
 	 */
@@ -138,7 +143,7 @@ export class FileUploader {
 	 */
 	@Input() dropText: string | TemplateRef<any>;
 	/**
-	 * Provides a unique id for the underlying <input> node
+	 * Provides a unique id for the underlying `<input>` node
 	 */
 	@Input() fileUploaderId = `file-uploader-${FileUploader.fileUploaderCount}`;
 	/**
