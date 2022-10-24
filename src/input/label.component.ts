@@ -35,6 +35,11 @@ import { TextArea } from "./text-area.directive";
 @Component({
 	selector: "ibm-label",
 	template: `
+		<div *ngIf="textArea; else label" class="cds--text-area__label-wrapper">
+			<ng-container *ngTemplateOutlet="label"></ng-container>
+			<div class="cds--label" *ngIf="showCounter && maxLength">{{currentLength}}/{{maxLength}}</div>
+		</div>
+		<ng-template #label>
 		<label
 			[for]="labelInputID"
 			[attr.aria-label]="ariaLabel"
@@ -45,6 +50,7 @@ import { TextArea } from "./text-area.directive";
 			}">
 			<ng-content></ng-content>
 		</label>
+		</ng-template>
 		<div
 			[class]="wrapperClass"
 			[ngClass]="{
@@ -138,10 +144,25 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Set the arialabel for label
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Max character counter for `textarea`
+	 * This value should also be passed to the `textarea` element via maxlength attribute
+	 */
+	@Input() maxLength: number;
+	/**
+	 * Label component acts as a wrapper, currentLength will be used as a numerator
+	 * to indicate the number of characters remaining.
+	 */
+	@Input() currentLength = 0;
+	/**
+	 * Shows character counter, only works when textarea is used.
+	 * **Note**: Toggling showCounter will cause data loss. You're responsible for keeping track of the input value.
+	 */
+	@Input() showCounter = false;
 
 	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
-	@ContentChild(TextArea) textArea: TextArea;
+	@ContentChild(TextArea, { read: ElementRef }) textArea: ElementRef;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
@@ -151,6 +172,8 @@ export class Label implements AfterContentInit, AfterViewInit {
 	ngAfterContentInit() {
 		if (this.textArea) {
 			this.wrapperClass = "cds--text-area__wrapper";
+			console.log(this.textArea);
+			console.log(this.currentLength);
 		}
 	}
 

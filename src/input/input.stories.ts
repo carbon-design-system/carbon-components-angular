@@ -1,5 +1,6 @@
 /* tslint:disable variable-name */
 
+import { FormsModule } from "@angular/forms";
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
 import { InputModule, Label } from "./";
@@ -8,9 +9,10 @@ export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule]
+			imports: [InputModule, FormsModule]
 		})
-	]
+	],
+	component: Label
 } as Meta;
 
 const Template: Story<Label> = (args) => ({
@@ -63,7 +65,9 @@ Basic.argTypes = {
 		defaultValue: "md",
 		contorl: "select"
 	},
-	component: Label
+	showCounter: {
+		control: false
+	}
 };
 
 const TextareaTemplate: Story<Label> = (args) => ({
@@ -73,16 +77,21 @@ const TextareaTemplate: Story<Label> = (args) => ({
 		[helperText]="helperText"
 		[invalid]="invalid"
 		[disabled]="disabled"
-		[invalidText]="invalidText">
+		[invalidText]="invalidText"
+		[showCounter]="showCounter"
+		[maxLength]="showCounter ? maxLength : null"
+		[currentLength]="textAreaValue.length">
 		{{label}}
 		<textarea
 			ibmTextArea
+			[attr.maxlength]="maxshowCounter ? maxLength : nullLength"
 			[placeholder]="placeholder"
 			[invalid]="invalid"
 			[disabled]="disabled"
 			[theme]="theme"
 			[rows]="rows"
 			[cols]="cols"
+			[(ngModel)]="textAreaValue"
 			aria-label="textarea"></textarea>
 		</ibm-label>
 	`
@@ -91,10 +100,16 @@ export const TextArea = TextareaTemplate.bind({});
 TextArea.args = {
 	...Basic.args,
 	cols: 50,
-	rows: 4
+	rows: 4,
+	maxLength: 500,
+	textAreaValue: ""
 };
 TextArea.argTypes = {
-	...Basic.argTypes
+	...Basic.argTypes,
+	showCounter: true,
+	textAreaValue: {
+		control: false
+	}
 };
 
 const SkeletonTemplate: Story<Label> = (args) => ({
