@@ -172,8 +172,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	ngAfterContentInit() {
 		if (this.textArea) {
 			this.wrapperClass = "cds--text-area__wrapper";
-			console.log(this.textArea);
-			console.log(this.currentLength);
 		}
 	}
 
