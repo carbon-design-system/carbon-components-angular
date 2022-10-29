@@ -44,7 +44,7 @@ jobs:
         angular-version: [7, 8, 9, 10, 11, 12, 13, 14]
         node-version: [14.x]
         exclude:
-          - angular-version: ${{ github.ref == 'refs/heads/next' && '7' || '8' || '9' || '10' || '11' }}
+          - angular-version: ${{ ${GITHUB_REF##*/} == "next" && "7" || "8" || "9" || "10" || "11" }}
 
     steps:
     - uses: actions/checkout@v2
