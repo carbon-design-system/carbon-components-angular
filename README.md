@@ -45,8 +45,8 @@ That's it! Now we can run `npm start` and start building out our application!
 
 ### Support
 
-- For general usage questions, or other discussions visit our [Github Discussions](https://github.com/IBM/carbon-components-angular/discussions)
-- For things that are broken or need enhancement, [open an issue](https://github.com/IBM/carbon-components-angular/issues/new)
+- For general usage questions, or other discussions visit our [Github Discussions](https://github.com/carbon-design-system/carbon-components-angular/discussions)
+- For things that are broken or need enhancement, [open an issue](https://github.com/carbon-design-system/carbon-components-angular/issues/new)
 - For quick usage questions:
   - Join the [Carbon Design System Discord](https://discord.gg/Wys7J95Mhw)!
   - IBMers should use our #carbon-ng Slack channel
@@ -82,7 +82,7 @@ How to read this table:
 ### Contributing
 
 #### IBMers contributing
-**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/IBM/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
+**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/carbon-design-system/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
 
 #### Quickstart
 - fork IBM/carbon-components-angular and clone it locally
@@ -134,8 +134,8 @@ To keep our build dependencies local we use npm scripts to run our webpack, gulp
 - `npm test` to run tests
 
 ### Resources
- - [Style guide (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Style-guide)
- - [General component API guidelines (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines)
+ - [Style guide (WIP)](https://github.com/carbon-design-system/carbon-components-angular/wiki/Style-guide)
+ - [General component API guidelines (WIP)](https://github.com/carbon-design-system/carbon-components-angular/wiki/Component-API-guidelines)
  - [Angular style guide](https://angular.io/styleguide)
  - I18N tooling
 	- [I18N guide](https://angular.io/guide/i18n)
