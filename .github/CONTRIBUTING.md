@@ -57,7 +57,7 @@ If you want to help improve the docs, it's a good idea to let others know what y
 3. Once cloned, you will see `origin` as your default remote, pointing to your personal forked repository. Add a remote named `upstream` pointing to the main `carbon-components-angular`:
 
    ```
-   $ git remote add upstream git@github.com:IBM/carbon-components-angular.git
+   $ git remote add upstream git@github.com:carbon-design-system/carbon-components-angular.git
    $ git remote -v
    ```
 
