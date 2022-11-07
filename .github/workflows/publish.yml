@@ -45,6 +45,6 @@ jobs:
       - name: Serve storybook
         if: github.ref_name == 'master'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.CARBON_BOT_TOKEN }}
         run: ./scripts/deploy.sh
         shell: bash
