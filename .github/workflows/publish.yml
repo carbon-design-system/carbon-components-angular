@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  # Runs on pushes targeting release branches
+  push:
+    branches: ["master", "next", "v3", "v9"]
+
+  # Allows us to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Single deploy job since we're just deploying
+  publish:
+    environment:
+      name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout to branch
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Set up node to use v14
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
+
+      - name: Install packages
+        run: npm i
+
+      # Build CCA package
+      - name: Build package
+        run: npm run build
+
+      # Run Semantic release to publish package to NPM
+      - name: Publish package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npm run semantic-release
+
+      # Push storybook build to gh-pages branch if pushed to `master` branch
+      - name: Serve storybook
+        if: github.ref_name == 'master'
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: ./scripts/deploy.sh
+        shell: bash
