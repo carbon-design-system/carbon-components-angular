@@ -16,7 +16,7 @@ jobs:
         uses: cla-assistant/github-action@v2.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.DCO_PERSONAL_ACCESS_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.CARBON_BOT_DCO }}
         with:
           path-to-signatures: 'dco-signatures.json'
           path-to-document: 'https://github.com/carbon-design-system/carbon-dco/blob/main/dco.md'
