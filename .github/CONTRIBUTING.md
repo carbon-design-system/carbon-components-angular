@@ -10,6 +10,7 @@ Want to contribute to this repository? Please read below first:
 * [Coding Standards](#coding-standards)
 * [Commit Message Guidelines](#commit-message-guidlines)
 * [Testing](#testing)
+* [Legal](#legal)
 
 ## IBMers Contributing
 
@@ -90,7 +91,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
 6. Commit your changes using a descriptive commit message.
 
    ```
-   $ git commit -a -m "chore: Update header with newest designs, resolves #123"
+   $ git commit -a -m -s "chore: Update header with newest designs, resolves #123"
    ```
 
    **Note:** the optional commit -a command line option will automatically "add" and "rm" edited files. See [Close a commit via commit message](https://help.github.com/articles/closing-issues-via-commit-messages/) and [writing good commit messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages) for more details on commit messages.
@@ -158,3 +159,38 @@ Test your changes by running our test commands:
   ```
   npm run test:watch
   ```
+
+## Legal
+
+Each source file must include a license header for the Apache
+Software License 2.0. Using the SPDX format is the simplest approach.
+For example:
+
+```javascript
+/*
+Copyright <holder> All Rights Reserved.
+SPDX-License-Identifier: Apache-2.0
+*/
+```
+
+We have tried to make it as easy as possible to make contributions. This
+applies to how we handle the legal aspects of contribution. We use the
+same approach - the [Developer's Certificate of Origin 1.1 (DCO)][DCO] - that the Linux® Kernel [community](https://elinux.org/Developer_Certificate_Of_Origin)
+uses to manage code contributions.
+
+We simply ask that when submitting a patch for review, the developer
+must include a sign-off statement in the commit message.
+
+Here is an example Signed-off-by line, which indicates that the
+submitter accepts the DCO:
+
+```text
+Signed-off-by: John Doe <john.doe@example.com>
+```
+
+You can include this automatically when you commit a change to your
+local git repository using the following command:
+
+```bash
+git commit -s
+```
