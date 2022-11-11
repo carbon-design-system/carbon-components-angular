@@ -2,9 +2,9 @@ name: Check build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, next ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, next ]
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
 
     strategy:
       matrix:
-        angular-version: [7, 8, 9, 10, 11, 12, 13, 14]
+        angular-version: [12, 13, 14]
         node-version: [14.x]
 
     steps:
