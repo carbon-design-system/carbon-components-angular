@@ -13,7 +13,7 @@ import { FileItem } from "./file-item.interface";
 @Component({
 	selector: "ibm-file",
 	template: `
-		<p class="cds--file-filename">{{fileItem.file.name}}</p>
+		<p class="cds--file-filename" [title]="fileItem.file.name">{{fileItem.file.name}}</p>
 		<span
 			*ngIf="fileItem.state === 'edit'"
 			class="cds--file__state-container">
@@ -47,6 +47,10 @@ import { FileItem } from "./file-item.interface";
 				[ariaLabel]="translations.CHECKMARK">
 			</svg>
 		</span>
+		<div class="cds--form-requirement" *ngIf="fileItem.invalid">
+			<div class="cds--form-requirement__title">{{fileItem.invalidTitle}}</div>
+			<p class="cds--form-requirement__supplement">{{fileItem.invalidText}}</p>
+		</div>
 	`
 })
 export class FileComponent implements OnDestroy {
@@ -59,6 +63,8 @@ export class FileComponent implements OnDestroy {
 	 */
 	@Input() fileItem: FileItem;
 
+	@Input() size: "sm" | "md" | "lg" = "lg";
+
 	@Output() remove = new EventEmitter();
 
 	@HostBinding("class.cds--file__selected-file") selectedFile = true;
@@ -67,6 +73,17 @@ export class FileComponent implements OnDestroy {
 		return this.fileItem.invalidText;
 	}
 
+	@HostBinding("class.cds--file__selected-file--sm") get fileSizeSmall() {
+		return this.size === "sm";
+	}
+
+	@HostBinding("class.cds--file__selected-file--md") get fileSizeMedium() {
+		return this.size === "md";
+	}
+
+	@HostBinding("class.cds--file__selected-file--lg") get fileSizeLarge() {
+		return this.size === "lg";
+	}
 	constructor(protected i18n: I18n) {}
 
 	ngOnDestroy() {

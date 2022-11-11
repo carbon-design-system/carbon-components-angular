@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { NotificationService } from "../../notification";
 
 import { FileItem } from "../";
 
@@ -16,18 +15,15 @@ import { FileItem } from "../";
 			[skeleton]="skeleton"
 			[(files)]="files"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</ibm-file-uploader>
-		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()">
+		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()" style="margin-top:20px">
 			Upload
 		</button>
 	`
 })
 export class FileUploaderStory {
-	static notificationCount = 0;
-
-	@Input() notificationId = `notification-${FileUploaderStory.notificationCount++}`;
 	@Input() files = new Set<FileItem>();
 	@Input() title;
 	@Input() description;
@@ -36,12 +32,11 @@ export class FileUploaderStory {
 	@Input() accept = [".jpg", ".png"];
 	@Input() multiple;
 	@Input() skeleton = false;
-	@Input() size = "normal";
+	@Input() size = "md";
 	@Input() disabled = false;
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 
 	protected maxSize = 500000;
-
-	constructor(protected notificationService: NotificationService) { }
 
 	onUpload() {
 		this.files.forEach(fileItem => {
@@ -60,7 +55,8 @@ export class FileUploaderStory {
 					setTimeout(() => {
 						fileItem.state = "edit";
 						fileItem.invalid = true;
-						fileItem.invalidText = "File size exceeds limit";
+						fileItem.invalidTitle = "File size exceeds limit";
+						fileItem.invalidText = "500kb max file size. Select a new file and try again.";
 					}, 1500);
 				}
 			}
