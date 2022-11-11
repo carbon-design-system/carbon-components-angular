@@ -43,6 +43,13 @@ export class TableModel implements PaginationModel {
 			newData = [[]];
 		}
 
+		// add origin sort for newData
+		newData.forEach((rowItem, idx) => {
+			rowItem.forEach(colItem => {
+				colItem.originIdx = idx;
+			});
+		});
+
 		this._data = newData;
 
 		// init rowsSelected
@@ -544,6 +551,16 @@ export class TableModel implements PaginationModel {
 		this.popRowStateFromModelData();
 		this.header.forEach(column => column.sorted = false);
 		this.header[index].sorted = true;
+	}
+
+	/**
+   * reset the original sort
+   */
+	resetSort() {
+		this.pushRowStateToModelData();
+		this.data.sort((a, b) => a[0].originIdx - b[0].originIdx);
+		this.popRowStateFromModelData();
+		this.header.forEach(column => (column.sorted = false));
 	}
 
 	/**

@@ -837,13 +837,19 @@ export class Table implements AfterViewInit, OnDestroy {
 	}
 
 	doSort(index: number) {
+		const currentHeader = this.model.header[index];
 		if (this.sort.observers.length === 0) {
 			// no sort provided so do the simple sort
-			if (this.model.header[index].sorted) {
-				// if already sorted flip sorting direction
-				this.model.header[index].ascending = this.model.header[index].descending;
+			if (!currentHeader.sorted) {
+				currentHeader.ascending = true;
+				this.model.sort(index);
+			} else if (currentHeader.sorted && currentHeader.ascending) {
+				currentHeader.ascending = false;
+				currentHeader.descending = true;
+				this.model.sort(index);
+			} else {
+				this.model.resetSort();
 			}
-			this.model.sort(index);
 		}
 
 		this.sort.emit(index);
