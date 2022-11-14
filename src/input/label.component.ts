@@ -40,16 +40,16 @@ import { TextArea } from "./text-area.directive";
 			<div class="cds--label" *ngIf="showCounter && maxLength">{{currentLength}}/{{maxLength}}</div>
 		</div>
 		<ng-template #label>
-		<label
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="cds--label"
-			[ngClass]="{
-				'cds--skeleton': skeleton,
-				'cds--label--disabled': disabled && !skeleton
-			}">
-			<ng-content></ng-content>
-		</label>
+			<label
+				[for]="labelInputID"
+				[attr.aria-label]="ariaLabel"
+				class="cds--label"
+				[ngClass]="{
+					'cds--skeleton': skeleton,
+					'cds--label--disabled': disabled && !skeleton
+				}">
+				<ng-content></ng-content>
+			</label>
 		</ng-template>
 		<div
 			[class]="wrapperClass"
