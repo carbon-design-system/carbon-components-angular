@@ -16,19 +16,14 @@ import { TextArea } from "./text-area.directive";
  * [See demo](../../?path=/story/components-input--label)
  *
  * ```html
- * <ibm-label labelState="success">
- * 	<label label>Field with success</label>
- * 	<input type="text" class="input-field">
+ * <ibm-label>
+ * 	Text input
+ * 	<input type="text" ibmText>
  * </ibm-label>
  *
- * <ibm-label labelState="warning">
- * 	<label label>Field with warning</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- *
- * <ibm-label labelState="error">
- * 	<label label>Field with error</label>
- * 	<input type="text" class="input-field">
+ * <ibm-label>
+ * 	Textarea
+ * 	<textarea ibmTextArea></textarea>
  * </ibm-label>
  * ```
  */
@@ -112,10 +107,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Set to `true` for disabled state.
 	 */
 	@Input() disabled = false;
-	/**
-	 * State of the `Label` will determine the styles applied.
-	 */
-	@Input() labelState: "success" | "warning" | "error" | "" = "";
 	/**
 	 * Set to `true` for a loading label.
 	 */
