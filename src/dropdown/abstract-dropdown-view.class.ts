@@ -45,6 +45,7 @@ export class AbstractDropdownView {
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
 	 */
 	public size: "sm" | "md" | "lg" = "md";
+	public listId?: string;
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
