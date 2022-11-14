@@ -84,7 +84,7 @@ const TextareaTemplate: Story<Label> = (args) => ({
 		{{label}}
 		<textarea
 			ibmTextArea
-			[attr.maxlength]="maxshowCounter ? maxLength : nullLength"
+			[attr.maxlength]="showCounter ? maxLength : null"
 			[placeholder]="placeholder"
 			[invalid]="invalid"
 			[disabled]="disabled"
@@ -108,6 +108,9 @@ TextArea.argTypes = {
 	...Basic.argTypes,
 	showCounter: true,
 	textAreaValue: {
+		control: false
+	},
+	currentLength: {
 		control: false
 	}
 };
