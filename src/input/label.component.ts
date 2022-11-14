@@ -153,7 +153,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
-	@ContentChild(TextArea, { read: ElementRef }) textArea: ElementRef;
+	@ContentChild(TextArea) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
