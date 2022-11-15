@@ -17,7 +17,7 @@ storiesOf("Components|Content Switcher", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-content-switcher (selected)="selected($event)" [theme]="theme">
+			<ibm-content-switcher (selected)="selected($event)" [theme]="theme" [size]="size">
 				<button ibmContentOption name="First">First section</button>
 				<button ibmContentOption name="Second">Second section</button>
 				<button ibmContentOption name="Third">Third section</button>
@@ -25,7 +25,8 @@ storiesOf("Components|Content Switcher", module)
 		`,
 		props: {
 			selected: action("selection changed"),
-			theme: select("theme", ["dark", "light"], "dark")
+			theme: select("theme", ["dark", "light"], "dark"),
+			size: select("size", ["sm", "md", "lg"], "md")
 		}
 	}))
 	.add("Documentation", () => ({
