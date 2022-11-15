@@ -841,7 +841,13 @@ export class Table implements AfterViewInit, OnDestroy {
 		if (this.sort.observers.length === 0) {
 			// no sort provided so do the simple sort
 			if (!currentHeader.sorted) {
-				currentHeader.ascending = true;
+			// add origin sort for newData
+			this.model.data.forEach((rowItem, idx) => {
+				rowItem.forEach(colItem => {
+					colItem.originIdx = idx;
+				});
+			});
+			currentHeader.ascending = true;
 				this.model.sort(index);
 			} else if (currentHeader.sorted && currentHeader.ascending) {
 				currentHeader.ascending = false;

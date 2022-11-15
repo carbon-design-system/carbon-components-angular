@@ -105,7 +105,11 @@ export class TableItem {
 	 * The number of columns to span
 	 */
 	colSpan = 1;
-	originIdx: number;
+
+	/**
+	 * The original index of data
+	 */
+	originIdx?: number;
 
 	get title() {
 		if (typeof this._title === "string") {
