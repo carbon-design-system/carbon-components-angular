@@ -83,6 +83,11 @@ export class TimePicker implements ControlValueAccessor {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+	/**
+	 * Ensures component is properly styled when used standalone.
+	 */
+	@HostBinding("class.bx--form-item") timepickerClass = true;
+
 	writeValue(value: string) {
 		this.value = value;
 	}
