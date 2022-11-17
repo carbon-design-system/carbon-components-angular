@@ -22,7 +22,9 @@ export default {
 				"cyan",
 				"teal",
 				"green",
-				"cool-gray"
+				"cool-gray",
+				"high-contrast",
+				"outline"
 			],
 			defaultValue: "red",
 			control: "select"
@@ -34,7 +36,7 @@ export default {
 const Template: Story<Tag> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tag [type]="type">Tag</ibm-tag>
+		<ibm-tag [type]="type" [size]="size">Tag</ibm-tag>
 	`
 });
 export const Basic = Template.bind({});
@@ -44,6 +46,7 @@ const FilteredTemplate: Story<Tag> = (args) => ({
 	template: `
 		<ibm-tag-filter
 			[type]="type"
+			[size]="size"
 			title="Filter"
 			closeButtonLabel="Clear">
 			filter

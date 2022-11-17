@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { NotificationService } from "../../notification";
 
 import { FileItem } from "../";
 
@@ -14,33 +13,33 @@ import { FileItem } from "../";
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			[(ngModel)]="model"
 			[disabled]="disabled">
 		</ibm-file-uploader>
-		<br><div [id]="notificationId" style="width: 300px"></div>
-		<button ibmButton *ngIf="model && model.size > 0" (click)="onUpload()">
+		<button
+			ibmButton
+			*ngIf="model && model.size > 0"
+			(click)="onUpload()"
+			style="margin-top:20px">
 			Upload
 		</button>
 		<button ibmButton (click)="removeFiles()">Remove all</button>
 	`
 })
 export class NgModelFileUploaderStory {
-	static notificationCount = 0;
-
-	@Input() notificationId = `notification-${NgModelFileUploaderStory.notificationCount++}`;
 	@Input() title;
 	@Input() description;
 	@Input() buttonText;
 	@Input() buttonType = "primary";
 	@Input() accept;
 	@Input() multiple;
-	@Input() size = "normal";
+	@Input() size = "md";
 	@Input() disabled = false;
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 
 	protected model = new Set<FileItem>();
 	protected maxSize = 500000;
-
-	constructor(protected notificationService: NotificationService) {}
 
 	removeFiles() {
 		this.model = new Set();
@@ -63,7 +62,8 @@ export class NgModelFileUploaderStory {
 					setTimeout(() => {
 						fileItem.state = "edit";
 						fileItem.invalid = true;
-						fileItem.invalidText = "File size exceeds limit";
+						fileItem.invalidTitle = "File size exceeds limit";
+						fileItem.invalidText = "500kb max file size. Select a new file and try again.";
 					}, 1500);
 				}
 			}

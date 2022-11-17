@@ -48,7 +48,9 @@ export class TagFilter extends Tag {
 
 	onClick(event: any) {
 		event.stopImmediatePropagation();
-		this.click.emit({ action: "click" });
+		if (!this.disabled) {
+			this.click.emit({ action: "click" });
+		}
 	}
 
 	onClose(event: any) {
@@ -58,7 +60,7 @@ export class TagFilter extends Tag {
 	}
 
 	@HostBinding("attr.class") get attrClass() {
-		return `cds--tag cds--tag--filter cds--tag--${this.type} ${this.class}`;
+		return `cds--tag cds--tag--filter cds--tag--${this.type} cds--tag--${this.size} ${this.class}${this.disabled ? " cds--tag--disabled" : ""}`;
 	}
 
 	@HostBinding("attr.aria-label") get attrAriaLabel() {

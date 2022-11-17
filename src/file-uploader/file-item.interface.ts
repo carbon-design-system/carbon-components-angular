@@ -3,5 +3,6 @@ export interface FileItem {
 	state: "edit" | "upload" | "complete";
 	uploaded: boolean;
 	invalid?: boolean;
+	invalidTitle?: string;
 	invalidText?: string;
 }

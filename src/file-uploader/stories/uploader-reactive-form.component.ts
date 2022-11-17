@@ -25,21 +25,23 @@ import {
 				[multiple]="multiple"
 				[skeleton]="skeleton"
 				[size]="size"
+				[fileItemSize]="fileItemSize"
 				[disabled]="disabled"
 				formControlName="files">
 			</ibm-file-uploader>
-			<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-			<button ibmButton *ngIf="formGroup.get('files').value && formGroup.get('files').value.size > 0" type="submit">
+			<button
+				ibmButton
+				*ngIf="formGroup.get('files').value && formGroup.get('files').value.size > 0"
+				type="submit"
+				style="margin-top: 20px">
 				Upload
 			</button>
 		</form>
 	`
 })
 export class ReactiveFormsStory implements OnInit {
-	static notificationCount = 0;
 	public formGroup: FormGroup;
 
-	@Input() notificationId = `notification-${ReactiveFormsStory.notificationCount++}`;
 	@Input() title;
 	@Input() description;
 	@Input() buttonText;
@@ -47,15 +49,13 @@ export class ReactiveFormsStory implements OnInit {
 	@Input() accept = [".jpg", ".png"];
 	@Input() multiple;
 	@Input() skeleton = false;
-	@Input() size = "normal";
+	@Input() size = "md";
 	@Input() disabled = false;
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 
 	protected maxSize = 500000;
 
-	constructor(
-		protected notificationService: NotificationService,
-		protected formBuilder: FormBuilder
-	) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
@@ -79,7 +79,8 @@ export class ReactiveFormsStory implements OnInit {
 					setTimeout(() => {
 						fileItem.state = "edit";
 						fileItem.invalid = true;
-						fileItem.invalidText = "File size exceeds limit";
+						fileItem.invalidTitle = "File size exceeds limit";
+						fileItem.invalidText = "500kb max file size. Select a new file and try again.";
 					}, 1500);
 				}
 			}

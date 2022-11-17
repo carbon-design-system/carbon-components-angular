@@ -43,12 +43,17 @@ export default {
 		size: {
 			options: ["sm", "md", "lg"],
 			defaultValue: "md",
-			control: "select"
+			control: "radio"
 		},
 		buttonType: {
 			options: ["primary", "secondary", "tertiary", "ghost", "danger"],
 			defaultValue: "primary",
 			control: "select"
+		},
+		fileItemSize: {
+			options: ["sm", "md", "lg"],
+			defaultValue: "lg",
+			control: "radio"
 		}
 	},
 	component: FileUploader
@@ -70,6 +75,7 @@ const Template: Story<FileUploader> = (args) => ({
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</app-file-uploader>
 	`
@@ -91,6 +97,7 @@ const DragAndDropTemplate: Story<FileUploader> = (args) => ({
 			[multiple]="multiple"
 			[dropText]="dropText"
 			drop="true"
+			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</app-drop-file-uploader>
 	`
@@ -99,6 +106,14 @@ export const DragAndDrop = DragAndDropTemplate.bind({});
 DragAndDrop.args = {
 	dropText: "Drag and drop files here or upload",
 	accept: [".png", "image/jpeg"]
+};
+DragAndDrop.argTypes = {
+	size: {
+		control: false
+	},
+	buttonType: {
+		control: false
+	}
 };
 
 const ModelTemplate: Story<FileUploader> = (args) => ({
@@ -117,6 +132,7 @@ const ModelTemplate: Story<FileUploader> = (args) => ({
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</app-ngmodel-file-uploader>
 	`
@@ -143,6 +159,7 @@ const ReactiveTemplate: Story<FileUploader> = (args) => ({
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
+			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</app-reactive-forms>
 	`
