@@ -132,6 +132,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		if (!modalContent) {
 			return false;
 		}
+
 		// get rounded value from height to match integer returned from scrollHeight
 		const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
 		const modalContentScrollHeight = modalContent.scrollHeight;
