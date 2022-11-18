@@ -179,20 +179,9 @@ storiesOf("Components|Date Picker", module)
 	}))
 	.add("Single", () => ({
 		template: `
-			<!--
-			[flatpickrOptions]="{
-				altInput: true,
-				altFormat: 'm/d/Y'
-			}"
-			-->
-
 			<p>With initial value</p>
 			<ibm-date-picker
 				[label]="label"
-				[flatpickrOptions]="{
-					altInput: true,
-					altFormat: 'm/d/Y'
-				}"
 				id="initial-value-datepicker"
 				[placeholder]="placeholder"
 				[language]="language"
