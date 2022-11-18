@@ -129,14 +129,13 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	get shouldShowScrollbar() {
 		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
-		if (modalContent) {
-			// get rounded value from height to match integer returned from scrollHeight
-			const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
-			const modalContentScrollHeight = modalContent.scrollHeight;
-			return modalContentScrollHeight > modalContentHeight;
-		} else {
+		if (!modalContent) {
 			return false;
 		}
+		// get rounded value from height to match integer returned from scrollHeight
+		const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
+		const modalContentScrollHeight = modalContent.scrollHeight;
+		return modalContentScrollHeight > modalContentHeight;
 	}
 	/**
 	 * Size of the modal to display.
