@@ -3,8 +3,8 @@
 	<p align="center">
 	An Angular implementation of the Carbon Design System
 		<br /><br />
-		<a href="https://travis-ci.com/IBM/carbon-components-angular">
-			<img src="https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master" />
+		<a href="https://github.com/carbon-design-system/carbon-components-angular/actions/workflows/publish.yml">
+			<img src="https://github.com/carbon-design-system/carbon-components-angular/actions/workflows/publish.yml/badge.svg" />
 		</a>
 		<a href="https://www.npmjs.com/package/carbon-components-angular">
 			<img src="https://img.shields.io/npm/v/carbon-components-angular.svg" />
@@ -45,8 +45,8 @@ That's it! Now we can run `npm start` and start building out our application!
 
 ### Support
 
-- For general usage questions, or other discussions visit our [Github Discussions](https://github.com/IBM/carbon-components-angular/discussions)
-- For things that are broken or need enhancement, [open an issue](https://github.com/IBM/carbon-components-angular/issues/new)
+- For general usage questions, or other discussions visit our [Github Discussions](https://github.com/carbon-design-system/carbon-components-angular/discussions)
+- For things that are broken or need enhancement, [open an issue](https://github.com/carbon-design-system/carbon-components-angular/issues/new)
 - For quick usage questions:
   - Join the [Carbon Design System Discord](https://discord.gg/Wys7J95Mhw)!
   - IBMers should use our #carbon-ng Slack channel
@@ -82,10 +82,10 @@ How to read this table:
 ### Contributing
 
 #### IBMers contributing
-**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/IBM/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
+**If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/carbon-design-system/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
 
 #### Quickstart
-- fork IBM/carbon-components-angular and clone it locally
+- fork carbon-design-system/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests and story under `src`
@@ -134,8 +134,8 @@ To keep our build dependencies local we use npm scripts to run our webpack, gulp
 - `npm test` to run tests
 
 ### Resources
- - [Style guide (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Style-guide)
- - [General component API guidelines (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines)
+ - [Style guide (WIP)](https://github.com/carbon-design-system/carbon-components-angular/wiki/Style-guide)
+ - [General component API guidelines (WIP)](https://github.com/carbon-design-system/carbon-components-angular/wiki/Component-API-guidelines)
  - [Angular style guide](https://angular.io/styleguide)
  - I18N tooling
 	- [I18N guide](https://angular.io/guide/i18n)

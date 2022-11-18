@@ -35,5 +35,5 @@ export const CarbonG100 = create({
 	inputBorderRadius: 0,
 
 	brandTitle: "carbon components angular",
-	brandUrl: "https://github.com/IBM/carbon-components-angular",
+	brandUrl: "https://github.com/carbon-design-system/carbon-components-angular",
 });

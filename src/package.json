@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:IBM/carbon-components-angular.git"
+    "url": "git@github.com:carbon-design-system/carbon-components-angular.git"
   },
   "scripts": {
     "postinstall": "carbon-telemetry collect --install"
