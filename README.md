@@ -3,8 +3,8 @@
 	<p align="center">
 	An Angular implementation of the Carbon Design System
 		<br /><br />
-		<a href="https://travis-ci.com/IBM/carbon-components-angular">
-			<img src="https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master" />
+		<a href="https://github.com/carbon-design-system/carbon-components-angular/actions/workflows/publish.yml">
+			<img src="https://github.com/carbon-design-system/carbon-components-angular/actions/workflows/publish.yml/badge.svg" />
 		</a>
 		<a href="https://www.npmjs.com/package/carbon-components-angular">
 			<img src="https://img.shields.io/npm/v/carbon-components-angular.svg" />
@@ -85,7 +85,7 @@ How to read this table:
 **If you are an IBMer**, you must complete the steps at [W3 Developer](https://w3.ibm.com/developer/docs/open-source/contributing/) before contributing to any open source projects. See our [contributing guidelines](https://github.com/carbon-design-system/carbon-components-angular/blob/master/.github/CONTRIBUTING.md) for more details.
 
 #### Quickstart
-- fork IBM/carbon-components-angular and clone it locally
+- fork carbon-design-system/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests and story under `src`
