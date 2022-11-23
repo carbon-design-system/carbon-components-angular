@@ -55,8 +55,8 @@ jobs:
       with:
         name: dist
     - run: |
-        npm ci
-        npm ci ./../../carbon-components-angular-0.0.0.tgz
+        npm i
+        npm i ./../../carbon-components-angular-0.0.0.tgz
         npm list
         npm run build -- --configuration production
       working-directory: integration/ng${{ matrix.angular-version }}
