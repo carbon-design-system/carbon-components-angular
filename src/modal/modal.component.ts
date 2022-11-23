@@ -9,12 +9,8 @@ import {
 	ElementRef,
 	ViewChild,
 	SimpleChanges,
-	OnChanges,
-	Renderer2,
-	Inject,
-	OnDestroy
+	OnChanges
 } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 
 /**
@@ -105,7 +101,15 @@ export class ModalDemo {
 		</ibm-overlay>
 	`
 })
-export class Modal implements AfterViewInit, OnChanges, OnDestroy {
+export class Modal implements AfterViewInit, OnChanges {
+	/**
+	 * Size of the modal to display.
+	 */
+	@Input() size: "xs" | "sm" | "lg";
+	/**
+	 * Classification of the modal.
+	 */
+	@Input() theme: "default" | "danger" = "default";
 
 	/**
 	 * Label for the modal.
@@ -119,33 +123,6 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	get modalLabel() {
 		return this.ariaLabel;
 	}
-
-	/**
-	 * This detects whether or not the modal contains scrolling content.
-	 *
-	 * To force trigger a detection (ie. on window resize), change or reset the value of the modal content.
-	 *
-	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
-	 */
-	get shouldShowScrollbar() {
-		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
-		if (!modalContent) {
-			return false;
-		}
-
-		// get rounded value from height to match integer returned from scrollHeight
-		const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
-		const modalContentScrollHeight = modalContent.scrollHeight;
-		return modalContentScrollHeight > modalContentHeight;
-	}
-	/**
-	 * Size of the modal to display.
-	 */
-	@Input() size: "xs" | "sm" | "lg";
-	/**
-	 * Classification of the modal.
-	 */
-	@Input() theme: "default" | "danger" = "default";
 
 	@Input() ariaLabel = "default";
 
@@ -189,11 +166,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Creates an instance of `Modal`.
 	 */
-	constructor(
-		public modalService: ModalService,
-		@Inject(DOCUMENT) private document: Document,
-		private renderer: Renderer2
-	) { }
+	constructor(public modalService: ModalService) {}
 
 	ngOnChanges({ open }: SimpleChanges) {
 		if (open) {
@@ -201,11 +174,6 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 				// `100` is just enough time to allow the modal
 				// to become visible, so that we can set focus
 				setTimeout(() => this.focusInitialElement(), 100);
-				// Prevent scrolling on open
-				this.renderer.addClass(this.document.body, "bx--body--with-modal-open");
-			} else if (!open.currentValue) {
-				// Enable scrolling on close
-				this.renderer.removeClass(this.document.body, "bx--body--with-modal-open");
 			} else if (this.trigger) {
 				this.trigger.focus();
 			}
@@ -239,9 +207,23 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		}
 	}
 
-	// Remove class preventing scrolling
-	ngOnDestroy() {
-		this.renderer.removeClass(this.document.body, "bx--body--with-modal-open");
+	/**
+	 * This detects whether or not the modal contains scrolling content.
+	 *
+	 * To force trigger a detection (ie. on window resize), change or reset the value of the modal content.
+	 *
+	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
+	 */
+	get shouldShowScrollbar() {
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
+		if (modalContent) {
+			// get rounded value from height to match integer returned from scrollHeight
+			const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
+			const modalContentScrollHeight = modalContent.scrollHeight;
+			return modalContentScrollHeight > modalContentHeight;
+		} else {
+			return false;
+		}
 	}
 
 	protected focusInitialElement() {
