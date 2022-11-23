@@ -57,5 +57,7 @@ jobs:
     - run: |
         npm i
         npm i ./../../carbon-components-angular-0.0.0.tgz
+        node -v
+        echo "node -v ${node -v}"
         npm run build -- --configuration production
       working-directory: integration/ng${{ matrix.angular-version }}
