@@ -54,7 +54,6 @@ import {
 		</div>
 	`
 })
-
 export class ProgressBar {
 	/**
 	 * Current value
