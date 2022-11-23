@@ -41,7 +41,7 @@ jobs:
 
     strategy:
       matrix:
-        angular-version: [7, 8, 9, 10, 11, 12, 13, 14]
+        angular-version: [7]
         node-version: [14.x]
 
     steps:
@@ -55,6 +55,7 @@ jobs:
       with:
         name: dist
     - run: |
+        npm i -g node-sass@4.13.1
         npm i
         npm i ./../../carbon-components-angular-0.0.0.tgz
         npm run build
