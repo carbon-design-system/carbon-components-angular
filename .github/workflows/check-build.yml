@@ -55,7 +55,6 @@ jobs:
       with:
         name: dist
     - run: |
-        npm i -g node-sass@4.13.1
         npm i
         npm i ./../../carbon-components-angular-0.0.0.tgz
         npm run build
