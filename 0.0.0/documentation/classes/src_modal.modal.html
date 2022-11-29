@@ -80,6 +80,7 @@
 				<ul class="tsd-hierarchy">
 					<li><span class="tsd-signature-type">AfterViewInit</span></li>
 					<li><span class="tsd-signature-type">OnChanges</span></li>
+					<li><span class="tsd-signature-type">OnDestroy</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -140,6 +141,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_modal.modal.html#close"
 									class="tsd-kind-icon">close</a>
 								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="src_modal.modal.html#document"
+									class="tsd-kind-icon">document</a>
+								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_modal.modal.html#hasscrollingcontent"
 									class="tsd-kind-icon">has<wbr>Scrolling<wbr>Content</a>
 								</li>
@@ -154,6 +158,9 @@
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_modal.modal.html#overlayselected"
 									class="tsd-kind-icon">overlay<wbr>Selected</a>
+								</li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="src_modal.modal.html#renderer"
+									class="tsd-kind-icon">renderer</a>
 								</li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="src_modal.modal.html#selectorprimaryfocus"
 									class="tsd-kind-icon">selector<wbr>Primary<wbr>Focus</a>
@@ -195,6 +202,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_modal.modal.html#ngonchanges"
 									class="tsd-kind-icon">ng<wbr>OnChanges</a>
 								</li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="src_modal.modal.html#ngondestroy"
+									class="tsd-kind-icon">ng<wbr>OnDestroy</a>
+								</li>
 							</ul>
 						</section>
 					</div>
@@ -206,19 +216,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Modal<span class="tsd-signature-symbol">(</span>modalService<span class="tsd-signature-symbol">: </span><a href="src_modal.modalservice.html" class="tsd-signature-type">ModalService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_modal.modal.html" class="tsd-signature-type">Modal</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Modal<span class="tsd-signature-symbol">(</span>modalService<span class="tsd-signature-symbol">: </span><a href="src_modal.modalservice.html" class="tsd-signature-type">ModalService</a>, document<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Document</span>, renderer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Renderer2</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="src_modal.modal.html" class="tsd-signature-type">Modal</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L187">src/modal/modal.component.ts:187</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>modalService: <a href="src_modal.modalservice.html" class="tsd-signature-type">ModalService</a></h5>
+								</li>
+								<li>
+									<h5>document: <span class="tsd-signature-type">Document</span></h5>
+								</li>
+								<li>
+									<h5>renderer: <span class="tsd-signature-type">Renderer2</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="src_modal.modal.html" class="tsd-signature-type">Modal</a></h4>
@@ -240,7 +256,7 @@
 					<div class="tsd-signature tsd-kind-icon">aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;default&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L127">src/modal/modal.component.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L150">src/modal/modal.component.ts:150</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -256,7 +272,23 @@
 					<div class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L154">src/modal/modal.component.ts:154</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L177">src/modal/modal.component.ts:177</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="document" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> document</h3>
+					<div class="tsd-signature" style="border-bottom: none; margin-bottom: 0; padding-left: 20px;">
+						<span>
+							@Inject({&quot;token&quot;:&quot;DOCUMENT&quot;})
+						</span>
+						<br />
+					</div>
+					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Document</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L194">src/modal/modal.component.ts:194</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -272,7 +304,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Scrolling<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L145">src/modal/modal.component.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L168">src/modal/modal.component.ts:168</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -288,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">modal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L159">src/modal/modal.component.ts:159</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L182">src/modal/modal.component.ts:182</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -298,7 +330,7 @@
 					<div class="tsd-signature tsd-kind-icon">modal<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="src_modal.modalservice.html" class="tsd-signature-type">ModalService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L169">src/modal/modal.component.ts:169</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L193">src/modal/modal.component.ts:193</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -314,7 +346,7 @@
 					<div class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L132">src/modal/modal.component.ts:132</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L155">src/modal/modal.component.ts:155</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -330,7 +362,17 @@
 					<div class="tsd-signature tsd-kind-icon">overlay<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L150">src/modal/modal.component.ts:150</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L173">src/modal/modal.component.ts:173</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="renderer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> renderer</h3>
+					<div class="tsd-signature tsd-kind-icon">renderer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Renderer2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L195">src/modal/modal.component.ts:195</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -340,7 +382,7 @@
 					<div class="tsd-signature tsd-kind-icon">selector<wbr>Primary<wbr>Focus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;[modal-primary-focus]&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L164">src/modal/modal.component.ts:164</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L187">src/modal/modal.component.ts:187</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -356,7 +398,7 @@
 					<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"xs"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sm"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"lg"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L108">src/modal/modal.component.ts:108</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L144">src/modal/modal.component.ts:144</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -372,7 +414,7 @@
 					<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"danger"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;default&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L112">src/modal/modal.component.ts:112</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L148">src/modal/modal.component.ts:148</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -388,7 +430,7 @@
 					<div class="tsd-signature tsd-kind-icon">trigger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L137">src/modal/modal.component.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L160">src/modal/modal.component.ts:160</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -407,8 +449,8 @@
 					<div class="tsd-signature tsd-kind-icon">modal<wbr>Label<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L119">src/modal/modal.component.ts:119</a></li>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L123">src/modal/modal.component.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L115">src/modal/modal.component.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L119">src/modal/modal.component.ts:119</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -418,7 +460,7 @@
 					<div class="tsd-signature tsd-kind-icon">should<wbr>Show<wbr>Scrollbar<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L217">src/modal/modal.component.ts:217</a></li>
+							<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L130">src/modal/modal.component.ts:130</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -435,7 +477,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L229">src/modal/modal.component.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L247">src/modal/modal.component.ts:247</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -458,7 +500,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L194">src/modal/modal.component.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L226">src/modal/modal.component.ts:226</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -481,7 +523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L186">src/modal/modal.component.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L218">src/modal/modal.component.ts:218</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -498,7 +540,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/21f6737/src/modal/modal.component.ts#L171">src/modal/modal.component.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L198">src/modal/modal.component.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -512,6 +554,23 @@
 									</ul>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ngondestroy" class="tsd-anchor"></a>
+					<h3>ng<wbr>OnDestroy</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnDestroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/carbon-design-system/carbon-components-angular/blob/e3a98d8/src/modal/modal.component.ts#L243">src/modal/modal.component.ts:243</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -557,6 +616,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_modal.modal.html#close" class="tsd-kind-icon">close</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="src_modal.modal.html#document" class="tsd-kind-icon">document</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_modal.modal.html#hasscrollingcontent" class="tsd-kind-icon">has<wbr>Scrolling<wbr>Content</a>
 							</li>
@@ -571,6 +633,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_modal.modal.html#overlayselected" class="tsd-kind-icon">overlay<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="src_modal.modal.html#renderer" class="tsd-kind-icon">renderer</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="src_modal.modal.html#selectorprimaryfocus" class="tsd-kind-icon">selector<wbr>Primary<wbr>Focus</a>
@@ -601,6 +666,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="src_modal.modal.html#ngonchanges" class="tsd-kind-icon">ng<wbr>OnChanges</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="src_modal.modal.html#ngondestroy" class="tsd-kind-icon">ng<wbr>OnDestroy</a>
 							</li>
 						</ul>
 					</li>
