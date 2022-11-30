@@ -97,7 +97,7 @@ export class SideNavItem implements OnChanges {
 
 	@HostBinding("attr.role") role = "listitem";
 
-	protected _href = "javascript:void(0)";
+	protected _href = "#";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
@@ -112,6 +112,8 @@ export class SideNavItem implements OnChanges {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
+		} else if (this._href === "#") {
+			event.preventDefault();
 		}
 	}
 }

@@ -51,6 +51,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 	template: `
 		<ul
 			#list
+			[id]="listId"
 			role="listbox"
 			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"

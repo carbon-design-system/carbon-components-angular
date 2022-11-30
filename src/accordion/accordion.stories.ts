@@ -17,7 +17,7 @@ export default {
 const Template: Story<Accordion> = (args) => ({
 	props: args,
 	template: `
-		<ibm-accordion [align]="align">
+		<ibm-accordion [align]="align" [size]="size">
 			<ibm-accordion-item title="Section 1 title" (selected)="selected($event)">
 				Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
@@ -44,6 +44,10 @@ Basic.argTypes = {
 	align: {
 		options: ["start", "end"],
 		control: { type: "radio" }
+	},
+	size: {
+		options: ["sm", "md", "lg"],
+		control: {type: "radio" }
 	},
 	selected: { action: "Selected" }
 };

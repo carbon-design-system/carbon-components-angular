@@ -110,7 +110,7 @@ export interface PaginationTranslations {
 				<div
 					class="cds--select cds--select--inline cds--select__page-number"
 					[class.cds--select--disabled]="pageInputDisabled">
-					<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{itemsPerPageText.subject | async}}</label>
+					<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>
 					<input
 						*ngIf="pageOptions.length > pageSelectThreshold"
 						style="padding-right: 1rem; margin-right: 1rem;"

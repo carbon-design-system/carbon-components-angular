@@ -90,7 +90,7 @@ export class HeaderItem {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	protected _href = "javascript:void(0)";
+	protected _href = "#";
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
@@ -99,6 +99,8 @@ export class HeaderItem {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
+		} else if (this._href === "#") {
+			event.preventDefault();
 		}
 	}
 }

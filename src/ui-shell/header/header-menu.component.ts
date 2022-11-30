@@ -20,7 +20,8 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 			[href]="href"
 			tabindex="0"
 			aria-haspopup="menu"
-			[attr.aria-expanded]="expanded">
+			[attr.aria-expanded]="expanded"
+			(click)="navigate($event)">
 			{{title}}
 			<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
 			<ng-template #defaultIcon>
@@ -77,7 +78,7 @@ export class HeaderMenu {
 
 	public expanded = false;
 
-	protected _href = "javascript:void(0)";
+	protected _href = "#";
 
 	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
 
@@ -106,6 +107,12 @@ export class HeaderMenu {
 	onFocusOut(event) {
 		if (!this.elementRef.nativeElement.contains(event.relatedTarget)) {
 			this.expanded = false;
+		}
+	}
+
+	navigate(event) {
+		if (this._href === "#") {
+			event.preventDefault();
 		}
 	}
 }
