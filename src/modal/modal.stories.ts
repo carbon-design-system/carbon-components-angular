@@ -242,7 +242,7 @@ class AlertModalStory {
 
 const getOptions = (options = {}) => {
 	return Object.assign({}, {
-		size: select("size", [null, "xs", "sm", "lg"], null)
+		size: select("size", [null, "xs", "sm", "md", "lg"], null)
 	}, options);
 };
 
