@@ -1,4 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
+import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean } from "@storybook/addon-knobs/angular";
 
 import { ButtonModule } from "./button.module";
@@ -18,17 +19,17 @@ storiesOf("Components|Button", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
+			<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
+			<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>
 			&nbsp;
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">
+			<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive">
 				With icon<svg class="bx--btn__icon" ibmIcon="add" size="16"></svg>
 			</button>
 			<br><br>
 			<ibm-button-set>
-				<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
-				<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
+				<button ibmButton="secondary" (click)="click($event)" [size]="size" [isExpressive]="isExpressive">Button</button>
+				<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive">Button</button>
 			</ibm-button-set>
 		`,
 		props: {
@@ -37,7 +38,8 @@ storiesOf("Components|Button", module)
 				["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary", "danger--tertiary", "danger--ghost"],
 				"primary"),
 			isExpressive: boolean("Expressive button style", false),
-			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal")
+			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
+			click: action("button clicked!")
 		}
 	}))
 	.add("Icon only", () => ({
@@ -48,7 +50,8 @@ storiesOf("Components|Button", module)
 				[iconOnly]="true"
 				[hasAssistiveText]="true"
 				[assistiveTextPlacement]="assistiveTextPlacement"
-				[assistiveTextAlignment]="assistiveTextAlignment">
+				[assistiveTextAlignment]="assistiveTextAlignment"
+				(click)="click($event)">
 				<svg class="bx--btn__icon" ibmIcon="copy" size="16"></svg>
 				<span class="bx--assistive-text">Icon description</span>
 			</button>
@@ -60,7 +63,8 @@ storiesOf("Components|Button", module)
 				"tertiary"),
 			size: select("Size of the buttons", ["normal", "sm", "field", "lg", "xl"], "normal"),
 			assistiveTextPlacement: select("Placement of assistive text", ["top", "bottom", "left", "right"], "top"),
-			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center")
+			assistiveTextAlignment: select("Alignment of assistive text", ["center", "start", "end"], "center"),
+			click: action("button clicked!")
 		}
 	}))
 	.add("Skeleton", () => ({
