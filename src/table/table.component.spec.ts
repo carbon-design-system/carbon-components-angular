@@ -15,7 +15,7 @@ import { TableItem } from "./table-item.class";
 			(sort)="simpleSort()"
 			(selectRow)="onChange()"
 			(deselectRow)="onChange()"
-			size="sh"
+			size="md"
 			title="title"
 			[showSelectionColumn]="showSelectionColumn">
 		</ibm-table>`
@@ -110,8 +110,8 @@ describe("Table", () => {
 		expect(tableInstance.componentInstance.deselectRow.emit).toHaveBeenCalled();
 	});
 
-	it("should set the .cds--data-table--short class", () => {
-		expect(tableInstance.nativeElement.querySelector(".cds--data-table--short")).toBeTruthy();
+	it("should set the .cds--data-table--md class", () => {
+		expect(tableInstance.nativeElement.querySelector(".cds--data-table--md")).toBeTruthy();
 	});
 
 	it("should not show checkboxes when showSelectionColumn is false", () => {
