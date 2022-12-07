@@ -142,7 +142,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
-	@Input() size: "xs" | "sm" | "md" | "lg";
+	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 	/**
 	 * Classification of the modal.
 	 */

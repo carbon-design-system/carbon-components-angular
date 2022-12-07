@@ -119,7 +119,7 @@ class ModalStory {
 
 	@Input() modalText = "Hello, World";
 
-	@Input() size = "default";
+	@Input() size = "md";
 
 	@Input() showCloseButton = true;
 
@@ -186,7 +186,7 @@ class InputModal extends BaseModal {
 class DataPassingModal implements AfterContentInit {
 	@Input() modalText = "Hello, World";
 
-	@Input() size = "default";
+	@Input() size = "md";
 
 	protected modalInputValue = "";
 	protected data: Observable<string> = new Subject<string>();
@@ -242,7 +242,7 @@ class AlertModalStory {
 
 const getOptions = (options = {}) => {
 	return Object.assign({}, {
-		size: select("size", [null, "xs", "sm", "md", "lg"], null)
+		size: select("size", ["xs", "sm", "md", "lg"], "md")
 	}, options);
 };
 
@@ -359,7 +359,7 @@ storiesOf("Components|Modal", module)
 		`,
 		props: {
 			modalText: text("modalText", "Hello, World!"),
-			size: select("size", ["xs", "sm", "default", "lg"], "default")
+			size: select("size", ["xs", "sm", "md", "lg"], "md")
 		}
 	}))
 	.add("Simple modal", () => ({
