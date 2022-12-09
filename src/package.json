@@ -16,11 +16,11 @@
     "@carbon/styles": "^1.5.0"
   },
   "dependencies": {
-    "@carbon/icon-helpers": "10.30.0",
-    "@carbon/icons": "11.4.0",
+    "@carbon/icon-helpers": "10.34.0",
+    "@carbon/icons": "11.11.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
-    "flatpickr": "4.6.1",
+    "flatpickr": "4.6.13",
     "tslib": "2.3.0"
   }
 }
