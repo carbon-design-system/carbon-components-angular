@@ -45,6 +45,10 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@HostBinding("attr.tabindex") tabindex = -1;
 	@HostBinding("attr.aria-haspopup") ariaHasPopup = null;
 	@HostBinding("attr.aria-expanded") ariaExpanded = null;
+	@HostBinding("attr.aria-checked") get ariaChecked() {
+		return this.type === "checkbox" ?
+			(this.checked ? true : false) : null;
+	}
 
 	@Input() label = "";
 	@Input() info = "";

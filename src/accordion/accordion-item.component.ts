@@ -39,26 +39,25 @@ import {
 				<p class="cds--skeleton__text" style="width: 95%"></p>
 			</ng-template>
 		</div>
-	`
+	`,
+	styles: [`
+		:host {
+			display: list-item;
+		}
+	`]
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
 	@Input() title: string | TemplateRef<any>;
 	@Input() context: Object | null = null;
-	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
+	@Input() id = `accordion-item-${AccordionItem.accordionItemCount++}`;
 	@Input() skeleton = false;
 	@Output() selected = new EventEmitter();
 
 	@HostBinding("class.cds--accordion__item") itemClass = true;
 	@HostBinding("class.cds--accordion__item--active") @Input() expanded = false;
 	@HostBinding("class.cds--accordion__item--disabled") @Input() disabled = false;
-	@HostBinding("style.display") itemType = "list-item";
-	@HostBinding("attr.role") role = "heading";
-	@HostBinding("attr.aria-level") @Input() ariaLevel = 3;
-
-	constructor() {
-		AccordionItem.accordionItemCount++;
-	}
+	@HostBinding("attr.role") role = "listitem";
 
 	public toggleExpanded() {
 		if (!this.skeleton) {

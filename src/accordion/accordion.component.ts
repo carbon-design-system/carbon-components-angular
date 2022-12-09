@@ -13,16 +13,17 @@ import { AccordionItem } from "./accordion-item.component";
 @Component({
 	selector: "ibm-accordion",
 	template: `
-		<ul class="cds--accordion"
+		<div class="cds--accordion"
 			[ngClass]="{
 				'cds--accordion--end': align === 'end',
 				'cds--accordion--start': align === 'start',
 				'cds--accordion--sm': size === 'sm',
 				'cds--accordion--md': size ==='md',
 				'cds--accordion--lg': size === 'lg'
-			}">
+			}"
+			role="list">
 			<ng-content></ng-content>
-		</ul>
+		</div>
 	`
 })
 export class Accordion implements AfterContentInit {
