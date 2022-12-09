@@ -238,6 +238,12 @@ export class DatePicker implements
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+	/**
+	 * We are overriding onClose event even if users pass it via flatpickr options
+	 * Emits an event when date picker closes
+	 */
+	@Output() onClose: EventEmitter<any> = new EventEmitter();
+
 	protected _value = [];
 
 	protected _flatpickrOptions = {
@@ -253,7 +259,7 @@ export class DatePicker implements
 			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
-		onClose: () => {
+		onClose: (date) => {
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
@@ -272,6 +278,7 @@ export class DatePicker implements
 					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
+			this.onClose.emit(date);
 		},
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
 			dayElem.classList.add("bx--date-picker__day");
