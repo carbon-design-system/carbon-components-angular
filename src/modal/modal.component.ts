@@ -89,6 +89,7 @@ export class ModalDemo {
 				[ngClass]="{
 					'bx--modal-container--xs': size === 'xs',
 					'bx--modal-container--sm': size === 'sm',
+					'bx--modal-container--md': size === 'md',
 					'bx--modal-container--lg': size === 'lg'
 				}"
 				role="dialog"
@@ -141,7 +142,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
-	@Input() size: "xs" | "sm" | "lg";
+	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 	/**
 	 * Classification of the modal.
 	 */
