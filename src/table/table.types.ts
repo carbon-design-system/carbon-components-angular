@@ -6,4 +6,4 @@ export interface TableTranslations {
 	CHECKBOX_ROW: string;
 }
 
-export type TableRowSize = "sm" | "sh" | "md" | "lg";
+export type TableRowSize = "xs" | "sm" | "md" | "lg" | "xl";
