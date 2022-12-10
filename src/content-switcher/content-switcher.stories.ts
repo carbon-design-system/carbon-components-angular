@@ -17,7 +17,7 @@ storiesOf("Components|Content Switcher", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-content-switcher 
+			<ibm-content-switcher
 				(selected)="selected($event)"
 				[theme]="theme"
 				[size]="size">
