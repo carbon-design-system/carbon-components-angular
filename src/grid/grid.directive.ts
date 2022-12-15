@@ -37,7 +37,7 @@ export class RowDirective {
 @Directive({
 	selector: "[ibmCol]"
 })
-export class ColumnDirective implements OnInit {
+export class ColumnDirective implements OnInit, OnChanges {
 	@Input() class = "";
 
 	@Input() columnNumbers = {};
@@ -54,8 +54,8 @@ export class ColumnDirective implements OnInit {
 	set(classes: string) {
 		this._columnClasses = classes.split(" ");
 	}
-
-	ngOnInit() {
+	
+	setUp() {
 		try {
 			const columnKeys = Object.keys(this.columnNumbers);
 			if (columnKeys.length <= 0) {
@@ -81,4 +81,12 @@ export class ColumnDirective implements OnInit {
 			this._columnClasses.push(this.class);
 		}
 	}
+
+	ngOnInit() {
+		this.setUp();
+	}
+	
+	ngOnChanges(changes: SimpleChanges): void {
+    	this.setUp();
+  	}
 }
