@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input, OnInit } from "@angular/core";
+import { Directive, HostBinding, Input, OnInit, OnChanges, SimpleChanges } from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-grid--basic)
@@ -54,7 +54,7 @@ export class ColumnDirective implements OnInit, OnChanges {
 	set(classes: string) {
 		this._columnClasses = classes.split(" ");
 	}
-	
+
 	setUp() {
 		try {
 			const columnKeys = Object.keys(this.columnNumbers);
@@ -85,7 +85,7 @@ export class ColumnDirective implements OnInit, OnChanges {
 	ngOnInit() {
 		this.setUp();
 	}
-	
+
 	ngOnChanges(changes: SimpleChanges): void {
     	this.setUp();
   	}
