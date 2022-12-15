@@ -78,7 +78,7 @@ export class ColumnDirective implements OnInit, OnChanges {
 		}
 
 		if (this.class) {
-			this._columnClasses.push(this.class);
+			this._columnClasses = [...new Set([...this._columnClasses, ...this.class.split(" ")])];
 		}
 	}
 
