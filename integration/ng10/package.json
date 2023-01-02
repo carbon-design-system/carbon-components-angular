@@ -26,7 +26,7 @@
     "carbon-components-angular": "latest"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1002.0",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",
     "@types/node": "^12.11.1",
