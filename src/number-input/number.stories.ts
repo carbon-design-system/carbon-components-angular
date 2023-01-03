@@ -40,7 +40,7 @@ storiesOf("Components|Number", module).addDecorator(
 			max: number("max", 100),
 			step: number("step", 1),
 			precision: number("precision"),
-			invalid: boolean("Show form validation", false),
+			invalid: boolean("Show form validation (invalid)", false),
 			disabled: boolean("disabled", false)
 		}
 	}))
