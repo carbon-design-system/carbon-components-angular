@@ -66,6 +66,7 @@ export class NumberChange {
 					[disabled]="disabled"
 					[required]="required"
 					[attr.aria-label]="ariaLabel"
+					[attr.data-invalid]="invalid ? invalid : null"
 					(input)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
