@@ -43,7 +43,7 @@ export class TableModel implements PaginationModel {
 			newData = [[]];
 		}
 
-				this._data = newData;
+		this._data = newData;
 
 		// init rowsSelected
 		this.rowsSelected = new Array<boolean>(this._data.length).fill(false);
