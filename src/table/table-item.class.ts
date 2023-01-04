@@ -109,7 +109,7 @@ export class TableItem {
 	/**
 	 * The original index of data
 	 */
-	originIdx?: number;
+	index?: number;
 
 	get title() {
 		if (typeof this._title === "string") {
