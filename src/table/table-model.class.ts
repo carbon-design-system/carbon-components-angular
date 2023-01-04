@@ -557,7 +557,7 @@ export class TableModel implements PaginationModel {
 
 		this.data.forEach(item => {
 			item.forEach(subItem => {
-				delete subItem.originIdx;
+				delete subItem.index;
 			});
 		});
 	}
