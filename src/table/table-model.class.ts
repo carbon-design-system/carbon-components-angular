@@ -551,7 +551,7 @@ export class TableModel implements PaginationModel {
    */
 	resetSort() {
 		this.pushRowStateToModelData();
-		this.data.sort((a, b) => a[0].originIdx - b[0].originIdx);
+		this.data.sort((a, b) => a[0].index - b[0].index);
 		this.popRowStateFromModelData();
 		this.header.forEach(column => (column.sorted = false));
 
