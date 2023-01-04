@@ -57,7 +57,9 @@ describe("Breadcrumb", () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.resetTestEnvironment();
-		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
+			teardown: { destroyAfterEach: false }
+		});
 
 		TestBed.configureTestingModule({
 			imports: [
