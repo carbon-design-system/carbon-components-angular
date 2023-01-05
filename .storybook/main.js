@@ -32,20 +32,19 @@ module.exports = {
 	framework: "@storybook/angular",
 	core: {
 		builder: "webpack5",
-		disableTelemetry: true,
+		disableTelemetry: true
 	},
 	webpackFinal: async config => {
-		// Make whatever fine-grained changes you need that should apply to all storybook configs
 		config.module.rules.push({
 			test: [/\.stories\.ts$/, /index\.ts$/],
 			include: [path.resolve(__dirname, '../src')],
 			use: [
 				{
 					loader: require.resolve('@storybook/source-loader'),
-					options: { parser: 'typescript' },
+					options: { parser: 'typescript' }
 				},
 			],
-			enforce: 'pre',
+			enforce: 'pre'
 		});
 
 		return config;
