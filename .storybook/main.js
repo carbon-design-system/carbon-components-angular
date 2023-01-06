@@ -42,7 +42,7 @@ module.exports = {
 				{
 					loader: require.resolve('@storybook/source-loader'),
 					options: { parser: 'typescript' }
-				},
+				}
 			],
 			enforce: 'pre'
 		});
