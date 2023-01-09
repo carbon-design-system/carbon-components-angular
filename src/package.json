@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:IBM/carbon-components-angular.git"
+    "url": "git@github.com:carbon-design-system/carbon-components-angular.git"
   },
   "scripts": {
     "postinstall": "carbon-telemetry collect --install"
@@ -16,8 +16,8 @@
     "@carbon/styles": "^1.5.0"
   },
   "dependencies": {
-    "@carbon/icon-helpers": "10.34.0",
-    "@carbon/icons": "11.11.0",
+    "@carbon/icon-helpers": "10.37.0",
+    "@carbon/icons": "11.14.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
     "flatpickr": "4.6.13",

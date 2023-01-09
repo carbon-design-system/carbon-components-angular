@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import {
 	FormBuilder,
-	FormControl,
 	FormGroup
 } from "@angular/forms";
 
@@ -9,6 +8,9 @@ import {
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup">
+			<ibm-checkbox formControlName="disabledCheckbox">
+				Disabled checkbox in a reactive form
+			</ibm-checkbox>
 			<ibm-checkbox formControlName="checkbox">
 				Checkbox in a reactive form
 			</ibm-checkbox>
@@ -19,18 +21,20 @@ import {
 })
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
-	disabled = false;
 
 	constructor(protected formBuilder: FormBuilder) { }
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
-			checkbox: new FormControl()
+			disabledCheckbox: this.formBuilder.control({value: true, disabled: true}),
+			checkbox: this.formBuilder.control(false)
 		});
 	}
 
 	toggleDisable() {
 		const checkbox = this.formGroup.get("checkbox");
-		checkbox?.disabled ? checkbox.enable() : checkbox?.disable();
+		if (checkbox != null) {
+			checkbox.disabled ? checkbox.enable() : checkbox.disable();
+		}
 	}
 }

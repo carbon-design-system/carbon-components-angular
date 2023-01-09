@@ -240,7 +240,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
-		this.inputCheckbox.nativeElement.disabled = this.disabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	@HostListener("focusout")

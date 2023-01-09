@@ -177,7 +177,7 @@ export class IconService {
 	private iconCache: IconCache = new IconMemoryCache();
 
 	/**
-	 * Registers an array of icons based on the metadata provided by `@carbon/cions`
+	 * Registers an array of icons based on the metadata provided by `@carbon/icons`
 	 */
 	public registerAll(descriptors: object[]) {
 		descriptors.forEach(icon => this.register(icon));

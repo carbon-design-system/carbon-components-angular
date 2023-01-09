@@ -365,7 +365,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Converts a given px value to a "real" value in our range */
 	convertToValue(pxAmount) {
 		// basic concept borrowed from carbon-components
-		// ref: https://github.com/IBM/carbon-components/blob/43bf3abdc2f8bdaa38aa84e0f733adde1e1e8894/src/components/slider/slider.js#L147-L151
+		// https://github.com/carbon-design-system/carbon/blob/43bf3abdc2f8bdaa38aa84e0f733adde1e1e8894/src/components/slider/slider.js#L147-L151
 		const range = this.max - this.min;
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		const unrounded = pxAmount / trackWidth;

@@ -21,7 +21,6 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
-import { Subscription } from "rxjs";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { ElementService } from "carbon-components-angular/utils";
@@ -217,6 +216,12 @@ export class DatePicker implements
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+	/**
+	 * We are overriding onClose event even if users pass it via flatpickr options
+	 * Emits an event when date picker closes
+	 */
+	@Output() onClose: EventEmitter<any> = new EventEmitter();
+
 	protected _value = [];
 
 	protected _flatpickrOptions = {
@@ -232,7 +237,7 @@ export class DatePicker implements
 			this.updateAttributes();
 			this.updateCalendarListeners();
 		},
-		onClose: () => {
+		onClose: (date) => {
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
@@ -251,6 +256,7 @@ export class DatePicker implements
 					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
+			this.onClose.emit(date);
 		},
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
 			dayElem.classList.add("cds--date-picker__day");
@@ -262,11 +268,8 @@ export class DatePicker implements
 
 	protected flatpickrInstance = null;
 
-	protected visibilitySubscription = new Subscription();
-
 	constructor(
 		protected elementRef: ElementRef,
-		protected elementService: ElementService,
 		protected i18n: I18n
 	) { }
 
@@ -299,17 +302,6 @@ export class DatePicker implements
 	}
 
 	ngAfterViewInit() {
-		this.visibilitySubscription = this.elementService
-			.visibility(this.elementRef.nativeElement, this.elementRef.nativeElement)
-			.subscribe(value => {
-				if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
-					this.flatpickrInstance._positionCalendar(this.elementRef.nativeElement.querySelector(`#${this.id}-input`));
-					if (!value.visible) {
-						this.flatpickrInstance.close();
-					}
-				}
-			});
-
 		setTimeout(() => {
 			this.addInputListeners();
 		}, 0);
@@ -403,7 +395,6 @@ export class DatePicker implements
 	ngOnDestroy() {
 		if (!this.isFlatpickrLoaded()) { return; }
 		this.flatpickrInstance.destroy();
-		this.visibilitySubscription.unsubscribe();
 	}
 
 	/**
