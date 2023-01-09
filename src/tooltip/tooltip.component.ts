@@ -1,9 +1,12 @@
 import {
+	AfterContentChecked,
 	Component,
+	ElementRef,
 	HostBinding,
 	HostListener,
 	Input,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
 
@@ -13,16 +16,14 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 @Component({
 	selector: "ibm-tooltip",
 	template: `
-		<span
-			[attr.aria-labelledby]="this.isTemplate(this.description) ? id : null"
-			[attr.aria-describedby]="!this.isTemplate(this.description) ? id : null">
+		<span #contentWrapper>
 			<ng-content></ng-content>
 		</span>
 		<span
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="isOpen"
+			[attr.aria-hidden]="!isOpen"
 			role="tooltip">
 			<ng-container *ngIf="!disabled">
 				<span class="cds--popover-content cds--tooltip-content">
@@ -34,7 +35,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		</span>
 	`
 })
-export class Tooltip extends PopoverContainer {
+export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	static tooltipCount = 0;
 
 	@HostBinding("class.cds--tooltip") tooltipClass = true;
@@ -56,6 +57,8 @@ export class Tooltip extends PopoverContainer {
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
+
+	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
 	constructor() {
 		super();
@@ -96,7 +99,19 @@ export class Tooltip extends PopoverContainer {
 		this.handleChange(false, event);
 	}
 
-	public isTemplate(value) {
+	isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Check for any changes in the projected content & apply accessibility attribute if needed
+	 */
+	ngAfterContentChecked() {
+		if (this.wrapper) {
+			const buttonElement = this.wrapper.nativeElement.querySelector("button");
+			if (buttonElement && !buttonElement.getAttribute("aria-labelledby")) {
+				buttonElement.setAttribute("aria-labelledby", this.id);
+			}
+		}
 	}
 }
