@@ -251,10 +251,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 
 	onCopyButtonClicked() {
 		if (!this.disabled) {
-			/**
-			 * @todo Drop object key reference when we switch to angular 12
-			 */
-			window.navigator["clipboard"]
+			window.navigator.clipboard
 				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
 					this.showFeedback = true;
 					this.animating = true;

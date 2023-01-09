@@ -41,7 +41,7 @@ jobs:
 
     strategy:
       matrix:
-        angular-version: [12, 13, 14]
+        angular-version: [13, 14]
         node-version: [16.x]
 
     steps:

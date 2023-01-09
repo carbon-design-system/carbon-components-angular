@@ -29,18 +29,6 @@
 						"tsConfig": "./tsconfig.spec.json"
 					}
 				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"./tsconfig.json",
-							"./tsconfig.spec.json"
-						],
-						"exclude": [
-							"**/node_modules/**"
-						]
-					}
-				},
 				"storybook": {
 					"builder": "@storybook/angular:start-storybook",
 					"options": {
@@ -98,17 +86,6 @@
 					"options": {
 						"protractorConfig": "./protractor.conf.js",
 						"devServerTarget": "carbon-components-angular:serve"
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"e2e/tsconfig.e2e.json"
-						],
-						"exclude": [
-							"**/node_modules/**/*"
-						]
 					}
 				}
 			}
