@@ -80,8 +80,8 @@
     "@angular/platform-browser-dynamic": "13.3.12",
     "@angular/router": "13.3.12",
     "@babel/core": "7.9.6",
-    "@carbon/styles": "1.6.0",
-    "@carbon/themes": "11.0.1",
+    "@carbon/styles": "1.20.0",
+    "@carbon/themes": "11.15.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@compodoc/compodoc": "1.1.19",
@@ -133,8 +133,8 @@
     "zone.js": "0.11.4"
   },
   "dependencies": {
-    "@carbon/icon-helpers": "10.34.0",
-    "@carbon/icons": "11.11.0",
+    "@carbon/icon-helpers": "10.37.0",
+    "@carbon/icons": "11.14.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
     "flatpickr": "4.6.13",

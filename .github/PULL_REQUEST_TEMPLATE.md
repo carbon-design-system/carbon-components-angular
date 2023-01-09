@@ -1,4 +1,4 @@
-Closes IBM/carbon-components-angular#
+Closes carbon-design-system/carbon-components-angular#
 
 {{short description}}
 

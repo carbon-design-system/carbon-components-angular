@@ -8,8 +8,12 @@ import {
 	ElementRef,
 	ViewChild,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
+	Renderer2,
+	Inject,
+	OnDestroy
 } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { BaseModalService } from "./base-modal.service";
 
@@ -100,7 +104,7 @@ export class ModalDemo {
 		</ibm-overlay>
 	`
 })
-export class Modal implements AfterViewInit, OnChanges {
+export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -154,7 +158,11 @@ export class Modal implements AfterViewInit, OnChanges {
 	/**
 	 * Creates an instance of `Modal`.
 	 */
-	constructor(public modalService: BaseModalService) {}
+	constructor(
+		public modalService: BaseModalService,
+		@Inject(DOCUMENT) private document: Document,
+		private renderer: Renderer2
+	) { }
 
 	ngOnChanges({ open }: SimpleChanges) {
 		if (open) {
@@ -162,6 +170,11 @@ export class Modal implements AfterViewInit, OnChanges {
 				// `100` is just enough time to allow the modal
 				// to become visible, so that we can set focus
 				setTimeout(() => this.focusInitialElement(), 100);
+				// Prevent scrolling on open
+				this.renderer.addClass(this.document.body, "cds--body--with-modal-open");
+			} else if (!open.currentValue) {
+				// Enable scrolling on close
+				this.renderer.removeClass(this.document.body, "cds--body--with-modal-open");
 			} else if (this.trigger) {
 				this.trigger.focus();
 			}
@@ -212,6 +225,11 @@ export class Modal implements AfterViewInit, OnChanges {
 		} else {
 			return false;
 		}
+	}
+
+	// Remove class preventing scrolling
+	ngOnDestroy() {
+		this.renderer.removeClass(this.document.body, "cds--body--with-modal-open");
 	}
 
 	protected focusInitialElement() {
