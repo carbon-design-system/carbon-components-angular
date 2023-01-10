@@ -22,6 +22,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			<select
 				#select
 				[attr.id]="id"
+				[attr.aria-label]="ariaLabel"
 				[disabled]="disabled"
 				(change)="onChange($event)"
 				class="bx--select-input">
@@ -43,6 +44,8 @@ export class TimePickerSelect extends Select {
 	@HostBinding("class.bx--time-picker__select") timePickerSelect = true;
 
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
+
+	@Input() ariaLabel: string;
 
 	/**
 	 * Set to true for a loading select.

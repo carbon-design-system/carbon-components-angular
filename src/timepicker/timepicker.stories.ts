@@ -32,12 +32,21 @@ storiesOf("Components|Time Picker", module)
 			(valueChange)="timePickerChange($event)"
 			[value]="value"
 			[disabled]="disableTime"
+			[size]="size"
 			label="Select a time">
-			<ibm-timepicker-select [theme]="theme" (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
+			<ibm-timepicker-select
+				[theme]="theme"
+				(valueChange)="timePickerSelectChange($event)"
+				[disabled]="disabledSelect"
+				ariaLabel="Open list of options">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
 			</ibm-timepicker-select>
-			<ibm-timepicker-select [theme]="theme" (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
+			<ibm-timepicker-select
+				[theme]="theme"
+				(valueChange)="timePickerSelectChange($event)"
+				[disabled]="disabledSelect"
+				ariaLabel="Open list of options">
 				<option selected value="Time Zone 1">Time Zone 1</option>
 				<option value="Time Zone 2">Time Zone 2</option>
 			</ibm-timepicker-select>
@@ -51,6 +60,7 @@ storiesOf("Components|Time Picker", module)
 			disableTime: boolean("disabled time", false),
 			disabledSelect: boolean("disabled selects", false),
 			theme: select("Theme", ["dark", "light"], "dark"),
+			size: select("Size", ["sm", "md", "lg"], "md"),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation text", "A valid value is required")
 		}
@@ -66,8 +76,8 @@ storiesOf("Components|Time Picker", module)
 				[theme]="theme"
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
-				display="inline"
-				[(ngModel)]="period">
+				[(ngModel)]="period"
+				ariaLabel="Open list of options">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
 			</ibm-timepicker-select>
@@ -75,8 +85,8 @@ storiesOf("Components|Time Picker", module)
 				[theme]="theme"
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
-				display="inline"
-				[(ngModel)]="timeZone">
+				[(ngModel)]="timeZone"
+				ariaLabel="Open list of options">
 				<option selected value="Time Zone 1">Time Zone 1</option>
 				<option value="Time Zone 2">Time Zone 2</option>
 			</ibm-timepicker-select>
