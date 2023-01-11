@@ -59,6 +59,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[warn]="warn"
 					[warnText]="warnText"
 					[skeleton]="skeleton"
+					[helperText]="helperText"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
 				</ibm-date-picker-input>
@@ -80,6 +81,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[warn]="rangeWarn"
 					[warnText]="rangeWarnText"
 					[skeleton]="skeleton"
+					[helperText]="rangeHelperText"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
 				</ibm-date-picker-input>
@@ -130,8 +132,9 @@ export class DatePicker implements
 	 */
 	@Input() language = "en";
 
-	@Input() label: string  | TemplateRef<any>;
-
+	@Input() label: string | TemplateRef<any>;
+	@Input() helperText: string | TemplateRef<any>;
+	@Input() rangeHelperText: string | TemplateRef<any>;
 	@Input() rangeLabel: string;
 
 	@Input() placeholder = "mm/dd/yyyy";
@@ -220,7 +223,7 @@ export class DatePicker implements
 	get flatpickrOptions() {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
-			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left"}));
+			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
 		}
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
 			mode: this.range ? "range" : "single",
@@ -407,9 +410,9 @@ export class DatePicker implements
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => {};
+	onTouched: () => any = () => { };
 
-	propagateChange = (_: any) => {};
+	propagateChange = (_: any) => { };
 
 	/**
 	 * Cleans up our flatpickr instance
@@ -622,7 +625,7 @@ export class DatePicker implements
 			if (typeof this.flatpickrInstance.selectedDates[0] === "string") {
 				singleDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
-			// if date is not a string we can assume it's a Date and we should format
+				// if date is not a string we can assume it's a Date and we should format
 			} else if (!!this.flatpickrInstance.selectedDates[0]) {
 				singleDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
@@ -634,7 +637,7 @@ export class DatePicker implements
 				if (typeof this.flatpickrInstance.selectedDates[1] === "string") {
 					rangeDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
-				// if date is not a string we can assume it's a Date and we should format
+					// if date is not a string we can assume it's a Date and we should format
 				} else if (!!this.flatpickrInstance.selectedDates[1]) {
 					rangeDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
