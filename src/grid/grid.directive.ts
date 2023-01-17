@@ -1,4 +1,9 @@
-import { Directive, HostBinding, Input, OnInit } from "@angular/core";
+import { 
+	Directive,
+	HostBinding,
+	Input,
+	OnChanges
+} from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-grid--basic)
@@ -37,7 +42,7 @@ export class RowDirective {
 @Directive({
 	selector: "[ibmCol]"
 })
-export class ColumnDirective implements OnInit {
+export class ColumnDirective implements OnChanges {
 	@Input() class = "";
 
 	@Input() columnNumbers = {};
@@ -51,12 +56,14 @@ export class ColumnDirective implements OnInit {
 		return this._columnClasses.join(" ");
 	}
 
-	set(classes: string) {
+	set columnClasses(classes: string) {
 		this._columnClasses = classes.split(" ");
 	}
 
-	ngOnInit() {
+	ngOnChanges() {
 		try {
+			// Reset classes so we don't apply classes for the same breakpoint multiple times
+			this._columnClasses = [];
 			const columnKeys = Object.keys(this.columnNumbers);
 			if (columnKeys.length <= 0) {
 				this._columnClasses.push("bx--col");
@@ -78,7 +85,7 @@ export class ColumnDirective implements OnInit {
 		}
 
 		if (this.class) {
-			this._columnClasses.push(this.class);
+			this._columnClasses = [...new Set([...this._columnClasses, ...this.class.split(" ")])];
 		}
 	}
 }
