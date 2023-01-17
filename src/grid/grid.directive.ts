@@ -1,4 +1,10 @@
-import { Directive, HostBinding, Input, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { 
+	Directive,
+	HostBinding,
+	Input,
+	OnChanges,
+	SimpleChanges
+} from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-grid--basic)
