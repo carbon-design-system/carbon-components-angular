@@ -81,12 +81,4 @@ export class ColumnDirective implements OnInit, OnChanges {
 			this._columnClasses = [...new Set([...this._columnClasses, ...this.class.split(" ")])];
 		}
 	}
-
-	ngOnInit() {
-		this.setUp();
-	}
-
-	ngOnChanges(changes: SimpleChanges): void {
-    	this.setUp();
-  	}
 }
