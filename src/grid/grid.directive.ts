@@ -37,7 +37,7 @@ export class RowDirective {
 @Directive({
 	selector: "[ibmCol]"
 })
-export class ColumnDirective implements OnInit, OnChanges {
+export class ColumnDirective implements OnChanges {
 	@Input() class = "";
 
 	@Input() columnNumbers = {};
