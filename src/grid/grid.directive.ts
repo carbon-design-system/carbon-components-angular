@@ -63,7 +63,7 @@ export class ColumnDirective implements OnChanges {
 	ngOnChanges() {
 		try {
 			// Reset classes so we don't apply classes for the same breakpoint multiple times
-			this.columnClasses = "";
+			this._columnClasses = "";
 			const columnKeys = Object.keys(this.columnNumbers);
 			if (columnKeys.length <= 0) {
 				this._columnClasses.push("bx--col");
