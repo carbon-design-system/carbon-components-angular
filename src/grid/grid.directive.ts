@@ -2,8 +2,7 @@ import {
 	Directive,
 	HostBinding,
 	Input,
-	OnChanges,
-	SimpleChanges
+	OnChanges
 } from "@angular/core";
 
 /**
