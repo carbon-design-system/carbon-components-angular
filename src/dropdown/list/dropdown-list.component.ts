@@ -67,10 +67,10 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
+				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
-					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i),
-					disabled: item.disabled
+					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
 				}">
 				<div
 					#listItem
@@ -277,7 +277,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.updateIndex();
 		this.setupFocusObservable();
 		setTimeout(() => {
-			if (this.getSelected() !== []) { return; }
 			this.doEmitSelect();
 		});
 	}

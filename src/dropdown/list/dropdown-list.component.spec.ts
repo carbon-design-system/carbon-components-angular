@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 
 import { DropdownList } from "./dropdown-list.component";
@@ -11,7 +11,10 @@ import { I18nModule } from "../../i18n/index";
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
 })
 class DropdownListTest {
-	items = [{content: "one", selected: false}, {content: "two", selected: false}];
+	items = [
+		<ListItem>{content: "one", selected: false},
+		<ListItem>{content: "two", selected: false}
+	];
 	selected: ListItem;
 	onSelect(ev) {
 		this.selected = ev.item;
@@ -22,7 +25,10 @@ class DropdownListTest {
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
 })
 class MultiTest {
-	items = [{content: "one", selected: false}, {content: "two", selected: false}];
+	items = [
+		<ListItem>{content: "one", selected: false},
+		<ListItem>{content: "two", selected: false}
+	];
 	selected: ListItem[];
 	onSelect(ev) {
 		this.selected = ev;
@@ -30,7 +36,7 @@ class MultiTest {
 }
 
 describe("Dropdown list", () => {
-	let fixture, wrapper;
+	let fixture: ComponentFixture<DropdownListTest>, wrapper: DropdownListTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -51,8 +57,8 @@ describe("Dropdown list", () => {
 	});
 
 	it("should work", () => {
-		fixture = TestBed.createComponent(DropdownList);
-		expect(fixture.componentInstance instanceof DropdownList).toBe(true);
+		let fixture2 = TestBed.createComponent(DropdownList);
+		expect(fixture2.componentInstance instanceof DropdownList).toBe(true);
 	});
 
 	it("should select an item", () => {
@@ -62,10 +68,23 @@ describe("Dropdown list", () => {
 		});
 		expect(wrapper.selected.content).toBe("one");
 	});
+
+	it("should disable a list-item", () => {
+		wrapper.items = [
+			<ListItem>{content: "one", selected: false},
+			<ListItem>{content: "two", selected: false, disabled: false},
+			<ListItem>{content: "three", selected: false, disabled: true}
+		];
+		fixture.detectChanges();
+		const disabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item[disabled]"));
+		expect(disabledEls.length).toEqual(1);
+		const enabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item:not([disabled])"));
+		expect(enabledEls.length).toEqual(2);
+	});
 });
 
 describe("Dropdown multi list", () => {
-	let fixture, wrapper;
+	let fixture: ComponentFixture<MultiTest>, wrapper: MultiTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -86,9 +105,9 @@ describe("Dropdown multi list", () => {
 	});
 
 	it("should work", () => {
-		fixture = TestBed.createComponent(DropdownList);
-		fixture.type = "multi";
-		expect(fixture.componentInstance instanceof DropdownList).toBe(true);
+		let fixture2 = TestBed.createComponent(DropdownList);
+		fixture2.componentInstance.type = "multi";
+		expect(fixture2.componentInstance instanceof DropdownList).toBe(true);
 	});
 
 	it("should multi select", () => {
@@ -103,5 +122,22 @@ describe("Dropdown multi list", () => {
 		expect(wrapper.selected.length).toBe(2);
 		expect(wrapper.selected[0].content).toBe("one");
 		expect(wrapper.selected[1].content).toBe("two");
+	});
+
+	it("should disable a list-item and its checkbox", () => {
+		wrapper.items = [
+			<ListItem>{content: "one", selected: false},
+			<ListItem>{content: "two", selected: false, disabled: false},
+			<ListItem>{content: "three", selected: false, disabled: true}
+		];
+		fixture.detectChanges();
+		const disabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item[disabled]"));
+		const disabledInputEls = fixture.debugElement.queryAll(By.css(".bx--checkbox[disabled]"));
+		expect(disabledEls.length).toEqual(1);
+		expect(disabledInputEls.length).toEqual(1);
+		const enabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item:not([disabled])"));
+		const enabledInputEls = fixture.debugElement.queryAll(By.css(".bx--checkbox:not([disabled])"));
+		expect(enabledEls.length).toEqual(2);
+		expect(enabledInputEls.length).toEqual(2);
 	});
 });
