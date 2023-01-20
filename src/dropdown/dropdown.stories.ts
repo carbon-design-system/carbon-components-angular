@@ -62,8 +62,8 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	items: object("items", [
 		{ content: "one" },
 		{ content: "two", selected: true },
-		{ content: "three" },
-		{ content: "four" }
+		{ content: "three", disabled: true },
+		{ content: "four", disabled: false }
 	]),
 	selected: action("Selected fired for dropdown"),
 	onClose: action("Dropdown closed"),
@@ -307,7 +307,7 @@ storiesOf("Components|Dropdown", module)
 			</app-reactive-forms>
 		`,
 		props: getProps({
-			items: [
+			items: object("items", [
 				{
 					content: "numerical value item 1",
 					oid: 1,
@@ -318,7 +318,7 @@ storiesOf("Components|Dropdown", module)
 					oid: 2,
 					selected: false
 				}
-			],
+			]),
 			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen"),
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
@@ -343,12 +343,7 @@ storiesOf("Components|Dropdown", module)
 		</div>
 	`,
 		props: getProps({
-			items: of([
-				{ content: "one" },
-				{ content: "two", selected: true },
-				{ content: "three" },
-				{ content: "four" }
-			])
+			items: of({...getProps()}.items)
 		})
 	}))
 	.add("With Template", () => ({
