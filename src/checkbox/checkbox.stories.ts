@@ -60,6 +60,10 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">{{label}}</legend>
 			<ibm-checkbox
@@ -93,6 +97,10 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("Enforcing indeterminate to toggle to unchecked state", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<ibm-checkbox
 				[indeterminate]="indeterminate"
 				[checked]="checked"
@@ -122,6 +130,10 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("Programmatically", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<ibm-checkbox
 				[indeterminate]="indeterminate"
 				[checked]="checked"
@@ -153,6 +165,10 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("With ngModel", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<ibm-checkbox
 				[(ngModel)]="model">
 				ngModel checkbox
@@ -172,6 +188,10 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<!--
 				app-* components are for demo purposes only.
 				You can create your own implementation by using the component source as an example.
@@ -180,7 +200,13 @@ storiesOf("Components|Checkbox", module).addDecorator(
 		`
 	}))
 	.add("Skeleton", () => ({
-		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
+		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
+			<ibm-checkbox skeleton="true"></ibm-checkbox>
+		`
 }))
 .add("Documentation", () => ({
 	template: `

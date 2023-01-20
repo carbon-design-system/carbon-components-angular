@@ -273,6 +273,10 @@ storiesOf("Components|Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+				<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+					Edit on Carbon UI Builder
+				</a>
+				<br><br>
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
@@ -295,6 +299,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Dynamically added list items", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<!--
 					app-* components are for demo purposes only.
@@ -306,6 +314,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Basic with max length", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[disabled]="disabled"
@@ -330,6 +342,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With dynamic search", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[disabled]="disabled"
@@ -365,6 +381,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With template", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[disabled]="disabled"
@@ -404,6 +424,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[invalid]="invalid"
@@ -431,6 +455,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<!--
 					app-* components are for demo purposes only.
@@ -454,6 +482,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With submit", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[invalid]="invalid"
@@ -489,6 +521,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("With ngModel", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 300px">
 				<ibm-combo-box
 					[invalid]="invalid"
@@ -514,6 +550,10 @@ storiesOf("Components|Combobox", module)
 	}))
 	.add("Mock query search", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<!--
 				app-* components are for demo purposes only.
 				You can create your own implementation by using the component source as an example.

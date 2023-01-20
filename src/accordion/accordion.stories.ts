@@ -17,6 +17,10 @@ storiesOf("Components|Accordion", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Accordion%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22accordion%22%2C%22align%22%3A%22end%22%2C%22size%22%3A%22md%22%2C%22items%22%3A%5B%7B%22type%22%3A%22accordion-item%22%2C%22title%22%3A%22Accordion%20item%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<ibm-accordion [align]="align" [size]="size">
 				<ibm-accordion-item title="Section 1 title" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
@@ -58,6 +62,10 @@ storiesOf("Components|Accordion", module)
 	}))
 	.add("With disabled item", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Accordion%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22accordion%22%2C%22align%22%3A%22end%22%2C%22size%22%3A%22md%22%2C%22items%22%3A%5B%7B%22type%22%3A%22accordion-item%22%2C%22title%22%3A%22Accordion%20item%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<ibm-accordion>
 				<ibm-accordion-item title="Enabled"></ibm-accordion-item>
 				<ibm-accordion-item title="Disabled" disabled="true"></ibm-accordion-item>
@@ -66,6 +74,10 @@ storiesOf("Components|Accordion", module)
 	}))
 	.add("With title template", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Accordion%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22accordion%22%2C%22align%22%3A%22end%22%2C%22size%22%3A%22md%22%2C%22items%22%3A%5B%7B%22type%22%3A%22accordion-item%22%2C%22title%22%3A%22Accordion%20item%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 500px">
 				<ibm-accordion>
 					<ibm-accordion-item [title]="title" (selected)="selected($event)">Lorem ipsum dolor sit amet, \
@@ -93,6 +105,10 @@ storiesOf("Components|Accordion", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Accordion%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22accordion%22%2C%22align%22%3A%22end%22%2C%22size%22%3A%22md%22%2C%22items%22%3A%5B%7B%22type%22%3A%22accordion-item%22%2C%22title%22%3A%22Accordion%20item%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22accordion-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<div style="width: 500px">
 				<ibm-accordion skeleton="true">
 					<ibm-accordion-item expanded="true"></ibm-accordion-item>
