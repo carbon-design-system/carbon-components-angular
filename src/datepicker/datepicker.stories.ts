@@ -194,7 +194,8 @@ storiesOf("Components|Date Picker", module)
 				[warn]="warn"
 				[warnText]="warnText"
 				[dateFormat]="dateFormat"
-				(valueChange)="valueChange($event)">
+				(valueChange)="valueChange($event)"
+				[helperText]="helperText">
 			</ibm-date-picker>
 			<p style="margin-top: 20px;">Without initial value</p>
 			<ibm-date-picker
@@ -209,7 +210,8 @@ storiesOf("Components|Date Picker", module)
 				[warn]="warn"
 				[warnText]="warnText"
 				[dateFormat]="dateFormat"
-				(valueChange)="valueChange($event)">
+				(valueChange)="valueChange($event)"
+				[helperText]="helperText">
 			</ibm-date-picker>
 		`,
 		props: {
@@ -222,6 +224,7 @@ storiesOf("Components|Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			warn: boolean("Show the warning state", false),
 			warnText: text("Text for the warning", "This is a warning"),
+			helperText: text("Helper text", ""),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
@@ -249,7 +252,8 @@ storiesOf("Components|Date Picker", module)
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
 			[value]="value"
-			(valueChange)="valueChange($event)">
+			(valueChange)="valueChange($event)"
+			[helperText]="helperText">
 		</ibm-date-picker>
 		<p style="margin-top: 20px;">Without initial value</p>
 		<ibm-date-picker
@@ -268,7 +272,8 @@ storiesOf("Components|Date Picker", module)
 			[rangeWarn]="warn"
 			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
-			(valueChange)="valueChange($event)">
+			(valueChange)="valueChange($event)"
+			[helperText]="helperText">
 		</ibm-date-picker>
 		`,
 		props: {
@@ -281,6 +286,7 @@ storiesOf("Components|Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			warn: boolean("Show the warning state", false),
 			warnText: text("Text for the warning", "This is a warning"),
+			helperText: text("Helper text", ""),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
 			dateFormat: text("Date format", "m/d/Y"),
