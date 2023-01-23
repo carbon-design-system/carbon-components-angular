@@ -172,7 +172,15 @@ storiesOf("Components|Dropdown", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+		%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+		dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3A&#13;
+		false%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen&#13;
+		%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22&#13;
+		Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22&#13;
+		%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+		allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -199,7 +207,15 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+		%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+		dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C&#13;
+		%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%&#13;
+		22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22&#13;
+		Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22&#13;
+		%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%&#13;
+		2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -228,7 +244,15 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("Multi-select with ngModel", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+		%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+		dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse&#13;
+		%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22&#13;
+		%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%&#13;
+		22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems&#13;
+		%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext&#13;
+		%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+		allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -264,7 +288,15 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With ngModel", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+		%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+		dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse&#13;
+		%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22&#13;
+		%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22&#13;
+		Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22&#13;
+		%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+		allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -306,7 +338,14 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With reactive forms", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+			Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22&#13;
+			%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22&#13;
+			%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A&#13;
+			%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22&#13;
+			%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22&#13;
+			%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22&#13;
+			%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -346,7 +385,14 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With Observable items", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+		Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22&#13;
+		%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22&#13;
+		%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22&#13;
+		bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22&#13;
+		Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C&#13;
+		%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22&#13;
+		id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -377,7 +423,14 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("With Template", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+		Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C&#13;
+		%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22&#13;
+		%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%&#13;
+		3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22&#13;
+		%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22&#13;
+		%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22&#13;
+		%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -410,7 +463,14 @@ storiesOf("Components|Dropdown", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+		Dropdown%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown%22&#13;
+		%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline%22&#13;
+		%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22%3A%22&#13;
+		bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22&#13;
+		Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text%22%7D%5D%2C&#13;
+		%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-3%22%7D%7D%5D%2C%22&#13;
+		id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>

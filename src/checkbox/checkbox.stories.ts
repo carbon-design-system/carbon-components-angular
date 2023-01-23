@@ -60,7 +60,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+		Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22&#13;
+		%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+		allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
@@ -97,7 +101,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("Enforcing indeterminate to toggle to unchecked state", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
+			title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
+			type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22&#13;
+			%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22&#13;
+			%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -130,7 +138,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("Programmatically", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
+			title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
+			type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22&#13;
+			id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+			checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -165,7 +177,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("With ngModel", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+			checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22&#13;
+			codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22&#13;
+			%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -188,7 +204,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("With reactive forms", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+			Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22&#13;
+			%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
+			%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+			allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -201,7 +221,11 @@ storiesOf("Components|Checkbox", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Checkbox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+			checkbox%22%2C%22label%22%3A%22Checkbox%22%2C%22id%22%3A%222%22%2C%22&#13;
+			codeContext%22%3A%7B%22name%22%3A%22checkbox-2%22%7D%7D%5D%2C%22id%22&#13;
+			%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>

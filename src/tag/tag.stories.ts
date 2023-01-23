@@ -16,7 +16,12 @@ storiesOf("Components|Tag", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Tag%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22tag%22%2C%22kind%22%3A%22gray%22%2C%22size%22%3A%22md%22%2C%22filter%22%3Afalse%2C%22disabled%22%3Afalse%2C%22title%22%3A%22Tag%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tag-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
+			title%22%3A%22Tag%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
+			type%22%3A%22tag%22%2C%22kind%22%3A%22gray%22%2C%22size%22%3A%22&#13;
+			md%22%2C%22filter%22%3Afalse%2C%22disabled%22%3Afalse%2C%22title%22&#13;
+			%3A%22Tag%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22&#13;
+			%3A%22tag-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -48,7 +53,12 @@ storiesOf("Components|Tag", module)
 	}))
 	.add("Filter", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Tag%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22tag%22%2C%22kind%22%3A%22gray%22%2C%22size%22%3A%22md%22%2C%22filter%22%3Afalse%2C%22disabled%22%3Afalse%2C%22title%22%3A%22Tag%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tag-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Tag%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22tag%22&#13;
+			%2C%22kind%22%3A%22gray%22%2C%22size%22%3A%22md%22%2C%22filter%22%3Afalse%2C%22&#13;
+			disabled%22%3Afalse%2C%22title%22%3A%22Tag%22%2C%22id%22%3A%222%22%2C%22&#13;
+			codeContext%22%3A%7B%22name%22%3A%22tag-2%22%7D%7D%5D%2C%22id%22&#13;
+			%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>

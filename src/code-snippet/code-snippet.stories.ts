@@ -67,7 +67,12 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
+			%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22&#13;
+			%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+			code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22&#13;
+			%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -78,7 +83,12 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	}))
 	.add("Multi", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
+			%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22&#13;
+			%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22&#13;
+			%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
+			cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -95,7 +105,13 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	}))
 	.add("Inline", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
+			title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22&#13;
+			%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22&#13;
+			single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
+			%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22&#13;
+			%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22&#13;
+			allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -108,7 +124,12 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
+			%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22&#13;
+			%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+			code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22&#13;
+			%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
@@ -121,7 +142,12 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 	}))
 	.add("Dynamic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22Code%20snippet%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
+			%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22%3A%22&#13;
+			%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+			code-snippet-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1&#13;
+			%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>

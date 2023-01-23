@@ -14,7 +14,18 @@ storiesOf("Components|Grid", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Grid%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22grid%22%2C%22outline%22%3Atrue%2C%22items%22%3A%5B%7B%22type%22%3A%22row%22%2C%22items%22%3A%5B%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-4%22%7D%7D%2C%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%225%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-5%22%7D%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22row-3%22%7D%7D%2C%7B%22type%22%3A%22row%22%2C%22items%22%3A%5B%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%227%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-7%22%7D%7D%2C%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%228%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-8%22%7D%7D%5D%2C%22id%22%3A%226%22%2C%22codeContext%22%3A%7B%22name%22%3A%22row-6%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22grid-2%22%7D%2C%22cssClasses%22%3A%5B%5D%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Grid%22%2C%22data%22&#13;
+			%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22grid%22%2C%22outline%22%3Atrue%2C%22items%22%3A%5B%7B%22&#13;
+			type%22%3A%22row%22%2C%22items%22%3A%5B%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id&#13;
+			%22%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-4%22%7D%7D%2C%7B%22type%22%3A%22colu&#13;
+			mn%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%225%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-5&#13;
+			%22%7D%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22row-3%22%7D%7D%2C%7B%22&#13;
+			type%22%3A%22row%22%2C%22items%22%3A%5B%7B%22type%22%3A%22column%22%2C%22items%22%3A%5B%5D%2C%22id&#13;
+			%22%3A%227%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-7%22%7D%7D%2C%7B%22type%22%3A%22colu&#13;
+			mn%22%2C%22items%22%3A%5B%5D%2C%22id%22%3A%228%22%2C%22codeContext%22%3A%7B%22name%22%3A%22column-8&#13;
+			%22%7D%7D%5D%2C%22id%22%3A%226%22%2C%22codeContext%22%3A%7B%22name%22%3A%22row-6%22%7D%7D%5D%2C%22&#13;
+			id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22grid-2%22%7D%2C%22cssClasses%22%3A%5B%5D&#13;
+			%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
