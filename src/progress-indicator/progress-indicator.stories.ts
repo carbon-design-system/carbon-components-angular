@@ -46,6 +46,10 @@ storiesOf("Components|Progress Indicator", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Progress%20indicator%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22progress-indicator%22%2C%22isVertical%22%3Atrue%2C%22currentIndex%22%3A0%2C%22spacing%22%3Atrue%2C%22progressSteps%22%3A%5B%7B%22label%22%3A%22Step%201%22%2C%22description%22%3A%22Step%201%20description%22%2C%22secondaryLabel%22%3A%22Optional%20label%22%2C%22invalid%22%3Afalse%2C%22disabled%22%3Afalse%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22progress-indicator-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<div style="display: flex;">
 			<ibm-progress-indicator
 				[steps]="steps"
@@ -97,6 +101,10 @@ storiesOf("Components|Progress Indicator", module)
 	}))
 	.add("Vertical", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Progress%20indicator%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22progress-indicator%22%2C%22isVertical%22%3Atrue%2C%22currentIndex%22%3A0%2C%22spacing%22%3Atrue%2C%22progressSteps%22%3A%5B%7B%22label%22%3A%22Step%201%22%2C%22description%22%3A%22Step%201%20description%22%2C%22secondaryLabel%22%3A%22Optional%20label%22%2C%22invalid%22%3Afalse%2C%22disabled%22%3Afalse%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22progress-indicator-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<ibm-progress-indicator
 			orientation="vertical"
 			[steps]="steps"
@@ -136,6 +144,10 @@ storiesOf("Components|Progress Indicator", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Progress%20indicator%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22progress-indicator%22%2C%22isVertical%22%3Atrue%2C%22currentIndex%22%3A0%2C%22spacing%22%3Atrue%2C%22progressSteps%22%3A%5B%7B%22label%22%3A%22Step%201%22%2C%22description%22%3A%22Step%201%20description%22%2C%22secondaryLabel%22%3A%22Optional%20label%22%2C%22invalid%22%3Afalse%2C%22disabled%22%3Afalse%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22progress-indicator-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source as an example.
