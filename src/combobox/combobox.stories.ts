@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, object, number, select } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { ButtonModule } from "../button/button.module";
@@ -30,20 +30,12 @@ const getOptions = (override = {}) => {
 		warnText: text("Text for the warning", "This is a warning"),
 		label: text("Label", "ComboBox label"),
 		helperText: text("Helper text", "Optional helper text."),
-		items: [
-			{
-				content: "one"
-			},
-			{
-				content: "two"
-			},
-			{
-				content: "three"
-			},
-			{
-				content: "four"
-			}
-		],
+		items: object("items", [
+			{ content: "one" },
+			{ content: "two", selected: true },
+			{ content: "three", disabled: true },
+			{ content: "four", disabled: false }
+		]),
 		selected: action("selection changed"),
 		submit: action("submit"),
 		size: select("size", ["sm", "md", "xl"], "md"),
@@ -170,7 +162,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() helperText = "";
 	@Input() size = "md";
 	@Input() theme = "dark";
-	@Input() set items(newItems = []) {
+	@Input() set items(newItems) {
 		if (!isEqual(this._items, newItems)) {
 			this._items = newItems;
 		}
