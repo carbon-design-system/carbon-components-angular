@@ -12,8 +12,8 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	ApplicationRef,
-	AfterViewInit
+	AfterViewInit,
+	NgZone
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -357,7 +357,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected dropdownService: DropdownService,
-		protected appRef: ApplicationRef,
+		protected ngZone: NgZone,
 		protected elementService: ElementService) {}
 
 	/**
@@ -387,36 +387,36 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		const isUpdate = event => event && event.isUpdate;
 
 		this.view.select.subscribe(event => {
-			if (this.type === "single" && !isUpdate(event)) {
-				this.closeMenu();
-				if (event.item && event.item.selected) {
-					if (this.itemValueKey) {
-						this.propagateChange(event.item[this.itemValueKey]);
+			this.ngZone.run(() => {
+				if (this.type === "single" && !isUpdate(event)) {
+					this.closeMenu();
+					if (event.item && event.item.selected) {
+						if (this.itemValueKey) {
+							this.propagateChange(event.item[this.itemValueKey]);
+						} else {
+							this.propagateChange(event.item);
+						}
 					} else {
-						this.propagateChange(event.item);
+						this.propagateChange(null);
 					}
-				} else {
-					this.propagateChange(null);
 				}
-			}
 
-			if (this.type === "multi" && !isUpdate(event)) {
-				// if we have a `value` selector and selected items map them appropriately
-				if (this.itemValueKey && this.view.getSelected()) {
-					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
-				// otherwise just pass up the values from `getSelected`
-				} else {
-					this.propagateChange(this.view.getSelected());
+				if (this.type === "multi" && !isUpdate(event)) {
+					// if we have a `value` selector and selected items map them appropriately
+					if (this.itemValueKey && this.view.getSelected()) {
+						const values = this.view.getSelected().map(item => item[this.itemValueKey]);
+						this.propagateChange(values);
+					// otherwise just pass up the values from `getSelected`
+					} else {
+						this.propagateChange(this.view.getSelected());
+					}
 				}
-			}
-			// only emit selected for "organic" selections
-			if (!isUpdate(event)) {
-				this.checkForReorder();
-				this.selected.emit(event);
-			}
-			// manually tick the app so the view picks up any changes
-			this.appRef.tick();
+				// only emit selected for "organic" selections
+				if (!isUpdate(event)) {
+					this.checkForReorder();
+					this.selected.emit(event);
+				}
+			});
 		});
 	}
 
