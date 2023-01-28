@@ -67,7 +67,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
-				[attr.disabled]="item.disabled"
+				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
 					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
