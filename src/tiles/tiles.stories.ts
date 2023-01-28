@@ -71,16 +71,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Multiple", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
-		title%22%3A%22Tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
-		type%22%3A%22tile%22%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22&#13;
-		text%22%3A%22tile%20content%20goes%20here..%22%2C%22id%22%3A%223%22%2C&#13;
-		%22codeContext%22%3A%7B%22name%22%3A%22text-3%22%7D%7D%5D%2C%22id%22%3A%222&#13;
-		%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tile-2%22%7D%7D%5D%2C%22id%22&#13;
-		%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
 		<div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
 			<ibm-tile>
 				Tile 1
@@ -96,17 +86,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Clickable", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-		%3A%22Clickable%20tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
-		%3A%22clickable-tile%22%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22&#13;
-		text%22%3A%22Clickable%20tile%22%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
-		%3A%7B%22name%22%3A%22text-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22&#13;
-		codeContext%22%3A%7B%22name%22%3A%22clickable-tile-2%22%7D%7D%5D%2C%22id&#13;
-		%22%3A1%2C%22codeContext%22%3A%7B%22name%22%3A%22undefined-1%22%7D&#13;
-		%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
 		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
 			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
@@ -114,16 +93,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Routable", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22tile%22&#13;
-			%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22tile%20&#13;
-			content%20goes%20here..%22%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B&#13;
-			%22name%22%3A%22text-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
-			%3A%7B%22name%22%3A%22tile-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22&#13;
-			allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-clickable-tile [route]="['foo']">
 				Click to trigger the <code>foo</code> route
 			</ibm-clickable-tile>
@@ -135,18 +104,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Selectable", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Selectable%20tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
-			type%22%3A%22selectable-tile%22%2C%22standalone%22%3Atrue%2C%22&#13;
-			disabled%22%3Afalse%2C%22selected%22%3Afalse%2C%22items%22%3A%5B%7B%22&#13;
-			type%22%3A%22text%22%2C%22text%22%3A%22Selectable%20Tile%22%2C%22id%22&#13;
-			%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-4%22%7D%7D%5D%2C%22&#13;
-			id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22selectable-tile-3%22&#13;
-			%7D%7D%5D%2C%22id%22%3A1%2C%22codeContext%22%3A%7B%22name%22&#13;
-			%3A%22undefined-1%22%7D%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
@@ -159,34 +116,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Selectable%20tiles%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
-			type%22%3A%22selectable-tile-group%22%2C%22tileGroup%22%3Atrue%2C%22&#13;
-			items%22%3A%5B%7B%22type%22%3A%22selectable-tile%22%2C%22codeContext%22&#13;
-			%3A%7B%22value%22%3A%22Tile%201%22%2C%22name%22%3A%22selectable-tile-4%22&#13;
-			%2C%22formItemName%22%3A%22selectable-tile-group-3%22%7D%2C%22standalone%22&#13;
-			%3Afalse%2C%22selected%22%3Afalse%2C%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-			text%22%2C%22text%22%3A%22Selectable%20Tile%22%2C%22id%22%3A%227%22%2C%22&#13;
-			codeContext%22%3A%7B%22name%22%3A%22text-7%22%7D%7D%5D%2C%22id%22%3A%224%22&#13;
-			%7D%2C%7B%22type%22%3A%22selectable-tile%22%2C%22codeContext%22%3A%7B%22&#13;
-			value%22%3A%22Tile%202%22%2C%22name%22%3A%22selectable-tile-5%22%2C%22&#13;
-			formItemName%22%3A%22selectable-tile-group-3%22%7D%2C%22standalone%22&#13;
-			%3Afalse%2C%22selected%22%3Afalse%2C%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-			text%22%2C%22text%22%3A%22Selectable%20Tile%22%2C%22id%22%3A%228%22%2C%22&#13;
-			codeContext%22%3A%7B%22name%22%3A%22text-8%22%7D%7D%5D%2C%22id%22%3A%225%22&#13;
-			%7D%2C%7B%22type%22%3A%22selectable-tile%22%2C%22codeContext%22%3A%7B%22&#13;
-			value%22%3A%22Tile%203%22%2C%22name%22%3A%22selectable-tile-6%22%2C%22&#13;
-			formItemName%22%3A%22selectable-tile-group-3%22%7D%2C%22standalone%22%3Afalse%2C&#13;
-			%22selected%22%3Afalse%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C&#13;
-			%22text%22%3A%22Selectable%20Tile%22%2C%22id%22%3A%229%22%2C%22&#13;
-			codeContext%22%3A%7B%22name%22%3A%22text-9%22%7D%7D%5D%2C%22id%22&#13;
-			%3A%226%22%7D%5D%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22&#13;
-			name%22%3A%22selectable-tile-group-3%22%7D%7D%5D%2C%22id%22%3A1%2C%22&#13;
-			codeContext%22%3A%7B%22name%22%3A%22undefined-1%22%7D%7D%2C%22&#13;
-			allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
@@ -199,20 +128,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Expandable", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
-		title%22%3A%22Expandable%20tile%22%2C%22data%22%3A%7B%22items%22&#13;
-		%3A%5B%7B%22type%22%3A%22expandable-tile%22%2C%22light%22%3Afalse%2C&#13;
-		%22expanded%22%3Atrue%2C%22outline%22%3Afalse%2C%22items%22%3A%5B%7B%22&#13;
-		type%22%3A%22text%22%2C%22text%22%3A%22Above%20fold%22%2C%22id%22%3A%223%22%2C%22&#13;
-		codeContext%22%3A%7B%22name%22%3A%22text-3%22%7D%7D%2C%7B%22type%22%3A%22tile-fold%22&#13;
-		%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Below%20fold%22%2C%22&#13;
-		id%22%3A%225%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-5%22%7D%7D%5D%2C%22id%22&#13;
-		%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tile-fold-4%22%7D%7D%5D%2C%&#13;
-		22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22expandable-tile-2%22&#13;
-		%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
 		<ibm-expandable-tile>
 			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
 			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
@@ -221,16 +136,6 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-		%3A%22Tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-		tile%22%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22&#13;
-		tile%20content%20goes%20here..%22%2C%22id%22%3A%223%22%2C%22codeContext&#13;
-		%22%3A%7B%22name%22%3A%22text-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22&#13;
-		codeContext%22%3A%7B%22name%22%3A%22tile-2%22%7D%7D%5D%2C%22id%22&#13;
-		%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
 		<ibm-tile>
 			<div class="skeleton-placeholder">
 				<ibm-skeleton-placeholder></ibm-skeleton-placeholder>

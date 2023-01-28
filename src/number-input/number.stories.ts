@@ -56,16 +56,6 @@ storiesOf("Components|Number", module).addDecorator(
 	}))
 	.add("With ngModel", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title&#13;
-			%22%3A%22Number%20input%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
-			type%22%3A%22number-input%22%2C%22size%22%3A%22md%22%2C%22label%22&#13;
-			%3A%22Number%20input%20label%22%2C%22min%22%3A0%2C%22max%22%3A100%&#13;
-			2C%22step%22%3A10%2C%22helperText%22%3A%22Helper%20text%22%2C%22id&#13;
-			%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22number-input-2&#13;
-			%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-number
 				[label]="label"
 				[helperText]="[helperText]"
@@ -99,16 +89,6 @@ storiesOf("Components|Number", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Number%20input%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
-			%3A%22number-input%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Number%&#13;
-			20input%20label%22%2C%22min%22%3A0%2C%22max%22%3A100%2C%22step%22%3A10%2C&#13;
-			%22helperText%22%3A%22Helper%20text%22%2C%22id%22%3A%222%22%2C%22&#13;
-			codeContext%22%3A%7B%22name%22%3A%22number-input-2%22%7D%7D%5D%&#13;
-			2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-number [label]="label" skeleton="true"></ibm-number>
 		`,
 		props: {

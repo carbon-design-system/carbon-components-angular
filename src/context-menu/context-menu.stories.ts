@@ -15,22 +15,6 @@ storiesOf("Components|Context Menu", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Overflow%20menu%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
-			flipped%22%3Afalse%2C%22placement%22%3A%22bottom%22%2C%22type%22&#13;
-			%3A%22overflow-menu%22%2C%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-			overflow-menu-item%22%2C%22itemText%22%3A%22Option%201%22%2C%22&#13;
-			disabled%22%3Afalse%2C%22isDelete%22%3Afalse%2C%22hasDivider%22&#13;
-			%3Afalse%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22&#13;
-			%3A%22overflow-menu-item-3%22%7D%7D%2C%7B%22type%22%3A%22&#13;
-			overflow-menu-item%22%2C%22itemText%22%3A%22Option%202%22%2C%22disabled%22%3&#13;
-			Afalse%2C%22isDelete%22%3Afalse%2C%22hasDivider%22%3Afalse%2C%22id%22%3A%224%&#13;
-			22%2C%22codeContext%22%3A%7B%22name%22%3A%22overflow-menu-item-4%22%7D%7D%&#13;
-			5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
-			overflow-menu-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
 			<ibm-context-menu [open]="open" [position]="position">
 				<ibm-context-menu-item label="Cut" info="⌘X"></ibm-context-menu-item>
 				<ibm-context-menu-item label="Option with icon" icon="calendar"></ibm-context-menu-item>
