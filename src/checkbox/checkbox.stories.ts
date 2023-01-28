@@ -188,9 +188,7 @@ storiesOf("Components|Checkbox", module).addDecorator(
 		`
 	}))
 	.add("Skeleton", () => ({
-		template: `
-			<ibm-checkbox skeleton="true"></ibm-checkbox>
-		`
+		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
 }))
 .add("Documentation", () => ({
 	template: `

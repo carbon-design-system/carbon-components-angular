@@ -95,9 +95,7 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 		}
 	}))
 	.add("Inline", () => ({
-		template: `
-			Here is some <ibm-code-snippet display="inline" [theme]="theme">{{inlineCode}}</ibm-code-snippet> for you.
-		`,
+		template: `Here is some <ibm-code-snippet display="inline" [theme]="theme">{{inlineCode}}</ibm-code-snippet> for you.`,
 		props: {
 			inlineCode,
 			theme: select("Theme", ["dark", "light"], "dark")
