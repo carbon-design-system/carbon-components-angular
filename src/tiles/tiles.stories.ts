@@ -173,7 +173,17 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Expandable", () => ({
 		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22Expandable%20tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22expandable-tile%22%2C%22light%22%3Afalse%2C%22expanded%22%3Atrue%2C%22outline%22%3Afalse%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Above%20fold%22%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-3%22%7D%7D%2C%7B%22type%22%3A%22tile-fold%22%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Below%20fold%22%2C%22id%22%3A%225%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-5%22%7D%7D%5D%2C%22id%22%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tile-fold-4%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22expandable-tile-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title&#13;
+		%22%3A%22Expandable%20tile%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%&#13;
+		22%3A%22expandable-tile%22%2C%22light%22%3Afalse%2C%22expanded%22%3Atrue&#13;
+		%2C%22outline%22%3Afalse%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22&#13;
+		%2C%22text%22%3A%22Above%20fold%22%2C%22id%22%3A%223%22%2C%22codeContext&#13;
+		%22%3A%7B%22name%22%3A%22text-3%22%7D%7D%2C%7B%22type%22%3A%22tile-fold%22&#13;
+		%2C%22items%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Below%20fold&#13;
+		%22%2C%22id%22%3A%225%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-5%22%7D&#13;
+		%7D%5D%2C%22id%22%3A%224%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tile-fold-4&#13;
+		%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+		expandable-tile-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
