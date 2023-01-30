@@ -80,4 +80,28 @@ describe("GridDirective", () => {
 			);
 		});
 	}));
+
+	it("should render a column without inputs", async(() => {
+		TestBed.overrideComponent(TestGridComponent, {
+			set: {
+				template:
+				`<div ibmCol></div>`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			const fixture = TestBed.createComponent(TestGridComponent);
+			const directiveEl = fixture.debugElement.query(
+				By.directive(ColumnDirective)
+			);
+			fixture.detectChanges();
+
+			expect(directiveEl).not.toBeNull();
+
+			const directiveInstance = directiveEl.injector.get(ColumnDirective);
+			expect(directiveInstance.columnClasses).toBe(
+				"bx--col"
+			);
+		});
+	}));
 });
