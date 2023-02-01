@@ -70,6 +70,25 @@ storiesOf("Components|Radio", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+		%3A%22Radio%20group%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22disabled%22&#13;
+		%3Afalse%2C%22type%22%3A%22radio-group%22%2C%22legend%22%3A%22Radio%20group%22&#13;
+		%2C%22defaultSelected%22%3A%22%22%2C%22labelPosition%22%3A%22right%22%2C%22&#13;
+		orientation%22%3A%22horizontal%22%2C%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+		radio%22%2C%22labelText%22%3A%22Option%201%22%2C%22disabled%22%3Afalse%&#13;
+		2C%22defaultChecked%22%3Afalse%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22radio-3%22%7D%7D%2C%7B%22type%22%3A%22radio%22%2C&#13;
+		%22labelText%22%3A%22Option%202%22%2C%22disabled%22%3Afalse%2C%22&#13;
+		defaultChecked%22%3Afalse%2C%22id%22%3A%224%22%2C%22codeContext%22&#13;
+		%3A%7B%22name%22%3A%22radio-4%22%7D%7D%2C%7B%22type%22%3A%22radio%22&#13;
+		%2C%22labelText%22%3A%22Option%203%22%2C%22disabled%22%3Afalse%2C%22&#13;
+		defaultChecked%22%3Afalse%2C%22id%22%3A%225%22%2C%22codeContext%22%&#13;
+		3A%7B%22name%22%3A%22radio-5%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22&#13;
+		codeContext%22%3A%7B%22name%22%3A%22radio-group-2%22%7D%7D%5D%2C%22id%22&#13;
+		%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">{{label}}</legend>
 			<ibm-radio-group
