@@ -12,8 +12,7 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	AfterViewInit,
-	NgZone
+	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
