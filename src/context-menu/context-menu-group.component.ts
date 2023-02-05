@@ -15,9 +15,7 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 @Component({
 	selector: "ibm-context-menu-group",
 	template: `
-		<ul role="group" [attr.aria-label]="label">
-			<ng-content></ng-content>
-		</ul>
+		<ng-content></ng-content>
 	`,
 	styles: [`
 		:host {
@@ -28,9 +26,9 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 	providers: [ContextMenuSelectionService]
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
-	@HostBinding("attr.role") role = "none";
+	@HostBinding("attr.role") role = "group";
 
-	@Input() label = null;
+	@HostBinding("attr.aria-label") @Input() label = null;
 	@Input() value: any[] = [];
 	@Input() type: null | "radio" | "checkbox" = null;
 	@Output() valueChange = new EventEmitter<any[]>();

@@ -32,6 +32,11 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 		<div
 			[attr.aria-label]="ariaLabel"
 			class="cds--content-switcher"
+			[ngClass]="{
+				'cds--content-switcher--sm': size === 'sm',
+				'cds--content-switcher--md': size === 'md',
+				'cds--content-switcher--lg': size === 'lg'
+			}"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
@@ -39,6 +44,11 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
+
+	/**
+	 * Set content switcher size
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`

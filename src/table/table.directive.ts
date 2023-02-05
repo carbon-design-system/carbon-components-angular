@@ -20,15 +20,11 @@ export class TableDirective {
 
 	@HostBinding("class.cds--data-table") tableClass = true;
 
-	@HostBinding("class.cds--data-table--compact") get compactClass() {
-		return this.size === "sm";
-	}
+	// Bind table size class
+	@HostBinding("class.cds--data-table--xs") get extraSmallSize() { return this.size === "xs"; }
+	@HostBinding("class.cds--data-table--sm") get smallSize() { return this.size === "sm"; }
+	@HostBinding("class.cds--data-table--md") get mediumSize() { return this.size === "md"; }
+	@HostBinding("class.cds--data-table--lg") get LargeSize() { return this.size === "lg"; }
+	@HostBinding("class.cds--data-table--xl") get extraLargeSize() { return this.size === "xl"; }
 
-	@HostBinding("class.cds--data-table--tall") get tallClass() {
-		return this.size === "lg";
-	}
-
-	@HostBinding("class.cds--data-table--short") get shortClass() {
-		return this.size === "sh";
-	}
 }

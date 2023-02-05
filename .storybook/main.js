@@ -32,38 +32,21 @@ module.exports = {
 	framework: "@storybook/angular",
 	core: {
 		builder: "webpack5",
-		disableTelemetry: true,
+		disableTelemetry: true
 	},
 	webpackFinal: async config => {
-		// remove all styling rules to ensure styles get loaded
-		config.module.rules = config.module.rules.filter((rule) => !isStylingRule(rule));
-
 		config.module.rules.push({
-			test: /\.scss$/,
-			sideEffects: true,
+			test: [/\.stories\.ts$/, /index\.ts$/],
+			include: [path.resolve(__dirname, '../src')],
 			use: [
-				"style-loader",
-				"css-loader",
-				"postcss-loader",
 				{
-					loader: "sass-loader",
-					options: {
-						implementation: require("sass")
-					}
+					loader: require.resolve('@storybook/source-loader'),
+					options: { parser: 'typescript' }
 				}
-			]
+			],
+			enforce: 'pre'
 		});
 
-		config.mode = "development";
-		config.devtool = "source-map";
 		return config;
 	}
-}
-
-function isStylingRule(rule) {
-	const { test } = rule;
-	if (!(test instanceof RegExp)) {
-		return false;
-	}
-	return test.test('.css') || test.test('.scss') || test.test('.sass');
 }

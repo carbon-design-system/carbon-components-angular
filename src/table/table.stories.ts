@@ -57,7 +57,7 @@ const getProps = (more = {}, type: "args" | "argTypes") => {
 		skeleton: false
 	} : {
 		size: {
-			options: ["sm", "sh", "md", "lg"],
+			options: ["xs", "sm", "md", "lg", "xl"],
 			control: "select"
 		}
 	};
@@ -144,6 +144,9 @@ Basic.args = {
 	...getProps({
 		enableSingleSelect: false
 	}, "args")
+};
+Basic.argTypes = {
+	...getProps({}, "argTypes")
 };
 
 const NoDataTemplate: Story = (args) => ({
@@ -353,7 +356,7 @@ WithDisabledRows.args = {
 };
 WithDisabledRows.argTypes = {
 	size: {
-		options: ["sm", "sh", "md", "lg"],
+		options: ["xs", "sm", "md", "lg", "xl"],
 		control: "select"
 	}
 };
