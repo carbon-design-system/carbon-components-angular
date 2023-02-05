@@ -112,6 +112,10 @@ export class DatePickerInput {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;

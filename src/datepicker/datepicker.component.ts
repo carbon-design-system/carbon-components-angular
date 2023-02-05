@@ -152,6 +152,10 @@ export class DatePicker implements
 		return this._value;
 	}
 
+	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;

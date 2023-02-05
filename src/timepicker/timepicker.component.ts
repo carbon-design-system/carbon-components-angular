@@ -85,7 +85,7 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() skeleton = false;
 
 	/**
-	 * @deprecated since v5
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
 	 * Theme property binding will be deprecated in next major version
 	 * Use layers instead
 	 */

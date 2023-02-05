@@ -204,6 +204,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() type: "single" | "multi" = "single";
 	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
 	 * `light` or `dark` dropdown theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";

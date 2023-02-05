@@ -37,10 +37,6 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 })
 export class ModalHeader {
 	/**
-	 * Sets the style on the modal heading based on its category.
-	 */
-	@Input() theme = "default";
-	/**
 	 * Accessible label for the header close button.
 	 * Defaults to the `MODAL.CLOSE` value from the i18n service.
 	 */
