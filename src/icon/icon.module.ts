@@ -9,6 +9,8 @@ import { IconService } from "./icon.service";
 // icon imports
 import Add16 from "@carbon/icons/es/add/16";
 import Add20 from "@carbon/icons/es/add/20";
+import Apple16 from "@carbon/icons/es/apple/16";
+import Apple20 from "@carbon/icons/es/apple/20";
 import Bee16 from "@carbon/icons/es/bee/16";
 import Bee20 from "@carbon/icons/es/bee/20";
 import Calendar16 from "@carbon/icons/es/calendar/16";
@@ -38,6 +40,8 @@ import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
 import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import Fade16 from "@carbon/icons/es/fade/16";
 import Fade20 from "@carbon/icons/es/fade/20";
+import Fish16 from "@carbon/icons/es/fish/16";
+import Fish20 from "@carbon/icons/es/fish/20";
 import Incomplete16 from "@carbon/icons/es/incomplete/16";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
@@ -50,13 +54,18 @@ import Save16 from "@carbon/icons/es/save/16";
 import Search16 from "@carbon/icons/es/search/16";
 import Settings16 from "@carbon/icons/es/settings/16";
 import SettingsAdjust16 from "@carbon/icons/es/settings--adjust/16";
+import Strawberry16 from "@carbon/icons/es/strawberry/16";
+import Strawberry20 from "@carbon/icons/es/strawberry/20";
 import Subtract16 from "@carbon/icons/es/subtract/16";
+import SubtractAlt16 from "@carbon/icons/es/subtract--alt/16";
 import TrashCan16 from "@carbon/icons/es/trash-can/16";
 import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
+import Wheat16 from "@carbon/icons/es/wheat/16";
+import Wheat20 from "@carbon/icons/es/wheat/20";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -89,6 +98,8 @@ export class IconModule {
 		iconService.registerAll([
 			Add16,
 			Add20,
+			Apple16,
+			Apple20,
 			Bee16,
 			Bee20,
 			Calendar16,
@@ -118,6 +129,8 @@ export class IconModule {
 			ErrorFilled20,
 			Fade16,
 			Fade20,
+			Fish16,
+			Fish20,
 			Incomplete16,
 			InformationFilled16,
 			InformationFilled20,
@@ -130,13 +143,18 @@ export class IconModule {
 			Search16,
 			Settings16,
 			SettingsAdjust16,
+			Strawberry16,
+			Strawberry20,
 			Subtract16,
+			SubtractAlt16,
 			TrashCan16,
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,
 			WarningAltFilled16,
-			WarningAltFilled20
+			WarningAltFilled20,
+			Wheat16,
+			Wheat20
 		]);
 	}
 }
