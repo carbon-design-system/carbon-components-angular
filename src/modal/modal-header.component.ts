@@ -21,7 +21,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 @Component({
 	selector: "ibm-modal-header",
 	template: `
-		<header class="{{theme}} cds--modal-header">
+		<header class="cds--modal-header">
 			<ng-content></ng-content>
 			<button
 				*ngIf="showCloseButton"
