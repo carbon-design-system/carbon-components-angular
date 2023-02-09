@@ -45,16 +45,17 @@ import { I18n } from "carbon-components-angular/i18n";
 	`
 })
 export class SelectionTile implements AfterViewInit {
+	static tileCount = 0;
+	/**
+	 * The unique id for the input.
+	 */
+
 	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
 		return this.theme === "light";
 	}
 
 	@Input() theme: "light" | "dark" = "dark";
 
-	static tileCount = 0;
-	/**
-	 * The unique id for the input.
-	 */
 	@Input() id = `tile-${SelectionTile.tileCount}`;
 	/**
 	 * Updating the state of the input to match the state of the parameter passed in.
