@@ -295,11 +295,29 @@ class NgModelFileUploaderStory {
 				Upload
 			</button>
 		</form>
+		<form [formGroup]="disabledFormGroup" (ngSubmit)="onUpload()">
+			<ibm-file-uploader
+				[title]="title"
+				[description]="description"
+				[buttonText]="buttonText"
+				[buttonType]="buttonType"
+				[accept]="accept"
+				[multiple]="multiple"
+				[skeleton]="skeleton"
+				[size]="size"
+				formControlName="files">
+			</ibm-file-uploader>
+			<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
+			<button ibmButton *ngIf="disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0" type="submit">
+				Upload
+			</button>
+		</form>
 	`
 })
 class ReactiveFormsStory implements OnInit {
 	static notificationCount = 0;
 	public formGroup: FormGroup;
+	public disabledFormGroup: FormGroup;
 
 	@Input() notificationId = `notification-${FileUploaderStory.notificationCount}`;
 	@Input() title;
@@ -325,6 +343,10 @@ class ReactiveFormsStory implements OnInit {
 		this.formGroup = this.formBuilder.group({
 			files: new FormControl(new Set<any>(), [Validators.required])
 		});
+		this.disabledFormGroup = this.formBuilder.group({
+			files: new FormControl(new Set<any>(), [Validators.required])
+		});
+		this.disabledFormGroup.disable()
 	}
 
 	onUpload() {

@@ -6,7 +6,7 @@ import {
 	EventEmitter,
 	TemplateRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
@@ -90,7 +90,7 @@ const noop = () => { };
 		}
 	]
 })
-export class FileUploader {
+export class FileUploader implements ControlValueAccessor {
 	/**
 	 * Counter used to create unique ids for file-uploader components
 	 */
@@ -286,5 +286,16 @@ export class FileUploader {
 	 */
 	registerOnChange(fn: any) {
 		this.onChangeCallback = fn;
+	}
+
+	/**
+	 * `ControlValueAccessor` method to programmatically disable the checkbox.
+	 *
+	 * ex: `this.formGroup.get("myFileUploader").disable();`
+	 *
+	 * @param isDisabled `true` to disable the file uploader
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 }
