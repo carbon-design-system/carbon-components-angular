@@ -346,7 +346,7 @@ class ReactiveFormsStory implements OnInit {
 		this.disabledFormGroup = this.formBuilder.group({
 			files: new FormControl(new Set<any>(), [Validators.required])
 		});
-		this.disabledFormGroup.disable()
+		this.disabledFormGroup.disable();
 	}
 
 	onUpload() {

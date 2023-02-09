@@ -212,16 +212,17 @@ export class FileUploader implements ControlValueAccessor {
 	}
 
 	onFilesAdded() {
+		const newFiles = new Set<FileItem>(this.files);
 		if (!this.multiple) {
-			this.files.clear();
+			newFiles.clear();
 		}
 		for (let file of this.fileList) {
 			const fileItem = this.createFileItem(file);
-			this.files.add(fileItem);
+			newFiles.add(fileItem);
 		}
 
+		this.value = newFiles;
 		this.filesChange.emit(this.files);
-		this.value = this.files;
 	}
 
 	onDragOver(event) {
