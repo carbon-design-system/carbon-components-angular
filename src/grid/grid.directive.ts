@@ -49,7 +49,8 @@ export class ColumnDirective implements OnChanges {
 
 	@Input() offsets = {};
 
-	protected _columnClasses: string[] = [];
+	// initial value if no inputs are provided (if no inputs ngOnChanges won't be executed)
+	protected _columnClasses: string[] = ["bx--col"];
 
 	@HostBinding("class")
 	get columnClasses(): string {

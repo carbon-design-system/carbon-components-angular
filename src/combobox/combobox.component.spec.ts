@@ -160,4 +160,28 @@ describe("Combo box", () => {
 		element = fixture.debugElement.query(By.css("input"));
 		expect(element.nativeElement.getAttribute("placeholder")).toBe("placeholder");
 	});
+
+	it("should display dropdown list when new items are passed that match the current search string", () => {
+		fixture = TestBed.createComponent(ComboboxTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+
+		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+
+		const textInput = element.nativeElement.querySelector(".bx--text-input");
+		textInput.value = "f";
+		textInput.dispatchEvent(new Event("input"));
+
+		wrapper.items = [
+			{content: "four", selected: false},
+			{content: "five", selected: false},
+			{content: "six", selected: false}
+		];
+
+		fixture.detectChanges();
+
+		const itemEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item"));
+
+		expect(itemEls.length).toEqual(2);
+	});
 });
