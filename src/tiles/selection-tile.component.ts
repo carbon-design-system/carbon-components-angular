@@ -5,7 +5,8 @@ import {
 	EventEmitter,
 	ViewChild,
 	HostListener,
-	AfterViewInit
+	AfterViewInit,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -17,7 +18,10 @@ import { I18n } from "carbon-components-angular/i18n";
 			class="bx--tile bx--tile--selectable"
 			tabindex="0"
 			[for]="id"
-			[ngClass]="{'bx--tile--is-selected' : selected}"
+			[ngClass]="{
+				'bx--tile--is-selected' : selected,
+				'bx--tile--light': theme === 'light'
+			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
 				#input
@@ -41,6 +45,12 @@ import { I18n } from "carbon-components-angular/i18n";
 	`
 })
 export class SelectionTile implements AfterViewInit {
+	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+		return this.theme === "light";
+	}
+
+	@Input() theme: "light" | "dark" = "dark";
+
 	static tileCount = 0;
 	/**
 	 * The unique id for the input.

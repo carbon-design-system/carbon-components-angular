@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	ElementRef,
-	AfterContentInit
+	AfterContentInit,
+	HostBinding
 } from "@angular/core";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
@@ -17,7 +18,10 @@ export interface ExpandableTileTranslations {
 	template: `
 		<button
 			class="bx--tile bx--tile--expandable"
-			[ngClass]="{'bx--tile--is-expanded' : expanded}"
+			[ngClass]="{
+				'bx--tile--is-expanded' : expanded,
+				'bx--tile--light': theme === 'light'
+			}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			type="button"
 			(click)="onClick()">
@@ -39,6 +43,12 @@ export interface ExpandableTileTranslations {
 	`
 })
 export class ExpandableTile implements AfterContentInit {
+	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+		return this.theme === "light";
+	}
+
+	@Input() theme: "light" | "dark" = "dark";
+
 	@Input() expanded = false;
 	/**
 	 * Expects an object that contains some or all of:
