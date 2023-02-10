@@ -17,7 +17,10 @@ export interface ExpandableTileTranslations {
 	template: `
 		<button
 			class="cds--tile cds--tile--expandable"
-			[ngClass]="{'cds--tile--is-expanded' : expanded}"
+			[ngClass]="{
+				'cds--tile--is-expanded' : expanded,
+				'cds--tile--light': theme === 'light'
+			}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			type="button"
 			(click)="onClick()">
@@ -39,6 +42,8 @@ export interface ExpandableTileTranslations {
 	`
 })
 export class ExpandableTile implements AfterContentInit {
+	@Input() theme: "light" | "dark" = "dark";
+
 	@Input() expanded = false;
 	/**
 	 * Expects an object that contains some or all of:
