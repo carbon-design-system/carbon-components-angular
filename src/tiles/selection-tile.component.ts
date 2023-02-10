@@ -49,13 +49,14 @@ export class SelectionTile implements AfterViewInit {
 	 * The unique id for the input.
 	 */
 
-	@Input() theme: "light" | "dark" = "dark";
-
 	@Input() id = `tile-${SelectionTile.tileCount}`;
 	/**
 	 * Updating the state of the input to match the state of the parameter passed in.
 	 * Set to `true` if this tile should be selected.
 	 */
+
+	@Input() theme: "light" | "dark" = "dark";
+
 	@Input() set selected(value: boolean) {
 		// If an initial selected value is set before input exists, we save
 		// the value and check again when input exists in `AfterViewInit`.
