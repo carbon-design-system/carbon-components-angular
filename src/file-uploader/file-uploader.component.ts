@@ -222,7 +222,7 @@ export class FileUploader implements ControlValueAccessor {
 		}
 
 		this.value = newFiles;
-		this.filesChange.emit(this.files);
+		this.filesChange.emit(newFiles);
 	}
 
 	onDragOver(event) {
