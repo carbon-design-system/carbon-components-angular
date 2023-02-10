@@ -60,9 +60,9 @@
   "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
-    "@angular/common": "^13.0.0 || ^14.0.0",
-    "@angular/core": "^13.0.0 || ^14.0.0",
-    "@angular/forms": "^13.0.0 || ^14.0.0",
+    "@angular/common": "^13.0.0 || ^14.0.0 || ^15.0.0",
+    "@angular/core": "^13.0.0 || ^14.0.0 || ^15.0.0",
+    "@angular/forms": "^13.0.0 || ^14.0.0 || ^15.0.0",
     "@carbon/styles": "^1.5.0",
     "rxjs": "^6.0.0 || ^7.0.0",
     "zone.js": "^0.11.0"
