@@ -3,8 +3,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional,
-	HostBinding
+	Optional
 } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -35,10 +34,6 @@ import { Router } from "@angular/router";
 	</a>`
 })
 export class ClickableTile {
-	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
-		return this.theme === "light";
-	}
-
 	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * Sets the `href` attribute on the `ibm-clickable-tile` element.

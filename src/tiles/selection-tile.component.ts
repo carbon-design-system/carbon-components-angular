@@ -5,8 +5,7 @@ import {
 	EventEmitter,
 	ViewChild,
 	HostListener,
-	AfterViewInit,
-	HostBinding
+	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -49,10 +48,6 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * The unique id for the input.
 	 */
-
-	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
-		return this.theme === "light";
-	}
 
 	@Input() theme: "light" | "dark" = "dark";
 

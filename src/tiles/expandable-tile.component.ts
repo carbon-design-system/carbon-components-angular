@@ -2,8 +2,7 @@ import {
 	Component,
 	Input,
 	ElementRef,
-	AfterContentInit,
-	HostBinding
+	AfterContentInit
 } from "@angular/core";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
@@ -43,10 +42,6 @@ export interface ExpandableTileTranslations {
 	`
 })
 export class ExpandableTile implements AfterContentInit {
-	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
-		return this.theme === "light";
-	}
-
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() expanded = false;
