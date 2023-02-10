@@ -35,6 +35,7 @@ import { Router } from "@angular/router";
 })
 export class ClickableTile {
 	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * Sets the `href` attribute on the `ibm-clickable-tile` element.
 	 */
