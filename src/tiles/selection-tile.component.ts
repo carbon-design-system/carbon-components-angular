@@ -48,7 +48,6 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * The unique id for the input.
 	 */
-
 	@Input() id = `tile-${SelectionTile.tileCount}`;
 	/**
 	 * Updating the state of the input to match the state of the parameter passed in.
