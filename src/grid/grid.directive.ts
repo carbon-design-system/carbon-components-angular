@@ -4,6 +4,7 @@ import {
 	Directive,
 	HostBinding,
 	Input,
+	OnChanges,
 	OnInit,
 	QueryList
 } from "@angular/core";
@@ -11,7 +12,7 @@ import {
 @Directive({
 	selector: "[ibmCol]"
 })
-export class ColumnDirective implements OnInit {
+export class ColumnDirective implements OnInit, OnChanges {
 	@HostBinding("class")
 	get columnClasses(): string {
 		return this._columnClasses.join(" ");
@@ -59,10 +60,19 @@ export class ColumnDirective implements OnInit {
 	protected _columnClasses: string[] = [];
 
 	ngOnInit() {
+		this.updateColumnClasses();
+	}
+
+	ngOnChanges() {
+		this.updateColumnClasses();
+	}
+
+	private updateColumnClasses() {
 		// Using setTimeout to simulate a tick to capture an update isCss property
 		// otherwise, isCss will always be false
 		setTimeout(() => {
 			try {
+				this._columnClasses = [];
 				const columnKeys = Object.keys(this.columnNumbers);
 
 				// Assign classes based on the type of grid used.

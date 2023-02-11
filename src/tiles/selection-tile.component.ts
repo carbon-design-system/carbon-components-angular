@@ -7,7 +7,6 @@ import {
 	HostListener,
 	AfterViewInit
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
@@ -17,7 +16,10 @@ import { I18n } from "carbon-components-angular/i18n";
 			class="cds--tile cds--tile--selectable"
 			tabindex="0"
 			[for]="id"
-			[ngClass]="{'cds--tile--is-selected' : selected}"
+			[ngClass]="{
+				'cds--tile--is-selected' : selected,
+				'cds--tile--light': theme === 'light'
+			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
 				#input
@@ -42,10 +44,14 @@ import { I18n } from "carbon-components-angular/i18n";
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
+
+	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * The unique id for the input.
 	 */
 	@Input() id = `tile-${SelectionTile.tileCount}`;
+
 	/**
 	 * Updating the state of the input to match the state of the parameter passed in.
 	 * Set to `true` if this tile should be selected.

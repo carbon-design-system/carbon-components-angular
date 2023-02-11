@@ -9,7 +9,8 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	ApplicationRef
 } from "@angular/core";
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
@@ -67,10 +68,10 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
+				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
 					'cds--list-box__menu-item--active': item.selected,
-					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i),
-					disabled: item.disabled
+					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
 				}">
 				<div
 					#listItem
@@ -223,7 +224,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(public elementRef: ElementRef, protected i18n: I18n, protected appRef: ApplicationRef) {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -273,10 +274,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.displayItems = this._items;
 		this.updateIndex();
 		this.setupFocusObservable();
-		setTimeout(() => {
-			if (this.getSelected() !== []) { return; }
-			this.doEmitSelect();
-		});
+		this.doEmitSelect();
 	}
 
 	/**
@@ -540,6 +538,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index = this.displayItems.indexOf(item);
 			this.highlightedItem = this.getItemId(this.index);
 			this.doEmitSelect(false);
+			this.appRef.tick();
 		}
 	}
 

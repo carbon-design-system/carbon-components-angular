@@ -72,8 +72,15 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							class="cds--date-picker__icon cds--date-picker__icon--warn">
 						</svg>
 				</div>
+				<div
+					*ngIf="helperText && !invalid && !warn"
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				</div>
 				<div *ngIf="!warn && invalid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 				</div>
 				<div *ngIf="!invalid && warn" class="cds--form-requirement">
@@ -132,6 +139,11 @@ export class DatePickerInput {
 	 */
 	@Input() warnText: string | TemplateRef<any>;
 
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+
 	@Input() skeleton = false;
 
 	@Input() value = "";
@@ -140,7 +152,7 @@ export class DatePickerInput {
 
 	@ViewChild("input") input: ElementRef;
 
-	constructor(protected elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) { }
 
 	onChange(event) {
 		this.value = event.target.value;
@@ -161,9 +173,9 @@ export class DatePickerInput {
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => {};
+	onTouched: () => any = () => { };
 
-	propagateChange = (_: any) => {};
+	propagateChange = (_: any) => { };
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;

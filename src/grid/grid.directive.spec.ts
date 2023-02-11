@@ -1,5 +1,11 @@
 import { Component } from "@angular/core";
-import { TestBed, waitForAsync } from "@angular/core/testing";
+import {
+	TestBed,
+	waitForAsync,
+	fakeAsync,
+	tick,
+	flush
+} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
 
@@ -124,6 +130,34 @@ describe("GridDirective", () => {
 					"cds--css-grid-column cds--md:col-span-3 custom-class-example"
 				);
 			});
+		});
+	}));
+
+	it("should render a column without inputs", fakeAsync(() => {
+		TestBed.overrideComponent(TestGridComponent, {
+			set: {
+				template:
+					`<div ibmCol>cds</div>`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			const fixture = TestBed.createComponent(TestGridComponent);
+			const directiveEl = fixture.debugElement.query(
+				By.directive(ColumnDirective)
+			);
+
+			tick(100);
+			fixture.detectChanges();
+			fixture.whenStable().then(() => {
+				expect(directiveEl).not.toBeNull();
+				const directiveInstance = directiveEl.injector.get(ColumnDirective);
+				expect(directiveInstance.columnClasses).toBe(
+					"cds--col"
+				);
+
+			});
+			flush();
 		});
 	}));
 });

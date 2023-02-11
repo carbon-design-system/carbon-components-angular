@@ -11,6 +11,7 @@ import { TimePicker } from "./timepicker.component";
 		(valueChange)="onChange()"
 		[(value)]="value"
 		label="test"
+		size="lg"
 		disabled="false">
 	</ibm-timepicker>`
 })
@@ -48,6 +49,12 @@ describe("TimePicker", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
 		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
 		expect(element.getAttribute("theme")).toEqual("dark");
+	});
+
+	it("should set size to large", () => {
+		fixture = TestBed.createComponent(TimePickerTest);
+		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		expect(element.getAttribute("size")).toEqual("lg");
 	});
 
 	it("should set disabled to false", () => {

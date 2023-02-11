@@ -19,7 +19,10 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 		*ngIf="!skeleton && label"
 		[for]="id"
 		class="cds--label"
-		[ngClass]="{'cds--label--disabled': disabled}">
+		[ngClass]="{
+			'cds--label--disabled': disabled,
+			'cds--visually-hidden': hideLabel
+		}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
@@ -44,7 +47,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					[pattern]="pattern"
 					[attr.id]="id"
 					[disabled]="disabled"
-					maxlength="5"
+					[attr.maxlength]="maxLength"
 					(change)="onChange($event)"
 					type="text"
 					class="cds--time-picker__input-field cds--text-input">
@@ -73,11 +76,13 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() invalid = false;
 	@Input() invalidText: string | TemplateRef<any>;
 	@Input() label: string | TemplateRef<any>;
+	@Input() hideLabel = false;
 	@Input() placeholder = "hh:mm";
 	@Input() pattern = "(1[012]|[0-9]):[0-5][0-9]";
 	@Input() id = `timepicker-${TimePicker.timePickerCount++}`;
 	@Input() disabled = false;
 	@Input() value: string;
+	@Input() maxLength = 5;
 
 	/**
 	 * Set to true for a loading select.
@@ -91,6 +96,9 @@ export class TimePicker implements ControlValueAccessor {
 	 */
 	@Input() theme: "light" | "dark";
 
+	/**
+	 * `sm`, `md` (default), or `lg` select size
+	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();

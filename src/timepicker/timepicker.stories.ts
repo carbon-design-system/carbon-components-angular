@@ -33,16 +33,16 @@ const Template: Story<TimePicker> = (args) => ({
 			<ibm-timepicker-select
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
-				display="inline"
-				[(ngModel)]="period">
+				[(ngModel)]="period"
+				ariaLabel="Open list of options">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
 			</ibm-timepicker-select>
 			<ibm-timepicker-select
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
-				display="inline"
-				[(ngModel)]="timeZone">
+				[(ngModel)]="timeZone"
+				ariaLabel="Open list of options">
 				<option selected value="Time Zone 1">Time Zone 1</option>
 				<option value="Time Zone 2">Time Zone 2</option>
 			</ibm-timepicker-select>
