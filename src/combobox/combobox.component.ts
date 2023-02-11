@@ -740,7 +740,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			if (!matches) {
 				const selected = this.view.getSelected();
 				if (!selected || !selected[0]) {
-					this.view.filterBy("");
+					this.view.filterBy(searchString);
 				}
 			}
 		}

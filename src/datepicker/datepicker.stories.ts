@@ -128,7 +128,8 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
 			[value]="value"
-			(valueChange)="valueChange($event)">
+			(valueChange)="valueChange($event)"
+			[helperText]="helperText">
 		</ibm-date-picker>
 		<p style="margin-top: 20px;">Without initial value</p>
 		<ibm-date-picker
@@ -147,7 +148,8 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 			[rangeWarn]="warn"
 			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
-			(valueChange)="valueChange($event)">
+			(valueChange)="valueChange($event)"
+			[helperText]="helperText">
 		</ibm-date-picker>
 	`
 });

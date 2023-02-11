@@ -57,6 +57,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[warn]="warn"
 					[warnText]="warnText"
 					[skeleton]="skeleton"
+					[helperText]="helperText"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
 				</ibm-date-picker-input>
@@ -78,6 +79,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[warn]="rangeWarn"
 					[warnText]="rangeWarnText"
 					[skeleton]="skeleton"
+					[helperText]="rangeHelperText"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
 				</ibm-date-picker-input>
@@ -123,8 +125,9 @@ export class DatePicker implements
 	 */
 	@Input() language = "en";
 
-	@Input() label: string  | TemplateRef<any>;
-
+	@Input() label: string | TemplateRef<any>;
+	@Input() helperText: string | TemplateRef<any>;
+	@Input() rangeHelperText: string | TemplateRef<any>;
 	@Input() rangeLabel: string;
 
 	@Input() placeholder = "mm/dd/yyyy";
@@ -205,7 +208,7 @@ export class DatePicker implements
 	get flatpickrOptions() {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
-			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left"}));
+			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
 		}
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
 			mode: this.range ? "range" : "single",
@@ -389,9 +392,9 @@ export class DatePicker implements
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => {};
+	onTouched: () => any = () => { };
 
-	propagateChange = (_: any) => {};
+	propagateChange = (_: any) => { };
 
 	/**
 	 * Cleans up our flatpickr instance
