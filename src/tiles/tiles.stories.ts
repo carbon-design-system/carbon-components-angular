@@ -105,7 +105,7 @@ storiesOf("Components|Tiles", module)
 		`,
 		props: {
 			theme: select("theme", ["dark", "light"], "dark"),
-			disabled: boolean("disabled", false),
+			disabled: boolean("disabled", false)
 		}
 	}))
 	.add("Routable", () => ({
