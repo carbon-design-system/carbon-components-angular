@@ -19,7 +19,8 @@ import { I18n } from "carbon-components-angular/i18n";
 			[for]="id"
 			[ngClass]="{
 				'bx--tile--is-selected' : selected,
-				'bx--tile--light': theme === 'light'
+				'bx--tile--light': theme === 'light',
+				'bx--tile--disabled' : disabled
 			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
@@ -77,6 +78,11 @@ export class SelectionTile implements AfterViewInit {
 	 * Internal event used to notify the containing `TileGroup` of changes.
 	 */
 	@Output() change: EventEmitter<Event> = new EventEmitter();
+
+	/**
+	 * Set to `true` to disable the selection tile.
+	 */
+	@Input() disabled = false;
 
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.

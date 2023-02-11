@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { select, withKnobs } from "@storybook/addon-knobs/angular";
+import { select, withKnobs, boolean } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule } from "../tiles/tiles.module";
@@ -99,26 +99,28 @@ storiesOf("Components|Tiles", module)
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
-		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank" [theme]="theme">
+		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank" [theme]="theme" [disabled]="disabled">
 			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
 		`,
 		props: {
-			theme: select("theme", ["dark", "light"], "dark")
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false),
 		}
 	}))
 	.add("Routable", () => ({
 		template: `
-			<ibm-clickable-tile [route]="['foo']" [theme]="theme">
+			<ibm-clickable-tile [route]="['foo']" [theme]="theme" [disabled]="disabled">
 				Click to trigger the <code>foo</code> route
 			</ibm-clickable-tile>
-			<ibm-clickable-tile [route]="['bar']" [theme]="theme">
+			<ibm-clickable-tile [route]="['bar']" [theme]="theme" [disabled]="disabled">
 				Click to trigger the <code>bar</code> route
 			</ibm-clickable-tile>
 			<router-outlet></router-outlet>
 		`,
 		props: {
-			theme: select("theme", ["dark", "light"], "dark")
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false)
 		}
 	}))
 	.add("Selectable", () => ({
@@ -135,14 +137,15 @@ storiesOf("Components|Tiles", module)
 			</a>
 			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2" [theme]="theme">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [disabled]="disabled" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [disabled]="disabled" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [disabled]="disabled" [theme]="theme">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
 			selected: action("tile selected"),
-			theme: select("theme", ["dark", "light"], "dark")
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false)
 		}
 	}))
 	.add("Multi-select", () => ({
@@ -172,14 +175,15 @@ storiesOf("Components|Tiles", module)
 			</a>
 			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2" [theme]="theme">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
 			selected: action("tile selected"),
-			theme: select("theme", ["dark", "light"], "dark")
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false)
 		}
 	}))
 	.add("Expandable", () => ({

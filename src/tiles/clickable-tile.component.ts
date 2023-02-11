@@ -28,6 +28,7 @@ import { Router } from "@angular/router";
 		tabindex="0"
 		(click)="navigate($event)"
 		[href]="href"
+		[disabled]="disabled"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
