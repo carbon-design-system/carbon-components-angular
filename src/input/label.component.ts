@@ -172,12 +172,19 @@ export class Label implements AfterContentInit, AfterViewInit {
 			// Prioritize setting id to `input` & `textarea` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea");
 			if (inputElement) {
+				// avoid overriding ids already set by the user reuse it instead
+				if (inputElement.id) {
+					this.labelInputID = inputElement.id;
+				}
 				inputElement.setAttribute("id", this.labelInputID);
 				return;
 			}
 
 			const divElement = this.wrapper.nativeElement.querySelector("div");
 			if (divElement) {
+				if (divElement.id) {
+					this.labelInputID = divElement.id;
+				}
 				divElement.setAttribute("id", this.labelInputID);
 			}
 		}

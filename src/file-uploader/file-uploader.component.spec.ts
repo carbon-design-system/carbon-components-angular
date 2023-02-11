@@ -120,5 +120,26 @@ describe("FileUploader", () => {
 
 		expect(element.nativeElement.querySelector(".bx--file__state-container .bx--file--invalid")).toBeTruthy();
 	});
+
+	it("should correctly update this.files when onFilesAdded is called", () => {
+		fixture = TestBed.createComponent(FileUploader);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+
+		const fileAlreadyAdded = new File([""], "test-filename-added", {type: "text/html"});
+		const currentFiles = new Set().add(wrapper.createFileItem(fileAlreadyAdded));
+		wrapper.files = currentFiles;
+		fixture.detectChanges();
+		expect(wrapper.value).toBe(currentFiles);
+
+		const dataTransfer = new DataTransfer();
+		const fileToAdd = new File(["test file"], "test-filename", {type: "text/html"});
+		dataTransfer.items.add(fileToAdd);
+		wrapper.fileInput.nativeElement.files = dataTransfer.files;
+		fixture.detectChanges();
+		wrapper.onFilesAdded();
+		const filesArray: FileItem[] = Array.from(wrapper.files);
+		expect(!!filesArray.find((fileItem: FileItem) => fileItem.file.name === fileToAdd.name)).toBe(true);
+	});
 });
 

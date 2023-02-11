@@ -17,7 +17,10 @@ import { I18n } from "carbon-components-angular/i18n";
 			class="bx--tile bx--tile--selectable"
 			tabindex="0"
 			[for]="id"
-			[ngClass]="{'bx--tile--is-selected' : selected}"
+			[ngClass]="{
+				'bx--tile--is-selected' : selected,
+				'bx--tile--light': theme === 'light'
+			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
 				#input
@@ -42,10 +45,14 @@ import { I18n } from "carbon-components-angular/i18n";
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
+
+	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * The unique id for the input.
 	 */
 	@Input() id = `tile-${SelectionTile.tileCount}`;
+
 	/**
 	 * Updating the state of the input to match the state of the parameter passed in.
 	 * Set to `true` if this tile should be selected.
