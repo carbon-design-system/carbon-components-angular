@@ -21,7 +21,7 @@
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4",
-    "carbon-components": "^10.0.0",
+    "carbon-components": "^10.58.3",
     "carbon-components-angular": "latest"
   },
   "devDependencies": {
