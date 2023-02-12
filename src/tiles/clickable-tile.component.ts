@@ -24,11 +24,13 @@ import { Router } from "@angular/router";
 	<a
 		ibmLink
 		class="bx--tile bx--tile--clickable"
-		[ngClass]="{'bx--tile--light': theme === 'light'}"
+		[ngClass]="{
+			'bx--tile--light': theme === 'light',
+			'bx--tile--disabled bx--link--disabled' : disabled
+		}"
 		tabindex="0"
 		(click)="navigate($event)"
 		[href]="href"
-		[disabled]="disabled"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
