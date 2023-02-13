@@ -29,7 +29,7 @@ import { Router } from "@angular/router";
 			'bx--tile--disabled bx--link--disabled' : disabled
 		}"
 		tabindex="0"
-		(click)="navigate($event)"
+		(click)="!disabled ? navigate($event) : null"
 		[href]="href"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
