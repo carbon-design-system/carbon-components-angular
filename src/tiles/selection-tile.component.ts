@@ -45,6 +45,10 @@ import { I18n } from "carbon-components-angular/i18n";
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
 
+	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	/**
