@@ -24,6 +24,7 @@ import { Router } from "@angular/router";
 	<a
 		ibmLink
 		class="bx--tile bx--tile--clickable"
+		[ngClass]="{'bx--tile--light': theme === 'light'}"
 		tabindex="0"
 		(click)="navigate($event)"
 		[href]="href"
@@ -33,6 +34,8 @@ import { Router } from "@angular/router";
 	</a>`
 })
 export class ClickableTile {
+	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * Sets the `href` attribute on the `ibm-clickable-tile` element.
 	 */

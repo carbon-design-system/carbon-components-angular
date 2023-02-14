@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { select, withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
-import { TilesModule } from "../";
+import { TilesModule } from "../tiles/tiles.module";
 import { SkeletonModule } from "../skeleton/index";
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
@@ -72,17 +72,20 @@ storiesOf("Components|Tiles", module)
 	.add("Multiple", () => ({
 		template: `
 		<div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-			<ibm-tile>
+			<ibm-tile [theme]="theme">
 				Tile 1
 			</ibm-tile>
-			<ibm-tile>
+			<ibm-tile [theme]="theme">
 				Tile 2
 			</ibm-tile>
-			<ibm-tile>
+			<ibm-tile [theme]="theme">
 				Tile 3
 			</ibm-tile>
 		</div>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("Clickable", () => ({
 		template: `
@@ -96,21 +99,27 @@ storiesOf("Components|Tiles", module)
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
-		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
+		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank" [theme]="theme">
 			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("Routable", () => ({
 		template: `
-			<ibm-clickable-tile [route]="['foo']">
+			<ibm-clickable-tile [route]="['foo']" [theme]="theme">
 				Click to trigger the <code>foo</code> route
 			</ibm-clickable-tile>
-			<ibm-clickable-tile [route]="['bar']">
+			<ibm-clickable-tile [route]="['bar']" [theme]="theme">
 				Click to trigger the <code>bar</code> route
 			</ibm-clickable-tile>
 			<router-outlet></router-outlet>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("Selectable", () => ({
 		template: `
@@ -126,13 +135,14 @@ storiesOf("Components|Tiles", module)
 			</a>
 			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [theme]="theme">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
-			selected: action("tile selected")
+			selected: action("tile selected"),
+			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
 	.add("Multi-select", () => ({
@@ -162,13 +172,14 @@ storiesOf("Components|Tiles", module)
 			</a>
 			<br><br>
 			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [theme]="theme">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [theme]="theme">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
-			selected: action("tile selected")
+			selected: action("tile selected"),
+			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
 	.add("Expandable", () => ({
@@ -187,11 +198,14 @@ storiesOf("Components|Tiles", module)
 			Edit on Carbon UI Builder
 		</a>
 		<br><br>
-		<ibm-expandable-tile>
+		<ibm-expandable-tile [theme]="theme">
 			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
 			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
 		</ibm-expandable-tile>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
