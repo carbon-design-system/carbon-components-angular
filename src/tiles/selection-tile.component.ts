@@ -15,7 +15,7 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<label
 			class="bx--tile bx--tile--selectable"
-			tabindex="0"
+			tabindex="disabled ? null : 0"
 			[for]="id"
 			[ngClass]="{
 				'bx--tile--is-selected' : selected,
