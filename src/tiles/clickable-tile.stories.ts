@@ -18,12 +18,12 @@ export default {
 const Template: Story<ClickableTile> = (args) => ({
 	props: args,
 	template: `
-		<ibm-clickable-tile
+		<cds-clickable-tile
 			[disabled]="disabled"
 			[href]="href"
 			target="_blank">
 			Click the tile to open the Carbon Design System
-		</ibm-clickable-tile>
+		</cds-clickable-tile>
 	`
 });
 export const Basic = Template.bind({});
@@ -34,15 +34,15 @@ Basic.args = {
 const LayerTemplate: Story<ClickableTile> = (args) => ({
 	props: args,
 	template: `
-		<ibm-clickable-tile>
+		<cds-clickable-tile>
 			First layer
-		</ibm-clickable-tile>
-		<div ibmLayer>
-			<ibm-clickable-tile>
+		</cds-clickable-tile>
+		<div cdsLayer>
+			<cds-clickable-tile>
 				Second layer
-			</ibm-clickable-tile>
-			<div ibmLayer>
-				<ibm-clickable-tile>Third layer</ibm-clickable-tile>
+			</cds-clickable-tile>
+			<div cdsLayer>
+				<cds-clickable-tile>Third layer</cds-clickable-tile>
 			</div>
 		</div>
 	`

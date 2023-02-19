@@ -29,7 +29,7 @@ const Template: Story = (args) => ({
 		You can create your own implementation by using the component source found at:
 		https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/icon-demo.component.ts -->
 		<app-demo-icon></app-demo-icon>
-		<svg ibmIcon="accessibility" size="16" title="Hello!"></svg>
+		<svg cdsIcon="accessibility" size="16" title="Hello!"></svg>
 	`
 });
 export const Basic = Template.bind({});
@@ -43,7 +43,7 @@ const NonSVGRootTemplate: Story = (args) => ({
 		https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/many-icons-demo.component.ts
 		-->
 		<app-demo-icon></app-demo-icon>
-		<div ibmIcon="accessibility" size="16"></div>
+		<div cdsIcon="accessibility" size="16"></div>
 	`
 });
 export const RootElement = NonSVGRootTemplate.bind({});

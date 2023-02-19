@@ -46,7 +46,7 @@ export default {
 const Template: Story<Search> = (args) => ({
 	props: args,
 	template: `
-		<ibm-search
+		<cds-search
 			[theme]="theme"
 			[placeholder]="placeholder"
 			[autocomplete]="autocomplete"
@@ -54,7 +54,7 @@ const Template: Story<Search> = (args) => ({
 			[size]="size"
 			(valueChange)="valueChange($event)"
 			(clear)="clear()">
-		</ibm-search>
+		</cds-search>
 	`
 });
 export const Basic = Template.bind({});

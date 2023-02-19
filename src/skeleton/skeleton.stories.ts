@@ -22,11 +22,11 @@ export default {
 const Template: Story<SkeletonPlaceholder> = (args) => ({
 	props: args,
 	template: `
-	<ibm-skeleton-text
+	<cds-skeleton-text
 		[lines]="lines"
 		[minLineWidth]="minLineWidth"
 		[maxLineWidth]="maxLineWidth">
-	</ibm-skeleton-text>
+	</cds-skeleton-text>
 	`
 });
 export const Basic = Template.bind({});

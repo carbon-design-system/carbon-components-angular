@@ -24,7 +24,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 /**
  * ```html
- * <ibm-dropdown-list [items]="listItems"></ibm-dropdown-list>
+ * <cds-dropdown-list [items]="listItems"></cds-dropdown-list>
  * ```
  * ```typescript
  * listItems = [
@@ -48,7 +48,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
  * ```
  */
 @Component({
-	selector: "ibm-dropdown-list",
+	selector: "cds-dropdown-list, ibm-dropdown-list",
 	template: `
 		<ul
 			#list
@@ -96,7 +96,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 					<svg
 						*ngIf="!listTpl && type === 'single'"
-						ibmIcon="checkmark"
+						cdsIcon="checkmark"
 						size="16"
 						class="cds--list-box__menu-item__selected-icon">
 					</svg>

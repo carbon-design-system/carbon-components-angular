@@ -22,52 +22,52 @@ import {
 @Component({
 	selector: "app-sample-large-loading",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow class="progress-indicator-wrapper">
-			<ibm-progress-indicator [steps]="steps"></ibm-progress-indicator>
+		<div cdsRow class="progress-indicator-wrapper">
+			<cds-progress-indicator [steps]="steps"></cds-progress-indicator>
 		</div>
-		<div ibmRow class="form">
+		<div cdsRow class="form">
 			<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 				<div class="cds--form-item">
-					<ibm-label
+					<cds-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('input')"
 						invalidText="Please enter a response">
 						Text input label
 						<input
-							ibmText
+							cdsText
 							formControlName="input"
 							placeholder="Optional placeholder text">
-					</ibm-label>
+					</cds-label>
 				</div>
 				<div class="cds--form-item">
-					<ibm-label
+					<cds-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('textArea')"
 						invalidText="Please enter a response">
 						Text input label
 						<textarea
-							ibmTextArea
+							cdsTextArea
 							formControlName="textArea"
 							placeholder="Optional placeholder text">
 						</textarea>
-					</ibm-label>
+					</cds-label>
 				</div>
 				<div class="cds--form-item">
 					<div class="dropdown-wrapper">
-						<ibm-dropdown
+						<cds-dropdown
 							label="Choose one option"
 							[invalid]="isInvalid('dropdown')"
 							invalidText="Please choose an option"
 							placeholder="Select an option"
 							formControlName="dropdown">
-							<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-						</ibm-dropdown>
+							<cds-dropdown-list [items]="items"></cds-dropdown-list>
+						</cds-dropdown>
 					</div>
 				</div>
 				<div class="cds--form-item">
@@ -81,12 +81,12 @@ import {
 			</form>
 		</div>
 	</div>
-	<ibm-loading
+	<cds-loading
 		*ngIf="isLoading"
 		[isActive]="isLoading"
 		size="normal"
 		[overlay]="overlay">
-	</ibm-loading>
+	</cds-loading>
 	`,
 	styles: [`
 		.header {

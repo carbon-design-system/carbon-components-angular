@@ -16,7 +16,7 @@ export default {
 const Template: Story<Label> = (args) => ({
 	props: args,
 	template: `
-		<ibm-label
+		<cds-label
 		[helperText]="helperText"
 		[invalid]="invalid"
 		[invalidText]="invalidText"
@@ -25,7 +25,7 @@ const Template: Story<Label> = (args) => ({
 		[warnText]="warnText">
 		{{label}}
 		<input
-			ibmText
+			cdsText
 			[size]="size"
 			[invalid]="invalid"
 			[warn]="warn"
@@ -33,7 +33,7 @@ const Template: Story<Label> = (args) => ({
 			[theme]="theme"
 			[placeholder]="placeholder"
 			[autocomplete]="autocomplete">
-		</ibm-label>
+		</cds-label>
 	`
 });
 export const Basic = Template.bind({});
@@ -69,14 +69,14 @@ Basic.argTypes = {
 const TextareaTemplate: Story<Label> = (args) => ({
 	props: args,
 	template: `
-		<ibm-label
+		<cds-label
 		[helperText]="helperText"
 		[invalid]="invalid"
 		[disabled]="disabled"
 		[invalidText]="invalidText">
 		{{label}}
 		<textarea
-			ibmTextArea
+			cdsTextArea
 			[placeholder]="placeholder"
 			[invalid]="invalid"
 			[disabled]="disabled"
@@ -84,7 +84,7 @@ const TextareaTemplate: Story<Label> = (args) => ({
 			[rows]="rows"
 			[cols]="cols"
 			aria-label="textarea"></textarea>
-		</ibm-label>
+		</cds-label>
 	`
 });
 export const TextArea = TextareaTemplate.bind({});
@@ -100,15 +100,15 @@ TextArea.argTypes = {
 const SkeletonTemplate: Story<Label> = (args) => ({
 	props: args,
 	template: `
-		<ibm-label skeleton="true">
-			<input ibmText skeleton="true">
-		</ibm-label>
+		<cds-label skeleton="true">
+			<input cdsText skeleton="true">
+		</cds-label>
 		<br>
-		<input ibmText skeleton="true">
+		<input cdsText skeleton="true">
 		<br><br>
-		<ibm-label skeleton="true">
-			<div ibmTextArea skeleton="true"></div>
-		</ibm-label>
+		<cds-label skeleton="true">
+			<div cdsTextArea skeleton="true"></div>
+		</cds-label>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

@@ -17,13 +17,13 @@ import { PlaceholderModule } from "./../placeholder/index";
 
 @Component({
 	template: `
-	<ibm-combo-box
+	<cds-combo-box
 		placeholder="placeholder"
 		label="label"
 		[items]="items"
 		[(ngModel)]="model">
-		<ibm-dropdown-list></ibm-dropdown-list>
-	</ibm-combo-box>`
+		<cds-dropdown-list></cds-dropdown-list>
+	</cds-combo-box>`
 })
 class ComboboxTest {
 	items = [
@@ -65,7 +65,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 
 		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
 		dropdownToggle.click();
@@ -90,7 +90,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		spyOn(element.componentInstance, "clearInput");
 
 		// Select an item from the dropdown
@@ -116,7 +116,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		element.componentInstance.open = false;
 		fixture.detectChanges();
 
@@ -135,7 +135,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		spyOn(element.componentInstance, "onSearch");
 
 		const textInput = element.nativeElement.querySelector(".cds--text-input");
@@ -149,7 +149,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		expect(element.nativeElement.textContent).toBe("label");
 	});
 
@@ -166,7 +166,7 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 
 		const textInput = element.nativeElement.querySelector(".cds--text-input");
 		textInput.value = "f";

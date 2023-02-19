@@ -26,36 +26,36 @@ let nextId = 0;
 * Tab with string header:
 *
 * ```html
-* <ibm-tab heading='tab1'>
+* <cds-tab heading='tab1'>
 * 	tab 1 content
-* </ibm-tab>
+* </cds-tab>
 * ```
 *
 * Tab with custom header:
 *
 * ```html
 * <ng-template #tabHeading>
-* 	<svg ibmIcon="facebook"
+* 	<svg cdsIcon="facebook"
 * 		size="sm"
 * 		style="margin-right: 7px;">
 * 	</svg>
 * 	Hello Tab 1
 * </ng-template>
-* <ibm-tabs>
-* 	<ibm-tab [heading]="tabHeading">
-* 		Tab 1 content <svg ibmIcon="alert" size="lg"></svg>
-* 	</ibm-tab>
-* 	<ibm-tab heading='Tab2'>
+* <cds-tabs>
+* 	<cds-tab [heading]="tabHeading">
+* 		Tab 1 content <svg cdsIcon="alert" size="lg"></svg>
+* 	</cds-tab>
+* 	<cds-tab heading='Tab2'>
 * 		Tab 2 content
-* 	</ibm-tab>
-* 	<ibm-tab heading='Tab3'>
+* 	</cds-tab>
+* 	<cds-tab heading='Tab3'>
 * 		Tab 3 content
-* 	</ibm-tab>
-* </ibm-tabs>
+* 	</cds-tab>
+* </cds-tabs>
 * ```
 */
 @Component({
-	selector: "ibm-tab",
+	selector: "cds-tab, ibm-tab",
 	template: `
 		<div
 			[attr.tabindex]="tabIndex"

@@ -19,15 +19,15 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
  * [See demo](../../?path=/story/components-content-switcher--basic)
  *
  * ```html
- * <ibm-content-switcher (selected)="selected($event)">
- *		<button ibmContentOption>First section</button>
- *		<button ibmContentOption>Second section</button>
- *		<button ibmContentOption>Third section</button>
- *	</ibm-content-switcher>
+ * <cds-content-switcher (selected)="selected($event)">
+ *		<button cdsContentOption>First section</button>
+ *		<button cdsContentOption>Second section</button>
+ *		<button cdsContentOption>Third section</button>
+ *	</cds-content-switcher>
  *	```
  */
 @Component({
-	selector: "ibm-content-switcher",
+	selector: "cds-content-switcher, ibm-content-switcher",
 	template: `
 		<div
 			[attr.aria-label]="ariaLabel"
@@ -81,7 +81,7 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[ibmContentOption]"));
+		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[cdsContentOption]"));
 
 		switch (event.key) {
 			case "ArrowRight":

@@ -13,12 +13,12 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
 @Component({
-	selector: "ibm-toggletip",
+	selector: "cds-toggletip, ibm-toggletip",
 	template: `
-		<ng-content select="[ibmToggletipButton]"></ng-content>
-		<ibm-popover-content>
-			<ng-content select="[ibmToggletipContent]"></ng-content>
-		</ibm-popover-content>
+		<ng-content select="[cdsToggletipButton]"></ng-content>
+		<cds-popover-content>
+			<ng-content select="[cdsToggletipContent]"></ng-content>
+		</cds-popover-content>
 	`
 })
 export class Toggletip extends PopoverContainer implements AfterViewInit {

@@ -12,7 +12,7 @@ import { Step } from "./progress-indicator-step.interface";
  * [See demo](../../?path=/story/components-progress-indicator--basic)
  */
 @Component({
-	selector: "ibm-progress-indicator",
+	selector: "cds-progress-indicator, ibm-progress-indicator",
 	template: `
 	<ul
 		data-progress
@@ -47,7 +47,7 @@ import { Step } from "./progress-indicator-step.interface";
 					{{this.translations[getCurrentState(i)?.toUpperCase()]}}
 				</span>
 				<svg
-					[ibmIcon]="statusIcons[getCurrentState(i)]"
+					[cdsIcon]="statusIcons[getCurrentState(i)]"
 					size="16"
 					[ngClass]="{
 						'cds--progress__warning': step.invalid && i !== current

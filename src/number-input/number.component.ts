@@ -30,7 +30,7 @@ export class NumberChange {
  * [See demo](../../?path=/story/components-number--basic)
  */
 @Component({
-	selector: "ibm-number",
+	selector: "cds-number, ibm-number",
 	template: `
 		<div
 			data-numberinput
@@ -73,13 +73,13 @@ export class NumberChange {
 					(input)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
-					ibmIcon="warning--filled"
+					cdsIcon="warning--filled"
 					size="16"
 					class="cds--number__invalid">
 				</svg>
 				<svg
 					*ngIf="!skeleton && !invalid && warn"
-					ibmIcon="warning--alt--filled"
+					cdsIcon="warning--alt--filled"
 					size="16"
 					class="cds--number__invalid cds--number__invalid--warning">
 				</svg>
@@ -92,7 +92,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<svg ibmIcon="subtract" size="16"></svg>
+						<svg cdsIcon="subtract" size="16"></svg>
 					</button>
 					<div class="cds--number__rule-divider"></div>
 					<button
@@ -103,7 +103,7 @@ export class NumberChange {
 						aria-atomic="true"
 						[attr.aria-label]="getIncrementLabel() | async"
 						(click)="onIncrement()">
-						<svg ibmIcon="add" size="16"></svg>
+						<svg cdsIcon="add" size="16"></svg>
 					</button>
 					<div class="cds--number__rule-divider"></div>
 				</div>

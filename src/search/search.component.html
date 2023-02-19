@@ -38,10 +38,10 @@
 			class="cds--toolbar-search__btn"
 			(click)="openSearch()"
 			aria-label="Open search">
-			<svg ibmIcon="search" size="16" class="cds--search-magnifier-icon"></svg>
+			<svg cdsIcon="search" size="16" class="cds--search-magnifier-icon"></svg>
 		</button>
 		<svg
-			ibmIcon="search"
+			cdsIcon="search"
 			*ngIf="tableSearch || !toolbar"
 			class="cds--search-magnifier-icon"
 			size="16">
@@ -57,6 +57,6 @@
 		[title]="clearButtonTitle"
 		(click)="clearSearch()">
 		<span class="cds--visually-hidden">{{ clearButtonTitle }}</span>
-		<svg ibmIcon="close" size="16"></svg>
+		<svg cdsIcon="close" size="16"></svg>
 	</button>
 </div>

@@ -12,13 +12,13 @@ import {
  * ## Basic usage
  *
  * ```html
- * <ibm-tile>
+ * <cds-tile>
  * 		tile content
- * </ibm-tile>
+ * </cds-tile>
  * ```
  */
 @Component({
-	selector: "ibm-tile",
+	selector: "cds-tile, ibm-tile",
 	template: `<ng-content></ng-content>`
 })
 export class Tile {

@@ -5,15 +5,15 @@ import { By } from "@angular/platform-browser";
 import { LayerDirective } from "./layer.directive";
 
 @Component({
-	template: `<div ibmLayer></div>`
+	template: `<div cdsLayer></div>`
 })
 class TestLayerComponent {
 }
 
 @Component({
 	template: `
-		<div ibmLayer>
-			<div ibmLayer class="test"></div>
+		<div cdsLayer>
+			<div cdsLayer class="test"></div>
 		</div>
 	`
 })

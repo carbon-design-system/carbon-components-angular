@@ -11,11 +11,11 @@ import { Step } from "./progress-indicator-step.interface";
 
 @Component({
 	template: `
-		<ibm-progress-indicator
+		<cds-progress-indicator
 			[steps]="steps"
 			[current]="current"
 			(stepSelected)="stepSelected.emit($event)">
-		</ibm-progress-indicator>
+		</cds-progress-indicator>
 	`
 })
 class ProgressIndicatorTest {
@@ -76,7 +76,7 @@ describe("Progress Indicator", () => {
 	it("should set current to 2 and set current step to Third step", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.componentInstance.current).toBe(2);
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Third step");
 	});
@@ -84,7 +84,7 @@ describe("Progress Indicator", () => {
 	it("should set warning icon when step is in error state", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
 	});
 
@@ -93,7 +93,7 @@ describe("Progress Indicator", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.current = 3;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
 	});
 
@@ -104,7 +104,7 @@ describe("Progress Indicator", () => {
 		let index = 2;
 		wrapper.current = index;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		let step = element.nativeElement.querySelector(".cds--progress-step--current .cds--progress-label");
 		step.click();
 		fixture.detectChanges();
@@ -117,7 +117,7 @@ describe("Progress Indicator", () => {
 		fixture.detectChanges();
 		wrapper.current = 0;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("First step");
 	});
 
@@ -132,7 +132,7 @@ describe("Progress Indicator", () => {
 		fixture.detectChanges();
 		wrapper.current = 5;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.nativeElement.querySelector(".cds--progress").children.length).toBe(6);
 		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Sixth step");
 	});

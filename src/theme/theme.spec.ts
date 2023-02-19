@@ -6,7 +6,7 @@ import { ThemeDirective } from "./theme.directive";
 import { LayerDirective } from "../layer";
 
 @Component({
-	template: `<div ibmTheme></div>`
+	template: `<div cdsTheme></div>`
 })
 class TestThemeComponent {}
 
@@ -41,9 +41,9 @@ describe("Theme", () => {
 		TestBed.overrideComponent(TestThemeComponent, {
 			set: {
 				template: `
-					<div ibmLayer>
-						<div ibmTheme>
-							<div ibmLayer id="nested-layer"></div>
+					<div cdsLayer>
+						<div cdsTheme>
+							<div cdsLayer id="nested-layer"></div>
 						</div>
 					</div>
 				`

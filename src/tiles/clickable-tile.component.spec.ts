@@ -36,8 +36,8 @@ describe("ClickableTile", () => {
 @Component({
 	selector: "test-cmp",
 	template: `
-	<ibm-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
+	<cds-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
 		Test Clickable Tile
-	</ibm-clickable-tile>`
+	</cds-clickable-tile>`
 })
 class ClickableTileTest {}

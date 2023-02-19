@@ -69,7 +69,7 @@ export default {
 const Template: Story<Dropdown> = (args) => ({
 	props: args,
 	template: `
-		<ibm-dropdown
+		<cds-dropdown
 			[label]="label"
 			[skeleton]="skeleton"
 			[helperText]="helperText"
@@ -84,8 +84,8 @@ const Template: Story<Dropdown> = (args) => ({
 			[disabled]="disabled"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
+			<cds-dropdown-list [items]="items"></cds-dropdown-list>
+		</cds-dropdown>
 	`
 });
 export const Basic = Template.bind({});
@@ -93,7 +93,7 @@ export const Basic = Template.bind({});
 const MultiTemplate: Story<Dropdown> = (args) => ({
 	props: args,
 	template: `
-		<ibm-dropdown
+		<cds-dropdown
 			type="multi"
 			[selectionFeedback]="selectionFeedback"
 			[(ngModel)]="model"
@@ -110,8 +110,8 @@ const MultiTemplate: Story<Dropdown> = (args) => ({
 			[disabled]="disabled"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
+			<cds-dropdown-list [items]="items"></cds-dropdown-list>
+		</cds-dropdown>
 		<span>{{model | json}}</span>
 	`
 });
@@ -143,7 +143,7 @@ export const ReactiveForms = ReactiveTemplate.bind({});
 const NgTemplate: Story<Dropdown> = (args) => ({
 	props: args,
 	template: `
-		<ibm-dropdown
+		<cds-dropdown
 			[theme]="theme"
 			placeholder="Select"
 			[displayValue]="dropdownRenderer"
@@ -153,8 +153,8 @@ const NgTemplate: Story<Dropdown> = (args) => ({
 			[disabled]="disabled"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></ibm-dropdown-list>
-		</ibm-dropdown>
+			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>
+		</cds-dropdown>
 		<ng-template #dropdownRenderer let-item="item">
 			<div *ngIf="item && item.content" style="font-size: 14px;">
 				<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"

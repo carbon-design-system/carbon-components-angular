@@ -11,9 +11,9 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableHeadCheckbox]",
+	selector: "[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]",
 	template: `
-		<ibm-checkbox
+		<cds-checkbox
 			*ngIf="!skeleton"
 			inline="true"
 			[name]="name"
@@ -21,7 +21,7 @@ import { TableRowSize } from "../table.types";
 			[indeterminate]="indeterminate"
 			(checkedChange)="change.emit()"
 			[ariaLabel]="getAriaLabel() | async">
-		</ibm-checkbox>
+		</cds-checkbox>
 	`,
 	styles: [`
         :host { width: 10px; }

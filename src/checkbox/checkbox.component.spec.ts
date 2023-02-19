@@ -10,13 +10,13 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 
 @Component({
 	template: `
-	<ibm-checkbox
+	<cds-checkbox
 		[hideLabel]="hideLabel"
 		(checkedChange)="onChange()"
 		(indeterminateChange)="onIndeterminateChange()"
 		[indeterminate]="indeterminate"
 		[(ngModel)]="model">
-	</ibm-checkbox>
+	</cds-checkbox>
 	`
 })
 class CheckboxTest {
@@ -57,7 +57,7 @@ describe("Checkbox", () => {
 		fixture = TestBed.createComponent(CheckboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-checkbox"));
+		element = fixture.debugElement.query(By.css("cds-checkbox"));
 		expect(element.componentInstance.checked).toBe(false);
 	});
 
@@ -80,7 +80,7 @@ describe("Checkbox", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.hideLabel = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-checkbox"));
+		element = fixture.debugElement.query(By.css("cds-checkbox"));
 		expect(element.nativeElement.querySelector(".cds--visually-hidden")).toBeTruthy();
 	});
 
@@ -98,7 +98,7 @@ describe("Checkbox", () => {
 
 	xdescribe("PAL exported tests", () => {
 		// Get checkbox from the fixture
-		element = setupFixture.debugElement.query(By.css("ibm-checkbox"));
+		element = setupFixture.debugElement.query(By.css("cds-checkbox"));
 		setupFixture.detectChanges();
 		const instance = new CheckboxExportedTest({});
 		// tslint:disable-next-line

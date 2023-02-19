@@ -12,13 +12,13 @@ import {
  * Example:
  *
  * ```html
- * <a href="#" ibmLink>A link</a>
+ * <a href="#" cdsLink>A link</a>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
  */
 @Directive({
-	selector: "[ibmLink]"
+	selector: "[cdsLink], [ibmLink]"
 })
 
 

@@ -65,7 +65,7 @@ export class DialogService {
 	 * A subscription is created to track if the `Dialog` should close.
 	 *
 	 * @param viewContainer a `ViewContainerRef` to instantiate the component against.
-	 * May be `null` if an `ibm-placeholder` exists and `dialogConfig.appendInline` is false
+	 * May be `null` if an `cds-placeholder` exists and `dialogConfig.appendInline` is false
 	 * @param dialogConfig the `DialogConfig` for the component
 	 */
 	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig, component?: any) {

@@ -28,8 +28,8 @@ import { Dialog } from "./dialog.component";
  * the service relies on.
  */
 @Directive({
-	selector: "[ibmDialog]",
-	exportAs: "ibmDialog",
+	selector: "[cdsDialog], [ibmDialog]",
+	exportAs: "dialog",
 	providers: [
 		DialogService
 	]
@@ -41,9 +41,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() title = "";
 	/**
+	 * @deprecated as of v5
 	 * Dialog body content.
 	 */
-	@Input() ibmDialog: string | TemplateRef<any>;
+	@Input() set ibmDialog(body: string | TemplateRef<any>) {
+		this.cdsDialog = body;
+	}
+
+	@Input() cdsDialog: string | TemplateRef<any>;
 	/**
 	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap).
 	 * Do not add focusable elements if trigger is `hover` or `mouseenter`.

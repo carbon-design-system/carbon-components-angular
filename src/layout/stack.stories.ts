@@ -17,7 +17,7 @@ export default {
 const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmStack]="orientation" [gap]="gap">
+		<div [cdsStack]="orientation" [gap]="gap">
 			<div>Item 1</div>
 			<div>Item 2</div>
 			<div>Item 3</div>

@@ -11,9 +11,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
  * Contained by `HeaderGlobal`. Generally used to trigger `Panel`s
  */
 @Component({
-	selector: "ibm-header-action",
+	selector: "cds-header-action, ibm-header-action",
 	template: `
-		<ibm-icon-button
+		<cds-icon-button
 			[buttonNgClass]="{
 				'cds--header__action': true,
 				'cds--header__action--active': active
@@ -31,7 +31,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				'aria-label': ariaLabel
 			}">
 			<ng-content></ng-content>
-		</ibm-icon-button>
+		</cds-icon-button>
 	`
 })
 export class HeaderAction extends BaseIconButton {

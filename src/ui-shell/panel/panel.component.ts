@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
  * `Panel`s are generally activated by and linked to a `HeaderAction` component.
  */
 @Component({
-	selector: "ibm-panel",
+	selector: "cds-panel, ibm-panel",
 	template: `
 		<div
 			class="cds--header-panel"

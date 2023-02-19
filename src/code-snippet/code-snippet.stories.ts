@@ -43,7 +43,7 @@ export default {
 const Template: Story<CodeSnippet> = (args) => ({
 	props: args,
 	template: `
-		<ibm-code-snippet display="single">{{code}}</ibm-code-snippet>
+		<cds-code-snippet display="single">{{code}}</cds-code-snippet>
 	`
 });
 export const Basic = Template.bind({});
@@ -54,7 +54,7 @@ Basic.args = {
 const InlineTemplate: Story<CodeSnippet> = (args) => ({
 	props: args,
 	template: `
-		Here is some <ibm-code-snippet display="inline" [theme]="theme">{{code}}</ibm-code-snippet> for you.
+		Here is some <cds-code-snippet display="inline" [theme]="theme">{{code}}</cds-code-snippet> for you.
 	`
 });
 export const Inline = InlineTemplate.bind({});
@@ -65,7 +65,7 @@ Inline.args = {
 const MultiTemplate: Story<CodeSnippet> = (args) => ({
 	props: args,
 	template: `
-		<ibm-code-snippet display="multi">{{code}}</ibm-code-snippet>
+		<cds-code-snippet display="multi">{{code}}</cds-code-snippet>
 	`
 });
 export const Multi = MultiTemplate.bind({});
@@ -126,9 +126,9 @@ Multi.argTypes = {
 const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
 	props: args,
 	template: `
-		<ibm-code-snippet display="single" skeleton="true"></ibm-code-snippet>
+		<cds-code-snippet display="single" skeleton="true"></cds-code-snippet>
 		<br>
-		<ibm-code-snippet display="multi" skeleton="true"></ibm-code-snippet>
+		<cds-code-snippet display="multi" skeleton="true"></cds-code-snippet>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

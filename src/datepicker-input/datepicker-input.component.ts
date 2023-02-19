@@ -10,7 +10,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
-	selector: "ibm-date-picker-input",
+	selector: "cds-date-picker-input, ibm-date-picker-input",
 	template: `
 	<div class="cds--form-item">
 		<div class="cds--date-picker"
@@ -55,19 +55,19 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						(change)="onChange($event)"/>
 						<svg
 							*ngIf="type !== 'simple' && !warn && !invalid"
-							ibmIcon="calendar"
+							cdsIcon="calendar"
 							size="16"
 							class="cds--date-picker__icon">
 						</svg>
 						<svg
 							*ngIf="!warn && invalid"
 							class="cds--date-picker__icon cds--date-picker__icon--invalid"
-							ibmIcon="warning--filled"
+							cdsIcon="warning--filled"
 							size="16">
 						</svg>
 						<svg
 							*ngIf="!invalid && warn"
-							ibmIcon="warning--alt--filled"
+							cdsIcon="warning--alt--filled"
 							size="16"
 							class="cds--date-picker__icon cds--date-picker__icon--warn">
 						</svg>

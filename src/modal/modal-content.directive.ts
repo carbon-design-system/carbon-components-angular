@@ -1,7 +1,7 @@
 import { Directive, HostBinding, Input } from "@angular/core";
 
 @Directive({
-	selector: "[ibmModalContent]"
+	selector: "[cdsModalContent], [ibmModalContent]"
 })
 export class ModalContent {
 	@HostBinding("class.cds--modal-content") modalContentClass = true;

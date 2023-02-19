@@ -13,19 +13,19 @@ import {
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup">
-			<ibm-radio-group
+			<cds-radio-group
 				aria-label="radiogroup"
 				formControlName="radioGroup">
-				<ibm-radio
+				<cds-radio
 					value="radio">
 					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
+				</cds-radio>
+				<cds-radio *ngFor="let radio of manyRadios"
 					[value]="radio.num"
 					[disabled]="radio.disabled">
 					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
+				</cds-radio>
+			</cds-radio-group>
 		</form>
 		<button (click)="changeSelected()">Set selected to three</button>
 		<button (click)="disableGroup()">Set group disabled</button>

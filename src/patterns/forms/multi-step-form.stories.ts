@@ -20,44 +20,44 @@ import {
 @Component({
 	selector: "app-multi-step-form",
 	template: `
-		<div ibmGrid>
-			<div ibmRow class="header">
-				<ibm-header name="Patterns">
-					<ibm-hamburger></ibm-hamburger>
-				</ibm-header>
+		<div cdsGrid>
+			<div cdsRow class="header">
+				<cds-header name="Patterns">
+					<cds-hamburger></cds-hamburger>
+				</cds-header>
 			</div>
-			<div ibmRow>
-				<div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
-					<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-						<ibm-breadcrumb-item href="#1">
+			<div cdsRow>
+				<div cdsCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
+					<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+						<cds-breadcrumb-item href="#1">
 							Dashboard
-						</ibm-breadcrumb-item>
-					</ibm-breadcrumb>
+						</cds-breadcrumb-item>
+					</cds-breadcrumb>
 				</div>
 			</div>
-			<div ibmRow class="sub-heading">
-				<div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
+			<div cdsRow class="sub-heading">
+				<div cdsCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
 					<h4>Vertical multi-step form</h4>
 				</div>
 			</div>
-			<div ibmRow>
+			<div cdsRow>
 				<div
-					ibmCol
+					cdsCol
 					[columnNumbers]="{'lg': 2, 'md': 2, 'sm': 2}"
 					class="indicator-wrapper">
 					<div class="indicator">
-						<ibm-progress-indicator
+						<cds-progress-indicator
 							orientation="vertical"
 							[steps]="steps"
 							[current]="currentStep">
-						</ibm-progress-indicator>
+						</cds-progress-indicator>
 					</div>
 				</div>
-				<div ibmCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
+				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
 					<ng-container *ngSwitchCase="1">
 						<form [formGroup]="step2FormGroup">
-							<div ibmGrid>
-								<div ibmRow>
+							<div cdsGrid>
+								<div cdsRow>
 									<h4>Create a new workspace</h4>
 									<label class="form-label">
 										When you create a workspace, you connect IBM Cloud
@@ -65,48 +65,48 @@ import {
 										your Terraform templates.
 									</label>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-label>
+								<div cdsRow class="form-item">
+									<cds-label>
 										Workspace name
 										<input
-											ibmText
+											cdsText
 											[autocomplete]="false"
 											formControlName="workspaceName">
-									</ibm-label>
+									</cds-label>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-dropdown
+								<div cdsRow class="form-item">
+									<cds-dropdown
 										class="dropdown"
 										label="Resource group"
 										value="content"
 										formControlName="resourceGroup"
 										[dropUp]="false">
-										<ibm-dropdown-list [items]="resourceGroups"></ibm-dropdown-list>
-									</ibm-dropdown>
+										<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
+									</cds-dropdown>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-label>
+								<div cdsRow class="form-item">
+									<cds-label>
 										Description (optional)
 										<textarea
-											ibmTextArea
+											cdsTextArea
 											placeholder="What is the purpose of this workspace?"
 											formControlName="purpose"
 											[rows]="3"
 											aria-label="textarea"></textarea>
-									</ibm-label>
+									</cds-label>
 								</div>
-								<div ibmRow class="form-item">
+								<div cdsRow class="form-item">
 									<button ibmButton (click)="changeStep(2)">Step 3</button>
 								</div>
 							</div>
 						</form>
 					</ng-container>
 					<ng-container *ngSwitchCase="2">
-						<div ibmGrid>
-							<div ibmRow>
+						<div cdsGrid>
+							<div cdsRow>
 								Step 3 form!
 							</div>
-							<div ibmRow class="form-item">
+							<div cdsRow class="form-item">
 								<button ibmButton (click)="changeStep(1)">Step 2</button>
 							</div>
 						</div>

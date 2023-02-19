@@ -6,14 +6,14 @@ import { TimePicker } from "./timepicker.component";
 
 @Component({
 	template: `
-	<ibm-timepicker
+	<cds-timepicker
 		theme="dark"
 		(valueChange)="onChange()"
 		[(value)]="value"
 		label="test"
 		size="lg"
 		disabled="false">
-	</ibm-timepicker>`
+	</cds-timepicker>`
 })
 class TimePickerTest {
 	value = "12:12";
@@ -41,25 +41,25 @@ describe("TimePicker", () => {
 
 	it("should set label to test", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("label")).toEqual("test");
 	});
 
 	it("should set theme to dark", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("theme")).toEqual("dark");
 	});
 
 	it("should set size to large", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("size")).toEqual("lg");
 	});
 
 	it("should set disabled to false", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("disabled")).toEqual("false");
 	});
 
@@ -86,7 +86,7 @@ describe("TimePicker", () => {
 	it("should disable input", () => {
 		fixture = TestBed.overrideComponent(TimePickerTest, {
 			set: {
-				template: `<ibm-timepicker disabled="true"></ibm-timepicker>`
+				template: `<cds-timepicker disabled="true"></cds-timepicker>`
 			}
 		}).createComponent(TimePickerTest);
 		fixture.detectChanges();

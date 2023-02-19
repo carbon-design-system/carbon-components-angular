@@ -63,7 +63,7 @@ export default {
 const Template: Story<IconButton> = (args) => ({
 	props: args,
 	template: `
-		<ibm-icon-button
+		<cds-icon-button
 			buttonId="icon-btn1"
 			type="button"
 			[kind]="kind"
@@ -78,8 +78,8 @@ const Template: Story<IconButton> = (args) => ({
 			(mouseleave)="onMouseleave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
-			<svg class="cds--btn__icon" ibmIcon="copy" size="16"></svg>
-		</ibm-icon-button>
+			<svg class="cds--btn__icon" cdsIcon="copy" size="16"></svg>
+		</cds-icon-button>
 	`
 });
 export const Basic = Template.bind({});

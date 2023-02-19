@@ -18,17 +18,17 @@ import { TableRowSize } from "../table.types";
  * ## Basic usage
  *
  * ```html
- * 	<thead ibmTableHead [model]="model"></thead>
+ * 	<thead cdsTableHead [model]="model"></thead>
  * ```
  */
 @Component({
 	// tslint:disable-next-line:component-selector
-	selector: "[ibmTableHead]",
+	selector: "[cdsTableHead], [ibmTableHead]",
 	template: `
 	<ng-container *ngIf="model">
 		<tr>
 			<th
-				ibmTableHeadExpand
+				cdsTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
 				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
@@ -42,7 +42,7 @@ import { TableRowSize } from "../table.types";
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
 			</th>
 			<th
-				ibmTableHeadCheckbox
+				cdsTableHeadCheckbox
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				scope="col"
 				[checked]="selectAllCheckbox"
@@ -58,7 +58,7 @@ import { TableRowSize } from "../table.types";
 				<th
 					*ngIf="column && column.visible"
 					[ngStyle]="column.style"
-					ibmTableHeadCell
+					cdsTableHeadCell
 					scope="col"
 					[class]="column.className"
 					[sortable]="sortable"

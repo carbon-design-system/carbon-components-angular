@@ -8,7 +8,7 @@ import {
 import { Tag } from "./tag.component";
 
 @Component({
-	selector: "ibm-tag-filter",
+	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
 		<span
 			class="cds--tag__label"
@@ -22,7 +22,7 @@ import { Tag } from "./tag.component";
 			[disabled]="disabled"
 			[title]="closeButtonLabel">
 			<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
-			<svg ibmIcon="close" size="16"></svg>
+			<svg cdsIcon="close" size="16"></svg>
 		</button>
 	`
 })

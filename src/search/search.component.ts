@@ -15,7 +15,7 @@ import { I18n } from "carbon-components-angular/i18n";
  * [See demo](../../?path=/story/components-search--basic)
  */
 @Component({
-	selector: "ibm-search",
+	selector: "cds-search, ibm-search",
 	templateUrl: "search.component.html",
 	providers: [
 		{

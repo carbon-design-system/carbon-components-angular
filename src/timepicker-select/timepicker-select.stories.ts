@@ -23,14 +23,14 @@ const Template: Story<TimePickerSelect> = (args) => ({
 	template: `
 		<div class="cds--form-item">
 			<div class="cds--time-picker">
-				<ibm-timepicker-select>
+				<cds-timepicker-select>
 					<option selected value="AM">AM</option>
 					<option value="PM">PM</option>
-				</ibm-timepicker-select>
-				<ibm-timepicker-select>
+				</cds-timepicker-select>
+				<cds-timepicker-select>
 					<option selected value="Time Zone 1">Time Zone 1</option>
 					<option value="Time Zone 2">Time Zone 2</option>
-				</ibm-timepicker-select>
+				</cds-timepicker-select>
 			</div>
 		</div>
 	`

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-	selector: "ibm-skeleton-placeholder",
+	selector: "cds-skeleton-placeholder, ibm-skeleton-placeholder",
 	template: `
 		<div class="cds--skeleton__placeholder"></div>`
 })

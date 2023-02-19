@@ -14,7 +14,7 @@ import isEqual from "lodash-es/isEqual";
 	selector: "app-reactive-combobox",
 	template: `
 		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
-			<ibm-combo-box
+			<cds-combo-box
 				formControlName="combobox"
 				[size]="size"
 				[label]="label"
@@ -26,10 +26,10 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+				<cds-dropdown-list></cds-dropdown-list>
+			</cds-combo-box>
 			selected: {{ sampleForm.get("combobox").value | json }}
-			<ibm-combo-box
+			<cds-combo-box
 				style="margin-top: 40px"
 				formControlName="multibox"
 				[label]="label"
@@ -42,8 +42,8 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<ibm-dropdown-list></ibm-dropdown-list>
-			</ibm-combo-box>
+				<cds-dropdown-list></cds-dropdown-list>
+			</cds-combo-box>
 			selected: {{ sampleForm.get("multibox").value | json }}
 		</form>
 	`

@@ -17,7 +17,7 @@ export default {
 const Template: Story<Loading> = (args) => ({
 	props: args,
 	template: `
-		<ibm-loading [isActive]="isActive" [size]="size" [overlay]="overlay"></ibm-loading>
+		<cds-loading [isActive]="isActive" [size]="size" [overlay]="overlay"></cds-loading>
 	`
 });
 export const Basic = Template.bind({});

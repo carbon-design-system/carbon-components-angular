@@ -83,7 +83,7 @@ export default {
 const Template: Story<ComboBox> = (args) => ({
 	props: args,
 	template: `
-		<ibm-combo-box
+		<cds-combo-box
 			[(ngModel)]="model"
 			[disabled]="disabled"
 			[invalid]="invalid"
@@ -101,8 +101,8 @@ const Template: Story<ComboBox> = (args) => ({
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)">
-			<ibm-dropdown-list></ibm-dropdown-list>
-		</ibm-combo-box>
+			<cds-dropdown-list></cds-dropdown-list>
+		</cds-combo-box>
 		<span>{{model | json}}</span>
 	`
 });
@@ -158,7 +158,7 @@ Dynamic.parameters = {
 const MultiTemplate: Story<ComboBox> = (args) => ({
 	props: args,
 	template: `
-		<ibm-combo-box
+		<cds-combo-box
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[label]="label"
@@ -175,8 +175,8 @@ const MultiTemplate: Story<ComboBox> = (args) => ({
 			type="multi"
 			(selected)="selected($event)"
 			(submit)="submit($event)">
-			<ibm-dropdown-list></ibm-dropdown-list>
-		</ibm-combo-box>
+			<cds-dropdown-list></cds-dropdown-list>
+		</cds-combo-box>
 	`
 });
 export const Multiselect = MultiTemplate.bind({});

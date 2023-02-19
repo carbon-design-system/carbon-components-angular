@@ -16,13 +16,13 @@ import { RadioChange } from "./radio-change.class";
  * source: `src/forms/radio.component.ts`
  *
  * ```html
- *	<ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
+ *	<cds-radio [(ngModel)]="radioState">Radio</cds-radio>
  * ```
  *
- * Also see: [`RadioGroup`](#ibm-radio-group)
+ * Also see: [`RadioGroup`](#cds-radio-group)
  */
 @Component({
-	selector: "ibm-radio",
+	selector: "cds-radio, ibm-radio",
 	template: `
 		<input
 			*ngIf="!skeleton"

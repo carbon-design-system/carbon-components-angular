@@ -12,7 +12,7 @@ import { TableItem } from "../table-item.class";
 @Component({
 	selector: "app-table",
 	template: `
-		<ibm-table
+		<cds-table
 			[model]="model"
 			[size]="size"
 			[skeleton]="skeleton"
@@ -26,7 +26,7 @@ import { TableItem } from "../table-item.class";
 			[ariaLabelledby]="ariaLabelledby"
 			[ariaDescribedby]="ariaDescribedby">
 			<ng-content></ng-content>
-		</ibm-table>
+		</cds-table>
 	`
 })
 export class TableStory implements OnInit, OnChanges {

@@ -4,14 +4,14 @@ import { InlineLoadingState } from "../";
 @Component({
 	selector: "app-inline-loading",
 	template: `
-		<ibm-inline-loading
+		<cds-inline-loading
 			[state]="state"
 			[loadingText]="loadingText"
 			[successText]="successText"
 			[errorText]="errorText"
 			(onSuccess)="onSuccess($event)">
-		</ibm-inline-loading>
-		<button ibmButton (click)="toggleState()">Toggle state</button>
+		</cds-inline-loading>
+		<button cdsButton (click)="toggleState()">Toggle state</button>
 		<p>State: {{ state }}</p>
 	`
 })

@@ -28,20 +28,20 @@ const Template: Story<Radio> = (args) => ({
 	template: `
 	<fieldset class="cds--fieldset">
 		<legend class="cds--label">{{label}}</legend>
-		<ibm-radio-group
+		<cds-radio-group
 			[disabled]="disabled"
 			aria-label="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
 			(change)="onChange($event)">
-			<ibm-radio value="Zero" [checked]="true">
+			<cds-radio value="Zero" [checked]="true">
 				Zero
-			</ibm-radio>
-			<ibm-radio [value]="One">One</ibm-radio>
-			<ibm-radio [value]="Two">Two</ibm-radio>
-			<ibm-radio [value]="Three">Three</ibm-radio>
-			<ibm-radio [value]="Four" [disabled]="true">Four</ibm-radio>
-		</ibm-radio-group>
+			</cds-radio>
+			<cds-radio [value]="One">One</cds-radio>
+			<cds-radio [value]="Two">Two</cds-radio>
+			<cds-radio [value]="Three">Three</cds-radio>
+			<cds-radio [value]="Four" [disabled]="true">Four</cds-radio>
+		</cds-radio-group>
 	</fieldset>
 	`
 });
@@ -68,9 +68,9 @@ Basic.argTypes = {
 const SkeletonTemplate: Story<Radio> = (args) => ({
 	props: args,
 	template: `
-		<ibm-radio-group skeleton="true">
-			<ibm-radio></ibm-radio>
-		</ibm-radio-group>
+		<cds-radio-group skeleton="true">
+			<cds-radio></cds-radio>
+		</cds-radio-group>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

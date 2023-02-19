@@ -33,13 +33,13 @@ import { TableRowSize } from "./table.types";
  *
  * Here, you create a view (with built-in controller) and provide it a model.
  * Changes you make to the model are reflected in the view. Provide same model you use
- * in the table to the `<ibm-pagination>` components.
+ * in the table to the `<cds-pagination>` components.
  * They provide a different view over the same data.
  *
  * ## Basic usage
  *
  * ```html
- * <ibm-table [model]="model"></ibm-table>
+ * <cds-table [model]="model"></cds-table>
  * ```
  *
  * ```typescript
@@ -123,7 +123,7 @@ import { TableRowSize } from "./table.types";
  * When table has no data to show, it can show a message you provide it instead.
  *
  * ```html
- * <ibm-table [model]="model">No data.</ibm-table>
+ * <cds-table [model]="model">No data.</cds-table>
  * ```
  *
  * ... will show `No data.` message, but you can get creative and provide any template you want
@@ -132,7 +132,7 @@ import { TableRowSize } from "./table.types";
  * ## Use pagination as table footer
  *
  * ```html
- * <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
+ * <cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
  * ```
  *
  * `selectPage()` function should fetch the data from backend, create new `data`, apply it to `model.data`,
@@ -169,10 +169,10 @@ import { TableRowSize } from "./table.types";
  * ```
  */
 @Component({
-	selector: "ibm-table",
+	selector: "cds-table, ibm-table",
 	template: `
 	<table
-		ibmTable
+		cdsTable
 		[sortable]="sortable"
 		[noBorder]="noBorder"
 		[ngClass]="{'cds--data-table--sticky-header': stickyHeader}"
@@ -182,7 +182,7 @@ import { TableRowSize } from "./table.types";
 		[attr.aria-labelledby]="ariaLabelledby"
 		[attr.aria-describedby]="ariaDescribedby">
 		<thead
-			ibmTableHead
+			cdsTableHead
 			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
@@ -201,7 +201,7 @@ import { TableRowSize } from "./table.types";
 			[stickyHeader]="stickyHeader">
 		</thead>
 		<tbody
-			ibmTableBody
+			cdsTableBody
 			(deselectRow)="onSelectRow($event)"
 			(scroll)="onScroll($event)"
 			(selectRow)="onSelectRow($event)"
@@ -491,7 +491,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```
@@ -514,11 +514,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * @Component({
 	 * 	selector: "app-table",
 	 * 	template: `
-	 * 		<ibm-table
+	 * 		<cds-table
 	 * 			[model]="model"
 	 * 			(sort)="simpleSort($event)">
 	 * 			No data.
-	 * 		</ibm-table>
+	 * 		</cds-table>
 	 * 	`
 	 * })
 	 * export class TableApp implements OnInit, OnChanges {

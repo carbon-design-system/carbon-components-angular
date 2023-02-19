@@ -37,17 +37,17 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * By default the dropdown will try to figure out the best placement for the dropdown list.
  *
  * If it's not contained within any scrolling elements, it will open inline, if it _is_
- * contained within a scrolling container it will try to open in the body, or an `ibm-placeholder`.
+ * contained within a scrolling container it will try to open in the body, or an `cds-placeholder`.
  *
  * To control this behavior you can use the `appendInline` input:
  * - `[appendInline]="null"` is the default (auto detection)
- * - `[appendInline]="false"` will always append to the body/`ibm-placeholder`
+ * - `[appendInline]="false"` will always append to the body/`cds-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
  * [See demo](../../?path=/story/components-dropdown--basic)
  */
 @Component({
-	selector: "ibm-dropdown",
+	selector: "cds-dropdown, ibm-dropdown",
 	template: `
 	<label
 		*ngIf="label"
@@ -117,19 +117,19 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<svg
 				*ngIf="!warn && invalid"
 				class="cds--dropdown__invalid-icon"
-				ibmIcon="warning--filled"
+				cdsIcon="warning--filled"
 				size="16">
 			</svg>
 			<svg
 				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
+				cdsIcon="warning--alt--filled"
 				size="16"
 				class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
 			</svg>
 			<span class="cds--list-box__menu-icon">
 				<svg
 					*ngIf="!skeleton"
-					ibmIcon="chevron--down"
+					cdsIcon="chevron--down"
 					size="16"
 					[attr.aria-label]="menuButtonLabel"
 					[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">

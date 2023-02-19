@@ -26,14 +26,14 @@ export default {
 const Template: Story<GridDirective> = (args) => ({
 	props: args,
 	template: `
-		<div ibmGrid [condensed]="gridCondensed">
+		<div cdsGrid [condensed]="gridCondensed">
 			<div
-				ibmRow
+				cdsRow
 				[gutter]="gutter"
 				[condensed]="rowCondensed">
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
-				<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
+				<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
+				<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
+				<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
 			</div>
 		</div>
 	`
@@ -48,10 +48,10 @@ Basic.args = {
 const CSSGridTemplate: Story<GridDirective> = (args) => ({
 	props: args,
 	template: `
-		<div ibmGrid [condensed]="gridCondensed" [useCssGrid]="true">
-			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
-			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
-			<div ibmCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
+		<div cdsGrid [condensed]="gridCondensed" [useCssGrid]="true">
+			<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">First Column</div>
+			<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Second column</div>
+			<div cdsCol class="custom-class-example" [columnNumbers]="{md: 2, sm: 4}">Third Column</div>
 		</div>
 	`
 });

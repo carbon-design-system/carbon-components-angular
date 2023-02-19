@@ -7,21 +7,21 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmStack]"
+	selector: "[cdsStack]"
 })
 export class StackDirective {
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {
-		return this.ibmStack === "horizontal";
+		return this.cdsStack === "horizontal";
 	}
 
 	@HostBinding("class.cds--stack-vertical") get isVertical() {
-		return this.ibmStack === "vertical";
+		return this.cdsStack === "vertical";
 	}
 
 	/**
 	 * Orientation of the items in the stack, defaults to `vertical`
 	 */
-	@Input() ibmStack: "vertical" | "horizontal" = "vertical";
+	@Input() cdsStack: "vertical" | "horizontal" = "vertical";
 
 	/**
 	 * Gap in the layout, provide a custom value (string) or a step from the spacing scale (number)

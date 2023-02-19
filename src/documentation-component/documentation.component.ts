@@ -13,7 +13,7 @@ import { DomSanitizer } from "@angular/platform-browser";
  * Keeping component for documentation specific use cases.
  */
 @Component({
-	selector: "ibm-documentation",
+	selector: "cds-documentation",
 	template: `
 		<iframe
 			id="docsIframe"

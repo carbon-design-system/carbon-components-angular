@@ -10,7 +10,7 @@ import { By } from "@angular/platform-browser";
 import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
 
 @Component({
-	selector: "ibm-test-grid",
+	selector: "cds-test-grid",
 	template: ""
 })
 class TestGridComponent {}
@@ -30,7 +30,7 @@ describe("GridDirective", () => {
 	it("should render a grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: `<div ibmGrid></div>`
+				template: `<div cdsGrid></div>`
 			}
 		});
 
@@ -48,7 +48,7 @@ describe("GridDirective", () => {
 	it("should render a css grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: `<div ibmGrid [useCssGrid]="true"></div>`
+				template: `<div cdsGrid [useCssGrid]="true"></div>`
 			}
 		});
 
@@ -67,7 +67,7 @@ describe("GridDirective", () => {
 	it("should render a row", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: `<div ibmRow></div>`
+				template: `<div cdsRow></div>`
 			}
 		});
 
@@ -86,7 +86,7 @@ describe("GridDirective", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-					`<div ibmCol [offsets]="{md: 2}" [columnNumbers]="{lg: 3, md: 'nobreak'}" class="custom-class-example"></div>`
+					`<div cdsCol [offsets]="{md: 2}" [columnNumbers]="{lg: 3, md: 'nobreak'}" class="custom-class-example"></div>`
 			}
 		});
 
@@ -111,8 +111,8 @@ describe("GridDirective", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template: `
-					<div ibmGrid [useCssGrid]="true">
-						<div ibmCol [columnNumbers]="{md: 3}" class="custom-class-example"></div>
+					<div cdsGrid [useCssGrid]="true">
+						<div cdsCol [columnNumbers]="{md: 3}" class="custom-class-example"></div>
 					</div>`
 			}
 		});
@@ -137,7 +137,7 @@ describe("GridDirective", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-					`<div ibmCol>cds</div>`
+					`<div cdsCol>cds</div>`
 			}
 		});
 

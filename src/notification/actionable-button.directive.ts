@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[ibmActionableButton]"
+	selector: "[cdsActionableButton]"
 })
 export class ActionableButton {
 	@HostBinding("class.cds--actionable-notification__action-button") actionableButton = true;

@@ -16,11 +16,11 @@ import { BaseNotification } from "./base-notification.component";
  * [See demo](../../?path=/story/components-notification--actionable-notification)
  */
 @Component({
-	selector: "ibm-actionable-notification",
+	selector: "cds-actionable-notification, ibm-actionable-notification",
 	template: `
 		<div class="cds--actionable-notification__details">
 			<svg
-				[ibmIcon]="iconDictionary[notificationObj.type]"
+				[cdsIcon]="iconDictionary[notificationObj.type]"
 				size="20"
 				*ngIf="notificationObj.type"
 				[ngClass]="{
@@ -31,11 +31,11 @@ import { BaseNotification } from "./base-notification.component";
 			</svg>
 			<div class="cds--actionable-notification__text-wrapper">
 				<div class="cds--actionable-notification__content">
-					<div *ngIf="!notificationObj.template" ibmActionableTitle [innerHTML]="notificationObj.title"></div>
-					<div *ngIf="!notificationObj.template" ibmActionableSubtitle>
+					<div *ngIf="!notificationObj.template" cdsActionableTitle [innerHTML]="notificationObj.title"></div>
+					<div *ngIf="!notificationObj.template" cdsActionableSubtitle>
 						<span [innerHTML]="notificationObj.message"></span>
 						<ng-container *ngFor="let link of notificationObj.links">
-							<a ibmLink [href]="link.href">{{link.text}}</a>
+							<a cdsLink [href]="link.href">{{link.text}}</a>
 						</ng-container>
 					</div>
 					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
@@ -46,9 +46,9 @@ import { BaseNotification } from "./base-notification.component";
 			<button
 				*ngFor="let action of notificationObj.actions"
 				(click)="onClick(action, $event)"
-				[ibmButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
+				[cdsButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
 				size="sm"
-				ibmActionableButton>
+				cdsActionableButton>
 				{{action.text}}
 			</button>
 		</ng-container>
@@ -59,7 +59,7 @@ import { BaseNotification } from "./base-notification.component";
 			class="cds--actionable-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<svg ibmIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
+			<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
 		</button>
 	`
 })

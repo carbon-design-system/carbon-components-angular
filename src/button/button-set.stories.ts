@@ -24,10 +24,10 @@ export default {
 const Template: Story<ButtonSet> = (args) => ({
 	props: args,
 	template: `
-		<ibm-button-set>
+		<cds-button-set>
 			<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
-			<button [ibmButton]="ibmButton" [size]="size" [isExpressive]="isExpressive">Button</button>
-		</ibm-button-set>
+			<button ibmButton [size]="size" [isExpressive]="isExpressive">Button</button>
+		</cds-button-set>
 	`
 });
 export const Basic = Template.bind({});

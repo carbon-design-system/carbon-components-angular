@@ -17,17 +17,17 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  * [See demo](../../?path=/story/components-overflow-menu--basic)
  *
  * ```html
- * <ibm-overflow-menu>
- *	<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
- *	<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
- * </ibm-overflow-menu>
+ * <cds-overflow-menu>
+ *	<cds-overflow-menu-option>Option 1</cds-overflow-menu-option>
+ *	<cds-overflow-menu-option>Option 2</cds-overflow-menu-option>
+ * </cds-overflow-menu>
  * ```
  */
 @Component({
-	selector: "ibm-overflow-menu",
+	selector: "cds-overflow-menu, ibm-overflow-menu",
 	template: `
 		<button
-			[ibmOverflowMenu]="options"
+			[cdsOverflowMenu]="options"
 			[ngClass]="{'cds--overflow-menu--open': open}"
 			class="cds--overflow-menu {{triggerClass}}"
 			[attr.aria-label]="buttonLabel"
@@ -46,7 +46,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			<ng-content></ng-content>
 		</ng-template>
 		<ng-template #defaultIcon>
-			<svg ibmIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
+			<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
 		</ng-template>
 	`,
 	styles: [`

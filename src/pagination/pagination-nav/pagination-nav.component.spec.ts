@@ -11,12 +11,12 @@ import { PaginationModel } from "../pagination-model.class";
 
 @Component({
 	template: `
-		<ibm-pagination-nav
+		<cds-pagination-nav
 			[model]="model"
 			[disabled]="disabled"
 			[numOfItemsToShow]="4"
 			(selectPage)="selectPage($event)">
-		</ibm-pagination-nav>
+		</cds-pagination-nav>
 	`
 })
 class PaginationNavTest implements OnInit {
@@ -50,7 +50,7 @@ describe("PaginationNav", () => {
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(PaginationNavTest);
-		paginationComponent = fixture.debugElement.query(By.css("ibm-pagination-nav"));
+		paginationComponent = fixture.debugElement.query(By.css("cds-pagination-nav"));
 	});
 
 	it("should work", () => {
@@ -71,7 +71,7 @@ describe("PaginationNav", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		const navItems = paginationComponent.queryAll(By.css("ibm-pagination-nav-item"));
+		const navItems = paginationComponent.queryAll(By.css("cds-pagination-nav-item"));
 		navItems[1].nativeElement.click();
 		expect(wrapper.selectPage).toHaveBeenCalled();
 		expect(wrapper.model.currentPage).toBe(2);
@@ -79,7 +79,7 @@ describe("PaginationNav", () => {
 
 	it("should get next page and previous page from the current page when forward/backwards button is clicked", () => {
 		wrapper = fixture.componentInstance;
-		const buttons = paginationComponent.queryAll(By.css("ibm-icon-button"));
+		const buttons = paginationComponent.queryAll(By.css("cds-icon-button"));
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
 		buttons[1].nativeElement.querySelector("button").click();
@@ -98,7 +98,7 @@ describe("PaginationNav", () => {
 		wrapper.disabled = true;
 		fixture.detectChanges();
 		paginationComponent.componentInstance.currentPage = 5;
-		const buttons = paginationComponent.queryAll(By.css("ibm-icon-button"));
+		const buttons = paginationComponent.queryAll(By.css("cds-icon-button"));
 		const buttonBackward = buttons[0].nativeElement.querySelector("button");
 		const buttonForward = buttons[1].nativeElement.querySelector("button");
 

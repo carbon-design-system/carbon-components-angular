@@ -6,11 +6,11 @@ import { TooltipDefinition } from ".";
 
 @Component({
 	template: `
-		<ibm-tooltip-definition
+		<cds-tooltip-definition
 			[isOpen]="isOpen"
 			[description]="description">
 			definition
-		</ibm-tooltip-definition>
+		</cds-tooltip-definition>
 		`
 })
 class TestTTDefinitionComponent {
@@ -31,7 +31,7 @@ describe("Definition tooltip", () => {
 		fixture = TestBed.createComponent(TestTTDefinitionComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		tooltipEl = fixture.debugElement.query(By.css("ibm-tooltip-definition"));
+		tooltipEl = fixture.debugElement.query(By.css("cds-tooltip-definition"));
 		buttonEl = fixture.debugElement.query(By.css("button"));
 	});
 

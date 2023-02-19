@@ -23,30 +23,30 @@ export default {
 const Template: Story<TimePicker> = (args) => ({
 	props: args,
 	template: `
-		<ibm-timepicker
+		<cds-timepicker
 			(valueChange)="timePickerChange($event)"
 			[(ngModel)]="model"
 			[disabled]="disableTime"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			label="Select a time">
-			<ibm-timepicker-select
+			<cds-timepicker-select
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
 				[(ngModel)]="period"
 				ariaLabel="Open list of options">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
-			</ibm-timepicker-select>
-			<ibm-timepicker-select
+			</cds-timepicker-select>
+			<cds-timepicker-select
 				(valueChange)="timePickerSelectChange($event)"
 				[disabled]="disabledSelect"
 				[(ngModel)]="timeZone"
 				ariaLabel="Open list of options">
 				<option selected value="Time Zone 1">Time Zone 1</option>
 				<option value="Time Zone 2">Time Zone 2</option>
-			</ibm-timepicker-select>
-		</ibm-timepicker>
+			</cds-timepicker-select>
+		</cds-timepicker>
 		<br>
 		<p> Input: {{model}} </p>
 		<p> Period: {{period}} </p>

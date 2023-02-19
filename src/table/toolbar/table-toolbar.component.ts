@@ -14,37 +14,37 @@ import { TableRowSize } from "../table.types";
  * ## Basic usage
  *
  * ```html
- * <ibm-table-toolbar [model]="model">
- *		<ibm-table-toolbar-actions>
- *			<button ibmButton="primary">
+ * <cds-table-toolbar [model]="model">
+ *		<cds-table-toolbar-actions>
+ *			<button cdsButton="primary">
  *				Delete
- *				<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
+ *				<svg cdsIcon="trash-can" size="16" class="cds--btn__icon"></svg>
  *			</button>
- *			<button ibmButton="primary">
+ *			<button cdsButton="primary">
  *				Save
- *				<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
+ *				<svg cdsIcon="save" size="16" class="cds--btn__icon"></svg>
  *			</button>
- *			<button ibmButton="primary">
+ *			<button cdsButton="primary">
  *				Download
- *				<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
+ *				<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
  *			</button>
- *		</ibm-table-toolbar-actions>
- *			<ibm-table-toolbar-content>
- *			<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
- *			<button ibmButton="toolbar-action">
- *				<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
+ *		</cds-table-toolbar-actions>
+ *			<cds-table-toolbar-content>
+ *			<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
+ *			<button cdsButton="toolbar-action">
+ *				<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
  *			</button>
- *			<button ibmButton="primary" size="sm">
+ *			<button cdsButton="primary" size="sm">
  *				Primary Button
- *				<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+ *				<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
  *			</button>
- *		</ibm-table-toolbar-content>
- *	</ibm-table-toolbar>
+ *		</cds-table-toolbar-content>
+ *	</cds-table-toolbar>
  * ```
  *
  */
 @Component({
-	selector: "ibm-table-toolbar",
+	selector: "cds-table-toolbar, ibm-table-toolbar",
 	template: `
 	<section
 		class="cds--table-toolbar"
@@ -68,9 +68,9 @@ import { TableRowSize } from "../table.types";
 				</p>
 			</div>
 			<div class="cds--action-list">
-				<ng-content select="ibm-table-toolbar-actions"></ng-content>
+				<ng-content select="cds-table-toolbar-actions"></ng-content>
 				<button
-					ibmButton="primary"
+					cdsButton="primary"
 					class="cds--batch-summary__cancel"
 					[tabindex]="selected ? 0 : -1"
 					(click)="onCancel()">

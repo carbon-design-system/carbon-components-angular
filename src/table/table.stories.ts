@@ -114,11 +114,11 @@ export default {
 const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -136,7 +136,7 @@ const Template: Story = (args) => ({
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
 			</app-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const Basic = Template.bind({});
@@ -152,11 +152,11 @@ Basic.argTypes = {
 const NoDataTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
-				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle id="table-header">{{title}}</h4>
+				<p cdsTableHeaderDescription id="table-description">{{description}}</p>
+			</cds-table-header>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -173,7 +173,7 @@ const NoDataTemplate: Story = (args) => ({
 				ariaDescribedby="table-description">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
 			</app-no-data-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`,
 	styles: [`
 		.no-data {
@@ -193,52 +193,52 @@ WithoutData.args = {
 const ToolbarTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
-			<ibm-table-toolbar
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
+			<cds-table-toolbar
 				[model]="model"
 				[batchText]="batchText"
 				[size]="size"
 				(cancel)="cancelMethod()"
 				#toolbar>
-				<ibm-table-toolbar-actions>
+				<cds-table-toolbar-actions>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
-						<svg ibmIcon="trash-can" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Save
-						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Download
-						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
-				</ibm-table-toolbar-actions>
-				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
-					<ibm-table-toolbar-search
+				</cds-table-toolbar-actions>
+				<cds-table-toolbar-content *ngIf="!toolbar.selected">
+					<cds-table-toolbar-search
 						ngDefaultControl
 						[expandable]="searchExpandable"
 						[(ngModel)]="searchModel">
-					</ibm-table-toolbar-search>
-					<ibm-overflow-menu
+					</cds-table-toolbar-search>
+					<cds-overflow-menu
 						triggerClass="cds--toolbar-action"
 						[customTrigger]="customTrigger"
 						placement="bottom"
 						[offset]="size === 'sm' ? null : offset">
-						<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
-						<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
-					</ibm-overflow-menu>
+						<cds-overflow-menu-option>Option 1</cds-overflow-menu-option>
+						<cds-overflow-menu-option>Option 2</cds-overflow-menu-option>
+						<cds-overflow-menu-option disabled="true">Disabled</cds-overflow-menu-option>
+						<cds-overflow-menu-option type="danger">Danger option</cds-overflow-menu-option>
+					</cds-overflow-menu>
 					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
-						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
-				</ibm-table-toolbar-content>
-			</ibm-table-toolbar>
+				</cds-table-toolbar-content>
+			</cds-table-toolbar>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -255,8 +255,8 @@ const ToolbarTemplate: Story = (args) => ({
 				[stickyHeader]="stickyHeader"
 				[isDataGrid]="isDataGrid">
 			</app-table>
-			<ng-template #customTrigger><svg ibmIcon="settings" size="16"></svg></ng-template>
-		</ibm-table-container>
+			<ng-template #customTrigger><svg cdsIcon="settings" size="16"></svg></ng-template>
+		</cds-table-container>
 	`
 });
 export const WithToolbar = ToolbarTemplate.bind({});
@@ -291,36 +291,36 @@ WithToolbar.argTypes = {
 const DisabledRowsTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
-			<ibm-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
-				<ibm-table-toolbar-actions>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
+			<cds-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
+				<cds-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
-						<svg ibmIcon="delete" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="delete" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Save
-						<svg ibmIcon="save" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
 					<button ibmButton="primary">
 						Download
-						<svg ibmIcon="download" size="16" class="cds--btn__icon"></svg>
+						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
-				</ibm-table-toolbar-actions>
-				<ibm-table-toolbar-content *ngIf="!toolbar.selected">
-					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
+				</cds-table-toolbar-actions>
+				<cds-table-toolbar-content *ngIf="!toolbar.selected">
+					<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
+						<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
-				</ibm-table-toolbar-content>
-			</ibm-table-toolbar>
+				</cds-table-toolbar-content>
+			</cds-table-toolbar>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -334,7 +334,7 @@ const DisabledRowsTemplate: Story = (args) => ({
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
 			</app-no-data-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithDisabledRows = DisabledRowsTemplate.bind({});
@@ -364,22 +364,22 @@ WithDisabledRows.argTypes = {
 const WithoutActionTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle id="table-header">{{title}}</h4>
-				<p ibmTableHeaderDescription id="table-description">{{description}}</p>
-			</ibm-table-header>
-			<ibm-table-toolbar>
-				<ibm-table-toolbar-content>
-					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle id="table-header">{{title}}</h4>
+				<p cdsTableHeaderDescription id="table-description">{{description}}</p>
+			</cds-table-header>
+			<cds-table-toolbar>
+				<cds-table-toolbar-content>
+					<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
 					<button ibmButton="ghost" class="toolbar-action">
-						<svg ibmIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
+						<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
 					<button ibmButton="primary" size="sm">
-						Primary button<svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
-				</ibm-table-toolbar-content>
-			</ibm-table-toolbar>
+				</cds-table-toolbar-content>
+			</cds-table-toolbar>
 
 			<!--
 			app-* components are for demo purposes only.
@@ -399,7 +399,7 @@ const WithoutActionTemplate: Story = (args) => ({
 				ariaLabelledby="table-header"
 				ariaDescribedby="table-description">
 			</app-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithToolbarWithoutToolbarAction = WithoutActionTemplate.bind({});
@@ -464,11 +464,11 @@ Filtering.args = {
 const ExpansionTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -483,7 +483,7 @@ const ExpansionTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-expansion-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithExpansion = ExpansionTemplate.bind({});
@@ -496,11 +496,11 @@ WithExpansion.args = {
 const DyanmicContentTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -515,7 +515,7 @@ const DyanmicContentTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-custom-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithDynamicContent = DyanmicContentTemplate.bind({});
@@ -532,11 +532,11 @@ const OverflowMenuTemplate: Story = (args) => ({
 		}, "args")
 	},
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -551,7 +551,7 @@ const OverflowMenuTemplate: Story = (args) => ({
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-overflow-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithOverflowMenu = OverflowMenuTemplate.bind({});
@@ -564,11 +564,11 @@ export const WithOverflowMenu = OverflowMenuTemplate.bind({});
 const PaginationTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-table-container>
-			<ibm-table-header>
-				<h4 ibmTableHeaderTitle>{{title}}</h4>
-				<p ibmTableHeaderDescription>{{description}}</p>
-			</ibm-table-header>
+		<cds-table-container>
+			<cds-table-header>
+				<h4 cdsTableHeaderTitle>{{title}}</h4>
+				<p cdsTableHeaderDescription>{{description}}</p>
+			</cds-table-header>
 			<!--
 			app-* components are for demo purposes only.
 			You can create your own implementation by using the component source found at:
@@ -583,7 +583,7 @@ const PaginationTemplate: Story = (args) => ({
 				[skeleton]="skeleton"
 				[model]="model">
 			</app-pagination-table>
-		</ibm-table-container>
+		</cds-table-container>
 	`
 });
 export const WithPagination = PaginationTemplate.bind({});
@@ -597,25 +597,25 @@ WithPagination.args = {
 const FromComponentsTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<table ibmTable [sortable]="false" style="width: 650px;">
-			<thead ibmTableHead>
+		<table cdsTable [sortable]="false" style="width: 650px;">
+			<thead cdsTableHead>
 				<tr>
 					<th
 						scope="col"
-						ibmTableHeadCell
+						cdsTableHeadCell
 						*ngFor="let column of model.header"
 						[column]="column">
 					</th>
 				</tr>
 			</thead>
-			<tbody ibmTableBody>
+			<tbody cdsTableBody>
 				<tr
 					*ngFor="let row of model.data"
-					ibmTableRow
+					cdsTableRow
 					[row]="row">
 					<td
 						*ngFor="let item of row; let j = index"
-						ibmTableData
+						cdsTableData
 						[item]="item"
 						[class]="model.header[j].className"
 						[ngStyle]="model.header[j].style">

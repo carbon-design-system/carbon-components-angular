@@ -10,16 +10,16 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 /**
  * ***Inputs***
  * ```html
- * <ibm-modal-header>Header text</ibm-modal-header>
+ * <cds-modal-header>Header text</cds-modal-header>
  * ```
  *
  * ***Outputs***
  * ```html
- * <ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+ * <cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
  * ```
  */
 @Component({
-	selector: "ibm-modal-header",
+	selector: "cds-modal-header, ibm-modal-header",
 	template: `
 		<header class="{{theme}} cds--modal-header">
 			<ng-content></ng-content>
@@ -29,7 +29,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 				class="cds--modal-close"
 				(click)="onClose()">
 				<span class="cds--assistive-text">{{ closeLabel }}</span>
-				<svg ibmIcon="close" size="20" class="cds--modal-close__icon"></svg>
+				<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
 			</button>
 		</header>
 

@@ -12,23 +12,23 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
- * `ibm-select` provides a styled `select` component.
+ * `cds-select` provides a styled `select` component.
  *
  * [See demo](../../?path=/story/components-select--basic)
  *
  * Example:
  *
  * ```
- * <ibm-select [(ngModel)]="model">
+ * <cds-select [(ngModel)]="model">
  * 	<option value="default" disabled selected hidden>Choose an option</option>
  * 	<option value="option1">Option 1</option>
  *	<option value="option2">Option 2</option>
  * 	<option value="option3">Option 3</option>
- * </ibm-select>
+ * </cds-select>
  *	```
  */
 @Component({
-	selector: "ibm-select",
+	selector: "cds-select, ibm-select",
 	template: `
 		<div class="cds--form-item">
 			<ng-template [ngIf]="skeleton">
@@ -100,13 +100,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</svg>
 				<svg
 					*ngIf="!warn && invalid"
-					ibmIcon="warning--filled"
+					cdsIcon="warning--filled"
 					size="16"
 					class="cds--select__invalid-icon">
 				</svg>
 				<svg
 					*ngIf="!invalid && warn"
-					ibmIcon="warning--alt--filled"
+					cdsIcon="warning--alt--filled"
 					size="16"
 					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>

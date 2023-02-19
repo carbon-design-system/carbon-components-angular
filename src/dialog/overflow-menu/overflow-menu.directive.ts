@@ -20,35 +20,40 @@ import { EventService } from "carbon-components-angular/utils";
  * class: OverflowMenuDirective (extends DialogDirective)
  *
  *
- * selector: `ibmOverflowMenu`
+ * selector: `cdsOverflowMenu`
  *
  *
  * ```html
- * <div [ibmOverflowMenu]="templateRef"></div>
+ * <div [cdsOverflowMenu]="templateRef"></div>
  * <ng-template #templateRef>
  * 	<!-- overflow menu options here -->
  * </ng-template>
  * ```
  *
  * ```html
- * <div [ibmOverflowMenu]="templateRef" [customPane]="true"></div>
+ * <div [cdsOverflowMenu]="templateRef" [customPane]="true"></div>
  * <ng-template #templateRef>
  *  <!-- custom content goes here -->
  * </ng-template>
  * ```
  */
 @Directive({
-	selector: "[ibmOverflowMenu]",
-	exportAs: "ibmOverflowMenu",
+	selector: "[cdsOverflowMenu], [ibmOverflowMenu]",
+	exportAs: "overflowMenu",
 	providers: [
 		DialogService
 	]
 })
 export class OverflowMenuDirective extends DialogDirective implements AfterContentInit {
 	/**
+	 * @deprecated as of v5
 	 * Takes a template ref of `OverflowMenuOptions`s
 	 */
-	@Input() ibmOverflowMenu: TemplateRef<any>;
+	@Input() set ibmOverflowMenu(template: TemplateRef<any>) {
+		this.cdsOverflowMenu = template;
+	}
+
+	@Input() cdsOverflowMenu: TemplateRef<any>;
 	/**
 	 * Controls wether the overflow menu is flipped
 	 */
@@ -83,7 +88,7 @@ export class OverflowMenuDirective extends DialogDirective implements AfterConte
 	}
 
 	updateConfig() {
-		this.dialogConfig.content = this.ibmOverflowMenu;
+		this.dialogConfig.content = this.cdsOverflowMenu;
 		this.dialogConfig.flip = this.flip;
 		this.dialogConfig.offset = this.offset;
 		this.dialogConfig.wrapperClass = this.wrapperClass;

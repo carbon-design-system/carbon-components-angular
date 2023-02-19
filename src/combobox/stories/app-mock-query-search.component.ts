@@ -3,12 +3,12 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "app-mock-query-search",
 	template: `
-		<ibm-combo-box
+		<cds-combo-box
 			appendInline="true"
 			[items]="filterItems"
 			(search)="onSearch($event)">
-			<ibm-dropdown-list></ibm-dropdown-list>
-		</ibm-combo-box>
+			<cds-dropdown-list></cds-dropdown-list>
+		</cds-combo-box>
 	`
 })
 export class MockQueryCombobox {

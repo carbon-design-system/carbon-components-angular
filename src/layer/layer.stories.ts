@@ -23,9 +23,9 @@ const Template: Story<LayerDirective> = (args) => ({
 	props: args,
 	template: `
 		<div class="example-layer">Layer 0</div>
-		<div ibmLayer>
+		<div cdsLayer>
 			<div class="example-layer">Layer 1</div>
-			<div ibmLayer>
+			<div cdsLayer>
 				<div class="example-layer">Layer 2</div>
 			</div>
 		</div>
@@ -44,16 +44,16 @@ const TemplateWithInput: Story<LayerDirective> = (args) => ({
 	props: args,
 	template: `
 		<div class="example-layer">Layer 0</div>
-		<div ibmLayer>
+		<div cdsLayer>
 			<div class="example-layer">Layer 1</div>
-			<div ibmLayer>
+			<div cdsLayer>
 				<div class="example-layer">Layer 2</div>
 				<!-- Reset layer, child layer will auto increment or you can pass in layer of your choice -->
-				<div [ibmLayer]="0">
+				<div [cdsLayer]="0">
 					<div class="example-layer">Layer 0</div>
-					<div [ibmLayer]="1">
+					<div [cdsLayer]="1">
 						<div class="example-layer">Layer 1</div>
-						<div ibmLayer>
+						<div cdsLayer>
 							<div class="example-layer">Layer 2</div>
 						</div>
 					</div>

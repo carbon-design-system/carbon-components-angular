@@ -21,11 +21,11 @@ export enum SnippetType {
  * [See demo](../../?path=/story/components-code-snippet--basic)
  *
  * ```html
- * <ibm-code-snippet>Code</ibm-code-snippet>
+ * <cds-code-snippet>Code</cds-code-snippet>
  * ```
  */
 @Component({
-	selector: "ibm-code-snippet",
+	selector: "cds-code-snippet, ibm-code-snippet",
 	template: `
 		<ng-container *ngIf="display === 'inline'; else notInline">
 			<ng-container *ngIf="!hideCopyButton; else noBtnInline">
@@ -73,12 +73,12 @@ export enum SnippetType {
 				(click)="toggleSnippetExpansion()"
 				type="button">
 				<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<svg ibmIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
+				<svg cdsIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
 			</button>
 		</ng-template>
 
 		<ng-template #buttonTemplate>
-			<ibm-icon-button
+			<cds-icon-button
 				*ngIf="!skeleton"
 				[description]="showFeedback ? feedbackText : copyButtonDescription"
 				[align]="align"
@@ -111,9 +111,9 @@ export enum SnippetType {
 					<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
 				</ng-container>
 				<ng-container *ngIf="display !== 'inline'">
-					<svg ibmIcon="copy" size="16" class="cds--snippet__icon"></svg>
+					<svg cdsIcon="copy" size="16" class="cds--snippet__icon"></svg>
 				</ng-container>
-			</ibm-icon-button>
+			</cds-icon-button>
 		</ng-template>
 
 		<ng-template #codeTemplate>

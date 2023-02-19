@@ -9,7 +9,7 @@ import { TableHeaderTitle } from "./header/table-header-title.directive";
 import { Table } from "./table.component";
 
 @Component({
-	selector: "ibm-table-container",
+	selector: "cds-table-container, ibm-table-container",
 	template: `<ng-content></ng-content>`,
 	styles: [`
 		:host { display: block }

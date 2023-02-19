@@ -30,7 +30,7 @@ import { I18n } from "carbon-components-angular/i18n";
  * [See demo](../../?path=/story/components-date-picker--single)
  */
 @Component({
-	selector: "ibm-date-picker",
+	selector: "cds-date-picker, ibm-date-picker",
 	template: `
 	<div class="cds--form-item">
 		<div
@@ -42,7 +42,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				'cds--skeleton' : skeleton
 			}">
 			<div class="cds--date-picker-container">
-				<ibm-date-picker-input
+				<cds-date-picker-input
 					#input
 					[label]="label"
 					[placeholder]="placeholder"
@@ -60,11 +60,11 @@ import { I18n } from "carbon-components-angular/i18n";
 					[helperText]="helperText"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
-				</ibm-date-picker-input>
+				</cds-date-picker-input>
 			</div>
 
 			<div *ngIf="range" class="cds--date-picker-container">
-				<ibm-date-picker-input
+				<cds-date-picker-input
 					#rangeInput
 					[label]="rangeLabel"
 					[placeholder]="placeholder"
@@ -82,7 +82,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[helperText]="rangeHelperText"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
-				</ibm-date-picker-input>
+				</cds-date-picker-input>
 			</div>
 		</div>
 	</div>

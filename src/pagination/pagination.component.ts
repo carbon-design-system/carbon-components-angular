@@ -28,7 +28,7 @@ export interface PaginationTranslations {
  * [See demo](../../?path=/story/components-pagination--basic)
  *
  * ```html
- *	<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
+ *	<cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
  * ```
  *
  * In your `selectPage()` method set the `model.currentPage` to selected page, _after_
@@ -45,7 +45,7 @@ export interface PaginationTranslations {
  * ```
  */
 @Component({
-	selector: "ibm-pagination",
+	selector: "cds-pagination, ibm-pagination",
 	template: `
 	<div
 		class="cds--pagination"
@@ -80,7 +80,7 @@ export interface PaginationTranslations {
 						</option>
 					</select>
 					<svg
-						ibmIcon="chevron--down"
+						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit"
 						class="cds--select__arrow"
@@ -130,7 +130,7 @@ export interface PaginationTranslations {
 					</select>
 					<svg
 						*ngIf="pageOptions.length <= 1000"
-						ibmIcon="chevron--down"
+						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit;"
 						class="cds--select__arrow"
@@ -153,7 +153,7 @@ export interface PaginationTranslations {
 			</span>
 			<div class="cds--pagination__control-buttons">
 				<button
-					ibmButton="ghost"
+					cdsButton="ghost"
 					iconOnly="true"
 					class="cds--pagination__button cds--pagination__button--backward"
 					[ngClass]="{
@@ -163,11 +163,11 @@ export interface PaginationTranslations {
 					[attr.aria-label]="backwardText.subject | async"
 					(click)="selectPage.emit(previousPage)"
 					[disabled]="(currentPage <= 1 || disabled ? true : null)">
-					<svg ibmIcon="caret--left" size="16" class="cds--btn__icon"></svg>
+					<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>
 				</button>
 
 				<button
-					ibmButton="ghost"
+					cdsButton="ghost"
 					iconOnly="true"
 					class="
 						cds--pagination__button
@@ -179,7 +179,7 @@ export interface PaginationTranslations {
 					[attr.aria-label]="forwardText.subject | async"
 					(click)="selectPage.emit(nextPage)"
 					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-					<svg ibmIcon="caret--right" size="16" class="cds--btn__icon"></svg>
+					<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>
 				</button>
 			</div>
 		</div>

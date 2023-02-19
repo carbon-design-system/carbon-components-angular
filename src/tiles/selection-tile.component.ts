@@ -10,7 +10,7 @@ import {
 import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
-	selector: "ibm-selection-tile",
+	selector: "cds-selection-tile, ibm-selection-tile",
 	template: `
 		<label
 			class="cds--tile cds--tile--selectable"

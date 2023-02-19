@@ -17,7 +17,7 @@ export default {
 const Template: Story<NumberComponent> = (args) => ({
 	props: args,
 	template: `
-		<ibm-number
+		<cds-number
 			[label]="label"
 			[helperText]="[helperText]"
 			[theme]="theme"
@@ -31,7 +31,7 @@ const Template: Story<NumberComponent> = (args) => ({
 			[warnText]="warnText"
 			[size]="size"
 			[disabled]="disabled">
-		</ibm-number>
+		</cds-number>
 	`
 });
 export const Basic = Template.bind({});
@@ -63,7 +63,7 @@ Basic.argTypes = {
 const ModelTemplate: Story<NumberComponent> = (args) => ({
 	props: args,
 	template: `
-		<ibm-number
+		<cds-number
 			[label]="label"
 			[helperText]="[helperText]"
 			[theme]="theme"
@@ -76,7 +76,7 @@ const ModelTemplate: Story<NumberComponent> = (args) => ({
 			[invalidText]="invalidText"
 			[disabled]="disabled"
 			[(ngModel)]="value">
-		</ibm-number>
+		</cds-number>
 		{{ value }}
 	`
 });
@@ -92,7 +92,7 @@ NgModel.argTypes = {
 const SkeletonTemplate: Story<NumberComponent> = (args) => ({
 	props: args,
 	template: `
-		<ibm-number label="Number input label" skeleton="true"></ibm-number>
+		<cds-number label="Number input label" skeleton="true"></cds-number>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

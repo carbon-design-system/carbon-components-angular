@@ -10,7 +10,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
  * [See demo](../../?path=/story/components-tooltip-definition--basic)
  */
 @Component({
-	selector: "ibm-tooltip-definition",
+	selector: "cds-tooltip-definition, ibm-tooltip-definition",
 	template: `
 		<button
 			class="cds--definition-term"

@@ -13,7 +13,7 @@ export interface ExpandableTileTranslations {
 }
 
 @Component({
-	selector: "ibm-expandable-tile",
+	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `
 		<button
 			class="cds--tile cds--tile--expandable"

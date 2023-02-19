@@ -21,62 +21,62 @@ import { UIShellModule } from "../../ui-shell";
 @Component({
 	selector: "app-sample-progressive-loading",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow class="actions">
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+		<div cdsRow class="actions">
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 1"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 2"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 3"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
 				<button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
 			</div>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
-				<ibm-table-container>
-					<ibm-table
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+				<cds-table-container>
+					<cds-table
 						class="data-table"
 						[skeleton]="skeletonStateTable"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</div>
 		</div>
 	</div>

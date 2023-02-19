@@ -4,7 +4,7 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmExpandedRowHover]"
+	selector: "[cdsExpandedRowHover], [ibmExpandedRowHover]"
 })
 export class ExpandedRowHover {
 	@HostListener("mouseenter", ["$event"])

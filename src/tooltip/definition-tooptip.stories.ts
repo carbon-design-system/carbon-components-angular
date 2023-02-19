@@ -21,7 +21,7 @@ const Template: Story<TooltipDefinition> = (args) => ({
 	props: args,
 	template: `
 		<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
-		<ibm-tooltip-definition
+		<cds-tooltip-definition
 			[isOpen]="isOpen"
 			[caret]="caret"
 			[align]="align"
@@ -30,7 +30,7 @@ const Template: Story<TooltipDefinition> = (args) => ({
 			(isOpenChange)="isOpenChange($event)"
 			[description]="description">
 			URL
-		</ibm-tooltip-definition>
+		</cds-tooltip-definition>
 		that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host.</p>
 	`,
 	styles: [`

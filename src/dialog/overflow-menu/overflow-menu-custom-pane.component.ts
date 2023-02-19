@@ -7,7 +7,7 @@ import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
 
 @Component({
-	selector: "ibm-overflow-custom-menu-pane",
+	selector: "cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane",
 	template: `
 		<div
 			[attr.id]="dialogConfig.compID"

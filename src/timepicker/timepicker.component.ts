@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * [See demo](../../?path=/story/components-time-picker--simple)
  */
 @Component({
-	selector: "ibm-timepicker",
+	selector: "cds-timepicker, ibm-timepicker",
 	template: `
 		<label
 		*ngIf="!skeleton && label"
