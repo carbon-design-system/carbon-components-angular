@@ -29,9 +29,8 @@ export class Tile {
 	}
 
 	/**
-	 * @deprecated since v5
-	 * Theme property binding will be deprecated in next major version
-	 * Use layers instead
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
 	 */
-	@Input() theme: "light" | "dark";
+	@Input() theme: "light" | "dark" = "dark";
 }
