@@ -15,11 +15,12 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<label
 			class="bx--tile bx--tile--selectable"
-			tabindex="0"
+			tabindex="disabled ? null : 0"
 			[for]="id"
 			[ngClass]="{
 				'bx--tile--is-selected' : selected,
-				'bx--tile--light': theme === 'light'
+				'bx--tile--light': theme === 'light',
+				'bx--tile--disabled' : disabled
 			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
@@ -27,6 +28,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				tabindex="-1"
 				class="bx--tile-input"
 				[id]="id"
+				[disabled]="disabled"
 				[type]="(multiple ? 'checkbox': 'radio')"
 				[value]="value"
 				[name]="name"
@@ -77,6 +79,11 @@ export class SelectionTile implements AfterViewInit {
 	 * Internal event used to notify the containing `TileGroup` of changes.
 	 */
 	@Output() change: EventEmitter<Event> = new EventEmitter();
+
+	/**
+	 * Set to `true` to disable the selection tile.
+	 */
+	@Input() disabled = false;
 
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
