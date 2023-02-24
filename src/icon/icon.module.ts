@@ -35,6 +35,7 @@ import Delete16 from "@carbon/icons/es/delete/16";
 import Document16 from "@carbon/icons/es/document/16";
 import Document20 from "@carbon/icons/es/document/20";
 import Download16 from "@carbon/icons/es/download/16";
+import EditOff16 from "@carbon/icons/es/edit--off/16";
 import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
 import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import Fade16 from "@carbon/icons/es/fade/16";
@@ -113,6 +114,7 @@ export class IconModule {
 			Document16,
 			Document20,
 			Download16,
+			EditOff16,
 			ErrorFilled16,
 			ErrorFilled20,
 			Fade16,

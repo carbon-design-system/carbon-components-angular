@@ -8,12 +8,13 @@ import {
 	number
 } from "@storybook/addon-knobs/angular";
 
-import { InputModule } from "../";
+import { InputModule } from ".";
+import { IconModule } from "../icon/icon.module";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 
 storiesOf("Components|Input", module).addDecorator(
 	moduleMetadata({
-		imports: [InputModule, DocumentationModule]
+		imports: [InputModule, IconModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -30,7 +31,10 @@ storiesOf("Components|Input", module).addDecorator(
 		</a>
 		<br><br>
 		<ibm-label
+			[size]="size"
 			[disabled]="disabled"
+			[readonly]="readonly"
+			[inline]="inline"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -43,6 +47,7 @@ storiesOf("Components|Input", module).addDecorator(
 				[invalid]="invalid"
 				[warn]="warn"
 				[disabled]="disabled"
+				[readonly]="readonly"
 				[theme]="theme"
 				[placeholder]="placeholder"
 				[autocomplete]="autocomplete">
@@ -52,6 +57,8 @@ storiesOf("Components|Input", module).addDecorator(
 			theme: select("Theme", ["dark", "light"], "dark"),
 			size: select("Size", ["sm", "md", "xl"], "md"),
 			disabled: boolean("Disabled", false),
+			readonly: boolean("Read-only", false),
+			inline: boolean("Inline", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),
 			warn: boolean("Show the warning state", false),
@@ -62,10 +69,68 @@ storiesOf("Components|Input", module).addDecorator(
 			autocomplete: text("autocomplete", "on")
 		}
 	}))
+	.add("Label with template", () => ({
+		template: `
+		<ng-template #helperTextTemplate let-type="type">
+			<div style="display: flex; align-items: center">
+				<svg ibmIcon="bee" size="16" class="bx--btn__icon" fill="#0043ce"></svg>
+				<span style="margin-left: 0.25rem;">My helper text</span>
+			</div>
+		</ng-template>
+		<ng-template #invalidTextTemplate>
+			<div style="display: flex; align-items: center">
+				<svg ibmIcon="bee" size="16" class="bx--btn__icon" fill="#da1e28"></svg>
+				<span style="margin-left: 0.25rem;">My invalid text</span>
+			</div>
+		</ng-template>
+		<ng-template #warningTextTemplate>
+			<div style="display: flex; align-items: center">
+				<svg ibmIcon="bee" size="16" class="bx--btn__icon" fill="#f1c21b"></svg>
+				<span style="margin-left: 0.25rem;">My warning text</span>
+			</div>
+		</ng-template>
+		<ibm-label
+			[size]="size"
+			[disabled]="disabled"
+			[readonly]="readonly"
+			[inline]="inline"
+			[helperText]="helperTextTemplate"
+			[invalid]="invalid"
+			[invalidText]="invalidTextTemplate"
+			[warn]="warn"
+			[warnText]="warningTextTemplate">
+			{{label}}
+			<input
+				ibmText
+				[size]="size"
+				[invalid]="invalid"
+				[warn]="warn"
+				[disabled]="disabled"
+				[readonly]="readonly"
+				[theme]="theme"
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete">
+		</ibm-label>
+	`,
+		props: {
+			theme: select("Theme", ["dark", "light"], "dark"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
+			disabled: boolean("Disabled", false),
+			readonly: boolean("Read-only", false),
+			inline: boolean("Inline", false),
+			invalid: boolean("Show form validation", false),
+			warn: boolean("Show the warning state", false),
+			label: text("Label", "Text Input label"),
+			placeholder: text("Placeholder text", "Placeholder text"),
+			autocomplete: text("autocomplete", "on")
+		}
+	}))
 	.add("TextArea", () => ({
 		template: `
 		<ibm-label
+			[size]="size"
 			[disabled]="disabled"
+			[inline]="inline"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText">
@@ -84,6 +149,7 @@ storiesOf("Components|Input", module).addDecorator(
 		props: {
 			theme: select("Theme", ["dark", "light"], "dark"),
 			disabled: boolean("Disabled", false),
+			inline: boolean("Inline", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),
 			label: text("Label", "Text area label"),
