@@ -24,8 +24,7 @@ import {
 					class="cds--contained-list-item__content"
 					type="button"
 					[disabled]="disabled"
-					(click)="onClick()"
-				>
+					(click)="onClick()">
 					<ng-content select="[ibmContainedListItemButton]"></ng-content>
 				</button>
 			</ng-container>
