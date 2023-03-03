@@ -24,30 +24,30 @@ export default {
 				LayoutModule,
 				TagModule,
 				DialogModule,
-				TooltipModule,
-			],
-		}),
+				TooltipModule
+			]
+		})
 	],
 	component: ContainedList,
 	subcomponents: {
-		ContainedListItem,
+		ContainedListItem
 	},
 	args: {
 		isInset: false,
 		kind: ContainedListKind.OnPage,
 		label: "List title",
-		size: ContainedListSize.Large,
+		size: ContainedListSize.Large
 	},
 	argTypes: {
 		label: {
-			type: { name: "string", required: true },
+			type: { name: "string", required: true }
 		},
 		action: {
 			table: {
-				disable: true,
-			},
-		},
-	},
+				disable: true
+			}
+		}
+	}
 } as Meta;
 
 const basicTemplate: Story<ContainedList> = () => ({
@@ -64,7 +64,7 @@ const basicTemplate: Story<ContainedList> = () => ({
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const basic = basicTemplate.bind({});
 
@@ -150,7 +150,7 @@ const usageExamplesTemplate: Story<ContainedList> = () => ({
 				</div>
 			</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const usageExamples = usageExamplesTemplate.bind({});
 
@@ -168,7 +168,7 @@ const disclosedTemplate: Story<ContainedList> = () => ({
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const disclosed = disclosedTemplate.bind({});
 
@@ -188,7 +188,7 @@ const withActionsTemplate: Story<ContainedList> = () => ({
 			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
 			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const withActions = withActionsTemplate.bind({});
 
@@ -220,7 +220,7 @@ const withInteractiveItemsTemplate: Story<ContainedList> = () => ({
 				<ng-container ibmContainedListItemButton>List item</ng-container>
 			</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const withInteractiveItems = withInteractiveItemsTemplate.bind({});
 
@@ -248,7 +248,7 @@ const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
 				<ng-container ibmContainedListItemButton>List item</ng-container>
 			</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const withInteractiveItemsAndActions =
 	withInteractiveItemsAndActionsTemplate.bind({});
@@ -277,7 +277,7 @@ const withLayerTemplate: Story<ContainedList> = () => ({
 				</div>
 			</div>
 		</div>
-	`,
+	`
 });
 export const withLayer = withLayerTemplate.bind({});
 
@@ -295,7 +295,7 @@ const withListTitleDecoratorsTemplate: Story<ContainedList> = () => ({
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
 
@@ -312,6 +312,6 @@ const playgroundTemplate: Story<ContainedList> = (args) => ({
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 		</ibm-contained-list>
-	`,
+	`
 });
 export const playground = playgroundTemplate.bind({});

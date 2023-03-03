@@ -12,7 +12,7 @@ import Wheat20 from "@carbon/icons/es/wheat/20";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
-	imports: [CommonModule],
+	imports: [CommonModule]
 })
 export class ContainedListStoryModule {
 	constructor(private iconService: IconService) {
@@ -25,7 +25,7 @@ export class ContainedListStoryModule {
 			Strawberry20,
 			SubtractAlt16,
 			Wheat16,
-			Wheat20,
+			Wheat20
 		]);
 	}
 }

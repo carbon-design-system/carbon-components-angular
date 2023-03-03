@@ -11,35 +11,26 @@ import {
 @Component({
 	selector: "ibm-contained-list-item",
 	template: `
-		<li
-			class="cds--contained-list-item"
-			[ngClass]="{
-				'cds--contained-list-item--clickable': clickable,
-				'cds--contained-list-item--with-icon': icon
-			}"
-			role="none"
-		>
-			<ng-container *ngIf="clickable">
-				<button
-					class="cds--contained-list-item__content"
-					type="button"
-					[disabled]="disabled"
-					(click)="onClick()">
-					<ng-content select="[ibmContainedListItemButton]"></ng-content>
-				</button>
-			</ng-container>
-			<ng-container *ngIf="!clickable">
-				<div class="cds--contained-list-item__content">
-					<div *ngIf="icon" class="cds--contained-list-item__icon">
-						<svg [ibmIcon]="icon" size="16"></svg>
-					</div>
-					<ng-content></ng-content>
+		<ng-container *ngIf="clickable">
+			<button
+				class="cds--contained-list-item__content"
+				type="button"
+				[disabled]="disabled"
+				(click)="onClick()">
+				<ng-content select="[ibmContainedListItemButton]"></ng-content>
+			</button>
+		</ng-container>
+		<ng-container *ngIf="!clickable">
+			<div class="cds--contained-list-item__content">
+				<div *ngIf="icon" class="cds--contained-list-item__icon">
+					<svg [ibmIcon]="icon" size="16"></svg>
 				</div>
-			</ng-container>
-			<div class="cds--contained-list-item__action" *ngIf="action">
-				<ng-template [ngTemplateOutlet]="action"></ng-template>
+				<ng-content></ng-content>
 			</div>
-		</li>
+		</ng-container>
+		<div class="cds--contained-list-item__action" *ngIf="action">
+			<ng-template [ngTemplateOutlet]="action"></ng-template>
+		</div>
 	`,
 	styles: [`
 		:host {

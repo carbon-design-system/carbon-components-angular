@@ -136,7 +136,7 @@ export class IconModule {
 			WarningFilled16,
 			WarningFilled20,
 			WarningAltFilled16,
-			WarningAltFilled20,
+			WarningAltFilled20
 		]);
 	}
 }
