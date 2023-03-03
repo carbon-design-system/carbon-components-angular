@@ -63,7 +63,13 @@ const getProps = (overrides = {}) => Object.assign({}, {
 		{ content: "one" },
 		{ content: "two", selected: true },
 		{ content: "three", disabled: true },
-		{ content: "four", disabled: false }
+		{ content: "four", disabled: false },
+		{ content: "five", disabled: false },
+		{ content: "six", disabled: false },
+		{ content: "seven", disabled: false },
+		{ content: "eight", disabled: false },
+		{ content: "nine", disabled: false },
+		{ content: "ten", disabled: false }
 	]),
 	selected: action("Selected fired for dropdown"),
 	onClose: action("Dropdown closed"),
