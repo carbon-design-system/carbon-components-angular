@@ -33,9 +33,9 @@ import { ContainedListSize } from "./contained-list-size.enum";
 					<ng-template [ngTemplateOutlet]="action"></ng-template>
 				</div>
 			</div>
-			<ul role="list" [attr.aria-labelledby]="labelId">
+			<div role="list" [attr.aria-labelledby]="labelId">
 				<ng-content></ng-content>
-			</ul>
+			</div>
 		</div>
 	`,
 	styles: [`
