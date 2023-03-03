@@ -310,36 +310,6 @@ const playgroundTemplate: Story<ContainedList> = (args) => ({
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 			<ibm-contained-list-item>List item</ibm-contained-list-item>
 		</ibm-contained-list>
-		<ibm-contained-list [label]="label" [kind]="kind" [size]="size" [isInset]="isInset">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
-		<ibm-contained-list [label]="label" [kind]="kind" [size]="size" [isInset]="isInset">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
-		<ibm-contained-list [label]="label" [kind]="kind" [size]="size" [isInset]="isInset">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
 	`
 });
 export const playground = playgroundTemplate.bind({});
