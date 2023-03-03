@@ -4,3 +4,8 @@ export enum ContainedListSize {
 	Large = "lg",
 	ExtraLarge = "xl"
 }
+
+export enum ContainedListKind {
+	OnPage = "on-page",
+	Disclosed = "disclosed"
+}

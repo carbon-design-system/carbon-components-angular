@@ -8,8 +8,7 @@ import { LayoutModule } from "../layout";
 import { TagModule } from "../tag";
 import { DialogModule } from "../dialog";
 import { TooltipModule } from "../tooltip";
-import { ContainedListKind } from "./contained-list-kind.enum";
-import { ContainedListSize } from "./contained-list-size.enum";
+import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 import { ContainedListStoryModule } from "./contained-list-story.module";
 
 export default {

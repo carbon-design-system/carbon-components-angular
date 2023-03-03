@@ -5,8 +5,7 @@ import {
 	Input,
 	TemplateRef
 } from "@angular/core";
-import { ContainedListKind } from "./contained-list-kind.enum";
-import { ContainedListSize } from "./contained-list-size.enum";
+import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 
 @Component({
 	selector: "ibm-contained-list",
