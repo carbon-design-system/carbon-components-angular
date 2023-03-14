@@ -1,0 +1,156 @@
+@use '@carbon/styles';
+@use '@carbon/styles/scss/utilities/custom-property';
+@use '@carbon/styles/scss/grid/flexbox';
+@import "@carbon/colors";
+
+@function map-collect($maps...) {
+	$collection: ();
+
+	@each $map in $maps {
+		$collection: map-merge($collection, $map);
+	}
+	@return $collection;
+}
+
+$showpad--base-colors: (
+	primary: #2d2e83,
+	primary-active: #29256a,
+	danger: #da1e28,
+);
+
+//// Theme start
+$showpad--theme: map-merge(
+	styles.$white,
+	(
+		background: #fff,
+		background-active: #fff,
+		background-hover: #8d8d8d,
+		background-selected: #8d8d8d,
+		background-selected-hover: #8d8d8d,
+		background-brand: map-get($showpad--base-colors, primary),
+		background-inverse: #393939,
+		background-inverse-hover: #4c4c4c,
+		layer-01: #fff,
+		layer-02: #fafafa,
+		// TODO: Design need to check the other layer props,,,,,,
+	)
+);
+
+$button-tokens: (
+	button-primary: map-get($showpad--base-colors, primary),
+	button-primary-hover: #5863c6,
+	button-primary-active: map-get($showpad--base-colors, primary-active),
+	button-secondary: #393939,
+	button-secondary-hover: #4c4c4c,
+	button-secondary-active: #6f6f6f,
+	button-tertiary: map-get($showpad--base-colors, primary),
+	button-tertiary-hover: #5863c6,
+	button-tertiary-active: map-get($showpad--base-colors, primary-active),
+	button-danger-primary: map-get($showpad--base-colors, danger),
+	button-danger-secondary: map-get($showpad--base-colors, danger),
+	button-danger-hover: #ba1b23,
+	button-danger-active: #750e13,
+	button-separator: #e0e0e0,
+	button-disabled: #c6c6c6,
+);
+
+$link-tokens: (
+	link-primary: map-get($showpad--base-colors, primary),
+	link-primary-hover: map-get($showpad--base-colors, primary-active),
+	link-secondary: map-get($showpad--base-colors, primary-active),
+	link-inverse: #78a9ff,
+	link-visited: #8a3ffc,
+);
+
+$focus-tokens: (
+	focus: map-get($showpad--base-colors, primary),
+);
+
+$text-tokens: (
+	text-primary: #161616,
+	text-secondary: #525252,
+	text-placeholder: #a8a8a8,
+	text-on-color: #fff,
+	text-helper: #6f6f6f,
+	text-error: map-get($showpad--base-colors, danger),
+	text-inverse: #fff,
+	text-disabled: #161616,
+	text-on-color-disabled: #8d8d8d,
+);
+
+$showpad--component-tokens: map-collect(
+	$button-tokens,
+	$link-tokens,
+	$focus-tokens,
+	$text-tokens
+);
+
+//// Theme end
+
+///////////////////////////////////////////////////////////
+//////// CSS overrides - Do as few as possible!!! ////////
+//////////////////////////////////////////////////////////
+
+// TODO Where is the .cds-* prefix coming from?
+
+//// Accordion start
+.cds--accordion__heading {
+	padding: 8px 0;
+	align-items: center;
+
+	&:before {
+		border-radius: 4px;
+	}
+}
+
+.cds--accordion__item {
+	border-top: none;
+	border-bottom: 1px solid custom-property.get-var("border-subtle");
+}
+//// Accordion end
+
+//// Button Start
+.cds--btn,
+.cds--btn--ghost.cds--btn {
+	border-radius: 4px;
+	padding: 6px 8px;
+	flex-direction: row-reverse;
+	justify-content: center;
+	.cds--btn__icon {
+		position: initial;
+		// I want to override the smallest amount of styles possible so I'm not using the margin shorthand
+		margin-right: 8px;
+		margin-left: 0;
+	}
+}
+.cds--btn--icon-only {
+	.cds--btn__icon {
+		margin-right: 0;
+	}
+}
+//// Button End
+
+//// Text Input & Area Start
+.cds--text-input,
+.cds--text-area {
+	border-radius: 4px;
+	border: 1px solid custom-property.get-var("border-strong");
+
+	&:disabled {
+		border-color: transparent;
+	}
+	&--invalid {
+		border-color: custom-property.get-var("support-error");
+	}
+}
+.cds--text-input--invalid,
+.cds--text-area--invalid {
+	background-color: $red-20;
+}
+/// Text Input & Area End
+
+html {
+	height: 100%;
+	@include styles.add-component-tokens($showpad--component-tokens);
+	@include styles.theme($showpad--theme);
+}
