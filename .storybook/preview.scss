@@ -1,7 +1,30 @@
 @use '@carbon/styles';
+@use '@carbon/styles/scss/utilities/custom-property';
+
 @use '@carbon/styles/scss/grid/flexbox';
+
+$showpad--theme: map-merge(styles.$white, ());
+
+// Where is the .cds prefix coming from?
+.cds--accordion__heading::before {
+	border-radius: 4px;
+}
+.cds--accordion__item {
+	border-top: none;
+	border-bottom: 1px solid custom-property.get-var("border-subtle");
+}
+
+// $carbon--theme: $carbon--theme--g90;
+// $carbon--theme: $carbon--theme--g10;
+// @import "carbon-components/scss/globals/scss/styles";
+// @import 'carbon-components/scss/globals/scss/styles';
+// @use '@carbon/themes' with (
+//   $theme: (
+//     interactive-01: green,
+//   )
+// );
 
 html {
 	height: 100%;
-	@include styles.theme(styles.$white);
+	@include styles.theme($showpad--theme);
 }
