@@ -2,27 +2,48 @@
 @use '@carbon/styles/scss/utilities/custom-property';
 
 @use '@carbon/styles/scss/grid/flexbox';
+// TODO Where is the .cds-* prefix coming from?
 
+//// Theme start
 $showpad--theme: map-merge(styles.$white, ());
+//// Theme end
 
-// Where is the .cds prefix coming from?
-.cds--accordion__heading::before {
-	border-radius: 4px;
+//// Accordion start
+.cds--accordion__heading {
+	padding: 8px 0;
+	align-items: center;
+
+	&:before {
+		border-radius: 4px;
+	}
 }
+
 .cds--accordion__item {
 	border-top: none;
 	border-bottom: 1px solid custom-property.get-var("border-subtle");
 }
+//// Accordion end
 
-// $carbon--theme: $carbon--theme--g90;
-// $carbon--theme: $carbon--theme--g10;
-// @import "carbon-components/scss/globals/scss/styles";
-// @import 'carbon-components/scss/globals/scss/styles';
-// @use '@carbon/themes' with (
-//   $theme: (
-//     interactive-01: green,
-//   )
-// );
+//// Button Start
+.cds--btn,
+.cds--btn--ghost.cds--btn {
+	border-radius: 4px;
+	padding: 6px 8px;
+	flex-direction: row-reverse;
+	justify-content: center;
+	.cds--btn__icon {
+		position: initial;
+		// I want to override the smallest amount of styles possible so I'm not using the margin shorthand
+		margin-right: 8px;
+		margin-left: 0;
+	}
+}
+.cds--btn--icon-only {
+	.cds--btn__icon {
+		margin-right: 0;
+	}
+}
+//// Button End
 
 html {
 	height: 100%;
