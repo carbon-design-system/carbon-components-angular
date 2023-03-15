@@ -48,14 +48,7 @@ storiesOf("Components|Inline Loading", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22id%22%3A%&#13;
-			2278821346850292636026843356500551%22%2C%22lastModified%22%3A%222023-03-10T16%&#13;
-			3A24%3A50.241Z%22%2C%22title%22%3A%22New%20fragment%22%2C%22data%22%3A%7B%22&#13;
-			items%22%3A%5B%7B%22type%22%3A%22inline-loading%22%2C%22status%22%3A%22active&#13;
-			%22%2C%22activeText%22%3A%22Loading...%22%2C%22successText%22%3A%22Finished.%22%2C&#13;
-			%22errorText%22%3A%22Error%21%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22&#13;
-			name%22%3A%22inline-loading-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22&#13;
-			%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22id%22%3A%22InlineLoadingFargment%22%2C%22title%22%3A%22New%20fragment%22%2C%22data%22%3A%7B%22items%22%3A[%7B%22type%22%3A%22inline-loading%22%2C%22status%22%3A%22active%22%2C%22activeText%22%3A%22Loading...%22%2C%22successText%22%3A%22Finished.%22%2C%22errorText%22%3A%22Error!%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22inline-loading-2%22%7D%7D]%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A[]%7D"_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
