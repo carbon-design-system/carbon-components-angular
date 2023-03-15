@@ -1,6 +1,9 @@
-@use '@carbon/styles';
+@use '@carbon/styles' with (
+	$css--font-face: false
+);
 @use '@carbon/styles/scss/utilities/custom-property';
 @use '@carbon/styles/scss/grid/flexbox';
+
 @import "@carbon/colors";
 
 @function map-collect($maps...) {
@@ -16,6 +19,9 @@ $showpad--base-colors: (
 	primary: #2d2e83,
 	primary-active: #29256a,
 	danger: #da1e28,
+	success: #198038,
+	warning: #f1c21b,
+	info: #0043ce,
 );
 
 //// Theme start
@@ -62,8 +68,20 @@ $link-tokens: (
 	link-visited: #8a3ffc,
 );
 
+// Are these even doing anything? I think icons are using the text tokens
+$icon-tokens: (
+	icon-primary: #161616,
+	icon-secondary: #525252,
+	icon-on-color: #fff,
+	icon-inverse: #fff,
+	icon-on-color-disabled: #8d8d8d,
+	icon-disabled: #161616,
+);
+
 $focus-tokens: (
 	focus: map-get($showpad--base-colors, primary),
+	focus-inset: #fff,
+	focus-inverse: #fff,
 );
 
 $text-tokens: (
@@ -78,11 +96,39 @@ $text-tokens: (
 	text-on-color-disabled: #8d8d8d,
 );
 
+$support-tokens: (
+	support-error: map-get($showpad--base-colors, danger),
+	support-error-inverse: #fa4d56,
+	support-success: map-get($showpad--base-colors, success),
+	supports-success-inverse: #42be65,
+	support-warning: map-get($showpad--base-colors, warning),
+	support-warning-inverse: #f1c21b,
+	support-info: map-get($showpad--base-colors, info),
+	support-info-inverse: #4589ff,
+	support-caution-major: #ff832b,
+	support-caution-minor: #f1c21b,
+	support-undefined: #8a3ffc,
+);
+
+$border-tokens: (
+	// Only one changed here
+	border-interactive: map-get($showpad--base-colors, primary)
+);
+
+$miscellaneous-tokens: (
+	// Only one changed here
+	interactive: map-get($showpad--base-colors, primary)
+);
+
 $showpad--component-tokens: map-collect(
 	$button-tokens,
 	$link-tokens,
+	$icon-tokens,
 	$focus-tokens,
-	$text-tokens
+	$text-tokens,
+	$support-tokens,
+	$border-tokens,
+	$miscellaneous-tokens
 );
 
 //// Theme end
@@ -149,8 +195,16 @@ $showpad--component-tokens: map-collect(
 }
 /// Text Input & Area End
 
+@font-face {
+	font-family: "San-Francisco";
+	font-weight: 400;
+	src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
 html {
 	height: 100%;
 	@include styles.add-component-tokens($showpad--component-tokens);
 	@include styles.theme($showpad--theme);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont,
+		".SFNSText-Regular", sans-serif;
 }
