@@ -158,6 +158,7 @@ $showpad--component-tokens: map-collect(
 //// Button Start
 .cds--btn,
 .cds--btn--ghost.cds--btn {
+	min-height: 0;
 	border-radius: 4px;
 	padding: 6px 8px;
 	flex-direction: row-reverse;
@@ -194,6 +195,21 @@ $showpad--component-tokens: map-collect(
 	background-color: $red-20;
 }
 /// Text Input & Area End
+///
+/// Modal Start
+.cds--modal-footer {
+	height: auto;
+	border-top: 1px solid custom-property.get-var("border-strong");
+	padding: 16px;
+	.cds--btn {
+		@extend .cds--btn;
+		flex: none;
+		height: auto;
+		& + .cds--btn {
+			margin-left: 8px;
+		}
+	}
+}
 
 @font-face {
 	font-family: "San-Francisco";
