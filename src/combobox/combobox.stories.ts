@@ -40,7 +40,8 @@ const getOptions = (override = {}) => {
 		submit: action("submit"),
 		size: select("size", ["sm", "md", "xl"], "md"),
 		theme: select("theme", ["dark", "light"], "dark"),
-		search: action("search")
+		search: action("search"),
+		clear: action("clear fired!")
 	};
 
 	return Object.assign({}, options, override);
@@ -74,7 +75,8 @@ const modalText =
 		<ibm-combo-box
 			[(items)]="items"
 			type="multi"
-			(selected)="updateSelected($event)">
+			(selected)="updateSelected($event)"
+			(clear)="clear()">
 			<ibm-dropdown-list></ibm-dropdown-list>
 		</ibm-combo-box>
 	`
@@ -293,7 +295,8 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
-					(search)="search($event)">
+					(search)="search($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 		`,
@@ -324,6 +327,7 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
+					(clear)="clear()"
 					[maxLength]="maxLength">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
@@ -347,7 +351,8 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[theme]="theme"
 					(selected)="onSelected()"
-					(search)="onSearch($event)">
+					(search)="onSearch($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -382,7 +387,8 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[theme]="theme"
 					(selected)="onSelected()"
-					(search)="onSearch($event)">
+					(search)="onSearch($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 
@@ -425,7 +431,8 @@ storiesOf("Components|Combobox", module)
 					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -472,7 +479,8 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					type="multi"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -507,7 +515,8 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					[(ngModel)]="model"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 
