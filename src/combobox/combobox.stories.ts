@@ -76,8 +76,7 @@ const modalText =
 			[(items)]="items"
 			type="multi"
 			(selected)="updateSelected($event)"
-			(clear)="clear()"
-			>
+			(clear)="clear()">
 			<ibm-dropdown-list></ibm-dropdown-list>
 		</ibm-combo-box>
 	`
