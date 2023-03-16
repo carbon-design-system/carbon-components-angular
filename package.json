@@ -98,7 +98,7 @@
     "carbon-components": "10.58.3",
     "chai": "4.2.0",
     "codelyzer": "5.0.0",
-    "commitizen": "4.2.4",
+    "commitizen": "4.3.0",
     "core-js": "2.6.11",
     "cz-conventional-changelog-components": "1.0.0",
     "element-closest-polyfill": "1.0.0",
