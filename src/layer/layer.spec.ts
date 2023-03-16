@@ -20,11 +20,17 @@ class TestLayerComponent {
 class TestNestedLayerComponent { }
 
 describe("Layer", () => {
-	it("should create a Layer", () => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestLayerComponent, LayerDirective]
+			declarations: [
+				LayerDirective,
+				TestLayerComponent,
+				TestNestedLayerComponent
+			]
 		});
+	});
 
+	it("should create a Layer", () => {
 		let fixture: ComponentFixture<TestLayerComponent> = TestBed.createComponent(TestLayerComponent);
 		let component: TestLayerComponent = fixture.componentInstance;
 		fixture.detectChanges();
@@ -36,10 +42,6 @@ describe("Layer", () => {
 	});
 
 	it("should create a nested Layer", () => {
-		TestBed.configureTestingModule({
-			declarations: [TestNestedLayerComponent, LayerDirective]
-		});
-
 		let fixture: ComponentFixture<TestNestedLayerComponent> = TestBed.createComponent(TestNestedLayerComponent);
 		fixture.detectChanges();
 
@@ -48,14 +50,33 @@ describe("Layer", () => {
 	});
 
 	it("should have additional user provided classes", () => {
-		TestBed.configureTestingModule({
-			declarations: [TestNestedLayerComponent, LayerDirective]
-		});
-
 		let fixture: ComponentFixture<TestNestedLayerComponent> = TestBed.createComponent(TestNestedLayerComponent);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective)).nativeElement;
 		expect(directiveEl.querySelector("div").className.includes("test")).toBeTruthy();
+	});
+
+	/**
+	 * @todo Remove this test when `ibmLayer` is removed
+	 * v6
+	 */
+	it("should work with deprecated `ibmLayer` input property", () => {
+		TestBed.overrideComponent(TestNestedLayerComponent, {
+			set: {
+				template: `
+					<div cdsLayer>
+						<div ibmLayer class="test">sdfs</div>
+					</div>
+				`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			let fixture = TestBed.createComponent(TestNestedLayerComponent);
+			fixture.detectChanges();
+			const directiveEl = fixture.debugElement.query(By.directive(LayerDirective));
+			expect(directiveEl.nativeElement.querySelector("div").className.includes("cds--layer-three")).toBeTruthy();
+		});
 	});
 });
