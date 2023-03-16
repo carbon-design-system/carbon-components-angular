@@ -3,19 +3,27 @@ import {
 	ElementRef,
 	HostBinding,
 	Input,
+	OnInit,
 	Renderer2
 } from "@angular/core";
 
 @Directive({
-	selector: "[cdsStack]"
+	selector: "[cdsStack], [ibmStack]"
 })
-export class StackDirective {
+export class StackDirective implements OnInit {
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {
 		return this.cdsStack === "horizontal";
 	}
 
 	@HostBinding("class.cds--stack-vertical") get isVertical() {
 		return this.cdsStack === "vertical";
+	}
+
+	/**
+	 * @deprecated as of v5 - Use `cdsStack` input property instead
+	 */
+	@Input() set ibmStack(type: "vertical" | "horizontal") {
+		this.cdsStack = type;
 	}
 
 	/**
@@ -37,4 +45,14 @@ export class StackDirective {
 	private _gap;
 
 	constructor(private render: Renderer2, private hostElement: ElementRef) { }
+
+	/**
+	 * We need to make sure cdsStack is not an empty string since
+	 * input name matches selector name.
+	 */
+	ngOnInit(): void {
+		if (!this.cdsStack) {
+			this.cdsStack = "vertical";
+		}
+	}
 }

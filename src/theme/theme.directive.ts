@@ -15,10 +15,17 @@ import { LayerDirective } from "carbon-components-angular/layer";
  * [See demo](../../?path=/story/components-theme--basic)
  */
 @Directive({
-	selector: "[cdsTheme]",
+	selector: "[cdsTheme], [ibmTheme]",
 	exportAs: "theme"
 })
 export class ThemeDirective implements OnInit, AfterContentChecked {
+	/**
+	 * @deprecated as of v5 - Use `cdsTheme` input property instead
+	 */
+	@Input() set ibmTheme(type: "white" | "g10" | "g90" | "g100") {
+		this.cdsTheme = type;
+	}
+
 	/**
 	 * Sets the theme for the content
 	 */
@@ -60,6 +67,10 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 		});
 	}
 
+	/**
+	 * We need to make sure cdsTheme is not an empty string because
+	 * input name matches selector name.
+	 */
 	ngOnInit(): void {
 		if (!this.cdsTheme) {
 			this.cdsTheme = "white";

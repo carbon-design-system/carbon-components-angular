@@ -24,14 +24,12 @@ import { ButtonSize, ButtonType } from "./button.types";
 	selector: "[cdsButton], [ibmButton]"
 })
 export class Button implements OnInit {
-
 	/**
 	 * @deprecated as of v5 - Use `cdsButton` input property instead
 	 */
 	@Input() set ibmButton(type: ButtonType) {
 		this.cdsButton = type;
 	}
-
 	/**
 	 * sets the button type
 	 */
@@ -95,6 +93,10 @@ export class Button implements OnInit {
 		return this.size === "2xl";
 	}
 
+	/**
+	 * We need to make sure cdsButton is not an empty string since
+	 * input name matches selector name.
+	 */
 	ngOnInit() {
 		if (!this.cdsButton) {
 			this.cdsButton = "primary";

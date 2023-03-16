@@ -41,7 +41,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() title = "";
 	/**
-	 * @deprecated as of v5
+	 * @deprecated as of v5, use `cdsDialog` instead
 	 * Dialog body content.
 	 */
 	@Input() set ibmDialog(body: string | TemplateRef<any>) {

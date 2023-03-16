@@ -15,10 +15,17 @@ const MAX_LEVEL = 2;
  * [See demo](../../?path=/story/components-layer--basic)
  */
 @Directive({
-	selector: "[cdsLayer]",
+	selector: "[cdsLayer], [ibmLayer]",
 	exportAs: "layer"
 })
 export class LayerDirective implements AfterContentInit {
+
+	/**
+	 * @deprecated as of v5 - Use `cdsLayer` input property instead
+	 */
+	@Input() set ibmLayer(level: 0 | 1 | 2) {
+		this.cdsLayer = level;
+	}
 
 	/**
 	 * Override layer level
