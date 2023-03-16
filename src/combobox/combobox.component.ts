@@ -325,7 +325,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() maxLength: number = null;
 	/**
-	 * `light` or `dark` dropdown theme
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 	/**

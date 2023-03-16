@@ -21,7 +21,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 @Component({
 	selector: "cds-modal-header, ibm-modal-header",
 	template: `
-		<header class="{{theme}} cds--modal-header">
+		<header class="cds--modal-header {{theme}}">
 			<ng-content></ng-content>
 			<button
 				*ngIf="showCloseButton"
@@ -37,6 +37,7 @@ import { ExperimentalService } from "carbon-components-angular/experimental";
 })
 export class ModalHeader {
 	/**
+	 * @deprecated since v5
 	 * Sets the style on the modal heading based on its category.
 	 */
 	@Input() theme = "default";

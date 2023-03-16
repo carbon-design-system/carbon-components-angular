@@ -17,20 +17,22 @@ import {
  * This is to prevent properties like `onTouched = () => {...}` & `propagateChange = () => {}`
  * from being rewritten as string by storybook.
  */
-components = components.map(comp => {
-	return {
-		...comp,
-		// Removes properties
-		propertiesClass: [],
-		outputsClass: comp.outputsClass.map((output) => {
-			return {
-				...output,
-				// Prevents control type appearing as `string`
-				defaultValue: undefined
-			}
-		})
-	}
-});
+components = components.map(comp => ({
+	...comp,
+	inputsClass: comp.inputsClass.map((input) => ({
+		...input,
+		// Storybook does not seem to display deprecated message currently
+		// Bypassing this by updating rawdescription
+		rawdescription: input.deprecated ? `**@Deprecatated**\n\n${input.deprecationMessage}` : input.rawdescription
+	})),
+	// Removes properties
+	propertiesClass: [],
+	outputsClass: comp.outputsClass.map((output) => ({
+		...output,
+		// Prevents control type appearing as `string`
+		defaultValue: undefined
+	}))
+}));
 
 // Integrate compodoc documentation with storybook
 setCompodocJson({

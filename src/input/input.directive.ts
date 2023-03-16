@@ -16,6 +16,7 @@ import { Directive, HostBinding, Input } from "@angular/core";
 })
 export class TextInput {
 	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
 	 * `light` or `dark` input theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";

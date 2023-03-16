@@ -42,6 +42,10 @@ export interface ExpandableTileTranslations {
 	`
 })
 export class ExpandableTile implements AfterContentInit {
+	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() expanded = false;

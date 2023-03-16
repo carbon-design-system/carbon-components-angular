@@ -98,7 +98,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Sets the type of the `TabHeader`s
 	 */
-	@Input() type: "default" | "container" = "default";
+	@Input() type: "line" | "contained" = "line";
 	/**
 	 * Sets the theme of `TabHeader`s
 	 */

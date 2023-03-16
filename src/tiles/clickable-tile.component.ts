@@ -34,6 +34,10 @@ import { Router } from "@angular/router";
 	</a>`
 })
 export class ClickableTile {
+	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	/**

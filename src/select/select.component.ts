@@ -182,6 +182,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() invalid = false;
 
 	/**
+	 * @deprecated since v5 - Use `ibmLayer` directive instead
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
