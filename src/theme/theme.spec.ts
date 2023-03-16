@@ -8,7 +8,7 @@ import { LayerDirective } from "../layer";
 @Component({
 	template: `<div cdsTheme></div>`
 })
-class TestThemeComponent {}
+class TestThemeComponent { }
 
 describe("Theme", () => {
 	beforeEach(() => {
@@ -56,6 +56,29 @@ describe("Theme", () => {
 
 			const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective)).nativeElement;
 			expect(directiveEl.querySelector("div").classList.contains("cds--layer-two")).toBeTruthy();
+		});
+	});
+
+	/**
+	 * @todo Remove this test when `ibmTheme` is removed
+	 * v6
+	 */
+	it("should work with deprecated `ibmTheme` input property", () => {
+		TestBed.overrideComponent(TestThemeComponent, {
+			set: {
+				template: `
+					<div ibmTheme="g100"></div>
+				`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
+			fixture.detectChanges();
+
+			const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective));
+			expect(directiveEl.nativeElement.classList.contains("cds--g100")).toBeTruthy();
+			expect(directiveEl.nativeElement.classList.contains("cds--layer-one")).toBeTruthy();
 		});
 	});
 });
