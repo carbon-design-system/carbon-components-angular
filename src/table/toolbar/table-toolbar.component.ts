@@ -48,7 +48,7 @@ import { TableRowSize } from "../table.types";
 	template: `
 	<section
 		class="cds--table-toolbar"
-		[ngClass]="{'cds--table-toolbar--small' : size === 'sm'}">
+		[ngClass]="{'cds--table-toolbar--sm' : size === 'sm'}">
 		<div
 			*ngIf="model"
 			class="cds--batch-actions"
