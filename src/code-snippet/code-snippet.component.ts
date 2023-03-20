@@ -182,7 +182,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	 */
 	@HostBinding("class.cds--snippet--wraptext") @Input() wrapText = false;
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
 	 */
 	@Input() theme: "light" | "dark" = "dark";

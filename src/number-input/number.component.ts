@@ -144,7 +144,7 @@ export class NumberComponent implements ControlValueAccessor {
 	@HostBinding("class.cds--form-item") containerClass = true;
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` number input theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";

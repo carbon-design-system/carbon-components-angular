@@ -51,7 +51,7 @@ export class TimePickerSelect extends Select {
 	@Input() skeleton = false;
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";

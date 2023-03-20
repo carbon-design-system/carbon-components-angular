@@ -29,7 +29,7 @@ export class Tile {
 	}
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
 	 */
 	@Input() theme: "light" | "dark" = "dark";

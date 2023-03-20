@@ -34,7 +34,7 @@ export class Search implements ControlValueAccessor {
 	@HostBinding("class.cds--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` search theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";
