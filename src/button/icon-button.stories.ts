@@ -32,7 +32,7 @@ export default {
 			],
 			defaultValue: "primary",
 			control: { type: "select" },
-			name: "ibmButton"
+			name: "cdsButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],

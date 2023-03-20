@@ -73,7 +73,7 @@ import {
 				<div class="cds--form-item">
 					<button
 						class="form-button"
-						ibmButton
+						cdsButton
 						type="submit">
 						Show Loading
 					</button>

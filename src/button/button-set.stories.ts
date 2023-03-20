@@ -25,8 +25,8 @@ const Template: Story<ButtonSet> = (args) => ({
 	props: args,
 	template: `
 		<cds-button-set>
-			<button ibmButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
-			<button ibmButton [size]="size" [isExpressive]="isExpressive">Button</button>
+			<button cdsButton="secondary" [size]="size" [isExpressive]="isExpressive">Button</button>
+			<button cdsButton [size]="size" [isExpressive]="isExpressive">Button</button>
 		</cds-button-set>
 	`
 });

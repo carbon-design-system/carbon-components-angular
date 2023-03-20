@@ -212,7 +212,7 @@ const CustomTemplate: Story = (args) => ({
 		<ng-template #customActionableTrigger>
 			<button
 				cdsActionableButton
-				ibmButton="ghost"
+				cdsButton="ghost"
 				size="sm">
 				Action
 			</button>

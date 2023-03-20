@@ -96,7 +96,7 @@ import {
 									</cds-label>
 								</div>
 								<div cdsRow class="form-item">
-									<button ibmButton (click)="changeStep(2)">Step 3</button>
+									<button cdsButton (click)="changeStep(2)">Step 3</button>
 								</div>
 							</div>
 						</form>
@@ -107,7 +107,7 @@ import {
 								Step 3 form!
 							</div>
 							<div cdsRow class="form-item">
-								<button ibmButton (click)="changeStep(1)">Step 2</button>
+								<button cdsButton (click)="changeStep(1)">Step 2</button>
 							</div>
 						</div>
 					</ng-container>

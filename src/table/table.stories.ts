@@ -205,15 +205,15 @@ const ToolbarTemplate: Story = (args) => ({
 				(cancel)="cancelMethod()"
 				#toolbar>
 				<cds-table-toolbar-actions>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+					<button cdsButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Delete
 						<svg cdsIcon="trash-can" size="16" class="cds--btn__icon"></svg>
 					</button>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+					<button cdsButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Save
 						<svg cdsIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
-					<button ibmButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
+					<button cdsButton="primary" [tabindex]="toolbar.selected ? 0 : -1">
 						Download
 						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
@@ -234,7 +234,7 @@ const ToolbarTemplate: Story = (args) => ({
 						<cds-overflow-menu-option disabled="true">Disabled</cds-overflow-menu-option>
 						<cds-overflow-menu-option type="danger">Danger option</cds-overflow-menu-option>
 					</cds-overflow-menu>
-					<button ibmButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
+					<button cdsButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
 						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-content>
@@ -298,25 +298,25 @@ const DisabledRowsTemplate: Story = (args) => ({
 			</cds-table-header>
 			<cds-table-toolbar [model]="model" [batchText]="batchText" #toolbar>
 				<cds-table-toolbar-actions>
-					<button ibmButton="primary">
+					<button cdsButton="primary">
 						Delete
 						<svg cdsIcon="delete" size="16" class="cds--btn__icon"></svg>
 					</button>
-					<button ibmButton="primary">
+					<button cdsButton="primary">
 						Save
 						<svg cdsIcon="save" size="16" class="cds--btn__icon"></svg>
 					</button>
-					<button ibmButton="primary">
+					<button cdsButton="primary">
 						Download
 						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-actions>
 				<cds-table-toolbar-content *ngIf="!toolbar.selected">
 					<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action">
+					<button cdsButton="ghost" class="toolbar-action">
 						<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
-					<button ibmButton="primary" size="sm">
+					<button cdsButton="primary" size="sm">
 						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-content>
@@ -372,10 +372,10 @@ const WithoutActionTemplate: Story = (args) => ({
 			<cds-table-toolbar>
 				<cds-table-toolbar-content>
 					<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
-					<button ibmButton="ghost" class="toolbar-action">
+					<button cdsButton="ghost" class="toolbar-action">
 						<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
 					</button>
-					<button ibmButton="primary" size="sm">
+					<button cdsButton="primary" size="sm">
 						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-content>

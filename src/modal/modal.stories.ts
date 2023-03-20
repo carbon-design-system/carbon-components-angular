@@ -169,7 +169,7 @@ DataPassing.argTypes = {
 const SimpleTemplate: Story<Modal> = (args) => ({
 	props: args,
 	template: `
-		<button #trigger ibmButton="primary" (click)="open = true">Open</button>
+		<button #trigger cdsButton="primary" (click)="open = true">Open</button>
 		<cds-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
 			<cds-modal-header (closeSelect)="open = false" [showCloseButton]="showCloseButton">
 				<p class="cds--modal-header__label cds--type-delta">No service required</p>
@@ -181,7 +181,7 @@ const SimpleTemplate: Story<Modal> = (args) => ({
 			<cds-modal-footer>
 				<ng-container>
 					<button
-						ibmButton="primary"
+						cdsButton="primary"
 						(click)="open = false"
 						[attr.modal-primary-focus]="true">
 						Okay

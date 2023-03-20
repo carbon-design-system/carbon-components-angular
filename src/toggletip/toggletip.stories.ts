@@ -58,7 +58,7 @@ const Template: Story<Toggletip> = (args) => ({
 				</p>
 				<div cdsToggletipAction>
 					<a href="#" cdsLink>Link action</a>
-					<button ibmButton size="sm">Some button</button>
+					<button cdsButton size="sm">Some button</button>
 				</div>
 			</div>
 		</cds-toggletip>

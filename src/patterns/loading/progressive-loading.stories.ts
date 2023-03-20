@@ -62,7 +62,7 @@ import { UIShellModule } from "../../ui-shell";
 			</div>
 
 			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
+				<button cdsButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
 			</div>
 		</div>
 		<div cdsRow>

@@ -24,7 +24,7 @@ import { UIShellModule } from "../../ui-shell";
 		</div>
 		<div cdsRow>
 			<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
-				<button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
+				<button cdsButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
 				<fieldset class="cds--fieldset">
 					<legend class="cds--label">Radio button label</legend>
 					<cds-radio-group

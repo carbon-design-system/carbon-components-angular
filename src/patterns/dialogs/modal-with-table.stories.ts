@@ -44,7 +44,7 @@ import { LinkModule } from "../../link";
 								placeholder="Search node ID"
 								(valueChange)="onSearch($event)">
 							</cds-table-toolbar-search>
-							<button ibmButton="ghost" class="toolbar-action" size="sm">
+							<button cdsButton="ghost" class="toolbar-action" size="sm">
 								<svg size="16" class="cds--toolbar-action__icon" cdsIcon="Data_2"></svg>
 							</button>
 						</cds-table-toolbar-content>
@@ -63,8 +63,8 @@ import { LinkModule } from "../../link";
 			<cds-modal-footer>
 				<a href="#" cdsLink [disabled]="disabled" [inline]="inline">Cancel</a>
 				<div class="buttons-wrapper">
-					<button class="modal-button" ibmButton="secondary">Previous</button>
-					<button class="modal-button" ibmButton="primary">Next</button>
+					<button class="modal-button" cdsButton="secondary">Previous</button>
+					<button class="modal-button" cdsButton="primary">Next</button>
 				</div>
 			</cds-modal-footer>
 		</cds-modal>

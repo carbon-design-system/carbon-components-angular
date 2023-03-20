@@ -28,9 +28,9 @@ const Template: Story<ContentSwitcher> = (args) => ({
 	props: args,
 	template: `
 		<cds-content-switcher (selected)="selected($event)">
-			<button ibmContentOption name="First">First section</button>
-			<button ibmContentOption name="Second">Second section</button>
-			<button ibmContentOption name="Third">Third section</button>
+			<button cdsContentOption name="First">First section</button>
+			<button cdsContentOption name="Second">Second section</button>
+			<button cdsContentOption name="Third">Third section</button>
 		</cds-content-switcher>
 	`
 });
