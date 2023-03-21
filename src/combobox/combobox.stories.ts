@@ -70,10 +70,9 @@ export default {
 		type: {
 			control: false
 		},
-		clear: { action: "Search cleared!" },
-		search: { action: "Search" },
 		selected: { action: "Selection changed!" },
-		submit: { action: "Submit" }
+		submit: { action: "Submit" },
+		search: { action: "Search" }
 	},
 	parameters: {
 		layout: "centered"
@@ -98,11 +97,10 @@ const Template: Story<ComboBox> = (args) => ({
 			[items]="items"
 			[theme]="theme"
 			[dropUp]="dropUp"
-			type="single"
+			[type]="type"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
-			(search)="search($event)"
-			(clear)="clear($event)">
+			(search)="search($event)">
 			<ibm-dropdown-list></ibm-dropdown-list>
 		</ibm-combo-box>
 		<span>{{model | json}}</span>

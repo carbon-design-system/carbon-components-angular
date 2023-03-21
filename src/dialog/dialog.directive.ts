@@ -155,7 +155,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		if (changes.isOpen) {
 			if (changes.isOpen.currentValue) {
 				this.open();
-			} else if (!changes.isOpen.firstChange) {
+			} else {
 				this.close({
 					reason: CloseReasons.programmatic
 				});

@@ -41,24 +41,6 @@ export default {
 			},
 			{
 				content: "four"
-			},
-			{
-				content: "five"
-			},
-			{
-				content: "six"
-			},
-			{
-				content: "seven"
-			},
-			{
-				content: "eight"
-			},
-			{
-				content: "nine"
-			},
-			{
-				content: "ten"
 			}
 		],
 		appendInline: false,
