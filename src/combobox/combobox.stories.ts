@@ -115,7 +115,6 @@ const Template: Story<ComboBox> = (args) => ({
 			[items]="items"
 			[theme]="theme"
 			[dropUp]="dropUp"
-			[type]="type"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)">
