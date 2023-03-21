@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ViewChild,
 	ContentChild,
-	AfterContentInit
+	AfterContentInit,
+	ChangeDetectorRef
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -146,6 +147,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	@HostBinding("class.cds--form-item") labelClass = true;
 
 	/**
+	 * Creates an instance of Label.
+	 */
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+
+	/**
 	 * Update wrapper class if a textarea is hosted.
 	 */
 	ngAfterContentInit() {
@@ -165,6 +171,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 				// avoid overriding ids already set by the user reuse it instead
 				if (inputElement.id) {
 					this.labelInputID = inputElement.id;
+					this.changeDetectorRef.detectChanges();
 				}
 				inputElement.setAttribute("id", this.labelInputID);
 				return;
@@ -174,6 +181,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 			if (divElement) {
 				if (divElement.id) {
 					this.labelInputID = divElement.id;
+					this.changeDetectorRef.detectChanges();
 				}
 				divElement.setAttribute("id", this.labelInputID);
 			}

@@ -24,10 +24,13 @@ import { Router } from "@angular/router";
 	<a
 		ibmLink
 		class="cds--tile cds--tile--clickable"
-		[ngClass]="{'cds--tile--light': theme === 'light'}"
+		[ngClass]="{
+			'cds--tile--light': theme === 'light',
+			'cds--tile--disabled cds--link--disabled' : disabled
+		}"
 		tabindex="0"
 		(click)="navigate($event)"
-		[href]="href"
+		[attr.href]="disabled ? null : href"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
@@ -75,7 +78,7 @@ export class ClickableTile {
 	constructor(@Optional() protected router: Router) {}
 
 	navigate(event) {
-		if (this.router && this.route) {
+		if (this.router && this.route && !this.disabled) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
