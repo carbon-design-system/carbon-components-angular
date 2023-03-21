@@ -502,13 +502,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key === "ArrowDown") {
 				if (this.hasNextElement()) {
-					this.getNextElement().scrollIntoView({block: "end"});
+					this.getNextElement();
 				} else {
 					this.blurIntent.emit("bottom");
 				}
 			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement().scrollIntoView();
+					this.getPrevElement();
 				} else {
 					this.blurIntent.emit("top");
 				}

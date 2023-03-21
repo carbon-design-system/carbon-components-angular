@@ -394,12 +394,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			selected: boolean
 		}
 	}>();
-	/** Emits an empty event when the menu is closed */
+	/** emits an empty event when the menu is closed */
 	@Output() close = new EventEmitter<void>();
-	/** Emits the search string from the input */
+	/** emits the search string from the input */
 	@Output() search = new EventEmitter<string>();
-	/** Emits an event when the clear button is clicked. */
-	@Output() clear = new EventEmitter();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
@@ -671,7 +669,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		const selected = this.view.getSelected();
 		this.propagateChangeCallback(selected);
 		this.selected.emit(selected as any);
-		this.clear.emit();
 	}
 
 	/**
@@ -767,8 +764,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.stopPropagation();
 		event.preventDefault();
 
-		// don't want to clear selected or close if multi
-		if (this.type === "single") {
+		if (this.type === "single") { // don't want to clear selected or close if multi
 			this.clearSelected();
 			this.closeDropdown();
 		}

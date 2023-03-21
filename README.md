@@ -16,9 +16,6 @@
     <a href="https://bestpractices.coreinfrastructure.org/projects/5887">
       <img src="https://bestpractices.coreinfrastructure.org/projects/5887/badge">
     </a>
-    <a href="https://discord.gg/J7JEUEkTRX">
-      <img src="https://img.shields.io/discord/689212587170201628?color=5865F2" alt="Chat with us on Discord">
-    </a>
 	</p>
 </p>
 

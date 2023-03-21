@@ -145,14 +145,6 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-date-picker--simple
-  definition-tooltip:
-    status: stable
-    framework: angular
-    demoLinks:
-      - type: storybook
-        name: Storybook
-        action: link
-        url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition
   dialogs:
     externalDocsUrl: https://carbondesignsystem.com/patterns/dialog-pattern
     status: stable
@@ -475,6 +467,14 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-toggle
+  tooltip-definition:
+    status: stable
+    framework: angular
+    demoLinks:
+      - type: storybook
+        name: Storybook
+        action: link
+        url: https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition
   tooltip-icon:
     name: Tooltip icon
     status: stable
