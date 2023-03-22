@@ -35,7 +35,7 @@ export class DropdownService implements OnDestroy {
 	) {}
 
 	/**
-	 * Appends the menu to the body, or a `ibm-placeholder` (if defined)
+	 * Appends the menu to the body, or a `cds-placeholder` (if defined)
 	 *
 	 * @param parentRef container to position relative to
 	 * @param menuRef menu to be appended to body
@@ -132,7 +132,7 @@ export class DropdownService implements OnDestroy {
 			}
 		}
 
-		// If ibm-placeholder has a parent with a position(relative|fixed|absolute) account for the parent offset
+		// If cds-placeholder has a parent with a position(relative|fixed|absolute) account for the parent offset
 		const closestMenuWithPos = closestAttr("position", ["relative", "fixed", "absolute"], menuRef.parentElement);
 		const topPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().top * -1 : this.offset.top;
 		const leftPos = closestMenuWithPos ? closestMenuWithPos.getBoundingClientRect().left * -1 : this.offset.left + leftOffset;

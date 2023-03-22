@@ -5,19 +5,19 @@ import { By } from "@angular/platform-browser";
 import { Link } from "./link.directive";
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" cdsLink>link</a>`
 })
 class TestLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" cdsLink>link</a>`
 })
 class TestDisabledLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" cdsLink>link</a>`
 })
 class TestInlineLinkComponent {
 }

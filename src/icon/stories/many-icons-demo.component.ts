@@ -9,7 +9,7 @@ import { IconService } from "../";
 		<table>
 			<tr *ngFor="let group of groupedIcons">
 				<td *ngFor="let icon of group">
-					<svg [ibmIcon]="icon.name" [size]="icon.size"></svg>
+					<svg [cdsIcon]="icon.name" [size]="icon.size"></svg>
 					<div>name: <code>{{icon.name}}</code></div>
 					<div>size: <code>{{icon.size}}</code></div>
 				</td>

@@ -4,25 +4,25 @@ import { ModalService, BaseModal } from "../";
 @Component({
 	selector: "app-input-modal",
 	template: `
-		<ibm-modal
+		<cds-modal
 			[size]="size"
 			[open]="open"
 			(overlaySelected)="closeModal()">
-			<ibm-modal-header (closeSelect)="closeModal()">Edit account name</ibm-modal-header>
+			<cds-modal-header (closeSelect)="closeModal()">Edit account name</cds-modal-header>
 			<section class="cds--modal-content">
-				<ibm-label>
+				<cds-label>
 					Account name
 					<input
-						ibmText
+						cdsText
 						[value]="inputValue"
 						(change)="onChange($event)">
-				</ibm-label>
+				</cds-label>
 			</section>
-			<ibm-modal-footer>
+			<cds-modal-footer>
 				<button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancel</button>
 				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
-			</ibm-modal-footer>
-		</ibm-modal>
+			</cds-modal-footer>
+		</cds-modal>
 	`
 })
 export class InputModal extends BaseModal {

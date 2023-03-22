@@ -6,17 +6,17 @@ import { Directive, HostBinding, Input } from "@angular/core";
  * Example:
  *
  * ```html
- * <textarea ibmTextArea></textarea>
+ * <textarea cdsTextArea></textarea>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
  */
 @Directive({
-	selector: "[ibmTextArea]"
+	selector: "[cdsTextArea], [ibmTextArea]"
 })
 export class TextArea {
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` input theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";

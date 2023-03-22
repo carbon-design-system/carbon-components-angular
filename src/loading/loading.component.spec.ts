@@ -7,12 +7,12 @@ import { By } from "@angular/platform-browser";
 
 @Component({
 	template: `
-		<ibm-loading
+		<cds-loading
 			[isActive]="isActive"
 			[size]="size"
 			[overlay]="overlay"
 			title="title">
-		</ibm-loading>`
+		</cds-loading>`
 })
 class LoadingTest {
 	isActive = true;
@@ -40,7 +40,7 @@ describe("Loading", () => {
 		fixture = TestBed.createComponent(LoadingTest);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-loading"));
+		element = fixture.debugElement.query(By.css("cds-loading"));
 		expect(element.componentInstance.isActive).toBe(true);
 		component.isActive = false;
 		fixture.detectChanges();
@@ -51,7 +51,7 @@ describe("Loading", () => {
 	it("should set title to 'title'", () => {
 		fixture = TestBed.createComponent(LoadingTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-loading title"));
+		element = fixture.debugElement.query(By.css("cds-loading title"));
 		expect(element.nativeElement.textContent).toBe("title");
 	});
 
@@ -59,7 +59,7 @@ describe("Loading", () => {
 		fixture = TestBed.createComponent(LoadingTest);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-loading"));
+		element = fixture.debugElement.query(By.css("cds-loading"));
 		expect(element.nativeElement.querySelector(".cds--loading--small")).toBeTruthy();
 		component.size = "normal";
 		fixture.detectChanges();
@@ -72,7 +72,7 @@ describe("Loading", () => {
 		component.overlay = true;
 		component.isActive = false;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-loading"));
+		element = fixture.debugElement.query(By.css("cds-loading"));
 		expect(element.nativeElement.querySelector(".cds--loading-overlay--stop")).toBeTruthy();
 	});
 });

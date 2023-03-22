@@ -8,13 +8,13 @@ import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
-	<ibm-slider
+	<cds-slider
 		[shiftMultiplier]="shiftMultiplier"
 		(valueChange)="onValueChange()"
 		[disabled]="disabled"
 		[max]="max"
 		[min]="min">
-	</ibm-slider>`
+	</cds-slider>`
 })
 class SliderTest {
 	disabled = false;
@@ -41,7 +41,7 @@ describe("Slider", () => {
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(SliderTest);
-		element = fixture.debugElement.query(By.css("ibm-slider"));
+		element = fixture.debugElement.query(By.css("cds-slider"));
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
  * [See demo](../../?path=/story/components-time-picker-select--simple)
  */
 @Component({
-	selector: "ibm-timepicker-select",
+	selector: "cds-timepicker-select, ibm-timepicker-select",
 	template: `
 		<label *ngIf="!skeleton && label" [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
 		<div class="cds--select-input__wrapper">
@@ -26,7 +26,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="cds--select-input">
 				<ng-content></ng-content>
 			</select>
-			<svg ibmIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg>
+			<svg cdsIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg>
 		</div>
 	`,
 	providers: [
@@ -51,7 +51,7 @@ export class TimePickerSelect extends Select {
 	@Input() skeleton = false;
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";

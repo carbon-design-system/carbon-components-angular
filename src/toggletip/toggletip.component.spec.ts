@@ -22,18 +22,18 @@ import {
 
 @Component({
 	template: `
-		<span ibmToggletipLabel>Toggletip label</span>
-		<ibm-toggletip
+		<span cdsToggletipLabel>Toggletip label</span>
+		<cds-toggletip
 			[isOpen]="isOpen">
-			<button ibmToggletipButton>
+			<button cdsToggletipButton>
 				btn
 			</button>
-			<div ibmToggletipContent>
-				<div ibmToggletipAction>
+			<div cdsToggletipContent>
+				<div cdsToggletipAction>
 					<button>action btn</button>
 				</div>
 			</div>
-		</ibm-toggletip>
+		</cds-toggletip>
 		`
 })
 class TestToggletipComponent {
@@ -65,7 +65,7 @@ describe("Toggletip", () => {
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		labelEl = fixture.debugElement.query(By.directive(ToggletipLabel));
-		toggletipEl = fixture.debugElement.query(By.css("ibm-toggletip"));
+		toggletipEl = fixture.debugElement.query(By.css("cds-toggletip"));
 		actionEl = fixture.debugElement.query(By.directive(ToggletipAction));
 		buttonEl = fixture.debugElement.query(By.directive(ToggletipButton));
 		contentEl = fixture.debugElement.query(By.directive(ToggletipContent));

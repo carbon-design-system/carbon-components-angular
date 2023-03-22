@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * [See demo](../../?path=/story/components-time-picker--simple)
  */
 @Component({
-	selector: "ibm-timepicker",
+	selector: "cds-timepicker, ibm-timepicker",
 	template: `
 		<label
 		*ngIf="!skeleton && label"
@@ -90,9 +90,7 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() skeleton = false;
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
-	 * Theme property binding will be deprecated in next major version
-	 * Use layers instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 

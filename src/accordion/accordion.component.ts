@@ -11,7 +11,7 @@ import { AccordionItem } from "./accordion-item.component";
  * [See demo](../../?path=/story/components-accordion--basic)
  */
 @Component({
-	selector: "ibm-accordion",
+	selector: "cds-accordion, ibm-accordion",
 	template: `
 		<div class="cds--accordion"
 			[ngClass]="{

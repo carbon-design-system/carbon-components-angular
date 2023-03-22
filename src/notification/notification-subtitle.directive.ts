@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[ibmNotificationSubtitle]"
+	selector: "[cdsNotificationSubtitle], [ibmNotificationSubtitle]"
 })
 export class NotificationSubtitle {
 	@HostBinding("class.cds--inline-notification__subtitle") baseClass = true;

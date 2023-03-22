@@ -8,12 +8,12 @@ import {
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup">
-			<ibm-checkbox formControlName="disabledCheckbox">
+			<cds-checkbox formControlName="disabledCheckbox">
 				Disabled checkbox in a reactive form
-			</ibm-checkbox>
-			<ibm-checkbox formControlName="checkbox">
+			</cds-checkbox>
+			<cds-checkbox formControlName="checkbox">
 				Checkbox in a reactive form
-			</ibm-checkbox>
+			</cds-checkbox>
 		</form>
 		<br>
 		<button (click)="toggleDisable()">Toggle disabled state</button>

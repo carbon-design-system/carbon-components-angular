@@ -9,12 +9,12 @@ import { PaginationModel } from "../..";
 @Component({
 	selector: "app-pagination",
 	template: `
-		<ibm-pagination-nav
+		<cds-pagination-nav
 			[model]="model"
 			[disabled]="disabled"
 			(selectPage)="selectPage($event)"
 			[numOfItemsToShow]="numOfItemsToShow">
-		</ibm-pagination-nav>
+		</cds-pagination-nav>
 	`
 })
 export class PaginationNavStory implements OnInit {

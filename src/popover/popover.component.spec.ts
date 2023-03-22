@@ -7,18 +7,18 @@ import { PopoverContainer, PopoverContent } from "./";
 @Component({
 	template: `
 		<span
-			ibmPopover
+			cdsPopover
 			[isOpen]="isOpen"
 			[dropShadow]="dropShadow"
 			[align]="align"
 			[caret]="caret"
 			[highContrast]="highContrast">
 			<p>Popover trigger</p>
-			<ibm-popover-content>
+			<cds-popover-content>
 				<div>
 					<p>Popover content</p>
 				</div>
-			</ibm-popover-content>
+			</cds-popover-content>
 		</span>
 		`
 })
@@ -50,7 +50,7 @@ describe("Popover", () => {
 		expect(directiveEl).not.toBeNull();
 		expect(directiveEl.nativeElement.className.includes("cds--popover-container")).toBeTruthy();
 
-		const componentEl = fixture.debugElement.query(By.css("ibm-popover-content"));
+		const componentEl = fixture.debugElement.query(By.css("cds-popover-content"));
 		expect(componentEl).not.toBeNull();
 	});
 

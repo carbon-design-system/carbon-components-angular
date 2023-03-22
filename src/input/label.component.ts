@@ -17,24 +17,24 @@ import { TextArea } from "./text-area.directive";
  * [See demo](../../?path=/story/components-input--label)
  *
  * ```html
- * <ibm-label labelState="success">
+ * <cds-label labelState="success">
  * 	<label label>Field with success</label>
  * 	<input type="text" class="input-field">
- * </ibm-label>
+ * </cds-label>
  *
- * <ibm-label labelState="warning">
+ * <cds-label labelState="warning">
  * 	<label label>Field with warning</label>
  * 	<input type="text" class="input-field">
- * </ibm-label>
+ * </cds-label>
  *
- * <ibm-label labelState="error">
+ * <cds-label labelState="error">
  * 	<label label>Field with error</label>
  * 	<input type="text" class="input-field">
- * </ibm-label>
+ * </cds-label>
  * ```
  */
 @Component({
-	selector: "ibm-label",
+	selector: "cds-label, ibm-label",
 	template: `
 		<label
 			[for]="labelInputID"
@@ -55,7 +55,7 @@ import { TextArea } from "./text-area.directive";
 			#wrapper>
 			<svg
 				*ngIf="!warn && invalid"
-				ibmIcon="warning--filled"
+				cdsIcon="warning--filled"
 				size="16"
 				[ngClass]="{
 					'cds--text-input__invalid-icon': !textArea,
@@ -64,7 +64,7 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<svg
 				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
+				cdsIcon="warning--alt--filled"
 				size="16"
 				class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
 			</svg>
@@ -102,7 +102,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() labelInputID = `ibm-label-${Label.labelCounter++}`;
+	@Input() labelInputID = `cds-label-${Label.labelCounter++}`;
 	/**
 	 * Set to `true` for disabled state.
 	 */

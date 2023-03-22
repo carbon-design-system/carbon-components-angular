@@ -1,7 +1,7 @@
 import { Component, HostBinding } from "@angular/core";
 
 @Component({
-	selector: "ibm-context-menu-divider",
+	selector: "cds-context-menu-divider, ibm-context-menu-divider",
 	template: "",
 	styles: [`
 		:host {

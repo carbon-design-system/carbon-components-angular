@@ -21,7 +21,7 @@ import { TabHeader } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
 
 @Component({
-	selector: "ibm-tab-header-group",
+	selector: "cds-tab-header-group, ibm-tab-header-group",
 	template: `
 		<button
 			type="button"

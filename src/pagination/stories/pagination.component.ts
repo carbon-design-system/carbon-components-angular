@@ -9,7 +9,7 @@ import { PaginationModel } from "..";
 @Component({
 	selector: "app-pagination",
 	template: `
-		<ibm-pagination
+		<cds-pagination
 			[model]="model"
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
@@ -17,7 +17,7 @@ import { PaginationModel } from "..";
 			[showPageInput]="showPageInput"
 			[skeleton]="skeleton"
 			(selectPage)="selectPage($event)">
-		</ibm-pagination>
+		</cds-pagination>
 	`
 })
 export class PaginationStory implements OnInit {

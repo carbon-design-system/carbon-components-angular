@@ -3,12 +3,12 @@ import { Component, AfterViewInit } from "@angular/core";
 @Component({
 	selector: "app-dynamic-list-combobox",
 	template: `
-		<ibm-combo-box
+		<cds-combo-box
 			[(items)]="items"
 			type="multi"
 			(selected)="updateSelected($event)">
-			<ibm-dropdown-list></ibm-dropdown-list>
-		</ibm-combo-box>
+			<cds-dropdown-list></cds-dropdown-list>
+		</cds-combo-box>
 	`
 })
 export class DynamicListComboBox implements AfterViewInit {

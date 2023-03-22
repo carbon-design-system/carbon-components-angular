@@ -32,35 +32,35 @@ export default {
 const Template: Story<StructuredList> = (args) => ({
 	props: args,
 	template: `
-		<ibm-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
-			<ibm-list-header>
-				<ibm-list-column nowrap="true">Column 1</ibm-list-column>
-				<ibm-list-column nowrap="true">Column 2</ibm-list-column>
-				<ibm-list-column>Column 3</ibm-list-column>
-			</ibm-list-header>
-			<ibm-list-row>
-				<ibm-list-column>Row 1</ibm-list-column>
-				<ibm-list-column nowrap="true">Row One</ibm-list-column>
-				<ibm-list-column>
+		<cds-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
+			<cds-list-header>
+				<cds-list-column nowrap="true">Column 1</cds-list-column>
+				<cds-list-column nowrap="true">Column 2</cds-list-column>
+				<cds-list-column>Column 3</cds-list-column>
+			</cds-list-header>
+			<cds-list-row>
+				<cds-list-column>Row 1</cds-list-column>
+				<cds-list-column nowrap="true">Row One</cds-list-column>
+				<cds-list-column>
 					Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit. Nunc dui magna,
 					finibus id tortor sed, aliquet bibendum augue.
 					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
 					Pellentesque vulputate nisl a porttitor interdum.
-				</ibm-list-column>
-			</ibm-list-row>
-			<ibm-list-row>
-				<ibm-list-column>Row 2</ibm-list-column>
-				<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-				<ibm-list-column>
+				</cds-list-column>
+			</cds-list-row>
+			<cds-list-row>
+				<cds-list-column>Row 2</cds-list-column>
+				<cds-list-column nowrap="true">Row Two</cds-list-column>
+				<cds-list-column>
 					Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit. Nunc dui magna,
 					finibus id tortor sed, aliquet bibendum augue.
 					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
 					Pellentesque vulputate nisl a porttitor interdum.
-				</ibm-list-column>
-			</ibm-list-row>
-		</ibm-structured-list>
+				</cds-list-column>
+			</cds-list-row>
+		</cds-structured-list>
 	`
 });
 export const Basic = Template.bind({});
@@ -73,40 +73,40 @@ Basic.args = {
 const SelectionTemplate: Story<StructuredList> = (args) => ({
 	props: args,
 	template: `
-		<ibm-structured-list
+		<cds-structured-list
 			[border]="border"
 			[condensed]="condensed"
 			[nowrap]="nowrap"
 			selection="true"
 			[(ngModel)]="valueSelected">
-			<ibm-list-header>
-				<ibm-list-column nowrap="true">Column 1</ibm-list-column>
-				<ibm-list-column nowrap="true">Column 2</ibm-list-column>
-				<ibm-list-column>Column 3</ibm-list-column>
-			</ibm-list-header>
-			<ibm-list-row value="row1">
-				<ibm-list-column>Row 1</ibm-list-column>
-				<ibm-list-column nowrap="true">Row One</ibm-list-column>
-				<ibm-list-column>
+			<cds-list-header>
+				<cds-list-column nowrap="true">Column 1</cds-list-column>
+				<cds-list-column nowrap="true">Column 2</cds-list-column>
+				<cds-list-column>Column 3</cds-list-column>
+			</cds-list-header>
+			<cds-list-row value="row1">
+				<cds-list-column>Row 1</cds-list-column>
+				<cds-list-column nowrap="true">Row One</cds-list-column>
+				<cds-list-column>
 					Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit. Nunc dui magna,
 					finibus id tortor sed, aliquet bibendum augue.
 					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
 					Pellentesque vulputate nisl a porttitor interdum.
-				</ibm-list-column>
-			</ibm-list-row>
-			<ibm-list-row value="row2">
-				<ibm-list-column>Row 2</ibm-list-column>
-				<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-				<ibm-list-column>
+				</cds-list-column>
+			</cds-list-row>
+			<cds-list-row value="row2">
+				<cds-list-column>Row 2</cds-list-column>
+				<cds-list-column nowrap="true">Row Two</cds-list-column>
+				<cds-list-column>
 					Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit. Nunc dui magna,
 					finibus id tortor sed, aliquet bibendum augue.
 					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
 					Pellentesque vulputate nisl a porttitor interdum.
-				</ibm-list-column>
-			</ibm-list-row>
-		</ibm-structured-list>
+				</cds-list-column>
+			</cds-list-row>
+		</cds-structured-list>
 		<p>{{valueSelected}}</p>
 	`
 });
@@ -118,27 +118,27 @@ Selection.args = {
 const SkeletonTemplate: Story<StructuredList> = (args) => ({
 	props: args,
 	template: `
-		<ibm-structured-list
+		<cds-structured-list
 			skeleton="true"
 			[border]="border"
 			[condensed]="condensed"
 			[nowrap]="nowrap">
-			<ibm-list-header>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-			</ibm-list-header>
-			<ibm-list-row>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-			</ibm-list-row>
-			<ibm-list-row>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-				<ibm-list-column></ibm-list-column>
-			</ibm-list-row>
-		</ibm-structured-list>
+			<cds-list-header>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+			</cds-list-header>
+			<cds-list-row>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+			</cds-list-row>
+			<cds-list-row>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+				<cds-list-column></cds-list-column>
+			</cds-list-row>
+		</cds-structured-list>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

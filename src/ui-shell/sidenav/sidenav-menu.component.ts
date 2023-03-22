@@ -15,7 +15,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
  * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
  */
 @Component({
-	selector: "ibm-sidenav-menu",
+	selector: "cds-sidenav-menu, ibm-sidenav-menu",
 	template: `
 		<button
 			(click)="toggle()"
@@ -44,13 +44,13 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 		<div class="cds--side-nav__menu" role="list">
 			<ng-content></ng-content>
 			<ng-container *ngFor="let menuItem of menuItems">
-				<ibm-sidenav-item
+				<cds-sidenav-item
 					[href]="menuItem.href"
 					[route]="menuItem.route"
 					[routeExtras]="menuItem.routeExtras"
 					[isSubMenu]="true">
 					{{ menuItem.content }}
-				</ibm-sidenav-item>
+				</cds-sidenav-item>
 			</ng-container>
 		</div>
 	`

@@ -13,7 +13,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableHeadCell]",
+	selector: "[cdsTableHeadCell], [ibmTableHeadCell]",
 	template: `
 		<button
 			class="cds--table-sort"
@@ -29,7 +29,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 				class="cds--table-sort__flex"
 				[title]="column.title"
 				tabindex="-1">
-				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
+				<div *ngIf="!skeleton && !column.template" cdsTableHeadCellLabel>
 					{{column.data}}
 				</div>
 				<ng-template

@@ -58,28 +58,28 @@ export default {
 const HeaderTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
-				<ibm-header-navigation>
-					<ibm-header-item>Catalog</ibm-header-item>
-					<ibm-header-item isCurrentPage="true">Docs</ibm-header-item>
-					<ibm-header-item>Support</ibm-header-item>
-					<ibm-header-menu title="Manage">
-						<ibm-header-item>Link 1</ibm-header-item>
-						<ibm-header-item>Link 2</ibm-header-item>
-						<ibm-header-item>Link 3</ibm-header-item>
-					</ibm-header-menu>
-				</ibm-header-navigation>
-				<ibm-header-global>
-					<ibm-header-action description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-					<ibm-header-action description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-				</ibm-header-global>
-			</ibm-header>
+		<div [cdsTheme]="theme">
+			<cds-header name="[Platform]">
+				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				<cds-header-navigation>
+					<cds-header-item>Catalog</cds-header-item>
+					<cds-header-item isCurrentPage="true">Docs</cds-header-item>
+					<cds-header-item>Support</cds-header-item>
+					<cds-header-menu title="Manage">
+						<cds-header-item>Link 1</cds-header-item>
+						<cds-header-item>Link 2</cds-header-item>
+						<cds-header-item>Link 3</cds-header-item>
+					</cds-header-menu>
+				</cds-header-navigation>
+				<cds-header-global>
+					<cds-header-action description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+					<cds-header-action description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+				</cds-header-global>
+			</cds-header>
 		</div>
 	`
 });
@@ -154,32 +154,32 @@ HeaderFluid.argTypes = {
 const HeaderWithTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-header name="[Platform]" [brand]="brandTemplate">
-				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
-				<ibm-header-navigation>
-					<ibm-header-item>Catalog</ibm-header-item>
-					<ibm-header-item>Docs</ibm-header-item>
-					<ibm-header-item>Support</ibm-header-item>
-					<ibm-header-menu title="Manage">
-						<ibm-header-item>Link 1</ibm-header-item>
-						<ibm-header-item>Link 2</ibm-header-item>
-						<ibm-header-item>Link 3</ibm-header-item>
-					</ibm-header-menu>
-				</ibm-header-navigation>
-				<ibm-header-global>
-					<ibm-header-action description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-					<ibm-header-action description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-				</ibm-header-global>
-			</ibm-header>
+		<div [cdsTheme]="theme">
+			<cds-header name="[Platform]" [brand]="brandTemplate">
+				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				<cds-header-navigation>
+					<cds-header-item>Catalog</cds-header-item>
+					<cds-header-item>Docs</cds-header-item>
+					<cds-header-item>Support</cds-header-item>
+					<cds-header-menu title="Manage">
+						<cds-header-item>Link 1</cds-header-item>
+						<cds-header-item>Link 2</cds-header-item>
+						<cds-header-item>Link 3</cds-header-item>
+					</cds-header-menu>
+				</cds-header-navigation>
+				<cds-header-global>
+					<cds-header-action description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+					<cds-header-action description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+				</cds-header-global>
+			</cds-header>
 		</div>
 		<ng-template #brandTemplate>
 			<a class="cds--header__name">
-				<svg ibmIcon="carbon" size="32" style="stroke:white;fill:white"></svg>
+				<svg cdsIcon="carbon" size="32" style="stroke:white;fill:white"></svg>
 				<span class="cds--header__name--prefix">IBM</span>
 				[Platform]
 			</a>
@@ -200,19 +200,19 @@ Header.argTypes = {
 const HeaderRouterTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-header name="[Platform]" [route]="['bar']">
-				<ibm-header-navigation>
-					<ibm-header-item [route]="['foo']">Catalog</ibm-header-item>
-					<ibm-header-item [route]="['bar']">Docs</ibm-header-item>
-					<ibm-header-item [route]="['foo']">Support</ibm-header-item>
-					<ibm-header-menu title="Manage">
-						<ibm-header-item [route]="['foo']">Link 1</ibm-header-item>
-						<ibm-header-item [route]="['bar']">Link 2</ibm-header-item>
-						<ibm-header-item [route]="['foo']">Link 3</ibm-header-item>
-					</ibm-header-menu>
-				</ibm-header-navigation>
-			</ibm-header>
+		<div [cdsTheme]="theme">
+			<cds-header name="[Platform]" [route]="['bar']">
+				<cds-header-navigation>
+					<cds-header-item [route]="['foo']">Catalog</cds-header-item>
+					<cds-header-item [route]="['bar']">Docs</cds-header-item>
+					<cds-header-item [route]="['foo']">Support</cds-header-item>
+					<cds-header-menu title="Manage">
+						<cds-header-item [route]="['foo']">Link 1</cds-header-item>
+						<cds-header-item [route]="['bar']">Link 2</cds-header-item>
+						<cds-header-item [route]="['foo']">Link 3</cds-header-item>
+					</cds-header-menu>
+				</cds-header-navigation>
+			</cds-header>
 		</div>
 		<div style="margin-top: 2rem">
 			<router-outlet></router-outlet>
@@ -229,23 +229,23 @@ Header.argTypes = {
 const SideNavigationTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-sidenav>
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+		<div [cdsTheme]="theme">
+			<cds-sidenav>
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+				</cds-sidenav-item>
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" icon size="16"></svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" icon size="16"></svg>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
 		</div>
 	`
 });
@@ -275,23 +275,23 @@ SideNavigation.argTypes = {
 const SideNavigationRouterTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-sidenav>
-				<ibm-sidenav-item [route]="['foo']">
-					<svg ibmIcon="fade" size="16"></svg>
+		<div [cdsTheme]="theme">
+			<cds-sidenav>
+				<cds-sidenav-item [route]="['foo']">
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-item [route]="['bar']">
-					<svg ibmIcon="fade" size="16"></svg>
+				</cds-sidenav-item>
+				<cds-sidenav-item [route]="['bar']">
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" icon size="16"></svg>
-					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
-					<ibm-sidenav-item [route]="['bar']">Link</ibm-sidenav-item>
-					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" icon size="16"></svg>
+					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['bar']">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
 		</div>
 		<div>
 			<router-outlet></router-outlet>
@@ -304,15 +304,15 @@ SideNavigationRouter.storyName = "Side Navigation with router";
 const SidePanelTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-panel expanded="true">
-				<ibm-switcher-list>
-					<ibm-switcher-list-item [route]="['foo']">Switcher item one</ibm-switcher-list-item>
-					<ibm-switcher-list-item [route]="['bar']">Switcher item two</ibm-switcher-list-item>
-					<ibm-switcher-list-item [route]="['foo']">Switcher item three</ibm-switcher-list-item>
-					<ibm-switcher-list-item [route]="['bar']">Switcher item four</ibm-switcher-list-item>
-				</ibm-switcher-list>
-			</ibm-panel>
+		<div [cdsTheme]="theme">
+			<cds-panel expanded="true">
+				<cds-switcher-list>
+					<cds-switcher-list-item [route]="['foo']">Switcher item one</cds-switcher-list-item>
+					<cds-switcher-list-item [route]="['bar']">Switcher item two</cds-switcher-list-item>
+					<cds-switcher-list-item [route]="['foo']">Switcher item three</cds-switcher-list-item>
+					<cds-switcher-list-item [route]="['bar']">Switcher item four</cds-switcher-list-item>
+				</cds-switcher-list>
+			</cds-panel>
 		</div>
 		<div>
 			<router-outlet></router-outlet>
@@ -326,52 +326,52 @@ const TogetherTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div>
-			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></ibm-hamburger>
-				<ibm-header-navigation>
-					<ibm-header-item>Catalog</ibm-header-item>
-					<ibm-header-item>Docs</ibm-header-item>
-					<ibm-header-item>Support</ibm-header-item>
-					<ibm-header-menu title="Manage">
-						<ibm-header-item>Link 1</ibm-header-item>
-						<ibm-header-item>Link 2</ibm-header-item>
-						<ibm-header-item>Link 3</ibm-header-item>
-					</ibm-header-menu>
-				</ibm-header-navigation>
-				<ibm-header-global>
-					<ibm-header-action #firstAction description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-					<ibm-header-action [(active)]="secondAction" description="action">
-						<svg ibmIcon="fade" size="20"></svg>
-					</ibm-header-action>
-				</ibm-header-global>
-			</ibm-header>
-			<ibm-sidenav [expanded]="active">
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+			<cds-header name="[Platform]">
+				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				<cds-header-navigation>
+					<cds-header-item>Catalog</cds-header-item>
+					<cds-header-item>Docs</cds-header-item>
+					<cds-header-item>Support</cds-header-item>
+					<cds-header-menu title="Manage">
+						<cds-header-item>Link 1</cds-header-item>
+						<cds-header-item>Link 2</cds-header-item>
+						<cds-header-item>Link 3</cds-header-item>
+					</cds-header-menu>
+				</cds-header-navigation>
+				<cds-header-global>
+					<cds-header-action #firstAction description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+					<cds-header-action [(active)]="secondAction" description="action">
+						<svg cdsIcon="fade" size="20"></svg>
+					</cds-header-action>
+				</cds-header-global>
+			</cds-header>
+			<cds-sidenav [expanded]="active">
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+				</cds-sidenav-item>
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" size="16"></svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item [active]="hasActiveChild">Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
-			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
-			<ibm-panel [expanded]="secondAction">
-				<ibm-switcher-list>
-					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item three</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item four</ibm-switcher-list-item>
-				</ibm-switcher-list>
-			</ibm-panel>
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" size="16"></svg>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item [active]="hasActiveChild">Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
+			<cds-panel [expanded]="firstAction.active"></cds-panel>
+			<cds-panel [expanded]="secondAction">
+				<cds-switcher-list>
+					<cds-switcher-list-item active="true">Switcher item one</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item two</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item three</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item four</cds-switcher-list-item>
+				</cds-switcher-list>
+			</cds-panel>
 		</div>
 	`
 });
@@ -405,23 +405,23 @@ Together.argTypes = {
 const SideNavigationRailTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-sidenav rail="true" [expanded]="false">
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+		<div [cdsTheme]="theme">
+			<cds-sidenav rail="true" [expanded]="false">
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+				</cds-sidenav-item>
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" icon size="16"></svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" icon size="16"></svg>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
 		</div>
 	`
 });
@@ -451,13 +451,13 @@ SideNavigationRail.argTypes = {
 const ModelTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></ibm-hamburger>
-				<ibm-header-navigation [navigationItems]="headerItems">
-				</ibm-header-navigation>
-				<ibm-header-global>
-					<ibm-header-action #firstAction description="action">
+		<div [cdsTheme]="theme">
+			<cds-header name="[Platform]">
+				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				<cds-header-navigation [navigationItems]="headerItems">
+				</cds-header-navigation>
+				<cds-header-global>
+					<cds-header-action #firstAction description="action">
 						<svg
 							width="20"
 							height="20"
@@ -472,8 +472,8 @@ const ModelTemplate: Story = (args) => ({
 								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
 								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 						</svg>
-					</ibm-header-action>
-					<ibm-header-action #secondAction description="action">
+					</cds-header-action>
+					<cds-header-action #secondAction description="action">
 						<svg
 							width="20"
 							height="20"
@@ -488,11 +488,11 @@ const ModelTemplate: Story = (args) => ({
 								10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
 								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 						</svg>
-					</ibm-header-action>
-				</ibm-header-global>
-			</ibm-header>
-			<ibm-sidenav [navigationItems]="headerItems">
-				<ibm-sidenav-menu title="Category title">
+					</cds-header-action>
+				</cds-header-global>
+			</cds-header>
+			<cds-sidenav [navigationItems]="headerItems">
+				<cds-sidenav-menu title="Category title">
 					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 						<path
 							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
@@ -502,20 +502,20 @@ const ModelTemplate: Story = (args) => ({
 							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
 							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 					</svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
-			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
-			<ibm-panel [expanded]="secondAction.active">
-				<ibm-switcher-list>
-					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item three</ibm-switcher-list-item>
-					<ibm-switcher-list-item>Switcher item four</ibm-switcher-list-item>
-				</ibm-switcher-list>
-			</ibm-panel>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
+			<cds-panel [expanded]="firstAction.active"></cds-panel>
+			<cds-panel [expanded]="secondAction.active">
+				<cds-switcher-list>
+					<cds-switcher-list-item active="true">Switcher item one</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item two</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item three</cds-switcher-list-item>
+					<cds-switcher-list-item>Switcher item four</cds-switcher-list-item>
+				</cds-switcher-list>
+			</cds-panel>
 		</div>
 		<router-outlet></router-outlet>
 	`
@@ -581,23 +581,23 @@ SideNavigationRail.argTypes = {
 const AngularRoutingTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<div [ibmTheme]="theme">
-			<ibm-sidenav rail="true" [expanded]="false">
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+		<div [cdsTheme]="theme">
+			<cds-sidenav rail="true" [expanded]="false">
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-item>
-					<svg ibmIcon="fade" size="16"></svg>
+				</cds-sidenav-item>
+				<cds-sidenav-item>
+					<svg cdsIcon="fade" size="16"></svg>
 					Link
-				</ibm-sidenav-item>
-				<ibm-sidenav-menu title="Category title">
-					<svg ibmIcon="fade" icon size="16"></svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
-				</ibm-sidenav-menu>
-			</ibm-sidenav>
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" icon size="16"></svg>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+					<cds-sidenav-item>Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
 		<div>
 	`
 });

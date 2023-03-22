@@ -43,7 +43,7 @@ export class PlaceholderService {
 			return this.viewContainerMap.get(id).createComponent(componentFactory, this.viewContainerMap.size, injector);
 		}
 		if (!this.viewContainerRef) {
-			console.error("No view container defined! Likely due to a missing `ibm-placeholder`");
+			console.error("No view container defined! Likely due to a missing `cds-placeholder`");
 			return;
 		}
 		return this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, injector);

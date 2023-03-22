@@ -20,7 +20,7 @@ import { closestAttr } from "carbon-components-angular/utils";
  * Not used directly. See overflow-menu.component and overflow-menu.directive for more
  */
 @Component({
-	selector: "ibm-overflow-menu-pane",
+	selector: "cds-overflow-menu-pane, ibm-overflow-menu-pane",
 	template: `
 		<ul
 			[attr.id]="dialogConfig.compID"

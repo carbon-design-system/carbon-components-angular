@@ -12,7 +12,7 @@ import {
  * [See demo](../../?path=/story/components-popover--basic)
  */
 @Directive({
-	selector: "[ibmPopover]"
+	selector: "[cdsPopover], [ibmPopover]"
 })
 export class PopoverContainer {
 	// Top

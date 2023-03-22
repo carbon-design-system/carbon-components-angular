@@ -16,16 +16,16 @@ export class FooComponent { }
 @Component({
 	selector: "app-header-fluid",
 	template: `
-		<ibm-header name="[Platform]">
-			<ibm-hamburger
+		<cds-header name="[Platform]">
+			<cds-hamburger
 				(selected)="hasHamburger = !hasHamburger"
-				class="cds--header__menu-toggle__hidden"></ibm-hamburger>
-			<ibm-header-navigation [navigationItems]="headerItems"></ibm-header-navigation>
-			<ibm-sidenav
+				class="cds--header__menu-toggle__hidden"></cds-hamburger>
+			<cds-header-navigation [navigationItems]="headerItems"></cds-header-navigation>
+			<cds-sidenav
 				*ngIf="hasHamburger"
 				[navigationItems]="headerItems"
-				class="cds--header__menu-toggle__hidden"></ibm-sidenav>
-		</ibm-header>
+				class="cds--header__menu-toggle__hidden"></cds-sidenav>
+		</cds-header>
 	`
 })
 export class HeaderFluidComponent {

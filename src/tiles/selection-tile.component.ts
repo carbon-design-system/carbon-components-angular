@@ -10,7 +10,7 @@ import {
 import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
-	selector: "ibm-selection-tile",
+	selector: "cds-selection-tile, ibm-selection-tile",
 	template: `
 		<label
 			class="cds--tile cds--tile--selectable"
@@ -48,7 +48,7 @@ export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
 	 */
 	@Input() theme: "light" | "dark" = "dark";

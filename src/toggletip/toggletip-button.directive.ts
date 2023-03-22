@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmToggletipButton]"
+	selector: "[cdsToggletipButton], [ibmToggletipButton]"
 })
 export class ToggletipButton {
 	@HostBinding("class.cds--toggletip-button") toggletipButton = true;

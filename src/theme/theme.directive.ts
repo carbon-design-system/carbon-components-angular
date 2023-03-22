@@ -15,14 +15,21 @@ import { LayerDirective } from "carbon-components-angular/layer";
  * [See demo](../../?path=/story/components-theme--basic)
  */
 @Directive({
-	selector: "[ibmTheme]",
+	selector: "[cdsTheme], [ibmTheme]",
 	exportAs: "theme"
 })
 export class ThemeDirective implements OnInit, AfterContentChecked {
 	/**
+	 * @deprecated as of v5 - Use `cdsTheme` input property instead
+	 */
+	@Input() set ibmTheme(type: "white" | "g10" | "g90" | "g100") {
+		this.cdsTheme = type;
+	}
+
+	/**
 	 * Sets the theme for the content
 	 */
-	@Input() ibmTheme: "white" | "g10" | "g90" | "g100" = "white";
+	@Input() cdsTheme: "white" | "g10" | "g90" | "g100" = "white";
 
 	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
@@ -31,19 +38,19 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 	 * overwrite user added classes
 	 */
 	@HostBinding("class.cds--white") get whiteThemeClass() {
-		return this.ibmTheme === "white";
+		return this.cdsTheme === "white";
 	}
 
 	@HostBinding("class.cds--g10") get g10ThemeClass() {
-		return this.ibmTheme === "g10";
+		return this.cdsTheme === "g10";
 	}
 
 	@HostBinding("class.cds--g90") get g90ThemeClass() {
-		return this.ibmTheme === "g90";
+		return this.cdsTheme === "g90";
 	}
 
 	@HostBinding("class.cds--g100") get g100ThemeClass() {
-		return this.ibmTheme === "g100";
+		return this.cdsTheme === "g100";
 	}
 
 	@HostBinding("class.cds--layer-one") layerClass = true;
@@ -54,15 +61,19 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 		 * If not found, the layer will be 1 by default
 		 */
 		this.layerChildren.toArray().forEach(layer => {
-			if (typeof layer.ibmLayer !== "number") {
-				layer.ibmLayer = 1;
+			if (typeof layer.cdsLayer !== "number") {
+				layer.cdsLayer = 1;
 			}
 		});
 	}
 
+	/**
+	 * We need to make sure cdsTheme is not an empty string because
+	 * input name matches selector name.
+	 */
 	ngOnInit(): void {
-		if (!this.ibmTheme) {
-			this.ibmTheme = "white";
+		if (!this.cdsTheme) {
+			this.cdsTheme = "white";
 		}
 	}
 }

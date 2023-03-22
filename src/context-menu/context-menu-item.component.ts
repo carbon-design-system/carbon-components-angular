@@ -17,17 +17,17 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 import { ContextMenuComponent } from "./context-menu.component";
 
 @Component({
-	selector: "ibm-context-menu-item",
+	selector: "cds-context-menu-item, ibm-context-menu-item",
 	template: `
 		<div class="cds--context-menu-option__content cds--menu-option__content">
 			<div class="cds--context-menu-option__icon cds--menu-option__icon">
-				<svg *ngIf="selectable && checked" ibmIcon="checkmark" size="16"></svg>
-				<svg *ngIf="!selectable && icon" [ibmIcon]="icon" size="16"></svg>
+				<svg *ngIf="selectable && checked" cdsIcon="checkmark" size="16"></svg>
+				<svg *ngIf="!selectable && icon" [cdsIcon]="icon" size="16"></svg>
 			</div>
 			<span class="cds--context-menu-option__label cds--menu-option__label" [title]="label">{{label}}</span>
 			<div class="cds--context-menu-option__info cds--menu-option__info">
 				{{info}}
-				<svg *ngIf="hasChildren" ibmIcon="caret--right" size="16"></svg>
+				<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
 			</div>
 		</div>
 		<ng-content></ng-content>

@@ -11,11 +11,11 @@ import { I18n } from "carbon-components-angular/i18n";
  * in the pagination list
  *
  * * ```html
- * <ibm-pagination-overflow [fromIndex]="5" [count]="30" (change)="handleChange(value)"></ibm-pagination-overflow>
+ * <cds-pagination-overflow [fromIndex]="5" [count]="30" (change)="handleChange(value)"></cds-pagination-overflow>
  * ```
  */
 @Component({
-	selector: "ibm-pagination-overflow",
+	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
 		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
 			<div class="cds--pagination-nav__select">
@@ -31,7 +31,7 @@ import { I18n } from "carbon-components-angular/i18n";
 			</select>
 			<div class="cds--pagination-nav__select-icon-wrapper">
 				<svg
-					ibmIcon="overflow-menu--horizontal"
+					cdsIcon="overflow-menu--horizontal"
 					size="16"
 					style="display: inherit"
 					class="cds--pagination-nav__select-icon">
@@ -39,7 +39,7 @@ import { I18n } from "carbon-components-angular/i18n";
 			</div>
 			</div>
 		</li>
-		<ibm-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></ibm-pagination-nav-item>
+		<cds-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></cds-pagination-nav-item>
 	`
 })
 export class PaginationOverflow {

@@ -9,14 +9,14 @@ import {
 	selector: "app-reactive-form",
 	template: `
 		<form [formGroup]="formGroup">
-			<ibm-select formControlName="selecterino">
+			<cds-select formControlName="selecterino">
 				<option value="default" disabled selected hidden>Choose an option</option>
 				<option value="option1">Option 1</option>
 				<option value="option2">Option 2</option>
 				<option value="option3">Option 3</option>
-			</ibm-select>
+			</cds-select>
 		</form>
-		<div style="display: flex; flex-direction: column;">
+		<div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem">
 			selectedValue: {{ formGroup.get("selecterino").value }}
 			<div>
 				<button (click)="clearSelection()">Clear selection</button>

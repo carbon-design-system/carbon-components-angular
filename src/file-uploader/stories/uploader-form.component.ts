@@ -5,7 +5,7 @@ import { FileItem } from "../";
 @Component({
 	selector: "app-ngmodel-file-uploader",
 	template: `
-		<ibm-file-uploader
+		<cds-file-uploader
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
@@ -16,15 +16,15 @@ import { FileItem } from "../";
 			[fileItemSize]="fileItemSize"
 			[(ngModel)]="model"
 			[disabled]="disabled">
-		</ibm-file-uploader>
+		</cds-file-uploader>
 		<button
-			ibmButton
+			cdsButton
 			*ngIf="model && model.size > 0"
 			(click)="onUpload()"
 			style="margin-top:20px">
 			Upload
 		</button>
-		<button ibmButton (click)="removeFiles()">Remove all</button>
+		<button cdsButton (click)="removeFiles()">Remove all</button>
 	`
 })
 export class NgModelFileUploaderStory {

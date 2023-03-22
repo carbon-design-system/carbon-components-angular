@@ -13,16 +13,16 @@ import { Router } from "@angular/router";
  * ## Basic usage
  *
  * ```html
- * <ibm-clickable-tile>
+ * <cds-clickable-tile>
  * 		tile content
- * </ibm-clickable-tile>
+ * </cds-clickable-tile>
  * ```
  */
 @Component({
-	selector: "ibm-clickable-tile",
+	selector: "cds-clickable-tile, ibm-clickable-tile",
 	template: `
 	<a
-		ibmLink
+		cdsLink
 		class="cds--tile cds--tile--clickable"
 		[ngClass]="{
 			'cds--tile--light': theme === 'light',
@@ -38,18 +38,18 @@ import { Router } from "@angular/router";
 })
 export class ClickableTile {
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	/**
-	 * Sets the `href` attribute on the `ibm-clickable-tile` element.
+	 * Sets the `href` attribute on the `cds-clickable-tile` element.
 	 */
 	@Input() href = "#";
 
 	/**
-	 * Sets the `target` attribute on the `ibm-clickable-tile` element.
+	 * Sets the `target` attribute on the `cds-clickable-tile` element.
 	 */
 	@Input() target: string;
 

@@ -26,7 +26,7 @@ export type TagType = "red" |
  * [See demo](../../?path=/story/components-tag--basic)
  */
 @Component({
-	selector: "ibm-tag",
+	selector: "cds-tag, ibm-tag",
 	template: `<ng-content></ng-content>`
 })
 export class Tag {

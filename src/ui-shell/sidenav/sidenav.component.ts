@@ -13,27 +13,27 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
  * [See demo](../../?path=/story/components-ui-shell--side-navigation)
  */
 @Component({
-	selector: "ibm-sidenav",
+	selector: "cds-sidenav, ibm-sidenav",
 	template: `
 		<nav class="cds--side-nav__navigation" [attr.aria-label]="ariaLabel">
-			<ng-content select="ibm-sidenav-header"></ng-content>
+			<ng-content select="cds-sidenav-header"></ng-content>
 			<div class="cds--side-nav__items" role="list">
 				<div
 					class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
-						<ibm-sidenav-item
+						<cds-sidenav-item
 							*ngIf="navigationItem.type === 'item'"
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
 							[routeExtras]="navigationItem.routeExtras"
 							[title]="navigationItem.title">
 							{{ navigationItem.content }}
-						</ibm-sidenav-item>
-						<ibm-sidenav-menu
+						</cds-sidenav-item>
+						<cds-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"
 							[title]="navigationItem.title"
 							[menuItems]="navigationItem.menuItems">
-						</ibm-sidenav-menu>
+						</cds-sidenav-menu>
 					</ng-container>
 				</div>
 				<ng-content></ng-content>

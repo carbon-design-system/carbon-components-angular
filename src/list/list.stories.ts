@@ -21,16 +21,16 @@ const Template: Story<List> = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>
-		<ol ibmList>
-			<li ibmListItem>One</li>
-			<li ibmListItem>Two</li>
-			<li ibmListItem>Three</li>
+		<ol cdsList>
+			<li cdsListItem>One</li>
+			<li cdsListItem>Two</li>
+			<li cdsListItem>Three</li>
 		</ol>
 		<p>Unordered List</p>
-		<ul ibmList>
-			<li ibmListItem>One</li>
-			<li ibmListItem>Two</li>
-			<li ibmListItem>Three</li>
+		<ul cdsList>
+			<li cdsListItem>One</li>
+			<li cdsListItem>Two</li>
+			<li cdsListItem>Three</li>
 		</ul>
 	`
 });
@@ -40,30 +40,30 @@ const NestingTemplate: Story<List> = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>
-		<ol ibmList>
-			<li ibmListItem>
+		<ol cdsList>
+			<li cdsListItem>
 				One
-				<ol ibmList>
-					<li ibmListItem>Nested one</li>
-					<li ibmListItem>Nested two</li>
-					<li ibmListItem>Nested three</li>
+				<ol cdsList>
+					<li cdsListItem>Nested one</li>
+					<li cdsListItem>Nested two</li>
+					<li cdsListItem>Nested three</li>
 				</ol>
 			</li>
-			<li ibmListItem>Two</li>
-			<li ibmListItem>Three</li>
+			<li cdsListItem>Two</li>
+			<li cdsListItem>Three</li>
 		</ol>
 		<p>Unordered List</p>
-		<ul ibmList>
-			<li ibmListItem>
+		<ul cdsList>
+			<li cdsListItem>
 				One
-				<ul ibmList>
-					<li ibmListItem>Nested one</li>
-					<li ibmListItem>Nested two</li>
-					<li ibmListItem>Nested three</li>
+				<ul cdsList>
+					<li cdsListItem>Nested one</li>
+					<li cdsListItem>Nested two</li>
+					<li cdsListItem>Nested three</li>
 				</ul>
 			</li>
-			<li ibmListItem>Two</li>
-			<li ibmListItem>Three</li>
+			<li cdsListItem>Two</li>
+			<li cdsListItem>Three</li>
 		</ul>
 	`
 });

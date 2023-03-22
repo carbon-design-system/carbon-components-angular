@@ -26,7 +26,7 @@ const Template: Story<Checkbox> = (args) => ({
 	template: `
 		<fieldset class="cds--fieldset">
 			<legend class="cds--label">{{label}}</legend>
-			<ibm-checkbox
+			<cds-checkbox
 				[disabled]="disabled"
 				[indeterminate]="indeterminate"
 				[checked]="checked"
@@ -34,7 +34,7 @@ const Template: Story<Checkbox> = (args) => ({
 				[hideLabel]="hideLabel"
 				(indeterminateChange)="onIndeterminateChange($event)">
 				Indeterminate checkbox
-			</ibm-checkbox>
+			</cds-checkbox>
 		</fieldset>
 	`
 });
@@ -54,10 +54,10 @@ Basic.argTypes = {
 const ModelTemplate: Story<Checkbox> = (args) => ({
 	props: args,
 	template: `
-		<ibm-checkbox
+		<cds-checkbox
 			[(ngModel)]="model">
 			ngModel checkbox
-		</ibm-checkbox>
+		</cds-checkbox>
 
 		<div style="display:flex; flex-direction: column; width: 150px">
 			<button (click)="model=!model">Set model</button>

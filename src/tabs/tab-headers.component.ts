@@ -25,7 +25,7 @@ import { Tab } from "./tab.component";
  * if content has overflow.
  */
 @Component({
-	selector: "ibm-tab-headers",
+	selector: "cds-tab-headers, ibm-tab-headers",
 	template: `
 		<button
 			type="button"

@@ -24,11 +24,11 @@ export enum ToggleState {
  * [See demo](../../?path=/story/components-toggle--basic)
  *
  * ```html
- * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
+ * <cds-toggle [(ngModel)]="toggleState">Toggle</cds-toggle>
  * ```
  */
 @Component({
-	selector: "ibm-toggle",
+	selector: "cds-toggle, ibm-toggle",
 	template: `
 		<button
 			class="cds--toggle__button"

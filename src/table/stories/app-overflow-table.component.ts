@@ -13,20 +13,20 @@ import { TableHeaderItem } from "../table-header-item.class";
 	selector: "app-overflow-table",
 	template: `
 		<ng-template #overflowMenuItemTemplate let-data="data">
-			<ibm-overflow-menu>
-				<ibm-overflow-menu-option>
+			<cds-overflow-menu>
+				<cds-overflow-menu-option>
 					First Option
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option>
+				</cds-overflow-menu-option>
+				<cds-overflow-menu-option>
 					Second Option
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option>
+				</cds-overflow-menu-option>
+				<cds-overflow-menu-option>
 					Third Option
-				</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
+				</cds-overflow-menu-option>
+			</cds-overflow-menu>
 		</ng-template>
 
-		<ibm-table
+		<cds-table
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -36,7 +36,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[isDataGrid]="isDataGrid"
 			(rowClick)="onRowClick($event)"
 			[striped]="striped">
-		</ibm-table>
+		</cds-table>
 	`
 })
 export class OverflowTableStory implements AfterViewInit {

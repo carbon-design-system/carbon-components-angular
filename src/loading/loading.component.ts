@@ -5,7 +5,7 @@ import { I18n } from "carbon-components-angular/i18n";
  * [See demo](../../?path=/story/components-loading--basic)
  */
 @Component({
-	selector: "ibm-loading",
+	selector: "cds-loading, ibm-loading",
 	template: `
 		<div
 			[ngClass]="{

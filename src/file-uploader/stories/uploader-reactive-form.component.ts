@@ -16,7 +16,7 @@ import {
 	selector: "app-reactive-forms",
 	template: `
 		<form [formGroup]="formGroup" (ngSubmit)="onUpload()">
-			<ibm-file-uploader
+			<cds-file-uploader
 				[title]="title"
 				[description]="description"
 				[buttonText]="buttonText"
@@ -28,9 +28,9 @@ import {
 				[fileItemSize]="fileItemSize"
 				[disabled]="disabled"
 				formControlName="files">
-			</ibm-file-uploader>
+			</cds-file-uploader>
 			<button
-				ibmButton
+				cdsButton
 				*ngIf="formGroup.get('files').value && formGroup.get('files').value.size > 0"
 				type="submit"
 				style="margin-top: 20px">
@@ -38,7 +38,7 @@ import {
 			</button>
 		</form>
 		<form [formGroup]="disabledFormGroup" (ngSubmit)="onUpload()">
-			<ibm-file-uploader
+			<cds-file-uploader
 				[title]="title"
 				[description]="description"
 				[buttonText]="buttonText"
@@ -48,9 +48,9 @@ import {
 				[skeleton]="skeleton"
 				[size]="size"
 				formControlName="files">
-			</ibm-file-uploader>
+			</cds-file-uploader>
 			<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-			<button ibmButton *ngIf="disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0" type="submit">
+			<button cdsButton *ngIf="disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0" type="submit">
 				Upload
 			</button>
 		</form>

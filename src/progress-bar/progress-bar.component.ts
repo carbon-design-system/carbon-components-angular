@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-progress-bar",
+	selector: "cds-progress-bar, ibm-progress-bar",
 	template: `
 		<div
 			*ngIf="label"
@@ -19,13 +19,13 @@ import {
 			<svg
 				*ngIf="isFinished"
 				fill="currentColor"
-				ibmIcon="checkmark--filled"
+				cdsIcon="checkmark--filled"
 				class="cds--progress-bar__status-icon">
 			</svg>
 			<svg
 				*ngIf="isError"
 				fill="currentColor"
-				ibmIcon="error--filled"
+				cdsIcon="error--filled"
 				class="cds--progress-bar__status-icon">
 			</svg>
 		</div>

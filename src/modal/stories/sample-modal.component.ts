@@ -8,23 +8,23 @@ import {
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<ibm-modal
+		<cds-modal
 			[size]="size"
 			[open]="open"
 			(overlaySelected)="closeModal()">
-			<ibm-modal-header (closeSelect)="closeModal()" [showCloseButton]="showCloseButton">
-				<h2 ibmModalHeaderLabel>Label</h2>
-				<h3 ibmModalHeaderHeading>Modal</h3>
-			</ibm-modal-header>
-			<section ibmModalContent>
+			<cds-modal-header (closeSelect)="closeModal()" [showCloseButton]="showCloseButton">
+				<h2 cdsModalHeaderLabel>Label</h2>
+				<h3 cdsModalHeaderHeading>Modal</h3>
+			</cds-modal-header>
+			<section cdsModalContent>
 				<h1>Sample modal works.</h1>
-				<p ibmModalContentText>{{modalText}}</p>
+				<p cdsModalContentText>{{modalText}}</p>
 			</section>
-			<ibm-modal-footer>
+			<cds-modal-footer>
 				<button class="cds--btn cds--btn--secondary" (click)="showSecondaryModal()">Show secondary modal</button>
 				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
-			</ibm-modal-footer>
-		</ibm-modal>
+			</cds-modal-footer>
+		</cds-modal>
 	`
 })
 export class SampleModal extends BaseModal {

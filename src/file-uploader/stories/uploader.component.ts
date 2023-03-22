@@ -5,7 +5,7 @@ import { FileItem } from "../";
 @Component({
 	selector: "app-file-uploader",
 	template: `
-		<ibm-file-uploader
+		<cds-file-uploader
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
@@ -17,8 +17,8 @@ import { FileItem } from "../";
 			[size]="size"
 			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
-		</ibm-file-uploader>
-		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()" style="margin-top:20px">
+		</cds-file-uploader>
+		<button cdsButton *ngIf="files && files.size > 0" (click)="onUpload()" style="margin-top:20px">
 			Upload
 		</button>
 	`

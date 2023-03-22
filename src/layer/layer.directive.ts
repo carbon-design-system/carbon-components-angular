@@ -15,25 +15,32 @@ const MAX_LEVEL = 2;
  * [See demo](../../?path=/story/components-layer--basic)
  */
 @Directive({
-	selector: "[ibmLayer]",
+	selector: "[cdsLayer], [ibmLayer]",
 	exportAs: "layer"
 })
 export class LayerDirective implements AfterContentInit {
 
 	/**
-	 * Override layer level
+	 * @deprecated as of v5 - Use `cdsLayer` input property instead
 	 */
 	@Input() set ibmLayer(level: 0 | 1 | 2) {
+		this.cdsLayer = level;
+	}
+
+	/**
+	 * Override layer level
+	 */
+	@Input() set cdsLayer(level: 0 | 1 | 2) {
 		this._passedLevel = level;
 		this.layer = level;
 	}
 
-	get ibmLayer() {
+	get cdsLayer() {
 		return this._passedLevel;
 	}
 
 	/**
-	 * If ibmLayer is undefined, auto increment & iterate level
+	 * If cdsLayer is undefined, auto increment & iterate level
 	 */
 	set layer(level: number) {
 		if (typeof level === "number") {
@@ -78,7 +85,7 @@ export class LayerDirective implements AfterContentInit {
 	private _level;
 
 	ngAfterContentInit(): void {
-		if (typeof this.ibmLayer !== "number") {
+		if (typeof this.cdsLayer !== "number") {
 			this.layer = 1;
 		}
 	}

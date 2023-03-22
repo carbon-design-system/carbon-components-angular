@@ -13,9 +13,9 @@ import { BaseIconButton } from "./base-icon-button.component";
 import { ButtonSize, ButtonType } from "./button.types";
 
 @Component({
-	selector: "ibm-icon-button",
+	selector: "cds-icon-button, ibm-icon-button",
 	template: `
-	<ibm-tooltip
+	<cds-tooltip
 		class="cds--icon-tooltip"
 		[description]="description"
 		[disabled]="disabled"
@@ -34,7 +34,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 			[attr.type]="type"
 			[iconOnly]="true"
 			[ngClass]="buttonNgClass"
-			[ibmButton]="kind"
+			[cdsButton]="kind"
 			[size]="size"
 			[isExpressive]="isExpressive"
 			(click)="emitClickEvent($event)"
@@ -42,7 +42,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 			(blur)="blur.emit($event)">
 			<ng-content></ng-content>
 		</button>
-	</ibm-tooltip>
+	</cds-tooltip>
 	`
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {

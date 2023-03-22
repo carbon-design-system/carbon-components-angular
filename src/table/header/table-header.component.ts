@@ -1,7 +1,7 @@
 import { Component, HostBinding } from "@angular/core";
 
 @Component({
-	selector: "ibm-table-header",
+	selector: "cds-table-header, ibm-table-header",
 	template: `
 		<ng-content></ng-content>
 	`

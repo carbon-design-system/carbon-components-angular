@@ -7,11 +7,11 @@ import { Component, HostBinding, Input } from "@angular/core";
  *
  * Example:
  * ```html
- * <ibm-list-column nowrap="true">Column 1</ibm-list-column>
+ * <cds-list-column nowrap="true">Column 1</cds-list-column>
  * ```
  */
 @Component({
-	selector: "ibm-list-column",
+	selector: "cds-list-column, ibm-list-column",
 	template: `
 		<span *ngIf="skeleton"></span>
 		<ng-content></ng-content>

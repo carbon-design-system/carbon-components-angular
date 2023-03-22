@@ -17,7 +17,7 @@ const noop = () => { };
  * [See demo](../../?path=/story/components-file-uploader--basic)
  */
 @Component({
-	selector: "ibm-file-uploader",
+	selector: "cds-file-uploader, ibm-file-uploader",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
@@ -46,7 +46,7 @@ const noop = () => { };
 				<button
 					*ngIf="!drop"
 					type="button"
-					[ibmButton]="buttonType"
+					[cdsButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
 					[size]="size"
@@ -65,11 +65,11 @@ const noop = () => { };
 					[disabled]="disabled"/>
 				<div class="cds--file-container">
 					<ng-container *ngFor="let fileItem of files">
-						<ibm-file
+						<cds-file
 							[fileItem]="fileItem"
 							(remove)="removeFile(fileItem)"
 							[size]="fileItemSize">
-						</ibm-file>
+						</cds-file>
 					</ng-container>
 				</div>
 			</div>
@@ -78,7 +78,7 @@ const noop = () => { };
 		<ng-template #skeletonTemplate>
 			<div class="cds--skeleton__text" style="width: 100px"></div>
 			<div class="cds--skeleton__text" style="width: 225px"></div>
-			<button ibmButton skeleton="true"></button>
+			<button cdsButton skeleton="true"></button>
 		</ng-template>
 	`,
 	providers: [

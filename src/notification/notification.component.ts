@@ -16,18 +16,18 @@ import { BaseNotification } from "./base-notification.component";
  * [See demo](../../?path=/story/components-notification--basic)
  */
 @Component({
-	selector: "ibm-notification,ibm-inline-notification",
+	selector: "cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification",
 	template: `
 		<div class="cds--inline-notification__details">
 			<svg
-				[ibmIcon]="iconDictionary[notificationObj.type]"
+				[cdsIcon]="iconDictionary[notificationObj.type]"
 				size="20"
 				*ngIf="notificationObj.type"
 				class="cds--inline-notification__icon">
 			</svg>
 			<div class="cds--inline-notification__text-wrapper">
-				<div *ngIf="!notificationObj.template" ibmNotificationTitle [innerHTML]="notificationObj.title"></div>
-				<div *ngIf="!notificationObj.template" ibmNotificationSubtitle>
+				<div *ngIf="!notificationObj.template" cdsNotificationTitle [innerHTML]="notificationObj.title"></div>
+				<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>
 					<span [innerHTML]="notificationObj.message"></span>
 				</div>
 				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
@@ -39,7 +39,7 @@ import { BaseNotification } from "./base-notification.component";
 			class="cds--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
-			<svg ibmIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
+			<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
 		</button>
 	`
 })

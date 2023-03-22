@@ -41,46 +41,46 @@ export default {
 const Template: Story<ContextMenuComponent> = (args) => ({
 	props: args,
 	template: `
-		<ibm-context-menu [open]="open" [position]="position">
-			<ibm-context-menu-item label="Cut" info="⌘X"></ibm-context-menu-item>
-			<ibm-context-menu-item label="Option with icon" icon="calendar"></ibm-context-menu-item>
-			<ibm-context-menu-divider></ibm-context-menu-divider>
-			<ibm-context-menu-item type="checkbox" label="Enable magic"></ibm-context-menu-item>
-			<ibm-context-menu-divider></ibm-context-menu-divider>
-			<ibm-context-menu-group label="Selection group">
-				<ibm-context-menu-item type="checkbox" label="Blue"></ibm-context-menu-item>
-				<ibm-context-menu-item type="checkbox" label="Red" [checked]="true"></ibm-context-menu-item>
-				<ibm-context-menu-item type="checkbox" label="Black"></ibm-context-menu-item>
-				<ibm-context-menu-item type="checkbox" label="Green"></ibm-context-menu-item>
-			</ibm-context-menu-group>
-			<ibm-context-menu-divider></ibm-context-menu-divider>
-			<ibm-context-menu-item label="Radio flyout">
-				<ibm-context-menu>
-					<ibm-context-menu-group
+		<cds-context-menu [open]="open" [position]="position">
+			<cds-context-menu-item label="Cut" info="⌘X"></cds-context-menu-item>
+			<cds-context-menu-item label="Option with icon" icon="calendar"></cds-context-menu-item>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item type="checkbox" label="Enable magic"></cds-context-menu-item>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-group label="Selection group">
+				<cds-context-menu-item type="checkbox" label="Blue"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Red" [checked]="true"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Black"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Green"></cds-context-menu-item>
+			</cds-context-menu-group>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item label="Radio flyout">
+				<cds-context-menu>
+					<cds-context-menu-group
 						type="radio"
 						[value]="radioGroupValue"
 						(valueChange)="onRadioChange($event)">
-						<ibm-context-menu-item type="radio" label="Radio one" value="one"></ibm-context-menu-item>
-						<ibm-context-menu-item type="radio" label="Radio two" value="two"></ibm-context-menu-item>
-						<ibm-context-menu-item type="radio" label="Radio three" value="three"></ibm-context-menu-item>
-						<ibm-context-menu-item type="radio" label="Radio four" value="four"></ibm-context-menu-item>
-					</ibm-context-menu-group>
-				</ibm-context-menu>
-			</ibm-context-menu-item>
-			<ibm-context-menu-item label="Checkbox flyout">
-				<ibm-context-menu>
-					<ibm-context-menu-group
+						<cds-context-menu-item type="radio" label="Radio one" value="one"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio two" value="two"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio three" value="three"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio four" value="four"></cds-context-menu-item>
+					</cds-context-menu-group>
+				</cds-context-menu>
+			</cds-context-menu-item>
+			<cds-context-menu-item label="Checkbox flyout">
+				<cds-context-menu>
+					<cds-context-menu-group
 						type="checkbox"
 						[value]="checkboxGroupValue"
 						(valueChange)="onCheckboxChange($event)">
-						<ibm-context-menu-item type="checkbox" label="Selectable item a" value="a"></ibm-context-menu-item>
-						<ibm-context-menu-item type="checkbox" label="Selectable item b" value="b"></ibm-context-menu-item>
-						<ibm-context-menu-item type="checkbox" label="Selectable item c" value="c"></ibm-context-menu-item>
-						<ibm-context-menu-item type="checkbox" label="Selectable item d" value="d"></ibm-context-menu-item>
-					</ibm-context-menu-group>
-				</ibm-context-menu>
-			</ibm-context-menu-item>
-		</ibm-context-menu>
+						<cds-context-menu-item type="checkbox" label="Selectable item a" value="a"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item b" value="b"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item c" value="c"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item d" value="d"></cds-context-menu-item>
+					</cds-context-menu-group>
+				</cds-context-menu>
+			</cds-context-menu-item>
+		</cds-context-menu>
 	`
 });
 export const Basic = Template.bind({});

@@ -18,21 +18,21 @@ import { ListColumn } from "./list-column.component";
  *
  * Example:
  * ```html
- * 	<ibm-list-row>
- *		<ibm-list-column>Row 1</ibm-list-column>
- *		<ibm-list-column nowrap="true">Row One</ibm-list-column>
- *		<ibm-list-column>
+ * 	<cds-list-row>
+ *		<cds-list-column>Row 1</cds-list-column>
+ *		<cds-list-column nowrap="true">Row One</cds-list-column>
+ *		<cds-list-column>
  *			Lorem ipsum dolor sit amet,
  *			consectetur adipiscing elit. Nunc dui magna,
  *			finibus id tortor sed, aliquet bibendum augue.
  *			Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
  *			Pellentesque vulputate nisl a porttitor interdum.
- *		</ibm-list-column>
- *	</ibm-list-row>
+ *		</cds-list-column>
+ *	</cds-list-row>
  * ```
  */
 @Component({
-	selector: "ibm-list-row",
+	selector: "cds-list-row, ibm-list-row",
 	template: `
 		<ng-content></ng-content>
 		<ng-container *ngIf="selection">
@@ -47,7 +47,7 @@ import { ListColumn } from "./list-column.component";
 				(change)="onChange($event)"
 				[checked]="selected"/>
 			<div class="cds--structured-list-td">
-				<svg ibmIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
+				<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
 			</div>
 		</ng-container>
 	`

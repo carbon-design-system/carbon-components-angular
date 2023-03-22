@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-context-menu",
+	selector: "cds-context-menu, ibm-context-menu",
 	template: `
 			<ng-content></ng-content>
 	`,
@@ -62,7 +62,7 @@ export class ContextMenuComponent implements OnChanges {
 	@HostListener("keydown", ["$event"])
 	handleNavigation(event: KeyboardEvent) {
 		const list: HTMLElement = this.elementRef.nativeElement;
-		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ibm-context-menu[role=menu]"));
+		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
 		const menuItems: HTMLElement[] = (
 			Array.from(list.querySelectorAll(".cds--context-menu-option, .cds--menu-option")) as HTMLElement[])
 			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))

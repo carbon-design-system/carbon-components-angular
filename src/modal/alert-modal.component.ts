@@ -12,11 +12,11 @@ import { BaseModal } from "./base-modal.class";
  * It can show as a passive modal showing only text or show as a transactional modal with
  * multiple buttons for different actions for the user to choose from.
  *
- * Using a modal in your application requires `ibm-placeholder` which would generally be
+ * Using a modal in your application requires `cds-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
- * <ibm-placeholder></ibm-placeholder>
+ * <cds-placeholder></cds-placeholder>
  * ```
  *
  * Example of opening the modal:
@@ -26,7 +26,7 @@ import { BaseModal } from "./base-modal.class";
  *  selector: "app-modal-demo",
  *  template: `
  *   <button class="btn--primary" (click)="openModal()">Open modal</button>
- *   <ibm-placeholder></ibm-placeholder>`
+ *   <cds-placeholder></cds-placeholder>`
  * })
  * export class ModalDemo {
  * 	openModal() {
@@ -46,34 +46,34 @@ import { BaseModal } from "./base-modal.class";
  * ```
  */
 @Component({
-	selector: "ibm-alert-modal",
+	selector: "cds-alert-modal, ibm-alert-modal",
 	template: `
-		<ibm-modal
+		<cds-modal
 			[size]="size"
 			[theme]="type"
 			[ariaLabel]="title"
 			[hasScrollingContent]="hasScrollingContent"
 			[open]="open"
 			(overlaySelected)="dismissModal('overlay')">
-			<ibm-modal-header (closeSelect)="dismissModal('close')" [showCloseButton]="showCloseButton">
-				<p ibmModalHeaderLabel class="cds--type-delta">{{label}}</p>
-				<p ibmModalHeaderHeading class="cds--type-beta">{{title}}</p>
-			</ibm-modal-header>
-			<div ibmModalContent #modalContent>
+			<cds-modal-header (closeSelect)="dismissModal('close')" [showCloseButton]="showCloseButton">
+				<p cdsModalHeaderLabel class="cds--type-delta">{{label}}</p>
+				<p cdsModalHeaderHeading class="cds--type-beta">{{title}}</p>
+			</cds-modal-header>
+			<div cdsModalContent #modalContent>
 				<p [innerHTML]="content"></p>
 			</div>
-			<ibm-modal-footer *ngIf="buttons.length > 0">
+			<cds-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
 					<button
-						[ibmButton]="button.type"
+						[cdsButton]="button.type"
 						(click)="buttonClicked(i)"
 						[id]="button.id"
 						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
 						{{button.text}}
 					</button>
 				</ng-container>
-			</ibm-modal-footer>
-		</ibm-modal>
+			</cds-modal-footer>
+		</cds-modal>
 	`
 })
 export class AlertModal extends BaseModal implements AfterViewInit {

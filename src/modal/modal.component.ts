@@ -22,11 +22,11 @@ import { BaseModalService } from "./base-modal.service";
  *
  * [See demo](../../?path=/story/components-modal--basic)
  *
- * Using a modal in your application requires `ibm-placeholder` which would generally be
+ * Using a modal in your application requires `cds-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
 ```html
-<ibm-placeholder></ibm-placeholder>
+<cds-placeholder></cds-placeholder>
 ```
  *
  * A more complete example for `Modal` is given as follows:
@@ -37,17 +37,17 @@ import { BaseModalService } from "./base-modal.service";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-				<ibm-modal size="xl" (overlaySelected)="closeModal()">
-					<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+				<cds-modal size="xl" (overlaySelected)="closeModal()">
+					<cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
 							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
-								<svg ibmIcon="info" size="sm"></svg>
+								<svg cdsIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
 						</section>
-					<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
-				</ibm-modal>`,
+					<cds-modal-footer><button cdsButton="primary" (click)="closeModal()">Close</button></cds-modal-footer>
+				</cds-modal>`,
 	styleUrls: ["./sample-modal.component.scss"]
 })
 export class SampleModal extends BaseModal {
@@ -65,8 +65,8 @@ export class SampleModal extends BaseModal {
 @Component({
 	selector: "app-modal-demo",
 	template: `
-				<button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
-				<ibm-placeholder></ibm-placeholder>`
+				<button cdsButton="primary" (click)="openModal('drill')">Drill-down modal</button>
+				<cds-placeholder></cds-placeholder>`
 })
 export class ModalDemo {
 	openModal() {
@@ -76,9 +76,9 @@ export class ModalDemo {
 ```
  */
 @Component({
-	selector: "ibm-modal",
+	selector: "cds-modal, ibm-modal",
 	template: `
-		<ibm-overlay
+		<cds-overlay
 			[theme]="theme"
 			[open]="open"
 			(overlaySelect)="overlaySelected.emit()">
@@ -101,7 +101,7 @@ export class ModalDemo {
 					class="cds--modal-content--overflow-indicator">
 				</div>
 			</div>
-		</ibm-overlay>
+		</cds-overlay>
 	`
 })
 export class Modal implements AfterViewInit, OnChanges, OnDestroy {

@@ -1,10 +1,7 @@
-import {
-	Directive,
-	HostBinding
-} from "@angular/core";
+import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[ibmToggletipLabel]"
+	selector: "[cdsToggletipLabel], [ibmToggletipLabel]"
 })
 export class ToggletipLabel {
 	@HostBinding("class.cds--toggletip-label") toggleTipLabel = true;

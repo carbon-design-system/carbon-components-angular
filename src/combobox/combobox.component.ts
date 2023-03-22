@@ -33,7 +33,7 @@ import { Observable } from "rxjs";
  * [See demo](../../?path=/story/components-combobox--basic)
  */
 @Component({
-	selector: "ibm-combo-box",
+	selector: "cds-combo-box, ibm-combo-box",
 	template: `
 		<div class="cds--list-box__wrapper">
 			<label
@@ -114,13 +114,13 @@ import { Observable } from "rxjs";
 						[placeholder]="placeholder"/>
 					<svg
 						*ngIf="!warn && invalid"
-						ibmIcon="warning--filled"
+						cdsIcon="warning--filled"
 						size="16"
 						class="cds--list-box__invalid-icon">
 					</svg>
 					<svg
 						*ngIf="!invalid && warn"
-						ibmIcon="warning--alt--filled"
+						cdsIcon="warning--alt--filled"
 						size="16"
 						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
 					</svg>
@@ -134,7 +134,7 @@ import { Observable } from "rxjs";
 						(keyup.enter)="clearInput($event)"
 						(click)="clearInput($event)"
 						(blur)="onBlur()">
-						<svg ibmIcon="close" size="16"></svg>
+						<svg cdsIcon="close" size="16"></svg>
 					</div>
 					<button
 						type="button"
@@ -144,7 +144,7 @@ import { Observable } from "rxjs";
 						[title]="open ? closeMenuAria : openMenuAria"
 						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
 						[ngClass]="{'cds--list-box__menu-icon--open': open}">
-						<svg ibmIcon="chevron--down" size="16"></svg>
+						<svg cdsIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
 				<div
@@ -325,7 +325,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() maxLength: number = null;
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 	/**

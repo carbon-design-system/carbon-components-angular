@@ -19,15 +19,15 @@ import { TableItem } from "../table-item.class";
 			<i><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 		<ng-template #filter let-popover="popover" let-filter="data">
-			<ibm-label class="first-label">
+			<cds-label class="first-label">
 				Value
 				<input type="text" [(ngModel)]="filter1" class="input-field">
 				<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
 				<button class="btn--secondary" (click)="popover.doClose()">Cancel</button>
-			</ibm-label>
+			</cds-label>
 		</ng-template>
 
-		<ibm-table
+		<cds-table
 			[sortable]="sortable"
 			[skeleton]="skeleton"
 			[showSelectionColumn]="showSelectionColumn"
@@ -36,8 +36,8 @@ import { TableItem } from "../table-item.class";
 			(sort)="paginationSort($event)"
 			[stickyHeader]="stickyHeader"
 			[skeleton]="skeleton">
-		</ibm-table>
-		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
+		</cds-table>
+		<cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
 	`
 })
 export class PaginationTableStory implements OnInit {

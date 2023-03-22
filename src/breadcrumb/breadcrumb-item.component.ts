@@ -10,7 +10,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 @Component({
-	selector: "ibm-breadcrumb-item",
+	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
 	<a
 		class="cds--link"

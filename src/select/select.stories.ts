@@ -10,6 +10,8 @@ import {
 	OptGroup
 } from "./";
 
+import { ReactiveFormsSelect } from "./stories";
+
 export default {
 	title: "Components/Select",
 	decorators: [
@@ -18,7 +20,8 @@ export default {
 				SelectModule,
 				FormsModule,
 				ReactiveFormsModule
-			]
+			],
+			declarations: [ReactiveFormsSelect]
 		})
 	],
 	args: {
@@ -58,7 +61,7 @@ export default {
 const Template: Story<Select> = (args) => ({
 	props: args,
 	template: `
-		<ibm-select
+		<cds-select
 			[skeleton]="skeleton"
 			[disabled]="disabled"
 			[size]="size"
@@ -81,7 +84,7 @@ const Template: Story<Select> = (args) => ({
 				<option value="option1">Option 1</option>
 				<option value="option2">Option 2</option>
 			</optgroup>
-		</ibm-select>
+		</cds-select>
 	`
 });
 export const Basic = Template.bind({});
@@ -95,7 +98,7 @@ Basic.argTypes = {
 const NgModelTemplate: Story<Select> = (args) => ({
 	props: args,
 	template: `
-		<ibm-select
+		<cds-select
 			[(ngModel)]="model"
 			[skeleton]="skeleton"
 			[disabled]="disabled"
@@ -114,21 +117,15 @@ const NgModelTemplate: Story<Select> = (args) => ({
 			<option value="option1">Option 1</option>
 			<option value="option2">Option 2</option>
 			<option value="option3">Option 3</option>
-		</ibm-select>
-		<br>
-		<div>
-			<span>Selected: {{ model }}</span>
-			<button (click)="model = ["default","option1","option2","option3"][Math.floor(Math.random() * 4)]">
-				Select random
-			</button>
-		</div>
+		</cds-select>
 	`
 });
 export const NgModel = NgModelTemplate.bind({});
 NgModel.argTypes = {
 	model: {
 		defaultValue: "option2",
-		control: false
+		options: ["default", "option1", "option2", "option3"],
+		control: "select"
 	}
 };
 
@@ -153,7 +150,7 @@ ReactiveForms.parameters = {
 const OptionsSelectedTemplate: Story<Select> = (args) => ({
 	props: args,
 	template: `
-		<ibm-select label="Type">
+		<cds-select label="Type">
 			<option
 				value="on-hand"
 				[selected]="selected === 'on-hand'">
@@ -169,7 +166,7 @@ const OptionsSelectedTemplate: Story<Select> = (args) => ({
 				[selected]="selected === 'in-transit-outbound'">
 				Outbound in-transit
 			</option>
-		</ibm-select>
+		</cds-select>
 	`
 });
 export const OptionsSelected = OptionsSelectedTemplate.bind({});
@@ -187,11 +184,11 @@ OptionsSelected.argTypes = {
 const ValuePropertyTemplate: Story<Select> = (args) => ({
 	props: args,
 	template: `
-		<ibm-select label="Type" [value]="selected">
+		<cds-select label="Type" [value]="selected">
 			<option value="on-hand">On hand</option>
 			<option value="in-transit-inbound">Inbound in-transit</option>
 			<option value="in-transit-outbound">Outbound in-transit</option>
-		</ibm-select>
+		</cds-select>
 	`
 });
 export const ValueProperty = ValuePropertyTemplate.bind({});

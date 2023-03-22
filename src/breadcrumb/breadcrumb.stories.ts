@@ -49,17 +49,17 @@ export default {
 const Template: Story<Breadcrumb> = (args) => ({
 	props: args,
 	template: `
-		<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-			<ibm-breadcrumb-item href="#1">
+		<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+			<cds-breadcrumb-item href="#1">
 				Breadcrumb 1
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item href="#2">
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#2">
 				Breadcrumb 2
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item href="#3">
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#3">
 				Breadcrumb 3
-			</ibm-breadcrumb-item>
-		</ibm-breadcrumb>
+			</cds-breadcrumb-item>
+		</cds-breadcrumb>
 	`
 });
 export const Basic = Template.bind({});
@@ -67,17 +67,17 @@ export const Basic = Template.bind({});
 const CurrentPageTemplate: Story<Breadcrumb> = (args) => ({
 	props: args,
 	template: `
-		<ibm-breadcrumb>
-			<ibm-breadcrumb-item href="#1">
+		<cds-breadcrumb>
+			<cds-breadcrumb-item href="#1">
 				Breadcrumb 1
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item href="#2">
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#2">
 				Breadcrumb 2
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item current="true" href="#3">
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item current="true" href="#3">
 				Breadcrumb 3
-			</ibm-breadcrumb-item>
-		</ibm-breadcrumb>
+			</cds-breadcrumb-item>
+		</cds-breadcrumb>
 	`
 });
 export const CurrentPage = CurrentPageTemplate.bind({});
@@ -93,11 +93,11 @@ const ModelTemplate: Story<Breadcrumb> = (args) => ({
 		createBreadcrumbItems
 	},
 	template: `
-		<ibm-breadcrumb
+		<cds-breadcrumb
 			[noTrailingSlash]="noTrailingSlash"
 			[threshold]="threshold"
 			[items]="createBreadcrumbItems(itemCount, content)">
-		</ibm-breadcrumb>
+		</cds-breadcrumb>
 	`
 });
 export const Model = ModelTemplate.bind({});
@@ -118,11 +118,11 @@ const ModelWTemplate: Story<Breadcrumb> = (args) => ({
 		<ng-template #breadcrumbTemplate let-item>
 			{{ templateContent }}{{ item.content }}
 		</ng-template>
-		<ibm-breadcrumb
+		<cds-breadcrumb
 			[noTrailingSlash]="noTrailingSlash"
 			[threshold]="threshold"
 			[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
-		</ibm-breadcrumb>
+		</cds-breadcrumb>
 	`
 });
 export const ModelWithTemplate = ModelWTemplate.bind({});
@@ -136,12 +136,12 @@ ModelWithTemplate.args = {
 const WithSkeleton: Story<Breadcrumb> = (args) => ({
 	props: args,
 	template: `
-		<ibm-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
-			<ibm-breadcrumb-item></ibm-breadcrumb-item>
-			<ibm-breadcrumb-item></ibm-breadcrumb-item>
-			<ibm-breadcrumb-item></ibm-breadcrumb-item>
-			<ibm-breadcrumb-item></ibm-breadcrumb-item>
-		</ibm-breadcrumb>
+		<cds-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+		</cds-breadcrumb>
 	`
 });
 export const Skeleton = WithSkeleton.bind({});

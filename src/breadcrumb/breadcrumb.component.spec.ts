@@ -14,23 +14,23 @@ import { OverflowMenu } from "carbon-components-angular/dialog";
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-		<ibm-breadcrumb-item href="#">
+	<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 1
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 2
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 3
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 4
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 5
-		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`
+		</cds-breadcrumb-item>
+	</cds-breadcrumb>`
 })
 class TestBreadcrumb {
 	noTrailingSlash = true;
@@ -39,11 +39,11 @@ class TestBreadcrumb {
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<ibm-breadcrumb
+	<cds-breadcrumb
 		[noTrailingSlash]="noTrailingSlash"
 		[threshold]="threshold"
 		[items]="items">
-	</ibm-breadcrumb>`
+	</cds-breadcrumb>`
 })
 class TestBreadcrumbModel {
 	noTrailingSlash = true;
@@ -120,6 +120,6 @@ describe("Breadcrumb", () => {
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();
 		expect(breadcrumbItemElements.length).toBe(4); // 4 because one is created for the overflow menu
-		expect(breadcrumbItemElements[1].children[0].name).toEqual("ibm-overflow-menu");
+		expect(breadcrumbItemElements[1].children[0].name).toEqual("cds-overflow-menu");
 	});
 });

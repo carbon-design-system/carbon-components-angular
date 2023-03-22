@@ -23,9 +23,9 @@ export default {
 const Template: Story<Tile> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile>
+		<cds-tile>
 			Tile content goes here...
-		</ibm-tile>
+		</cds-tile>
 	`
 });
 export const Basic = Template.bind({});
@@ -33,15 +33,15 @@ export const Basic = Template.bind({});
 const LayerTemplate: Story<Tile> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile>
+		<cds-tile>
 			First layer
-		</ibm-tile>
-		<div ibmLayer>
-			<ibm-tile>
+		</cds-tile>
+		<div cdsLayer>
+			<cds-tile>
 				Second layer
-			</ibm-tile>
-			<div ibmLayer>
-				<ibm-tile>Third layer</ibm-tile>
+			</cds-tile>
+			<div cdsLayer>
+				<cds-tile>Third layer</cds-tile>
 			</div>
 		</div>
 	`
@@ -51,14 +51,14 @@ export const WithLayers = LayerTemplate.bind({});
 const SkeletonTemplate: Story<Tile> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile>
+		<cds-tile>
 			<div class="skeleton-placeholder">
-				<ibm-skeleton-placeholder></ibm-skeleton-placeholder>
+				<cds-skeleton-placeholder></cds-skeleton-placeholder>
 			</div>
 			<div class="skeleton-text">
-				<ibm-skeleton-text [lines]="3"></ibm-skeleton-text>
+				<cds-skeleton-text [lines]="3"></cds-skeleton-text>
 			</div>
-		</ibm-tile>
+		</cds-tile>
 	`,
 	styles: [`
 		.skeleton-placeholder {

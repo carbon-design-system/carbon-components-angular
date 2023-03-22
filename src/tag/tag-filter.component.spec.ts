@@ -7,7 +7,7 @@ import { TagFilter } from "./tag-filter.component";
 
 @Component({
 	template: `
-	<ibm-tag-filter [disabled]="disabled">TagFilter</ibm-tag-filter>`
+	<cds-tag-filter [disabled]="disabled">TagFilter</cds-tag-filter>`
 })
 class TagFilterTest {
 	disabled = false;

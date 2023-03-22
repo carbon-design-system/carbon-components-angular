@@ -21,35 +21,35 @@ import { LinkModule } from "../../link";
 @Component({
 	selector: "app-modal-with-table",
 	template: `
-		<ibm-modal
+		<cds-modal
 			size="lg"
 			[open]="true"
 			(overlaySelected)="closeModal()">
-			<ibm-modal-header>
-				<h3 ibmModalHeaderHeading>Create workspace</h3>
-			</ibm-modal-header>
-			<section ibmModalContent [hasForm]="true">
+			<cds-modal-header>
+				<h3 cdsModalHeaderHeading>Create workspace</h3>
+			</cds-modal-header>
+			<section cdsModalContent [hasForm]="true">
 				<div class="progress-wrapper">
-					<ibm-progress-indicator
+					<cds-progress-indicator
 						[steps]="steps"
 						[current]="current"
 						spacing="equal">
-					</ibm-progress-indicator>
+					</cds-progress-indicator>
 				</div>
-				<ibm-table-container>
-					<ibm-table-toolbar size="md">
-						<ibm-table-toolbar-content>
-							<ibm-table-toolbar-search
+				<cds-table-container>
+					<cds-table-toolbar size="md">
+						<cds-table-toolbar-content>
+							<cds-table-toolbar-search
 								[expandable]="true"
 								placeholder="Search node ID"
 								(valueChange)="onSearch($event)">
-							</ibm-table-toolbar-search>
-							<button ibmButton="ghost" class="toolbar-action" size="sm">
-								<svg size="16" class="cds--toolbar-action__icon" ibmIcon="Data_2"></svg>
+							</cds-table-toolbar-search>
+							<button cdsButton="ghost" class="toolbar-action" size="sm">
+								<svg size="16" class="cds--toolbar-action__icon" cdsIcon="Data_2"></svg>
 							</button>
-						</ibm-table-toolbar-content>
-					</ibm-table-toolbar>
-					<ibm-table
+						</cds-table-toolbar-content>
+					</cds-table-toolbar>
+					<cds-table
 						[model]="model"
 						size="sh"
 						[showSelectionColumn]="true"
@@ -57,17 +57,17 @@ import { LinkModule } from "../../link";
 						[striped]="false"
 						[isDataGrid]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</section>
-			<ibm-modal-footer>
-				<a href="#" ibmLink [disabled]="disabled" [inline]="inline">Cancel</a>
+			<cds-modal-footer>
+				<a href="#" cdsLink [disabled]="disabled" [inline]="inline">Cancel</a>
 				<div class="buttons-wrapper">
-					<button class="modal-button" ibmButton="secondary">Previous</button>
-					<button class="modal-button" ibmButton="primary">Next</button>
+					<button class="modal-button" cdsButton="secondary">Previous</button>
+					<button class="modal-button" cdsButton="primary">Next</button>
 				</div>
-			</ibm-modal-footer>
-		</ibm-modal>
+			</cds-modal-footer>
+		</cds-modal>
 	`,
 	encapsulation: ViewEncapsulation.None,
 	styles: [`

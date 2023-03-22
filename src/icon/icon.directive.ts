@@ -13,17 +13,24 @@ import { getAttributes } from "@carbon/icon-helpers";
  * Example:
  *
  * ```html
- * <input ibmText/>
+ * <input cdsText/>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
  */
 @Directive({
-	selector: "[ibmIcon]"
+	selector: "[cdsIcon], [ibmIcon]"
 })
 export class IconDirective implements AfterViewInit {
 
+	/**
+	 * @deprecated since v5 - Use `cdsIcon` input property instead
+	 */
 	@Input() set ibmIcon(iconName: string) {
+		this.cdsIcon = iconName;
+	}
+
+	@Input() set cdsIcon(iconName: string) {
 		this.iconName = iconName;
 		this.renderIcon(iconName);
 	}
