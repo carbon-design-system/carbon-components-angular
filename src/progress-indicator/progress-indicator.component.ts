@@ -81,7 +81,7 @@ export class ProgressIndicator implements OnChanges {
 	}
 	private _current: number;
 
-	constructor(protected experimental: ExperimentalService) { }
+	constructor(protected experimental: ExperimentalService) {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.steps || changes.current) {
