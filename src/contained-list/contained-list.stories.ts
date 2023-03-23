@@ -194,11 +194,27 @@ export const withActions = withActionsTemplate.bind({});
 
 const withIconsTemplate: Story<ContainedList> = () => ({
 	template: `
+		<ng-template #apple let-icon>
+			<svg ibmIcon="apple" size="16"></svg>
+		</ng-template>
+
+		<ng-template #wheat let-icon>
+			<svg ibmIcon="wheat" size="16"></svg>
+		</ng-template>
+
+		<ng-template #strawberry let-icon>
+			<svg ibmIcon="strawberry" size="16"></svg>
+		</ng-template>
+
+		<ng-template #fish let-icon>
+			<svg ibmIcon="fish" size="16"></svg>
+		</ng-template>
+
 		<ibm-contained-list label="List title">
-			<ibm-contained-list-item icon="apple">List item</ibm-contained-list-item>
-			<ibm-contained-list-item icon="wheat">List item</ibm-contained-list-item>
-			<ibm-contained-list-item icon="strawberry">List item</ibm-contained-list-item>
-			<ibm-contained-list-item icon="fish">List item</ibm-contained-list-item>
+			<ibm-contained-list-item [icon]="apple">List item</ibm-contained-list-item>
+			<ibm-contained-list-item [icon]="wheat">List item</ibm-contained-list-item>
+			<ibm-contained-list-item [icon]="strawberry">List item</ibm-contained-list-item>
+			<ibm-contained-list-item [icon]="fish">List item</ibm-contained-list-item>
 		</ibm-contained-list>
 	`
 });

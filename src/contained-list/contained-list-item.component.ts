@@ -23,7 +23,7 @@ import {
 		<ng-container *ngIf="!clickable">
 			<div class="cds--contained-list-item__content">
 				<div *ngIf="icon" class="cds--contained-list-item__icon">
-					<svg [ibmIcon]="icon" size="16"></svg>
+					<ng-template [ngTemplateOutlet]="icon"></ng-template>
 				</div>
 				<ng-content></ng-content>
 			</div>
@@ -59,7 +59,7 @@ export class ContainedListItem {
 	/**
 	 * Provide an optional icon to render in front of the item's content.
 	 */
-	@Input() icon: string;
+	@Input() icon: TemplateRef<any>;
 
 	/**
 	 * Emits click event.
