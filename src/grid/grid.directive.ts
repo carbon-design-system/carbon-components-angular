@@ -5,14 +5,14 @@ import {
 	HostBinding,
 	Input,
 	OnChanges,
-	OnInit,
-	QueryList
+	QueryList,
+	AfterViewInit
 } from "@angular/core";
 
 @Directive({
 	selector: "[ibmCol]"
 })
-export class ColumnDirective implements OnInit, OnChanges {
+export class ColumnDirective implements AfterViewInit, OnChanges {
 	@HostBinding("class")
 	get columnClasses(): string {
 		return this._columnClasses.join(" ");
@@ -59,7 +59,7 @@ export class ColumnDirective implements OnInit, OnChanges {
 
 	protected _columnClasses: string[] = [];
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.updateColumnClasses();
 	}
 
@@ -68,76 +68,72 @@ export class ColumnDirective implements OnInit, OnChanges {
 	}
 
 	private updateColumnClasses() {
-		// Using setTimeout to simulate a tick to capture an update isCss property
-		// otherwise, isCss will always be false
-		setTimeout(() => {
-			try {
-				this._columnClasses = [];
-				const columnKeys = Object.keys(this.columnNumbers);
+		try {
+			this._columnClasses = [];
+			const columnKeys = Object.keys(this.columnNumbers);
 
-				// Assign classes based on the type of grid used.
-				if (this.isCss) {
-					// Default css grid class
-					this._columnClasses.push("cds--css-grid-column");
-					if (this.columnHang) {
-						this._columnClasses.push("cds--grid-column-hang");
-					}
-
-					columnKeys.forEach(key => {
-						/**
-						 * Passing in `auto` to a breakpoint as such: {'md': 'auto'}
-						 * will assign the element which will automatically determine the width of the column
-						 * for the breakpoint passed
-						 */
-						if (this.columnNumbers[key] === "auto") {
-							this._columnClasses.push(`cds--${key}:col-span-auto`);
-						} else if (typeof this.columnNumbers[key] === "object") {
-							/**
-							 * In css grid, objects can be passed to the keys in the following format:
-							 * {'md': {'start': 3}}
-							 *
-							 * These objects are used to position the column
-							 */
-							if (this.columnNumbers[key]["start"]) {
-								// col-start is simular equivalent of flex offset
-								this._columnClasses.push(`cds--${key}:col-start-${this.columnNumbers[key]}`);
-							} else if (this.columnNumbers[key]["end"]) {
-								this._columnClasses.push(`cds--${key}:col-end-${this.columnNumbers[key]}`);
-							}
-						} else {
-							this._columnClasses.push(`cds--${key}:col-span-${this.columnNumbers[key]}`);
-						}
-					});
-				} else {
-					// Set column classes for flex grid
-					if (columnKeys.length <= 0) {
-						this._columnClasses.push("cds--col");
-					}
-
-					columnKeys.forEach(key => {
-						if (this.columnNumbers[key] === "nobreak") {
-							this._columnClasses.push(`cds--col-${key}`);
-						} else {
-							this._columnClasses.push(`cds--col-${key}-${this.columnNumbers[key]}`);
-						}
-					});
-
-					Object.keys(this.offsets).forEach(key => {
-						this._columnClasses.push(`cds--offset-${key}-${this.offsets[key]}`);
-					});
+			// Assign classes based on the type of grid used.
+			if (this.isCss) {
+				// Default css grid class
+				this._columnClasses.push("cds--css-grid-column");
+				if (this.columnHang) {
+					this._columnClasses.push("cds--grid-column-hang");
 				}
-			} catch (err) {
-				console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
-			}
 
-			/**
-			 * Append the classes passed so they aren't overriden when we set the column classes
-			 * from host binding
-			 */
-			if (this.class) {
-				this._columnClasses.push(this.class);
+				columnKeys.forEach(key => {
+					/**
+					 * Passing in `auto` to a breakpoint as such: {'md': 'auto'}
+					 * will assign the element which will automatically determine the width of the column
+					 * for the breakpoint passed
+					 */
+					if (this.columnNumbers[key] === "auto") {
+						this._columnClasses.push(`cds--${key}:col-span-auto`);
+					} else if (typeof this.columnNumbers[key] === "object") {
+						/**
+						 * In css grid, objects can be passed to the keys in the following format:
+						 * {'md': {'start': 3}}
+						 *
+						 * These objects are used to position the column
+						 */
+						if (this.columnNumbers[key]["start"]) {
+							// col-start is simular equivalent of flex offset
+							this._columnClasses.push(`cds--${key}:col-start-${this.columnNumbers[key]}`);
+						} else if (this.columnNumbers[key]["end"]) {
+							this._columnClasses.push(`cds--${key}:col-end-${this.columnNumbers[key]}`);
+						}
+					} else {
+						this._columnClasses.push(`cds--${key}:col-span-${this.columnNumbers[key]}`);
+					}
+				});
+			} else {
+				// Set column classes for flex grid
+				if (columnKeys.length <= 0) {
+					this._columnClasses.push("cds--col");
+				}
+
+				columnKeys.forEach(key => {
+					if (this.columnNumbers[key] === "nobreak") {
+						this._columnClasses.push(`cds--col-${key}`);
+					} else {
+						this._columnClasses.push(`cds--col-${key}-${this.columnNumbers[key]}`);
+					}
+				});
+
+				Object.keys(this.offsets).forEach(key => {
+					this._columnClasses.push(`cds--offset-${key}-${this.offsets[key]}`);
+				});
 			}
-		});
+		} catch (err) {
+			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
+		}
+
+		/**
+		 * Append the classes passed so they aren't overriden when we set the column classes
+		 * from host binding
+		 */
+		if (this.class) {
+			this._columnClasses.push(this.class);
+		}
 	}
 }
 
@@ -157,7 +153,6 @@ export class RowDirective {
 	selector: "[ibmGrid]"
 })
 export class GridDirective implements AfterContentInit {
-
 	@Input() condensed = false;
 	@Input() narrow = false;
 	@Input() fullWidth = false;
