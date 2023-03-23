@@ -4,7 +4,7 @@ import { Component, HostBinding } from "@angular/core";
  * [See demo](../../?path=/story/components-popover--basic)
  */
 @Component({
-	selector: "ibm-popover-content",
+	selector: "cds-popover-content, ibm-popover-content",
 	template: `
 		<span class="cds--popover-content">
 			<ng-content></ng-content>

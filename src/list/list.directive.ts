@@ -10,7 +10,7 @@ import { Directive, ElementRef, HostBinding } from "@angular/core";
  * If a `ul` or `ol` is nested within a `li` the directive will apply nested list styling.
  */
 @Directive({
-	selector: "[ibmList]"
+	selector: "[cdsList], [ibmList]"
 })
 export class List {
 	@HostBinding("class.cds--list--ordered") get ordered() {

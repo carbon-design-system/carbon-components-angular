@@ -17,20 +17,20 @@ import { BaseNotification } from "./base-notification.component";
  * [See demo](../../?path=/story/components-notification--toast)
  */
 @Component({
-	selector: "ibm-toast",
+	selector: "cds-toast, ibm-toast",
 	template: `
 		<svg
-			[ibmIcon]="iconDictionary[notificationObj.type]"
+			[cdsIcon]="iconDictionary[notificationObj.type]"
 			size="20"
 			*ngIf="notificationObj.type"
 			class="cds--toast-notification__icon">
 		</svg>
 		<div class="cds--toast-notification__details">
-			<h3 *ngIf="!notificationObj.template" ibmToastTitle [innerHTML]="notificationObj.title"></h3>
-			<div *ngIf="!notificationObj.template" ibmToastSubtitle>
+			<h3 *ngIf="!notificationObj.template" cdsToastTitle [innerHTML]="notificationObj.title"></h3>
+			<div *ngIf="!notificationObj.template" cdsToastSubtitle>
 				<span [innerHTML]="notificationObj.subtitle"></span>
 			</div>
-			<p *ngIf="!notificationObj.template" ibmToastCaption [innerHTML]="notificationObj.caption"></p>
+			<p *ngIf="!notificationObj.template" cdsToastCaption [innerHTML]="notificationObj.caption"></p>
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 		</div>
 		<button
@@ -39,7 +39,7 @@ import { BaseNotification } from "./base-notification.component";
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<svg ibmIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
+			<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
 		</button>
 	`
 })

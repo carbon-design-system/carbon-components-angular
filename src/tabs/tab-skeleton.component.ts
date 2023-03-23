@@ -8,7 +8,7 @@ import {
  * Skeleton component for tabs
  */
 @Component({
-	selector: "ibm-tabs-skeleton",
+	selector: "cds-tabs-skeleton, ibm-tabs-skeleton",
 	template: `
 		<ul class="cds--tabs__nav">
 			<li

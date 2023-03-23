@@ -7,10 +7,10 @@ import { TimePickerSelect } from "./timepicker-select.component";
 
 @Component({
 	template: `
-	<ibm-timepicker-select (valueChange)="onChange(event)">
+	<cds-timepicker-select (valueChange)="onChange(event)">
 		<option class="test" selected value="AM">AM</option>
 		<option class="test2" value="PM">PM</option>
-	</ibm-timepicker-select>
+	</cds-timepicker-select>
 	`
 })
 class TimePickerSelectTest {
@@ -51,25 +51,25 @@ describe("TimePickerSelect", () => {
 	it("should set options to AM and PM", () => {
 		fixture = TestBed.createComponent(TimePickerSelectTest);
 		fixture.detectChanges();
-		expect(fixture.debugElement.query(By.css("ibm-timepicker-select")).query(By.css(".test")).nativeElement.innerHTML).toContain("AM");
-		expect(fixture.debugElement.query(By.css("ibm-timepicker-select")).query(By.css(".test2")).nativeElement.innerHTML).toContain("PM");
+		expect(fixture.debugElement.query(By.css("cds-timepicker-select")).query(By.css(".test")).nativeElement.innerHTML).toContain("AM");
+		expect(fixture.debugElement.query(By.css("cds-timepicker-select")).query(By.css(".test2")).nativeElement.innerHTML).toContain("PM");
 	});
 
 	it("should set label to test-label", () => {
 		fixture = TestBed.overrideComponent(TimePickerSelectTest, {
 			set: {
-				template: `<ibm-timepicker-select label="test-label"></ibm-timepicker-select>`
+				template: `<cds-timepicker-select label="test-label"></cds-timepicker-select>`
 			}
 		}).createComponent(TimePickerSelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-timepicker-select")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker-select")).nativeElement;
 		expect(element.querySelector(".cds--label").textContent).toEqual("test-label");
 	});
 
 	it("should set disabled on the underlying select to true", () => {
 		fixture = TestBed.overrideComponent(TimePickerSelectTest, {
 			set: {
-				template: `<ibm-timepicker-select [disabled]="true"></ibm-timepicker-select>`
+				template: `<cds-timepicker-select [disabled]="true"></cds-timepicker-select>`
 			}
 		}).createComponent(TimePickerSelectTest);
 		fixture.detectChanges();

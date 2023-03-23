@@ -99,14 +99,14 @@ import { IconModule } from "./icon/icon.module";
 			<h2 class="banner__subtitle">An Angular implementation of the Carbon Design System</h2>
 
 			<div class="banner__links">
-				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
+				<a cdsButton="secondary" href="documentation/index.html" target="_blank">
 					Documentation
-					<svg ibmIcon="document" size="16" class="cds--btn__icon"></svg>
+					<svg cdsIcon="document" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
-				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
+				<a cdsButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
 					Starter App
-					<svg ibmIcon="bee" size="16" class="cds--btn__icon"></svg>
+					<svg cdsIcon="bee" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">

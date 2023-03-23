@@ -13,15 +13,15 @@ import { ListColumn } from "./list-column.component";
  *
  * Example:
  * ```html
- * 	<ibm-list-header>
- *		<ibm-list-column nowrap="true">Column 1</ibm-list-column>
- *		<ibm-list-column nowrap="true">Column 2</ibm-list-column>
- *		<ibm-list-column>Column 3</ibm-list-column>
- *	</ibm-list-header>
+ * 	<cds-list-header>
+ *		<cds-list-column nowrap="true">Column 1</cds-list-column>
+ *		<cds-list-column nowrap="true">Column 2</cds-list-column>
+ *		<cds-list-column>Column 3</cds-list-column>
+ *	</cds-list-header>
  * ```
  */
 @Component({
-	selector: "ibm-list-header",
+	selector: "cds-list-header, ibm-list-header",
 	template: `
 		<div class="cds--structured-list-row cds--structured-list-row--header-row" role="row">
 			<ng-content></ng-content>

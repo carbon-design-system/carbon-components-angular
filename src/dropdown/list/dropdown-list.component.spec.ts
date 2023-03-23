@@ -8,7 +8,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 import { I18nModule } from "../../i18n/index";
 
 @Component({
-	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`
 })
 class DropdownListTest {
 	items = [
@@ -22,7 +22,7 @@ class DropdownListTest {
 }
 
 @Component({
-	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`
 })
 class MultiTest {
 	items = [

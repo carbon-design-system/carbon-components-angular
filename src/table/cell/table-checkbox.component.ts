@@ -12,9 +12,9 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableCheckbox]",
+	selector: "[cdsTableCheckbox], [ibmTableCheckbox]",
 	template: `
-		<ibm-checkbox
+		<cds-checkbox
 			*ngIf="!skeleton"
 			inline="true"
 			[name]="name"
@@ -22,7 +22,7 @@ import { TableRowSize } from "../table.types";
 			[checked]="selected"
 			[disabled]="disabled"
 			(checkedChange)="selectedChange.emit()">
-		</ibm-checkbox>
+		</cds-checkbox>
 	`
 })
 export class TableCheckbox {
@@ -55,7 +55,7 @@ export class TableCheckbox {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```

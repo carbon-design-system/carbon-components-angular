@@ -23,7 +23,7 @@ export enum InlineLoadingState {
  * [See demo](../../?path=/story/components-inline-loading--basic)
  */
 @Component({
-	selector: "ibm-inline-loading",
+	selector: "cds-inline-loading, ibm-inline-loading",
 	template: `
 		<div *ngIf="state !== InlineLoadingState.Hidden"
 			class="cds--inline-loading__animation">
@@ -40,13 +40,13 @@ export enum InlineLoadingState {
 			</div>
 			<svg
 				*ngIf="state === InlineLoadingState.Finished"
-				ibmIcon="checkmark--filled"
+				cdsIcon="checkmark--filled"
 				size="16"
 				class="cds--inline-loading__checkmark-container">
 			</svg>
 			<svg
 				*ngIf="state === InlineLoadingState.Error"
-				ibmIcon="error--filled"
+				cdsIcon="error--filled"
 				size="16"
 				class="cds--inline-loading--error">
 			</svg>

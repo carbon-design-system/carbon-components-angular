@@ -20,39 +20,39 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *
  * A basic structued list looks something like:
  * ```html
- *	<ibm-structured-list>
- *		<ibm-list-header>
- *			<ibm-list-column nowrap="true">Column 1</ibm-list-column>
- *			<ibm-list-column nowrap="true">Column 2</ibm-list-column>
- *			<ibm-list-column>Column 3</ibm-list-column>
- *		</ibm-list-header>
- *		<ibm-list-row>
- *			<ibm-list-column>Row 1</ibm-list-column>
- *			<ibm-list-column nowrap="true">Row One</ibm-list-column>
- *			<ibm-list-column>
+ *	<cds-structured-list>
+ *		<cds-list-header>
+ *			<cds-list-column nowrap="true">Column 1</cds-list-column>
+ *			<cds-list-column nowrap="true">Column 2</cds-list-column>
+ *			<cds-list-column>Column 3</cds-list-column>
+ *		</cds-list-header>
+ *		<cds-list-row>
+ *			<cds-list-column>Row 1</cds-list-column>
+ *			<cds-list-column nowrap="true">Row One</cds-list-column>
+ *			<cds-list-column>
  *				Lorem ipsum dolor sit amet,
  *				consectetur adipiscing elit. Nunc dui magna,
  *				finibus id tortor sed, aliquet bibendum augue.
  *				Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
  *				Pellentesque vulputate nisl a porttitor interdum.
- *			</ibm-list-column>
- *		</ibm-list-row>
- *		<ibm-list-row>
- *			<ibm-list-column>Row 2</ibm-list-column>
- *			<ibm-list-column nowrap="true">Row Two</ibm-list-column>
- *			<ibm-list-column>
+ *			</cds-list-column>
+ *		</cds-list-row>
+ *		<cds-list-row>
+ *			<cds-list-column>Row 2</cds-list-column>
+ *			<cds-list-column nowrap="true">Row Two</cds-list-column>
+ *			<cds-list-column>
  *				Lorem ipsum dolor sit amet,
  *				consectetur adipiscing elit. Nunc dui magna,
  *				finibus id tortor sed, aliquet bibendum augue.
  *				Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
  *				Pellentesque vulputate nisl a porttitor interdum.
- *			</ibm-list-column>
- *		</ibm-list-row>
- *	</ibm-structured-list>
+ *			</cds-list-column>
+ *		</cds-list-row>
+ *	</cds-structured-list>
  * ```
  */
 @Component({
-	selector: "ibm-structured-list",
+	selector: "cds-structured-list, ibm-structured-list",
 	template: `
 		<div
 			class="cds--structured-list"
@@ -63,7 +63,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				'cds--structured-list--condensed': condensed,
 				'cds--skeleton': skeleton
 			}">
-			<ng-content select="ibm-list-header"></ng-content>
+			<ng-content select="cds-list-header"></ng-content>
 			<div class="cds--structured-list-tbody" role="rowgroup">
 				<ng-content></ng-content>
 			</div>

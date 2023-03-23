@@ -36,7 +36,7 @@ export default {
 const Template: Story<Tag> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tag [type]="type" [size]="size">Tag</ibm-tag>
+		<cds-tag [type]="type" [size]="size">Tag</cds-tag>
 	`
 });
 export const Basic = Template.bind({});
@@ -44,13 +44,13 @@ export const Basic = Template.bind({});
 const FilteredTemplate: Story<Tag> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tag-filter
+		<cds-tag-filter
 			[type]="type"
 			[size]="size"
 			title="Filter"
 			closeButtonLabel="Clear">
 			filter
-		</ibm-tag-filter>
+		</cds-tag-filter>
 	`
 });
 export const Filter = FilteredTemplate.bind({});

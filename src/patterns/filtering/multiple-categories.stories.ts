@@ -16,63 +16,63 @@ import { UIShellModule } from "../../ui-shell";
 @Component({
 	selector: "app-sample-multi-categories",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
-				<button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+				<button cdsButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
 				<fieldset class="cds--fieldset">
 					<legend class="cds--label">Radio button label</legend>
-					<ibm-radio-group
+					<cds-radio-group
 						aria-label="radiogroup"
 						orientation="vertical"
 						labelPlacement="right"
 						[(ngModel)]="radio"
 						(change)="onRadioChange($event)">
-						<ibm-radio *ngFor="let radio of radios"
+						<cds-radio *ngFor="let radio of radios"
 							[value]="radio.color"
 							[disabled]="radio.disabled">
 							{{radio.color}}
-						</ibm-radio>
-					</ibm-radio-group>
+						</cds-radio>
+					</cds-radio-group>
 				</fieldset>
 				<fieldset class="cds--fieldset">
-					<div ibmRow>
-						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
+					<div cdsRow>
+						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
 							<legend class="cds--label">Type</legend>
 						</div>
-						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<ibm-tag-filter
+						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
+							<cds-tag-filter
 								*ngIf="checkBoxFilters.size > 0"
 								(close)="resetCheckboxList()">
 								{{checkBoxFilters.size}}
-							</ibm-tag-filter>
+							</cds-tag-filter>
 						</div>
 					</div>
-					<ibm-checkbox
+					<cds-checkbox
 						*ngFor="let listItem of checkboxList"
 						[hideLabel]="hideLabel"
 						[checked]="listItem.checked"
 						[value]="listItem.value"
 						(change)="onCheckboxChange($event)">
 						{{ listItem.value }}
-					</ibm-checkbox>
+					</cds-checkbox>
 				</fieldset>
 			</div>
-			<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
-				<ibm-table-container>
-					<ibm-table
+			<div cdsCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
+				<cds-table-container>
+					<cds-table
 						class="data-table"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</div>
 		</div>
 	</div>

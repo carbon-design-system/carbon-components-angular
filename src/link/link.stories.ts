@@ -17,7 +17,7 @@ export default {
 const Template: Story<Link> = (args) => ({
 	props: args,
 	template: `
-		<a href="#" ibmLink [disabled]="disabled" [inline]="inline">link</a>
+		<a href="#" cdsLink [disabled]="disabled" [inline]="inline">link</a>
 	`
 });
 export const Basic = Template.bind({});

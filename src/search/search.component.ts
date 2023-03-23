@@ -15,7 +15,7 @@ import { I18n } from "carbon-components-angular/i18n";
  * [See demo](../../?path=/story/components-search--basic)
  */
 @Component({
-	selector: "ibm-search",
+	selector: "cds-search, ibm-search",
 	templateUrl: "search.component.html",
 	providers: [
 		{
@@ -34,7 +34,7 @@ export class Search implements ControlValueAccessor {
 	@HostBinding("class.cds--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` search theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";

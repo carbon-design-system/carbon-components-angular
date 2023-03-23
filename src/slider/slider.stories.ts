@@ -19,7 +19,7 @@ export default {
 const Template: Story<Slider> = (args) => ({
 	props: args,
 	template: `
-		<ibm-slider
+		<cds-slider
 			[label]="label"
 			[min]="min"
 			[max]="max"
@@ -33,7 +33,7 @@ const Template: Story<Slider> = (args) => ({
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
 			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
-		</ibm-slider>
+		</cds-slider>
 	`
 });
 export const Basic = Template.bind({});
@@ -61,7 +61,7 @@ Basic.argTypes = {
 const RangeTemplate: Story<Slider> = (args) => ({
 	props: args,
 	template: `
-		<ibm-slider
+		<cds-slider
 			[label]="label"
 			[min]="min"
 			[max]="max"
@@ -75,7 +75,7 @@ const RangeTemplate: Story<Slider> = (args) => ({
 			<span maxLabel>{{maxLabel}}</span>
 			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
 			<input [ngClass]="{'cds--text-input--light': theme === 'light'}"/>
-		</ibm-slider>
+		</cds-slider>
 	`
 });
 export const Range = RangeTemplate.bind({});

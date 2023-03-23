@@ -28,15 +28,15 @@ const REL = "noreferrer noopener";
  *
  * Presently it has three possible states - normal, disabled, and danger:
  * ```
- * <ibm-overflow-menu-option>Simple option</ibm-overflow-menu-option>
- * <ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
- * <ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+ * <cds-overflow-menu-option>Simple option</cds-overflow-menu-option>
+ * <cds-overflow-menu-option disabled="true">Disabled</cds-overflow-menu-option>
+ * <cds-overflow-menu-option type="danger">Danger option</cds-overflow-menu-option>
  * ```
  *
  * For content that expands beyond the overflow menu `OverflowMenuOption` automatically adds a title attribute.
  */
 @Component({
-	selector: "ibm-overflow-menu-option",
+	selector: "cds-overflow-menu-option, ibm-overflow-menu-option",
 	template: `
 		<button
 			*ngIf="!href"

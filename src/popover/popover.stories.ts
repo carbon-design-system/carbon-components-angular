@@ -26,7 +26,7 @@ const Template: Story<PopoverContainer> = (args) => ({
 	props: args,
 	template: `
 		<div
-			ibmPopover
+			cdsPopover
 			[isOpen]="isOpen"
 			[dropShadow]="dropShadow"
 			[align]="align"
@@ -40,12 +40,12 @@ const Template: Story<PopoverContainer> = (args) => ({
 					<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
 				</svg>
 			</div>
-			<ibm-popover-content>
+			<cds-popover-content>
 				<div style="padding: 1rem">
 					<p class="popover-title">Available storage</p>
 					<p class="popover-content">This server has 150GB of block storage remaining</p>
 				</div>
-			</ibm-popover-content>
+			</cds-popover-content>
 		</div>
 	`,
 	styles: [`

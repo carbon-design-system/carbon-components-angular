@@ -35,7 +35,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			<i><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
-		<ibm-table
+		<cds-table
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -46,7 +46,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			(sort)="customSort($event)"
 			(rowClick)="onRowClick($event)"
 			[isDataGrid]="isDataGrid">
-		</ibm-table>
+		</cds-table>
 	`
 })
 export class ExpansionTableStory implements AfterViewInit {

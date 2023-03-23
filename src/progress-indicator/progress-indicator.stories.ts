@@ -17,14 +17,14 @@ export default {
 const Template: Story<ProgressIndicator> = (args) => ({
 	props: args,
 	template: `
-		<ibm-progress-indicator
+		<cds-progress-indicator
 			[skeleton]="skeleton"
 			[steps]="steps"
 			[orientation]="orientation"
 			[current]="current"
 			(stepSelected)="stepSelected($event)"
 			[spacing]="spacing">
-		</ibm-progress-indicator>
+		</cds-progress-indicator>
 	`
 });
 export const Basic = Template.bind({});

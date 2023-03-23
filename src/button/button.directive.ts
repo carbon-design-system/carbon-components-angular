@@ -14,20 +14,26 @@ import { ButtonSize, ButtonType } from "./button.types";
  * Example:
  *
  * ```html
- * <button ibmButton>A button</button>
- * <button ibmButton="secondary">A secondary button</button>
+ * <button cdsButton>A button</button>
+ * <button cdsButton="secondary">A secondary button</button>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/button/code) for more detail.
  */
 @Directive({
-	selector: "[ibmButton]"
+	selector: "[cdsButton], [ibmButton]"
 })
 export class Button implements OnInit {
 	/**
+	 * @deprecated as of v5 - Use `cdsButton` input property instead
+	 */
+	@Input() set ibmButton(type: ButtonType) {
+		this.cdsButton = type;
+	}
+	/**
 	 * sets the button type
 	 */
-	@Input() ibmButton: ButtonType = "primary";
+	@Input() cdsButton: ButtonType = "primary";
 	/**
 	 * Specify the size of the button
 	 */
@@ -39,7 +45,7 @@ export class Button implements OnInit {
 	/**
 	 * Set to `true` if the button contains only an icon
 	 * This should only be used for creating custom icon buttons, otherwise use
-	 * `<ibm-icon-button></ibm-icon-button>` component
+	 * `<cds-icon-button></cds-icon-button>` component
 	 */
 	@HostBinding("class.cds--btn--icon-only") @Input() iconOnly = false;
 
@@ -51,25 +57,25 @@ export class Button implements OnInit {
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.cds--btn") baseClass = true;
 	@HostBinding("class.cds--btn--primary") get primaryButton() {
-		return this.ibmButton === "primary";
+		return this.cdsButton === "primary";
 	}
 	@HostBinding("class.cds--btn--secondary") get secondaryButton() {
-		return this.ibmButton === "secondary";
+		return this.cdsButton === "secondary";
 	}
 	@HostBinding("class.cds--btn--tertiary") get tertiaryButton() {
-		return this.ibmButton === "tertiary";
+		return this.cdsButton === "tertiary";
 	}
 	@HostBinding("class.cds--btn--ghost") get ghostButton() {
-		return this.ibmButton === "ghost";
+		return this.cdsButton === "ghost";
 	}
 	@HostBinding("class.cds--btn--danger") get dangerButton() {
-		return this.ibmButton === "danger" || this.ibmButton === "danger--primary";
+		return this.cdsButton === "danger" || this.cdsButton === "danger--primary";
 	}
 	@HostBinding("class.cds--btn--danger--tertiary") get dangerTertiary() {
-		return this.ibmButton === "danger--tertiary";
+		return this.cdsButton === "danger--tertiary";
 	}
 	@HostBinding("class.cds--btn--danger--ghost") get dangerGhost() {
-		return this.ibmButton === "danger--ghost";
+		return this.cdsButton === "danger--ghost";
 	}
 	@HostBinding("class.cds--btn--sm") get smallSize() {
 		return this.size === "sm" && !this.isExpressive;
@@ -87,9 +93,13 @@ export class Button implements OnInit {
 		return this.size === "2xl";
 	}
 
+	/**
+	 * We need to make sure cdsButton is not an empty string since
+	 * input name matches selector name.
+	 */
 	ngOnInit() {
-		if (!this.ibmButton) {
-			this.ibmButton = "primary";
+		if (!this.cdsButton) {
+			this.cdsButton = "primary";
 		}
 	}
 }

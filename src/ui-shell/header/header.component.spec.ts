@@ -8,15 +8,15 @@ import { Hamburger } from "../index";
 import { RouterModule } from "@angular/router";
 
 /**
- * Testing component for projecting an ibm-hamburger component
- * inside of an ibm-header component.
+ * Testing component for projecting an cds-hamburger component
+ * inside of an cds-header component.
  */
 @Component({
-	selector: "ibm-hamburger-test",
+	selector: "cds-hamburger-test",
 	template: `
-		<ibm-header>
-			<ibm-hamburger></ibm-hamburger>
-		</ibm-header>
+		<cds-header>
+			<cds-hamburger></cds-hamburger>
+		</cds-header>
 	`
 })
 class HamburgerTest { }
@@ -73,6 +73,6 @@ describe("UI Shell Header", () => {
 		const headerWithHamburger = TestBed.createComponent(HamburgerTest);
 		const element = headerWithHamburger.nativeElement;
 
-		expect(element.querySelector("header > ibm-hamburger")).toBeDefined();
+		expect(element.querySelector("header > cds-hamburger")).toBeDefined();
 	});
 });

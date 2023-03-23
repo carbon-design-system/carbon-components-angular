@@ -11,37 +11,37 @@ import { UIShellModule } from "../../ui-shell";
 @Component({
 	selector: "app-sample-single-selection",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
-				<label ibmText class="dropdown-label">
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
+				<label cdsText class="dropdown-label">
 					Filter by:
-					<ibm-dropdown
+					<cds-dropdown
 						class="filter-dropdown"
 						placeholder="Type"
 						inline="true"
 						(selected)="onSelected($event)">
-						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-					</ibm-dropdown>
+						<cds-dropdown-list [items]="items"></cds-dropdown-list>
+					</cds-dropdown>
 				</label>
 			</div>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
-				<ibm-table-container>
-					<ibm-table
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+				<cds-table-container>
+					<cds-table
 					class="data-table"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</div>
 		</div>
 	</div>

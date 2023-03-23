@@ -31,11 +31,11 @@ export default {
 const SelectableTemplate: Story<TileGroup> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-			<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
-		</ibm-tile-group>
+		<cds-tile-group (selected)="selected($event)" [multiple]="false">
+			<cds-selection-tile value="tile1" [selected]="true">Selectable Tile</cds-selection-tile>
+			<cds-selection-tile value="tile2">Selectable Tile</cds-selection-tile>
+			<cds-selection-tile value="tile3">Selectable Tile</cds-selection-tile>
+		</cds-tile-group>
 	`
 });
 export const Selectable = SelectableTemplate.bind({});
@@ -48,11 +48,11 @@ Selectable.argTypes = {
 const MultiTemplate: Story<TileGroup> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-			<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-			<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
-		</ibm-tile-group>
+		<cds-tile-group (selected)="selected($event)" [multiple]="true">
+			<cds-selection-tile value="tile1" [selected]="true">Selectable Tile</cds-selection-tile>
+			<cds-selection-tile value="tile2">Selectable Tile</cds-selection-tile>
+			<cds-selection-tile value="tile3">Selectable Tile</cds-selection-tile>
+		</cds-tile-group>
 	`
 });
 export const Multiselect = MultiTemplate.bind({});
@@ -65,20 +65,20 @@ Multiselect.argTypes = {
 const LayerTemplate: Story<TileGroup> = (args) => ({
 	props: args,
 	template: `
-		<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-			<ibm-selection-tile value="tile1" [selected]="true">First Layer</ibm-selection-tile>
-			<ibm-selection-tile value="tile2">First Layer</ibm-selection-tile>
-		</ibm-tile-group>
-		<div ibmLayer>
-			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true">Second Layer</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Second Layer</ibm-selection-tile>
-			</ibm-tile-group>
-			<div ibmLayer>
-				<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-					<ibm-selection-tile value="tile1" [selected]="true">Third Layer</ibm-selection-tile>
-					<ibm-selection-tile value="tile2">Third Layer</ibm-selection-tile>
-				</ibm-tile-group>
+		<cds-tile-group (selected)="selected($event)" [multiple]="false">
+			<cds-selection-tile value="tile1" [selected]="true">First Layer</cds-selection-tile>
+			<cds-selection-tile value="tile2">First Layer</cds-selection-tile>
+		</cds-tile-group>
+		<div cdsLayer>
+			<cds-tile-group (selected)="selected($event)" [multiple]="false">
+				<cds-selection-tile value="tile1" [selected]="true">Second Layer</cds-selection-tile>
+				<cds-selection-tile value="tile2">Second Layer</cds-selection-tile>
+			</cds-tile-group>
+			<div cdsLayer>
+				<cds-tile-group (selected)="selected($event)" [multiple]="false">
+					<cds-selection-tile value="tile1" [selected]="true">Third Layer</cds-selection-tile>
+					<cds-selection-tile value="tile2">Third Layer</cds-selection-tile>
+				</cds-tile-group>
 			</div>
 		</div>
 	`

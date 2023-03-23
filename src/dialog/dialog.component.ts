@@ -26,7 +26,7 @@ import { AnimationFrameService, ElementService } from "carbon-components-angular
  * Used to implement a popover or tooltip.
  */
 @Component({
-	selector: "ibm-dialog",
+	selector: "cds-dialog, ibm-dialog",
 	template: ""
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {

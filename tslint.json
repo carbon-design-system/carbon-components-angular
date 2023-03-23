@@ -130,6 +130,7 @@
 			"attribute",
 			[
 				"ibm",
+				"cds",
 				"app",
 				"test"
 			],
@@ -140,6 +141,7 @@
 			"element",
 			[
 				"ibm",
+				"cds",
 				"app",
 				"test"
 			],

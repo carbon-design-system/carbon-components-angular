@@ -11,7 +11,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
 
 @Component({
-	selector: "ibm-file",
+	selector: "cds-file, ibm-file",
 	template: `
 		<p class="cds--file-filename" [title]="fileItem.file.name">{{fileItem.file.name}}</p>
 		<span
@@ -19,7 +19,7 @@ import { FileItem } from "./file-item.interface";
 			class="cds--file__state-container">
 			<svg
 				*ngIf="isInvalidText"
-				ibmIcon="warning--filled"
+				cdsIcon="warning--filled"
 				class="cds--file--invalid"
 				size="16">
 			</svg>
@@ -31,17 +31,17 @@ import { FileItem } from "./file-item.interface";
 				(click)="remove.emit()"
 				(keyup.enter)="remove.emit()"
 				(keyup.space)="remove.emit()">
-				<svg ibmIcon="close" size="16"></svg>
+				<svg cdsIcon="close" size="16"></svg>
 			</button>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
 			<div class="cds--inline-loading__animation">
-				<ibm-loading size="sm"></ibm-loading>
+				<cds-loading size="sm"></cds-loading>
 			</div>
 		</span>
 		<span *ngIf="fileItem.state === 'complete'" class="cds--file__state-container">
 			<svg
-				ibmIcon="checkmark--filled"
+				cdsIcon="checkmark--filled"
 				size="16"
 				class="cds--file-complete"
 				[ariaLabel]="translations.CHECKMARK">

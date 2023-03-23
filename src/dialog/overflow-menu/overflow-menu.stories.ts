@@ -34,23 +34,23 @@ export default {
 const Template: Story<OverflowMenu> = (args) => ({
 	props: args,
 	template: `
-		<ibm-overflow-menu
+		<cds-overflow-menu
 			[placement]="placement"
 			[open]="open"
 			[flip]="flip"
 			[offset]="offset">
-			<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
+			<cds-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 				An example option that is really long to show what should be done to handle long text
-			</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</ibm-overflow-menu-option>
+			</cds-overflow-menu-option>
+			<cds-overflow-menu-option (selected)="selected($event)" innerClass="a-custom-class">Option 2</cds-overflow-menu-option>
 			<li class="cds--overflow-menu-options__option">
 				<button class="cds--overflow-menu-options__btn">A fully custom option</button>
 			</li>
-			<ibm-overflow-menu-option (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-		</ibm-overflow-menu>
-		<ibm-placeholder></ibm-placeholder>
+			<cds-overflow-menu-option (selected)="selected($event)">Option 4</cds-overflow-menu-option>
+			<cds-overflow-menu-option disabled="true" (selected)="selected($event)" [divider]="true">Disabled</cds-overflow-menu-option>
+			<cds-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</cds-overflow-menu-option>
+		</cds-overflow-menu>
+		<cds-placeholder></cds-placeholder>
 	`
 });
 export const Basic = Template.bind({});
@@ -83,22 +83,22 @@ const LinkTemplate: Story<OverflowMenu> = (args) => ({
 	template: `
 		<div>
 			<h1 style="margin-bottom: 1rem">Bottom placement</h1>
-			<ibm-overflow-menu
+			<cds-overflow-menu
 				[flip]="flip"
 				[offset]="offset">
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
+				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" target="_blank" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
+				</cds-overflow-menu-option>
+				<cds-overflow-menu-option href="https://www.ibm.com" target="_blank" (selected)="selected($event)">Option 2</cds-overflow-menu-option>
+				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</cds-overflow-menu-option>
+				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</cds-overflow-menu-option>
+				<cds-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</cds-overflow-menu-option>
+				<cds-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
 					Danger option
-				</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
+				</cds-overflow-menu-option>
+			</cds-overflow-menu>
 		</div>
-		<ibm-placeholder></ibm-placeholder>
+		<cds-placeholder></cds-placeholder>
 	`
 });
 export const WithLink = LinkTemplate.bind({});
@@ -132,17 +132,17 @@ const CustomTemplate: Story<OverflowMenu> = (args) => ({
 		<button
 			style="border: none; width: 3rem; height: 3rem; background-color: lightgrey;
 			display: flex; align-items: center; justify-content: center;"
-			[ibmOverflowMenu]="templateRef"
+			[cdsOverflowMenu]="templateRef"
 			[customPane]="true"
 			placement="bottom"
 			[offset]="{ x: -8, y: 0 }">
-			<svg ibmIcon="settings" size="16"></svg>
+			<svg cdsIcon="settings" size="16"></svg>
 		</button>
 		<ng-template #templateRef>
 			<div style="padding: 0 1rem;">
 				<div style="padding-top: 0.5rem; color: grey;">Columns</div>
-				<div><ibm-checkbox [checked]="true">Status</ibm-checkbox></div>
-				<div><ibm-checkbox>Last modified</ibm-checkbox></div>
+				<div><cds-checkbox [checked]="true">Status</cds-checkbox></div>
+				<div><cds-checkbox>Last modified</cds-checkbox></div>
 			</div>
 		</ng-template>
 	`
@@ -154,19 +154,19 @@ const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
 	props: args,
 	template: `
 		<span>Overflow menu with custom trigger icon</span>
-		<ibm-overflow-menu
+		<cds-overflow-menu
 			[flip]="flip"
 			[open]="open"
 			[customTrigger]="customTrigger"
 			[placement]="placement"
 			[offset]="offset">
-			<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-			<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
-		</ibm-overflow-menu>
-		<ibm-placeholder></ibm-placeholder>
-		<ng-template #customTrigger><svg ibmIcon="document" size="16"></svg></ng-template>
+			<cds-overflow-menu-option (selected)="selected($event)" (click)="click($event)">Option 1</cds-overflow-menu-option>
+			<cds-overflow-menu-option (selected)="selected($event)">Option 2</cds-overflow-menu-option>
+			<cds-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</cds-overflow-menu-option>
+			<cds-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</cds-overflow-menu-option>
+		</cds-overflow-menu>
+		<cds-placeholder></cds-placeholder>
+		<ng-template #customTrigger><svg cdsIcon="document" size="16"></svg></ng-template>
 	`
 });
 export const CustomTrigger = CustomTriggerTemplate.bind({});

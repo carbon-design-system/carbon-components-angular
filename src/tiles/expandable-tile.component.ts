@@ -13,7 +13,7 @@ export interface ExpandableTileTranslations {
 }
 
 @Component({
-	selector: "ibm-expandable-tile",
+	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `
 		<button
 			class="cds--tile cds--tile--expandable"
@@ -43,7 +43,7 @@ export interface ExpandableTileTranslations {
 })
 export class ExpandableTile implements AfterContentInit {
 	/**
-	 * @deprecated since v5 - Use `ibmLayer` directive instead
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
 	 */
 	@Input() theme: "light" | "dark" = "dark";

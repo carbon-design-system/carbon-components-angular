@@ -4,21 +4,21 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableRadio]",
+	selector: "[cdsTableRadio], [ibmTableRadio]",
 	template: `
-		<ibm-radio
+		<cds-radio
 			*ngIf="!skeleton"
 			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			(change)="change.emit()">
-		</ibm-radio>
+		</cds-radio>
 	`
 })
 export class TableRadio {
@@ -40,7 +40,7 @@ export class TableRadio {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```

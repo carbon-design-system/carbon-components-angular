@@ -6,7 +6,7 @@ import { ProgressBar } from "./";
 
 @Component({
 	template: `
-		<ibm-progress-bar
+		<cds-progress-bar
 			[label]="label"
 			[helperText]="helperText"
 			[max]="max"
@@ -14,7 +14,7 @@ import { ProgressBar } from "./";
 			[status]="status"
 			[type]="type"
 			[value]="value">
-		</ibm-progress-bar>
+		</cds-progress-bar>
 		`
 })
 class TestProgessBarComponent {
@@ -39,7 +39,7 @@ describe("Progress bar", () => {
 		fixture = TestBed.createComponent(TestProgessBarComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-bar"));
+		element = fixture.debugElement.query(By.css("cds-progress-bar"));
 	});
 
 	it("should create a progress bar component", () => {

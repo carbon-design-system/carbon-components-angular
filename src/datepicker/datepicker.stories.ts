@@ -41,7 +41,7 @@ export default {
 const Template: Story<DatePicker> = (args) => ({
 	props: args,
 	template: `
-		<ibm-date-picker-input
+		<cds-date-picker-input
 			[theme]="theme"
 			[label]="label"
 			[placeholder]="placeholder"
@@ -52,7 +52,7 @@ const Template: Story<DatePicker> = (args) => ({
 			[warn]="warn"
 			[warnText]="warnText"
 			(valueChange)="valueChange($event)">
-		</ibm-date-picker-input>
+		</cds-date-picker-input>
 	`
 });
 export const Basic = Template.bind({});
@@ -61,7 +61,7 @@ const SingleTemplate: Story<DatePicker> = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
-		<ibm-date-picker
+		<cds-date-picker
 			[label]="label"
 			id="initial-value-datepicker"
 			[placeholder]="placeholder"
@@ -76,9 +76,9 @@ const SingleTemplate: Story<DatePicker> = (args) => ({
 			[warnText]="warnText"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
-		</ibm-date-picker>
+		</cds-date-picker>
 		<p style="margin-top: 20px;">Without initial value</p>
-		<ibm-date-picker
+		<cds-date-picker
 			[label]="label"
 			[placeholder]="placeholder"
 			[language]="language"
@@ -91,7 +91,7 @@ const SingleTemplate: Story<DatePicker> = (args) => ({
 			[warnText]="warnText"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
-		</ibm-date-picker>
+		</cds-date-picker>
 	`
 });
 export const Single = SingleTemplate.bind({});
@@ -110,7 +110,7 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
-		<ibm-date-picker
+		<cds-date-picker
 			[label]="label"
 			[rangeLabel]="label"
 			[size]="size"
@@ -130,9 +130,9 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 			[value]="value"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
-		</ibm-date-picker>
+		</cds-date-picker>
 		<p style="margin-top: 20px;">Without initial value</p>
-		<ibm-date-picker
+		<cds-date-picker
 			[label]="label"
 			[rangeLabel]="label"
 			[size]="size"
@@ -150,7 +150,7 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
-		</ibm-date-picker>
+		</cds-date-picker>
 	`
 });
 export const Range = RangeTemplate.bind({});
@@ -169,10 +169,10 @@ Range.argTypes = {
 const SkeletonTemplate: Story<DatePicker> = (args) => ({
 	props: args,
 	template: `
-	<ibm-date-picker
+	<cds-date-picker
 		range="true"
 		skeleton="true">
-	</ibm-date-picker>
+	</cds-date-picker>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

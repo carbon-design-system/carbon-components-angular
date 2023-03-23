@@ -14,12 +14,12 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableRow]",
+	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
 		<ng-container *ngIf="model">
 			<td
 				*ngIf="model.hasExpandableRows()"
-				ibmTableExpandButton
+				cdsTableExpandButton
 				class="cds--table-expand-v2"
 				[expanded]="expanded"
 				[expandable]="expandable"
@@ -34,7 +34,7 @@ import { TableRowSize } from "../table.types";
 				</td>
 				<ng-template #tableCheckboxTemplate>
 					<td
-						ibmTableCheckbox
+						cdsTableCheckbox
 						class="cds--table-column-checkbox"
 						[size]="size"
 						[selected]="selected"
@@ -48,7 +48,7 @@ import { TableRowSize } from "../table.types";
 			</ng-container>
 			<td
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				ibmTableRadio
+				cdsTableRadio
 				[selected]="selected"
 				[label]="getCheckboxLabel()"
 				[row]="row"
@@ -59,7 +59,7 @@ import { TableRowSize } from "../table.types";
 			<ng-container *ngFor="let item of row; let j = index">
 				<td
 					*ngIf="item && model.getHeader(j) && model.getHeader(j).visible"
-					ibmTableData
+					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
@@ -73,7 +73,7 @@ import { TableRowSize } from "../table.types";
 				</td>
 				<td
 					*ngIf="item && model.getHeader(j) == null"
-					ibmTableData
+					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
@@ -146,7 +146,7 @@ export class TableRowComponent {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```

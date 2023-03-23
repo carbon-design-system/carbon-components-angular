@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
  * `SideNavItem` can either be a child of `SideNav` or `SideNavMenu`
  */
 @Component({
-	selector: "ibm-sidenav-item",
+	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
 		<a
 			class="cds--side-nav__link"

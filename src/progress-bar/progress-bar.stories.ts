@@ -17,7 +17,7 @@ export default {
 const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-progress-bar
+		<cds-progress-bar
 			[label]="label"
 			[helperText]="helperText"
 			[max]="max"
@@ -25,7 +25,7 @@ const Template: Story = (args) => ({
 			[status]="status"
 			[type]="type"
 			[value]="value">
-		</ibm-progress-bar>
+		</cds-progress-bar>
 	`
 });
 export const Basic = Template.bind({});
@@ -57,13 +57,13 @@ Basic.argTypes = {
 const IndeterminateTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-progress-bar
+		<cds-progress-bar
 			[label]="label"
 			[helperText]="helperText"
 			[size]="size"
 			[status]="status"
 			[type]="type">
-		</ibm-progress-bar>
+		</cds-progress-bar>
 	`
 });
 export const Indeterminate = IndeterminateTemplate.bind({});

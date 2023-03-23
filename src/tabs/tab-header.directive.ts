@@ -11,7 +11,9 @@ import {
 
 import { Tab } from "./tab.component";
 
-@Directive({ selector: "[ibmTabHeader]" })
+@Directive({
+	selector: "[cdsTabHeader], [ibmTabHeader]"
+})
 export class TabHeader implements AfterViewInit {
 	@HostBinding("attr.tabIndex") get tabIndex() {
 		return this.active ? 0 : -1;

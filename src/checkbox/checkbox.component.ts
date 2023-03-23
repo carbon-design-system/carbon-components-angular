@@ -27,7 +27,7 @@ export enum CheckboxState {
  * [See demo](../../?path=/story/components-checkbox--basic)
  */
 @Component({
-	selector: "ibm-checkbox",
+	selector: "cds-checkbox, ibm-checkbox",
 	template: `
 		<div class="cds--form-item cds--checkbox-wrapper">
 			<input

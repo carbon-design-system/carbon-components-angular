@@ -8,14 +8,14 @@ import { Accordion } from "./accordion.component";
 
 @Component({
 	template: `
-	<ibm-accordion [size]="size">
-		<ibm-accordion-item
+	<cds-accordion [size]="size">
+		<cds-accordion-item
 		[disabled]="disabled"
 		[title]="title"
 		[skeleton]="skeleton">
 			test-content
-		</ibm-accordion-item>
-	<ibm-accordion>`
+		</cds-accordion-item>
+	<cds-accordion>`
 })
 class AccordionTest {
 	disabled = false;
@@ -80,15 +80,15 @@ describe("Accordion", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css("ibm-accordion .cds--accordion__content"));
+		debugElement = fixture.debugElement.query(By.css("cds-accordion .cds--accordion__content"));
 		expect(debugElement.nativeElement.textContent).toContain("test-content");
 	});
 
-	it("should set ibm-accordion item title to 'Section 1'", () => {
+	it("should set cds-accordion item title to 'Section 1'", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css("ibm-accordion .cds--accordion__title"));
+		debugElement = fixture.debugElement.query(By.css("cds-accordion .cds--accordion__title"));
 		expect(debugElement.nativeElement.textContent).toContain("Section 1");
 	});
 
@@ -96,7 +96,7 @@ describe("Accordion", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		debugElement = fixture.debugElement.query(By.css("ibm-accordion .cds--accordion"));
+		debugElement = fixture.debugElement.query(By.css("cds-accordion .cds--accordion"));
 		expect(debugElement.nativeElement.classList).toContain("cds--accordion--md");
 	});
 });

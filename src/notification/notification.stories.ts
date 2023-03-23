@@ -34,13 +34,13 @@ export default {
 const InlineTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-inline-notification [notificationObj]="{
+		<cds-inline-notification [notificationObj]="{
 			type: type,
 			title: 'Sample notification',
 			message: 'Sample error message',
 			showClose: showClose,
 			lowContrast: lowContrast}">
-		</ibm-inline-notification>
+		</cds-inline-notification>
 	`
 });
 export const InlineNotification = InlineTemplate.bind({});
@@ -66,14 +66,14 @@ InlineNotification.argTypes = {
 const ToastTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-toast [notificationObj]="{
+		<cds-toast [notificationObj]="{
 			type: type,
 			title: 'Sample toast',
 			subtitle: 'Sample subtitle message',
 			caption: 'Sample caption',
 			lowContrast: lowContrast,
 			showClose: showClose
-		}"></ibm-toast>
+		}"></cds-toast>
 	`
 });
 export const Toast = ToastTemplate.bind({});
@@ -87,7 +87,7 @@ Toast.argTypes = {
 const ActionableTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-actionable-notification
+		<cds-actionable-notification
 			[notificationObj]="{
 				type: type,
 				title: 'Sample notification',
@@ -97,7 +97,7 @@ const ActionableTemplate: Story = (args) => ({
 				actions: actions,
 				variant: variant
 			}">
-		</ibm-actionable-notification>
+		</cds-actionable-notification>
 	`
 });
 export const Actionable = ActionableTemplate.bind({});
@@ -164,7 +164,7 @@ export const DynamicInline = DynamicInlineTemplate.bind({});
 const CustomTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-toast [notificationObj]="{
+		<cds-toast [notificationObj]="{
 			type: 'error',
 			template: customToastContent,
 			title: 'Sample title',
@@ -174,8 +174,8 @@ const CustomTemplate: Story = (args) => ({
 			myCaption: 'Sample custom caption',
 			showClose: showClose
 		}">
-		</ibm-toast>
-		<ibm-notification [notificationObj]="{
+		</cds-toast>
+		<cds-notification [notificationObj]="{
 			type: 'warning',
 			template: customNotificationContent,
 			title: 'Sample notification',
@@ -184,8 +184,8 @@ const CustomTemplate: Story = (args) => ({
 			},
 			showClose: showClose
 		}">
-		</ibm-notification>
-		<ibm-actionable-notification [notificationObj]="{
+		</cds-notification>
+		<cds-actionable-notification [notificationObj]="{
 			type: 'success',
 			template: customActionableContent,
 			actionsTemplate: customActionableTrigger,
@@ -195,24 +195,24 @@ const CustomTemplate: Story = (args) => ({
 			},
 			showClose: showClose
 		}">
-		</ibm-actionable-notification>
+		</cds-actionable-notification>
 		<ng-template #customToastContent let-data>
-			<h3 ibmToastTitle>{{data.title}}</h3>
-			<p ibmToastSubtitle>{{data.myData.subtitle}}</p>
-			<p ibmToastCaption>{{data.myCaption}}</p>
+			<h3 cdsToastTitle>{{data.title}}</h3>
+			<p cdsToastSubtitle>{{data.myData.subtitle}}</p>
+			<p cdsToastCaption>{{data.myCaption}}</p>
 		</ng-template>
 		<ng-template #customNotificationContent let-data>
-			<p ibmNotificationTitle>{{data.title}}</p>
-			<p ibmNotificationSubtitle>{{data.myData.subtitle}}</p>
+			<p cdsNotificationTitle>{{data.title}}</p>
+			<p cdsNotificationSubtitle>{{data.myData.subtitle}}</p>
 		</ng-template>
 		<ng-template #customActionableContent let-data>
-			<p ibmActionableTitle>{{data.title}}</p>
-			<p ibmActionableSubtitle>{{data.myData.subtitle}}</p>
+			<p cdsActionableTitle>{{data.title}}</p>
+			<p cdsActionableSubtitle>{{data.myData.subtitle}}</p>
 		</ng-template>
 		<ng-template #customActionableTrigger>
 			<button
-				ibmActionableButton
-				ibmButton="ghost"
+				cdsActionableButton
+				cdsButton="ghost"
 				size="sm">
 				Action
 			</button>
@@ -220,12 +220,12 @@ const CustomTemplate: Story = (args) => ({
 	`,
 	encapsulation: ViewEncapsulation.None,
 	styles: [`
-		ibm-toast {
+		cds-toast {
 			width: 450px;
 			margin-bottom: 1rem;
 		}
 
-		ibm-notification {
+		cds-notification {
 			margin-bottom: 1rem;
 		}
 

@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmCol]"
+	selector: "[cdsCol], [ibmCol]"
 })
 export class ColumnDirective implements AfterViewInit, OnChanges {
 	@HostBinding("class")
@@ -31,7 +31,7 @@ export class ColumnDirective implements AfterViewInit, OnChanges {
 	 * - {[breakpoint]: {[start|end]: number}} - css only
 	 *
 	 * Example:
-	 * <div ibmCol [columnNumbers]={md: 3, lg: 4}></div>
+	 * <div cdsCol [columnNumbers]={md: 3, lg: 4}></div>
 	 */
 	@Input() columnNumbers = {};
 
@@ -43,7 +43,7 @@ export class ColumnDirective implements AfterViewInit, OnChanges {
 	 * - {[breakpoint]: number}
 	 *
 	 * Example:
-	 * <div ibmCol [offsets]={md: 3, lg: 4}></div>
+	 * <div cdsCol [offsets]={md: 3, lg: 4}></div>
 	 */
 	@Input() offsets = {};
 
@@ -138,7 +138,7 @@ export class ColumnDirective implements AfterViewInit, OnChanges {
 }
 
 @Directive({
-	selector: "[ibmRow]"
+	selector: "[cdsRow], [ibmRow]"
 })
 export class RowDirective {
 	@HostBinding("class.cds--row") baseClass = true;
@@ -150,7 +150,7 @@ export class RowDirective {
  * [See demo](../../?path=/story/components-grid--basic)
  */
 @Directive({
-	selector: "[ibmGrid]"
+	selector: "[cdsGrid], [ibmGrid]"
 })
 export class GridDirective implements AfterContentInit {
 	@Input() condensed = false;

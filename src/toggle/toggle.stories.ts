@@ -19,7 +19,7 @@ export default {
 const Template: Story<Toggle> = (args) => ({
 	props: args,
 	template: `
-		<ibm-toggle
+		<cds-toggle
 			[label]="label"
 			[hideLabel]="hideLabel"
 			[onText]="onText"
@@ -28,7 +28,7 @@ const Template: Story<Toggle> = (args) => ({
 			[checked]="checked"
 			(checkedChange)="onChange($event)"
 			[size]="size">
-		</ibm-toggle>
+		</cds-toggle>
 	`
 });
 export const Basic = Template.bind({});

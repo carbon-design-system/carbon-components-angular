@@ -16,7 +16,7 @@ import {
 	template: `
 		<form [formGroup]="formGroup">
 			<div style="width: 300px">
-				<ibm-dropdown
+				<cds-dropdown
 					[label]="label"
 					[helperText]="helperText"
 					[invalid]="invalid"
@@ -28,8 +28,8 @@ import {
 					(selected)="selected.emit($event)"
 					(onClose)="onClose.emit($event)"
 					formControlName="roles">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 		</form>
 		<br>

@@ -23,16 +23,16 @@ export default {
 const Template: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-tabs
+		<cds-tabs
 			[type]="type"
 			[followFocus]="followFocus"
 			[isNavigation]="isNavigation"
 			[cacheActive]="cacheActive">
-			<ibm-tab heading="one">Tab Content 1</ibm-tab>
-			<ibm-tab heading="two">Tab Content 2</ibm-tab>
-			<ibm-tab heading="three">Tab Content 3</ibm-tab>
-			<ibm-tab heading="three">Tab Content 3</ibm-tab>
-		</ibm-tabs>
+			<cds-tab heading="one">Tab Content 1</cds-tab>
+			<cds-tab heading="two">Tab Content 2</cds-tab>
+			<cds-tab heading="three">Tab Content 3</cds-tab>
+			<cds-tab heading="three">Tab Content 3</cds-tab>
+		</cds-tabs>
 	`
 });
 export const Basic = Template.bind({});
@@ -66,16 +66,16 @@ const WithTemplate: Story = (args) => ({
 				</svg>
 			</div>
 		</ng-template>
-		<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-			<ibm-tab
+		<cds-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<cds-tab
 				*ngFor="let item of data; let i = index;"
 				[heading]="customTabs"
 				title="Tab Content"
 				[context]="item">
 				Tab Content {{i + 1}}
-			</ibm-tab>
-			<ibm-tab [heading]="iconTab" title="Custom tab content">Tab Content Custom</ibm-tab>
-		</ibm-tabs>
+			</cds-tab>
+			<cds-tab [heading]="iconTab" title="Custom tab content">Tab Content Custom</cds-tab>
+		</cds-tabs>
 	`
 });
 export const With = WithTemplate.bind({});
@@ -97,24 +97,24 @@ const BeforeAndAfterTemplate: Story = (args) => ({
 	props: args,
 	template: `
 		<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
-		<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-			<ibm-tab heading="one">foo</ibm-tab>
-			<ibm-tab heading="two">bar</ibm-tab>
+		<cds-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<cds-tab heading="one">foo</cds-tab>
+			<cds-tab heading="two">bar</cds-tab>
 			<span before>content before</span>
-		</ibm-tabs>
+		</cds-tabs>
 		<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
-		<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-			<ibm-tab heading="one">foo</ibm-tab>
-			<ibm-tab heading="two">bar</ibm-tab>
+		<cds-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<cds-tab heading="one">foo</cds-tab>
+			<cds-tab heading="two">bar</cds-tab>
 			<span after>content after</span>
-		</ibm-tabs>
+		</cds-tabs>
 		<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
-		<ibm-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-			<ibm-tab heading="one">foo</ibm-tab>
-			<ibm-tab heading="two">bar</ibm-tab>
+		<cds-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<cds-tab heading="one">foo</cds-tab>
+			<cds-tab heading="two">bar</cds-tab>
 			<span before>content before</span>
 			<span after>content after</span>
-		</ibm-tabs>
+		</cds-tabs>
 	`
 });
 export const BeforeAndAfter = BeforeAndAfterTemplate.bind({});
@@ -154,14 +154,14 @@ TabheaderGroup.argTypes = {
 const SkeletonTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<ibm-tabs skeleton="true">
-			<ibm-tab></ibm-tab>
-			<ibm-tab></ibm-tab>
-		</ibm-tabs>
+		<cds-tabs skeleton="true">
+			<cds-tab></cds-tab>
+			<cds-tab></cds-tab>
+		</cds-tabs>
 
 		<div style="margin-top: 5rem">
-			<p>Tab skeleton component for ibm-tab-header-group:</p>
-			<ibm-tabs-skeleton></ibm-tabs-skeleton>
+			<p>Tab skeleton component for cds-tab-header-group:</p>
+			<cds-tabs-skeleton></cds-tabs-skeleton>
 		</div>
 	`
 });

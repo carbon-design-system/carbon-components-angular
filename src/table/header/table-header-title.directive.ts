@@ -1,7 +1,11 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import {
+	Directive,
+	HostBinding,
+	Input
+} from "@angular/core";
 
 @Directive({
-	selector: "[ibmTableHeaderTitle]"
+	selector: "[cdsTableHeaderTitle], [ibmTableHeaderTitle]"
 })
 export class TableHeaderTitle {
 	static counter = 0;

@@ -9,11 +9,11 @@ import {
  * Used to present a single navigation item in a pagination list
  *
  *  * ```html
- * <ibm-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></ibm-pagination-nav-item>
+ * <cds-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></cds-pagination-nav-item>
  * ```
  */
 @Component({
-	selector: "ibm-pagination-nav-item",
+	selector: "cds-pagination-nav-item, ibm-pagination-nav-item",
 	template: `
 		<li class="cds--pagination-nav__list-item">
 			<button

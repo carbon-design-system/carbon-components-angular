@@ -6,13 +6,13 @@ import { Tooltip } from "./tooltip.component";
 
 @Component({
 	template: `
-		<ibm-tooltip
+		<cds-tooltip
 			[isOpen]="isOpen"
 			[enterDelayMs]="enterDelayMs"
 			[leaveDelayMs]="leaveDelayMs"
 			[description]="description">
 			<button>A</button>
-		</ibm-tooltip>
+		</cds-tooltip>
 	`
 })
 class TestTooltipComponent {
@@ -34,7 +34,7 @@ describe("Tooltip", () => {
 		fixture = TestBed.createComponent(TestTooltipComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		tooltipEl = fixture.debugElement.query(By.css("ibm-tooltip"));
+		tooltipEl = fixture.debugElement.query(By.css("cds-tooltip"));
 	});
 
 	it("should create a tooltip component", () => {

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-accordion-item",
+	selector: "cds-accordion-item, ibm-accordion-item",
 	template: `
 		<button
 			type="button"
@@ -17,7 +17,7 @@ import {
 			[attr.aria-controls]="id"
 			(click)="toggleExpanded()"
 			class="cds--accordion__heading">
-			<svg ibmIcon="chevron--right" size="16" class="cds--accordion__arrow"></svg>
+			<svg cdsIcon="chevron--right" size="16" class="cds--accordion__arrow"></svg>
 			<p *ngIf="!isTemplate(title)"
 				class="cds--accordion__title"
 				[ngClass]="{

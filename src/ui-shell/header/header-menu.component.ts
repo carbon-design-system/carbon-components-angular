@@ -13,7 +13,7 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
  * Dropdown menu container for navigation items.
  */
 @Component({
-	selector: "ibm-header-menu",
+	selector: "cds-header-menu, ibm-header-menu",
 	template: `
 		<a
 			class="cds--header__menu-item cds--header__menu-title"
@@ -33,12 +33,12 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 		<div class="cds--header__menu" [attr.aria-label]="title">
 			<ng-content></ng-content>
 			<ng-container *ngFor="let headerItem of headerItems">
-				<ibm-header-item
+				<cds-header-item
 					[href]="headerItem.href"
 					[route]="headerItem.route"
 					[routeExtras]="headerItem.routeExtras">
 					{{ headerItem.content }}
-				</ibm-header-item>
+				</cds-header-item>
 			</ng-container>
 		</div>
 	`,

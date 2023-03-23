@@ -29,7 +29,7 @@ export default {
 			],
 			defaultValue: "primary",
 			control: { type: "select" },
-			name: "ibmButton"
+			name: "cdsButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
@@ -61,7 +61,7 @@ const Template: Story<Button> = (args) => ({
 	props: args,
 	template: `
 		<button
-			[ibmButton]="kind"
+			[cdsButton]="kind"
 			[size]="size"
 			[isExpressive]="isExpressive"
 			[disabled]="disabled"
@@ -80,7 +80,7 @@ const WithIconTemplate: Story<Button> = (args) => ({
 	props: args,
 	template: `
 		<button
-			[ibmButton]="kind"
+			[cdsButton]="kind"
 			[size]="size"
 			[isExpressive]="isExpressive"
 			[disabled]="disabled"
@@ -90,7 +90,7 @@ const WithIconTemplate: Story<Button> = (args) => ({
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
 			With icon
-			<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
+			<svg class="cds--btn__icon" cdsIcon="add" size="16"></svg>
 		</button>
 	`
 });

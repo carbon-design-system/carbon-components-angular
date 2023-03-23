@@ -17,22 +17,22 @@ export default {
 const Template: Story<ThemeDirective> = (args) => ({
 	props: args,
 	template: `
-		<div ibmTheme>
+		<div cdsTheme>
 			<div class="theme-section">
 				<p>White theme</p>
 			</div>
 		</div>
-		<div ibmTheme="g10">
+		<div cdsTheme="g10">
 			<div class="theme-section">
 				<p>G10 theme</p>
 			</div>
 		</div>
-		<div ibmTheme="g90">
+		<div cdsTheme="g90">
 			<div class="theme-section">
 				<p>G90 theme</p>
 			</div>
 		</div>
-		<div ibmTheme="g100">
+		<div cdsTheme="g100">
 			<div class="theme-section">
 				<p>G100 theme</p>
 			</div>
@@ -51,49 +51,49 @@ export const Basic = Template.bind({});
 const LayeredTemplate: Story<ThemeDirective> = (args) => ({
 	props: args,
 	template: `
-		<div ibmTheme>
+		<div cdsTheme>
 			<article class="theme-layer-example">
 				<header class="theme-layer-header">White theme</header>
 				<div class="theme-with-layer">Layer one</div>
-				<div ibmLayer>
+				<div cdsLayer>
 					<div class="theme-with-layer">Layer two</div>
-					<div ibmLayer>
+					<div cdsLayer>
 						<div class="theme-with-layer">Layer three</div>
 					</div>
 				</div>
 			</article>
 		</div>
-		<div ibmTheme="g10">
+		<div cdsTheme="g10">
 			<article class="theme-layer-example">
 				<header class="theme-layer-header">G10 theme</header>
 				<div class="theme-with-layer">Layer one</div>
-				<div ibmLayer>
+				<div cdsLayer>
 					<div class="theme-with-layer">Layer two</div>
-					<div ibmLayer>
+					<div cdsLayer>
 						<div class="theme-with-layer">Layer three</div>
 					</div>
 				</div>
 			</article>
 		</div>
-		<div ibmTheme="g90">
+		<div cdsTheme="g90">
 			<article class="theme-layer-example">
 				<header class="theme-layer-header">G90 theme</header>
 				<div class="theme-with-layer">Layer one</div>
-				<div ibmLayer>
+				<div cdsLayer>
 					<div class="theme-with-layer">Layer two</div>
-					<div ibmLayer>
+					<div cdsLayer>
 						<div class="theme-with-layer">Layer three</div>
 					</div>
 				</div>
 			</article>
 		</div>
-		<div ibmTheme="g100">
+		<div cdsTheme="g100">
 			<article class="theme-layer-example">
 				<header class="theme-layer-header">G100 theme</header>
 				<div class="theme-with-layer">Layer one</div>
-				<div ibmLayer>
+				<div cdsLayer>
 					<div class="theme-with-layer">Layer two</div>
-					<div ibmLayer>
+					<div cdsLayer>
 						<div class="theme-with-layer">Layer three</div>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 import { Directive, HostBinding, Input } from "@angular/core";
 
 @Directive({
-	selector: "[ibmTableHeaderDescription]"
+	selector: "[cdsTableHeaderDescription], [ibmTableHeaderDescription]"
 })
 export class TableHeaderDescription {
 	static counter = 0;

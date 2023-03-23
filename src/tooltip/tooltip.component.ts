@@ -14,7 +14,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
  * [See demo](../../?path=/story/components-tooltip--basic)
  */
 @Component({
-	selector: "ibm-tooltip",
+	selector: "cds-tooltip, ibm-tooltip",
 	template: `
 		<span #contentWrapper>
 			<ng-content></ng-content>

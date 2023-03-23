@@ -5,7 +5,7 @@ import * as fileType from "file-type";
 @Component({
 	selector: "app-drop-file-uploader",
 	template: `
-		<ibm-file-uploader
+		<cds-file-uploader
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
@@ -20,9 +20,9 @@ import * as fileType from "file-type";
 			[dropText]="dropText"
 			(filesChange)="onDropped($event)"
 			[disabled]="disabled">
-		</ibm-file-uploader>
+		</cds-file-uploader>
 		<button
-			ibmButton
+			cdsButton
 			*ngIf="files && files.size > 0"
 			(click)="onUpload()"
 			style="margin-top:20px">

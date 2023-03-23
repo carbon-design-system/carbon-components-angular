@@ -18,7 +18,7 @@ import { I18n } from "carbon-components-angular/i18n";
  * [See demo](../../?path=/story/components-ui-shell--header)
  */
 @Component({
-	selector: "ibm-header",
+	selector: "cds-header, ibm-header",
 	template: `
 		<header
 			class="cds--header"
@@ -30,7 +30,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				tabindex="0">
 				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 			</a>
-			<ng-content select="ibm-hamburger"></ng-content>
+			<ng-content select="cds-hamburger"></ng-content>
 			<ng-template
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
