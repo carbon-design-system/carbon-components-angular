@@ -79,6 +79,11 @@ export class ContainedList {
 	@HostBinding("class.cds--contained-list") containedListClass = true;
 
 	/**
+	 * Host binding host is inset class.
+	 */
+	@HostBinding("class.cds--contained-list--inset-rulers") isInsetClass = true;
+
+	/**
 	 * Host binding host on-page class.
 	 */
 	@HostBinding("class.cds--contained-list--on-page") get hostOnPageClass() {
