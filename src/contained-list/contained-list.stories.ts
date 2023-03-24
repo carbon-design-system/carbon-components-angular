@@ -9,7 +9,7 @@ import { TagModule } from "../tag";
 import { DialogModule } from "../dialog";
 import { TooltipModule } from "../tooltip";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
-import { ContainedListStoryModule } from "./contained-list-story.module";
+import { ContainedListStoryModule } from "./stories/contained-list-story.module";
 
 export default {
 	title: "Components/Contained List",
