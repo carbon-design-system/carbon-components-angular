@@ -20,8 +20,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 				'cds--contained-list--md': size === ContainedListSize.Medium,
 				'cds--contained-list--lg': size === ContainedListSize.Large,
 				'cds--contained-list--xl': size === ContainedListSize.ExtraLarge
-			}"
-		>
+			}">
 			<div class="cds--contained-list__header">
 				<div [id]="labelId" class="cds--contained-list__label">
 					<ng-container *ngIf="!isTemplate(label)">{{ label }}</ng-container>
