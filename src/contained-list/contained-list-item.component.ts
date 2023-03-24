@@ -23,7 +23,8 @@ import {
 		<ng-container *ngIf="!clickable">
 			<div class="cds--contained-list-item__content">
 				<div *ngIf="icon" class="cds--contained-list-item__icon">
-					<ng-template [ngTemplateOutlet]="icon"></ng-template>
+					<ng-container *ngIf="!isTemplate(icon)"><svg [ibmIcon]="icon" size="16"></svg></ng-container>
+					<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
 				</div>
 				<ng-content></ng-content>
 			</div>
@@ -58,8 +59,12 @@ export class ContainedListItem {
 
 	/**
 	 * Provide an optional icon to render in front of the item's content.
+	 *
+	 * Note that if you intend to use this as a string ref, it's important to remember
+	 * to register the icon that you wish to add. In this case, it's also worth noting
+	 * that only icons with a size of 16 are currently supported.
 	 */
-	@Input() icon: TemplateRef<any>;
+	@Input() icon: TemplateRef<any> | string;
 
 	/**
 	 * Emits click event.
@@ -90,7 +95,11 @@ export class ContainedListItem {
 		return !!this.icon;
 	}
 
-	onClick() {
+	public onClick() {
 		this.click.emit();
+	}
+
+	public isTemplate(value: string | TemplateRef<any>) {
+		return value instanceof TemplateRef;
 	}
 }

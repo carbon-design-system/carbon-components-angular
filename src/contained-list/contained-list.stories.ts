@@ -202,19 +202,11 @@ const withIconsTemplate: Story<ContainedList> = () => ({
 			<svg ibmIcon="wheat" size="16"></svg>
 		</ng-template>
 
-		<ng-template #strawberry let-icon>
-			<svg ibmIcon="strawberry" size="16"></svg>
-		</ng-template>
-
-		<ng-template #fish let-icon>
-			<svg ibmIcon="fish" size="16"></svg>
-		</ng-template>
-
 		<cds-contained-list label="List title">
 			<cds-contained-list-item [icon]="apple">List item</cds-contained-list-item>
 			<cds-contained-list-item [icon]="wheat">List item</cds-contained-list-item>
-			<cds-contained-list-item [icon]="strawberry">List item</cds-contained-list-item>
-			<cds-contained-list-item [icon]="fish">List item</cds-contained-list-item>
+			<cds-contained-list-item icon="strawberry">List item</cds-contained-list-item>
+			<cds-contained-list-item icon="fish">List item</cds-contained-list-item>
 		</cds-contained-list>
 	`
 });

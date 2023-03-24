@@ -2,9 +2,10 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { ButtonModule } from "../button";
-import { IconModule } from "../icon";
+import { IconModule, IconService } from "../icon";
 import { ContainedListItem } from "./contained-list-item.component";
-
+import Apple16 from "@carbon/icons/es/apple/16";
+import Fish16 from "@carbon/icons/es/fish/16";
 import { ContainedList } from "./contained-list.component";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 
@@ -25,12 +26,13 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 		</ng-template>
 
 		<ng-template #icon>
-			<svg ibmIcon="add" size="16"></svg>
+			<svg ibmIcon="fish" size="16"></svg>
 		</ng-template>
 
 		<cds-contained-list [label]="label" [action]="action">
 			<cds-contained-list-item>List item</cds-contained-list-item>
 			<cds-contained-list-item [icon]="icon">List item with icon</cds-contained-list-item>
+			<cds-contained-list-item icon="apple">List item with string ref icon</cds-contained-list-item>
 			<cds-contained-list-item [action]="action">List item with action</cds-contained-list-item>
 			<cds-contained-list-item #clickableListItem [clickable]="true">
 				<ng-container ibmContainedListItemButton>Clickable list item</ng-container>
@@ -38,7 +40,11 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 		</cds-contained-list>
 	`
 })
-class WrapperComponent {}
+class WrapperComponent {
+	constructor(private iconService: IconService) {
+		this.iconService.registerAll([Apple16, Fish16]);
+	}
+}
 
 describe("ContainedList", () => {
 	let component: ContainedList;
@@ -127,7 +133,15 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const iconElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(2) svg"));
+			const iconElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(2) svg[ibmIcon='fish']"));
+			expect(iconElement).toBeTruthy();
+		});
+
+		it("should render the icon", () => {
+			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
+			wrapperFixture.detectChanges();
+
+			const iconElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
 			expect(iconElement).toBeTruthy();
 		});
 
@@ -135,7 +149,7 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const actionElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(3) ibm-icon-button"));
+			const actionElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(4) ibm-icon-button"));
 			expect(actionElement).toBeTruthy();
 		});
 
@@ -143,7 +157,7 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const clickableListItemElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(4)"));
+			const clickableListItemElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(5)"));
 			expect(clickableListItemElement.nativeElement).toHaveClass("cds--contained-list-item--clickable");
 
 			const buttonElement = clickableListItemElement.nativeElement.querySelector("button");
