@@ -266,8 +266,7 @@ const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
 		</ibm-contained-list>
 	`
 });
-export const withInteractiveItemsAndActions =
-	withInteractiveItemsAndActionsTemplate.bind({});
+export const withInteractiveItemsAndActions = withInteractiveItemsAndActionsTemplate.bind({});
 
 const withLayerTemplate: Story<ContainedList> = () => ({
 	template: `
