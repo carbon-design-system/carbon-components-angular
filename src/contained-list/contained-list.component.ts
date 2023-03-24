@@ -8,7 +8,7 @@ import {
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 
 @Component({
-	selector: "ibm-contained-list",
+	selector: "cds-contained-list, ibm-contained-list",
 	template: `
 		<div
 			class="cds--contained-list"

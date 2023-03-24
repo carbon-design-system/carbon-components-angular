@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-contained-list-item",
+	selector: "cds-contained-list-item, ibm-contained-list-item",
 	template: `
 		<ng-container *ngIf="clickable">
 			<button

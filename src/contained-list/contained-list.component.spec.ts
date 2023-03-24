@@ -28,14 +28,14 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			<svg ibmIcon="add" size="16"></svg>
 		</ng-template>
 
-		<ibm-contained-list [label]="label" [action]="action">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item [icon]="icon">List item with icon</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="action">List item with action</ibm-contained-list-item>
-			<ibm-contained-list-item #clickableListItem [clickable]="true">
+		<cds-contained-list [label]="label" [action]="action">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item [icon]="icon">List item with icon</cds-contained-list-item>
+			<cds-contained-list-item [action]="action">List item with action</cds-contained-list-item>
+			<cds-contained-list-item #clickableListItem [clickable]="true">
 				<ng-container ibmContainedListItemButton>Clickable list item</ng-container>
-			</ibm-contained-list-item>
-		</ibm-contained-list>
+			</cds-contained-list-item>
+		</cds-contained-list>
 	`
 })
 class WrapperComponent {}

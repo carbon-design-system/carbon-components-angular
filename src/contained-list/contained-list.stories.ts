@@ -52,18 +52,18 @@ export default {
 
 const basicTemplate: Story<ContainedList> = () => ({
 	template: `
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list label="List title">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+		</cds-contained-list>
+		<cds-contained-list label="List title">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const basic = basicTemplate.bind({});
@@ -88,11 +88,11 @@ const usageExamplesTemplate: Story<ContainedList> = () => ({
 				</ibm-overflow-menu>
 			</ibm-tooltip>
 		</ng-template>
-		<ibm-contained-list label="List title" [action]="add">
-			<ibm-contained-list-item [action]="overflowMenu">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="overflowMenu">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="overflowMenu">List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list label="List title" [action]="add">
+			<cds-contained-list-item [action]="overflowMenu">List item</cds-contained-list-item>
+			<cds-contained-list-item [action]="overflowMenu">List item</cds-contained-list-item>
+			<cds-contained-list-item [action]="overflowMenu">List item</cds-contained-list-item>
+		</cds-contained-list>
 
 		<ng-template #addGhost let-item>
 			<ibm-icon-button
@@ -103,71 +103,71 @@ const usageExamplesTemplate: Story<ContainedList> = () => ({
 				<svg class="cds--btn__icon" ibmIcon="add" size="16"></svg>
 			</ibm-icon-button>
 		</ng-template>
-		<ibm-contained-list label="List title" [action]="addGhost">
-			<ibm-contained-list-item>
+		<cds-contained-list label="List title" [action]="addGhost">
+			<cds-contained-list-item>
 				List item
 				<br />
 				<span class="cds--label cds--label--no-margin">
 					Description text
 				</span>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item>
+			</cds-contained-list-item>
+			<cds-contained-list-item>
 				List item
 				<br />
 				<span class="cds--label cds--label--no-margin">
 					Description text
 				</span>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item>
+			</cds-contained-list-item>
+			<cds-contained-list-item>
 				List item
 				<br />
 				<span class="cds--label cds--label--no-margin">
 					Description text
 				</span>
-			</ibm-contained-list-item>
-		</ibm-contained-list>
+			</cds-contained-list-item>
+		</cds-contained-list>
 
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item>
+		<cds-contained-list label="List title">
+			<cds-contained-list-item>
 				<div style="display: 'grid'; gridTemplateColumns: repeat(3, 1fr); columnGap: 1rem">
 					<span>List item</span>
 					<span>List item details</span>
 					<span>List item details</span>
 				</div>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item>
+			</cds-contained-list-item>
+			<cds-contained-list-item>
 				<div style="display: 'grid'; gridTemplateColumns: repeat(3, 1fr); columnGap: 1rem">
 					<span>List item</span>
 					<span>List item details</span>
 					<span>List item details</span>
 				</div>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item>
+			</cds-contained-list-item>
+			<cds-contained-list-item>
 				<div style="display: 'grid'; gridTemplateColumns: repeat(3, 1fr); columnGap: 1rem">
 					<span>List item</span>
 					<span>List item details</span>
 					<span>List item details</span>
 				</div>
-			</ibm-contained-list-item>
-		</ibm-contained-list>
+			</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const usageExamples = usageExamplesTemplate.bind({});
 
 const disclosedTemplate: Story<ContainedList> = () => ({
 	template: `
-		<ibm-contained-list label="List title" kind="disclosed">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
-		<ibm-contained-list label="List title" kind="disclosed">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list label="List title" kind="disclosed">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+		</cds-contained-list>
+		<cds-contained-list label="List title" kind="disclosed">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const disclosed = disclosedTemplate.bind({});
@@ -182,12 +182,12 @@ const withActionsTemplate: Story<ContainedList> = () => ({
 				<svg ibmIcon="subtract--alt" size="16" class="cds--btn__icon"></svg>
 			</button>
 		</ng-template>
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [action]="action">List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list label="List title">
+			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
+			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
+			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
+			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const withActions = withActionsTemplate.bind({});
@@ -210,32 +210,32 @@ const withIconsTemplate: Story<ContainedList> = () => ({
 			<svg ibmIcon="fish" size="16"></svg>
 		</ng-template>
 
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item [icon]="apple">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [icon]="wheat">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [icon]="strawberry">List item</ibm-contained-list-item>
-			<ibm-contained-list-item [icon]="fish">List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list label="List title">
+			<cds-contained-list-item [icon]="apple">List item</cds-contained-list-item>
+			<cds-contained-list-item [icon]="wheat">List item</cds-contained-list-item>
+			<cds-contained-list-item [icon]="strawberry">List item</cds-contained-list-item>
+			<cds-contained-list-item [icon]="fish">List item</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const withIcons = withIconsTemplate.bind({});
 
 const withInteractiveItemsTemplate: Story<ContainedList> = () => ({
 	template: `
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item [clickable]="true">
+		<cds-contained-list label="List title">
+			<cds-contained-list-item [clickable]="true">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true" [disabled]="true">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true" [disabled]="true">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-		</ibm-contained-list>
+			</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const withInteractiveItems = withInteractiveItemsTemplate.bind({});
@@ -250,20 +250,20 @@ const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
 				<svg ibmIcon="subtract--alt" size="16" class="cds--btn__icon"></svg>
 			</button>
 		</ng-template>
-		<ibm-contained-list label="List title">
-			<ibm-contained-list-item [clickable]="true" [action]="action">
+		<cds-contained-list label="List title">
+			<cds-contained-list-item [clickable]="true" [action]="action">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true" [action]="action">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true" [action]="action">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true" [action]="action">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true" [action]="action">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-			<ibm-contained-list-item [clickable]="true" [action]="action">
+			</cds-contained-list-item>
+			<cds-contained-list-item [clickable]="true" [action]="action">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
-			</ibm-contained-list-item>
-		</ibm-contained-list>
+			</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const withInteractiveItemsAndActions = withInteractiveItemsAndActionsTemplate.bind({});
@@ -271,23 +271,23 @@ export const withInteractiveItemsAndActions = withInteractiveItemsAndActionsTemp
 const withLayerTemplate: Story<ContainedList> = () => ({
 	template: `
 		<div ibmStack="vertical" [gap]="5">
-			<ibm-contained-list label="List title">
-				<ibm-contained-list-item>List item</ibm-contained-list-item>
-				<ibm-contained-list-item>List item</ibm-contained-list-item>
-				<ibm-contained-list-item>List item</ibm-contained-list-item>
-				<ibm-contained-list-item>List item</ibm-contained-list-item>
-			</ibm-contained-list>
+			<cds-contained-list label="List title">
+				<cds-contained-list-item>List item</cds-contained-list-item>
+				<cds-contained-list-item>List item</cds-contained-list-item>
+				<cds-contained-list-item>List item</cds-contained-list-item>
+				<cds-contained-list-item>List item</cds-contained-list-item>
+			</cds-contained-list>
 			<div [ibmLayer]="1">
 				<div ibmStack="vertical" [gap]="5">
-					<ibm-contained-list label="List title">
-						<ibm-contained-list-item>List item</ibm-contained-list-item>
-						<ibm-contained-list-item>List item</ibm-contained-list-item>
-					</ibm-contained-list>
+					<cds-contained-list label="List title">
+						<cds-contained-list-item>List item</cds-contained-list-item>
+						<cds-contained-list-item>List item</cds-contained-list-item>
+					</cds-contained-list>
 					<div [ibmLayer]="2">
-						<ibm-contained-list label="List title">
-							<ibm-contained-list-item>List item</ibm-contained-list-item>
-							<ibm-contained-list-item>List item</ibm-contained-list-item>
-						</ibm-contained-list>
+						<cds-contained-list label="List title">
+							<cds-contained-list-item>List item</cds-contained-list-item>
+							<cds-contained-list-item>List item</cds-contained-list-item>
+						</cds-contained-list>
 					</div>
 				</div>
 			</div>
@@ -304,12 +304,12 @@ const withListTitleDecoratorsTemplate: Story<ContainedList> = () => ({
 		    	<ibm-tag size="sm">4</ibm-tag>
 		    </div>
 		</ng-template>
-		<ibm-contained-list [label]="label">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
+		<cds-contained-list [label]="label">
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+			<cds-contained-list-item>List item</cds-contained-list-item>
+		</cds-contained-list>
 	`
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
