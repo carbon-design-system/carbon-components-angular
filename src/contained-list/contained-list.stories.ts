@@ -315,19 +315,3 @@ const withListTitleDecoratorsTemplate: Story<ContainedList> = () => ({
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
 
-const playgroundTemplate: Story<ContainedList> = (args) => ({
-	props: args,
-	template: `
-		<ibm-contained-list [label]="label" [kind]="kind" [size]="size" [isInset]="isInset">
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-			<ibm-contained-list-item>List item</ibm-contained-list-item>
-		</ibm-contained-list>
-	`
-});
-export const playground = playgroundTemplate.bind({});
