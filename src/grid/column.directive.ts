@@ -89,7 +89,6 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 		try {
 			this._columnClasses = [];
 			const columnKeys = Object.keys(this.columnNumbers);
-			console.log(columnKeys);
 
 			// Assign classes based on the type of grid used.
 			if (this.isCssGrid) {
@@ -130,7 +129,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 				});
 
 				Object.keys(this.offsets).forEach(key => {
-					this._columnClasses.push(`cds--${key}:col-start${this.offsets[key]}`);
+					this._columnClasses.push(`cds--${key}:col-start${this.offsets[key] + 1}`);
 				});
 			} else {
 				// Set column classes for flex grid
@@ -147,7 +146,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 				});
 
 				Object.keys(this.offsets).forEach(key => {
-					this._columnClasses.push(`cds--start-${key}-${this.offsets[key] + 1}`);
+					this._columnClasses.push(`cds--offset-${key}-${this.offsets[key]}`);
 				});
 			}
 		} catch (err) {
