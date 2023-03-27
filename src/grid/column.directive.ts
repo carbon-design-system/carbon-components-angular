@@ -128,6 +128,10 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 						this._columnClasses.push(`cds--${key}:col-span-${this.columnNumbers[key]}`);
 					}
 				});
+
+				Object.keys(this.offsets).forEach(key => {
+					this._columnClasses.push(`cds--${key}:col-start${this.offsets[key]}`);
+				});
 			} else {
 				// Set column classes for flex grid
 				if (columnKeys.length <= 0) {
