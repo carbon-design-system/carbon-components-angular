@@ -66,12 +66,13 @@ storiesOf("Components|Toggle", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22Toggle%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
-			%3A%22toggle%22%2C%22header%22%3A%22Toggle%22%2C%22offText%22%3A%22Off%22%2C&#13;
-			%22onText%22%3A%22On%22%2C%22disabled%22%3Afalse%2C%22checked%22%3Afalse%2C&#13;
-			%22size%22%3A%22md%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22&#13;
-			name%22%3A%22toggle-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22id%22%3A%&#13;
+			22ToggleFragment%22%2C%22title%22%3A%22New%20fragment%22%2C%22data%22%3A%&#13;
+			7B%22items%22%3A[%7B%22type%22%3A%22toggle%22%2C%22header%22%3A%22Toggle&#13;
+			%22%2C%22offText%22%3A%22Off%22%2C%22onText%22%3A%22On%22%2C%22disabled&#13;
+			%22%3Afalse%2C%22checked%22%3Afalse%2C%22size%22%3A%22md%22%2C%22id%22%&#13;
+			3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22toggle-2%22%7D%7D]%&#13;
+			2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A[]%7D" target="_blank">
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
