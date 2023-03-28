@@ -80,7 +80,7 @@
     "@angular/platform-browser-dynamic": "13.3.12",
     "@angular/router": "13.3.12",
     "@babel/core": "7.9.6",
-    "@carbon/styles": "1.20.0",
+    "@carbon/styles": "^1.25.0",
     "@carbon/themes": "11.15.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",

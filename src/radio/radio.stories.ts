@@ -30,6 +30,11 @@ const Template: Story<Radio> = (args) => ({
 		<legend class="cds--label">{{label}}</legend>
 		<cds-radio-group
 			[disabled]="disabled"
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			aria-label="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
@@ -47,7 +52,12 @@ const Template: Story<Radio> = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	label: "Radio button heading"
+	label: "Radio button heading",
+	helperText: "Helper text message goes here and can wrap lines",
+	invalid: false,
+	invalidText: "Error message goes here and can wrap lines",
+	warn: false,
+	warnText: "Warning message goes here and can wrap lines"
 };
 Basic.argTypes = {
 	onChange: {

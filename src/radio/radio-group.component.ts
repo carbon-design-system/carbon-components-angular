@@ -9,7 +9,8 @@ import {
 	QueryList,
 	HostBinding,
 	AfterViewInit,
-	HostListener
+	HostListener,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
@@ -51,9 +52,39 @@ import { RadioChange } from "./radio-change.class";
 			[attr.aria-labelledby]="ariaLabelledby"
 			[ngClass]="{
 				'cds--radio-button-group--vertical': orientation === 'vertical',
-				'cds--radio-button-group--label-left': labelPlacement === 'left'
+				'cds--radio-button-group--label-left': labelPlacement === 'left',
+				'cds--radio-button-group--invalid' : !warn && invalid,
+				'cds-radio-button-group--warning': !invalid && warn
 			}">
 			<ng-content></ng-content>
+		</div>
+		<div class="cds--radio-button__validation-msg">
+			<div
+				*ngIf="helperText && !invalid && !warn"
+				class="cds--form__helper-text"
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+			</div>
+			<div *ngIf="!warn && invalid">
+				<svg
+					cdsIcon="warning--filled"
+					size="16"
+					class="cds--radio-button__invalid-icon"
+					>
+				</svg>
+				<ng-container *ngIf="!isTemplate(invalidText)" class="cds--form-requirement">{{ invalidText }}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn">
+				<svg
+					cdsIcon="warning--alt--filled"
+					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
+					size="16">
+				</svg>
+				<ng-container *ngIf="!isTemplate(warnText)" class="cds--form-requirement">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
 		</div>
 	`,
 	providers: [
@@ -79,11 +110,37 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input() ariaLabel: string;
+
 	/**
 	 * Used to set the `aria-labelledby` attribute on the radio group element.
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input() ariaLabelledby: string;
+
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+
+	/**
+	 * Set to `true` to show the invalid state.
+	 */
+	@Input() invalid = false;
+
+	/**
+	 * Value displayed if combobox is in an invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+
+	/**
+	* Set to `true` to show a warning (contents set by warnText)
+	*/
+	@Input() warn = false;
+
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
@@ -364,5 +421,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 				this.emitChangeEvent(event);
 			});
 		});
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
