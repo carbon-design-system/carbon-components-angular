@@ -8,6 +8,7 @@ import { LayoutModule } from "../layout";
 import { TagModule } from "../tag";
 import { DialogModule } from "../dialog";
 import { TooltipModule } from "../tooltip";
+import { SearchModule } from "../search";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 import { ContainedListStoryModule } from "./stories/contained-list-story.module";
 
@@ -24,7 +25,8 @@ export default {
 				LayoutModule,
 				TagModule,
 				DialogModule,
-				TooltipModule
+				TooltipModule,
+				SearchModule
 			]
 		})
 	],
@@ -242,7 +244,10 @@ const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
 				<svg ibmIcon="subtract--alt" size="16" class="cds--btn__icon"></svg>
 			</button>
 		</ng-template>
-		<cds-contained-list label="List title">
+		<ng-template #search>
+			<cds-search [expandable]="true" size="lg"></cds-search>
+		</ng-template>
+		<cds-contained-list label="List title" [action]="search">
 			<cds-contained-list-item [clickable]="true" [action]="action">
 				<ng-container ibmContainedListItemButton>List item</ng-container>
 			</cds-contained-list-item>
