@@ -19,28 +19,25 @@ import { ContextMenuComponent } from "./context-menu.component";
 @Component({
 	selector: "cds-context-menu-item, ibm-context-menu-item",
 	template: `
-		<div class="cds--context-menu-option__content cds--menu-option__content">
-			<div class="cds--context-menu-option__icon cds--menu-option__icon">
-				<svg *ngIf="selectable && checked" cdsIcon="checkmark" size="16"></svg>
-				<svg *ngIf="!selectable && icon" [cdsIcon]="icon" size="16"></svg>
-			</div>
-			<span class="cds--context-menu-option__label cds--menu-option__label" [title]="label">{{label}}</span>
-			<div class="cds--context-menu-option__info cds--menu-option__info">
-				{{info}}
-				<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
-			</div>
+		<div class="cds--menu-item__icon">
+			<svg *ngIf="selectable && checked" cdsIcon="checkmark" size="16"></svg>
+			<svg *ngIf="!selectable && icon" [cdsIcon]="icon" size="16"></svg>
+		</div>
+		<div class="cds--menu-item__label" [title]="label">{{label}}</div>
+		<div class="cds--menu-item__shortcut">
+			<ng-container *ngIf="info">{{info}}</ng-container>
+			<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
 		</div>
 		<ng-content></ng-content>
 	`,
-	styles: [`
+		styles: [`
 		:host {
-			display: list-item;
-			list-style: none;
+			grid-template-columns: 1rem 1fr max-content;
 		}
 	`]
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
-	@HostBinding("class.cds--menu-option") optionClass = true;
+	@HostBinding("class.cds--menu-item") optionClass = true;
 	@HostBinding("attr.role") role = "menuitem";
 	@HostBinding("attr.tabindex") tabindex = -1;
 	@HostBinding("attr.aria-haspopup") ariaHasPopup = null;
@@ -106,7 +103,6 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 			this.hasChildren = true;
 			this.ariaHasPopup = true;
 			this.ariaExpanded = false;
-			this.childContextMenu.root = false;
 		}
 	}
 
@@ -144,7 +140,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 		if (this.childContextMenu) {
 			this.childContextMenu.open = true;
 			this.ariaExpanded = true;
-			const dimensions = this.getDimensions();
+			const dimensions = this.elementRef.nativeElement.getBoundingClientRect();
 			this.childContextMenu.position.left = dimensions.left + dimensions.width;
 			// subtract 4px to account for margins
 			this.childContextMenu.position.top = dimensions.top - 4;
@@ -183,12 +179,6 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 
 	focusItem() {
 		this.elementRef.nativeElement.focus();
-	}
-
-	getDimensions() {
-		const element: HTMLElement = this.elementRef.nativeElement
-			.querySelector(".cds--context-menu-option__content, .cds--menu-option__content");
-		return element.getBoundingClientRect();
 	}
 
 	ngOnDestroy() {

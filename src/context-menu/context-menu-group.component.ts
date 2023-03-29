@@ -17,16 +17,12 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 	template: `
 		<ng-content></ng-content>
 	`,
-	styles: [`
-		:host {
-			display: list-item;
-			list-style: none;
-		}
-	`],
 	providers: [ContextMenuSelectionService]
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@HostBinding("attr.role") role = "group";
+	@HostBinding("class.cds--menu-item-radio-group") get radioGroup() {  return this.type === "radio"; }
+	@HostBinding("class.cds--menu-item-group") get group() { return this.type === "checkbox"; }
 
 	@HostBinding("attr.aria-label") @Input() label = null;
 	@Input() value: any[] = [];
