@@ -7,7 +7,10 @@ import {
 	flush
 } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
+
+import { ColumnDirective } from "./column.directive";
+import { RowDirective } from "./row.directive";
+import { GridDirective } from "./grid.directive";
 
 @Component({
 	selector: "cds-test-grid",
@@ -147,7 +150,6 @@ describe("GridDirective", () => {
 				By.directive(ColumnDirective)
 			);
 
-			tick(100);
 			fixture.detectChanges();
 			fixture.whenStable().then(() => {
 				expect(directiveEl).not.toBeNull();
