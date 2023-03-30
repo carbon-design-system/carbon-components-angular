@@ -15,7 +15,6 @@ import {
 	OnInit,
 	ChangeDetectorRef
 } from "@angular/core";
-import { EventService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 import { Tab } from "./tab.component";
 
@@ -228,7 +227,6 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnIni
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
 		protected i18n: I18n
 	) { }
 
