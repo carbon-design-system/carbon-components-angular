@@ -30,7 +30,7 @@ import { ContextMenuComponent } from "./context-menu.component";
 		</div>
 		<ng-content></ng-content>
 	`,
-		styles: [`
+	styles: [`
 		:host {
 			grid-template-columns: 1rem 1fr max-content;
 		}
