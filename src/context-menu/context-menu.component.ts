@@ -28,7 +28,7 @@ export class ContextMenuComponent implements OnChanges {
 
 	@HostBinding("class.cds--menu") contextMenu = true;
 	@HostBinding("class.cds--menu--open") get contextMenuOpen() { return this.open; }
-	@HostBinding("class.cds--menu--shown") get showMenu() { return this. open; }
+	@HostBinding("class.cds--menu--shown") get showMenu() { return this.open; }
 	@HostBinding("attr.role") role = "menu";
 	@HostBinding("attr.tabindex") tabindex = "-1";
 	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
@@ -50,9 +50,11 @@ export class ContextMenuComponent implements OnChanges {
 
 	focusMenu() {
 		// wait until the next tick to let the DOM settle before changing the focus
-		const list: HTMLElement = this.elementRef.nativeElement;
-		const firstOption = list.querySelector(".cds--menu-item") as HTMLElement;
-		firstOption.focus();
+		setTimeout(() => {
+			const list: HTMLElement = this.elementRef.nativeElement;
+			const firstOption = list.querySelector(".cds--menu-item") as HTMLElement;
+			firstOption.focus();
+		});
 	}
 
 	@HostListener("keydown", ["$event"])
