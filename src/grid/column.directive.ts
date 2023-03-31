@@ -65,7 +65,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 
 	ngOnInit() {
 		if (this.gridService) {
-			this.gridService.gridObservable.subscribe((isCssGrid: boolean) => {
+			this.subscription = this.gridService.gridObservable.subscribe((isCssGrid: boolean) => {
 				this.isCssGrid = isCssGrid;
 				this.updateColumnClasses();
 			});
