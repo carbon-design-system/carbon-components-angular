@@ -59,13 +59,6 @@ import { RadioChange } from "./radio-change.class";
 			<ng-content></ng-content>
 		</div>
 		<div class="cds--radio-button__validation-msg">
-			<div
-				*ngIf="helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
 			<div *ngIf="!warn && invalid">
 				<svg
 					cdsIcon="warning--filled"
@@ -85,6 +78,13 @@ import { RadioChange } from "./radio-change.class";
 				<ng-container *ngIf="!isTemplate(warnText)" class="cds--form-requirement">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
+		</div>
+		<div
+			*ngIf="helperText && !invalid && !warn"
+			class="cds--form__helper-text"
+			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 	`,
 	providers: [
