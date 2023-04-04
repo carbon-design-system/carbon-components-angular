@@ -5,3 +5,147 @@ html {
 	height: 100%;
 	@include styles.theme(styles.$white);
 }
+
+/*
+ * Story batch styling, we are wrapping the storybook decorator function to ensure
+ * styles do not leak to other components
+ *
+ * To enable this in stories, pass a component wrapper decorator function in Meta as such:
+ * ```
+ * componentWrapperDecorator((story) => `<div class="css-grid-story">${story}</div>`)
+ * ```
+ *
+ * Styling retrieved from:
+ * https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/Grid
+ */
+ // Css Grid
+.css-grid-story {
+	.cds--css-grid {
+		background-color: styles.$blue-20;
+		outline: 1px dashed styles.$blue-40;
+	}
+
+	.cds--css-grid p {
+		@include styles.type-style('code-02');
+	}
+
+	.cds--css-grid p:first-of-type {
+		margin-top: 0;
+	}
+
+	.cds--css-grid.cds--css-grid--narrow {
+		background-color: #d6f9f9;
+		outline: 1px dashed styles.$green-40;
+	}
+
+	.cds--css-grid.cds--css-grid--condensed {
+		background-color: styles.$purple-10;
+		outline: 1px dashed styles.$purple-40;
+	}
+
+	.cds--subgrid {
+		outline: 1px solid black;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		position: relative;
+		background: #eef4ff;
+	}
+
+	.cds--css-grid,
+	.cds--subgrid--wide {
+		--grid-mode-color: #97c1ff;
+	}
+
+	.cds--css-grid--narrow,
+	.cds--subgrid--narrow {
+		--grid-mode-color: #20d5d2;
+		background: styles.$green-10;
+	}
+
+	.cds--css-grid--condensed,
+	.cds--subgrid--condensed {
+		--grid-mode-color: #bb8eff;
+		background: styles.$purple-10;
+	}
+
+	.cds--subgrid--narrow {
+		background: #d6f9f9;
+	}
+
+	.cds--subgrid--condensed {
+		background: #f7f2ff;
+	}
+
+	.cds--subgrid::before {
+		@include styles.type-style('code-01');
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		display: block;
+		content: 'subgrid';
+		background: var(--grid-mode-color, #97c1ff);
+		color: styles.$black;
+		padding: 0.125rem 0.25rem;
+	}
+
+	.cds--css-grid-column {
+		--border-color: #97c1ff;
+
+		background: white;
+		box-shadow: 0 0 0 1px var(--border-color);
+		min-height: 80px;
+	}
+
+	.cds--css-grid--narrow .cds--css-grid-column,
+	.cds--subgrid--narrow .cds--css-grid-column {
+		--border-color: #20d5d2;
+	}
+
+	.cds--css-grid--condensed .cds--css-grid-column,
+	.cds--subgrid--condensed .cds--css-grid-column {
+		--border-color: #bb8eff;
+	}
+}
+
+// Flex Grid
+.flex-grid-story {
+	.cds--grid [class*='col'] {
+		background-color: styles.$blue-20;
+		outline: 1px dashed styles.$blue-40;
+		min-height: 80px;
+	}
+
+	.inside {
+		background-color: styles.$blue-10;
+		height: 100%;
+		width: inherit;
+	}
+
+	.cds--grid--condensed,
+	.cds--row--condensed {
+		background-color: styles.$blue-20;
+		color: styles.$gray-10;
+	}
+
+	.cds--grid--condensed .inside,
+	.cds--row--condensed .inside {
+		background-color: styles.$teal-10;
+	}
+
+	.cds--grid--condensed [class*='col'],
+	.cds--row--condensed [class*='col'] {
+		background-color: styles.$teal-20;
+		outline: 1px dashed styles.$teal-40;
+	}
+
+	.cds--grid--narrow .inside,
+	.cds--row--narrow .inside {
+		background-color: styles.$teal-10;
+	}
+
+	.cds--grid--narrow [class*='col'],
+	.cds--row--narrow [class*='col'] {
+		background-color: styles.$teal-20;
+		outline: 1px dashed styles.$teal-40;
+	}
+}

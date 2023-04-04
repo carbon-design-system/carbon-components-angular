@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
+import { ColumnDirective } from "./column.directive";
+import { RowDirective } from "./row.directive";
+import { GridDirective } from "./grid.directive";
+import { GridService } from "./grid.service";
 
 @NgModule({
 	declarations: [
@@ -14,6 +17,7 @@ import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
 		GridDirective,
 		RowDirective
 	],
+	providers: [GridService],
 	imports: [CommonModule]
 })
-export class GridModule { }
+export class GridModule {}
