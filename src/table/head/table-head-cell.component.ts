@@ -22,7 +22,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			aria-live="polite"
 			[ngClass]="{
 				'cds--table-sort--active': column.sorted,
-				'cds--table-sort--ascending': column.ascending
+				'cds--table-sort--descending': column.ascending
 			}"
 			(click)="onClick()">
 			<span
