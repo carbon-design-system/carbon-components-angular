@@ -29,6 +29,9 @@ import {
 	`
 })
 export class ContextMenuComponent implements OnChanges {
+	/**
+	 * @deprecated since v4 - In v5, you will not have to specify root
+	 */
 	@Input() root = true;
 	@Input() open = false;
 	@Input() position = {
