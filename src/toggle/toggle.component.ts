@@ -73,7 +73,6 @@ export class ToggleChange {
 			[checked]="checked"
 			[disabled]="disabled"
 			[attr.aria-labelledby]="ariaLabelledby"
-			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)"
 			(keyup.enter)="onClick($event)">
