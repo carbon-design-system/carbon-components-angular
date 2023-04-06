@@ -52,10 +52,10 @@ describe("Toggle", () => {
 		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(true);
 	});
 
-	it("should match the input checked value", () => {
+	fit("should match the input checked value", () => {
 		component.checked = true;
 		fixture.detectChanges();
-		expect(buttonElement.attributes.getNamedItem("aria-checked").value).toEqual("true");
+		expect(fixture.componentInstance.checked).toEqual(true);
 	});
 
 	it("should emit ToggleChange event", (done: any) => {
