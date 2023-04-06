@@ -66,7 +66,16 @@ storiesOf("Components|Code Snippet", module).addDecorator(
 )
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
-		template: `<ibm-code-snippet display="single">{{singleCode}}</ibm-code-snippet>`,
+		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+			%3A%22CodeSnippetFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22&#13;
+			type%22%3A%22code-snippet%22%2C%22variant%22%3A%22single%22%2C%22code%22&#13;
+			%3A%22%22%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22&#13;
+			code-snippet-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
+			<ibm-code-snippet display="single">{{singleCode}}</ibm-code-snippet>`,
 		props: {
 			singleCode: singleLineOfCode
 		}

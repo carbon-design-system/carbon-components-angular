@@ -9,7 +9,8 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	ApplicationRef
 } from "@angular/core";
 import { Observable, isObservable, Subscription, of } from "rxjs";
 import { first } from "rxjs/operators";
@@ -67,7 +68,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
-				[attr.disabled]="item.disabled"
+				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
 					'bx--list-box__menu-item--active': item.selected,
 					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
@@ -226,7 +227,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(public elementRef: ElementRef, protected i18n: I18n, protected appRef: ApplicationRef) {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -276,9 +277,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.displayItems = this._items;
 		this.updateIndex();
 		this.setupFocusObservable();
-		setTimeout(() => {
-			this.doEmitSelect();
-		});
+		this.doEmitSelect();
 	}
 
 	/**
@@ -540,13 +539,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key === "ArrowDown" || event.key === "Down") {
 				if (this.hasNextElement()) {
-					this.getNextElement();
+					this.getNextElement().scrollIntoView({block: "end"});
 				} else {
 					this.blurIntent.emit("bottom");
 				}
 			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement();
+					this.getPrevElement().scrollIntoView();
 				} else {
 					this.blurIntent.emit("top");
 				}
@@ -576,6 +575,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index = this.displayItems.indexOf(item);
 			this.highlightedItem = this.getItemId(this.index);
 			this.doEmitSelect(false);
+			this.appRef.tick();
 		}
 	}
 

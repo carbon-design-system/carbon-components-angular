@@ -9,7 +9,8 @@ import {
 	ElementRef,
 	TemplateRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	ChangeDetectorRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EventService } from "carbon-components-angular/utils";
@@ -283,7 +284,11 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _disabled = false;
 	protected _focusedThumbIndex = 0;
 
-	constructor(protected elementRef: ElementRef, protected eventService: EventService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected eventService: EventService,
+		private changeDetection: ChangeDetectorRef
+	) {}
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
@@ -291,7 +296,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.eventService.onDocument("mouseup", this.onMouseUp.bind(this));
 
 		// apply any values we got from before the view initialized
-		this.value = this.value;
+		this.changeDetection.detectChanges();
 
 		// TODO: ontouchstart/ontouchmove/ontouchend
 

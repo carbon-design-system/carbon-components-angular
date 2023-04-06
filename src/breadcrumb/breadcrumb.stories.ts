@@ -33,6 +33,17 @@ storiesOf("Components|Breadcrumb", module)
 .addDecorator(withKnobs)
 .add("Basic", () => ({
 	template: `
+	<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+	%3A%22BreadcrumbFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type&#13;
+	%22%3A%22breadcrumb%22%2C%22noTrailingSlash%22%3Afalse%2C%22items%22%3A%5B%&#13;
+	7B%22type%22%3A%22breadcrumb-item%22%2C%22label%22%3A%22Breadcrumb%22%2C%22&#13;
+	href%22%3A%22%2F%22%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22&#13;
+	%3A%22breadcrumb-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
+	%3A%7B%22name%22%3A%22breadcrumb-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses&#13;
+	%22%3A%5B%5D%7D" target="_blank">
+		Edit on Carbon UI Builder
+	</a>
+	<br><br>
 	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
 		<ibm-breadcrumb-item href="#1">
 			Breadcrumb 1

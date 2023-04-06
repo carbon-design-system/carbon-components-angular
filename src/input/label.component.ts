@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ViewChild,
 	ContentChild,
-	AfterContentInit
+	AfterContentInit,
+	ChangeDetectorRef
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -151,7 +152,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor() {
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Label.labelCounter++;
 	}
 
@@ -172,12 +173,21 @@ export class Label implements AfterContentInit, AfterViewInit {
 			// Prioritize setting id to `input` & `textarea` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea");
 			if (inputElement) {
+				// avoid overriding ids already set by the user reuse it instead
+				if (inputElement.id) {
+					this.labelInputID = inputElement.id;
+					this.changeDetectorRef.detectChanges();
+				}
 				inputElement.setAttribute("id", this.labelInputID);
 				return;
 			}
 
 			const divElement = this.wrapper.nativeElement.querySelector("div");
 			if (divElement) {
+				if (divElement.id) {
+					this.labelInputID = divElement.id;
+					this.changeDetectorRef.detectChanges();
+				}
 				divElement.setAttribute("id", this.labelInputID);
 			}
 		}

@@ -19,6 +19,15 @@ storiesOf("Components|Button", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
+			title%22%3A%22ButtonFragment%22%2C%22data%22%3A%7B%22items%22%3A&#13;
+			%5B%7B%22type%22%3A%22button%22%2C%22kind%22%3A%22primary%22%2C&#13;
+			%22text%22%3A%22Button%22%2C%22size%22%3A%22%22%2C%22id%22%3A%222%22&#13;
+			%2C%22codeContext%22%3A%7B%22name%22%3A%22button-2%22%7D%7D%5D%2C%22&#13;
+			id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+				Edit on Carbon UI Builder
+			</a>
+			<br><br>
 			<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive">Button</button>
 			&nbsp;
 			<button [ibmButton]="ibmButton" (click)="click($event)" [size]="size" [isExpressive]="isExpressive" disabled="true">Button</button>

@@ -11,10 +11,10 @@ import {
 	TemplateRef,
 	OnChanges,
 	SimpleChanges,
+	OnDestroy,
 	OnInit,
 	ChangeDetectorRef
 } from "@angular/core";
-import { EventService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 import { Tab } from "./tab.component";
 
@@ -33,7 +33,8 @@ import { Tab } from "./tab.component";
 			}"
 			role="navigation"
 			[attr.aria-label]="ariaLabel"
-			[attr.aria-labelledby]="ariaLabelledby">
+			[attr.aria-labelledby]="ariaLabelledby"
+			#tabsScrollable>
 			<button
 				#leftOverflowNavButton
 				type="button"
@@ -132,7 +133,7 @@ import { Tab } from "./tab.component";
 	`
 })
 
-export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
+export class TabHeaders implements AfterContentInit, OnChanges, OnDestroy, OnInit {
 	/**
 	 * List of `Tab` components.
 	 */
@@ -172,6 +173,8 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
 	// @ts-ignore
+	@ViewChild("tabsScrollable", { static: true }) tabsScrollable: ElementRef<HTMLElement>;
+	// @ts-ignore
 	@ViewChild("tabList", { static: true }) headerContainer;
 	// @ts-ignore
 	@ViewChild("rightOverflowNavButton", { static: true }) rightOverflowNavButton;
@@ -199,8 +202,9 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	public currentSelectedTab: number;
 
 	public get hasHorizontalOverflow() {
-		const tabList = this.headerContainer.nativeElement;
-		return tabList.scrollWidth > tabList.clientWidth;
+		const scrollWidth = this.headerContainer.nativeElement.scrollWidth;
+		const availableWidth = this.tabsScrollable.nativeElement.clientWidth;
+		return scrollWidth > availableWidth;
 	}
 
 	public get leftOverflowNavButtonHidden() {
@@ -217,12 +221,12 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 	// width of the overflow buttons
 	OVERFLOW_BUTTON_OFFSET = 40;
 
+	private resizeObserver: ResizeObserver;
 	private overflowNavInterval;
 
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
 		protected i18n: I18n
 	) { }
 
@@ -290,8 +294,17 @@ export class TabHeaders implements AfterContentInit, OnChanges, OnInit {
 		}
 	}
 
-	ngOnInit() {
-		this.eventService.on(window as any, "resize", () => this.handleScroll());
+	ngOnInit(): void {
+		// Update scroll on resize
+		this.resizeObserver = new ResizeObserver(() => {
+			// Need to explicitly trigger change detection since this runs outside Angular zone
+			this.changeDetectorRef.detectChanges();
+		});
+		this.resizeObserver.observe(this.tabsScrollable.nativeElement);
+	}
+
+	ngOnDestroy(): void {
+		this.resizeObserver.unobserve(this.tabsScrollable.nativeElement);
 	}
 
 	ngAfterContentInit() {

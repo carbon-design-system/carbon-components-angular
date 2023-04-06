@@ -12,7 +12,6 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	ApplicationRef,
 	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -357,7 +356,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected dropdownService: DropdownService,
-		protected appRef: ApplicationRef,
 		protected elementService: ElementService) {}
 
 	/**
@@ -415,8 +413,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				this.checkForReorder();
 				this.selected.emit(event);
 			}
-			// manually tick the app so the view picks up any changes
-			this.appRef.tick();
 		});
 	}
 

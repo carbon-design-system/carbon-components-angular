@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean, object, number, select } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "./combobox.module";
 import { ButtonModule } from "../button/button.module";
@@ -30,25 +30,18 @@ const getOptions = (override = {}) => {
 		warnText: text("Text for the warning", "This is a warning"),
 		label: text("Label", "ComboBox label"),
 		helperText: text("Helper text", "Optional helper text."),
-		items: [
-			{
-				content: "one"
-			},
-			{
-				content: "two"
-			},
-			{
-				content: "three"
-			},
-			{
-				content: "four"
-			}
-		],
+		items: object("items", [
+			{ content: "one" },
+			{ content: "two", selected: true },
+			{ content: "three", disabled: true },
+			{ content: "four", disabled: false }
+		]),
 		selected: action("selection changed"),
 		submit: action("submit"),
 		size: select("size", ["sm", "md", "xl"], "md"),
 		theme: select("theme", ["dark", "light"], "dark"),
-		search: action("search")
+		search: action("search"),
+		clear: action("clear fired!")
 	};
 
 	return Object.assign({}, options, override);
@@ -82,7 +75,8 @@ const modalText =
 		<ibm-combo-box
 			[(items)]="items"
 			type="multi"
-			(selected)="updateSelected($event)">
+			(selected)="updateSelected($event)"
+			(clear)="clear()">
 			<ibm-dropdown-list></ibm-dropdown-list>
 		</ibm-combo-box>
 	`
@@ -170,7 +164,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() helperText = "";
 	@Input() size = "md";
 	@Input() theme = "dark";
-	@Input() set items(newItems = []) {
+	@Input() set items(newItems) {
 		if (!isEqual(this._items, newItems)) {
 			this._items = newItems;
 		}
@@ -273,6 +267,20 @@ storiesOf("Components|Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+				<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
+				%3A%22Combobox%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
+				combobox%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti&#13;
+				%22%3Afalse%2C%22isInline%22%3Afalse%2C%22selectionFeedback%22%3A&#13;
+				%22top-after-reopen%22%2C%22direction%22%3A%22bottom%22%2C%22size%22&#13;
+				%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText%22%3A%22&#13;
+				Optional%20helper%20text%20here%22%2C%22listItems%22%3A%5B%7B%22&#13;
+				text%22%3A%22Text%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext&#13;
+				%22%3A%7B%22name%22%3A%22combobox-2%22%7D%2C%22cssClasses%22%3A%5B%5D&#13;
+				%7D%5D%2C%22id%22%3A1%7D%2C%22cssClasses%22%3A%5B%5D%2C%22&#13;
+				allCssClasses%22%3A%5B%5D%7D" target="_blank">
+					Edit on Carbon UI Builder
+				</a>
+				<br><br>
 				<ibm-combo-box
 					[disabled]="disabled"
 					[invalid]="invalid"
@@ -287,7 +295,8 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
-					(search)="search($event)">
+					(search)="search($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 		`,
@@ -318,6 +327,7 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
+					(clear)="clear()"
 					[maxLength]="maxLength">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
@@ -341,7 +351,8 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[theme]="theme"
 					(selected)="onSelected()"
-					(search)="onSearch($event)">
+					(search)="onSearch($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -376,7 +387,8 @@ storiesOf("Components|Combobox", module)
 					[items]="items"
 					[theme]="theme"
 					(selected)="onSelected()"
-					(search)="onSearch($event)">
+					(search)="onSearch($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 
@@ -419,7 +431,8 @@ storiesOf("Components|Combobox", module)
 					[selectionFeedback]="selectionFeedback"
 					type="multi"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -466,7 +479,8 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					type="multi"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
@@ -501,7 +515,8 @@ storiesOf("Components|Combobox", module)
 					[theme]="theme"
 					[(ngModel)]="model"
 					(selected)="selected($event)"
-					(submit)="submit($event)">
+					(submit)="submit($event)"
+					(clear)="clear()">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 

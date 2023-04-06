@@ -62,8 +62,14 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	items: object("items", [
 		{ content: "one" },
 		{ content: "two", selected: true },
-		{ content: "three" },
-		{ content: "four" }
+		{ content: "three", disabled: true },
+		{ content: "four", disabled: false },
+		{ content: "five", disabled: false },
+		{ content: "six", disabled: false },
+		{ content: "seven", disabled: false },
+		{ content: "eight", disabled: false },
+		{ content: "nine", disabled: false },
+		{ content: "ten", disabled: false }
 	]),
 	selected: action("Selected fired for dropdown"),
 	onClose: action("Dropdown closed"),
@@ -172,6 +178,17 @@ storiesOf("Components|Dropdown", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22%3A%22&#13;
+		DropdownFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22dropdown&#13;
+		%22%2C%22placeholder%22%3A%22placeholder%22%2C%22isMulti%22%3Afalse%2C%22isInline&#13;
+		%22%3Afalse%2C%22selectionFeedback%22%3A%22top-after-reopen%22%2C%22direction%22&#13;
+		%3A%22bottom%22%2C%22size%22%3A%22md%22%2C%22label%22%3A%22Label%22%2C%22helperText&#13;
+		%22%3A%22Optional%20helper%20text%22%2C%22listItems%22%3A%5B%7B%22text%22%3A%22Text&#13;
+		%22%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22dropdown-2&#13;
+		%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
+			Edit on Carbon UI Builder
+		</a>
+		<br><br>
 		<div style="width: 300px">
 			<ibm-dropdown
 				[label]="label"
@@ -307,7 +324,7 @@ storiesOf("Components|Dropdown", module)
 			</app-reactive-forms>
 		`,
 		props: getProps({
-			items: [
+			items: object("items", [
 				{
 					content: "numerical value item 1",
 					oid: 1,
@@ -318,7 +335,7 @@ storiesOf("Components|Dropdown", module)
 					oid: 2,
 					selected: false
 				}
-			],
+			]),
 			selectionFeedback: select("Selection feedback", ["top", "fixed", "top-after-reopen"], "top-after-reopen"),
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
@@ -343,12 +360,7 @@ storiesOf("Components|Dropdown", module)
 		</div>
 	`,
 		props: getProps({
-			items: of([
-				{ content: "one" },
-				{ content: "two", selected: true },
-				{ content: "three" },
-				{ content: "four" }
-			])
+			items: of({...getProps()}.items)
 		})
 	}))
 	.add("With Template", () => ({
