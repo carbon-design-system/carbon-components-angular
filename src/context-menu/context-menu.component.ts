@@ -20,23 +20,25 @@ import {
 	`]
 })
 export class ContextMenuComponent implements OnChanges {
-	@Input() root = true;
 	@Input() open = false;
 	@Input() position = {
 		left: 0,
 		top: 0
 	};
 
-	@HostBinding("class.cds--context-menu") contextMenu = true;
-	@HostBinding("class.cds--menu") menu = true;
-	@HostBinding("class.cds--context-menu--root") get contextMenuRoot() { return this.root; }
-	@HostBinding("class.cds--menu--root") get menuRoot() { return this.root; }
-	@HostBinding("class.cds--context-menu--open") get contextMenuOpen() { return this.open; }
-	@HostBinding("class.cds--menu--open") get menuOpen() { return this.open; }
+	@HostBinding("class.cds--menu") contextMenu = true;
+	@HostBinding("class.cds--menu--open") get contextMenuOpen() { return this.open; }
+	@HostBinding("class.cds--menu--shown") get showMenu() { return this.open; }
 	@HostBinding("attr.role") role = "menu";
 	@HostBinding("attr.tabindex") tabindex = "-1";
 	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
 	@HostBinding("style.top.px") get topPosition() { return this.position.top; }
+
+	@HostBinding("class.cds--menu--with-icons") get classIcons() {
+		const svgElement = this.elementRef.nativeElement
+			.querySelector(".cds--menu-item .cds--menu-item__icon svg") as HTMLElement;
+		return svgElement;
+	}
 
 	constructor(protected elementRef: ElementRef) { }
 
@@ -48,14 +50,10 @@ export class ContextMenuComponent implements OnChanges {
 
 	focusMenu() {
 		// wait until the next tick to let the DOM settle before changing the focus
-		const list: HTMLElement = this.elementRef.nativeElement;
 		setTimeout(() => {
-			if (this.root) {
-				list.focus();
-			} else {
-				const firstOption = list.querySelector(".cds--context-menu-option, .cds--menu-option") as HTMLElement;
-				firstOption.focus();
-			}
+			const list: HTMLElement = this.elementRef.nativeElement;
+			const firstOption = list.querySelector(".cds--menu-item") as HTMLElement;
+			firstOption.focus();
 		});
 	}
 
@@ -64,7 +62,7 @@ export class ContextMenuComponent implements OnChanges {
 		const list: HTMLElement = this.elementRef.nativeElement;
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
 		const menuItems: HTMLElement[] = (
-			Array.from(list.querySelectorAll(".cds--context-menu-option, .cds--menu-option")) as HTMLElement[])
+			Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
 			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
 		);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
@@ -98,17 +96,12 @@ export class ContextMenuComponent implements OnChanges {
 				break;
 			}
 			case "ArrowLeft": {
-				const parent = currentMenuItem.parentElement.closest(".cds--context-menu-option, .cds--menu-option") as HTMLElement;
+				const parent = currentMenuItem.parentElement.closest(".cds--menu-item, .cds--menu-item") as HTMLElement;
 				if (parent) {
 					parent.focus();
 				}
 				break;
 			}
 		}
-	}
-
-	getDimensions() {
-		const element: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
-		return element.getBoundingClientRect();
 	}
 }
