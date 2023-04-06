@@ -94,6 +94,7 @@
     "@storybook/theming": "5.3.19",
     "@types/jasmine": "2.8.2",
     "@types/node": "11.13.0",
+    "@types/resize-observer-browser": "^0.1.7",
     "babel-loader": "8.0.5",
     "carbon-components": "10.58.3",
     "chai": "4.2.0",
