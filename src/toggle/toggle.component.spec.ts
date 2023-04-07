@@ -52,7 +52,7 @@ describe("Toggle", () => {
 		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(true);
 	});
 
-	fit("should match the input checked value", () => {
+	it("should match the input checked value", () => {
 		component.checked = true;
 		fixture.detectChanges();
 		expect(fixture.componentInstance.checked).toEqual(true);
