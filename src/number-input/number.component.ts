@@ -67,6 +67,7 @@ export class NumberChange {
 					[required]="required"
 					[attr.aria-label]="ariaLabel"
 					[attr.data-invalid]="invalid ? invalid : null"
+					[placeholder]="placeholder"
 					(input)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
@@ -155,6 +156,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 * The unique id for the number component.
 	 */
 	@Input() id = `number-${NumberComponent.numberCount}`;
+	/**
+	 * Sets the placeholder attribute on the `input` element.
+	 */
+	@Input() placeholder = "";
 	/**
 	 * Number input field render size
 	 */

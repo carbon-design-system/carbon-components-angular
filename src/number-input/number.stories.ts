@@ -35,7 +35,8 @@ storiesOf("Components|Number", module).addDecorator(
 				[warn]="warn"
 				[warnText]="warnText"
 				[size]="size"
-				[disabled]="disabled">
+				[disabled]="disabled"
+				[placeholder]="placeholder">
 			</ibm-number>
 		`,
 		props: {
@@ -51,7 +52,8 @@ storiesOf("Components|Number", module).addDecorator(
 			step: number("step", 1),
 			precision: number("precision"),
 			invalid: boolean("Show form validation (invalid)", false),
-			disabled: boolean("disabled", false)
+			disabled: boolean("disabled", false),
+			placeholder: text("Placeholder text", "Placeholder text")
 		}
 	}))
 	.add("With ngModel", () => ({
@@ -68,6 +70,7 @@ storiesOf("Components|Number", module).addDecorator(
 				[invalid]="invalid"
 				[invalidText]="invalidText"
 				[disabled]="disabled"
+				[placeholder]="placeholder"
 				[(ngModel)]="value">
 			</ibm-number>
 			{{ value }}
@@ -84,7 +87,8 @@ storiesOf("Components|Number", module).addDecorator(
 			step: number("step", 1),
 			precision: number("precision"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("disabled", false)
+			disabled: boolean("disabled", false),
+			placeholder: text("Placeholder text", "Placeholder text")
 		}
 	}))
 	.add("Skeleton", () => ({
