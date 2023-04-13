@@ -48,7 +48,7 @@ import { Step } from "./progress-indicator-step.interface";
 					(click)="stepSelected.emit({ step: step, index: i })">
 					{{step.text}}
 				</p>
-				<div class="bx--progress-text">
+				<div class="bx--progress-text" *ngIf="(!step.tooltip && step.optionalText) || step.optionalText">
 					<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
 					<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
 				</div>
