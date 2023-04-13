@@ -21,8 +21,8 @@ import { takeUntil } from "rxjs/operators";
 	template: `
 		<fieldset>
 			<legend *ngIf="legend" class="bx--label">
-				<ng-container *ngIf="!isTemplate(legend)">{{legend}}</ng-container>
-				<ng-template *ngIf="isTemplate(legend)" [ngTemplateOutlet]="legend"></ng-template>
+				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
+				<ng-template #legendLabel>{{legend}}</ng-template>
 			</legend>
 			<ng-content select="ibm-selection-tile"></ng-content>
 		</fieldset>`,
