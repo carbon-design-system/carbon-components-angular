@@ -28,7 +28,7 @@ import { Step } from "./progress-indicator-step.interface";
 			class="bx--progress-step bx--progress-step--{{step.state[0]}}"
 			*ngFor="let step of steps; let i = index"
 			[ngClass]="{'bx--progress-step--disabled' : step.disabled}">
-			<div class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
+			<button class="bx--progress-step-button bx--progress-step-button--unclickable" role="button" tabindex="-1">
 				<ng-container *ngIf="!step.state.includes('error')">
 					<svg ibmIcon="checkmark--outline" size="16" *ngIf="step.state.includes('complete')"></svg>
 					<svg ibmIcon="incomplete" size="16" *ngIf="step.state.includes('current')"></svg>
@@ -48,10 +48,12 @@ import { Step } from "./progress-indicator-step.interface";
 					(click)="stepSelected.emit({ step: step, index: i })">
 					{{step.text}}
 				</p>
-				<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
-				<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
+				<div class="bx--progress-text" *ngIf="!step.tooltip || step.optionalText">
+					<p class="bx--progress-label" *ngIf="!step.tooltip" (click)="stepSelected.emit({ step: step, index: i })">{{step.text}}</p>
+					<p *ngIf="step.optionalText" class="bx--progress-optional">{{step.optionalText}}</p>
+				</div>
 				<span class="bx--progress-line"></span>
-			</div>
+			</button>
 		</li>
 	</ul>
 	`
