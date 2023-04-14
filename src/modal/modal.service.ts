@@ -49,7 +49,7 @@ export class ModalService extends BaseModalService {
 				label: data.label,
 				title: data.title,
 				content: data.content,
-				hasScrollingContent: data.hasScrollingContent || null,
+				hasScrollingContent: data.hasScrollingContent !== undefined ? data.hasScrollingContent : null,
 				size: data.size,
 				buttons: data.buttons || [],
 				close: data.close || (() => { }),
