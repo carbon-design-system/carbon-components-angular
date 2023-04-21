@@ -130,7 +130,6 @@ storiesOf("Components|Input", module).addDecorator(
 		<ibm-label
 			[size]="size"
 			[disabled]="disabled"
-			[inline]="inline"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText">
@@ -149,7 +148,8 @@ storiesOf("Components|Input", module).addDecorator(
 		props: {
 			theme: select("Theme", ["dark", "light"], "dark"),
 			disabled: boolean("Disabled", false),
-			inline: boolean("Inline", false),
+			// readonly: boolean("Read-only", false),   // not supported for TextArea
+			// inline: boolean("Inline", false),   // not supported for TextArea
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Validation message here"),
 			label: text("Label", "Text area label"),

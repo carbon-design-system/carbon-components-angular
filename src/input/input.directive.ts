@@ -38,20 +38,4 @@ export class TextInput {
 	@HostBinding("class.bx--text-input--light") get isLightTheme() {
 		return this.theme === "light";
 	}
-	@HostBinding("attr.readonly") readonlyAttr: string = null;
-	@Input()
-	public set readonly(value: boolean) {
-		this._readonly = value;
-		// Set attribute based on input
-		if (this._readonly) {
-			this.readonlyAttr = "true";
-		} else {
-			this.readonlyAttr = null;
-		}
-	}
-	public get readonly(): boolean {
-		return this._readonly;
-	}
-	private _readonly: boolean;
-
 }

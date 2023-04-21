@@ -23,7 +23,7 @@ import { TextArea } from "./text-area.directive";
 	template: `
 		<div
 			[ngClass]="{
-				'bx--text-input__label-helper-wrapper': inline
+				'bx--text-input__label-helper-wrapper': isInline
 			}">
 			<label
 				[for]="labelInputID"
@@ -32,20 +32,20 @@ import { TextArea } from "./text-area.directive";
 				[ngClass]="{
 					'bx--label--disabled': disabled,
 					'bx--skeleton': skeleton,
-					'bx--label--inline': inline,
-					'bx--label--inline--sm': (inline && size === 'sm'),
-					'bx--label--inline--md': (inline && size === 'md'),
-					'bx--label--inline--xl': (inline && size === 'xl')
+					'bx--label--inline': isInline,
+					'bx--label--inline--sm': (isInline && size === 'sm'),
+					'bx--label--inline--md': (isInline && size === 'md'),
+					'bx--label--inline--xl': (isInline && size === 'xl')
 				}">
 				<ng-content></ng-content>
 			</label>
-			<ng-template *ngIf="inline"
+			<ng-template *ngIf="isInline"
 				[ngTemplateOutlet]="helperTextTemplate">
 			</ng-template>
 		</div>
 		<div class="bx--text-input__field-outer-wrapper"
 			[ngClass]="{
-			'bx--text-input__field-outer-wrapper--inline': inline
+			'bx--text-input__field-outer-wrapper--inline': isInline
 			}">
 			<div
 				[class]="wrapperClass"
@@ -55,7 +55,7 @@ import { TextArea } from "./text-area.directive";
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
 				<svg
-					*ngIf="!warn && invalid && !hasReadonlyStyle"
+					*ngIf="!warn && invalid && !isReadonly"
 					ibmIcon="warning--filled"
 					size="16"
 					[ngClass]="{
@@ -64,26 +64,26 @@ import { TextArea } from "./text-area.directive";
 					}">
 				</svg>
 				<svg
-					*ngIf="!invalid && warn && !hasReadonlyStyle"
+					*ngIf="!invalid && warn && !isReadonly"
 					ibmIcon="warning--alt--filled"
 					size="16"
 					class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
 				</svg>
 				<svg
-					*ngIf="hasReadonlyStyle"
+					*ngIf="isReadonly"
 					ibmIcon="edit--off"
 					size="16"
 					class="bx--text-input__readonly-icon">
 				</svg>
 				<ng-content select="input,textarea,div"></ng-content>
 			</div>
-			<ng-container *ngIf="!inline"
+			<ng-container *ngIf="!isInline"
 				[ngTemplateOutlet]="helperTextTemplate">
 			</ng-container>
 		</div>
 
 		<ng-template #helperTextTemplate>
-			<div *ngIf="!skeleton && helperText && ((!invalid && !warn) || inline)"
+			<div *ngIf="!skeleton && helperText && ((!invalid && !warn) || isInline)"
 				class="bx--form__helper-text"
 				[ngClass]="{
 					'bx--form__helper-text--disabled': disabled,
@@ -92,11 +92,11 @@ import { TextArea } from "./text-area.directive";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!inline && !warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!isInline && !warn && invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!inline && !invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!isInline && !invalid && warn" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -132,13 +132,29 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	@Input() disabled = false;
 	/**
-	 * Set to `true` for a read-only label.
-	 */
-	@Input() @HostBinding("class.bx--text-input-wrapper--readonly") readonly = false;
+	* Set to `true` for a read-only label.
+	*/
+	@Input() set readonly(enable: boolean) {
+		this._readonly = enable;
+	}
+	get readonly(): boolean {
+		return this._readonly;
+	}
+	@HostBinding("class.bx--text-input-wrapper--readonly") get isReadonly(): boolean {
+		return this._readonly && !this.textArea;
+	}
 	/**
-	 * Set to `true` for an inline style label.
+	 * Set to `true` for an isInline style label.
 	 */
-	@Input() @HostBinding("class.bx--text-input-wrapper--inline") inline = false;
+	@Input() set inline(enable: boolean) {
+		this._inline = enable;
+	}
+	get inline(): boolean {
+		return this._inline;
+	}
+	@HostBinding("class.bx--text-input-wrapper--inline") get isInline(): boolean {
+		return this._inline && !this.textArea;
+	}
 	/**
 	 * Set to `true` for a loading label.
 	 */
@@ -175,11 +191,12 @@ export class Label implements AfterContentInit, AfterViewInit {
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
-	@HostBinding("class.bx--text-input-wrapper") inputWrapperClass = true;
-
-	public get hasReadonlyStyle(): boolean {
-		return this.readonly && !this.textArea;
+	@HostBinding("class.bx--text-input-wrapper") get inputWrapperClass(): boolean {
+		return !this.textArea;
 	}
+
+	protected _readonly = false;
+	protected _inline = false;
 
 	/**
 	 * Creates an instance of Label.
@@ -187,7 +204,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Label.labelCounter++;
 	}
-
 
 	/**
 	 * Update wrapper class if a textarea is hosted.
