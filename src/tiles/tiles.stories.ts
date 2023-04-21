@@ -136,7 +136,7 @@ storiesOf("Components|Tiles", module)
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
-			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
+			<ibm-tile-group (selected)="selected($event)" [multiple]="false" legend="Radio tile group">
 				<ibm-selection-tile value="tile1" [disabled]="disabled" [selected]="true" [theme]="theme">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2" [disabled]="disabled" [theme]="theme">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3" [disabled]="disabled" [theme]="theme">Selectable Tile</ibm-selection-tile>
@@ -174,7 +174,7 @@ storiesOf("Components|Tiles", module)
 				Edit on Carbon UI Builder
 			</a>
 			<br><br>
-			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
+			<ibm-tile-group (selected)="selected($event)" [multiple]="true" legend="Multi-select tile group">
 				<ibm-selection-tile value="tile1" [selected]="true" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3" [theme]="theme" [disabled]="disabled">Selectable Tile</ibm-selection-tile>

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
 import { I18nModule } from "../i18n/index";
-import { UtilsModule } from "carbon-components-angular/utils";
+import { UtilsModule } from "../utils";
 import { Tabs } from "./tabs.component";
 import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
@@ -23,7 +23,7 @@ class TabsTest {
 	onSelected() {}
 }
 
-describe("Sample", () => {
+describe("Tabs", () => {
 	let fixture, wrapper, element;
 
 	const arrowRight = new KeyboardEvent("keydown", {
@@ -47,9 +47,7 @@ describe("Sample", () => {
 				I18nModule
 			]
 		});
-	});
 
-	beforeEach(() => {
 		fixture = TestBed.createComponent(TabsTest);
 		wrapper = fixture.componentInstance;
 		element = fixture.debugElement.query(By.css("ibm-tabs"));
