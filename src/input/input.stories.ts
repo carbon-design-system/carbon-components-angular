@@ -159,6 +159,65 @@ storiesOf("Components|Input", module).addDecorator(
 			rows: number("rows", 4)
 		}
 	}))
+	.add("Label playground", () => ({
+		template: `
+		<ibm-label
+			[size]="size"
+			[disabled]="disabled"
+			[readonly]="readonly"
+			[inline]="inline"
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText">
+			{{label}}
+			<input *ngIf="type === 'input'"
+				ibmText
+				[size]="size"
+				[invalid]="invalid"
+				[warn]="warn"
+				[disabled]="disabled"
+				[readonly]="readonly"
+				[theme]="theme"
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete">
+			<textarea *ngIf="type === 'textarea'"
+				ibmTextArea
+				[placeholder]="placeholder"
+				[invalid]="invalid"
+				[disabled]="disabled"
+				[theme]="theme"
+				[rows]="rows"
+				[cols]="cols"
+				aria-label="textarea"></textarea>
+			<div *ngIf="type === 'div'">
+				<p [ngClass]="{
+					'bx--text-input--sm': size === 'sm',
+					'bx--text-input--md': size === 'md',
+					'bx--text-input--xl': size === 'xl'
+				}">My custom component</p>
+			</div>
+		</ibm-label>
+	`,
+		props: {
+			theme: select("Theme", ["dark", "light"], "dark"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
+			disabled: boolean("Disabled", false),
+			readonly: boolean("Read-only", false),
+			inline: boolean("Inline", false),
+			invalid: boolean("Show form validation", false),
+			invalidText: text("Form validation content", "Validation message here"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
+			label: text("Label", "Text area label"),
+			helperText: text("Helper text", "Optional helper text."),
+			placeholder: text("Placeholder text", "Placeholder text"),
+			cols: number("cols", 50),
+			rows: number("rows", 4),
+			type: select("Content element type", ["input", "textarea", "div"], "input")
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 		<ibm-label skeleton="true">
