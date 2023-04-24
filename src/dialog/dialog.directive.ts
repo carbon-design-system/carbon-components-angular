@@ -286,11 +286,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Helper method to close the dialogRef.
 	 */
 	close(meta: CloseMeta = { reason: CloseReasons.interaction }) {
-		setTimeout(() => {
-			if (this.dialogRef) {
-				this.dialogRef.instance.doClose(meta);
-			}
-		});
+		if (this.dialogRef) {
+			this.dialogRef.instance.doClose(meta);
+		}
 	}
 
 	/**
