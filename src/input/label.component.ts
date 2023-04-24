@@ -7,11 +7,12 @@ import {
 	TemplateRef,
 	ViewChild,
 	ContentChild,
-	AfterContentInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	AfterContentChecked
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
+import { TextInput } from "./input.directive";
 
 /**
  * [See demo](../../?path=/story/components-input--label)
@@ -103,7 +104,7 @@ import { TextArea } from "./text-area.directive";
 		<ng-template>
 	`
 })
-export class Label implements AfterContentInit, AfterViewInit {
+export class Label implements AfterContentChecked, AfterViewInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -141,7 +142,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 		return this._readonly;
 	}
 	@HostBinding("class.bx--text-input-wrapper--readonly") get isReadonly(): boolean {
-		return this._readonly && !this.textArea;
+		return this._readonly && this.textInput != undefined;
 	}
 	/**
 	 * Set to `true` for an isInline style label.
@@ -153,7 +154,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 		return this._inline;
 	}
 	@HostBinding("class.bx--text-input-wrapper--inline") get isInline(): boolean {
-		return this._inline && !this.textArea;
+		return this._inline && this.textInput != undefined;
 	}
 	/**
 	 * Set to `true` for a loading label.
@@ -190,9 +191,12 @@ export class Label implements AfterContentInit, AfterViewInit {
 	// @ts-ignore
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
+	// @ts-ignore
+	@ContentChild(TextInput, { static: false }) textInput: TextInput;
+
 	@HostBinding("class.bx--form-item") labelClass = true;
 	@HostBinding("class.bx--text-input-wrapper") get inputWrapperClass(): boolean {
-		return !this.textArea;
+		return this.textInput != undefined;
 	}
 
 	protected _readonly = false;
@@ -208,9 +212,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	 * Update wrapper class if a textarea is hosted.
 	 */
-	ngAfterContentInit() {
-		if (this.textArea) {
+	ngAfterContentChecked() {
+		if (this.textArea != undefined && this.wrapperClass !== "bx--text-area__wrapper") {
 			this.wrapperClass = "bx--text-area__wrapper";
+		} else if (this.textInput != undefined && this.wrapperClass !== "bx--text-input__field-wrapper") {
+			this.wrapperClass = "bx--text-input__field-wrapper";
 		}
 	}
 
