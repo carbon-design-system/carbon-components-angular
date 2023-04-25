@@ -51,12 +51,12 @@ import { TextInput } from "./input.directive";
 			<div
 				[class]="wrapperClass"
 				[ngClass]="{
-					'bx--text-input__field-wrapper--warning': warn
+					'bx--text-input__field-wrapper--warning': isWarning
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
 				<svg
-					*ngIf="!warn && invalid && !isReadonly"
+					*ngIf="!isWarning && invalid && !isReadonly"
 					ibmIcon="warning--filled"
 					size="16"
 					[ngClass]="{
@@ -65,7 +65,7 @@ import { TextInput } from "./input.directive";
 					}">
 				</svg>
 				<svg
-					*ngIf="!invalid && warn && !isReadonly"
+					*ngIf="!invalid && isWarning && !isReadonly"
 					ibmIcon="warning--alt--filled"
 					size="16"
 					class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
@@ -84,7 +84,7 @@ import { TextInput } from "./input.directive";
 		</div>
 
 		<ng-template #helperTextTemplate>
-			<div *ngIf="!skeleton && helperText && ((!invalid && !warn) || isInline)"
+			<div *ngIf="!skeleton && helperText && ((!invalid && !isWarning) || isInline)"
 				class="bx--form__helper-text"
 				[ngClass]="{
 					'bx--form__helper-text--disabled': disabled,
@@ -93,11 +93,11 @@ import { TextInput } from "./input.directive";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!isInline && !warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!isInline && !isWarning && invalid" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!isInline && !invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!isInline && !invalid && isWarning" class="bx--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -175,7 +175,15 @@ export class Label implements AfterContentChecked, AfterViewInit {
 	/**
 	  * Set to `true` to show a warning (contents set by warningText)
 	  */
-	@Input() warn = false;
+	@Input() set warn(value: boolean) {
+		this._warn = value;
+	}
+	get warn(): boolean {
+		return this._warn;
+	}
+	get isWarning(): boolean {
+		return this._warn && this.textArea == undefined;
+	}
 	/**
 	 * Sets the warning text
 	 */
@@ -201,6 +209,7 @@ export class Label implements AfterContentChecked, AfterViewInit {
 
 	protected _readonly = false;
 	protected _inline = false;
+	protected _warn = false;
 
 	/**
 	 * Creates an instance of Label.
