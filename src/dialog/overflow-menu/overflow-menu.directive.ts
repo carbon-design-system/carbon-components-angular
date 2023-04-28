@@ -4,8 +4,7 @@ import {
 	ViewContainerRef,
 	Input,
 	TemplateRef,
-	HostListener,
-	AfterContentInit
+	HostListener
 } from "@angular/core";
 import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
@@ -44,7 +43,7 @@ import { EventService } from "carbon-components-angular/utils";
 		DialogService
 	]
 })
-export class OverflowMenuDirective extends DialogDirective implements AfterContentInit {
+export class OverflowMenuDirective extends DialogDirective {
 	/**
 	 * @deprecated as of v5
 	 * Takes a template ref of `OverflowMenuOptions`s
@@ -83,10 +82,6 @@ export class OverflowMenuDirective extends DialogDirective implements AfterConte
 		super(elementRef, viewContainerRef, dialogService, eventService);
 	}
 
-	ngAfterContentInit() {
-		this.dialogService.setContext({ component: this.customPane ? OverflowMenuCustomPane : OverflowMenuPane });
-	}
-
 	updateConfig() {
 		this.dialogConfig.content = this.cdsOverflowMenu;
 		this.dialogConfig.flip = this.flip;
@@ -102,5 +97,9 @@ export class OverflowMenuDirective extends DialogDirective implements AfterConte
 				event.preventDefault();
 				break;
 		}
+	}
+
+	open() {
+		return super.open(this.customPane ? OverflowMenuCustomPane : OverflowMenuPane);
 	}
 }

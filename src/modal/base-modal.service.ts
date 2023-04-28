@@ -1,5 +1,4 @@
 import {
-	ComponentFactoryResolver,
 	ComponentRef,
 	Injector,
 	Injectable
@@ -20,26 +19,23 @@ export class BaseModalService {
 	/**
 	 * Creates an instance of `ModalService`.
 	 */
-	constructor(public resolver: ComponentFactoryResolver, public placeholderService: PlaceholderService) {}
+	constructor(public placeholderService: PlaceholderService) {}
 
 	/**
 	 * Creates and renders the modal component that is passed in.
 	 * `inputs` is an optional parameter of `data` that can be passed to the `Modal` component.
 	 */
-	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
-		let defaults = {inputs: {}};
+	create<T>(data: { component: any, inputs?: any }): ComponentRef<any> {
+		let defaults = { inputs: {} };
 		data = Object.assign({}, defaults, data);
 
 		const inputProviders = Object.keys(data.inputs).map(inputName => ({
 			provide: inputName,
 			useValue: data.inputs[inputName]
 		}));
-		const injector = Injector.create(inputProviders);
-		const factory = this.resolver.resolveComponentFactory(data.component);
+		const injector = Injector.create({ providers: inputProviders });
+		const component = this.placeholderService.createComponent(data.component, injector);
 		let focusedElement = document.activeElement as HTMLElement;
-
-		let component = this.placeholderService.createComponent(factory, injector);
-
 		setTimeout(() => {
 			component.instance.open = true;
 		});
@@ -82,8 +78,10 @@ export class BaseModalService {
 			index = BaseModalService.modalList.length - 1;
 		}
 
-		this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+		// Let animation finish before component is removed
+		setTimeout(() => {
+			this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+		}, 300);
 		BaseModalService.modalList.splice(index, 1);
 	}
 }
-

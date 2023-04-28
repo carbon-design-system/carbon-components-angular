@@ -143,7 +143,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
-			content: this.ibmDialog,
+			content: this.cdsDialog,
 			placement: this.placement,
 			parentRef: this.elementRef,
 			gap: this.gap,
@@ -247,12 +247,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Helper method to call dialogService 'open'.
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
-	open() {
+	open(component?) {
 		// don't allow dialogs to be opened if they're already open
 		if (this.dialogRef || this.disabled) { return; }
 
 		// actually open the dialog, emit events, and set the open state
-		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig, component);
 		this.isOpen = true;
 		this.onOpen.emit();
 		this.isOpenChange.emit(true);

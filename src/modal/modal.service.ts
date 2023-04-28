@@ -1,5 +1,4 @@
-import { ComponentFactoryResolver } from "@angular/core";
-import { Injectable } from "@angular/core";
+import { Injectable, ViewContainerRef } from "@angular/core";
 import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
@@ -19,10 +18,9 @@ export class ModalService extends BaseModalService {
 	/**
 	 * Creates an instance of `ModalService`.
 	 */
-	constructor(public resolver: ComponentFactoryResolver, public placeholderService: PlaceholderService) {
-		super(resolver, placeholderService);
+	constructor(public placeholderService: PlaceholderService) {
+		super(placeholderService);
 	}
-
 
 	/**
 	 * Creates and renders a new alert modal component.
