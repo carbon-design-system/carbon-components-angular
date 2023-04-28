@@ -82,7 +82,10 @@ export class BaseModalService {
 			index = BaseModalService.modalList.length - 1;
 		}
 
-		this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+		// Let animation finish before component is removed
+		setTimeout(() => {
+			this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+		}, 300);
 		BaseModalService.modalList.splice(index, 1);
 	}
 }
