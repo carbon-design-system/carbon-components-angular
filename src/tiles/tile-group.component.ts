@@ -7,7 +7,8 @@ import {
 	HostBinding,
 	ContentChildren,
 	QueryList,
-	OnDestroy
+	OnDestroy,
+	TemplateRef
 } from "@angular/core";
 import { SelectionTile } from "./selection-tile.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -17,7 +18,14 @@ import { takeUntil } from "rxjs/operators";
 
 @Component({
 	selector: "ibm-tile-group",
-	template: `<ng-content select="ibm-selection-tile"></ng-content>`,
+	template: `
+		<fieldset>
+			<legend *ngIf="legend" class="bx--label">
+				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
+				<ng-template #legendLabel>{{legend}}</ng-template>
+			</legend>
+			<ng-content select="ibm-selection-tile"></ng-content>
+		</fieldset>`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -36,6 +44,8 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 	 * Set to `true` to support multiple tile selection
 	 */
 	@Input() multiple = false;
+
+	@Input() legend: string | TemplateRef<any>;
 
 	/**
 	 * Emits an event when the tile selection changes.
@@ -123,5 +133,9 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 
 	registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
