@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 
 import { action } from "@storybook/addon-actions";
@@ -20,6 +20,7 @@ import { NotificationService } from "../notification/notification.service";
 import * as fileType from "file-type";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Subject, Subscription } from "rxjs";
 
 @Component({
 	selector: "app-file-uploader",
@@ -65,7 +66,7 @@ class FileUploaderStory {
 	}
 
 	onUpload() {
-		this.files.forEach(fileItem => {
+		this.files.forEach((fileItem: any) => {
 			if (!fileItem.uploaded) {
 				if (fileItem.file.size < this.maxSize) {
 					fileItem.state = "upload";
@@ -177,7 +178,7 @@ class DragAndDropStory {
 	}
 
 	onUpload() {
-		this.files.forEach(fileItem => {
+		this.files.forEach((fileItem: any) => {
 			if (!fileItem.uploaded) {
 				if (fileItem.file.size < this.maxSize) {
 					fileItem.state = "upload";
@@ -250,14 +251,14 @@ class NgModelFileUploaderStory {
 	}
 
 	onUpload() {
-		this.model.forEach(fileItem => {
+		this.model.forEach((fileItem: any) => {
 			if (!fileItem.uploaded) {
 				if (fileItem.file.size < this.maxSize) {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
-						console.log(fileItem);
+						console.log("Uploaded file:", fileItem);
 					}, 1500);
 				}
 
@@ -314,7 +315,7 @@ class NgModelFileUploaderStory {
 		</form>
 	`
 })
-class ReactiveFormsStory implements OnInit {
+class ReactiveFormsStory implements OnInit, OnDestroy {
 	static notificationCount = 0;
 	public formGroup: FormGroup;
 	public disabledFormGroup: FormGroup;
@@ -331,6 +332,7 @@ class ReactiveFormsStory implements OnInit {
 	@Input() disabled = false;
 
 	protected maxSize = 500000;
+	private subscribers: Subscription[] = [];
 
 	constructor(
 		protected notificationService: NotificationService,
@@ -347,6 +349,15 @@ class ReactiveFormsStory implements OnInit {
 			files: new FormControl(new Set<any>(), [Validators.required])
 		});
 		this.disabledFormGroup.disable();
+
+		const sub = this.formGroup.valueChanges.subscribe(this.fileChangesObserver);
+		this.subscribers.push(sub);
+	}
+
+	ngOnDestroy() {
+		this.subscribers.forEach(sub => {
+			sub.unsubscribe();
+		});
 	}
 
 	onUpload() {
@@ -357,6 +368,7 @@ class ReactiveFormsStory implements OnInit {
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
+						console.log("Uploaded file:", fileItem);
 					}, 1500);
 				}
 
@@ -370,6 +382,10 @@ class ReactiveFormsStory implements OnInit {
 				}
 			}
 		});
+	}
+
+	private fileChangesObserver = (value: {files: Set<File>}) => {
+		console.log("files:", value.files);
 	}
 }
 
