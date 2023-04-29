@@ -85,8 +85,8 @@ export class BaseModalService {
 		// Let animation finish before component is removed
 		setTimeout(() => {
 			this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+			BaseModalService.modalList.splice(index, 1);
 		}, 240);
-		BaseModalService.modalList.splice(index, 1);
 	}
 }
 
