@@ -4,7 +4,8 @@ import {
 	Injectable,
 	OnDestroy,
 	NgZone,
-	ViewContainerRef
+	ViewContainerRef,
+	Injector
 } from "@angular/core";
 
 import { NotificationContent, ToastContent, ActionableContent } from "./notification-content.interface";
@@ -30,7 +31,11 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Constructs Notification Service
 	 */
-	constructor(protected viewContainer: ViewContainerRef, protected ngZone: NgZone) {}
+	constructor(
+		protected injector: Injector,
+		protected viewContainer: ViewContainerRef,
+		protected ngZone: NgZone
+	) {}
 
 	/**
 	 * Shows the notification based on the `notificationObj`.
