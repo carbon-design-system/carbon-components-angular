@@ -52,7 +52,7 @@ export class BaseModalService {
 				component.instance.open = false;
 			}),
 			// delay closing by an arbitrary amount to allow the animation to finish
-			delay(150)
+			delay(240)
 		).subscribe(() => {
 			this.placeholderService.destroyComponent(component);
 			// filter out our component
@@ -82,8 +82,11 @@ export class BaseModalService {
 			index = BaseModalService.modalList.length - 1;
 		}
 
-		this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
-		BaseModalService.modalList.splice(index, 1);
+		// Let animation finish before component is removed
+		setTimeout(() => {
+			this.placeholderService.destroyComponent(BaseModalService.modalList[index]);
+			BaseModalService.modalList.splice(index, 1);
+		}, 240);
 	}
 }
 

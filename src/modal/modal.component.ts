@@ -196,8 +196,10 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		switch (event.key) {
 			case "Escape": {
 				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
-				this.modalService.destroy();  // destroy top (latest) modal
+				// Manually close modal
+				this.open = false;
 				this.close.emit();
+				this.modalService.destroy();  // destroy top (latest) modal
 				break;
 			}
 
