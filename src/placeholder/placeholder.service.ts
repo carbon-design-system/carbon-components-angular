@@ -45,7 +45,7 @@ export class PlaceholderService {
 			console.error("No view container defined! Likely due to a missing `cds-placeholder`");
 			return;
 		}
-		return this.viewContainerRef.createComponent(component as any, { index: this.viewContainerMap.size, injector });
+		return this.viewContainerRef.createComponent(component as any, { index: this.viewContainerRef.length, injector });
 	}
 
 	destroyComponent(component: ComponentRef<any>) {
