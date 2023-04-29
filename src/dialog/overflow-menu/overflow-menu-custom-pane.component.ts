@@ -6,6 +6,10 @@ import { closestAttr } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
 
+/**
+ * @deprecated as of v5
+ * Use Toggletip or Popover components instead
+ */
 @Component({
 	selector: "cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane",
 	template: `
