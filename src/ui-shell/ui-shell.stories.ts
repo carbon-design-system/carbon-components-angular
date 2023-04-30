@@ -38,7 +38,7 @@ export default {
 						component: FooComponent
 					}
 				], {
-					initialNavigation: "enabled",
+					initialNavigation: "enabledBlocking",
 					useHash: true
 				})
 			]
