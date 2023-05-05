@@ -91,7 +91,6 @@
 			}
 		}
 	},
-	"defaultProject": "carbon-components-angular",
 	"schematics": {
 		"@schematics/angular:component": {
 			"prefix": "ibm",

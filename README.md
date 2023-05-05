@@ -29,13 +29,13 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save carbon-components-angular carbon-components
+$ npm i --save carbon-components-angular @carbon/styles
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
 
 ```scss
-@import "~carbon-components/scss/globals/scss/styles.scss";
+@use "@carbon/styles";
 ```
 
 > *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not pollute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
@@ -64,7 +64,7 @@ Angular version support matrix:
 | 10      | ❌ | ✅ | ❌                   |
 | 11      | ❌ | ✅ | ❌                   |
 | 12      | ❌ | ✅ | ❌                   |
-| 13      | ❌ | ✅ | ✅                   |
+| 13      | ❌ | ✅ | ❌                   |
 | 14      | ❌ | ✅ | ✅                   |
 
 Carbon Components Angular version support matrix:
