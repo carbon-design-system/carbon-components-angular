@@ -462,11 +462,11 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.thumbs.toArray()[index].nativeElement.focus();
 		this.isMouseDown = true;
 		// Add listeners for dragging & drag stop
-		this.document.addEventListener('mousemove', this.onDrag);
-		this.document.addEventListener('touchmove', this.onDrag);
-		this.document.addEventListener('mouseup', this.onDragStop);
-		this.document.addEventListener('touchcancel', this.onDragStop);
-		this.document.addEventListener('touchend', this.onDragStop);
+		this.document.addEventListener("mousemove", this.onDrag);
+		this.document.addEventListener("touchmove", this.onDrag);
+		this.document.addEventListener("mouseup", this.onDragStop);
+		this.document.addEventListener("touchcancel", this.onDragStop);
+		this.document.addEventListener("touchend", this.onDragStop);
 	}
 
 	/**
@@ -475,11 +475,11 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	onDragStop = () => {
 		this.isMouseDown = false;
 		// Remove all event listeners
-		this.document.removeEventListener('mousemove', this.onDrag);
-		this.document.removeEventListener('touchmove', this.onDrag);
-		this.document.removeEventListener('mouseup', this.onDragStop);
-		this.document.removeEventListener('touchcancel', this.onDragStop);
-		this.document.removeEventListener('touchend', this.onDragStop);
+		this.document.removeEventListener("mousemove", this.onDrag);
+		this.document.removeEventListener("touchmove", this.onDrag);
+		this.document.removeEventListener("mouseup", this.onDragStop);
+		this.document.removeEventListener("touchcancel", this.onDragStop);
+		this.document.removeEventListener("touchend", this.onDragStop);
 	}
 
 	/**
