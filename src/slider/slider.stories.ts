@@ -41,7 +41,7 @@ Basic.args = {
 	min: 0,
 	max: 100,
 	step: 1,
-	value: 0,
+	value: 15,
 	minLabel: "0",
 	maxLabel: "100",
 	disabled: false,
