@@ -7,7 +7,6 @@ import {
 
 import { ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
-import { ExperimentalService } from "carbon-components-angular/experimental";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
 
@@ -85,10 +84,7 @@ export class Toast extends Notification implements OnInit {
 	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
 	@HostBinding("class.bx--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 
-	constructor(
-		protected notificationDisplayService: NotificationDisplayService,
-		protected i18n: I18n,
-		protected experimental: ExperimentalService) {
+	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
 		super(notificationDisplayService, i18n);
 		// disable inline notification styles
 		this.notificationClass = false;
