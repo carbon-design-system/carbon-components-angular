@@ -31,11 +31,11 @@ const noop = () => { };
 					(keyup.enter)="fileInput.click()"
 					(keyup.space)="fileInput.click()"
 					[ngClass]="{'bx--file-browse-btn--disabled': disabled}"
+					role="button"
 					tabindex="0">
 					<div
 						class="bx--file__drop-container"
 						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
-						role="button"
 						(click)="fileInput.click()"
 						[attr.for]="fileUploaderId"
 						(dragover)="onDragOver($event)"
