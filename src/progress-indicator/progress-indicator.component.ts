@@ -2,9 +2,10 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter, OnChanges, SimpleChanges
+	EventEmitter,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
-import { ExperimentalService } from "carbon-components-angular/experimental";
 import { Step } from "./progress-indicator-step.interface";
 
 /**
@@ -82,8 +83,6 @@ export class ProgressIndicator implements OnChanges {
 		this._current = current;
 	}
 	private _current: number;
-
-	constructor(protected experimental: ExperimentalService) {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.steps || changes.current) {
