@@ -48,12 +48,12 @@ import { TableRowSize } from "../table.types";
 	template: `
 	<section
 		class="bx--table-toolbar"
-		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}">
+		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}"
+		[attr.aria-label]="actionBarLabel.subject | async"
+		role="group">
 		<div
 			*ngIf="model && selected"
-			class="bx--batch-actions bx--batch-actions--active"
-			[attr.aria-label]="actionBarLabel.subject | async"
-			role="group">
+			class="bx--batch-actions bx--batch-actions--active">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
 				<button
