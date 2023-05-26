@@ -202,8 +202,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 			this.type = "TextArea";
 		} else if (this.textInput) {
 			this.type = "TextInput";
-		} else {
-			this.type = undefined;
 		}
 	}
 
