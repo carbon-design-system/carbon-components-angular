@@ -7,16 +7,22 @@ import { CommonModule } from "@angular/common";
 import { Label } from "./label.component";
 import { TextInput } from "./input.directive";
 import { TextArea } from "./text-area.directive";
+import { TextareaLabelComponent } from "./textarea-label.component";
+import { TextInputLabelComponent } from "./text-input-label.component";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
 		Label,
 		TextInput,
-		TextArea
+		TextArea,
+		TextareaLabelComponent,
+		TextInputLabelComponent
 	],
 	exports: [
 		Label,
+		TextareaLabelComponent,
+		TextInputLabelComponent,
 		TextInput,
 		TextArea
 	],

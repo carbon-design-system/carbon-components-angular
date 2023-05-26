@@ -12,24 +12,17 @@ import {
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
+import { TextInput } from "./input.directive";
 
 /**
  * [See demo](../../?path=/story/components-input--label)
  *
+ * To prevent attribute drilling, use `ibm-input-label` or `textarea-label` components
+ *
  * ```html
- * <ibm-label labelState="success">
- * 	<label label>Field with success</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- *
- * <ibm-label labelState="warning">
- * 	<label label>Field with warning</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- *
- * <ibm-label labelState="error">
- * 	<label label>Field with error</label>
- * 	<input type="text" class="input-field">
+ * <ibm-label>
+ * 	Label
+ * 	<input ibmText type="text" class="input-field">
  * </ibm-label>
  * ```
  *
@@ -38,55 +31,101 @@ import { TextArea } from "./text-area.directive";
 @Component({
 	selector: "ibm-label",
 	template: `
-		<label
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="bx--label"
-			[ngClass]="{
-				'bx--label--disabled': disabled,
-				'bx--skeleton': skeleton
-			}">
-			<ng-content></ng-content>
-		</label>
-		<div
-			[class]="wrapperClass"
-			[ngClass]="{
-				'bx--text-input__field-wrapper--warning': warn
-			}"
-			[attr.data-invalid]="(invalid ? true : null)"
-			#wrapper>
-			<svg
-				*ngIf="!warn && invalid"
-				ibmIcon="warning--filled"
-				size="16"
-				[ngClass]="{
-					'bx--text-input__invalid-icon': !textArea,
-					'bx--text-area__invalid-icon': textArea
-				}">
-			</svg>
-			<svg
-				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
-				size="16"
-				class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
-			</svg>
+		<ng-template #inputContentTemplate>
 			<ng-content select="input,textarea,div"></ng-content>
-		</div>
-		<div
-			*ngIf="!skeleton && helperText && !invalid && !warn"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div *ngIf="!warn && invalid" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
-		<div *ngIf="!invalid && warn" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-		</div>
+		</ng-template>
+
+		<ng-template #labelContentTemplate>
+			<ng-content></ng-content>
+		</ng-template>
+
+		<ng-container [ngSwitch]="type">
+			<ng-container *ngSwitchCase="'TextArea'">
+				<ibm-textarea
+					[labelInputID]="labelInputID"
+					[disabled]="disabled"
+					[skeleton]="skeleton"
+					[helperText]="helperText"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
+					[ariaLabel]="ariaLabel"
+					[labelTemplate]="labelContentTemplate"
+					[textAreaTemplate]="inputContentTemplate">
+				</ibm-textarea>
+			</ng-container>
+			<ng-container *ngSwitchCase="'TextInput'">
+				<ibm-text-input
+					[labelInputID]="labelInputID"
+					[disabled]="disabled"
+					[skeleton]="skeleton"
+					[helperText]="helperText"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
+					[ariaLabel]="ariaLabel"
+					[labelTemplate]="labelContentTemplate"
+					[textInputTemplate]="inputContentTemplate">
+				</ibm-text-input>
+			</ng-container>
+			<ng-container *ngSwitchDefault>
+				<ng-template [ngTemplateOutlet]="default"></ng-template>
+			</ng-container>
+		</ng-container>
+
+		<ng-template #default>
+			<label
+				[for]="labelInputID"
+				[attr.aria-label]="ariaLabel"
+				class="bx--label"
+				[ngClass]="{
+					'bx--label--disabled': disabled,
+					'bx--skeleton': skeleton
+				}">
+				<ng-template [ngTemplateOutlet]="labelContentTemplate"></ng-template>
+			</label>
+			<div
+				class="bx--text-input__field-wrapper"
+				[ngClass]="{
+					'bx--text-input__field-wrapper--warning': warn
+				}"
+				[attr.data-invalid]="(invalid ? true : null)"
+				#wrapper>
+				<svg
+					*ngIf="!warn && invalid"
+					ibmIcon="warning--filled"
+					size="16"
+					[ngClass]="{
+						'bx--text-input__invalid-icon': !textArea,
+						'bx--text-area__invalid-icon': textArea
+					}">
+				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
+				</svg>
+				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
+			</div>
+			<div
+				*ngIf="!skeleton && helperText && !invalid && !warn"
+				class="bx--form__helper-text"
+				[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+			</div>
+			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
+		</ng-template>
 	`
 })
 export class Label implements AfterContentInit, AfterViewInit {
@@ -95,16 +134,13 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	static labelCounter = 0;
 	/**
-	 * The class of the wrapper
-	 */
-	wrapperClass = "bx--text-input__field-wrapper";
-	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() labelInputID = "ibm-label-" + Label.labelCounter;
+	@Input() labelInputID = "ibm-label-" + Label.labelCounter++;
 
 	/**
+	 * @deprecated as of v4
 	 * State of the `Label` will determine the styles applied.
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
@@ -147,21 +183,30 @@ export class Label implements AfterContentInit, AfterViewInit {
 	// @ts-ignore
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
-	@HostBinding("class.bx--form-item") labelClass = true;
+	// @ts-ignore
+	@ContentChild(TextInput, { static: false }) textInput: TextInput;
+
+	@HostBinding("class.bx--form-item") get labelClass() {
+		return this.type === undefined;
+	}
+
+	protected type: "TextArea" | "TextInput";
 
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
-		Label.labelCounter++;
-	}
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
 
 	/**
 	 * Update wrapper class if a textarea is hosted.
 	 */
 	ngAfterContentInit() {
 		if (this.textArea) {
-			this.wrapperClass = "bx--text-area__wrapper";
+			this.type = "TextArea";
+		} else if (this.textInput) {
+			this.type = "TextInput";
+		} else {
+			this.type = undefined;
 		}
 	}
 
