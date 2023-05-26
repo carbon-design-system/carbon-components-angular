@@ -17,7 +17,7 @@ import { TextInput } from "./input.directive";
 /**
  * [See demo](../../?path=/story/components-input--label)
  *
- * To prevent attribute drilling, use `ibm-input-label` or `textarea-label` components
+ * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components
  *
  * ```html
  * <ibm-label>
@@ -41,7 +41,7 @@ import { TextInput } from "./input.directive";
 
 		<ng-container [ngSwitch]="type">
 			<ng-container *ngSwitchCase="'TextArea'">
-				<ibm-textarea
+				<ibm-textarea-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
 					[skeleton]="skeleton"
@@ -53,10 +53,10 @@ import { TextInput } from "./input.directive";
 					[ariaLabel]="ariaLabel"
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
-				</ibm-textarea>
+				</ibm-textarea-label>
 			</ng-container>
 			<ng-container *ngSwitchCase="'TextInput'">
-				<ibm-text-input
+				<ibm-text-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
 					[skeleton]="skeleton"
@@ -68,7 +68,7 @@ import { TextInput } from "./input.directive";
 					[ariaLabel]="ariaLabel"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
-				</ibm-text-input>
+				</ibm-text-label>
 			</ng-container>
 			<ng-container *ngSwitchDefault>
 				<ng-template [ngTemplateOutlet]="default"></ng-template>
@@ -97,10 +97,7 @@ import { TextInput } from "./input.directive";
 					*ngIf="!warn && invalid"
 					ibmIcon="warning--filled"
 					size="16"
-					[ngClass]="{
-						'bx--text-input__invalid-icon': !textArea,
-						'bx--text-area__invalid-icon': textArea
-					}">
+					class="bx--text-input__invalid-icon">
 				</svg>
 				<svg
 					*ngIf="!invalid && warn"

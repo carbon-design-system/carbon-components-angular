@@ -13,7 +13,7 @@ import {
 import { TextArea } from "./text-area.directive";
 
 @Component({
-	selector: 'ibm-textarea',
+	selector: 'ibm-textarea-label',
 	template: `
 		<label
 			[for]="labelInputID"

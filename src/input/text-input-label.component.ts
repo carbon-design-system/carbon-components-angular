@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: 'ibm-text-input',
+	selector: 'ibm-text-label',
 	template: `
 		<label
 			[for]="labelInputID"
