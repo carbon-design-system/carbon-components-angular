@@ -209,6 +209,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Sets the id on the input item associated with the `Label`.
 	 */
 	ngAfterViewInit() {
+		// Will only be called when `default` template is being used
 		if (this.wrapper) {
 			// Prioritize setting id to `input` & `textarea` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("input,textarea");
