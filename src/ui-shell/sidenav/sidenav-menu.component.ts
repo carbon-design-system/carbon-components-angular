@@ -27,7 +27,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 				[attr.aria-expanded]="expanded"
 				type="button">
 				<div class="bx--side-nav__icon">
-					<ng-content select="[icon]"></ng-content>
+					<ng-content select="svg, [icon]"></ng-content>
 				</div>
 				<span class="bx--side-nav__submenu-title">{{title}}</span>
 				<div class="bx--side-nav__icon bx--side-nav__icon--small bx--side-nav__submenu-chevron">
@@ -113,10 +113,6 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 	}
 
 	protected findActiveChildren() {
-		if (this.sidenavItems.some(item => item.active)) {
-			this.hasActiveChild = true;
-		} else {
-			this.hasActiveChild = false;
-		}
+		this.hasActiveChild = this.sidenavItems.some(item => item.active);
 	}
 }
