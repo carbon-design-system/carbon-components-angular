@@ -202,7 +202,7 @@ storiesOf("Components|UI Shell", module)
 	.add("Side Navigation", () => ({
 		template: `
 			<ibm-sidenav>
-				<ibm-sidenav-item>
+				<ibm-sidenav-item active="true">
 					<svg ibmIcon="fade" size="16"></svg>
 					Link
 				</ibm-sidenav-item>
@@ -212,7 +212,7 @@ storiesOf("Components|UI Shell", module)
 				</ibm-sidenav-item>
 				<ibm-sidenav-menu title="Category title">
 					<svg ibmIcon="fade" size="16"></svg>
-					<ibm-sidenav-item>Link</ibm-sidenav-item>
+					<ibm-sidenav-item active="true">Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 				</ibm-sidenav-menu>
