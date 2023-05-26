@@ -16,7 +16,8 @@ import { ButtonModule } from "carbon-components-angular/button";
 		ToggleModule,
 		RadioModule,
 		InputModule,
-		ButtonModule
+		ButtonModule,
+		InputModule
 	],
 	imports: [
 		CommonModule,
