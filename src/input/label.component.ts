@@ -187,7 +187,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 		return this.type === undefined;
 	}
 
-	protected type: "TextArea" | "TextInput";
+	type: "TextArea" | "TextInput";
 
 	/**
 	 * Creates an instance of Label.
