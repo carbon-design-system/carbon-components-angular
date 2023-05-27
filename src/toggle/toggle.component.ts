@@ -103,6 +103,16 @@ export class Toggle extends Checkbox {
 	static toggleCount = 0;
 
 	/**
+	 * Variable set the value to input true/false.
+	 */
+	value = false;
+
+	/**
+	 * Variable set the name to input same as Id.
+	 */
+	name = "toggle-" + Toggle.toggleCount;
+
+	/**
 	 * Text that is set on the left side of the toggle.
 	 */
 	@Input()
@@ -193,6 +203,7 @@ export class Toggle extends Checkbox {
 		this.change.emit(event);
 		/* end deprecation */
 
+		this.value = this.checked;
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
 	}
