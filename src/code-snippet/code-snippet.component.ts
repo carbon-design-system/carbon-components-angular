@@ -33,7 +33,7 @@ export enum SnippetType {
 		</ng-container>
 
 		<ng-template #notInline>
-			<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">
+			<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT" role="textbox" aria-readonly="true">
 				<ng-container *ngIf="skeleton">
 					<span *ngIf="display === 'single'; else multiSkeleton"></span>
 					<ng-template #multiSkeleton>
