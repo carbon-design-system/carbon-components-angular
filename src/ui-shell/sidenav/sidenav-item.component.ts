@@ -23,6 +23,9 @@ import { Router } from "@angular/router";
 			<a
 				class="bx--side-nav__link"
 				[href]="href"
+				[ngClass]="{
+					'bx--side-nav__link--current': active
+				}"
 				[attr.role]="(isSubMenu ? 'menuitem' : null)"
 				[attr.aria-current]="(active ? 'page' : null)"
 				[attr.title]="title ? title : null"
