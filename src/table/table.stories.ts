@@ -2,7 +2,7 @@
 
 import { moduleMetadata } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular/types-6-0";
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 import { NFormsModule } from "../forms";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon/icon.module";

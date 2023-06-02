@@ -94,12 +94,6 @@ export class FilterWithModelStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	constructor(protected iconService: IconService){
-		this.iconService.registerAll([
-			Add16, Filter16
-		])
-	}
-
 	model = new TableModel();
 	displayedCountries = ["US", "France", "Argentina", "Japan"];
 
@@ -147,6 +141,12 @@ export class FilterWithModelStory implements OnInit {
 			new TableItem({ data: "US" })
 		]
 	];
+
+	constructor(protected iconService: IconService) {
+		this.iconService.registerAll([
+			Add16, Filter16
+		]);
+	}
 
 	filterNodeNames(searchString: string) {
 		this.model.data = this.dataset

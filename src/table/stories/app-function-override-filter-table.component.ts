@@ -98,12 +98,6 @@ export class FilterByFunctionOverrideStory implements OnInit {
 	displayedCountries = ["US", "France", "Argentina", "Japan"];
 	searchValue = "";
 
-	constructor(protected iconService: IconService){
-		this.iconService.registerAll([
-			Add16, Filter16
-		])
-	}
-
 	dataset = [
 		[
 			new TableItem({ data: "800" }),
@@ -148,6 +142,12 @@ export class FilterByFunctionOverrideStory implements OnInit {
 			new TableItem({ data: "US" })
 		]
 	];
+
+	constructor(protected iconService: IconService) {
+		this.iconService.registerAll([
+			Add16, Filter16
+		]);
+	}
 
 	filterNodeNames(searchString: string) {
 		this.searchValue = searchString;
