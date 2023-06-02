@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { moduleMetadata, componentWrapperDecorator } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { Story, Meta } from "@storybook/angular";
 import {
 	GridModule,
 	GridDirective,
