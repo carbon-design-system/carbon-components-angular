@@ -51,8 +51,11 @@ import { TableRowSize } from "../table.types";
 		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}"
 		[attr.aria-label]="actionBarLabel.subject | async">
 		<div
-			*ngIf="model && selected"
-			class="bx--batch-actions bx--batch-actions--active">
+			*ngIf="model"
+			class="bx--batch-actions"
+			[ngClass]="{
+				'bx--batch-actions--active': selected
+			}">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
 				<button
