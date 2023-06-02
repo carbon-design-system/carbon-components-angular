@@ -7,6 +7,10 @@ import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
+import { IconService } from "../../icon/icon.service";
+import Add16 from "@carbon/icons/es/add/16";
+import Filter16 from "@carbon/icons/es/filter/16";
+
 @Component({
 	selector: "app-function-override-filter-table",
 	template: `
@@ -93,6 +97,12 @@ export class FilterByFunctionOverrideStory implements OnInit {
 	model = new TableModel();
 	displayedCountries = ["US", "France", "Argentina", "Japan"];
 	searchValue = "";
+
+	constructor(protected iconService: IconService){
+		this.iconService.registerAll([
+			Add16, Filter16
+		])
+	}
 
 	dataset = [
 		[
