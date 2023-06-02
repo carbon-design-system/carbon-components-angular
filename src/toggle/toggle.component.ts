@@ -67,8 +67,8 @@ export class ToggleChange {
 				'bx--skeleton': skeleton
 			}"
 			[id]="id"
-			[value]="value"
-			[name]="name"
+			[attr.value]="value"
+			[attr.name]="name"
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
