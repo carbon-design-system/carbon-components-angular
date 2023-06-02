@@ -49,8 +49,7 @@ import { TableRowSize } from "../table.types";
 	<section
 		class="bx--table-toolbar"
 		[ngClass]="{'bx--table-toolbar--small' : size === 'sm'}"
-		[attr.aria-label]="actionBarLabel.subject | async"
-		role="group">
+		[attr.aria-label]="actionBarLabel.subject | async">
 		<div
 			*ngIf="model && selected"
 			class="bx--batch-actions bx--batch-actions--active">
