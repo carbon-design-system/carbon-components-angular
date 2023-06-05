@@ -1,6 +1,7 @@
 /* tslint:disable variable-name */
 
 import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { FormsModule } from "@angular/forms";
 import { NFormsModule } from "../forms";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon/icon.module";
@@ -82,6 +83,7 @@ export default {
 		moduleMetadata({
 			imports: [
 				NFormsModule,
+				FormsModule,
 				TableModule,
 				PaginationModule,
 				DialogModule,
@@ -596,7 +598,7 @@ WithPagination.args = {
 const FromComponentsTemplate: Story = (args) => ({
 	props: args,
 	template: `
-		<table cdsTable [sortable]="false" style="width: 650px;">
+		<table cdsTable [sortable]="false">
 			<thead cdsTableHead>
 				<tr>
 					<th

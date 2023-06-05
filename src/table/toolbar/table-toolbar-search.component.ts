@@ -22,6 +22,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 export class TableToolbarSearch extends Search implements AfterViewInit {
 	tableSearch = true;
 
+	size: "sm" | "md" | "lg" = "lg";
+
 	@HostBinding("class.cds--toolbar-content") hostClass = true;
 
 	ngAfterViewInit() {
