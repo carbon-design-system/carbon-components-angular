@@ -1,7 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { DatePickerModule, DatePicker } from "./";
 
 export default {
@@ -155,13 +154,13 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 });
 export const Range = RangeTemplate.bind({});
 Range.args = {
-	dateFormat: "m/d/y",
-	value: ["09/19/2019", "10/19/2019"]
+	dateFormat: "d/m/Y",
+	value: [new Date("01 Feb 24"), new Date("29 Feb 24")],
+	language: "en"
 };
 Range.argTypes = {
 	language: {
 		options: ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"],
-		defaultValue: "en",
 		control: "select"
 	}
 };

@@ -23,14 +23,19 @@ components = components.map(comp => ({
 		...input,
 		// Storybook does not seem to display deprecated message currently
 		// Bypassing this by updating rawdescription
-		rawdescription: input.deprecated ? `**@Deprecatated**\n\n${input.deprecationMessage}` : input.rawdescription
+		// Using `description` to display formatted code
+		rawdescription: input.deprecated ? `**@Deprecatated**\n\n${input.deprecationMessage}` : input.description
 	})),
 	// Removes properties
 	propertiesClass: [],
 	outputsClass: comp.outputsClass.map((output) => ({
 		...output,
 		// Prevents control type appearing as `string`
-		defaultValue: undefined
+		defaultValue: undefined,
+		// Storybook does not seem to display deprecated message currently
+		// Bypassing this by updating rawdescription
+		// Using `description` to display formatted code
+		rawdescription: output.deprecated ? `**@Deprecatated**\n\n${output.deprecationMessage}` : output.description
 	}))
 }));
 
