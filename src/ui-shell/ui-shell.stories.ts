@@ -1,8 +1,7 @@
 /* tslint:disable variable-name */
 
 import { RouterModule } from "@angular/router";
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { SearchModule } from "../search";
 import { IconModule } from "../icon";
 import { ThemeModule } from "../theme";
@@ -107,7 +106,7 @@ const HeaderFluidTemplate: Story = (args) => ({
 export const HeaderFluid = HeaderFluidTemplate.bind({});
 HeaderFluid.storyName = "Header fluid items to side navigation";
 HeaderFluid.args = {
-	headerItems: <NavigationItem[]>[
+	headerItems: [
 		{
 			type: "item",
 			content: "Catalog",

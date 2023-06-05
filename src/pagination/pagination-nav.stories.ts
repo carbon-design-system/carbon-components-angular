@@ -1,14 +1,13 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { PaginationModule, PaginationNav } from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
 
 // Storybook starts here
 export default {
-	title: "Components/Pagination",
+	title: "Components/Pagination Nav",
 	decorators: [
 		moduleMetadata({
 			imports: [PaginationModule],

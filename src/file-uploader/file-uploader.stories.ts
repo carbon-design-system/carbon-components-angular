@@ -1,8 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { FileUploaderModule, FileUploader } from "./";
 import { NotificationModule } from "../notification";
 import { ButtonModule } from "../button";

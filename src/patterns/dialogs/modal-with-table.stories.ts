@@ -5,8 +5,7 @@ import {
 	OnInit,
 	ViewEncapsulation
 } from "@angular/core";
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { BaseModal, ModalModule } from "../../modal";
 import {
 	TableHeaderItem,
