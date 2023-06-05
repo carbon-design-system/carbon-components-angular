@@ -25,26 +25,25 @@ const noop = () => { };
 			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
-				<label
+				<div
 					*ngIf="drop"
-					class="bx--file-browse-btn"
+					class="bx--file-browse-btn bx--file__drop-container"
+					[ngClass]="{
+						'bx--file-browse-btn--disabled': disabled,
+						'bx--file__drop-container--drag-over': dragOver
+					}"
+					role="button"
+					tabindex="0"
+					(click)="fileInput.click()"
+					[attr.for]="fileUploaderId"
+					(dragover)="onDragOver($event)"
+					(dragleave)="onDragLeave($event)"
+					(drop)="onDrop($event)"
 					(keyup.enter)="fileInput.click()"
-					(keyup.space)="fileInput.click()"
-					[ngClass]="{'bx--file-browse-btn--disabled': disabled}"
-					tabindex="0">
-					<div
-						class="bx--file__drop-container"
-						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
-						role="button"
-						(click)="fileInput.click()"
-						[attr.for]="fileUploaderId"
-						(dragover)="onDragOver($event)"
-						(dragleave)="onDragLeave($event)"
-						(drop)="onDrop($event)">
-						<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
-						<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
-					</div>
-				</label>
+					(keyup.space)="fileInput.click()">
+					<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
+					<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
+				</div>
 				<button
 					*ngIf="!drop"
 					type="button"
