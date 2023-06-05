@@ -87,7 +87,6 @@ export class TextInputLabelComponent implements AfterViewInit {
 	@Input() skeleton = false;
 
 	/**
-	 * **Internal**
 	 * Helper input property for ease of migration
 	 * Since we cannot pass ng-content down easily from label component, we will accept the templates
 	 */
