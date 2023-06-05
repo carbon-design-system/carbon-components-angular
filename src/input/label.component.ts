@@ -7,89 +7,104 @@ import {
 	TemplateRef,
 	ViewChild,
 	ContentChild,
-	AfterContentInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	AfterContentChecked
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
+import { TextInput } from "./input.directive";
 
 /**
  * [See demo](../../?path=/story/components-input--label)
- *
- * ```html
- * <ibm-label labelState="success">
- * 	<label label>Field with success</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- *
- * <ibm-label labelState="warning">
- * 	<label label>Field with warning</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- *
- * <ibm-label labelState="error">
- * 	<label label>Field with error</label>
- * 	<input type="text" class="input-field">
- * </ibm-label>
- * ```
  *
  * <example-url>../../iframe.html?id=components-input--label</example-url>
  */
 @Component({
 	selector: "ibm-label",
 	template: `
-		<label
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="bx--label"
+		<div
 			[ngClass]="{
-				'bx--label--disabled': disabled,
-				'bx--skeleton': skeleton
+				'bx--text-input__label-helper-wrapper': isInline
 			}">
-			<ng-content></ng-content>
-		</label>
-		<div
-			[class]="wrapperClass"
-			[ngClass]="{
-				'bx--text-input__field-wrapper--warning': warn
-			}"
-			[attr.data-invalid]="(invalid ? true : null)"
-			#wrapper>
-			<svg
-				*ngIf="!warn && invalid"
-				ibmIcon="warning--filled"
-				size="16"
+			<label
+				[for]="labelInputID"
+				[attr.aria-label]="ariaLabel"
+				class="bx--label"
 				[ngClass]="{
-					'bx--text-input__invalid-icon': !textArea,
-					'bx--text-area__invalid-icon': textArea
+					'bx--label--disabled': disabled,
+					'bx--skeleton': skeleton,
+					'bx--label--inline': isInline,
+					'bx--label--inline--sm': (isInline && size === 'sm'),
+					'bx--label--inline--md': (isInline && size === 'md'),
+					'bx--label--inline--xl': (isInline && size === 'xl')
 				}">
-			</svg>
-			<svg
-				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
-				size="16"
-				class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
-			</svg>
-			<ng-content select="input,textarea,div"></ng-content>
+				<ng-content></ng-content>
+			</label>
+			<ng-template *ngIf="isInline"
+				[ngTemplateOutlet]="helperTextTemplate">
+			</ng-template>
 		</div>
-		<div
-			*ngIf="!skeleton && helperText && !invalid && !warn"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		<div class="bx--text-input__field-outer-wrapper"
+			[ngClass]="{
+			'bx--text-input__field-outer-wrapper--inline': isInline
+			}">
+			<div
+				[class]="wrapperClass"
+				[ngClass]="{
+					'bx--text-input__field-wrapper--warning': isWarning
+				}"
+				[attr.data-invalid]="(invalid ? true : null)"
+				#wrapper>
+				<svg
+					*ngIf="!isWarning && invalid && !isReadonly"
+					ibmIcon="warning--filled"
+					size="16"
+					[ngClass]="{
+						'bx--text-input__invalid-icon': !textArea,
+						'bx--text-area__invalid-icon': textArea
+					}">
+				</svg>
+				<svg
+					*ngIf="!invalid && isWarning && !isReadonly"
+					ibmIcon="warning--alt--filled"
+					size="16"
+					class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
+				</svg>
+				<svg
+					*ngIf="isReadonly"
+					ibmIcon="edit--off"
+					size="16"
+					class="bx--text-input__readonly-icon">
+				</svg>
+				<ng-content select="input,textarea,div"></ng-content>
+			</div>
+			<ng-container *ngIf="!isInline"
+				[ngTemplateOutlet]="helperTextTemplate">
+			</ng-container>
 		</div>
-		<div *ngIf="!warn && invalid" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
-		<div *ngIf="!invalid && warn" class="bx--form-requirement">
-			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-		</div>
+
+		<ng-template #helperTextTemplate>
+			<div *ngIf="!skeleton && helperText && ((!invalid && !isWarning) || isInline)"
+				class="bx--form__helper-text"
+				[ngClass]="{
+					'bx--form__helper-text--disabled': disabled,
+					'bx--form__helper-text--inline': inline
+				}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+			</div>
+			<div *ngIf="!isInline && !isWarning && invalid" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
+			<div *ngIf="!isInline && !invalid && isWarning" class="bx--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
+		<ng-template>
 	`
 })
-export class Label implements AfterContentInit, AfterViewInit {
+export class Label implements AfterContentChecked, AfterViewInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -106,12 +121,41 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	/**
 	 * State of the `Label` will determine the styles applied.
+	 * @deprecated
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
+	/**
+	 * Set the label size similar to the input size.
+	 */
+	@Input() size: "sm" | "md" | "xl" = "md";
 	/**
 	 * Set to `true` for a disabled label.
 	 */
 	@Input() disabled = false;
+	/**
+	* Set to `true` for a read-only label.
+	*/
+	@Input() set readonly(enable: boolean) {
+		this._readonly = enable;
+	}
+	get readonly(): boolean {
+		return this._readonly;
+	}
+	@HostBinding("class.bx--text-input-wrapper--readonly") get isReadonly(): boolean {
+		return this._readonly && this.textInput != undefined;
+	}
+	/**
+	 * Set to `true` for an isInline style label.
+	 */
+	@Input() set inline(enable: boolean) {
+		this._inline = enable;
+	}
+	get inline(): boolean {
+		return this._inline;
+	}
+	@HostBinding("class.bx--text-input-wrapper--inline") get isInline(): boolean {
+		return this._inline && this.textInput != undefined;
+	}
 	/**
 	 * Set to `true` for a loading label.
 	 */
@@ -131,7 +175,15 @@ export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	  * Set to `true` to show a warning (contents set by warningText)
 	  */
-	@Input() warn = false;
+	@Input() set warn(value: boolean) {
+		this._warn = value;
+	}
+	get warn(): boolean {
+		return this._warn;
+	}
+	get isWarning(): boolean {
+		return this._warn && this.textArea == undefined;
+	}
 	/**
 	 * Sets the warning text
 	 */
@@ -147,7 +199,17 @@ export class Label implements AfterContentInit, AfterViewInit {
 	// @ts-ignore
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
+	// @ts-ignore
+	@ContentChild(TextInput, { static: false }) textInput: TextInput;
+
 	@HostBinding("class.bx--form-item") labelClass = true;
+	@HostBinding("class.bx--text-input-wrapper") get inputWrapperClass(): boolean {
+		return this.textInput != undefined;
+	}
+
+	protected _readonly = false;
+	protected _inline = false;
+	protected _warn = false;
 
 	/**
 	 * Creates an instance of Label.
@@ -159,9 +221,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	 * Update wrapper class if a textarea is hosted.
 	 */
-	ngAfterContentInit() {
-		if (this.textArea) {
+	ngAfterContentChecked() {
+		if (this.textArea != undefined && this.wrapperClass !== "bx--text-area__wrapper") {
 			this.wrapperClass = "bx--text-area__wrapper";
+		} else if (this.textInput != undefined && this.wrapperClass !== "bx--text-input__field-wrapper") {
+			this.wrapperClass = "bx--text-input__field-wrapper";
 		}
 	}
 

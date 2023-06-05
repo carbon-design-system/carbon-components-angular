@@ -1,48 +1,155 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { DebugElement } from "@angular/core";
 
 import { Label } from "./label.component";
+import { Component, ViewChild } from "@angular/core";
+import { TextInput } from "./input.directive";
+
+@Component({
+	template: `
+		<ibm-label>
+			<input ibmText value="test">
+		</ibm-label>
+	`
+})
+class TestLabelHostComponent {
+	@ViewChild(Label) labelChild: Label;
+}
 
 describe("Label", () => {
+	let hostComponent: TestLabelHostComponent;
 	let component: Label;
-	let fixture: ComponentFixture<Label>;
-	let de: DebugElement;
-	let el: HTMLElement;
+	let hostFixture: ComponentFixture<TestLabelHostComponent>;
+
+	const outerWrapperClass = ".bx--text-input__field-outer-wrapper";
+	const inputWrapperClass = ".bx--text-input__field-wrapper";
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Label],
+			declarations: [Label, TestLabelHostComponent, TextInput],
 			imports: [],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(Label);
-		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css(".label"));
-		el = de.nativeElement;
-		fixture.detectChanges();
+		hostFixture = TestBed.createComponent(TestLabelHostComponent);
+		hostComponent = hostFixture.componentInstance;
+		hostFixture.detectChanges();
+		component = hostComponent.labelChild;
 	});
 
-	xit("should work", () => {
+	it("should work", () => {
 		expect(component instanceof Label).toBe(true);
+		let labelEl = hostFixture.debugElement.query(By.css("ibm-label"));
+		expect(labelEl.classes["bx--form-item"]).toBeTruthy();
+		expect(labelEl.classes["bx--text-input-wrapper"]).toBeTruthy();
 	});
 
-	xit("should set icon to success", () => {
-		component.labelState = "success";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-success")).toBeTruthy();
+	it("should set helper text", () => {
+		const expectedHelperText = "My helper text";
+
+		component.helperText = expectedHelperText;
+		hostFixture.detectChanges();
+		const helperTextClass = ".bx--form__helper-text";
+		let helperTextContainerEls = hostFixture.debugElement.queryAll(
+			By.css(outerWrapperClass + ">" + helperTextClass)
+		);
+		expect(helperTextContainerEls).toBeDefined();
+		expect(helperTextContainerEls.length).toBe(1);
+
+		let helperTextContainerEl = helperTextContainerEls[0];
+		expect(helperTextContainerEl.nativeElement.textContent).toBe(expectedHelperText);
 	});
 
-	xit("should set icon to warning", () => {
-		component.labelState = "warning";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-warning")).toBeTruthy();
+	it("should set icon to warning for warning state", () => {
+		component.warn = true;
+		hostFixture.detectChanges();
+		const svgSelector = "svg.bx--text-input__invalid-icon.bx--text-input__invalid-icon--warning";
+		let svgEls = hostFixture.debugElement.queryAll(
+			By.css(outerWrapperClass + ">" + inputWrapperClass + ">" + svgSelector)
+		);
+		expect(svgEls).toBeDefined();
+		expect(svgEls.length).toBe(1);
 	});
 
-	xit("should set icon to error", () => {
-		component.labelState = "error";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-error")).toBeTruthy();
+	it("should set warning text in warn state", () => {
+		const expectedWaringText = "My warning text";
+
+		component.warn = true;
+		component.warnText = expectedWaringText;
+		hostFixture.detectChanges();
+		const requiredTextClass = ".bx--form-requirement";
+		let helperTextContainerEls = hostFixture.debugElement.queryAll(
+			By.css(outerWrapperClass + ">" + requiredTextClass)
+		);
+		expect(helperTextContainerEls).toBeDefined();
+		expect(helperTextContainerEls.length).toBe(1);
+
+		let helperTextContainerEl = helperTextContainerEls[0];
+		expect(helperTextContainerEl.nativeElement.textContent).toBe(expectedWaringText);
+	});
+
+	it("should set icon to error in invalid state", () => {
+		component.invalid = true;
+		hostFixture.detectChanges();
+		const svgSelector = "svg.bx--text-input__invalid-icon";
+		let svgEls = hostFixture.debugElement.queryAll(
+			By.css(outerWrapperClass + ">" + inputWrapperClass + ">" + svgSelector)
+		);
+		expect(svgEls).toBeDefined();
+		expect(svgEls.length).toBe(1);
+	});
+
+	it("should set error text in invalid state", () => {
+		const expectedInvalidText = "My error text";
+
+		component.invalid = true;
+		component.invalidText = expectedInvalidText;
+		hostFixture.detectChanges();
+		let helperTextContainerEls = hostFixture.debugElement.queryAll(
+			By.css(".bx--text-input__field-outer-wrapper > .bx--form-requirement")
+		);
+		expect(helperTextContainerEls).toBeDefined();
+		expect(helperTextContainerEls.length).toBe(1);
+
+		let helperTextContainerEl = helperTextContainerEls[0];
+		expect(helperTextContainerEl.nativeElement.textContent).toBe(expectedInvalidText);
+	});
+
+	it("should set icon to readonly in readonly state", () => {
+		component.readonly = true;
+		hostFixture.detectChanges();
+		const svgSelector = "svg.bx--text-input__readonly-icon";
+		let svgEls = hostFixture.debugElement.queryAll(
+			By.css(outerWrapperClass + ">" + inputWrapperClass + ">" + svgSelector)
+		);
+		expect(svgEls).toBeDefined();
+		expect(svgEls.length).toBe(1);
+	});
+
+	it("should set inline classes in inline state", () => {
+		component.inline = true;
+		component.helperText = "test helpful text";
+
+		hostFixture.detectChanges();
+		let labelEls = hostFixture.debugElement.queryAll(
+			By.css(".bx--text-input__label-helper-wrapper > label")
+		);
+		expect(labelEls.length).toBe(1);
+
+		let helperTextEls = hostFixture.debugElement.queryAll(
+			By.css(".bx--form__helper-text")
+		);
+		expect(helperTextEls.length).toBe(1);
+
+		let labelElInlineClass = labelEls[0].classes["bx--label--inline"];
+		expect(labelElInlineClass).toBeTruthy();
+
+		let helperTextElInlineClass = helperTextEls[0].classes["bx--form__helper-text--inline"];
+		expect(helperTextElInlineClass).toBeTruthy();
+
+		let inputWrapperEls = hostFixture.debugElement.queryAll(
+			By.css(".bx--text-input__field-outer-wrapper.bx--text-input__field-outer-wrapper--inline")
+		);
+		expect(inputWrapperEls.length).toBe(1);
 	});
 });
