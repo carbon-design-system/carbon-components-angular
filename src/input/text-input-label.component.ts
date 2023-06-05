@@ -132,7 +132,7 @@ export class TextInputLabelComponent implements AfterViewInit {
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
-			// Prioritize setting id to `input` & `textarea` over div
+			// Prioritize setting id to `input` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("input");
 			if (inputElement) {
 				// avoid overriding ids already set by the user reuse it instead

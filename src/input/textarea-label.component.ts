@@ -138,7 +138,7 @@ export class TextareaLabelComponent implements AfterViewInit {
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
-			// Prioritize setting id to `input` & `textarea` over div
+			// Prioritize setting id to `textarea` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("textarea");
 			if (inputElement) {
 				// avoid overriding ids already set by the user reuse it instead
