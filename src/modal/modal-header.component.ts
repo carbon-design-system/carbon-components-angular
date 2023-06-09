@@ -5,7 +5,6 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
 
 /**
  * ***Inputs***
@@ -56,7 +55,7 @@ export class ModalHeader {
 	 */
 	@Output() closeSelect = new EventEmitter();
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {}
+	constructor(protected i18n: I18n) {}
 
 	/**
 	 * Handles click for the close icon button within the `Modal`.

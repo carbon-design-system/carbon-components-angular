@@ -728,7 +728,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		this.showClearButton = !!searchString;
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
-			this.openDropdown();
+			if (!this.open) {
+				this.openDropdown();
+			}
 		} else {
 			this.selectedValue = "";
 			if (this.type === "multi" &&

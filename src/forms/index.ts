@@ -23,7 +23,9 @@ export {
 	InputModule,
 	Label,
 	TextArea,
-	TextInput
+	TextInput,
+	TextInputLabelComponent,
+	TextareaLabelComponent
 } from "carbon-components-angular/input";
 export {
 	ButtonModule,

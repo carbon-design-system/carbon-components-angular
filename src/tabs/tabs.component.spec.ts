@@ -48,9 +48,7 @@ describe("Tabs", () => {
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
-	});
 
-	beforeEach(() => {
 		fixture = TestBed.createComponent(TabsTest);
 		wrapper = fixture.componentInstance;
 		element = fixture.debugElement.query(By.css("cds-tabs"));

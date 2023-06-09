@@ -174,7 +174,8 @@ export class FileUploader implements ControlValueAccessor {
 	}
 
 	/**
-	 * Specifies the property to be used as the return value to `ngModel`
+	 * Specifies the property to be used as the return value to `ngModel` and reactive forms.
+	 * Updates `this.files`.
 	 */
 	get value(): Set<FileItem> {
 		return this.files;
@@ -243,7 +244,8 @@ export class FileUploader implements ControlValueAccessor {
 		event.stopPropagation();
 		event.preventDefault();
 
-		const transferredFiles = Array.from(event.dataTransfer.files);
+		const transferredFiles: Array<File> = Array.from(event.dataTransfer.files);
+		const newFiles = new Set<FileItem>(this.files);
 
 		transferredFiles.filter(({ name, type }) => {
 			// Get the file extension and add a "." to the beginning.
@@ -251,27 +253,28 @@ export class FileUploader implements ControlValueAccessor {
 			// Check if the accept array contains the mime type or extension of the file.
 			return this.accept.includes(type) || this.accept.includes(fileExtension) || !this.accept.length;
 		}).forEach(file => {
-			if (!this.files.size || this.multiple) {
+			if (!newFiles.size || this.multiple) {
 				const fileItem = this.createFileItem(file);
-				this.files.add(fileItem);
+				newFiles.add(fileItem);
 			}
 		});
 
-		this.filesChange.emit(this.files);
-		this.value = this.files;
+		this.value = newFiles;
+		this.filesChange.emit(newFiles);
 		this.dragOver = false;
 	}
 
 	removeFile(fileItem) {
-		let shouldEmit = true;
-		if (this.files) {
-			shouldEmit = this.files.has(fileItem);
-			this.files.delete(fileItem);
+		// Deleting an item from this.files removes the <ibm-file> component,
+		// which triggers its ngOnDestroy(), which fires the (remove) event again.
+		// So, (remove) may double-fire and we need to handle it here.
+		if (this.files && this.files.has(fileItem)) {
+			const newFiles = new Set<FileItem>(this.files);
+			newFiles.delete(fileItem);
+			this.filesChange.emit(newFiles);
+			this.value = newFiles;
 		}
 		this.fileInput.nativeElement.value = "";
-		if (shouldEmit) {
-			this.filesChange.emit(this.files);
-		}
 	}
 
 	public isTemplate(value) {
