@@ -48,7 +48,8 @@ import { TableRowSize } from "../table.types";
 	template: `
 	<section
 		class="cds--table-toolbar"
-		[ngClass]="{'cds--table-toolbar--sm' : size === 'sm'}">
+		[ngClass]="{'cds--table-toolbar--sm' : size === 'sm'}"
+		[attr.aria-label]="actionBarLabel.subject | async">
 		<div
 			*ngIf="model"
 			class="cds--batch-actions"

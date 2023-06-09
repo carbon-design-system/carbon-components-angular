@@ -27,22 +27,4 @@ describe("Label", () => {
 	xit("should work", () => {
 		expect(component instanceof Label).toBe(true);
 	});
-
-	xit("should set icon to success", () => {
-		component.labelState = "success";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-success")).toBeTruthy();
-	});
-
-	xit("should set icon to warning", () => {
-		component.labelState = "warning";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-warning")).toBeTruthy();
-	});
-
-	xit("should set icon to error", () => {
-		component.labelState = "error";
-		fixture.detectChanges();
-		expect(el.querySelector(".label-icon-error")).toBeTruthy();
-	});
 });

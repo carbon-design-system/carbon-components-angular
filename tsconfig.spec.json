@@ -21,7 +21,8 @@
 		],
 		"types": [
 			"jasmine",
-			"node"
+			"node",
+			"resize-observer-browser"
 		],
 		"paths": {
 			"carbon-components-angular": [

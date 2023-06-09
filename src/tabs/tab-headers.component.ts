@@ -10,6 +10,7 @@ import {
 	ElementRef,
 	OnChanges,
 	SimpleChanges,
+	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
 	Renderer2
@@ -114,7 +115,7 @@ import { Tab } from "./tab.component";
 	`
 })
 
-export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit {
+export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
 	/**
 	 * List of `Tab` components.
 	 */
@@ -127,7 +128,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
-	@ViewChild("tabList", { static: true }) headerContainer;
+	@ViewChild("tabList", { static: true }) headerContainer: ElementRef<HTMLElement>;
 	/**
 	 * ContentChild of all the n-tabs
 	 */
@@ -144,6 +145,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	 * The DOM element containing the `Tab` headings displayed.
 	 */
 	@ViewChildren("tabItem") allTabHeaders: QueryList<ElementRef>;
+	private resizeObserver: ResizeObserver;
 
 	constructor(
 		protected elementRef: ElementRef,
@@ -216,8 +218,17 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		}
 	}
 
-	ngOnInit() {
-		this.eventService.on(window as any, "resize", () => this.handleScroll());
+	ngOnInit(): void {
+		// Update scroll on resize
+		this.resizeObserver = new ResizeObserver(() => {
+			// Need to explicitly trigger change detection since this runs outside Angular zone
+			this.changeDetectorRef.detectChanges();
+		});
+		this.resizeObserver.observe(this.headerContainer.nativeElement);
+	}
+
+	ngOnDestroy(): void {
+		this.resizeObserver.unobserve(this.headerContainer.nativeElement);
 	}
 
 	ngAfterContentInit() {
