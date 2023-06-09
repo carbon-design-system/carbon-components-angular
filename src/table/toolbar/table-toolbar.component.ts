@@ -55,8 +55,7 @@ import { TableRowSize } from "../table.types";
 			class="cds--batch-actions"
 			[ngClass]="{
 				'cds--batch-actions--active': selected
-			}"
-			[attr.aria-label]="actionBarLabel.subject | async">
+			}">
 			<div class="cds--batch-summary">
 				<p class="cds--batch-summary__para" *ngIf="count as n">
 					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
