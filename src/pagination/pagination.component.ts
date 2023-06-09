@@ -106,6 +106,10 @@ export interface PaginationTranslations {
 		</div>
 
 		<div *ngIf="!skeleton" class="cds--pagination__right">
+			<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__page-text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
+				{{pageText.subject | async}}
+			</span>
 			<ng-container *ngIf="showPageInput">
 				<div
 					class="cds--select cds--select--inline cds--select__page-number"
@@ -146,10 +150,6 @@ export interface PaginationTranslations {
 			<span *ngIf="!pagesUnknown && lastPage > 1" class="cds--pagination__text">
 				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
-			</span>
-			<span *ngIf="pagesUnknown" class="cds--pagination__text">
-				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
-				{{pageText.subject | async}} {{currentPage}}
 			</span>
 			<div class="cds--pagination__control-buttons">
 				<button
