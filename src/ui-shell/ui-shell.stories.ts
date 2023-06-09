@@ -27,7 +27,7 @@ export default {
 				UIShellModule,
 				IconModule,
 				SearchModule,
-				RouterModule.forRoot([
+				RouterModule.forChild([
 					{
 						path: "bar",
 						component: BarComponent
@@ -36,10 +36,7 @@ export default {
 						path: "foo",
 						component: FooComponent
 					}
-				], {
-					initialNavigation: "enabledBlocking",
-					useHash: true
-				})
+				])
 			]
 		})
 	],
