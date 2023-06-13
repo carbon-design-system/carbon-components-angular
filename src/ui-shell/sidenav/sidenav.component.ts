@@ -15,11 +15,10 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 @Component({
 	selector: "cds-sidenav, ibm-sidenav",
 	template: `
-		<nav class="cds--side-nav__navigation" [attr.aria-label]="ariaLabel">
+		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
 			<ng-content select="cds-sidenav-header"></ng-content>
-			<div class="cds--side-nav__items" role="list">
-				<div
-					class="cds--side-nav__header-navigation cds--side-nav__header-divider">
+			<div role="list">
+				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
 						<cds-sidenav-item
 							*ngIf="navigationItem.type === 'item'"
@@ -82,7 +81,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 })
 export class SideNav {
 	@HostBinding("class.cds--side-nav") hostClass = true;
-	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
+	@Input() ariaLabel = "Side navigation";
 	/**
 	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
 	 */
@@ -92,7 +91,7 @@ export class SideNav {
 	 */
 	@HostBinding("class.cds--side-nav--hidden") @Input() hidden = false;
 	@HostBinding("class.cds--side-nav--rail") @Input() rail = false;
-	@HostBinding("class.cds--side-nav--ux") ux = true;
+	@HostBinding("class.cds--side-nav__navigation") ux = true;
 	@Input() allowExpansion = false;
 
 	/**
