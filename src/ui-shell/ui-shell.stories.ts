@@ -228,7 +228,6 @@ const SideNavigationTemplate: Story = (args) => ({
 		<div [cdsTheme]="theme">
 			<cds-sidenav>
 				<cds-sidenav-item [active]="true">
-
 					Link
 				</cds-sidenav-item>
 				<cds-sidenav-item>
