@@ -33,7 +33,7 @@ import { RadioChange } from "./radio-change.class";
 			[name]="name"
 			[id]="id"
 			[required]="required"
-			[value]="value"
+			[attr.value]="value"
 			[attr.aria-labelledby]="ariaLabelledby"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -86,7 +86,7 @@ export class Radio {
 	/**
 	 * Used to set the `aria-label` attribute on the input label.
 	 */
-	@Input() ariaLabel = "";
+	@Input() ariaLabel: string;
 
 	/**
 	 * Sets the HTML required attribute
@@ -95,7 +95,7 @@ export class Radio {
 	/**
 	 * The value of the `Radio`.
 	 */
-	@Input() value = "";
+	@Input() value;
 	/**
 	 * Set to `true` for a loading table.
 	 */
