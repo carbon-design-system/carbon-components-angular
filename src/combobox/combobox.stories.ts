@@ -296,7 +296,7 @@ storiesOf("Components|Combobox", module)
 					(selected)="selected($event)"
 					(submit)="submit($event)"
 					(search)="search($event)"
-					(clear)="clear()">
+					(clear)="clear($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 		`,
@@ -432,7 +432,7 @@ storiesOf("Components|Combobox", module)
 					type="multi"
 					(selected)="selected($event)"
 					(submit)="submit($event)"
-					(clear)="clear()">
+					(clear)="clear($event)">
 					<ibm-dropdown-list></ibm-dropdown-list>
 				</ibm-combo-box>
 			</div>
