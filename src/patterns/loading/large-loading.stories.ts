@@ -1,8 +1,7 @@
 /* tslint:disable variable-name */
 
 import { Component } from "@angular/core";
-import { moduleMetadata } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular/types-6-0";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { GridModule } from "../../grid";
 import { UIShellModule } from "../../ui-shell";
 import { ProgressIndicatorModule } from "../../progress-indicator";

@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 
 import { ToastContent } from "./notification-content.interface";
-import { ExperimentalService } from "carbon-components-angular/experimental";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
 import { BaseNotification } from "./base-notification.component";
@@ -63,10 +62,7 @@ export class Toast extends BaseNotification implements OnInit {
 	@HostBinding("class.cds--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--toast-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(
-		protected notificationDisplayService: NotificationDisplayService,
-		protected i18n: I18n,
-		protected experimental: ExperimentalService) {
+	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
 		super(notificationDisplayService, i18n);
 	}
 

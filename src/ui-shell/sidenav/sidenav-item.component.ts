@@ -18,6 +18,9 @@ import { Router } from "@angular/router";
 	template: `
 		<a
 			class="cds--side-nav__link"
+			[ngClass]="{
+				'cds--side-nav__item--active': active
+			}"
 			[href]="href"
 			[attr.aria-current]="(active ? 'page' : null)"
 			[attr.title]="title ? title : null"

@@ -1,8 +1,6 @@
 import {
 	Injector,
 	ComponentRef,
-	ComponentFactory,
-	ComponentFactoryResolver,
 	Injectable,
 	ViewContainerRef
 } from "@angular/core";
@@ -37,27 +35,9 @@ export class DialogService {
 	}
 
 	/**
-	 * The default component factory to use when creating dialogs
-	 */
-	public componentFactory: ComponentFactory<any>;
-
-	/**
 	 * Creates an instance of `DialogService`.
 	 */
-	constructor(
-		protected componentFactoryResolver: ComponentFactoryResolver,
-		protected injector: Injector,
-		protected placeholderService: PlaceholderService
-	) {}
-
-	/**
-	 * Set the context for the service. For example, the `component` property can be used to set the
-	 * default component that should be created by the service, for a given instance of the service.
-	 * @param options `{ component: any }` where `component` is a component that extends `dialog.component`
-	 */
-	setContext(options: { component: any }) {
-		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(options.component);
-	}
+	constructor(protected injector: Injector, protected placeholderService: PlaceholderService) {}
 
 	/**
 	 * If `dialogRef` is defined, the Dialog is already open. If
@@ -68,25 +48,24 @@ export class DialogService {
 	 * May be `null` if an `cds-placeholder` exists and `dialogConfig.appendInline` is false
 	 * @param dialogConfig the `DialogConfig` for the component
 	 */
-	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig, component?: any) {
-		let componentFactory = this.componentFactory;
-		if (component) {
-			componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig, component: any) {
+		if (!component) {
+			return;
 		}
 
 		let dialogRef;
 		if (dialogConfig.appendInline) {
 			// add our component to the view
-			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
+			dialogRef = viewContainer.createComponent(component, { index: 0, injector: this.injector });
 		} else if (!this.placeholderService.hasPlaceholderRef()) {
-			dialogRef = viewContainer.createComponent(componentFactory, 0, this.injector);
+			dialogRef = viewContainer.createComponent(component, { index: 0, injector: this.injector });
 			if (dialogRef) {
 				setTimeout(() => {
 					window.document.querySelector("body").appendChild(dialogRef.location.nativeElement);
 				});
 			}
 		} else {
-			dialogRef = this.placeholderService.createComponent(componentFactory, this.injector);
+			dialogRef = this.placeholderService.createComponent(component, this.injector);
 		}
 
 		// keep track of all initialized dialogs

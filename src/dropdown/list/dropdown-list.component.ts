@@ -121,7 +121,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * The list items belonging to the `DropdownList`.
 	 */
-	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
+	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) {
 		if (isObservable(value)) {
 			if (this._itemsSubscription) {
 				this._itemsSubscription.unsubscribe();
@@ -283,6 +283,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	filterBy(query = "") {
 		if (query) {
 			this.displayItems = this.getListItems().filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
+			// Reset index if items were found
+			// Prevent selecting index in list that are undefined.
+			if (this.displayItems) {
+				this.index = 0;
+			}
 		} else {
 			this.displayItems = this.getListItems();
 		}
@@ -328,23 +333,26 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `HTMLElement` for the item that is subsequent to the selected item.
 	 */
 	getNextElement(): HTMLElement {
-		if (this.index < this.displayItems.length - 1) {
-			this.index++;
-		}
-		let item = this.displayItems[this.index];
-		if (item.disabled) {
-			return this.getNextElement();
-		}
-
-		let elemList = this.listElementList ? this.listElementList.toArray() : [];
-
-		// TODO: update to optional chaining after upgrading typescript
-		// to v3.7+
-		if (elemList[this.index] && elemList[this.index].nativeElement) {
-			return elemList[this.index].nativeElement;
-		} else {
+		// Only return native elements if they are rendered
+		const elemList = this.listElementList ? this.listElementList.toArray() : [];
+		if (!elemList.length) {
 			return null;
 		}
+
+		/**
+		 * Start checking from next index
+		 * Continue looping through the list until a non disabeled element is found or
+		 * end of list is reached
+		 */
+		for (let i = this.index + 1; i < elemList.length; i++) {
+			// If the values in the list are not disabled
+			if (!this.displayItems[i].disabled) {
+				this.index = i;
+				return elemList[i].nativeElement;
+			}
+		}
+
+		return elemList[this.index].nativeElement;
 	}
 
 	/**
@@ -368,23 +376,26 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `HTMLElement` for the item that precedes the selected item.
 	 */
 	getPrevElement(): HTMLElement {
-		if (this.index > 0) {
-			this.index--;
-		}
-		let item = this.displayItems[this.index];
-		if (item.disabled) {
-			return this.getPrevElement();
-		}
-
-		let elemList = this.listElementList ? this.listElementList.toArray() : [];
-
-		// TODO: update to optional chaining after upgrading typescript
-		// to v3.7+
-		if (elemList[this.index] && elemList[this.index].nativeElement) {
-			return elemList[this.index].nativeElement;
-		} else {
+		// Only return native elements if they are rendered
+		const elemList = this.listElementList ? this.listElementList.toArray() : [];
+		if (!elemList.length) {
 			return null;
 		}
+
+		/**
+		 * Start checking from next index
+		 * Continue looping through the list until a non disabeled element is found or
+		 * end of list is reached
+		 */
+		for (let i = this.index - 1; i < this.index && i >= 0; i--) {
+			// If the values in the list are not disabled
+			if (!this.displayItems[i].disabled) {
+				this.index = i;
+				return elemList[i].nativeElement;
+			}
+		}
+
+		return elemList[this.index].nativeElement;
 	}
 
 	/**
@@ -502,7 +513,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key === "ArrowDown") {
 				if (this.hasNextElement()) {
-					this.getNextElement().scrollIntoView({block: "end"});
+					this.getNextElement().scrollIntoView({ block: "end" });
 				} else {
 					this.blurIntent.emit("bottom");
 				}
@@ -524,7 +535,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	doClick(event, item) {
 		event.preventDefault();
-		if (!item.disabled) {
+		if (item && !item.disabled) {
 			this.list.nativeElement.focus();
 			if (this.type === "single") {
 				item.selected = true;

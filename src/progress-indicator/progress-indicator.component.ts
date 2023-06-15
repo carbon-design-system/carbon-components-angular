@@ -4,7 +4,6 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { ExperimentalService } from "carbon-components-angular/experimental";
 import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
 
@@ -99,7 +98,7 @@ export class ProgressIndicator {
 
 	private _current: number;
 
-	constructor(protected experimental: ExperimentalService, protected i18n: I18n) { }
+	constructor(protected i18n: I18n) { }
 
 	/**
 	 * Executes click function if `onClick` exists for step
