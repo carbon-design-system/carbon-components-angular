@@ -46,7 +46,7 @@ import { RadioChange } from "./radio-change.class";
 @Component({
 	selector: "cds-radio-group, ibm-radio-group",
 	template: `
-		<div
+		<fieldset
 			class="cds--radio-button-group"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
@@ -54,30 +54,38 @@ import { RadioChange } from "./radio-change.class";
 				'cds--radio-button-group--vertical': orientation === 'vertical',
 				'cds--radio-button-group--label-left': labelPlacement === 'left',
 				'cds--radio-button-group--invalid' : !warn && invalid,
-				'cds-radio-button-group--warning': !invalid && warn
-			}">
+				'cds--radio-button-group--warning': !invalid && warn
+			}"
+			[attr.data-invalid]="invalid ? true : null">
+			<legend *ngIf="legend" class="cds--label">
+				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
+				<ng-template #legendLabel>{{legend}}</ng-template>
+			</legend>
 			<ng-content></ng-content>
-		</div>
+		</fieldset>
 		<div class="cds--radio-button__validation-msg">
-			<div *ngIf="!warn && invalid">
+			<ng-container *ngIf="!warn && invalid">
 				<svg
 					cdsIcon="warning--filled"
 					size="16"
-					class="cds--radio-button__invalid-icon"
-					>
+					class="cds--radio-button__invalid-icon">
 				</svg>
-				<ng-container *ngIf="!isTemplate(invalidText)" class="cds--form-requirement">{{ invalidText }}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn">
+				<div class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
+			</ng-container>
+			<ng-container *ngIf="!invalid && warn">
 				<svg
 					cdsIcon="warning--alt--filled"
 					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
 					size="16">
 				</svg>
-				<ng-container *ngIf="!isTemplate(warnText)" class="cds--form-requirement">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+				<div class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+				</div>
+			</ng-container>
 		</div>
 		<div
 			*ngIf="helperText && !invalid && !warn"
@@ -96,62 +104,6 @@ import { RadioChange } from "./radio-change.class";
 	]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
-	/**
-	 * Used for creating the `RadioGroup` 'name' property dynamically.
-	 */
-	static radioGroupCount = 0;
-
-	@Input() orientation: "horizontal" | "vertical" = "horizontal";
-
-	@Input() labelPlacement: "right" | "left" =  "right";
-
-	/**
-	 * Used to set the `aria-label` attribute on the radio group element.
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input() ariaLabel: string;
-
-	/**
-	 * Used to set the `aria-labelledby` attribute on the radio group element.
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input() ariaLabelledby: string;
-
-	/**
-	 * Sets the optional helper text.
-	 */
-	@Input() helperText: string | TemplateRef<any>;
-
-	/**
-	 * Set to `true` to show the invalid state.
-	 */
-	@Input() invalid = false;
-
-	/**
-	 * Value displayed if combobox is in an invalid state.
-	 */
-	@Input() invalidText: string | TemplateRef<any>;
-
-	/**
-	* Set to `true` to show a warning (contents set by warnText)
-	*/
-	@Input() warn = false;
-
-	/**
-	 * Sets the warning text
-	 */
-	@Input() warnText: string | TemplateRef<any>;
-
-	/**
-	 * Emits event notifying other classes of a change using a `RadioChange` class.
-	 */
-	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
-
-	/**
-	 * The `Radio` input items in the `RadioGroup`.
-	 */
-	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**
 	 * Sets the passed in `Radio` item as the selected input within the `RadioGroup`.
@@ -244,6 +196,62 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this._skeleton = value;
 		this.updateChildren();
 	}
+	/**
+	 * Used for creating the `RadioGroup` 'name' property dynamically.
+	 */
+	static radioGroupCount = 0;
+
+	@Input() orientation: "horizontal" | "vertical" = "horizontal";
+
+	@Input() labelPlacement: "right" | "left" =  "right";
+
+	@Input() legend: string | TemplateRef<any>;
+
+	/**
+	 * Used to set the `aria-label` attribute on the radio group element.
+	 */
+	@Input() ariaLabel: string;
+
+	/**
+	 * Used to set the `aria-labelledby` attribute on the radio group element.
+	 */
+	@Input() ariaLabelledby: string;
+
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
+
+	/**
+	 * Set to `true` to show the invalid state.
+	 */
+	@Input() invalid = false;
+
+	/**
+	 * Value displayed if combobox is in an invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+
+	/**
+	* Set to `true` to show a warning (contents set by warnText)
+	*/
+	@Input() warn = false;
+
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef<any>;
+
+	/**
+	 * Emits event notifying other classes of a change using a `RadioChange` class.
+	 */
+	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
+
+	/**
+	 * The `Radio` input items in the `RadioGroup`.
+	 */
+	// tslint:disable-next-line:no-forward-ref
+	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**
 	 * Binds 'cds--form-item' value to the class for `RadioGroup`.
@@ -397,6 +405,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	propagateChange = (_: any) => {};
 
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+
 	protected updateChildren() {
 		if (this.radios) {
 			this.radios.forEach(child => child.skeleton = this.skeleton);
@@ -421,9 +433,5 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 				this.emitChangeEvent(event);
 			});
 		});
-	}
-
-	public isTemplate(value) {
-		return value instanceof TemplateRef;
 	}
 }

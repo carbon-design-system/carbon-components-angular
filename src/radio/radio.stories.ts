@@ -25,16 +25,15 @@ export default {
 const Template: Story<Radio> = (args) => ({
 	props: args,
 	template: `
-	<fieldset class="cds--fieldset">
-		<legend class="cds--label">{{label}}</legend>
 		<cds-radio-group
+			[legend]="label"
 			[disabled]="disabled"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
 			[warnText]="warnText"
-			aria-label="radiogroup"
+			ariaLabel="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
 			(change)="onChange($event)">
@@ -46,7 +45,6 @@ const Template: Story<Radio> = (args) => ({
 			<cds-radio [value]="Three">Three</cds-radio>
 			<cds-radio [value]="Four" [disabled]="true">Four</cds-radio>
 		</cds-radio-group>
-	</fieldset>
 	`
 });
 export const Basic = Template.bind({});
