@@ -25,11 +25,15 @@ export default {
 const Template: Story<Radio> = (args) => ({
 	props: args,
 	template: `
-	<fieldset class="cds--fieldset">
-		<legend class="cds--label">{{label}}</legend>
 		<cds-radio-group
+			[legend]="label"
 			[disabled]="disabled"
-			aria-label="radiogroup"
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			ariaLabel="radiogroup"
 			[orientation]="orientation"
 			[labelPlacement]="labelPlacement"
 			(change)="onChange($event)">
@@ -41,12 +45,16 @@ const Template: Story<Radio> = (args) => ({
 			<cds-radio [value]="Three">Three</cds-radio>
 			<cds-radio [value]="Four" [disabled]="true">Four</cds-radio>
 		</cds-radio-group>
-	</fieldset>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	label: "Radio button heading"
+	label: "Radio button heading",
+	helperText: "Helper text message goes here and can wrap lines",
+	invalid: false,
+	invalidText: "Error message goes here and can wrap lines",
+	warn: false,
+	warnText: "Warning message goes here and can wrap lines"
 };
 Basic.argTypes = {
 	onChange: {
