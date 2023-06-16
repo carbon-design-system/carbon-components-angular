@@ -19,7 +19,7 @@ import { Router } from "@angular/router";
 		<a
 			class="cds--side-nav__link"
 			[ngClass]="{
-				'cds--side-nav__link--current': active
+				'cds--side-nav__item--active': active
 			}"
 			[href]="href"
 			[attr.aria-current]="(active ? 'page' : null)"

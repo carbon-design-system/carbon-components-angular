@@ -227,8 +227,7 @@ const SideNavigationTemplate: Story = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-sidenav>
-				<cds-sidenav-item>
-					<svg cdsIcon="fade" size="16"></svg>
+				<cds-sidenav-item [active]="true">
 					Link
 				</cds-sidenav-item>
 				<cds-sidenav-item>
