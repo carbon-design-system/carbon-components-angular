@@ -11,27 +11,27 @@ describe("i18n service", () => {
 	});
 
 	it("should translate a string", done => {
-		service.get("BANNER.CLOSE_BUTTON").subscribe(value => {
-			expect(value).toBe(EN.BANNER.CLOSE_BUTTON);
+		service.get("CODE_SNIPPET.COPIED").subscribe(value => {
+			expect(value).toBe(EN.CODE_SNIPPET.COPIED);
 			done();
 		});
 	});
 
 	it("should update strings", done => {
-		service.set({ "BANNER": { "CLOSE_BUTTON": "test" }});
+		service.set({ "CODE_SNIPPET": { "COPIED": "test" }});
 
-		service.get("BANNER.CLOSE_BUTTON").subscribe(value => {
+		service.get("CODE_SNIPPET.COPIED").subscribe(value => {
 			expect(value).toBe("test");
 			done();
 		});
 	});
 
 	it("should emit updated string", () => {
-		const subject = service.get("BANNER.CLOSE_BUTTON");
+		const subject = service.get("CODE_SNIPPET.COPIED");
 
 		const spy = spyOn(subject, "next");
 
-		service.set({ "BANNER": { "CLOSE_BUTTON": "test" } });
+		service.set({ "CODE_SNIPPET": { "COPIED": "test" } });
 
 		expect(spy).toHaveBeenCalled();
 	});
@@ -73,10 +73,10 @@ describe("i18n service", () => {
 	});
 
 	it("should keep the default translation strings", () => {
-		service.set({ "BANNER": { "TEST": "TEST" } });
+		service.set({ "CODE_SNIPPET": { "TEST": "TEST" } });
 
-		expect(service.get().BANNER.CLOSE_BUTTON).toBe(EN.BANNER.CLOSE_BUTTON);
-		expect(service.get().BANNER.TEST).toBe("TEST");
+		expect(service.get().CODE_SNIPPET.COPIED).toBe(EN.CODE_SNIPPET.COPIED);
+		expect(service.get().CODE_SNIPPET.TEST).toBe("TEST");
 	});
 
 	it("should return a whole subtree as observables", () => {
