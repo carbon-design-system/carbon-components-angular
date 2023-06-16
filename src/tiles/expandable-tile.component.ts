@@ -79,11 +79,11 @@ export class ExpandableTile implements AfterViewInit {
 	@Input() theme: "light" | "dark" = "dark";
 
 	/**
-	 * Set to `true` to expand by default
+	 * Controls the expanded state
 	 */
 	@Input() expanded = false;
 	/**
-	 * Set to `true` to toggle interactive
+	 * Controls the interactive state
 	 */
 	@Input() interactive = false;
 	/**
