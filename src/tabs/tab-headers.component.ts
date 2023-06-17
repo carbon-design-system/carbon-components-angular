@@ -39,7 +39,7 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
-			[title]="translations.BUTTON_ARIA_RIGHT">
+			[title]="translations.BUTTON_ARIA_LEFT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"

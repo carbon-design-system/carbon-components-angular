@@ -8,8 +8,6 @@ import {
 	HostBinding
 } from "@angular/core";
 
-let nextId = 0;
-
 /**
 * The `Tab` component is a child of the `Tabs` component.
 * It represents one `Tab` item and its content within a panel of other `Tab` items.
@@ -70,6 +68,7 @@ let nextId = 0;
 	`
 })
 export class Tab implements OnInit {
+	private static counter = 0;
 	/**
 	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
 	 * Default value is false.
@@ -102,11 +101,10 @@ export class Tab implements OnInit {
 	@Input() disabled = false;
 
 	@Input() tabIndex = 0;
-	// do we need id's?
 	/**
 	 * Sets the id of the `Tab`. Will be uniquely generated if not provided.
 	 */
-	@Input() id = `n-tab-${nextId++}`;
+	@Input() id = `n-tab-${Tab.counter++}`;
 	/**
 	 * Set to true to have Tab items cached and not reloaded on tab switching.
 	 */
