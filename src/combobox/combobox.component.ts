@@ -69,9 +69,9 @@ import { Observable } from "rxjs";
 						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
-							(click)="clearSelected()"
+							(click)="clearSelected($event)"
 							(blur)="onBlur()"
-							(keydown.enter)="clearSelected()"
+							(keydown.enter)="clearSelected($event)"
 							class="cds--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
@@ -399,7 +399,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/** Emits the search string from the input */
 	@Output() search = new EventEmitter<string>();
 	/** Emits an event when the clear button is clicked. */
-	@Output() clear = new EventEmitter();
+	@Output() clear = new EventEmitter<Event>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
@@ -657,7 +657,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		this.checkForReorder();
 	}
 
-	public clearSelected() {
+	public clearSelected(event) {
 		this.items = this.items.map(item => {
 			if (!item.disabled) {
 				item.selected = false;
@@ -671,7 +671,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		const selected = this.view.getSelected();
 		this.propagateChangeCallback(selected);
 		this.selected.emit(selected as any);
-		this.clear.emit();
+		this.clear.emit(event);
 	}
 
 	/**
@@ -770,7 +770,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.preventDefault();
 
 		if (this.type === "single") { // don't want to clear selected or close if multi
-			this.clearSelected();
+			this.clearSelected(event);
 			this.closeDropdown();
 		}
 

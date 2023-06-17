@@ -89,7 +89,8 @@ export default {
 		},
 		selected: { action: "Selection changed!" },
 		submit: { action: "Submit" },
-		search: { action: "Search" }
+		search: { action: "Search" },
+		clear: { action: "Clear!" }
 	},
 	parameters: {
 		layout: "centered"
@@ -116,7 +117,8 @@ const Template: Story<ComboBox> = (args) => ({
 			[dropUp]="dropUp"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
-			(search)="search($event)">
+			(search)="search($event)"
+			(clear)="clear($event)">
 			<cds-dropdown-list></cds-dropdown-list>
 		</cds-combo-box>
 		<span>{{model | json}}</span>
@@ -190,7 +192,8 @@ const MultiTemplate: Story<ComboBox> = (args) => ({
 			[appendInline]="appendInline"
 			type="multi"
 			(selected)="selected($event)"
-			(submit)="submit($event)">
+			(submit)="submit($event)"
+			(clear)="clear($event)">
 			<cds-dropdown-list></cds-dropdown-list>
 		</cds-combo-box>
 	`
