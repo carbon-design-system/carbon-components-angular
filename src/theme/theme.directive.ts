@@ -9,6 +9,8 @@ import {
 } from "@angular/core";
 import { LayerDirective } from "carbon-components-angular/layer";
 
+export type ThemeType = "white" | "g10" | "g90" | "g100";
+
 /**
  * Applies theme styles to the div container it is applied to.
  *
@@ -22,14 +24,15 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 	/**
 	 * @deprecated as of v5 - Use `cdsTheme` input property instead
 	 */
-	@Input() set ibmTheme(type: "white" | "g10" | "g90" | "g100") {
+	@Input() set ibmTheme(type: ThemeType | "") {
 		this.cdsTheme = type;
 	}
 
 	/**
 	 * Sets the theme for the content
+	 * Accepts `ThemeType` or nothing (defaults to empty string in angular 16+)
 	 */
-	@Input() cdsTheme: "white" | "g10" | "g90" | "g100" = "white";
+	@Input() cdsTheme: ThemeType | "" = "white";
 
 	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
 

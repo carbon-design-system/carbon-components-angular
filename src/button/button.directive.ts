@@ -31,9 +31,10 @@ export class Button implements OnInit {
 		this.cdsButton = type;
 	}
 	/**
-	 * sets the button type
+	 * Sets the button type
+	 * Accepts `ButtonType` or nothing (defaults to empty string in angular 16+)
 	 */
-	@Input() cdsButton: ButtonType = "primary";
+	@Input() cdsButton: ButtonType | "" = "primary";
 	/**
 	 * Specify the size of the button
 	 */
