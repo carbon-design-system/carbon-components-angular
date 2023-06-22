@@ -2,7 +2,9 @@ import {
 	AfterViewInit,
 	Directive,
 	ElementRef,
-	Input
+	Input,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
@@ -21,7 +23,7 @@ import { getAttributes } from "@carbon/icon-helpers";
 @Directive({
 	selector: "[cdsIcon], [ibmIcon]"
 })
-export class IconDirective implements AfterViewInit {
+export class IconDirective implements AfterViewInit, OnChanges {
 
 	/**
 	 * @deprecated since v5 - Use `cdsIcon` input property instead
@@ -30,11 +32,9 @@ export class IconDirective implements AfterViewInit {
 		this.cdsIcon = iconName;
 	}
 
-	@Input() set cdsIcon(iconName: string) {
-		this.iconName = iconName;
-		this.renderIcon(iconName);
-	}
 	static titleIdCounter = 0;
+
+	@Input() cdsIcon = "";
 
 	@Input() size = "16";
 
@@ -48,12 +48,10 @@ export class IconDirective implements AfterViewInit {
 
 	@Input() isFocusable = false;
 
-	private iconName: string;
-
 	constructor(
 		protected elementRef: ElementRef,
 		protected iconService: IconService
-	) { }
+	) {}
 
 	renderIcon(iconName: string) {
 		const root = this.elementRef.nativeElement as HTMLElement;
@@ -122,6 +120,14 @@ export class IconDirective implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.renderIcon(this.iconName);
+		this.renderIcon(this.cdsIcon);
+	}
+
+	ngOnChanges({ cdsIcon }: SimpleChanges) {
+		// We want to ignore first change to let the icon register
+		// and add only after view has been initialized
+		if (!cdsIcon.isFirstChange()) {
+			this.renderIcon(this.cdsIcon);
+		}
 	}
 }
