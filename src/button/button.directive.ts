@@ -1,8 +1,7 @@
 import {
 	Directive,
 	HostBinding,
-	Input,
-	OnInit
+	Input
 } from "@angular/core";
 import { ButtonSize, ButtonType } from "./button.types";
 
@@ -23,7 +22,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 @Directive({
 	selector: "[cdsButton], [ibmButton]"
 })
-export class Button implements OnInit {
+export class Button {
 	/**
 	 * @deprecated as of v5 - Use `cdsButton` input property instead
 	 */
@@ -32,7 +31,7 @@ export class Button implements OnInit {
 	}
 	/**
 	 * Sets the button type
-	 * Accepts `ButtonType` or nothing (defaults to empty string in angular 16+)
+	 * Accepts `ButtonType` or nothing (empty string which is equivalent to "primary")
 	 */
 	@Input() cdsButton: ButtonType | "" = "primary";
 	/**
@@ -58,7 +57,8 @@ export class Button implements OnInit {
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.cds--btn") baseClass = true;
 	@HostBinding("class.cds--btn--primary") get primaryButton() {
-		return this.cdsButton === "primary";
+		// We need to make sure cdsButton is not an empty string since input name matches selector name.
+		return this.cdsButton === "primary" || !this.cdsButton;
 	}
 	@HostBinding("class.cds--btn--secondary") get secondaryButton() {
 		return this.cdsButton === "secondary";
@@ -92,15 +92,5 @@ export class Button implements OnInit {
 	}
 	@HostBinding("class.cds--btn--2xl") get twoExtraLargeSize() {
 		return this.size === "2xl";
-	}
-
-	/**
-	 * We need to make sure cdsButton is not an empty string since
-	 * input name matches selector name.
-	 */
-	ngOnInit() {
-		if (!this.cdsButton) {
-			this.cdsButton = "primary";
-		}
 	}
 }
