@@ -1,9 +1,8 @@
 import { TableItem } from "./table-item.class";
-import {
-	EventEmitter,
-	TemplateRef
-} from "@angular/core";
+import { TemplateRef } from "@angular/core";
 
+
+export type SortType = "ASCENDING" | "DESCENDING" | "NONE";
 export class TableHeaderItem {
 	/**
 	 * Defines if column under this TableHeaderItem should be displayed.
@@ -56,28 +55,6 @@ export class TableHeaderItem {
 	 *
 	 */
 	style = {};
-
-	/**
-	 * If true, sort is set to ascending, if false descending will be true.
-	 *
-	 */
-	set ascending(asc) {
-		this._ascending = asc;
-	}
-	get ascending() {
-		return this._ascending;
-	}
-
-	/**
-	 * If true, sort is set to descending, if false ascending will be true.
-	 *
-	 */
-	set descending(desc) {
-		this._ascending = !desc;
-	}
-	get descending() {
-		return !this._ascending;
-	}
 
 	/**
 	 * Data for the header item.
@@ -200,12 +177,7 @@ export class TableHeaderItem {
 	 */
 	filterData: any;
 
-	/**
-	 * used in `ascending`
-	 *
-	 * @protected
-	 */
-	protected _ascending = true;
+	sortDirection: SortType = "NONE";
 
 	get title() {
 		if (this._title) {

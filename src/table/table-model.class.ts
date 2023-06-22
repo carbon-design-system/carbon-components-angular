@@ -1,6 +1,4 @@
-import {
-	EventEmitter
-} from "@angular/core";
+import { EventEmitter } from "@angular/core";
 
 import { PaginationModel } from "carbon-components-angular/pagination";
 import { TableHeaderItem } from "./table-header-item.class";
@@ -28,10 +26,6 @@ export type HeaderType = number | "select" | "expand";
  * Use the provided functions when in doubt.
  */
 export class TableModel implements PaginationModel {
-	/**
-	 * The number of models instantiated, used for (among other things) unique id generation
-	 */
-	protected static COUNT = 0;
 
 	/**
 	 * Sets data of the table.
@@ -39,11 +33,13 @@ export class TableModel implements PaginationModel {
 	 * Make sure all rows are the same length to keep the column count accurate.
 	 */
 	set data(newData: TableItem[][]) {
-		if (!newData || (Array.isArray(newData) && newData.length === 0) ) {
+		if (!newData || (Array.isArray(newData) && newData.length === 0)) {
 			newData = [[]];
 		}
 
 		this._data = newData;
+		// Make shallow copy of the data to keep order
+		this._shallowData = [...this._data];
 
 		// init rowsSelected
 		this.rowsSelected = new Array<boolean>(this._data.length).fill(false);
@@ -67,15 +63,6 @@ export class TableModel implements PaginationModel {
 		this.dataChange.emit();
 	}
 
-	dataChange = new EventEmitter();
-	rowsSelectedChange = new EventEmitter<number>();
-	rowsExpandedChange = new EventEmitter<number>();
-	/**
-	 * Gets emitted when `selectAll` is called. Emits false if all rows are deselected and true if
-	 * all rows are selected.
-	 */
-	selectAllChange = new Subject<boolean>();
-
 	/**
 	 * Gets the full data.
 	 *
@@ -85,6 +72,50 @@ export class TableModel implements PaginationModel {
 	get data() {
 		return this._data;
 	}
+
+	/**
+	 * Manually set data length in case the data in the table doesn't
+	 * correctly reflect all the data that table is to display.
+	 *
+	 * Example: if you have multiple pages of data that table will display
+	 * but you're loading one at a time.
+	 *
+	 * Set to `null` to reset to default behavior.
+	 */
+	set totalDataLength(length: number) {
+		// if this function is called without a parameter we need to set to null to avoid having undefined != null
+		this._totalDataLength = isNaN(length) ? null : length;
+	}
+
+	/**
+	 * Total length of data that table has access to, or the amount manually set
+	 */
+	get totalDataLength() {
+		// if manually set data length
+		if (this._totalDataLength !== null && this._totalDataLength >= 0) {
+			return this._totalDataLength;
+		}
+
+		// if empty dataset
+		if (this.data && this.data.length === 1 && this.data[0].length === 0) {
+			return 0;
+		}
+
+		return this.data.length;
+	}
+	/**
+	 * The number of models instantiated, used for (among other things) unique id generation
+	 */
+	protected static COUNT = 0;
+
+	dataChange = new EventEmitter();
+	rowsSelectedChange = new EventEmitter<number>();
+	rowsExpandedChange = new EventEmitter<number>();
+	/**
+	 * Gets emitted when `selectAll` is called. Emits false if all rows are deselected and true if
+	 * all rows are selected.
+	 */
+	selectAllChange = new Subject<boolean>();
 
 	/**
 	 * Contains information about selection state of rows in the table.
@@ -146,37 +177,6 @@ export class TableModel implements PaginationModel {
 	protected _totalDataLength: number;
 
 	/**
-	 * Manually set data length in case the data in the table doesn't
-	 * correctly reflect all the data that table is to display.
-	 *
-	 * Example: if you have multiple pages of data that table will display
-	 * but you're loading one at a time.
-	 *
-	 * Set to `null` to reset to default behavior.
-	 */
-	set totalDataLength(length: number) {
-		// if this function is called without a parameter we need to set to null to avoid having undefined != null
-		this._totalDataLength = isNaN(length) ? null : length;
-	}
-
-	/**
-	 * Total length of data that table has access to, or the amount manually set
-	 */
-	get totalDataLength() {
-		// if manually set data length
-		if (this._totalDataLength !== null && this._totalDataLength >= 0) {
-			return this._totalDataLength;
-		}
-
-		// if empty dataset
-		if (this.data && this.data.length === 1 && this.data[0].length === 0) {
-			return 0;
-		}
-
-		return this.data.length;
-	}
-
-	/**
 	 * Used in `data`
 	 */
 	protected _data: TableItem[][] = [[]];
@@ -186,6 +186,7 @@ export class TableModel implements PaginationModel {
 	 * model count for unique id generation.
 	 */
 	protected tableModelCount = 0;
+	private _shallowData: TableItem[][] = this._data;
 
 	constructor() {
 		this.tableModelCount = TableModel.COUNT++;
@@ -540,10 +541,20 @@ export class TableModel implements PaginationModel {
 	 */
 	sort(index: number) {
 		this.pushRowStateToModelData();
-		this.data.sort((a, b) => (this.header[index].descending ? -1 : 1) * this.header[index].compare(a[index], b[index]));
-		this.popRowStateFromModelData();
+		// We only allow sorting by a single column, so reset sort state for all columns before specifying new sort state
 		this.header.forEach(column => column.sorted = false);
-		this.header[index].sorted = true;
+		if (this.header[index].sortDirection === "ASCENDING" || this.header[index].sortDirection === "DESCENDING") {
+			// Perform sort
+			this.data.sort((a, b) => {
+				const descending = (this.header[index].sortDirection === "DESCENDING" ? -1 : 1);
+				return descending * this.header[index].compare(a[index], b[index]);
+			});
+			this.header[index].sorted = true;
+		} else {
+			this._data = [...this._shallowData];
+			this.header[index].sorted = false;
+		}
+		this.popRowStateFromModelData();
 	}
 
 	/**

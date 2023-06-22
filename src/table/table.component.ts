@@ -13,11 +13,11 @@ import {
 import { Subscription, fromEvent, Observable } from "rxjs";
 
 import { TableModel } from "./table-model.class";
-import { TableHeaderItem } from "./table-header-item.class";
+import { SortType, TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "carbon-components-angular/common";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
@@ -545,16 +545,23 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * 		// all you want, you don't need to do this.
 	 *
 	 * 		// here you can query your backend and update the model.data based on the result
-	 * 		if (this.model.header[index].sorted) {
-	 * 			// if already sorted flip sorting direction
-	 * 			this.model.header[index].ascending = this.model.header[index].descending;
+	 * 		switch (this.model.header[index].sortDirection) {
+	 * 			case "ASCENDING":
+	 * 				this.model.header[index].sortDirection = "DESCENDING";
+	 * 				break;
+	 * 			case "DESCENDING":
+	 * 				this.model.header[index].sortDirection = "NONE";
+	 * 				break;
+	 * 			default:
+	 * 				this.model.header[index].sortDirection = "ASCENDING";
+	 * 				break;
 	 * 		}
 	 * 		this.model.sort(index);
 	 * 	}
 	 * }
 	 * ```
 	 */
-	@Output() sort = new EventEmitter<number>();
+	@Output() sort = new EventEmitter<{ index: number, direction: SortType }>();
 
 	/**
 	 * Emits if all rows are selected.
@@ -843,14 +850,21 @@ export class Table implements AfterViewInit, OnDestroy {
 	doSort(index: number) {
 		if (this.sort.observers.length === 0) {
 			// no sort provided so do the simple sort
-			if (this.model.header[index].sorted) {
-				// if already sorted flip sorting direction
-				this.model.header[index].ascending = this.model.header[index].descending;
+			switch (this.model.header[index].sortDirection) {
+				case "ASCENDING":
+					this.model.header[index].sortDirection = "DESCENDING";
+					break;
+				case "DESCENDING":
+					this.model.header[index].sortDirection = "NONE";
+					break;
+				default:
+					this.model.header[index].sortDirection = "ASCENDING";
+					break;
 			}
 			this.model.sort(index);
 		}
 
-		this.sort.emit(index);
+		this.sort.emit({ index, direction: this.model.header[index].sortDirection });
 	}
 
 	/**

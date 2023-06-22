@@ -123,6 +123,7 @@ describe("Table", () => {
 		];
 		tableModel.rowsSelected[1] = true;
 		tableModel.rowsContext[1] = "success";
+		tableModel.header[1].sortDirection = "ASCENDING";
 
 		tableModel.sort(1);
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
@@ -141,7 +142,7 @@ describe("Table", () => {
 		];
 		tableModel.rowsSelected[1] = true;
 		tableModel.rowsContext[1] = "success";
-		tableModel.header[1].descending = true;
+		tableModel.header[1].sortDirection = "DESCENDING";
 
 		tableModel.sort(1);
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
