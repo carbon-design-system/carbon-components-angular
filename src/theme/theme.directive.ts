@@ -4,7 +4,6 @@ import {
 	Directive,
 	HostBinding,
 	Input,
-	OnInit,
 	QueryList
 } from "@angular/core";
 import { LayerDirective } from "carbon-components-angular/layer";
@@ -20,7 +19,7 @@ export type ThemeType = "white" | "g10" | "g90" | "g100";
 	selector: "[cdsTheme], [ibmTheme]",
 	exportAs: "theme"
 })
-export class ThemeDirective implements OnInit, AfterContentChecked {
+export class ThemeDirective implements AfterContentChecked {
 	/**
 	 * @deprecated as of v5 - Use `cdsTheme` input property instead
 	 */
@@ -30,7 +29,7 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 
 	/**
 	 * Sets the theme for the content
-	 * Accepts `ThemeType` or nothing (defaults to empty string in angular 16+)
+	 * Accepts `ThemeType` or nothing (empty string which is equivalent to "white")
 	 */
 	@Input() cdsTheme: ThemeType | "" = "white";
 
@@ -41,7 +40,7 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 	 * overwrite user added classes
 	 */
 	@HostBinding("class.cds--white") get whiteThemeClass() {
-		return this.cdsTheme === "white";
+		return this.cdsTheme === "white" || !this.cdsTheme;
 	}
 
 	@HostBinding("class.cds--g10") get g10ThemeClass() {
@@ -68,15 +67,5 @@ export class ThemeDirective implements OnInit, AfterContentChecked {
 				layer.cdsLayer = 1;
 			}
 		});
-	}
-
-	/**
-	 * We need to make sure cdsTheme is not an empty string because
-	 * input name matches selector name.
-	 */
-	ngOnInit(): void {
-		if (!this.cdsTheme) {
-			this.cdsTheme = "white";
-		}
 	}
 }
