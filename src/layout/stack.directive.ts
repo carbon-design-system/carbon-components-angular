@@ -3,20 +3,19 @@ import {
 	ElementRef,
 	HostBinding,
 	Input,
-	OnInit,
 	Renderer2
 } from "@angular/core";
 
 @Directive({
 	selector: "[cdsStack], [ibmStack]"
 })
-export class StackDirective implements OnInit {
+export class StackDirective {
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {
 		return this.cdsStack === "horizontal";
 	}
 
 	@HostBinding("class.cds--stack-vertical") get isVertical() {
-		return this.cdsStack === "vertical";
+		return this.cdsStack === "vertical" || !this.cdsStack;
 	}
 
 	/**
@@ -28,8 +27,11 @@ export class StackDirective implements OnInit {
 
 	/**
 	 * Orientation of the items in the stack, defaults to `vertical`
+	 * Empty string is equivalent to "vertical"
+	 *
+	 * Empty string has been added as an option for Angular 16+ to resolve type errors
 	 */
-	@Input() cdsStack: "vertical" | "horizontal" = "vertical";
+	@Input() cdsStack: "vertical" | "horizontal" | "" = "vertical";
 
 	/**
 	 * Gap in the layout, provide a custom value (string) or a step from the spacing scale (number)
@@ -44,15 +46,5 @@ export class StackDirective implements OnInit {
 	// Used to track previous value of gap so we can dynamically remove class
 	private _gap;
 
-	constructor(private render: Renderer2, private hostElement: ElementRef) { }
-
-	/**
-	 * We need to make sure cdsStack is not an empty string since
-	 * input name matches selector name.
-	 */
-	ngOnInit(): void {
-		if (!this.cdsStack) {
-			this.cdsStack = "vertical";
-		}
-	}
+	constructor(private render: Renderer2, private hostElement: ElementRef) {}
 }
