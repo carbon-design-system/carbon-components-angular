@@ -32,6 +32,7 @@ export class Button {
 	/**
 	 * Sets the button type
 	 * Accepts `ButtonType` or nothing (empty string which is equivalent to "primary")
+	 * Empty string has been added as an option for Angular 16+ to resolve type errors
 	 */
 	@Input() cdsButton: ButtonType | "" = "primary";
 	/**
@@ -57,7 +58,6 @@ export class Button {
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.cds--btn") baseClass = true;
 	@HostBinding("class.cds--btn--primary") get primaryButton() {
-		// We need to make sure cdsButton is not an empty string since input name matches selector name.
 		return this.cdsButton === "primary" || !this.cdsButton;
 	}
 	@HostBinding("class.cds--btn--secondary") get secondaryButton() {

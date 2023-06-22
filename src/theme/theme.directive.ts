@@ -30,6 +30,7 @@ export class ThemeDirective implements AfterContentChecked {
 	/**
 	 * Sets the theme for the content
 	 * Accepts `ThemeType` or nothing (empty string which is equivalent to "white")
+	 * Empty string has been added as an option for Angular 16+ to resolve type errors
 	 */
 	@Input() cdsTheme: ThemeType | "" = "white";
 
