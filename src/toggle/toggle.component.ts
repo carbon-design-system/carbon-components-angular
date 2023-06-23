@@ -30,50 +30,56 @@ export enum ToggleState {
 @Component({
 	selector: "cds-toggle, ibm-toggle",
 	template: `
-		<button
-			class="cds--toggle__button"
-			[disabled]="disabled"
-			[id]="id"
-			role="switch"
-			type="button"
-			[attr.aria-checked]="checked"
-			(click)="onClick($event)">
-		</button>
-		<label
-			class="cds--toggle__label"
-			[for]="id">
-			<span
-				class="cds--toggle__label-text"
-				[ngClass]="{
-					'cds--visually-hidden': hideLabel
-				}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</span>
-			<div
-				class="cds--toggle__appearance"
-				[ngClass]="{
-					'cds--toggle__appearance--sm': size === 'sm'
-				}">
-				<div
-					class="cds--toggle__switch"
+		<ng-container *ngIf="!skeleton; else skeletonTemplate;">
+			<button
+				class="cds--toggle__button"
+				[disabled]="disabled"
+				[id]="id"
+				role="switch"
+				type="button"
+				[attr.aria-checked]="checked"
+				(click)="onClick($event)">
+			</button>
+			<label
+				class="cds--toggle__label"
+				[for]="id">
+				<span
+					class="cds--toggle__label-text"
 					[ngClass]="{
-						'cds--toggle__switch--checked': checked
+						'cds--visually-hidden': hideLabel
 					}">
-					<svg
-						*ngIf="size === 'sm'"
-						class='cds--toggle__check'
-						width="6px"
-						height="5px"
-						viewBox="0 0 6 5">
-						<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
-					</svg>
-				</div>
-				<span class="cds--toggle__text">
-					{{(hideLabel ? label : (getCheckedText() | async))}}
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</span>
-			</div>
-		</label>
+				<div
+					class="cds--toggle__appearance"
+					[ngClass]="{
+						'cds--toggle__appearance--sm': size === 'sm'
+					}">
+					<div
+						class="cds--toggle__switch"
+						[ngClass]="{
+							'cds--toggle__switch--checked': checked
+						}">
+						<svg
+							*ngIf="size === 'sm'"
+							class='cds--toggle__check'
+							width="6px"
+							height="5px"
+							viewBox="0 0 6 5">
+							<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
+						</svg>
+					</div>
+					<span class="cds--toggle__text">
+						{{(hideLabel ? label : (getCheckedText() | async))}}
+					</span>
+				</div>
+			</label>
+		</ng-container>
+		<ng-template #skeletonTemplate>
+			<div class="cds--toggle__skeleton-circle"></div>
+			<div class="cds--toggle__skeleton-rectangle"></div>
+		</ng-template>
 	`,
 	providers: [
 		{
@@ -125,12 +131,16 @@ export class Toggle extends Checkbox {
 	 */
 	@Input() hideLabel = false;
 
+	@HostBinding("class.cds--toggle--skeleton") @Input() skeleton = false;
+
 	@HostBinding("class.cds--toggle") toggleClass = true;
 	@HostBinding("class.cds--toggle--disabled") get disabledClass () {
 		return this.disabled;
 	}
 
-	@HostBinding("class.cds--form-item") formItem = true;
+	@HostBinding("class.cds--form-item") get formItem() {
+		return !this.skeleton;
+	}
 
 	/**
 	 * The unique id allocated to the `Toggle`.
