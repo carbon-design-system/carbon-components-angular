@@ -81,7 +81,7 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[cdsContentOption]"));
+		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[cdsContentOption], [ibmContentOption]"));
 
 		switch (event.key) {
 			case "ArrowRight":
