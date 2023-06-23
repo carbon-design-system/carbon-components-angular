@@ -5,9 +5,8 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -29,10 +28,6 @@ import { TableRowSize } from "../table.types";
 })
 export class TableHeadCheckbox {
 	private static tableSelectAllCount = 0;
-	/**
-	 * Size of the table rows.
-	 */
-	@Input() size: TableRowSize = "md";
 
 	@Input() checked = false;
 
