@@ -2,8 +2,8 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
-	Input
+	Input,
+	AfterViewInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
@@ -55,7 +55,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 		</cds-table>
 	`
 })
-export class DynamicTableStory implements OnInit {
+export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -65,13 +65,13 @@ export class DynamicTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	@ViewChild("customHeaderTemplate")
+	@ViewChild("customHeaderTemplate", { static: true })
 	protected customHeaderTemplate: TemplateRef<any>;
 
-	@ViewChild("customTableItemTemplate")
+	@ViewChild("customTableItemTemplate", { static: true })
 	protected customTableItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "swer" })],
@@ -96,12 +96,20 @@ export class DynamicTableStory implements OnInit {
 		this.sort(this.model, index);
 	}
 
-	sort(model, index: number) {
-		if (model.header[index].sorted) {
-			// if already sorted flip sorting direction
-			model.header[index].ascending = model.header[index].descending;
+	sort(model, index) {
+		// here you can query your backend and update the model.data based on the result
+		switch (this.model.header[index].sortDirection) {
+			case "ASCENDING":
+				this.model.header[index].sortDirection = "DESCENDING";
+				break;
+			case "DESCENDING":
+				this.model.header[index].sortDirection = "NONE";
+				break;
+			default:
+				this.model.header[index].sortDirection = "ASCENDING";
+				break;
 		}
-		model.sort(index);
+		this.model.sort(index);
 	}
 
 	addRow() {

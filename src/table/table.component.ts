@@ -561,7 +561,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * }
 	 * ```
 	 */
-	@Output() sort = new EventEmitter<{ index: number, direction: SortType }>();
+	@Output() sort = new EventEmitter<number>();
 
 	/**
 	 * Emits if all rows are selected.
@@ -864,7 +864,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.model.sort(index);
 		}
 
-		this.sort.emit({ index, direction: this.model.header[index].sortDirection });
+		this.sort.emit(index);
 	}
 
 	/**

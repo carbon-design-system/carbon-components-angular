@@ -48,7 +48,6 @@ import { TableRowSize } from "../table.types";
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
-				[size]="size"
 				[skeleton]="skeleton"
 				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
