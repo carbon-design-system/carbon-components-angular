@@ -2,8 +2,8 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
-	Input
+	Input,
+	AfterViewInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
@@ -55,7 +55,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 		</cds-table>
 	`
 })
-export class DynamicTableStory implements OnInit {
+export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -71,7 +71,7 @@ export class DynamicTableStory implements OnInit {
 	@ViewChild("customTableItemTemplate")
 	protected customTableItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "swer" })],
