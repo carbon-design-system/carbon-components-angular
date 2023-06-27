@@ -19,6 +19,7 @@ const Template: Story<Toggle> = (args) => ({
 	props: args,
 	template: `
 		<cds-toggle
+			[skeleton]="skeleton"
 			[label]="label"
 			[hideLabel]="hideLabel"
 			[onText]="onText"
@@ -37,7 +38,8 @@ Basic.args = {
 	hideLabel: false,
 	label: "Toggle element label",
 	onText: "On",
-	offText: "Off"
+	offText: "Off",
+	skeleton: false
 };
 Basic.argTypes = {
 	onChange: {
