@@ -48,7 +48,6 @@ import { TableRowSize } from "../table.types";
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
-				[size]="size"
 				[skeleton]="skeleton"
 				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
@@ -110,11 +109,6 @@ export class TableHead implements AfterViewInit {
 	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
 	 */
 	@Input() sortable = true;
-
-	/**
-	 * Size of the table rows.
-	 */
-	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

@@ -190,7 +190,6 @@ import { TableRowSize } from "./table.types";
 			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
 			[filterTitle]="getFilterTitle()"
 			[model]="model"
-			[size]="size"
 			[selectAllCheckbox]="selectAllCheckbox"
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
 			[showSelectionColumn]="showSelectionColumn"
