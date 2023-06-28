@@ -126,7 +126,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 	ngOnChanges({ cdsIcon }: SimpleChanges) {
 		// We want to ignore first change to let the icon register
 		// and add only after view has been initialized
-		if (!cdsIcon.isFirstChange()) {
+		if (cdsIcon && !cdsIcon.isFirstChange()) {
 			this.renderIcon(this.cdsIcon);
 		}
 	}
