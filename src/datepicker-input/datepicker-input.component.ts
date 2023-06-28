@@ -1,5 +1,4 @@
-import {
-	Component,
+import {	Component,
 	Input,
 	Output,
 	EventEmitter,
@@ -109,6 +108,10 @@ export class DatePickerInput {
 	@Input() label: string | TemplateRef<any>;
 
 	@Input() placeholder = "mm/dd/yyyy";
+
+	@Input() minDate = "";
+
+	@Input() maxDate = "";
 
 	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 

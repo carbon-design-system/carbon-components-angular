@@ -54,6 +54,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
+					[minDate]="minDate"
+					[maxDate]="maxDate"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[warn]="warn"
@@ -76,6 +78,8 @@ import { I18n } from "carbon-components-angular/i18n";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
+					[minDate]="minDate"
+					[maxDate]="maxDate"
 					[invalid]="rangeInvalid"
 					[invalidText]="rangeInvalidText"
 					[warn]="rangeWarn"
@@ -131,6 +135,10 @@ export class DatePicker implements
 	 * https://github.com/flatpickr/flatpickr/blob/master/src/l10n/index.ts
 	 */
 	@Input() language = "en";
+
+	@Input() minDate: string;
+
+	@Input() maxDate: string;
 
 	@Input() label: string | TemplateRef<any>;
 	@Input() helperText: string | TemplateRef<any>;
@@ -228,6 +236,8 @@ export class DatePicker implements
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
 			mode: this.range ? "range" : "single",
 			plugins,
+			minDate: this.minDate,
+			maxDate: this.maxDate,
 			dateFormat: this.dateFormat,
 			locale: languages.default[this.language]
 		});

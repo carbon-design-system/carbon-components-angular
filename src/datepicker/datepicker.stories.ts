@@ -231,6 +231,78 @@ storiesOf("Components|Date Picker", module)
 			value: array("Value", ["10/19/2019"])
 		}
 	}))
+	.add("Min Max Date", () => ({
+		template: `
+			<p>With Min Date value</p>
+			<ibm-date-picker
+				[label]="label"
+				id="initial-value-datepicker"
+				[placeholder]="placeholder"
+				[language]="language"
+				[size]="size"
+				[theme]="theme"
+				[value]="value"
+				[disabled]="disabled"
+				[minDate]="minDate"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
+			<p style="margin-top: 20px;">With Max Date value</p>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[language]="language"
+				[size]="size"
+				[theme]="theme"
+				[disabled]="disabled"
+				[maxDate]="maxDate"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
+			<p style="margin-top: 20px;">With both Min Max Date values</p>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[language]="language"
+				[size]="size"
+				[theme]="theme"
+				[disabled]="disabled"
+				[minDate]="minDate"
+				[maxDate]="maxDate"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
+		`,
+		props: {
+			language: select("Calendar language", ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"], "en"),
+			size: select("Size", ["sm", "md", "xl"], "md"),
+			valueChange: action("Date change fired!"),
+			theme: select("Theme", ["dark", "light"], "dark"),
+			label: text("Label text", "Date Picker Label"),
+			placeholder: text("Placeholder text", "mm/dd/yyyy"),
+			invalidText: text("Form validation content", "Invalid date format"),
+			warn: boolean("Show the warning state", false),
+			warnText: text("Text for the warning", "This is a warning"),
+			invalid: boolean("Show form validation", false),
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["10/19/2019"]),
+			minDate: text("Min Date", "06/20/2023"),
+			maxDate: text("Max Date", "06/29/2023")
+		}
+	}))
 	.add("Range", () => ({
 		template: `
 		<p>With initial value</p>
