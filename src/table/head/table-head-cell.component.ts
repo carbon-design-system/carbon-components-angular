@@ -18,11 +18,11 @@ import { TableHeaderItem } from "../table-header-item.class";
 		<button
 			class="bx--table-sort"
 			*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"
-			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
+			[attr.aria-label]="(column.sorted && column.sortDirection === 'ASCENDING' ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
 				'bx--table-sort--active': column.sorted,
-				'bx--table-sort--ascending': column.ascending
+				'bx--table-sort--ascending': column.sortDirection === 'ASCENDING'
 			}"
 			(click)="onClick()">
 			<span

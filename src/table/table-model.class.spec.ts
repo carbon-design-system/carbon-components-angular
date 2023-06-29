@@ -117,12 +117,13 @@ describe("Table", () => {
 	it("should sort data ascending", () => {
 		let tableModel = new TableModel();
 		tableModel.data = [
-			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],
-			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],
-			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 0
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],	// 1
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]	// 2
 		];
 		tableModel.rowsSelected[1] = true;
 		tableModel.rowsContext[1] = "success";
+		tableModel.cycleSortState(1);
 
 		tableModel.sort(1);
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
@@ -130,6 +131,7 @@ describe("Table", () => {
 		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
 		expect(tableModel.rowsSelected).toEqual([false, false, true]);
 		expect(tableModel.rowsContext).toEqual([undefined, undefined, "success"]);
+		expect(tableModel.rowsIndices).toEqual([2, 0, 1]);
 	});
 
 	it("should sort data descending", () => {
@@ -149,7 +151,144 @@ describe("Table", () => {
 		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
 		expect(tableModel.rowsSelected).toEqual([true, false, false]);
 		expect(tableModel.rowsContext).toEqual(["success", undefined, undefined]);
+		expect(tableModel.rowsIndices).toEqual([1, 0, 2]);
 	});
+
+	it("should set sort direction to NONE", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],	// 0
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 1
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]	// 2
+		];
+		// 1 is now the last element in the array
+		tableModel.rowsIndices = [1, 0, 2];
+		tableModel.rowsSelected[1] = true;
+		tableModel.rowsContext[1] = "success";
+		tableModel.header[1].sorted = true;
+		tableModel.header[1].sortDirection = "NONE";
+
+		tableModel.sort(1);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.rowsSelected).toEqual([true, false, false]);
+		expect(tableModel.rowsContext).toEqual(["success", undefined, undefined]);
+		expect(tableModel.rowsIndices).toEqual([0, 1, 2]);
+	});
+
+	it("should add new row without index to the end when sorted", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],	// 0
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 1
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]	// 2
+		];
+		// 1 is now the last element in the array
+		tableModel.rowsIndices = [0, 1, 2];
+		tableModel.header[1].sortDirection = "DESCENDING";
+		tableModel.sort(1);
+
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.rowsIndices).toEqual([2, 1, 0]);
+
+		// ADD ROW
+		tableModel.addRow([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})]);
+		expect(tableModel.row(3)).toEqual([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})]);
+
+		tableModel.header[1].sortDirection = "NONE";
+		tableModel.sort(1);
+
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.row(3)).toEqual([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})]);
+		expect(tableModel.rowsIndices).toEqual([0, 1, 2, 3]);
+	});
+
+	it("should add new row at specified index when sorted", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],	// 2
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 1
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]	// 0
+		];
+		// 1 is now the last element in the array
+		tableModel.rowsIndices = [2, 1, 0];
+
+		// ADD ROW
+		tableModel.addRow([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})], 1);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})]);
+		expect(tableModel.rowsIndices).toEqual([2, 3, 1, 0]);
+
+		tableModel.header[1].sortDirection = "NONE";
+		tableModel.sort(1);
+
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.row(3)).toEqual([new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})]);
+		expect(tableModel.rowsIndices).toEqual([0, 1, 2, 3]);
+	});
+
+	it("should delete row at specified index when sorted", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],	// 3
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 1
+			[new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})],	// 2 	<--- Delete
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]	// 0
+		];
+		// Table is currently in a sorted state
+		tableModel.rowsIndices = [3, 1, 2, 0];
+
+		// DELETE ROW
+		tableModel.deleteRow(2);
+		expect(tableModel.rowsIndices).toEqual([2, 1, 0]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+
+		// Sort and check rowIndices & row order
+		tableModel.header[1].sortDirection = "NONE";
+		tableModel.sort(1);
+
+		expect(tableModel.rowsIndices).toEqual([0, 1, 2]);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+	});
+
+	it("should delete last row with the highest index when sorted", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],	// 2
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],	// 1
+			[new TableItem({data: "J"}), new TableItem({data: "K"}), new TableItem({data: "L"})],	// 3 <--- Delete
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]	// 0
+		];
+		// Table is currently in a sorted state
+		tableModel.rowsIndices = [2, 1, 3, 0];
+
+		// DELETE ROW
+		tableModel.deleteRow(2);
+		expect(tableModel.rowsIndices).toEqual([2, 1, 0]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+
+		// Sort and check rowIndices & row order
+		tableModel.header[1].sortDirection = "NONE";
+		tableModel.sort(1);
+
+		expect(tableModel.rowsIndices).toEqual([0, 1, 2]);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+	});
+
 
 	/* ****************************************************************
 	***********                                             ***********
