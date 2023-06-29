@@ -548,7 +548,7 @@ export class TableModel implements PaginationModel {
 	 * cycle through the three sort states
 	 * @param index
 	 */
-	cycleSortState(index: number){
+	cycleSortState(index: number) {
 		// no sort provided so do the simple sort
 		switch (this.header[index].sortDirection) {
 			case "ASCENDING":
