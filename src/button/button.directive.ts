@@ -78,6 +78,9 @@ export class Button {
 	@HostBinding("class.cds--btn--danger--ghost") get dangerGhost() {
 		return this.cdsButton === "danger--ghost";
 	}
+	/**
+	 * @todo remove `cds--btn--${size}` classes in v12
+	 */
 	@HostBinding("class.cds--btn--sm") get smallSize() {
 		return this.size === "sm" && !this.isExpressive;
 	}
@@ -93,4 +96,23 @@ export class Button {
 	@HostBinding("class.cds--btn--2xl") get twoExtraLargeSize() {
 		return this.size === "2xl";
 	}
+
+	// Size classes
+	@HostBinding("class.cds--layout--size-sm") get smallLayoutSize() {
+		return this.size === "sm" && !this.isExpressive;
+	}
+	@HostBinding("class.cds--layout--size-md") get mediumLayoutSize() {
+		return this.size === "md" && !this.isExpressive;
+	}
+	@HostBinding("class.cds--layout--size-lg") get largeLayoutSize() {
+		return this.size === "lg";
+	}
+	@HostBinding("class.cds--layout--size-xl") get extraLargeLayoutSize() {
+		return this.size === "xl";
+	}
+	@HostBinding("class.cds--layout--size-2xl") get twoExtraLargeLayoutSize() {
+		return this.size === "2xl";
+	}
+
+
 }

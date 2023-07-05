@@ -19,7 +19,10 @@ import { AccordionItem } from "./accordion-item.component";
 				'cds--accordion--start': align === 'start',
 				'cds--accordion--sm': size === 'sm',
 				'cds--accordion--md': size ==='md',
-				'cds--accordion--lg': size === 'lg'
+				'cds--accordion--lg': size === 'lg',
+				'cds--layout--size-sm': size === 'sm',
+				'cds--layout--size-md': size === 'md',
+				'cds--layout--size-lg': size === 'lg'
 			}"
 			role="list">
 			<ng-content></ng-content>
@@ -32,6 +35,9 @@ export class Accordion implements AfterContentInit {
 	 */
 	@Input() align: "start" | "end" = "end";
 
+	/**
+	 *	@todo remove `cds--accordion--${size}` classes in v12
+	 */
 	/**
 	 * Sets the size of all accordian items
 	 */
