@@ -60,7 +60,7 @@ export class TagFilter extends Tag {
 	}
 
 	@HostBinding("attr.class") get attrClass() {
-		return `cds--tag cds--tag--filter cds--tag--${this.type} cds--tag--${this.size} ${this.class}${this.disabled ? " cds--tag--disabled" : ""}`;
+		return `cds--tag cds--tag--filter cds--tag--${this.type} cds--tag--${this.size} cds--layout--size-${this.size} ${this.class}${this.disabled ? " cds--tag--disabled" : ""}`;
 	}
 
 	@HostBinding("attr.aria-label") get attrAriaLabel() {
