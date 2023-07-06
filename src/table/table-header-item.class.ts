@@ -1,10 +1,57 @@
 import { TableItem } from "./table-item.class";
-import {
-	EventEmitter,
-	TemplateRef
-} from "@angular/core";
+import { TemplateRef } from "@angular/core";
 
+export type SortType = "ASCENDING" | "DESCENDING" | "NONE";
 export class TableHeaderItem {
+	/**
+	 * If true, sort is set to ascending, if false descending will be true.
+	 *
+	 */
+	set ascending(asc: boolean) {
+		this.sortDirection = asc ? "ASCENDING" : "DESCENDING";
+	}
+	get ascending() {
+		return this.sortDirection === "ASCENDING";
+	}
+
+	/**
+	 * If true, sort is set to descending, if false ascending will be true.
+	 *
+	 */
+	set descending(desc: boolean) {
+		this.sortDirection = desc ? "DESCENDING" : "ASCENDING";
+	}
+	get descending() {
+		return this.sortDirection === "DESCENDING";
+	}
+
+	get title() {
+		if (this._title) {
+			return this._title;
+		}
+
+		if (!this.data) {
+			return "";
+		}
+
+		if (typeof this.data === "string") {
+			return this.data;
+		}
+
+		if (
+			this.data.toString &&
+			this.data.constructor !== ({}).constructor
+		) {
+			return this.data.toString();
+		}
+
+		// data can’t be reasonably converted to an end user readable string
+		return "";
+	}
+
+	set title(title) {
+		this._title = title;
+	}
 	/**
 	 * Defines if column under this TableHeaderItem should be displayed.
 	 *
@@ -56,28 +103,6 @@ export class TableHeaderItem {
 	 *
 	 */
 	style = {};
-
-	/**
-	 * If true, sort is set to ascending, if false descending will be true.
-	 *
-	 */
-	set ascending(asc) {
-		this._ascending = asc;
-	}
-	get ascending() {
-		return this._ascending;
-	}
-
-	/**
-	 * If true, sort is set to descending, if false ascending will be true.
-	 *
-	 */
-	set descending(desc) {
-		this._ascending = !desc;
-	}
-	get descending() {
-		return !this._ascending;
-	}
 
 	/**
 	 * Data for the header item.
@@ -200,40 +225,9 @@ export class TableHeaderItem {
 	 */
 	filterData: any;
 
-	/**
-	 * used in `ascending`
-	 *
-	 * @protected
-	 */
-	protected _ascending = true;
+	sortDirection: SortType = "NONE";
 
-	get title() {
-		if (this._title) {
-			return this._title;
-		}
 
-		if (!this.data) {
-			return "";
-		}
-
-		if (typeof this.data === "string") {
-			return this.data;
-		}
-
-		if (
-			this.data.toString &&
-			this.data.constructor !== ({}).constructor
-		) {
-			return this.data.toString();
-		}
-
-		// data can’t be reasonably converted to an end user readable string
-		return "";
-	}
-
-	set title(title) {
-		this._title = title;
-	}
 
 	private _title: string;
 

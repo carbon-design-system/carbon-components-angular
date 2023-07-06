@@ -1,6 +1,4 @@
-import {
-	EventEmitter
-} from "@angular/core";
+import { EventEmitter } from "@angular/core";
 
 import { PaginationModel } from "carbon-components-angular/pagination";
 import { TableHeaderItem } from "./table-header-item.class";
@@ -39,7 +37,7 @@ export class TableModel implements PaginationModel {
 	 * Make sure all rows are the same length to keep the column count accurate.
 	 */
 	set data(newData: TableItem[][]) {
-		if (!newData || (Array.isArray(newData) && newData.length === 0) ) {
+		if (!newData || (Array.isArray(newData) && newData.length === 0)) {
 			newData = [[]];
 		}
 
@@ -48,7 +46,8 @@ export class TableModel implements PaginationModel {
 		// init rowsSelected
 		this.rowsSelected = new Array<boolean>(this._data.length).fill(false);
 		this.rowsExpanded = new Array<boolean>(this._data.length).fill(false);
-
+		// init rows indices
+		this.rowsIndices = [...Array(this._data.length).keys()];
 		// init rowsContext
 		this.rowsContext = new Array<string>(this._data.length);
 
@@ -95,6 +94,11 @@ export class TableModel implements PaginationModel {
 	 * Contains information about expanded state of rows in the table.
 	 */
 	rowsExpanded: boolean[] = [];
+
+	/**
+	 * Contains information about initial index of rows in the table
+	 */
+	rowsIndices: number[] = [];
 
 	/**
 	 * Contains information about the context of the row.
@@ -357,6 +361,9 @@ export class TableModel implements PaginationModel {
 
 			// update rowsClass property for length
 			this.rowsClass.push(undefined);
+
+			// update rowsIndices property for length
+			this.rowsIndices.push(this.data.length - 1);
 		} else {
 			const ri = this.realRowIndex(index);
 			this.data.splice(ri, 0, realRow);
@@ -372,6 +379,9 @@ export class TableModel implements PaginationModel {
 
 			// update rowsClass property for length
 			this.rowsClass.splice(ri, 0, undefined);
+
+			// update rowsIndices property for length
+			this.rowsIndices.splice(ri, 0, this.data.length - 1);
 		}
 
 		this.dataChange.emit();
@@ -391,6 +401,10 @@ export class TableModel implements PaginationModel {
 		this.rowsExpanded.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
 		this.rowsClass.splice(rri, 1);
+
+		const rowIndex = this.rowsIndices[rri];
+		this.rowsIndices.splice(rri, 1);
+		this.rowsIndices = this.rowsIndices.map((value) => (value > rowIndex) ? --value : value);
 
 		this.dataChange.emit();
 	}
@@ -531,6 +545,25 @@ export class TableModel implements PaginationModel {
 	}
 
 	/**
+	 * cycle through the three sort states
+	 * @param index
+	 */
+	cycleSortState(index: number) {
+		// no sort provided so do the simple sort
+		switch (this.header[index].sortDirection) {
+			case "ASCENDING":
+				this.header[index].sortDirection = "DESCENDING";
+				break;
+			case "DESCENDING":
+				this.header[index].sortDirection = "NONE";
+				break;
+			default:
+				this.header[index].sortDirection = "ASCENDING";
+				break;
+		}
+	}
+
+	/**
 	 * Sorts the data currently present in the model based on `compare()`
 	 *
 	 * Direction is set by `ascending` and `descending` properties of `TableHeaderItem`
@@ -540,10 +573,25 @@ export class TableModel implements PaginationModel {
 	 */
 	sort(index: number) {
 		this.pushRowStateToModelData();
-		this.data.sort((a, b) => (this.header[index].descending ? -1 : 1) * this.header[index].compare(a[index], b[index]));
-		this.popRowStateFromModelData();
+		const headerSorted = this.header[index].sorted;
+		// We only allow sorting by a single column, so reset sort state for all columns before specifying new sort state
 		this.header.forEach(column => column.sorted = false);
-		this.header[index].sorted = true;
+		if (this.header[index].sortDirection === "NONE" && headerSorted) {
+			// Restore initial order of rows
+			const oldData = this._data;
+			this._data = [];
+			for (let i = 0; i < this.rowsIndices.length; i++) {
+				const ri = this.rowsIndices[i];
+				this._data[ri] = oldData[i];
+			}
+		} else {
+			const descending = this.header[index].sortDirection === "DESCENDING" ? -1 : 1;
+			this.data.sort((a, b) => {
+				return descending * this.header[index].compare(a[index], b[index]);
+			});
+			this.header[index].sorted = true;
+		}
+		this.popRowStateFromModelData();
 	}
 
 	/**
@@ -572,6 +620,10 @@ export class TableModel implements PaginationModel {
 			const rowClass = new TableItem();
 			rowClass.data = this.rowsClass[i];
 			this.data[i].push(rowClass);
+
+			const rowIndex = new TableItem();
+			rowIndex.data = this.rowsIndices[i];
+			this.data[i].push(rowIndex);
 		}
 	}
 
@@ -583,6 +635,7 @@ export class TableModel implements PaginationModel {
 	 */
 	popRowStateFromModelData() {
 		for (let i = 0; i < this.data.length; i++) {
+			this.rowsIndices[i] = this.data[i].pop().data;
 			this.rowsClass[i] = this.data[i].pop().data;
 			this.rowsContext[i] = this.data[i].pop().data;
 			this.rowsExpanded[i] = !!this.data[i].pop().data;
