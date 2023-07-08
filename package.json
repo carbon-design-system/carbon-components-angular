@@ -67,7 +67,7 @@
     "carbon-components": "^10.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.13.10",
+    "@angular-devkit/build-angular": "16.1.4",
     "@angular-devkit/build-ng-packagr": "0.13.9",
     "@angular-devkit/core": "7.3.9",
     "@angular/cli": "7.3.9",
@@ -118,8 +118,8 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "1.4.2",
     "lodash-es": "4.17.21",
-    "ng-packagr": "4.7.1",
-    "node-sass": "7.0.0",
+    "ng-packagr": "16.1.0",
+    "node-sass": "9.0.0",
     "rxjs": "6.4.0",
     "sass": "1.26.10",
     "sass-loader": "10.1.1",
