@@ -19,11 +19,10 @@ import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import {
-	DocumentService,
 	getScrollableParents,
 	hasScrollableParents
 } from "carbon-components-angular/utils";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -389,7 +388,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * }
 	 * ```
 	 */
-	@Output() submit = new EventEmitter <{
+	@Output() submit = new EventEmitter<{
 		items: ListItem[],
 		index: number,
 		value: {
@@ -425,6 +424,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/** used to update the displayValue */
 	public selectedValue = "";
 
+	outsideClick = this._outsideClick.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	/**
 	 * controls whether the `drop-up` class is applied
@@ -448,7 +448,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	constructor(
 		protected elementRef: ElementRef,
-		protected documentService: DocumentService,
 		protected dropdownService: DropdownService,
 		protected i18n: I18n
 	) {}
@@ -464,7 +463,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			this.updateSelected();
 			// If new items are added into the combobox while there is search input,
 			// repeat the search. Search should only trigger for type 'single' when there is no value selected.
-			if ( this.type === "multi" || (this.type === "single" && !this.selectedValue)) {
+			if (this.type === "multi" || (this.type === "single" && !this.selectedValue)) {
 				this.onSearch(this.input.nativeElement.value, false);
 			}
 		}
@@ -540,14 +539,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Binds event handlers against the rendered view
 	 */
 	ngAfterViewInit() {
-		this.documentService.handleClick(event => {
-			if (!this.elementRef.nativeElement.contains(event.target) &&
-				!this.dropdownMenu.nativeElement.contains(event.target)) {
-				if (this.open) {
-					this.closeDropdown();
-				}
-			}
-		});
 		// if appendInline is default valued (null) we should:
 		// 1. if there are scrollable parents (not including body) don't append inline
 		//    this should also cover the case where the dropdown is in a modal
@@ -691,6 +682,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
+
+		document.removeEventListener("click", this.outsideClick, true);
 	}
 
 	/**
@@ -704,6 +697,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if (!this.appendInline) {
 			this._appendToBody();
 		}
+
+		document.addEventListener("click", this.outsideClick, true);
 
 		// set the dropdown menu to drop up if it is near the bottom of the screen
 		// setTimeout lets us do the calculations after it is visible in the DOM
@@ -809,7 +804,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.input.nativeElement.focus();
-			this.input.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.input.nativeElement.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true, cancelable: true, key: "Tab" }));
 			this.closeDropdown();
 		}
 	}
@@ -854,9 +849,22 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		return false;
 	}
 
+	/**
+	 * Handles clicks outside of the `Dropdown` list.
+	 */
+	_outsideClick(event) {
+		if (!this.elementRef.nativeElement.contains(event.target) &&
+			// if we're appendToBody the list isn't within the _elementRef,
+			// so we've got to check if our target is possibly in there too.
+			!this.dropdownMenu.nativeElement.contains(event.target)) {
+				console.log(this.elementRef.nativeElement.contains(event.target));
+			this.closeDropdown();
+		}
+	}
+
 	protected updateSelected() {
 		const selected = this.view.getSelected();
-		if (this.type === "multi" ) {
+		if (this.type === "multi") {
 			this.updatePills();
 		} else if (selected) {
 			const value = selected[0] ? selected[0].content : "";
