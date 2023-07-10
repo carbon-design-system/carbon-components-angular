@@ -22,7 +22,7 @@ import {
 	getScrollableParents,
 	hasScrollableParents
 } from "carbon-components-angular/utils";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
