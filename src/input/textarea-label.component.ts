@@ -37,13 +37,13 @@ import { TextArea } from "./text-area.directive";
 			#wrapper>
 			<svg
 				*ngIf="!warn && invalid"
-				ibmIcon="warning--filled"
+				cdsIcon="warning--filled"
 				size="16"
 				class="cds--text-area__invalid-icon">
 			</svg>
 			<svg
 				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
+				cdsIcon="warning--alt--filled"
 				size="16"
 				class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
 			</svg>
