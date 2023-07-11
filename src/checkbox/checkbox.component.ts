@@ -64,7 +64,6 @@ export class CheckboxChange {
 				(click)="onClick($event)">
 			<label
 				[for]="id + '_input'"
-				[attr.aria-label]="ariaLabel"
 				class="bx--checkbox-label"
 				[ngClass]="{
 					'bx--skeleton' : skeleton
