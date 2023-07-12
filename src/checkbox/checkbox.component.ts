@@ -99,9 +99,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Sets the value attribute on the `input` element.
 	 */
 	@Input() value: CheckboxValue;
-	// tslint:disable-next-line:no-input-rename
-	@Input() ariaLabel = "";
-	// tslint:disable-next-line:no-input-rename
+	@Input() ariaLabel: string;
 	@Input() ariaLabelledby: string;
 
 	/**

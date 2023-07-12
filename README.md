@@ -66,6 +66,8 @@ Angular version support matrix:
 | 12      | ❌ | ✅ | ❌                   |
 | 13      | ❌ | ✅ | ❌                   |
 | 14      | ❌ | ✅ | ✅                   |
+| 15      | ❌ | ✅ | ✅                   |
+| 16      | ❌ | ❌ | ✅                   |
 
 Carbon Components Angular version support matrix:
 | Carbon Components Angular version | Community support | Active support |
