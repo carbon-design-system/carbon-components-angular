@@ -150,7 +150,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	// TODO: drop the `_`
 	// tslint:disable-next-line:no-input-rename
-	@Input("ariaLabel") _ariaLabel = "";
+	@Input("ariaLabel") _ariaLabel: string;
 
 	/**
 	 * Used to set the `aria-labelledby` attribute on the input element.
