@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master, next, v3, v9 ]
+    branches: [ master, next, v3, v9, v10 ]
 
 jobs:
   test:
