@@ -12,18 +12,17 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableCheckbox]",
+	selector: "[cdsTableCheckbox], [ibmTableCheckbox]",
 	template: `
-		<ibm-checkbox
+		<cds-checkbox
 			*ngIf="!skeleton"
 			inline="true"
 			[name]="name"
-			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[size]="(size !== 'sm' ? 'md' : 'sm')"
+			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
 			[disabled]="disabled"
-			(change)="change.emit()">
-		</ibm-checkbox>
+			(checkedChange)="selectedChange.emit()">
+		</cds-checkbox>
 	`
 })
 export class TableCheckbox {
@@ -56,7 +55,7 @@ export class TableCheckbox {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```
@@ -68,7 +67,7 @@ export class TableCheckbox {
 	/**
 	 * Emits if a single row is selected.
 	 */
-	@Output() change = new EventEmitter();
+	@Output() selectedChange = new EventEmitter();
 
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 

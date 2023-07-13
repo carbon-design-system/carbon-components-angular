@@ -10,12 +10,12 @@ import {
 import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
-	selector: "ibm-selection-tile",
+	selector: "cds-selection-tile, ibm-selection-tile",
 	template: `
 		<input
 			#input
-			[tabindex]="disabled ? null : 0"
-			class="bx--tile-input"
+			[attr.tabindex]="disabled ? null : 0"
+			class="cds--tile-input"
 			[id]="id"
 			[disabled]="disabled"
 			[type]="(multiple ? 'checkbox': 'radio')"
@@ -23,21 +23,21 @@ import { I18n } from "carbon-components-angular/i18n";
 			[name]="name"
 			(change)="onChange($event)"/>
 		<label
-			class="bx--tile bx--tile--selectable"
+			class="cds--tile cds--tile--selectable"
 			[for]="id"
 			[ngClass]="{
-				'bx--tile--is-selected' : selected,
-				'bx--tile--light': theme === 'light',
-				'bx--tile--disabled' : disabled
+				'cds--tile--is-selected' : selected,
+				'cds--tile--light': theme === 'light',
+				'cds--tile--disabled' : disabled
 			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
-			<div class="bx--tile__checkmark">
+			<div class="cds--tile__checkmark">
 				<svg width="16" height="16" viewBox="0 0 16 16">
 					<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
 						fill-rule="evenodd"/>
 				</svg>
 			</div>
-			<div class="bx--tile-content">
+			<div class="cds--tile-content">
 				<ng-content></ng-content>
 			</div>
 		</label>
@@ -46,6 +46,10 @@ import { I18n } from "carbon-components-angular/i18n";
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
 
+	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	/**
@@ -94,7 +98,6 @@ export class SelectionTile implements AfterViewInit {
 	multiple = true;	// Set to true because of the way tile group sets it up.
 						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
-	// @ts-ignore
 	@ViewChild("input", { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save

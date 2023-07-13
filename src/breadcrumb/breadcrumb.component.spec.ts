@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/index";
 import { By } from "@angular/platform-browser";
@@ -14,24 +14,23 @@ import { OverflowMenu } from "carbon-components-angular/dialog";
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-		<ibm-breadcrumb-item href="#">
+	<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 1
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 2
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 3
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 4
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#">
+		</cds-breadcrumb-item>
+		<cds-breadcrumb-item href="#">
 			Breadcrumb 5
-		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+		</cds-breadcrumb-item>
+	</cds-breadcrumb>`
 })
 class TestBreadcrumb {
 	noTrailingSlash = true;
@@ -40,12 +39,11 @@ class TestBreadcrumb {
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<ibm-breadcrumb
+	<cds-breadcrumb
 		[noTrailingSlash]="noTrailingSlash"
 		[threshold]="threshold"
 		[items]="items">
-	</ibm-breadcrumb>`,
-	entryComponents: [Breadcrumb]
+	</cds-breadcrumb>`
 })
 class TestBreadcrumbModel {
 	noTrailingSlash = true;
@@ -57,9 +55,11 @@ describe("Breadcrumb", () => {
 	let component: Breadcrumb;
 	let fixture: ComponentFixture<Breadcrumb>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.resetTestEnvironment();
-		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+		TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
+			teardown: { destroyAfterEach: false }
+		});
 
 		TestBed.configureTestingModule({
 			imports: [
@@ -120,6 +120,6 @@ describe("Breadcrumb", () => {
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();
 		expect(breadcrumbItemElements.length).toBe(4); // 4 because one is created for the overflow menu
-		expect(breadcrumbItemElements[1].children[0].name).toEqual("ibm-overflow-menu");
+		expect(breadcrumbItemElements[1].children[0].name).toEqual("cds-overflow-menu");
 	});
 });

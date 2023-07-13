@@ -1,184 +1,101 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { RadioModule } from "../";
-import { DocumentationModule } from "../documentation-component/documentation.module";
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { RadioModule, RadioGroup, Radio } from "./";
 
-@Component({
-	selector: "app-reactive-forms",
+import { ReactiveFormsStory } from "./stories";
+
+export default {
+	title: "Components/Radio",
+	decorators: [
+		moduleMetadata({
+			declarations: [ReactiveFormsStory],
+			imports: [
+				FormsModule,
+				ReactiveFormsModule,
+				RadioModule
+			]
+		})
+	],
+	component: RadioGroup,
+	subcomponents: Radio
+} as Meta;
+
+const Template: Story<Radio> = (args) => ({
+	props: args,
 	template: `
-		<form [formGroup]="formGroup">
-			<ibm-radio-group
-				aria-label="radiogroup"
-				formControlName="radioGroup">
-				<ibm-radio
-					value="radio">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</form>
-
-		<button (click)="changeSelected()">Set selected to three</button>
-		<button (click)="disableGroup()">Set group disabled</button>
+		<cds-radio-group
+			[legend]="label"
+			[disabled]="disabled"
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			ariaLabel="radiogroup"
+			[orientation]="orientation"
+			[labelPlacement]="labelPlacement"
+			(change)="onChange($event)">
+			<cds-radio value="Zero" [checked]="true">
+				Zero
+			</cds-radio>
+			<cds-radio [value]="One">One</cds-radio>
+			<cds-radio [value]="Two">Two</cds-radio>
+			<cds-radio [value]="Three">Three</cds-radio>
+			<cds-radio [value]="Four" [disabled]="true">Four</cds-radio>
+		</cds-radio-group>
 	`
-})
-class ReactiveFormsStory implements AfterViewInit, OnInit {
-	public formGroup: FormGroup;
-
-	manyRadios = [
-		{ num: "one" },
-		{ num: "two" },
-		{ num: "three" },
-		{ num: "four", disabled: true }
-	];
-
-	constructor(protected formBuilder: FormBuilder) {}
-
-	changeSelected() {
-		this.formGroup.get("radioGroup").setValue("three");
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	label: "Radio button heading",
+	helperText: "Helper text message goes here and can wrap lines",
+	invalid: false,
+	invalidText: "Error message goes here and can wrap lines",
+	warn: false,
+	warnText: "Warning message goes here and can wrap lines"
+};
+Basic.argTypes = {
+	onChange: {
+		control: "Changed!"
+	},
+	orientation: {
+		options: ["horizontal", "vertical"],
+		defaultValue: "horizontal",
+		control: "radio"
+	},
+	labelPlacement: {
+		options: ["left", "right"],
+		defaultValue: "right",
+		control: "radio"
 	}
+};
 
-	disableGroup() {
-		this.formGroup.get("radioGroup").disable();
+const SkeletonTemplate: Story<Radio> = (args) => ({
+	props: args,
+	template: `
+		<cds-radio-group skeleton="true">
+			<cds-radio></cds-radio>
+		</cds-radio-group>
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});
+
+const ReactiveFormsTemplate: Story<Radio> = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/radio/stories/app-reactive-form.component.ts
+		-->
+		<app-reactive-forms></app-reactive-forms>
+	`
+});
+export const ReactiveForms = ReactiveFormsTemplate.bind({});
+ReactiveForms.parameters = {
+	controls: {
+		disable: true
 	}
-
-	ngOnInit() {
-		this.formGroup = this.formBuilder.group({
-			radioGroup: new FormControl()
-		});
-	}
-
-	ngAfterViewInit() {
-		this.formGroup.get("radioGroup").setValue("one");
-	}
-}
-
-storiesOf("Components|Radio", module).addDecorator(
-	moduleMetadata({
-		declarations: [ReactiveFormsStory],
-		imports: [RadioModule, DocumentationModule, ReactiveFormsModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-		%3A%22Radio%20group%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22disabled%22&#13;
-		%3Afalse%2C%22type%22%3A%22radio-group%22%2C%22legend%22%3A%22Radio%20group%22&#13;
-		%2C%22defaultSelected%22%3A%22%22%2C%22labelPosition%22%3A%22right%22%2C%22&#13;
-		orientation%22%3A%22horizontal%22%2C%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-		radio%22%2C%22labelText%22%3A%22Option%201%22%2C%22disabled%22%3Afalse%&#13;
-		2C%22defaultChecked%22%3Afalse%2C%22id%22%3A%223%22%2C%22codeContext%22&#13;
-		%3A%7B%22name%22%3A%22radio-3%22%7D%7D%2C%7B%22type%22%3A%22radio%22%2C&#13;
-		%22labelText%22%3A%22Option%202%22%2C%22disabled%22%3Afalse%2C%22&#13;
-		defaultChecked%22%3Afalse%2C%22id%22%3A%224%22%2C%22codeContext%22&#13;
-		%3A%7B%22name%22%3A%22radio-4%22%7D%7D%2C%7B%22type%22%3A%22radio%22&#13;
-		%2C%22labelText%22%3A%22Option%203%22%2C%22disabled%22%3Afalse%2C%22&#13;
-		defaultChecked%22%3Afalse%2C%22id%22%3A%225%22%2C%22codeContext%22%&#13;
-		3A%7B%22name%22%3A%22radio-5%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22&#13;
-		codeContext%22%3A%7B%22name%22%3A%22radio-group-2%22%7D%7D%5D%2C%22id%22&#13;
-		%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
-		<fieldset class="bx--fieldset">
-			<legend class="bx--label">{{label}}</legend>
-			<ibm-radio-group
-				[disabled]="disabled"
-				aria-label="radiogroup"
-				[(ngModel)]="radio"
-				(change)="onChange($event)">
-				<ibm-radio
-					value="radio"
-					[checked]="true">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</fieldset>
-		<button (click)="disabled = !disabled">Toggle group disabled</button>
-		`,
-		props: {
-			onChange: action("Radio change"),
-			label: text("Label text", "Radio Button heading"),
-			manyRadios: [
-				{ num: "one" },
-				{ num: "two" },
-				{ num: "three" },
-				{ num: "four", disabled: true }
-			]
-		}
-	}))
-	.add("Vertical", () => ({
-		template: `
-		<fieldset class="bx--fieldset">
-			<legend class="bx--label">Radio button label</legend>
-
-			<ibm-radio-group
-				aria-label="radiogroup"
-				orientation="vertical"
-				[labelPlacement]="labelPlacement"
-				[(ngModel)]="radio"
-				(change)="onChange($event)">
-				<ibm-radio
-					value="radio"
-					[checked]="true">
-					zero
-				</ibm-radio>
-				<ibm-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</ibm-radio>
-			</ibm-radio-group>
-		</fieldset>
-		`,
-		props: {
-			onChange: action("Radio change"),
-			labelPlacement: select("Label placement", ["right", "left"], "right"),
-			manyRadios: [
-				{ num: "one" },
-				{ num: "two" },
-				{ num: "three" },
-				{ num: "four", disabled: true }
-			]
-		}
-	}))
-	.add("With reactive forms", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-reactive-forms></app-reactive-forms>
-		`
-	}))
-	.add("Skeleton", () => ({
-		template: `
-		<ibm-radio-group skeleton="true">
-			<ibm-radio></ibm-radio>
-		</ibm-radio-group>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_radio.radio.html"></ibm-documentation>
-		`
-	}))
-	.add("Radio Group Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_radio.radiogroup.html"></ibm-documentation>
-		`
-	}));
+};

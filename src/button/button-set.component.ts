@@ -1,9 +1,9 @@
 import { Component, HostBinding } from "@angular/core";
 
 @Component({
-	selector: "ibm-button-set",
+	selector: "cds-button-set, ibm-button-set",
 	template: "<ng-content></ng-content>"
 })
 export class ButtonSet {
-	@HostBinding("class.bx--btn-set") buttonSetClass = true;
+	@HostBinding("class.cds--btn-set") buttonSetClass = true;
 }

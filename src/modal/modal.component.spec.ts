@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
@@ -7,6 +7,7 @@ import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
 import { I18nModule } from "../i18n/index";
 import { PlaceholderModule } from "./../placeholder/index";
+import { BaseModalService } from "./base-modal.service";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -32,7 +33,7 @@ describe("Modal", () => {
 				I18nModule,
 				PlaceholderModule
 			],
-			providers: [ModalService]
+			providers: [ModalService, BaseModalService]
 		});
 
 		fixture = TestBed.createComponent(Modal);
@@ -48,14 +49,15 @@ describe("Modal", () => {
 	it("should close modal when overlay is clicked", () => {
 		fixture.componentInstance.open = true;
 		fixture.detectChanges();
-		let overlay = fixture.debugElement.query(By.css(".bx--modal.bx--modal-tall.is-visible")).nativeElement;
+		let overlay = fixture.debugElement.query(By.css(".cds--modal.cds--modal-tall.is-visible")).nativeElement;
 		spyOn(fixture.componentInstance.overlaySelected, "emit");
 		overlay.click();
 		expect(fixture.componentInstance.overlaySelected.emit).toHaveBeenCalled();
 	});
 
-	it("should close modal when escape is pressed", async(() => {
-		let modalService = fixture.debugElement.injector.get(ModalService);
+	it("should close modal when escape is pressed", waitForAsync(() => {
+		// Have to check BaseModalService since ModalService extends it
+		let modalService = fixture.debugElement.injector.get(BaseModalService);
 
 		spyOn(modalService, "destroy");
 

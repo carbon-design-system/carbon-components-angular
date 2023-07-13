@@ -10,7 +10,9 @@ import {
  *
  * `ModalService` depends on the `close` event to correctly clean up the component.
  */
-@Directive({ selector: "[ibmBaseModal]" })
+@Directive({
+	selector: "[cdsBaseModal], [ibmBaseModal]"
+})
 export class BaseModal {
 	/**
 	 * Base event emitter to propagate close events

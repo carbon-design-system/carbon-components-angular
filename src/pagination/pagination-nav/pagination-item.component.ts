@@ -9,19 +9,19 @@ import {
  * Used to present a single navigation item in a pagination list
  *
  *  * ```html
- * <ibm-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></ibm-pagination-nav-item>
+ * <cds-pagination-nav-item [page]="5" [isActive]="false" (click)="handleClick(value)"></cds-pagination-nav-item>
  * ```
  */
 @Component({
-	selector: "ibm-pagination-nav-item",
+	selector: "cds-pagination-nav-item, ibm-pagination-nav-item",
 	template: `
-		<li class="bx--pagination-nav__list-item">
+		<li class="cds--pagination-nav__list-item">
 			<button
 				type="button"
-				class="bx--pagination-nav__page"
-				[ngClass]="{ 'bx--pagination-nav__page--active': isActive }"
+				class="cds--pagination-nav__page"
+				[ngClass]="{ 'cds--pagination-nav__page--active': isActive }"
 				(click)="click.emit(page)">
-				<span class="bx--pagination-nav__accessibility-label">
+				<span class="cds--pagination-nav__accessibility-label">
 					{{page}}
 				</span>
 				{{page}}

@@ -1,11 +1,7 @@
 import {
-	TemplateRef,
 	Component,
-	ViewChild,
 	OnInit,
-	Input,
-	OnChanges,
-	SimpleChanges
+	Input
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { Table } from "../index";
@@ -13,17 +9,17 @@ import { Table } from "../index";
 @Component({
 	selector: "app-skeleton-table",
 	template: `
-		<ibm-table
+		<cds-table
 			style="display: block; width: 800px;"
 			[model]="skeletonModel"
 			[skeleton]="skeleton"
 			[size]="size"
 			[striped]="striped">
 			<ng-content></ng-content>
-		</ibm-table>
+		</cds-table>
 	`
 })
-export class SkeletonTableStory implements OnInit, OnChanges {
+export class SkeletonTableStory implements OnInit {
 	@Input() size = "md";
 	@Input() striped = false;
 	@Input() skeleton = true;

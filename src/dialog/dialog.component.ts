@@ -26,7 +26,7 @@ import { AnimationFrameService, ElementService } from "carbon-components-angular
  * Used to implement a popover or tooltip.
  */
 @Component({
-	selector: "ibm-dialog",
+	selector: "cds-dialog, ibm-dialog",
 	template: ""
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
@@ -42,8 +42,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the `Dialog`.
 	 */
-	// @ts-ignore
-	@ViewChild("dialog", { static: false }) dialog: ElementRef;
+	@ViewChild("dialog") dialog: ElementRef;
 
 	/**
 	 * Stores the data received from `dialogConfig`.
@@ -206,7 +205,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
-			case "Esc": // IE specific value
 			case "Escape": {
 				event.stopImmediatePropagation();
 				this.doClose({

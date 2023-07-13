@@ -15,39 +15,38 @@ const noop = () => { };
 
 /**
  * [See demo](../../?path=/story/components-file-uploader--basic)
- *
- * <example-url>../../iframe.html?id=components-file-uploader--basic</example-url>
  */
 @Component({
-	selector: "ibm-file-uploader",
+	selector: "cds-file-uploader, ibm-file-uploader",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
-			<p class="bx--label-description">{{description}}</p>
-			<div class="bx--file">
-				<div
+			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
+			<p class="cds--label-description">{{description}}</p>
+			<div class="cds--file">
+				<label
 					*ngIf="drop"
-					class="bx--file-browse-btn bx--file__drop-container"
-					[ngClass]="{
-						'bx--file-browse-btn--disabled': disabled,
-						'bx--file__drop-container--drag-over': dragOver
-					}"
-					role="button"
-					tabindex="0"
-					(click)="fileInput.click()"
-					[attr.for]="fileUploaderId"
-					(dragover)="onDragOver($event)"
-					(dragleave)="onDragLeave($event)"
-					(drop)="onDrop($event)"
+					class="cds--file-browse-btn"
 					(keyup.enter)="fileInput.click()"
-					(keyup.space)="fileInput.click()">
-					<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
-					<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
-				</div>
+					(keyup.space)="fileInput.click()"
+					[ngClass]="{'cds--file-browse-btn--disabled': disabled}"
+					tabindex="0">
+					<div
+						class="cds--file__drop-container"
+						[ngClass]="{'cds--file__drop-container--drag-over': dragOver}"
+						role="button"
+						(click)="fileInput.click()"
+						[attr.for]="fileUploaderId"
+						(dragover)="onDragOver($event)"
+						(dragleave)="onDragLeave($event)"
+						(drop)="onDrop($event)">
+						<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
+						<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
+					</div>
+				</label>
 				<button
 					*ngIf="!drop"
 					type="button"
-					[ibmButton]="buttonType"
+					[cdsButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
 					[size]="size"
@@ -57,28 +56,29 @@ const noop = () => { };
 				<input
 					#fileInput
 					type="file"
-					class="bx--file-input"
+					class="cds--file-input"
 					[accept]="accept"
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
 					(change)="onFilesAdded()"
 					[disabled]="disabled"/>
-				<div class="bx--file-container">
+				<div class="cds--file-container">
 					<ng-container *ngFor="let fileItem of files">
-						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
-						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
-							{{fileItem.invalidText}}
-						</div>
+						<cds-file
+							[fileItem]="fileItem"
+							(remove)="removeFile(fileItem)"
+							[size]="fileItemSize">
+						</cds-file>
 					</ng-container>
 				</div>
 			</div>
 		</ng-container>
 
 		<ng-template #skeletonTemplate>
-			<div class="bx--skeleton__text" style="width: 100px"></div>
-			<div class="bx--skeleton__text" style="width: 225px"></div>
-			<button ibmButton skeleton="true"></button>
+			<div class="cds--skeleton__text" style="width: 100px"></div>
+			<div class="cds--skeleton__text" style="width: 225px"></div>
+			<button cdsButton skeleton="true"></button>
 		</ng-template>
 	`,
 	providers: [
@@ -129,7 +129,11 @@ export class FileUploader implements ControlValueAccessor {
 	/**
 	 * Sets the size of the button.
 	 */
-	@Input() size: "sm" | "normal";
+	@Input() size: "sm" | "md" | "lg";
+	/**
+	 * Sets the size of the file items
+	 */
+	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 	/**
 	 * Set to `true` to enable drag and drop.
 	 */
@@ -139,14 +143,13 @@ export class FileUploader implements ControlValueAccessor {
 	 */
 	@Input() dropText: string | TemplateRef<any>;
 	/**
-	 * Provides a unique id for the underlying <input> node
+	 * Provides a unique id for the underlying `<input>` node
 	 */
 	@Input() fileUploaderId = `file-uploader-${FileUploader.fileUploaderCount}`;
 	/**
 	 * Maintains a reference to the view DOM element of the underlying <input> node
 	 */
-	// @ts-ignore
-	@ViewChild("fileInput", { static: false }) fileInput;
+	@ViewChild("fileInput") fileInput;
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */

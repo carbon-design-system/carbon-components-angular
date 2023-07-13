@@ -1,73 +1,55 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { TagModule } from "../tag/index";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { TagModule, Tag } from "./";
 
-storiesOf("Components|Tag", module)
-	.addDecorator(
+export default {
+	title: "Components/Tag",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				TagModule,
-				DocumentationModule
-			]
+			imports: [TagModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22TagFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22%3A%22&#13;
-			tag%22%2C%22kind%22%3A%22gray%22%2C%22size%22%3A%22md%22%2C%22filter%22&#13;
-			%3Afalse%2C%22disabled%22%3Afalse%2C%22title%22%3A%22Tag%22%2C%22id%22&#13;
-			%3A%222%22%2C%22codeContext%22%3A%7B%22name%22%3A%22tag-2%22%7D%7D%5D%2C&#13;
-			%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
-			<ibm-tag type="warm-gray" [size]="size">Warm-gray</ibm-tag>
-			<br><br>
-			<ibm-tag type="red" [size]="size">Red</ibm-tag>
-			<br><br>
-			<ibm-tag type="magenta" [size]="size">Magenta</ibm-tag>
-			<br><br>
-			<ibm-tag type="purple" [size]="size">Purple</ibm-tag>
-			<br><br>
-			<ibm-tag type="blue" [size]="size">Blue</ibm-tag>
-			<br><br>
-			<ibm-tag type="cyan" [size]="size">Cyan</ibm-tag>
-			<br><br>
-			<ibm-tag type="teal" [size]="size">Teal</ibm-tag>
-			<br><br>
-			<ibm-tag type="green" [size]="size">Green</ibm-tag>
-			<br><br>
-			<ibm-tag type="cool-gray" [size]="size">Cool-gray</ibm-tag>
-			<br><br>
-			<ibm-tag type="high-contrast" [size]="size">High contrast</ibm-tag>
-			<br><br>
-			<ibm-tag type="outline" [size]="size">Outline</ibm-tag>
-		`,
-		props: {
-			size: select("size", ["sm", "md"], "md")
+	],
+	argTypes: {
+		type: {
+			options: [
+				"warm-gray",
+				"red",
+				"magenta",
+				"purple",
+				"blue",
+				"cyan",
+				"teal",
+				"green",
+				"cool-gray",
+				"high-contrast",
+				"outline"
+			],
+			defaultValue: "red",
+			control: "select"
 		}
-	}))
-	.add("Filter", () => ({
-		template: `
-			<ibm-tag-filter
-				type="blue"
-				title="Filter"
-				closeButtonLabel="Clear"
-			>filter</ibm-tag-filter>
-			<ibm-tag-filter
-				type="blue"
-				title="Disabled filter"
-				closeButtonLabel="Clear"
-				[disabled]="true"
-			>disabled filter</ibm-tag-filter>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_tag.tag.html"></ibm-documentation>
-		`
-	}));
+	},
+	component: Tag
+} as Meta;
+
+const Template: Story<Tag> = (args) => ({
+	props: args,
+	template: `
+		<cds-tag [type]="type" [size]="size">Tag</cds-tag>
+	`
+});
+export const Basic = Template.bind({});
+
+const FilteredTemplate: Story<Tag> = (args) => ({
+	props: args,
+	template: `
+		<cds-tag-filter
+			[type]="type"
+			[size]="size"
+			title="Filter"
+			closeButtonLabel="Clear">
+			filter
+		</cds-tag-filter>
+	`
+});
+export const Filter = FilteredTemplate.bind({});

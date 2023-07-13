@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
@@ -13,7 +13,7 @@ describe("Search", () => {
 	let containerElement: HTMLElement;
 	let clearButtonElement: HTMLButtonElement;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
 			imports: [
@@ -57,23 +57,23 @@ describe("Search", () => {
 	});
 
 	it("should display component of the correct size", () => {
-		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
-		component.size = "xl";
+		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
+		component.size = "lg";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--xl")).toEqual(true);
+		expect(containerElement.className.includes("cds--search--lg")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--sm")).toEqual(true);
+		expect(containerElement.className.includes("cds--search--sm")).toEqual(true);
 	});
 
 	it("should display clear button", () => {
 		clearButtonElement = fixture.debugElement.query(By.css("button")).nativeElement;
 		component.value = "";
 		fixture.detectChanges();
-		expect(clearButtonElement.className.includes("bx--search-close--hidden")).toEqual(true);
+		expect(clearButtonElement.className.includes("cds--search-close--hidden")).toEqual(true);
 		component.value = "Text";
 		fixture.detectChanges();
-		expect(clearButtonElement.className.includes("bx--search-close--hidden")).toEqual(false);
+		expect(clearButtonElement.className.includes("cds--search-close--hidden")).toEqual(false);
 	});
 
 	it("should clear input when clear button is clicked", () => {
@@ -86,12 +86,12 @@ describe("Search", () => {
 	});
 
 	it("should have dark and light theme", () => {
-		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
+		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
 		component.theme = "dark";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--light")).toEqual(false);
+		expect(containerElement.className.includes("cds--search--light")).toEqual(false);
 		component.theme = "light";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--light")).toEqual(true);
+		expect(containerElement.className.includes("cds--search--light")).toEqual(true);
 	});
 });

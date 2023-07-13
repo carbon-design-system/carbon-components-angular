@@ -1,13 +1,13 @@
 import { Directive, HostBinding, Input } from "@angular/core";
 
 @Directive({
-	selector: "[ibmModalContent]"
+	selector: "[cdsModalContent], [ibmModalContent]"
 })
 export class ModalContent {
-	@HostBinding("class.bx--modal-content") modalContentClass = true;
+	@HostBinding("class.cds--modal-content") modalContentClass = true;
 	/**
 	 * Provide whether the modal content has a form element.
-	 * If `true` is used here, non-form child content should have `bx--modal-content__regular-content` class.
+	 * If `true` is used here, non-form child content should have `cds--modal-content__regular-content` class.
 	 */
-	@HostBinding("class.bx--modal-content--with-form") @Input() hasForm = false;
+	@HostBinding("class.cds--modal-content--with-form") @Input() hasForm = false;
 }

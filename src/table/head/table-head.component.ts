@@ -18,20 +18,20 @@ import { TableRowSize } from "../table.types";
  * ## Basic usage
  *
  * ```html
- * 	<thead ibmTableHead [model]="model"></thead>
+ * 	<thead cdsTableHead [model]="model"></thead>
  * ```
  */
 @Component({
 	// tslint:disable-next-line:component-selector
-	selector: "[ibmTableHead]",
+	selector: "[cdsTableHead], [ibmTableHead]",
 	template: `
 	<ng-container *ngIf="model">
 		<tr>
 			<th
-				ibmTableHeadExpand
+				cdsTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
-				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
+				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')">
 			</th>
 			<th
@@ -42,13 +42,12 @@ import { TableRowSize } from "../table.types";
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
 			</th>
 			<th
-				ibmTableHeadCheckbox
+				cdsTableHeadCheckbox
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				scope="col"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
-				[size]="size"
 				[skeleton]="skeleton"
 				[name]="model.getHeaderId('select')"
 				(change)="onSelectAllCheckboxChange()"
@@ -58,7 +57,7 @@ import { TableRowSize } from "../table.types";
 				<th
 					*ngIf="column && column.visible"
 					[ngStyle]="column.style"
-					ibmTableHeadCell
+					cdsTableHeadCell
 					scope="col"
 					[class]="column.className"
 					[sortable]="sortable"
@@ -85,7 +84,7 @@ import { TableRowSize } from "../table.types";
 	<ng-content></ng-content>
 	`,
 	styles: [`
-		.bx--table-expand-v2 {
+		.cds--table-expand-v2 {
 			padding-left: 2.5rem;
 		}
 	`]
@@ -110,11 +109,6 @@ export class TableHead implements AfterViewInit {
 	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
 	 */
 	@Input() sortable = true;
-
-	/**
-	 * Size of the table rows.
-	 */
-	@Input() size: TableRowSize = "md";
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

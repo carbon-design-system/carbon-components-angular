@@ -31,7 +31,6 @@ import Copy16 from "@carbon/icons/es/copy/16";
 import Copy20 from "@carbon/icons/es/copy/20";
 import Data216 from "@carbon/icons/es/data--2/16";
 import Data220 from "@carbon/icons/es/data--2/20";
-import Delete16 from "@carbon/icons/es/delete/16";
 import Document16 from "@carbon/icons/es/document/16";
 import Document20 from "@carbon/icons/es/document/20";
 import Download16 from "@carbon/icons/es/download/16";
@@ -42,6 +41,7 @@ import Fade20 from "@carbon/icons/es/fade/20";
 import Incomplete16 from "@carbon/icons/es/incomplete/16";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
+import InformationSquareFilled20 from "@carbon/icons/es/information--square--filled/20";
 import Menu16 from "@carbon/icons/es/menu/16";
 import Menu20 from "@carbon/icons/es/menu/20";
 import OverflowMenuVertical16 from "@carbon/icons/es/overflow-menu--vertical/16";
@@ -51,10 +51,12 @@ import Search16 from "@carbon/icons/es/search/16";
 import Settings16 from "@carbon/icons/es/settings/16";
 import SettingsAdjust16 from "@carbon/icons/es/settings--adjust/16";
 import Subtract16 from "@carbon/icons/es/subtract/16";
+import TrashCan16 from "@carbon/icons/es/trash-can/16";
 import Warning16 from "@carbon/icons/es/warning/16";
 import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
+import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -109,7 +111,6 @@ export class IconModule {
 			Copy20,
 			Data216,
 			Data220,
-			Delete16,
 			Document16,
 			Document20,
 			Download16,
@@ -120,6 +121,7 @@ export class IconModule {
 			Incomplete16,
 			InformationFilled16,
 			InformationFilled20,
+			InformationSquareFilled20,
 			Menu16,
 			Menu20,
 			OverflowMenuVertical16,
@@ -129,10 +131,12 @@ export class IconModule {
 			Settings16,
 			SettingsAdjust16,
 			Subtract16,
+			TrashCan16,
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,
-			WarningAltFilled16
+			WarningAltFilled16,
+			WarningAltFilled20
 		]);
 	}
 }

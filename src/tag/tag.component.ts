@@ -24,11 +24,9 @@ export type TagType = "red" |
  * Component that represents a tag for labelling/categorizing using keywords
  *
  * [See demo](../../?path=/story/components-tag--basic)
- *
- * <example-url>../../iframe.html?id=components-tag--basic</example-url>
  */
 @Component({
-	selector: "ibm-tag",
+	selector: "cds-tag, ibm-tag",
 	template: `<ng-content></ng-content>`
 })
 export class Tag {
@@ -45,6 +43,6 @@ export class Tag {
 	@Input() class = "";
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--${this.type} ${this.size === "md" ? "bx--tag--md" : "bx--tag--sm"} ${this.class}`;
+		return `cds--tag cds--tag--${this.type} cds--tag--${this.size} cds--layout--size-${this.size} ${this.class}`;
 	}
 }

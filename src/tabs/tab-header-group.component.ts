@@ -6,41 +6,35 @@ import {
 	ContentChildren,
 	AfterContentInit,
 	ElementRef,
-	TemplateRef,
 	OnChanges,
 	SimpleChanges,
 	ChangeDetectorRef,
 	ViewChild,
-	OnInit
+	OnInit,
+	Renderer2
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
 
-import { TabHeader } from "./tab-header.component";
+import { TabHeader } from "./tab-header.directive";
+import { BaseTabHeader } from "./base-tab-header.component";
 
 @Component({
-	selector: "ibm-tab-header-group",
+	selector: "cds-tab-header-group, ibm-tab-header-group",
 	template: `
-	<nav
-		class="bx--tabs bx--tabs--scrollable"
-		[ngClass]="{
-			'bx--skeleton': skeleton,
-			'bx--tabs--container bx--tabs--scrollable--container': type === 'container'
-		}"
-		role="navigation"
-		[attr.aria-label]="ariaLabel"
-		[attr.aria-labelledby]="ariaLabelledby">
 		<button
-			#leftOverflowNavButton
 			type="button"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"
 			[ngClass]="{
-				'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-				'bx--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
+				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
-			(click)="handleOverflowNavClick(-1)"
-			(mousedown)="handleOverflowNavMouseDown(-1)"
-			(mouseup)="handleOverflowNavMouseUp()">
+			(click)="handleOverflowNavClick(-1, tabHeaderQuery.length)"
+			(pointerdown)="handleOverflowNavMouseDown(-1)"
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
+			(pointercancel)="handleOverflowNavMouseUp()">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -53,31 +47,28 @@ import { TabHeader } from "./tab-header.component";
 				<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>
 			</svg>
 		</button>
-		<div *ngIf="!leftOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--left"></div>
-		<ul
-			#tabList
-			class="bx--tabs--scrollable__nav"
+		<div
+			class="cds--tab--list"
 			role="tablist"
-			(scroll)="handleScroll()">
-			<li role="presentation">
-				<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
-			</li>
+			[attr.aria-label]="ariaLabel"
+			(scroll)="handleScroll()"
+			#tabList>
+			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
 			<ng-content></ng-content>
-			<li role="presentation">
-				<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
-			</li>
-		</ul>
-		<div *ngIf="!rightOverflowNavButtonHidden" class="bx--tabs__overflow-indicator--right"></div>
+			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
+		</div>
 		<button
-			#rightOverflowNavButton
 			type="button"
+			class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"
 			[ngClass]="{
-				'bx--tab--overflow-nav-button': hasHorizontalOverflow,
-				'bx--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
+				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
-			(click)="handleOverflowNavClick(1)"
-			(mousedown)="handleOverflowNavMouseDown(1)"
-			(mouseup)="handleOverflowNavMouseUp()">
+			(click)="handleOverflowNavClick(1, tabHeaderQuery.length)"
+			(pointerdown)="handleOverflowNavMouseDown(1)"
+			(pointerup)="handleOverflowNavMouseUp()"
+			(pointerleave)="handleOverflowNavMouseUp()"
+			(pointerout)="handleOverflowNavMouseUp()"
+			(pointercancel)="handleOverflowNavMouseUp()">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -90,50 +81,17 @@ import { TabHeader } from "./tab-header.component";
 				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 			</svg>
 		</button>
-	</nav>
 	`
 })
-export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
-	/**
-	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
-	 */
-	@Input() followFocus: boolean;
-	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
-	/**
-	 * Sets the aria label on the nav element.
-	 */
-	@Input() ariaLabel: string;
-	/**
-	 * Sets the aria labelledby on the nav element.
-	 */
-	@Input() ariaLabelledby: string;
-
-	@Input() contentAfter: TemplateRef<any>;
-
-	@Input() contentBefore: TemplateRef<any>;
-
-	/**
-	 * Set to 'true' to have all pane references associated with each tab header
-	 * in the tab header group cached and not reloaded on tab switching.
-	 */
-	@Input() cacheActive = false;
-
+export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit {
 	@Input() isNavigation = false;
-	@Input() type: "default" | "container" = "default";
 
 	/**
 	 * ContentChildren of all the tabHeaders.
 	 */
 	@ContentChildren(TabHeader) tabHeaderQuery: QueryList<TabHeader>;
-	// @ts-ignore
+
 	@ViewChild("tabList", { static: true }) headerContainer;
-	// @ts-ignore
-	@ViewChild("rightOverflowNavButton", { static: true }) rightOverflowNavButton;
-	// @ts-ignore
-	@ViewChild("leftOverflowNavButton", { static: true }) leftOverflowNavButton;
 	/**
 	 * Keeps track of all the subscriptions to the tab header selection events.
 	 */
@@ -142,36 +100,16 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	/**
 	 * Controls the manual focusing done by tabbing through headings.
 	 */
-	public currentSelectedIndex = 0;
-
-	public get hasHorizontalOverflow() {
-		const tabList = this.headerContainer.nativeElement;
-		return tabList.scrollWidth > tabList.clientWidth;
-	}
-
-	public get leftOverflowNavButtonHidden() {
-		const tabList = this.headerContainer.nativeElement;
-		return !this.hasHorizontalOverflow || !tabList.scrollLeft;
-	}
-
-	public get rightOverflowNavButtonHidden() {
-		const tabList = this.headerContainer.nativeElement;
-		return !this.hasHorizontalOverflow ||
-			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
-	}
-
-	// width of the overflow buttons
-	OVERFLOW_BUTTON_OFFSET = 40;
-
-	private _cacheActive = false;
-
-	private overflowNavInterval;
+	currentSelectedTab = 0;
 
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService
-	) { }
+		protected eventService: EventService,
+		protected renderer: Renderer2
+	) {
+		super(elementRef, changeDetectorRef, eventService, renderer);
+	}
 
 	// keyboard accessibility
 	/**
@@ -179,44 +117,44 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		let tabHeadersArray = Array.from<any>(this.tabHeaderQuery);
+		let tabHeadersArray = this.tabHeaderQuery.toArray();
 
-		if (event.key === "Right" || event.key === "ArrowRight") {
-			if (this.currentSelectedIndex < tabHeadersArray.length - 1) {
+		if (event.key === "ArrowRight") {
+			if (this.currentSelectedTab < tabHeadersArray.length - 1) {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[this.currentSelectedIndex + 1].disabled) {
-					tabHeadersArray[this.currentSelectedIndex + 1].selectTab();
+				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab + 1].disabled) {
+					tabHeadersArray[this.currentSelectedTab + 1].selectTab();
 				} else {
-					tabHeadersArray[this.currentSelectedIndex + 1].tabItem.nativeElement.focus();
-					this.currentSelectedIndex++;
+					tabHeadersArray[this.currentSelectedTab + 1].focus();
+					this.currentSelectedTab++;
 				}
 			} else {
 				event.preventDefault();
 				if (this.followFocus && !tabHeadersArray[0].disabled) {
 					tabHeadersArray[0].selectTab();
 				} else {
-					tabHeadersArray[0].tabItem.nativeElement.focus();
-					this.currentSelectedIndex = 0;
+					tabHeadersArray[0].focus();
+					this.currentSelectedTab = 0;
 				}
 			}
 		}
 
-		if (event.key === "Left" || event.key === "ArrowLeft") {
-			if (this.currentSelectedIndex > 0) {
+		if (event.key === "ArrowLeft") {
+			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[this.currentSelectedIndex - 1].disabled) {
-					tabHeadersArray[this.currentSelectedIndex - 1].selectTab();
+				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab - 1].disabled) {
+					tabHeadersArray[this.currentSelectedTab - 1].selectTab();
 				} else {
-					tabHeadersArray[this.currentSelectedIndex - 1].tabItem.nativeElement.focus();
-					this.currentSelectedIndex--;
+					tabHeadersArray[this.currentSelectedTab - 1].focus();
+					this.currentSelectedTab--;
 				}
 			} else {
 				event.preventDefault();
 				if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 					tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 				} else {
-					tabHeadersArray[tabHeadersArray.length - 1].tabItem.nativeElement.focus();
-					this.currentSelectedIndex = tabHeadersArray.length - 1;
+					tabHeadersArray[tabHeadersArray.length - 1].focus();
+					this.currentSelectedTab = tabHeadersArray.length - 1;
 				}
 			}
 		}
@@ -226,8 +164,8 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 			if (this.followFocus && !tabHeadersArray[0].disabled) {
 				tabHeadersArray[0].selectTab();
 			} else {
-				tabHeadersArray[0].tabItem.nativeElement.focus();
-				this.currentSelectedIndex = 0;
+				tabHeadersArray[0].focus();
+				this.currentSelectedTab = 0;
 			}
 		}
 
@@ -236,14 +174,13 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 			if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 				tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 			} else {
-				tabHeadersArray[tabHeadersArray.length - 1].tabItem.nativeElement.focus();
-				this.currentSelectedIndex = tabHeadersArray.length - 1;
+				tabHeadersArray[tabHeadersArray.length - 1].focus();
+				this.currentSelectedTab = tabHeadersArray.length - 1;
 			}
 		}
 
-		// `"Spacebar"` is IE11 specific value
-		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
-			tabHeadersArray[this.currentSelectedIndex].selectTab();
+		if ((event.key === " ") && !this.followFocus) {
+			tabHeadersArray[this.currentSelectedTab].selectTab();
 		}
 	}
 
@@ -264,7 +201,7 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 
 		const selectedSubscriptions = this.tabHeaderQuery.toArray().forEach(tabHeader => {
 			tabHeader.selected.subscribe(() => {
-				this.currentSelectedIndex = this.tabHeaderQuery.toArray().indexOf(tabHeader);
+				this.currentSelectedTab = this.tabHeaderQuery.toArray().indexOf(tabHeader);
 				// The Filter takes the current selected tab out, then all other headers are
 				// deactivated and their associated pane references are also deactivated.
 				this.tabHeaderQuery.toArray().filter(header => header !== tabHeader)
@@ -278,7 +215,7 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		});
 		this.selectedSubscriptionTracker.add(selectedSubscriptions);
 
-		setTimeout(() => this.tabHeaderQuery.toArray()[this.currentSelectedIndex].selectTab());
+		setTimeout(() => this.tabHeaderQuery.toArray()[this.currentSelectedTab].selectTab());
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
@@ -294,8 +231,8 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 		}
 	}
 
-	public getSelectedTab(): any {
-		const selected =  this.tabHeaderQuery.toArray()[this.currentSelectedIndex];
+	getSelectedTab(): any {
+		const selected = this.tabHeaderQuery.toArray()[this.currentSelectedTab];
 		if (selected) {
 			return selected;
 		}
@@ -303,58 +240,5 @@ export class TabHeaderGroup implements AfterContentInit, OnChanges, OnInit {
 			headingIsTemplate: false,
 			heading: ""
 		};
-	}
-
-	public handleScroll() {
-		this.changeDetectorRef.markForCheck();
-	}
-
-	public handleOverflowNavClick(direction: number, multiplier = 15) {
-		const tabList = this.headerContainer.nativeElement;
-
-		const { clientWidth, scrollLeft, scrollWidth } = tabList;
-		if (direction === 1 && !scrollLeft) {
-			tabList.scrollLeft += this.OVERFLOW_BUTTON_OFFSET;
-		}
-
-		tabList.scrollLeft += direction * multiplier;
-
-		const leftEdgeReached =
-			direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-		const rightEdgeReached =
-			direction === 1 &&
-			scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-
-		if (leftEdgeReached) {
-			this.rightOverflowNavButton.nativeElement.focus();
-		}
-		if (rightEdgeReached) {
-			this.leftOverflowNavButton.nativeElement.focus();
-		}
-	}
-
-	public handleOverflowNavMouseDown(direction: number) {
-		const tabList = this.headerContainer.nativeElement;
-
-		this.overflowNavInterval = setInterval(() => {
-			const { clientWidth, scrollLeft, scrollWidth } = tabList;
-
-			// clear interval if scroll reaches left or right edge
-			const leftEdgeReached = direction === -1 && scrollLeft < this.OVERFLOW_BUTTON_OFFSET;
-			const rightEdgeReached =
-				direction === 1 &&
-				scrollLeft + clientWidth >= scrollWidth - this.OVERFLOW_BUTTON_OFFSET;
-
-			if (leftEdgeReached || rightEdgeReached) {
-				clearInterval(this.overflowNavInterval);
-			}
-
-			// account for overflow button appearing and causing tablist width change
-			this.handleOverflowNavClick(direction);
-		});
-	}
-
-	public handleOverflowNavMouseUp() {
-		clearInterval(this.overflowNavInterval);
 	}
 }

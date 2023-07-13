@@ -13,24 +13,18 @@ import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
 
 @Component({
-	selector: "ibm-context-menu-group",
+	selector: "cds-context-menu-group, ibm-context-menu-group",
 	template: `
-		<ul role="group" [attr.aria-label]="label">
-			<ng-content></ng-content>
-		</ul>
+		<ng-content></ng-content>
 	`,
-	styles: [`
-		:host {
-			display: list-item;
-			list-style: none;
-		}
-	`],
 	providers: [ContextMenuSelectionService]
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
-	@HostBinding("attr.role") role = "none";
+	@HostBinding("attr.role") role = "group";
+	@HostBinding("class.cds--menu-item-radio-group") get radioGroup() {  return this.type === "radio"; }
+	@HostBinding("class.cds--menu-item-group") get group() { return this.type === "checkbox"; }
 
-	@Input() label = null;
+	@HostBinding("attr.aria-label") @Input() label = null;
 	@Input() value: any[] = [];
 	@Input() type: null | "radio" | "checkbox" = null;
 	@Output() valueChange = new EventEmitter<any[]>();

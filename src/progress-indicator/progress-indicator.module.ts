@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ProgressIndicator } from "./progress-indicator.component";
-import { DialogModule } from "carbon-components-angular/dialog";
 import { IconModule } from "carbon-components-angular/icon";
+import { I18nModule } from "carbon-components-angular/i18n";
 
 @NgModule({
 	declarations: [
@@ -14,8 +14,8 @@ import { IconModule } from "carbon-components-angular/icon";
 	],
 	imports: [
 		CommonModule,
-		DialogModule,
-		IconModule
+		IconModule,
+		I18nModule
 	]
 })
-export class ProgressIndicatorModule { }
+export class ProgressIndicatorModule {}

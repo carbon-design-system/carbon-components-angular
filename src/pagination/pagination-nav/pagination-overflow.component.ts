@@ -11,17 +11,17 @@ import { I18n } from "carbon-components-angular/i18n";
  * in the pagination list
  *
  * * ```html
- * <ibm-pagination-overflow [fromIndex]="5" [count]="30" (change)="handleChange(value)"></ibm-pagination-overflow>
+ * <cds-pagination-overflow [fromIndex]="5" [count]="30" (change)="handleChange(value)"></cds-pagination-overflow>
  * ```
  */
 @Component({
-	selector: "ibm-pagination-overflow",
+	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
-		<li class="bx--pagination-nav__list-item" *ngIf="count > 1">
-			<div class="bx--pagination-nav__select">
+		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
+			<div class="cds--pagination-nav__select">
 			<select
 				[attr.aria-label]="ariaLabel"
-				class="bx--pagination-nav__page bx--pagination-nav__page--select"
+				class="cds--pagination-nav__page cds--pagination-nav__page--select"
 				(change)="handleChange($event)">
 				<option value="" hidden></option>
 				<option
@@ -29,17 +29,17 @@ import { I18n } from "carbon-components-angular/i18n";
 					{{fromIndex + i + 1}}
 				</option>
 			</select>
-			<div class="bx--pagination-nav__select-icon-wrapper">
+			<div class="cds--pagination-nav__select-icon-wrapper">
 				<svg
-					ibmIcon="overflow-menu--horizontal"
+					cdsIcon="overflow-menu--horizontal"
 					size="16"
 					style="display: inherit"
-					class="bx--pagination-nav__select-icon">
+					class="cds--pagination-nav__select-icon">
 				</svg>
 			</div>
 			</div>
 		</li>
-		<ibm-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></ibm-pagination-nav-item>
+		<cds-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></cds-pagination-nav-item>
 	`
 })
 export class PaginationOverflow {

@@ -1,76 +1,77 @@
+/* tslint:disable variable-name */
+
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
-import { DropdownModule } from "../../dropdown/index";
-import { StructuredListModule } from "../../structured-list/index";
-import { GridModule } from "../../grid/index";
-import { RadioModule } from "../../radio/index";
-import { CheckboxModule } from "../../checkbox/index";
-import { ButtonModule } from "../../forms/index";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table";
+import { DropdownModule } from "../../dropdown";
+import { StructuredListModule } from "../../structured-list";
+import { GridModule } from "../../grid";
+import { RadioModule } from "../../radio";
+import { CheckboxModule } from "../../checkbox";
+import { ButtonModule } from "../../button";
 import { TagModule } from "../../tag/index";
-import { UIShellModule } from "../../ui-shell/index";
+import { UIShellModule } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-multi-categories",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
-				<button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
-				<fieldset class="bx--fieldset">
-					<legend class="bx--label">Radio button label</legend>
-					<ibm-radio-group
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+				<button cdsButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
+				<fieldset class="cds--fieldset">
+					<legend class="cds--label">Radio button label</legend>
+					<cds-radio-group
 						aria-label="radiogroup"
 						orientation="vertical"
 						labelPlacement="right"
 						[(ngModel)]="radio"
 						(change)="onRadioChange($event)">
-						<ibm-radio *ngFor="let radio of radios"
+						<cds-radio *ngFor="let radio of radios"
 							[value]="radio.color"
 							[disabled]="radio.disabled">
 							{{radio.color}}
-						</ibm-radio>
-					</ibm-radio-group>
+						</cds-radio>
+					</cds-radio-group>
 				</fieldset>
-				<fieldset class="bx--fieldset">
-					<div ibmRow>
-						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<legend class="bx--label">Type</legend>
+				<fieldset class="cds--fieldset">
+					<div cdsRow>
+						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
+							<legend class="cds--label">Type</legend>
 						</div>
-						<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<ibm-tag-filter
+						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
+							<cds-tag-filter
 								*ngIf="checkBoxFilters.size > 0"
 								(close)="resetCheckboxList()">
 								{{checkBoxFilters.size}}
-							</ibm-tag-filter>
+							</cds-tag-filter>
 						</div>
 					</div>
-					<ibm-checkbox
+					<cds-checkbox
 						*ngFor="let listItem of checkboxList"
 						[hideLabel]="hideLabel"
 						[checked]="listItem.checked"
 						[value]="listItem.value"
 						(change)="onCheckboxChange($event)">
 						{{ listItem.value }}
-					</ibm-checkbox>
+					</cds-checkbox>
 				</fieldset>
 			</div>
-			<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
-				<ibm-table-container>
-					<ibm-table
+			<div cdsCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
+				<cds-table-container>
+					<cds-table
 						class="data-table"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</div>
 		</div>
 	</div>
@@ -92,7 +93,7 @@ import { UIShellModule } from "../../ui-shell/index";
 })
 class SampleMultiCategories implements OnInit, OnDestroy {
 	model = new TableModel();
-	checkBoxFilters = [];
+	checkBoxFilters: any = [];
 	radioFilter = null;
 
 	dataset = [
@@ -113,9 +114,9 @@ class SampleMultiCategories implements OnInit, OnDestroy {
 	];
 
 	checkboxList = [
-		{ value: "Fruit", checked: false},
-		{ value: "Vegetable", checked: false},
-		{ value: "Meat", checked: false}
+		{ value: "Fruit", checked: false },
+		{ value: "Vegetable", checked: false },
+		{ value: "Meat", checked: false }
 	];
 
 	onCheckboxChange(event) {
@@ -163,26 +164,28 @@ class SampleMultiCategories implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 
 		this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
 		this.model.data = this.dataset.map(datapoint =>
 			[
-				new TableItem({ data: datapoint.name}),
+				new TableItem({ data: datapoint.name }),
 				new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
 			]
 		);
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Filtering", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Filtering",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleMultiCategories ],
+			declarations: [SampleMultiCategories],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -195,14 +198,17 @@ storiesOf("Patterns|Filtering", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multiple Categories", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-multi-categories></app-sample-multi-categories>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-multi-categories></app-sample-multi-categories>
+	`
+});
+export const MultipleCategories = Template.bind({});

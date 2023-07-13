@@ -5,5 +5,5 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "optgroup"
 })
 export class OptGroup {
-	@HostBinding("class") inputClass = "bx--select-optgroup";
+	@HostBinding("class") inputClass = "cds--select-optgroup";
 }

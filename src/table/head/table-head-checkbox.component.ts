@@ -5,24 +5,22 @@ import {
 	HostBinding,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableHeadCheckbox]",
+	selector: "[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]",
 	template: `
-		<ibm-checkbox
+		<cds-checkbox
 			*ngIf="!skeleton"
 			inline="true"
-			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[name]="name"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(checkedChange)="change.emit()"
-			[aria-label]="getAriaLabel() | async">
-		</ibm-checkbox>
+			[ariaLabel]="getAriaLabel() | async">
+		</cds-checkbox>
 	`,
 	styles: [`
         :host { width: 10px; }
@@ -30,10 +28,6 @@ import { TableRowSize } from "../table.types";
 })
 export class TableHeadCheckbox {
 	private static tableSelectAllCount = 0;
-	/**
-	 * Size of the table rows.
-	 */
-	@Input() size: TableRowSize = "md";
 
 	@Input() checked = false;
 
@@ -54,7 +48,7 @@ export class TableHeadCheckbox {
 
 	@Output() change = new EventEmitter<void>();
 
-	@HostBinding("class.bx--table-column-checkbox") hostClass = true;
+	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 

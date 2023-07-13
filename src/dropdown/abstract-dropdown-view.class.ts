@@ -13,7 +13,9 @@ import { Observable } from "rxjs";
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
-@Directive({ selector: "[ibmAbstractDropdownView]" })
+@Directive({
+	selector: "[cdsAbstractDropdownView], [ibmAbstractDropdownView]"
+})
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
@@ -43,10 +45,8 @@ export class AbstractDropdownView {
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
-	 *
-	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "xl" = "md";
+	public size: "sm" | "md" | "lg" = "md";
 	public listId?: string;
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.

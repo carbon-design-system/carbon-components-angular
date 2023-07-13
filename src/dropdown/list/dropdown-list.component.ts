@@ -24,7 +24,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 
 /**
  * ```html
- * <ibm-dropdown-list [items]="listItems"></ibm-dropdown-list>
+ * <cds-dropdown-list [items]="listItems"></cds-dropdown-list>
  * ```
  * ```typescript
  * listItems = [
@@ -48,13 +48,13 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
  * ```
  */
 @Component({
-	selector: "ibm-dropdown-list",
+	selector: "cds-dropdown-list, ibm-dropdown-list",
 	template: `
 		<ul
 			#list
 			[id]="listId"
 			role="listbox"
-			class="bx--list-box__menu bx--multi-select"
+			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
 			tabindex="-1"
@@ -64,41 +64,41 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
-				class="bx--list-box__menu-item"
+				class="cds--list-box__menu-item"
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
 				[attr.title]=" showTitles ? item.content : null"
 				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
-					'bx--list-box__menu-item--active': item.selected,
-					'bx--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
+					'cds--list-box__menu-item--active': item.selected,
+					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
 				}">
 				<div
 					#listItem
 					tabindex="-1"
-					class="bx--list-box__menu-item__option">
+					class="cds--list-box__menu-item__option">
 					<div
 						*ngIf="!listTpl && type === 'multi'"
-						class="bx--form-item bx--checkbox-wrapper">
+						class="cds--form-item cds--checkbox-wrapper">
 						<label
 							[attr.data-contained-checkbox-state]="item.selected"
-							class="bx--checkbox-label">
+							class="cds--checkbox-label">
 							<input
-								class="bx--checkbox"
+								class="cds--checkbox"
 								type="checkbox"
 								[checked]="item.selected"
 								[disabled]="item.disabled"
 								tabindex="-1">
-							<span class="bx--checkbox-appearance"></span>
-							<span class="bx--checkbox-label-text">{{item.content}}</span>
+							<span class="cds--checkbox-appearance"></span>
+							<span class="cds--checkbox-label-text">{{item.content}}</span>
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 					<svg
 						*ngIf="!listTpl && type === 'single'"
-						ibmIcon="checkmark"
+						cdsIcon="checkmark"
 						size="16"
-						class="bx--list-box__menu-item__selected-icon">
+						class="cds--list-box__menu-item__selected-icon">
 					</svg>
 					<ng-template
 						*ngIf="listTpl"
@@ -168,7 +168,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
-	// @ts-ignore
 	@ViewChild("list", { static: true }) list: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
@@ -183,10 +182,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
-	 *
-	 * @deprecated since v4
 	 */
-	public size: "sm" | "md" | "xl" = "md";
+	public size: "sm" | "md" | "lg" = "md";
 	public listId = `listbox-${DropdownList.listCount++}`;
 	public highlightedItem = null;
 	/**
@@ -503,58 +500,24 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	/**
 	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
-	 * @deprecated since v4
-	 */
-	doKeyDown(event: KeyboardEvent, item: ListItem) {
-		// "Spacebar", "Down", and "Up" are IE specific values
-		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-			if (this.listElementList.some(option => option.nativeElement === event.target)) {
-				event.preventDefault();
-			}
-			if (event.key === "Enter") {
-				this.doClick(event, item);
-			}
-		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
-			event.preventDefault();
-			if (event.key === "ArrowDown" || event.key === "Down") {
-				if (this.hasNextElement()) {
-					// this.getNextElement().focus();
-					this.getNextElement();
-				} else {
-					this.blurIntent.emit("bottom");
-				}
-			} else if (event.key === "ArrowUp" || event.key === "Up") {
-				if (this.hasPrevElement()) {
-					// this.getPrevElement().focus();
-					this.getPrevElement();
-				} else {
-					this.blurIntent.emit("top");
-				}
-			}
-		}
-	}
-
-	/**
-	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
 	 */
 	navigateList(event: KeyboardEvent) {
-		// "Spacebar", "Down", and "Up" are IE specific values
-		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+		if (event.key === "Enter" || event.key === " ") {
 			if (this.listElementList.some(option => option.nativeElement === event.target)) {
 				event.preventDefault();
 			}
 			if (event.key === "Enter") {
 				this.doClick(event, this.getCurrentItem());
 			}
-		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
 			event.preventDefault();
-			if (event.key === "ArrowDown" || event.key === "Down") {
+			if (event.key === "ArrowDown") {
 				if (this.hasNextElement()) {
 					this.getNextElement().scrollIntoView({ block: "end" });
 				} else {
 					this.blurIntent.emit("bottom");
 				}
-			} else if (event.key === "ArrowUp" || event.key === "Up") {
+			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
 					this.getPrevElement().scrollIntoView();
 				} else {
@@ -592,13 +555,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	onItemFocus(index) {
 		const element = this.listElementList.toArray()[index].nativeElement;
-		element.classList.add("bx--list-box__menu-item--highlighted");
+		element.classList.add("cds--list-box__menu-item--highlighted");
 		element.tabIndex = 0;
 	}
 
 	onItemBlur(index) {
 		const element = this.listElementList.toArray()[index].nativeElement;
-		element.classList.remove("bx--list-box__menu-item--highlighted");
+		element.classList.remove("cds--list-box__menu-item--highlighted");
 		element.tabIndex = -1;
 	}
 

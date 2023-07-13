@@ -9,26 +9,38 @@ import { AccordionItem } from "./accordion-item.component";
 
 /**
  * [See demo](../../?path=/story/components-accordion--basic)
- *
- * <example-url>../../iframe.html?id=components-accordion--basic</example-url>
  */
 @Component({
-	selector: "ibm-accordion",
+	selector: "cds-accordion, ibm-accordion",
 	template: `
-		<ul class="bx--accordion"
+		<div class="cds--accordion"
 			[ngClass]="{
-				'bx--accordion--end': align == 'end',
-				'bx--accordion--start': align == 'start',
-				'bx--accordion--sm': size == 'sm',
-				'bx--accordion--md': size == 'md',
-				'bx--accordion--lg': size == 'lg'
-			}">
+				'cds--accordion--end': align === 'end',
+				'cds--accordion--start': align === 'start',
+				'cds--accordion--sm': size === 'sm',
+				'cds--accordion--md': size ==='md',
+				'cds--accordion--lg': size === 'lg',
+				'cds--layout--size-sm': size === 'sm',
+				'cds--layout--size-md': size === 'md',
+				'cds--layout--size-lg': size === 'lg'
+			}"
+			role="list">
 			<ng-content></ng-content>
-		</ul>
+		</div>
 	`
 })
 export class Accordion implements AfterContentInit {
+	/**
+	 * Sets the alignment of the chevron icon
+	 */
 	@Input() align: "start" | "end" = "end";
+
+	/**
+	 *	@todo remove `cds--accordion--${size}` classes in v12
+	 */
+	/**
+	 * Sets the size of all accordian items
+	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;

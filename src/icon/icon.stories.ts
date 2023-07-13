@@ -1,114 +1,61 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	text,
-	boolean,
-	select,
-	number
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { IconModule } from "./icon.module";
-import { IconService } from "./icon.service";
-import { Component, OnInit } from "@angular/core";
 
-import { Accessibility16 } from "@carbon/icons";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { IconModule, IconDirective } from "./";
+import { IconDemo, ManyIconDemo } from "./stories";
 
-import * as Icons from "@carbon/icons";
+export default {
+	title: "Components/Icon",
+	decorators: [
+		moduleMetadata({
+			declarations: [
+				IconDemo,
+				ManyIconDemo
+			],
+			imports: [
+				IconModule
+			]
+		})
+	],
+	component: IconDirective
+} as Meta;
 
-@Component({
-	selector: "app-demo-icon",
+const Template: Story = (args) => ({
+	props: args,
 	template: `
-		<!-- this just sets up the environment for the demo -->
+		<!-- app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/icon-demo.component.ts -->
+		<app-demo-icon></app-demo-icon>
+		<svg cdsIcon="accessibility" size="16" title="Hello!"></svg>
 	`
-})
-class IconDemo implements OnInit {
-	constructor(protected iconService: IconService) {}
+});
+export const Basic = Template.bind({});
 
-	ngOnInit() {
-		this.iconService.register(Accessibility16);
-	}
-}
-
-@Component({
-	selector: "app-demo-many-icon",
+const NonSVGRootTemplate: Story = (args) => ({
+	props: args,
 	template: `
-		<table>
-			<tr *ngFor="let group of groupedIcons">
-				<td *ngFor="let icon of group">
-					<svg [ibmIcon]="icon.name" [size]="icon.size"></svg>
-					<div>name: <code>{{icon.name}}</code></div>
-					<div>size: <code>{{icon.size}}</code></div>
-				</td>
-			</tr>
-		</table>
-	`,
-	styles: [
-		`
-			td {
-				white-space: nowrap;
-				padding: 10px 0;
-			}
-		`
-	]
-})
-class ManyIconDemo implements OnInit {
-	groupedIcons = [];
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/many-icons-demo.component.ts
+		-->
+		<app-demo-icon></app-demo-icon>
+		<div cdsIcon="accessibility" size="16"></div>
+	`
+});
+export const RootElement = NonSVGRootTemplate.bind({});
+RootElement.storyName = "Non-svg root element";
 
-	constructor(protected iconService: IconService) { }
-
-	ngOnInit() {
-		const iconMap = new Map();
-		for (const [key, descriptor] of Object.entries(Icons)) {
-			this.iconService.register(descriptor as object);
-			if (!iconMap.has(descriptor["name"])) {
-				iconMap.set(descriptor["name"], []);
-			}
-			iconMap.get(descriptor["name"]).push(descriptor);
-		}
-		this.groupedIcons = Array.from(iconMap.values());
-	}
-}
-
-storiesOf("Components|Icon", module).addDecorator(
-	moduleMetadata({
-		declarations: [IconDemo, ManyIconDemo],
-		imports: [IconModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-icon></app-demo-icon>
-			<svg ibmIcon="accessibility" size="16" title="Hello!"></svg>
-		`,
-		props: {
-
-		}
-	}))
-	.add("With non-svg root element", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-icon></app-demo-icon>
-			<div ibmIcon="accessibility" size="16"></div>
-		`,
-		props: {
-
-		}
-	}))
-	.add("All icons", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-demo-many-icon></app-demo-many-icon>
-		`
-	}));
+const AllIconTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-demo-many-icon></app-demo-many-icon>
+	`
+});
+export const AllIcon = AllIconTemplate.bind({});

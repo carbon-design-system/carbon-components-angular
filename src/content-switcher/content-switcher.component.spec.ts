@@ -6,11 +6,11 @@ import { ContentSwitcherModule, ContentSwitcherOption } from "./index";
 
 @Component({
 	template: `
-		<ibm-content-switcher (selected)="selected($event)" ariaLabel="Test">
+		<cds-content-switcher (selected)="selected($event)" ariaLabel="Test">
 			<button ibmContentOption name="First" id="first">First section</button>
 			<button ibmContentOption name="Second" id="second">Second section</button>
 			<button ibmContentOption name="Third" id="third">Third section</button>
-		</ibm-content-switcher>
+		</cds-content-switcher>
 	`
 })
 class ContentSwitcherTest {
@@ -37,14 +37,14 @@ describe("ContentSwitcher", () => {
 	it("should set arialabel to 'Test'", () => {
 		fixture = TestBed.createComponent(ContentSwitcherTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-content-switcher"));
+		element = fixture.debugElement.query(By.css("cds-content-switcher"));
 		expect(element.nativeElement.getAttribute("arialabel")).toBe("Test");
 	});
 
 	it("should set all options in the content switcher component", () => {
 		fixture = TestBed.createComponent(ContentSwitcherTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-content-switcher"));
+		element = fixture.debugElement.query(By.css("cds-content-switcher"));
 		const component = element.componentInstance;
 		expect(component.options.length).toBe(3);
 		component.options.forEach(option => expect(option instanceof ContentSwitcherOption).toBe(true));
@@ -55,7 +55,7 @@ describe("ContentSwitcher", () => {
 		fixture = TestBed.createComponent(ContentSwitcherTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-content-switcher"));
+		element = fixture.debugElement.query(By.css("cds-content-switcher"));
 
 		const firstButton = element.nativeElement.querySelector("#first");
 		const secondButton = element.nativeElement.querySelector("#second");
@@ -74,7 +74,7 @@ describe("ContentSwitcher", () => {
 		fixture = TestBed.createComponent(ContentSwitcherTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-content-switcher"));
+		element = fixture.debugElement.query(By.css("cds-content-switcher"));
 
 		const firstButton = element.nativeElement.querySelector("#first");
 		const secondButton = element.nativeElement.querySelector("#second");
@@ -93,7 +93,7 @@ describe("ContentSwitcher", () => {
 		fixture = TestBed.createComponent(ContentSwitcherTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-content-switcher"));
+		element = fixture.debugElement.query(By.css("cds-content-switcher"));
 		const firstButton = element.nativeElement.querySelector("#first");
 		const secondButton = element.nativeElement.querySelector("#second");
 

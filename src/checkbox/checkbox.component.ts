@@ -8,7 +8,6 @@ import {
 	Input,
 	Output,
 	ViewChild,
-	HostBinding,
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -25,33 +24,15 @@ export enum CheckboxState {
 }
 
 /**
- * Used to emit changes performed on checkbox components.
- *
- * @deprecated since v4
- */
-export class CheckboxChange {
-	/**
-	 * Contains the `Checkbox` that has been changed.
-	 */
-	source: Checkbox;
-	/**
-	 * The state of the `Checkbox` encompassed in the `CheckboxChange` class.
-	 */
-	checked: boolean;
-}
-
-/**
  * [See demo](../../?path=/story/components-checkbox--basic)
- *
- * <example-url>../../iframe.html?id=components-checkbox--basic</example-url>
  */
 @Component({
-	selector: "ibm-checkbox",
+	selector: "cds-checkbox, ibm-checkbox",
 	template: `
-		<div class="bx--form-item bx--checkbox-wrapper">
+		<div class="cds--form-item cds--checkbox-wrapper">
 			<input
 				#inputCheckbox
-				class="bx--checkbox"
+				class="cds--checkbox"
 				type="checkbox"
 				[id]="id + '_input'"
 				[value]="value"
@@ -65,11 +46,11 @@ export class CheckboxChange {
 			<label
 				[for]="id + '_input'"
 				[attr.aria-label]="ariaLabel"
-				class="bx--checkbox-label"
+				class="cds--checkbox-label"
 				[ngClass]="{
-					'bx--skeleton' : skeleton
+					'cds--skeleton' : skeleton
 				}">
-				<span [ngClass]="{'bx--visually-hidden' : hideLabel}" class="bx--checkbox-label-text">
+				<span [ngClass]="{'cds--visually-hidden' : hideLabel}" class="cds--checkbox-label-text">
 					<ng-content></ng-content>
 				</span>
 			</label>
@@ -90,22 +71,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	static checkboxCount = 0;
 
-	/**
-	 * Size of the checkbox.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() size: "sm" | "md" = "md";
-	/**
-	 * Set to `true` for checkbox to be rendered with nested styles.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() nested: boolean;
-	/**
-	 * Set to `true` for checkbox to be rendered without any classes on the host element.
-	 */
-	@Input() inline = false;
 	/**
 	 * Set to `true` for a disabled checkbox.
 	 */
@@ -134,41 +99,8 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Sets the value attribute on the `input` element.
 	 */
 	@Input() value: CheckboxValue;
-	/**
-	 * Used to set the `aria-label` attribute on the input element.
-	 *
-	 * @deprecated since v4 use the `ariaLabel` input instead
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input("aria-label") set ariaLabel(value: string) {
-		this._ariaLabel = value;
-	}
-
-	get ariaLabel() {
-		return this._ariaLabel;
-	}
-
-	// TODO: drop the `_`
-	// tslint:disable-next-line:no-input-rename
-	@Input("ariaLabel") _ariaLabel: string;
-
-	/**
-	 * Used to set the `aria-labelledby` attribute on the input element.
-	 *
-	 * @deprecated since v4 use the `ariaLabelledby` input instead
-	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input("aria-labelledby") set ariaLabelledby(value: string) {
-		this._ariaLabelledby = value;
-	}
-
-	get ariaLabelledby() {
-		return this._ariaLabelledby;
-	}
-
-	// TODO: drop the `_`
-	// tslint:disable-next-line:no-input-rename
-	@Input("ariaLabelledby") _ariaLabelledby: string;
+	@Input() ariaLabel: string;
+	@Input() ariaLabelledby: string;
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.
@@ -222,13 +154,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Emits click event.
 	 */
 	@Output() click = new EventEmitter<void>();
-	/**
-	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
-	 * click.
-	 *
-	 * @deprecated since v4 use `checked` and `checkedChange` instead
-	 */
-	@Output() change = new EventEmitter<any>();
 
 	/**
 	 * Emits an event when the value of the checkbox changes.
@@ -260,8 +185,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `Checkbox`.
 	 */
-	// @ts-ignore
-	@ViewChild("inputCheckbox", { static: false }) inputCheckbox: ElementRef;
+	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 
 	/**
 	 * Creates an instance of `Checkbox`.
@@ -364,13 +288,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Creates instance of `CheckboxChange` used to propagate the change event.
 	 */
 	emitChangeEvent() {
-		/* begin deprecation */
-		let event = new CheckboxChange();
-		event.source = this;
-		event.checked = this.checked;
-		this.change.emit(event);
-		/* end deprecation */
-
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
 	}

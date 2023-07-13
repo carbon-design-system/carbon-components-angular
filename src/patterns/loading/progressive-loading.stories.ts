@@ -1,75 +1,81 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
+
+import {
+	Component,
+	OnInit,
+	OnDestroy
+} from "@angular/core";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import {
 	TableModule,
 	TableModel,
 	TableHeaderItem,
-	TableItem } from "../../table/index";
-import { DropdownModule } from "../../dropdown/index";
-import { GridModule } from "../../grid/index";
-import { ButtonModule } from "../../forms/index";
-import { UIShellModule } from "../../ui-shell/index";
+	TableItem
+} from "../../table";
+import { DropdownModule } from "../../dropdown";
+import { GridModule } from "../../grid";
+import { ButtonModule } from "../../button";
+import { UIShellModule } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-progressive-loading",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow class="actions">
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+		<div cdsRow class="actions">
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 1"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 2"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<ibm-dropdown
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<cds-dropdown
 					label="Example 3"
 					[skeleton]="skeletonStateDropdown"
 					type="multi"
 					[placeholder]="placeholder"
 					inline="true">
-					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-				</ibm-dropdown>
+					<cds-dropdown-list [items]="items"></cds-dropdown-list>
+				</cds-dropdown>
 			</div>
 
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
-				<button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
+				<button cdsButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
 			</div>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
-				<ibm-table-container>
-					<ibm-table
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+				<cds-table-container>
+					<cds-table
 						class="data-table"
 						[skeleton]="skeletonStateTable"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			</div>
 		</div>
 	</div>
@@ -93,7 +99,7 @@ class SampleProgressiveLoading implements OnInit, OnDestroy {
 	model = new TableModel();
 	skeletonStateTable = true;
 	skeletonStateDropdown = true;
-	placeholder = null;
+	placeholder: string | null = null;
 
 	dataset = [
 		{ name: "Apple", type: "Fruit" },
@@ -143,19 +149,21 @@ class SampleProgressiveLoading implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 		this.loadScreen();
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Loading", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Loading",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleProgressiveLoading ],
+			declarations: [SampleProgressiveLoading],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -164,14 +172,17 @@ storiesOf("Patterns|Loading", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Progressive Loading", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-progressive-loading></app-sample-progressive-loading>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-progressive-loading></app-sample-progressive-loading>
+	`
+});
+export const ProgressiveLoading = Template.bind({});

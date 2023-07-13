@@ -5,13 +5,13 @@ import { Component, Input } from "@angular/core";
  * `Panel`s are generally activated by and linked to a `HeaderAction` component.
  */
 @Component({
-	selector: "ibm-panel",
+	selector: "cds-panel, ibm-panel",
 	template: `
 		<div
-			class="bx--panel--overlay"
+			class="cds--header-panel"
 			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
-				'bx--panel--expanded': expanded
+				'cds--header-panel--expanded': expanded
 			}">
 			<ng-content></ng-content>
 		</div>

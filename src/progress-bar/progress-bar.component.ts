@@ -6,31 +6,31 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-progress-bar",
+	selector: "cds-progress-bar, ibm-progress-bar",
 	template: `
 		<div
 			*ngIf="label"
-			class="bx--progress-bar__label"
+			class="cds--progress-bar__label"
 			[id]="id">
-			<span class="bx--progress-bar__label-text">
+			<span class="cds--progress-bar__label-text">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</span>
 			<svg
 				*ngIf="isFinished"
 				fill="currentColor"
-				ibmIcon="checkmark--filled"
-				class="bx--progress-bar__status-icon">
+				cdsIcon="checkmark--filled"
+				class="cds--progress-bar__status-icon">
 			</svg>
 			<svg
 				*ngIf="isError"
 				fill="currentColor"
-				ibmIcon="error--filled"
-				class="bx--progress-bar__status-icon">
+				cdsIcon="error--filled"
+				class="cds--progress-bar__status-icon">
 			</svg>
 		</div>
 		<div
-			class="bx--progress-bar__track"
+			class="cds--progress-bar__track"
 			role="progressbar"
 			[attr.aria-invalid]="isError"
 			[attr.labelledby]="id"
@@ -39,7 +39,7 @@ import {
 			[attr.aria-valuemax]="!indeterminate ? max : null"
 			[attr.aria-valuenow]="!indeterminate ? value : null">
 			<div
-				class="bx--progress-bar__bar"
+				class="cds--progress-bar__bar"
 				[ngStyle]="{
 					'transform': !isFinished && !isError ? percentage : null
 				}">
@@ -48,7 +48,7 @@ import {
 		<div
 			[id]="helperId"
 			*ngIf="helperText"
-			class="bx--progress-bar__helper-text">
+			class="cds--progress-bar__helper-text">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
@@ -83,30 +83,30 @@ export class ProgressBar {
 		return `scaleX(${this.value / this.max})`;
 	}
 	// Size
-	@HostBinding("class.bx--progress-bar--big") get bigBar() {
+	@HostBinding("class.cds--progress-bar--big") get bigBar() {
 		return this.size === "big";
 	}
-	@HostBinding("class.bx--progress-bar--small") get smallBar() {
+	@HostBinding("class.cds--progress-bar--small") get smallBar() {
 		return this.size === "small";
 	}
 	// Type
-	@HostBinding("class.bx--progress-bar--default") get defaultType() {
+	@HostBinding("class.cds--progress-bar--default") get defaultType() {
 		return this.type === "default";
 	}
-	@HostBinding("class.bx--progress-bar--indented") get indentedType() {
+	@HostBinding("class.cds--progress-bar--indented") get indentedType() {
 		return this.type === "indented";
 	}
-	@HostBinding("class.bx--progress-bar--inline") get inlineType() {
+	@HostBinding("class.cds--progress-bar--inline") get inlineType() {
 		return this.type === "inline";
 	}
 	// Status
-	@HostBinding("class.bx--progress-bar--finished") get isFinished() {
+	@HostBinding("class.cds--progress-bar--finished") get isFinished() {
 		return this.status === "finished";
 	}
-	@HostBinding("class.bx--progress-bar--error") get isError() {
+	@HostBinding("class.cds--progress-bar--error") get isError() {
 		return this.status === "error";
 	}
-	@HostBinding("class.bx--progress-bar--indeterminate") get indeterminate() {
+	@HostBinding("class.cds--progress-bar--indeterminate") get indeterminate() {
 		return this.value === undefined && !this.isFinished && !this.isError;
 	}
 	static progressBarCounter = 0;
@@ -138,7 +138,7 @@ export class ProgressBar {
 	 */
 	@Input() size: "small" | "big" = "big";
 
-	@HostBinding("class.bx--progress-bar") defaultClass = true;
+	@HostBinding("class.cds--progress-bar") defaultClass = true;
 	private _value = undefined;
 
 	isTemplate(value) {

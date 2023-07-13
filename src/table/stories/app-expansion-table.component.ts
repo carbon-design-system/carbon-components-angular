@@ -2,8 +2,8 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
-	Input
+	Input,
+	AfterViewInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
@@ -35,7 +35,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			<i><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
-		<ibm-table
+		<cds-table
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -46,10 +46,10 @@ class CustomHeaderItem extends TableHeaderItem {
 			(sort)="customSort($event)"
 			(rowClick)="onRowClick($event)"
 			[isDataGrid]="isDataGrid">
-		</ibm-table>
+		</cds-table>
 	`
 })
-export class ExpansionTableStory implements OnInit {
+export class ExpansionTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -59,14 +59,12 @@ export class ExpansionTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	// @ts-ignore
-	@ViewChild("customHeaderTemplate", { static: false })
+	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
-	// @ts-ignore
-	@ViewChild("customTableItemTemplate", { static: false })
+	@ViewChild("customTableItemTemplate")
 	protected customTableItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[
 				new TableItem({ data: "Name 1", expandedData: "No template" }),

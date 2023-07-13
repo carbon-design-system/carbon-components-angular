@@ -9,7 +9,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
-	selector: "ibm-table-toolbar-search",
+	selector: "cds-table-toolbar-search, ibm-table-toolbar-search",
 	templateUrl: "../../search/search.component.html",
 	providers: [
 		{
@@ -22,7 +22,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 export class TableToolbarSearch extends Search implements AfterViewInit {
 	tableSearch = true;
 
-	@HostBinding("class.bx--toolbar-content") hostClass = true;
+	size: "sm" | "md" | "lg" = "lg";
+
+	@HostBinding("class.cds--toolbar-content") hostClass = true;
 
 	ngAfterViewInit() {
 		setTimeout(() => {

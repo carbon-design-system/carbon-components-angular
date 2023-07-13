@@ -1,8 +1,8 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[ibmToastCaption]"
+	selector: "[cdsToastCaption], [ibmToastCaption]"
 })
 export class ToastCaption {
-	@HostBinding("class.bx--toast-notification__caption") baseClass = true;
+	@HostBinding("class.cds--toast-notification__caption") baseClass = true;
 }

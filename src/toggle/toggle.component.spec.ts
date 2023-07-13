@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { I18nModule } from "../i18n/index";
-import { Toggle, ToggleChange } from "./toggle.component";
+import { Toggle } from "./toggle.component";
 
 describe("Toggle", () => {
 	let component: Toggle;
@@ -20,19 +20,19 @@ describe("Toggle", () => {
 		fixture = TestBed.createComponent(Toggle);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
+		buttonElement = fixture.debugElement.query(By.css("button")).nativeElement;
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
-		buttonElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
 	it("should work", () => {
 		expect(component instanceof Toggle).toBe(true);
 	});
 
-	it("should have input with class 'bx--toggle-input'", () => {
-		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
+	it("should have button with class 'cds--toggle__button'", () => {
+		expect(buttonElement.className.includes("cds--toggle__button")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle-input")).toEqual(true);
+		expect(buttonElement.className.includes("cds--toggle__button")).toEqual(true);
 	});
 
 	it("should change state", () => {
@@ -46,10 +46,10 @@ describe("Toggle", () => {
 	});
 
 	it("should display small version of toggle when size equals sm", () => {
-		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(false);
+		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
-		expect(buttonElement.className.includes("bx--toggle-input--small")).toEqual(true);
+		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(true);
 	});
 
 	it("should match the input checked value", () => {
@@ -58,9 +58,9 @@ describe("Toggle", () => {
 		expect(fixture.componentInstance.checked).toEqual(true);
 	});
 
-	it("should emit ToggleChange event", (done: any) => {
-		component.change.subscribe((data: any) => {
-			expect(data instanceof ToggleChange).toEqual(true);
+	it("should emit boolean event", (done: any) => {
+		component.checkedChange.subscribe((data: any) => {
+			expect(typeof data === "boolean").toEqual(true);
 			done();
 		});
 		component.emitChangeEvent();

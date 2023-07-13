@@ -8,21 +8,21 @@ import {
 import { Tag } from "./tag.component";
 
 @Component({
-	selector: "ibm-tag-filter",
+	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
 		<span
-			class="bx--tag__label"
+			class="cds--tag__label"
 			[attr.title]="title ? title : null"
 			(click)="onClick($event)">
 			<ng-content></ng-content>
 		</span>
 		<button
-			class="bx--tag__close-icon"
+			class="cds--tag__close-icon"
 			(click)="onClose($event)"
 			[disabled]="disabled"
 			[title]="closeButtonLabel">
-			<span class="bx--visually-hidden">{{closeButtonLabel}}</span>
-			<svg ibmIcon="close" size="16"></svg>
+			<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
+			<svg cdsIcon="close" size="16"></svg>
 		</button>
 	`
 })
@@ -60,7 +60,7 @@ export class TagFilter extends Tag {
 	}
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}${this.disabled ? " bx--tag--disabled" : ""}`;
+		return `cds--tag cds--tag--filter cds--tag--${this.type} cds--tag--${this.size} cds--layout--size-${this.size} ${this.class}${this.disabled ? " cds--tag--disabled" : ""}`;
 	}
 
 	@HostBinding("attr.aria-label") get attrAriaLabel() {

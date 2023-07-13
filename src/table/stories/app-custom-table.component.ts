@@ -2,8 +2,8 @@ import {
 	TemplateRef,
 	Component,
 	ViewChild,
-	OnInit,
-	Input
+	Input,
+	AfterViewInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
@@ -29,19 +29,19 @@ export class CustomHeaderItem extends TableHeaderItem {
 @Component({
 	selector: "app-custom-table",
 	template: `
-		<ibm-table-toolbar [model]="model">
-			<button ibmButton="primary" (click)="addRow()">Add row</button>
-			<button ibmButton="primary" (click)="addColumn()">Add column</button>
-		</ibm-table-toolbar>
+		<cds-table-toolbar [model]="model">
+			<button cdsButton="primary" (click)="addRow()">Add row</button>
+			<button cdsButton="primary" (click)="addColumn()">Add column</button>
+		</cds-table-toolbar>
 
 		<ng-template #customTableItemTemplate let-data="data">
 			<a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
 		</ng-template>
 		<ng-template #customHeaderTemplate let-data="data">
-			<i ibmTableHeadCellLabel><a [attr.href]="data.link">{{data.name}}</a></i>
+			<i cdsTableHeadCellLabel><a [attr.href]="data.link">{{data.name}}</a></i>
 		</ng-template>
 
-		<ibm-table
+		<cds-table
 			[model]="model"
 			[size]="size"
 			[sortable]="sortable"
@@ -52,10 +52,10 @@ export class CustomHeaderItem extends TableHeaderItem {
 			[isDataGrid]="isDataGrid"
 			(rowClick)="onRowClick($event)"
 			(sort)="customSort($event)">
-		</ibm-table>
+		</cds-table>
 	`
 })
-export class DynamicTableStory implements OnInit {
+export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -65,14 +65,13 @@ export class DynamicTableStory implements OnInit {
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
 
-	// @ts-ignore
-	@ViewChild("customHeaderTemplate", { static: false })
+	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
-	// @ts-ignore
-	@ViewChild("customTableItemTemplate", { static: false })
+
+	@ViewChild("customTableItemTemplate")
 	protected customTableItemTemplate: TemplateRef<any>;
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		this.model.data = [
 			[new TableItem({ data: "Name 1" }), new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "swer" })],

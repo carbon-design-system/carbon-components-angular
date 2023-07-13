@@ -7,9 +7,9 @@ import { Select } from "./select.component";
 
 @Component({
 	template: `
-		<ibm-select (valueChange)="onChange($event)" [(ngModel)]="model">
+		<cds-select (valueChange)="onChange($event)" [(ngModel)]="model">
 			<option value="option1"> Option 1 </option>
-		</ibm-select>
+		</cds-select>
 		`
 })
 class SelectTest {
@@ -44,7 +44,7 @@ describe("Select", () => {
 		fixture = TestBed.createComponent(SelectTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		let de = fixture.debugElement.query(By.css(".bx--select-input"));
+		let de = fixture.debugElement.query(By.css(".cds--select-input"));
 		spyOn(wrapper, "onChange").and.callThrough();
 		de.triggerEventHandler("change", {target: {value: "option1"}});
 		fixture.detectChanges();
@@ -57,70 +57,70 @@ describe("Select", () => {
 	it("should set label to test", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
-				template: `<ibm-select label="test"></ibm-select>`
+				template: `<cds-select label="test"></cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
-		expect(element.querySelector(".bx--label").textContent).toEqual("test");
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
+		expect(element.querySelector(".cds--label").textContent).toEqual("test");
 	});
 
 	it("should set helperText to test", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
-				template: `<ibm-select helperText="test"></ibm-select>`
+				template: `<cds-select helperText="test"></cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
-		expect(element.querySelector(".bx--form__helper-text").textContent).toEqual("test");
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
+		expect(element.querySelector(".cds--form__helper-text").textContent).toEqual("test");
 	});
 
 	it("should set display to inline", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
-				template: `<ibm-select display="inline"></ibm-select>`
+				template: `<cds-select display="inline"></cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
-		expect(element.querySelector(".bx--select--inline")).toBeTruthy();
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
+		expect(element.querySelector(".cds--select--inline")).toBeTruthy();
 	});
 
 	it("should set option to disabled", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
 				template: `
-				<ibm-select>
+				<cds-select>
 					<option value="option1" disabled> Option 1 </option>
-				</ibm-select>`
+				</cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
 		expect(element.querySelector("option").disabled).toBe(true);
 	});
 
-	it("should display ibm-icon-warning-filled16 and display invalid text", () => {
+	it("should display cds-icon-warning-filled16 and display invalid text", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
-				template: `<ibm-select [invalid]=true invalidText="test"></ibm-select>`
+				template: `<cds-select [invalid]=true invalidText="test"></cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
-		expect(element.querySelector(".bx--select__invalid-icon")).toBeTruthy();
-		expect(element.querySelector(".bx--form-requirement").textContent).toEqual("test");
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
+		expect(element.querySelector(".cds--select__invalid-icon")).toBeTruthy();
+		expect(element.querySelector(".cds--form-requirement").textContent).toEqual("test");
 	});
 
-	it("should set class bx--skeleton", () => {
+	it("should set class cds--skeleton", () => {
 		fixture = TestBed.overrideComponent(SelectTest, {
 			set: {
-				template: `<ibm-select [skeleton]=true></ibm-select>`
+				template: `<cds-select [skeleton]=true></cds-select>`
 			}
 		}).createComponent(SelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-select")).nativeElement;
-		expect(element.querySelector(".bx--skeleton")).toBeTruthy();
+		element = fixture.debugElement.query(By.css("cds-select")).nativeElement;
+		expect(element.querySelector(".cds--skeleton")).toBeTruthy();
 	});
 });

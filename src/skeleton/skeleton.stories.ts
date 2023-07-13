@@ -1,28 +1,31 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, number } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { SkeletonModule } from "./index";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { SkeletonModule, SkeletonPlaceholder } from "./";
 
-storiesOf("Components|Skeleton", module).addDecorator(
-	moduleMetadata({
-		imports: [ SkeletonModule ]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Skeleton Placeholder", () => ({
-		template: `<ibm-skeleton-placeholder></ibm-skeleton-placeholder>`
-	}))
-	.add("Skeleton Text", () => ({
-		template: `
-			<ibm-skeleton-text
-				[lines]="lines"
-				[minLineWidth]="minLineWidth"
-				[maxLineWidth]="maxLineWidth">
-			</ibm-skeleton-text>
-			`,
-		props: {
-			minLineWidth: number("Min width of line (in px)", 100),
-			maxLineWidth: number("Max width of line (in px)", 300),
-			lines: number("Number of lines", 4)
-		}
-	}));
+export default {
+	title: "Components/Skeleton",
+	decorators: [
+		moduleMetadata({
+			imports: [SkeletonModule]
+		})
+	],
+	args: {
+		lines: 5,
+		minLineWidth: 100,
+		maxLineWidth: 300
+	},
+	component: SkeletonPlaceholder
+} as Meta;
+
+const Template: Story<SkeletonPlaceholder> = (args) => ({
+	props: args,
+	template: `
+	<cds-skeleton-text
+		[lines]="lines"
+		[minLineWidth]="minLineWidth"
+		[maxLineWidth]="maxLineWidth">
+	</cds-skeleton-text>
+	`
+});
+export const Basic = Template.bind({});

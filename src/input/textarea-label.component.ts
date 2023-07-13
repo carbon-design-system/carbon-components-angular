@@ -13,15 +13,15 @@ import {
 import { TextArea } from "./text-area.directive";
 
 @Component({
-	selector: "ibm-textarea-label",
+	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `
 		<label
 			[for]="labelInputID"
 			[attr.aria-label]="ariaLabel"
-			class="bx--label"
+			class="cds--label"
 			[ngClass]="{
-				'bx--label--disabled': disabled,
-				'bx--skeleton': skeleton
+				'cds--label--disabled': disabled,
+				'cds--skeleton': skeleton
 			}">
 			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
 			<ng-template #labelContent>
@@ -29,23 +29,23 @@ import { TextArea } from "./text-area.directive";
 			</ng-template>
 		</label>
 		<div
-			class="bx--text-area__wrapper"
+			class="cds--text-area__wrapper"
 			[ngClass]="{
-				'bx--text-input__field-wrapper--warning': warn
+				'cds--text-input__field-wrapper--warning': warn
 			}"
 			[attr.data-invalid]="(invalid ? true : null)"
 			#wrapper>
 			<svg
 				*ngIf="!warn && invalid"
-				ibmIcon="warning--filled"
+				cdsIcon="warning--filled"
 				size="16"
-				class="bx--text-area__invalid-icon">
+				class="cds--text-area__invalid-icon">
 			</svg>
 			<svg
 				*ngIf="!invalid && warn"
-				ibmIcon="warning--alt--filled"
+				cdsIcon="warning--alt--filled"
 				size="16"
-				class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
+				class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
 			</svg>
 			<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
 			<ng-template #textAreaContent>
@@ -54,16 +54,16 @@ import { TextArea } from "./text-area.directive";
 		</div>
 		<div
 			*ngIf="!skeleton && helperText && !invalid && !warn"
-			class="bx--form__helper-text"
-			[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+			class="cds--form__helper-text"
+			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="!warn && invalid" class="bx--form-requirement">
+		<div *ngIf="!warn && invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
-		<div *ngIf="!invalid && warn" class="bx--form-requirement">
+		<div *ngIf="!invalid && warn" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 		</div>
@@ -126,7 +126,7 @@ export class TextareaLabelComponent implements AfterViewInit {
 	// @ts-ignore
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
-	@HostBinding("class.bx--form-item") labelClass = true;
+	@HostBinding("class.cds--form-item") labelClass = true;
 
 	/**
 	 * Creates an instance of Label.

@@ -1,13 +1,8 @@
-import {
-	Directive,
-	HostBinding
-} from "@angular/core";
+import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[ibmTableHeadCellLabel]"
+	selector: "[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]"
 })
-
-
 export class TableHeadCellLabel {
-	@HostBinding("class.bx--table-header-label") baseClass = true;
+	@HostBinding("class.cds--table-header-label") baseClass = true;
 }

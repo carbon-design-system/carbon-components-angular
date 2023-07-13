@@ -20,56 +20,54 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *
  * A basic structued list looks something like:
  * ```html
- *	<ibm-structured-list>
- *		<ibm-list-header>
- *			<ibm-list-column nowrap="true">Column 1</ibm-list-column>
- *			<ibm-list-column nowrap="true">Column 2</ibm-list-column>
- *			<ibm-list-column>Column 3</ibm-list-column>
- *		</ibm-list-header>
- *		<ibm-list-row>
- *			<ibm-list-column>Row 1</ibm-list-column>
- *			<ibm-list-column nowrap="true">Row One</ibm-list-column>
- *			<ibm-list-column>
+ *	<cds-structured-list>
+ *		<cds-list-header>
+ *			<cds-list-column nowrap="true">Column 1</cds-list-column>
+ *			<cds-list-column nowrap="true">Column 2</cds-list-column>
+ *			<cds-list-column>Column 3</cds-list-column>
+ *		</cds-list-header>
+ *		<cds-list-row>
+ *			<cds-list-column>Row 1</cds-list-column>
+ *			<cds-list-column nowrap="true">Row One</cds-list-column>
+ *			<cds-list-column>
  *				Lorem ipsum dolor sit amet,
  *				consectetur adipiscing elit. Nunc dui magna,
  *				finibus id tortor sed, aliquet bibendum augue.
  *				Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
  *				Pellentesque vulputate nisl a porttitor interdum.
- *			</ibm-list-column>
- *		</ibm-list-row>
- *		<ibm-list-row>
- *			<ibm-list-column>Row 2</ibm-list-column>
- *			<ibm-list-column nowrap="true">Row Two</ibm-list-column>
- *			<ibm-list-column>
+ *			</cds-list-column>
+ *		</cds-list-row>
+ *		<cds-list-row>
+ *			<cds-list-column>Row 2</cds-list-column>
+ *			<cds-list-column nowrap="true">Row Two</cds-list-column>
+ *			<cds-list-column>
  *				Lorem ipsum dolor sit amet,
  *				consectetur adipiscing elit. Nunc dui magna,
  *				finibus id tortor sed, aliquet bibendum augue.
  *				Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
  *				Pellentesque vulputate nisl a porttitor interdum.
- *			</ibm-list-column>
- *		</ibm-list-row>
- *	</ibm-structured-list>
+ *			</cds-list-column>
+ *		</cds-list-row>
+ *	</cds-structured-list>
  * ```
- *
- * <example-url>../../iframe.html?id=components-structured-list--basic</example-url>
  */
 @Component({
-	selector: "ibm-structured-list",
+	selector: "cds-structured-list, ibm-structured-list",
 	template: `
-		<section
-			class="bx--structured-list"
+		<div
+			class="cds--structured-list"
+			role="table"
 			[ngClass]="{
-				'bx--structured-list--border': border,
-				'bx--structured-list--selection': selection,
-				'bx--structured-list--condensed': condensed,
-				'bx--structured-list-content--nowrap': nowrap,
-				'bx--skeleton': skeleton
+				'cds--structured-list--flush': flushed,
+				'cds--structured-list--selection': selection,
+				'cds--structured-list--condensed': condensed,
+				'cds--skeleton': skeleton
 			}">
-			<ng-content select="ibm-list-header"></ng-content>
-			<div class="bx--structured-list-tbody">
+			<ng-content select="cds-list-header"></ng-content>
+			<div class="cds--structured-list-tbody" role="rowgroup">
 				<ng-content></ng-content>
 			</div>
-		</section>
+		</div>
 	`,
 	providers: [
 		{
@@ -89,17 +87,13 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	@Input() selection = false;
 	/**
-	 * Set to `true` to apply a border and white background.
+	 * Set to `true` to align content with margin
 	 */
-	@Input() border = false;
+	@Input() flushed = false;
 	/**
 	 * Set to `true` to apply a condensed style to the headers and rows.
 	 */
 	@Input() condensed = false;
-	/**
-	 * Set to `true` to apply `white-space: nowrap` on _all_ conent.
-	 */
-	@Input() nowrap = false;
 	/**
 	 * Used when `selection = true` as the row radio group `name`
 	 */
@@ -153,7 +147,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 		this.rows.forEach(row => {
 			setSelection(row);
 			row.name = this.name;
-			row.tabindex = this.selection ? "0" : "null";
+			row.tabindex = this.selection ? "0" : null;
 			row.change.subscribe(() => {
 				this.selected.emit({
 					value: row.value,

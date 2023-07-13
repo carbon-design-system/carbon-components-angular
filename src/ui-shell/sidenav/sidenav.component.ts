@@ -11,43 +11,40 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
  * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
  *
  * [See demo](../../?path=/story/components-ui-shell--side-navigation)
- *
- * <example-url>../../iframe.html?id=components-ui-shell--side-navigation</example-url>
  */
 @Component({
-	selector: "ibm-sidenav",
+	selector: "cds-sidenav, ibm-sidenav",
 	template: `
-		<nav class="bx--side-nav__navigation" role="navigation" [attr.aria-label]="ariaLabel">
-			<ng-content select="ibm-sidenav-header"></ng-content>
-			<ul class="bx--side-nav__items">
-				<div
-					class="bx--side-nav__header-navigation bx--side-nav__header-divider">
+		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
+			<ng-content select="cds-sidenav-header"></ng-content>
+			<div role="list">
+				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
-						<ibm-sidenav-item
+						<cds-sidenav-item
 							*ngIf="navigationItem.type === 'item'"
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
 							[routeExtras]="navigationItem.routeExtras"
 							[title]="navigationItem.title">
 							{{ navigationItem.content }}
-						</ibm-sidenav-item>
-						<ibm-sidenav-menu
+						</cds-sidenav-item>
+						<cds-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"
 							[title]="navigationItem.title"
 							[menuItems]="navigationItem.menuItems">
-						</ibm-sidenav-menu>
+						</cds-sidenav-menu>
 					</ng-container>
 				</div>
 				<ng-content></ng-content>
-			</ul>
-			<footer class="bx--side-nav__footer">
+			</div>
+			<footer class="cds--side-nav__footer">
 				<button
 					*ngIf="allowExpansion"
-					class="bx--side-nav__toggle"
+					class="cds--side-nav__toggle"
 					type="button"
 					[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
 					(click)="toggle()">
-					<div class="bx--side-nav__icon">
+					<div class="cds--side-nav__icon">
 						<svg
 							*ngIf="expanded"
 							focusable="false"
@@ -73,7 +70,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>
 						</svg>
 					</div>
-					<span class="bx--assistive-text">
+					<span class="cds--assistive-text">
 						{{(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async}}
 					</span>
 				</button>
@@ -83,19 +80,18 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 	encapsulation: ViewEncapsulation.None
 })
 export class SideNav {
-	@HostBinding("attr.role") role = "complementary";
-	@HostBinding("class.bx--side-nav") hostClass = true;
-	@HostBinding("attr.aria-label") @Input() ariaLabel = "Side navigation";
+	@HostBinding("class.cds--side-nav") hostClass = true;
+	@Input() ariaLabel = "Side navigation";
 	/**
 	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
 	 */
-	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = true;
+	@HostBinding("class.cds--side-nav--expanded") @Input() expanded = true;
 	/**
 	 * Controls the hidden (`true`) or visible (`false`) state
 	 */
-	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
-	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
-	@HostBinding("class.bx--side-nav--ux") ux = true;
+	@HostBinding("class.cds--side-nav--hidden") @Input() hidden = false;
+	@HostBinding("class.cds--side-nav--rail") @Input() rail = false;
+	@HostBinding("class.cds--side-nav__navigation") ux = true;
 	@Input() allowExpansion = false;
 
 	/**

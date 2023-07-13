@@ -1,18 +1,17 @@
 import {
-	ApplicationRef,
-	ComponentFactory,
-	ComponentFactoryResolver,
 	ComponentRef,
 	EventEmitter,
 	Injectable,
-	Injector,
 	OnDestroy,
-	NgZone
+	NgZone,
+	ViewContainerRef,
+	Injector
 } from "@angular/core";
 
-import { NotificationContent, ToastContent } from "./notification-content.interface";
+import { NotificationContent, ToastContent, ActionableContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
 import { Toast } from "./toast.component";
+import { ActionableNotification } from "./actionable-notification.component";
 
 /**
  * Provides a way to use the notification component.
@@ -30,18 +29,13 @@ export class NotificationService implements OnDestroy {
 	public onClose: EventEmitter<any> = new EventEmitter();
 
 	/**
-	 * Constructs NotificationService.
-	 *
-	 * @param injector
-	 * @param componentFactoryResolver
-	 * @param applicationRef
+	 * Constructs Notification Service
 	 */
 	constructor(
 		protected injector: Injector,
-		protected componentFactoryResolver: ComponentFactoryResolver,
-		protected applicationRef: ApplicationRef,
-		protected ngZone: NgZone) {
-	}
+		protected viewContainer: ViewContainerRef,
+		protected ngZone: NgZone
+	) {}
 
 	/**
 	 * Shows the notification based on the `notificationObj`.
@@ -73,15 +67,15 @@ export class NotificationService implements OnDestroy {
 	 *
 	 * @param [notificationComp=Notification] If provided, used to resolve component factory
 	 */
-	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp = Notification) {
-		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(notificationComp);
-
-		let notificationRef = componentFactory.create(this.injector);
-		notificationRef.instance.notificationObj = notificationObj as any; // typescript isn't being very smart here, so we type to any
+	showNotification(
+		notificationObj: NotificationContent | ToastContent | ActionableContent,
+		notificationComp = Notification
+	) {
+		const notificationRef = this.viewContainer.createComponent(notificationComp);
+		notificationRef.instance.notificationObj = notificationObj;
 		this.notificationRefs.push(notificationRef);
 
 		this.onClose = notificationRef.instance.close;
-		this.applicationRef.attachView(notificationRef.hostView);
 
 		if (notificationObj.target) {
 			document.querySelector(notificationObj.target).appendChild(notificationRef.location.nativeElement);
@@ -138,6 +132,10 @@ export class NotificationService implements OnDestroy {
 		return this.showNotification(notificationObj, notificationComp as any);
 	}
 
+	showActionable(notificationObj: ActionableContent, notificationComp = ActionableNotification) {
+		return this.showNotification(notificationObj, notificationComp as any);
+	}
+
 	/**
 	 * Programatically closes notification based on `notificationRef`.
 	 *
@@ -148,7 +146,6 @@ export class NotificationService implements OnDestroy {
 			if (notificationRef instanceof Notification) {
 				this.close(notificationRef.componentRef);
 			} else {
-				this.applicationRef.detachView(notificationRef.hostView);
 				notificationRef.destroy();
 				const index = this.notificationRefs.indexOf(notificationRef);
 				if (index !== -1) {
@@ -177,6 +174,7 @@ export class NotificationService implements OnDestroy {
 		// message type
 		switch (notificationObj.type) {
 			case "info":
+			case "info-square":
 			case "success":
 			default: {
 				break;
@@ -185,7 +183,8 @@ export class NotificationService implements OnDestroy {
 				timeout += 3000;
 				break;
 			}
-			case "warning": {
+			case "warning":
+			case "warning-alt": {
 				timeout += 1500;
 				break;
 			}
@@ -207,13 +206,8 @@ export class NotificationService implements OnDestroy {
 	 *
 	 */
 	ngOnDestroy() {
-		if (this.notificationRefs.length > 0) {
-			for (let i = 0; i < this.notificationRefs.length; i++) {
-				let notificationRef = this.notificationRefs[i];
-				this.applicationRef.detachView(notificationRef.hostView);
-				notificationRef.destroy();
-			}
-			this.notificationRefs.length = 0;
-		}
+		this.notificationRefs.forEach((ref) => {
+			ref.destroy();
+		});
 	}
 }

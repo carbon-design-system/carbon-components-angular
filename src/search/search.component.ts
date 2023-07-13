@@ -13,11 +13,9 @@ import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/components-search--basic)
- *
- * <example-url>../../iframe.html?id=components-search--basic</example-url>
  */
 @Component({
-	selector: "ibm-search",
+	selector: "cds-search, ibm-search",
 	templateUrl: "search.component.html",
 	providers: [
 		{
@@ -33,23 +31,19 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
+	@HostBinding("class.cds--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
 
 	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` search theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+
 	/**
 	 * Size of the search field.
 	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 
-	@Input() set size(value: "sm" | "md" | "xl") {
-		this._size = value;
-	}
-
-	get size(): "sm" | "md" | "xl" {
-		return this._size;
-	}
 	/**
 	 * Set to `true` for a disabled search input.
 	 */
@@ -130,15 +124,12 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() search = new EventEmitter<string>();
 
-	// @ts-ignore
-	@ViewChild("input", { static: false }) inputRef: ElementRef;
+	@ViewChild("input") inputRef: ElementRef;
 
 	/**
 	 * Sets `true` when composing text via IME.
 	 */
 	protected isComposing = false;
-
-	protected _size: "sm" | "md" | "xl" = "md";
 
 	/**
 	 * Creates an instance of `Search`.

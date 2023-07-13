@@ -1,9 +1,12 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, number, text } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { BreadcrumbModule, DialogModule } from "../";
-import { BreadcrumbItem } from "../breadcrumb/breadcrumb-item.interface";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import {
+	BreadcrumbModule,
+	Breadcrumb,
+	BreadcrumbItemComponent,
+	BreadcrumbItem
+} from "./";
 
 let breadcrumbItems;
 
@@ -20,112 +23,130 @@ const createBreadcrumbItems = (count: number, content = "Breadcrumb"): Array<Bre
 
 const withTemplate = (templateRef, items) => items.map(item => Object.assign(item, { template: templateRef }));
 
-storiesOf("Components|Breadcrumb", module)
-.addDecorator(
-	moduleMetadata({
-		imports: [
-			BreadcrumbModule,
-			DialogModule,
-			DocumentationModule
-		]
-	})
-)
-.addDecorator(withKnobs)
-.add("Basic", () => ({
+export default {
+	title: "Components/Breadcrumb",
+	decorators: [
+		moduleMetadata({
+			imports: [BreadcrumbModule]
+		})
+	],
+	argTypes: {
+		noTrailingSlash: {
+			type: "boolean",
+			defaultValue: true
+		},
+		skeleton: {
+			type: "boolean",
+			defaultValue: false,
+			control: false
+		}
+	},
+	component: Breadcrumb,
+	subcomponents: { BreadcrumbItemComponent }
+} as Meta;
+
+const Template: Story<Breadcrumb> = (args) => ({
+	props: args,
 	template: `
-	<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-	%3A%22BreadcrumbFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type&#13;
-	%22%3A%22breadcrumb%22%2C%22noTrailingSlash%22%3Afalse%2C%22items%22%3A%5B%&#13;
-	7B%22type%22%3A%22breadcrumb-item%22%2C%22label%22%3A%22Breadcrumb%22%2C%22&#13;
-	href%22%3A%22%2F%22%2C%22id%22%3A%223%22%2C%22codeContext%22%3A%7B%22name%22&#13;
-	%3A%22breadcrumb-item-3%22%7D%7D%5D%2C%22id%22%3A%222%22%2C%22codeContext%22&#13;
-	%3A%7B%22name%22%3A%22breadcrumb-2%22%7D%7D%5D%2C%22id%22%3A1%7D%2C%22allCssClasses&#13;
-	%22%3A%5B%5D%7D" target="_blank">
-		Edit on Carbon UI Builder
-	</a>
-	<br><br>
-	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-		<ibm-breadcrumb-item href="#1">
-			Breadcrumb 1
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#2">
-			Breadcrumb 2
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#3">
-			Breadcrumb 3
-		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
-	props: {
-		noTrailingSlash: boolean("noTrailingSlash", true)
+		<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+			<cds-breadcrumb-item href="#1">
+				Breadcrumb 1
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#2">
+				Breadcrumb 2
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#3">
+				Breadcrumb 3
+			</cds-breadcrumb-item>
+		</cds-breadcrumb>
+	`
+});
+export const Basic = Template.bind({});
+
+const CurrentPageTemplate: Story<Breadcrumb> = (args) => ({
+	props: args,
+	template: `
+		<cds-breadcrumb>
+			<cds-breadcrumb-item href="#1">
+				Breadcrumb 1
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item href="#2">
+				Breadcrumb 2
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item current="true" href="#3">
+				Breadcrumb 3
+			</cds-breadcrumb-item>
+		</cds-breadcrumb>
+	`
+});
+export const CurrentPage = CurrentPageTemplate.bind({});
+CurrentPage.parameters = {
+	controls: {
+		disable: true
 	}
-}))
-.add("Current page", () => ({
-	template: `
-	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-		<ibm-breadcrumb-item href="#1">
-			Breadcrumb 1
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#2">
-			Breadcrumb 2
-		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item current="true" href="#3">
-			Breadcrumb 3
-		</ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
+};
+
+const ModelTemplate: Story<Breadcrumb> = (args) => ({
 	props: {
-		noTrailingSlash: boolean("noTrailingSlash", true)
-	}
-}))
-.add("Model", () => ({
-	template: `
-	<ibm-breadcrumb
-		[noTrailingSlash]="noTrailingSlash"
-		[threshold]="threshold"
-		[items]="createBreadcrumbItems(itemCount, content)">
-	</ibm-breadcrumb>`,
-	props: {
-		noTrailingSlash: boolean("noTrailingSlash", true),
-		itemCount: number("itemCount", 10),
-		threshold: number("threshold", 4),
-		content: text("Content for the items", "Breadcrumb"),
+		...args,
 		createBreadcrumbItems
-	}
-}))
-.add("Model with templates", () => ({
+	},
 	template: `
-	<ng-template #breadcrumbTemplate let-item>
-		{{ templateContent }}{{ item.content }}
-	</ng-template>
-	<ibm-breadcrumb
-		[noTrailingSlash]="noTrailingSlash"
-		[threshold]="threshold"
-		[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
-	</ibm-breadcrumb>
-	`,
+		<cds-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="createBreadcrumbItems(itemCount, content)">
+		</cds-breadcrumb>
+	`
+});
+export const Model = ModelTemplate.bind({});
+Model.args = {
+	itemCount: 10,
+	threshold: 4,
+	templateContent: "Hello",
+	content: "breadcrumb"
+};
+
+const ModelWTemplate: Story<Breadcrumb> = (args) => ({
 	props: {
-		noTrailingSlash: boolean("noTrailingSlash", true),
-		itemCount: number("itemCount", 10),
-		threshold: number("threshold", 4),
-		templateContent: text("Content for the template", "Hello "),
-		content: text("Content for the items", "breadcrumb"),
+		...args,
 		createBreadcrumbItems,
 		withTemplate
-	}
-}))
-.add("Skeleton", () => ({
+	},
 	template: `
-	<ibm-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
-		<ibm-breadcrumb-item></ibm-breadcrumb-item>
-		<ibm-breadcrumb-item></ibm-breadcrumb-item>
-		<ibm-breadcrumb-item></ibm-breadcrumb-item>
-		<ibm-breadcrumb-item></ibm-breadcrumb-item>
-	</ibm-breadcrumb>`,
-	props: {
-		noTrailingSlash: boolean("noTrailingSlash", true)
-	}
-}))
-.add("Documentation", () => ({
-	template: `
-		<ibm-documentation src="documentation/classes/src_breadcrumb.breadcrumb.html"></ibm-documentation>
+		<ng-template #breadcrumbTemplate let-item>
+			{{ templateContent }}{{ item.content }}
+		</ng-template>
+		<cds-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
+		</cds-breadcrumb>
 	`
-}));
+});
+export const ModelWithTemplate = ModelWTemplate.bind({});
+ModelWithTemplate.args = {
+	itemCount: 10,
+	threshold: 4,
+	templateContent: "Hello",
+	content: "breadcrumb"
+};
+
+const WithSkeleton: Story<Breadcrumb> = (args) => ({
+	props: args,
+	template: `
+		<cds-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+			<cds-breadcrumb-item></cds-breadcrumb-item>
+		</cds-breadcrumb>
+	`
+});
+export const Skeleton = WithSkeleton.bind({});
+Skeleton.parameters = {
+	controls: {
+		disable: true
+	}
+};
+

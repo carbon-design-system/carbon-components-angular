@@ -6,7 +6,7 @@ import {
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableExpandedRow]",
+	selector: "[cdsTableExpandedRow], [ibmTableExpandedRow]",
 	template: `
 		<td [attr.colspan]="row.length + 2">
 			<ng-container *ngIf="!firstExpandedTemplateInRow(row)">
@@ -24,7 +24,7 @@ export class TableExpandedRow {
 
 	@Input() skeleton = false;
 
-	@HostBinding("class.bx--expandable-row") expandableRowClass = true;
+	@HostBinding("class.cds--expandable-row") expandableRowClass = true;
 
 	@HostBinding("attr.data-child-row") dataChildRow = true;
 

@@ -28,23 +28,21 @@ import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/components-date-picker--single)
- *
- * <example-url>../../iframe.html?id=components-date-picker--single</example-url>
  */
 @Component({
-	selector: "ibm-date-picker",
+	selector: "cds-date-picker, ibm-date-picker",
 	template: `
-	<div class="bx--form-item">
+	<div class="cds--form-item">
 		<div
-			class="bx--date-picker"
+			class="cds--date-picker"
 			[ngClass]="{
-				'bx--date-picker--range' : range,
-				'bx--date-picker--single' : !range,
-				'bx--date-picker--light' : theme === 'light',
-				'bx--skeleton' : skeleton
+				'cds--date-picker--range' : range,
+				'cds--date-picker--single' : !range,
+				'cds--date-picker--light' : theme === 'light',
+				'cds--skeleton' : skeleton
 			}">
-			<div class="bx--date-picker-container">
-				<ibm-date-picker-input
+			<div class="cds--date-picker-container">
+				<cds-date-picker-input
 					#input
 					[label]="label"
 					[placeholder]="placeholder"
@@ -62,11 +60,11 @@ import { I18n } from "carbon-components-angular/i18n";
 					[helperText]="helperText"
 					(valueChange)="onValueChange($event)"
 					(click)="openCalendar(input)">
-				</ibm-date-picker-input>
+				</cds-date-picker-input>
 			</div>
 
-			<div *ngIf="range" class="bx--date-picker-container">
-				<ibm-date-picker-input
+			<div *ngIf="range" class="cds--date-picker-container">
+				<cds-date-picker-input
 					#rangeInput
 					[label]="rangeLabel"
 					[placeholder]="placeholder"
@@ -84,16 +82,11 @@ import { I18n } from "carbon-components-angular/i18n";
 					[helperText]="rangeHelperText"
 					(valueChange)="onRangeValueChange($event)"
 					(click)="openCalendar(rangeInput)">
-				</ibm-date-picker-input>
+				</cds-date-picker-input>
 			</div>
 		</div>
 	</div>
 	`,
-	styles: [
-		`.dayContainer {
-			justify-content: initial;
-		}`
-	],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -146,20 +139,8 @@ export class DatePicker implements
 
 	/**
 	 * The pattern for the underlying input element
-	 * @deprecated as of v4 - switch to inputPattern
 	 */
-	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
-
-	/**
-	 * The pattern for the underlying input element
-	 */
-	@Input() set inputPattern(value: string) {
-		this.pattern = value;
-	}
-
-	get inputPattern() {
-		return this.pattern;
-	}
+	@Input() inputPattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -174,6 +155,10 @@ export class DatePicker implements
 		return this._value;
 	}
 
+	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
@@ -194,7 +179,7 @@ export class DatePicker implements
 	 */
 	@Input() warnText: string | TemplateRef<any>;
 
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` to display the invalid state for the second datepicker input.
 	 */
@@ -233,11 +218,8 @@ export class DatePicker implements
 		});
 	}
 
-	// @ts-ignore
 	@ViewChild("input", { static: true }) input: DatePickerInput;
-
-	// @ts-ignore
-	@ViewChild("rangeInput", { static: false }) rangeInput: DatePickerInput;
+	@ViewChild("rangeInput") rangeInput: DatePickerInput;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -284,7 +266,7 @@ export class DatePicker implements
 			this.onClose.emit(date);
 		},
 		onDayCreate: (_dObj, _dStr, _fp, dayElem) => {
-			dayElem.classList.add("bx--date-picker__day");
+			dayElem.classList.add("cds--date-picker__day");
 		},
 		nextArrow: this.rightArrowHTML(),
 		prevArrow: this.leftArrowHTML(),
@@ -337,7 +319,7 @@ export class DatePicker implements
 	// we need to keep trying to load the library, until the relevant DOM is actually live
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
-			/// @ts-ignore ts is unhappy with the below call to `flatpickr`
+			// @ts-ignore ts is unhappy with the below call to `flatpickr`
 			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
@@ -537,6 +519,7 @@ export class DatePicker implements
 				dates = newDates.currentValue;
 			}
 			// only reset the flatpickr instance on Input changes
+			// @ts-ignore ts is unhappy with the below call to `flatpickr`
 			this.flatpickrInstance = flatpickr(`#${this.id}-input`, this.flatpickrOptions);
 			this.setDateValues(dates);
 		}
@@ -565,20 +548,20 @@ export class DatePicker implements
 		};
 
 		// add classes (but only if they don't exist, small perf win)
-		addClassIfNotExists("bx--date-picker__calendar", calendarContainer);
-		addClassIfNotExists("bx--date-picker__month", monthContainer);
-		addClassIfNotExists("bx--date-picker__weekdays", weekdaysContainer);
-		addClassIfNotExists("bx--date-picker__days", daysContainer);
+		addClassIfNotExists("cds--date-picker__calendar", calendarContainer);
+		addClassIfNotExists("cds--date-picker__month", monthContainer);
+		addClassIfNotExists("cds--date-picker__weekdays", weekdaysContainer);
+		addClassIfNotExists("cds--date-picker__days", daysContainer);
 
 		// add weekday classes and format the text
 		Array.from(weekdayContainer).forEach(element => {
 			element.innerHTML = element.innerHTML.replace(/\s+/g, "");
-			element.classList.add("bx--date-picker__weekday");
+			element.classList.add("cds--date-picker__weekday");
 		});
 
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
-			element.classList.add("bx--date-picker__day");
+			element.classList.add("cds--date-picker__day");
 			if (!this.value) {
 				return;
 			}

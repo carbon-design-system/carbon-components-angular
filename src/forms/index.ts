@@ -5,14 +5,12 @@ export { NFormsModule } from "./forms.module";
 export {
 	CheckboxModule,
 	Checkbox,
-	CheckboxChange,
 	CheckboxState,
 	CheckboxValue
 } from "carbon-components-angular/checkbox";
 export {
 	ToggleModule,
 	Toggle,
-	ToggleChange,
 	ToggleState
 } from "carbon-components-angular/toggle";
 export {
@@ -35,5 +33,6 @@ export {
 	ButtonSize,
 	ButtonType,
 	ButtonSet,
-	DangerButtonType
+	DangerButtonType,
+	IconButton
 } from "carbon-components-angular/button";

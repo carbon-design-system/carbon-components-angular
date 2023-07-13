@@ -9,16 +9,16 @@ import { PlaceholderService } from "./placeholder.service";
 
 /**
  * Using a modal, dialog (Tooltip, OverflowMenu), or any other component that draws out of the normal page flow
- * in your application *requires* this component (`ibm-placeholder`).
+ * in your application *requires* this component (`cds-placeholder`).
  * It would generally be placed near the end of your root app component template
  * (app.component.ts or app.component.html) as:
  *
  * ```
- * <ibm-placeholder></ibm-placeholder>
+ * <cds-placeholder></cds-placeholder>
  * ```
  */
 @Component({
-	selector: "ibm-placeholder",
+	selector: "cds-placeholder, ibm-placeholder",
 	template: `<div #placeholder></div>`
 })
 export class Placeholder implements OnInit {
@@ -26,7 +26,6 @@ export class Placeholder implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `Placeholder`.
 	 */
-	// @ts-ignore
 	@ViewChild("placeholder", { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
 	/**

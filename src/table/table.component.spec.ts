@@ -10,15 +10,15 @@ import { TableItem } from "./table-item.class";
 
 @Component({
 	template: `
-		<ibm-table
+		<cds-table
 			[model]="tableModel"
 			(sort)="simpleSort()"
 			(selectRow)="onChange()"
 			(deselectRow)="onChange()"
-			size="sh"
+			size="md"
 			title="title"
 			[showSelectionColumn]="showSelectionColumn">
-		</ibm-table>`
+		</cds-table>`
 })
 class TableTest implements OnInit {
 	tableModel = new TableModel();
@@ -48,7 +48,7 @@ describe("Table", () => {
 		});
 
 		fixture = TestBed.createComponent(TableTest);
-		tableInstance = fixture.debugElement.query(By.css("ibm-table"));
+		tableInstance = fixture.debugElement.query(By.css("cds-table"));
 		fixture.detectChanges();
 	});
 
@@ -59,7 +59,7 @@ describe("Table", () => {
 
 	it("should call the row sort function", () => {
 		spyOn(fixture.componentInstance, "simpleSort");
-		tableInstance.nativeElement.querySelector("thead .bx--table-sort").click();
+		tableInstance.nativeElement.querySelector("thead .cds--table-sort").click();
 		fixture.detectChanges();
 		expect(fixture.componentInstance.simpleSort).toHaveBeenCalled();
 	});
@@ -110,17 +110,17 @@ describe("Table", () => {
 		expect(tableInstance.componentInstance.deselectRow.emit).toHaveBeenCalled();
 	});
 
-	it("should set the .bx--data-table--short class", () => {
-		expect(tableInstance.nativeElement.querySelector(".bx--data-table--short")).toBeTruthy();
+	it("should set the .cds--data-table--md class", () => {
+		expect(tableInstance.nativeElement.querySelector(".cds--data-table--md")).toBeTruthy();
 	});
 
 	it("should not show checkboxes when showSelectionColumn is false", () => {
-		expect(tableInstance.nativeElement.querySelector("ibm-checkbox")).toBeTruthy();
+		expect(tableInstance.nativeElement.querySelector("cds-checkbox")).toBeTruthy();
 
 		fixture.componentInstance.showSelectionColumn = false;
 		fixture.detectChanges();
 
-		expect(tableInstance.nativeElement.querySelector("ibm-checkbox")).not.toBeTruthy();
+		expect(tableInstance.nativeElement.querySelector("cds-checkbox")).not.toBeTruthy();
 	});
 
 	it("should set title to 'title", () => {

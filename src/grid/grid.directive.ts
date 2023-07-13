@@ -1,92 +1,124 @@
 import {
+	ContentChildren,
 	Directive,
 	HostBinding,
 	Input,
-	OnChanges
+	OnDestroy,
+	OnInit,
+	Optional,
+	QueryList,
+	SkipSelf
 } from "@angular/core";
+import { Subscription } from "rxjs";
+import { GridService } from "./grid.service";
 
 /**
  * [See demo](../../?path=/story/components-grid--basic)
- *
- * <example-url>../../iframe.html?id=components-grid--basic</example-url>
  */
 @Directive({
-	selector: "[ibmGrid]"
-})
-export class GridDirective {
-	@HostBinding("class.bx--grid") baseClass = true;
-	@HostBinding("class.bx--grid--condensed") @Input() condensed = false;
-}
-
-@Directive({
-	selector: "[ibmRow]"
-})
-export class RowDirective {
-	@Input() gutter = true;
-	@Input() leftGutter = true;
-	@Input() rightGutter = true;
-
-	@HostBinding("class.bx--row") baseClass = true;
-	@HostBinding("class.bx--row--condensed") @Input() condensed = false;
-	@HostBinding("class.bx--no-gutter") get showGutter() {
-		return !this.gutter;
-	}
-	@HostBinding("class.bx--no-gutter--left") get showLeftGutter() {
-		return !this.leftGutter;
-	}
-	@HostBinding("class.bx--no-gutter--right") get showRightGutter() {
-		return !this.rightGutter;
-	}
-}
-
-@Directive({
-	selector: "[ibmCol]"
-})
-export class ColumnDirective implements OnChanges {
-	@Input() class = "";
-
-	@Input() columnNumbers = {};
-
-	@Input() offsets = {};
-
-	// initial value if no inputs are provided (if no inputs ngOnChanges won't be executed)
-	protected _columnClasses: string[] = ["bx--col"];
-
-	@HostBinding("class")
-	get columnClasses(): string {
-		return this._columnClasses.join(" ");
-	}
-
-	set columnClasses(classes: string) {
-		this._columnClasses = classes.split(" ");
-	}
-
-	ngOnChanges() {
-		try {
-			// Reset classes so we don't apply classes for the same breakpoint multiple times
-			this._columnClasses = [];
-			const columnKeys = Object.keys(this.columnNumbers);
-			if (columnKeys.length <= 0) {
-				this._columnClasses.push("bx--col");
+	selector: "[cdsGrid], [ibmGrid]",
+	providers: [
+		{
+			provide: GridService,
+			deps: [[new Optional(), new SkipSelf(), GridService]],
+			useFactory: (parentService: GridService) => {
+				return parentService || new GridService();
 			}
+		}
+	]
+})
+export class GridDirective implements OnInit, OnDestroy {
+	/**
+	 * Set to `true` to condense the grid
+	 */
+	@Input() condensed = false;
+	/**
+	 * Set to `true` to use narrow grid
+	 */
+	@Input() narrow = false;
+	/**
+	 * Set to `true` to use the full width
+	 */
+	@Input() fullWidth = false;
+	/**
+	 * Set to `true` to use css grid
+	 */
+	@Input() set useCssGrid(enable: boolean) {
+		this.cssGridEnabled = enable;
+		this.gridService.updateGridType(enable);
+	}
 
-			columnKeys.forEach(key => {
-				if (this.columnNumbers[key] === "nobreak") {
-					this._columnClasses.push(`bx--col-${key}`);
-				} else {
-					this._columnClasses.push(`bx--col-${key}-${this.columnNumbers[key]}`);
+	private cssGridEnabled = false;
+	private isSubgrid = false;
+	private subscription = new Subscription();
+
+	// Flex grid
+	@HostBinding("class.cds--grid") get flexGrid() {
+		return !this.cssGridEnabled;
+	}
+	@HostBinding("class.cds--grid--condensed") get flexCondensed() {
+		return !this.cssGridEnabled && this.condensed;
+	}
+	@HostBinding("class.cds--grid--narrow") get flexNarrow() {
+		return !this.cssGridEnabled && this.narrow;
+	}
+	@HostBinding("class.cds--grid--full-width") get flexFullWidth() {
+		return !this.cssGridEnabled && this.fullWidth;
+	}
+
+	// CSS Grid
+	@HostBinding("class.cds--css-grid") get ccsGrid() {
+		return this.cssGridEnabled && !this.isSubgrid;
+	}
+	@HostBinding("class.cds--css-grid--condensed") get ccsCondensed() {
+		return this.cssGridEnabled && !this.isSubgrid && this.condensed;
+	}
+	@HostBinding("class.cds--css-grid--narrow") get ccsNarrow() {
+		return this.cssGridEnabled && !this.isSubgrid && this.narrow;
+	}
+	@HostBinding("class.cds--css-grid--full-width") get ccsFullWidth() {
+		return this.cssGridEnabled && !this.isSubgrid && this.fullWidth;
+	}
+
+	// CSS Sub Grid
+	@HostBinding("class.cds--subgrid") get subGrid() {
+		return this.cssGridEnabled && this.isSubgrid;
+	}
+	@HostBinding("class.cds--subgrid--condensed") get subCondensed() {
+		return this.cssGridEnabled && this.isSubgrid && this.condensed;
+	}
+	@HostBinding("class.cds--subgrid--narrow") get subNarrow() {
+		return this.cssGridEnabled && this.isSubgrid && this.narrow;
+	}
+	@HostBinding("class.cds--subgrid--wide") get subFullWidth() {
+		return this.cssGridEnabled && this.isSubgrid && this.fullWidth;
+	}
+
+	constructor(private gridService: GridService) {}
+
+	ngOnInit() {
+		this.subscription = this.gridService.gridObservable.subscribe((isCssGrid: boolean) => {
+			this.cssGridEnabled = isCssGrid;
+		});
+	}
+
+	// Make all children grids a sub grid
+	@ContentChildren(GridDirective, { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
+		if (this.cssGridEnabled) {
+			list.forEach((grid) => {
+				// Prevents initial (parent) grid element from being turned into a subgrid
+				if (grid === this) {
+					return;
 				}
+				grid.isSubgrid = true;
 			});
-
-			Object.keys(this.offsets).forEach(key => {
-				this._columnClasses.push(`bx--offset-${key}-${this.offsets[key]}`);
-			});
-		} catch (err) {
-			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
 		}
+	}
 
-		if (this.class) {
-			this._columnClasses = [...new Set([...this._columnClasses, ...this.class.split(" ")])];
-		}
+	/**
+	 * Unsubscribe from Grid Service subscription
+	 */
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 }

@@ -1,10 +1,19 @@
 import { Component } from "@angular/core";
-import { async, TestBed } from "@angular/core/testing";
+import {
+	TestBed,
+	waitForAsync,
+	fakeAsync,
+	tick,
+	flush
+} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
+
+import { ColumnDirective } from "./column.directive";
+import { RowDirective } from "./row.directive";
+import { GridDirective } from "./grid.directive";
 
 @Component({
-	selector: "ibm-test-grid",
+	selector: "cds-test-grid",
 	template: ""
 })
 class TestGridComponent {}
@@ -21,10 +30,10 @@ describe("GridDirective", () => {
 		});
 	});
 
-	it("should render a grid", async(() => {
+	it("should render a grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: `<div ibmGrid></div>`
+				template: `<div cdsGrid></div>`
 			}
 		});
 
@@ -39,10 +48,29 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a row", async(() => {
+	it("should render a css grid", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: `<div ibmRow></div>`
+				template: `<div cdsGrid [useCssGrid]="true"></div>`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			const fixture = TestBed.createComponent(TestGridComponent);
+			const directiveEl = fixture.debugElement.query(
+				By.directive(GridDirective)
+			);
+			fixture.detectChanges();
+
+			expect(directiveEl).not.toBeNull();
+			expect(directiveEl.nativeElement.classList.contains("cds--css-grid")).toBeTruthy();
+		});
+	}));
+
+	it("should render a row", waitForAsync(() => {
+		TestBed.overrideComponent(TestGridComponent, {
+			set: {
+				template: `<div cdsRow></div>`
 			}
 		});
 
@@ -57,11 +85,11 @@ describe("GridDirective", () => {
 		});
 	}));
 
-	it("should render a column", async(() => {
+	it("should render a column", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-				`<div ibmCol [offsets]="{'md': 2}" [columnNumbers]="{'lg': 3, 'md': 'nobreak'}" class='custom-class-example'></div>`
+					`<div cdsCol [offsets]="{md: 2}" [columnNumbers]="{lg: 3, md: 'nobreak'}" class="custom-class-example"></div>`
 			}
 		});
 
@@ -72,20 +100,23 @@ describe("GridDirective", () => {
 			);
 			fixture.detectChanges();
 
-			expect(directiveEl).not.toBeNull();
-
-			const directiveInstance = directiveEl.injector.get(ColumnDirective);
-			expect(directiveInstance.columnClasses).toBe(
-				"bx--col-lg-3 bx--col-md bx--offset-md-2 custom-class-example"
-			);
+			fixture.whenStable().then(() => {
+				expect(directiveEl).not.toBeNull();
+				const directiveInstance = directiveEl.injector.get(ColumnDirective);
+				expect(directiveInstance.columnClasses).toBe(
+					"cds--col-lg-3 cds--col-md cds--offset-md-2 custom-class-example"
+				);
+			});
 		});
 	}));
 
-	it("should render a column without inputs", async(() => {
+	it("should render a column", waitForAsync(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template:
-				`<div ibmCol></div>`
+				template: `
+					<div cdsGrid [useCssGrid]="true">
+						<div cdsCol [columnNumbers]="{md: 3}" class="custom-class-example"></div>
+					</div>`
 			}
 		});
 
@@ -96,12 +127,39 @@ describe("GridDirective", () => {
 			);
 			fixture.detectChanges();
 
-			expect(directiveEl).not.toBeNull();
+			fixture.whenStable().then(() => {
+				const directiveInstance = directiveEl.injector.get(ColumnDirective);
+				expect(directiveInstance.columnClasses).toBe(
+					"cds--css-grid-column cds--md:col-span-3 custom-class-example"
+				);
+			});
+		});
+	}));
 
-			const directiveInstance = directiveEl.injector.get(ColumnDirective);
-			expect(directiveInstance.columnClasses).toBe(
-				"bx--col"
+	it("should render a column without inputs", fakeAsync(() => {
+		TestBed.overrideComponent(TestGridComponent, {
+			set: {
+				template:
+					`<div cdsCol>cds</div>`
+			}
+		});
+
+		TestBed.compileComponents().then(() => {
+			const fixture = TestBed.createComponent(TestGridComponent);
+			const directiveEl = fixture.debugElement.query(
+				By.directive(ColumnDirective)
 			);
+
+			fixture.detectChanges();
+			fixture.whenStable().then(() => {
+				expect(directiveEl).not.toBeNull();
+				const directiveInstance = directiveEl.injector.get(ColumnDirective);
+				expect(directiveInstance.columnClasses).toBe(
+					"cds--col"
+				);
+
+			});
+			flush();
 		});
 	}));
 });

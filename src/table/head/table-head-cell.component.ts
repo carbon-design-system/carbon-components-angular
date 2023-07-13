@@ -13,23 +13,23 @@ import { TableHeaderItem } from "../table-header-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableHeadCell]",
+	selector: "[cdsTableHeadCell], [ibmTableHeadCell]",
 	template: `
 		<button
-			class="bx--table-sort"
+			class="cds--table-sort"
 			*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"
-			[attr.aria-label]="(column.sorted && column.sortDirection === 'ASCENDING' ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
+			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
-				'bx--table-sort--active': column.sorted,
-				'bx--table-sort--ascending': column.sortDirection === 'ASCENDING'
+				'cds--table-sort--active': column.sorted,
+				'cds--table-sort--descending': column.ascending
 			}"
 			(click)="onClick()">
 			<span
-				class="bx--table-sort__flex"
+				class="cds--table-sort__flex"
 				[title]="column.title"
 				tabindex="-1">
-				<div *ngIf="!skeleton && !column.template" ibmTableHeadCellLabel>
+				<div *ngIf="!skeleton && !column.template" cdsTableHeadCellLabel>
 					{{column.data}}
 				</div>
 				<ng-template
@@ -43,7 +43,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 					preserveAspectRatio="xMidYMid meet"
 					style="will-change: transform;"
 					xmlns="http://www.w3.org/2000/svg"
-					class="bx--table-sort__icon"
+					class="cds--table-sort__icon"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16"
@@ -56,7 +56,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 					preserveAspectRatio="xMidYMid meet"
 					style="will-change: transform;"
 					xmlns="http://www.w3.org/2000/svg"
-					class="bx--table-sort__icon-unsorted"
+					class="cds--table-sort__icon-unsorted"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16"
@@ -66,36 +66,13 @@ import { TableHeaderItem } from "../table-header-item.class";
 			</span>
 		</button>
 		<div
-			class="bx--table-header-label"
+			class="cds--table-header-label"
 			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">
 			<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 			<ng-template
 				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 			</ng-template>
 		</div>
-		<button
-			[ngClass]="{'active': column.filterCount > 0}"
-			*ngIf="column.filterTemplate"
-			type="button"
-			aria-expanded="false"
-			aria-haspopup="true"
-			[ibmTooltip]="column.filterTemplate"
-			trigger="click"
-			[title]="getFilterTitle() | async"
-			placement="bottom,top"
-			[data]="column.filterData">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="icon--sm"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
-			</svg>
-			<span *ngIf="column.filterCount > 0">
-				{{column.filterCount}}
-			</span>
-		</button>
 	`
 })
 export class TableHeadCell implements OnChanges {
@@ -157,10 +134,6 @@ export class TableHeadCell implements OnChanges {
 
 	getSortAscendingLabel(): Observable<string> {
 		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
-	}
-
-	getFilterTitle(): Observable<string> {
-		return this._filterTitle.subject;
 	}
 
 	onClick() {

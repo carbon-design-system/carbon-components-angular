@@ -5,5 +5,5 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "option"
 })
 export class Option {
-	@HostBinding("class") inputClass = "bx--select-option";
+	@HostBinding("class") inputClass = "cds--select-option";
 }

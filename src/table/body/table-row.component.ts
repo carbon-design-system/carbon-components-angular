@@ -14,13 +14,13 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableRow]",
+	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
 		<ng-container *ngIf="model">
 			<td
 				*ngIf="model.hasExpandableRows()"
-				ibmTableExpandButton
-				class="bx--table-expand-v2"
+				cdsTableExpandButton
+				class="cds--table-expand-v2"
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
@@ -34,21 +34,21 @@ import { TableRowSize } from "../table.types";
 				</td>
 				<ng-template #tableCheckboxTemplate>
 					<td
-						ibmTableCheckbox
-						class="bx--table-column-checkbox"
+						cdsTableCheckbox
+						class="cds--table-column-checkbox"
 						[size]="size"
 						[selected]="selected"
 						[label]="getCheckboxLabel()"
 						[row]="row"
 						[skeleton]="skeleton"
 						[headers]="model.getHeaderId('select')"
-						(change)="onSelectionChange()">
+						(selectedChange)="onSelectionChange()">
 					</td>
 				</ng-template>
 			</ng-container>
 			<td
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				ibmTableRadio
+				cdsTableRadio
 				[selected]="selected"
 				[label]="getCheckboxLabel()"
 				[row]="row"
@@ -59,7 +59,7 @@ import { TableRowSize } from "../table.types";
 			<ng-container *ngFor="let item of row; let j = index">
 				<td
 					*ngIf="item && model.getHeader(j) && model.getHeader(j).visible"
-					ibmTableData
+					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
@@ -73,7 +73,7 @@ import { TableRowSize } from "../table.types";
 				</td>
 				<td
 					*ngIf="item && model.getHeader(j) == null"
-					ibmTableData
+					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
@@ -146,7 +146,7 @@ export class TableRowComponent {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```
@@ -177,15 +177,15 @@ export class TableRowComponent {
 	 */
 	@Output() rowClick = new EventEmitter();
 
-	@HostBinding("class.bx--data-table--selected") get selectedClass() {
+	@HostBinding("class.cds--data-table--selected") get selectedClass() {
 		return this.selected;
 	}
 
-	@HostBinding("class.bx--parent-row") get parentRowClass() {
+	@HostBinding("class.cds--parent-row") get parentRowClass() {
 		return this.expandable;
 	}
 
-	@HostBinding("class.bx--expandable-row") get expandableRowClass() {
+	@HostBinding("class.cds--expandable-row") get expandableRowClass() {
 		return this.expanded;
 	}
 

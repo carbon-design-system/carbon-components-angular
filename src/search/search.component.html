@@ -1,29 +1,29 @@
 <div
-	class="bx--search"
+	class="cds--search"
 	[ngClass]="{
-		'bx--search--sm': size === 'sm',
-		'bx--search--lg': size === 'md',
-		'bx--search--xl': size === 'xl',
-		'bx--search--light': theme === 'light',
-		'bx--skeleton': skeleton,
-		'bx--search--expandable': expandable && !tableSearch,
-		'bx--search--expanded': expandable && !tableSearch && active,
-		'bx--toolbar-search': toolbar && !expandable,
-		'bx--toolbar-search--active': toolbar && !expandable && active,
-		'bx--toolbar-search-container-persistent': tableSearch && !expandable,
-		'bx--toolbar-search-container-expandable': tableSearch && expandable,
-		'bx--toolbar-search-container-active': tableSearch && expandable && active
+		'cds--search--sm': size === 'sm',
+		'cds--search--md': size === 'md',
+		'cds--search--lg': size === 'lg',
+		'cds--search--light': theme === 'light',
+		'cds--skeleton': skeleton,
+		'cds--search--expandable': expandable && !tableSearch,
+		'cds--search--expanded': expandable && !tableSearch && active,
+		'cds--toolbar-search': toolbar && !expandable,
+		'cds--toolbar-search--active': toolbar && !expandable && active,
+		'cds--toolbar-search-container-persistent': tableSearch && !expandable,
+		'cds--toolbar-search-container-expandable': tableSearch && expandable,
+		'cds--toolbar-search-container-active': tableSearch && expandable && active
 	}"
 	role="search"
 	[attr.aria-label]="ariaLabel"
 	(click)="openSearch()">
-	<label class="bx--label" [for]="id">{{label}}</label>
+	<label class="cds--label" [for]="id">{{label}}</label>
 
-	<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
+	<div *ngIf="skeleton; else enableInput" class="cds--search-input"></div>
 	<ng-template #enableInput>
 		<input
 			#input
-			class="bx--search-input"
+			class="cds--search-input"
 			[type]="tableSearch || !toolbar ? 'text' : 'search'"
 			[id]="id"
 			[value]="value"
@@ -35,28 +35,28 @@
 			(keyup.enter)="onEnter()"/>
 		<button
 			*ngIf="!tableSearch && toolbar"
-			class="bx--toolbar-search__btn"
+			class="cds--toolbar-search__btn"
 			(click)="openSearch()"
 			aria-label="Open search">
-			<svg ibmIcon="search" size="16" class="bx--search-magnifier-icon"></svg>
+			<svg cdsIcon="search" size="16" class="cds--search-magnifier-icon"></svg>
 		</button>
 		<svg
-			ibmIcon="search"
+			cdsIcon="search"
 			*ngIf="tableSearch || !toolbar"
-			class="bx--search-magnifier-icon"
+			class="cds--search-magnifier-icon"
 			size="16">
 		</svg>
 	</ng-template>
 
 	<button
 		*ngIf="tableSearch || !toolbar"
-		class="bx--search-close"
+		class="cds--search-close"
 		[ngClass]="{
-			'bx--search-close--hidden': !value || value.length === 0
+			'cds--search-close--hidden': !value || value.length === 0
 		}"
 		[title]="clearButtonTitle"
 		(click)="clearSearch()">
-		<span class="bx--visually-hidden">{{ clearButtonTitle }}</span>
-		<svg ibmIcon="close" size="16"></svg>
+		<span class="cds--visually-hidden">{{ clearButtonTitle }}</span>
+		<svg cdsIcon="close" size="16"></svg>
 	</button>
 </div>

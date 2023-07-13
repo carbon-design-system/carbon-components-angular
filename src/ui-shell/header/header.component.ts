@@ -16,23 +16,21 @@ import { I18n } from "carbon-components-angular/i18n";
  * and global actions (generally in the form of `Panel`s).
  *
  * [See demo](../../?path=/story/components-ui-shell--header)
- *
- * <example-url>../../iframe.html?id=components-ui-shell--header</example-url>
  */
 @Component({
-	selector: "ibm-header",
+	selector: "cds-header, ibm-header",
 	template: `
 		<header
-			class="bx--header"
+			class="cds--header"
 			[attr.aria-label]="brand + ' ' + name">
 			<a
 				*ngIf="skipTo"
-				class="bx--skip-to-content"
+				class="cds--skip-to-content"
 				[href]="skipTo"
 				tabindex="0">
 				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 			</a>
-			<ng-content select="ibm-hamburger"></ng-content>
+			<ng-content select="cds-hamburger"></ng-content>
 			<ng-template
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
@@ -40,17 +38,17 @@ import { I18n } from "carbon-components-angular/i18n";
 			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
 				<a
 					*ngSwitchCase="false"
-					class="bx--header__name"
+					class="cds--header__name"
 					[href]="href"
 					(click)="navigate($event)">
-					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
 					{{name}}
 				</a>
 				<a
 					*ngSwitchCase="true"
-					class="bx--header__name"
+					class="cds--header__name"
 					[routerLink]="route">
-					<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
+					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
 					{{name}}
 				</a>
 			</ng-container>

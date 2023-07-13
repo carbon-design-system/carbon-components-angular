@@ -10,21 +10,21 @@ import { I18n } from "carbon-components-angular/i18n";
  * A toggle for the side navigation
  */
 @Component({
-	selector: "ibm-hamburger",
+	selector: "cds-hamburger, ibm-hamburger",
 	template: `
 		<button
 			type="button"
 			(click)="doClick()"
-			[ngClass]="{'bx--header__action--active': active}"
-			class="bx--header__menu-trigger bx--header__action bx--header__menu-toggle"
+			[ngClass]="{'cds--header__action--active': active}"
+			class="cds--header__menu-trigger cds--header__action cds--header__menu-toggle"
 			[attr.aria-label]="active
 				? (i18n.get('UI_SHELL.HEADER.CLOSE_MENU') | async)
 				: (i18n.get('UI_SHELL.HEADER.OPEN_MENU') | async)"
 			[attr.title]="active
 				? (i18n.get('UI_SHELL.HEADER.CLOSE_MENU') | async)
 				: (i18n.get('UI_SHELL.HEADER.OPEN_MENU') | async)">
-			<svg *ngIf="!active" ibmIcon="menu" size="20"></svg>
-			<svg *ngIf="active" ibmIcon="close" size="20"></svg>
+			<svg *ngIf="!active" cdsIcon="menu" size="20"></svg>
+			<svg *ngIf="active" cdsIcon="close" size="20"></svg>
 		</button>
 	`
 })

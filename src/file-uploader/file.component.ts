@@ -11,43 +11,46 @@ import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
 
 @Component({
-	selector: "ibm-file",
+	selector: "cds-file, ibm-file",
 	template: `
-		<p class="bx--file-filename">{{fileItem.file.name}}</p>
+		<p class="cds--file-filename" [title]="fileItem.file.name">{{fileItem.file.name}}</p>
 		<span
 			*ngIf="fileItem.state === 'edit'"
-			class="bx--file__state-container">
+			class="cds--file__state-container">
 			<svg
 				*ngIf="isInvalidText"
-				ibmIcon="warning--filled"
-				class="bx--file--invalid"
+				cdsIcon="warning--filled"
+				class="cds--file--invalid"
 				size="16">
 			</svg>
 			<button
 				type="button"
-				class="bx--file-close"
+				class="cds--file-close"
 				[attr.aria-label]="translations.REMOVE_BUTTON"
 				tabindex="0"
 				(click)="remove.emit()"
 				(keyup.enter)="remove.emit()"
 				(keyup.space)="remove.emit()">
-				<svg ibmIcon="close" size="16"></svg>
+				<svg cdsIcon="close" size="16"></svg>
 			</button>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
-			<div class="bx--inline-loading__animation">
-				<ibm-loading size="sm"></ibm-loading>
+			<div class="cds--inline-loading__animation">
+				<cds-loading size="sm"></cds-loading>
 			</div>
 		</span>
-		<span *ngIf="fileItem.state === 'complete'" class="bx--file__state-container">
+		<span *ngIf="fileItem.state === 'complete'" class="cds--file__state-container">
 			<svg
-				ibmIcon="checkmark--filled"
+				cdsIcon="checkmark--filled"
 				size="16"
-				class="bx--file-complete"
-				[ariaLabel]="translations.CHECKMARK"
-				[isFocusable]="true">
+				class="cds--file-complete"
+				[ariaLabel]="translations.CHECKMARK">
 			</svg>
 		</span>
+		<div class="cds--form-requirement" *ngIf="fileItem.invalid">
+			<div class="cds--form-requirement__title">{{fileItem.invalidTitle}}</div>
+			<p class="cds--form-requirement__supplement">{{fileItem.invalidText}}</p>
+		</div>
 	`
 })
 export class FileComponent implements OnDestroy {
@@ -60,14 +63,27 @@ export class FileComponent implements OnDestroy {
 	 */
 	@Input() fileItem: FileItem;
 
+	@Input() size: "sm" | "md" | "lg" = "lg";
+
 	@Output() remove = new EventEmitter();
 
-	@HostBinding("class.bx--file__selected-file") selectedFile = true;
+	@HostBinding("class.cds--file__selected-file") selectedFile = true;
 
-	@HostBinding("class.bx--file__selected-file--invalid") get isInvalidText() {
+	@HostBinding("class.cds--file__selected-file--invalid") get isInvalidText() {
 		return this.fileItem.invalidText;
 	}
 
+	@HostBinding("class.cds--file__selected-file--sm") get fileSizeSmall() {
+		return this.size === "sm";
+	}
+
+	@HostBinding("class.cds--file__selected-file--md") get fileSizeMedium() {
+		return this.size === "md";
+	}
+
+	@HostBinding("class.cds--file__selected-file--lg") get fileSizeLarge() {
+		return this.size === "lg";
+	}
 	constructor(protected i18n: I18n) {}
 
 	ngOnDestroy() {

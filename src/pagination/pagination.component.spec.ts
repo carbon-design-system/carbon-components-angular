@@ -11,13 +11,13 @@ import { PaginationModel } from "./pagination-model.class";
 
 @Component({
 	template: `
-		<ibm-pagination
+		<cds-pagination
 			[model]="model"
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
 			(selectPage)="selectPage($event)">
-		</ibm-pagination>
+		</cds-pagination>
 	`
 })
 class PaginationTest implements OnInit {
@@ -62,7 +62,7 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
+		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.currentPage = 4;
 		fixture.detectChanges();
 		expect(wrapper.selectPage).toHaveBeenCalled();
@@ -72,7 +72,7 @@ describe("Pagination", () => {
 	it("should get next page and previous page from the current page when nextPage and previousPage is called", () => {
 		fixture = TestBed.createComponent(PaginationTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
+		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.currentPage = 4;
 		fixture.detectChanges();
 		expect(element.componentInstance.nextPage).toBe(5);
@@ -82,7 +82,7 @@ describe("Pagination", () => {
 	it("should set endItemIndex to currentPage * pageLength and startItemIndex ", () => {
 		fixture = TestBed.createComponent(PaginationTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
+		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.model.pageLength = 107;
 		fixture.detectChanges();
 		expect(element.componentInstance.startItemIndex).toBe(1);
@@ -92,7 +92,7 @@ describe("Pagination", () => {
 	it("should set endItemIndex to totalDataLength and startItem index to 0", () => {
 		fixture = TestBed.createComponent(PaginationTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
+		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.model.pageLength = 107;
 		fixture.detectChanges();
 		expect(element.componentInstance.endItemIndex).toBe(105);
@@ -106,13 +106,13 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		element.nativeElement.querySelector(".bx--pagination__button--forward").click();
+		element = fixture.debugElement.query(By.css("cds-pagination"));
+		element.nativeElement.querySelector(".cds--pagination__button--forward").click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		element.nativeElement.querySelector(".bx--pagination__button--backward").click();
+		element.nativeElement.querySelector(".cds--pagination__button--backward").click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
@@ -122,8 +122,8 @@ describe("Pagination", () => {
 		fixture = TestBed.createComponent(PaginationTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--backward");
+		element = fixture.debugElement.query(By.css("cds-pagination"));
+		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--backward");
 		buttonBackward.click();
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
@@ -135,10 +135,10 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.disabled = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-pagination"));
+		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.currentPage = 5;
-		const buttonForward = element.nativeElement.querySelector(".bx--pagination__button--forward");
-		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--forward");
+		const buttonForward = element.nativeElement.querySelector(".cds--pagination__button--forward");
+		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--forward");
 
 		buttonForward.click();
 		fixture.detectChanges();
