@@ -857,7 +857,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
 			!this.dropdownMenu.nativeElement.contains(event.target)) {
-				console.log(this.elementRef.nativeElement.contains(event.target));
 			this.closeDropdown();
 		}
 	}
