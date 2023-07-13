@@ -3,22 +3,20 @@ import { I18n } from "carbon-components-angular/i18n";
 
 /**
  * [See demo](../../?path=/story/components-loading--basic)
- *
- * <example-url>../../iframe.html?id=components-loading--basic</example-url>
  */
 @Component({
-	selector: "ibm-loading",
+	selector: "cds-loading, ibm-loading",
 	template: `
 		<div
 			[ngClass]="{
-				'bx--loading--small': size === 'sm',
-				'bx--loading--stop': !isActive && !overlay,
-				'bx--loading-overlay--stop': !isActive && overlay
+				'cds--loading--small': size === 'sm',
+				'cds--loading--stop': !isActive && !overlay,
+				'cds--loading-overlay--stop': !isActive && overlay
 			}"
-			class="bx--loading">
-			<svg class="bx--loading__svg" viewBox="0 0 100 100">
+			class="cds--loading">
+			<svg class="cds--loading__svg" viewBox="0 0 100 100">
 				<title>{{title}}</title>
-				<circle class="bx--loading__stroke" cx="50%" cy="50%" r="44" />
+				<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 			</svg>
 		</div>
 	`
@@ -43,7 +41,7 @@ export class Loading {
 	/**
 	 * Set to `true` to make loader with an overlay.
 	 */
-	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
+	@Input() @HostBinding("class.cds--loading-overlay") overlay = false;
 
 	constructor(protected i18n: I18n) {}
 }

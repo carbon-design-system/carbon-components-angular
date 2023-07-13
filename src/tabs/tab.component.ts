@@ -4,13 +4,9 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ContentChild,
 	TemplateRef,
 	HostBinding
 } from "@angular/core";
-
-
-let nextId = 0;
 
 /**
 * The `Tab` component is a child of the `Tabs` component.
@@ -28,42 +24,42 @@ let nextId = 0;
 * Tab with string header:
 *
 * ```html
-* <ibm-tab heading='tab1'>
+* <cds-tab heading='tab1'>
 * 	tab 1 content
-* </ibm-tab>
+* </cds-tab>
 * ```
 *
 * Tab with custom header:
 *
 * ```html
 * <ng-template #tabHeading>
-* 	<svg ibmIcon="facebook"
+* 	<svg cdsIcon="facebook"
 * 		size="sm"
 * 		style="margin-right: 7px;">
 * 	</svg>
 * 	Hello Tab 1
 * </ng-template>
-* <ibm-tabs>
-* 	<ibm-tab [heading]="tabHeading">
-* 		Tab 1 content <svg ibmIcon="alert" size="lg"></svg>
-* 	</ibm-tab>
-* 	<ibm-tab heading='Tab2'>
+* <cds-tabs>
+* 	<cds-tab [heading]="tabHeading">
+* 		Tab 1 content <svg cdsIcon="alert" size="lg"></svg>
+* 	</cds-tab>
+* 	<cds-tab heading='Tab2'>
 * 		Tab 2 content
-* 	</ibm-tab>
-* 	<ibm-tab heading='Tab3'>
+* 	</cds-tab>
+* 	<cds-tab heading='Tab3'>
 * 		Tab 3 content
-* 	</ibm-tab>
-* </ibm-tabs>
+* 	</cds-tab>
+* </cds-tabs>
 * ```
 */
 @Component({
-	selector: "ibm-tab",
+	selector: "cds-tab, ibm-tab",
 	template: `
 		<div
 			[attr.tabindex]="tabIndex"
 			role="tabpanel"
 			*ngIf="shouldRender()"
-			class="bx--tab-content"
+			class="cds--tab-content"
 			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'"
 			aria-live="polite">
@@ -72,6 +68,7 @@ let nextId = 0;
 	`
 })
 export class Tab implements OnInit {
+	private static counter = 0;
 	/**
 	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
 	 * Default value is false.
@@ -104,11 +101,10 @@ export class Tab implements OnInit {
 	@Input() disabled = false;
 
 	@Input() tabIndex = 0;
-	// do we need id's?
 	/**
 	 * Sets the id of the `Tab`. Will be uniquely generated if not provided.
 	 */
-	@Input() id = `n-tab-${nextId++}`;
+	@Input() id = `n-tab-${Tab.counter++}`;
 	/**
 	 * Set to true to have Tab items cached and not reloaded on tab switching.
 	 */

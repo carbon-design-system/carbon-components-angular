@@ -3,14 +3,12 @@ import {
 	ChangeDetectorRef,
 	Component,
 	Input,
-	Output,
-	EventEmitter,
-	TemplateRef,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
@@ -18,75 +16,70 @@ import { Observable } from "rxjs";
  */
 export enum ToggleState {
 	Init,
-	Indeterminate,
 	Checked,
 	Unchecked
-}
-
-/**
- * Used to emit changes performed on toggle components.
- *
- * @deprecated since v4
- */
-export class ToggleChange {
-	/**
-	 * Contains the `Toggle` that has been changed.
-	 */
-	source: Toggle;
-	/**
-	 * The state of the `Toggle` encompassed in the `ToggleChange` class.
-	 */
-	checked: boolean;
 }
 
 /**
  * [See demo](../../?path=/story/components-toggle--basic)
  *
  * ```html
- * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
+ * <cds-toggle [(ngModel)]="toggleState">Toggle</cds-toggle>
  * ```
- *
- * <example-url>../../iframe.html?id=components-toggle--basic</example-url>
  */
 @Component({
-	selector: "ibm-toggle",
+	selector: "cds-toggle, ibm-toggle",
 	template: `
-		<label
-			*ngIf="label"
-			[id]="ariaLabelledby"
-			class="bx--label"
-			[ngClass]="{'bx--label--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
-		<input
-			class="bx--toggle-input"
-			type="checkbox"
-			[ngClass]="{
-				'bx--toggle-input--small': size === 'sm',
-				'bx--skeleton': skeleton
-			}"
-			[id]="id"
-			[attr.value]="value"
-			[attr.name]="name"
-			[required]="required"
-			[checked]="checked"
-			[disabled]="disabled"
-			[attr.aria-labelledby]="ariaLabelledby"
-			(change)="onChange($event)"
-			(click)="onClick($event)"
-			(keyup.enter)="onClick($event)">
-		<label
-			class="bx--toggle-input__label"
-			[for]="id"
-			[ngClass]="{
-				'bx--skeleton': skeleton
-			}">
-			<span class="bx--toggle__switch">
-				<span class="bx--toggle__text--off">{{(!skeleton ? getOffText() : null) | async }}</span>
-				<span class="bx--toggle__text--on">{{(!skeleton ? getOnText() : null) | async}}</span>
-			</span>
-		</label>
+		<ng-container *ngIf="!skeleton; else skeletonTemplate;">
+			<button
+				class="cds--toggle__button"
+				[disabled]="disabled"
+				[id]="id"
+				role="switch"
+				type="button"
+				[attr.aria-checked]="checked"
+				(click)="onClick($event)">
+			</button>
+			<label
+				class="cds--toggle__label"
+				[for]="id">
+				<span
+					class="cds--toggle__label-text"
+					[ngClass]="{
+						'cds--visually-hidden': hideLabel
+					}">
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+				</span>
+				<div
+					class="cds--toggle__appearance"
+					[ngClass]="{
+						'cds--toggle__appearance--sm': size === 'sm'
+					}">
+					<div
+						class="cds--toggle__switch"
+						[ngClass]="{
+							'cds--toggle__switch--checked': checked
+						}">
+						<svg
+							*ngIf="size === 'sm'"
+							class='cds--toggle__check'
+							width="6px"
+							height="5px"
+							viewBox="0 0 6 5">
+							<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
+						</svg>
+					</div>
+					<span class="cds--toggle__text">
+						{{(hideLabel ? label : (getCheckedText() | async))}}
+					</span>
+				</div>
+			</label>
+		</ng-container>
+		<ng-template #skeletonTemplate>
+			<div class="cds--toggle__skeleton-circle"></div>
+			<div class="cds--toggle__skeleton-rectangle"></div>
+		</ng-template>
 	`,
 	providers: [
 		{
@@ -134,24 +127,25 @@ export class Toggle extends Checkbox {
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
-	 * Set to `true` for a loading toggle.
+	 * Set to `true` to hide the toggle label & set toggle on/off text to label.
 	 */
-	@Input() skeleton = false;
+	@Input() hideLabel = false;
 
-	@HostBinding("class.bx--form-item") formItem = true;
+	@HostBinding("class.cds--toggle--skeleton") @Input() skeleton = false;
+
+	@HostBinding("class.cds--toggle") toggleClass = true;
+	@HostBinding("class.cds--toggle--disabled") get disabledClass () {
+		return this.disabled;
+	}
+
+	@HostBinding("class.cds--form-item") get formItem() {
+		return !this.skeleton;
+	}
 
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 */
 	id = "toggle-" + Toggle.toggleCount;
-
-	/**
-	 * Emits event notifying other classes when a change in state occurs on a toggle after a
-	 * click.
-	 *
-	 * @deprecated since v4
-	 */
-	@Output() change = new EventEmitter<ToggleChange>();
 
 	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
 	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
@@ -182,17 +176,17 @@ export class Toggle extends Checkbox {
 		return this._onValues.subject;
 	}
 
+	getCheckedText(): Observable<string> {
+		if (this.checked) {
+			return this._onValues.subject;
+		}
+		return this._offValues.subject;
+	}
+
 	/**
 	 * Creates instance of `ToggleChange` used to propagate the change event.
 	 */
 	emitChangeEvent() {
-		/* begin deprecation */
-		let event = new ToggleChange();
-		event.source = this;
-		event.checked = this.checked;
-		this.change.emit(event);
-		/* end deprecation */
-
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
 	}

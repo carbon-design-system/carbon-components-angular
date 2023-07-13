@@ -19,11 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Set up node to use v14
+      # Set up node to use v16
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "16"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 

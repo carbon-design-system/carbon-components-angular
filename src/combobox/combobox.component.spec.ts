@@ -17,13 +17,13 @@ import { PlaceholderModule } from "./../placeholder/index";
 
 @Component({
 	template: `
-	<ibm-combo-box
+	<cds-combo-box
 		placeholder="placeholder"
 		label="label"
 		[items]="items"
 		[(ngModel)]="model">
-		<ibm-dropdown-list></ibm-dropdown-list>
-	</ibm-combo-box>`
+		<cds-dropdown-list></cds-dropdown-list>
+	</cds-combo-box>`
 })
 class ComboboxTest {
 	items = [
@@ -65,13 +65,13 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 
-		const dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
 		dropdownToggle.click();
 		fixture.detectChanges();
 
-		const dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
 		dropdownOption.click();
 		fixture.detectChanges();
 
@@ -90,19 +90,19 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		spyOn(element.componentInstance, "clearInput");
 
 		// Select an item from the dropdown
-		const dropdownToggle = element.nativeElement.querySelector(".bx--list-box__field");
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
 		dropdownToggle.click();
 		fixture.detectChanges();
-		const dropdownOption = element.nativeElement.querySelector(".bx--list-box__menu-item");
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
 		dropdownOption.click();
 		fixture.detectChanges();
 
 		// Attempt clear by keyboard event
-		const clearBtn = element.nativeElement.querySelector(".bx--list-box__selection");
+		const clearBtn = element.nativeElement.querySelector(".cds--list-box__selection");
 		clearBtn.dispatchEvent(keyupEnter);
 		fixture.detectChanges();
 
@@ -116,7 +116,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		element.componentInstance.open = false;
 		fixture.detectChanges();
 
@@ -135,10 +135,10 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		spyOn(element.componentInstance, "onSearch");
 
-		const textInput = element.nativeElement.querySelector(".bx--text-input");
+		const textInput = element.nativeElement.querySelector(".cds--text-input");
 		textInput.dispatchEvent(new Event("input"));
 		fixture.detectChanges();
 
@@ -149,7 +149,7 @@ describe("Combo box", () => {
 		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 		expect(element.nativeElement.textContent).toBe("label");
 	});
 
@@ -166,9 +166,9 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 
-		element = fixture.debugElement.query(By.css("ibm-combo-box"));
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
 
-		const textInput = element.nativeElement.querySelector(".bx--text-input");
+		const textInput = element.nativeElement.querySelector(".cds--text-input");
 		textInput.value = "f";
 		textInput.dispatchEvent(new Event("input"));
 
@@ -180,7 +180,7 @@ describe("Combo box", () => {
 
 		fixture.detectChanges();
 
-		const itemEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item"));
+		const itemEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item"));
 
 		expect(itemEls.length).toEqual(2);
 	});

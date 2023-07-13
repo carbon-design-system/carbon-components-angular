@@ -1,39 +1,26 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { LinkModule } from "../";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { LinkModule, Link } from "./";
 
-storiesOf("Components|Link", module)
-	.addDecorator(
+export default {
+	title: "Components/Link",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				LinkModule,
-				DocumentationModule
-			]
+			imports: [LinkModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-			%3A%22LinkFragment%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
-			%3A%22link%22%2C%22text%22%3A%22Link%22%2C%22inline%22%3Afalse%2C%22&#13;
-			disabled%22%3Afalse%2C%22codeContext%22%3A%7B%22href%22%3A%22%23%22%2C&#13;
-			%22name%22%3A%22link-2%22%7D%2C%22id%22%3A%222%22%7D%5D%2C%22id%22%3A1&#13;
-			%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
-			<a href="#" ibmLink [disabled]="disabled" [inline]="inline">link</a>
-		`,
-		props: {
-			disabled: boolean("disabled", false),
-			inline: boolean("inline", false)
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_link.link.html"></ibm-documentation>
-		`
-	}));
+	],
+	component: Link
+} as Meta;
+
+const Template: Story<Link> = (args) => ({
+	props: args,
+	template: `
+		<a href="#" cdsLink [disabled]="disabled" [inline]="inline">link</a>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	disabled: false,
+	inline: false
+};

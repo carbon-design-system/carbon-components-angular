@@ -8,7 +8,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 import { I18nModule } from "../../i18n/index";
 
 @Component({
-	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`
 })
 class DropdownListTest {
 	items = [
@@ -22,7 +22,7 @@ class DropdownListTest {
 }
 
 @Component({
-	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`
 })
 class MultiTest {
 	items = [
@@ -76,9 +76,9 @@ describe("Dropdown list", () => {
 			<ListItem>{content: "three", selected: false, disabled: true}
 		];
 		fixture.detectChanges();
-		const disabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item[disabled]"));
+		const disabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item[disabled]"));
 		expect(disabledEls.length).toEqual(1);
-		const enabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item:not([disabled])"));
+		const enabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item:not([disabled])"));
 		expect(enabledEls.length).toEqual(2);
 	});
 });
@@ -131,12 +131,12 @@ describe("Dropdown multi list", () => {
 			<ListItem>{content: "three", selected: false, disabled: true}
 		];
 		fixture.detectChanges();
-		const disabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item[disabled]"));
-		const disabledInputEls = fixture.debugElement.queryAll(By.css(".bx--checkbox[disabled]"));
+		const disabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item[disabled]"));
+		const disabledInputEls = fixture.debugElement.queryAll(By.css(".cds--checkbox[disabled]"));
 		expect(disabledEls.length).toEqual(1);
 		expect(disabledInputEls.length).toEqual(1);
-		const enabledEls = fixture.debugElement.queryAll(By.css(".bx--list-box__menu-item:not([disabled])"));
-		const enabledInputEls = fixture.debugElement.queryAll(By.css(".bx--checkbox:not([disabled])"));
+		const enabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item:not([disabled])"));
+		const enabledInputEls = fixture.debugElement.queryAll(By.css(".cds--checkbox:not([disabled])"));
 		expect(enabledEls.length).toEqual(2);
 		expect(enabledInputEls.length).toEqual(2);
 	});

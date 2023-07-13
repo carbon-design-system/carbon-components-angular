@@ -30,7 +30,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.classList.contains("bx--inline-notification--info")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("cds--inline-notification--info")).toBeTruthy();
 	});
 
 	it("should render danger notification", () => {
@@ -42,7 +42,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.classList.contains("bx--inline-notification--error")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("cds--inline-notification--error")).toBeTruthy();
 	});
 
 	it("should render info warning notification", () => {
@@ -54,7 +54,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.classList.contains("bx--inline-notification--warning")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("cds--inline-notification--warning")).toBeTruthy();
 	});
 
 	it("should render info success notification", () => {
@@ -66,7 +66,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.classList.contains("bx--inline-notification--success")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("cds--inline-notification--success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
@@ -78,7 +78,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector(".bx--inline-notification__text-wrapper div span");
+		let p = fixture.nativeElement.querySelector(".cds--inline-notification__text-wrapper div span");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});
@@ -94,7 +94,7 @@ describe("Notification", () => {
 
 		spyOn(fixture.componentInstance.close, "emit");
 
-		let button = fixture.nativeElement.querySelector(".bx--inline-notification__close-button");
+		let button = fixture.nativeElement.querySelector(".cds--inline-notification__close-button");
 
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();

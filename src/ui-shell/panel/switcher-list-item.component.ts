@@ -13,12 +13,12 @@ import { Router } from "@angular/router";
  * Represents an item in a switcher list.
  */
 @Component({
-	selector: "ibm-switcher-list-item",
+	selector: "cds-switcher-list-item, ibm-switcher-list-item",
 	template: `
 		<a
-			class="bx--switcher__item-link"
+			class="cds--switcher__item-link"
 			[ngClass]="{
-				'bx--switcher__item-link--selected': active
+				'cds--switcher__item-link--selected': active
 			}"
 			[href]="href"
 			[target]="target"
@@ -72,7 +72,7 @@ export class SwitcherListItem {
 		return this._target;
 	}
 
-	@HostBinding("class.bx--switcher__item") itemClass = true;
+	@HostBinding("class.cds--switcher__item") itemClass = true;
 
 	@HostBinding("attr.role") itemRole = "listitem";
 

@@ -1,4 +1,4 @@
-import { TestBed, async, fakeAsync } from "@angular/core/testing";
+import { TestBed, fakeAsync, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
@@ -10,7 +10,7 @@ import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
-	<ibm-date-picker
+	<cds-date-picker
 		label="Date picker label"
 		placeholder="mm/dd/yyyy"
 		theme="light"
@@ -20,7 +20,7 @@ import { I18nModule } from "../i18n/i18n.module";
 		invalidText="invalid text"
 		dateFormat="m/d/Y"
 		(valueChange)="onValueChange()">
-	</ibm-date-picker>
+	</cds-date-picker>
 	`
 })
 class DatePickerTest {
@@ -55,7 +55,7 @@ describe("DatePicker", () => {
 
 	it("should set label to Date picker label", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.detectChanges();
 		expect(element.nativeElement.textContent).toEqual("Date picker label");
 	});
@@ -65,12 +65,12 @@ describe("DatePicker", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		fixture.whenStable().then(() => {
-			element = fixture.debugElement.query(By.css("ibm-date-picker"));
+			element = fixture.debugElement.query(By.css("cds-date-picker"));
 			expect(element.componentInstance.value).toBe(wrapper.value);
 			wrapper.value =  new Date(new Date().getFullYear(), 14, 50);
 			fixture.detectChanges();
 			fixture.whenStable().then(() => {
-				element = fixture.debugElement.query(By.css("ibm-date-picker"));
+				element = fixture.debugElement.query(By.css("cds-date-picker"));
 				expect(element.componentInstance.value).toBe(wrapper.value);
 			});
 		});
@@ -93,32 +93,32 @@ describe("DatePicker", () => {
 
 	it("should set date format to m/d/Y", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.detectChanges();
 		expect(element.componentInstance.dateFormat).toEqual("m/d/Y");
 	});
 
 	it("should set theme to light", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.detectChanges();
 		expect(element.componentInstance.theme).toEqual("light");
-		expect(element.nativeElement.querySelector(".bx--date-picker--light")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--date-picker--light")).toBeTruthy();
 	});
 
 	it("should set invalid to true and set the invalidText to 'invalid text'", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.componentInstance.invalid = true;
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
 		expect(element.nativeElement.getAttribute("invalidText")).toEqual("invalid text");
-		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toEqual("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual("invalid text");
 	});
 
 	it("should call onValueChange on valueChange event", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		spyOn(wrapper, "onValueChange");

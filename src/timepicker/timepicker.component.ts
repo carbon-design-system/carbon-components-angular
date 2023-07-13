@@ -11,35 +11,35 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * [See demo](../../?path=/story/components-time-picker--simple)
- *
- * <example-url>../../iframe.html?id=components-time-picker--simple</example-url>
  */
 @Component({
-	selector: "ibm-timepicker",
+	selector: "cds-timepicker, ibm-timepicker",
 	template: `
 		<label
-			*ngIf="!skeleton && label"
-			[for]="id"
-			[ngClass]="{
-				'bx--label': true,
-				'bx--visually-hidden': hideLabel
+		*ngIf="!skeleton && label"
+		[for]="id"
+		class="cds--label"
+		[ngClass]="{
+			'cds--label--disabled': disabled,
+			'cds--visually-hidden': hideLabel
 		}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 		</label>
 		<div
-			class="bx--time-picker"
+			class="cds--time-picker"
 			[ngClass]="{
-				'bx--time-picker--invalid' : invalid,
-				'bx--time-picker--sm': size === 'sm',
-				'bx--time-picker--md': size === 'md',
-				'bx--time-picker--lg': size === 'lg'
+				'cds--time-picker--invalid' : invalid,
+				'cds--time-picker--sm': size === 'sm',
+				'cds--time-picker--md': size === 'md',
+				'cds--time-picker--lg': size === 'lg',
+				'cds--time-picker--light': theme === 'light'
 			}">
-			<div class="bx--time-picker__input">
+			<div class="cds--time-picker__input">
 				<input
 					[ngClass]="{
-						'bx--text-input--light': theme === 'light',
-						'bx--skeleton': skeleton
+						'cds--text-input--light': theme === 'light',
+						'cds--skeleton': skeleton
 					}"
 					[value]="value"
 					[placeholder]="placeholder"
@@ -50,11 +50,11 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					[attr.maxlength]="maxLength"
 					(change)="onChange($event)"
 					type="text"
-					class="bx--time-picker__input-field bx--text-input">
+					class="cds--time-picker__input-field cds--text-input">
 			</div>
 			<ng-content></ng-content>
 		</div>
-		<div *ngIf="invalid" class="bx--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
@@ -90,7 +90,7 @@ export class TimePicker implements ControlValueAccessor {
 	@Input() skeleton = false;
 
 	/**
-	 * `light` or `dark` select theme
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -104,7 +104,7 @@ export class TimePicker implements ControlValueAccessor {
 	/**
 	 * Ensures component is properly styled when used standalone.
 	 */
-	@HostBinding("class.bx--form-item") timepickerClass = true;
+	@HostBinding("class.cds--form-item") timepickerClass = true;
 
 	writeValue(value: string) {
 		this.value = value;

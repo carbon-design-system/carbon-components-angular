@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
 
 @Component({
 	template: `
-		<ibm-date-picker-input
+		<cds-date-picker-input
 			theme="dark"
 			label="label"
 			placeholder="mm/dd/yyyy"
@@ -17,7 +17,7 @@ import { CommonModule } from "@angular/common";
 			invalidText="invalid text"
 			(valueChange)="valueChange($event)"
 			[(ngModel)]="model">
-		</ibm-date-picker-input>
+		</cds-date-picker-input>
 		`
 })
 class DatePickerInputTest {
@@ -67,14 +67,14 @@ describe("Select", () => {
 	it("should set label to 'label'", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
-		expect(element.nativeElement.querySelector(".bx--label").textContent).toBe("label");
+		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
+		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe("label");
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
+		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
 		expect(element.nativeElement.getAttribute("placeholder")).toBe("mm/dd/yyyy");
 	});
 
@@ -83,7 +83,7 @@ describe("Select", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.disabled = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
+		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
 		expect(element.nativeElement.querySelector("input").disabled).toBe(true);
 	});
 
@@ -92,16 +92,16 @@ describe("Select", () => {
 		wrapper = fixture.componentInstance;
 		wrapper.invalid = true;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
-		expect(element.nativeElement.querySelector(".bx--form-requirement")).toBeTruthy();
-		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toBe("invalid text");
+		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
+		expect(element.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe("invalid text");
 	});
 
 	it("should set theme to dark", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-date-picker-input"));
+		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
 		expect(element.nativeElement.getAttribute("theme")).toBe("dark");
 	});
 });

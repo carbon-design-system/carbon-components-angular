@@ -11,7 +11,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 @Component({
 	selector: "app-no-data-table",
 	template: `
-		<ibm-table
+		<cds-table
 			[skeleton]="skeleton"
 			[model]="model"
 			[size]="size"
@@ -19,7 +19,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
-		</ibm-table>
+		</cds-table>
 	`
 })
 export class TableNoDataStory implements OnInit, OnChanges {

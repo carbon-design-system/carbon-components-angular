@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 // imports
+import { BaseModalService } from "./base-modal.service";
 import { ModalService } from "./modal.service";
 import { Modal } from "./modal.component";
 import { ModalFooter } from "./modal-footer.component";
@@ -44,13 +45,7 @@ import { IconModule } from "carbon-components-angular/icon";
 		ModalHeaderLabel,
 		BaseModal
 	],
-	entryComponents: [
-		AlertModal,
-		Modal,
-		ModalFooter,
-		ModalHeader
-	],
-	providers: [ ModalService ],
+	providers: [BaseModalService, ModalService],
 	imports: [
 		CommonModule,
 		ButtonModule,

@@ -6,7 +6,7 @@ import ComponentTests from "../exported-tests/component-tests";
 
 const defaults = {
 	selectors: {
-		root: "ibm-checkbox",
+		root: "cds-checkbox",
 		input: "input"
 	}
 };

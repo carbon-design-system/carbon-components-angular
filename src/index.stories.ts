@@ -1,4 +1,6 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
+/* tslint:disable variable-name */
+
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./button";
@@ -96,14 +98,14 @@ import { IconModule } from "./icon/icon.module";
 			<h2 class="banner__subtitle">An Angular implementation of the Carbon Design System</h2>
 
 			<div class="banner__links">
-				<a ibmButton="secondary" href="documentation/index.html" target="_blank">
+				<a cdsButton="secondary" href="documentation/index.html" target="_blank">
 					Documentation
-					<svg ibmIcon="document" size="16" class="bx--btn__icon"></svg>
+					<svg cdsIcon="document" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
-				<a ibmButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
+				<a cdsButton="primary" href="https://github.com/carbon-design-system/carbon-angular-starter" target="_blank">
 					Starter App
-					<svg ibmIcon="bee" size="16" class="bx--btn__icon"></svg>
+					<svg cdsIcon="bee" size="16" class="cds--btn__icon"></svg>
 				</a>
 				&nbsp;
 				<a class="banner__netlify" href="https://www.netlify.com" target="_blank">
@@ -151,7 +153,7 @@ import { IconModule } from "./icon/icon.module";
 		}
 		@media screen and (min-width: 1515px) {
 			.banner__title {
-			   font-size: 50px;
+				font-size: 50px;
 			}
 			.banner__subtitle {
 				font-size: 28px;
@@ -161,26 +163,45 @@ import { IconModule } from "./icon/icon.module";
 })
 class WelcomeStory implements OnInit, OnDestroy {
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
+// Story starts here
+export default {
+	title: "Getting Started",
+	decorators: [
+		moduleMetadata({
+			imports: [ButtonModule, IconModule],
+			declarations: [WelcomeStory]
+		})
+	],
+	parameters: {
+		previewTabs: {
+			"storybook/docs/panel": {
+				hidden: true
+			}
+		},
+		controls: {
+			disable: true
+		},
+		actions: {
+			disable: true
+		},
+		a11y: {
+			disable: true
+		},
+		storysource: {
+			disable: true
+		}
+	}
+} as Meta;
 
-storiesOf("Components|Welcome", module)
-.addDecorator(
-	moduleMetadata({
-		imports: [
-			ButtonModule,
-			IconModule
-		],
-		declarations: [WelcomeStory]
-	})
-)
-
-.add("to Carbon Angular", () => ({
+const Template: Story = (args) => ({
+	props: args,
 	template: `
 		<!--
 			app-* components are for demo purposes only.
@@ -188,4 +209,5 @@ storiesOf("Components|Welcome", module)
 		-->
 		<app-welcome></app-welcome>
 	`
-}));
+});
+export const Welcome = Template.bind({});

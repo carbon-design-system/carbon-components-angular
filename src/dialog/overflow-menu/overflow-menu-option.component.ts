@@ -28,19 +28,19 @@ const REL = "noreferrer noopener";
  *
  * Presently it has three possible states - normal, disabled, and danger:
  * ```
- * <ibm-overflow-menu-option>Simple option</ibm-overflow-menu-option>
- * <ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
- * <ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
+ * <cds-overflow-menu-option>Simple option</cds-overflow-menu-option>
+ * <cds-overflow-menu-option disabled="true">Disabled</cds-overflow-menu-option>
+ * <cds-overflow-menu-option type="danger">Danger option</cds-overflow-menu-option>
  * ```
  *
  * For content that expands beyond the overflow menu `OverflowMenuOption` automatically adds a title attribute.
  */
 @Component({
-	selector: "ibm-overflow-menu-option",
+	selector: "cds-overflow-menu-option, ibm-overflow-menu-option",
 	template: `
 		<button
 			*ngIf="!href"
-			class="bx--overflow-menu-options__btn {{innerClass}}"
+			class="cds--overflow-menu-options__btn {{innerClass}}"
 			role="menuitem"
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
@@ -53,7 +53,7 @@ const REL = "noreferrer noopener";
 
 		<a
 			*ngIf="href"
-			class="bx--overflow-menu-options__btn {{innerClass}}"
+			class="cds--overflow-menu-options__btn {{innerClass}}"
 			role="menuitem"
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
@@ -68,29 +68,29 @@ const REL = "noreferrer noopener";
 		</a>
 
 		<ng-template #tempOutlet>
-			<div class="bx--overflow-menu-options__option-content">
+			<div class="cds--overflow-menu-options__option-content">
 				<ng-content></ng-content>
 			</div>
 		</ng-template>
 	`
 })
 export class OverflowMenuOption implements AfterViewInit {
-	@HostBinding("class.bx--overflow-menu-options__option") optionClass = true;
+	@HostBinding("class.cds--overflow-menu-options__option") optionClass = true;
 	@HostBinding("attr.role") role = "presentation";
 
-	@HostBinding("class.bx--overflow-menu-options__option--danger")
+	@HostBinding("class.cds--overflow-menu-options__option--danger")
 	public get isDanger(): Boolean {
 		return this.type === "danger";
 	}
 
-	@HostBinding("class.bx--overflow-menu-options__option--disabled")
+	@HostBinding("class.cds--overflow-menu-options__option--disabled")
 	public get isDisabled(): Boolean {
 		return this.disabled;
 	}
 	/**
 	 * Set to `true` to display a dividing line above this option
 	 */
-	@HostBinding("class.bx--overflow-menu--divider") @Input() divider = false;
+	@HostBinding("class.cds--overflow-menu--divider") @Input() divider = false;
 	/**
 	 * toggles between `normal` and `danger` states
 	 */
@@ -156,7 +156,7 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 
 	ngAfterViewInit() {
 		const button = this.elementRef.nativeElement.querySelector("button, a");
-		const textContainer = button.querySelector(".bx--overflow-menu-options__option-content");
+		const textContainer = button.querySelector(".cds--overflow-menu-options__option-content");
 		if (textContainer.scrollWidth > textContainer.offsetWidth) {
 			this.title = button.textContent;
 		}

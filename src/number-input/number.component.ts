@@ -28,33 +28,36 @@ export class NumberChange {
 
 /**
  * [See demo](../../?path=/story/components-number--basic)
- *
- * <example-url>../../iframe.html?id=components-number--basic</example-url>
  */
 @Component({
-	selector: "ibm-number",
+	selector: "cds-number, ibm-number",
 	template: `
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
-			class="bx--number"
+			class="cds--number"
 			[ngClass]="{
-				'bx--number--light': theme === 'light',
-				'bx--number--nolabel': !label,
-				'bx--number--helpertext': helperText,
-				'bx--skeleton' : skeleton,
-				'bx--number--sm': size === 'sm',
-				'bx--number--xl': size === 'xl'
+				'cds--number--light': theme === 'light',
+				'cds--number--nolabel': !label,
+				'cds--number--helpertext': helperText,
+				'cds--skeleton' : skeleton,
+				'cds--number--sm': size === 'sm',
+				'cds--number--md': size === 'md',
+				'cds--number--lg': size === 'lg'
 			}">
-			<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
+			<label
+				*ngIf="!skeleton && label"
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{'cds--label--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
 			<div
-				class="bx--number__input-wrapper"
+				class="cds--number__input-wrapper"
 				[ngClass]="{
-					'bx--number__input-wrapper--warning': warn
+					'cds--number__input-wrapper--warning': warn
 				}">
 				<input
 					type="number"
@@ -71,50 +74,55 @@ export class NumberChange {
 					(input)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
-					ibmIcon="warning--filled"
+					cdsIcon="warning--filled"
 					size="16"
-					class="bx--number__invalid">
+					class="cds--number__invalid">
 				</svg>
 				<svg
 					*ngIf="!skeleton && !invalid && warn"
-					ibmIcon="warning--alt--filled"
+					cdsIcon="warning--alt--filled"
 					size="16"
-					class="bx--number__invalid bx--number__invalid--warning">
+					class="cds--number__invalid cds--number__invalid--warning">
 				</svg>
-				<div *ngIf="!skeleton" class="bx--number__controls">
+				<div *ngIf="!skeleton" class="cds--number__controls">
 					<button
-						class="bx--number__control-btn down-icon"
+						class="cds--number__control-btn down-icon"
 						type="button"
 						[attr.disabled]="disabled ? true : null"
 						aria-live="polite"
 						aria-atomic="true"
 						[attr.aria-label]="getDecrementLabel() | async"
 						(click)="onDecrement()">
-						<svg ibmIcon="subtract" size="16"></svg>
+						<svg cdsIcon="subtract" size="16"></svg>
 					</button>
-					<div class="bx--number__rule-divider"></div>
+					<div class="cds--number__rule-divider"></div>
 					<button
-						class="bx--number__control-btn up-icon"
+						class="cds--number__control-btn up-icon"
 						type="button"
 						[attr.disabled]="disabled ? true : null"
 						aria-live="polite"
 						aria-atomic="true"
 						[attr.aria-label]="getIncrementLabel() | async"
 						(click)="onIncrement()">
-						<svg ibmIcon="add" size="16"></svg>
+						<svg cdsIcon="add" size="16"></svg>
 					</button>
-					<div class="bx--number__rule-divider"></div>
+					<div class="cds--number__rule-divider"></div>
 				</div>
 			</div>
-			<div *ngIf="helperText && !invalid && !warn" class="bx--form__helper-text">
+			<div
+				*ngIf="helperText && !invalid && !warn"
+				class="cds--form__helper-text"
+				[ngClass]="{
+					'cds--form__helper-text--disabled': disabled
+				}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!warn && invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -134,9 +142,10 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	static numberCount = 0;
 
-	@HostBinding("class.bx--form-item") containerClass = true;
+	@HostBinding("class.cds--form-item") containerClass = true;
 
 	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` number input theme.
 	 */
 	@Input() theme: "light" | "dark" = "dark";
@@ -163,7 +172,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */

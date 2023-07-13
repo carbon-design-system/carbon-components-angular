@@ -11,12 +11,12 @@ import { TableRowSize } from "../table.types";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableBody]",
+	selector: "[cdsTableBody], [ibmTableBody]",
 	template: `
 		<ng-container *ngIf="model">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr
-					ibmTableRow
+					cdsTableRow
 					[model]="model"
 					[row]="row"
 					[size]="size"
@@ -43,8 +43,8 @@ import { TableRowSize } from "../table.types";
 				</tr>
 				<tr
 					*ngIf="model.isRowExpandable(i) && !shouldExpandAsTable(row) && !model.isRowFiltered(i)"
-					ibmTableExpandedRow
-					ibmExpandedRowHover
+					cdsTableExpandedRow
+					cdsExpandedRowHover
 					[row]="row"
 					[expanded]="model.isRowExpanded(i)"
 					[skeleton]="skeleton">
@@ -53,7 +53,7 @@ import { TableRowSize } from "../table.types";
 					*ngIf="model.isRowExpandable(i) && shouldExpandAsTable(row) && model.isRowExpanded(i) && !model.isRowFiltered(i)">
 					<tr
 						*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
-						ibmTableRow
+						cdsTableRow
 						[model]="model"
 						[showSelectionColumnCheckbox]="false"
 						[showSelectionColumn]="showSelectionColumn"
@@ -108,7 +108,7 @@ export class TableBody {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```

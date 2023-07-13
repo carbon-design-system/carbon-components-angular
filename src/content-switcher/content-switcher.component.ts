@@ -19,26 +19,23 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
  * [See demo](../../?path=/story/components-content-switcher--basic)
  *
  * ```html
- * <ibm-content-switcher (selected)="selected($event)">
- *		<button ibmContentOption>First section</button>
- *		<button ibmContentOption>Second section</button>
- *		<button ibmContentOption>Third section</button>
- *	</ibm-content-switcher>
+ * <cds-content-switcher (selected)="selected($event)">
+ *		<button cdsContentOption>First section</button>
+ *		<button cdsContentOption>Second section</button>
+ *		<button cdsContentOption>Third section</button>
+ *	</cds-content-switcher>
  *	```
- *
- * <example-url>../../iframe.html?id=components-content-switcher--basic</example-url>
  */
 @Component({
-	selector: "ibm-content-switcher",
+	selector: "cds-content-switcher, ibm-content-switcher",
 	template: `
 		<div
 			[attr.aria-label]="ariaLabel"
-			class="bx--content-switcher"
+			class="cds--content-switcher"
 			[ngClass]="{
-				'bx--content-switcher--light': theme === 'light',
-				'bx--content-switcher--sm': size === 'sm',
-				'bx--content-switcher--md': size === 'md',
-				'bx--content-switcher--lg': size === 'lg'
+				'cds--content-switcher--sm': size === 'sm',
+				'cds--content-switcher--md': size === 'md',
+				'cds--content-switcher--lg': size === 'lg'
 			}"
 			role="tablist">
 			<ng-content></ng-content>
@@ -47,10 +44,6 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";
-	/**
-	 * `light` or `dark` content switcher theme
-	 */
-	@Input() theme: "light" | "dark" = "dark";
 
 	/**
 	 * Set content switcher size
@@ -88,10 +81,9 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[ibmContentOption]"));
+		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[cdsContentOption], [ibmContentOption]"));
 
 		switch (event.key) {
-			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, buttonList))  {
@@ -102,7 +94,6 @@ export class ContentSwitcher implements AfterViewInit {
 				}
 				break;
 
-			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
 				if (!isFocusInFirstItem(event, buttonList))  {

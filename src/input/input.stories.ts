@@ -1,113 +1,113 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
-import {
-	withKnobs,
-	text,
-	boolean,
-	select,
-	number
-} from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { InputModule } from "../";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { InputModule, Label } from "./";
 
-storiesOf("Components|Input", module).addDecorator(
-	moduleMetadata({
-		imports: [InputModule, DocumentationModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Label", () => ({
-		template: `
-		<a href="https://builder.carbondesignsystem.com/from-json/%7B%22title%22&#13;
-		%3A%22Text%20input%22%2C%22data%22%3A%7B%22items%22%3A%5B%7B%22type%22&#13;
-		%3A%22text-input%22%2C%22label%22%3A%22Text%20input%20label%22%2C%22&#13;
-		placeholder%22%3A%22Text%20input%20placeholder%22%2C%22helperText%22&#13;
-		%3A%22Helper%20text%22%2C%22inputType%22%3A%22text%22%2C%22id%22%3A%222&#13;
-		%22%2C%22codeContext%22%3A%7B%22name%22%3A%22text-input-2%22%7D%7D%5D%2C&#13;
-		%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-			Edit on Carbon UI Builder
-		</a>
-		<br><br>
-		<ibm-label
-			[disabled]="disabled"
-			[helperText]="helperText"
+export default {
+	title: "Components/Input",
+	decorators: [
+		moduleMetadata({
+			imports: [InputModule]
+		})
+	]
+} as Meta;
+
+const Template: Story<Label> = (args) => ({
+	props: args,
+	template: `
+		<cds-label
+		[helperText]="helperText"
+		[invalid]="invalid"
+		[invalidText]="invalidText"
+		[warn]="warn"
+		[disabled]="disabled"
+		[warnText]="warnText">
+		{{label}}
+		<input
+			cdsText
+			[size]="size"
 			[invalid]="invalid"
-			[invalidText]="invalidText"
 			[warn]="warn"
-			[warnText]="warnText">
-			{{label}}
-			<input
-				ibmText
-				[size]="size"
-				[invalid]="invalid"
-				[warn]="warn"
-				[disabled]="disabled"
-				[theme]="theme"
-				[placeholder]="placeholder"
-				[autocomplete]="autocomplete">
-		</ibm-label>
-	`,
-		props: {
-			theme: select("Theme", ["dark", "light"], "dark"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
-			disabled: boolean("Disabled", false),
-			invalid: boolean("Show form validation", false),
-			invalidText: text("Form validation content", "Validation message here"),
-			warn: boolean("Show the warning state", false),
-			warnText: text("Text for the warning", "This is a warning"),
-			label: text("Label", "Text Input label"),
-			helperText: text("Helper text", "Optional helper text."),
-			placeholder: text("Placeholder text", "Placeholder text"),
-			autocomplete: text("autocomplete", "on")
-		}
-	}))
-	.add("TextArea", () => ({
-		template: `
-		<ibm-label
 			[disabled]="disabled"
-			[helperText]="helperText"
+			[theme]="theme"
+			[placeholder]="placeholder"
+			[autocomplete]="autocomplete">
+		</cds-label>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	disabled: false,
+	invalid: false,
+	invalidText: "Invalid entry",
+	warn: false,
+	warnText: "This is a warning!",
+	label: "Text input label",
+	helperText: "Optional helper text",
+	placeholder: "Placeholder"
+};
+Basic.argTypes = {
+	autocomplete: {
+		options: ["on", "off"],
+		defaultValue: "on",
+		control: "radio"
+	},
+	theme: {
+		options: ["light", "dark"],
+		defaultValue: "dark",
+		control: "radio"
+	},
+	size: {
+		options: ["sm", "md", "lg"],
+		defaultValue: "md",
+		contorl: "select"
+	},
+	component: Label
+};
+
+const TextareaTemplate: Story<Label> = (args) => ({
+	props: args,
+	template: `
+		<cds-label
+		[helperText]="helperText"
+		[invalid]="invalid"
+		[disabled]="disabled"
+		[invalidText]="invalidText">
+		{{label}}
+		<textarea
+			cdsTextArea
+			[placeholder]="placeholder"
 			[invalid]="invalid"
-			[invalidText]="invalidText">
-			{{label}}
-			<textarea
-				ibmTextArea
-				[placeholder]="placeholder"
-				[invalid]="invalid"
-				[disabled]="disabled"
-				[theme]="theme"
-				[rows]="rows"
-				[cols]="cols"
-				aria-label="textarea"></textarea>
-		</ibm-label>
-	`,
-		props: {
-			theme: select("Theme", ["dark", "light"], "dark"),
-			disabled: boolean("Disabled", false),
-			invalid: boolean("Show form validation", false),
-			invalidText: text("Form validation content", "Validation message here"),
-			label: text("Label", "Text area label"),
-			helperText: text("Helper text", "Optional helper text."),
-			placeholder: text("Placeholder text", "Placeholder text"),
-			cols: number("cols", 50),
-			rows: number("rows", 4)
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-		<ibm-label skeleton="true">
-			<input ibmText skeleton="true">
-		</ibm-label>
+			[disabled]="disabled"
+			[theme]="theme"
+			[rows]="rows"
+			[cols]="cols"
+			aria-label="textarea"></textarea>
+		</cds-label>
+	`
+});
+export const TextArea = TextareaTemplate.bind({});
+TextArea.args = {
+	...Basic.args,
+	cols: 50,
+	rows: 4
+};
+TextArea.argTypes = {
+	...Basic.argTypes
+};
+
+const SkeletonTemplate: Story<Label> = (args) => ({
+	props: args,
+	template: `
+		<cds-label skeleton="true">
+			<input cdsText skeleton="true">
+		</cds-label>
 		<br>
-		<input ibmText skeleton="true">
+		<input cdsText skeleton="true">
 		<br><br>
-		<ibm-label skeleton="true">
-			<div ibmTextArea skeleton="true"></div>
-		</ibm-label>
-		`
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_input.label.html"></ibm-documentation>
-		`
-	}));
+		<cds-label skeleton="true">
+			<div cdsTextArea skeleton="true"></div>
+		</cds-label>
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});

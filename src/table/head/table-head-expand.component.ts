@@ -5,11 +5,11 @@ import {
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableHeadExpand]",
+	selector: "[cdsTableHeadExpand], [ibmTableHeadExpand]",
 	template: `
 		<ng-content></ng-content>
 	`
 })
 export class TableHeadExpand {
-	@HostBinding("class.bx--table-expand") hostClass = true;
+	@HostBinding("class.cds--table-expand") hostClass = true;
 }

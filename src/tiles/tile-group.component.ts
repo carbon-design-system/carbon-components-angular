@@ -17,14 +17,14 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 @Component({
-	selector: "ibm-tile-group",
+	selector: "cds-tile-group, ibm-tile-group",
 	template: `
 		<fieldset>
-			<legend *ngIf="legend" class="bx--label">
+			<legend *ngIf="legend" class="cds--label">
 				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
 				<ng-template #legendLabel>{{legend}}</ng-template>
 			</legend>
-			<ng-content select="ibm-selection-tile"></ng-content>
+			<ng-content select="ibm-selection-tile,cds-selection-tile"></ng-content>
 		</fieldset>`,
 	providers: [
 		{
@@ -61,7 +61,7 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Output() selected: EventEmitter<TileSelection> = new EventEmitter();
 
-	@HostBinding("class.bx--tile-group") tileGroupClass = true;
+	@HostBinding("class.cds--tile-group") tileGroupClass = true;
 
 	@ContentChildren(SelectionTile) selectionTiles: QueryList<SelectionTile>;
 

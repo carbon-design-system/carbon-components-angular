@@ -6,7 +6,7 @@ import { ProgressBar } from "./";
 
 @Component({
 	template: `
-		<ibm-progress-bar
+		<cds-progress-bar
 			[label]="label"
 			[helperText]="helperText"
 			[max]="max"
@@ -14,7 +14,7 @@ import { ProgressBar } from "./";
 			[status]="status"
 			[type]="type"
 			[value]="value">
-		</ibm-progress-bar>
+		</cds-progress-bar>
 		`
 })
 class TestProgessBarComponent {
@@ -39,35 +39,35 @@ describe("Progress bar", () => {
 		fixture = TestBed.createComponent(TestProgessBarComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-bar"));
+		element = fixture.debugElement.query(By.css("cds-progress-bar"));
 	});
 
 	it("should create a progress bar component", () => {
 		expect(component).toBeTruthy();
 		expect(element).not.toBeNull();
-		expect(element.nativeElement.className.includes("bx--progress-bar")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar")).toBeTruthy();
 	});
 
 	it("should create an indeterminate progress bar when value is undefined & status is active", () => {
 		component.value = undefined;
 		component.status = "active";
 		fixture.detectChanges();
-		expect(element.nativeElement.className.includes("bx--progress-bar--indeterminate")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar--indeterminate")).toBeTruthy();
 	});
 
 	it("should set the appropriate status class", () => {
 		component.status = "finished";
 		fixture.detectChanges();
-		expect(element.nativeElement.className.includes("bx--progress-bar--finished")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar--finished")).toBeTruthy();
 		component.status = "error";
 		fixture.detectChanges();
-		expect(element.nativeElement.className.includes("bx--progress-bar--error")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar--error")).toBeTruthy();
 	});
 
 	it("should set the the correct size class", () => {
-		expect(element.nativeElement.className.includes("bx--progress-bar--big")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar--big")).toBeTruthy();
 		component.size = "small";
 		fixture.detectChanges();
-		expect(element.nativeElement.className.includes("bx--progress-bar--small")).toBeTruthy();
+		expect(element.nativeElement.className.includes("cds--progress-bar--small")).toBeTruthy();
 	});
 });

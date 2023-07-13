@@ -1,23 +1,23 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { Component, Input, DebugElement } from "@angular/core";
+import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
 import { Link } from "./link.directive";
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" cdsLink>link</a>`
 })
 class TestLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" cdsLink>link</a>`
 })
 class TestDisabledLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" cdsLink>link</a>`
 })
 class TestInlineLinkComponent {
 }
@@ -35,8 +35,8 @@ describe("Link", () => {
 		expect(component).toBeTruthy();
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
 		expect(directiveEl).not.toBeNull();
-		expect(directiveEl.attributes["aria-disabled"]).toBe(null);
-		expect(directiveEl.attributes["tabindex"]).toBe(null);
+		expect(directiveEl.attributes["aria-disabled"]).toBeUndefined();
+		expect(directiveEl.attributes["tabindex"]).toBeUndefined();
 		expect(directiveEl.attributes["href"]).toBe("https://angular.carbondesignsystem.com/");
 	});
 
@@ -63,6 +63,6 @@ describe("Link", () => {
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
-		expect(directiveEl.nativeElement.classList.contains("bx--link--inline")).toBeTruthy();
+		expect(directiveEl.nativeElement.classList.contains("cds--link--inline")).toBeTruthy();
 	});
 });

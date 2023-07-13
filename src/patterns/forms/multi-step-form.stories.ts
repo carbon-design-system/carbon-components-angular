@@ -1,17 +1,14 @@
-import {
-	Component,
-	OnInit,
-	OnDestroy
-} from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { GridModule } from "../../grid/index";
-import { UIShellModule } from "../../ui-shell/index";
-import { DropdownModule } from "../../dropdown/index";
-import { ButtonModule } from "../../button/index";
-import { InputModule } from "../../input/index";
-import { ProgressIndicatorModule } from "../../progress-indicator/index";
-import { BreadcrumbModule } from "../../breadcrumb/index";
+/* tslint:disable variable-name */
+
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { GridModule } from "../../grid";
+import { UIShellModule } from "../../ui-shell";
+import { DropdownModule } from "../../dropdown";
+import { ButtonModule } from "../../button";
+import { InputModule } from "../../input";
+import { ProgressIndicatorModule } from "../../progress-indicator";
+import { BreadcrumbModule } from "../../breadcrumb";
 import {
 	FormBuilder,
 	FormControl,
@@ -22,44 +19,44 @@ import {
 @Component({
 	selector: "app-multi-step-form",
 	template: `
-		<div ibmGrid>
-			<div ibmRow class="header">
-				<ibm-header name="Patterns">
-					<ibm-hamburger></ibm-hamburger>
-				</ibm-header>
+		<div cdsGrid>
+			<div cdsRow class="header">
+				<cds-header name="Patterns">
+					<cds-hamburger></cds-hamburger>
+				</cds-header>
 			</div>
-			<div ibmRow>
-				<div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
-					<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
-						<ibm-breadcrumb-item href="#1">
+			<div cdsRow>
+				<div cdsCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
+					<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+						<cds-breadcrumb-item href="#1">
 							Dashboard
-						</ibm-breadcrumb-item>
-					</ibm-breadcrumb>
+						</cds-breadcrumb-item>
+					</cds-breadcrumb>
 				</div>
 			</div>
-			<div ibmRow class="sub-heading">
-				<div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
+			<div cdsRow class="sub-heading">
+				<div cdsCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 8}">
 					<h4>Vertical multi-step form</h4>
 				</div>
 			</div>
-			<div ibmRow>
+			<div cdsRow>
 				<div
-					ibmCol
+					cdsCol
 					[columnNumbers]="{'lg': 2, 'md': 2, 'sm': 2}"
 					class="indicator-wrapper">
 					<div class="indicator">
-						<ibm-progress-indicator
+						<cds-progress-indicator
 							orientation="vertical"
 							[steps]="steps"
 							[current]="currentStep">
-						</ibm-progress-indicator>
+						</cds-progress-indicator>
 					</div>
 				</div>
-				<div ibmCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
+				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
 					<ng-container *ngSwitchCase="1">
 						<form [formGroup]="step2FormGroup">
-							<div ibmGrid>
-								<div ibmRow>
+							<div cdsGrid>
+								<div cdsRow>
 									<h4>Create a new workspace</h4>
 									<label class="form-label">
 										When you create a workspace, you connect IBM Cloud
@@ -67,49 +64,49 @@ import {
 										your Terraform templates.
 									</label>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-label>
+								<div cdsRow class="form-item">
+									<cds-label>
 										Workspace name
 										<input
-											ibmText
+											cdsText
 											[autocomplete]="false"
 											formControlName="workspaceName">
-									</ibm-label>
+									</cds-label>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-dropdown
+								<div cdsRow class="form-item">
+									<cds-dropdown
 										class="dropdown"
 										label="Resource group"
 										value="content"
 										formControlName="resourceGroup"
 										[dropUp]="false">
-										<ibm-dropdown-list [items]="resourceGroups"></ibm-dropdown-list>
-									</ibm-dropdown>
+										<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
+									</cds-dropdown>
 								</div>
-								<div ibmRow class="form-item">
-									<ibm-label>
+								<div cdsRow class="form-item">
+									<cds-label>
 										Description (optional)
 										<textarea
-											ibmTextArea
+											cdsTextArea
 											placeholder="What is the purpose of this workspace?"
 											formControlName="purpose"
 											[rows]="3"
 											aria-label="textarea"></textarea>
-									</ibm-label>
+									</cds-label>
 								</div>
-								<div ibmRow class="form-item">
-									<button ibmButton (click)="changeStep(2)">Step 3</button>
+								<div cdsRow class="form-item">
+									<button cdsButton (click)="changeStep(2)">Step 3</button>
 								</div>
 							</div>
 						</form>
 					</ng-container>
 					<ng-container *ngSwitchCase="2">
-						<div ibmGrid>
-							<div ibmRow>
+						<div cdsGrid>
+							<div cdsRow>
 								Step 3 form!
 							</div>
-							<div ibmRow class="form-item">
-								<button ibmButton (click)="changeStep(1)">Step 2</button>
+							<div cdsRow class="form-item">
+								<button cdsButton (click)="changeStep(1)">Step 2</button>
 							</div>
 						</div>
 					</ng-container>
@@ -173,7 +170,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	resourceGroups = [
 		{ content: "None" },
-		{ content: "Resource group 1"},
+		{ content: "Resource group 1" },
 		{ content: "Resource group 2" }
 	];
 
@@ -182,7 +179,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 	constructor(protected formBuilder: FormBuilder) { }
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 
 		this.step2FormGroup = this.formBuilder.group({
 			workspaceName: new FormControl(),
@@ -190,11 +187,11 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 			purpose: new FormControl()
 		});
 
-		this.step2FormGroup.get("resourceGroup").setValue("None");
+		this.step2FormGroup.get("resourceGroup")?.setValue("None");
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 
 	changeStep(step: number) {
@@ -202,8 +199,10 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 	}
 }
 
-storiesOf("Patterns|Forms", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Forms",
+	decorators: [
 		moduleMetadata({
 			declarations: [ MultiStepFormStory ],
 			imports: [
@@ -217,14 +216,17 @@ storiesOf("Patterns|Forms", module)
 				DropdownModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multi step", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-multi-step-form></app-multi-step-form>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-multi-step-form></app-multi-step-form>
+	`
+});
+export const MultiStep = Template.bind({});

@@ -1,4 +1,11 @@
-import { AfterViewInit, Directive, ElementRef, HostBinding, Input } from "@angular/core";
+import {
+	AfterViewInit,
+	Directive,
+	ElementRef,
+	Input,
+	OnChanges,
+	SimpleChanges
+} from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
 
@@ -8,18 +15,26 @@ import { getAttributes } from "@carbon/icon-helpers";
  * Example:
  *
  * ```html
- * <input ibmText/>
+ * <input cdsText/>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
  */
 @Directive({
-	selector: "[ibmIcon]"
+	selector: "[cdsIcon], [ibmIcon]"
 })
-export class IconDirective implements AfterViewInit {
+export class IconDirective implements AfterViewInit, OnChanges {
+
+	/**
+	 * @deprecated since v5 - Use `cdsIcon` input property instead
+	 */
+	@Input() set ibmIcon(iconName: string) {
+		this.cdsIcon = iconName;
+	}
+
 	static titleIdCounter = 0;
 
-	@Input() ibmIcon = "";
+	@Input() cdsIcon = "";
 
 	@Input() size = "16";
 
@@ -38,12 +53,12 @@ export class IconDirective implements AfterViewInit {
 		protected iconService: IconService
 	) {}
 
-	ngAfterViewInit() {
+	renderIcon(iconName: string) {
 		const root = this.elementRef.nativeElement as HTMLElement;
 
 		let icon;
 		try {
-			icon = this.iconService.get(this.ibmIcon, this.size.toString());
+			icon = this.iconService.get(iconName, this.size.toString());
 		} catch (error) {
 			console.warn(error);
 			// bail out
@@ -55,6 +70,7 @@ export class IconDirective implements AfterViewInit {
 		const svgElement = domParser.parseFromString(rawSVG, "image/svg+xml").documentElement;
 
 		let node: ChildNode = root.tagName.toUpperCase() !== "SVG" ? svgElement : svgElement.firstChild;
+		root.innerHTML = ""; // Clear root element
 		while (node) {
 			// importNode makes a clone of the node
 			// this ensures we keep looping over the nodes in the parsed document
@@ -100,6 +116,18 @@ export class IconDirective implements AfterViewInit {
 			// title must be first for screen readers
 			svg.insertBefore(title, svg.firstElementChild);
 			svg.setAttribute("aria-labelledby", `${icon.name}-title-${IconDirective.titleIdCounter}`);
+		}
+	}
+
+	ngAfterViewInit() {
+		this.renderIcon(this.cdsIcon);
+	}
+
+	ngOnChanges({ cdsIcon }: SimpleChanges) {
+		// We want to ignore first change to let the icon register
+		// and add only after view has been initialized
+		if (cdsIcon && !cdsIcon.isFirstChange()) {
+			this.renderIcon(this.cdsIcon);
 		}
 	}
 }

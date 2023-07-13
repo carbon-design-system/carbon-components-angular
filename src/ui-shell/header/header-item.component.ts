@@ -3,7 +3,8 @@ import {
 	Input,
 	Optional,
 	EventEmitter,
-	Output
+	Output,
+	HostBinding
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -12,38 +13,39 @@ import { Router } from "@angular/router";
  * Individual item in the header. May be used a direct child of `HeaderNavigation` or `HeaderMenu`
  */
 @Component({
-	selector: "ibm-header-item",
+	selector: "cds-header-item, ibm-header-item",
 	template: `
-		<li
-			style="height: 100%"
-			role="menuitem">
-			<ng-container [ngSwitch]="useRouter">
-				<ng-template #content><ng-content></ng-content></ng-template>
-				<a
-					*ngSwitchCase="false"
-					class="bx--header__menu-item"
-					tabindex="0"
-					[ngClass]="{'bx--header__menu-item--current' : isCurrentPage}"
-					[href]="href"
-					(click)="navigate($event)">
-					<ng-container *ngTemplateOutlet="content"></ng-container>
-				</a>
-				<a
-					*ngSwitchCase="true"
-					class="bx--header__menu-item"
-					role="menuitem"
-					[routerLinkActive]="['bx--header__menu-item--current']"
-					tabindex="0"
-					[ngClass]="{'bx--header__menu-item--current' : isCurrentPage}"
-					[routerLink]="route"
-					[routerLinkActive]="activeLinkClass">
-					<ng-container *ngTemplateOutlet="content"></ng-container>
-				</a>
-			</ng-container>
-		</li>
-	`
+		<ng-container [ngSwitch]="useRouter">
+			<ng-template #content><ng-content></ng-content></ng-template>
+			<a
+				*ngSwitchCase="false"
+				class="cds--header__menu-item"
+				tabindex="0"
+				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
+				[href]="href"
+				(click)="navigate($event)">
+				<ng-container *ngTemplateOutlet="content"></ng-container>
+			</a>
+			<a
+				*ngSwitchCase="true"
+				class="cds--header__menu-item"
+				[routerLinkActive]="['cds--header__menu-item--current']"
+				tabindex="0"
+				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
+				[routerLink]="route"
+				[routerLinkActive]="activeLinkClass">
+				<ng-container *ngTemplateOutlet="content"></ng-container>
+			</a>
+		</ng-container>
+	`,
+	styles: [`
+		:host {
+			display: list-item;
+		}
+	`]
 })
 export class HeaderItem {
+	@HostBinding("attr.role") role = "listitem";
 	@Input() set href(v: string) {
 		// Needed when component is created dynamically with a model.
 		if (v === undefined) {

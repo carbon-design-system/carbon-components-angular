@@ -9,26 +9,26 @@ import { I18n } from "carbon-components-angular/i18n";
 /**
  * ***Inputs***
  * ```html
- * <ibm-modal-header>Header text</ibm-modal-header>
+ * <cds-modal-header>Header text</cds-modal-header>
  * ```
  *
  * ***Outputs***
  * ```html
- * <ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+ * <cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
  * ```
  */
 @Component({
-	selector: "ibm-modal-header",
+	selector: "cds-modal-header, ibm-modal-header",
 	template: `
-		<header class="{{theme}} bx--modal-header">
+		<header class="cds--modal-header {{theme}}">
 			<ng-content></ng-content>
 			<button
 				*ngIf="showCloseButton"
 				type="button"
-				class="bx--modal-close"
+				class="cds--modal-close"
 				(click)="onClose()">
-				<span class="bx--assistive-text">{{ closeLabel }}</span>
-				<svg ibmIcon="close" size="20" class="bx--modal-close__icon"></svg>
+				<span class="cds--assistive-text">{{ closeLabel }}</span>
+				<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
 			</button>
 		</header>
 
@@ -36,6 +36,7 @@ import { I18n } from "carbon-components-angular/i18n";
 })
 export class ModalHeader {
 	/**
+	 * @deprecated since v5
 	 * Sets the style on the modal heading based on its category.
 	 */
 	@Input() theme = "default";

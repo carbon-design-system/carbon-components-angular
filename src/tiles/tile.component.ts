@@ -12,23 +12,25 @@ import {
  * ## Basic usage
  *
  * ```html
- * <ibm-tile>
+ * <cds-tile>
  * 		tile content
- * </ibm-tile>
+ * </cds-tile>
  * ```
- *
- * <example-url>../../iframe.html?id=components-tiles--basic</example-url>
  */
 @Component({
-	selector: "ibm-tile",
+	selector: "cds-tile, ibm-tile",
 	template: `<ng-content></ng-content>`
 })
 export class Tile {
-	@HostBinding("class.bx--tile") tileClass = true;
+	@HostBinding("class.cds--tile") tileClass = true;
 
-	@HostBinding("class.bx--tile--light") get lightThemeEnabled() {
+	@HostBinding("class.cds--tile--light") get lightThemeEnabled() {
 		return this.theme === "light";
 	}
 
+	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 }

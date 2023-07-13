@@ -6,15 +6,19 @@ import { closestAttr } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
 
+/**
+ * @deprecated as of v5
+ * Use Toggletip or Popover components instead
+ */
 @Component({
-	selector: "ibm-overflow-custom-menu-pane",
+	selector: "cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane",
 	template: `
 		<div
 			[attr.id]="dialogConfig.compID"
 			[attr.aria-label]="dialogConfig.menuLabel"
 			[attr.data-floating-menu-direction]="placement ? placement : null"
-			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
-			class="bx--overflow-menu-options bx--overflow-menu-options--open"
+			[ngClass]="{'cds--overflow-menu--flip': dialogConfig.flip}"
+			class="cds--overflow-menu-options cds--overflow-menu-options--open"
 			role="menu"
 			(click)="onClick($event)"
 			#dialog

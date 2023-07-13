@@ -19,23 +19,21 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
  *  [See demo](../../?path=/story/components-breadcrumb--basic)
- *
- * <example-url>../../iframe.html?id=components-breadcrumb--basic</example-url>
  */
 @Component({
-	selector: "ibm-breadcrumb",
+	selector: "cds-breadcrumb, ibm-breadcrumb",
 	template: `
-	<nav #nav class="bx--breadcrumb"
+	<nav #nav class="cds--breadcrumb"
 		[ngClass]="{
-			'bx--skeleton' : skeleton,
-			'bx--breadcrumb--no-trailing-slash' : noTrailingSlash
+			'cds--skeleton' : skeleton,
+			'cds--breadcrumb--no-trailing-slash' : noTrailingSlash
 		}"
 		[attr.aria-label]="ariaLabel">
 		<ng-template [ngIf]="shouldShowContent">
 			<ng-content></ng-content>
 		</ng-template>
 		<ng-template [ngIf]="!shouldShowOverflow">
-			<ibm-breadcrumb-item
+			<cds-breadcrumb-item
 				*ngFor="let item of items"
 				[href]="item.href"
 				[route]="item.route"
@@ -49,10 +47,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ngTemplateOutlet]="item.template"
 					[ngTemplateOutletContext]="{ $implicit: item }">
 				</ng-template>
-			</ibm-breadcrumb-item>
+			</cds-breadcrumb-item>
 		</ng-template>
 		<ng-template [ngIf]="shouldShowOverflow">
-			<ibm-breadcrumb-item
+			<cds-breadcrumb-item
 				[href]="first?.href"
 				[route]="first?.route"
 				[routeExtras]="first?.routeExtras"
@@ -65,12 +63,12 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ngTemplateOutlet]="first?.template"
 					[ngTemplateOutletContext]="{ $implicit: first }">
 				</ng-template>
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item>
-				<ibm-overflow-menu>
-					<li class="bx--overflow-menu-options__option"
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item>
+				<cds-overflow-menu>
+					<li class="cds--overflow-menu-options__option"
 						*ngFor="let item of overflowItems">
-						<a class="bx--overflow-menu-options__btn"
+						<a class="cds--overflow-menu-options__btn"
 							href="{{item?.href}}"
 							(click)="navigate($event, item)"
 							style="text-decoration: none;">
@@ -82,9 +80,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 							</ng-template>
 						</a>
 					</li>
-				</ibm-overflow-menu>
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item
+				</cds-overflow-menu>
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item
 				[href]="secondLast?.href"
 				[route]="secondLast?.route"
 				[routeExtras]="secondLast?.routeExtras"
@@ -97,8 +95,8 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ngTemplateOutlet]="secondLast?.template"
 					[ngTemplateOutletContext]="{ $implicit: secondLast }">
 				</ng-template>
-			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item
+			</cds-breadcrumb-item>
+			<cds-breadcrumb-item
 				[href]="last?.href"
 				[route]="last?.route"
 				[routeExtras]="last?.routeExtras"
@@ -111,7 +109,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ngTemplateOutlet]="last?.template"
 					[ngTemplateOutletContext]="{ $implicit: last }">
 				</ng-template>
-			</ibm-breadcrumb-item>
+			</cds-breadcrumb-item>
 		</ng-template>
 	</nav>`
 })

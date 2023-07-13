@@ -11,7 +11,6 @@ import {
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
-
 /**
  * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
@@ -21,28 +20,30 @@ import { TabHeaders } from "./tab-headers.component";
  * `Tabs` expects a set of `n-tab` elements
  *
  * ```html
- * <ibm-tabs>
- * 	<ibm-tab heading='tab1'>
+ * <cds-tabs>
+ * 	<cds-tab heading='tab1'>
  * 		tab 1 content
- * 	</ibm-tab>
- * 	<ibm-tab heading='tab1'>
+ * 	</cds-tab>
+ * 	<cds-tab heading='tab1'>
  * 		tab 2 content
- * 	</ibm-tab>
+ * 	</cds-tab>
  * 	<!-- ... -->
- * 	<ibm-tab heading='tab1'>
+ * 	<cds-tab heading='tab1'>
  * 		tab n content
- * 	</ibm-tab>
- * </ibm-tabs>
+ * 	</cds-tab>
+ * </cds-tabs>
  * ```
- *
- * <example-url>../../iframe.html?id=components-tabs--basic</example-url>
  */
 @Component({
-	selector: "ibm-tabs",
+	selector: "cds-tabs, ibm-tabs",
 	template: `
-			<ibm-tab-headers
+		<ng-container *ngIf="skeleton">
+			<cds-tabs-skeleton></cds-tabs-skeleton>
+		</ng-container>
+		<ng-container *ngIf="!skeleton">
+			<cds-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
-				[skeleton]="skeleton"
+				[theme]="theme"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
 				[cacheActive]="cacheActive"
@@ -51,7 +52,7 @@ import { TabHeaders } from "./tab-headers.component";
 				[ariaLabel]="ariaLabel"
 				[ariaLabelledby]="ariaLabelledby"
 				[type]="type">
-			</ibm-tab-headers>
+			</cds-tab-headers>
 			<ng-content></ng-content>
 			<ng-template #before>
 				<ng-content select="[before]"></ng-content>
@@ -59,13 +60,13 @@ import { TabHeaders } from "./tab-headers.component";
 			<ng-template #after>
 				<ng-content select="[after]"></ng-content>
 			</ng-template>
-			<ibm-tab-headers
+			<cds-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
-				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive"
 				[type]="type">
-			</ibm-tab-headers>
+			</cds-tab-headers>
+		</ng-container>
 	`
 })
 export class Tabs implements AfterContentInit, OnChanges {
@@ -83,10 +84,6 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 */
 	@Input() followFocus = true;
 	/**
-	 * Set to `true` to put tabs in a loading state.
-	 */
-	@Input() skeleton = false;
-	/**
 	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
 	 */
 	@Input() isNavigation = false;
@@ -101,7 +98,15 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Sets the type of the `TabHeader`s
 	 */
-	@Input() type: "default" | "container" = "default";
+	@Input() type: "line" | "contained" = "line";
+	/**
+	 * Sets the theme of `TabHeader`s
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+	/**
+	 * Set state of tabs to skeleton
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
@@ -110,8 +115,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 	/**
 	 * Content child of the projected header component
 	 */
-	// @ts-ignore
-	@ContentChild(TabHeaders, { static: false }) tabHeaders;
+	@ContentChild(TabHeaders) tabHeaders;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial

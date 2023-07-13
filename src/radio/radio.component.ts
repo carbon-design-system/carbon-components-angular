@@ -16,37 +16,37 @@ import { RadioChange } from "./radio-change.class";
  * source: `src/forms/radio.component.ts`
  *
  * ```html
- * <ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
+ *	<cds-radio [(ngModel)]="radioState">Radio</cds-radio>
  * ```
  *
- * Also see: [`RadioGroup`](#ibm-radio-group)
+ * Also see: [`RadioGroup`](#cds-radio-group)
  */
 @Component({
-	selector: "ibm-radio",
+	selector: "cds-radio, ibm-radio",
 	template: `
 		<input
 			*ngIf="!skeleton"
-			class="bx--radio-button"
+			class="cds--radio-button"
 			type="radio"
 			[checked]="checked"
 			[disabled]="disabled || disabledFromGroup"
 			[name]="name"
 			[id]="id"
 			[required]="required"
-			[value]="value"
+			[attr.value]="value"
 			[attr.aria-labelledby]="ariaLabelledby"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
-		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
+		<div *ngIf="skeleton" class="cds--radio-button cds--skeleton"></div>
 		<label
-			class="bx--radio-button__label"
+			class="cds--radio-button__label"
 			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
-				'bx--skeleton': skeleton
+				'cds--skeleton': skeleton
 			}"
 			[for]="id"
 			id="label-{{id}}">
-			<span class="bx--radio-button__appearance"></span>
+			<span class="cds--radio-button__appearance"></span>
 			<ng-content></ng-content>
 		</label>
 	`,
@@ -86,7 +86,7 @@ export class Radio {
 	/**
 	 * Used to set the `aria-label` attribute on the input label.
 	 */
-	@Input() ariaLabel = "";
+	@Input() ariaLabel: string;
 
 	/**
 	 * Sets the HTML required attribute
@@ -95,7 +95,7 @@ export class Radio {
 	/**
 	 * The value of the `Radio`.
 	 */
-	@Input() value = "";
+	@Input() value;
 	/**
 	 * Set to `true` for a loading table.
 	 */
@@ -109,9 +109,9 @@ export class Radio {
 	 */
 	@Output() change = new EventEmitter<RadioChange>();
 
-	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
+	@HostBinding("class.cds--radio-button-wrapper") hostClass = true;
 
-	@HostBinding("class.bx--radio-button-wrapper--label-left") get labelLeft() {
+	@HostBinding("class.cds--radio-button-wrapper--label-left") get labelLeft() {
 		return this.labelPlacement === "left";
 	}
 

@@ -15,13 +15,13 @@ import { IconModule } from "../icon/index";
 
 @Component({
 	template: `
-	<ibm-dropdown
+	<cds-dropdown
 		placeholder="test"
 		class="custom-class"
 		(selected)="onSelect()"
 		[(ngModel)]="model">
-		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-	</ibm-dropdown>`
+		<cds-dropdown-list [items]="items"></cds-dropdown-list>
+	</cds-dropdown>`
 })
 class DropdownTest {
 	model = null;
@@ -66,7 +66,7 @@ describe("Dropdown", () => {
 		fixture = TestBed.createComponent(DropdownTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--list-box__field"));
+		element = fixture.debugElement.query(By.css(".cds--list-box__field"));
 		element.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(element.nativeElement.getAttribute("aria-expanded")).toEqual("true");
@@ -77,12 +77,12 @@ describe("Dropdown", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-dropdown"));
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
 		element.componentInstance.menuIsClosed = false;
 		fixture.detectChanges();
-		element.nativeElement.querySelector(".bx--list-box__menu-item__option").click();
+		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("one");
+		expect(element.nativeElement.querySelector(".cds--list-box__label").textContent).toEqual("one");
 		expect(wrapper.onSelect).toHaveBeenCalled();
 		expect(wrapper.model.content).toEqual("one");
 		expect(wrapper.model.selected).toBe(true);
@@ -91,12 +91,12 @@ describe("Dropdown", () => {
 	it("should set the placeholder text to test", () => {
 		fixture = TestBed.createComponent(DropdownTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-dropdown"));
-		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("test");
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+		expect(element.nativeElement.querySelector(".cds--list-box__label").textContent).toEqual("test");
 	});
 
 	it("should keep custom classes on the host el", () => {
-		const el = fixture.debugElement.query(By.css("ibm-dropdown"));
+		const el = fixture.debugElement.query(By.css("cds-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
 	});
 });

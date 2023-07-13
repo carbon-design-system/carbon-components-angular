@@ -10,10 +10,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 @Component({
-	selector: "ibm-breadcrumb-item",
+	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
 	<a
-		class="bx--link"
+		class="cds--link"
 		[href]="(skeleton ? '/#' : href)"
 		(click)="navigate($event)"
 		[attr.aria-current]="(current ? ariaCurrent : null)"
@@ -54,9 +54,9 @@ export class BreadcrumbItemComponent {
 
 	@Input() ariaCurrent = "page";
 
-	@HostBinding("class.bx--breadcrumb-item--current") @Input() current = false;
+	@HostBinding("class.cds--breadcrumb-item--current") @Input() current = false;
 
-	@HostBinding("class.bx--breadcrumb-item") itemClass = true;
+	@HostBinding("class.cds--breadcrumb-item") itemClass = true;
 
 	protected _href: string;
 

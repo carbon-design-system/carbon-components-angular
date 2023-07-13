@@ -10,14 +10,14 @@ import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
-	selector: "[ibmTableExpandButton]",
+	selector: "[cdsTableExpandButton], [ibmTableExpandButton]",
 	template: `
 		<button
 			*ngIf="expandable"
-			class="bx--table-expand__button"
+			class="cds--table-expand__button"
 			[attr.aria-label]="getAriaLabel() | async"
 			(click)="expandRow.emit()">
-			<svg ibmIcon="chevron--right" size="16" class="bx--table-expand__svg"></svg>
+			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
 		</button>
 	`
 })
@@ -43,7 +43,7 @@ export class TableExpandButton {
 
 	@Input() skeleton = false;
 
-	@HostBinding("class.bx--table-expand") expandClass = true;
+	@HostBinding("class.cds--table-expand") expandClass = true;
 
 	@HostBinding("attr.data-previous-value") get previousValue() {
 		return this.expanded ? "collapsed" : null;

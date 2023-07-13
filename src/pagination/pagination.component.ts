@@ -28,7 +28,7 @@ export interface PaginationTranslations {
  * [See demo](../../?path=/story/components-pagination--basic)
  *
  * ```html
- * <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
+ *	<cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
  * ```
  *
  * In your `selectPage()` method set the `model.currentPage` to selected page, _after_
@@ -43,76 +43,78 @@ export interface PaginationTranslations {
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * ```
- *
- * <example-url>../../iframe.html?id=components-pagination--basic</example-url>
  */
 @Component({
-	selector: "ibm-pagination",
+	selector: "cds-pagination, ibm-pagination",
 	template: `
 	<div
-		class="bx--pagination"
+		class="cds--pagination"
 		[ngClass]="{
-			'bx--skeleton': skeleton
+			'cds--skeleton': skeleton
 		}">
 		<!-- left skeleton div -->
-		<div *ngIf="skeleton" class="bx--pagination__left">
-			<p class="bx--skeleton__text" style="width: 70px"></p>
-			<p class="bx--skeleton__text" style="width: 35px"></p>
-			<p class="bx--skeleton__text" style="width: 105px"></p>
+		<div *ngIf="skeleton" class="cds--pagination__left">
+			<p class="cds--skeleton__text" style="width: 70px"></p>
+			<p class="cds--skeleton__text" style="width: 35px"></p>
+			<p class="cds--skeleton__text" style="width: 105px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__left">
+		<div *ngIf="!skeleton" class="cds--pagination__left">
 			<ng-container *ngIf="showPageInput">
-				<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
+				<label class="cds--pagination__text" [for]="itemsPerPageSelectId">
 					{{itemsPerPageText.subject | async}}
 				</label>
 				<div
-					class="bx--select bx--select--inline bx--select__item-count"
-					[class.bx--select--disabled]="pageInputDisabled">
+					class="cds--select cds--select--inline cds--select__item-count"
+					[class.cds--select--disabled]="pageInputDisabled">
 					<select
 						[id]="itemsPerPageSelectId"
 						[(ngModel)]="itemsPerPage"
 						[disabled]="pageInputDisabled"
-						class="bx--select-input">
+						class="cds--select-input">
 						<option
-							class="bx--select-option"
+							class="cds--select-option"
 							*ngFor="let option of itemsPerPageOptions"
 							[value]="option">
 								{{ option }}
 						</option>
 					</select>
 					<svg
-						ibmIcon="chevron--down"
+						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit"
-						class="bx--select__arrow"
+						class="cds--select__arrow"
 						aria-hidden="true"
 						[attr.ariaLabel]="optionsListText.subject | async">
 					</svg>
 				</div>
 			</ng-container>
-			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="cds--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="cds--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="pagesUnknown" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="pagesUnknown" class="cds--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
 
 		<!-- right skeleton div -->
-		<div *ngIf="skeleton" class="bx--pagination__right">
-			<p class="bx--skeleton__text" style="width: 70px"></p>
+		<div *ngIf="skeleton" class="cds--pagination__right">
+			<p class="cds--skeleton__text" style="width: 70px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__right">
+		<div *ngIf="!skeleton" class="cds--pagination__right">
+			<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__page-text">
+				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
+				{{pageText.subject | async}}
+			</span>
 			<ng-container *ngIf="showPageInput">
 				<div
-					class="bx--select bx--select--inline bx--select__page-number"
-					[class.bx--select--disabled]="pageInputDisabled">
-					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{pageText.subject | async}}</label>
+					class="cds--select cds--select--inline cds--select__page-number"
+					[class.cds--select--disabled]="pageInputDisabled">
+					<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>
 					<input
 						*ngIf="pageOptions.length > pageSelectThreshold"
 						style="padding-right: 1rem; margin-right: 1rem;"
@@ -120,68 +122,64 @@ export interface PaginationTranslations {
 						type="number"
 						min="1"
 						[max]="pageOptions.length"
-						class="bx--select-input"
+						class="cds--select-input"
 						[(ngModel)]="currentPage">
 					<select
 						*ngIf="pageOptions.length <= pageSelectThreshold"
 						[id]="currentPageSelectId"
-						class="bx--select-input"
+						class="cds--select-input"
 						[disabled]="pageInputDisabled"
 						[(ngModel)]="currentPage">
-						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
+						<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<svg
 						*ngIf="pageOptions.length <= 1000"
-						ibmIcon="chevron--down"
+						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit;"
-						class="bx--select__arrow"
+						class="cds--select__arrow"
 						[attr.ariaLabel]="optionsListText.subject | async">
 					</svg>
 				</div>
 			</ng-container>
 
-			<span *ngIf="!pagesUnknown && lastPage <= 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage <= 1" class="cds--pagination__text">
 				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="!pagesUnknown && lastPage > 1" class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown && lastPage > 1" class="cds--pagination__text">
 				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
 				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
 			</span>
-			<span *ngIf="pagesUnknown" class="bx--pagination__text">
-				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
-				{{pageText.subject | async}} {{currentPage}}
-			</span>
-			<div class="bx--pagination__control-buttons">
+			<div class="cds--pagination__control-buttons">
 				<button
-					ibmButton="ghost"
+					cdsButton="ghost"
 					iconOnly="true"
-					class="bx--pagination__button bx--pagination__button--backward"
+					class="cds--pagination__button cds--pagination__button--backward"
 					[ngClass]="{
-						'bx--pagination__button--no-index': currentPage <= 1 || disabled
+						'cds--pagination__button--no-index': currentPage <= 1 || disabled
 					}"
 					tabindex="0"
 					[attr.aria-label]="backwardText.subject | async"
 					(click)="selectPage.emit(previousPage)"
 					[disabled]="(currentPage <= 1 || disabled ? true : null)">
-					<svg ibmIcon="caret--left" size="16" class="bx--btn__icon"></svg>
+					<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>
 				</button>
 
 				<button
-					ibmButton="ghost"
+					cdsButton="ghost"
 					iconOnly="true"
 					class="
-						bx--pagination__button
-						bx--pagination__button--forward"
+						cds--pagination__button
+						cds--pagination__button--forward"
 					[ngClass]="{
-						'bx--pagination__button--no-index': currentPage >= lastPage || disabled
+						'cds--pagination__button--no-index': currentPage >= lastPage || disabled
 					}"
 					tabindex="0"
 					[attr.aria-label]="forwardText.subject | async"
 					(click)="selectPage.emit(nextPage)"
 					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-					<svg ibmIcon="caret--right" size="16" class="bx--btn__icon"></svg>
+					<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>
 				</button>
 			</div>
 		</div>

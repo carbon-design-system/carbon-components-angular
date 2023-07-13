@@ -1,61 +1,81 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select, text, number } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { ProgressBarModule } from "./progress-bar.module";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { ProgressBarModule, ProgressBar } from "./";
 
-storiesOf("Components|Progress bar", module)
-	.addDecorator(
+export default {
+	title: "Components/Progress Bar",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				ProgressBarModule,
-				DocumentationModule
-			]
+			imports: [ProgressBarModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-progress-bar
-				[label]="label"
-				[helperText]="helperText"
-				[max]="max"
-				[size]="size"
-				[status]="status"
-				[type]="type"
-				[value]="value">
-			</ibm-progress-bar>
-		`,
-		props: {
-			label: text("Label", "Progress bar label"),
-			helperText: text("Helper text", "Optional helper text"),
-			max: number("max", 100),
-			size: select("Size", ["big", "small"], "big"),
-			status: select("Status", ["active", "finished", "error"], "active"),
-			type: select("Type", ["default", "inline", "indented"], "default"),
-			value: number("Current value", 35)
-		}
-	}))
-	.add("Indeterminate", () => ({
-		template: `
-			<ibm-progress-bar
-				[label]="label"
-				[helperText]="helperText"
-				[size]="size"
-				[status]="status"
-				[type]="type">
-			</ibm-progress-bar>`
-		,
-		props: {
-			label: text("Label", "Progress bar label"),
-			helperText: text("Helper text", "Optional helper text"),
-			size: select("Size", ["big", "small"], "big"),
-			status: select("Status", ["active", "finished", "error"], "active"),
-			type: select("Type", ["default", "inline", "indented"], "default")
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_progress_bar.progressbar.html"></ibm-documentation>
-		`
-	}));
+	],
+	component: ProgressBar
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<cds-progress-bar
+			[label]="label"
+			[helperText]="helperText"
+			[max]="max"
+			[size]="size"
+			[status]="status"
+			[type]="type"
+			[value]="value">
+		</cds-progress-bar>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	label: "Progress bar label",
+	helperText: "Optional helper text",
+	max: 100,
+	size: "big",
+	status: "active",
+	type: "default",
+	value: 35
+};
+
+Basic.argTypes = {
+	size: {
+		options: ["big", "small"],
+		control: "radio"
+	},
+	status: {
+		options: ["active", "finished", "error"],
+		control: "radio"
+	},
+	type: {
+		options: ["default", "inline", "indented"],
+		control: "radio"
+	}
+};
+
+const IndeterminateTemplate: Story = (args) => ({
+	props: args,
+	template: `
+		<cds-progress-bar
+			[label]="label"
+			[helperText]="helperText"
+			[size]="size"
+			[status]="status"
+			[type]="type">
+		</cds-progress-bar>
+	`
+});
+export const Indeterminate = IndeterminateTemplate.bind({});
+Indeterminate.args = {
+	label: "Progress bar label",
+	helperText: "Optional helper text",
+	size: "big",
+	type: "default"
+};
+
+Indeterminate.argTypes = {
+	...Basic.argTypes,
+	status: {
+		control: false
+	}
+};

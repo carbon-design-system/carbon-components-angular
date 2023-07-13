@@ -12,58 +12,65 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
- * `ibm-select` provides a styled `select` component.
+ * `cds-select` provides a styled `select` component.
  *
  * [See demo](../../?path=/story/components-select--basic)
  *
  * Example:
  *
  * ```
- * <ibm-select [(ngModel)]="model">
+ * <cds-select [(ngModel)]="model">
  * 	<option value="default" disabled selected hidden>Choose an option</option>
  * 	<option value="option1">Option 1</option>
  *	<option value="option2">Option 2</option>
  * 	<option value="option3">Option 3</option>
- * </ibm-select>
+ * </cds-select>
  *	```
- *
- * <example-url>../../iframe.html?id=components-select--basic</example-url>
  */
 @Component({
-	selector: "ibm-select",
+	selector: "cds-select, ibm-select",
 	template: `
-		<div class="bx--form-item">
+		<div class="cds--form-item">
 			<ng-template [ngIf]="skeleton">
-				<div *ngIf="label" class="bx--label bx--skeleton"></div>
-				<div class="bx--select bx--skeleton"></div>
+				<div *ngIf="label" class="cds--label cds--skeleton"></div>
+				<div class="cds--select cds--skeleton"></div>
 			</ng-template>
 			<div
 				*ngIf="!skeleton"
-				class="bx--select"
+				class="cds--select"
 				[ngClass]="{
-					'bx--select--inline': display === 'inline',
-					'bx--select--light': theme === 'light',
-					'bx--select--invalid': invalid,
-					'bx--select--warning': warn,
-					'bx--select--disabled': disabled
+					'cds--select--inline': display === 'inline',
+					'cds--select--light': theme === 'light',
+					'cds--select--invalid': invalid,
+					'cds--select--warning': warn,
+					'cds--select--disabled': disabled
 				}">
-				<label *ngIf="label" [for]="id" class="bx--label">
+				<label
+					*ngIf="label"
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div *ngIf="helperText" class="bx--form__helper-text">
+				<div *ngIf="display === 'inline'; else noInline" class="cds--select-input--inline__wrapper">
+					<ng-container *ngTemplateOutlet="noInline"></ng-container>
+				</div>
+				<div
+					*ngIf="helperText"
+					class="cds--form__helper-text"
+					[ngClass]="{
+						'cds--form__helper-text--disabled': disabled
+					}">
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
-				<div *ngIf="display === 'inline'; else noInline" class="bx--select-input--inline__wrapper">
-					<ng-container *ngTemplateOutlet="noInline"></ng-container>
 				</div>
 			</div>
 		</div>
 
 		<!-- select element: dynamically projected based on 'display' variant -->
 		<ng-template #noInline>
-			<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
+			<div class="cds--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 				<select
 					#select
 					[attr.id]="id"
@@ -71,10 +78,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[disabled]="disabled"
 					(change)="onChange($event)"
 					[attr.aria-invalid]="invalid ? 'true' : null"
-					class="bx--select-input"
+					class="cds--select-input"
 					[ngClass]="{
-						'bx--select-input--xl': size === 'xl',
-						'bx--select-input--sm': size === 'sm'
+						'cds--select-input--sm': size === 'sm',
+						'cds--select-input--md': size === 'md',
+						'cds--select-input--lg': size === 'lg'
 					}">
 					<ng-content></ng-content>
 				</select>
@@ -83,7 +91,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					preserveAspectRatio="xMidYMid meet"
 					style="will-change: transform;"
 					xmlns="http://www.w3.org/2000/svg"
-					class="bx--select__arrow"
+					class="cds--select__arrow"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16"
@@ -92,36 +100,28 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</svg>
 				<svg
 					*ngIf="!warn && invalid"
-					ibmIcon="warning--filled"
+					cdsIcon="warning--filled"
 					size="16"
-					class="bx--select__invalid-icon">
+					class="cds--select__invalid-icon">
 				</svg>
 				<svg
 					*ngIf="!invalid && warn"
-					ibmIcon="warning--alt--filled"
+					cdsIcon="warning--alt--filled"
 					size="16"
-					class="bx--select__invalid-icon bx--select__invalid-icon--warning">
+					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>
 			</div>
-			<div *ngIf="invalid && invalidText && !warn" role="alert" class="bx--form-requirement" aria-live="polite">
+			<div
+				*ngIf="invalid && invalidText && !warn" role="alert" class="cds--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</ng-template>
 	`,
-	styles: [`
-		.bx--select--inline .bx--form__helper-text {
-			order: 4;
-		}
-
-		.bx--select--inline:not(.bx--select--invalid) .bx--form__helper-text {
-			margin-top: 0;
-		}
-	`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -167,7 +167,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Number input field render size
 	 */
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to true to disable component.
 	 */
@@ -182,6 +182,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() invalid = false;
 
 	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
@@ -189,8 +190,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	@Output() valueChange = new EventEmitter();
 
-	// @ts-ignore
-	@ViewChild("select", { static: false }) select: ElementRef;
+	@ViewChild("select") select: ElementRef;
 
 	@Input() set value(v) {
 		this._value = v;

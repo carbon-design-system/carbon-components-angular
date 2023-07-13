@@ -1,14 +1,15 @@
+/* tslint:disable variable-name */
+
 import { Component } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
-import { GridModule } from "../../grid/index";
-import { UIShellModule } from "../../ui-shell/index";
-import { ProgressIndicatorModule } from "../../progress-indicator/index";
-import { PlaceholderModule } from "../../placeholder/index";
-import { InputModule } from "../../input/index";
-import { DropdownModule } from "../../dropdown/index";
-import { LoadingModule } from "../../loading/index";
-import { ButtonModule } from "../../button/index";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { GridModule } from "../../grid";
+import { UIShellModule } from "../../ui-shell";
+import { ProgressIndicatorModule } from "../../progress-indicator";
+import { PlaceholderModule } from "../../placeholder";
+import { InputModule } from "../../input";
+import { DropdownModule } from "../../dropdown";
+import { LoadingModule } from "../../loading";
+import { ButtonModule } from "../../button";
 import {
 	FormGroup,
 	FormControl,
@@ -20,58 +21,58 @@ import {
 @Component({
 	selector: "app-sample-large-loading",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow class="progress-indicator-wrapper">
-			<ibm-progress-indicator [steps]="steps"></ibm-progress-indicator>
+		<div cdsRow class="progress-indicator-wrapper">
+			<cds-progress-indicator [steps]="steps"></cds-progress-indicator>
 		</div>
-		<div ibmRow class="form">
+		<div cdsRow class="form">
 			<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-				<div class="bx--form-item">
-					<ibm-label
+				<div class="cds--form-item">
+					<cds-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('input')"
 						invalidText="Please enter a response">
 						Text input label
 						<input
-							ibmText
+							cdsText
 							formControlName="input"
 							placeholder="Optional placeholder text">
-					</ibm-label>
+					</cds-label>
 				</div>
-				<div class="bx--form-item">
-					<ibm-label
+				<div class="cds--form-item">
+					<cds-label
 						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
 						[invalid]="isInvalid('textArea')"
 						invalidText="Please enter a response">
 						Text input label
 						<textarea
-							ibmTextArea
+							cdsTextArea
 							formControlName="textArea"
 							placeholder="Optional placeholder text">
 						</textarea>
-					</ibm-label>
+					</cds-label>
 				</div>
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<div class="dropdown-wrapper">
-						<ibm-dropdown
+						<cds-dropdown
 							label="Choose one option"
 							[invalid]="isInvalid('dropdown')"
 							invalidText="Please choose an option"
 							placeholder="Select an option"
 							formControlName="dropdown">
-							<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-						</ibm-dropdown>
+							<cds-dropdown-list [items]="items"></cds-dropdown-list>
+						</cds-dropdown>
 					</div>
 				</div>
-				<div class="bx--form-item">
+				<div class="cds--form-item">
 					<button
 						class="form-button"
-						ibmButton
+						cdsButton
 						type="submit">
 						Show Loading
 					</button>
@@ -79,12 +80,12 @@ import {
 			</form>
 		</div>
 	</div>
-	<ibm-loading
+	<cds-loading
 		*ngIf="isLoading"
 		[isActive]="isLoading"
 		size="normal"
 		[overlay]="overlay">
-	</ibm-loading>
+	</cds-loading>
 	`,
 	styles: [`
 		.header {
@@ -106,9 +107,9 @@ class SampleLargeLoading {
 	overlay = false;
 
 	formGroup = new FormGroup({
-		input: new FormControl("", [ Validators.required ]),
-		textArea: new FormControl("", [ Validators.required ]),
-		dropdown: new FormControl("", [ Validators.required ])
+		input: new FormControl("", [Validators.required]),
+		textArea: new FormControl("", [Validators.required]),
+		dropdown: new FormControl("", [Validators.required])
 	});
 
 	steps = [
@@ -170,14 +171,16 @@ class SampleLargeLoading {
 	isInvalid(controlName: string): boolean {
 		const control = this.formGroup.get(controlName);
 
-		return control && control.invalid && (control.dirty || control.touched);
+		return (control && control.invalid && (control.dirty || control.touched)) as boolean;
 	}
 }
 
-storiesOf("Patterns|Loading", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Loading",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleLargeLoading ],
+			declarations: [SampleLargeLoading],
 			imports: [
 				DropdownModule,
 				GridModule,
@@ -191,14 +194,17 @@ storiesOf("Patterns|Loading", module)
 				ButtonModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Large Loading", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-large-loading></app-sample-large-loading>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-large-loading></app-sample-large-loading>
+	`
+});
+export const LargeLoading = Template.bind({});

@@ -1,22 +1,28 @@
-import { Component } from "@angular/core";
+import { Component, HostBinding } from "@angular/core";
 
 /**
  * Container for switcher items.
  *
  * ```html
- * <ibm-switcher-list>
- * 	<ibm-switcher-list-item>one</ibm-switcher-list-item>
- * 	<ibm-switcher-list-item [active]="true">two</ibm-switcher-list-item>
- * 	<ibm-switcher-list-item>three</ibm-switcher-list-item>
- * </ibm-switcher-list>
+ * <cds-switcher-list>
+ * 	<cds-switcher-list-item>one</cds-switcher-list-item>
+ * 	<cds-switcher-list-item [active]="true">two</cds-switcher-list-item>
+ * 	<cds-switcher-list-item>three</cds-switcher-list-item>
+ * </cds-switcher-list>
  * ```
  */
 @Component({
-	selector: "ibm-switcher-list",
+	selector: "cds-switcher-list, ibm-switcher-list",
 	template: `
-		<ul class="bx--switcher">
 			<ng-content></ng-content>
-		</ul>
-	`
+	`,
+	styles: [`
+		:host {
+			display: block;
+		}
+	`]
 })
-export class SwitcherList {}
+export class SwitcherList {
+	@HostBinding("class.cds--switcher") switcher = true;
+	@HostBinding("attr.role") role = "list";
+}

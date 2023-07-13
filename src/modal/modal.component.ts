@@ -1,4 +1,3 @@
-import { ModalService } from "./modal.service";
 import {
 	AfterViewInit,
 	Component,
@@ -16,17 +15,18 @@ import {
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
+import { BaseModalService } from "./base-modal.service";
 
 /**
  * Component to create modals for presenting content.
  *
  * [See demo](../../?path=/story/components-modal--basic)
  *
- * Using a modal in your application requires `ibm-placeholder` which would generally be
+ * Using a modal in your application requires `cds-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
 ```html
-<ibm-placeholder></ibm-placeholder>
+<cds-placeholder></cds-placeholder>
 ```
  *
  * A more complete example for `Modal` is given as follows:
@@ -37,17 +37,17 @@ import { cycleTabs, getFocusElementList } from "carbon-components-angular/common
 @Component({
 	selector: "app-sample-modal",
 	template: `
-				<ibm-modal size="xl" (overlaySelected)="closeModal()">
-					<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+				<cds-modal size="xl" (overlaySelected)="closeModal()">
+					<cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
 							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
-								<svg ibmIcon="info" size="sm"></svg>
+								<svg cdsIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
 						</section>
-					<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
-				</ibm-modal>`,
+					<cds-modal-footer><button cdsButton="primary" (click)="closeModal()">Close</button></cds-modal-footer>
+				</cds-modal>`,
 	styleUrls: ["./sample-modal.component.scss"]
 })
 export class SampleModal extends BaseModal {
@@ -65,8 +65,8 @@ export class SampleModal extends BaseModal {
 @Component({
 	selector: "app-modal-demo",
 	template: `
-				<button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
-				<ibm-placeholder></ibm-placeholder>`
+				<button cdsButton="primary" (click)="openModal('drill')">Drill-down modal</button>
+				<cds-placeholder></cds-placeholder>`
 })
 export class ModalDemo {
 	openModal() {
@@ -74,23 +74,21 @@ export class ModalDemo {
 	}
 }
 ```
- *
- * <example-url>../../iframe.html?id=components-modal--basic</example-url>
  */
 @Component({
-	selector: "ibm-modal",
+	selector: "cds-modal, ibm-modal",
 	template: `
-		<ibm-overlay
+		<cds-overlay
 			[theme]="theme"
 			[open]="open"
 			(overlaySelect)="overlaySelected.emit()">
 			<div
-				class="bx--modal-container"
+				class="cds--modal-container"
 				[ngClass]="{
-					'bx--modal-container--xs': size === 'xs',
-					'bx--modal-container--sm': size === 'sm',
-					'bx--modal-container--md': size === 'md',
-					'bx--modal-container--lg': size === 'lg'
+					'cds--modal-container--xs': size === 'xs',
+					'cds--modal-container--sm': size === 'sm',
+					'cds--modal-container--md': size === 'md',
+					'cds--modal-container--lg': size === 'lg'
 				}"
 				role="dialog"
 				aria-modal="true"
@@ -100,54 +98,25 @@ export class ModalDemo {
 				<ng-content></ng-content>
 				<div
 					*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"
-					class="bx--modal-content--overflow-indicator">
+					class="cds--modal-content--overflow-indicator">
 				</div>
 			</div>
-		</ibm-overlay>
+		</cds-overlay>
 	`
 })
 export class Modal implements AfterViewInit, OnChanges, OnDestroy {
-
-	/**
-	 * Label for the modal.
-	 *
-	 * @deprecated since v4
-	 */
-	@Input() set modalLabel(value: string) {
-		this.ariaLabel = value;
-	}
-
-	get modalLabel() {
-		return this.ariaLabel;
-	}
-
-	/**
-	 * This detects whether or not the modal contains scrolling content.
-	 *
-	 * To force trigger a detection (ie. on window resize), change or reset the value of the modal content.
-	 *
-	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
-	 */
-	get shouldShowScrollbar() {
-		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".bx--modal-content") : null;
-		if (!modalContent) {
-			return false;
-		}
-
-		// get rounded value from height to match integer returned from scrollHeight
-		const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
-		const modalContentScrollHeight = modalContent.scrollHeight;
-		return modalContentScrollHeight > modalContentHeight;
-	}
 	/**
 	 * Size of the modal to display.
 	 */
-	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
+	@Input() size: "xs" | "sm"| "md" | "lg" = "md";
 	/**
 	 * Classification of the modal.
 	 */
 	@Input() theme: "default" | "danger" = "default";
 
+	/**
+	 * Label for the modal.
+	 */
 	@Input() ariaLabel = "default";
 
 	/**
@@ -179,7 +148,6 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 */
-	// @ts-ignore
 	@ViewChild("modal", { static: true }) modal: ElementRef;
 
 	/**
@@ -191,7 +159,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 * Creates an instance of `Modal`.
 	 */
 	constructor(
-		public modalService: ModalService,
+		public modalService: BaseModalService,
 		@Inject(DOCUMENT) private document: Document,
 		private renderer: Renderer2
 	) { }
@@ -203,10 +171,10 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 				// to become visible, so that we can set focus
 				setTimeout(() => this.focusInitialElement(), 100);
 				// Prevent scrolling on open
-				this.renderer.addClass(this.document.body, "bx--body--with-modal-open");
+				this.renderer.addClass(this.document.body, "cds--body--with-modal-open");
 			} else if (!open.currentValue) {
 				// Enable scrolling on close
-				this.renderer.removeClass(this.document.body, "bx--body--with-modal-open");
+				this.renderer.removeClass(this.document.body, "cds--body--with-modal-open");
 			} else if (this.trigger) {
 				this.trigger.focus();
 			}
@@ -228,8 +196,10 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		switch (event.key) {
 			case "Escape": {
 				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
-				this.modalService.destroy();  // destroy top (latest) modal
+				// Manually close modal
+				this.open = false;
 				this.close.emit();
+				this.modalService.destroy();  // destroy top (latest) modal
 				break;
 			}
 
@@ -240,9 +210,28 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		}
 	}
 
+	/**
+	 * This detects whether or not the modal contains scrolling content.
+	 *
+	 * To force trigger a detection (ie. on window resize), change or reset the value of the modal content.
+	 *
+	 * Use the `hasScrollingContent` input to manually override the overflow indicator.
+	 */
+	get shouldShowScrollbar() {
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".cds--modal-content") : null;
+		if (modalContent) {
+			// get rounded value from height to match integer returned from scrollHeight
+			const modalContentHeight = Math.ceil(modalContent.getBoundingClientRect().height);
+			const modalContentScrollHeight = modalContent.scrollHeight;
+			return modalContentScrollHeight > modalContentHeight;
+		} else {
+			return false;
+		}
+	}
+
 	// Remove class preventing scrolling
 	ngOnDestroy() {
-		this.renderer.removeClass(this.document.body, "bx--body--with-modal-open");
+		this.renderer.removeClass(this.document.body, "cds--body--with-modal-open");
 	}
 
 	protected focusInitialElement() {

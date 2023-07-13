@@ -22,7 +22,7 @@ export interface PaginationNavTranslations {
  * [See demo](../../?path=/story/components-pagination-nav--basic)
  *
  * ```html
- * <ibm-pagination-nav [model]="model" (selectPage)="selectPage($event)"></ibm-pagination-nav>
+ * <cds-pagination-nav [model]="model" (selectPage)="selectPage($event)"></cds-pagination-nav>
  * ```
  *
  * In your `selectPage()` method set the `model.currentPage` to selected page, _after_
@@ -37,74 +37,69 @@ export interface PaginationNavTranslations {
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * ```
- *
- * <example-url>../../iframe.html?id=components-pagination-nav--basic</example-url>
  */
 @Component({
-	selector: "ibm-pagination-nav",
+	selector: "cds-pagination-nav, ibm-pagination-navm",
 	template: `
 	<div>
-		<div class="bx--pagination-nav">
-			<ul class="bx--pagination-nav__list">
-				<li class="bx--pagination-nav__list-item">
-					<button
-						class="bx--btn bx--btn--ghost bx--pagination-nav-previous
-						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+		<div class="cds--pagination-nav">
+			<ul class="cds--pagination-nav__list">
+				<li class="cds--pagination-nav__list-item">
+					<cds-icon-button
+						kind="ghost"
+						size="md"
+						(click)="jumpToPrevious()"
 						[disabled]="leftArrowDisabled"
-						(click)="jumpToPrevious()">
-						<span class="bx--assistive-text">{{previousItemText.subject | async}}</span>
+						[description]="previousItemText.subject | async">
 						<svg
-							ibmIcon="caret--left"
+							cdsIcon="caret--left"
 							size="16"
-							style="display: inherit"
-							class="bx--btn__icon">
+							class="cds--btn__icon">
 						</svg>
-					</button>
+					</cds-icon-button>
 				</li>
-				<ibm-pagination-nav-item
+				<cds-pagination-nav-item
 					*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"
 					page="1"
 					(click)="currentPage = 1"
 					[isActive]="currentPage == 1">
-				</ibm-pagination-nav-item>
-				<ibm-pagination-overflow
+				</cds-pagination-nav-item>
+				<cds-pagination-overflow
 					*ngIf="frontCuts"
 					[count]="frontCuts"
 					[fromIndex]="startOffset"
 					(change)="handleOverflowSelection($event)">
-				</ibm-pagination-overflow>
-				<ibm-pagination-nav-item
+				</cds-pagination-overflow>
+				<cds-pagination-nav-item
 					*ngFor="let page of getPages();"
 					[page]="page"
 					(click)="currentPage = page"
 					[isActive]="currentPage == page">
-				</ibm-pagination-nav-item>
-				<ibm-pagination-overflow
+				</cds-pagination-nav-item>
+				<cds-pagination-overflow
 					*ngIf="backCuts"
 					[count]="backCuts"
 					[fromIndex]="totalNumbersArray.length - backCuts - 1"
 					(change)="handleOverflowSelection($event)">
-				</ibm-pagination-overflow>
-				<ibm-pagination-nav-item
+				</cds-pagination-overflow>
+				<cds-pagination-nav-item
 					*ngIf="totalDataLength > 1"
 					[page]="totalNumbersArray.length"
 					(click)="currentPage = totalNumbersArray.length"
 					[isActive]="currentPage == totalNumbersArray.length">
-				</ibm-pagination-nav-item>
-				<li class="bx--pagination-nav__list-item">
-					<button
-						class="bx--btn bx--btn--ghost bx--pagination-nav-next
-						bx--btn--icon-only bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom bx--tooltip--align-center"
+				</cds-pagination-nav-item>
+				<li class="cds--pagination-nav__list-item">
+					<cds-icon-button
+						kind="ghost"
+						(click)="jumpToNext()"
 						[disabled]="rightArrowDisabled"
-						(click)="jumpToNext()">
-						<span class="bx--assistive-text">{{nextItemText.subject | async}}</span>
+						[description]="nextItemText.subject | async">
 						<svg
-							ibmIcon="caret--right"
+							cdsIcon="caret--right"
 							size="16"
-							style="display: inherit"
-							class="bx--btn__icon">
+							class="cds--btn__icon">
 						</svg>
-					</button>
+					</cds-icon-button>
 				</li>
 			</ul>
 		</div>
@@ -118,7 +113,7 @@ export class PaginationNav {
 	 */
 	@Input() model: PaginationModel;
 	/**
- 	 * Set to `true` to disable the backward/forward buttons.
+	   * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() disabled = false;
 	/**
@@ -136,7 +131,7 @@ export class PaginationNav {
 	 * ```
 	 */
 	@Input()
-	set translations (value: PaginationNavTranslations) {
+	set translations(value: PaginationNavTranslations) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("PAGINATION"), value);
 		this.nextItemText.override(valueWithDefaults.NEXT);
 		this.previousItemText.override(valueWithDefaults.PREVIOUS);

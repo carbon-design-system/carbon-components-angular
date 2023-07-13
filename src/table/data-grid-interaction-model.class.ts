@@ -155,7 +155,6 @@ export class DataGridInteractionModel {
 		let currentRow = this.tableAdapter.findRowIndex(currentCell);
 
 		switch (event.key) {
-			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
 				// add the colspan since findColumnIndex will return the
@@ -163,19 +162,16 @@ export class DataGridInteractionModel {
 				// and we want to navigate to the next "real" column
 				this.goToColumn(currentColumn + currentCell.colSpan);
 				break;
-			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
 				// we only ever need to subtract 1 from the column, since findColumnIndex returns the
 				// first of N columns containing the cell
 				this.goToColumn(currentColumn - 1);
 				break;
-			case "Down": // IE specific value
 			case "ArrowDown":
 				event.preventDefault();
 				this.goToRow(currentRow + currentCell.rowSpan);
 				break;
-			case "Up": // IE specific value
 			case "ArrowUp":
 				event.preventDefault();
 				this.goToRow(currentRow - 1);

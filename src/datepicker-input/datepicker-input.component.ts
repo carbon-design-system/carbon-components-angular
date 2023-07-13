@@ -10,36 +10,41 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
-	selector: "ibm-date-picker-input",
+	selector: "cds-date-picker-input, ibm-date-picker-input",
 	template: `
-	<div class="bx--form-item">
-		<div class="bx--date-picker"
+	<div class="cds--form-item">
+		<div class="cds--date-picker"
 			[ngClass]="{
-				'bx--date-picker--simple' : type === 'simple',
-				'bx--date-picker--single' : type === 'single',
-				'bx--date-picker--range' : type === 'range',
-				'bx--date-picker--light' : theme === 'light',
-				'bx--skeleton' : skeleton
+				'cds--date-picker--simple' : type === 'simple',
+				'cds--date-picker--single' : type === 'single',
+				'cds--date-picker--range' : type === 'range',
+				'cds--date-picker--light' : theme === 'light',
+				'cds--skeleton' : skeleton
 			}">
-			<div class="bx--date-picker-container">
-				<label *ngIf="label" [for]="id" class="bx--label">
+			<div class="cds--date-picker-container">
+				<label
+					*ngIf="label"
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<div class="bx--date-picker-input__wrapper"
+				<div class="cds--date-picker-input__wrapper"
 					[ngClass]="{
-						'bx--date-picker-input__wrapper--invalid': invalid,
-						'bx--date-picker-input__wrapper--warn': warn
+						'cds--date-picker-input__wrapper--invalid': invalid,
+						'cds--date-picker-input__wrapper--warn': warn
 					}">
 					<input
 						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
 						type="text"
-						class="bx--date-picker__input"
+						class="cds--date-picker__input"
 						[ngClass]="{
-							'bx--date-picker__input--sm': size === 'sm',
-							'bx--date-picker__input--xl': size === 'xl'
+							'cds--date-picker__input--sm': size === 'sm',
+							'cds--date-picker__input--md': size === 'md',
+							'cds--date-picker__input--lg': size === 'lg'
 						}"
 						[attr.data-invalid]="invalid ? true : undefined"
 						[value]="value"
@@ -50,35 +55,35 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						(change)="onChange($event)"/>
 						<svg
 							*ngIf="type !== 'simple' && !warn && !invalid"
-							ibmIcon="calendar"
+							cdsIcon="calendar"
 							size="16"
-							class="bx--date-picker__icon">
+							class="cds--date-picker__icon">
 						</svg>
 						<svg
 							*ngIf="!warn && invalid"
-							class="bx--date-picker__icon bx--date-picker__icon--invalid"
-							ibmIcon="warning--filled"
+							class="cds--date-picker__icon cds--date-picker__icon--invalid"
+							cdsIcon="warning--filled"
 							size="16">
 						</svg>
 						<svg
 							*ngIf="!invalid && warn"
-							ibmIcon="warning--alt--filled"
+							cdsIcon="warning--alt--filled"
 							size="16"
-							class="bx--date-picker__icon bx--date-picker__icon--warn">
+							class="cds--date-picker__icon cds--date-picker__icon--warn">
 						</svg>
 				</div>
 				<div
 					*ngIf="helperText && !invalid && !warn"
-					class="bx--form__helper-text"
-					[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
-				<div *ngIf="!warn && invalid" class="bx--form-requirement">
+				<div *ngIf="!warn && invalid" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 				</div>
-				<div *ngIf="!invalid && warn" class="bx--form-requirement">
+				<div *ngIf="!invalid && warn" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 				</div>
@@ -114,6 +119,10 @@ export class DatePickerInput {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
+	 * Set to `"light"` to apply the light style
+	 */
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
@@ -143,10 +152,9 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	@Input() size: "sm" | "md" | "xl" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
-	// @ts-ignore
-	@ViewChild("input", { static: false }) input: ElementRef;
+	@ViewChild("input") input: ElementRef;
 
 	constructor(protected elementRef: ElementRef) { }
 

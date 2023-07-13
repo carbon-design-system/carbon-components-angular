@@ -6,14 +6,14 @@ import { TimePicker } from "./timepicker.component";
 
 @Component({
 	template: `
-	<ibm-timepicker
+	<cds-timepicker
 		theme="dark"
 		(valueChange)="onChange()"
 		[(value)]="value"
 		label="test"
 		size="lg"
 		disabled="false">
-	</ibm-timepicker>`
+	</cds-timepicker>`
 })
 class TimePickerTest {
 	value = "12:12";
@@ -41,31 +41,31 @@ describe("TimePicker", () => {
 
 	it("should set label to test", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("label")).toEqual("test");
 	});
 
 	it("should set theme to dark", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("theme")).toEqual("dark");
 	});
 
 	it("should set size to large", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("size")).toEqual("lg");
 	});
 
 	it("should set disabled to false", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
+		element = fixture.debugElement.query(By.css("cds-timepicker")).nativeElement;
 		expect(element.getAttribute("disabled")).toEqual("false");
 	});
 
 	it("should set value to 12:12", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
-		element = fixture.debugElement.query(By.css(".bx--time-picker__input-field"));
+		element = fixture.debugElement.query(By.css(".cds--time-picker__input-field"));
 		fixture.detectChanges();
 		expect(element.nativeElement.value).toEqual("12:12");
 	});
@@ -74,7 +74,7 @@ describe("TimePicker", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		const de = fixture.debugElement.query(By.css(".bx--time-picker__input-field"));
+		const de = fixture.debugElement.query(By.css(".cds--time-picker__input-field"));
 		de.value = "04:33";
 		spyOn(wrapper, "onChange");
 		de.triggerEventHandler("change", {target: {value: "04:33"}});
@@ -86,11 +86,11 @@ describe("TimePicker", () => {
 	it("should disable input", () => {
 		fixture = TestBed.overrideComponent(TimePickerTest, {
 			set: {
-				template: `<ibm-timepicker disabled="true"></ibm-timepicker>`
+				template: `<cds-timepicker disabled="true"></cds-timepicker>`
 			}
 		}).createComponent(TimePickerTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--time-picker__input-field")).nativeElement;
+		element = fixture.debugElement.query(By.css(".cds--time-picker__input-field")).nativeElement;
 		expect(element.disabled).toEqual(true);
 	});
 });

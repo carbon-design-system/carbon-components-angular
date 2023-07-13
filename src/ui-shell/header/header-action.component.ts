@@ -2,32 +2,43 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
+import { BaseIconButton } from "carbon-components-angular/button";
 
 /**
  * Contained by `HeaderGlobal`. Generally used to trigger `Panel`s
  */
 @Component({
-	selector: "ibm-header-action",
+	selector: "cds-header-action, ibm-header-action",
 	template: `
-		<button
-			class="bx--header__action"
-			[ngClass]="{
-				'bx--header__action--active': active
+		<cds-icon-button
+			[buttonNgClass]="{
+				'cds--header__action': true,
+				'cds--header__action--active': active
 			}"
-			[title]="title"
-			[attr.aria-label]="ariaLabel"
-			(click)="onClick()">
+			(click)="onClick()"
+			[align]="align"
+			[caret]="caret"
+			[dropShadow]="dropShadow"
+			[highContrast]="highContrast"
+			[isOpen]="isOpen"
+			[enterDelayMs]="enterDelayMs"
+			[leaveDelayMs]="leaveDelayMs"
+			[description]="description"
+			[buttonAttributes]="{
+				'aria-label': ariaLabel
+			}">
 			<ng-content></ng-content>
-		</button>
+		</cds-icon-button>
 	`
 })
-export class HeaderAction {
+export class HeaderAction extends BaseIconButton {
 	/**
-	 * Title. Populates the aria-label as well as the browser `title` tooltip
+	 * Tooltip content to show on mouseenter
 	 */
-	@Input() title = "";
+	@Input() description: string | TemplateRef<any>;
 	/**
 	 * Sets the aria label on the nav element.
 	 */

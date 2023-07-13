@@ -28,8 +28,8 @@ import { Dialog } from "./dialog.component";
  * the service relies on.
  */
 @Directive({
-	selector: "[ibmDialog]",
-	exportAs: "ibmDialog",
+	selector: "[cdsDialog], [ibmDialog]",
+	exportAs: "dialog",
 	providers: [
 		DialogService
 	]
@@ -41,9 +41,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() title = "";
 	/**
+	 * @deprecated as of v5, use `cdsDialog` instead
 	 * Dialog body content.
 	 */
-	@Input() ibmDialog: string | TemplateRef<any>;
+	@Input() set ibmDialog(body: string | TemplateRef<any>) {
+		this.cdsDialog = body;
+	}
+
+	@Input() cdsDialog: string | TemplateRef<any>;
 	/**
 	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap).
 	 * Do not add focusable elements if trigger is `hover` or `mouseenter`.
@@ -138,7 +143,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
-			content: this.ibmDialog,
+			content: this.cdsDialog,
 			placement: this.placement,
 			parentRef: this.elementRef,
 			gap: this.gap,
@@ -178,10 +183,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		const element = this.elementRef.nativeElement;
 
 		this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-			// "Esc" is an IE specific value
 			if (event.target === this.dialogConfig.parentRef.nativeElement &&
 				(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
-				event.key === "Escape" || event.key === "Esc") {
+				event.key === "Escape") {
 				this.close({
 					reason: CloseReasons.interaction,
 					target: event.target
@@ -213,8 +217,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				});
 			});
 			this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-				// "Spacebar" is an IE specific value
-				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+				if (event.key === "Enter" || event.key === " ") {
 					setTimeout(() => {
 						this.open();
 					});
@@ -244,12 +247,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Helper method to call dialogService 'open'.
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 */
-	open() {
+	open(component?) {
 		// don't allow dialogs to be opened if they're already open
 		if (this.dialogRef || this.disabled) { return; }
 
 		// actually open the dialog, emit events, and set the open state
-		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig, component);
 		this.isOpen = true;
 		this.onOpen.emit();
 		this.isOpenChange.emit(true);

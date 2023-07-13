@@ -1,48 +1,46 @@
-import { Component, EventEmitter } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
-import { DialogModule, ExperimentalModule } from "..";
-import { IconModule } from "../icon/index";
+import { ExperimentalModule } from "../experimental";
+import { IconModule } from "../icon";
+import { I18nModule } from "../i18n";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
-	template: `<ibm-progress-indicator
-					[steps]="steps"
-					[current]="current"
-					(stepSelected)="stepSelected.emit($event)">
-				</ibm-progress-indicator>`
+	template: `
+		<cds-progress-indicator
+			[steps]="steps"
+			[current]="current"
+			(stepSelected)="stepSelected.emit($event)">
+		</cds-progress-indicator>
+	`
 })
 class ProgressIndicatorTest {
 	steps = [
 		{
-			text: "First step",
-			state: ["complete"],
-			optionalText: "optional"
+			label: "First step",
+			complete: true,
+			secondaryLabel: "optional"
 		},
 		{
-			text: "Second step",
-			state: ["current"],
-			tooltip: { content: "Overflow tooltip content.", trigger: "click", placement: "bottom" }
+			label: "Second step",
+			complete: false
 		},
 		{
-			text: "Third step",
-			state: ["incomplete"],
-			tooltip: {
-				content: `Test`,
-				trigger: "click",
-				placement: "bottom"
-			}
+			label: "Third step",
+			complete: false
 		},
 		{
-			text: "Fourth step",
-			state: ["incomplete", "error"]
+			label: "Fourth step",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Fifth step",
-			state: ["incomplete"],
+			label: "Fifth step",
+			complete: false,
 			disabled: true
 		}
 	];
@@ -52,19 +50,20 @@ class ProgressIndicatorTest {
 	stepSelected = new EventEmitter<{ step: Step, index: number }>();
 }
 
-describe("ProgressIndicator", () => {
+describe("Progress Indicator", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			declarations: [
 				ProgressIndicator,
 				ProgressIndicatorTest
 			],
 			imports: [
 				CommonModule,
-				DialogModule,
 				ExperimentalModule,
-				IconModule
+				IconModule,
+				I18nModule
 			]
 		});
 	});
@@ -77,32 +76,25 @@ describe("ProgressIndicator", () => {
 	it("should set current to 2 and set current step to Third step", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
 		expect(element.componentInstance.current).toBe(2);
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Third step");
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Third step");
 	});
 
-	it("should set current step to Fourth step and set warning icon when step is in error state", () => {
+	it("should set warning icon when step is in error state", () => {
+		fixture = TestBed.createComponent(ProgressIndicatorTest);
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress__warning")).toBeTruthy();
+	});
+
+	it("should set current step to fourth step", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
 		wrapper.current = 3;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Fourth step");
-		expect(element.nativeElement.querySelector(".bx--progress__warning")).toBeTruthy();
-	});
-
-	it("should expand the tooltip when tooltip trigger is clicked", () => {
-		fixture = TestBed.createComponent(ProgressIndicatorTest);
-		wrapper = fixture.componentInstance;
-		wrapper.current = 2;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let tooltipTrigger = element.nativeElement.querySelector(".bx--progress-step--current .bx--tooltip__trigger");
-		tooltipTrigger.click();
-		fixture.detectChanges();
-		expect(tooltipTrigger.getAttribute("aria-expanded")).toEqual("true");
-		expect(element.nativeElement.querySelector("ibm-tooltip").textContent).toContain("Test");
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Fourth step");
 	});
 
 	it("should emit the step and index when a step is clicked", () => {
@@ -112,21 +104,21 @@ describe("ProgressIndicator", () => {
 		let index = 2;
 		wrapper.current = index;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		let step = element.nativeElement.querySelector(".bx--progress-step--current .bx--progress-label");
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
+		let step = element.nativeElement.querySelector(".cds--progress-step--current .cds--progress-label");
 		step.click();
 		fixture.detectChanges();
 		expect(wrapper.stepSelected.emit).toHaveBeenCalledWith({ step: wrapper.steps[index], index: index });
 	});
 
-	it("should handle current being set to 0 after the component is initialized",  () => {
+	it("should handle current being set to 0 after the component is initialized", () => {
 		fixture = TestBed.createComponent(ProgressIndicatorTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		wrapper.current = 0;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("First step");
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("First step");
 	});
 
 	it("should handle steps and current being updated individually after the component is initialized", () => {
@@ -134,14 +126,14 @@ describe("ProgressIndicator", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		wrapper.steps = wrapper.steps.concat([{
-			text: "Sixth step",
-			state: ["incomplete"]
+			label: "Sixth step",
+			complete: false
 		}]);
 		fixture.detectChanges();
 		wrapper.current = 5;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
-		expect(element.nativeElement.querySelector(".bx--progress").children.length).toBe(6);
-		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Sixth step");
+		element = fixture.debugElement.query(By.css("cds-progress-indicator"));
+		expect(element.nativeElement.querySelector(".cds--progress").children.length).toBe(6);
+		expect(element.nativeElement.querySelector(".cds--progress-step--current").textContent).toContain("Sixth step");
 	});
 });

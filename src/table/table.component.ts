@@ -33,13 +33,13 @@ import { TableRowSize } from "./table.types";
  *
  * Here, you create a view (with built-in controller) and provide it a model.
  * Changes you make to the model are reflected in the view. Provide same model you use
- * in the table to the `<ibm-pagination>` components.
+ * in the table to the `<cds-pagination>` components.
  * They provide a different view over the same data.
  *
  * ## Basic usage
  *
  * ```html
- * <ibm-table [model]="model"></ibm-table>
+ * <cds-table [model]="model"></cds-table>
  * ```
  *
  * ```typescript
@@ -123,7 +123,7 @@ import { TableRowSize } from "./table.types";
  * When table has no data to show, it can show a message you provide it instead.
  *
  * ```html
- * <ibm-table [model]="model">No data.</ibm-table>
+ * <cds-table [model]="model">No data.</cds-table>
  * ```
  *
  * ... will show `No data.` message, but you can get creative and provide any template you want
@@ -132,7 +132,7 @@ import { TableRowSize } from "./table.types";
  * ## Use pagination as table footer
  *
  * ```html
- * <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
+ * <cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
  * ```
  *
  * `selectPage()` function should fetch the data from backend, create new `data`, apply it to `model.data`,
@@ -167,24 +167,22 @@ import { TableRowSize } from "./table.types";
  * 	return newData;
  * }
  * ```
- *
- * <example-url>../../iframe.html?id=components-table--basic</example-url>
  */
 @Component({
-	selector: "ibm-table",
+	selector: "cds-table, ibm-table",
 	template: `
 	<table
-		ibmTable
+		cdsTable
 		[sortable]="sortable"
 		[noBorder]="noBorder"
-		[ngClass]="{'bx--data-table--sticky-header': stickyHeader}"
+		[ngClass]="{'cds--data-table--sticky-header': stickyHeader}"
 		[size]="size"
 		[striped]="striped"
 		[skeleton]="skeleton"
 		[attr.aria-labelledby]="ariaLabelledby"
 		[attr.aria-describedby]="ariaDescribedby">
 		<thead
-			ibmTableHead
+			cdsTableHead
 			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
@@ -192,7 +190,6 @@ import { TableRowSize } from "./table.types";
 			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
 			[filterTitle]="getFilterTitle()"
 			[model]="model"
-			[size]="size"
 			[selectAllCheckbox]="selectAllCheckbox"
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
 			[showSelectionColumn]="showSelectionColumn"
@@ -203,7 +200,7 @@ import { TableRowSize } from "./table.types";
 			[stickyHeader]="stickyHeader">
 		</thead>
 		<tbody
-			ibmTableBody
+			cdsTableBody
 			(deselectRow)="onSelectRow($event)"
 			(scroll)="onScroll($event)"
 			(selectRow)="onSelectRow($event)"
@@ -226,9 +223,9 @@ import { TableRowSize } from "./table.types";
 			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
-					<div class="bx--loading bx--loading--small">
-						<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-							<circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+					<div class="cds--loading cds--loading--small">
+						<svg class="cds--loading__svg" viewBox="-75 -75 150 150">
+							<circle class="cds--loading__stroke" cx="0" cy="0" r="37.5" />
 						</svg>
 					</div>
 				</td>
@@ -281,7 +278,9 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static setTabIndex(element: HTMLElement, index: -1 | 0) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") || focusElementList.length > 0) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("cds--table-sort") && focusElementList.length > 1) {
+			focusElementList[1].tabIndex = index;
+		} else if (focusElementList.length > 0) {
 			focusElementList[0].tabIndex = index;
 		} else {
 			element.tabIndex = index;
@@ -290,7 +289,9 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static focus(element: HTMLElement) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort") || focusElementList.length > 0) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("cds--table-sort") && focusElementList.length > 1) {
+			focusElementList[1].focus();
+		} else if (focusElementList.length > 0) {
 			focusElementList[0].focus();
 		} else {
 			element.focus();
@@ -335,7 +336,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			const expandedChange = this._model.rowsExpandedChange.subscribe(() => {
 				// Allows the expanded row to have a focus state when it exists in the DOM
 				setTimeout(() => {
-					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row:not(.bx--parent-row)");
+					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".cds--expandable-row:not(.cds--parent-row)");
 					Array.from<any>(expandedRows).forEach(row => {
 						if (row.firstElementChild.tabIndex === undefined || row.firstElementChild.tabIndex !== -1) {
 							row.firstElementChild.tabIndex = -1;
@@ -402,21 +403,23 @@ export class Table implements AfterViewInit, OnDestroy {
 	@Input() scrollLoadDistance = 0;
 
 	/**
+	 * @todo - Enable column resize when Carbon officially supports feature
 	 * Set to `true` to enable users to resize columns.
 	 *
 	 * Works for columns with width set in pixels.
 	 *
 	 */
-	@Input() columnsResizable = false;
+	// @Input() columnsResizable = false;
 
 	/**
+	 * @todo - Enable columns drag & drop when Carbon officially supports feature
 	 * Set to `true` to enable users to drag and drop columns.
 	 *
 	 * Changing the column order in table changes table model. Be aware of it when you add additional data
 	 * to the model.
 	 *
 	 */
-	@Input() columnsDraggable = false;
+	// @Input() columnsDraggable = false;
 
 	@Input()
 	set expandButtonAriaLabel(value: string | Observable<string>) {
@@ -453,7 +456,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * ```
 	 */
 	@Input()
-	set translations (value) {
+	set translations(value) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("TABLE"), value);
 		this._filterTitle.override(valueWithDefaults.FILTER);
 		this._endOfDataText.override(valueWithDefaults.END_OF_DATA);
@@ -470,12 +473,12 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Allows table content to scroll horizontally
 	 */
-	@HostBinding("class.bx--data-table-content") tableContent = true;
+	@HostBinding("class.cds--data-table-content") tableContent = true;
 
 	/**
 	 * Set to `true` to stick the header to the top of the table
 	 */
-	@HostBinding("class.bx--data-table_inner-container") @Input() stickyHeader = false;
+	@HostBinding("class.cds--data-table_inner-container") @Input() stickyHeader = false;
 
 	/**
 	 * Set footer template to customize what is displayed in the tfoot section of the table
@@ -487,7 +490,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	 *
 	 * Example:
 	 * ```
-	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <cds-table [selectionLabelColumn]="0"></cds-table>
 	 * <!-- results in aria-label="Select first column value"
 	 * (where "first column value" is the value of the first column in the row -->
 	 * ```
@@ -510,11 +513,11 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * @Component({
 	 * 	selector: "app-table",
 	 * 	template: `
-	 * 		<ibm-table
+	 * 		<cds-table
 	 * 			[model]="model"
 	 * 			(sort)="simpleSort($event)">
 	 * 			No data.
-	 * 		</ibm-table>
+	 * 		</cds-table>
 	 * 	`
 	 * })
 	 * export class TableApp implements OnInit, OnChanges {
@@ -621,7 +624,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	protected interactionModel: DataGridInteractionModel;
 	protected interactionPositionSubscription: Subscription;
 
-	protected _expandButtonAriaLabel  = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
+	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
@@ -642,7 +645,7 @@ export class Table implements AfterViewInit, OnDestroy {
 		protected elementRef: ElementRef,
 		protected applicationRef: ApplicationRef,
 		protected i18n: I18n
-	) {}
+	) { }
 
 	ngAfterViewInit() {
 		this.isViewReady = true;

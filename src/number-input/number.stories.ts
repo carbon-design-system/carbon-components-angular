@@ -1,106 +1,97 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, number, select, text } from "@storybook/addon-knobs/angular";
+/* tslint:disable variable-name */
 
-import { NumberModule } from "../";
-import { DocumentationModule } from "../documentation-component/documentation.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { NumberModule, NumberComponent } from "./";
 
-storiesOf("Components|Number", module).addDecorator(
-	moduleMetadata({
-		imports: [NumberModule, DocumentationModule]
-	})
-)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<a href="https://builder.carbondesignsystem.com/from-json/%7B%22&#13;
-			title%22%3A%22Number%20input%22%2C%22data%22%3A%7B%22items%22%3A&#13;
-			%5B%7B%22type%22%3A%22number-input%22%2C%22size%22%3A%22md%22%2C%22label&#13;
-			%22%3A%22Number%20input%20label%22%2C%22min%22%3A0%2C%22max%22%3A100%2C&#13;
-			%22step%22%3A10%2C%22helperText%22%3A%22Helper%20text%22%2C%22id%22%3A%222&#13;
-			%22%2C%22codeContext%22%3A%7B%22name%22%3A%22number-input-2%22%7D%7D%5D&#13;
-			%2C%22id%22%3A1%7D%2C%22allCssClasses%22%3A%5B%5D%7D" target="_blank">
-				Edit on Carbon UI Builder
-			</a>
-			<br><br>
-			<ibm-number
-				[label]="label"
-				[helperText]="[helperText]"
-				[theme]="theme"
-				[min]="min"
-				[max]="max"
-				[step]="step"
-				[precision]="precision"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[warn]="warn"
-				[warnText]="warnText"
-				[size]="size"
-				[disabled]="disabled"
-				[placeholder]="placeholder">
-			</ibm-number>
-		`,
-		props: {
-			label: text("label", "Number Input Label"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
-			helperText: text("helper text", "Optional helper text."),
-			invalidText: text("Form validation content", "Invalid number"),
-			warn: boolean("Show the warning state", false),
-			warnText: text("Text for the warning", "This is a warning"),
-			theme: select("theme", ["dark", "light"], "dark"),
-			min: number("min", 0),
-			max: number("max", 100),
-			step: number("step", 1),
-			precision: number("precision"),
-			invalid: boolean("Show form validation (invalid)", false),
-			disabled: boolean("disabled", false),
-			placeholder: text("Placeholder text", "Placeholder text")
-		}
-	}))
-	.add("With ngModel", () => ({
-		template: `
-			<ibm-number
-				[label]="label"
-				[helperText]="[helperText]"
-				[theme]="theme"
-				[min]="min"
-				[size]="size"
-				[max]="max"
-				[step]="step"
-				[precision]="precision"
-				[invalid]="invalid"
-				[invalidText]="invalidText"
-				[disabled]="disabled"
-				[placeholder]="placeholder"
-				[(ngModel)]="value">
-			</ibm-number>
-			{{ value }}
-		`,
-		props: {
-			value: 0,
-			label: text("label", "Number Input Label"),
-			size: select("Size", ["sm", "md", "xl"], "md"),
-			helperText: text("helper text", "Optional helper text."),
-			invalidText: text("Form validation content", "Invalid number"),
-			theme: select("theme", ["dark", "light"], "dark"),
-			min: number("min", 0),
-			max: number("max", 100),
-			step: number("step", 1),
-			precision: number("precision"),
-			invalid: boolean("Show form validation", false),
-			disabled: boolean("disabled", false),
-			placeholder: text("Placeholder text", "Placeholder text")
-		}
-	}))
-	.add("Skeleton", () => ({
-		template: `
-			<ibm-number [label]="label" skeleton="true"></ibm-number>
-		`,
-		props: {
-			label: text("label", "Number Input Label")
-		}
-	}))
-	.add("Documentation", () => ({
-		template: `
-			<ibm-documentation src="documentation/classes/src_number_input.numbercomponent.html"></ibm-documentation>
-		`
-	}));
+export default {
+	title: "Components/Number Input",
+	decorators: [
+		moduleMetadata({
+			imports: [NumberModule]
+		})
+	],
+	component: NumberComponent
+} as Meta;
+
+const Template: Story<NumberComponent> = (args) => ({
+	props: args,
+	template: `
+		<cds-number
+			[label]="label"
+			[helperText]="[helperText]"
+			[theme]="theme"
+			[min]="min"
+			[max]="max"
+			[step]="step"
+			[precision]="precision"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[size]="size"
+			[disabled]="disabled">
+		</cds-number>
+	`
+});
+export const Basic = Template.bind({});
+Basic.args = {
+	value: 0,
+	label: "Number input label",
+	helperText: "Optional helper text",
+	invalidText: "Invalid text",
+	min: 0,
+	max: 100,
+	step: 1,
+	precision: 0,
+	invalid: false,
+	disabled: false
+};
+Basic.argTypes = {
+	size: {
+		options: ["sm", "md", "lg"],
+		defaultValue: "md",
+		control: "radio"
+	},
+	theme: {
+		options: ["light", "dark"],
+		defaultValue: "dark",
+		control: "radio"
+	}
+};
+
+const ModelTemplate: Story<NumberComponent> = (args) => ({
+	props: args,
+	template: `
+		<cds-number
+			[label]="label"
+			[helperText]="[helperText]"
+			[theme]="theme"
+			[min]="min"
+			[size]="size"
+			[max]="max"
+			[step]="step"
+			[precision]="precision"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[disabled]="disabled"
+			[(ngModel)]="value">
+		</cds-number>
+		{{ value }}
+	`
+});
+export const NgModel = ModelTemplate.bind({});
+NgModel.story = "ngModel";
+NgModel.args = {
+	...Basic.args
+};
+NgModel.argTypes = {
+	...Basic.argTypes
+};
+
+const SkeletonTemplate: Story<NumberComponent> = (args) => ({
+	props: args,
+	template: `
+		<cds-number label="Number input label" skeleton="true"></cds-number>
+	`
+});
+export const Skeleton = SkeletonTemplate.bind({});

@@ -20,16 +20,14 @@ import { TextInput } from "./input.directive";
  * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components
  *
  * ```html
- * <ibm-label>
+ * <cds-label>
  * 	Label
- * 	<input ibmText type="text" class="input-field">
- * </ibm-label>
+ * 	<input cdsText type="text" class="input-field">
+ * </cds-label>
  * ```
- *
- * <example-url>../../iframe.html?id=components-input--label</example-url>
  */
 @Component({
-	selector: "ibm-label",
+	selector: "cds-label, ibm-label",
 	template: `
 		<ng-template #inputContentTemplate>
 			<ng-content select="input,textarea,div"></ng-content>
@@ -41,7 +39,7 @@ import { TextInput } from "./input.directive";
 
 		<ng-container [ngSwitch]="type">
 			<ng-container *ngSwitchCase="'TextArea'">
-				<ibm-textarea-label
+				<cds-textarea-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
 					[skeleton]="skeleton"
@@ -53,10 +51,10 @@ import { TextInput } from "./input.directive";
 					[ariaLabel]="ariaLabel"
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
-				</ibm-textarea-label>
+				</cds-textarea-label>
 			</ng-container>
 			<ng-container *ngSwitchCase="'TextInput'">
-				<ibm-text-label
+				<cds-text-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
 					[skeleton]="skeleton"
@@ -68,7 +66,7 @@ import { TextInput } from "./input.directive";
 					[ariaLabel]="ariaLabel"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
-				</ibm-text-label>
+				</cds-text-label>
 			</ng-container>
 			<ng-container *ngSwitchDefault>
 				<ng-template [ngTemplateOutlet]="default"></ng-template>
@@ -79,46 +77,46 @@ import { TextInput } from "./input.directive";
 			<label
 				[for]="labelInputID"
 				[attr.aria-label]="ariaLabel"
-				class="bx--label"
+				class="cds--label"
 				[ngClass]="{
-					'bx--label--disabled': disabled,
-					'bx--skeleton': skeleton
+					'cds--label--disabled': disabled,
+					'cds--skeleton': skeleton
 				}">
 				<ng-template [ngTemplateOutlet]="labelContentTemplate"></ng-template>
 			</label>
 			<div
-				class="bx--text-input__field-wrapper"
+				class="cds--text-input__field-wrapper"
 				[ngClass]="{
-					'bx--text-input__field-wrapper--warning': warn
+					'cds--text-input__field-wrapper--warning': warn
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
 				<svg
 					*ngIf="!warn && invalid"
-					ibmIcon="warning--filled"
+					cdsIcon="warning--filled"
 					size="16"
-					class="bx--text-input__invalid-icon">
+					class="cds--text-input__invalid-icon">
 				</svg>
 				<svg
 					*ngIf="!invalid && warn"
-					ibmIcon="warning--alt--filled"
+					cdsIcon="warning--alt--filled"
 					size="16"
-					class="bx--text-input__invalid-icon bx--text-input__invalid-icon--warning">
+					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
 				</svg>
 				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
 			</div>
 			<div
 				*ngIf="!skeleton && helperText && !invalid && !warn"
-				class="bx--form__helper-text"
-				[ngClass]="{'bx--form__helper-text--disabled': disabled}">
+				class="cds--form__helper-text"
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="bx--form-requirement">
+			<div *ngIf="!warn && invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="bx--form-requirement">
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -134,15 +132,9 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
 	*/
-	@Input() labelInputID = "ibm-label-" + Label.labelCounter++;
-
+	@Input() labelInputID = `cds-label-${Label.labelCounter++}`;
 	/**
-	 * @deprecated as of v4
-	 * State of the `Label` will determine the styles applied.
-	 */
-	@Input() labelState: "success" | "warning" | "error" | "" = "";
-	/**
-	 * Set to `true` for a disabled label.
+	 * Set to `true` for disabled state.
 	 */
 	@Input() disabled = false;
 	/**
@@ -174,16 +166,14 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	@Input() ariaLabel: string;
 
-	// @ts-ignore
-	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
-	// @ts-ignore
-	@ContentChild(TextArea, { static: false }) textArea: TextArea;
+	@ContentChild(TextArea) textArea: TextArea;
 
 	// @ts-ignore
 	@ContentChild(TextInput, { static: false }) textInput: TextInput;
 
-	@HostBinding("class.bx--form-item") get labelClass() {
+	@HostBinding("class.cds--form-item") get labelClass() {
 		return this.type === undefined;
 	}
 

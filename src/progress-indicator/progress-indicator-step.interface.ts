@@ -1,22 +1,30 @@
-import { TemplateRef } from "@angular/core";
-import { DialogConfig } from "carbon-components-angular/dialog";
-
 export interface Step {
 	/**
 	 * The label of the `step`
 	 */
-	text: string;
+	label: string;
 	/**
-	 * An array of strings to determine the progress of the step
+	 * Optional label with additional information
 	 */
-	state: Array<string>;
+	secondaryLabel?: string;
 	/**
-	 * Defines the tooltip
+	 * Determines whether the step is complete or incomplete
 	 */
-	tooltip?: DialogConfig;
+	complete?: boolean;
+	/**
+	 * Determines whether the step is invalid or valid
+	 */
+	invalid?: boolean;
+	/**
+	 * Function to execute on click
+	 */
+	onClick?: Function;
 	/**
 	 * Determines whether the step is disabled or not
 	 */
 	disabled?: boolean;
-	optionalText?: string;
+	/**
+	 * Icon description
+	 */
+	description?: string;
 }

@@ -4,40 +4,41 @@ import {
 	HostListener,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
+	HostBinding
 } from "@angular/core";
 
 @Component({
-	selector: "ibm-context-menu",
+	selector: "cds-context-menu, ibm-context-menu",
 	template: `
-		<ul
-			class="bx--context-menu bx--menu"
-			[ngClass]="{
-				'bx--context-menu--root': root,
-				'bx--menu--root': root,
-				'bx--context-menu--open': open,
-				'bx--menu--open': open
-			}"
-			role="menu"
-			tabindex="-1"
-			[ngStyle]="{
-				'left.px': position.left,
-				'top.px': position.top
-			}">
 			<ng-content></ng-content>
-		</ul>
-	`
+	`,
+	styles: [`
+		:host {
+			display: block;
+		}
+	`]
 })
 export class ContextMenuComponent implements OnChanges {
-	/**
-	 * @deprecated since v4 - In v5, you will not have to specify root
-	 */
-	@Input() root = true;
 	@Input() open = false;
 	@Input() position = {
 		left: 0,
 		top: 0
 	};
+
+	@HostBinding("class.cds--menu") contextMenu = true;
+	@HostBinding("class.cds--menu--open") get contextMenuOpen() { return this.open; }
+	@HostBinding("class.cds--menu--shown") get showMenu() { return this.open; }
+	@HostBinding("attr.role") role = "menu";
+	@HostBinding("attr.tabindex") tabindex = "-1";
+	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
+	@HostBinding("style.top.px") get topPosition() { return this.position.top; }
+
+	@HostBinding("class.cds--menu--with-icons") get classIcons() {
+		const svgElement = this.elementRef.nativeElement
+			.querySelector(".cds--menu-item .cds--menu-item__icon svg") as HTMLElement;
+		return svgElement;
+	}
 
 	constructor(protected elementRef: ElementRef) { }
 
@@ -49,23 +50,19 @@ export class ContextMenuComponent implements OnChanges {
 
 	focusMenu() {
 		// wait until the next tick to let the DOM settle before changing the focus
-		const list = this.elementRef.nativeElement.querySelector("ul") as HTMLElement;
 		setTimeout(() => {
-			if (this.root) {
-				list.focus();
-			} else {
-				const firstOption = list.querySelector(".bx--context-menu-option, .bx--menu-option") as HTMLElement;
-				firstOption.focus();
-			}
+			const list: HTMLElement = this.elementRef.nativeElement;
+			const firstOption = list.querySelector(".cds--menu-item") as HTMLElement;
+			firstOption.focus();
 		});
 	}
 
 	@HostListener("keydown", ["$event"])
 	handleNavigation(event: KeyboardEvent) {
-		const list: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
-		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("ul[role=menu]"));
+		const list: HTMLElement = this.elementRef.nativeElement;
+		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
 		const menuItems: HTMLElement[] = (
-			Array.from(list.querySelectorAll(".bx--context-menu-option, .bx--menu-option")) as HTMLElement[])
+			Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
 			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
 		);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
@@ -99,17 +96,12 @@ export class ContextMenuComponent implements OnChanges {
 				break;
 			}
 			case "ArrowLeft": {
-				const parent = currentMenuItem.parentElement.closest(".bx--context-menu-option, .bx--menu-option") as HTMLElement;
+				const parent = currentMenuItem.parentElement.closest(".cds--menu-item, .cds--menu-item") as HTMLElement;
 				if (parent) {
 					parent.focus();
 				}
 				break;
 			}
 		}
-	}
-
-	getDimensions() {
-		const element: HTMLElement = this.elementRef.nativeElement.querySelector("ul");
-		return element.getBoundingClientRect();
 	}
 }

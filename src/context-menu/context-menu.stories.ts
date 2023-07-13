@@ -1,67 +1,85 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, array, text, object, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
+/* tslint:disable variable-name */
 
-import { ContextMenuModule } from "./context-menu.module";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import {
+	ContextMenuModule,
+	ContextMenuComponent,
+	ContextMenuDividerComponent,
+	ContextMenuItemComponent,
+	ContextMenuGroupComponent
+} from "./";
 
-storiesOf("Components|Context Menu", module)
-	.addDecorator(
+export default {
+	title: "Components/Context Menu",
+	decorators: [
 		moduleMetadata({
-			imports: [
-				ContextMenuModule
-			]
+			imports: [ContextMenuModule]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Basic", () => ({
-		template: `
-			<ibm-context-menu [open]="open" [position]="position">
-				<ibm-context-menu-item label="Cut" info="⌘X"></ibm-context-menu-item>
-				<ibm-context-menu-item label="Option with icon" icon="calendar"></ibm-context-menu-item>
-				<ibm-context-menu-divider></ibm-context-menu-divider>
-				<ibm-context-menu-item type="checkbox" label="Enable magic"></ibm-context-menu-item>
-				<ibm-context-menu-divider></ibm-context-menu-divider>
-				<ibm-context-menu-group label="Selection group">
-					<ibm-context-menu-item type="checkbox" label="Blue"></ibm-context-menu-item>
-					<ibm-context-menu-item type="checkbox" label="Red" [checked]="true"></ibm-context-menu-item>
-					<ibm-context-menu-item type="checkbox" label="Black"></ibm-context-menu-item>
-					<ibm-context-menu-item type="checkbox" label="Green"></ibm-context-menu-item>
-				</ibm-context-menu-group>
-				<ibm-context-menu-divider></ibm-context-menu-divider>
-				<ibm-context-menu-item label="Radio flyout">
-					<ibm-context-menu>
-						<ibm-context-menu-group
-							type="radio"
-							[value]="radioGroupValue"
-							(valueChange)="onRadioChange($event)">
-							<ibm-context-menu-item type="radio" label="Radio one" value="one"></ibm-context-menu-item>
-							<ibm-context-menu-item type="radio" label="Radio two" value="two"></ibm-context-menu-item>
-							<ibm-context-menu-item type="radio" label="Radio three" value="three"></ibm-context-menu-item>
-							<ibm-context-menu-item type="radio" label="Radio four" value="four"></ibm-context-menu-item>
-						</ibm-context-menu-group>
-					</ibm-context-menu>
-				</ibm-context-menu-item>
-				<ibm-context-menu-item label="Checkbox flyout">
-					<ibm-context-menu>
-						<ibm-context-menu-group
-							type="checkbox"
-							[value]="checkboxGroupValue"
-							(valueChange)="onCheckboxChange($event)">
-							<ibm-context-menu-item type="checkbox" label="Selectable item a" value="a"></ibm-context-menu-item>
-							<ibm-context-menu-item type="checkbox" label="Selectable item b" value="b"></ibm-context-menu-item>
-							<ibm-context-menu-item type="checkbox" label="Selectable item c" value="c"></ibm-context-menu-item>
-							<ibm-context-menu-item type="checkbox" label="Selectable item d" value="d"></ibm-context-menu-item>
-						</ibm-context-menu-group>
-					</ibm-context-menu>
-				</ibm-context-menu-item>
-			</ibm-context-menu>
-		`,
-		props: {
-			onRadioChange: action("Radio menu change"),
-			onCheckboxChange: action("Checkbox menu change"),
-			checkboxGroupValue: array("checkbox group value", ["a", "d"]),
-			radioGroupValue: text("radio group value", "one"),
-			position: object("Context menu position", { top: 0, left: 0 }),
-			open: boolean("Is the context menu open", true)
-		}
-	}));
+	],
+	args: {
+		position: {
+			top: 0,
+			left: 0
+		},
+		open: true,
+		checkboxGroupValue: ["a", "b"],
+		radioGroupValue: "one"
+	},
+	argTypes: {
+		onRadioChange: { action: "Radio menu change!" },
+		onCheckboxChange: { action: "Radio menu change!" }
+	},
+	component: ContextMenuComponent,
+	subcomponents: {
+		ContextMenuDividerComponent,
+		ContextMenuItemComponent,
+		ContextMenuGroupComponent
+	}
+} as Meta;
+
+const Template: Story<ContextMenuComponent> = (args) => ({
+	props: args,
+	template: `
+		<cds-context-menu [open]="open" [position]="position">
+			<cds-context-menu-item label="Cut" info="⌘X"></cds-context-menu-item>
+			<cds-context-menu-item label="Option with icon" icon="calendar"></cds-context-menu-item>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item type="checkbox" label="Enable magic"></cds-context-menu-item>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-group label="Selection group">
+				<cds-context-menu-item type="checkbox" label="Blue"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Red" [checked]="true"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Black"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Green"></cds-context-menu-item>
+			</cds-context-menu-group>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item label="Radio flyout">
+				<cds-context-menu>
+					<cds-context-menu-group
+						type="radio"
+						[value]="radioGroupValue"
+						(valueChange)="onRadioChange($event)">
+						<cds-context-menu-item type="radio" label="Radio one" value="one"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio two" value="two"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio three" value="three"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio four" value="four"></cds-context-menu-item>
+					</cds-context-menu-group>
+				</cds-context-menu>
+			</cds-context-menu-item>
+			<cds-context-menu-item label="Checkbox flyout">
+				<cds-context-menu>
+					<cds-context-menu-group
+						type="checkbox"
+						[value]="checkboxGroupValue"
+						(valueChange)="onCheckboxChange($event)">
+						<cds-context-menu-item type="checkbox" label="Selectable item a" value="a"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item b" value="b"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item c" value="c"></cds-context-menu-item>
+						<cds-context-menu-item type="checkbox" label="Selectable item d" value="d"></cds-context-menu-item>
+					</cds-context-menu-group>
+				</cds-context-menu>
+			</cds-context-menu-item>
+		</cds-context-menu>
+	`
+});
+export const Basic = Template.bind({});

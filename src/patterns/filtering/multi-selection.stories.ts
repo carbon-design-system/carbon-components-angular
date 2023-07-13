@@ -1,6 +1,7 @@
+/* tslint:disable variable-name */
+
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { moduleMetadata, Meta, Story  } from "@storybook/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
 import { DropdownModule } from "../../dropdown/index";
 import { GridModule } from "../../grid/index";
@@ -9,38 +10,38 @@ import { UIShellModule } from "../../ui-shell/index";
 @Component({
 	selector: "app-sample-multi-selection",
 	template: `
-	<div ibmGrid>
-		<div ibmRow class="header">
-			<ibm-header name="Patterns">
-				<ibm-hamburger></ibm-hamburger>
-			</ibm-header>
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
-				<label ibmText class="dropdown-label">
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
+				<label cdsText class="dropdown-label">
 					Filter by:
-					<ibm-dropdown
+					<cds-dropdown
 						class="filter-dropdown"
 						type="multi"
 						placeholder="Type"
 						inline="true"
 						(selected)="onSelected($event)">
-						<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-					</ibm-dropdown>
+						<cds-dropdown-list [items]="items"></cds-dropdown-list>
+					</cds-dropdown>
 				</label>
 			</div>
 		</div>
-		<div ibmRow>
-			<div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
-				<ibm-table-container>
-					<ibm-table
+		<div cdsRow>
+			<div cdsCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+				<cds-table-container>
+					<cds-table
 						class="data-table"
 						[model]="model"
 						size="lg"
 						[showSelectionColumn]="false">
 						<ng-content></ng-content>
-					</ibm-table>
-				</ibm-table-container>
+					</cds-table>
+				</cds-table-container>
 			<div>
 		</div>
 	</div>
@@ -99,8 +100,7 @@ class SampleMultiSelection implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("full-page");
-
+		document.querySelector(".sb-show-main")?.classList.add("full-page");
 		this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
 		this.model.data = this.dataset.map(datapoint =>
@@ -112,14 +112,16 @@ class SampleMultiSelection implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("full-page");
+		document.querySelector(".sb-show-main")?.classList.remove("full-page");
 	}
 }
 
-storiesOf("Patterns|Filtering", module)
-	.addDecorator(
+// Storybook starts here
+export default {
+	title: "Pattern/Filtering",
+	decorators: [
 		moduleMetadata({
-			declarations: [ SampleMultiSelection ],
+			declarations: [SampleMultiSelection],
 			imports: [
 				TableModule,
 				DropdownModule,
@@ -127,14 +129,17 @@ storiesOf("Patterns|Filtering", module)
 				UIShellModule
 			]
 		})
-	)
-	.addDecorator(withKnobs)
-	.add("Multi Selection", () => ({
-		template: `
-			<!--
-				app-* components are for demo purposes only.
-				You can create your own implementation by using the component source as an example.
-			-->
-			<app-sample-multi-selection></app-sample-multi-selection>
-		`
-	}));
+	]
+} as Meta;
+
+const Template: Story = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source as an example.
+		-->
+		<app-sample-multi-selection></app-sample-multi-selection>
+	`
+});
+export const MultiSelection = Template.bind({});

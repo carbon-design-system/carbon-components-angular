@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmScrollableList]",
+	selector: "[cdsScrollableList], [ibmScrollableList]",
 	exportAs: "scrollable-list"
 })
 export class ScrollableList implements OnChanges, AfterViewInit {

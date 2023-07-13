@@ -1,54 +1,6 @@
 export default {
-	"BANNER": {
-		"CLOSE_BUTTON": "Close alert banner"
-	},
 	"BREADCRUMB": {
 		"LABEL": "Breadcrumb"
-	},
-	"CALENDAR": {
-		"MONTHS": {
-			"JANUARY": "January",
-			"FEBRUARY": "February",
-			"MARCH": "March",
-			"APRIL": "April",
-			"MAY": "May",
-			"JUNE": "June",
-			"JULY": "July",
-			"AUGUST": "August",
-			"SEPTEMBER": "September",
-			"OCTOBER": "October",
-			"NOVEMBER": "November",
-			"DECEMBER": "December"
-		},
-		"SHORTWEEKDAYS": {
-			"SUNDAY": "Sun",
-			"MONDAY": "Mon",
-			"TUESDAY": "Tue",
-			"WEDNESDAY": "Wed",
-			"THURSDAY": "Thu",
-			"FRIDAY": "Fri",
-			"SATURDAY": "Sat"
-		},
-		"QUARTERS":
-		[
-			{
-				"name": "Q1",
-				"months": "January-March"
-			}
-			,
-			{
-				"name": "Q2",
-				"months": "April-June"
-			},
-			{
-				"name": "Q3",
-				"months": "July-September"
-			},
-			{
-				"name": "Q4",
-				"months": "October-December"
-			}
-		]
 	},
 	"CODE_SNIPPET": {
 		"CODE_SNIPPET_TEXT": "Code Snippet Text",
@@ -63,20 +15,15 @@ export default {
 		"CLEAR_SELECTIONS": "Clear all selected items",
 		"CLEAR_SELECTED": "Clear selected item",
 		"A11Y": {
-			"OPEN_MENU": "open menu",
-			"CLOSE_MENU": "close menu",
+			"OPEN_MENU": "Open menu",
+			"CLOSE_MENU": "Close menu",
 			"CLEAR_SELECTIONS": "Clear all selected items",
 			"CLEAR_SELECTED": "Clear Selection"
 		}
 	},
-	"DIALOG": {
-		"POPOVER" : {
-			"CLOSE": "Close popover"
-		}
-	},
 	"DROPDOWN": {
 		"OPEN": "Open menu",
-		"SELECTED": "selected",
+		"SELECTED": "Selected",
 		"CLEAR": "Clear all selected items",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
@@ -90,10 +37,8 @@ export default {
 	},
 	"FILE_UPLOADER": {
 		"CHECKMARK": "Checkmark",
-		"CHECKMARK_TITLE": "File uploaded!",
 		"OPEN": "Add file",
-		"REMOVE_BUTTON": "Close button",
-		"REMOVE_TITLE": "Delete File"
+		"REMOVE_BUTTON": "Close button"
 	},
 	"LOADING": {
 		"TITLE": "Loading"
@@ -105,8 +50,8 @@ export default {
 		"CLOSE_BUTTON": "Close alert notification"
 	},
 	"NUMBER": {
-		"INCREMENT": "increment value",
-		"DECREMENT": "decrement value"
+		"INCREMENT": "Increment value",
+		"DECREMENT": "Decrement value"
 	},
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
@@ -114,8 +59,7 @@ export default {
 	"SEARCH": {
 		"LABEL": "Search",
 		"PLACEHOLDER": "Search",
-		"CLEAR_BUTTON": "Clear search input",
-		"TOOLBAR_SEARCH": "Toolbar search"
+		"CLEAR_BUTTON": "Clear search input"
 	},
 	"PAGINATION": {
 		"ITEMS_PER_PAGE": "Items per page:",
@@ -132,12 +76,13 @@ export default {
 		"PREVIOUS": "Previous",
 		"SELECT_ARIA": "Select page number"
 	},
+	"PROGRESS_INDICATOR": {
+		"CURRENT": "Current",
+		"INCOMPLETE": "Incomplete",
+		"COMPLETE": "Complete",
+		"INVALID": "Invalid"
+	},
 	"TABLE": {
-		"GO_TO_PAGE": "Go to page",
-		"PREVIOUS_PAGE": "Previous page",
-		"NEXT_PAGE": "Next page",
-		"PREVIOUS_3": "Scroll to previous 3 pages",
-		"NEXT_3": "Scroll to next 3 pages",
 		"FILTER": "Filter",
 		"END_OF_DATA": "You've reached the end of your content",
 		"SCROLL_TOP": "Scroll to top",
@@ -157,7 +102,8 @@ export default {
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
-		"BUTTON_ARIA_RIGHT": "Go to the next tab"
+		"BUTTON_ARIA_RIGHT": "Go to the next tab",
+		"HEADER_ARIA_LABEL": "List of tabs"
 	},
 	"TILES": {
 		"TILE": "tile",
@@ -175,8 +121,6 @@ export default {
 			"CLOSE_MENU": "Close menu"
 		},
 		"SIDE_NAV": {
-			"LABEL": "Side navigation",
-			"SWITCHER": "Switcher",
 			"TOGGLE_OPEN": "Open",
 			"TOGGLE_CLOSE": "Close"
 		}
