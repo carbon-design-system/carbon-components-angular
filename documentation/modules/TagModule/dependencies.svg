@@ -24,83 +24,83 @@
 <title>cluster_TagModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="108,-70 108,-268 388,-268 388,-70 108,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TagModule_declarations</title>
-<polygon fill="none" stroke="black" points="224,-78 224,-130 380,-130 380,-78 224,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_TagModule_exports</title>
-<polygon fill="none" stroke="black" points="181,-208 181,-260 341,-260 341,-208 181,-208"/>
+<polygon fill="none" stroke="black" points="155,-208 155,-260 315,-260 315,-208 155,-208"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TagModule_imports</title>
-<polygon fill="none" stroke="black" points="116,-78 116,-130 216,-130 216,-78 116,-78"/>
+<polygon fill="none" stroke="black" points="280,-78 280,-130 380,-130 380,-78 280,-78"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TagModule_declarations</title>
+<polygon fill="none" stroke="black" points="116,-78 116,-130 272,-130 272,-78 116,-78"/>
 </g>
 <!-- Tag -->
 <g id="node1" class="node">
 <title>Tag</title>
-<polygon fill="#ffffb3" stroke="black" points="372,-122 318,-122 318,-86 372,-86 372,-122"/>
-<text text-anchor="middle" x="345" y="-99.8" font-family="Times,serif" font-size="14.00">Tag</text>
+<polygon fill="#ffffb3" stroke="black" points="264,-122 210,-122 210,-86 264,-86 264,-122"/>
+<text text-anchor="middle" x="237" y="-99.8" font-family="Times,serif" font-size="14.00">Tag</text>
 </g>
 <!-- TagModule -->
 <g id="node3" class="node">
 <title>TagModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="306.82,-187 303.82,-191 282.82,-191 279.82,-187 225.18,-187 225.18,-151 306.82,-151 306.82,-187"/>
-<text text-anchor="middle" x="266" y="-164.8" font-family="Times,serif" font-size="14.00">TagModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="277.82,-187 274.82,-191 253.82,-191 250.82,-187 196.18,-187 196.18,-151 277.82,-151 277.82,-187"/>
+<text text-anchor="middle" x="237" y="-164.8" font-family="Times,serif" font-size="14.00">TagModule</text>
 </g>
 <!-- Tag&#45;&gt;TagModule -->
 <g id="edge1" class="edge">
 <title>Tag&#45;&gt;TagModule</title>
-<path fill="none" stroke="black" d="M325.5,-122.11C325.5,-141.34 325.5,-169 325.5,-169 325.5,-169 316.67,-169 316.67,-169"/>
-<polygon fill="black" stroke="black" points="316.67,-165.5 306.67,-169 316.67,-172.5 316.67,-165.5"/>
+<path fill="none" stroke="black" d="M237,-122.11C237,-122.11 237,-140.99 237,-140.99"/>
+<polygon fill="black" stroke="black" points="233.5,-140.99 237,-150.99 240.5,-140.99 233.5,-140.99"/>
 </g>
 <!-- TagFilter -->
 <g id="node2" class="node">
 <title>TagFilter</title>
-<polygon fill="#ffffb3" stroke="black" points="300.1,-122 231.9,-122 231.9,-86 300.1,-86 300.1,-122"/>
-<text text-anchor="middle" x="266" y="-99.8" font-family="Times,serif" font-size="14.00">TagFilter</text>
+<polygon fill="#ffffb3" stroke="black" points="192.1,-122 123.9,-122 123.9,-86 192.1,-86 192.1,-122"/>
+<text text-anchor="middle" x="158" y="-99.8" font-family="Times,serif" font-size="14.00">TagFilter</text>
 </g>
 <!-- TagFilter&#45;&gt;TagModule -->
 <g id="edge2" class="edge">
 <title>TagFilter&#45;&gt;TagModule</title>
-<path fill="none" stroke="black" d="M266,-122.11C266,-122.11 266,-140.99 266,-140.99"/>
-<polygon fill="black" stroke="black" points="262.5,-140.99 266,-150.99 269.5,-140.99 262.5,-140.99"/>
+<path fill="none" stroke="black" d="M192.24,-104C198.54,-104 203.17,-104 203.17,-104 203.17,-104 203.17,-140.89 203.17,-140.89"/>
+<polygon fill="black" stroke="black" points="199.67,-140.89 203.17,-150.89 206.67,-140.89 199.67,-140.89"/>
 </g>
 <!-- Tag  -->
 <g id="node5" class="node">
 <title>Tag </title>
-<polygon fill="#fb8072" stroke="black" points="333,-252 279,-252 279,-216 333,-216 333,-252"/>
-<text text-anchor="middle" x="306" y="-229.8" font-family="Times,serif" font-size="14.00">Tag </text>
+<polygon fill="#fb8072" stroke="black" points="307,-252 253,-252 253,-216 307,-216 307,-252"/>
+<text text-anchor="middle" x="280" y="-229.8" font-family="Times,serif" font-size="14.00">Tag </text>
 </g>
 <!-- TagModule&#45;&gt;Tag  -->
 <g id="edge4" class="edge">
 <title>TagModule&#45;&gt;Tag </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M292.83,-187.11C292.83,-187.11 292.83,-205.99 292.83,-205.99"/>
-<polygon fill="black" stroke="black" points="289.33,-205.99 292.83,-215.99 296.33,-205.99 289.33,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M265.33,-187.11C265.33,-187.11 265.33,-205.99 265.33,-205.99"/>
+<polygon fill="black" stroke="black" points="261.83,-205.99 265.33,-215.99 268.83,-205.99 261.83,-205.99"/>
 </g>
 <!-- TagFilter  -->
 <g id="node6" class="node">
 <title>TagFilter </title>
-<polygon fill="#fb8072" stroke="black" points="260.6,-252 189.4,-252 189.4,-216 260.6,-216 260.6,-252"/>
-<text text-anchor="middle" x="225" y="-229.8" font-family="Times,serif" font-size="14.00">TagFilter </text>
+<polygon fill="#fb8072" stroke="black" points="234.6,-252 163.4,-252 163.4,-216 234.6,-216 234.6,-252"/>
+<text text-anchor="middle" x="199" y="-229.8" font-family="Times,serif" font-size="14.00">TagFilter </text>
 </g>
 <!-- TagModule&#45;&gt;TagFilter  -->
 <g id="edge5" class="edge">
 <title>TagModule&#45;&gt;TagFilter </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M243.07,-187.11C243.07,-187.11 243.07,-205.99 243.07,-205.99"/>
-<polygon fill="black" stroke="black" points="239.57,-205.99 243.07,-215.99 246.57,-205.99 239.57,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M215.57,-187.11C215.57,-187.11 215.57,-205.99 215.57,-205.99"/>
+<polygon fill="black" stroke="black" points="212.07,-205.99 215.57,-215.99 219.07,-205.99 212.07,-205.99"/>
 </g>
 <!-- IconModule -->
 <g id="node4" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="208.43,-122 205.43,-126 184.43,-126 181.43,-122 123.57,-122 123.57,-86 208.43,-86 208.43,-122"/>
-<text text-anchor="middle" x="166" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="372.43,-122 369.43,-126 348.43,-126 345.43,-122 287.57,-122 287.57,-86 372.43,-86 372.43,-122"/>
+<text text-anchor="middle" x="330" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;TagModule -->
 <g id="edge3" class="edge">
 <title>IconModule&#45;&gt;TagModule</title>
-<path fill="none" stroke="black" d="M198.71,-122.11C198.71,-141.34 198.71,-169 198.71,-169 198.71,-169 215.3,-169 215.3,-169"/>
-<polygon fill="black" stroke="black" points="215.3,-172.5 225.3,-169 215.3,-165.5 215.3,-172.5"/>
+<path fill="none" stroke="black" d="M287.63,-104C278.14,-104 270.83,-104 270.83,-104 270.83,-104 270.83,-140.89 270.83,-140.89"/>
+<polygon fill="black" stroke="black" points="267.33,-140.89 270.83,-150.89 274.33,-140.89 267.33,-140.89"/>
 </g>
 </g>
 </svg>
