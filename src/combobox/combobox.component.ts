@@ -483,6 +483,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						} else {
 							this.propagateChangeCallback(this.view.getSelected());
 						}
+						this.selected.emit(event);
 					}
 				} else {
 					// If type is single, dropdown list will emit an object
@@ -509,11 +510,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					if (!isUpdate(event)) {
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
+						this.selected.emit(event.item);
 					}
 					this.closeDropdown();
-				}
-				if (!isUpdate(event) && !Array.isArray(event)) {
-					this.selected.emit(event.item);
 				}
 			});
 			// update the rest of combobox with any pre-selected items
