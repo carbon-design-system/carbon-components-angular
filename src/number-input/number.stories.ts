@@ -23,7 +23,6 @@ const Template: Story<NumberComponent> = (args) => ({
 			[min]="min"
 			[max]="max"
 			[step]="step"
-			[precision]="precision"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -42,7 +41,6 @@ Basic.args = {
 	min: 0,
 	max: 100,
 	step: 1,
-	precision: 0,
 	invalid: false,
 	disabled: false
 };
