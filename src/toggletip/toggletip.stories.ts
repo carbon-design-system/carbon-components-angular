@@ -80,7 +80,8 @@ const Template: Story<Toggletip> = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	isOpen: true
+	isOpen: true,
+	align: "bottom"
 };
 Basic.argTypes = {
 	onOpen: {
@@ -99,7 +100,6 @@ Basic.argTypes = {
 			"left",
 			"right"
 		],
-		defaultValue: "bottom",
 		control: "select"
 	}
 };
