@@ -31,6 +31,8 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
+	documentClick = this.handleFocusOut.bind(this);
+
 	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
 		super();
 		this.highContrast = true;
@@ -40,7 +42,22 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	ngAfterViewInit(): void {
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")
-			.subscribe((event: Event) => this.handleExpansion(!this.isOpen, event));
+			.subscribe((event: Event) => {
+				// Add/Remove event listener based on isOpen to improve performance when there
+				// are a lot of toggletips
+				if (this.isOpen) {
+					document.removeEventListener("click", this.documentClick);
+				} else {
+					document.addEventListener("click", this.documentClick);
+				}
+
+				this.handleExpansion(!this.isOpen, event);
+			});
+
+		// Toggletip is open on initial render, add 'click' event listener to document so users can close
+		if (this.isOpen) {
+			document.addEventListener("click", this.documentClick);
+		}
 
 		if (this.btn) {
 			this.renderer.setAttribute(this.btn.nativeElement, "aria-controls", this.id);
@@ -55,7 +72,6 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 		}
 	}
 
-	@HostListener("document:click", ["$event"])
 	handleFocusOut(event) {
 		if (!this.hostElement.nativeElement.contains(event.target)) {
 			this.handleExpansion(false, event);
