@@ -62,7 +62,7 @@ export class NumberChange {
 				<input
 					type="number"
 					[id]="id"
-					[attr.value]="value"
+					[value]="value"
 					[attr.min]="min"
 					[attr.max]="max"
 					[attr.step]="step"
@@ -71,7 +71,7 @@ export class NumberChange {
 					[attr.aria-label]="ariaLabel"
 					[attr.data-invalid]="invalid ? invalid : null"
 					[placeholder]="placeholder"
-					(input)="onNumberInputChange($event)"/>
+					(change)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && !warn && invalid"
 					cdsIcon="warning--filled"
