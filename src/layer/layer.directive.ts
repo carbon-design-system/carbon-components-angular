@@ -23,16 +23,19 @@ export class LayerDirective implements AfterContentInit {
 	/**
 	 * @deprecated as of v5 - Use `cdsLayer` input property instead
 	 */
-	@Input() set ibmLayer(level: 0 | 1 | 2) {
+	@Input() set ibmLayer(level: 0 | 1 | 2 | "") {
 		this.cdsLayer = level;
 	}
 
 	/**
 	 * Override layer level
+	 * Empty string has been added as an option for Angular 16+ to resolve type errors
 	 */
-	@Input() set cdsLayer(level: 0 | 1 | 2) {
-		this._passedLevel = level;
-		this.layer = level;
+	@Input() set cdsLayer(level: 0 | 1 | 2 | "") {
+		if (typeof(level) === "number") {
+			this._passedLevel = level;
+			this.layer = level;
+		}
 	}
 
 	get cdsLayer() {
