@@ -231,6 +231,9 @@ export class FileUploader implements ControlValueAccessor {
 	onDragOver(event) {
 		event.stopPropagation();
 		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
 		this.dragOver = true;
 	}
 
@@ -243,6 +246,9 @@ export class FileUploader implements ControlValueAccessor {
 	onDrop(event) {
 		event.stopPropagation();
 		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
 
 		const transferredFiles: Array<File> = Array.from(event.dataTransfer.files);
 		const newFiles = new Set<FileItem>(this.files);
