@@ -17,7 +17,8 @@ export default {
 		invalid: false,
 		warnText: "This is a warning",
 		warn: false,
-		disabled: false
+		disabled: false,
+		language: "en"
 	},
 	argTypes: {
 		theme: {
