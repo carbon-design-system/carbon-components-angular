@@ -21,10 +21,18 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
-import * as languages from "flatpickr/dist/l10n/index";
+import languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
-import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
+
+// Due to type error, we have to use square brackets property accessor
+(languages.default["en"].weekdays.shorthand as string[])
+= languages.default["en"].weekdays.longhand.map(day => {
+	if (day === "Thursday") {
+		return "Th";
+	}
+	return day.charAt(0);
+});
 
 /**
  * [See demo](../../?path=/story/components-date-picker--single)
@@ -101,8 +109,7 @@ export class DatePicker implements
 	OnDestroy,
 	OnChanges,
 	AfterViewChecked,
-	AfterViewInit,
-	AfterContentInit {
+	AfterViewInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -328,16 +335,6 @@ export class DatePicker implements
 				}
 			}
 		}
-	}
-
-	ngAfterContentInit() {
-		(languages.default.en.weekdays.shorthand as string[])
-			= languages.default.en.weekdays.longhand.map(day => {
-				if (day === "Thursday") {
-					return "Th";
-				}
-				return day.charAt(0);
-			});
 	}
 
 	@HostListener("focusin")
