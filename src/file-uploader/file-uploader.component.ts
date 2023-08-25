@@ -23,7 +23,7 @@ const noop = () => { };
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<label [for]="fileUploaderId" class="bx--file--label">{{title}}</label>
-			<p class="bx--label-description">{{description}}</p>
+			<p class="bx--label-description" role="alert">{{description}}</p>
 			<div class="bx--file">
 				<div
 					*ngIf="drop"
@@ -67,7 +67,7 @@ const noop = () => { };
 				<div class="bx--file-container">
 					<ng-container *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
-						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
+						<div *ngIf="fileItem.invalid" class="bx--form-requirement" role="alert">
 							{{fileItem.invalidText}}
 						</div>
 					</ng-container>
