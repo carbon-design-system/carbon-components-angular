@@ -3,7 +3,7 @@ name: Deploy
 on:
   # Runs on pushes targeting release branches
   push:
-    branches: ["master", "next", "v3", "v9"]
+    branches: ["master", "next", "v3", "v9", "v10"]
 
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
