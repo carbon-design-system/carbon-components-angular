@@ -23,5 +23,5 @@ export class Panel {
 	 */
 	@Input() expanded = false;
 
-	@Input() ariaLabel = "Header panel";
+	@Input() ariaLabel;
 }
