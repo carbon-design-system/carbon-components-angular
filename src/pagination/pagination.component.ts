@@ -91,13 +91,13 @@ export interface PaginationTranslations {
 					</svg>
 				</div>
 			</ng-container>
-			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="bx--pagination__text bx--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="bx--pagination__text bx--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			</span>
-			<span *ngIf="pagesUnknown" class="bx--pagination__text" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+			<span *ngIf="pagesUnknown" class="bx--pagination__text bx--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
