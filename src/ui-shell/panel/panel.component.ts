@@ -9,6 +9,7 @@ import { Component, Input } from "@angular/core";
 	template: `
 		<div
 			class="bx--panel--overlay"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'bx--panel--expanded': expanded
 			}">
@@ -21,4 +22,6 @@ export class Panel {
 	 * Controls the visibility of the panel
 	 */
 	@Input() expanded = false;
+
+	@Input() ariaLabel = null;
 }
