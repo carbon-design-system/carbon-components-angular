@@ -21,7 +21,7 @@ const noop = () => { };
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
-			<p class="cds--label-description">{{description}}</p>
+			<p class="cds--label-description" role="alert">{{description}}</p>
 			<div class="cds--file">
 				<label
 					*ngIf="drop"

@@ -47,7 +47,7 @@ import { FileItem } from "./file-item.interface";
 				[ariaLabel]="translations.CHECKMARK">
 			</svg>
 		</span>
-		<div class="cds--form-requirement" *ngIf="fileItem.invalid">
+		<div class="cds--form-requirement" role="alert" *ngIf="fileItem.invalid">
 			<div class="cds--form-requirement__title">{{fileItem.invalidTitle}}</div>
 			<p class="cds--form-requirement__supplement">{{fileItem.invalidText}}</p>
 		</div>
