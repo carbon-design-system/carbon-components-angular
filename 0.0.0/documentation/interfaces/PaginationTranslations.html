@@ -547,13 +547,13 @@ export interface PaginationTranslations {
 					&lt;/svg&gt;
 				&lt;/div&gt;
 			&lt;/ng-container&gt;
-			&lt;span *ngIf&#x3D;&quot;!pagesUnknown &amp;&amp; totalDataLength &lt;&#x3D; 1&quot; class&#x3D;&quot;cds--pagination__text&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;!pagesUnknown &amp;&amp; totalDataLength &lt;&#x3D; 1&quot; class&#x3D;&quot;cds--pagination__text cds--pagination__items-count&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
 				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			&lt;/span&gt;
-			&lt;span *ngIf&#x3D;&quot;!pagesUnknown &amp;&amp; totalDataLength &gt; 1&quot; class&#x3D;&quot;cds--pagination__text&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;!pagesUnknown &amp;&amp; totalDataLength &gt; 1&quot; class&#x3D;&quot;cds--pagination__text cds--pagination__items-count&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
 			&lt;/span&gt;
-			&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;cds--pagination__text&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;pagesUnknown&quot; class&#x3D;&quot;cds--pagination__text cds--pagination__items-count&quot; [ngStyle]&#x3D;&quot;{&#x27;margin-left&#x27;: showPageInput ? null : 0}&quot;&gt;
 				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			&lt;/span&gt;
 		&lt;/div&gt;

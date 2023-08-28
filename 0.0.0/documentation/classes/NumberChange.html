@@ -260,7 +260,7 @@ export class NumberChange {
 				&lt;input
 					type&#x3D;&quot;number&quot;
 					[id]&#x3D;&quot;id&quot;
-					[attr.value]&#x3D;&quot;value&quot;
+					[value]&#x3D;&quot;value&quot;
 					[attr.min]&#x3D;&quot;min&quot;
 					[attr.max]&#x3D;&quot;max&quot;
 					[attr.step]&#x3D;&quot;step&quot;
@@ -269,7 +269,7 @@ export class NumberChange {
 					[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 					[attr.data-invalid]&#x3D;&quot;invalid ? invalid : null&quot;
 					[placeholder]&#x3D;&quot;placeholder&quot;
-					(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
+					(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 				&lt;svg
 					*ngIf&#x3D;&quot;!skeleton &amp;&amp; !warn &amp;&amp; invalid&quot;
 					cdsIcon&#x3D;&quot;warning--filled&quot;
