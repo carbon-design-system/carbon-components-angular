@@ -36,11 +36,6 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			</div>
 		</div>
 	`,
-	styles: [`
-		:host {
-			display: block;
-		}
-	`],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContainedList {
