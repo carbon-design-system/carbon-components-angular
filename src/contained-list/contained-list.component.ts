@@ -68,58 +68,6 @@ export class ContainedList {
 	@Input() size: ContainedListSize = ContainedListSize.Large;
 
 	/**
-	 * Host binding host contained list class.
-	 */
-	@HostBinding("class.cds--contained-list") containedListClass = true;
-
-	/**
-	 * Host binding host is inset class.
-	 */
-	@HostBinding("class.cds--contained-list--inset-rulers") isInsetClass = true;
-
-	/**
-	 * Host binding host on-page class.
-	 */
-	@HostBinding("class.cds--contained-list--on-page") get hostOnPageClass() {
-		return this.kind === ContainedListKind.OnPage;
-	}
-
-	/**
-	 * Host binding host disclosed class.
-	 */
-	@HostBinding("class.cds--contained-list--disclosed") get hostDisclosedClass() {
-		return this.kind === ContainedListKind.Disclosed;
-	}
-
-	/**
-	 * Host binding host size sm class.
-	 */
-	@HostBinding("class.cds--contained-list--sm") get hostSizeSmClass() {
-		return this.size === ContainedListSize.Small;
-	}
-
-	/**
-	 * Host binding host size md class.
-	 */
-	@HostBinding("class.cds--contained-list--md") get hostSizeMdClass() {
-		return this.size === ContainedListSize.Medium;
-	}
-
-	/**
-	 * Host binding host size lg class.
-	 */
-	@HostBinding("class.cds--contained-list--lg") get hostSizeLgClass() {
-		return this.size === ContainedListSize.Large;
-	}
-
-	/**
-	 * Host binding host size xl class.
-	 */
-	@HostBinding("class.cds--contained-list--xl") get hostSizeXlClass() {
-		return this.size === ContainedListSize.ExtraLarge;
-	}
-
-	/**
 	 * Label id for the contained list.
 	 */
 	readonly labelId = `contained-list-${ContainedList.count++}-header`;
