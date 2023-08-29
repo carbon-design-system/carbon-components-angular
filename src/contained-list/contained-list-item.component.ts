@@ -33,12 +33,6 @@ import {
 			<ng-template [ngTemplateOutlet]="action"></ng-template>
 		</div>
 	`,
-	styles: [`
-		:host {
-			display: list-item;
-			list-style: none;
-		}
-	`],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContainedListItem {
