@@ -74,7 +74,7 @@ Basic.argTypes = {
 		control: "radio"
 	},
 	orientation: {
-		options: ["horizontal", "veritcal"],
+		options: ["horizontal", "vertical"],
 		defaultValue: "horizontal",
 		control: "radio"
 	}
