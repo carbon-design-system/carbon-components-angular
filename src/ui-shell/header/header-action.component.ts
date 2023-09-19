@@ -60,5 +60,6 @@ export class HeaderAction extends BaseIconButton {
 		this.active = !this.active;
 		this.selected.emit(this.active);
 		this.activeChange.emit(this.active);
+		this.click.emit(this.active);
 	}
 }
