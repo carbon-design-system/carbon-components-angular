@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 /**
  * Base button with common input properties for configuring icon button.
@@ -41,4 +41,8 @@ export class BaseIconButton {
 	 * Set delay when tooltip disappears
 	 */
 	@Input() leaveDelayMs = 300;
+	/**
+	 * Emit click of a button if necessary
+	 */
+	@Output() click = new EventEmitter<any>();
 }
