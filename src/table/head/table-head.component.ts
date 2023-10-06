@@ -64,7 +64,6 @@ import { TableRowSize } from "../table.types";
 					[skeleton]="skeleton"
 					[id]="model.getId(i)"
 					[column]="column"
-					[skeleton]="skeleton"
 					[filterTitle]="getFilterTitle()"
 					[attr.colspan]="column.colSpan"
 					[attr.rowspan]="column.rowSpan"

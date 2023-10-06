@@ -68,7 +68,11 @@ import { TableHeaderItem } from "../table-header-item.class";
 		<div
 			class="cds--table-header-label"
 			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">
-			<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
+			<span *ngIf="!column.template" [title]="column.data">
+				<ng-container *ngIf="!skeleton">
+					{{column.data}}
+				</ng-container>
+			</span>
 			<ng-template
 				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 			</ng-template>
