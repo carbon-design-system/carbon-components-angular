@@ -12,7 +12,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 @Component({
 	template: `
 		<ng-template #label>
-	  		<h1>My Contained List</h1>
+	  		<h1>My contained list</h1>
 		</ng-template>
 
 		<ng-template #action>
@@ -70,7 +70,7 @@ describe("ContainedList", () => {
 	});
 
 	it("should display the label when a string is provided", () => {
-		const label = "My Contained List";
+		const label = "My contained list";
 		component.label = label;
 		fixture.detectChanges();
 
@@ -108,7 +108,7 @@ describe("ContainedList", () => {
 			wrapperFixture.detectChanges();
 
 			const labelRefElement = wrapperFixture.nativeElement.querySelector(".cds--contained-list .cds--contained-list__label h1");
-			expect(labelRefElement.textContent.trim()).toBe("My Contained List");
+			expect(labelRefElement.textContent.trim()).toBe("My contained list");
 		});
 
 		it("should render the action if it is a TemplateRef", () => {
