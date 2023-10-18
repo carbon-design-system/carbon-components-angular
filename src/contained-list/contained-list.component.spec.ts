@@ -108,7 +108,7 @@ describe("ContainedList", () => {
 			wrapperFixture.detectChanges();
 
 			const labelRefElement = wrapperFixture.nativeElement.querySelector(".cds--contained-list .cds--contained-list__label h1");
-			expect(labelRefElement.textContent.trim()).toBe("My Contained List");
+			expect(labelRefElement.textContent.trim()).toBe("My contained list");
 		});
 
 		it("should render the action if it is a TemplateRef", () => {
