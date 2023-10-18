@@ -70,7 +70,7 @@ describe("ContainedList", () => {
 	});
 
 	it("should display the label when a string is provided", () => {
-		const label = "My Contained List";
+		const label = "My contained list";
 		component.label = label;
 		fixture.detectChanges();
 
