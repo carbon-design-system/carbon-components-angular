@@ -70,7 +70,7 @@ export class ContainedList {
 	/**
 	 * Label id for the contained list.
 	 */
-	readonly labelId = `contained-list-${ContainedList.count++}-header`;
+	@Input() labelId = `contained-list-${ContainedList.count++}-header`;
 
 	/**
 	 * Exposing ContainedListSize enum to the template
