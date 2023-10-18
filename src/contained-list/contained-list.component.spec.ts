@@ -12,7 +12,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 @Component({
 	template: `
 		<ng-template #label>
-	  		<h1>My Contained List</h1>
+	  		<h1>My contained list</h1>
 		</ng-template>
 
 		<ng-template #action>
