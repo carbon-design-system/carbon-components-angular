@@ -11,7 +11,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
  * Contained by `HeaderGlobal`. Generally used to trigger `Panel`s
  */
 @Component({
-	selector: "cds-header-action, ibm-header-action",
+	selector: "cds-header-action, header-action",
 	template: `
 		<cds-icon-button
 			[buttonNgClass]="{
