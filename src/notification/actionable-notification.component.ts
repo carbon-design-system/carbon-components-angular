@@ -1,7 +1,9 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	Output,
+	EventEmitter
 } from "@angular/core";
 
 import { of } from "rxjs";
@@ -81,7 +83,7 @@ export class ActionableNotification extends BaseNotification {
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
-
+	@Output() close = new EventEmitter();
 	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount++}`;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
@@ -102,6 +104,10 @@ export class ActionableNotification extends BaseNotification {
 		variant: "inline" as NotificationVariants,
 		role: "alertdialog"
 	};
+
+	onClose() {
+		this.close.emit();
+	}
 
 	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
 		super(notificationDisplayService, i18n);
