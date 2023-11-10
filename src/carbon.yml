@@ -113,6 +113,15 @@ assets:
         name: Storybook
         action: link
         url: https://angular.carbondesignsystem.com/?path=/story/components-combobox
+  contained-list:
+    status: stable
+    framework: angular
+    externalDocsUrl: https://carbondesignsystem.com/components/contained-list/usage/
+    demoLinks:
+      - type: storybook
+        name: Storybook
+        action: link
+        url: https://angular.carbondesignsystem.com/?path=/story/components-contained-list
   content-switcher:
     status: stable
     framework: angular
