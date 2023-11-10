@@ -4,6 +4,7 @@ export * from "carbon-components-angular/button";
 export * from "carbon-components-angular/checkbox";
 export * from "carbon-components-angular/code-snippet";
 export * from "carbon-components-angular/combobox";
+export * from "carbon-components-angular/contained-list";
 export * from "carbon-components-angular/content-switcher";
 export * from "carbon-components-angular/context-menu";
 export * from "carbon-components-angular/datepicker";
