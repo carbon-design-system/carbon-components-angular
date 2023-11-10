@@ -203,6 +203,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/ContainedListModule.html" data-type="entity-link" >ContainedListModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#components-links-module-ContainedListModule-45e6bc117d8af8603b041fe5ef4088fd4fae5785c35f61b921fcda04976463f879ebb045d08a833b14592e03add98b2b6276d14260a15087a67fd09a2fc24743"' : 'data-bs-target="#xs-components-links-module-ContainedListModule-45e6bc117d8af8603b041fe5ef4088fd4fae5785c35f61b921fcda04976463f879ebb045d08a833b14592e03add98b2b6276d14260a15087a67fd09a2fc24743"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ContainedListModule-45e6bc117d8af8603b041fe5ef4088fd4fae5785c35f61b921fcda04976463f879ebb045d08a833b14592e03add98b2b6276d14260a15087a67fd09a2fc24743"' :
+                                            'id="xs-components-links-module-ContainedListModule-45e6bc117d8af8603b041fe5ef4088fd4fae5785c35f61b921fcda04976463f879ebb045d08a833b14592e03add98b2b6276d14260a15087a67fd09a2fc24743"' }>
+                                            <li class="link">
+                                                <a href="components/ContainedList.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContainedList</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/ContainedListItem.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContainedListItem</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ContentSwitcherModule.html" data-type="entity-link" >ContentSwitcherModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
