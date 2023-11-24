@@ -11,6 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # We use Node v16 for building since CCA@v5 is using Angular 14.
     strategy:
       matrix:
         node-version: [16.x]
@@ -39,6 +40,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # We use Node v20 for building since it is current lts. Node v16 is no longer supported in Angular 17.
     strategy:
       matrix:
         angular-version: [14, 15, 16, 17]
