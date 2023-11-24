@@ -16,7 +16,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 	selector: "cds-sidenav, ibm-sidenav",
 	template: `
 		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
-			<ng-content select="cds-sidenav-header"></ng-content>
+			<ng-content select="cds-sidenav-header,ibm-sidenav-header"></ng-content>
 			<div role="list">
 				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
