@@ -17,7 +17,7 @@ import {
 				type="button"
 				[disabled]="disabled"
 				(click)="onClick()">
-				<ng-content select="[ibmContainedListItemButton]"></ng-content>
+				<ng-content select="[cdsContainedListItemButton],[ibmContainedListItemButton]"></ng-content>
 			</button>
 		</ng-container>
 		<ng-container *ngIf="!clickable">

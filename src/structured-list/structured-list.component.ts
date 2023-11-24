@@ -63,7 +63,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				'cds--structured-list--condensed': condensed,
 				'cds--skeleton': skeleton
 			}">
-			<ng-content select="cds-list-header"></ng-content>
+			<ng-content select="cds-list-header,ibm-list-header"></ng-content>
 			<div class="cds--structured-list-tbody" role="rowgroup">
 				<ng-content></ng-content>
 			</div>
