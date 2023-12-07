@@ -350,6 +350,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (this.view) {
 			this.view.type = this.type;
 		}
+		this.skeleton ? this.placeholder = "test" : this.placeholder = this.placeholder;
 	}
 
 	/**
