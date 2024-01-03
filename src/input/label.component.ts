@@ -15,7 +15,11 @@ import { TextArea } from "./text-area.directive";
 import { TextInput } from "./input.directive";
 
 /**
- * [See demo](../../?path=/story/components-input--label)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
  *
  * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components
  *
@@ -25,6 +29,8 @@ import { TextInput } from "./input.directive";
  * 	<input cdsText type="text" class="input-field">
  * </cds-label>
  * ```
+ *
+ * [See demo](../../?path=/story/components-input--basic)
  */
 @Component({
 	selector: "cds-label, ibm-label",

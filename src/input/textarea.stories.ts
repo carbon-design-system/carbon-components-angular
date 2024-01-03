@@ -1,39 +1,37 @@
 /* tslint:disable variable-name */
 
 import { moduleMetadata, Meta  } from "@storybook/angular";
-import { InputModule, TextInputLabelComponent } from "./";
+import { InputModule, TextareaLabelComponent } from "./";
 
 export default {
-	title: "Components/Input",
+	title: "Components/Input/Text area",
 	decorators: [
 		moduleMetadata({
 			imports: [InputModule]
 		})
 	],
-	component: TextInputLabelComponent
+	component: TextareaLabelComponent
 } as Meta;
 
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-text-label
+		<cds-textarea-label
 		[helperText]="helperText"
 		[invalid]="invalid"
-		[invalidText]="invalidText"
-		[warn]="warn"
 		[disabled]="disabled"
-		[warnText]="warnText">
+		[invalidText]="invalidText">
 		{{label}}
-		<input
-			cdsText
-			[size]="size"
+		<textarea
+			cdsTextArea
+			[placeholder]="placeholder"
 			[invalid]="invalid"
-			[warn]="warn"
 			[disabled]="disabled"
 			[theme]="theme"
-			[placeholder]="placeholder"
-			[autocomplete]="autocomplete">
-		</cds-text-label>
+			[rows]="rows"
+			[cols]="cols"
+			aria-label="textarea"></textarea>
+		</cds-textarea-label>
 	`
 });
 export const Basic = Template.bind({});
@@ -45,7 +43,9 @@ Basic.args = {
 	warnText: "This is a warning!",
 	label: "Text input label",
 	helperText: "Optional helper text",
-	placeholder: "Placeholder"
+	placeholder: "Placeholder",
+	cols: 50,
+	rows: 4
 };
 Basic.argTypes = {
 	autocomplete: {
@@ -65,15 +65,12 @@ Basic.argTypes = {
 	}
 };
 
-
 const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
-		<cds-label skeleton="true">
-			<input cdsText skeleton="true">
-		</cds-label>
-		<br>
-		<input cdsText skeleton="true">
+		<cds-textarea-label skeleton="true">
+			<div cdsTextArea skeleton="true"></div>
+		</cds-textarea-label>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
