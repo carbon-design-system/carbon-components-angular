@@ -18,7 +18,13 @@ import { I18n } from "carbon-components-angular/i18n";
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
- *  [See demo](../../?path=/story/components-breadcrumb--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { BreadcrumbModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-breadcrumb--basic)
  */
 @Component({
 	selector: "cds-breadcrumb, ibm-breadcrumb",

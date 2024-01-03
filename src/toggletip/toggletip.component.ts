@@ -12,6 +12,15 @@ import { fromEvent } from "rxjs";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ToggletipModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-toggletip--basic)
+ */
 @Component({
 	selector: "cds-toggletip, ibm-toggletip",
 	template: `

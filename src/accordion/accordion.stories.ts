@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta  } from "@storybook/angular";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { AccordionModule, Accordion } from "./";
 
@@ -10,10 +10,11 @@ export default {
 		moduleMetadata({
 			imports: [AccordionModule, DocumentationModule]
 		})
-	]
+	],
+	component: Accordion
 } as Meta;
 
-const Template: Story<Accordion> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-accordion [align]="align" [size]="size">
@@ -51,7 +52,7 @@ Basic.argTypes = {
 	selected: { action: "Selected" }
 };
 
-const WithTitleTemplate: Story<Accordion> = (args) => ({
+const WithTitleTemplate = (args) => ({
 	props: args,
 	template: `
 		<div style="width: 500px">
@@ -85,7 +86,7 @@ WithTitle.parameters = {
 	}
 };
 
-const WithSkeleton: Story<Accordion> = (args) => ({
+const WithSkeleton = (args) => ({
 	props: args,
 	template: `
 		<div style="width: 500px">

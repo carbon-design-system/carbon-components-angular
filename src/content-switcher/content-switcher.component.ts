@@ -14,9 +14,13 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 
 /**
  * The content switcher can be used for toggling between distinct options.
- * Similar to tabs, but without an associated content panel
+ * Similar to tabs, but without an associated content panel.
  *
- * [See demo](../../?path=/story/components-content-switcher--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ContentSwitcherModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-content-switcher (selected)="selected($event)">
@@ -25,6 +29,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
  *		<button cdsContentOption>Third section</button>
  *	</cds-content-switcher>
  *	```
+ *
+ * [See demo](../../?path=/story/components-content-switcher--basic)
  */
 @Component({
 	selector: "cds-content-switcher, ibm-content-switcher",
