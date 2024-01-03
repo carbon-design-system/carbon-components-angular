@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { InputModule, TextInputLabelComponent } from "./";
 
 export default {

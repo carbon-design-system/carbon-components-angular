@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ProgressIndicatorModule, ProgressIndicator } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: ProgressIndicator
 } as Meta;
 
-const Template: Story<ProgressIndicator> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-progress-indicator

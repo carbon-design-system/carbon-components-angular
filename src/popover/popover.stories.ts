@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	PopoverModule,
 	PopoverContainer,
@@ -21,7 +21,7 @@ export default {
 	subcomponents: { PopoverContent }
 } as Meta;
 
-const Template: Story<PopoverContainer> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div

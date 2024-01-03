@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	SelectModule,
 	Select,
@@ -57,7 +57,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<Select> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-select
@@ -94,7 +94,7 @@ Basic.argTypes = {
 	}
 };
 
-const NgModelTemplate: Story<Select> = (args) => ({
+const NgModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select
@@ -128,7 +128,7 @@ NgModel.argTypes = {
 	}
 };
 
-const ReactiveTemplate: Story<Select> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -146,7 +146,7 @@ ReactiveForms.parameters = {
 	}
 };
 
-const OptionsSelectedTemplate: Story<Select> = (args) => ({
+const OptionsSelectedTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select label="Type">
@@ -180,7 +180,7 @@ OptionsSelected.argTypes = {
 	}
 };
 
-const ValuePropertyTemplate: Story<Select> = (args) => ({
+const ValuePropertyTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select label="Type" [value]="selected">

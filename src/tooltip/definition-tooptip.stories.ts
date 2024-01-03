@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TooltipModule, TooltipDefinition } from "./";
 
 export default {
@@ -16,7 +16,7 @@ export default {
 	component: TooltipDefinition
 } as Meta;
 
-const Template: Story<TooltipDefinition> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a

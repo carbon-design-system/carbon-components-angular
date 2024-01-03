@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TagModule, Tag } from "./";
 
 export default {
@@ -32,7 +32,7 @@ export default {
 	component: Tag
 } as Meta;
 
-const Template: Story<Tag> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tag [type]="type" [size]="size">Tag</cds-tag>
@@ -40,7 +40,7 @@ const Template: Story<Tag> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const FilteredTemplate: Story<Tag> = (args) => ({
+const FilteredTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tag-filter

@@ -5,7 +5,7 @@ import {
 	OnInit,
 	OnDestroy
 } from "@angular/core";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	TableModule,
 	TableModel,
@@ -175,7 +175,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

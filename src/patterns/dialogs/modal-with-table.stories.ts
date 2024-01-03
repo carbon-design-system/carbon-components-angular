@@ -5,7 +5,7 @@ import {
 	OnInit,
 	ViewEncapsulation
 } from "@angular/core";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { BaseModal, ModalModule } from "../../modal";
 import {
 	TableHeaderItem,
@@ -206,7 +206,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

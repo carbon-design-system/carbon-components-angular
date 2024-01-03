@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	BreadcrumbModule,
 	Breadcrumb,
@@ -45,7 +45,7 @@ export default {
 	subcomponents: { BreadcrumbItemComponent }
 } as Meta;
 
-const Template: Story<Breadcrumb> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
@@ -63,7 +63,7 @@ const Template: Story<Breadcrumb> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const CurrentPageTemplate: Story<Breadcrumb> = (args) => ({
+const CurrentPageTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-breadcrumb>
@@ -86,7 +86,7 @@ CurrentPage.parameters = {
 	}
 };
 
-const ModelTemplate: Story<Breadcrumb> = (args) => ({
+const ModelTemplate = (args) => ({
 	props: {
 		...args,
 		createBreadcrumbItems
@@ -107,7 +107,7 @@ Model.args = {
 	content: "breadcrumb"
 };
 
-const ModelWTemplate: Story<Breadcrumb> = (args) => ({
+const ModelWTemplate = (args) => ({
 	props: {
 		...args,
 		createBreadcrumbItems,
@@ -132,7 +132,7 @@ ModelWithTemplate.args = {
 	content: "breadcrumb"
 };
 
-const WithSkeleton: Story<Breadcrumb> = (args) => ({
+const WithSkeleton = (args) => ({
 	props: args,
 	template: `
 		<cds-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">

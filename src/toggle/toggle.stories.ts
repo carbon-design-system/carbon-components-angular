@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 
 
 import { ToggleModule, Toggle } from "./";
@@ -15,7 +15,7 @@ export default {
 	component: Toggle
 } as Meta;
 
-const Template: Story<Toggle> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-toggle

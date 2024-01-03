@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { DatePickerModule, DatePicker } from "./";
 
 export default {
@@ -38,7 +38,7 @@ export default {
 	component: DatePicker
 } as Meta;
 
-const Template: Story<DatePicker> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-date-picker-input
@@ -57,7 +57,7 @@ const Template: Story<DatePicker> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const SingleTemplate: Story<DatePicker> = (args) => ({
+const SingleTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
@@ -106,7 +106,7 @@ Single.argTypes = {
 	}
 };
 
-const RangeTemplate: Story<DatePicker> = (args) => ({
+const RangeTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
@@ -166,7 +166,7 @@ Range.argTypes = {
 	}
 };
 
-const SkeletonTemplate: Story<DatePicker> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 	<cds-date-picker

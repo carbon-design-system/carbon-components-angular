@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { SearchModule, Search } from "./";
 
 export default {
@@ -42,7 +42,7 @@ export default {
 	component: Search
 } as Meta;
 
-const Template: Story<Search> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-search

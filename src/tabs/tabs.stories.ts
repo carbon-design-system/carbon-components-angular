@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 
 
 import { TabsModule } from "./";
@@ -19,7 +19,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tabs
@@ -48,7 +48,7 @@ Basic.argTypes = {
 	}
 };
 
-const WithTemplate: Story = (args) => ({
+const WithTemplate = (args) => ({
 	props: args,
 	template: `
 		<ng-template #customTabs let-item>
@@ -92,7 +92,7 @@ With.argTypes = {
 	...Basic.argTypes
 };
 
-const BeforeAndAfterTemplate: Story = (args) => ({
+const BeforeAndAfterTemplate = (args) => ({
 	props: args,
 	template: `
 		<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
@@ -126,7 +126,7 @@ BeforeAndAfter.argTypes = {
 	...Basic.argTypes
 };
 
-const TabHeaderGroupTemplate: Story = (args) => ({
+const TabHeaderGroupTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -150,7 +150,7 @@ TabheaderGroup.argTypes = {
 	...Basic.argTypes
 };
 
-const SkeletonTemplate: Story = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tabs skeleton="true">

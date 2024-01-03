@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule } from "../icon";
 import {
 	ButtonModule,
@@ -59,7 +59,7 @@ export default {
 	component: IconButton
 } as Meta;
 
-const Template: Story<IconButton> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-icon-button

@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LinkModule } from "../link";
 import { ButtonModule } from "../button";
 import {
@@ -35,7 +35,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<Toggletip> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<span cdsToggletipLabel>Toggletip label</span>

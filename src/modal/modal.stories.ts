@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { PlaceholderModule } from "../placeholder";
 import { InputModule } from "../input";
 import { ButtonModule } from "../button";
@@ -37,7 +37,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story<Modal> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -55,7 +55,7 @@ Basic.args = {
 	showCloseButton: true
 };
 
-const FormTemplate: Story<Modal> = (args) => ({
+const FormTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -68,7 +68,7 @@ const FormTemplate: Story<Modal> = (args) => ({
 });
 export const FormModal = FormTemplate.bind({});
 
-const TransactionTemplate: Story<Modal> = (args) => ({
+const TransactionTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -106,7 +106,7 @@ Transactional.args = {
 	}]
 };
 
-const PassiveTemplate: Story<Modal> = (args) => ({
+const PassiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -138,7 +138,7 @@ Passive.argTypes = {
 	}
 };
 
-const DataPassingTemplate: Story<Modal> = (args) => ({
+const DataPassingTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -165,7 +165,7 @@ DataPassing.argTypes = {
 	}
 };
 
-const SimpleTemplate: Story<Modal> = (args) => ({
+const SimpleTemplate = (args) => ({
 	props: args,
 	template: `
 		<button #trigger cdsButton="primary" (click)="open = true">Open</button>

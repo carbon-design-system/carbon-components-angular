@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule, LayerDirective } from "./";
 
 export default {
@@ -18,7 +18,7 @@ export default {
 	component: LayerDirective
 } as Meta;
 
-const Template: Story<LayerDirective> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div class="example-layer">Layer 0</div>
@@ -39,7 +39,7 @@ const Template: Story<LayerDirective> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const TemplateWithInput: Story<LayerDirective> = (args) => ({
+const TemplateWithInput = (args) => ({
 	props: args,
 	template: `
 		<div class="example-layer">Layer 0</div>

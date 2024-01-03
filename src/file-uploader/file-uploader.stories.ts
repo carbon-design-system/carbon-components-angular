@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { FileUploaderModule, FileUploader } from "./";
 import { NotificationModule } from "../notification";
 import { ButtonModule } from "../button";
@@ -58,7 +58,7 @@ export default {
 	component: FileUploader
 } as Meta;
 
-const Template: Story<FileUploader> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -81,7 +81,7 @@ const Template: Story<FileUploader> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const DragAndDropTemplate: Story<FileUploader> = (args) => ({
+const DragAndDropTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -115,7 +115,7 @@ DragAndDrop.argTypes = {
 	}
 };
 
-const ModelTemplate: Story<FileUploader> = (args) => ({
+const ModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -142,7 +142,7 @@ NgModel.args = {
 	accept: [".png", ".jpeg"]
 };
 
-const ReactiveTemplate: Story<FileUploader> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -168,7 +168,7 @@ NgModel.args = {
 	accept: [".png", ".jpeg"]
 };
 
-const SkeletonTemplate: Story<FileUploader> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--

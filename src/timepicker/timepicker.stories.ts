@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TimePickerModule, TimePicker } from "./";
 import { TimePickerSelectModule } from "../timepicker-select";
 
@@ -19,7 +19,7 @@ export default {
 	component: TimePicker
 } as Meta;
 
-const Template: Story<TimePicker> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-timepicker

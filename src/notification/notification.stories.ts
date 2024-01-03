@@ -2,7 +2,7 @@
 
 import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ButtonModule } from "../button";
 import { NotificationModule, BaseNotification } from "./";
 
@@ -30,7 +30,7 @@ export default {
 	component: BaseNotification
 } as Meta;
 
-const InlineTemplate: Story = (args) => ({
+const InlineTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-inline-notification [notificationObj]="{
@@ -62,7 +62,7 @@ InlineNotification.argTypes = {
 	}
 };
 
-const ToastTemplate: Story = (args) => ({
+const ToastTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-toast [notificationObj]="{
@@ -83,7 +83,7 @@ Toast.argTypes = {
 	...InlineNotification.argTypes
 };
 
-const ActionableTemplate: Story = (args) => ({
+const ActionableTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-actionable-notification
@@ -121,7 +121,7 @@ Actionable.argTypes = {
 	}
 };
 
-const DynamicActionableTemplate: Story = (args) => ({
+const DynamicActionableTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -134,7 +134,7 @@ const DynamicActionableTemplate: Story = (args) => ({
 });
 export const DynamicActionable = DynamicActionableTemplate.bind({});
 
-const DynamicToastTemplate: Story = (args) => ({
+const DynamicToastTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -147,7 +147,7 @@ const DynamicToastTemplate: Story = (args) => ({
 });
 export const DynamicToast = DynamicToastTemplate.bind({});
 
-const DynamicInlineTemplate: Story = (args) => ({
+const DynamicInlineTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -160,7 +160,7 @@ const DynamicInlineTemplate: Story = (args) => ({
 });
 export const DynamicInline = DynamicInlineTemplate.bind({});
 
-const CustomTemplate: Story = (args) => ({
+const CustomTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-toast [notificationObj]="{

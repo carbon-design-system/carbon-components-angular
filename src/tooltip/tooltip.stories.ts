@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TooltipModule, Tooltip } from "./";
 
 export default {
@@ -50,7 +50,7 @@ export default {
 	component: Tooltip
 } as Meta;
 
-const Template: Story<Tooltip> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tooltip
@@ -86,7 +86,7 @@ const Template: Story<Tooltip> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const EllipsesTemplate: Story<Tooltip> = (args) => ({
+const EllipsesTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tooltip

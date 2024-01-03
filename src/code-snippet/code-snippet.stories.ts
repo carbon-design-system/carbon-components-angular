@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { CodeSnippetModule, CodeSnippet } from "./";
 
 export default {
@@ -39,7 +39,7 @@ export default {
 	component: CodeSnippet
 } as Meta;
 
-const Template: Story<CodeSnippet> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-code-snippet display="single">{{code}}</cds-code-snippet>
@@ -50,7 +50,7 @@ Basic.args = {
 	code: `import { UIShellModule } from 'carbon-components-angular'; // Single line of code`
 };
 
-const InlineTemplate: Story<CodeSnippet> = (args) => ({
+const InlineTemplate = (args) => ({
 	props: args,
 	template: `
 		Here is some <cds-code-snippet display="inline" [theme]="theme">{{code}}</cds-code-snippet> for you.
@@ -61,7 +61,7 @@ Inline.args = {
 	code: "<inline code>"
 };
 
-const MultiTemplate: Story<CodeSnippet> = (args) => ({
+const MultiTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-code-snippet display="multi">{{code}}</cds-code-snippet>
@@ -122,7 +122,7 @@ Multi.argTypes = {
 	}
 };
 
-const SkeletonTemplate: Story<CodeSnippet> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-code-snippet display="single" skeleton="true"></cds-code-snippet>
