@@ -477,6 +477,9 @@ export class DatePicker implements
 		// flatpickr calendar using a keyboard.
 		const addFocusCalendarListener = (element: HTMLInputElement) => {
 			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "Escape") {
+					this.flatpickrInstance.close();
+				}
 				if (event.key === "ArrowDown") {
 					if (!this.flatpickrInstance.isOpen) {
 						this.flatpickrInstance.open();
