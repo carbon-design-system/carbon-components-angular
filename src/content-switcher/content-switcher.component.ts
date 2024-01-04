@@ -27,8 +27,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
  *		<button cdsContentOption>First section</button>
  *		<button cdsContentOption>Second section</button>
  *		<button cdsContentOption>Third section</button>
- *	</cds-content-switcher>
- *	```
+ * </cds-content-switcher>
+ * ```
  *
  * [See demo](../../?path=/story/components-content-switcher--basic)
  */

@@ -9,7 +9,7 @@ import {
  * Get started with importing the module:
  *
  * ```typescript
- * import { progressBarModule } from 'carbon-components-angular';
+ * import { ProgressBarModule } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-bar--basic)

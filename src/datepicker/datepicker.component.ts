@@ -45,7 +45,7 @@ if (languages.default?.default["en"]?.weekdays) {
  * Get started with importing the module:
  *
  * ```typescript
- * import { ContentSwitcherModule } from 'carbon-components-angular';
+ * import { DatePickerModule } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-date-picker--single)

@@ -19,7 +19,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * Get started with importing the module:
  *
  * ```typescript
- * import { SkeletonModule } from 'carbon-components-angular';
+ * import { StructuredListModule } from 'carbon-components-angular';
  * ```
  *
  * ```html
