@@ -3229,8 +3229,7 @@ em {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -3768,8 +3767,7 @@ li.cds--accordion__item--disabled:last-of-type {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -3852,8 +3850,7 @@ li.cds--accordion__item--disabled:last-of-type {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -4330,8 +4327,7 @@ li.cds--accordion__item--disabled:last-of-type {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -5009,8 +5005,7 @@ textarea:-webkit-autofill:focus {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -6031,7 +6026,7 @@ fieldset[disabled] .cds--form__helper-text {
 .cds--snippet--light .cds--snippet__overflow-indicator--right {
   background-image: linear-gradient(to right, transparent, var(--cds-layer));
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     .cds--snippet__overflow-indicator--left {
       background-image: linear-gradient(to left, rgba(var(--cds-layer), 0), var(--cds-layer));
@@ -6888,7 +6883,7 @@ fieldset[disabled] .cds--form__helper-text {
 .cds--tag.cds--skeleton .cds--tag__close-icon:hover {
   background-color: var(--cds-skeleton-background, #e8e8e8);
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     .cds--tag.cds--skeleton {
       transform: translateZ(0);
@@ -7123,8 +7118,7 @@ fieldset[disabled] .cds--form__helper-text {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -7207,8 +7201,7 @@ fieldset[disabled] .cds--form__helper-text {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -7250,8 +7243,7 @@ fieldset[disabled] .cds--form__helper-text {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -7959,8 +7951,7 @@ fieldset[disabled] .cds--form__helper-text {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -9163,8 +9154,7 @@ tr.cds--data-table--selected:last-of-type td {
   padding: 0 2.5rem;
   border: none;
   border-bottom: 1px solid var(--cds-border-strong);
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background-color: var(--cds-field);
   color: var(--cds-text-primary, #161616);
   text-overflow: ellipsis;
@@ -9261,8 +9251,7 @@ tr.cds--data-table--selected:last-of-type td {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -9662,8 +9651,7 @@ tr.cds--data-table--selected:last-of-type td {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -9694,8 +9682,7 @@ tr.cds--data-table--selected:last-of-type td {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -10129,8 +10116,7 @@ tr.cds--parent-row.cds--expandable-row.cds--expandable-row--hover td:first-of-ty
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -10420,8 +10406,7 @@ tr.cds--parent-row.cds--data-table--selected.cds--expandable-row--hover + tr[dat
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -11820,7 +11805,7 @@ button.cds--dropdown-text:focus {
   stroke: var(--cds-layer-accent);
   stroke-dashoffset: -22;
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     circle.cds--loading__background {
       stroke-dasharray: 265;
@@ -12181,8 +12166,7 @@ button.cds--dropdown-text:focus {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -12798,8 +12782,7 @@ button.cds--dropdown-text:focus {
   padding-left: 1rem;
   border: 0;
   border-bottom: 0.0625rem solid var(--cds-border-strong);
-  -webkit-appearance: textfield;
-          appearance: textfield;
+  appearance: textfield;
   background-color: var(--cds-field);
   border-radius: 0;
   color: var(--cds-text-primary, #161616);
@@ -12827,8 +12810,7 @@ button.cds--dropdown-text:focus {
   display: none;
 }
 .cds--number input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 .cds--number input[type=number][data-invalid] {
   padding-right: 8rem;
@@ -12901,8 +12883,7 @@ button.cds--dropdown-text:focus {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -13480,8 +13461,7 @@ button.cds--dropdown-text:focus {
   padding: 0 3rem 0 1rem;
   border: none;
   border-bottom: 1px solid var(--cds-border-strong);
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background-color: var(--cds-field);
   border-radius: 0;
   color: var(--cds-text-primary, #161616);
@@ -14809,7 +14789,7 @@ optgroup.cds--select-optgroup:disabled,
   grid-row: 2/-2;
   pointer-events: none;
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     .cds--modal-content--overflow-indicator {
       background-image: linear-gradient(to bottom, rgba(var(--cds-layer), 0), var(--cds-layer));
@@ -16329,8 +16309,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -16420,8 +16399,7 @@ span.cds--pagination__text.cds--pagination__items-count {
 }
 .cds--pagination-nav__page--select {
   max-height: 3rem;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   text-indent: calc(50% - 4.5px);
 }
 @-moz-document url-prefix() {
@@ -16777,8 +16755,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -17086,8 +17063,7 @@ span.cds--pagination__text.cds--pagination__items-count {
 .cds-slider-text-input {
   width: 4rem;
   height: 2.5rem;
-  -webkit-appearance: textfield;
-          appearance: textfield;
+  appearance: textfield;
 }
 .cds--slider-text-input::-webkit-outer-spin-button, .cds--slider-text-input::-webkit-inner-spin-button,
 .cds-slider-text-input::-webkit-outer-spin-button,
@@ -17587,8 +17563,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -17676,7 +17651,7 @@ span.cds--pagination__text.cds--pagination__items-count {
 .cds--tabs.cds--tabs--contained .cds--tabs__overflow-indicator--right {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), var(--cds-layer-accent));
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     .cds--tabs .cds--tabs__overflow-indicator--left {
       background-image: linear-gradient(to left, rgba(var(--cds-background, #ffffff), 0), var(--cds-background, #ffffff));
@@ -17784,8 +17759,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -18184,8 +18158,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -18274,7 +18247,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   transition: opacity 110ms cubic-bezier(0.2, 0, 0.38, 0.9), visibility 110ms cubic-bezier(0.2, 0, 0.38, 0.9);
   visibility: inherit;
 }
-@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color: transparent) {
     .cds--tile--is-expanded .cds--tile-content__below-the-fold {
       overflow-y: auto;
@@ -18449,8 +18422,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -18951,8 +18923,7 @@ span.cds--pagination__text.cds--pagination__items-count {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -19427,8 +19398,7 @@ a.cds--header__menu-item.cds--header__menu-item--current:focus {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -19847,8 +19817,7 @@ a.cds--side-nav__link--current::before {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -20323,8 +20292,7 @@ a.cds--header__menu-item.cds--header__menu-item--current:focus {
   display: inline-block;
   padding: 0;
   border: 0;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   background: none;
   cursor: pointer;
   text-align: start;
@@ -22688,6 +22656,12 @@ html {
   --cds-border-subtle-selected: var(--cds-border-subtle-selected-01, #c6c6c6);
   --cds-border-strong: var(--cds-border-strong-01, #8d8d8d);
   --cds-border-tile: var(--cds-border-tile-01, #c6c6c6);
+}
+.innerZoomElementWrapper {
+  min-width: 55rem;
+}
+.docblock-argstable {
+  margin-bottom: 10rem;
 }
 /*
  * Story batch styling, we are wrapping the storybook decorator function to ensure

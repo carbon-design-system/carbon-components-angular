@@ -602,13 +602,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/InlineLoadingModule.html" data-type="entity-link" >InlineLoadingModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-InlineLoadingModule-fc61473f101f9371c147f556ee200edf7575e735fb2a3f0d3c273709bead0d119ec3fc6cca039b036480fb66f9eaedcb7b72439fd11f25254c4d8a0372959eaa"' : 'data-bs-target="#xs-components-links-module-InlineLoadingModule-fc61473f101f9371c147f556ee200edf7575e735fb2a3f0d3c273709bead0d119ec3fc6cca039b036480fb66f9eaedcb7b72439fd11f25254c4d8a0372959eaa"' }>
+                                            'data-bs-target="#components-links-module-InlineLoadingModule-5af427a6e2a3b561e1662c36a6ac6be22ece7657584369e8509bc69ab7d677a841911ba6802e546199afe2cb8dbac418805453e81779d548cbedf1c73d45c3b5"' : 'data-bs-target="#xs-components-links-module-InlineLoadingModule-5af427a6e2a3b561e1662c36a6ac6be22ece7657584369e8509bc69ab7d677a841911ba6802e546199afe2cb8dbac418805453e81779d548cbedf1c73d45c3b5"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-InlineLoadingModule-fc61473f101f9371c147f556ee200edf7575e735fb2a3f0d3c273709bead0d119ec3fc6cca039b036480fb66f9eaedcb7b72439fd11f25254c4d8a0372959eaa"' :
-                                            'id="xs-components-links-module-InlineLoadingModule-fc61473f101f9371c147f556ee200edf7575e735fb2a3f0d3c273709bead0d119ec3fc6cca039b036480fb66f9eaedcb7b72439fd11f25254c4d8a0372959eaa"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-InlineLoadingModule-5af427a6e2a3b561e1662c36a6ac6be22ece7657584369e8509bc69ab7d677a841911ba6802e546199afe2cb8dbac418805453e81779d548cbedf1c73d45c3b5"' :
+                                            'id="xs-components-links-module-InlineLoadingModule-5af427a6e2a3b561e1662c36a6ac6be22ece7657584369e8509bc69ab7d677a841911ba6802e546199afe2cb8dbac418805453e81779d548cbedf1c73d45c3b5"' }>
                                             <li class="link">
                                                 <a href="components/InlineLoading.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >InlineLoading</a>
                                             </li>

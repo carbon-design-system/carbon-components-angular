@@ -71,9 +71,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A directive for applying styling to an input element.</p>
-<p>Example:</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;input cdsText/&gt;</code></pre></div><p>See the <a href="http://www.carbondesignsystem.com/components/text-input/code">vanilla carbon docs</a> for more detail.</p>
+                <p>A directive for populating a svg element based on the provided carbon icon name.</p>
+<p>Get started with importing the module:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { IconModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-icon--basic">See demo</a></p>
 
             </p>
 
@@ -772,15 +772,15 @@ import { IconService } from &quot;./icon.service&quot;;
 import { getAttributes } from &quot;@carbon/icon-helpers&quot;;
 
 /**
- * A directive for applying styling to an input element.
+ * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Example:
+ * Get started with importing the module:
  *
- * &#x60;&#x60;&#x60;html
- * &lt;input cdsText/&gt;
+ * &#x60;&#x60;&#x60;typescript
+ * import { IconModule } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
- * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
+ * [See demo](../../?path&#x3D;/story/components-icon--basic)
  */
 @Directive({
 	selector: &quot;[cdsIcon], [ibmIcon]&quot;

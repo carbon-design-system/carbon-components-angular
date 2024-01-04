@@ -69,9 +69,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Use pagination when you have multiple pages of data to handle.</p>
-<p><a href="../../?path=/story/components-pagination-nav--basic">See demo</a></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;cds-pagination-nav [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination-nav&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
+        <p>Use pagination when you have multiple pages of data to handle. Get started with importing the module:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { PaginationModule } from &#39;carbon-components-angular&#39;;</code></pre></div><div><pre class="line-numbers"><code class="language-html">&lt;cds-pagination-nav [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination-nav&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
 you load the page.</p>
 <div><pre class="line-numbers"><code class="language-typescript">selectPage(page) {
     // ... your code to load the page goes here
@@ -79,7 +78,8 @@ you load the page.</p>
     this.model.currentPage = page;
 
     // ... anything you want to do after page selection changes goes here
-}</code></pre></div>
+}</code></pre></div><p><a href="../../?path=/story/components-pagination-nav--basic">See demo</a></p>
+
     </p>
 
 
@@ -341,7 +341,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:190</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -414,7 +414,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:122</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -441,7 +441,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:118</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -473,7 +473,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:126</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -500,7 +500,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:138</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -533,7 +533,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:150</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -576,8 +576,8 @@ data is finally loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:218</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:222</a></div>
                 </td>
             </tr>
 
@@ -651,8 +651,8 @@ data is finally loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:210</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:214</a></div>
                 </td>
             </tr>
 
@@ -688,8 +688,8 @@ data is finally loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="196"
-                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:196</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:200</a></div>
                 </td>
             </tr>
 
@@ -755,8 +755,8 @@ data is finally loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:206</a></div>
                 </td>
             </tr>
 
@@ -794,8 +794,8 @@ data is finally loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:210</a></div>
                 </td>
             </tr>
 
@@ -835,7 +835,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:189</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:193</a></div>
                         </td>
                     </tr>
 
@@ -867,7 +867,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -892,7 +892,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:190</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></div>
                         </td>
                     </tr>
 
@@ -922,7 +922,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:138</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -985,7 +985,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:152</a></div>
                                 </td>
                             </tr>
 
@@ -1007,7 +1007,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:156</a></div>
                                 </td>
                             </tr>
 
@@ -1018,7 +1018,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:160</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1072,7 +1072,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:167</a></div>
                                 </td>
                             </tr>
 
@@ -1094,7 +1094,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:171</a></div>
                                 </td>
                             </tr>
 
@@ -1116,7 +1116,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:175</a></div>
                                 </td>
                             </tr>
 
@@ -1138,7 +1138,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:176</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:180</a></div>
                                 </td>
                             </tr>
 
@@ -1160,7 +1160,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:185</a></div>
                                 </td>
                             </tr>
 
@@ -1182,7 +1182,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:185</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:189</a></div>
                                 </td>
                             </tr>
 
@@ -1212,9 +1212,11 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle.
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
  *
- * [See demo](../../?path&#x3D;/story/components-pagination-nav--basic)
+ * &#x60;&#x60;&#x60;typescript
+ * import { PaginationModule } from &#x27;carbon-components-angular&#x27;;
+ * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
  * &lt;cds-pagination-nav [model]&#x3D;&quot;model&quot; (selectPage)&#x3D;&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination-nav&gt;
@@ -1232,6 +1234,8 @@ export interface PaginationNavTranslations {
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * &#x60;&#x60;&#x60;
+ *
+ * [See demo](../../?path&#x3D;/story/components-pagination-nav--basic)
  */
 @Component({
 	selector: &quot;cds-pagination-nav, ibm-pagination-navm&quot;,
