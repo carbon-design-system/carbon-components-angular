@@ -43,7 +43,9 @@ export default {
 			}
 		],
 		appendInline: false,
-		dropUp: false
+		dropUp: false,
+		size: "md",
+		theme: "dark"
 	},
 	argTypes: {
 		type: {
@@ -51,12 +53,10 @@ export default {
 		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		selected: { action: "Selection changed!" },

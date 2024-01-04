@@ -45,22 +45,22 @@ Basic.args = {
 	helperText: "Optional helper text",
 	placeholder: "Placeholder",
 	cols: 50,
-	rows: 4
+	rows: 4,
+	autocomplete: "on",
+	theme: "dark",
+	size: "md"
 };
 Basic.argTypes = {
 	autocomplete: {
 		options: ["on", "off"],
-		defaultValue: "on",
 		control: "radio"
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	},
 	size: {
 		options: ["sm", "md", "lg"],
-		defaultValue: "md",
 		contorl: "select"
 	}
 };

@@ -38,12 +38,12 @@ export const Basic = Template.bind({});
 Basic.args = {
 	followFocus: true,
 	cacheActive: true,
-	isNavigation: false
+	isNavigation: false,
+	type: "inline"
 };
 Basic.argTypes = {
 	type: {
 		options: ["inline", "contained"],
-		defaultValue: "inline",
 		control: "radio"
 	}
 };

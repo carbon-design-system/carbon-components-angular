@@ -18,17 +18,17 @@ export default {
 		warnText: "This is a warning",
 		warn: false,
 		disabled: false,
-		language: "en"
+		language: "en",
+		theme: "dark",
+		size: "md"
 	},
 	argTypes: {
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		valueChange: {
@@ -96,12 +96,12 @@ const SingleTemplate = (args) => ({
 });
 export const Single = SingleTemplate.bind({});
 Single.args = {
-	dateFormat: "m/d/y"
+	dateFormat: "m/d/y",
+	language: "en"
 };
 Single.argTypes = {
 	language: {
 		options: ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"],
-		defaultValue: "en",
 		control: "select"
 	}
 };

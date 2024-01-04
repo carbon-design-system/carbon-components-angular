@@ -39,7 +39,8 @@ Basic.args = {
 	label: "Toggle element label",
 	onText: "On",
 	offText: "Off",
-	skeleton: false
+	skeleton: false,
+	size: "md"
 };
 Basic.argTypes = {
 	onChange: {
@@ -47,7 +48,6 @@ Basic.argTypes = {
 	},
 	size: {
 		options: ["sm", "md"],
-		defaultValue: "md",
 		control: "radio"
 	}
 };

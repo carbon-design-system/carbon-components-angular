@@ -31,22 +31,22 @@ export default {
 		warn: false,
 		warnText: "This is a warning!",
 		label: "Select label",
-		helperText: "Optional helper text"
+		helperText: "Optional helper text",
+		size: "md",
+		theme: "dark",
+		display: "default"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		display: {
 			options: ["default", "inline"],
-			defaultValue: "on",
 			control: "radio"
 		}
 	},
@@ -87,12 +87,6 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-Basic.argTypes = {
-	model: {
-		defaultValue: "default",
-		control: false
-	}
-};
 
 const NgModelTemplate = (args) => ({
 	props: args,
@@ -120,9 +114,11 @@ const NgModelTemplate = (args) => ({
 	`
 });
 export const NgModel = NgModelTemplate.bind({});
+NgModel.args = {
+	model: "option2"
+};
 NgModel.argTypes = {
 	model: {
-		defaultValue: "option2",
 		options: ["default", "option1", "option2", "option3"],
 		control: "select"
 	}

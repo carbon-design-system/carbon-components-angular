@@ -128,11 +128,11 @@ export const Passive = PassiveTemplate.bind({});
 Passive.args = {
 	modalLabel: "Optional label",
 	modalTitle: "Delete service from application",
-	modalContent: "Are you sure you want to remove the Speech to Text service from the node-test app?"
+	modalContent: "Are you sure you want to remove the Speech to Text service from the node-test app?",
+	modalType: "default"
 };
 Passive.argTypes = {
 	modalType: {
-		defaultValue: "default",
 		options: ["default", "danger"],
 		control: "select"
 	}
@@ -155,11 +155,11 @@ const DataPassingTemplate = (args) => ({
 });
 export const DataPassing = DataPassingTemplate.bind({});
 DataPassing.args = {
-	modalText: "Hello, world!"
+	modalText: "Hello, world!",
+	size: "md"
 };
 DataPassing.argTypes = {
 	size: {
-		defaultValue: "md",
 		options: ["xs", "sm", "md", "lg"],
 		control: "select"
 	}

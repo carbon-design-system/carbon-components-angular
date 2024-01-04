@@ -36,22 +36,22 @@ export default {
 		description: "only .jpg and .png files. 500kb max file size.",
 		buttonText: "Add files",
 		disabled: false,
-		multiple: true
+		multiple: true,
+		size: "md",
+		buttonType: "primary",
+		fileItemSize: "lg"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		buttonType: {
 			options: ["primary", "secondary", "tertiary", "ghost", "danger"],
-			defaultValue: "primary",
 			control: "select"
 		},
 		fileItemSize: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "lg",
 			control: "radio"
 		}
 	},

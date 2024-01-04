@@ -60,7 +60,8 @@ Basic.args = {
 	disableTime: false,
 	disabledSelect: false,
 	invalid: false,
-	invalidText: "A valid value is required!"
+	invalidText: "A valid value is required!",
+	theme: "dark"
 };
 
 Basic.argTypes = {
@@ -72,7 +73,6 @@ Basic.argTypes = {
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };

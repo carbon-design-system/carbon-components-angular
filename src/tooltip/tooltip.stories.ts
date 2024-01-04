@@ -13,7 +13,8 @@ export default {
 	args: {
 		isOpen: true,
 		caret: true,
-		description: "Occassionally, services are updated in a specified time window to ensure no down time for customers."
+		description: "Occassionally, services are updated in a specified time window to ensure no down time for customers.",
+		align: "bottom"
 	},
 	argTypes: {
 		onOpen: {
@@ -40,7 +41,6 @@ export default {
 				"right-bottom",
 				"right-top"
 			],
-			defaultValue: "bottom",
 			control: "select"
 		}
 	},

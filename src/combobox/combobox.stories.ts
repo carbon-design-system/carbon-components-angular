@@ -68,17 +68,17 @@ export default {
 		],
 		appendInline: false,
 		dropUp: false,
-		selectionFeedback: "top-after-reopen"
+		selectionFeedback: "top-after-reopen",
+		size: "md",
+		theme: "dark"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		maxLength: {

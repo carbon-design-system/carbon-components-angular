@@ -45,7 +45,8 @@ const InlineTemplate = (args) => ({
 export const InlineNotification = InlineTemplate.bind({});
 InlineNotification.args = {
 	showClose: true,
-	lowContrast: false
+	lowContrast: false,
+	type: "info"
 };
 InlineNotification.argTypes = {
 	type: {
@@ -57,8 +58,7 @@ InlineNotification.argTypes = {
 			"warning",
 			"warning-alt"
 		],
-		control: "select",
-		defaultValue: "info"
+		control: "select"
 	}
 };
 
@@ -101,13 +101,13 @@ const ActionableTemplate = (args) => ({
 });
 export const Actionable = ActionableTemplate.bind({});
 Actionable.args = {
-	...InlineNotification.args
+	...InlineNotification.args,
+	variant: "inline"
 };
 Actionable.argTypes = {
 	...InlineNotification.argTypes,
 	variant: {
 		options: ["toast", "inline"],
-		defaultValue: "inline",
 		control: "radio"
 	},
 	actions: {

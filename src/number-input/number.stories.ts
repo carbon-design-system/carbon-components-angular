@@ -42,17 +42,17 @@ Basic.args = {
 	max: 100,
 	step: 1,
 	invalid: false,
-	disabled: false
+	disabled: false,
+	size: "md",
+	theme: "dark"
 };
 Basic.argTypes = {
 	size: {
 		options: ["sm", "md", "lg"],
-		defaultValue: "md",
 		control: "radio"
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };

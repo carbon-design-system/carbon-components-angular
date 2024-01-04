@@ -79,7 +79,8 @@ Basic.args = {
 	isOpen: true,
 	caret: true,
 	dropShadow: true,
-	highContrast: false
+	highContrast: false,
+	align: "bottom"
 };
 Basic.argTypes = {
 	onOpen: {
@@ -106,7 +107,6 @@ Basic.argTypes = {
 			"right-bottom",
 			"right-top"
 		],
-		defaultValue: "bottom",
 		control: "select"
 	}
 };

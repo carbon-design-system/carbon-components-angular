@@ -44,7 +44,8 @@ Basic.args = {
 	minLabel: "0",
 	maxLabel: "100",
 	disabled: false,
-	shiftMultiplier: 4
+	shiftMultiplier: 4,
+	theme: "dark"
 };
 Basic.argTypes = {
 	valueChange: {
@@ -52,7 +53,6 @@ Basic.argTypes = {
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };

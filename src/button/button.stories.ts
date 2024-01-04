@@ -14,6 +14,12 @@ export default {
 			]
 		})
 	],
+	args: {
+		kind: "primary",
+		size: "md",
+		isExpressive: "false",
+		disabled: false
+	},
 	argTypes: {
 		kind: {
 			options: [
@@ -26,22 +32,18 @@ export default {
 				"danger--tertiary",
 				"danger--ghost"
 			],
-			defaultValue: "primary",
 			control: { type: "select" },
 			name: "cdsButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
-			defaultValue: "md",
 			control: { type: "select" }
 		},
 		isExpressive: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		disabled: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		// Actions
 		onClick: { action: "clicked" },

@@ -14,22 +14,22 @@ export default {
 		expandable: false,
 		placeholder: "Search",
 		disabled: false,
-		skeleton: false
+		skeleton: false,
+		size: "md",
+		theme: "dark",
+		autocomplete: "on"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		autocomplete: {
 			options: ["on", "off"],
-			defaultValue: "on",
 			control: "radio"
 		},
 		clear: {

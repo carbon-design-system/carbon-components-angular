@@ -58,8 +58,9 @@ Basic.args = {
 			complete: false,
 			disabled: true
 		}
-	]
-
+	],
+	align: "default",
+	orientation: "horizontal"
 };
 Basic.argTypes = {
 	steps: {
@@ -70,12 +71,10 @@ Basic.argTypes = {
 	},
 	align: {
 		options: ["default", "equal"],
-		defaultValue: "default",
 		control: "radio"
 	},
 	orientation: {
 		options: ["horizontal", "vertical"],
-		defaultValue: "horizontal",
 		control: "radio"
 	}
 };

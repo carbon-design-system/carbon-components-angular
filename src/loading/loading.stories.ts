@@ -22,12 +22,12 @@ const Template = (args) => ({
 export const Basic = Template.bind({});
 Basic.args = {
 	isActive: true,
-	overlay: false
+	overlay: false,
+	size: "normal"
 };
 Basic.argTypes = {
 	size: {
 		options: ["sm", "normal"],
-		defaultValue: "normal",
 		control: "radio"
 	}
 };

@@ -10,6 +10,9 @@ export default {
 			imports: [TagModule]
 		})
 	],
+	args: {
+		type: "red"
+	},
 	argTypes: {
 		type: {
 			options: [
@@ -25,7 +28,6 @@ export default {
 				"high-contrast",
 				"outline"
 			],
-			defaultValue: "red",
 			control: "select"
 		}
 	},

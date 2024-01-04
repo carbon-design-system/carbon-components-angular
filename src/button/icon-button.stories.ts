@@ -17,7 +17,18 @@ export default {
 			]
 		})
 	],
+	args: {
+		align: "bottom",
+		kind: "primary",
+		size: "md",
+		isExpressive: "false",
+		disabled: false
+	},
 	argTypes: {
+		align: {
+			options: ["top", "left", "bottom", "right"],
+			control: { type: "select" }
+		},
 		kind: {
 			options: [
 				"primary",
@@ -29,22 +40,18 @@ export default {
 				"danger--tertiary",
 				"danger--ghost"
 			],
-			defaultValue: "primary",
 			control: { type: "select" },
 			name: "cdsButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
-			defaultValue: "md",
 			control: { type: "select" }
 		},
 		isExpressive: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		disabled: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		// Actions
 		onClick: { action: "clicked" },
@@ -88,12 +95,5 @@ Basic.args = {
 	},
 	buttonNgClass: {
 		"example-global-class": true
-	}
-};
-Basic.argTypes = {
-		align: {
-		options: ["top", "left", "bottom", "right"],
-		defaultValue: "bottom",
-		control: { type: "select" }
 	}
 };

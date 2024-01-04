@@ -30,14 +30,16 @@ export default {
 			imports: [BreadcrumbModule]
 		})
 	],
+	args: {
+		noTrailingSlash: true,
+		skeleton: false
+	},
 	argTypes: {
 		noTrailingSlash: {
-			type: "boolean",
-			defaultValue: true
+			type: "boolean"
 		},
 		skeleton: {
 			type: "boolean",
-			defaultValue: false,
 			control: false
 		}
 	},

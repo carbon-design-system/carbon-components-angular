@@ -52,7 +52,8 @@ export const Basic = Template.bind({});
 Basic.args = {
 	isOpen: true,
 	caret: true,
-	description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet."
+	description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.",
+	align: "bottom"
 };
 Basic.argTypes = {
 	onOpen: {
@@ -73,7 +74,6 @@ Basic.argTypes = {
 			"bottom-left",
 			"bottom-right"
 		],
-		defaultValue: "bottom",
 		control: "select"
 	}
 };
