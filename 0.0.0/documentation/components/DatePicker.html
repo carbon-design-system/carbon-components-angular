@@ -1447,8 +1447,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="665"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:665</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="668"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:668</a></div>
                 </td>
             </tr>
 
@@ -1523,8 +1523,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="642"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:642</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="645"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:645</a></div>
                 </td>
             </tr>
 
@@ -1594,8 +1594,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="672"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:672</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="675"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:675</a></div>
                 </td>
             </tr>
 
@@ -1635,8 +1635,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="691"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:691</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="694"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:694</a></div>
                 </td>
             </tr>
 
@@ -2338,8 +2338,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="519"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:519</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="522"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:522</a></div>
                 </td>
             </tr>
 
@@ -2417,8 +2417,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="680"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:680</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="683"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:683</a></div>
                 </td>
             </tr>
 
@@ -2458,8 +2458,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="592"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:592</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="595"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:595</a></div>
                 </td>
             </tr>
 
@@ -2613,8 +2613,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="580"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:580</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="583"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:583</a></div>
                 </td>
             </tr>
 
@@ -2691,8 +2691,8 @@ Emits an event when date picker closes</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="535"
-                            class="link-to-prism">src/datepicker/datepicker.component.ts:535</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="538"
+                            class="link-to-prism">src/datepicker/datepicker.component.ts:538</a></div>
                 </td>
             </tr>
 
@@ -3077,7 +3077,7 @@ Emits an event when date picker closes</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="640" class="link-to-prism">src/datepicker/datepicker.component.ts:640</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="643" class="link-to-prism">src/datepicker/datepicker.component.ts:643</a></div>
                         </td>
                     </tr>
 
@@ -3769,6 +3769,9 @@ export class DatePicker implements
 		// flatpickr calendar using a keyboard.
 		const addFocusCalendarListener &#x3D; (element: HTMLInputElement) &#x3D;&gt; {
 			element.addEventListener(&quot;keydown&quot;, (event: KeyboardEvent) &#x3D;&gt; {
+				if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
+					this.flatpickrInstance.close();
+				}
 				if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot;) {
 					if (!this.flatpickrInstance.isOpen) {
 						this.flatpickrInstance.open();
