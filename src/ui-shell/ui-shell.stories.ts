@@ -48,6 +48,13 @@ export default {
 			options: ["white", "g10", "g90", "g100"],
 			control: "radio"
 		}
+	},
+	parameters: {
+		docs: {
+			story: {
+				height: "30rem"
+			}
+		}
 	}
 } as Meta;
 
@@ -342,7 +349,7 @@ const TogetherTemplate = (args) => ({
 					</cds-header-action>
 				</cds-header-global>
 			</cds-header>
-			<cds-sidenav [expanded]="active">
+			<cds-sidenav [expanded]="active" style="margin-top: 3rem">
 				<cds-sidenav-item>
 					<svg cdsIcon="fade" size="16"></svg>
 					Link
@@ -486,7 +493,7 @@ const ModelTemplate = (args) => ({
 					</cds-header-action>
 				</cds-header-global>
 			</cds-header>
-			<cds-sidenav [navigationItems]="headerItems">
+			<cds-sidenav [navigationItems]="headerItems" style="margin-top: 3rem">
 				<cds-sidenav-menu title="Category title">
 					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 						<path

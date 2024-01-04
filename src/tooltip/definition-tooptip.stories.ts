@@ -11,7 +11,12 @@ export default {
 		})
 	],
 	parameters: {
-		layout: "centered"
+		docs: {
+			story: {
+				inline: false,
+				iframeHeight: "18rem"
+			}
+		}
 	},
 	component: TooltipDefinition
 } as Meta;

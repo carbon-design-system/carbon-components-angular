@@ -24,6 +24,12 @@ export default {
 		})
 	],
 	parameters: {
+		docs: {
+			story: {
+				inline: false,
+				height: "30rem"
+			}
+		},
 		layout: "centered"
 	},
 	component: Toggletip,

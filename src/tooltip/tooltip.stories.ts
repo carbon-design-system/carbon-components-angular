@@ -45,6 +45,12 @@ export default {
 		}
 	},
 	parameters: {
+		docs: {
+			story: {
+				inline: false,
+				iframeHeight: "18rem"
+			}
+		},
 		layout: "centered"
 	},
 	component: Tooltip

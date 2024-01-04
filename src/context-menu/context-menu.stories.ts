@@ -34,6 +34,13 @@ export default {
 		ContextMenuDividerComponent,
 		ContextMenuItemComponent,
 		ContextMenuGroupComponent
+	},
+	parameters: {
+		docs: {
+			story: {
+				height: "25rem"
+			}
+		}
 	}
 } as Meta;
 

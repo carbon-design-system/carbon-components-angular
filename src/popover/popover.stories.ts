@@ -15,6 +15,12 @@ export default {
 		})
 	],
 	parameters: {
+		docs: {
+			story: {
+				inline: false,
+				height: "15rem"
+			}
+		},
 		layout: "centered"
 	},
 	component: PopoverContainer,
