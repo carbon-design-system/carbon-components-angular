@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@use './../node_modules/@carbon/styles/scss/config' with (
+  $use-flexbox-grid: true,
+	$font-path: '@ibm/plex'
+);
+
 @use './../node_modules/@carbon/styles';
