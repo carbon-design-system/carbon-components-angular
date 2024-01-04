@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LinkModule, Link } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: Link
 } as Meta;
 
-const Template: Story<Link> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<a href="#" cdsLink [disabled]="disabled" [inline]="inline">link</a>

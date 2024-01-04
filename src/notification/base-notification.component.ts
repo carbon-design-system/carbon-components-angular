@@ -13,6 +13,14 @@ import { NotificationDisplayService } from "./notification-display.service";
 /**
  * Base class for `Notification`, `ActionableNotification`, & `Toast`
  * consisting of common functionality
+ *
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { NotificationModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-notification--inline-notification)
  */
 @Component({
 	template: ""

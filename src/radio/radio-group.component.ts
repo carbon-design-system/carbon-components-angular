@@ -17,13 +17,11 @@ import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
 
 /**
- * [See demo](../../?path=/story/components-radio--basic)
+ * Get started with importing the module:
  *
- * class: RadioGroup
- *
- * selector: `cds-radio-group`
- *
- * source: `src/forms/radio.component.ts`
+ * ```typescript
+ * import { RadioModule } from 'carbon-components-angular';
+ * ```
  *
  * Ex:
  *
@@ -41,7 +39,7 @@ import { RadioChange } from "./radio-change.class";
  *	const manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [Radio](#cds-radio)
+ * [See demo](../../?path=/story/components-radio--basic)
  */
 @Component({
 	selector: "cds-radio-group, ibm-radio-group",

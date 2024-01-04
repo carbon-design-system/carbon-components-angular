@@ -51,7 +51,7 @@ export default {
 	}
 } as Meta;
 
-const basicTemplate: Story<ContainedList> = () => ({
+const basicTemplate = () => ({
 	template: `
 		<cds-contained-list label="List title">
 			<cds-contained-list-item>List item</cds-contained-list-item>
@@ -69,7 +69,7 @@ const basicTemplate: Story<ContainedList> = () => ({
 });
 export const basic = basicTemplate.bind({});
 
-const usageExamplesTemplate: Story<ContainedList> = () => ({
+const usageExamplesTemplate = () => ({
 	template: `
 		<ng-template #add let-item>
 			<ibm-icon-button
@@ -155,7 +155,7 @@ const usageExamplesTemplate: Story<ContainedList> = () => ({
 });
 export const usageExamples = usageExamplesTemplate.bind({});
 
-const disclosedTemplate: Story<ContainedList> = () => ({
+const disclosedTemplate = () => ({
 	template: `
 		<cds-contained-list label="List title" kind="disclosed">
 			<cds-contained-list-item>List item</cds-contained-list-item>
@@ -173,7 +173,7 @@ const disclosedTemplate: Story<ContainedList> = () => ({
 });
 export const disclosed = disclosedTemplate.bind({});
 
-const withActionsTemplate: Story<ContainedList> = () => ({
+const withActionsTemplate = () => ({
 	template: `
 		<ng-template #action let-item>
 			<button
@@ -193,7 +193,7 @@ const withActionsTemplate: Story<ContainedList> = () => ({
 });
 export const withActions = withActionsTemplate.bind({});
 
-const withIconsTemplate: Story<ContainedList> = () => ({
+const withIconsTemplate = () => ({
 	template: `
 		<ng-template #apple let-icon>
 			<svg ibmIcon="apple" size="16"></svg>
@@ -213,7 +213,7 @@ const withIconsTemplate: Story<ContainedList> = () => ({
 });
 export const withIcons = withIconsTemplate.bind({});
 
-const withInteractiveItemsTemplate: Story<ContainedList> = () => ({
+const withInteractiveItemsTemplate = () => ({
 	template: `
 		<cds-contained-list label="List title">
 			<cds-contained-list-item [clickable]="true">
@@ -233,7 +233,7 @@ const withInteractiveItemsTemplate: Story<ContainedList> = () => ({
 });
 export const withInteractiveItems = withInteractiveItemsTemplate.bind({});
 
-const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
+const withInteractiveItemsAndActionsTemplate = () => ({
 	template: `
 		<ng-template #action let-item>
 			<button
@@ -264,7 +264,7 @@ const withInteractiveItemsAndActionsTemplate: Story<ContainedList> = () => ({
 });
 export const withInteractiveItemsAndActions = withInteractiveItemsAndActionsTemplate.bind({});
 
-const withLayerTemplate: Story<ContainedList> = () => ({
+const withLayerTemplate = () => ({
 	template: `
 		<div ibmStack="vertical" [gap]="5">
 			<cds-contained-list label="List title">
@@ -292,7 +292,7 @@ const withLayerTemplate: Story<ContainedList> = () => ({
 });
 export const withLayer = withLayerTemplate.bind({});
 
-const withListTitleDecoratorsTemplate: Story<ContainedList> = () => ({
+const withListTitleDecoratorsTemplate = () => ({
 	template: `
 		<ng-template #label let-item>
 			<div style="display: flex; alignItems: center; justifyContent: space-between">

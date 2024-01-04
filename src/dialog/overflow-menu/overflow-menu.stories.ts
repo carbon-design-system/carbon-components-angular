@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { DialogModule, OverflowMenu } from "../";
 import { PlaceholderModule } from "../../placeholder";
 import { IconModule } from "../../icon";
@@ -30,7 +30,7 @@ export default {
 	component: OverflowMenu
 } as Meta;
 
-const Template: Story<OverflowMenu> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-overflow-menu
@@ -77,7 +77,7 @@ Basic.parameters = {
 	layout: "centered"
 };
 
-const LinkTemplate: Story<OverflowMenu> = (args) => ({
+const LinkTemplate = (args) => ({
 	props: args,
 	template: `
 		<div>
@@ -121,7 +121,7 @@ WithLink.argTypes = {
 	}
 };
 
-const CustomTemplate: Story<OverflowMenu> = (args) => ({
+const CustomTemplate = (args) => ({
 	props: args,
 	template: `
 		<p style="padding-bottom: 1rem;">
@@ -149,7 +149,7 @@ const CustomTemplate: Story<OverflowMenu> = (args) => ({
 export const Custom = CustomTemplate.bind({});
 Custom.storyName = "Custom Template";
 
-const CustomTriggerTemplate: Story<OverflowMenu> = (args) => ({
+const CustomTriggerTemplate = (args) => ({
 	props: args,
 	template: `
 		<span>Overflow menu with custom trigger icon</span>

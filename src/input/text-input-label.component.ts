@@ -9,6 +9,22 @@ import {
 	ChangeDetectorRef
 } from "@angular/core";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-text-label>
+ * 	Label
+ * 	<input cdsText type="text" class="input-field">
+ * </cds-text-label>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-input--basic)
+ */
 @Component({
 	selector: "cds-text-label, ibm-text-label",
 	template: `
