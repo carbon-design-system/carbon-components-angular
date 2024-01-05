@@ -29,7 +29,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<GridDirective> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -47,7 +47,7 @@ const Template: Story<GridDirective> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const GridStartTemplate: Story<GridDirective> = (args) => ({
+const GridStartTemplate = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -76,7 +76,7 @@ const GridStartTemplate: Story<GridDirective> = (args) => ({
 });
 export const GridStart = GridStartTemplate.bind({});
 
-const ResponsiveTemplate: Story<GridDirective> = (args) => ({
+const ResponsiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -115,7 +115,7 @@ const ResponsiveTemplate: Story<GridDirective> = (args) => ({
 });
 export const Responsive = ResponsiveTemplate.bind({});
 
-const SubgridTemplate: Story<GridDirective> = (args) => ({
+const SubgridTemplate = (args) => ({
 	props: args,
 	template: `
 		<div

@@ -44,6 +44,12 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * - `[appendInline]="false"` will always append to the body/`cds-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { DropdownModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-dropdown--basic)
  */
 @Component({

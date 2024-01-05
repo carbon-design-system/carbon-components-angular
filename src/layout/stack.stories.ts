@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayoutModule, StackDirective } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: StackDirective
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div [cdsStack]="orientation" [gap]="gap">

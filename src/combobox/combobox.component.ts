@@ -26,6 +26,12 @@ import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ComboBoxModule } from 'carbon-components-angular';
+ * ```
+ *
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *

@@ -19,7 +19,7 @@ export default {
 	component: ExpandableTile
 } as Meta;
 
-const Template: Story<ExpandableTile> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-expandable-tile>
@@ -30,7 +30,7 @@ const Template: Story<ExpandableTile> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const InteractiveTemplate: Story<ExpandableTile> = (args) => ({
+const InteractiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-expandable-tile [interactive]="true">
@@ -47,7 +47,7 @@ const InteractiveTemplate: Story<ExpandableTile> = (args) => ({
 });
 export const Interactive = InteractiveTemplate.bind({});
 
-const LayerTemplate: Story<ExpandableTile> = (args) => ({
+const LayerTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-expandable-tile>

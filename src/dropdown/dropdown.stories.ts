@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { DropdownModule, Dropdown } from "./";
 import { PlaceholderModule } from "../placeholder";
 
@@ -43,7 +43,9 @@ export default {
 			}
 		],
 		appendInline: false,
-		dropUp: false
+		dropUp: false,
+		size: "md",
+		theme: "dark"
 	},
 	argTypes: {
 		type: {
@@ -51,12 +53,10 @@ export default {
 		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		selected: { action: "Selection changed!" },
@@ -65,7 +65,7 @@ export default {
 	component: Dropdown
 } as Meta;
 
-const Template: Story<Dropdown> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
@@ -89,7 +89,7 @@ const Template: Story<Dropdown> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const MultiTemplate: Story<Dropdown> = (args) => ({
+const MultiTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
@@ -116,7 +116,7 @@ const MultiTemplate: Story<Dropdown> = (args) => ({
 });
 export const Multiselect = MultiTemplate.bind({});
 
-const ReactiveTemplate: Story<Dropdown> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -139,7 +139,7 @@ const ReactiveTemplate: Story<Dropdown> = (args) => ({
 });
 export const ReactiveForms = ReactiveTemplate.bind({});
 
-const NgTemplate: Story<Dropdown> = (args) => ({
+const NgTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown

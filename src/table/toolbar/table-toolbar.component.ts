@@ -68,7 +68,7 @@ import { TableRowSize } from "../table.types";
 				</p>
 			</div>
 			<div class="cds--action-list">
-				<ng-content select="cds-table-toolbar-actions"></ng-content>
+				<ng-content select="cds-table-toolbar-actions,ibm-table-toolbar-actions"></ng-content>
 				<button
 					cdsButton="primary"
 					class="cds--batch-summary__cancel"

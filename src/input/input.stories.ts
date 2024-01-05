@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
-import { InputModule, Label } from "./";
+import { moduleMetadata, Meta } from "@storybook/angular";
+import { InputModule, TextInputLabelComponent } from "./";
 
 export default {
 	title: "Components/Input",
@@ -9,13 +9,14 @@ export default {
 		moduleMetadata({
 			imports: [InputModule]
 		})
-	]
+	],
+	component: TextInputLabelComponent
 } as Meta;
 
-const Template: Story<Label> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-label
+		<cds-text-label
 		[helperText]="helperText"
 		[invalid]="invalid"
 		[invalidText]="invalidText"
@@ -32,7 +33,7 @@ const Template: Story<Label> = (args) => ({
 			[theme]="theme"
 			[placeholder]="placeholder"
 			[autocomplete]="autocomplete">
-		</cds-label>
+		</cds-text-label>
 	`
 });
 export const Basic = Template.bind({});
@@ -44,59 +45,28 @@ Basic.args = {
 	warnText: "This is a warning!",
 	label: "Text input label",
 	helperText: "Optional helper text",
-	placeholder: "Placeholder"
+	placeholder: "Placeholder",
+	autocomplete: "on",
+	theme: "dark",
+	size: "md"
 };
 Basic.argTypes = {
 	autocomplete: {
 		options: ["on", "off"],
-		defaultValue: "on",
 		control: "radio"
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	},
 	size: {
 		options: ["sm", "md", "lg"],
-		defaultValue: "md",
 		contorl: "select"
-	},
-	component: Label
+	}
 };
 
-const TextareaTemplate: Story<Label> = (args) => ({
-	props: args,
-	template: `
-		<cds-label
-		[helperText]="helperText"
-		[invalid]="invalid"
-		[disabled]="disabled"
-		[invalidText]="invalidText">
-		{{label}}
-		<textarea
-			cdsTextArea
-			[placeholder]="placeholder"
-			[invalid]="invalid"
-			[disabled]="disabled"
-			[theme]="theme"
-			[rows]="rows"
-			[cols]="cols"
-			aria-label="textarea"></textarea>
-		</cds-label>
-	`
-});
-export const TextArea = TextareaTemplate.bind({});
-TextArea.args = {
-	...Basic.args,
-	cols: 50,
-	rows: 4
-};
-TextArea.argTypes = {
-	...Basic.argTypes
-};
 
-const SkeletonTemplate: Story<Label> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-label skeleton="true">
@@ -104,10 +74,6 @@ const SkeletonTemplate: Story<Label> = (args) => ({
 		</cds-label>
 		<br>
 		<input cdsText skeleton="true">
-		<br><br>
-		<cds-label skeleton="true">
-			<div cdsTextArea skeleton="true"></div>
-		</cds-label>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

@@ -8,9 +8,11 @@ import {
 import { Router } from "@angular/router";
 
 /**
- * Build application's clickable tiles using this component.
+ * Build application's clickable tiles using this component. Get started with importing the module:
  *
- * ## Basic usage
+ * ```typescript
+ * import { TilesModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-clickable-tile>

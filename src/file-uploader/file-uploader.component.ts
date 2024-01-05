@@ -14,6 +14,12 @@ import { FileItem } from "./file-item.interface";
 const noop = () => { };
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { FileUploaderModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-file-uploader--basic)
  */
 @Component({

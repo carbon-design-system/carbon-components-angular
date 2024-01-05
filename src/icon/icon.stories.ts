@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule, IconDirective } from "./";
 import { IconDemo, ManyIconDemo } from "./stories";
 
@@ -21,7 +21,7 @@ export default {
 	component: IconDirective
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!-- app-* components are for demo purposes only.
@@ -33,7 +33,7 @@ const Template: Story = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const NonSVGRootTemplate: Story = (args) => ({
+const NonSVGRootTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -48,7 +48,7 @@ const NonSVGRootTemplate: Story = (args) => ({
 export const RootElement = NonSVGRootTemplate.bind({});
 RootElement.storyName = "Non-svg root element";
 
-const AllIconTemplate: Story = (args) => ({
+const AllIconTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--

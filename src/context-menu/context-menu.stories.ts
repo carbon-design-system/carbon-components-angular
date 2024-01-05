@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	ContextMenuModule,
 	ContextMenuComponent,
@@ -34,10 +34,17 @@ export default {
 		ContextMenuDividerComponent,
 		ContextMenuItemComponent,
 		ContextMenuGroupComponent
+	},
+	parameters: {
+		docs: {
+			story: {
+				height: "25rem"
+			}
+		}
 	}
 } as Meta;
 
-const Template: Story<ContextMenuComponent> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-context-menu [open]="open" [position]="position">
