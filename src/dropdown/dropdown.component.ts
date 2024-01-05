@@ -557,11 +557,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * otherwise the placeholder will be returned.
 	 */
 	getDisplayStringValue(): Observable<string> {
-		if (!this.view) {
+		if (!this.view || this.skeleton) {
 			return;
-		}
-		if (this.skeleton) {
-			this.placeholder = "test";
 		}
 		let selected = this.view.getSelected();
 		if (selected.length && (!this.displayValue || !this.isRenderString())) {
