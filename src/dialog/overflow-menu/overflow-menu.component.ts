@@ -12,9 +12,13 @@ import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
- * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
+ * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
  *
- * [See demo](../../?path=/story/components-overflow-menu--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { DialogModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-overflow-menu>
@@ -22,6 +26,8 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  *	<cds-overflow-menu-option>Option 2</cds-overflow-menu-option>
  * </cds-overflow-menu>
  * ```
+ *
+ * [See demo](../../?path=/story/components-overflow-menu--basic)
  */
 @Component({
 	selector: "cds-overflow-menu, ibm-overflow-menu",

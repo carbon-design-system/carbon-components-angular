@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { NumberModule, NumberComponent } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: NumberComponent
 } as Meta;
 
-const Template: Story<NumberComponent> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-number
@@ -42,22 +42,22 @@ Basic.args = {
 	max: 100,
 	step: 1,
 	invalid: false,
-	disabled: false
+	disabled: false,
+	size: "md",
+	theme: "dark"
 };
 Basic.argTypes = {
 	size: {
 		options: ["sm", "md", "lg"],
-		defaultValue: "md",
 		control: "radio"
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };
 
-const ModelTemplate: Story<NumberComponent> = (args) => ({
+const ModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-number
@@ -86,7 +86,7 @@ NgModel.argTypes = {
 	...Basic.argTypes
 };
 
-const SkeletonTemplate: Story<NumberComponent> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-number label="Number input label" skeleton="true"></cds-number>

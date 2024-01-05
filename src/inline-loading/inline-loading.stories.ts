@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { InlineLoadingModule, InlineLoading } from "./";
 
 import { InlineLoadingStory } from "./stories";
@@ -26,7 +26,7 @@ export default {
 	component: InlineLoading
 } as Meta;
 
-const Template: Story<InlineLoading> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

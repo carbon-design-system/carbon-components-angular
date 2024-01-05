@@ -1,11 +1,11 @@
 /* tslint:disable variable-name */
 
 import { RouterModule } from "@angular/router";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { SearchModule } from "../search";
 import { IconModule } from "../icon";
 import { ThemeModule } from "../theme";
-import { UIShellModule, NavigationItem } from "./";
+import { UIShellModule } from "./";
 
 import {
 	BarComponent,
@@ -48,10 +48,17 @@ export default {
 			options: ["white", "g10", "g90", "g100"],
 			control: "radio"
 		}
+	},
+	parameters: {
+		docs: {
+			story: {
+				height: "30rem"
+			}
+		}
 	}
 } as Meta;
 
-const HeaderTemplate: Story = (args) => ({
+const HeaderTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -89,7 +96,7 @@ Header.argTypes = {
 	}
 };
 
-const HeaderFluidTemplate: Story = (args) => ({
+const HeaderFluidTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -147,7 +154,7 @@ HeaderFluid.argTypes = {
 	}
 };
 
-const HeaderWithTemplate: Story = (args) => ({
+const HeaderWithTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -193,7 +200,7 @@ Header.argTypes = {
 	}
 };
 
-const HeaderRouterTemplate: Story = (args) => ({
+const HeaderRouterTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -222,7 +229,7 @@ Header.argTypes = {
 	}
 };
 
-const SideNavigationTemplate: Story = (args) => ({
+const SideNavigationTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -267,7 +274,7 @@ SideNavigation.argTypes = {
 	}
 };
 
-const SideNavigationRouterTemplate: Story = (args) => ({
+const SideNavigationRouterTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -296,7 +303,7 @@ const SideNavigationRouterTemplate: Story = (args) => ({
 export const SideNavigationRouter = SideNavigationRouterTemplate.bind({});
 SideNavigationRouter.storyName = "Side Navigation with router";
 
-const SidePanelTemplate: Story = (args) => ({
+const SidePanelTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -317,7 +324,7 @@ const SidePanelTemplate: Story = (args) => ({
 export const SidePanel = SidePanelTemplate.bind({});
 SidePanel.storyName = "Side Panel with router";
 
-const TogetherTemplate: Story = (args) => ({
+const TogetherTemplate = (args) => ({
 	props: args,
 	template: `
 		<div>
@@ -342,7 +349,7 @@ const TogetherTemplate: Story = (args) => ({
 					</cds-header-action>
 				</cds-header-global>
 			</cds-header>
-			<cds-sidenav [expanded]="active">
+			<cds-sidenav [expanded]="active" style="margin-top: 3rem">
 				<cds-sidenav-item>
 					<svg cdsIcon="fade" size="16"></svg>
 					Link
@@ -397,7 +404,7 @@ Together.argTypes = {
 	}
 };
 
-const SideNavigationRailTemplate: Story = (args) => ({
+const SideNavigationRailTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -443,7 +450,7 @@ SideNavigationRail.argTypes = {
 	}
 };
 
-const ModelTemplate: Story = (args) => ({
+const ModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">
@@ -486,7 +493,7 @@ const ModelTemplate: Story = (args) => ({
 					</cds-header-action>
 				</cds-header-global>
 			</cds-header>
-			<cds-sidenav [navigationItems]="headerItems">
+			<cds-sidenav [navigationItems]="headerItems" style="margin-top: 3rem">
 				<cds-sidenav-menu title="Category title">
 					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 						<path
@@ -573,7 +580,7 @@ SideNavigationRail.argTypes = {
 	}
 };
 
-const AngularRoutingTemplate: Story = (args) => ({
+const AngularRoutingTemplate = (args) => ({
 	props: args,
 	template: `
 		<div [cdsTheme]="theme">

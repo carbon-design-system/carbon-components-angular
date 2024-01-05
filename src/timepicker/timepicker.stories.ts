@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TimePickerModule, TimePicker } from "./";
 import { TimePickerSelectModule } from "../timepicker-select";
 
@@ -19,7 +19,7 @@ export default {
 	component: TimePicker
 } as Meta;
 
-const Template: Story<TimePicker> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-timepicker
@@ -60,7 +60,8 @@ Basic.args = {
 	disableTime: false,
 	disabledSelect: false,
 	invalid: false,
-	invalidText: "A valid value is required!"
+	invalidText: "A valid value is required!",
+	theme: "dark"
 };
 
 Basic.argTypes = {
@@ -72,7 +73,6 @@ Basic.argTypes = {
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };
