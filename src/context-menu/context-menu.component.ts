@@ -8,6 +8,15 @@ import {
 	HostBinding
 } from "@angular/core";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ContentSwitcherModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-context-menu--basic)
+ */
 @Component({
 	selector: "cds-context-menu, ibm-context-menu",
 	template: `

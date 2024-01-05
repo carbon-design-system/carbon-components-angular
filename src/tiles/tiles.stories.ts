@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import { SkeletonModule } from "../skeleton";
 import { TilesModule, Tile } from "./";
@@ -19,7 +19,7 @@ export default {
 	component: Tile
 } as Meta;
 
-const Template: Story<Tile> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tile>
@@ -29,7 +29,7 @@ const Template: Story<Tile> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const LayerTemplate: Story<Tile> = (args) => ({
+const LayerTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tile>
@@ -47,7 +47,7 @@ const LayerTemplate: Story<Tile> = (args) => ({
 });
 export const WithLayers = LayerTemplate.bind({});
 
-const SkeletonTemplate: Story<Tile> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tile>

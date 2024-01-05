@@ -7,6 +7,15 @@ import {
 } from "@angular/core";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ContainedListModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-contained-list--basic)
+ */
 @Component({
 	selector: "cds-contained-list, ibm-contained-list",
 	template: `

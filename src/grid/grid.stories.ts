@@ -29,7 +29,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<GridDirective> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -56,7 +56,7 @@ const Template: Story<GridDirective> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const ResponsiveTemplate: Story<GridDirective> = (args) => ({
+const ResponsiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<div cdsGrid [condensed]="gridCondensed">
@@ -90,7 +90,7 @@ const ResponsiveTemplate: Story<GridDirective> = (args) => ({
 });
 export const Responsive = ResponsiveTemplate.bind({});
 
-const OffsetTemplate: Story<GridDirective> = (args) => ({
+const OffsetTemplate = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -117,7 +117,7 @@ const OffsetTemplate: Story<GridDirective> = (args) => ({
 });
 export const Offset = OffsetTemplate.bind({});
 
-const CondensedRowTemplate: Story<GridDirective> = (args) => ({
+const CondensedRowTemplate = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -144,7 +144,7 @@ const CondensedRowTemplate: Story<GridDirective> = (args) => ({
 });
 export const CondensedRow = CondensedRowTemplate.bind({});
 
-const NarrowRowTemplate: Story<GridDirective> = (args) => ({
+const NarrowRowTemplate = (args) => ({
 	props: args,
 	template: `
 		<div

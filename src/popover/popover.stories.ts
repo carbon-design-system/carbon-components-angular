@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	PopoverModule,
 	PopoverContainer,
@@ -15,13 +15,19 @@ export default {
 		})
 	],
 	parameters: {
+		docs: {
+			story: {
+				inline: false,
+				height: "15rem"
+			}
+		},
 		layout: "centered"
 	},
 	component: PopoverContainer,
 	subcomponents: { PopoverContent }
 } as Meta;
 
-const Template: Story<PopoverContainer> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<div
@@ -79,7 +85,8 @@ Basic.args = {
 	isOpen: true,
 	caret: true,
 	dropShadow: true,
-	highContrast: false
+	highContrast: false,
+	align: "bottom"
 };
 Basic.argTypes = {
 	onOpen: {
@@ -106,7 +113,6 @@ Basic.argTypes = {
 			"right-bottom",
 			"right-top"
 		],
-		defaultValue: "bottom",
 		control: "select"
 	}
 };

@@ -11,6 +11,12 @@ import {
 import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TooltipModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-tooltip--basic)
  */
 @Component({

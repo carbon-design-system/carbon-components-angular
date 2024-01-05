@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ButtonModule } from "./button";
@@ -200,7 +200,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

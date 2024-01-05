@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	StructuredListModule,
 	StructuredList,
@@ -28,7 +28,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<StructuredList> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
@@ -69,7 +69,7 @@ Basic.args = {
 	nowrap: false
 };
 
-const SelectionTemplate: Story<StructuredList> = (args) => ({
+const SelectionTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-structured-list
@@ -114,7 +114,7 @@ Selection.args = {
 	...Basic.args
 };
 
-const SkeletonTemplate: Story<StructuredList> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-structured-list

@@ -7,7 +7,11 @@ import {
 } from "@angular/core";
 
 /**
- * Applies popover container styling to the element it is applied to.
+ * Applies popover container styling to the element it is applied to. Get started with importing the module:
+ *
+ * ```typescript
+ * import { PopoverModule } from 'carbon-components-angular';
+ * ```
  *
  * [See demo](../../?path=/story/components-popover--basic)
  */

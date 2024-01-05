@@ -6,6 +6,14 @@ html {
 	@include styles.theme(styles.$white);
 }
 
+.innerZoomElementWrapper {
+	min-width: 55rem;
+}
+
+.docblock-argstable {
+	margin-bottom: 10rem;
+}
+
 /*
  * Story batch styling, we are wrapping the storybook decorator function to ensure
  * styles do not leak to other components

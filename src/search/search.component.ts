@@ -12,6 +12,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { SearchModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-search--basic)
  */
 @Component({

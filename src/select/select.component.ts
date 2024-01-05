@@ -12,13 +12,13 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
- * `cds-select` provides a styled `select` component.
+ * `cds-select` provides a styled `select` component. Get started with importing the module:
  *
- * [See demo](../../?path=/story/components-select--basic)
- *
- * Example:
- *
+ * ```typescript
+ * import { SelectModule } from 'carbon-components-angular';
  * ```
+ *
+ * ```html
  * <cds-select [(ngModel)]="model">
  * 	<option value="default" disabled selected hidden>Choose an option</option>
  * 	<option value="option1">Option 1</option>
@@ -26,6 +26,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * 	<option value="option3">Option 3</option>
  * </cds-select>
  *	```
+ *
+ * [See demo](../../?path=/story/components-select--basic)
  */
 @Component({
 	selector: "cds-select, ibm-select",

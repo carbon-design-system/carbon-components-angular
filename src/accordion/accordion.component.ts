@@ -8,6 +8,12 @@ import {
 import { AccordionItem } from "./accordion-item.component";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { AccordionModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-accordion--basic)
  */
 @Component({
