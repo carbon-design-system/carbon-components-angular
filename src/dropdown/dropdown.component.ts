@@ -560,6 +560,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.view) {
 			return;
 		}
+		if (this.skeleton) {
+			this.placeholder = "test";
+		}
 		let selected = this.view.getSelected();
 		if (selected.length && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
