@@ -56,7 +56,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 	selector: "cds-dropdown, ibm-dropdown",
 	template: `
 	<label
-		*ngIf="label"
+		*ngIf="label && !skeleton"
 		[for]="id"
 		class="cds--label"
 		[ngClass]="{'cds--label--disabled': disabled}">
@@ -151,7 +151,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		</div>
 	</div>
 	<div
-		*ngIf="helperText && !invalid && !warn"
+		*ngIf="helperText && !invalid && !warn && !skeleton"
 		class="cds--form__helper-text"
 		[ngClass]="{
 			'cds--form__helper-text--disabled': disabled
@@ -557,7 +557,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * otherwise the placeholder will be returned.
 	 */
 	getDisplayStringValue(): Observable<string> {
-		if (!this.view) {
+		if (!this.view || this.skeleton) {
 			return;
 		}
 		let selected = this.view.getSelected();
