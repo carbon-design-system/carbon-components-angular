@@ -59,7 +59,7 @@ export class NumberChange {
 				<input
 					type="number"
 					[id]="id"
-					[attr.value]="value"
+					[value]="value"
 					[attr.min]="min"
 					[attr.max]="max"
 					[attr.step]="step"
