@@ -14,11 +14,14 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
  *
- * [See demo](../../?path=/story/components-structured-list--basic)
- *
  * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *
- * A basic structued list looks something like:
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { StructuredListModule } from 'carbon-components-angular';
+ * ```
+ *
  * ```html
  *	<cds-structured-list>
  *		<cds-list-header>
@@ -50,6 +53,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *		</cds-list-row>
  *	</cds-structured-list>
  * ```
+ *
+ * [See demo](../../?path=/story/components-structured-list--basic)
  */
 @Component({
 	selector: "cds-structured-list, ibm-structured-list",
@@ -63,7 +68,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				'cds--structured-list--condensed': condensed,
 				'cds--skeleton': skeleton
 			}">
-			<ng-content select="cds-list-header"></ng-content>
+			<ng-content select="cds-list-header,ibm-list-header"></ng-content>
 			<div class="cds--structured-list-tbody" role="rowgroup">
 				<ng-content></ng-content>
 			</div>

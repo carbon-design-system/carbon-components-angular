@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ProgressBarModule, ProgressBar } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: ProgressBar
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-progress-bar
@@ -53,7 +53,7 @@ Basic.argTypes = {
 	}
 };
 
-const IndeterminateTemplate: Story = (args) => ({
+const IndeterminateTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-progress-bar

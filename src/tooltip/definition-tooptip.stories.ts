@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TooltipModule, TooltipDefinition } from "./";
 
 export default {
@@ -11,12 +11,17 @@ export default {
 		})
 	],
 	parameters: {
-		layout: "centered"
+		docs: {
+			story: {
+				inline: false,
+				iframeHeight: "18rem"
+			}
+		}
 	},
 	component: TooltipDefinition
 } as Meta;
 
-const Template: Story<TooltipDefinition> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
@@ -52,7 +57,8 @@ export const Basic = Template.bind({});
 Basic.args = {
 	isOpen: true,
 	caret: true,
-	description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet."
+	description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.",
+	align: "bottom"
 };
 Basic.argTypes = {
 	onOpen: {
@@ -73,7 +79,6 @@ Basic.argTypes = {
 			"bottom-left",
 			"bottom-right"
 		],
-		defaultValue: "bottom",
 		control: "select"
 	}
 };

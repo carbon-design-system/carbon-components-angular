@@ -2,6 +2,12 @@ import { Component, Input, HostBinding } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { LoadingModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-loading--basic)
  */
 @Component({

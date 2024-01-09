@@ -18,11 +18,17 @@ export enum SnippetType {
 }
 
 /**
- * [See demo](../../?path=/story/components-code-snippet--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { CodeSnippetModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-code-snippet>Code</cds-code-snippet>
  * ```
+ *
+ * [See demo](../../?path=/story/components-code-snippet--basic)
  */
 @Component({
 	selector: "cds-code-snippet, ibm-code-snippet",

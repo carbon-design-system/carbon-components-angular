@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { SkeletonModule, SkeletonPlaceholder } from "./";
 
 export default {
@@ -18,7 +18,7 @@ export default {
 	component: SkeletonPlaceholder
 } as Meta;
 
-const Template: Story<SkeletonPlaceholder> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 	<cds-skeleton-text

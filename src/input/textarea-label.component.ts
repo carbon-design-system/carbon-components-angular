@@ -12,6 +12,22 @@ import {
 
 import { TextArea } from "./text-area.directive";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-textarea-label>
+ * 	Label
+ * 	<textarea cdsTextArea class="textarea-field">
+ * </cds-textarea-label>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-input-text-area--basic)
+ */
 @Component({
 	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `

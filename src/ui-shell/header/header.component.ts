@@ -30,7 +30,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				tabindex="0">
 				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 			</a>
-			<ng-content select="cds-hamburger"></ng-content>
+			<ng-content select="cds-hamburger,ibm-hamburger"></ng-content>
 			<ng-template
 				*ngIf="isTemplate(brand)"
 				[ngTemplateOutlet]="brand">
