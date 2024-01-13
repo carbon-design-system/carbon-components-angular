@@ -52,7 +52,7 @@ import { TextArea } from "./text-area.directive";
 			[attr.data-invalid]="(invalid ? true : null)"
 			#wrapper>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				cdsIcon="warning--filled"
 				size="16"
 				class="cds--text-area__invalid-icon">
@@ -75,7 +75,7 @@ import { TextArea } from "./text-area.directive";
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="!warn && invalid" class="cds--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>

@@ -121,7 +121,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				class="cds--dropdown__invalid-icon"
 				cdsIcon="warning--filled"
 				size="16">
@@ -159,7 +159,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
-	<div *ngIf="!warn && invalid" class="cds--form-requirement">
+	<div *ngIf="invalid" class="cds--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 	</div>

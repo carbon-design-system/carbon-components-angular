@@ -60,7 +60,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							class="cds--date-picker__icon">
 						</svg>
 						<svg
-							*ngIf="!warn && invalid"
+							*ngIf="invalid"
 							class="cds--date-picker__icon cds--date-picker__icon--invalid"
 							cdsIcon="warning--filled"
 							size="16">
@@ -79,7 +79,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
-				<div *ngIf="!warn && invalid" class="cds--form-requirement">
+				<div *ngIf="invalid" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 				</div>
