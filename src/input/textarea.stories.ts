@@ -47,8 +47,7 @@ Basic.args = {
 	cols: 50,
 	rows: 4,
 	autocomplete: "on",
-	theme: "dark",
-	size: "md"
+	theme: "dark"
 };
 Basic.argTypes = {
 	autocomplete: {
@@ -58,10 +57,6 @@ Basic.argTypes = {
 	theme: {
 		options: ["light", "dark"],
 		control: "radio"
-	},
-	size: {
-		options: ["sm", "md", "lg"],
-		contorl: "select"
 	}
 };
 
