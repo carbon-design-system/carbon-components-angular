@@ -20,7 +20,9 @@ const Template = (args) => ({
 		[helperText]="helperText"
 		[invalid]="invalid"
 		[disabled]="disabled"
-		[invalidText]="invalidText">
+		[invalidText]="invalidText"
+		[warn]="warn"
+		[warnText]="warnText">
 		{{label}}
 		<textarea
 			cdsTextArea
