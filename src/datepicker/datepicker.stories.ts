@@ -115,7 +115,7 @@ const RangeTemplate = (args) => ({
 			[rangeLabel]="label"
 			[size]="size"
 			range="true"
-			id="initial-value-datepicker"
+			id="initial-value-range-datepicker"
 			[placeholder]="placeholder"
 			[language]="language"
 			[theme]="theme"
@@ -156,7 +156,7 @@ const RangeTemplate = (args) => ({
 export const Range = RangeTemplate.bind({});
 Range.args = {
 	dateFormat: "d/m/Y",
-	value: [new Date("01 Feb 24"), new Date("29 Feb 24")],
+	value: ["01/02/24", "08/02/24"],
 	language: "en"
 };
 Range.argTypes = {
