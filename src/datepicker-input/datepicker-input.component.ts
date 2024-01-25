@@ -35,7 +35,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						'cds--date-picker-input__wrapper--invalid': invalid,
 						'cds--date-picker-input__wrapper--warn': warn
 					}">
-					<input
+					<span>
+						<input
 						#input
 						*ngIf="!skeleton"
 						autocomplete="off"
@@ -52,25 +53,26 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[placeholder]="placeholder"
 						[id]= "id"
 						[disabled]="disabled"
-						(change)="onChange($event)"/>
-						<svg
-							*ngIf="type !== 'simple' && !warn && !invalid"
-							cdsIcon="calendar"
-							size="16"
-							class="cds--date-picker__icon">
-						</svg>
-						<svg
-							*ngIf="!warn && invalid"
-							class="cds--date-picker__icon cds--date-picker__icon--invalid"
-							cdsIcon="warning--filled"
-							size="16">
-						</svg>
-						<svg
-							*ngIf="!invalid && warn"
-							cdsIcon="warning--alt--filled"
-							size="16"
-							class="cds--date-picker__icon cds--date-picker__icon--warn">
-						</svg>
+							(change)="onChange($event)"/>
+							<svg
+								*ngIf="type !== 'simple' && !warn && !invalid"
+								cdsIcon="calendar"
+								size="16"
+								class="cds--date-picker__icon">
+							</svg>
+							<svg
+								*ngIf="!warn && invalid"
+								class="cds--date-picker__icon cds--date-picker__icon--invalid"
+								cdsIcon="warning--filled"
+								size="16">
+							</svg>
+							<svg
+								*ngIf="!invalid && warn"
+								cdsIcon="warning--alt--filled"
+								size="16"
+								class="cds--date-picker__icon cds--date-picker__icon--warn">
+							</svg>
+					</span>
 				</div>
 				<div
 					*ngIf="helperText && !invalid && !warn"
