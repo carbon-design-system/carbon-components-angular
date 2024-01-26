@@ -63,7 +63,7 @@
     "@angular/common": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
     "@angular/core": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
     "@angular/forms": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
-    "@carbon/styles": "^1.5.0",
+    "@carbon/styles": "^1.44.0",
     "rxjs": "^6.0.0 || ^7.0.0",
     "zone.js": "^0.11.0"
   },
@@ -81,7 +81,7 @@
     "@angular/platform-browser-dynamic": "14.3.0",
     "@angular/router": "14.3.0",
     "@babel/core": "7.9.6",
-    "@carbon/styles": "1.36.0",
+    "@carbon/styles": "1.48.1",
     "@carbon/themes": "11.24.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
