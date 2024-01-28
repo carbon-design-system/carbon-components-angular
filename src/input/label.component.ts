@@ -13,6 +13,7 @@ import {
 
 import { TextArea } from "./text-area.directive";
 import { TextInput } from "./input.directive";
+import { PasswordInput } from "./password.directive";
 
 /**
  * Get started with importing the module:
@@ -74,6 +75,22 @@ import { TextInput } from "./input.directive";
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
 			</ng-container>
+			<ng-container *ngSwitchCase="'PasswordInput'">
+				<cds-password-label
+					[labelInputID]="labelInputID"
+					[disabled]="disabled"
+					[skeleton]="skeleton"
+					[helperText]="helperText"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
+					[warn]="warn"
+					[warnText]="warnText"
+					[ariaLabel]="ariaLabel"
+					[labelTemplate]="labelContentTemplate"
+					[passwordInputTemplate]="inputContentTemplate"
+				>
+				</cds-password-label>
+			</ng-container>
 			<ng-container *ngSwitchDefault>
 				<ng-template [ngTemplateOutlet]="default"></ng-template>
 			</ng-container>
@@ -102,13 +119,13 @@ import { TextInput } from "./input.directive";
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--text-input__invalid-icon">
-				</svg>
+					</svg>
 				<svg
 					*ngIf="!invalid && warn"
 					cdsIcon="warning--alt--filled"
 					size="16"
 					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
+					</svg>
 				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
 			</div>
 			<div
@@ -137,7 +154,7 @@ export class Label implements AfterContentInit, AfterViewInit {
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
-	*/
+	 */
 	@Input() labelInputID = `cds-label-${Label.labelCounter++}`;
 	/**
 	 * Set to `true` for disabled state.
@@ -160,8 +177,8 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 */
 	@Input() invalid = false;
 	/**
-	  * Set to `true` to show a warning (contents set by warningText)
-	  */
+	 * Set to `true` to show a warning (contents set by warningText)
+	 */
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -179,11 +196,14 @@ export class Label implements AfterContentInit, AfterViewInit {
 	// @ts-ignore
 	@ContentChild(TextInput, { static: false }) textInput: TextInput;
 
+	@ContentChild(PasswordInput, { static: false })
+	passwordInput: PasswordInput;
+
 	@HostBinding("class.cds--form-item") get labelClass() {
 		return this.type === undefined;
 	}
 
-	type: "TextArea" | "TextInput";
+	type: "TextArea" | "TextInput" | "PasswordInput";
 
 	/**
 	 * Creates an instance of Label.
@@ -198,6 +218,8 @@ export class Label implements AfterContentInit, AfterViewInit {
 			this.type = "TextArea";
 		} else if (this.textInput) {
 			this.type = "TextInput";
+		} else if (this.passwordInput) {
+			this.type = "PasswordInput";
 		}
 	}
 
