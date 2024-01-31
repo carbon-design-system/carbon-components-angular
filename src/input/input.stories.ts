@@ -26,7 +26,6 @@ const Template = (args) => ({
 		{{label}}
 		<input
 			cdsText
-			type="text"
 			[size]="size"
 			[invalid]="invalid"
 			[warn]="warn"
