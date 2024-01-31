@@ -65,7 +65,7 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
 			<ng-template #textAreaContent>
-				<ng-content select="textarea"></ng-content>
+				<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
 			</ng-template>
 		</div>
 		<div

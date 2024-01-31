@@ -62,7 +62,7 @@ import {
 			</svg>
 			<ng-template *ngIf="textInputTemplate; else textInputContent" [ngTemplateOutlet]="textInputTemplate"></ng-template>
 			<ng-template #textInputContent>
-				<ng-content select="input[type=text],div"></ng-content>
+				<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 			</ng-template>
 		</div>
 		<div
