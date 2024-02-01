@@ -49,7 +49,7 @@ import {
 			[attr.data-invalid]="(invalid ? true : null)"
 			#wrapper>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				cdsIcon="warning--filled"
 				size="16"
 				class="cds--text-input__invalid-icon">
@@ -62,7 +62,7 @@ import {
 			</svg>
 			<ng-template *ngIf="textInputTemplate; else textInputContent" [ngTemplateOutlet]="textInputTemplate"></ng-template>
 			<ng-template #textInputContent>
-				<ng-content select="input[type=text],div"></ng-content>
+				<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 			</ng-template>
 		</div>
 		<div
@@ -72,7 +72,7 @@ import {
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="!warn && invalid" class="cds--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>

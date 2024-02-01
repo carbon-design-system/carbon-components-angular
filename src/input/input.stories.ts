@@ -61,7 +61,7 @@ Basic.argTypes = {
 	},
 	size: {
 		options: ["sm", "md", "lg"],
-		contorl: "select"
+		control: "select"
 	}
 };
 
