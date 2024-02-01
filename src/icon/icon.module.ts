@@ -38,6 +38,7 @@ import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
 import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import Fade16 from "@carbon/icons/es/fade/16";
 import Fade20 from "@carbon/icons/es/fade/20";
+import Folder16 from "@carbon/icons/es/folder/16";
 import Incomplete16 from "@carbon/icons/es/incomplete/16";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
@@ -118,6 +119,7 @@ export class IconModule {
 			ErrorFilled20,
 			Fade16,
 			Fade20,
+			Folder16,
 			Incomplete16,
 			InformationFilled16,
 			InformationFilled20,
