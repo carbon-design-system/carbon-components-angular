@@ -118,7 +118,7 @@ import { Observable } from "rxjs";
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
 					<svg
-						*ngIf="!warn && invalid"
+						*ngIf="invalid"
 						cdsIcon="warning--filled"
 						size="16"
 						class="cds--list-box__invalid-icon">
@@ -167,7 +167,7 @@ import { Observable } from "rxjs";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>

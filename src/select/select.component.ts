@@ -101,7 +101,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
 				<svg
-					*ngIf="!warn && invalid"
+					*ngIf="invalid"
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--select__invalid-icon">
@@ -114,7 +114,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</svg>
 			</div>
 			<div
-				*ngIf="invalid && invalidText && !warn" role="alert" class="cds--form-requirement" aria-live="polite">
+				*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
