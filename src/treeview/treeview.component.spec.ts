@@ -16,7 +16,6 @@ import { TreeNodeComponent } from "./tree-node.component";
 	`
 })
 class TreeviewTestComponent {
-	onSelect() {}
 
 	tree = [
 		{
@@ -49,6 +48,7 @@ class TreeviewTestComponent {
 			]
 		}
 	];
+	onSelect() {}
 }
 
 
@@ -111,11 +111,11 @@ describe("Treeview", () => {
 
 	it("should emit 'select' event from the tree wrapper when a node is clicked", fakeAsync(() => {
 		const wrapper = tree.componentInstance;
-		const selectSpy = spyOn(wrapper.select, 'emit');
+		const selectSpy = spyOn(wrapper.select, "emit");
 		fixture.detectChanges();
-		nodes[0].nativeElement.querySelector('.cds--tree-node__label').dispatchEvent(new Event('click'));
+		nodes[0].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
 		tick();
 		expect(selectSpy).toHaveBeenCalled();
-	}))
+	}));
 });
 
