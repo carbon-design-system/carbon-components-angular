@@ -22,14 +22,18 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<header class="cds--modal-header {{theme}}">
 			<ng-content></ng-content>
-			<button
-				*ngIf="showCloseButton"
-				type="button"
-				class="cds--modal-close"
-				(click)="onClose()">
-				<span class="cds--assistive-text">{{ closeLabel }}</span>
-				<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
-			</button>
+			<div class="cds--modal-close-button">
+				<cds-icon-button
+					*ngIf="showCloseButton"
+					type="button"
+					[buttonNgClass]="buttonNgClass"
+					[buttonAttributes]="buttonAttributes"
+					align="left"
+					[description]="closeLabel"
+					(click)="onClose()">
+					<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
+				</cds-icon-button>
+			</div>
 		</header>
 
 	`
@@ -54,6 +58,14 @@ export class ModalHeader {
 	 * To emit the event of clicking on the close icon within the modal.
 	 */
 	@Output() closeSelect = new EventEmitter();
+
+	buttonNgClass = {
+		"cds--modal-close": true
+	};
+
+	buttonAttributes = {
+		"aria-label": this.i18n.get().MODAL.CLOSE
+	};
 
 	constructor(protected i18n: I18n) {}
 

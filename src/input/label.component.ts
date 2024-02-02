@@ -115,7 +115,7 @@ import { PasswordInput } from "./password.directive";
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
 				<svg
-					*ngIf="!warn && invalid"
+					*ngIf="invalid"
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--text-input__invalid-icon">
@@ -135,7 +135,7 @@ import { PasswordInput } from "./password.directive";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>

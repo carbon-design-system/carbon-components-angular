@@ -30,7 +30,7 @@ import {
 			</div>
 		</ng-container>
 		<div class="cds--contained-list-item__action" *ngIf="action">
-			<ng-template [ngTemplateOutlet]="action"></ng-template>
+			<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }"></ng-template>
 		</div>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,6 +40,11 @@ export class ContainedListItem {
 	 * A slot for a possible interactive element to render within the item.
 	 */
 	@Input() action: TemplateRef<any>;
+
+	/**
+	 * Optional interactive element data.
+	 */
+	@Input() actionData: any;
 
 	/**
 	 * Whether this item is disabled.
