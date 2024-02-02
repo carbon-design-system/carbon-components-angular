@@ -20,7 +20,6 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 
 	@ViewChild("document") documentIcon: TemplateRef<any>;
 
-
 	ngAfterViewInit() {
 		// Wait for the view child to be picked up
 		this.tree = [
@@ -66,7 +65,7 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 				id: "5",
 				value: "Cloud computing",
 				label: "Cloud computing",
-				"expanded": true,
+				expanded: true,
 				children: [
 					{
 						id: "5-1",
@@ -84,7 +83,7 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 						id: "5-3",
 						value: "DevOps",
 						label: "DevOps",
-						"expanded": true,
+						expanded: true,
 						children: [
 							{
 								id: "5-4",
@@ -96,7 +95,7 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 								id: "5-5",
 								value: "Case studies",
 								label: "Case studies",
-								"expanded": true,
+								expanded: true,
 								children: [
 									{
 										id: "5-6",
@@ -137,8 +136,8 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 				id: "7",
 				value: "IT infrastructure",
 				label: "IT infrastructure",
-				"expanded": true,
-				"disabled": true,
+				expanded: true,
+				disabled: true,
 				children: [
 					{
 						id: "7-1",
@@ -156,7 +155,7 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 						id: "8",
 						value: "Hybrid cloud infrastructure",
 						label: "Hybrid cloud infrastructure",
-						"expanded": true,
+						expanded: true,
 						children: [
 							{
 								id: "8-1",
