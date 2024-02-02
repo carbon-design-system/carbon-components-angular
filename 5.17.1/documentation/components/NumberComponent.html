@@ -1,0 +1,2840 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NumberComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/number-input/number.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Get started with importing the module:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { NumberModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-number--basic">See demo</a></p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>ControlValueAccessor</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../components/NumberComponent.html" target="_self" >{
+    provide: NG_VALUE_ACCESSOR, useExisting: NumberComponent, multi: true
+}</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>cds-number, ibm-number</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
+	data-numberinput
+	[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
+	class&#x3D;&quot;cds--number&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;cds--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+		&#x27;cds--number--nolabel&#x27;: !label,
+		&#x27;cds--number--helpertext&#x27;: helperText,
+		&#x27;cds--skeleton&#x27; : skeleton,
+		&#x27;cds--number--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
+		&#x27;cds--number--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
+		&#x27;cds--number--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
+	}&quot;&gt;
+	&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/label&gt;
+	&lt;label
+		*ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot;
+		[for]&#x3D;&quot;id&quot;
+		class&#x3D;&quot;cds--label&quot;
+		[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+	&lt;/label&gt;
+	&lt;div
+		class&#x3D;&quot;cds--number__input-wrapper&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--number__input-wrapper--warning&#x27;: warn
+		}&quot;&gt;
+		&lt;input
+			type&#x3D;&quot;number&quot;
+			[id]&#x3D;&quot;id&quot;
+			[value]&#x3D;&quot;value&quot;
+			[attr.min]&#x3D;&quot;min&quot;
+			[attr.max]&#x3D;&quot;max&quot;
+			[attr.step]&#x3D;&quot;step&quot;
+			[disabled]&#x3D;&quot;disabled&quot;
+			[required]&#x3D;&quot;required&quot;
+			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+			[attr.data-invalid]&#x3D;&quot;invalid ? invalid : null&quot;
+			[placeholder]&#x3D;&quot;placeholder&quot;
+			(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
+		&lt;svg
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
+			cdsIcon&#x3D;&quot;warning--filled&quot;
+			size&#x3D;&quot;16&quot;
+			class&#x3D;&quot;cds--number__invalid&quot;&gt;
+		&lt;/svg&gt;
+		&lt;svg
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; !invalid &amp;&amp; warn&quot;
+			cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+			size&#x3D;&quot;16&quot;
+			class&#x3D;&quot;cds--number__invalid cds--number__invalid--warning&quot;&gt;
+		&lt;/svg&gt;
+		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--number__controls&quot;&gt;
+			&lt;button
+				class&#x3D;&quot;cds--number__control-btn down-icon&quot;
+				type&#x3D;&quot;button&quot;
+				[attr.disabled]&#x3D;&quot;disabled ? true : null&quot;
+				aria-live&#x3D;&quot;polite&quot;
+				aria-atomic&#x3D;&quot;true&quot;
+				[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
+				(click)&#x3D;&quot;onDecrement()&quot;&gt;
+				&lt;svg cdsIcon&#x3D;&quot;subtract&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+			&lt;/button&gt;
+			&lt;div class&#x3D;&quot;cds--number__rule-divider&quot;&gt;&lt;/div&gt;
+			&lt;button
+				class&#x3D;&quot;cds--number__control-btn up-icon&quot;
+				type&#x3D;&quot;button&quot;
+				[attr.disabled]&#x3D;&quot;disabled ? true : null&quot;
+				aria-live&#x3D;&quot;polite&quot;
+				aria-atomic&#x3D;&quot;true&quot;
+				[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
+				(click)&#x3D;&quot;onIncrement()&quot;&gt;
+				&lt;svg cdsIcon&#x3D;&quot;add&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+			&lt;/button&gt;
+			&lt;div class&#x3D;&quot;cds--number__rule-divider&quot;&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div
+		*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
+		class&#x3D;&quot;cds--form__helper-text&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--form__helper-text--disabled&#x27;: disabled
+		}&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+	&lt;/div&gt;
+	&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+	&lt;/div&gt;
+	&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_decrementLabel" >_decrementLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_incrementLabel" >_incrementLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_value" >_value</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#containerClass" >containerClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#numberCount" >numberCount</a>
+                            </li>
+                            <li>
+                                <a href="#onTouched" >onTouched</a>
+                            </li>
+                            <li>
+                                <a href="#propagateChange" >propagateChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#emitChangeEvent" >emitChangeEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#focusOut" >focusOut</a>
+                            </li>
+                            <li>
+                                <a href="#getDecrementLabel" >getDecrementLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getIncrementLabel" >getIncrementLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isTemplate" >isTemplate</a>
+                            </li>
+                            <li>
+                                <a href="#onDecrement" >onDecrement</a>
+                            </li>
+                            <li>
+                                <a href="#onIncrement" >onIncrement</a>
+                            </li>
+                            <li>
+                                <a href="#onNumberInputChange" >onNumberInputChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#registerOnChange" >registerOnChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#registerOnTouched" >registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#setDisabledState" >setDisabledState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#writeValue" >writeValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ariaLabel" >ariaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#decrementLabel" >decrementLabel</a>
+                            </li>
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#helperText" >helperText</a>
+                            </li>
+                            <li>
+                                <a href="#id" >id</a>
+                            </li>
+                            <li>
+                                <a href="#incrementLabel" >incrementLabel</a>
+                            </li>
+                            <li>
+                                <a href="#invalid" >invalid</a>
+                            </li>
+                            <li>
+                                <a href="#invalidText" >invalidText</a>
+                            </li>
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
+                            <li>
+                                <a href="#max" >max</a>
+                            </li>
+                            <li>
+                                <a href="#min" >min</a>
+                            </li>
+                            <li>
+                                <a href="#placeholder" >placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#precision" >precision</a>
+                            </li>
+                            <li>
+                                <a href="#required" >required</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton" >skeleton</a>
+                            </li>
+                            <li>
+                                <a href="#step" >step</a>
+                            </li>
+                            <li>
+                                <a href="#theme" class="deprecated-name">theme</a>
+                            </li>
+                            <li>
+                                <a href="#value" >value</a>
+                            </li>
+                            <li>
+                                <a href="#warn" >warn</a>
+                            </li>
+                            <li>
+                                <a href="#warnText" >warnText</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#change" >change</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.cds--form-item" >class.cds--form-item</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#focusout" >focusout</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#value" >value</a>
+                                </li>
+                                <li>
+                                    <a href="#decrementLabel" >decrementLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#incrementLabel" >incrementLabel</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/number-input/number.component.ts:266</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of <code>Number</code>.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ariaLabel"></a>
+                        <b>ariaLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/number-input/number.component.ts:239</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the arialabel for input</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="decrementLabel"></a>
+                        <b>decrementLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | Observable</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/number-input/number.component.ts:246</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/number-input/number.component.ts:161</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> for a disabled number input.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="helperText"></a>
+                        <b>helperText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/number-input/number.component.ts:215</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the optional helper text.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <b>id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;number-${NumberComponent.numberCount}&#x60;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/number-input/number.component.ts:173</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The unique id for the number component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incrementLabel"></a>
+                        <b>incrementLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | Observable</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/number-input/number.component.ts:255</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="invalid"></a>
+                        <b>invalid</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/number-input/number.component.ts:169</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> for an invalid number component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="invalidText"></a>
+                        <b>invalidText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/number-input/number.component.ts:219</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the invalid text.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/number-input/number.component.ts:211</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the text inside the <code>label</code> tag.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="max"></a>
+                        <b>max</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/number-input/number.component.ts:207</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the max attribute on the <code>input</code> element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="min"></a>
+                        <b>min</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/number-input/number.component.ts:203</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the min attribute on the <code>input</code> element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="placeholder"></a>
+                        <b>placeholder</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/number-input/number.component.ts:177</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the placeholder attribute on the <code>input</code> element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="precision"></a>
+                        <b>precision</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/number-input/number.component.ts:227</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>If <code>step</code> is a decimal, we may want precision to be set to go around floating point precision.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="required"></a>
+                        <b>required</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/number-input/number.component.ts:185</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Reflects the required attribute of the <code>input</code> element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;md&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/number-input/number.component.ts:181</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Number input field render size</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="skeleton"></a>
+                        <b>skeleton</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/number-input/number.component.ts:165</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> for a loading number component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="step"></a>
+                        <b>step</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/number-input/number.component.ts:223</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the amount the number controls increment and decrement by.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theme"></a>
+                        <b>theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;light&quot; | &quot;dark&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;dark&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/number-input/number.component.ts:157</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <b>value</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/number-input/number.component.ts:189</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the value attribute on the <code>input</code> element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="warn"></a>
+                        <b>warn</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/number-input/number.component.ts:231</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> to show a warning (contents set by warningText)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="warnText"></a>
+                        <b>warnText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/number-input/number.component.ts:235</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the warning text</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="change"></a>
+                        <b>change</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/number-input/number.component.ts:243</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits event notifying other classes when a change in state occurs in the input.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--form-item"></a>
+                    <span class="name">
+                        <span ><b>class.cds--form-item</b></span>
+                        <a href="#class.cds--form-item"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/number-input/number.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusout"></a>
+                    <span class="name">
+                        <span ><b>focusout</b></span>
+                        <a href="#focusout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>focusout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/number-input/number.component.ts:299</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitChangeEvent"></a>
+                    <span class="name">
+                        <span ><b>emitChangeEvent</b></span>
+                        <a href="#emitChangeEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitChangeEvent()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="353"
+                            class="link-to-prism">src/number-input/number.component.ts:353</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a class of <code>NumberChange</code> to emit the change in the <code>Number</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusOut"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>focusOut</b></span>
+                        <a href="#focusOut"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>focusOut()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;focusout&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/number-input/number.component.ts:299</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDecrementLabel"></a>
+                    <span class="name">
+                        <span ><b>getDecrementLabel</b></span>
+                        <a href="#getDecrementLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDecrementLabel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="342"
+                            class="link-to-prism">src/number-input/number.component.ts:342</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getIncrementLabel"></a>
+                    <span class="name">
+                        <span ><b>getIncrementLabel</b></span>
+                        <a href="#getIncrementLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getIncrementLabel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="346"
+                            class="link-to-prism">src/number-input/number.component.ts:346</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTemplate"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>isTemplate</b></span>
+                        <a href="#isTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isTemplate(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">src/number-input/number.component.ts:366</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDecrement"></a>
+                    <span class="name">
+                        <span ><b>onDecrement</b></span>
+                        <a href="#onDecrement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDecrement()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="334"
+                            class="link-to-prism">src/number-input/number.component.ts:334</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Subtracts <code>step</code> to the current <code>value</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onIncrement"></a>
+                    <span class="name">
+                        <span ><b>onIncrement</b></span>
+                        <a href="#onIncrement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onIncrement()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="323"
+                            class="link-to-prism">src/number-input/number.component.ts:323</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds <code>step</code> to the current <code>value</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onNumberInputChange"></a>
+                    <span class="name">
+                        <span ><b>onNumberInputChange</b></span>
+                        <a href="#onNumberInputChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onNumberInputChange(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="361"
+                            class="link-to-prism">src/number-input/number.component.ts:361</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="286"
+                            class="link-to-prism">src/number-input/number.component.ts:286</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets a method in order to propagate changes back to the form.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fn</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="294"
+                            class="link-to-prism">src/number-input/number.component.ts:294</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Registers a callback to be triggered when the control has been touched.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fn</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback to be triggered when the number input is touched.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDisabledState"></a>
+                    <span class="name">
+                        <span ><b>setDisabledState</b></span>
+                        <a href="#setDisabledState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDisabledState(isDisabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/number-input/number.component.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the disabled state through the model</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isDisabled</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeValue"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>writeValue</b></span>
+                        <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/number-input/number.component.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the initial value set to the component</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The input value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_decrementLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_decrementLabel</b></span>
+                        <a href="#_decrementLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/number-input/number.component.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_incrementLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_incrementLabel</b></span>
+                        <a href="#_incrementLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.i18n.getOverridable(&quot;NUMBER.INCREMENT&quot;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/number-input/number.component.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_value"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_value</b></span>
+                        <a href="#_value"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/number-input/number.component.ts:263</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="containerClass"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>containerClass</b></span>
+                        <a href="#containerClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;class.cds--form-item&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/number-input/number.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numberCount"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>numberCount</b></span>
+                        <a href="#numberCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/number-input/number.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variable used for creating unique ids for number input components.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTouched"></a>
+                    <span class="name">
+                        <span ><b>onTouched</b></span>
+                        <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/number-input/number.component.ts:313</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Called when number input is blurred. Needed to properly implement <code>ControlValueAccessor</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="propagateChange"></a>
+                    <span class="name">
+                        <span ><b>propagateChange</b></span>
+                        <a href="#propagateChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">src/number-input/number.component.ts:318</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Method set in <code>registerOnChange</code> to propagate changes back to the form.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/number-input/number.component.ts:197</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(v: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/number-input/number.component.ts:189</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the value attribute on the <code>input</code> element.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="decrementLabel"></a>
+                        <span class="name"><b>decrementLabel</b><a href="#decrementLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>decrementLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/number-input/number.component.ts:250</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>decrementLabel(value: string | Observable<string>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/number-input/number.component.ts:246</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code>string | Observable&lt;string&gt;</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incrementLabel"></a>
+                        <span class="name"><b>incrementLabel</b><a href="#incrementLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>incrementLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/number-input/number.component.ts:259</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>incrementLabel(value: string | Observable<string>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/number-input/number.component.ts:255</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code>string | Observable&lt;string&gt;</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	HostBinding,
+	EventEmitter,
+	Output,
+	TemplateRef,
+	HostListener
+} from &quot;@angular/core&quot;;
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
+
+import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
+import { Observable } from &quot;rxjs&quot;;
+
+/**
+ * Used to emit changes performed on number input components.
+ */
+export class NumberChange {
+	/**
+	 * Contains the &#x60;Number&#x60; that has been changed.
+	 */
+	source: NumberComponent;
+	/**
+	 * The value of the &#x60;Number&#x60; field encompassed in the &#x60;NumberChange&#x60; class.
+	 */
+	value: number;
+}
+
+/**
+ * Get started with importing the module:
+ *
+ * &#x60;&#x60;&#x60;typescript
+ * import { NumberModule } from &#x27;carbon-components-angular&#x27;;
+ * &#x60;&#x60;&#x60;
+ *
+ * [See demo](../../?path&#x3D;/story/components-number--basic)
+ */
+@Component({
+	selector: &quot;cds-number, ibm-number&quot;,
+	template: &#x60;
+		&lt;div
+			data-numberinput
+			[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
+			class&#x3D;&quot;cds--number&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+				&#x27;cds--number--nolabel&#x27;: !label,
+				&#x27;cds--number--helpertext&#x27;: helperText,
+				&#x27;cds--skeleton&#x27; : skeleton,
+				&#x27;cds--number--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
+				&#x27;cds--number--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
+				&#x27;cds--number--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
+			}&quot;&gt;
+			&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/label&gt;
+			&lt;label
+				*ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot;
+				[for]&#x3D;&quot;id&quot;
+				class&#x3D;&quot;cds--label&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+			&lt;/label&gt;
+			&lt;div
+				class&#x3D;&quot;cds--number__input-wrapper&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--number__input-wrapper--warning&#x27;: warn
+				}&quot;&gt;
+				&lt;input
+					type&#x3D;&quot;number&quot;
+					[id]&#x3D;&quot;id&quot;
+					[value]&#x3D;&quot;value&quot;
+					[attr.min]&#x3D;&quot;min&quot;
+					[attr.max]&#x3D;&quot;max&quot;
+					[attr.step]&#x3D;&quot;step&quot;
+					[disabled]&#x3D;&quot;disabled&quot;
+					[required]&#x3D;&quot;required&quot;
+					[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+					[attr.data-invalid]&#x3D;&quot;invalid ? invalid : null&quot;
+					[placeholder]&#x3D;&quot;placeholder&quot;
+					(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
+					cdsIcon&#x3D;&quot;warning--filled&quot;
+					size&#x3D;&quot;16&quot;
+					class&#x3D;&quot;cds--number__invalid&quot;&gt;
+				&lt;/svg&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; !invalid &amp;&amp; warn&quot;
+					cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+					size&#x3D;&quot;16&quot;
+					class&#x3D;&quot;cds--number__invalid cds--number__invalid--warning&quot;&gt;
+				&lt;/svg&gt;
+				&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--number__controls&quot;&gt;
+					&lt;button
+						class&#x3D;&quot;cds--number__control-btn down-icon&quot;
+						type&#x3D;&quot;button&quot;
+						[attr.disabled]&#x3D;&quot;disabled ? true : null&quot;
+						aria-live&#x3D;&quot;polite&quot;
+						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getDecrementLabel() | async&quot;
+						(click)&#x3D;&quot;onDecrement()&quot;&gt;
+						&lt;svg cdsIcon&#x3D;&quot;subtract&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+					&lt;/button&gt;
+					&lt;div class&#x3D;&quot;cds--number__rule-divider&quot;&gt;&lt;/div&gt;
+					&lt;button
+						class&#x3D;&quot;cds--number__control-btn up-icon&quot;
+						type&#x3D;&quot;button&quot;
+						[attr.disabled]&#x3D;&quot;disabled ? true : null&quot;
+						aria-live&#x3D;&quot;polite&quot;
+						aria-atomic&#x3D;&quot;true&quot;
+						[attr.aria-label]&#x3D;&quot;getIncrementLabel() | async&quot;
+						(click)&#x3D;&quot;onIncrement()&quot;&gt;
+						&lt;svg cdsIcon&#x3D;&quot;add&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+					&lt;/button&gt;
+					&lt;div class&#x3D;&quot;cds--number__rule-divider&quot;&gt;&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div
+				*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
+				class&#x3D;&quot;cds--form__helper-text&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--form__helper-text--disabled&#x27;: disabled
+				}&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+			&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&#x60;,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: NumberComponent,
+			multi: true
+		}
+	]
+})
+export class NumberComponent implements ControlValueAccessor {
+	/**
+	 * Variable used for creating unique ids for number input components.
+	 */
+	static numberCount &#x3D; 0;
+
+	@HostBinding(&quot;class.cds--form-item&quot;) containerClass &#x3D; true;
+
+	/**
+	 * @deprecated since v5 - Use &#x60;cdsLayer&#x60; directive instead
+	 * &#x60;light&#x60; or &#x60;dark&#x60; number input theme.
+	 */
+	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
+	/**
+	 * Set to &#x60;true&#x60; for a disabled number input.
+	 */
+	@Input() disabled &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; for a loading number component.
+	 */
+	@Input() skeleton &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; for an invalid number component.
+	 */
+	@Input() invalid &#x3D; false;
+	/**
+	 * The unique id for the number component.
+	 */
+	@Input() id &#x3D; &#x60;number-${NumberComponent.numberCount}&#x60;;
+	/**
+	 * Sets the placeholder attribute on the &#x60;input&#x60; element.
+	 */
+	@Input() placeholder &#x3D; &quot;&quot;;
+	/**
+	 * Number input field render size
+	 */
+	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;md&quot;;
+	/**
+	 * Reflects the required attribute of the &#x60;input&#x60; element.
+	 */
+	@Input() required: boolean;
+	/**
+	 * Sets the value attribute on the &#x60;input&#x60; element.
+	 */
+	@Input() set value(v: any) {
+		if (v &#x3D;&#x3D;&#x3D; &quot;&quot; || v &#x3D;&#x3D;&#x3D; null) {
+			this._value &#x3D; null;
+			return;
+		}
+		this._value &#x3D; Number(v);
+	}
+
+	get value() {
+		return this._value;
+	}
+	/**
+	 * Sets the min attribute on the &#x60;input&#x60; element.
+	 */
+	@Input() min &#x3D; null;
+	/**
+	 * Sets the max attribute on the &#x60;input&#x60; element.
+	 */
+	@Input() max &#x3D; null;
+	/**
+	 * Sets the text inside the &#x60;label&#x60; tag.
+	 */
+	@Input() label: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Sets the amount the number controls increment and decrement by.
+	 */
+	@Input() step &#x3D; 1;
+	/**
+	 * If &#x60;step&#x60; is a decimal, we may want precision to be set to go around floating point precision.
+	 */
+	@Input() precision: number;
+	/**
+	 * Set to &#x60;true&#x60; to show a warning (contents set by warningText)
+	 */
+	@Input() warn &#x3D; false;
+	/**
+	 * Sets the warning text
+	 */
+	@Input() warnText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Sets the arialabel for input
+	 */
+	@Input() ariaLabel: string;
+	/**
+	 * Emits event notifying other classes when a change in state occurs in the input.
+	 */
+	@Output() change &#x3D; new EventEmitter&lt;NumberChange&gt;();
+
+	@Input()
+	set decrementLabel(value: string | Observable&lt;string&gt;) {
+		this._decrementLabel.override(value);
+	}
+
+	get decrementLabel() {
+		return this._decrementLabel.value;
+	}
+
+	@Input()
+	set incrementLabel(value: string | Observable&lt;string&gt;) {
+		this._incrementLabel.override(value);
+	}
+
+	get incrementLabel() {
+		return this._incrementLabel.value;
+	}
+
+	protected _value &#x3D; 0;
+
+	protected _decrementLabel: Overridable &#x3D; this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;);
+	protected _incrementLabel: Overridable &#x3D; this.i18n.getOverridable(&quot;NUMBER.INCREMENT&quot;);
+
+	/**
+	 * Creates an instance of &#x60;Number&#x60;.
+	 */
+	constructor(protected i18n: I18n) {
+		NumberComponent.numberCount++;
+	}
+
+	/**
+	 * This is the initial value set to the component
+	 * @param value The input value.
+	 */
+	public writeValue(value: any) {
+		this.value &#x3D; value;
+	}
+
+	/**
+	 * Sets a method in order to propagate changes back to the form.
+	 */
+	public registerOnChange(fn: any) {
+		this.propagateChange &#x3D; fn;
+	}
+
+	/**
+	 * Registers a callback to be triggered when the control has been touched.
+	 * @param fn Callback to be triggered when the number input is touched.
+	 */
+	public registerOnTouched(fn: any) {
+		this.onTouched &#x3D; fn;
+	}
+
+	@HostListener(&quot;focusout&quot;)
+	focusOut() {
+		this.onTouched();
+	}
+
+	/**
+	 * Sets the disabled state through the model
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled &#x3D; isDisabled;
+	}
+
+	/**
+	 * Called when number input is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
+	 */
+	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; { };
+
+	/**
+	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
+	 */
+	propagateChange &#x3D; (_: any) &#x3D;&gt; { };
+
+	/**
+	 * Adds &#x60;step&#x60; to the current &#x60;value&#x60;.
+	 */
+	onIncrement(): void {
+		if (this.max &#x3D;&#x3D;&#x3D; null || this.value + this.step &lt;&#x3D; this.max) {
+			this.value +&#x3D; this.step;
+			this.value &#x3D; parseFloat(this.value.toPrecision(this.precision));
+			this.emitChangeEvent();
+		}
+	}
+
+	/**
+	 * Subtracts &#x60;step&#x60; to the current &#x60;value&#x60;.
+	 */
+	onDecrement(): void {
+		if (this.min &#x3D;&#x3D;&#x3D; null || this.value - this.step &gt;&#x3D; this.min) {
+			this.value -&#x3D; this.step;
+			this.value &#x3D; parseFloat(this.value.toPrecision(this.precision));
+			this.emitChangeEvent();
+		}
+	}
+
+	getDecrementLabel(): Observable&lt;string&gt; {
+		return this._decrementLabel.subject;
+	}
+
+	getIncrementLabel(): Observable&lt;string&gt; {
+		return this._incrementLabel.subject;
+	}
+
+	/**
+	 * Creates a class of &#x60;NumberChange&#x60; to emit the change in the &#x60;Number&#x60;.
+	 */
+	emitChangeEvent(): void {
+		let event &#x3D; new NumberChange();
+		event.source &#x3D; this;
+		event.value &#x3D; this.value;
+		this.change.emit(event);
+		this.propagateChange(this.value);
+	}
+
+	onNumberInputChange(event) {
+		this.value &#x3D; event.target.value;
+		this.emitChangeEvent();
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+}
+export { NumberComponent as Number };
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div	data-numberinput	[attr.data-invalid]="(invalid ? true : null)"	class="cds--number"	[ngClass]="{		\'cds--number--light\': theme === \'light\',		\'cds--number--nolabel\': !label,		\'cds--number--helpertext\': helperText,		\'cds--skeleton\' : skeleton,		\'cds--number--sm\': size === \'sm\',		\'cds--number--md\': size === \'md\',		\'cds--number--lg\': size === \'lg\'	}">	<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>	<label		*ngIf="!skeleton && label"		[for]="id"		class="cds--label"		[ngClass]="{\'cds--label--disabled\': disabled}">		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>	</label>	<div		class="cds--number__input-wrapper"		[ngClass]="{			\'cds--number__input-wrapper--warning\': warn		}">		<input			type="number"			[id]="id"			[value]="value"			[attr.min]="min"			[attr.max]="max"			[attr.step]="step"			[disabled]="disabled"			[required]="required"			[attr.aria-label]="ariaLabel"			[attr.data-invalid]="invalid ? invalid : null"			[placeholder]="placeholder"			(change)="onNumberInputChange($event)"/>		<svg			*ngIf="!skeleton && invalid"			cdsIcon="warning--filled"			size="16"			class="cds--number__invalid">		</svg>		<svg			*ngIf="!skeleton && !invalid && warn"			cdsIcon="warning--alt--filled"			size="16"			class="cds--number__invalid cds--number__invalid--warning">		</svg>		<div *ngIf="!skeleton" class="cds--number__controls">			<button				class="cds--number__control-btn down-icon"				type="button"				[attr.disabled]="disabled ? true : null"				aria-live="polite"				aria-atomic="true"				[attr.aria-label]="getDecrementLabel() | async"				(click)="onDecrement()">				<svg cdsIcon="subtract" size="16"></svg>			</button>			<div class="cds--number__rule-divider"></div>			<button				class="cds--number__control-btn up-icon"				type="button"				[attr.disabled]="disabled ? true : null"				aria-live="polite"				aria-atomic="true"				[attr.aria-label]="getIncrementLabel() | async"				(click)="onIncrement()">				<svg cdsIcon="add" size="16"></svg>			</button>			<div class="cds--number__rule-divider"></div>		</div>	</div>	<div		*ngIf="helperText && !invalid && !warn"		class="cds--form__helper-text"		[ngClass]="{			\'cds--form__helper-text--disabled\': disabled		}">		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>	</div>	<div *ngIf="invalid" class="cds--form-requirement">		<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>	</div>	<div *ngIf="!invalid && warn" class="cds--form-requirement">		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>	</div></div>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'}];
+    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
+    var ACTUAL_COMPONENT = {'name': 'NumberComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NumberComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
