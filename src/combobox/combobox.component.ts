@@ -567,7 +567,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			this.closeDropdown();
 		} else if ((ev.key === "ArrowDown")
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
-			ev.stopPropagation();
+			ev.preventDefault();
 			this.openDropdown();
 			setTimeout(() => { this.view.initFocus(); }, 0);
 		}
