@@ -1,0 +1,2363 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FileUploader</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/file-uploader/file-uploader.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Get started with importing the module:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { FileUploaderModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-file-uploader--basic">See demo</a></p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>ControlValueAccessor</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../components/FileUploader.html" target="_self" >{
+    provide: NG_VALUE_ACCESSOR, useExisting: FileUploader, multi: true
+}</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>cds-file-uploader, ibm-file-uploader</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;
+	&lt;label [for]&#x3D;&quot;fileUploaderId&quot; class&#x3D;&quot;cds--file--label&quot;&gt;{{title}}&lt;/label&gt;
+	&lt;p class&#x3D;&quot;cds--label-description&quot; role&#x3D;&quot;alert&quot;&gt;{{description}}&lt;/p&gt;
+	&lt;div class&#x3D;&quot;cds--file&quot;&gt;
+		&lt;label
+			*ngIf&#x3D;&quot;drop&quot;
+			class&#x3D;&quot;cds--file-browse-btn&quot;
+			(keyup.enter)&#x3D;&quot;fileInput.click()&quot;
+			(keyup.space)&#x3D;&quot;fileInput.click()&quot;
+			[ngClass]&#x3D;&quot;{&#x27;cds--file-browse-btn--disabled&#x27;: disabled}&quot;
+			tabindex&#x3D;&quot;0&quot;&gt;
+			&lt;div
+				class&#x3D;&quot;cds--file__drop-container&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--file__drop-container--drag-over&#x27;: dragOver}&quot;
+				role&#x3D;&quot;button&quot;
+				(click)&#x3D;&quot;fileInput.click()&quot;
+				[attr.for]&#x3D;&quot;fileUploaderId&quot;
+				(dragover)&#x3D;&quot;onDragOver($event)&quot;
+				(dragleave)&#x3D;&quot;onDragLeave($event)&quot;
+				(drop)&#x3D;&quot;onDrop($event)&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(dropText)&quot;&gt;{{dropText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(dropText)&quot; [ngTemplateOutlet]&#x3D;&quot;dropText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+		&lt;/label&gt;
+		&lt;button
+			*ngIf&#x3D;&quot;!drop&quot;
+			type&#x3D;&quot;button&quot;
+			[cdsButton]&#x3D;&quot;buttonType&quot;
+			(click)&#x3D;&quot;fileInput.click()&quot;
+			[attr.for]&#x3D;&quot;fileUploaderId&quot;
+			[size]&#x3D;&quot;size&quot;
+			[disabled]&#x3D;&quot;disabled&quot;&gt;
+			{{buttonText}}
+		&lt;/button&gt;
+		&lt;input
+			#fileInput
+			type&#x3D;&quot;file&quot;
+			class&#x3D;&quot;cds--file-input&quot;
+			[accept]&#x3D;&quot;accept&quot;
+			[id]&#x3D;&quot;fileUploaderId&quot;
+			[multiple]&#x3D;&quot;multiple&quot;
+			tabindex&#x3D;&quot;-1&quot;
+			(change)&#x3D;&quot;onFilesAdded()&quot;
+			[disabled]&#x3D;&quot;disabled&quot;/&gt;
+		&lt;div class&#x3D;&quot;cds--file-container&quot;&gt;
+			&lt;ng-container *ngFor&#x3D;&quot;let fileItem of files&quot;&gt;
+				&lt;cds-file
+					[fileItem]&#x3D;&quot;fileItem&quot;
+					(remove)&#x3D;&quot;removeFile(fileItem)&quot;
+					[size]&#x3D;&quot;fileItemSize&quot;&gt;
+				&lt;/cds-file&gt;
+			&lt;/ng-container&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/ng-container&gt;
+
+&lt;ng-template #skeletonTemplate&gt;
+	&lt;div class&#x3D;&quot;cds--skeleton__text&quot; style&#x3D;&quot;width: 100px&quot;&gt;&lt;/div&gt;
+	&lt;div class&#x3D;&quot;cds--skeleton__text&quot; style&#x3D;&quot;width: 225px&quot;&gt;&lt;/div&gt;
+	&lt;button cdsButton skeleton&#x3D;&quot;true&quot;&gt;&lt;/button&gt;
+&lt;/ng-template&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dragOver" >dragOver</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#fileInput" >fileInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#fileUploaderCount" >fileUploaderCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#onChangeCallback" >onChangeCallback</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#onTouchedCallback" >onTouchedCallback</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createFileItem" >createFileItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isTemplate" >isTemplate</a>
+                            </li>
+                            <li>
+                                <a href="#onBlur" >onBlur</a>
+                            </li>
+                            <li>
+                                <a href="#onDragLeave" >onDragLeave</a>
+                            </li>
+                            <li>
+                                <a href="#onDragOver" >onDragOver</a>
+                            </li>
+                            <li>
+                                <a href="#onDrop" >onDrop</a>
+                            </li>
+                            <li>
+                                <a href="#onFilesAdded" >onFilesAdded</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnChange" >registerOnChange</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnTouched" >registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#removeFile" >removeFile</a>
+                            </li>
+                            <li>
+                                <a href="#setDisabledState" >setDisabledState</a>
+                            </li>
+                            <li>
+                                <a href="#writeValue" >writeValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#accept" >accept</a>
+                            </li>
+                            <li>
+                                <a href="#buttonText" >buttonText</a>
+                            </li>
+                            <li>
+                                <a href="#buttonType" >buttonType</a>
+                            </li>
+                            <li>
+                                <a href="#description" >description</a>
+                            </li>
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#drop" >drop</a>
+                            </li>
+                            <li>
+                                <a href="#dropText" >dropText</a>
+                            </li>
+                            <li>
+                                <a href="#fileItemSize" >fileItemSize</a>
+                            </li>
+                            <li>
+                                <a href="#files" >files</a>
+                            </li>
+                            <li>
+                                <a href="#fileUploaderId" >fileUploaderId</a>
+                            </li>
+                            <li>
+                                <a href="#multiple" >multiple</a>
+                            </li>
+                            <li>
+                                <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton" >skeleton</a>
+                            </li>
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#filesChange" >filesChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#value" >value</a>
+                                </li>
+                                <li>
+                                    <a href="#fileList" >fileList</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/file-uploader/file-uploader.component.ts:176</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="accept"></a>
+                        <b>accept</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>{}</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/file-uploader/file-uploader.component.ts:124</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Specify the types of files that the input should be able to receive</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="buttonText"></a>
+                        <b>buttonText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.i18n.get().FILE_UPLOADER.OPEN</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/file-uploader/file-uploader.component.ts:108</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Accessible text for the button that opens the upload window.</p>
+<p>Defaults to the <code>FILE_UPLOADER.OPEN</code> value from the i18n service</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="buttonType"></a>
+                        <b>buttonType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot; | &quot;ghost&quot; | &quot;danger&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;primary&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/file-uploader/file-uploader.component.ts:112</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Type set for button</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <b>description</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/file-uploader/file-uploader.component.ts:120</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Text set to the description</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/file-uploader/file-uploader.component.ts:166</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> to disable upload button</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="drop"></a>
+                        <b>drop</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/file-uploader/file-uploader.component.ts:146</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> to enable drag and drop.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dropText"></a>
+                        <b>dropText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/file-uploader/file-uploader.component.ts:150</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the text shown in drag and drop box.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fileItemSize"></a>
+                        <b>fileItemSize</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;lg&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/file-uploader/file-uploader.component.ts:142</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the size of the file items</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="files"></a>
+                        <b>files</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;FileItem&gt;()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/file-uploader/file-uploader.component.ts:162</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The list of files that have been submitted to be uploaded</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fileUploaderId"></a>
+                        <b>fileUploaderId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;file-uploader-${FileUploader.fileUploaderCount}&#x60;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/file-uploader/file-uploader.component.ts:154</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides a unique id for the underlying <code>&lt;input&gt;</code> node</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="multiple"></a>
+                        <b>multiple</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/file-uploader/file-uploader.component.ts:130</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>false</code> to tell the component to only accept a single file on upload.</p>
+<p>Defaults to <code>true</code>. Accepts multiple files.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/file-uploader/file-uploader.component.ts:138</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the size of the button.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="skeleton"></a>
+                        <b>skeleton</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/file-uploader/file-uploader.component.ts:134</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> for a loading file uploader.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <b>title</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/file-uploader/file-uploader.component.ts:116</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Text set to the title</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filesChange"></a>
+                        <b>filesChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/file-uploader/file-uploader.component.ts:168</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createFileItem"></a>
+                    <span class="name">
+                        <span ><b>createFileItem</b></span>
+                        <a href="#createFileItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createFileItem(file)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="213"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:213</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/FileItem.html" target="_self" >FileItem</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTemplate"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>isTemplate</b></span>
+                        <a href="#isTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isTemplate(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="292"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:292</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBlur"></a>
+                    <span class="name">
+                        <span ><b>onBlur</b></span>
+                        <a href="#onBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onBlur()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:196</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDragLeave"></a>
+                    <span class="name">
+                        <span ><b>onDragLeave</b></span>
+                        <a href="#onDragLeave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDragLeave(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="246"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:246</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDragOver"></a>
+                    <span class="name">
+                        <span ><b>onDragOver</b></span>
+                        <a href="#onDragOver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDragOver(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:237</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDrop"></a>
+                    <span class="name">
+                        <span ><b>onDrop</b></span>
+                        <a href="#onDrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDrop(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="252"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:252</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFilesAdded"></a>
+                    <span class="name">
+                        <span ><b>onFilesAdded</b></span>
+                        <a href="#onFilesAdded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFilesAdded()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="305"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:305</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets a method in order to propagate changes back to the form.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fn</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:299</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Registers the injected function to control the touch use of the <code>FileUploader</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fn</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFile"></a>
+                    <span class="name">
+                        <span ><b>removeFile</b></span>
+                        <a href="#removeFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFile(fileItem)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fileItem</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDisabledState"></a>
+                    <span class="name">
+                        <span ><b>setDisabledState</b></span>
+                        <a href="#setDisabledState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDisabledState(isDisabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:316</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p><code>ControlValueAccessor</code> method to programmatically disable the checkbox.</p>
+<p>ex: <code>this.formGroup.get(&quot;myFileUploader&quot;).disable();</code></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isDisabled</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p><code>true</code> to disable the file uploader</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeValue"></a>
+                    <span class="name">
+                        <span ><b>writeValue</b></span>
+                        <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>writeValue(value: <a href="../interfaces/FileItem.html" target="_self">Set&lt;FileItem&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/file-uploader/file-uploader.component.ts:207</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Propagates the injected <code>value</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="../interfaces/FileItem.html" target="_self" >Set&lt;FileItem&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dragOver"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dragOver</b></span>
+                        <a href="#dragOver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/file-uploader/file-uploader.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Controls the state of the drag and drop file container</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>fileInput</b></span>
+                        <a href="#fileInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;fileInput&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/file-uploader/file-uploader.component.ts:158</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maintains a reference to the view DOM element of the underlying <input> node</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileUploaderCount"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>fileUploaderCount</b></span>
+                        <a href="#fileUploaderCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/file-uploader/file-uploader.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Counter used to create unique ids for file-uploader components</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChangeCallback"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>onChangeCallback</b></span>
+                        <a href="#onChangeCallback"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>noop</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/file-uploader/file-uploader.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTouchedCallback"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>onTouchedCallback</b></span>
+                        <a href="#onTouchedCallback"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>noop</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/file-uploader/file-uploader.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/file-uploader/file-uploader.component.ts:186</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Specifies the property to be used as the return value to <code>ngModel</code> and reactive forms.
+Updates <code>this.files</code>.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../interfaces/FileItem.html" target="_self" >Set&lt;FileItem&gt;</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(v: <a href="../interfaces/FileItem.html" target="_self">Set&lt;FileItem&gt;</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/file-uploader/file-uploader.component.ts:189</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="../interfaces/FileItem.html" target="_self" >Set&lt;FileItem&gt;</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fileList"></a>
+                        <span class="name"><b>fileList</b><a href="#fileList"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>fileList()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/file-uploader/file-uploader.component.ts:200</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	EventEmitter,
+	TemplateRef
+} from &quot;@angular/core&quot;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
+
+import { I18n } from &quot;carbon-components-angular/i18n&quot;;
+import { FileItem } from &quot;./file-item.interface&quot;;
+
+const noop &#x3D; () &#x3D;&gt; { };
+
+/**
+ * Get started with importing the module:
+ *
+ * &#x60;&#x60;&#x60;typescript
+ * import { FileUploaderModule } from &#x27;carbon-components-angular&#x27;;
+ * &#x60;&#x60;&#x60;
+ *
+ * [See demo](../../?path&#x3D;/story/components-file-uploader--basic)
+ */
+@Component({
+	selector: &quot;cds-file-uploader, ibm-file-uploader&quot;,
+	template: &#x60;
+		&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;
+			&lt;label [for]&#x3D;&quot;fileUploaderId&quot; class&#x3D;&quot;cds--file--label&quot;&gt;{{title}}&lt;/label&gt;
+			&lt;p class&#x3D;&quot;cds--label-description&quot; role&#x3D;&quot;alert&quot;&gt;{{description}}&lt;/p&gt;
+			&lt;div class&#x3D;&quot;cds--file&quot;&gt;
+				&lt;label
+					*ngIf&#x3D;&quot;drop&quot;
+					class&#x3D;&quot;cds--file-browse-btn&quot;
+					(keyup.enter)&#x3D;&quot;fileInput.click()&quot;
+					(keyup.space)&#x3D;&quot;fileInput.click()&quot;
+					[ngClass]&#x3D;&quot;{&#x27;cds--file-browse-btn--disabled&#x27;: disabled}&quot;
+					tabindex&#x3D;&quot;0&quot;&gt;
+					&lt;div
+						class&#x3D;&quot;cds--file__drop-container&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--file__drop-container--drag-over&#x27;: dragOver}&quot;
+						role&#x3D;&quot;button&quot;
+						(click)&#x3D;&quot;fileInput.click()&quot;
+						[attr.for]&#x3D;&quot;fileUploaderId&quot;
+						(dragover)&#x3D;&quot;onDragOver($event)&quot;
+						(dragleave)&#x3D;&quot;onDragLeave($event)&quot;
+						(drop)&#x3D;&quot;onDrop($event)&quot;&gt;
+						&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(dropText)&quot;&gt;{{dropText}}&lt;/ng-container&gt;
+						&lt;ng-template *ngIf&#x3D;&quot;isTemplate(dropText)&quot; [ngTemplateOutlet]&#x3D;&quot;dropText&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+				&lt;/label&gt;
+				&lt;button
+					*ngIf&#x3D;&quot;!drop&quot;
+					type&#x3D;&quot;button&quot;
+					[cdsButton]&#x3D;&quot;buttonType&quot;
+					(click)&#x3D;&quot;fileInput.click()&quot;
+					[attr.for]&#x3D;&quot;fileUploaderId&quot;
+					[size]&#x3D;&quot;size&quot;
+					[disabled]&#x3D;&quot;disabled&quot;&gt;
+					{{buttonText}}
+				&lt;/button&gt;
+				&lt;input
+					#fileInput
+					type&#x3D;&quot;file&quot;
+					class&#x3D;&quot;cds--file-input&quot;
+					[accept]&#x3D;&quot;accept&quot;
+					[id]&#x3D;&quot;fileUploaderId&quot;
+					[multiple]&#x3D;&quot;multiple&quot;
+					tabindex&#x3D;&quot;-1&quot;
+					(change)&#x3D;&quot;onFilesAdded()&quot;
+					[disabled]&#x3D;&quot;disabled&quot;/&gt;
+				&lt;div class&#x3D;&quot;cds--file-container&quot;&gt;
+					&lt;ng-container *ngFor&#x3D;&quot;let fileItem of files&quot;&gt;
+						&lt;cds-file
+							[fileItem]&#x3D;&quot;fileItem&quot;
+							(remove)&#x3D;&quot;removeFile(fileItem)&quot;
+							[size]&#x3D;&quot;fileItemSize&quot;&gt;
+						&lt;/cds-file&gt;
+					&lt;/ng-container&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
+
+		&lt;ng-template #skeletonTemplate&gt;
+			&lt;div class&#x3D;&quot;cds--skeleton__text&quot; style&#x3D;&quot;width: 100px&quot;&gt;&lt;/div&gt;
+			&lt;div class&#x3D;&quot;cds--skeleton__text&quot; style&#x3D;&quot;width: 225px&quot;&gt;&lt;/div&gt;
+			&lt;button cdsButton skeleton&#x3D;&quot;true&quot;&gt;&lt;/button&gt;
+		&lt;/ng-template&gt;
+	&#x60;,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: FileUploader,
+			multi: true
+		}
+	]
+})
+export class FileUploader implements ControlValueAccessor {
+	/**
+	 * Counter used to create unique ids for file-uploader components
+	 */
+	static fileUploaderCount &#x3D; 0;
+	/**
+	 * Accessible text for the button that opens the upload window.
+	 *
+	 * Defaults to the &#x60;FILE_UPLOADER.OPEN&#x60; value from the i18n service
+	 */
+	@Input() buttonText &#x3D; this.i18n.get().FILE_UPLOADER.OPEN;
+	/**
+	 * Type set for button
+	 */
+	@Input() buttonType: &quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot; | &quot;ghost&quot; | &quot;danger&quot; &#x3D; &quot;primary&quot;;
+	/**
+	 * Text set to the title
+	 */
+	@Input() title: string;
+	/**
+	 * Text set to the description
+	 */
+	@Input() description: string;
+	/**
+	 * Specify the types of files that the input should be able to receive
+	 */
+	@Input() accept &#x3D; [];
+	/**
+	 * Set to &#x60;false&#x60; to tell the component to only accept a single file on upload.
+	 *
+	 * Defaults to &#x60;true&#x60;. Accepts multiple files.
+	 */
+	@Input() multiple &#x3D; true;
+	/**
+	 * Set to &#x60;true&#x60; for a loading file uploader.
+	 */
+	@Input() skeleton &#x3D; false;
+	/**
+	 * Sets the size of the button.
+	 */
+	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;;
+	/**
+	 * Sets the size of the file items
+	 */
+	@Input() fileItemSize: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;lg&quot;;
+	/**
+	 * Set to &#x60;true&#x60; to enable drag and drop.
+	 */
+	@Input() drop &#x3D; false;
+	/**
+	 * Sets the text shown in drag and drop box.
+	 */
+	@Input() dropText: string | TemplateRef&lt;any&gt;;
+	/**
+	 * Provides a unique id for the underlying &#x60;&lt;input&gt;&#x60; node
+	 */
+	@Input() fileUploaderId &#x3D; &#x60;file-uploader-${FileUploader.fileUploaderCount}&#x60;;
+	/**
+	 * Maintains a reference to the view DOM element of the underlying &lt;input&gt; node
+	 */
+	@ViewChild(&quot;fileInput&quot;) fileInput;
+	/**
+	 * The list of files that have been submitted to be uploaded
+	 */
+	@Input() files &#x3D; new Set&lt;FileItem&gt;();
+	/**
+	 * Set to &#x60;true&#x60; to disable upload button
+	 */
+	@Input() disabled &#x3D; false;
+
+	@Output() filesChange &#x3D; new EventEmitter&lt;any&gt;();
+
+	/**
+	 * Controls the state of the drag and drop file container
+	 */
+	public dragOver &#x3D; false;
+
+	protected onTouchedCallback: () &#x3D;&gt; void &#x3D; noop;
+	protected onChangeCallback: (_: Set&lt;FileItem&gt;) &#x3D;&gt; void &#x3D; noop;
+
+	constructor(protected i18n: I18n) {
+		FileUploader.fileUploaderCount++;
+	}
+
+	/**
+	 * Specifies the property to be used as the return value to &#x60;ngModel&#x60; and reactive forms.
+	 * Updates &#x60;this.files&#x60;.
+	 */
+	get value(): Set&lt;FileItem&gt; {
+		return this.files;
+	}
+	set value(v: Set&lt;FileItem&gt;) {
+		if (v !&#x3D;&#x3D; this.files) {
+			this.files &#x3D; v;
+			this.onChangeCallback(v);
+		}
+	}
+
+	onBlur() {
+		this.onTouchedCallback();
+	}
+
+	get fileList() {
+		return Array.from(this.fileInput.nativeElement.files);
+	}
+
+	/**
+	 * Propagates the injected &#x60;value&#x60;.
+	 */
+	writeValue(value: Set&lt;FileItem&gt;) {
+		if (value !&#x3D;&#x3D; this.value) {
+			this.files &#x3D; value;
+		}
+	}
+
+	createFileItem(file): FileItem {
+		return {
+			uploaded: false,
+			state: &quot;edit&quot;,
+			invalid: false,
+			invalidText: &quot;&quot;,
+			file: file
+		};
+	}
+
+	onFilesAdded() {
+		const newFiles &#x3D; new Set&lt;FileItem&gt;(this.files);
+		if (!this.multiple) {
+			newFiles.clear();
+		}
+		for (let file of this.fileList) {
+			const fileItem &#x3D; this.createFileItem(file);
+			newFiles.add(fileItem);
+		}
+
+		this.value &#x3D; newFiles;
+		this.filesChange.emit(newFiles);
+	}
+
+	onDragOver(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
+		this.dragOver &#x3D; true;
+	}
+
+	onDragLeave(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		this.dragOver &#x3D; false;
+	}
+
+	onDrop(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
+
+		const transferredFiles: Array&lt;File&gt; &#x3D; Array.from(event.dataTransfer.files);
+		const newFiles &#x3D; new Set&lt;FileItem&gt;(this.files);
+
+		transferredFiles.filter(({ name, type }) &#x3D;&gt; {
+			// Get the file extension and add a &quot;.&quot; to the beginning.
+			const fileExtension &#x3D; name.split(&quot;.&quot;).pop().replace(/^/, &quot;.&quot;);
+			// Check if the accept array contains the mime type or extension of the file.
+			return this.accept.includes(type) || this.accept.includes(fileExtension) || !this.accept.length;
+		}).forEach(file &#x3D;&gt; {
+			if (!newFiles.size || this.multiple) {
+				const fileItem &#x3D; this.createFileItem(file);
+				newFiles.add(fileItem);
+			}
+		});
+
+		this.value &#x3D; newFiles;
+		this.filesChange.emit(newFiles);
+		this.dragOver &#x3D; false;
+	}
+
+	removeFile(fileItem) {
+		// Deleting an item from this.files removes the &lt;ibm-file&gt; component,
+		// which triggers its ngOnDestroy(), which fires the (remove) event again.
+		// So, (remove) may double-fire and we need to handle it here.
+		if (this.files &amp;&amp; this.files.has(fileItem)) {
+			const newFiles &#x3D; new Set&lt;FileItem&gt;(this.files);
+			newFiles.delete(fileItem);
+			this.filesChange.emit(newFiles);
+			this.value &#x3D; newFiles;
+		}
+		this.fileInput.nativeElement.value &#x3D; &quot;&quot;;
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Registers the injected function to control the touch use of the &#x60;FileUploader&#x60;.
+	 */
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback &#x3D; fn;
+	}
+	/**
+	 * Sets a method in order to propagate changes back to the form.
+	 */
+	registerOnChange(fn: any) {
+		this.onChangeCallback &#x3D; fn;
+	}
+
+	/**
+	 * &#x60;ControlValueAccessor&#x60; method to programmatically disable the checkbox.
+	 *
+	 * ex: &#x60;this.formGroup.get(&quot;myFileUploader&quot;).disable();&#x60;
+	 *
+	 * @param isDisabled &#x60;true&#x60; to disable the file uploader
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled &#x3D; isDisabled;
+	}
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>	<p class="cds--label-description" role="alert">{{description}}</p>	<div class="cds--file">		<label			*ngIf="drop"			class="cds--file-browse-btn"			(keyup.enter)="fileInput.click()"			(keyup.space)="fileInput.click()"			[ngClass]="{\'cds--file-browse-btn--disabled\': disabled}"			tabindex="0">			<div				class="cds--file__drop-container"				[ngClass]="{\'cds--file__drop-container--drag-over\': dragOver}"				role="button"				(click)="fileInput.click()"				[attr.for]="fileUploaderId"				(dragover)="onDragOver($event)"				(dragleave)="onDragLeave($event)"				(drop)="onDrop($event)">				<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>				<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>			</div>		</label>		<button			*ngIf="!drop"			type="button"			[cdsButton]="buttonType"			(click)="fileInput.click()"			[attr.for]="fileUploaderId"			[size]="size"			[disabled]="disabled">			{{buttonText}}		</button>		<input			#fileInput			type="file"			class="cds--file-input"			[accept]="accept"			[id]="fileUploaderId"			[multiple]="multiple"			tabindex="-1"			(change)="onFilesAdded()"			[disabled]="disabled"/>		<div class="cds--file-container">			<ng-container *ngFor="let fileItem of files">				<cds-file					[fileItem]="fileItem"					(remove)="removeFile(fileItem)"					[size]="fileItemSize">				</cds-file>			</ng-container>		</div>	</div></ng-container><ng-template #skeletonTemplate>	<div class="cds--skeleton__text" style="width: 100px"></div>	<div class="cds--skeleton__text" style="width: 225px"></div>	<button cdsButton skeleton="true"></button></ng-template>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'}];
+    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
+    var ACTUAL_COMPONENT = {'name': 'FileUploader'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FileUploader.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
