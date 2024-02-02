@@ -16,7 +16,6 @@ import { TreeNodeComponent } from "./tree-node.component";
 	`
 })
 class TreeviewTestComponent {
-
 	tree = [
 		{
 			id: "1",

@@ -168,21 +168,6 @@ const nodes = [
 	}
 ];
 
-function updateNode(node) {
-	if (node.children) {
-		node.icon = "folder";
-		node.children.forEach(childNode => updateNode(childNode));
-	} else {
-		node.icon = "document";
-	}
-
-	return node;
-}
-
-function updateTree(tree) {
-	const newTree = cloneDeep(tree);
-	return newTree.map(node => updateNode(node));
-}
 
 const Template = (args) => ({
 	props: args,

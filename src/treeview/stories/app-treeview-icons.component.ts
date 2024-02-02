@@ -16,7 +16,6 @@ import { Node } from "../tree-node.types";
 	`
 })
 export class IconTreeviewDemoComponent implements AfterViewInit {
-
 	tree: Node[] = [];
 
 	@ViewChild("document") documentIcon: TemplateRef<any>;
