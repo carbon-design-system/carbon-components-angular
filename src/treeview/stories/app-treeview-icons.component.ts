@@ -20,7 +20,6 @@ export class IconTreeviewDemoComponent implements AfterViewInit {
 
 	@ViewChild("document") documentIcon: TemplateRef<any>;
 
-	constructor() { }
 
 	ngAfterViewInit() {
 		// Wait for the view child to be picked up
