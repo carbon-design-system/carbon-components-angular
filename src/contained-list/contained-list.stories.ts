@@ -198,25 +198,25 @@ export const withActionsAndContextData = (args) => {
 		items: [
 			{
 				id: 1,
-				label: 'List Item'
+				label: "List Item"
 			},
 			{
 				id: 2,
-				label: 'List Item'
+				label: "List Item"
 			},
 			{
 				id: 3,
-				label: 'List Item'
+				label: "List Item"
 			},
 			{
 				id: 4,
-				label: 'List Item'
-			},
+				label: "List Item"
+			}
 		],
-		onActionClick: (item: any) => { alert(`${item.label} ${item.id} action click triggered`) }
-	}
-	
-	return { 
+		onActionClick: (item: any) => { alert(`${item.label} ${item.id} action click triggered`); }
+	};
+
+	return {
 		props: args,
 		template: `
 			<ng-template #actionWithClick let-actionData>
@@ -238,7 +238,7 @@ export const withActionsAndContextData = (args) => {
 				</cds-contained-list-item>
 			</cds-contained-list>
 		`
-	}
+	};
 };
 
 const withIconsTemplate = () => ({
