@@ -585,13 +585,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/IconModule.html" data-type="entity-link" >IconModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-IconModule-9d607c40bf9495b980ed06b604b0235d3d59731fa9bfdab3219a4c34f20da3d6b9d4b01c8002ff4f20b1582badd47cc7aca325f5cbe121844528da4f27cfa3c1"' : 'data-bs-target="#xs-directives-links-module-IconModule-9d607c40bf9495b980ed06b604b0235d3d59731fa9bfdab3219a4c34f20da3d6b9d4b01c8002ff4f20b1582badd47cc7aca325f5cbe121844528da4f27cfa3c1"' }>
+                                        'data-bs-target="#directives-links-module-IconModule-7d7cbb3dce65cf0bf7703a2eb29f8ea421be24178373b3ff55fe78e22842fc815ecbabceba9a01ddeeb6412ef249441399df9137c975f241c437cdb43ceb4773"' : 'data-bs-target="#xs-directives-links-module-IconModule-7d7cbb3dce65cf0bf7703a2eb29f8ea421be24178373b3ff55fe78e22842fc815ecbabceba9a01ddeeb6412ef249441399df9137c975f241c437cdb43ceb4773"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-IconModule-9d607c40bf9495b980ed06b604b0235d3d59731fa9bfdab3219a4c34f20da3d6b9d4b01c8002ff4f20b1582badd47cc7aca325f5cbe121844528da4f27cfa3c1"' :
-                                        'id="xs-directives-links-module-IconModule-9d607c40bf9495b980ed06b604b0235d3d59731fa9bfdab3219a4c34f20da3d6b9d4b01c8002ff4f20b1582badd47cc7aca325f5cbe121844528da4f27cfa3c1"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-IconModule-7d7cbb3dce65cf0bf7703a2eb29f8ea421be24178373b3ff55fe78e22842fc815ecbabceba9a01ddeeb6412ef249441399df9137c975f241c437cdb43ceb4773"' :
+                                        'id="xs-directives-links-module-IconModule-7d7cbb3dce65cf0bf7703a2eb29f8ea421be24178373b3ff55fe78e22842fc815ecbabceba9a01ddeeb6412ef249441399df9137c975f241c437cdb43ceb4773"' }>
                                         <li class="link">
                                             <a href="directives/IconDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IconDirective</a>
                                         </li>
@@ -1522,6 +1522,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                             </li>
                             <li class="link">
+                                <a href="modules/TreeviewModule.html" data-type="entity-link" >TreeviewModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#components-links-module-TreeviewModule-84dee41830a747e37b512fa8877deb4a99b0c6138c5d4572b59613c697e585d65e4447ff0c01bda8e6a11f5ff5ddfc80bd8cc0b04dea10f96a92cf675a7a0557"' : 'data-bs-target="#xs-components-links-module-TreeviewModule-84dee41830a747e37b512fa8877deb4a99b0c6138c5d4572b59613c697e585d65e4447ff0c01bda8e6a11f5ff5ddfc80bd8cc0b04dea10f96a92cf675a7a0557"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-TreeviewModule-84dee41830a747e37b512fa8877deb4a99b0c6138c5d4572b59613c697e585d65e4447ff0c01bda8e6a11f5ff5ddfc80bd8cc0b04dea10f96a92cf675a7a0557"' :
+                                            'id="xs-components-links-module-TreeviewModule-84dee41830a747e37b512fa8877deb4a99b0c6138c5d4572b59613c697e585d65e4447ff0c01bda8e6a11f5ff5ddfc80bd8cc0b04dea10f96a92cf675a7a0557"' }>
+                                            <li class="link">
+                                                <a href="components/TreeNodeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TreeNodeComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/TreeViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TreeViewComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/UIShellModule.html" data-type="entity-link" >UIShellModule</a>
                             </li>
                             <li class="link">
@@ -1639,6 +1659,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/PlaceholderService.html" data-type="entity-link" >PlaceholderService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/TreeViewService.html" data-type="entity-link" >TreeViewService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -1693,6 +1716,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/NavigationItem.html" data-type="entity-link" >NavigationItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Node.html" data-type="entity-link" >Node</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/NotificationAction.html" data-type="entity-link" >NotificationAction</a>

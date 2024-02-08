@@ -28,13 +28,13 @@
 <title>cluster_DatePickerModule_DatePicker_providers</title>
 <polygon fill="none" stroke="black" points="399,-78 399,-241.59 1039,-241.59 1039,-78 399,-78"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_DatePickerModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 391,-241.59 391,-189.59 16,-189.59"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_DatePickerModule_exports</title>
 <polygon fill="none" stroke="black" points="86,-319.59 86,-371.59 356,-371.59 356,-319.59 86,-319.59"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_DatePickerModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 391,-241.59 391,-189.59 16,-189.59"/>
 </g>
 <!-- DatePicker -->
 <g id="node1" class="node">

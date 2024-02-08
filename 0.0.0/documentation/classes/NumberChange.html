@@ -277,7 +277,7 @@ export class NumberChange {
 					[placeholder]&#x3D;&quot;placeholder&quot;
 					(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 				&lt;svg
-					*ngIf&#x3D;&quot;!skeleton &amp;&amp; !warn &amp;&amp; invalid&quot;
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
 					cdsIcon&#x3D;&quot;warning--filled&quot;
 					size&#x3D;&quot;16&quot;
 					class&#x3D;&quot;cds--number__invalid&quot;&gt;
@@ -322,7 +322,7 @@ export class NumberChange {
 				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
 				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
 			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;!warn &amp;&amp; invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
 				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
 			&lt;/div&gt;

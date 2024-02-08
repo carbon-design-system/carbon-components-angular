@@ -32,13 +32,13 @@
 <title>cluster_SelectModule_Select_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-176.59 618,-176.59 618,-78 16,-78"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_SelectModule_imports</title>
-<polygon fill="none" stroke="black" points="174,-189.59 174,-241.59 274,-241.59 274,-189.59 174,-189.59"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_SelectModule_exports</title>
 <polygon fill="none" stroke="black" points="244,-319.59 244,-371.59 484,-371.59 484,-319.59 244,-319.59"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_SelectModule_imports</title>
+<polygon fill="none" stroke="black" points="174,-189.59 174,-241.59 274,-241.59 274,-189.59 174,-189.59"/>
 </g>
 <!-- OptGroup -->
 <g id="node1" class="node">
