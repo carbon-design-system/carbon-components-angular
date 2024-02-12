@@ -5,6 +5,8 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
+	Renderer2,
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
@@ -66,8 +68,8 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	constructor() {
-		super();
+	constructor(protected elementRef: ElementRef, protected ngZone: NgZone, protected renderer: Renderer2) {
+		super(elementRef, ngZone, renderer);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

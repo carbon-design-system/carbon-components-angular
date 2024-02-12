@@ -6,6 +6,7 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
 	Renderer2
 } from "@angular/core";
 import { fromEvent } from "rxjs";
@@ -42,8 +43,8 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
-		super();
+	constructor(private hostElement: ElementRef, protected ngZone: NgZone, private renderer: Renderer2) {
+		super(hostElement, ngZone, renderer);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

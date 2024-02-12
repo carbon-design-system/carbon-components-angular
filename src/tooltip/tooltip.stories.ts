@@ -29,17 +29,17 @@ export default {
 		align: {
 			options: [
 				"top",
-				"top-left",
-				"top-right",
-				"bottom",
-				"bottom-left",
-				"bottom-right",
-				"left",
-				"left-bottom",
-				"left-top",
+				"top-start",
+				"top-end",
 				"right",
-				"right-bottom",
-				"right-top"
+				"right-start",
+				"right-end",
+				"bottom",
+				"bottom-start",
+				"bottom-end",
+				"left",
+				"left-start",
+				"left-end"
 			],
 			control: "select"
 		}

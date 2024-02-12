@@ -1,7 +1,10 @@
 import {
 	Component,
+	ElementRef,
 	HostListener,
 	Input,
+	NgZone,
+	Renderer2,
 	TemplateRef
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
@@ -47,18 +50,19 @@ export class TooltipDefinition extends PopoverContainer {
 	@Input() id = `tooltip-definition-${TooltipDefinition.tooltipCount++}`;
 
 	/**
+	 * @todo set proper
 	 * Override alignment options
 	 */
-	@Input() align: "top" | "top-left" | "top-right"
-		| "bottom" | "bottom-left" | "bottom-right" = "bottom";
+	// @Input() align: "top" | "top-left" | "top-right"
+	// 	| "bottom" | "bottom-left" | "bottom-right" = "bottom";
 
 	/**
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor() {
-		super();
+	constructor(protected elementRef: ElementRef, protected ngZone: NgZone, protected renderer: Renderer2) {
+		super(elementRef, ngZone, renderer);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

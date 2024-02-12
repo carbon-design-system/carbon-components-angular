@@ -157,3 +157,12 @@ html {
 		outline: 1px dashed styles.$teal-40;
 	}
 }
+
+
+
+// overrides
+.cds--popover-container {
+	// Floating-ui doesn't work when parent component has position set to relative
+	// https://floating-ui.com/docs/misc#clipping
+	position: unset !important;	// Default position is relative
+}
