@@ -9,6 +9,7 @@
 		"flatpickr",
 		"@carbon/icon-helpers",
 		"@carbon/icons",
-		"@carbon/telemetry"
+		"@carbon/telemetry",
+    "@floating-ui/dom"
 	]
 }
