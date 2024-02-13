@@ -231,7 +231,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 		let ref;
 		switch (this.display) {
 			case "multi":
-				ref = this.codeContent.nativeElement;
+				ref = this.codeContent?.nativeElement;
 				break;
 			case "single":
 				ref = this.codeContainer.nativeElement;
@@ -310,7 +310,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 
 	protected canExpand() {
 		if (this.display === "multi") {
-			const height = this.codeContent.nativeElement.getBoundingClientRect().height;
+			const height = this.codeContent?.nativeElement.getBoundingClientRect().height;
 			if (
 				this.maxCollapsedNumberOfRows > 0 &&
 				(this.maxExpandedNumberOfRows <= 0 ||
