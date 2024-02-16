@@ -17,7 +17,8 @@
     "commit": "git-cz -s",
     "ng": "ng",
     "ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "ibmtelemetry --config=telemetry.yml"
   },
   "release": {
     "pkgRoot": "dist",
@@ -137,8 +138,8 @@
   "dependencies": {
     "@carbon/icon-helpers": "10.37.0",
     "@carbon/icons": "11.14.0",
-    "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
+    "@ibm/telemetry-js": "^1.2.1",
     "flatpickr": "4.6.13",
     "tslib": "2.3.0"
   }
