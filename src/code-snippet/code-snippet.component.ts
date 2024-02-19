@@ -231,7 +231,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 		let ref;
 		switch (this.display) {
 			case "multi":
-				ref = this.codeContent?.nativeElement;
+				ref = this.codeContent.nativeElement;
 				break;
 			case "single":
 				ref = this.codeContainer.nativeElement;
