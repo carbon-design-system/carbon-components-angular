@@ -1,7 +1,9 @@
+import { DOCUMENT } from "@angular/common";
 import {
 	Component,
 	ElementRef,
 	HostListener,
+	Inject,
 	Input,
 	NgZone,
 	Renderer2,
@@ -61,8 +63,14 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor(protected elementRef: ElementRef, protected ngZone: NgZone, protected renderer: Renderer2) {
-		super(elementRef, ngZone, renderer);
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		@Inject
+		(DOCUMENT) protected document: Document
+	) {
+		super(elementRef, ngZone, renderer, document);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

@@ -5,6 +5,7 @@ import {
 	ElementRef,
 	HostBinding,
 	HostListener,
+	Inject,
 	Input,
 	NgZone,
 	Renderer2
@@ -12,6 +13,7 @@ import {
 import { fromEvent } from "rxjs";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
+import { DOCUMENT } from "@angular/common";
 
 /**
  * Get started with importing the module:
@@ -43,8 +45,13 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, protected ngZone: NgZone, private renderer: Renderer2) {
-		super(hostElement, ngZone, renderer);
+	constructor(
+		protected hostElement: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		@Inject(DOCUMENT) protected document: Document
+	) {
+		super(hostElement, ngZone, renderer, document);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
