@@ -1,9 +1,11 @@
+import { DOCUMENT } from "@angular/common";
 import {
 	AfterViewInit,
 	Directive,
 	ElementRef,
 	EventEmitter,
 	HostBinding,
+	Inject,
 	Input,
 	NgZone,
 	OnChanges,
@@ -18,6 +20,7 @@ import {
 	offset,
 	Placement
 } from "@floating-ui/dom";
+import { fromEvent } from "rxjs";
 
 type oldPlacement = "top"
 	| "top-left" // deprecated
@@ -84,57 +87,58 @@ export class PopoverContainer implements AfterViewInit, OnChanges {
 				break;
 		}
 	}
-	// // Top
-	// @HostBinding("class.cds--popover--top") get alignmentTopClass() {
-	// 	return this._align === "top";
-	// }
 
-	// @HostBinding("class.cds--popover--top-left") get alignmentTopLeftClass() {
-	// 	return this._align === "top-start";
-	// }
+	// Top
+	@HostBinding("class.cds--popover--top") get alignmentTopClass() {
+		return this._align === "top" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--top-right") get alignmentTopRightClass() {
-	// 	return this._align === "top-end";
-	// }
+	@HostBinding("class.cds--popover--top-left") get alignmentTopLeftClass() {
+		return this._align === "top-start" && !this.autoAlign;
+	}
 
-	// // Bottom
-	// @HostBinding("class.cds--popover--bottom") get alignmentBottomClass() {
-	// 	return this._align === "bottom";
-	// }
+	@HostBinding("class.cds--popover--top-right") get alignmentTopRightClass() {
+		return this._align === "top-end" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--bottom-left") get alignmentBottomLeftClass() {
-	// 	return this._align === "bottom-start";
-	// }
+	// Bottom
+	@HostBinding("class.cds--popover--bottom") get alignmentBottomClass() {
+		return this._align === "bottom" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--bottom-right") get alignmentBottomRightClass() {
-	// 	return this._align === "bottom-end";
-	// }
+	@HostBinding("class.cds--popover--bottom-left") get alignmentBottomLeftClass() {
+		return this._align === "bottom-start" && !this.autoAlign;
+	}
 
-	// // Left
-	// @HostBinding("class.cds--popover--left") get alignmentLeftClass() {
-	// 	return this._align === "left";
-	// }
+	@HostBinding("class.cds--popover--bottom-right") get alignmentBottomRightClass() {
+		return this._align === "bottom-end" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--left-top") get alignmentLeftTopClass() {
-	// 	return this._align === "left-start";
-	// }
+	// Left
+	@HostBinding("class.cds--popover--left") get alignmentLeftClass() {
+		return this._align === "left" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--left-bottom") get alignmentLeftBottomClass() {
-	// 	return this._align === "left-end";
-	// }
+	@HostBinding("class.cds--popover--left-top") get alignmentLeftTopClass() {
+		return this._align === "left-start" && !this.autoAlign;
+	}
 
-	// // Right
-	// @HostBinding("class.cds--popover--right") get alignmentRightClass() {
-	// 	return this._align === "right";
-	// }
+	@HostBinding("class.cds--popover--left-bottom") get alignmentLeftBottomClass() {
+		return this._align === "left-end" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--right-top") get alignmentRightTopClass() {
-	// 	return this._align === "right-start";
-	// }
+	// Right
+	@HostBinding("class.cds--popover--right") get alignmentRightClass() {
+		return this._align === "right" && !this.autoAlign;
+	}
 
-	// @HostBinding("class.cds--popover--right-bottom") get alignmentRightBottomClass() {
-	// 	return this._align === "right-end";
-	// }
+	@HostBinding("class.cds--popover--right-top") get alignmentRightTopClass() {
+		return this._align === "right-start" && !this.autoAlign;
+	}
+
+	@HostBinding("class.cds--popover--right-bottom") get alignmentRightBottomClass() {
+		return this._align === "right-end" && !this.autoAlign;
+	}
 
 	/**
 	 * Emits an event when the dialog is closed
@@ -170,13 +174,14 @@ export class PopoverContainer implements AfterViewInit, OnChanges {
 		| "left-start"
 		| "left-end" = "bottom";
 
-	floatingUiConfig: {
-		placement: string,
-		middleware: any[],
-		[key: string]: any
-	};
+	scrollEvent = this._scrollEventReposition.bind(this);
 
-	constructor(protected elementRef: ElementRef, protected ngZone: NgZone, protected render: Renderer2) { }
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected render: Renderer2,
+		@Inject(DOCUMENT) protected document: Document
+	) { }
 
 	handleChange(open: boolean, event: Event) {
 		if (this.isOpen !== open) {
@@ -184,9 +189,13 @@ export class PopoverContainer implements AfterViewInit, OnChanges {
 		}
 
 		if (open) {
+			// Considering we are applying this event directly to the document, we can ignore the
+			// bubbling phase and listen for the event in the capture phase
+			this.document.addEventListener("scroll", this.scrollEvent, { capture: true });
 			this.recomputePosition();
 			this.onOpen.emit(event);
 		} else {
+			this.document.removeEventListener("scroll", this.scrollEvent, true);
 			this.onClose.emit(event);
 		}
 		this.isOpen = open;
@@ -196,45 +205,57 @@ export class PopoverContainer implements AfterViewInit, OnChanges {
 		this.recomputePosition();
 	}
 
-	recomputePosition() {
-		this.ngZone.runOutsideAngular(() => {
-			const popContentSpan = this.elementRef.nativeElement.querySelector(".cds--popover-content");
-			const arrowElement = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
-
-			if (popContentSpan && arrowElement) {
-				// Reset position, seems like it is using previous values in computation
-				// popContentSpan.style.left = '0';
-				// popContentSpan.style.top = '0';
-				// arrowElement.style.left = '0';
-				// arrowElement.style.top = '0';
-
-				computePosition(this.elementRef.nativeElement, popContentSpan, {
-					placement: this._align,
-					strategy: "absolute",
-					middleware: [
-						flip({ fallbackAxisSideDirection: "start" }),
-						// arrow({
-						// 	element: arrowElement,
-						// }),
-						offset(8)
-					]
-				}).then((value) => {
-					console.log("value", value);
-					popContentSpan.style.position = "absolute";
-					popContentSpan.style.left = `${value.x}px`;
-					popContentSpan.style.top = `${value.y}px`;
-
-					if (this.caret && value.middlewareData.arrow) {
-						arrowElement.style.position = "absolute";
-						arrowElement.style.left = `${value.middlewareData.arrow.x}px`;
-						arrowElement.style.top = `${value.middlewareData.arrow.y}px`;
-					}
-				});
-			}
-		});
+	ngAfterViewInit(): void {
+		this.recomputePosition();
 	}
 
-	ngAfterViewInit(): void {
+	recomputePosition() {
+		if (this.autoAlign) {
+			this.ngZone.runOutsideAngular(() => {
+				const popContentSpan = this.elementRef.nativeElement.querySelector(".cds--popover-content");
+				const arrowElement = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
+
+				if (popContentSpan && arrowElement) {
+					computePosition(this.elementRef.nativeElement, popContentSpan, {
+						placement: this._align,
+						strategy: "fixed",
+						middleware: [
+							flip({ fallbackAxisSideDirection: "start" }),
+							offset(this.caret ? 10 : 0),
+							this.caret && arrow({ element: arrowElement })
+						]
+					}).then(({ x, y, placement, middlewareData }) => {
+						// https://github.com/w3c/webappsec-csp/issues/212
+						popContentSpan.style.position = "fixed";
+						popContentSpan.style.left = `${x}px`;
+						popContentSpan.style.top = `${y}px`;
+
+						const { x: arrowX, y: arrowY } = middlewareData.arrow;
+
+						if (middlewareData.arrow) {
+
+							const staticSide = {
+								top: "bottom",
+								right: "left",
+								bottom: "top",
+								left: "right"
+							}[placement.split("-")[0]];
+
+							// arrowElement.style.position = "absolute";
+							arrowElement.style.left = arrowX != null ? `${arrowX}px` : "";
+							arrowElement.style.top = arrowY != null ? `${arrowY}px` : "";
+							arrowElement.style.right = "";
+							arrowElement.style.bottom = "";
+							arrowElement.style[staticSide] = "10px";
+						}
+					});
+				}
+			});
+		}
+	}
+
+	// Save address to function to remove listener
+	_scrollEventReposition() {
 		this.recomputePosition();
 	}
 }
