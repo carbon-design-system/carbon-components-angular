@@ -51,7 +51,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 		</cds-table>
 
 	<ng-template #tooltip let-data="data">
-		<cds-tooltip align="bottom"
+		<cds-tooltip align="bottom" [autoAlign]="true"
 			[isOpen]="data.isOpen"
 			description="Some very very very very very very very very very long description........">
 			<button type="button" class="tooltip-trigger">
@@ -62,7 +62,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 
 
 	<ng-template #defTooltip let-data="data">
-		<cds-tooltip-definition align="right-end"
+		<cds-tooltip-definition align="right-end" [autoAlign]="true"
 			description="Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.">
 			URL
 		</cds-tooltip-definition>
@@ -72,7 +72,8 @@ import Filter16 from "@carbon/icons/es/filter/16";
 		<div
 			cdsPopover
 			[isOpen]="data.isOpen"
-			align="left">
+			align="left"
+			[autoAlign]="true">
 			<div class="popover-trigger" class="tooltip-trigger">
 				<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
 					<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
