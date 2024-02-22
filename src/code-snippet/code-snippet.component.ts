@@ -43,7 +43,9 @@ export enum SnippetType {
 					[ngClass]="{
 						'cds--snippet--light': theme === 'light'
 					}">
-					<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					<code #code>
+						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					</code>
 				</span>
 			</ng-template>
 		</ng-container>
@@ -68,7 +70,7 @@ export enum SnippetType {
 				<pre
 					#codeContent
 					*ngIf="!skeleton"
-					(scroll)="(display === 'multi' ? handleScroll() : null)"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>
+					(scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></code></pre>
 			</div>
 			<div *ngIf="hasLeft" class="cds--snippet__overflow-indicator--left"></div>
 			<div *ngIf="hasRight" class="cds--snippet__overflow-indicator--right"></div>
@@ -114,7 +116,9 @@ export enum SnippetType {
 					'tabindex': '0'
 				}">
 				<ng-container *ngIf="display === 'inline'">
-					<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					<code #code>
+						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					</code>
 				</ng-container>
 				<ng-container *ngIf="display !== 'inline'">
 					<svg cdsIcon="copy" size="16" class="cds--snippet__icon"></svg>
@@ -122,9 +126,9 @@ export enum SnippetType {
 			</cds-icon-button>
 		</ng-template>
 
-		<ng-template #codeTemplate>
-			<code #code><ng-content></ng-content></code>
-		</ng-template>
+			<ng-template #codeTemplate>
+				<ng-content></ng-content>
+			</ng-template>
 	`
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
