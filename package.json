@@ -57,6 +57,9 @@
     "type": "git",
     "url": "git@github.com:carbon-design-system/carbon-components-angular.git"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
