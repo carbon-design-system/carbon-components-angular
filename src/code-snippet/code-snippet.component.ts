@@ -126,9 +126,9 @@ export enum SnippetType {
 			</cds-icon-button>
 		</ng-template>
 
-			<ng-template #codeTemplate>
-				<ng-content></ng-content>
-			</ng-template>
+		<ng-template #codeTemplate>
+			<ng-content></ng-content>
+		</ng-template>
 	`
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
