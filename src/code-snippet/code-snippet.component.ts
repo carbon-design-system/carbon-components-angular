@@ -232,6 +232,10 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	}
 
 	handleScroll() {
+		if (this.skeleton) {
+			return;
+		}
+
 		let ref;
 		switch (this.display) {
 			case "multi":
@@ -263,7 +267,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	onCopyButtonClicked() {
 		if (!this.disabled) {
 			window.navigator.clipboard
-				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
+				.writeText(this.code).then(() => {
 					this.showFeedback = true;
 					this.animating = true;
 					setTimeout(() => {
@@ -276,6 +280,11 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 
 	ngOnInit() {
 		this.calculateContainerHeight();
+	}
+
+	ngAfterViewInit() {
+		this.canExpand();
+		this.handleScroll();
 		if (window) {
 			this.eventService.on(window as any, "resize", () => {
 				this.canExpand();
@@ -284,15 +293,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 		}
 	}
 
-	ngAfterViewInit() {
-		setTimeout(() => {
-			this.canExpand();
-			this.handleScroll();
-		});
-	}
-
 	calculateContainerHeight() {
-		if (this.display === "multi") {
+		if (this.display === "multi" && !this.skeleton) {
 			this.styles = {};
 			if (this.expanded) {
 				if (this.maxExpandedNumberOfRows > 0) {
@@ -313,7 +315,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	}
 
 	protected canExpand() {
-		if (this.display === "multi") {
+		if (this.display === "multi" && !this.skeleton) {
 			const height = this.codeContent.nativeElement.getBoundingClientRect().height;
 			if (
 				this.maxCollapsedNumberOfRows > 0 &&
