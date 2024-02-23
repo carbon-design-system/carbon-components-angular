@@ -1,5 +1,14 @@
 import { Component } from "@angular/core";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { SkeletonModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-skeleton--basic)
+ */
 @Component({
 	selector: "cds-skeleton-placeholder, ibm-skeleton-placeholder",
 	template: `

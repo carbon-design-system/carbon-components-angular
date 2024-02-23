@@ -31,13 +31,15 @@ import {
 				[ngTemplateOutletContext]="context">
 			</ng-template>
 		</button>
-		<div [id]="id" class="cds--accordion__content">
-			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
-			<ng-template #skeletonTemplate>
-				<p class="cds--skeleton__text" style="width: 90%"></p>
-				<p class="cds--skeleton__text" style="width: 80%"></p>
-				<p class="cds--skeleton__text" style="width: 95%"></p>
-			</ng-template>
+		<div class="cds--accordion__wrapper">
+			<div [id]="id" class="cds--accordion__content">
+				<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
+				<ng-template #skeletonTemplate>
+					<p class="cds--skeleton__text" style="width: 90%"></p>
+					<p class="cds--skeleton__text" style="width: 80%"></p>
+					<p class="cds--skeleton__text" style="width: 95%"></p>
+				</ng-template>
+			</div>
 		</div>
 	`,
 	styles: [`

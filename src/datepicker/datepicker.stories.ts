@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { DatePickerModule, DatePicker } from "./";
 
 export default {
@@ -18,17 +18,17 @@ export default {
 		warnText: "This is a warning",
 		warn: false,
 		disabled: false,
-		language: "en"
+		language: "en",
+		theme: "dark",
+		size: "md"
 	},
 	argTypes: {
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		valueChange: {
@@ -38,7 +38,7 @@ export default {
 	component: DatePicker
 } as Meta;
 
-const Template: Story<DatePicker> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-date-picker-input
@@ -57,7 +57,7 @@ const Template: Story<DatePicker> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const SingleTemplate: Story<DatePicker> = (args) => ({
+const SingleTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
@@ -96,17 +96,17 @@ const SingleTemplate: Story<DatePicker> = (args) => ({
 });
 export const Single = SingleTemplate.bind({});
 Single.args = {
-	dateFormat: "m/d/y"
+	dateFormat: "m/d/y",
+	language: "en"
 };
 Single.argTypes = {
 	language: {
 		options: ["en", "de", "fi", "ja", "zh", "es", "fr", "it", "ko", "pt"],
-		defaultValue: "en",
 		control: "select"
 	}
 };
 
-const RangeTemplate: Story<DatePicker> = (args) => ({
+const RangeTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>With initial value</p>
@@ -115,7 +115,7 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 			[rangeLabel]="label"
 			[size]="size"
 			range="true"
-			id="initial-value-datepicker"
+			id="initial-value-range-datepicker"
 			[placeholder]="placeholder"
 			[language]="language"
 			[theme]="theme"
@@ -156,7 +156,7 @@ const RangeTemplate: Story<DatePicker> = (args) => ({
 export const Range = RangeTemplate.bind({});
 Range.args = {
 	dateFormat: "d/m/Y",
-	value: [new Date("01 Feb 24"), new Date("29 Feb 24")],
+	value: ["01/02/24", "08/02/24"],
 	language: "en"
 };
 Range.argTypes = {
@@ -166,7 +166,7 @@ Range.argTypes = {
 	}
 };
 
-const SkeletonTemplate: Story<DatePicker> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 	<cds-date-picker

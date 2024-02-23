@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ListModule, List } from "./";
 
 export default {
@@ -16,7 +16,7 @@ export default {
 	component: List
 } as Meta;
 
-const Template: Story<List> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>
@@ -35,7 +35,7 @@ const Template: Story<List> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const NestingTemplate: Story<List> = (args) => ({
+const NestingTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>

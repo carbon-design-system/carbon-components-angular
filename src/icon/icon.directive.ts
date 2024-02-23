@@ -10,15 +10,15 @@ import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
 
 /**
- * A directive for applying styling to an input element.
+ * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Example:
+ * Get started with importing the module:
  *
- * ```html
- * <input cdsText/>
+ * ```typescript
+ * import { IconModule } from 'carbon-components-angular';
  * ```
  *
- * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
+ * [See demo](../../?path=/story/components-icon--basic)
  */
 @Directive({
 	selector: "[cdsIcon], [ibmIcon]"

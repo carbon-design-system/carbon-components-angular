@@ -15,7 +15,11 @@ import { TextArea } from "./text-area.directive";
 import { TextInput } from "./input.directive";
 
 /**
- * [See demo](../../?path=/story/components-input--label)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
  *
  * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components
  *
@@ -25,6 +29,8 @@ import { TextInput } from "./input.directive";
  * 	<input cdsText type="text" class="input-field">
  * </cds-label>
  * ```
+ *
+ * [See demo](../../?path=/story/components-input--basic)
  */
 @Component({
 	selector: "cds-label, ibm-label",
@@ -92,7 +98,7 @@ import { TextInput } from "./input.directive";
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
 				<svg
-					*ngIf="!warn && invalid"
+					*ngIf="invalid"
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--text-input__invalid-icon">
@@ -112,7 +118,7 @@ import { TextInput } from "./input.directive";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>

@@ -13,6 +13,15 @@ export interface ExpandableTileTranslations {
 	COLLAPSE: string;
 }
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TilesModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-tiles-expandable--basic)
+ */
 @Component({
 	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `

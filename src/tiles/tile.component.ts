@@ -5,17 +5,19 @@ import {
 } from "@angular/core";
 
 /**
- * Build application's tiles using this component.
+ * Build application's tiles using this component. Get started with importing the module:
  *
- * [See demo](../../?path=/story/components-tiles--basic)
- *
- * ## Basic usage
+ * ```typescript
+ * import { TilesModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-tile>
  * 		tile content
  * </cds-tile>
  * ```
+ *
+ * [See demo](../../?path=/story/components-tiles--basic)
  */
 @Component({
 	selector: "cds-tile, ibm-tile",

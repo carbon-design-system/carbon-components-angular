@@ -12,6 +12,22 @@ import {
 
 import { TextArea } from "./text-area.directive";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-textarea-label>
+ * 	Label
+ * 	<textarea cdsTextArea class="textarea-field">
+ * </cds-textarea-label>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-input-text-area--basic)
+ */
 @Component({
 	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `
@@ -36,7 +52,7 @@ import { TextArea } from "./text-area.directive";
 			[attr.data-invalid]="(invalid ? true : null)"
 			#wrapper>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				cdsIcon="warning--filled"
 				size="16"
 				class="cds--text-area__invalid-icon">
@@ -49,7 +65,7 @@ import { TextArea } from "./text-area.directive";
 			</svg>
 			<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
 			<ng-template #textAreaContent>
-				<ng-content select="textarea"></ng-content>
+				<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
 			</ng-template>
 		</div>
 		<div
@@ -59,7 +75,7 @@ import { TextArea } from "./text-area.directive";
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="!warn && invalid" class="cds--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>

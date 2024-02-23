@@ -26,6 +26,12 @@ import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ComboBoxModule } from 'carbon-components-angular';
+ * ```
+ *
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
@@ -112,7 +118,7 @@ import { Observable } from "rxjs";
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
 					<svg
-						*ngIf="!warn && invalid"
+						*ngIf="invalid"
 						cdsIcon="warning--filled"
 						size="16"
 						class="cds--list-box__invalid-icon">
@@ -161,7 +167,7 @@ import { Observable } from "rxjs";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
@@ -561,7 +567,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			this.closeDropdown();
 		} else if ((ev.key === "ArrowDown")
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
-			ev.stopPropagation();
+			ev.preventDefault();
 			this.openDropdown();
 			setTimeout(() => { this.view.initFocus(); }, 0);
 		}
