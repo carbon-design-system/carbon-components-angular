@@ -15,12 +15,12 @@ export default {
 		})
 	],
 	parameters: {
-		docs: {
-			story: {
-				inline: false,
-				height: "15rem"
-			}
-		},
+		// docs: {
+		// 	story: {
+		// 		inline: false,
+		// 		height: "15rem"
+		// 	}
+		// },
 		layout: "centered"
 	},
 	component: PopoverContainer,
@@ -37,6 +37,7 @@ const Template = (args) => ({
 			[align]="align"
 			[caret]="caret"
 			[highContrast]="highContrast"
+			[autoAlign]="autoAlign"
 			(onOpen)="onOpen($event)"
 			(onClose)="onClose($event)"
 			(isOpenChange)="isOpenChange($event)">
@@ -86,7 +87,8 @@ Basic.args = {
 	caret: true,
 	dropShadow: true,
 	highContrast: false,
-	align: "bottom"
+	align: "bottom",
+	autoAlign: true
 };
 Basic.argTypes = {
 	onOpen: {
@@ -114,5 +116,6 @@ Basic.argTypes = {
 			"right-top"
 		],
 		control: "select"
-	}
+	},
+	autoAlign: true
 };

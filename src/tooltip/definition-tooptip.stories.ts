@@ -29,6 +29,7 @@ const Template = (args) => ({
 			[isOpen]="isOpen"
 			[caret]="caret"
 			[align]="align"
+			[autoAlign]="autoAlign"
 			(onOpen)="onOpen($event)"
 			(onClose)="onClose($event)"
 			(isOpenChange)="isOpenChange($event)"
@@ -58,7 +59,8 @@ Basic.args = {
 	isOpen: true,
 	caret: true,
 	description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.",
-	align: "bottom"
+	align: "bottom",
+	autoAlign: false
 };
 Basic.argTypes = {
 	onOpen: {

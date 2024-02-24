@@ -14,7 +14,8 @@ export default {
 		isOpen: true,
 		caret: true,
 		description: "Occassionally, services are updated in a specified time window to ensure no down time for customers.",
-		align: "bottom"
+		align: "bottom",
+		autoAlign: false
 	},
 	argTypes: {
 		onOpen: {
@@ -63,6 +64,7 @@ const Template = (args) => ({
 			[isOpen]="isOpen"
 			[caret]="caret"
 			[align]="align"
+			[autoAlign]="autoAlign"
 			(onOpen)="onOpen($event)"
 			(onClose)="onClose($event)"
 			(isOpenChange)="isOpenChange($event)"
@@ -99,6 +101,7 @@ const EllipsesTemplate = (args) => ({
 			[isOpen]="isOpen"
 			[caret]="caret"
 			[align]="align"
+			[autoAlign]="autoAlign"
 			description="Tooltip for ellipsis because I can and I am really really long">
 			<span class="overflowText">
 				Tooltip for ellipsis because I can and I am really really long
