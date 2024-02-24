@@ -1,11 +1,9 @@
-import { DOCUMENT } from "@angular/common";
 import {
 	AfterContentChecked,
 	Component,
 	ElementRef,
 	HostBinding,
 	HostListener,
-	Inject,
 	Input,
 	NgZone,
 	Renderer2,
@@ -33,7 +31,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="!isOpen"
+			[attr.aria-hidden]="!_open"
 			role="tooltip">
 			<ng-container *ngIf="!disabled">
 				<span class="cds--popover-content cds--tooltip-content">
@@ -73,10 +71,9 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		@Inject(DOCUMENT) protected document: Document
+		protected renderer: Renderer2
 	) {
-		super(elementRef, ngZone, renderer, document);
+		super(elementRef, ngZone, renderer);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
