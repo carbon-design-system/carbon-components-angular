@@ -109,7 +109,7 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip
 	 */
-	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = true;
+	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
 	@HostBinding("class.cds--popover--open") _open = false;
 

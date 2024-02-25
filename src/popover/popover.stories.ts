@@ -88,7 +88,7 @@ Basic.args = {
 	dropShadow: true,
 	highContrast: false,
 	align: "bottom",
-	autoAlign: true
+	autoAlign: false
 };
 Basic.argTypes = {
 	onOpen: {
@@ -116,6 +116,5 @@ Basic.argTypes = {
 			"right-top"
 		],
 		control: "select"
-	},
-	autoAlign: true
+	}
 };
