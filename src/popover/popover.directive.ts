@@ -1,4 +1,5 @@
 import {
+	ChangeDetectorRef,
 	Directive,
 	EventEmitter,
 	HostBinding,
@@ -95,6 +96,12 @@ export class PopoverContainer {
 		"left" | "left-bottom" | "left-top" |
 		"right" | "right-bottom" | "right-top" = "bottom";
 
+	private changeDetectorRef: ChangeDetectorRef;
+
+	constructor(ref?: ChangeDetectorRef) {
+		this.changeDetectorRef = ref;
+	}
+
 	handleChange(open: boolean, event: Event) {
 		if (this.isOpen !== open) {
 			this.isOpenChange.emit(open);
@@ -106,5 +113,6 @@ export class PopoverContainer {
 			this.onClose.emit(event);
 		}
 		this.isOpen = open;
+		this.changeDetectorRef?.markForCheck();
 	}
 }
