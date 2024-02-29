@@ -51,4 +51,11 @@ describe("Definition tooltip", () => {
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 	});
+
+	it("should markForCheck given the changeDetectorRef is set", () => {
+		const spy = spyOn(tooltipEl.componentInstance.ref, "markForCheck");
+		buttonEl.triggerEventHandler("click", null);
+		fixture.detectChanges();
+		expect(spy).toHaveBeenCalled();
+	});
 });
