@@ -79,7 +79,7 @@ export class NumberChange {
 					[placeholder]="placeholder"
 					(change)="onNumberInputChange($event)"/>
 				<svg
-					*ngIf="!skeleton && !warn && invalid"
+					*ngIf="!skeleton && invalid"
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--number__invalid">
@@ -124,7 +124,7 @@ export class NumberChange {
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>

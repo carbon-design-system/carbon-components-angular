@@ -193,6 +193,54 @@ const withActionsTemplate = () => ({
 });
 export const withActions = withActionsTemplate.bind({});
 
+export const withActionsAndContextData = (args) => {
+	args = {
+		items: [
+			{
+				id: 1,
+				label: "List Item"
+			},
+			{
+				id: 2,
+				label: "List Item"
+			},
+			{
+				id: 3,
+				label: "List Item"
+			},
+			{
+				id: 4,
+				label: "List Item"
+			}
+		],
+		onActionClick: (item: any) => { alert(`${item.label} ${item.id} action click triggered`); }
+	};
+
+	return {
+		props: args,
+		template: `
+			<ng-template #actionWithClick let-actionData>
+				<button
+					ibmButton="ghost"
+					aria-label="Action"
+					iconOnly="true"
+					(click)="onActionClick(actionData)">
+					<svg ibmIcon="add" size="16" class="cds--btn__icon"></svg>
+				</button>
+			</ng-template>
+
+			<cds-contained-list label="List title">
+				<cds-contained-list-item
+					*ngFor="let item of items"
+					[action]="actionWithClick"
+					[actionData]="item">
+					{{ item.label }} {{ item.id }}
+				</cds-contained-list-item>
+			</cds-contained-list>
+		`
+	};
+};
+
 const withIconsTemplate = () => ({
 	template: `
 		<ng-template #apple let-icon>
