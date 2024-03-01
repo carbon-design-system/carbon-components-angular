@@ -59,6 +59,16 @@
 <meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
+<footer>
+	<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+</footer>
+
+<script
+	key="8"
+	type="module"
+	src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
+</script>
+
 <!-- Storybook override -->
 <script>
 	document.title = "Carbon Components Angular";
@@ -75,6 +85,23 @@
 		send_page_view: false
 	});
 </script>
+
+<style>
+	footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 9999;
+	}
+
+	#root > div {
+		/*
+		 * Subtracting the height of the footer to prevent
+		 * overlaying the footer ontop of content
+		 */
+		height: calc(100vh - 48px);
+	}
+</style>
  
 
     <style>
