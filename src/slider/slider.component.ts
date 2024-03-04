@@ -78,6 +78,7 @@ import { EventService } from "carbon-components-angular/utils";
 				</label>
 				<div
 					class="cds--slider"
+					(click)="onClick($event)"
 					[ngClass]="{'cds--slider--disabled': disabled}">
 					<ng-container *ngIf="!isRange()">
 						<div class="cds--slider__thumb-wrapper"
@@ -112,8 +113,7 @@ import { EventService } from "carbon-components-angular/utils";
 					</ng-container>
 					<div
 						#track
-						class="cds--slider__track"
-						(click)="onClick($event)">
+						class="cds--slider__track">
 					</div>
 					<div
 						#filledTrack
@@ -450,11 +450,24 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.value = this.value;
 	}
 
-	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
+	/**
+	 * Handles clicks on the slider, and setting the value to it's "real" equivalent.
+	 * Will assign the value to the closest thumb if in range mode.
+	 * */
 	onClick(event) {
 		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
-		this._value[0] = this.convertToValue(event.clientX - trackLeft);
+		const trackValue = this.convertToValue(event.clientX - trackLeft);
+		if (this.isRange()) {
+			if (Math.abs(this._value[0] - trackValue) < Math.abs(this._value[1] - trackValue)) {
+				this._value[0] = trackValue;
+			} else {
+				this._value[1] = trackValue;
+			}
+		} else {
+			this._value[0] = trackValue;
+		}
+
 		this.value = this.value;
 	}
 
