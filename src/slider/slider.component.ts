@@ -80,30 +80,34 @@ import { EventService } from "carbon-components-angular/utils";
 					class="cds--slider"
 					[ngClass]="{'cds--slider--disabled': disabled}">
 					<ng-container *ngIf="!isRange()">
-						<div
-							#thumbs
-							role="slider"
-							[id]="id"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event)"
-							(keydown)="onKeyDown($event)">
+						<div class="cds--slider__thumb-wrapper"
+							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event)"
+								(keydown)="onKeyDown($event)">
+							</div>
 						</div>
 					</ng-container>
 					<ng-container *ngIf="isRange()">
-						<div
-							#thumbs
-							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
-							role="slider"
-							[id]="id + (i > 0 ? '-' + i : '')"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event, i)"
-							(keydown)="onKeyDown($event, i)">
+						<div class="cds--slider__thumb-wrapper"
+						 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}"
+						 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id + (i > 0 ? '-' + i : '')"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event, i)"
+								(keydown)="onKeyDown($event, i)">
+							</div>
 						</div>
 					</ng-container>
 					<div
