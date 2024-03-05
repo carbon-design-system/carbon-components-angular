@@ -137,4 +137,21 @@ describe("Slider", () => {
 		fixture.detectChanges();
 		expect(element.nativeElement.querySelector(".cds--slider--disabled")).toBeTruthy();
 	});
+
+	it("should set the value of the right thumb if it's closer on click of the slider", () => {
+		element.componentInstance.value = [0, 90];
+		const slider = element.nativeElement.querySelector(".cds--slider");
+		const track = element.nativeElement.querySelector(".cds--slider__track");
+		const event = new MouseEvent("click", {clientX: track.getBoundingClientRect().right});
+		slider.dispatchEvent(event);
+		expect(element.componentInstance.value).toEqual([0, 100]);
+	});
+
+	it("should set the value of the left thumb if it's closer on click of the slider", () => {
+		element.componentInstance.value = [10, 100];
+		const slider = element.nativeElement.querySelector(".cds--slider");
+		const event = new MouseEvent("click", {clientX: 0});
+		slider.dispatchEvent(event);
+		expect(element.componentInstance.value).toEqual([0, 100]);
+	});
 });
