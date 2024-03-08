@@ -157,38 +157,42 @@ for use as an alternative value field.</p>
 		&lt;/label&gt;
 		&lt;div
 			class&#x3D;&quot;cds--slider&quot;
+			(click)&#x3D;&quot;onClick($event)&quot;
 			[ngClass]&#x3D;&quot;{&#x27;cds--slider--disabled&#x27;: disabled}&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!isRange()&quot;&gt;
-				&lt;div
-					#thumbs
-					role&#x3D;&quot;slider&quot;
-					[id]&#x3D;&quot;id&quot;
-					[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
-					class&#x3D;&quot;cds--slider__thumb&quot;
-					[ngStyle]&#x3D;&quot;{left: getFractionComplete(value) * 100 + &#x27;%&#x27;}&quot;
-					tabindex&#x3D;&quot;0&quot;
-					(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
-					(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+				&lt;div class&#x3D;&quot;cds--slider__thumb-wrapper&quot;
+					[ngStyle]&#x3D;&quot;{insetInlineStart: getFractionComplete(value) * 100 + &#x27;%&#x27;}&quot;&gt;
+					&lt;div
+						#thumbs
+						role&#x3D;&quot;slider&quot;
+						[id]&#x3D;&quot;id&quot;
+						[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
+						class&#x3D;&quot;cds--slider__thumb&quot;
+						tabindex&#x3D;&quot;0&quot;
+						(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
+						(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/ng-container&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;isRange()&quot;&gt;
-				&lt;div
-					#thumbs
-					*ngFor&#x3D;&quot;let thumb of value; let i &#x3D; index; trackBy: trackThumbsBy&quot;
-					role&#x3D;&quot;slider&quot;
-					[id]&#x3D;&quot;id + (i &gt; 0 ? &#x27;-&#x27; + i : &#x27;&#x27;)&quot;
-					[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
-					class&#x3D;&quot;cds--slider__thumb&quot;
-					[ngStyle]&#x3D;&quot;{left: getFractionComplete(thumb) * 100 + &#x27;%&#x27;}&quot;
-					tabindex&#x3D;&quot;0&quot;
-					(mousedown)&#x3D;&quot;onMouseDown($event, i)&quot;
-					(keydown)&#x3D;&quot;onKeyDown($event, i)&quot;&gt;
+				&lt;div class&#x3D;&quot;cds--slider__thumb-wrapper&quot;
+				 [ngStyle]&#x3D;&quot;{insetInlineStart: getFractionComplete(thumb) * 100 + &#x27;%&#x27;}&quot;
+				 *ngFor&#x3D;&quot;let thumb of value; let i &#x3D; index; trackBy: trackThumbsBy&quot;&gt;
+					&lt;div
+						#thumbs
+						role&#x3D;&quot;slider&quot;
+						[id]&#x3D;&quot;id + (i &gt; 0 ? &#x27;-&#x27; + i : &#x27;&#x27;)&quot;
+						[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
+						class&#x3D;&quot;cds--slider__thumb&quot;
+						tabindex&#x3D;&quot;0&quot;
+						(mousedown)&#x3D;&quot;onMouseDown($event, i)&quot;
+						(keydown)&#x3D;&quot;onKeyDown($event, i)&quot;&gt;
+					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/ng-container&gt;
 			&lt;div
 				#track
-				class&#x3D;&quot;cds--slider__track&quot;
-				(click)&#x3D;&quot;onClick($event)&quot;&gt;
+				class&#x3D;&quot;cds--slider__track&quot;&gt;
 			&lt;/div&gt;
 			&lt;div
 				#filledTrack
@@ -524,7 +528,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/slider/slider.component.ts:296</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/slider/slider.component.ts:300</a></div>
                             </td>
                         </tr>
 
@@ -609,7 +613,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/slider/slider.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/slider/slider.component.ts:265</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -636,7 +640,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/slider/slider.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/slider/slider.component.ts:267</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -668,7 +672,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/slider/slider.component.ts:253</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/slider/slider.component.ts:257</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -695,7 +699,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/slider/slider.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/slider/slider.component.ts:263</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -722,7 +726,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/slider/slider.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/slider/slider.component.ts:175</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -749,7 +753,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/slider/slider.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/slider/slider.component.ts:165</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -781,7 +785,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/slider/slider.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/slider/slider.component.ts:259</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -813,7 +817,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/slider/slider.component.ts:257</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/slider/slider.component.ts:261</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -845,7 +849,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/slider/slider.component.ts:182</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/slider/slider.component.ts:186</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -872,7 +876,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/slider/slider.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/slider/slider.component.ts:188</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -902,7 +906,7 @@ for use as an alternative value field.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/slider/slider.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/slider/slider.component.ts:280</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -939,7 +943,7 @@ for use as an alternative value field.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/slider/slider.component.ts:277</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/slider/slider.component.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -974,8 +978,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="388"
-                            class="link-to-prism">src/slider/slider.component.ts:388</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="392"
+                            class="link-to-prism">src/slider/slider.component.ts:392</a></div>
                 </td>
             </tr>
 
@@ -1041,8 +1045,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="377"
-                            class="link-to-prism">src/slider/slider.component.ts:377</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="381"
+                            class="link-to-prism">src/slider/slider.component.ts:381</a></div>
                 </td>
             </tr>
 
@@ -1108,8 +1112,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="421"
-                            class="link-to-prism">src/slider/slider.component.ts:421</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="425"
+                            class="link-to-prism">src/slider/slider.component.ts:425</a></div>
                 </td>
             </tr>
 
@@ -1183,8 +1187,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="362"
-                            class="link-to-prism">src/slider/slider.component.ts:362</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">src/slider/slider.component.ts:366</a></div>
                 </td>
             </tr>
 
@@ -1256,8 +1260,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="536"
-                            class="link-to-prism">src/slider/slider.component.ts:536</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="553"
+                            class="link-to-prism">src/slider/slider.component.ts:553</a></div>
                 </td>
             </tr>
 
@@ -1295,8 +1299,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="411"
-                            class="link-to-prism">src/slider/slider.component.ts:411</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="415"
+                            class="link-to-prism">src/slider/slider.component.ts:415</a></div>
                 </td>
             </tr>
 
@@ -1370,8 +1374,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="429"
-                            class="link-to-prism">src/slider/slider.component.ts:429</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="433"
+                            class="link-to-prism">src/slider/slider.component.ts:433</a></div>
                 </td>
             </tr>
 
@@ -1411,8 +1415,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="531"
-                            class="link-to-prism">src/slider/slider.component.ts:531</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="548"
+                            class="link-to-prism">src/slider/slider.component.ts:548</a></div>
                 </td>
             </tr>
 
@@ -1476,8 +1480,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="304"
-                            class="link-to-prism">src/slider/slider.component.ts:304</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">src/slider/slider.component.ts:308</a></div>
                 </td>
             </tr>
 
@@ -1513,8 +1517,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="444"
-                            class="link-to-prism">src/slider/slider.component.ts:444</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="448"
+                            class="link-to-prism">src/slider/slider.component.ts:448</a></div>
                 </td>
             </tr>
 
@@ -1589,15 +1593,16 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="450"
-                            class="link-to-prism">src/slider/slider.component.ts:450</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="457"
+                            class="link-to-prism">src/slider/slider.component.ts:457</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Handles clicks on the range track, and setting the value to it&#39;s &quot;real&quot; equivalent</p>
+                    <div class="io-description"><p>Handles clicks on the slider, and setting the value to it&#39;s &quot;real&quot; equivalent.
+Will assign the value to the closest thumb if in range mode.</p>
 </div>
 
                     <div class="io-description">
@@ -1656,8 +1661,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="458"
-                            class="link-to-prism">src/slider/slider.component.ts:458</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="475"
+                            class="link-to-prism">src/slider/slider.component.ts:475</a></div>
                 </td>
             </tr>
 
@@ -1722,8 +1727,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="515"
-                            class="link-to-prism">src/slider/slider.component.ts:515</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="532"
+                            class="link-to-prism">src/slider/slider.component.ts:532</a></div>
                 </td>
             </tr>
 
@@ -1811,8 +1816,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="497"
-                            class="link-to-prism">src/slider/slider.component.ts:497</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="514"
+                            class="link-to-prism">src/slider/slider.component.ts:514</a></div>
                 </td>
             </tr>
 
@@ -1899,8 +1904,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="463"
-                            class="link-to-prism">src/slider/slider.component.ts:463</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="480"
+                            class="link-to-prism">src/slider/slider.component.ts:480</a></div>
                 </td>
             </tr>
 
@@ -1966,8 +1971,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="506"
-                            class="link-to-prism">src/slider/slider.component.ts:506</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="523"
+                            class="link-to-prism">src/slider/slider.component.ts:523</a></div>
                 </td>
             </tr>
 
@@ -2005,8 +2010,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="342"
-                            class="link-to-prism">src/slider/slider.component.ts:342</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="346"
+                            class="link-to-prism">src/slider/slider.component.ts:346</a></div>
                 </td>
             </tr>
 
@@ -2076,8 +2081,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="350"
-                            class="link-to-prism">src/slider/slider.component.ts:350</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="354"
+                            class="link-to-prism">src/slider/slider.component.ts:354</a></div>
                 </td>
             </tr>
 
@@ -2147,8 +2152,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="372"
-                            class="link-to-prism">src/slider/slider.component.ts:372</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="376"
+                            class="link-to-prism">src/slider/slider.component.ts:376</a></div>
                 </td>
             </tr>
 
@@ -2214,8 +2219,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="334"
-                            class="link-to-prism">src/slider/slider.component.ts:334</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/slider/slider.component.ts:338</a></div>
                 </td>
             </tr>
 
@@ -2295,8 +2300,8 @@ for use as an alternative value field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="437"
-                            class="link-to-prism">src/slider/slider.component.ts:437</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="441"
+                            class="link-to-prism">src/slider/slider.component.ts:441</a></div>
                 </td>
             </tr>
 
@@ -2335,8 +2340,8 @@ Updates the track width to span from the low thumb to the high thumb</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="355"
-                            class="link-to-prism">src/slider/slider.component.ts:355</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="359"
+                            class="link-to-prism">src/slider/slider.component.ts:359</a></div>
                 </td>
             </tr>
 
@@ -2411,7 +2416,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/slider/slider.component.ts:295</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/slider/slider.component.ts:299</a></div>
                         </td>
                     </tr>
 
@@ -2443,7 +2448,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/slider/slider.component.ts:296</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/slider/slider.component.ts:300</a></div>
                         </td>
                     </tr>
 
@@ -2475,7 +2480,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/slider/slider.component.ts:292</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/slider/slider.component.ts:296</a></div>
                         </td>
                     </tr>
 
@@ -2507,7 +2512,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/slider/slider.component.ts:291</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/slider/slider.component.ts:295</a></div>
                         </td>
                     </tr>
 
@@ -2539,7 +2544,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/slider/slider.component.ts:294</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/slider/slider.component.ts:298</a></div>
                         </td>
                     </tr>
 
@@ -2571,7 +2576,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/slider/slider.component.ts:293</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/slider/slider.component.ts:297</a></div>
                         </td>
                     </tr>
 
@@ -2597,7 +2602,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/slider/slider.component.ts:285</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/slider/slider.component.ts:289</a></div>
                         </td>
                     </tr>
 
@@ -2630,7 +2635,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/slider/slider.component.ts:158</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/slider/slider.component.ts:162</a></div>
                         </td>
                     </tr>
 
@@ -2672,7 +2677,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/slider/slider.component.ts:281</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/slider/slider.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -2704,7 +2709,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/slider/slider.component.ts:287</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/slider/slider.component.ts:291</a></div>
                         </td>
                     </tr>
 
@@ -2739,7 +2744,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/slider/slider.component.ts:277</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/slider/slider.component.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -2766,7 +2771,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/slider/slider.component.ts:290</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/slider/slider.component.ts:294</a></div>
                         </td>
                     </tr>
 
@@ -2792,7 +2797,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/slider/slider.component.ts:289</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/slider/slider.component.ts:293</a></div>
                         </td>
                     </tr>
 
@@ -2818,7 +2823,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/slider/slider.component.ts:284</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/slider/slider.component.ts:288</a></div>
                         </td>
                     </tr>
 
@@ -2849,7 +2854,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/slider/slider.component.ts:347</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/slider/slider.component.ts:351</a></div>
                         </td>
                     </tr>
 
@@ -2880,7 +2885,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/slider/slider.component.ts:339</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/slider/slider.component.ts:343</a></div>
                         </td>
                     </tr>
 
@@ -2922,7 +2927,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/slider/slider.component.ts:282</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/slider/slider.component.ts:286</a></div>
                         </td>
                     </tr>
 
@@ -2958,7 +2963,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/slider/slider.component.ts:278</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/slider/slider.component.ts:282</a></div>
                         </td>
                     </tr>
 
@@ -2984,7 +2989,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/slider/slider.component.ts:286</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/slider/slider.component.ts:290</a></div>
                         </td>
                     </tr>
 
@@ -3020,7 +3025,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/slider/slider.component.ts:280</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/slider/slider.component.ts:284</a></div>
                         </td>
                     </tr>
 
@@ -3049,7 +3054,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/slider/slider.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/slider/slider.component.ts:171</a></div>
                                 </td>
                             </tr>
 
@@ -3060,7 +3065,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/slider/slider.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/slider/slider.component.ts:165</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3116,7 +3121,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/slider/slider.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/slider/slider.component.ts:182</a></div>
                                 </td>
                             </tr>
 
@@ -3127,7 +3132,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/slider/slider.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/slider/slider.component.ts:175</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3183,7 +3188,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/slider/slider.component.ts:245</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/slider/slider.component.ts:249</a></div>
                                 </td>
                             </tr>
 
@@ -3194,7 +3199,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/slider/slider.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/slider/slider.component.ts:188</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3250,7 +3255,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/slider/slider.component.ts:272</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/slider/slider.component.ts:276</a></div>
                                 </td>
                             </tr>
 
@@ -3261,7 +3266,7 @@ Updates the track width to span from the low thumb to the high thumb</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/slider/slider.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/slider/slider.component.ts:267</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3386,38 +3391,42 @@ import { EventService } from &quot;carbon-components-angular/utils&quot;;
 				&lt;/label&gt;
 				&lt;div
 					class&#x3D;&quot;cds--slider&quot;
+					(click)&#x3D;&quot;onClick($event)&quot;
 					[ngClass]&#x3D;&quot;{&#x27;cds--slider--disabled&#x27;: disabled}&quot;&gt;
 					&lt;ng-container *ngIf&#x3D;&quot;!isRange()&quot;&gt;
-						&lt;div
-							#thumbs
-							role&#x3D;&quot;slider&quot;
-							[id]&#x3D;&quot;id&quot;
-							[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
-							class&#x3D;&quot;cds--slider__thumb&quot;
-							[ngStyle]&#x3D;&quot;{left: getFractionComplete(value) * 100 + &#x27;%&#x27;}&quot;
-							tabindex&#x3D;&quot;0&quot;
-							(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
-							(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+						&lt;div class&#x3D;&quot;cds--slider__thumb-wrapper&quot;
+							[ngStyle]&#x3D;&quot;{insetInlineStart: getFractionComplete(value) * 100 + &#x27;%&#x27;}&quot;&gt;
+							&lt;div
+								#thumbs
+								role&#x3D;&quot;slider&quot;
+								[id]&#x3D;&quot;id&quot;
+								[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
+								class&#x3D;&quot;cds--slider__thumb&quot;
+								tabindex&#x3D;&quot;0&quot;
+								(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
+								(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+							&lt;/div&gt;
 						&lt;/div&gt;
 					&lt;/ng-container&gt;
 					&lt;ng-container *ngIf&#x3D;&quot;isRange()&quot;&gt;
-						&lt;div
-							#thumbs
-							*ngFor&#x3D;&quot;let thumb of value; let i &#x3D; index; trackBy: trackThumbsBy&quot;
-							role&#x3D;&quot;slider&quot;
-							[id]&#x3D;&quot;id + (i &gt; 0 ? &#x27;-&#x27; + i : &#x27;&#x27;)&quot;
-							[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
-							class&#x3D;&quot;cds--slider__thumb&quot;
-							[ngStyle]&#x3D;&quot;{left: getFractionComplete(thumb) * 100 + &#x27;%&#x27;}&quot;
-							tabindex&#x3D;&quot;0&quot;
-							(mousedown)&#x3D;&quot;onMouseDown($event, i)&quot;
-							(keydown)&#x3D;&quot;onKeyDown($event, i)&quot;&gt;
+						&lt;div class&#x3D;&quot;cds--slider__thumb-wrapper&quot;
+						 [ngStyle]&#x3D;&quot;{insetInlineStart: getFractionComplete(thumb) * 100 + &#x27;%&#x27;}&quot;
+						 *ngFor&#x3D;&quot;let thumb of value; let i &#x3D; index; trackBy: trackThumbsBy&quot;&gt;
+							&lt;div
+								#thumbs
+								role&#x3D;&quot;slider&quot;
+								[id]&#x3D;&quot;id + (i &gt; 0 ? &#x27;-&#x27; + i : &#x27;&#x27;)&quot;
+								[attr.aria-labelledby]&#x3D;&quot;labelId&quot;
+								class&#x3D;&quot;cds--slider__thumb&quot;
+								tabindex&#x3D;&quot;0&quot;
+								(mousedown)&#x3D;&quot;onMouseDown($event, i)&quot;
+								(keydown)&#x3D;&quot;onKeyDown($event, i)&quot;&gt;
+							&lt;/div&gt;
 						&lt;/div&gt;
 					&lt;/ng-container&gt;
 					&lt;div
 						#track
-						class&#x3D;&quot;cds--slider__track&quot;
-						(click)&#x3D;&quot;onClick($event)&quot;&gt;
+						class&#x3D;&quot;cds--slider__track&quot;&gt;
 					&lt;/div&gt;
 					&lt;div
 						#filledTrack
@@ -3754,11 +3763,24 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.value &#x3D; this.value;
 	}
 
-	/** Handles clicks on the range track, and setting the value to it&#x27;s &quot;real&quot; equivalent */
+	/**
+	 * Handles clicks on the slider, and setting the value to it&#x27;s &quot;real&quot; equivalent.
+	 * Will assign the value to the closest thumb if in range mode.
+	 * */
 	onClick(event) {
 		if (this.disabled) { return; }
 		const trackLeft &#x3D; this.track.nativeElement.getBoundingClientRect().left;
-		this._value[0] &#x3D; this.convertToValue(event.clientX - trackLeft);
+		const trackValue &#x3D; this.convertToValue(event.clientX - trackLeft);
+		if (this.isRange()) {
+			if (Math.abs(this._value[0] - trackValue) &lt; Math.abs(this._value[1] - trackValue)) {
+				this._value[0] &#x3D; trackValue;
+			} else {
+				this._value[1] &#x3D; trackValue;
+			}
+		} else {
+			this._value[0] &#x3D; trackValue;
+		}
+
 		this.value &#x3D; this.value;
 	}
 
@@ -3875,7 +3897,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label		*ngIf="label"		[for]="id"		[id]="labelId"		class="cds--label"		[ngClass]="{\'cds--label--disabled\': disabled}">		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>	</label>	<div class="cds--slider-container">		<label [id]="bottomRangeId" class="cds--slider__range-label">			<ng-content select="[minLabel]"></ng-content>		</label>		<div			class="cds--slider"			[ngClass]="{\'cds--slider--disabled\': disabled}">			<ng-container *ngIf="!isRange()">				<div					#thumbs					role="slider"					[id]="id"					[attr.aria-labelledby]="labelId"					class="cds--slider__thumb"					[ngStyle]="{left: getFractionComplete(value) * 100 + \'%\'}"					tabindex="0"					(mousedown)="onMouseDown($event)"					(keydown)="onKeyDown($event)">				</div>			</ng-container>			<ng-container *ngIf="isRange()">				<div					#thumbs					*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"					role="slider"					[id]="id + (i > 0 ? \'-\' + i : \'\')"					[attr.aria-labelledby]="labelId"					class="cds--slider__thumb"					[ngStyle]="{left: getFractionComplete(thumb) * 100 + \'%\'}"					tabindex="0"					(mousedown)="onMouseDown($event, i)"					(keydown)="onKeyDown($event, i)">				</div>			</ng-container>			<div				#track				class="cds--slider__track"				(click)="onClick($event)">			</div>			<div				#filledTrack				class="cds--slider__filled-track">			</div>			<input				#range				aria-label="slider"				class="cds--slider__input"				type="range"				[step]="step"				[min]="min"				[max]="max"				[value]="value.toString()">		</div>		<label [id]="topRangeId" class="cds--slider__range-label">			<ng-content select="[maxLabel]"></ng-content>		</label>		<ng-content select="input"></ng-content>	</div></ng-container><ng-template #skeletonTemplate>	<label *ngIf="label" class="cds--label cds--skeleton"></label>	<div class="cds--slider-container cds--skeleton">		<span class="cds--slider__range-label"></span>		<div class="cds--slider">			<div class="cds--slider__thumb"></div>			<div class="cds--slider__track"></div>			<div class="cds--slider__filled-track"></div>		</div>		<span class="cds--slider__range-label"></span>	</div></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label		*ngIf="label"		[for]="id"		[id]="labelId"		class="cds--label"		[ngClass]="{\'cds--label--disabled\': disabled}">		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>	</label>	<div class="cds--slider-container">		<label [id]="bottomRangeId" class="cds--slider__range-label">			<ng-content select="[minLabel]"></ng-content>		</label>		<div			class="cds--slider"			(click)="onClick($event)"			[ngClass]="{\'cds--slider--disabled\': disabled}">			<ng-container *ngIf="!isRange()">				<div class="cds--slider__thumb-wrapper"					[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + \'%\'}">					<div						#thumbs						role="slider"						[id]="id"						[attr.aria-labelledby]="labelId"						class="cds--slider__thumb"						tabindex="0"						(mousedown)="onMouseDown($event)"						(keydown)="onKeyDown($event)">					</div>				</div>			</ng-container>			<ng-container *ngIf="isRange()">				<div class="cds--slider__thumb-wrapper"				 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + \'%\'}"				 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">					<div						#thumbs						role="slider"						[id]="id + (i > 0 ? \'-\' + i : \'\')"						[attr.aria-labelledby]="labelId"						class="cds--slider__thumb"						tabindex="0"						(mousedown)="onMouseDown($event, i)"						(keydown)="onKeyDown($event, i)">					</div>				</div>			</ng-container>			<div				#track				class="cds--slider__track">			</div>			<div				#filledTrack				class="cds--slider__filled-track">			</div>			<input				#range				aria-label="slider"				class="cds--slider__input"				type="range"				[step]="step"				[min]="min"				[max]="max"				[value]="value.toString()">		</div>		<label [id]="topRangeId" class="cds--slider__range-label">			<ng-content select="[maxLabel]"></ng-content>		</label>		<ng-content select="input"></ng-content>	</div></ng-container><ng-template #skeletonTemplate>	<label *ngIf="label" class="cds--label cds--skeleton"></label>	<div class="cds--slider-container cds--skeleton">		<span class="cds--slider__range-label"></span>		<div class="cds--slider">			<div class="cds--slider__thumb"></div>			<div class="cds--slider__track"></div>			<div class="cds--slider__filled-track"></div>		</div>		<span class="cds--slider__range-label"></span>	</div></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Slider'};

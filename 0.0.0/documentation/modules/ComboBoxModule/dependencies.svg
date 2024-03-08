@@ -24,13 +24,13 @@
 <title>cluster_ComboBoxModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 760,-379.59 760,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ComboBoxModule_imports</title>
-<polygon fill="none" stroke="black" points="306,-189.59 306,-241.59 752,-241.59 752,-189.59 306,-189.59"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_ComboBoxModule_exports</title>
 <polygon fill="none" stroke="black" points="280,-319.59 280,-371.59 520,-371.59 520,-319.59 280,-319.59"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ComboBoxModule_imports</title>
+<polygon fill="none" stroke="black" points="306,-189.59 306,-241.59 752,-241.59 752,-189.59 306,-189.59"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_ComboBoxModule_declarations</title>
