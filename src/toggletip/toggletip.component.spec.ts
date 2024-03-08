@@ -104,7 +104,7 @@ describe("Toggletip", () => {
 	}));
 
 	it("should markForCheck given the changeDetectorRef is set", () => {
-		const spy = spyOn(toggletipEl.componentInstance.ref, "markForCheck");
+		const spy = spyOn(toggletipEl.componentInstance.changeDetectorRef, "markForCheck");
 		buttonEl.nativeElement.click();
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
