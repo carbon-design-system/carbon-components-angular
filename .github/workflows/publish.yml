@@ -8,12 +8,20 @@ on:
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   # Single deploy job since we're just deploying
   publish:
     environment:
       name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on pull requests
+      id-token: write # to enable use of ODIC for npm provenance
     steps:
       # Checkout to branch
       - name: Checkout

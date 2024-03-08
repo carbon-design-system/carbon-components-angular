@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Directive,
 	ElementRef,
 	EventEmitter,
@@ -123,7 +124,8 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
 	) { }
 
 	/**
@@ -165,6 +167,7 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 			}
 		}
 		this._open = open;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**

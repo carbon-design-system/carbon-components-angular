@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
+import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
 
 @Component({
@@ -17,6 +18,7 @@ import { Observable } from "rxjs";
 			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[checked]="selected"
+			[disabled]="disabled"
 			(change)="change.emit()">
 		</cds-radio>
 	`
@@ -33,6 +35,10 @@ export class TableRadio {
 
 	get label() {
 		return this._label.value;
+	}
+
+	get disabled(): boolean {
+		return this.row ? !!(this.row as TableRow).disabled : false;
 	}
 
 	/**

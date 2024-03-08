@@ -102,4 +102,11 @@ describe("Toggletip", () => {
 		fixture.detectChanges();
 		expect(toggletipEl.componentInstance._open).toBeFalsy();
 	}));
+
+	it("should markForCheck given the changeDetectorRef is set", () => {
+		const spy = spyOn(toggletipEl.componentInstance.ref, "markForCheck");
+		buttonEl.nativeElement.click();
+		fixture.detectChanges();
+		expect(spy).toHaveBeenCalled();
+	});
 });

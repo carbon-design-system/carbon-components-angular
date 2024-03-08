@@ -1,5 +1,7 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ContentChild,
 	ElementRef,
@@ -24,6 +26,7 @@ import { ToggletipButton } from "./toggletip-button.directive";
  */
 @Component({
 	selector: "cds-toggletip, ibm-toggletip",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-content select="[cdsToggletipButton]"></ng-content>
 		<cds-popover-content>
@@ -46,9 +49,10 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	constructor(
 		protected hostElement: ElementRef,
 		protected ngZone: NgZone,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
 	) {
-		super(hostElement, ngZone, renderer);
+		super(hostElement, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

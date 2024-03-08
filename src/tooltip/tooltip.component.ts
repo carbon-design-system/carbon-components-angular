@@ -1,5 +1,7 @@
 import {
 	AfterContentChecked,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	HostBinding,
@@ -23,6 +25,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
  */
 @Component({
 	selector: "cds-tooltip, ibm-tooltip",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<span #contentWrapper>
 			<ng-content></ng-content>
@@ -71,9 +74,10 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
 	) {
-		super(elementRef, ngZone, renderer);
+		super(elementRef, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

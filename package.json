@@ -17,7 +17,8 @@
     "commit": "git-cz -s",
     "ng": "ng",
     "ng:build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "ibmtelemetry --config=telemetry.yml"
   },
   "release": {
     "pkgRoot": "dist",
@@ -56,6 +57,9 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:carbon-design-system/carbon-components-angular.git"
+  },
+  "publishConfig": {
+    "provenance": true
   },
   "license": "Apache-2.0",
   "author": "IBM",
@@ -126,7 +130,7 @@
     "rxjs": "7.5.0",
     "sass": "1.57.0",
     "sass-loader": "13.2.0",
-    "semantic-release": "17.2.3",
+    "semantic-release": "19.0.0",
     "storybook": "7.6.7",
     "ts-helpers": "1.1.2",
     "tslint": "6.1.3",
@@ -137,9 +141,9 @@
   "dependencies": {
     "@carbon/icon-helpers": "10.37.0",
     "@carbon/icons": "11.14.0",
-    "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
     "@floating-ui/dom": "1.6.3",
+    "@ibm/telemetry-js": "^1.2.1",
     "flatpickr": "4.6.13",
     "tslib": "2.3.0"
   }
