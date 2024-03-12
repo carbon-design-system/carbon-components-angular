@@ -1,7 +1,8 @@
 /* tslint:disable variable-name */
 
+import { importProvidersFrom } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { moduleMetadata, Meta } from "@storybook/angular";
+import { moduleMetadata, Meta, applicationConfig } from "@storybook/angular";
 import { SearchModule } from "../search";
 import { IconModule } from "../icon";
 import { ThemeModule } from "../theme";
@@ -16,6 +17,20 @@ import {
 export default {
 	title: "Components/UI Shell",
 	decorators: [
+		applicationConfig({
+			providers: [
+				importProvidersFrom(RouterModule.forRoot([
+					{
+						path: "bar",
+						component: BarComponent
+					},
+					{
+						path: "foo",
+						component: FooComponent
+					}
+				]))
+			]
+		}),
 		moduleMetadata({
 			declarations: [
 				BarComponent,
@@ -27,16 +42,7 @@ export default {
 				UIShellModule,
 				IconModule,
 				SearchModule,
-				RouterModule.forChild([
-					{
-						path: "bar",
-						component: BarComponent
-					},
-					{
-						path: "foo",
-						component: FooComponent
-					}
-				])
+				RouterModule
 			]
 		})
 	],
@@ -302,6 +308,51 @@ const SideNavigationRouterTemplate = (args) => ({
 });
 export const SideNavigationRouter = SideNavigationRouterTemplate.bind({});
 SideNavigationRouter.storyName = "Side Navigation with router";
+
+
+const SideNavigationUseRouterTemplate = (args) => ({
+	props: args,
+	styles: [`
+		::ng-deep .cds--side-nav__item--active {
+			background: var(--cds-background-selected);
+
+			&:before {
+			    position: absolute;
+    			background-color: var(--cds-border-interactive, #0f62fe);
+    			content: "";
+    			inline-size: 3px;
+    			inset-block-end: 0;
+    			inset-block-start: 0;
+    			inset-inline-start: 0;
+    		}
+		}
+	`],
+	template: `
+		<div [cdsTheme]="theme">
+			<cds-sidenav [useRouter]="true">
+				<cds-sidenav-item [route]="['foo']">
+					<svg cdsIcon="fade" size="16"></svg>
+					Link
+				</cds-sidenav-item>
+				<cds-sidenav-item [route]="['bar']">
+					<svg cdsIcon="fade" size="16"></svg>
+					Link
+				</cds-sidenav-item>
+				<cds-sidenav-menu title="Category title">
+					<svg cdsIcon="fade" icon size="16"></svg>
+					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['bar']">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
+				</cds-sidenav-menu>
+			</cds-sidenav>
+		</div>
+		<div style="margin-left: 256px">
+			<router-outlet></router-outlet>
+		</div>
+	`
+});
+export const SideNavigationUseRouter = SideNavigationUseRouterTemplate.bind({});
+SideNavigationUseRouter.storyName = "Side Navigation with useRouter";
 
 const SidePanelTemplate = (args) => ({
 	props: args,
