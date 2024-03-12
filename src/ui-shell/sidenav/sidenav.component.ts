@@ -25,6 +25,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
 							[routeExtras]="navigationItem.routeExtras"
+							[useRouter]="useRouter"
 							[title]="navigationItem.title">
 							{{ navigationItem.content }}
 						</cds-sidenav-item>
@@ -100,6 +101,11 @@ export class SideNav {
 	 * navigation items.
 	 */
 	@Input() navigationItems: NavigationItem[];
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
 
 	constructor(public i18n: I18n) { }
 

@@ -79,6 +79,11 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 
 	@Input() menuItems: SideNavItemInterface[];
 
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
+
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
 	protected activeItemsSubscription = new Subscription();

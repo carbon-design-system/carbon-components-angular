@@ -1,14 +1,7 @@
-import {
-	Component,
-	Input,
-	Optional,
-	Output,
-	EventEmitter,
-	OnChanges,
-	HostBinding
-} from "@angular/core";
+import { Component, EventEmitter, Host, HostBinding, Input, OnChanges, Optional, Output, SimpleChanges } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { SideNav } from "./sidenav.component";
 
 /**
  * `SideNavItem` can either be a child of `SideNav` or `SideNavMenu`
@@ -16,22 +9,37 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
-		<a
-			class="cds--side-nav__link"
-			[ngClass]="{
+		<a *ngIf="!sidenav?.useRouter; else sidenavItemRouterTpl"
+		   class="cds--side-nav__link"
+		   [ngClass]="{
 				'cds--side-nav__item--active': active
 			}"
-			[href]="href"
-			[attr.aria-current]="(active ? 'page' : null)"
-			[attr.title]="title ? title : null"
-			(click)="navigate($event)">
+		   [href]="href"
+		   [attr.aria-current]="(active ? 'page' : null)"
+		   [attr.title]="title ? title : null"
+		   (click)="navigate($event)">
+			<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+		</a>
+
+		<ng-template #sidenavItemRouterTpl>
+			<a
+				[routerLink]="route"
+				[routerLinkActive]="'cds--side-nav__item--active'"
+				[attr.title]="title ? title : null"
+				class="cds--side-nav__link"
+			>
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+			</a>
+		</ng-template>
+
+		<ng-template #sidenavItemContentTpl>
 			<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
 				<ng-content select="svg, [icon]"></ng-content>
 			</div>
 			<span class="cds--side-nav__link-text">
 				<ng-content></ng-content>
 			</span>
-		</a>
+		</ng-template>
 	`,
 	styles: [`
 		:host {
@@ -102,15 +110,16 @@ export class SideNavItem implements OnChanges {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router, @Host() protected sidenav: SideNav) {
+	}
 
-	ngOnChanges(changes) {
+	ngOnChanges(changes: SimpleChanges) {
 		if (changes.active) {
 			this.selected.emit(this.active);
 		}
 	}
 
-	navigate(event) {
+	navigate(event: MouseEvent) {
 		if (this.router && this.route) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
