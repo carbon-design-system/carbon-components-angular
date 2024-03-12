@@ -5,11 +5,11 @@ import {
 	Output,
 	EventEmitter,
 	OnChanges,
-	HostBinding
+	HostBinding,
+	SimpleChanges
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { SideNav } from "./sidenav.component";
 
 /**
  * `SideNavItem` can either be a child of `SideNav` or `SideNavMenu`
@@ -17,7 +17,7 @@ import { SideNav } from "./sidenav.component";
 @Component({
 	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
-		<a *ngIf="!sidenav?.useRouter; else sidenavItemRouterTpl"
+		<a *ngIf="!useRouter; else sidenavItemRouterTpl"
 		   class="cds--side-nav__link"
 		   [ngClass]="{
 				'cds--side-nav__item--active': active
@@ -72,6 +72,11 @@ export class SideNavItem implements OnChanges {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = true;
+
 	@HostBinding("class.cds--side-nav__item") get sideNav() {
 		return !this.isSubMenu;
 	}
@@ -119,7 +124,7 @@ export class SideNavItem implements OnChanges {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router, @Host() protected sidenav: SideNav) {
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

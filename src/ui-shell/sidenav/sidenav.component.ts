@@ -32,6 +32,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 						<cds-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"
 							[title]="navigationItem.title"
+							[useRouter]="useRouter"
 							[menuItems]="navigationItem.menuItems">
 						</cds-sidenav-menu>
 					</ng-container>

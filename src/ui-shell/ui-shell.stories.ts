@@ -329,20 +329,20 @@ const SideNavigationUseRouterTemplate = (args) => ({
 	`],
 	template: `
 		<div [cdsTheme]="theme">
-			<cds-sidenav [useRouter]="true">
-				<cds-sidenav-item [route]="['foo']">
+			<cds-sidenav>
+				<cds-sidenav-item [route]="['foo']" [useRouter]="true">
 					<svg cdsIcon="fade" size="16"></svg>
 					Link
 				</cds-sidenav-item>
-				<cds-sidenav-item [route]="['bar']">
+				<cds-sidenav-item [route]="['bar']" [useRouter]="true">
 					<svg cdsIcon="fade" size="16"></svg>
 					Link
 				</cds-sidenav-item>
 				<cds-sidenav-menu title="Category title">
 					<svg cdsIcon="fade" icon size="16"></svg>
-					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
-					<cds-sidenav-item [route]="['bar']">Link</cds-sidenav-item>
-					<cds-sidenav-item [route]="['foo']">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['foo']" [useRouter]="true">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['bar']" [useRouter]="true">Link</cds-sidenav-item>
+					<cds-sidenav-item [route]="['foo']" [useRouter]="true">Link</cds-sidenav-item>
 				</cds-sidenav-menu>
 			</cds-sidenav>
 		</div>
