@@ -57,54 +57,52 @@ if (languages.default?.default["en"]?.weekdays) {
 		<div
 			class="cds--date-picker"
 			[ngClass]="{
-				'cds--date-picker--range' : range,
-				'cds--date-picker--single' : !range,
+				'cds--date-picker--simple' : datePickerType === 'simple',
+				'cds--date-picker--range' : datePickerType === 'range',
+				'cds--date-picker--single' : datePickerType === 'single',
 				'cds--date-picker--light' : theme === 'light',
 				'cds--skeleton' : skeleton
 			}">
-			<div class="cds--date-picker-container">
-				<cds-date-picker-input
-					#input
-					[label]="label"
-					[placeholder]="placeholder"
-					[pattern]="inputPattern"
-					[id]="id + '-input'"
-					[size]="size"
-					[type]="(range ? 'range' : 'single')"
-					[hasIcon]="(range ? false : true)"
-					[disabled]="disabled"
-					[invalid]="invalid"
-					[invalidText]="invalidText"
-					[warn]="warn"
-					[warnText]="warnText"
-					[skeleton]="skeleton"
-					[helperText]="helperText"
-					(valueChange)="onValueChange($event)"
-					(click)="openCalendar(input)">
-				</cds-date-picker-input>
-			</div>
+			<cds-date-picker-input
+				#input
+				[label]="label"
+				[placeholder]="placeholder"
+				[pattern]="inputPattern"
+				[id]="id + '-input'"
+				[size]="size"
+				[type]="datePickerType"
+				[hasIcon]="datePickerType !== 'simple'"
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[skeleton]="skeleton"
+				[helperText]="helperText"
+				(valueChange)="onValueChange($event)"
+				(click)="openCalendar(input)">
+			</cds-date-picker-input>
 
-			<div *ngIf="range" class="cds--date-picker-container">
-				<cds-date-picker-input
-					#rangeInput
-					[label]="rangeLabel"
-					[placeholder]="placeholder"
-					[pattern]="inputPattern"
-					[id]="id + '-rangeInput'"
-					[size]="size"
-					[type]="(range ? 'range' : 'single')"
-					[hasIcon]="(range ? true : null)"
-					[disabled]="disabled"
-					[invalid]="rangeInvalid"
-					[invalidText]="rangeInvalidText"
-					[warn]="rangeWarn"
-					[warnText]="rangeWarnText"
-					[skeleton]="skeleton"
-					[helperText]="rangeHelperText"
-					(valueChange)="onRangeValueChange($event)"
-					(click)="openCalendar(rangeInput)">
-				</cds-date-picker-input>
-			</div>
+			<cds-date-picker-input
+				*ngIf="datePickerType === 'range'"
+				#rangeInput
+				[label]="rangeLabel"
+				[placeholder]="placeholder"
+				[pattern]="inputPattern"
+				[id]="id + '-rangeInput'"
+				[size]="size"
+				[type]="(range ? 'range' : 'single')"
+				[hasIcon]="(range ? true : null)"
+				[disabled]="disabled"
+				[invalid]="rangeInvalid"
+				[invalidText]="rangeInvalidText"
+				[warn]="rangeWarn"
+				[warnText]="rangeWarnText"
+				[skeleton]="skeleton"
+				[helperText]="rangeHelperText"
+				(valueChange)="onRangeValueChange($event)"
+				(click)="openCalendar(rangeInput)">
+			</cds-date-picker-input>
 		</div>
 	</div>
 	`,
@@ -125,10 +123,7 @@ export class DatePicker implements
 	AfterViewInit {
 	private static datePickerCount = 0;
 
-	/**
-	 * Select calendar range mode
-	 */
-	@Input() range = false;
+	@Input() datePickerType: "simple" | "single" | "range" = "simple";
 
 	/**
 	 * Format of date
@@ -227,11 +222,11 @@ export class DatePicker implements
 	}
 	get flatpickrOptions() {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
-		if (this.range) {
+		if (this.datePickerType === "range") {
 			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
 		}
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
-			mode: this.range ? "range" : "single",
+			mode: this.datePickerType === "range" ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat,
 			locale: languages.default?.default[this.language] || languages.default[this.language]
@@ -267,7 +262,7 @@ export class DatePicker implements
 		onClose: (date) => {
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
-			if (this.range && this.flatpickrInstance) {
+			if (this.datePickerType === "range" && this.flatpickrInstance) {
 				if (this.flatpickrInstance.selectedDates.length !== 2) {
 					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
 					// in some cases, so instead we do this
@@ -354,7 +349,7 @@ export class DatePicker implements
 	onFocus() {
 		// Updates the month manually when calendar mode is range because month
 		// will not update properly without manually updating them on focus.
-		if (this.range) {
+		if (this.datePickerType === "range") {
 			if (this.rangeInput.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[1]) {
 				const currentMonth = this.flatpickrInstance.selectedDates[1].getMonth();
 				this.flatpickrInstance.changeMonth(currentMonth, false);
@@ -420,7 +415,7 @@ export class DatePicker implements
 	onValueChange(event: string) {
 		if (this.isFlatpickrLoaded()) {
 			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
-			if (this.range) {
+			if (this.datePickerType === "range") {
 				this.setDateValues([date, this.flatpickrInstance.selectedDates[1]]);
 			} else {
 				this.setDateValues([date]);
@@ -444,7 +439,7 @@ export class DatePicker implements
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
-		if (this.range) {
+		if (this.datePickerType === "range") {
 			datepickerInput.input.nativeElement.click();
 
 			// If the first input's calendar icon is clicked when calendar is in range mode, then
@@ -652,7 +647,7 @@ export class DatePicker implements
 		// In range mode, if a date is selected from the first calendar that is from the previous month,
 		// the month will not be updated on the calendar until the calendar is re-opened.
 		// This will make sure the calendar is updated with the correct month.
-		if (this.range && this.flatpickrInstance.selectedDates[0]) {
+		if (this.datePickerType === "range" && this.flatpickrInstance.selectedDates[0]) {
 			const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
 
 			// `flatpickrInstance.changeMonth` removes the focus on the selected date element and will
