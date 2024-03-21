@@ -20,6 +20,10 @@ export default {
 		autocomplete: "on"
 	},
 	argTypes: {
+		expandable: {
+			type: "boolean",
+			defaultValue: false
+		},
 		size: {
 			options: ["sm", "md", "lg"],
 			control: "radio"
@@ -52,7 +56,8 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[size]="size"
 			(valueChange)="valueChange($event)"
-			(clear)="clear()">
+			(clear)="clear()"
+			[expandable]="expandable">
 		</cds-search>
 	`
 });

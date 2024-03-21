@@ -40,7 +40,7 @@ export class TableRadio {
 	get disabled(): boolean {
 		return this.row ? !!(this.row as TableRow).disabled : false;
 	}
-	
+
 	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.
 	 *
