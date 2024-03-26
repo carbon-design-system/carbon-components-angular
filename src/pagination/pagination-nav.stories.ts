@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { PaginationModule, PaginationNav } from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
@@ -17,7 +17,7 @@ export default {
 	component: PaginationNav
 } as Meta;
 
-const Template: Story<PaginationNav> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

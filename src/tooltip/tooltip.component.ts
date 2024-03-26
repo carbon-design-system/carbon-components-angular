@@ -1,5 +1,7 @@
 import {
 	AfterContentChecked,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	HostBinding,
@@ -11,10 +13,17 @@ import {
 import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TooltipModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-tooltip--basic)
  */
 @Component({
 	selector: "cds-tooltip, ibm-tooltip",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<span #contentWrapper>
 			<ng-content></ng-content>
@@ -60,8 +69,8 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	constructor() {
-		super();
+	constructor(private ref: ChangeDetectorRef) {
+		super(ref);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

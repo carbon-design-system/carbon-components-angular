@@ -12,13 +12,13 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
- * `cds-select` provides a styled `select` component.
+ * `cds-select` provides a styled `select` component. Get started with importing the module:
  *
- * [See demo](../../?path=/story/components-select--basic)
- *
- * Example:
- *
+ * ```typescript
+ * import { SelectModule } from 'carbon-components-angular';
  * ```
+ *
+ * ```html
  * <cds-select [(ngModel)]="model">
  * 	<option value="default" disabled selected hidden>Choose an option</option>
  * 	<option value="option1">Option 1</option>
@@ -26,6 +26,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * 	<option value="option3">Option 3</option>
  * </cds-select>
  *	```
+ *
+ * [See demo](../../?path=/story/components-select--basic)
  */
 @Component({
 	selector: "cds-select, ibm-select",
@@ -99,7 +101,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
 				<svg
-					*ngIf="!warn && invalid"
+					*ngIf="invalid"
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--select__invalid-icon">
@@ -112,7 +114,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				</svg>
 			</div>
 			<div
-				*ngIf="invalid && invalidText && !warn" role="alert" class="cds--form-requirement" aria-live="polite">
+				*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>

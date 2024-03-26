@@ -17,9 +17,11 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle.
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
  *
- * [See demo](../../?path=/story/components-pagination-nav--basic)
+ * ```typescript
+ * import { PaginationModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-pagination-nav [model]="model" (selectPage)="selectPage($event)"></cds-pagination-nav>
@@ -37,6 +39,8 @@ export interface PaginationNavTranslations {
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * ```
+ *
+ * [See demo](../../?path=/story/components-pagination-nav--basic)
  */
 @Component({
 	selector: "cds-pagination-nav, ibm-pagination-navm",

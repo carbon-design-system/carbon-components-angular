@@ -10,6 +10,12 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TimePickerModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-time-picker--simple)
  */
 @Component({

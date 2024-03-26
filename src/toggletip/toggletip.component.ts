@@ -1,5 +1,7 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ContentChild,
 	ElementRef,
@@ -12,8 +14,18 @@ import { fromEvent } from "rxjs";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ToggletipModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-toggletip--basic)
+ */
 @Component({
 	selector: "cds-toggletip, ibm-toggletip",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-content select="[cdsToggletipButton]"></ng-content>
 		<cds-popover-content>
@@ -33,8 +45,8 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
-		super();
+	constructor(private hostElement: ElementRef, private renderer: Renderer2, private ref: ChangeDetectorRef) {
+		super(ref);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

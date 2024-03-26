@@ -6,6 +6,15 @@ import {
 	Renderer2
 } from "@angular/core";
 
+/**
+ * Stack elements horizontally or vertically using this helper directive. Get started with importing the module:
+ *
+ * ```typescript
+ * import { LayoutModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/layout-stack--basic)
+ */
 @Directive({
 	selector: "[cdsStack], [ibmStack]"
 })

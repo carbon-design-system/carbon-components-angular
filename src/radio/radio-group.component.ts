@@ -17,13 +17,11 @@ import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
 
 /**
- * [See demo](../../?path=/story/components-radio--basic)
+ * Get started with importing the module:
  *
- * class: RadioGroup
- *
- * selector: `cds-radio-group`
- *
- * source: `src/forms/radio.component.ts`
+ * ```typescript
+ * import { RadioModule } from 'carbon-components-angular';
+ * ```
  *
  * Ex:
  *
@@ -41,7 +39,7 @@ import { RadioChange } from "./radio-change.class";
  *	const manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [Radio](#cds-radio)
+ * [See demo](../../?path=/story/components-radio--basic)
  */
 @Component({
 	selector: "cds-radio-group, ibm-radio-group",
@@ -53,7 +51,7 @@ import { RadioChange } from "./radio-change.class";
 			[ngClass]="{
 				'cds--radio-button-group--vertical': orientation === 'vertical',
 				'cds--radio-button-group--label-left': labelPlacement === 'left',
-				'cds--radio-button-group--invalid' : !warn && invalid,
+				'cds--radio-button-group--invalid': invalid,
 				'cds--radio-button-group--warning': !invalid && warn
 			}"
 			[attr.data-invalid]="invalid ? true : null">
@@ -64,7 +62,7 @@ import { RadioChange } from "./radio-change.class";
 			<ng-content></ng-content>
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
-			<ng-container *ngIf="!warn && invalid">
+			<ng-container *ngIf="invalid">
 				<svg
 					cdsIcon="warning--filled"
 					size="16"

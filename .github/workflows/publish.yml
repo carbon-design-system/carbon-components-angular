@@ -8,22 +8,30 @@ on:
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   # Single deploy job since we're just deploying
   publish:
     environment:
       name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on pull requests
+      id-token: write # to enable use of ODIC for npm provenance
     steps:
       # Checkout to branch
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Set up node to use v16
+      # Set up node to use v18
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 

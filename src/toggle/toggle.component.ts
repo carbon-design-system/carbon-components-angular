@@ -21,11 +21,17 @@ export enum ToggleState {
 }
 
 /**
- * [See demo](../../?path=/story/components-toggle--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ToggleModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-toggle [(ngModel)]="toggleState">Toggle</cds-toggle>
  * ```
+ *
+ * [See demo](../../?path=/story/components-toggle--basic)
  */
 @Component({
 	selector: "cds-toggle, ibm-toggle",

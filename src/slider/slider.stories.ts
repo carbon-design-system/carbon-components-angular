@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { SliderModule, Slider } from "./";
 
 export default {
@@ -15,7 +15,7 @@ export default {
 	component: Slider
 } as Meta;
 
-const Template: Story<Slider> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-slider
@@ -44,7 +44,8 @@ Basic.args = {
 	minLabel: "0",
 	maxLabel: "100",
 	disabled: false,
-	shiftMultiplier: 4
+	shiftMultiplier: 4,
+	theme: "dark"
 };
 Basic.argTypes = {
 	valueChange: {
@@ -52,12 +53,11 @@ Basic.argTypes = {
 	},
 	theme: {
 		options: ["light", "dark"],
-		defaultValue: "dark",
 		control: "radio"
 	}
 };
 
-const RangeTemplate: Story<Slider> = (args) => ({
+const RangeTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-slider

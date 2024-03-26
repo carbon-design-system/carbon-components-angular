@@ -68,4 +68,11 @@ describe("Tooltip", () => {
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 		expect(tooltipEl.componentInstance.isOpen).toBeFalsy();
 	});
+
+	it("should markForCheck given the changeDetectorRef is set", () => {
+		const spy = spyOn(tooltipEl.componentInstance.ref, "markForCheck");
+		tooltipEl.nativeElement.dispatchEvent(new Event("focusin"));
+		fixture.detectChanges();
+		expect(spy).toHaveBeenCalled();
+	});
 });

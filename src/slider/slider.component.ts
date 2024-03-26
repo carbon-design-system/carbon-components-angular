@@ -18,7 +18,11 @@ import { EventService } from "carbon-components-angular/utils";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * [See demo](../../?path=/story/components-slider--advanced)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { SkeletonModule } from 'carbon-components-angular';
+ * ```
  *
  * The simplest possible slider usage looks something like:
  *
@@ -52,6 +56,8 @@ import { EventService } from "carbon-components-angular/utils";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
+ *
+ * [See demo](../../?path=/story/components-slider--advanced)
  */
 @Component({
 	selector: "cds-slider, ibm-slider",
@@ -72,38 +78,42 @@ import { EventService } from "carbon-components-angular/utils";
 				</label>
 				<div
 					class="cds--slider"
+					(click)="onClick($event)"
 					[ngClass]="{'cds--slider--disabled': disabled}">
 					<ng-container *ngIf="!isRange()">
-						<div
-							#thumbs
-							role="slider"
-							[id]="id"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event)"
-							(keydown)="onKeyDown($event)">
+						<div class="cds--slider__thumb-wrapper"
+							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event)"
+								(keydown)="onKeyDown($event)">
+							</div>
 						</div>
 					</ng-container>
 					<ng-container *ngIf="isRange()">
-						<div
-							#thumbs
-							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
-							role="slider"
-							[id]="id + (i > 0 ? '-' + i : '')"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event, i)"
-							(keydown)="onKeyDown($event, i)">
+						<div class="cds--slider__thumb-wrapper"
+						 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}"
+						 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id + (i > 0 ? '-' + i : '')"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event, i)"
+								(keydown)="onKeyDown($event, i)">
+							</div>
 						</div>
 					</ng-container>
 					<div
 						#track
-						class="cds--slider__track"
-						(click)="onClick($event)">
+						class="cds--slider__track">
 					</div>
 					<div
 						#filledTrack
@@ -440,11 +450,24 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.value = this.value;
 	}
 
-	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
+	/**
+	 * Handles clicks on the slider, and setting the value to it's "real" equivalent.
+	 * Will assign the value to the closest thumb if in range mode.
+	 * */
 	onClick(event) {
 		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
-		this._value[0] = this.convertToValue(event.clientX - trackLeft);
+		const trackValue = this.convertToValue(event.clientX - trackLeft);
+		if (this.isRange()) {
+			if (Math.abs(this._value[0] - trackValue) < Math.abs(this._value[1] - trackValue)) {
+				this._value[0] = trackValue;
+			} else {
+				this._value[1] = trackValue;
+			}
+		} else {
+			this._value[0] = trackValue;
+		}
+
 		this.value = this.value;
 	}
 

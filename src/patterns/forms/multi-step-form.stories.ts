@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../../grid";
 import { UIShellModule } from "../../ui-shell";
 import { DropdownModule } from "../../dropdown";
@@ -219,7 +219,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

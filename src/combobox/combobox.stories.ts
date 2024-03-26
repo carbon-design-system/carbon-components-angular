@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ComboBoxModule, ComboBox } from "./";
 
 import {
@@ -68,17 +68,17 @@ export default {
 		],
 		appendInline: false,
 		dropUp: false,
-		selectionFeedback: "top-after-reopen"
+		selectionFeedback: "top-after-reopen",
+		size: "md",
+		theme: "dark"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		maxLength: {
@@ -98,7 +98,7 @@ export default {
 	component: ComboBox
 } as Meta;
 
-const Template: Story<ComboBox> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-combo-box
@@ -131,7 +131,7 @@ Basic.argTypes = {
 	}
 };
 
-const BasicMaxTemplate: Story<ComboBox> = (args) => ({
+const BasicMaxTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -153,7 +153,7 @@ BasicMax.argTypes = {
 	}
 };
 
-const DynamicTemplate: Story<ComboBox> = (args) => ({
+const DynamicTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -173,7 +173,7 @@ Dynamic.parameters = {
 };
 
 
-const MultiTemplate: Story<ComboBox> = (args) => ({
+const MultiTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-combo-box
@@ -203,7 +203,7 @@ Multiselect.argTypes = {
 	selectionFeedback: "top-after-reopen"
 };
 
-const ReactiveTemplate: Story<ComboBox> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -227,7 +227,7 @@ const ReactiveTemplate: Story<ComboBox> = (args) => ({
 });
 export const ReactiveForms = ReactiveTemplate.bind({});
 
-const MockQueryTemplate: Story<ComboBox> = (args) => ({
+const MockQueryTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--

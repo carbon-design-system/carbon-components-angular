@@ -1,4 +1,5 @@
 import {
+	ChangeDetectorRef,
 	Directive,
 	EventEmitter,
 	HostBinding,
@@ -7,7 +8,11 @@ import {
 } from "@angular/core";
 
 /**
- * Applies popover container styling to the element it is applied to.
+ * Applies popover container styling to the element it is applied to. Get started with importing the module:
+ *
+ * ```typescript
+ * import { PopoverModule } from 'carbon-components-angular';
+ * ```
  *
  * [See demo](../../?path=/story/components-popover--basic)
  */
@@ -91,6 +96,8 @@ export class PopoverContainer {
 		"left" | "left-bottom" | "left-top" |
 		"right" | "right-bottom" | "right-top" = "bottom";
 
+	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
 	handleChange(open: boolean, event: Event) {
 		if (this.isOpen !== open) {
 			this.isOpenChange.emit(open);
@@ -102,5 +109,6 @@ export class PopoverContainer {
 			this.onClose.emit(event);
 		}
 		this.isOpen = open;
+		this.changeDetectorRef.markForCheck();
 	}
 }

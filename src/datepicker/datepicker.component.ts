@@ -13,7 +13,6 @@ import {
 	AfterViewChecked,
 	AfterViewInit,
 	ViewChild,
-	AfterContentInit,
 	OnInit,
 	SimpleChange
 } from "@angular/core";
@@ -23,10 +22,32 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
-import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
+ * Due to type error, we have to use square brackets property accessor
+ * There is a webpack issue when attempting to access exported languages from flatpickr l10n Angular 14+ apps
+ * languages.default[locale] fails in app consuming CCA library but passes in test
+ * languages.default.default[locale] fails in test but works in app consuming CCA library.
+ *
+ * To please both scenarios, we are adding a condition to prevent tests from failing
+ */
+if (languages.default?.default["en"]?.weekdays) {
+	(languages.default.default["en"].weekdays.shorthand as string[]) = languages.default.default["en"].weekdays.longhand.map(day => {
+		if (day === "Thursday") {
+			return "Th";
+		}
+		return day.charAt(0);
+	});
+}
+
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { DatePickerModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-date-picker--single)
  */
 @Component({
@@ -101,8 +122,7 @@ export class DatePicker implements
 	OnDestroy,
 	OnChanges,
 	AfterViewChecked,
-	AfterViewInit,
-	AfterContentInit {
+	AfterViewInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -214,7 +234,7 @@ export class DatePicker implements
 			mode: this.range ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat,
-			locale: languages.default[this.language]
+			locale: languages.default?.default[this.language] || languages.default[this.language]
 		});
 	}
 
@@ -328,16 +348,6 @@ export class DatePicker implements
 				}
 			}
 		}
-	}
-
-	ngAfterContentInit() {
-		(languages.default.en.weekdays.shorthand as string[])
-			= languages.default.en.weekdays.longhand.map(day => {
-				if (day === "Thursday") {
-					return "Th";
-				}
-				return day.charAt(0);
-			});
 	}
 
 	@HostListener("focusin")
@@ -473,6 +483,9 @@ export class DatePicker implements
 		// flatpickr calendar using a keyboard.
 		const addFocusCalendarListener = (element: HTMLInputElement) => {
 			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				if (event.key === "Escape") {
+					this.flatpickrInstance.close();
+				}
 				if (event.key === "ArrowDown") {
 					if (!this.flatpickrInstance.isOpen) {
 						this.flatpickrInstance.open();

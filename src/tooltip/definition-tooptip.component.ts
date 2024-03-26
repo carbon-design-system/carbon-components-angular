@@ -1,4 +1,6 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostListener,
 	Input,
@@ -7,10 +9,17 @@ import {
 import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TooltipModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-tooltip-definition--basic)
  */
 @Component({
 	selector: "cds-tooltip-definition, ibm-tooltip-definition",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<button
 			class="cds--definition-term"
@@ -51,8 +60,8 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor() {
-		super();
+	constructor(private ref: ChangeDetectorRef) {
+		super(ref);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
