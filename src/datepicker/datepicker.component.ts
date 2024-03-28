@@ -21,6 +21,7 @@ import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
+import { Options } from "flatpickr/dist/types/options";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { I18n } from "carbon-components-angular/i18n";
 
