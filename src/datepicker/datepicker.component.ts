@@ -223,10 +223,10 @@ export class DatePicker implements
 	@Input() plugins = [];
 
 	@Input()
-	set flatpickrOptions(options: flatpickr.Options.Options) {
+	set flatpickrOptions(options: Partial<Options>) {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
 	}
-	get flatpickrOptions(): flatpickr.Options.Options {
+	get flatpickrOptions(): Partial<Options> {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
 			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
@@ -252,7 +252,7 @@ export class DatePicker implements
 
 	protected _value = [];
 
-	protected _flatpickrOptions : flatpickr.Options.Options = {
+	protected _flatpickrOptions: Partial<Options> = {
 		allowInput: true
 	};
 
