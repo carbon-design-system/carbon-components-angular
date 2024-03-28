@@ -289,9 +289,10 @@ export class Table implements AfterViewInit, OnDestroy {
 
 	static focus(element: HTMLElement) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("cds--table-sort") && focusElementList.length > 1) {
-			focusElementList[1].focus();
-		} else if (focusElementList.length > 0) {
+		if (
+			(element.firstElementChild?.classList.contains("cds--table-sort") && focusElementList.length > 1) ||
+			focusElementList.length > 0
+		) {
 			focusElementList[0].focus();
 		} else {
 			element.focus();
