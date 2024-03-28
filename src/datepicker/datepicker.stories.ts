@@ -41,7 +41,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-date-picker-input
+		<cds-date-picker
 			[theme]="theme"
 			[label]="label"
 			[placeholder]="placeholder"
@@ -52,7 +52,7 @@ const Template = (args) => ({
 			[warn]="warn"
 			[warnText]="warnText"
 			(valueChange)="valueChange($event)">
-		</cds-date-picker-input>
+		</cds-date-picker>
 	`
 });
 export const Basic = Template.bind({});
@@ -65,6 +65,7 @@ const SingleTemplate = (args) => ({
 			[label]="label"
 			id="initial-value-datepicker"
 			[placeholder]="placeholder"
+			[datePickerType]="'single'"
 			[language]="language"
 			[size]="size"
 			[theme]="theme"
@@ -83,6 +84,7 @@ const SingleTemplate = (args) => ({
 			[placeholder]="placeholder"
 			[language]="language"
 			[size]="size"
+			[datePickerType]="'single'"
 			[theme]="theme"
 			[disabled]="disabled"
 			[invalid]="invalid"
@@ -96,8 +98,9 @@ const SingleTemplate = (args) => ({
 });
 export const Single = SingleTemplate.bind({});
 Single.args = {
-	dateFormat: "m/d/y",
-	language: "en"
+	dateFormat: "m/d/Y",
+	language: "en",
+	value: "01/01/24"
 };
 Single.argTypes = {
 	language: {
@@ -114,7 +117,7 @@ const RangeTemplate = (args) => ({
 			[label]="label"
 			[rangeLabel]="label"
 			[size]="size"
-			range="true"
+			[datePickerType]="'range'"
 			id="initial-value-range-datepicker"
 			[placeholder]="placeholder"
 			[language]="language"
@@ -135,8 +138,8 @@ const RangeTemplate = (args) => ({
 		<cds-date-picker
 			[label]="label"
 			[rangeLabel]="label"
+			[datePickerType]="'range'"
 			[size]="size"
-			range="true"
 			[language]="language"
 			[placeholder]="placeholder"
 			[theme]="theme"
