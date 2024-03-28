@@ -53,7 +53,7 @@ describe("Definition tooltip", () => {
 	});
 
 	it("should markForCheck given the changeDetectorRef is set", () => {
-		const spy = spyOn(tooltipEl.componentInstance.ref, "markForCheck");
+		const spy = spyOn(tooltipEl.componentInstance.changeDetectorRef, "markForCheck");
 		buttonEl.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();

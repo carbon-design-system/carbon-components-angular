@@ -7,9 +7,11 @@ import { Component, HostBinding } from "@angular/core";
 	selector: "cds-popover-content, ibm-popover-content",
 	template: `
 		<span class="cds--popover-content">
-			<ng-content></ng-content>
+			<div>
+				<ng-content></ng-content>
+			</div>
+			<span class="cds--popover-caret cds--popover--auto-align"></span>
 		</span>
-		<span class="cds--popover-caret"></span>
 	`
 })
 export class PopoverContent {

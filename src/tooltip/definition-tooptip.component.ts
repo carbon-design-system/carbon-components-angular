@@ -2,8 +2,11 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
+	ElementRef,
 	HostListener,
 	Input,
+	NgZone,
+	Renderer2,
 	TemplateRef
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
@@ -24,7 +27,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		<button
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
-			[attr.aria-expanded]="isOpen"
+			[attr.aria-expanded]="_open"
 			(blur)="onBlur($event)"
 			(click)="onClick($event)"
 			type="button">
@@ -34,7 +37,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="isOpen"
+			[attr.aria-hidden]="_open"
 			role="tooltip">
 			<span class="cds--popover-content cds--definition-tooltip">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
@@ -50,18 +53,17 @@ export class TooltipDefinition extends PopoverContainer {
 	@Input() id = `tooltip-definition-${TooltipDefinition.tooltipCount++}`;
 
 	/**
-	 * Override alignment options
-	 */
-	@Input() align: "top" | "top-left" | "top-right"
-		| "bottom" | "bottom-left" | "bottom-right" = "bottom";
-
-	/**
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor(private ref: ChangeDetectorRef) {
-		super(ref);
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(elementRef, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
@@ -71,12 +73,12 @@ export class TooltipDefinition extends PopoverContainer {
 	}
 
 	onClick(event: Event) {
-		this.handleChange(!this.isOpen, event);
+		this.handleChange(!this._open, event);
 	}
 
 	@HostListener("keyup", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		if (this.isOpen && event.key === "Escape") {
+		if (this._open && event.key === "Escape") {
 			event.stopPropagation();
 			this.handleChange(false, event);
 		}

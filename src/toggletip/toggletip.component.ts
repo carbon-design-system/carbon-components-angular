@@ -8,6 +8,7 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
 	Renderer2
 } from "@angular/core";
 import { fromEvent } from "rxjs";
@@ -39,35 +40,43 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	@Input() id = `tooltip-${Toggletip.toggletipCounter++}`;
 
 	@HostBinding("class.cds--toggletip") toggletipClass = true;
-	@HostBinding("class.cds--toggletip--open") @Input() isOpen = false;
+	@HostBinding("class.cds--toggletip--open") @Input() _open = false;
 
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2, private ref: ChangeDetectorRef) {
-		super(ref);
+	constructor(
+		protected hostElement: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(hostElement, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
 
 	ngAfterViewInit(): void {
+
+		this.initialzeReferences();
+
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")
 			.subscribe((event: Event) => {
-				// Add/Remove event listener based on isOpen to improve performance when there
+				// Add/Remove event listener based on _open to improve performance when there
 				// are a lot of toggletips
-				if (this.isOpen) {
+				if (this._open) {
 					document.removeEventListener("click", this.documentClick);
 				} else {
 					document.addEventListener("click", this.documentClick);
 				}
 
-				this.handleExpansion(!this.isOpen, event);
+				this.handleExpansion(!this._open, event);
 			});
 
 		// Toggletip is open on initial render, add 'click' event listener to document so users can close
-		if (this.isOpen) {
+		if (this._open) {
 			document.addEventListener("click", this.documentClick);
 		}
 
@@ -93,7 +102,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	private handleExpansion(state = false, event: Event) {
 		this.handleChange(state, event);
 		if (this.btn) {
-			this.renderer.setAttribute(this.btn.nativeElement, "aria-expanded", this.isOpen.toString());
+			this.renderer.setAttribute(this.btn.nativeElement, "aria-expanded", this._open.toString());
 		}
 	}
 }

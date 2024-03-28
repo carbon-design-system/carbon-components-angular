@@ -48,6 +48,7 @@ const Template = (args) => ({
 		<cds-toggletip
 			[isOpen]="isOpen"
 			[align]="align"
+			[autoAlign]="autoAlign"
 			(isOpenChange)="isOpenChange($event)"
 			(onClose)="onClose($event)"
 			(onOpen)="onOpen($event)">
@@ -87,7 +88,8 @@ const Template = (args) => ({
 export const Basic = Template.bind({});
 Basic.args = {
 	isOpen: true,
-	align: "bottom"
+	align: "bottom",
+	autoAlign: false
 };
 Basic.argTypes = {
 	onOpen: {
