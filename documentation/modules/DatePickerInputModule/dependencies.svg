@@ -24,21 +24,21 @@
 <title>cluster_DatePickerInputModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 706,-379.59 706,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_DatePickerInputModule_imports</title>
-<polygon fill="none" stroke="black" points="427,-189.59 427,-241.59 527,-241.59 527,-189.59 427,-189.59"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_DatePickerInputModule_declarations</title>
 <polygon fill="none" stroke="black" points="295,-189.59 295,-241.59 419,-241.59 419,-189.59 295,-189.59"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_DatePickerInputModule_exports</title>
-<polygon fill="none" stroke="black" points="353,-319.59 353,-371.59 481,-371.59 481,-319.59 353,-319.59"/>
+<g id="clust4" class="cluster">
+<title>cluster_DatePickerInputModule_imports</title>
+<polygon fill="none" stroke="black" points="427,-189.59 427,-241.59 527,-241.59 527,-189.59 427,-189.59"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_DatePickerInputModule_DatePickerInput_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-176.59 698,-176.59 698,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_DatePickerInputModule_exports</title>
+<polygon fill="none" stroke="black" points="353,-319.59 353,-371.59 481,-371.59 481,-319.59 353,-319.59"/>
 </g>
 <!-- DatePickerInput -->
 <g id="node1" class="node">
