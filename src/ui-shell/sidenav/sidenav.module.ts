@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 import { I18nModule } from "carbon-components-angular/i18n";
 
@@ -21,7 +22,7 @@ export {
 		SideNavItem,
 		SideNavMenu
 	],
-	imports: [CommonModule, I18nModule],
+	imports: [CommonModule, I18nModule, RouterModule],
 	exports: [
 		SideNav,
 		SideNavItem,
