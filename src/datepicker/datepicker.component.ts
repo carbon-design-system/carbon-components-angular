@@ -21,6 +21,7 @@ import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
+import { Options } from "flatpickr/dist/types/options";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { I18n } from "carbon-components-angular/i18n";
 
@@ -222,10 +223,10 @@ export class DatePicker implements
 	@Input() plugins = [];
 
 	@Input()
-	set flatpickrOptions(options) {
+	set flatpickrOptions(options: Partial<Options>) {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
 	}
-	get flatpickrOptions() {
+	get flatpickrOptions(): Partial<Options> {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
 			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
@@ -251,7 +252,7 @@ export class DatePicker implements
 
 	protected _value = [];
 
-	protected _flatpickrOptions = {
+	protected _flatpickrOptions: Partial<Options> = {
 		allowInput: true
 	};
 
