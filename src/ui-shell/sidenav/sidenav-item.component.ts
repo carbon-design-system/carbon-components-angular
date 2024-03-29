@@ -124,8 +124,7 @@ export class SideNavItem implements OnChanges {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {
-	}
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.active) {
