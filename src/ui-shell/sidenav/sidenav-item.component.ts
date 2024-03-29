@@ -35,8 +35,7 @@ import { Router } from "@angular/router";
 				[routerLinkActive]="'cds--side-nav__item--active'"
 				[ariaCurrentWhenActive]="'page'"
 				[attr.title]="title ? title : null"
-				class="cds--side-nav__link"
-			>
+				class="cds--side-nav__link">
 				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
 			</a>
 		</ng-template>
