@@ -42,8 +42,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			<span class="cds--popover-content cds--definition-tooltip">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 			</span>
-			<span class="cds--popover-caret"></span>
+			<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
 		</span>
 	`
 })
