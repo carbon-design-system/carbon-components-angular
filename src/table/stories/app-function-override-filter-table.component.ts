@@ -1,10 +1,7 @@
 import {
 	Component,
 	OnInit,
-	Input,
-	TemplateRef,
-	ViewChild,
-	AfterViewInit
+	Input
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
@@ -17,7 +14,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 @Component({
 	selector: "app-function-override-filter-table",
 	template: `
-
+	<cds-table-container>
 		<cds-table-header>
 			<h4 cdsTableHeaderTitle>Filter table</h4>
 			<p cdsTableHeaderDescription>
@@ -32,6 +29,15 @@ import Filter16 from "@carbon/icons/es/filter/16";
 					(valueChange)="filterNodeNames($event)"
 					(clear)="searchValue = ''">
 				</cds-table-toolbar-search>
+				<button
+					cdsButton="ghost"
+					class="toolbar-action"
+					[cdsOverflowMenu]="templateRef"
+					placement="bottom"
+					[flip]="true"
+					[offset]="{ x: 3, y: 0 }">
+					<svg cdsIcon="filter" size="16" class="cds--toolbar-action__icon"></svg>
+				</button>
 				<button cdsButton="primary" size="sm">
 					Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 				</button>
@@ -49,64 +55,36 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			[isDataGrid]="isDataGrid">
 			<ng-content></ng-content>
 		</cds-table>
+	</cds-table-container>
 
-	<ng-template #tooltip let-data="data">
-		<cds-tooltip align="bottom" [autoAlign]="true"
-			[isOpen]="data.isOpen"
-			description="Some very very very very very very very very very long description........">
-			<button type="button" class="tooltip-trigger">
-				<svg cdsIcon="add" size="16"></svg>
-			</button>
-		</cds-tooltip>
-	</ng-template>
-
-
-	<ng-template #defTooltip let-data="data">
-		<cds-tooltip-definition align="right-end" [autoAlign]="true"
-			description="Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.">
-			URL
-		</cds-tooltip-definition>
-	</ng-template>
-
-	<ng-template #popover let-data="data">
-		<div
-			cdsPopover
-			[isOpen]="data.isOpen"
-			align="left"
-			[autoAlign]="true">
-			<div class="popover-trigger" class="tooltip-trigger">
-				<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
-					<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
-				</svg>
-			</div>
-			<cds-popover-content>
-				<div style="padding: 1rem">
-					<p class="popover-title">Available storage</p>
-					<p class="popover-content">This server has 150GB of block storage remaining</p>
-				</div>
-			</cds-popover-content>
+	<ng-template #templateRef>
+		<div style="padding: 0 1rem;" (click)="overflowOnClick($event)">
+			<div style="padding-top: 0.5rem; color: grey;">Countries shown</div>
+			<cds-checkbox
+				[checked]="displayedCountries.includes('US')"
+				(checkedChange)="filterCountries('US', $event)">
+				US
+			</cds-checkbox>
+			<cds-checkbox
+				[checked]="displayedCountries.includes('France')"
+				(checkedChange)="filterCountries('France', $event)">
+				France
+			</cds-checkbox>
+			<cds-checkbox
+				[checked]="displayedCountries.includes('Argentina')"
+				(checkedChange)="filterCountries('Argentina', $event)">
+				Argentina
+			</cds-checkbox>
+			<cds-checkbox
+				[checked]="displayedCountries.includes('Japan')"
+				(checkedChange)="filterCountries('Japan', $event)">
+				Japan
+			</cds-checkbox>
 		</div>
 	</ng-template>
-	`,
-	styles: [
-		`
-		.tooltip-trigger {
-			box-sizing: border-box;
-			margin: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 2rem;
-			height: 2rem;
-			background: white;
-			border: 1px solid var(--cds-border-subtle);
-			cursor: pointer;
-		}
-		svg { fill: var(--cds-background-inverse); }
-		`
-	]
+	`
 })
-export class FilterByFunctionOverrideStory implements OnInit, AfterViewInit {
+export class FilterByFunctionOverrideStory implements OnInit {
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
 	@Input() enableSingleSelect = false;
@@ -120,11 +98,50 @@ export class FilterByFunctionOverrideStory implements OnInit, AfterViewInit {
 	displayedCountries = ["US", "France", "Argentina", "Japan"];
 	searchValue = "";
 
-	@ViewChild("defTooltip") defTooltipRef: TemplateRef<any>;
-	@ViewChild("tooltip") tooltipRef: TemplateRef<any>;
-	@ViewChild("popover") popoverRef: TemplateRef<any>;
-
-	dataset = [];
+	dataset = [
+		[
+			new TableItem({ data: "800" }),
+			new TableItem({ data: "East Sadye" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		],
+		[
+			new TableItem({ data: "500" }),
+			new TableItem({ data: "Lueilwitzview" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		],
+		[
+			new TableItem({ data: "120" }),
+			new TableItem({ data: "East Arcelyside" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "France" })
+		],
+		[
+			new TableItem({ data: "119" }),
+			new TableItem({ data: "West Dylan" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Argentina" })
+		],
+		[
+			new TableItem({ data: "54" }),
+			new TableItem({ data: "Brandynberg" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Japan" })
+		],
+		[
+			new TableItem({ data: "15" }),
+			new TableItem({ data: "Stoltenbergport" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "Canada" })
+		],
+		[
+			new TableItem({ data: "12" }),
+			new TableItem({ data: "Rheabury" }),
+			new TableItem({ data: "Store" }),
+			new TableItem({ data: "US" })
+		]
+	];
 
 	constructor(protected iconService: IconService) {
 		this.iconService.registerAll([
@@ -160,121 +177,17 @@ export class FilterByFunctionOverrideStory implements OnInit, AfterViewInit {
 				data: "Node type"
 			}),
 			new TableHeaderItem({
-				data: "Template!"
+				data: "Country"
 			})
 		];
 
 		this.model.data = this.dataset;
-	}
 
-
-	ngAfterViewInit(): void {
-		this.model.data = [
-			[
-				new TableItem({
-					template: this.popoverRef,
-					data: { isOpen: false }
-				}),
-				new TableItem({ data: "East Sadye" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "US" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: false }
-				})
-			],
-			[
-				new TableItem({
-					template: this.popoverRef,
-					data: { isOpen: false }
-				}),
-				new TableItem({ data: "Lueilwitzview" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "US" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: false }
-				})
-			],
-			[
-				new TableItem({
-					template: this.popoverRef,
-					data: { isOpen: false }
-				}),
-				new TableItem({ data: "East Arcelyside" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "France" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: false }
-				})
-			],
-			[
-				new TableItem({ data: "119" }),
-				new TableItem({ data: "West Dylan" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "Argentina" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: false }
-				})
-			],
-			[
-				new TableItem({
-					template: this.popoverRef,
-					data: { isOpen: false }
-				}),
-				new TableItem({ data: "Brandynberg" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "Japan" }),
-				new TableItem({
-					template: this.defTooltipRef
-				})
-			],
-			[
-				new TableItem({ data: "15" }),
-				new TableItem({ data: "Stoltenbergport" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "Canada" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: true }
-				})
-			],
-			[
-				new TableItem({
-					template: this.popoverRef,
-					data: { isOpen: true }
-				}),
-				new TableItem({ data: "Rheabury" }),
-				new TableItem({
-					template: this.tooltipRef,
-					data: { isOpen: false }
-				}),
-				// new TableItem({ data: "US" }),
-				new TableItem({
-					template: this.defTooltipRef,
-					data: { isOpen: false }
-				})
-			]
-		];
+		this.model.isRowFiltered = (index: number) => {
+			const nodeName = this.model.row(index)[1].data;
+			const countryName = this.model.row(index)[3].data;
+			return !nodeName.toLowerCase().includes(this.searchValue.toLowerCase())
+				|| !this.displayedCountries.includes(countryName);
+		};
 	}
 }

@@ -1,5 +1,5 @@
-@use "@carbon/styles";
-@use "@carbon/styles/scss/grid/flexbox";
+@use '@carbon/styles';
+@use '@carbon/styles/scss/grid/flexbox';
 
 html {
 	height: 100%;
@@ -26,7 +26,7 @@ html {
  * Styling retrieved from:
  * https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/Grid
  */
-// Css Grid
+ // Css Grid
 .css-grid-story {
 	.cds--css-grid {
 		background-color: styles.$blue-20;
@@ -34,7 +34,7 @@ html {
 	}
 
 	.cds--css-grid p {
-		@include styles.type-style("code-02");
+		@include styles.type-style('code-02');
 	}
 
 	.cds--css-grid p:first-of-type {
@@ -85,12 +85,12 @@ html {
 	}
 
 	.cds--subgrid::before {
-		@include styles.type-style("code-01");
+		@include styles.type-style('code-01');
 		position: absolute;
 		inset-block-start: 0;
 		inset-inline-start: 0;
 		display: block;
-		content: "subgrid";
+		content: 'subgrid';
 		background: var(--grid-mode-color, #97c1ff);
 		color: styles.$black;
 		padding: 0.125rem 0.25rem;
@@ -117,7 +117,7 @@ html {
 
 // Flex Grid
 .flex-grid-story {
-	.cds--grid [class*="col"] {
+	.cds--grid [class*='col'] {
 		background-color: styles.$blue-20;
 		outline: 1px dashed styles.$blue-40;
 		min-height: 80px;
@@ -140,8 +140,8 @@ html {
 		background-color: styles.$teal-10;
 	}
 
-	.cds--grid--condensed [class*="col"],
-	.cds--row--condensed [class*="col"] {
+	.cds--grid--condensed [class*='col'],
+	.cds--row--condensed [class*='col'] {
 		background-color: styles.$teal-20;
 		outline: 1px dashed styles.$teal-40;
 	}
@@ -151,13 +151,9 @@ html {
 		background-color: styles.$teal-10;
 	}
 
-	.cds--grid--narrow [class*="col"],
-	.cds--row--narrow [class*="col"] {
+	.cds--grid--narrow [class*='col'],
+	.cds--row--narrow [class*='col'] {
 		background-color: styles.$teal-20;
 		outline: 1px dashed styles.$teal-40;
 	}
-}
-
-#storybook-root {
-	height: 200vh;
 }
