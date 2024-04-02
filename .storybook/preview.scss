@@ -161,17 +161,3 @@ html {
 #storybook-root {
 	height: 200vh;
 }
-
-// overrides
-.cds--popover-container.cds--popover--auto-align {
-	// Floating-ui doesn't work when parent component has position set to relative
-	// https://floating-ui.com/docs/misc#clipping
-	position: unset !important; // Default position is relative
-}
-
-// .cds--popover--open.cds--popover--auto-align .cds--popover-caret {
-// 	display: block;
-// 	block-size: var(--cds-popover-caret-width, 0.75rem);
-// 	clip-path: none;
-// 	inline-size: var(--cds-popover-caret-width, 0.75rem);
-// }
