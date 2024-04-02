@@ -13,7 +13,7 @@
   "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
-    "@carbon/styles": "^1.5.0"
+    "@carbon/styles": "^1.54.0"
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.37.0",

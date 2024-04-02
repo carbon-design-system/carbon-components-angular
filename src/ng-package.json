@@ -6,10 +6,10 @@
 	},
 	"allowedNonPeerDependencies": [
 		"@carbon/utils-position",
-		"flatpickr",
 		"@carbon/icon-helpers",
 		"@carbon/icons",
 		"@carbon/telemetry",
-    "@floating-ui/dom"
+    "@floating-ui/dom",
+    "flatpickr"
 	]
 }
