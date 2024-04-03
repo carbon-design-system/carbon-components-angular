@@ -32,8 +32,8 @@ import { Router } from "@angular/router";
 		<ng-template #sidenavItemRouterTpl>
 			<a
 				[routerLink]="route"
-				[routerLinkActive]="'cds--side-nav__item--active'"
-				[ariaCurrentWhenActive]="'page'"
+				routerLinkActive="cds--side-nav__item--active"
+				ariaCurrentWhenActive="page"
 				[attr.title]="title ? title : null"
 				class="cds--side-nav__link">
 				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
