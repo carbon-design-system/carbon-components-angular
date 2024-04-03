@@ -81,8 +81,8 @@ describe("Tooltip", () => {
 	it("should set auto alignment class to wrapper and caret", () => {
 		component.autoAlign = true;
 		fixture.detectChanges();
-		expect(tooltipEl.nativeElement.classList.contains('cds--popover--auto-align')).toBeTruthy();
-		expect(tooltipEl.nativeElement.querySelector('.cds--popover-caret.cds--popover--auto-align')).toBeDefined();
+		expect(tooltipEl.nativeElement.classList.contains("cds--popover--auto-align")).toBeTruthy();
+		expect(tooltipEl.nativeElement.querySelector(".cds--popover-caret.cds--popover--auto-align")).toBeDefined();
 	});
 
 	it("should clean up auto placement on close when auto alignment is enabled", () => {
@@ -92,5 +92,5 @@ describe("Tooltip", () => {
 		fixture.detectChanges();
 		component.isOpen = false;
 		expect(tooltipEl.componentInstance.cleanUp).toHaveBeenCalled();
-	})
+	});
 });

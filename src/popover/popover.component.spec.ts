@@ -88,8 +88,8 @@ describe("Popover", () => {
 	it("should set auto alignment class to wrapper and caret", () => {
 		popoverDirectiveEl.autoAlign = true;
 		fixture.detectChanges();
-		expect(popoverContainerElement.nativeElement.classList.contains('cds--popover--auto-align')).toBeTruthy();
-		expect(popoverContainerElement.nativeElement.querySelector('.cds--popover-caret.cds--popover--auto-align')).toBeDefined();
+		expect(popoverContainerElement.nativeElement.classList.contains("cds--popover--auto-align")).toBeTruthy();
+		expect(popoverContainerElement.nativeElement.querySelector(".cds--popover-caret.cds--popover--auto-align")).toBeDefined();
 	});
 
 	it("should clean up auto placement on close when auto alignment is enabled", () => {
@@ -99,5 +99,5 @@ describe("Popover", () => {
 		fixture.detectChanges();
 		component.isOpen = false;
 		expect(popoverDirectiveEl.cleanUp).toHaveBeenCalled();
-	})
+	});
 });
