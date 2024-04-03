@@ -29,7 +29,7 @@ import { ToggletipButton } from "./toggletip-button.directive";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-content select="[cdsToggletipButton]"></ng-content>
-		<cds-popover-content>
+		<cds-popover-content [autoAlign]="autoAlign">
 			<ng-content select="[cdsToggletipContent]"></ng-content>
 		</cds-popover-content>
 	`
@@ -58,8 +58,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-
-		this.initialzeReferences();
+		this.initializeReferences();
 
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")

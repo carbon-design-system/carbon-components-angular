@@ -1,15 +1,19 @@
 import {
+	AfterContentInit,
 	AfterViewInit,
 	ChangeDetectorRef,
+	ContentChild,
 	Directive,
 	ElementRef,
 	EventEmitter,
 	HostBinding,
 	Input,
 	NgZone,
+	OnChanges,
 	OnDestroy,
 	Output,
-	Renderer2
+	Renderer2,
+	SimpleChanges
 } from "@angular/core";
 import {
 	arrow,
@@ -19,6 +23,7 @@ import {
 	offset,
 	Placement
 } from "@floating-ui/dom";
+import { PopoverContent } from "./popover-content.component";
 
 // Deprecated popover alignments
 type oldPlacement = "top-left"
@@ -33,11 +38,12 @@ type oldPlacement = "top-left"
 @Directive({
 	selector: "[cdsPopover], [ibmPopover]"
 })
-export class PopoverContainer implements AfterViewInit, OnDestroy {
-
+export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
 	/**
 	 * Set alignment of popover
 	 * As of v5, `oldPlacements` are now deprecated in favor of Placements
+	 *
+	 * When `autoAlign` is set to `true`, alignment may change for best placement
 	 */
 	@Input() set align(alignment: oldPlacement | Placement) {
 		// If alignment is not passed, the default value will be `undefined`.
@@ -45,6 +51,7 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 			return;
 		}
 
+		const previousAlignment = this._align;
 		switch (alignment) {
 			case "top-left":
 				this._align = "top-start";
@@ -74,10 +81,11 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 				this._align = alignment as Placement;
 				break;
 		}
+		this.setAlignmentClass(previousAlignment);
 	}
 
 	@Input() set isOpen(open: boolean) {
-		this.handleChange(open);
+		this._open = open;
 	}
 
 	_align: Placement = "bottom";
@@ -113,12 +121,12 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
 	@HostBinding("class.cds--popover--open") _open = false;
+	@ContentChild(PopoverContent) popoverContent: PopoverContent;
 
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
 	protected caretOffset;
 	protected caretHeight;
-
 	protected autoUpdateCleanUp: Function;
 
 	constructor(
@@ -134,7 +142,8 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 	 * @param event - Event
 	 */
 	handleChange(open: boolean, event?: Event) {
-		if (this._open !== open) {
+		// We only emit the event when parameter has an event to keep existing behavior
+		if ((this._open !== open) && event) {
 			this.isOpenChange.emit(open);
 		}
 
@@ -143,20 +152,23 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 				this.onOpen.emit(event);
 			}
 
-			// auto alignment is enabled, we use auto update to set the placement for the element
+			// when auto alignment is enabled, use auto update to set the placement for the element
 			if (this.autoAlign) {
 				if (this.caretRef) {
 					// Get caret offset/height property
-					this.caretOffset = parseFloat(
-						getComputedStyle(this.caretRef).getPropertyValue("--cds-popover-offset").split("rem", 1)[0]
-					) * 16 || 10;
-					this.caretHeight = parseFloat(
-						getComputedStyle(this.caretRef).getPropertyValue("--cds-popover-caret-height").split("px", 1)[0]
-					) || 6;
+					// Getting computed styles once every open, otherwise expensive.
+					const computedStyle = getComputedStyle(this.caretRef);
+					const offset = computedStyle.getPropertyValue("--cds-popover-offset");
+					const height = computedStyle.getPropertyValue("--cds-popover-caret-height");
+					this.caretOffset = (offset?.includes("px") ? Number(offset.split("px", 1)[0]) : Number(offset.split("rem", 1)[0]) * 16) || 10;
+					this.caretHeight = (height?.includes("px") ? Number(height.split("px", 1)[0]) : Number(height.split("rem", 1)[0]) * 16) || 6;
 				}
 				if (this.elementRef.nativeElement && this.popoverContentRef) {
-					// Auto update
-					this.autoUpdateCleanUp = autoUpdate(this.elementRef.nativeElement, this.popoverContentRef, this.recomputePosition.bind(this));
+					this.autoUpdateCleanUp = autoUpdate(
+						this.elementRef.nativeElement,
+						this.popoverContentRef,
+						this.recomputePosition.bind(this)
+					);
 				}
 			}
 
@@ -170,12 +182,16 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 		this.changeDetectorRef.markForCheck();
 	}
 
+	roundByDPR(value) {
+		const dpr = window.devicePixelRatio || 1;
+		return Math.round(value * dpr) / dpr;
+	}
+
 	/**
 	 * Compute position of tooltip when autoAlign is enabled
 	 */
-	async recomputePosition() {
-		// Run outside of angular zone to avoid change detection and rely on
-		// floating-ui
+	recomputePosition() {
+		// Run outside of angular zone to avoid unnecessary change detection and rely on floating-ui
 		this.ngZone.runOutsideAngular(async () => {
 			const { x, y, placement, middlewareData } = await computePosition(
 				this.elementRef.nativeElement,
@@ -184,9 +200,9 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 					placement: this._align,
 					strategy: "fixed",
 					middleware: [
-						flip({ fallbackAxisSideDirection: "start" }),
 						offset(this.caretOffset),
-						this.caret && arrow({ element: this.caretRef })
+						flip({ fallbackAxisSideDirection: "start" }),
+						arrow({ element: this.caretRef })
 					]
 				});
 
@@ -196,9 +212,13 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 
 			// Using CSSOM to manipulate CSS to avoid content security policy inline-src
 			// https://github.com/w3c/webappsec-csp/issues/212
-			this.popoverContentRef.style.position = "fixed";
-			this.popoverContentRef.style.left = `${x}px`;
-			this.popoverContentRef.style.top = `${y}px`;
+			Object.assign(this.popoverContentRef.style, {
+				position: "fixed",
+				top: "0",
+				left: "0",
+				// Using transform instead of top/left position to improve performance
+				transform: `translate(${this.roundByDPR(x)}px,${this.roundByDPR(y)}px)`
+			});
 
 			if (middlewareData.arrow) {
 				const { x: arrowX, y: arrowY } = middlewareData.arrow;
@@ -214,24 +234,58 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 				this.caretRef.style.top = arrowY != null ? `${arrowY}px` : "";
 				this.caretRef.style.right = "";
 				this.caretRef.style.bottom = "";
-				this.caretRef.style[staticSide] = `${-this.caretHeight}px`;
+
+				if (staticSide) {
+					this.caretRef.style[staticSide] = `${-this.caretHeight}px`;
+				}
 			}
 		});
+	}
+
+	ngAfterContentInit(): void {
+		if (this.popoverContent) {
+			this.popoverContent.autoAlign = this.autoAlign;
+		}
+	}
+
+	/**
+	 * Close the popover and reopen it with updated values without emitting an event
+	 * @param changes
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		const originalState = this._open;
+		this.handleChange(false);
+
+		// Ignore first change since content is not initialized
+		if (changes.autoAlign && !changes.autoAlign.firstChange) {
+			if (this.popoverContent) {
+				this.popoverContent.autoAlign = changes.autoAlign.currentValue;
+			}
+
+			// Rerender child components with updated values
+			this.changeDetectorRef.detectChanges();
+			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
+			this.popoverContentRef.setAttribute("style", "");
+			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
+		}
+
+		this.handleChange(originalState);
 	}
 
 	/**
 	 * Handle initialization of element
 	 */
 	ngAfterViewInit(): void {
-		this.initialzeReferences();
+		this.initializeReferences();
 	}
 
-	initialzeReferences(): void {
+	initializeReferences(): void {
 		this.setAlignmentClass();
 
 		// Initialize html references since they will not change and are required for popover components
 		this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
 		this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
+
 		// Handle initial isOpen
 		this.handleChange(this._open);
 	}
@@ -258,8 +312,14 @@ export class PopoverContainer implements AfterViewInit, OnDestroy {
 	 * @param previousAlignment
 	 */
 	setAlignmentClass(previousAlignment?: string) {
+		const regexp = new RegExp("right|top|left|bottom");
 		if (this.elementRef.nativeElement && previousAlignment !== this._align) {
-			this.renderer.removeClass(this.elementRef.nativeElement, `${this.alignmentClassPrefix}${previousAlignment}`);
+			// Since we are constantly switching, it's safer to delete all matching class names
+			this.elementRef.nativeElement.classList.forEach(className => {
+				if (regexp.test(className)) {
+					this.renderer.removeClass(this.elementRef.nativeElement, `${className}`);
+				}
+			});
 			this.renderer.addClass(this.elementRef.nativeElement, `${this.alignmentClassPrefix}${this._align}`);
 		}
 	}
