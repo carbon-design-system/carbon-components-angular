@@ -10,7 +10,8 @@ import { Tooltip } from "./tooltip.component";
 			[isOpen]="isOpen"
 			[enterDelayMs]="enterDelayMs"
 			[leaveDelayMs]="leaveDelayMs"
-			[description]="description">
+			[description]="description"
+			[autoAlign]="autoAlign">
 			<button>A</button>
 		</cds-tooltip>
 	`
@@ -20,6 +21,7 @@ class TestTooltipComponent {
 	@Input() description = "Some description";
 	@Input() enterDelayMs = 0;
 	@Input() leaveDelayMs = 0;
+	@Input() autoAlign = false;
 }
 
 describe("Tooltip", () => {
@@ -75,4 +77,20 @@ describe("Tooltip", () => {
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
 	});
+
+	it("should set auto alignment class to wrapper and caret", () => {
+		component.autoAlign = true;
+		fixture.detectChanges();
+		expect(tooltipEl.nativeElement.classList.contains('cds--popover--auto-align')).toBeTruthy();
+		expect(tooltipEl.nativeElement.querySelector('.cds--popover-caret.cds--popover--auto-align')).toBeDefined();
+	});
+
+	it("should clean up auto placement on close when auto alignment is enabled", () => {
+		spyOn(tooltipEl.componentInstance, "cleanUp");
+		component.autoAlign = true;
+		component.isOpen = true;
+		fixture.detectChanges();
+		component.isOpen = false;
+		expect(tooltipEl.componentInstance.cleanUp).toHaveBeenCalled();
+	})
 });

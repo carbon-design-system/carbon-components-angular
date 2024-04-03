@@ -8,7 +8,8 @@ import { TooltipDefinition } from ".";
 	template: `
 		<cds-tooltip-definition
 			[isOpen]="isOpen"
-			[description]="description">
+			[description]="description"
+			[autoAlign]="autoAlign">
 			definition
 		</cds-tooltip-definition>
 		`
@@ -16,6 +17,7 @@ import { TooltipDefinition } from ".";
 class TestTTDefinitionComponent {
 	@Input() isOpen = false;
 	@Input() description = "Some description";
+	@Input() autoAlign = false;
 }
 
 describe("Definition tooltip", () => {
@@ -35,7 +37,6 @@ describe("Definition tooltip", () => {
 		buttonEl = fixture.debugElement.query(By.css("button"));
 	});
 
-
 	it("should create a tooltip definition component", () => {
 		expect(component).toBeTruthy();
 		expect(tooltipEl).not.toBeNull();
@@ -44,18 +45,34 @@ describe("Definition tooltip", () => {
 
 	it("should open/close tooltip definition popover on button click", () => {
 		spyOn(tooltipEl.componentInstance.isOpenChange, "emit");
-		buttonEl.triggerEventHandler("click", null);
+		buttonEl.triggerEventHandler("click", new Event("click"));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		buttonEl.triggerEventHandler("click", null);
+		buttonEl.triggerEventHandler("click", new Event("click"));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 	});
 
 	it("should markForCheck given the changeDetectorRef is set", () => {
 		const spy = spyOn(tooltipEl.componentInstance.changeDetectorRef, "markForCheck");
-		buttonEl.triggerEventHandler("click", null);
+		buttonEl.triggerEventHandler("click", new Event("click"));
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
 	});
+
+	it("should set auto alignment class to wrapper and caret", () => {
+		component.autoAlign = true;
+		fixture.detectChanges();
+		expect(tooltipEl.nativeElement.classList.contains('cds--popover--auto-align')).toBeTruthy();
+		expect(tooltipEl.nativeElement.querySelector('.cds--popover-caret.cds--popover--auto-align')).toBeDefined();
+	});
+
+	it("should clean up auto placement on close when auto alignment is enabled", () => {
+		spyOn(tooltipEl.componentInstance, "cleanUp");
+		component.autoAlign = true;
+		component.isOpen = true;
+		fixture.detectChanges();
+		component.isOpen = false;
+		expect(tooltipEl.componentInstance.cleanUp).toHaveBeenCalled();
+	})
 });

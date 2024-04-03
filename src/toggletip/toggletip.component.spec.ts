@@ -19,12 +19,14 @@ import {
 	ToggletipContent,
 	ToggletipLabel
 } from "./";
+import { PopoverContent } from "../popover";
 
 @Component({
 	template: `
 		<span cdsToggletipLabel>Toggletip label</span>
 		<cds-toggletip
-			[isOpen]="isOpen">
+			[isOpen]="isOpen"
+			[autoAlign]="autoAlign">
 			<button cdsToggletipButton>
 				btn
 			</button>
@@ -38,6 +40,7 @@ import {
 })
 class TestToggletipComponent {
 	@Input() isOpen = false;
+	@Input() autoAlign = false;
 }
 
 describe("Toggletip", () => {
@@ -58,7 +61,9 @@ describe("Toggletip", () => {
 				ToggletipAction,
 				ToggletipButton,
 				ToggletipContent,
-				ToggletipLabel
+				ToggletipLabel,
+				// Need to import popover content since we use the component in toggletip
+				PopoverContent
 			]
 		});
 		fixture = TestBed.createComponent(TestToggletipComponent);
@@ -109,4 +114,20 @@ describe("Toggletip", () => {
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
 	});
+
+	it("should set auto alignment class to wrapper and caret", () => {
+		component.autoAlign = true;
+		fixture.detectChanges();
+		expect(toggletipEl.nativeElement.classList.contains('cds--popover--auto-align')).toBeTruthy();
+		expect(toggletipEl.nativeElement.querySelector('.cds--popover-caret.cds--popover--auto-align')).toBeDefined();
+	});
+
+	it("should clean up auto placement on close when auto alignment is enabled", () => {
+		spyOn(toggletipEl.componentInstance, "cleanUp");
+		component.autoAlign = true;
+		component.isOpen = true;
+		fixture.detectChanges();
+		component.isOpen = false;
+		expect(toggletipEl.componentInstance.cleanUp).toHaveBeenCalled();
+	})
 });
