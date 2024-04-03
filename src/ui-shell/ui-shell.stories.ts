@@ -312,21 +312,6 @@ SideNavigationRouter.storyName = "Side Navigation with router";
 
 const SideNavigationUseRouterTemplate = (args) => ({
 	props: args,
-	styles: [`
-		::ng-deep .cds--side-nav__item--active {
-			background: var(--cds-background-selected);
-
-			&:before {
-			    position: absolute;
-    			background-color: var(--cds-border-interactive, #0f62fe);
-    			content: "";
-    			inline-size: 3px;
-    			inset-block-end: 0;
-    			inset-block-start: 0;
-    			inset-inline-start: 0;
-    		}
-		}
-	`],
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-sidenav>
