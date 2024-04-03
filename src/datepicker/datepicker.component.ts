@@ -273,7 +273,7 @@ export class DatePicker implements
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
 				if (inputValue || rangeInputValue) {
 					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
-					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue || inputValue)]);
 					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
