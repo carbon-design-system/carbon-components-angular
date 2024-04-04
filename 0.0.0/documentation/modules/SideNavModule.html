@@ -264,6 +264,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
+import { RouterModule } from &quot;@angular/router&quot;;
 
 import { I18nModule } from &quot;carbon-components-angular/i18n&quot;;
 
@@ -285,7 +286,7 @@ export {
 		SideNavItem,
 		SideNavMenu
 	],
-	imports: [CommonModule, I18nModule],
+	imports: [CommonModule, I18nModule, RouterModule],
 	exports: [
 		SideNav,
 		SideNavItem,

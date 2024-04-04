@@ -1105,13 +1105,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SideNavModule.html" data-type="entity-link" >SideNavModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SideNavModule-8abc8f4178079676eafae7d8b35bf88b2f873b13f48e01ae7a1fca260069d9da97b85cf09a0d43ad04ed69299c604c7836200e4e40635a7b4f8da955dd4d7122"' : 'data-bs-target="#xs-components-links-module-SideNavModule-8abc8f4178079676eafae7d8b35bf88b2f873b13f48e01ae7a1fca260069d9da97b85cf09a0d43ad04ed69299c604c7836200e4e40635a7b4f8da955dd4d7122"' }>
+                                            'data-bs-target="#components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' : 'data-bs-target="#xs-components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SideNavModule-8abc8f4178079676eafae7d8b35bf88b2f873b13f48e01ae7a1fca260069d9da97b85cf09a0d43ad04ed69299c604c7836200e4e40635a7b4f8da955dd4d7122"' :
-                                            'id="xs-components-links-module-SideNavModule-8abc8f4178079676eafae7d8b35bf88b2f873b13f48e01ae7a1fca260069d9da97b85cf09a0d43ad04ed69299c604c7836200e4e40635a7b4f8da955dd4d7122"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' :
+                                            'id="xs-components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' }>
                                             <li class="link">
                                                 <a href="components/SideNav.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SideNav</a>
                                             </li>
