@@ -21,6 +21,7 @@ class FooComponent { }
 			<cds-sidenav-menu title="Example Title"></cds-sidenav-menu>
 			<cds-sidenav-item
 				[route]="route"
+				[useRouter]="useRouter"
 				(navigation)="onNavigation($event)">
 			</cds-sidenav-item>
 		</cds-sidenav>
@@ -31,6 +32,7 @@ class SideNavTest {
 	hidden = false;
 	allowExpansion = false;
 	statusPromise = null;
+	useRouter = false;
 	onNavigation(event) {
 		this.statusPromise = event;
 	}
@@ -70,54 +72,119 @@ describe("SideNav", () => {
 		expect(fixture.componentInstance instanceof SideNav).toBe(true);
 	});
 
-	it("should emit the navigation status promise when the link is activated and call onNavigation", async () => {
-		fixture = TestBed.createComponent(SideNavTest);
-		wrapper = fixture.componentInstance;
-		spyOn(wrapper, "onNavigation").and.callThrough();
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".cds--side-nav__link"));
-		element.nativeElement.click();
-		fixture.detectChanges();
-		expect(wrapper.onNavigation).toHaveBeenCalled();
-		const status = await wrapper.statusPromise;
-		expect(status).toBe(true);
+	describe("when useRouter is false", () => {
+		let fixture;
+
+		beforeEach(() => {
+			fixture = TestBed.createComponent(SideNavTest);
+			fixture.componentInstance.useRouter = false;
+			fixture.detectChanges();
+		});
+
+		it("should emit the navigation status promise when the link is activated and call onNavigation", async () => {
+			wrapper = fixture.componentInstance;
+			spyOn(wrapper, "onNavigation").and.callThrough();
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css(".cds--side-nav__link"));
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(wrapper.onNavigation).toHaveBeenCalled();
+			const status = await wrapper.statusPromise;
+			expect(status).toBe(true);
+		});
+
+		it("should expand sidenav-menu on click", () => {
+			wrapper = fixture.componentInstance;
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css(".cds--side-nav__submenu"));
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(element.nativeElement.getAttribute("aria-expanded")).toBe("true");
+			expect(element.componentInstance.expanded).toBe(true);
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(element.nativeElement.getAttribute("aria-expanded")).toBe("false");
+			expect(element.componentInstance.expanded).toBe(false);
+		});
+
+		it("should set the sidenav-menu title to Example Title", () => {
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
+			expect(element.nativeElement.textContent).toEqual("Example Title");
+		});
+
+		it("should toggle expanded on click", () => {
+			wrapper = fixture.componentInstance;
+			wrapper.allowExpansion = true;
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css("cds-sidenav"));
+			let sidenavButton = element.nativeElement.querySelector(
+				".cds--side-nav__toggle"
+			);
+			element.componentInstance.expanded = false;
+			sidenavButton.click();
+			fixture.detectChanges();
+			expect(element.componentInstance.expanded).toBe(true);
+			sidenavButton.click();
+			fixture.detectChanges();
+			expect(element.componentInstance.expanded).toBe(false);
+		});
 	});
 
-	it("should expand sidenav-menu on click", () => {
-		fixture = TestBed.createComponent(SideNavTest);
-		wrapper = fixture.componentInstance;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".cds--side-nav__submenu"));
-		element.nativeElement.click();
-		fixture.detectChanges();
-		expect(element.nativeElement.getAttribute("aria-expanded")).toBe("true");
-		expect(element.componentInstance.expanded).toBe(true);
-		element.nativeElement.click();
-		fixture.detectChanges();
-		expect(element.nativeElement.getAttribute("aria-expanded")).toBe("false");
-		expect(element.componentInstance.expanded).toBe(false);
-	});
+	describe("when useRouter is true", () => {
+		let fixture;
 
-	it("should set the sidenav-menu title to Example Title", () => {
-		fixture = TestBed.createComponent(SideNavTest);
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
-		expect(element.nativeElement.textContent).toEqual("Example Title");
-	});
+		beforeEach(() => {
+			fixture = TestBed.createComponent(SideNavTest);
+			fixture.componentInstance.useRouter = true;
+			fixture.detectChanges();
+		});
 
-	it("should toggle expanded on click", () => {
-		fixture = TestBed.createComponent(SideNavTest);
-		wrapper = fixture.componentInstance;
-		wrapper.allowExpansion = true;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("cds-sidenav"));
-		let sidenavButton = element.nativeElement.querySelector(".cds--side-nav__toggle");
-		element.componentInstance.expanded = false;
-		sidenavButton.click();
-		fixture.detectChanges();
-		expect(element.componentInstance.expanded).toBe(true);
-		sidenavButton.click();
-		fixture.detectChanges();
-		expect(element.componentInstance.expanded).toBe(false);
+		it("should not emit the navigation status promise when the link is activated and call onNavigation", async () => {
+			wrapper = fixture.componentInstance;
+			spyOn(wrapper, "onNavigation").and.callThrough();
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css(".cds--side-nav__link"));
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(wrapper.onNavigation).not.toHaveBeenCalled();
+		});
+
+		it("should expand sidenav-menu on click", () => {
+			wrapper = fixture.componentInstance;
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css(".cds--side-nav__submenu"));
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(element.nativeElement.getAttribute("aria-expanded")).toBe("true");
+			expect(element.componentInstance.expanded).toBe(true);
+			element.nativeElement.click();
+			fixture.detectChanges();
+			expect(element.nativeElement.getAttribute("aria-expanded")).toBe("false");
+			expect(element.componentInstance.expanded).toBe(false);
+		});
+
+		it("should set the sidenav-menu title to Example Title", () => {
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
+			expect(element.nativeElement.textContent).toEqual("Example Title");
+		});
+
+		it("should toggle expanded on click", () => {
+			wrapper = fixture.componentInstance;
+			wrapper.allowExpansion = true;
+			fixture.detectChanges();
+			element = fixture.debugElement.query(By.css("cds-sidenav"));
+			let sidenavButton = element.nativeElement.querySelector(
+				".cds--side-nav__toggle"
+			);
+			element.componentInstance.expanded = false;
+			sidenavButton.click();
+			fixture.detectChanges();
+			expect(element.componentInstance.expanded).toBe(true);
+			sidenavButton.click();
+			fixture.detectChanges();
+			expect(element.componentInstance.expanded).toBe(false);
+		});
 	});
 });
