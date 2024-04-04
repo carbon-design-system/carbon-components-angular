@@ -119,7 +119,7 @@ describe("SideNav", () => {
 			fixture.detectChanges();
 			element = fixture.debugElement.query(By.css("cds-sidenav"));
 			let sidenavButton = element.nativeElement.querySelector(
-				".cds--side-nav__toggle",
+				".cds--side-nav__toggle"
 			);
 			element.componentInstance.expanded = false;
 			sidenavButton.click();
@@ -176,7 +176,7 @@ describe("SideNav", () => {
 			fixture.detectChanges();
 			element = fixture.debugElement.query(By.css("cds-sidenav"));
 			let sidenavButton = element.nativeElement.querySelector(
-				".cds--side-nav__toggle",
+				".cds--side-nav__toggle"
 			);
 			element.componentInstance.expanded = false;
 			sidenavButton.click();
