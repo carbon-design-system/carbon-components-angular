@@ -17,14 +17,14 @@ import { Component, HostBinding, ViewChild, ElementRef, AfterViewInit } from "@a
 })
 export class PopoverContent implements AfterViewInit {
 	@HostBinding("class.cds--popover") popoverClass = true;
-	@ViewChild('content') popoverContent: ElementRef;
+	@ViewChild("content") popoverContent: ElementRef;
 	autoAlign = false;
 
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {
 			// Get the parent element and check if auto align is enabled
-			const parentElement = this.popoverContent.nativeElement.closest('.cds--popover-container');
-			this.autoAlign = parentElement?.classList.contains('cds--popover--auto-align');
+			const parentElement = this.popoverContent.nativeElement.closest(".cds--popover-container");
+			this.autoAlign = parentElement?.classList.contains("cds--popover--auto-align");
 		}
 	}
 }
