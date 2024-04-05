@@ -1,4 +1,11 @@
-import { Component, HostBinding, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import {
+	Component,
+	HostBinding,
+	ViewChild,
+	ElementRef,
+	AfterViewInit,
+	ChangeDetectorRef
+} from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-popover--basic)
@@ -20,11 +27,15 @@ export class PopoverContent implements AfterViewInit {
 	@ViewChild("content") popoverContent: ElementRef;
 	autoAlign = false;
 
+	constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {
 			// Get the parent element and check if auto align is enabled
 			const parentElement = this.popoverContent.nativeElement.closest(".cds--popover-container");
 			this.autoAlign = parentElement?.classList.contains("cds--popover--auto-align");
+			// Unfortunately for this work around, we need to manually run change detection
+			this.changeDetectorRef.detectChanges();
 		}
 	}
 }

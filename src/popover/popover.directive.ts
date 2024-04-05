@@ -1,8 +1,6 @@
 import {
-	AfterContentInit,
 	AfterViewInit,
 	ChangeDetectorRef,
-	ContentChild,
 	Directive,
 	ElementRef,
 	EventEmitter,
@@ -23,7 +21,6 @@ import {
 	offset,
 	Placement
 } from "@floating-ui/dom";
-import { PopoverContent } from "./popover-content.component";
 
 // Deprecated popover alignments
 type oldPlacement = "top-left"
@@ -38,7 +35,7 @@ type oldPlacement = "top-left"
 @Directive({
 	selector: "[cdsPopover], [ibmPopover]"
 })
-export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
+export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Set alignment of popover
 	 * As of v5, `oldPlacements` are now deprecated in favor of Placements
@@ -118,7 +115,6 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
 	@Input() @HostBinding("class.cds--popover--open") isOpen = false;
-	@ContentChild(PopoverContent) popoverContent: PopoverContent;
 
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
@@ -236,12 +232,6 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 				}
 			}
 		});
-	}
-
-	ngAfterContentInit(): void {
-		if (this.popoverContent) {
-			this.popoverContent.autoAlign = this.autoAlign;
-		}
 	}
 
 	/**
