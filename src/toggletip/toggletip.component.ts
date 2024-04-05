@@ -40,7 +40,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	@Input() id = `tooltip-${Toggletip.toggletipCounter++}`;
 
 	@HostBinding("class.cds--toggletip") toggletipClass = true;
-	@HostBinding("class.cds--toggletip--open") @Input() _open = false;
+	@HostBinding("class.cds--toggletip--open") @Input() isOpen = false;
 
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
@@ -65,17 +65,17 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 			.subscribe((event: Event) => {
 				// Add/Remove event listener based on _open to improve performance when there
 				// are a lot of toggletips
-				if (this._open) {
+				if (this.isOpen) {
 					document.removeEventListener("click", this.documentClick);
 				} else {
 					document.addEventListener("click", this.documentClick);
 				}
 
-				this.handleExpansion(!this._open, event);
+				this.handleExpansion(!this.isOpen, event);
 			});
 
 		// Toggletip is open on initial render, add 'click' event listener to document so users can close
-		if (this._open) {
+		if (this.isOpen) {
 			document.addEventListener("click", this.documentClick);
 		}
 
@@ -101,7 +101,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	private handleExpansion(state = false, event: Event) {
 		this.handleChange(state, event);
 		if (this.btn) {
-			this.renderer.setAttribute(this.btn.nativeElement, "aria-expanded", this._open.toString());
+			this.renderer.setAttribute(this.btn.nativeElement, "aria-expanded", this.isOpen.toString());
 		}
 	}
 }

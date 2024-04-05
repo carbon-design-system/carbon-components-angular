@@ -51,12 +51,12 @@ describe("Tooltip", () => {
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		expect(tooltipEl.componentInstance._open).toBeTruthy();
+		expect(tooltipEl.componentInstance.isOpen).toBeTruthy();
 		tooltipEl.nativeElement.dispatchEvent(new MouseEvent("mouseleave"));
 		tick();
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		expect(tooltipEl.componentInstance._open).toBeFalsy();
+		expect(tooltipEl.componentInstance.isOpen).toBeFalsy();
 	}));
 
 	it("should open/close tooltip on content focusin/focusout", () => {
@@ -64,11 +64,11 @@ describe("Tooltip", () => {
 		tooltipEl.nativeElement.dispatchEvent(new Event("focusin"));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		expect(tooltipEl.componentInstance._open).toBeTruthy();
+		expect(tooltipEl.componentInstance.isOpen).toBeTruthy();
 		tooltipEl.nativeElement.dispatchEvent(new Event("focusout"));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		expect(tooltipEl.componentInstance._open).toBeFalsy();
+		expect(tooltipEl.componentInstance.isOpen).toBeFalsy();
 	});
 
 	it("should markForCheck given the changeDetectorRef is set", () => {

@@ -74,12 +74,12 @@ export class TooltipDefinition extends PopoverContainer {
 	}
 
 	onClick(event: Event) {
-		this.handleChange(!this._open, event);
+		this.handleChange(!this.isOpen, event);
 	}
 
 	@HostListener("keyup", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		if (this._open && event.key === "Escape") {
+		if (this.isOpen && event.key === "Escape") {
 			event.stopPropagation();
 			this.handleChange(false, event);
 		}

@@ -84,10 +84,6 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 		this.setAlignmentClass(previousAlignment);
 	}
 
-	@Input() set isOpen(open: boolean) {
-		this._open = open;
-	}
-
 	_align: Placement = "bottom";
 	readonly alignmentClassPrefix = "cds--popover--";
 
@@ -121,7 +117,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	 */
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
-	@HostBinding("class.cds--popover--open") _open = false;
+	@Input() @HostBinding("class.cds--popover--open") isOpen = false;
 	@ContentChild(PopoverContent) popoverContent: PopoverContent;
 
 	protected popoverContentRef: HTMLElement;
@@ -144,7 +140,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	 */
 	handleChange(open: boolean, event?: Event) {
 		// We only emit the event when parameter has an event to keep existing behavior
-		if ((this._open !== open) && event) {
+		if ((this.isOpen !== open) && event) {
 			this.isOpenChange.emit(open);
 		}
 
@@ -178,7 +174,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 				this.onClose.emit(event);
 			}
 		}
-		this._open = open;
+		this.isOpen = open;
 		this.changeDetectorRef.markForCheck();
 	}
 
@@ -253,8 +249,8 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	 * @param changes
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
-		// Close and reopen the popover, handle programmatic opens/close
-		const originalState = this._open;
+		// Close and reopen the popover, handle alignment/programmatic open/close
+		const originalState = this.isOpen;
 		this.handleChange(false);
 
 		// Ignore first change since content is not initialized
@@ -283,7 +279,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 		this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
 
 		// Handle initial isOpen
-		this.handleChange(this._open);
+		this.handleChange(this.isOpen);
 	}
 
 	/**

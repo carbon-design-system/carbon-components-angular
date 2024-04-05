@@ -142,7 +142,7 @@ const AutoAlignTemplate = (args) => ({
 			Scrolling will update the position of the popover:
 			<div style="position: absolute; top: 500px; left: 500px;">
 				<cds-tooltip
-					isOpen="true"
+					[isOpen]="isOpen"
 					[caret]="caret"
 					[align]="align"
 					[autoAlign]="true"

@@ -94,7 +94,7 @@ describe("Toggletip", () => {
 		actionEl.nativeElement.querySelector("button").click();
 		tick();
 		fixture.detectChanges();
-		expect(toggletipEl.componentInstance._open).toBeTruthy();
+		expect(toggletipEl.componentInstance.isOpen).toBeTruthy();
 	}));
 
 	it("should close toggletip when document window is clicked (Except toggletip nodes)", fakeAsync(() => {
@@ -105,7 +105,7 @@ describe("Toggletip", () => {
 		buttonEl.nativeElement.click();
 		tick();
 		fixture.detectChanges();
-		expect(toggletipEl.componentInstance._open).toBeFalsy();
+		expect(toggletipEl.componentInstance.isOpen).toBeFalsy();
 	}));
 
 	it("should markForCheck given the changeDetectorRef is set", () => {
