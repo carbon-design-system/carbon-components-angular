@@ -27,7 +27,7 @@ export class PopoverContent implements AfterViewInit {
 	@ViewChild("content") popoverContent: ElementRef;
 	autoAlign = false;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) { }
+	constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {
