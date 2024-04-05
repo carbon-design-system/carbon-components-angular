@@ -127,7 +127,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 		protected ngZone: NgZone,
 		protected renderer: Renderer2,
 		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	) {}
 
 	/**
 	 * Handles emitting open/close event
