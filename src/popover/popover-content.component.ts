@@ -34,7 +34,7 @@ export class PopoverContent implements AfterViewInit {
 			// Get the parent element and check if auto align is enabled
 			const parentElement = this.popoverContent.nativeElement.closest(".cds--popover-container");
 			this.autoAlign = parentElement?.classList.contains("cds--popover--auto-align");
-			// Unfortunately for this work around, we need to manually run change detection
+			// Run change detection manually to resolve ExpressionHasChanged
 			this.changeDetectorRef.detectChanges();
 		}
 	}
