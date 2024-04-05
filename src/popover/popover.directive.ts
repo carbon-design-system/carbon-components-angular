@@ -284,9 +284,9 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	cleanUp() {
 		if (this.autoUpdateCleanUp) {
-			this.autoUpdateCleanUp?.();
-			this.autoUpdateCleanUp = undefined;
+			this.autoUpdateCleanUp();
 		}
+		this.autoUpdateCleanUp = undefined;
 	}
 
 	/**
