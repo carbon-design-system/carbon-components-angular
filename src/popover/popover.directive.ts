@@ -120,7 +120,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	protected caretRef: HTMLElement;
 	protected caretOffset: number;
 	protected caretHeight: number;
-	protected autoUpdateCleanUp: Function;
+	protected unmountFloatingElement: Function;
 
 	constructor(
 		protected elementRef: ElementRef,
@@ -157,7 +157,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 					this.caretHeight = (height?.includes("px") ? Number(height.split("px", 1)[0]) : Number(height.split("rem", 1)[0]) * 16) || 6;
 				}
 				if (this.elementRef.nativeElement && this.popoverContentRef) {
-					this.autoUpdateCleanUp = autoUpdate(
+					this.unmountFloatingElement = autoUpdate(
 						this.elementRef.nativeElement,
 						this.popoverContentRef,
 						this.recomputePosition.bind(this)
@@ -283,10 +283,10 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	 * Clean up `autoUpdate` if auto alignment is enabled
 	 */
 	cleanUp() {
-		if (this.autoUpdateCleanUp) {
-			this.autoUpdateCleanUp();
+		if (this.unmountFloatingElement) {
+			this.unmountFloatingElement();
 		}
-		this.autoUpdateCleanUp = undefined;
+		this.unmountFloatingElement = undefined;
 	}
 
 	/**
