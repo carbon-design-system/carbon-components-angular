@@ -34,7 +34,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="!_open"
+			[attr.aria-hidden]="!isOpen"
 			role="tooltip">
 			<ng-container *ngIf="!disabled">
 				<span class="cds--popover-content cds--tooltip-content">

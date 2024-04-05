@@ -27,7 +27,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		<button
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
-			[attr.aria-expanded]="_open"
+			[attr.aria-expanded]="isOpen"
 			(blur)="onBlur($event)"
 			(click)="onClick($event)"
 			type="button">
@@ -37,7 +37,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="_open"
+			[attr.aria-hidden]="isOpen"
 			role="tooltip">
 			<span class="cds--popover-content cds--definition-tooltip">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
