@@ -29,7 +29,7 @@ class TestPopoverComponent {
 	@Input() align = "bottom";
 	@Input() caret = true;
 	@Input() highContrast = false;
-	@Input() autoAlign = false;
+	@Input() autoAlign = true;
 }
 
 describe("Popover", () => {
@@ -86,15 +86,12 @@ describe("Popover", () => {
 	});
 
 	it("should set auto alignment class to wrapper and caret", () => {
-		popoverDirectiveEl.autoAlign = true;
-		fixture.detectChanges();
 		expect(popoverContainerElement.nativeElement.classList.contains("cds--popover--auto-align")).toBeTruthy();
 		expect(popoverContainerElement.nativeElement.querySelector(".cds--popover-caret.cds--popover--auto-align")).toBeDefined();
 	});
 
 	it("should clean up auto placement on close when auto alignment is enabled", () => {
 		spyOn(popoverDirectiveEl, "cleanUp");
-		component.autoAlign = true;
 		component.isOpen = true;
 		fixture.detectChanges();
 		component.isOpen = false;

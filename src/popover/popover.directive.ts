@@ -104,7 +104,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	 */
 	@Output() isOpenChange = new EventEmitter<boolean>();
 	/**
-	 * Show caret for the
+	 * Show caret at the alignment position
 	 */
 	@HostBinding("class.cds--popover--caret") @Input() caret = true;
 	/**
@@ -117,6 +117,7 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	@HostBinding("class.cds--popover--high-contrast") @Input() highContrast = true;
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip
+	 * This is not toggleable - should be sent once
 	 */
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
@@ -171,7 +172,6 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 					);
 				}
 			}
-
 		} else {
 			this.cleanUp();
 			if (event) {
@@ -253,17 +253,13 @@ export class PopoverContainer implements AfterViewInit, AfterContentInit, OnChan
 	 * @param changes
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
+		// Close and reopen the popover, handle programmatic opens/close
 		const originalState = this._open;
 		this.handleChange(false);
 
 		// Ignore first change since content is not initialized
 		if (changes.autoAlign && !changes.autoAlign.firstChange) {
-			if (this.popoverContent) {
-				this.popoverContent.autoAlign = changes.autoAlign.currentValue;
-			}
-
-			// Rerender child components with updated values
-			this.changeDetectorRef.detectChanges();
+			// Reset the inline styles
 			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
 			this.popoverContentRef.setAttribute("style", "");
 			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");

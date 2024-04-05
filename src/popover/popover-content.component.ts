@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { Component, HostBinding, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 
 /**
  * [See demo](../../?path=/story/components-popover--basic)
@@ -6,7 +6,7 @@ import { Component, HostBinding, Input } from "@angular/core";
 @Component({
 	selector: "cds-popover-content, ibm-popover-content",
 	template: `
-		<span class="cds--popover-content">
+		<span class="cds--popover-content" #content>
 			<div>
 				<ng-content></ng-content>
 			</div>
@@ -15,12 +15,16 @@ import { Component, HostBinding, Input } from "@angular/core";
 		<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
 	`
 })
-export class PopoverContent {
+export class PopoverContent implements AfterViewInit {
 	@HostBinding("class.cds--popover") popoverClass = true;
+	@ViewChild('content') popoverContent: ElementRef;
+	autoAlign = false;
 
-	/**
-	 * Helper input property
-	 * We update placement of caret in DOM if auto align is enabled
-	 */
-	@Input() autoAlign = false;
+	ngAfterViewInit(): void {
+		if (this.popoverContent) {
+			// Get the parent element and check if auto align is enabled
+			const parentElement = this.popoverContent.nativeElement.closest('.cds--popover-container');
+			this.autoAlign = parentElement?.classList.contains('cds--popover--auto-align');
+		}
+	}
 }
