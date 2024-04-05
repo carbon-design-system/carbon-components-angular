@@ -63,7 +63,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")
 			.subscribe((event: Event) => {
-				// Add/Remove event listener based on _open to improve performance when there
+				// Add/Remove event listener based on isOpen to improve performance when there
 				// are a lot of toggletips
 				if (this.isOpen) {
 					document.removeEventListener("click", this.documentClick);
