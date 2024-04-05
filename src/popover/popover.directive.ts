@@ -78,7 +78,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 				this._align = alignment as Placement;
 				break;
 		}
-		this.setAlignmentClass(previousAlignment);
+		this.updateAlignmentClass(this._align, previousAlignment);
 	}
 
 	_align: Placement = "bottom";
@@ -200,7 +200,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 
 			const previousAlignment = this._align;
 			this._align = placement;
-			this.setAlignmentClass(previousAlignment);
+			this.updateAlignmentClass(this._align, previousAlignment);
 
 			// Using CSSOM to manipulate CSS to avoid content security policy inline-src
 			// https://github.com/w3c/webappsec-csp/issues/212
@@ -262,7 +262,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	initializeReferences(): void {
-		this.setAlignmentClass();
+		this.updateAlignmentClass(this._align);
 
 		// Initialize html references since they will not change and are required for popover components
 		this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
@@ -290,19 +290,19 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	/**
-	 * Remove existing assigned alignment class and reassign
+	 * Replace existing previous alignment class with new
 	 * @param previousAlignment
 	 */
-	setAlignmentClass(previousAlignment?: string) {
-		const regexp = new RegExp("right|top|left|bottom");
-		if (this.elementRef.nativeElement && previousAlignment !== this._align) {
+	updateAlignmentClass(newAlignment: string, previousAlignment?: string) {
+		if (this.elementRef.nativeElement && previousAlignment !== newAlignment) {
+			const regexp = new RegExp("right|top|left|bottom");
 			// Since we are constantly switching, it's safer to delete all matching class names
 			this.elementRef.nativeElement.classList.forEach(className => {
 				if (regexp.test(className)) {
 					this.renderer.removeClass(this.elementRef.nativeElement, `${className}`);
 				}
 			});
-			this.renderer.addClass(this.elementRef.nativeElement, `${this.alignmentClassPrefix}${this._align}`);
+			this.renderer.addClass(this.elementRef.nativeElement, `${this.alignmentClassPrefix}${newAlignment}`);
 		}
 	}
 }
