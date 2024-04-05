@@ -32,8 +32,7 @@ export class PopoverContent implements AfterViewInit {
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {
 			// Get the parent element and check if auto align is enabled
-			const parentElement = this.popoverContent.nativeElement.closest(".cds--popover-container");
-			this.autoAlign = parentElement?.classList.contains("cds--popover--auto-align");
+			this.autoAlign = !!this.popoverContent.nativeElement.closest(".cds--popover--auto-align");
 			// Run change detection manually to resolve ExpressionHasChanged
 			this.changeDetectorRef.detectChanges();
 		}
