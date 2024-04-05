@@ -118,8 +118,8 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
-	protected caretOffset;
-	protected caretHeight;
+	protected caretOffset: number;
+	protected caretHeight: number;
 	protected autoUpdateCleanUp: Function;
 
 	constructor(
