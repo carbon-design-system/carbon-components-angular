@@ -23,6 +23,9 @@ export default {
 		autoAlign: false
 	},
 	argTypes: {
+		autoAlign: {
+			control: false
+		},
 		onOpen: {
 			control: "Opened!"
 		},
@@ -64,7 +67,6 @@ const Template = (args) => ({
 			[align]="align"
 			[caret]="caret"
 			[highContrast]="highContrast"
-			[autoAlign]="autoAlign"
 			(onOpen)="onOpen($event)"
 			(onClose)="onClose($event)"
 			(isOpenChange)="isOpenChange($event)">
@@ -184,9 +186,3 @@ WithAutoAlign.args = {
 	autoAlign: true,
 	align: "top"
 };
-WithAutoAlign.parameters = {
-	controls: {
-		disable: true
-	}
-};
-

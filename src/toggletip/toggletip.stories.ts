@@ -29,6 +29,9 @@ export default {
 		autoAlign: false
 	},
 	argTypes: {
+		autoAlign: {
+			control: false
+		},
 		onOpen: {
 			control: "Opened!"
 		},
@@ -64,7 +67,6 @@ const Template = (args) => ({
 		<cds-toggletip
 			[isOpen]="isOpen"
 			[align]="align"
-			[autoAlign]="autoAlign"
 			(isOpenChange)="isOpenChange($event)"
 			(onClose)="onClose($event)"
 			(onOpen)="onOpen($event)">
@@ -122,7 +124,7 @@ const AutoAlignTemplate = (args) => ({
 				<cds-toggletip
 					[isOpen]="isOpen"
 					[align]="align"
-					[autoAlign]="autoAlign"
+					[autoAlign]="true"
 					(isOpenChange)="isOpenChange($event)"
 					(onClose)="onClose($event)"
 					(onOpen)="onOpen($event)">
@@ -165,9 +167,4 @@ export const WithAutoAlign = AutoAlignTemplate.bind({});
 WithAutoAlign.args = {
 	autoAlign: true,
 	align: "top"
-};
-WithAutoAlign.parameters = {
-	controls: {
-		disable: true
-	}
 };

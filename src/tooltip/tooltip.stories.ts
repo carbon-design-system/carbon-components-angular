@@ -18,6 +18,9 @@ export default {
 		autoAlign: false
 	},
 	argTypes: {
+		autoAlign: {
+			control: false
+		},
 		onOpen: {
 			control: "Opened!"
 		},
@@ -142,7 +145,7 @@ const AutoAlignTemplate = (args) => ({
 					isOpen="true"
 					[caret]="caret"
 					[align]="align"
-					[autoAlign]="autoAlign"
+					[autoAlign]="true"
 					(onOpen)="onOpen($event)"
 					(onClose)="onClose($event)"
 					(isOpenChange)="isOpenChange($event)"
@@ -176,9 +179,4 @@ export const WithAutoAlign = AutoAlignTemplate.bind({});
 WithAutoAlign.args = {
 	autoAlign: true,
 	align: "top"
-};
-WithAutoAlign.parameters = {
-	controls: {
-		disable: true
-	}
 };
