@@ -107,7 +107,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Enable high contrast for popover container
 	 */
-	@HostBinding("class.cds--popover--high-contrast") @Input() highContrast = true;
+	@HostBinding("class.cds--popover--high-contrast") @Input() highContrast = false;
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip
 	 * This is not toggleable - should be sent once
