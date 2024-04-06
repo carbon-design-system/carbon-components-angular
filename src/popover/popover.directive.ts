@@ -110,7 +110,7 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	@HostBinding("class.cds--popover--high-contrast") @Input() highContrast = false;
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip
-	 * This is not toggleable - should be sent once
+	 * This is not toggleable - should be assigned once
 	 */
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
