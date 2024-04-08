@@ -74,7 +74,7 @@ export class SideNavItem implements OnChanges {
 	/**
 	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
 	 */
-	@Input() useRouter = true;
+	@Input() useRouter = false;
 
 	@HostBinding("class.cds--side-nav__item") get sideNav() {
 		return !this.isSubMenu;
