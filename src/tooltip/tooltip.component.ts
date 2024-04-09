@@ -39,7 +39,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			<ng-container *ngIf="!disabled">
 				<span class="cds--popover-content cds--tooltip-content">
 					<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ data }"></ng-template>
 					<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 				</span>
 				<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
@@ -69,6 +69,10 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
+	/**
+	 * Optional data for templates
+	 */
+	@Input() data = {}
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
