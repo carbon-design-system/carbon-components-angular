@@ -41,7 +41,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			role="tooltip">
 			<span class="cds--popover-content cds--definition-tooltip">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ data }"></ng-template>
+				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
 				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 			</span>
 			<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
@@ -58,9 +58,9 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	@Input() description: string | TemplateRef<any>;
 	/**
-	 * Optional data for templates
+	 * Optional data for templates passed as implicit context
 	 */
-	@Input() data = {}
+	@Input() templateContext: any;
 
 	constructor(
 		protected elementRef: ElementRef,
