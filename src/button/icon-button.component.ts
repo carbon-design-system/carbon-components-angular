@@ -33,6 +33,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 		[highContrast]="highContrast"
 		[isOpen]="isOpen"
 		[align]="align"
+		[autoAlign]="autoAlign"
 		[enterDelayMs]="enterDelayMs"
 		[leaveDelayMs]="leaveDelayMs"
 		(click)="emitClickEvent($event, 'tooltip')">
