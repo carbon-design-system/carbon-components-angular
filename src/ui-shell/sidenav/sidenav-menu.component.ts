@@ -48,6 +48,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 					[href]="menuItem.href"
 					[route]="menuItem.route"
 					[routeExtras]="menuItem.routeExtras"
+					[useRouter]="useRouter"
 					[isSubMenu]="true">
 					{{ menuItem.content }}
 				</cds-sidenav-item>
@@ -64,7 +65,12 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 	@HostBinding("attr.role") role = "listitem";
 
 	/**
-	 * Heading for the gorup
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
+
+	/**
+	 * Heading for the group
 	 */
 	@Input() title: string;
 	/**

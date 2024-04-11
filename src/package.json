@@ -13,13 +13,14 @@
   "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
-    "@carbon/styles": "^1.5.0"
+    "@carbon/styles": "^1.54.0"
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.37.0",
     "@carbon/icons": "11.14.0",
     "@carbon/telemetry": "0.1.0",
     "@carbon/utils-position": "1.1.4",
+    "@floating-ui/dom": "1.6.3",
     "flatpickr": "4.6.13",
     "tslib": "2.3.0"
   }

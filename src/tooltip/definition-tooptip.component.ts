@@ -2,8 +2,11 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
+	ElementRef,
 	HostListener,
 	Input,
+	NgZone,
+	Renderer2,
 	TemplateRef
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
@@ -39,8 +42,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			<span class="cds--popover-content cds--definition-tooltip">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 			</span>
-			<span class="cds--popover-caret"></span>
+			<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
 		</span>
 	`
 })
@@ -50,18 +54,17 @@ export class TooltipDefinition extends PopoverContainer {
 	@Input() id = `tooltip-definition-${TooltipDefinition.tooltipCount++}`;
 
 	/**
-	 * Override alignment options
-	 */
-	@Input() align: "top" | "top-left" | "top-right"
-		| "bottom" | "bottom-left" | "bottom-right" = "bottom";
-
-	/**
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
 
-	constructor(private ref: ChangeDetectorRef) {
-		super(ref);
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(elementRef, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

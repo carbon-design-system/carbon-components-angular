@@ -7,6 +7,8 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
+	Renderer2,
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
@@ -38,8 +40,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 				<span class="cds--popover-content cds--tooltip-content">
 					<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+					<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 				</span>
-				<span class="cds--popover-caret"></span>
+				<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
 			</ng-container>
 		</span>
 	`
@@ -69,8 +72,13 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	constructor(private ref: ChangeDetectorRef) {
-		super(ref);
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(elementRef, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
