@@ -112,6 +112,7 @@ const AutoAlignTemplate = (args) => ({
 					[size]="size"
 					[align]="align"
 					[autoAlign]="autoAlign"
+					[isOpen]="isOpen"
 					[buttonNgClass]="buttonNgClass"
 					[buttonAttributes]="buttonAttributes"
 					[disabled]="disabled"
