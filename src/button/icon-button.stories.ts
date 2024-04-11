@@ -42,7 +42,7 @@ export default {
 				"danger--ghost"
 			],
 			control: { type: "select" },
-			name: "cdsButton"
+			name: "kind"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
