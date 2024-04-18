@@ -22,7 +22,8 @@ export default {
 		kind: "primary",
 		size: "md",
 		isExpressive: "false",
-		disabled: false
+		disabled: false,
+		autoAlign: false
 	},
 	argTypes: {
 		align: {
@@ -41,7 +42,7 @@ export default {
 				"danger--ghost"
 			],
 			control: { type: "select" },
-			name: "cdsButton"
+			name: "kind"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
@@ -96,4 +97,41 @@ Basic.args = {
 	buttonNgClass: {
 		"example-global-class": true
 	}
+};
+
+const AutoAlignTemplate = (args) => ({
+	props: args,
+	template: `
+		<div style="height:3000px">
+			Scrolling will update the position of the tooltip:
+			<div style="position: absolute; top: 500px; left: 500px;">
+				<cds-icon-button
+					buttonId="icon-btn1"
+					type="button"
+					[kind]="kind"
+					[size]="size"
+					[align]="align"
+					[autoAlign]="autoAlign"
+					[isOpen]="isOpen"
+					[buttonNgClass]="buttonNgClass"
+					[buttonAttributes]="buttonAttributes"
+					[disabled]="disabled"
+					[description]="description"
+					(click)="onClick($event)"
+					(mouseenter)="onMouseEnter($event)"
+					(mouseleave)="onMouseleave($event)"
+					(focus)="onFocus($event)"
+					(blur)="onBlur($event)">
+					<svg class="cds--btn__icon" cdsIcon="copy" size="16"></svg>
+				</cds-icon-button>
+			</div>
+		</div>
+	`
+});
+export const WithAutoAlign = AutoAlignTemplate.bind({});
+WithAutoAlign.args = {
+	autoAlign: true,
+	description: "Icon Description",
+	align: "top",
+	isOpen: true
 };
