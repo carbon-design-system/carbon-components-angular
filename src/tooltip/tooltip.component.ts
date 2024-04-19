@@ -72,7 +72,7 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	/**
 	 * Optional data for templates passed as implicit context
 	 */
-	@Input() templateContext: any
+	@Input() templateContext: any;
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
