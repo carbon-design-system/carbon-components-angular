@@ -167,8 +167,35 @@
                                 <a href="#toggletipCounter" >toggletipCounter</a>
                             </li>
                             <li>
+                                <a href="#_align" >_align</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#alignmentClassPrefix" >alignmentClassPrefix</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretHeight" >caretHeight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretOffset" >caretOffset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretRef" >caretRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#containerClass" >containerClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#popoverContentRef" >popoverContentRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#unmountFloatingElement" >unmountFloatingElement</a>
                             </li>
                         </ul>
                     </td>
@@ -197,7 +224,28 @@
                                 <a href="#ngAfterViewInit" >ngAfterViewInit</a>
                             </li>
                             <li>
+                                <a href="#cleanUp" >cleanUp</a>
+                            </li>
+                            <li>
                                 <a href="#handleChange" >handleChange</a>
+                            </li>
+                            <li>
+                                <a href="#initializeReferences" >initializeReferences</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#recomputePosition" >recomputePosition</a>
+                            </li>
+                            <li>
+                                <a href="#roundByDPR" >roundByDPR</a>
+                            </li>
+                            <li>
+                                <a href="#updateAlignmentClass" >updateAlignmentClass</a>
                             </li>
                         </ul>
                     </td>
@@ -219,6 +267,9 @@
                             </li>
                             <li>
                                 <a href="#align" >align</a>
+                            </li>
+                            <li>
+                                <a href="#autoAlign" >autoAlign</a>
                             </li>
                             <li>
                                 <a href="#caret" >caret</a>
@@ -266,42 +317,6 @@
                                 <a href="#class.cds--toggletip" >class.cds--toggletip</a>
                             </li>
                             <li>
-                                <a href="#class.cds--popover--bottom" >class.cds--popover--bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--bottom-left" >class.cds--popover--bottom-left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--bottom-right" >class.cds--popover--bottom-right</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left" >class.cds--popover--left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left-bottom" >class.cds--popover--left-bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left-top" >class.cds--popover--left-top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right" >class.cds--popover--right</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right-bottom" >class.cds--popover--right-bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right-top" >class.cds--popover--right-top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top" >class.cds--popover--top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top-left" >class.cds--popover--top-left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top-right" >class.cds--popover--top-right</a>
-                            </li>
-                            <li>
                                 <a href="#class.cds--popover-container" >class.cds--popover-container</a>
                             </li>
                         </ul>
@@ -333,12 +348,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(hostElement: ElementRef, renderer: Renderer2, ref: ChangeDetectorRef)</code>
+<code>constructor(hostElement: ElementRef, ngZone: NgZone, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/toggletip/toggletip.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/toggletip/toggletip.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -368,6 +383,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>renderer</td>
                                                   
                                                         <td>
@@ -380,7 +407,7 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>ref</td>
+                                                        <td>changeDetectorRef</td>
                                                   
                                                         <td>
                                                                     <code>ChangeDetectorRef</code>
@@ -423,7 +450,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/toggletip/toggletip.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/toggletip/toggletip.component.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -455,7 +482,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:42</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:43</a></code>
 </div>
                             </td>
                         </tr>
@@ -471,13 +498,8 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>&quot;top&quot; | &quot;top-left&quot; | &quot;top-right&quot; | &quot;bottom&quot; | &quot;bottom-left&quot; | &quot;bottom-right&quot; | &quot;left&quot; | &quot;left-bottom&quot; | &quot;left-top&quot; | &quot;right&quot; | &quot;right-bottom&quot; | &quot;right-top&quot;</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#oldPlacement" target="_self" >oldPlacement | Placement</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;bottom&quot;</code>
                     </td>
                 </tr>
                             <tr>
@@ -488,10 +510,58 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:94</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:45</a></code>
 </div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set alignment of popover
+As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</p>
+<p>When <code>autoAlign</code> is set to <code>true</code>, alignment may change for best placement</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="autoAlign"></a>
+                        <b>autoAlign</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:115</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>Experimental</strong>: Use floating-ui to position the tooltip
+This is not toggleable - should be assigned once</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -521,10 +591,16 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:88</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:102</a></code>
 </div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Show caret at the alignment position</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -554,10 +630,16 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:89</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:106</a></code>
 </div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enable drop shadow around the popover container</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -587,10 +669,16 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:90</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:110</a></code>
 </div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enable high contrast for popover container</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -618,7 +706,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:86</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:98</a></code>
 </div>
                             </td>
                         </tr>
@@ -652,7 +740,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:78</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:90</a></code>
 </div>
                             </td>
                         </tr>
@@ -686,7 +774,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:82</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:94</a></code>
 </div>
                             </td>
                         </tr>
@@ -724,403 +812,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/toggletip/toggletip.component.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom</b></span>
-                        <a href="#class.cds--popover--bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:37</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom-left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom-left</b></span>
-                        <a href="#class.cds--popover--bottom-left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:41</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom-right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom-right</b></span>
-                        <a href="#class.cds--popover--bottom-right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:45</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left</b></span>
-                        <a href="#class.cds--popover--left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:50</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left-bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left-bottom</b></span>
-                        <a href="#class.cds--popover--left-bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:58</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left-top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left-top</b></span>
-                        <a href="#class.cds--popover--left-top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:54</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right</b></span>
-                        <a href="#class.cds--popover--right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:63</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right-bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right-bottom</b></span>
-                        <a href="#class.cds--popover--right-bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:71</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right-top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right-top</b></span>
-                        <a href="#class.cds--popover--right-top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:67</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top</b></span>
-                        <a href="#class.cds--popover--top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:24</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top-left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top-left</b></span>
-                        <a href="#class.cds--popover--top-left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:28</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top-right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top-right</b></span>
-                        <a href="#class.cds--popover--top-right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:32</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/toggletip/toggletip.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1157,7 +849,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:93</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:116</a></code>
 </div>
                         </td>
                     </tr>
@@ -1193,8 +885,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/toggletip/toggletip.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/toggletip/toggletip.component.ts:88</a></div>
                 </td>
             </tr>
 
@@ -1229,8 +921,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/toggletip/toggletip.component.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/toggletip/toggletip.component.ts:101</a></div>
                 </td>
             </tr>
 
@@ -1315,8 +1007,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/toggletip/toggletip.component.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/toggletip/toggletip.component.ts:95</a></div>
                 </td>
             </tr>
 
@@ -1389,8 +1081,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/toggletip/toggletip.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/toggletip/toggletip.component.ts:88</a></div>
                 </td>
             </tr>
 
@@ -1458,14 +1150,65 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/toggletip/toggletip.component.ts:54</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:60</a></code>
+</div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cleanUp"></a>
+                    <span class="name">
+                        <span ><b>cleanUp</b></span>
+                        <a href="#cleanUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cleanUp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:285</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clean up <code>autoUpdate</code> if auto alignment is enabled</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1488,7 +1231,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>handleChange(open: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, event: Event)</code>
+<code>handleChange(open: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, event?: Event)</code>
                 </td>
             </tr>
 
@@ -1501,7 +1244,319 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:101</a></code>
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:137</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles emitting open/close event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>open</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Is the popover container open</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>Event</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Event</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeReferences"></a>
+                    <span class="name">
+                        <span ><b>initializeReferences</b></span>
+                        <a href="#initializeReferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeReferences()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:264</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:241</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the popover and reopen it with updated values without emitting an event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                            <code>SimpleChanges</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:278</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clean up</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recomputePosition"></a>
+                    <span class="name">
+                        <span ><b>recomputePosition</b></span>
+                        <a href="#recomputePosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>recomputePosition()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:185</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Compute position of tooltip when autoAlign is enabled</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roundByDPR"></a>
+                    <span class="name">
+                        <span ><b>roundByDPR</b></span>
+                        <a href="#roundByDPR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>roundByDPR(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:177</a></code>
 </div>
                 </td>
             </tr>
@@ -1517,15 +1572,88 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAlignmentClass"></a>
+                    <span class="name">
+                        <span ><b>updateAlignmentClass</b></span>
+                        <a href="#updateAlignmentClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateAlignmentClass(newAlignment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, previousAlignment?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:296</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Replace existing previous alignment class with new</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>open</td>
+                                    <td>newAlignment</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -1535,13 +1663,13 @@
 
                                 </tr>
                                 <tr>
-                                    <td>event</td>
+                                    <td>previousAlignment</td>
                                     <td>
-                                            <code>Event</code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -1597,7 +1725,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/toggletip/toggletip.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/toggletip/toggletip.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1622,7 +1750,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/toggletip/toggletip.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/toggletip/toggletip.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -1657,7 +1785,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/toggletip/toggletip.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/toggletip/toggletip.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1689,7 +1817,186 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/toggletip/toggletip.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/toggletip/toggletip.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_align"></a>
+                    <span class="name">
+                        <span ><b>_align</b></span>
+                        <a href="#_align"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Placement</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;bottom&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:84</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alignmentClassPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>alignmentClassPrefix</b></span>
+                        <a href="#alignmentClassPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;cds--popover--&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:85</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretHeight"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretHeight</b></span>
+                        <a href="#caretHeight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:122</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretOffset"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretOffset</b></span>
+                        <a href="#caretOffset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:121</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretRef</b></span>
+                        <a href="#caretRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:120</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -1730,7 +2037,75 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:93</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:116</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="popoverContentRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>popoverContentRef</b></span>
+                        <a href="#popoverContentRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:119</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unmountFloatingElement"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>unmountFloatingElement</b></span>
+                        <a href="#unmountFloatingElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:123</a></code>
 </div>
                         </td>
                     </tr>
@@ -1754,6 +2129,7 @@
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
 	Renderer2
 } from &quot;@angular/core&quot;;
 import { fromEvent } from &quot;rxjs&quot;;
@@ -1791,13 +2167,20 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	documentClick &#x3D; this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2, private ref: ChangeDetectorRef) {
-		super(ref);
+	constructor(
+		protected hostElement: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(hostElement, ngZone, renderer, changeDetectorRef);
 		this.highContrast &#x3D; true;
 		this.dropShadow &#x3D; false;
 	}
 
 	ngAfterViewInit(): void {
+		this.initializeReferences();
+
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, &quot;click&quot;)
 			.subscribe((event: Event) &#x3D;&gt; {

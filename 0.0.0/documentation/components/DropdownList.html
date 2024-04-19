@@ -785,8 +785,8 @@ ArrowUp -&gt; emit event</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="536"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:536</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="537"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:537</a></div>
                 </td>
             </tr>
 
@@ -930,8 +930,8 @@ ArrowUp -&gt; emit event</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="571"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:571</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="572"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:572</a></div>
                 </td>
             </tr>
 
@@ -1570,8 +1570,8 @@ ArrowUp -&gt; emit event</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="504"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:504</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="505"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:505</a></div>
                 </td>
             </tr>
 
@@ -1720,8 +1720,8 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="562"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:562</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="563"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:563</a></div>
                 </td>
             </tr>
 
@@ -1785,8 +1785,8 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="556"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:556</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="557"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:557</a></div>
                 </td>
             </tr>
 
@@ -1850,8 +1850,8 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="581"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:581</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="582"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:582</a></div>
                 </td>
             </tr>
 
@@ -1992,8 +1992,8 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="586"
-                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:586</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="587"
+                            class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:587</a></div>
                 </td>
             </tr>
 
@@ -3103,7 +3103,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			}
 		}
 
-		return elemList[this.index].nativeElement;
+		return elemList[this.index]?.nativeElement;
 	}
 
 	/**
@@ -3241,6 +3241,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	updateIndex() {
 		// initialize index on the first selected item or
 		// on the next non disabled item if no items are selected
+		// in case, if all items are disabled, the index value will remain same
 		const selected &#x3D; this.getSelected();
 		if (selected.length) {
 			this.index &#x3D; this.displayItems.indexOf(selected[0]);
@@ -3264,7 +3265,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot;) {
 				if (this.hasNextElement()) {
-					this.getNextElement().scrollIntoView({ block: &quot;end&quot; });
+					this.getNextElement()?.scrollIntoView({ block: &quot;end&quot; });
 				} else {
 					this.blurIntent.emit(&quot;bottom&quot;);
 				}

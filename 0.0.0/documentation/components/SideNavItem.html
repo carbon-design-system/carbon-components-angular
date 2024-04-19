@@ -553,7 +553,7 @@ See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                         <tr>
@@ -1139,7 +1139,7 @@ export class SideNavItem implements OnChanges {
 	/**
 	 * Use the routerLink attribute on &lt;a&gt; tag for navigation instead of using event handlers
 	 */
-	@Input() useRouter &#x3D; true;
+	@Input() useRouter &#x3D; false;
 
 	@HostBinding(&quot;class.cds--side-nav__item&quot;) get sideNav() {
 		return !this.isSubMenu;

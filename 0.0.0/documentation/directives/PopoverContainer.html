@@ -67,16 +67,16 @@
         </p>
 
 
+
+
             <p class="comment">
-                <h3>Description</h3>
+                <h3>Implements</h3>
             </p>
             <p class="comment">
-                <p>Applies popover container styling to the element it is applied to. Get started with importing the module:</p>
-<div><pre class="line-numbers"><code class="language-typescript">import { PopoverModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-popover--basic">See demo</a></p>
-
+                        <code>AfterViewInit</code>
+                        <code>OnChanges</code>
+                        <code>OnDestroy</code>
             </p>
-
-
 
 
         <section data-compodoc="block-metadata">
@@ -109,8 +109,35 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#_align" >_align</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#alignmentClassPrefix" >alignmentClassPrefix</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretHeight" >caretHeight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretOffset" >caretOffset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#caretRef" >caretRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#containerClass" >containerClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#popoverContentRef" >popoverContentRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#unmountFloatingElement" >unmountFloatingElement</a>
                             </li>
                         </ul>
                     </td>
@@ -125,7 +152,31 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#cleanUp" >cleanUp</a>
+                            </li>
+                            <li>
                                 <a href="#handleChange" >handleChange</a>
+                            </li>
+                            <li>
+                                <a href="#initializeReferences" >initializeReferences</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#recomputePosition" >recomputePosition</a>
+                            </li>
+                            <li>
+                                <a href="#roundByDPR" >roundByDPR</a>
+                            </li>
+                            <li>
+                                <a href="#updateAlignmentClass" >updateAlignmentClass</a>
                             </li>
                         </ul>
                     </td>
@@ -141,6 +192,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#align" >align</a>
+                            </li>
+                            <li>
+                                <a href="#autoAlign" >autoAlign</a>
                             </li>
                             <li>
                                 <a href="#caret" >caret</a>
@@ -188,42 +242,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#class.cds--popover--bottom" >class.cds--popover--bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--bottom-left" >class.cds--popover--bottom-left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--bottom-right" >class.cds--popover--bottom-right</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left" >class.cds--popover--left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left-bottom" >class.cds--popover--left-bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--left-top" >class.cds--popover--left-top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right" >class.cds--popover--right</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right-bottom" >class.cds--popover--right-bottom</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--right-top" >class.cds--popover--right-top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top" >class.cds--popover--top</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top-left" >class.cds--popover--top-left</a>
-                            </li>
-                            <li>
-                                <a href="#class.cds--popover--top-right" >class.cds--popover--top-right</a>
-                            </li>
-                            <li>
                                 <a href="#class.cds--popover-container" >class.cds--popover-container</a>
                             </li>
                         </ul>
@@ -240,40 +258,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#alignmentTopClass" >alignmentTopClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentTopLeftClass" >alignmentTopLeftClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentTopRightClass" >alignmentTopRightClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentBottomClass" >alignmentBottomClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentBottomLeftClass" >alignmentBottomLeftClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentBottomRightClass" >alignmentBottomRightClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentLeftClass" >alignmentLeftClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentLeftTopClass" >alignmentLeftTopClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentLeftBottomClass" >alignmentLeftBottomClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentRightClass" >alignmentRightClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentRightTopClass" >alignmentRightTopClass</a>
-                                </li>
-                                <li>
-                                    <a href="#alignmentRightBottomClass" >alignmentRightBottomClass</a>
+                                    <a href="#align" >align</a>
                                 </li>
                             </ul>
                         </td>
@@ -288,12 +273,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(changeDetectorRef: ChangeDetectorRef)</code>
+<code>constructor(elementRef: ElementRef, ngZone: NgZone, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/popover/popover.directive.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/popover/popover.directive.ts:123</a></div>
                             </td>
                         </tr>
 
@@ -310,6 +295,42 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                    <code>Renderer2</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>changeDetectorRef</td>
                                                   
@@ -343,20 +364,56 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>&quot;top&quot; | &quot;top-left&quot; | &quot;top-right&quot; | &quot;bottom&quot; | &quot;bottom-left&quot; | &quot;bottom-right&quot; | &quot;left&quot; | &quot;left-bottom&quot; | &quot;left-top&quot; | &quot;right&quot; | &quot;right-bottom&quot; | &quot;right-top&quot;</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#oldPlacement" target="_self" >oldPlacement | Placement</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/popover/popover.directive.ts:45</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set alignment of popover
+As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</p>
+<p>When <code>autoAlign</code> is set to <code>true</code>, alignment may change for best placement</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="autoAlign"></a>
+                        <b>autoAlign</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;bottom&quot;</code>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/popover/popover.directive.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/popover/popover.directive.ts:115</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>Experimental</strong>: Use floating-ui to position the tooltip
+This is not toggleable - should be assigned once</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -380,9 +437,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/popover/popover.directive.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/popover/popover.directive.ts:102</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Show caret at the alignment position</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -406,9 +469,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/popover/popover.directive.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/popover/popover.directive.ts:106</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enable drop shadow around the popover container</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -432,9 +501,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/popover/popover.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/popover/popover.directive.ts:110</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enable high contrast for popover container</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -458,7 +533,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/popover/popover.directive.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/popover/popover.directive.ts:117</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -482,7 +557,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/popover/popover.directive.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/popover/popover.directive.ts:98</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -509,7 +584,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/popover/popover.directive.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/popover/popover.directive.ts:90</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -536,7 +611,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/popover/popover.directive.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/popover/popover.directive.ts:94</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -550,318 +625,6 @@
 </section>
             <section data-compodoc="block-properties">
     <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom</b></span>
-                        <a href="#class.cds--popover--bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/popover/popover.directive.ts:37</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom-left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom-left</b></span>
-                        <a href="#class.cds--popover--bottom-left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/popover/popover.directive.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--bottom-right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--bottom-right</b></span>
-                        <a href="#class.cds--popover--bottom-right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/popover/popover.directive.ts:45</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left</b></span>
-                        <a href="#class.cds--popover--left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/popover/popover.directive.ts:50</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left-bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left-bottom</b></span>
-                        <a href="#class.cds--popover--left-bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/popover/popover.directive.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--left-top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--left-top</b></span>
-                        <a href="#class.cds--popover--left-top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/popover/popover.directive.ts:54</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right</b></span>
-                        <a href="#class.cds--popover--right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/popover/popover.directive.ts:63</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right-bottom"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right-bottom</b></span>
-                        <a href="#class.cds--popover--right-bottom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/popover/popover.directive.ts:71</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--right-top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--right-top</b></span>
-                        <a href="#class.cds--popover--right-top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/popover/popover.directive.ts:67</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top</b></span>
-                        <a href="#class.cds--popover--top"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/popover/popover.directive.ts:24</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top-left"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top-left</b></span>
-                        <a href="#class.cds--popover--top-left"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/popover/popover.directive.ts:28</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="class.cds--popover--top-right"></a>
-                    <span class="name">
-                        <span ><b>class.cds--popover--top-right</b></span>
-                        <a href="#class.cds--popover--top-right"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/popover/popover.directive.ts:32</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -885,7 +648,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/popover/popover.directive.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/popover/popover.directive.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -904,6 +667,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="cleanUp"></a>
+                    <span class="name">
+                        <span ><b>cleanUp</b></span>
+                        <a href="#cleanUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cleanUp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/popover/popover.directive.ts:285</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clean up <code>autoUpdate</code> if auto alignment is enabled</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="handleChange"></a>
                     <span class="name">
                         <span ><b>handleChange</b></span>
@@ -913,21 +715,23 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>handleChange(open: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, event: Event)</code>
+<code>handleChange(open: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, event?: Event)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/popover/popover.directive.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/popover/popover.directive.ts:137</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Handles emitting open/close event</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -938,6 +742,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -952,6 +757,12 @@
                                     </td>
 
 
+                                    <td>
+                                        <ul>
+<li>Is the popover container open</li>
+</ul>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>event</td>
@@ -960,7 +771,386 @@
                                     </td>
 
                                     <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>Event</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeReferences"></a>
+                    <span class="name">
+                        <span ><b>initializeReferences</b></span>
+                        <a href="#initializeReferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeReferences()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/popover/popover.directive.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/popover/popover.directive.ts:260</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handle initialization of element</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/popover/popover.directive.ts:241</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the popover and reopen it with updated values without emitting an event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                            <code>SimpleChanges</code>
+                                    </td>
+
+                                    <td>
                                         No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/popover/popover.directive.ts:278</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clean up</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recomputePosition"></a>
+                    <span class="name">
+                        <span ><b>recomputePosition</b></span>
+                        <a href="#recomputePosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>recomputePosition()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/popover/popover.directive.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Compute position of tooltip when autoAlign is enabled</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roundByDPR"></a>
+                    <span class="name">
+                        <span ><b>roundByDPR</b></span>
+                        <a href="#roundByDPR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>roundByDPR(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/popover/popover.directive.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAlignmentClass"></a>
+                    <span class="name">
+                        <span ><b>updateAlignmentClass</b></span>
+                        <a href="#updateAlignmentClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateAlignmentClass(newAlignment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, previousAlignment?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="296"
+                            class="link-to-prism">src/popover/popover.directive.ts:296</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Replace existing previous alignment class with new</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>newAlignment</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>previousAlignment</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -991,6 +1181,150 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_align"></a>
+                    <span class="name">
+                        <span ><b>_align</b></span>
+                        <a href="#_align"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Placement</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;bottom&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/popover/popover.directive.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alignmentClassPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>alignmentClassPrefix</b></span>
+                        <a href="#alignmentClassPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;cds--popover--&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/popover/popover.directive.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretHeight"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretHeight</b></span>
+                        <a href="#caretHeight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/popover/popover.directive.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretOffset"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretOffset</b></span>
+                        <a href="#caretOffset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/popover/popover.directive.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caretRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>caretRef</b></span>
+                        <a href="#caretRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/popover/popover.directive.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="containerClass"></a>
                     <span class="name">
                             <span class="modifier"></span>
@@ -1015,7 +1349,61 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/popover/popover.directive.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/popover/popover.directive.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="popoverContentRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>popoverContentRef</b></span>
+                        <a href="#popoverContentRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/popover/popover.directive.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unmountFloatingElement"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>unmountFloatingElement</b></span>
+                        <a href="#unmountFloatingElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/popover/popover.directive.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -1032,124 +1420,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="alignmentTopClass"></a>
-                        <span class="name"><b>alignmentTopClass</b><a href="#alignmentTopClass"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="align"></a>
+                        <span class="name"><b>align</b><a href="#align"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentTopClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/popover/popover.directive.ts:24</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentTopLeftClass"></a>
-                        <span class="name"><b>alignmentTopLeftClass</b><a href="#alignmentTopLeftClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentTopLeftClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/popover/popover.directive.ts:28</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentTopRightClass"></a>
-                        <span class="name"><b>alignmentTopRightClass</b><a href="#alignmentTopRightClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentTopRightClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/popover/popover.directive.ts:32</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentBottomClass"></a>
-                        <span class="name"><b>alignmentBottomClass</b><a href="#alignmentBottomClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentBottomClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/popover/popover.directive.ts:37</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentBottomLeftClass"></a>
-                        <span class="name"><b>alignmentBottomLeftClass</b><a href="#alignmentBottomLeftClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentBottomLeftClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/popover/popover.directive.ts:41</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentBottomRightClass"></a>
-                        <span class="name"><b>alignmentBottomRightClass</b><a href="#alignmentBottomRightClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentBottomRightClass()</code></span>
+                        <span class="accessor"><b>set</b><code>align(alignment: <a href="../undefineds/oldPlacement.html" target="_self">oldPlacement | Placement</a>)</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -1157,139 +1436,47 @@
                                     <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/popover/popover.directive.ts:45</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set alignment of popover
+As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</p>
+<p>When <code>autoAlign</code> is set to <code>true</code>, alignment may change for best placement</p>
+</div>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentLeftClass"></a>
-                        <span class="name"><b>alignmentLeftClass</b><a href="#alignmentLeftClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>alignment</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="../miscellaneous/typealiases.html#oldPlacement" target="_self" >oldPlacement | Placement</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentLeftClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/popover/popover.directive.ts:50</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentLeftTopClass"></a>
-                        <span class="name"><b>alignmentLeftTopClass</b><a href="#alignmentLeftTopClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentLeftTopClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/popover/popover.directive.ts:54</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentLeftBottomClass"></a>
-                        <span class="name"><b>alignmentLeftBottomClass</b><a href="#alignmentLeftBottomClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentLeftBottomClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/popover/popover.directive.ts:58</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentRightClass"></a>
-                        <span class="name"><b>alignmentRightClass</b><a href="#alignmentRightClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentRightClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/popover/popover.directive.ts:63</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentRightTopClass"></a>
-                        <span class="name"><b>alignmentRightTopClass</b><a href="#alignmentRightTopClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentRightTopClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/popover/popover.directive.ts:67</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="alignmentRightBottomClass"></a>
-                        <span class="name"><b>alignmentRightBottomClass</b><a href="#alignmentRightBottomClass"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>alignmentRightBottomClass()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/popover/popover.directive.ts:71</a></div>
-                                </td>
-                            </tr>
-
+                                </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -1299,78 +1486,90 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	AfterViewInit,
 	ChangeDetectorRef,
 	Directive,
+	ElementRef,
 	EventEmitter,
 	HostBinding,
 	Input,
-	Output
+	NgZone,
+	OnChanges,
+	OnDestroy,
+	Output,
+	Renderer2,
+	SimpleChanges
 } from &quot;@angular/core&quot;;
+import {
+	arrow,
+	autoUpdate,
+	computePosition,
+	flip,
+	offset,
+	Placement
+} from &quot;@floating-ui/dom&quot;;
 
-/**
- * Applies popover container styling to the element it is applied to. Get started with importing the module:
- *
- * &#x60;&#x60;&#x60;typescript
- * import { PopoverModule } from &#x27;carbon-components-angular&#x27;;
- * &#x60;&#x60;&#x60;
- *
- * [See demo](../../?path&#x3D;/story/components-popover--basic)
- */
+// Deprecated popover alignments
+type oldPlacement &#x3D; &quot;top-left&quot;
+	| &quot;top-right&quot;
+	| &quot;bottom-left&quot;
+	| &quot;bottom-right&quot;
+	| &quot;left-bottom&quot;
+	| &quot;left-top&quot;
+	| &quot;right-bottom&quot;
+	| &quot;right-top&quot;;
+
 @Directive({
 	selector: &quot;[cdsPopover], [ibmPopover]&quot;
 })
-export class PopoverContainer {
-	// Top
-	@HostBinding(&quot;class.cds--popover--top&quot;) get alignmentTopClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;top&quot;;
+export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
+	/**
+	 * Set alignment of popover
+	 * As of v5, &#x60;oldPlacements&#x60; are now deprecated in favor of Placements
+	 *
+	 * When &#x60;autoAlign&#x60; is set to &#x60;true&#x60;, alignment may change for best placement
+	 */
+	@Input() set align(alignment: oldPlacement | Placement) {
+		// If alignment is not passed, the default value will be &#x60;undefined&#x60;.
+		if (!alignment) {
+			return;
+		}
+
+		const previousAlignment &#x3D; this._align;
+		switch (alignment) {
+			case &quot;top-left&quot;:
+				this._align &#x3D; &quot;top-start&quot;;
+				break;
+			case &quot;top-right&quot;:
+				this._align &#x3D; &quot;top-end&quot;;
+				break;
+			case &quot;bottom-left&quot;:
+				this._align &#x3D; &quot;bottom-start&quot;;
+				break;
+			case &quot;bottom-right&quot;:
+				this._align &#x3D; &quot;bottom-end&quot;;
+				break;
+			case &quot;left-top&quot;:
+				this._align &#x3D; &quot;left-start&quot;;
+				break;
+			case &quot;left-bottom&quot;:
+				this._align &#x3D; &quot;left-end&quot;;
+				break;
+			case &quot;right-top&quot;:
+				this._align &#x3D; &quot;right-start&quot;;
+				break;
+			case &quot;right-bottom&quot;:
+				this._align &#x3D; &quot;right-end&quot;;
+				break;
+			default:
+				this._align &#x3D; alignment as Placement;
+				break;
+		}
+		this.updateAlignmentClass(this._align, previousAlignment);
 	}
 
-	@HostBinding(&quot;class.cds--popover--top-left&quot;) get alignmentTopLeftClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;top-left&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--top-right&quot;) get alignmentTopRightClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;top-right&quot;;
-	}
-
-	// Bottom
-	@HostBinding(&quot;class.cds--popover--bottom&quot;) get alignmentBottomClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;bottom&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--bottom-left&quot;) get alignmentBottomLeftClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;bottom-left&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--bottom-right&quot;) get alignmentBottomRightClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;bottom-right&quot;;
-	}
-
-	// Left
-	@HostBinding(&quot;class.cds--popover--left&quot;) get alignmentLeftClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;left&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--left-top&quot;) get alignmentLeftTopClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;left-top&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--left-bottom&quot;) get alignmentLeftBottomClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;left-bottom&quot;;
-	}
-
-	// Right
-	@HostBinding(&quot;class.cds--popover--right&quot;) get alignmentRightClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;right&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--right-top&quot;) get alignmentRightTopClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;right-top&quot;;
-	}
-
-	@HostBinding(&quot;class.cds--popover--right-bottom&quot;) get alignmentRightBottomClass() {
-		return this.align &#x3D;&#x3D;&#x3D; &quot;right-bottom&quot;;
-	}
+	_align: Placement &#x3D; &quot;bottom&quot;;
+	readonly alignmentClassPrefix &#x3D; &quot;cds--popover--&quot;;
 
 	/**
 	 * Emits an event when the dialog is closed
@@ -1384,32 +1583,214 @@ export class PopoverContainer {
 	 * Emits an event when the state of &#x60;isOpen&#x60; changes. Allows &#x60;isOpen&#x60; to be double bound
 	 */
 	@Output() isOpenChange &#x3D; new EventEmitter&lt;boolean&gt;();
-
+	/**
+	 * Show caret at the alignment position
+	 */
 	@HostBinding(&quot;class.cds--popover--caret&quot;) @Input() caret &#x3D; true;
+	/**
+	 * Enable drop shadow around the popover container
+	 */
 	@HostBinding(&quot;class.cds--popover--drop-shadow&quot;) @Input() dropShadow &#x3D; true;
+	/**
+	 * Enable high contrast for popover container
+	 */
 	@HostBinding(&quot;class.cds--popover--high-contrast&quot;) @Input() highContrast &#x3D; false;
-	@HostBinding(&quot;class.cds--popover--open&quot;) @Input() isOpen &#x3D; false;
-
+	/**
+	 * **Experimental**: Use floating-ui to position the tooltip
+	 * This is not toggleable - should be assigned once
+	 */
+	@HostBinding(&quot;class.cds--popover--auto-align&quot;) @Input() autoAlign &#x3D; false;
 	@HostBinding(&quot;class.cds--popover-container&quot;) containerClass &#x3D; true;
-	@Input() align: &quot;top&quot; | &quot;top-left&quot; | &quot;top-right&quot; |
-		&quot;bottom&quot; | &quot;bottom-left&quot; | &quot;bottom-right&quot; |
-		&quot;left&quot; | &quot;left-bottom&quot; | &quot;left-top&quot; |
-		&quot;right&quot; | &quot;right-bottom&quot; | &quot;right-top&quot; &#x3D; &quot;bottom&quot;;
+	@Input() @HostBinding(&quot;class.cds--popover--open&quot;) isOpen &#x3D; false;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+	protected popoverContentRef: HTMLElement;
+	protected caretRef: HTMLElement;
+	protected caretOffset: number;
+	protected caretHeight: number;
+	protected unmountFloatingElement: Function;
 
-	handleChange(open: boolean, event: Event) {
-		if (this.isOpen !&#x3D;&#x3D; open) {
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {}
+
+	/**
+	 * Handles emitting open/close event
+	 * @param open - Is the popover container open
+	 * @param event - Event
+	 */
+	handleChange(open: boolean, event?: Event) {
+		// We only emit the event when parameter has an event to keep existing behavior
+		if ((this.isOpen !&#x3D;&#x3D; open) &amp;&amp; event) {
 			this.isOpenChange.emit(open);
 		}
 
 		if (open) {
-			this.onOpen.emit(event);
+			if (event) {
+				this.onOpen.emit(event);
+			}
+
+			// when auto alignment is enabled, use auto update to set the placement for the element
+			if (this.autoAlign) {
+				if (this.caretRef) {
+					// Get caret offset/height property
+					// Getting computed styles once every open, otherwise expensive.
+					const computedStyle &#x3D; getComputedStyle(this.caretRef);
+					const offset &#x3D; computedStyle.getPropertyValue(&quot;--cds-popover-offset&quot;);
+					const height &#x3D; computedStyle.getPropertyValue(&quot;--cds-popover-caret-height&quot;);
+					this.caretOffset &#x3D; (offset?.includes(&quot;px&quot;) ? Number(offset.split(&quot;px&quot;, 1)[0]) : Number(offset.split(&quot;rem&quot;, 1)[0]) * 16) || 10;
+					this.caretHeight &#x3D; (height?.includes(&quot;px&quot;) ? Number(height.split(&quot;px&quot;, 1)[0]) : Number(height.split(&quot;rem&quot;, 1)[0]) * 16) || 6;
+				}
+				if (this.elementRef.nativeElement &amp;&amp; this.popoverContentRef) {
+					this.unmountFloatingElement &#x3D; autoUpdate(
+						this.elementRef.nativeElement,
+						this.popoverContentRef,
+						this.recomputePosition.bind(this)
+					);
+				}
+			}
 		} else {
-			this.onClose.emit(event);
+			this.cleanUp();
+			if (event) {
+				this.onClose.emit(event);
+			}
 		}
 		this.isOpen &#x3D; open;
 		this.changeDetectorRef.markForCheck();
+	}
+
+	roundByDPR(value) {
+		const dpr &#x3D; window.devicePixelRatio || 1;
+		return Math.round(value * dpr) / dpr;
+	}
+
+	/**
+	 * Compute position of tooltip when autoAlign is enabled
+	 */
+	recomputePosition() {
+		// Run outside of angular zone to avoid unnecessary change detection and rely on floating-ui
+		this.ngZone.runOutsideAngular(async () &#x3D;&gt; {
+			const { x, y, placement, middlewareData } &#x3D; await computePosition(
+				this.elementRef.nativeElement,
+				this.popoverContentRef,
+				{
+					placement: this._align,
+					strategy: &quot;fixed&quot;,
+					middleware: [
+						offset(this.caretOffset),
+						flip({ fallbackAxisSideDirection: &quot;start&quot; }),
+						arrow({ element: this.caretRef })
+					]
+				});
+
+			const previousAlignment &#x3D; this._align;
+			this._align &#x3D; placement;
+			this.updateAlignmentClass(this._align, previousAlignment);
+
+			// Using CSSOM to manipulate CSS to avoid content security policy inline-src
+			// https://github.com/w3c/webappsec-csp/issues/212
+			Object.assign(this.popoverContentRef.style, {
+				position: &quot;fixed&quot;,
+				top: &quot;0&quot;,
+				left: &quot;0&quot;,
+				// Using transform instead of top/left position to improve performance
+				transform: &#x60;translate(${this.roundByDPR(x)}px,${this.roundByDPR(y)}px)&#x60;
+			});
+
+			if (middlewareData.arrow) {
+				const { x: arrowX, y: arrowY } &#x3D; middlewareData.arrow;
+
+				const staticSide &#x3D; {
+					top: &quot;bottom&quot;,
+					right: &quot;left&quot;,
+					bottom: &quot;top&quot;,
+					left: &quot;right&quot;
+				}[placement.split(&quot;-&quot;)[0]];
+
+				this.caretRef.style.left &#x3D; arrowX !&#x3D; null ? &#x60;${arrowX}px&#x60; : &quot;&quot;;
+				this.caretRef.style.top &#x3D; arrowY !&#x3D; null ? &#x60;${arrowY}px&#x60; : &quot;&quot;;
+				this.caretRef.style.right &#x3D; &quot;&quot;;
+				this.caretRef.style.bottom &#x3D; &quot;&quot;;
+
+				if (staticSide) {
+					this.caretRef.style[staticSide] &#x3D; &#x60;${-this.caretHeight}px&#x60;;
+				}
+			}
+		});
+	}
+
+	/**
+	 * Close the popover and reopen it with updated values without emitting an event
+	 * @param changes
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		// Close and reopen the popover, handle alignment/programmatic open/close
+		const originalState &#x3D; this.isOpen;
+		this.handleChange(false);
+
+		// Ignore first change since content is not initialized
+		if (changes.autoAlign &amp;&amp; !changes.autoAlign.firstChange) {
+			// Reset the inline styles
+			this.popoverContentRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;.cds--popover-content&quot;);
+			this.popoverContentRef.setAttribute(&quot;style&quot;, &quot;&quot;);
+			this.caretRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;span.cds--popover-caret&quot;);
+		}
+
+		this.handleChange(originalState);
+	}
+
+	/**
+	 * Handle initialization of element
+	 */
+	ngAfterViewInit(): void {
+		this.initializeReferences();
+	}
+
+	initializeReferences(): void {
+		this.updateAlignmentClass(this._align);
+
+		// Initialize html references since they will not change and are required for popover components
+		this.popoverContentRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;.cds--popover-content&quot;);
+		this.caretRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;span.cds--popover-caret&quot;);
+
+		// Handle initial isOpen
+		this.handleChange(this.isOpen);
+	}
+
+	/**
+	 * Clean up
+	 */
+	ngOnDestroy(): void {
+		this.cleanUp();
+	}
+
+	/**
+	 * Clean up &#x60;autoUpdate&#x60; if auto alignment is enabled
+	 */
+	cleanUp() {
+		if (this.unmountFloatingElement) {
+			this.unmountFloatingElement();
+		}
+		this.unmountFloatingElement &#x3D; undefined;
+	}
+
+	/**
+	 * Replace existing previous alignment class with new
+	 * @param previousAlignment
+	 */
+	updateAlignmentClass(newAlignment: string, previousAlignment?: string) {
+		if (this.elementRef.nativeElement &amp;&amp; previousAlignment !&#x3D;&#x3D; newAlignment) {
+			const regexp &#x3D; new RegExp(&quot;right|top|left|bottom&quot;);
+			// Since we are constantly switching, it&#x27;s safer to delete all matching class names
+			this.elementRef.nativeElement.classList.forEach(className &#x3D;&gt; {
+				if (regexp.test(className)) {
+					this.renderer.removeClass(this.elementRef.nativeElement, &#x60;${className}&#x60;);
+				}
+			});
+			this.renderer.addClass(this.elementRef.nativeElement, &#x60;${this.alignmentClassPrefix}${newAlignment}&#x60;);
+		}
 	}
 }
 </code></pre>
