@@ -37,7 +37,7 @@ import { BaseNotification } from "./base-notification.component";
 			*ngIf="!isCloseHidden"
 			class="cds--toast-notification__close-button"
 			type="button"
-			[attr.aria-label]="notificationObj.closeLabel"
+			[attr.aria-label]="notificationObj.closeLabel | async"
 			(click)="onClose()">
 			<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
 		</button>
