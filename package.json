@@ -143,7 +143,7 @@
     "@carbon/icons": "11.14.0",
     "@carbon/utils-position": "1.1.4",
     "@floating-ui/dom": "1.6.3",
-    "@ibm/telemetry-js": "^1.2.1",
+    "@ibm/telemetry-js": "^1.5.0",
     "flatpickr": "4.6.13",
     "tslib": "2.3.0"
   }

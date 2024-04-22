@@ -16,4 +16,4 @@ gulp buildMeta
 # generate ALL the documentation
 mkdir dist/docs
 npm run build-storybook
-npm run docs:build && mv documentation dist/docs/
+npm run docs:build && mv documentation dist/docs/ && mv telemetry.yml dist/telemetry.yml
