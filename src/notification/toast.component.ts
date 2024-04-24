@@ -5,7 +5,7 @@ import {
 	HostBinding
 } from "@angular/core";
 
-import { of } from "rxjs";
+import { isObservable, of } from "rxjs";
 import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
@@ -51,7 +51,7 @@ export class Toast extends BaseNotification implements OnInit {
 	 * `type` can be one of `"error"`, `"info"`, `"info-square"`, `"warning"`, `"warning-alt"`, or `"success"`
 	 */
 	@Input() set notificationObj(obj: ToastContent) {
-		if (obj.closeLabel) {
+		if (obj.closeLabel && !isObservable(obj.closeLabel)) {
 			obj.closeLabel = of(obj.closeLabel);
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
