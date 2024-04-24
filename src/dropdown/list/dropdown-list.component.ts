@@ -352,7 +352,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			}
 		}
 
-		return elemList[this.index].nativeElement;
+		return elemList[this.index]?.nativeElement;
 	}
 
 	/**
@@ -490,6 +490,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	updateIndex() {
 		// initialize index on the first selected item or
 		// on the next non disabled item if no items are selected
+		// in case, if all items are disabled, the index value will remain same
 		const selected = this.getSelected();
 		if (selected.length) {
 			this.index = this.displayItems.indexOf(selected[0]);
@@ -513,7 +514,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			event.preventDefault();
 			if (event.key === "ArrowDown") {
 				if (this.hasNextElement()) {
-					this.getNextElement().scrollIntoView({ block: "end" });
+					this.getNextElement()?.scrollIntoView({ block: "end" });
 				} else {
 					this.blurIntent.emit("bottom");
 				}

@@ -72,9 +72,11 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	/**
 	 * Optional data for templates passed as implicit context
 	 */
-	@Input() templateContext: any
+	@Input() templateContext: any;
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
+
+	private timeoutId: any; // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
 
 	constructor(
 		protected elementRef: ElementRef,
@@ -89,14 +91,20 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	@HostListener("mouseenter", ["$event"])
 	mouseenter(event) {
-		setTimeout(() => {
+		// If a mouseleave is triggered before the tooltip is displayed (before setTimeout of mouseenter completes)
+		// we trigger the mouseleave only avoiding having to unecessary show the tooltip
+		clearTimeout(this.timeoutId);
+		this.timeoutId = setTimeout(() => {
 			this.handleChange(true, event);
 		}, this.enterDelayMs);
 	}
 
 	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
-		setTimeout(() => {
+		// If a mouseleave is triggered before the tooltip is displayed (before setTimeout of mouseenter completes)
+		// we trigger the mouseleave only avoiding having to unecessary show the tooltip
+		clearTimeout(this.timeoutId);
+		this.timeoutId = setTimeout(() => {
 			this.handleChange(false, event);
 		}, this.leaveDelayMs);
 	}
