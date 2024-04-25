@@ -5,6 +5,7 @@ import {
 	HostBinding
 } from "@angular/core";
 
+import { isObservable, of } from "rxjs";
 import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
@@ -36,7 +37,7 @@ import { BaseNotification } from "./base-notification.component";
 			*ngIf="!isCloseHidden"
 			class="cds--toast-notification__close-button"
 			type="button"
-			[attr.aria-label]="notificationObj.closeLabel"
+			[attr.aria-label]="notificationObj.closeLabel | async"
 			(click)="onClose()">
 			<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
 		</button>
@@ -49,7 +50,17 @@ export class Toast extends BaseNotification implements OnInit {
 	 *
 	 * `type` can be one of `"error"`, `"info"`, `"info-square"`, `"warning"`, `"warning-alt"`, or `"success"`
 	 */
-	@Input() notificationObj: ToastContent;
+	@Input() set notificationObj(obj: ToastContent) {
+		if (obj.closeLabel && !isObservable(obj.closeLabel)) {
+			obj.closeLabel = of(obj.closeLabel);
+		}
+		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
+	}
+
+	get notificationObj(): ToastContent {
+		return this._notificationObj as ToastContent;
+	}
+
 
 	@HostBinding("attr.id") toastID = `toast-${Toast.toastCount++}`;
 	@HostBinding("class.cds--toast-notification") toastClass = true;
