@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	HostBinding
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
@@ -40,6 +41,9 @@ export class TableRadio {
 	get disabled(): boolean {
 		return this.row ? !!(this.row as TableRow).disabled : false;
 	}
+
+	@HostBinding("class.cds--table-column-radio") radioColumn = true;
+	@HostBinding("class.cds--table-column-checkbox") selectableColumn = true;
 
 	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.
