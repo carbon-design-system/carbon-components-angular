@@ -82,7 +82,7 @@ const Template = (args) => ({
 			description="Icon Description"
 			(click)="onClick($event)"
 			(mouseenter)="onMouseEnter($event)"
-			(mouseleave)="onMouseleave($event)"
+			(mouseleave)="onMouseLeave($event)"
 			(focus)="onFocus($event)"
 			(blur)="onBlur($event)">
 			<svg class="cds--btn__icon" cdsIcon="copy" size="16"></svg>
@@ -114,12 +114,11 @@ const AutoAlignTemplate = (args) => ({
 					[autoAlign]="autoAlign"
 					[isOpen]="isOpen"
 					[buttonNgClass]="buttonNgClass"
-					[buttonAttributes]="buttonAttributes"
 					[disabled]="disabled"
 					[description]="description"
 					(click)="onClick($event)"
 					(mouseenter)="onMouseEnter($event)"
-					(mouseleave)="onMouseleave($event)"
+					(mouseleave)="onMouseLeave($event)"
 					(focus)="onFocus($event)"
 					(blur)="onBlur($event)">
 					<svg class="cds--btn__icon" cdsIcon="copy" size="16"></svg>
