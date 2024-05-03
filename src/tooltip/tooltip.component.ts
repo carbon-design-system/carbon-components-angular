@@ -146,8 +146,11 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 		// Ignore first change since content is not initialized
 		if ((changes.autoAlign && !changes.autoAlign.firstChange)
 			|| (changes.disabled && !changes.disabled.firstChange && !changes.disabled.currentValue)) {
-			// On toggling `disabled`, we manually update view so querySelector can detect the popover content node
-			// Otherwise, the position of the popover will be incorrect when autoAlign is enabled
+			/**
+			 * When `disabled` is `true`, popover content node is removed. So when re-enabling `disabled`,
+			 * we manually update view so querySelector can detect the popover content node.
+			 * Otherwise, the position of the popover will be incorrect when autoAlign is enabled.
+			 */
 			this.changeDetectorRef.detectChanges();
 
 			// Reset the inline styles
