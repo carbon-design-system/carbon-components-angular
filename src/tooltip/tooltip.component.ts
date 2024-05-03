@@ -8,7 +8,9 @@ import {
 	HostListener,
 	Input,
 	NgZone,
+	OnChanges,
 	Renderer2,
+	SimpleChanges,
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
@@ -47,7 +49,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		</span>
 	`
 })
-export class Tooltip extends PopoverContainer implements AfterContentChecked {
+export class Tooltip extends PopoverContainer implements OnChanges, AfterContentChecked {
 	static tooltipCount = 0;
 
 	@HostBinding("class.cds--tooltip") tooltipClass = true;
@@ -130,6 +132,34 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Close the popover and reopen it with updated values without emitting an event
+	 * @param changes
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		// Close and reopen the popover, handle alignment/programmatic open/close
+		const originalState = this.isOpen;
+		this.handleChange(false);
+
+		// Ignore first change since content is not initialized
+		if ((changes.autoAlign && !changes.autoAlign.firstChange)
+			|| (changes.disabled && !changes.disabled.firstChange && !changes.disabled.currentValue)) {
+			/**
+			 * When `disabled` is `true`, popover content node is removed. So when re-enabling `disabled`,
+			 * we manually update view so querySelector can detect the popover content node.
+			 * Otherwise, the position of the popover will be incorrect when autoAlign is enabled.
+			 */
+			this.changeDetectorRef.detectChanges();
+
+			// Reset the inline styles
+			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
+			this.popoverContentRef.setAttribute("style", "");
+			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
+		}
+
+		this.handleChange(originalState);
 	}
 
 	/**
