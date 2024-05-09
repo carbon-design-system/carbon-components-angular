@@ -21,7 +21,7 @@ import { EventService } from "carbon-components-angular/utils";
  * Get started with importing the module:
  *
  * ```typescript
- * import { SkeletonModule } from 'carbon-components-angular';
+ * import { SliderModule } from 'carbon-components-angular';
  * ```
  *
  * The simplest possible slider usage looks something like:
