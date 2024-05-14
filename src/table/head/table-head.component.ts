@@ -37,7 +37,6 @@ import { TableRowSize } from "../table.types";
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				scope="col"
-				style="width: 0;"
 				[id]="model.getId('select')">
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
 			</th>

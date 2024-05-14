@@ -47,6 +47,7 @@ export * from "carbon-components-angular/tooltip";
 export * from "carbon-components-angular/tiles";
 export * from "carbon-components-angular/timepicker";
 export * from "carbon-components-angular/timepicker-select";
+export * from "carbon-components-angular/treeview";
 export * from "carbon-components-angular/ui-shell";
 export * from "carbon-components-angular/utils";
 export * from "carbon-components-angular/icon";

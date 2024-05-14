@@ -1,11 +1,14 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ContentChild,
 	ElementRef,
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
 	Renderer2
 } from "@angular/core";
 import { fromEvent } from "rxjs";
@@ -23,6 +26,7 @@ import { ToggletipButton } from "./toggletip-button.directive";
  */
 @Component({
 	selector: "cds-toggletip, ibm-toggletip",
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-content select="[cdsToggletipButton]"></ng-content>
 		<cds-popover-content>
@@ -42,13 +46,20 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	constructor(private hostElement: ElementRef, private renderer: Renderer2) {
-		super();
+	constructor(
+		protected hostElement: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(hostElement, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
 
 	ngAfterViewInit(): void {
+		this.initializeReferences();
+
 		// Listen for click events on trigger
 		fromEvent(this.btn.nativeElement, "click")
 			.subscribe((event: Event) => {

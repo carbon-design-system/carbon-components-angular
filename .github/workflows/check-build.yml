@@ -11,10 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # We use Node v16 for building since CCA@v5 is using Angular 14.
+    # We use Node v18 for building since CCA@v5 is using Angular 14.
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v3
