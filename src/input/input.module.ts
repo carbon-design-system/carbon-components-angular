@@ -12,6 +12,8 @@ import { TextInputLabelComponent } from "./text-input-label.component";
 import { IconModule } from "carbon-components-angular/icon";
 import { PasswordInput } from "./password.directive";
 import { PasswordInputLabelComponent } from "./password-input-label.component";
+import { TooltipModule } from "carbon-components-angular/tooltip";
+import { ButtonModule } from "carbon-components-angular/button";
 
 @NgModule({
 	declarations: [
@@ -35,7 +37,9 @@ import { PasswordInputLabelComponent } from "./password-input-label.component";
 	imports: [
 		CommonModule,
 		FormsModule,
-		IconModule
+		IconModule,
+		ButtonModule,
+		TooltipModule
 	]
 })
 export class InputModule { }

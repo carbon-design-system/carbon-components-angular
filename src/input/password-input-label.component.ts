@@ -6,8 +6,11 @@ import {
 	HostBinding,
 	TemplateRef,
 	ViewChild,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	ContentChild
 } from "@angular/core";
+import { PasswordInput } from "./password.directive";
+import { BaseIconButton } from "../button";
 
 /**
  * Get started with importing the module:
@@ -19,8 +22,7 @@ import {
  * ```html
  * <cds-password-label>
  * 	Label
- *	<input cdsPassword type="text">
- *	<input cdsPassword type="password">
+ *	<input cdsPassword>
  * </cds-password-label>
  * ```
  *
@@ -29,142 +31,113 @@ import {
 @Component({
 	selector: "cds-password-label, ibm-password-label",
 	template: `
-        <label
-            [for]="labelInputID"
-            [attr.aria-label]="ariaLabel"
-            class="cds--label"
-            [ngClass]="{
-                'cds--label--disabled': disabled,
-                'cds--skeleton': skeleton
-            }"
-        >
-            <ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-            <ng-template #labelContent>
-                <ng-content></ng-content>
-            </ng-template>
-        </label>
+		<label
+			[for]="labelInputID"
+			[attr.aria-label]="ariaLabel"
+			class="cds--label"
+			[ngClass]="{
+				'cds--label--disabled': disabled,
+				'cds--skeleton': skeleton
+			}"
+		>
+			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
+			<ng-template #labelContent>
+				<ng-content></ng-content>
+			</ng-template>
+		</label>
 
-        <div
-            class="cds--text-input__field-wrapper"
-            [ngClass]="{
-                'cds--text-input__field-wrapper--warning': warn
-            }"
-            [attr.data-invalid]="invalid ? true : null"
-            #wrapper
-        >
-            <svg *ngIf="!warn && invalid" cdsIcon="warning--filled" size="16" class="cds--text-input__invalid-icon"></svg>
-            <svg
-                *ngIf="!invalid && warn"
-                cdsIcon="warning--alt--filled"
-                size="16"
-                class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning"
-            ></svg>
+		<div class="cds--text-input__field-outer-wrapper">
+			<div
+			class="cds--text-input__field-wrapper"
+			[ngClass]="{
+				'cds--text-input__field-wrapper--warning': warn
+			}"
+			[attr.data-invalid]="invalid ? true : null"
+			#wrapper>
+				<svg
+					*ngIf="!warn && invalid"
+					cdsIcon="warning--filled"
+					size="16"
+					class="cds--text-input__invalid-icon">
+				</svg>
+				<svg
+					*ngIf="!invalid && warn"
+					cdsIcon="warning--alt--filled"
+					size="16"
+					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+				</svg>
+				<ng-content select="[cdsPassword], [ibmPassword]"></ng-content>
+				<cds-tooltip
+					*ngIf="!skeleton"
+					[description]="passwordIsVisible ? hidePasswordLabel : showPasswordLabel"
+					[disabled]="disabled"
+					[caret]="caret"
+					[dropShadow]="dropShadow"
+					[highContrast]="highContrast"
+					[isOpen]="isOpen"
+					[align]="align"
+					[autoAlign]="autoAlign"
+					[enterDelayMs]="enterDelayMs"
+					[leaveDelayMs]="leaveDelayMs"
+					class="cds--toggle-password-tooltip">
+						<div class="cds--tooltip-trigger__wrapper">
+							<button
+								class="cds--text-input--password__visibility__toggle cds--btn cds--tooltip__trigger cds--tooltip--a11y"
+								[disabled]="disabled"
+								type="button"
+								(click)="handleTogglePasswordVisibility($event)">
+								<svg *ngIf="passwordIsVisible" cdsIcon="view--off" class="cds--icon-visibility-off" size="16"></svg>
+								<svg *ngIf="!passwordIsVisible" cdsIcon="view" class="cds--icon-visibility-on" size="16"></svg>
+							</button>
+						</div>
+				</cds-tooltip>
+			</div>
+			<div
+				*ngIf="!skeleton && helperText && !invalid && !warn"
+				class="cds--form__helper-text"
+				[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
+				<ng-container *ngIf="!isTemplate(helperText)">{{ helperText }}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+			</div>
 
-            <ng-template *ngIf="passwordInputTemplate; else contentTemplate" [ngTemplateOutlet]="passwordInputTemplate"></ng-template>
+			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+			</div>
 
-            <ng-template #passwordContent>
-                <ng-content select="input[type=password]"></ng-content>
-            </ng-template>
-
-            <ng-template #textContent>
-                <ng-content select="input[type=text]"></ng-content>
-            </ng-template>
-
-            <ng-template #contentTemplate>
-                <ng-container
-                    *ngIf="inputType === 'password'; else textContent"
-                >
-                    <ng-container
-                        *ngTemplateOutlet="passwordContent"
-                    ></ng-container>
-                </ng-container>
-            </ng-template>
-
-            <button
-				*ngIf="!skeleton"
-                type="button"
-                [ngClass]="passwordVisibilityToggleClasses"
-                [disabled]="disabled"
-                (click)="handleTogglePasswordVisibility()"
-            >
-                <ng-container *ngIf="!disabled">
-                    <span class="cds--assistive-text">
-                        {{
-                            passwordIsVisible
-                                ? hidePasswordLabel
-                                : showPasswordLabel
-                        }}
-                    </span>
-                </ng-container>
-                <svg *ngIf="passwordIsVisible" cdsIcon="view--off" size="16"></svg>
-                <svg *ngIf="!passwordIsVisible" cdsIcon="view" size="16"></svg>
-            </button>
-        </div>
-
-        <div
-            *ngIf="!skeleton && helperText && !invalid && !warn"
-            class="cds--form__helper-text"
-            [ngClass]="{ 'cds--form__helper-text--disabled': disabled }"
-        >
-            <ng-container *ngIf="!isTemplate(helperText)">{{ helperText }}</ng-container>
-            <ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-        </div>
-
-        <div *ngIf="!warn && invalid" class="cds--form-requirement">
-            <ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-            <ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-        </div>
-
-        <div *ngIf="!invalid && warn" class="cds--form-requirement">
-            <ng-container *ngIf="!isTemplate(warnText)">{{ warnText }}</ng-container>
-            <ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-        </div>
+			<div *ngIf="!invalid && warn" class="cds--form-requirement">
+				<ng-container *ngIf="!isTemplate(warnText)">{{ warnText }}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+			</div>
+		</div>
     `
 })
 /**
  * Represents the Password Input Label Component.
  */
-export class PasswordInputLabelComponent implements AfterViewInit {
-
-	/**
-	 * Getter for generating classes for password visibility toggle.
-	 */
-	get passwordVisibilityToggleClasses(): string {
-		return [
-			"cds--text-input--password__visibility__toggle",
-			"cds--btn",
-			"cds--btn--icon-only",
-			"cds--tooltip__trigger",
-			"cds--tooltip--a11y",
-			this.disabled ? "cds--btn--disabled" : "",
-			this.tooltipPosition ? `cds--tooltip--${this.tooltipPosition}` : "",
-			this.tooltipAlignment
-				? `cds--tooltip--align-${this.tooltipAlignment}`
-				: ""
-		].join(" ");
-	}
-
-	/**
-	 * Getter for checking if password is visible.
-	 */
-	get passwordIsVisible() {
-		return this.inputType === "text";
-	}
+export class PasswordInputLabelComponent extends BaseIconButton implements AfterViewInit {
 
 	/**
 	 * Counter for generating unique labelInputID.
 	 */
 	static labelCounter = 0;
+
+	@ContentChild(PasswordInput) textInput: PasswordInput;
+
+	/**
+	 * ID for the input item associated with the label.
+	 */
+	@Input() labelInputID = "cds-password-input-" + PasswordInputLabelComponent.labelCounter++;
+
 	/**
 	 * Type for input field, either password or text.
 	 */
 	inputType: "password" | "text" = "password";
 
 	/**
-	 * ID for the input item associated with the label.
-	 */
-	@Input() labelInputID =
-		"ibm-password-input-" + PasswordInputLabelComponent.labelCounter++;
+	* Flag for checking if password is visible.
+	*/
+	passwordIsVisible = false;
 
 	/**
 	 * Flag for disabled label.
@@ -227,35 +200,27 @@ export class PasswordInputLabelComponent implements AfterViewInit {
 	@Input() showPasswordLabel = "Show password";
 
 	/**
-	 * Alignment of the tooltip to the icon-only button.
-	 */
-	@Input() tooltipPosition: "top" | "right" | "bottom" | "left" = "bottom";
-
-	/**
-	 * Direction of the tooltip for icon-only buttons.
-	 */
-	@Input() tooltipAlignment: "start" | "center" | "end" = "center";
-
-	/**
 	 * Reference to the wrapper element.
-	 * @ts-ignore
 	 */
-	@ViewChild("wrapper", { static: false })
-	wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
 	/**
 	 * Binding for applying class to host element.
 	 */
 	@HostBinding("class.cds--form-item") labelClass = true;
+	@HostBinding("class.cds--password-input-wrapper") passwordInputWrapper = true;
+	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
 
 	/**
 	 * Constructor for PasswordInputLabelComponent.
 	 * @param changeDetectorRef - Reference to ChangeDetectorRef.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) { }
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+		super();
+	}
 
 	/**
-	 * Lifecycle hook called after the view has been initialized.
+	 * Lifecycle hook called after the view has been initialized to set the ID of the input element
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
@@ -268,15 +233,6 @@ export class PasswordInputLabelComponent implements AfterViewInit {
 				}
 				inputElement.setAttribute("id", this.labelInputID);
 				return;
-			}
-
-			const divElement = this.wrapper.nativeElement.querySelector("div");
-			if (divElement) {
-				if (divElement.id) {
-					this.labelInputID = divElement.id;
-					this.changeDetectorRef.detectChanges();
-				}
-				divElement.setAttribute("id", this.labelInputID);
 			}
 		}
 	}
@@ -295,5 +251,7 @@ export class PasswordInputLabelComponent implements AfterViewInit {
 	 */
 	public handleTogglePasswordVisibility() {
 		this.inputType = this.inputType === "password" ? "text" : "password";
+		this.textInput.type = this.inputType;
+		this.passwordIsVisible = this.inputType === "text";
 	}
 }

@@ -17,41 +17,26 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-    <cds-password-label
-      [helperText]="helperText"
-      [invalid]="invalid"
-      [invalidText]="invalidText"
-      [warn]="warn"
-      [disabled]="disabled"
-      [warnText]="warnText"
-    >
-      {{ label }}
-      <input
-        cdsPassword
-        type="text"
-        [(ngModel)]="value"
-        [size]="size"
-        [invalid]="invalid"
-        [warn]="warn"
-        [disabled]="disabled"
-        [theme]="theme"
-        [placeholder]="placeholder"
-        [autocomplete]="autocomplete"
-      >
-      <input
-        cdsPassword
-        type="password"
-        [(ngModel)]="value"
-        [size]="size"
-        [invalid]="invalid"
-        [warn]="warn"
-        [disabled]="disabled"
-        [theme]="theme"
-        [placeholder]="placeholder"
-        [autocomplete]="autocomplete"
-      >
-    </cds-password-label>
-  `
+		<cds-password-label
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[disabled]="disabled"
+			[warnText]="warnText">
+			{{ label }}
+			<input
+				cdsPassword
+				type="password"
+				[size]="size"
+				[invalid]="invalid"
+				[warn]="warn"
+				[disabled]="disabled"
+				[theme]="theme"
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete">
+		</cds-password-label>
+	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
@@ -65,8 +50,7 @@ Basic.args = {
 	placeholder: "Placeholder",
 	autocomplete: "on",
 	theme: "dark",
-	size: "md",
-	value: ""
+	size: "md"
 };
 Basic.argTypes = {
 	autocomplete: {
@@ -86,12 +70,9 @@ Basic.argTypes = {
 const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
-    <cds-password-label skeleton="true">
-      <input cdsPassword skeleton="true" type="text">
-      <input cdsPassword skeleton="true" type="password">
-    </cds-password-label>
-    <br>
-    <input cdsPassword skeleton="true">
-  `
+		<cds-password-label skeleton="true">
+			<input cdsPassword [skeleton]="true">
+		</cds-password-label>
+	`
 });
 export const Skeleton = SkeletonTemplate.bind({});

@@ -1,21 +1,25 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import {
+	Directive,
+	HostBinding,
+	Input,
+	Renderer2,
+	ElementRef,
+	AfterViewInit
+} from "@angular/core";
 
 @Directive({
 	selector: "[cdsPassword], [ibmPassword]"
 })
-export class PasswordInput {
-	/**
-	 * @deprecated since v5 - Use `cdsLayer` directive instead
-	 * `light` or `dark` input theme
-	 */
-	@Input() theme: "light" | "dark" = "dark";
+export class PasswordInput implements AfterViewInit {
 
-	/**
-	 * Input field render size
-	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
-
-	@HostBinding("class.cds--text-input") inputClass = true;
+	@Input() set type(type: string) {
+		if (type) {
+			this._type = type;
+			if (this.elementRef) {
+				this.renderer.setAttribute(this.elementRef.nativeElement, "type", this._type);
+			}
+		}
+	}
 	@HostBinding("class.cds--password-input") passwordInputClass = true;
 
 	/**
@@ -41,11 +45,31 @@ export class PasswordInput {
 	@HostBinding("class.cds--layout--size-lg") get sizelg() {
 		return this.size === "lg";
 	}
+	@HostBinding("class.cds--text-input--light") get isLightTheme() {
+		return this.theme === "light";
+	}
 
+	@HostBinding("class.cds--text-input") inputClass = true;
 	@HostBinding("class.cds--text-input--invalid") @Input() invalid = false;
 	@HostBinding("class.cds--text-input__field-wrapper--warning") @Input() warn = false;
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
-	@HostBinding("class.cds--text-input--light") get isLightTheme() {
-		return this.theme === "light";
+
+	/**
+	 * @deprecated since v5 - Use `cdsLayer` directive instead
+	 * `light` or `dark` input theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
+	/**
+	 * Input field render size
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
+
+	private _type = "password";
+
+	constructor(protected elementRef: ElementRef, protected renderer: Renderer2) { }
+
+	ngAfterViewInit(): void {
+		this.renderer.setAttribute(this.elementRef.nativeElement, "type", this._type);
 	}
 }
