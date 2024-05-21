@@ -87,8 +87,7 @@ import { PasswordInput } from "./password.directive";
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
 					[labelTemplate]="labelContentTemplate"
-					[passwordInputTemplate]="inputContentTemplate"
-				>
+					[passwordInputTemplate]="inputContentTemplate">
 				</cds-password-label>
 			</ng-container>
 			<ng-container *ngSwitchDefault>
@@ -119,13 +118,13 @@ import { PasswordInput } from "./password.directive";
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--text-input__invalid-icon">
-					</svg>
+				</svg>
 				<svg
 					*ngIf="!invalid && warn"
 					cdsIcon="warning--alt--filled"
 					size="16"
 					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-					</svg>
+				</svg>
 				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
 			</div>
 			<div
