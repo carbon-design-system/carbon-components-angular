@@ -10,7 +10,7 @@ import {
 	ContentChild
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
-import { BaseIconButton } from "../button";
+import { BaseIconButton } from "carbon-components-angular/button";
 
 /**
  * Get started with importing the module:
