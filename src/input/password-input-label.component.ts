@@ -38,8 +38,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			[ngClass]="{
 				'cds--label--disabled': disabled,
 				'cds--skeleton': skeleton
-			}"
-		>
+			}">
 			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
 			<ng-template #labelContent>
 				<ng-content></ng-content>
