@@ -9,9 +9,7 @@ import { Tooltip } from "../tooltip";
 	template: `
 		<cds-password-label>
 			Password
-			<input
-				cdsPassword
-				type="password">
+			<input cdsPassword type="password">
 		</cds-password-label>
 	`
 })
