@@ -115,7 +115,6 @@ import { BaseIconButton } from "carbon-components-angular/button";
  * Represents the Password Input Label Component.
  */
 export class PasswordInputLabelComponent extends BaseIconButton implements AfterViewInit {
-
 	/**
 	 * Counter for generating unique labelInputID.
 	 */
