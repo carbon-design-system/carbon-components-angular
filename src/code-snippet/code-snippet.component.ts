@@ -269,7 +269,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	onCopyButtonClicked() {
 		if (!this.disabled) {
 			window.navigator.clipboard
-				.writeText(this.code).then(() => {
+				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
 					this.showFeedback = true;
 					this.animating = true;
 					setTimeout(() => {
