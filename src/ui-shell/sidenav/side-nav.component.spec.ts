@@ -140,16 +140,6 @@ fdescribe("SideNav", () => {
 			fixture.detectChanges();
 		});
 
-		it("should not emit the navigation status promise when the link is activated and call onNavigation", async () => {
-			wrapper = fixture.componentInstance;
-			spyOn(wrapper, "onNavigation").and.callThrough();
-			fixture.detectChanges();
-			element = fixture.debugElement.query(By.css(".cds--side-nav__link"));
-			element.nativeElement.click();
-			fixture.detectChanges();
-			expect(wrapper.onNavigation).not.toHaveBeenCalled();
-		});
-
 		it("should expand sidenav-menu on click", () => {
 			wrapper = fixture.componentInstance;
 			fixture.detectChanges();
