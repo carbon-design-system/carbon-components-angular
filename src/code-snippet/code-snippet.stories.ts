@@ -11,7 +11,7 @@ export default {
 		})
 	],
 	argTypes: {
-		code: {
+		snippet: {
 			control: false
 		},
 		display: {
@@ -42,34 +42,34 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-code-snippet display="single">{{code}}</cds-code-snippet>
+		<cds-code-snippet display="single">{{snippet}}</cds-code-snippet>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	code: `import { UIShellModule } from 'carbon-components-angular'; // Single line of code`
+	snippet: `import { UIShellModule } from 'carbon-components-angular'; // Single line of code`
 };
 
 const InlineTemplate = (args) => ({
 	props: args,
 	template: `
-		Here is some <cds-code-snippet display="inline" [theme]="theme">{{code}}</cds-code-snippet> for you.
+		Here is some <cds-code-snippet display="inline" [theme]="theme">{{snippet}}</cds-code-snippet> for you.
 	`
 });
 export const Inline = InlineTemplate.bind({});
 Inline.args = {
-	code: "<inline code>"
+	snippet: "<inline code>"
 };
 
 const MultiTemplate = (args) => ({
 	props: args,
 	template: `
-		<cds-code-snippet display="multi">{{code}}</cds-code-snippet>
+		<cds-code-snippet display="multi">{{snippet}}</cds-code-snippet>
 	`
 });
 export const Multi = MultiTemplate.bind({});
 Multi.args = {
-	code: `{
+	snippet: `{
 		"name": "carbon-components-angular",
 		"version": "0.0.0",
 		"description": "Next generation components",
