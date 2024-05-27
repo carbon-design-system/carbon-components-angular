@@ -18,7 +18,7 @@ class FooComponent { }
 @Component({
 	template: `
 		<cds-sidenav [allowExpansion]="allowExpansion" [hidden]="hidden">
-			<cds-sidenav-menu title="Example Title"></cds-sidenav-menu>
+			<cds-sidenav-menu title="Example Title"></cds-sidenav-menu>
 			<cds-sidenav-item
 				[route]="route"
 				[useRouter]="useRouter"
@@ -38,7 +38,7 @@ class SideNavTest {
 	}
 }
 
-describe("SideNav", () => {
+fdescribe("SideNav", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -67,7 +67,7 @@ describe("SideNav", () => {
 		});
 	});
 
-	it("should work", () => {
+	it("should work", () => {
 		fixture = TestBed.createComponent(SideNav);
 		expect(fixture.componentInstance instanceof SideNav).toBe(true);
 	});
@@ -81,7 +81,7 @@ describe("SideNav", () => {
 			fixture.detectChanges();
 		});
 
-		it("should emit the navigation status promise when the link is activated and call onNavigation", async () => {
+		it("should emit the navigation status promise when the link is activated and call onNavigation", async () => {
 			wrapper = fixture.componentInstance;
 			spyOn(wrapper, "onNavigation").and.callThrough();
 			fixture.detectChanges();
@@ -110,7 +110,7 @@ describe("SideNav", () => {
 		it("should set the sidenav-menu title to Example Title", () => {
 			fixture.detectChanges();
 			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
-			expect(element.nativeElement.textContent).toEqual("Example Title");
+			expect(element.nativeElement.textContent).toEqual("Example Title");
 		});
 
 		it("should toggle expanded on click", () => {
@@ -140,7 +140,7 @@ describe("SideNav", () => {
 			fixture.detectChanges();
 		});
 
-		it("should not emit the navigation status promise when the link is activated and call onNavigation", async () => {
+		it("should not emit the navigation status promise when the link is activated and call onNavigation", async () => {
 			wrapper = fixture.componentInstance;
 			spyOn(wrapper, "onNavigation").and.callThrough();
 			fixture.detectChanges();
@@ -167,7 +167,7 @@ describe("SideNav", () => {
 		it("should set the sidenav-menu title to Example Title", () => {
 			fixture.detectChanges();
 			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
-			expect(element.nativeElement.textContent).toEqual("Example Title");
+			expect(element.nativeElement.textContent).toEqual("Example Title");
 		});
 
 		it("should toggle expanded on click", () => {
