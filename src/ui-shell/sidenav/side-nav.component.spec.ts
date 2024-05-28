@@ -38,7 +38,7 @@ class SideNavTest {
 	}
 }
 
-fdescribe("SideNav", () => {
+describe("SideNav", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
