@@ -1,0 +1,758 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DialogService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/dialog/dialog.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><code>Dialog</code> object to be injected into other components.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#dialogRefs" >dialogRefs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#listeningForBodyClicks" >listeningForBodyClicks</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close" >close</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#closeAll" >closeAll</a>
+                            </li>
+                            <li>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <a href="#singletonClickListen" >singletonClickListen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(injector: Injector, placeholderService: <a href="../injectables/PlaceholderService.html" target="_self">PlaceholderService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/dialog/dialog.service.ts:35</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of <code>DialogService</code>.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>injector</td>
+                                                  
+                                                        <td>
+                                                                    <code>Injector</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>placeholderService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlaceholderService.html" target="_self" >PlaceholderService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <span ><b>close</b></span>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>close(dialogRef: <a href="../components/Dialog.html" target="_self">ComponentRef&lt;Dialog&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/dialog/dialog.service.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>On close of <code>Dialog</code> item, sets focus back to previous item, unsets
+the current <code>dialogRef</code> item. Unsubscribes to the event of <code>Dialog</code> close.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dialogRef</td>
+                                    <td>
+                                                <code><a href="../components/Dialog.html" target="_self" >ComponentRef&lt;Dialog&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the dialogRef to close</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeAll"></a>
+                    <span class="name">
+                        <span class="modifier">Static</span>
+                        <span ><b>closeAll</b></span>
+                        <a href="#closeAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeAll()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/dialog/dialog.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Closes all known <code>Dialog</code>s. Does not focus any previous elements, since we can&#39;t know which would be correct</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>open(viewContainer: ViewContainerRef, dialogConfig: <a href="../interfaces/DialogConfig.html" target="_self">DialogConfig</a>, component: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/dialog/dialog.service.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If <code>dialogRef</code> is defined, the Dialog is already open. If
+<code>dialogRef</code> is undefined, we create the <code>Dialog</code> component and reference to it.
+A subscription is created to track if the <code>Dialog</code> should close.</p>
+<p>May be <code>null</code> if an <code>cds-placeholder</code> exists and <code>dialogConfig.appendInline</code> is false</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>viewContainer</td>
+                                    <td>
+                                            <code>ViewContainerRef</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>a <code>ViewContainerRef</code> to instantiate the component against.
+May be <code>null</code> if an <code>cds-placeholder</code> exists and <code>dialogConfig.appendInline</code> is false</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>dialogConfig</td>
+                                    <td>
+                                                <code><a href="../interfaces/DialogConfig.html" target="_self" >DialogConfig</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the <code>DialogConfig</code> for the component</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>component</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../components/Dialog.html" target="_self" >ComponentRef&lt;Dialog&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="singletonClickListen"></a>
+                    <span class="name">
+                        <span ><b>singletonClickListen</b></span>
+                        <a href="#singletonClickListen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>singletonClickListen()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/dialog/dialog.service.ts:119</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fix for safari hijacking clicks.</p>
+<p>Runs on <code>ngOnInit</code> of every dialog. Ensures we don&#39;t have multiple listeners
+because having many of them could degrade performance in certain cases (and is
+not necessary for our use case)</p>
+<p>This is an internally used function, can change at any point (even get removed)
+and changes to it won&#39;t be considered a breaking change. Use at your own risk.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogRefs"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Static</span>
+                        <span ><b>dialogRefs</b></span>
+                        <a href="#dialogRefs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;ComponentRef&lt;Dialog&gt;&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/dialog/dialog.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A set of all known dialog components</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listeningForBodyClicks"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Static</span>
+                        <span ><b>listeningForBodyClicks</b></span>
+                        <a href="#listeningForBodyClicks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/dialog/dialog.service.ts:20</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Used in <code>singletonClickListen</code>, don&#39;t count on its existence and values.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Injector,
+	ComponentRef,
+	Injectable,
+	ViewContainerRef
+} from &quot;@angular/core&quot;;
+import { CloseReasons, DialogConfig } from &quot;./dialog-config.interface&quot;;
+import { PlaceholderService } from &quot;carbon-components-angular/placeholder&quot;;
+import { Dialog } from &quot;./dialog.component&quot;;
+import { tabbableSelector } from &quot;carbon-components-angular/common&quot;;
+
+/**
+ * &#x60;Dialog&#x60; object to be injected into other components.
+ */
+@Injectable()
+export class DialogService {
+	/**
+	 * Used in &#x60;singletonClickListen&#x60;, don&#x27;t count on its existence and values.
+	 */
+	protected static listeningForBodyClicks &#x3D; false;
+
+	/**
+	 * A set of all known dialog components
+	 */
+	protected static dialogRefs &#x3D; new Set&lt;ComponentRef&lt;Dialog&gt;&gt;();
+
+	/**
+	 * Closes all known &#x60;Dialog&#x60;s. Does not focus any previous elements, since we can&#x27;t know which would be correct
+	 */
+	public static closeAll() {
+		DialogService.dialogRefs.forEach(ref &#x3D;&gt; ref.instance.doClose({
+			reason: CloseReasons.programmatic
+		}));
+		DialogService.dialogRefs.clear();
+	}
+
+	/**
+	 * Creates an instance of &#x60;DialogService&#x60;.
+	 */
+	constructor(protected injector: Injector, protected placeholderService: PlaceholderService) {}
+
+	/**
+	 * If &#x60;dialogRef&#x60; is defined, the Dialog is already open. If
+	 * &#x60;dialogRef&#x60; is undefined, we create the &#x60;Dialog&#x60; component and reference to it.
+	 * A subscription is created to track if the &#x60;Dialog&#x60; should close.
+	 *
+	 * @param viewContainer a &#x60;ViewContainerRef&#x60; to instantiate the component against.
+	 * May be &#x60;null&#x60; if an &#x60;cds-placeholder&#x60; exists and &#x60;dialogConfig.appendInline&#x60; is false
+	 * @param dialogConfig the &#x60;DialogConfig&#x60; for the component
+	 */
+	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig, component: any) {
+		if (!component) {
+			return;
+		}
+
+		let dialogRef;
+		if (dialogConfig.appendInline) {
+			// add our component to the view
+			dialogRef &#x3D; viewContainer.createComponent(component, { index: 0, injector: this.injector });
+		} else if (!this.placeholderService.hasPlaceholderRef()) {
+			dialogRef &#x3D; viewContainer.createComponent(component, { index: 0, injector: this.injector });
+			if (dialogRef) {
+				setTimeout(() &#x3D;&gt; {
+					window.document.querySelector(&quot;body&quot;).appendChild(dialogRef.location.nativeElement);
+				});
+			}
+		} else {
+			dialogRef &#x3D; this.placeholderService.createComponent(component, this.injector);
+		}
+
+		// keep track of all initialized dialogs
+		DialogService.dialogRefs.add(dialogRef);
+
+		// initialize some extra options
+		dialogConfig[&quot;previouslyFocusedElement&quot;] &#x3D; document.activeElement;
+		dialogRef.instance.dialogConfig &#x3D; dialogConfig;
+
+		dialogRef.instance.elementRef.nativeElement.focus();
+
+		return dialogRef as ComponentRef&lt;Dialog&gt;;
+	}
+
+	/**
+	 * On close of &#x60;Dialog&#x60; item, sets focus back to previous item, unsets
+	 * the current &#x60;dialogRef&#x60; item. Unsubscribes to the event of &#x60;Dialog&#x60; close.
+	 *
+	 * @param dialogRef the dialogRef to close
+	 */
+	close(dialogRef: ComponentRef&lt;Dialog&gt;) {
+		// to handle the case where we have a null &#x60;this.dialogRef&#x60;
+		if (!dialogRef) { return; }
+
+		const elementToFocus &#x3D; dialogRef.instance.dialogConfig[&quot;previouslyFocusedElement&quot;];
+
+		dialogRef.destroy();
+
+		// update the globally tracked dialogRefs
+		if (DialogService.dialogRefs.has(dialogRef)) {
+			DialogService.dialogRefs.delete(dialogRef);
+		}
+
+		// Keeps the focus on the dialog trigger if there are no focusable elements. Change focus to previously focused element
+		// if there are focusable elements in the dialog.
+		if (!dialogRef.location.nativeElement.querySelectorAll(tabbableSelector)) {
+			elementToFocus.focus();
+		}
+	}
+
+	/**
+	 * Fix for safari hijacking clicks.
+	 *
+	 * Runs on &#x60;ngOnInit&#x60; of every dialog. Ensures we don&#x27;t have multiple listeners
+	 * because having many of them could degrade performance in certain cases (and is
+	 * not necessary for our use case)
+	 *
+	 * This is an internally used function, can change at any point (even get removed)
+	 * and changes to it won&#x27;t be considered a breaking change. Use at your own risk.
+	 */
+	singletonClickListen() {
+		if (!DialogService.listeningForBodyClicks) {
+			document.body.firstElementChild.addEventListener(&quot;click&quot;, () &#x3D;&gt; null, true);
+			DialogService.listeningForBodyClicks &#x3D; true;
+		}
+	}
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DialogService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
