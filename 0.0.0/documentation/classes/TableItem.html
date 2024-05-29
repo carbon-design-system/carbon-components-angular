@@ -12,10 +12,61 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -24,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -315,7 +366,7 @@
 for expanded data. <code>expandedTemplate</code> is then ignored.</p>
 <p>You can apply the template for individual cells as usual.</p>
 <p>Example model data:</p>
-<div><pre class="line-numbers"><code class="language-typescript">this.model.data = [
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">this.model.data = [
     [new TableItem({ data: &quot;Name 4&quot; }), new TableItem({ data: &quot;twer&quot; })], // regular row
     [
         new TableItem({
@@ -477,14 +528,14 @@ table rows.</p>
 <p>If not provided, displays data as a simple string.</p>
 <p>Usage:</p>
 <p>In a component where you&#39;re using the table create a template like:</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ng-template #customItemTemplate let-data=&quot;data&quot;&gt;
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;ng-template #customItemTemplate let-data=&quot;data&quot;&gt;
     &lt;i&gt;&lt;a [routerLink]=&quot;data.link&quot;&gt;{{data.name}}&lt;/a&gt;&lt;/i&gt;
 &lt;/ng-template&gt;</code></pre></div><p>where we assume your data contains <code>link</code> and <code>name</code>. <code>let-data=&quot;data&quot;</code> is
 necessary for you to be able to access item&#39;s data in the template.</p>
 <p>Create <code>ViewChild</code> property with:</p>
-<div><pre class="line-numbers"><code class="language-typescript">(at)ViewChild(&quot;customItemTemplate&quot;)
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">(at)ViewChild(&quot;customItemTemplate&quot;)
 protected customItemTemplate: TemplateRef&lt;any&gt;;</code></pre></div><p>Set the template to the table item, for example:</p>
-<div><pre class="line-numbers"><code class="language-typescript">this.model.data = [
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">this.model.data = [
     [new TableItem({data: {name: &quot;Custom item&quot;, link: &quot;/table&quot;}, template: this.customItemTemplate})]
 ];</code></pre></div></div>
                 </td>
@@ -770,6 +821,19 @@ export class TableItem {
             var COMPODOC_CURRENT_PAGE_URL = 'TableItem.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

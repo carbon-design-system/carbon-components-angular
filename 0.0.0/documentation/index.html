@@ -12,10 +12,61 @@
         <link rel="stylesheet" href="./styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">carbon-components-angular documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">carbon-components-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -24,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -57,10 +108,10 @@
 
 <h3>Getting started</h3>
 <p>Assuming we&#39;re starting with a new @angular/cli project:</p>
-<div><pre class="line-numbers"><code class="language-shell">$ npx &#64;angular/cli new my-project --style=scss
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">$ npx &#64;angular/cli new my-project --style=scss
 $ cd my-project
 $ npm i --save carbon-components-angular &#64;carbon/styles</code></pre></div><p>Then we need to include carbon-components in <code>src/styles.scss</code>:</p>
-<div><pre class="line-numbers"><code class="language-scss">&#64;use &quot;&#64;carbon/styles&quot;;</code></pre></div><blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-scss">&#64;use &quot;&#64;carbon/styles&quot;;</code></pre></div><blockquote>
 <p><em>Note:</em> For offline usage we&#39;ll need to set <code>$font-path: &#39;~carbon-components/src/globals/fonts&#39;;</code> at the very top of our <code>src/styles.scss</code>. This will copy the fonts to our <code>dist</code> folder upon successful build. If you like the fonts to be a part of your <code>assets</code> folder and not pollute the <code>dist</code> folder then copy the fonts from <code>node_modules/carbon-components/src/globals/fonts</code> into our app&#39;s <code>src/assets/fonts</code> folder and add <code>$font-path: &#39;/assets/fonts/&#39;;</code> at the very top of our <code>src/styles.scss</code>.</p>
 </blockquote>
 <p>That&#39;s it! Now we can run <code>npm start</code> and start building out our application!</p>
@@ -358,6 +409,19 @@ For more information on the data being collected, please see the
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>

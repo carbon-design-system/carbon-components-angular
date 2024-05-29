@@ -12,10 +12,61 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -24,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -70,17 +121,17 @@
 <title>cluster_ToggleModule_declarations</title>
 <polygon fill="none" stroke="black" points="284,-189.59 284,-241.59 356,-241.59 356,-189.59 284,-189.59"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ToggleModule_imports</title>
-<polygon fill="none" stroke="black" points="364,-189.59 364,-241.59 466,-241.59 466,-189.59 364,-189.59"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_ToggleModule_Toggle_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-176.59 624,-176.59 624,-78 16,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_ToggleModule_exports</title>
-<polygon fill="none" stroke="black" points="329,-319.59 329,-371.59 405,-371.59 405,-319.59 329,-319.59"/>
+<polygon fill="none" stroke="black" points="234,-319.59 234,-371.59 310,-371.59 310,-319.59 234,-319.59"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ToggleModule_imports</title>
+<polygon fill="none" stroke="black" points="174,-189.59 174,-241.59 276,-241.59 276,-189.59 174,-189.59"/>
 </g>
 <!-- Toggle -->
 <g id="node1" class="node">
@@ -91,26 +142,26 @@
 <!-- ToggleModule -->
 <g id="node2" class="node">
 <title>ToggleModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="416.71,-298.59 413.71,-302.59 392.71,-302.59 389.71,-298.59 317.29,-298.59 317.29,-262.59 416.71,-262.59 416.71,-298.59"/>
-<text text-anchor="middle" x="367" y="-276.39" font-family="Times,serif" font-size="14.00">ToggleModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="321.71,-298.59 318.71,-302.59 297.71,-302.59 294.71,-298.59 222.29,-298.59 222.29,-262.59 321.71,-262.59 321.71,-298.59"/>
+<text text-anchor="middle" x="272" y="-276.39" font-family="Times,serif" font-size="14.00">ToggleModule</text>
 </g>
 <!-- Toggle&#45;&gt;ToggleModule -->
 <g id="edge1" class="edge">
 <title>Toggle&#45;&gt;ToggleModule</title>
-<path fill="none" stroke="black" d="M332.61,-233.7C332.61,-233.7 332.61,-252.58 332.61,-252.58"/>
-<polygon fill="black" stroke="black" points="329.11,-252.58 332.61,-262.58 336.11,-252.58 329.11,-252.58"/>
+<path fill="none" stroke="black" d="M306.89,-233.7C306.89,-233.7 306.89,-252.58 306.89,-252.58"/>
+<polygon fill="black" stroke="black" points="303.39,-252.58 306.89,-262.58 310.39,-252.58 303.39,-252.58"/>
 </g>
 <!-- Toggle  -->
 <g id="node5" class="node">
 <title>Toggle </title>
-<polygon fill="#fb8072" stroke="black" points="396.66,-363.59 337.34,-363.59 337.34,-327.59 396.66,-327.59 396.66,-363.59"/>
-<text text-anchor="middle" x="367" y="-341.39" font-family="Times,serif" font-size="14.00">Toggle </text>
+<polygon fill="#fb8072" stroke="black" points="301.66,-363.59 242.34,-363.59 242.34,-327.59 301.66,-327.59 301.66,-363.59"/>
+<text text-anchor="middle" x="272" y="-341.39" font-family="Times,serif" font-size="14.00">Toggle </text>
 </g>
 <!-- ToggleModule&#45;&gt;Toggle  -->
 <g id="edge4" class="edge">
 <title>ToggleModule&#45;&gt;Toggle </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M367,-298.7C367,-298.7 367,-317.58 367,-317.58"/>
-<polygon fill="black" stroke="black" points="363.5,-317.58 367,-327.58 370.5,-317.58 363.5,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M272,-298.7C272,-298.7 272,-317.58 272,-317.58"/>
+<polygon fill="black" stroke="black" points="268.5,-317.58 272,-327.58 275.5,-317.58 268.5,-317.58"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Toggle, multi: true
@@ -137,14 +188,14 @@
 <!-- I18nModule -->
 <g id="node4" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="457.71,-233.59 454.71,-237.59 433.71,-237.59 430.71,-233.59 372.29,-233.59 372.29,-197.59 457.71,-197.59 457.71,-233.59"/>
-<text text-anchor="middle" x="415" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="267.71,-233.59 264.71,-237.59 243.71,-237.59 240.71,-233.59 182.29,-233.59 182.29,-197.59 267.71,-197.59 267.71,-233.59"/>
+<text text-anchor="middle" x="225" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;ToggleModule -->
 <g id="edge3" class="edge">
 <title>I18nModule&#45;&gt;ToggleModule</title>
-<path fill="none" stroke="black" d="M394.5,-233.7C394.5,-233.7 394.5,-252.58 394.5,-252.58"/>
-<polygon fill="black" stroke="black" points="391,-252.58 394.5,-262.58 398,-252.58 391,-252.58"/>
+<path fill="none" stroke="black" d="M245,-233.7C245,-233.7 245,-252.58 245,-252.58"/>
+<polygon fill="black" stroke="black" points="241.5,-252.58 245,-262.58 248.5,-252.58 241.5,-252.58"/>
 </g>
 </g>
 </svg>
@@ -300,6 +351,19 @@ export class ToggleModule { }
             var COMPODOC_CURRENT_PAGE_URL = 'ToggleModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

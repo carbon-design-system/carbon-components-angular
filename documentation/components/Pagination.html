@@ -12,10 +12,61 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -24,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -70,9 +121,9 @@
     </p>
     <p class="comment">
         <p>Use pagination when you have multiple pages of data to handle. Get started with importing the module:</p>
-<div><pre class="line-numbers"><code class="language-typescript">import { PaginationModule } from &#39;carbon-components-angular&#39;;</code></pre></div><div><pre class="line-numbers"><code class="language-html">    &lt;cds-pagination [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { PaginationModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">    &lt;cds-pagination [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
 you load the page.</p>
-<div><pre class="line-numbers"><code class="language-typescript">selectPage(page) {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">selectPage(page) {
     // ... your code to load the page goes here
 
     this.model.currentPage = page;
@@ -757,7 +808,7 @@ you load the page.</p>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Expects an object that contains some or all of:</p>
-<div><pre class="line-numbers"><code class="language-none">{
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">{
         &quot;ITEMS_PER_PAGE&quot;: &quot;Items per page:&quot;,
         &quot;OPEN_LIST_OF_OPTIONS&quot;: &quot;Open list of options&quot;,
         &quot;BACKWARD&quot;: &quot;Backward&quot;,
@@ -1206,7 +1257,7 @@ data is finally loaded.</p>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-description"><p>Expects an object that contains some or all of:</p>
-<div><pre class="line-numbers"><code class="language-none">{
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">{
         &quot;ITEMS_PER_PAGE&quot;: &quot;Items per page:&quot;,
         &quot;OPEN_LIST_OF_OPTIONS&quot;: &quot;Open list of options&quot;,
         &quot;BACKWARD&quot;: &quot;Backward&quot;,
@@ -2006,6 +2057,19 @@ export class Pagination {
             var COMPODOC_CURRENT_PAGE_URL = 'Pagination.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

@@ -24,13 +24,13 @@
 <title>cluster_TreeviewModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="31.5,-70 31.5,-333 464.5,-333 464.5,-70 31.5,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_TreeviewModule_exports</title>
-<polygon fill="none" stroke="black" points="90.5,-273 90.5,-325 405.5,-325 405.5,-273 90.5,-273"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_TreeviewModule_imports</title>
 <polygon fill="none" stroke="black" points="356.5,-143 356.5,-195 456.5,-195 456.5,-143 356.5,-143"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_TreeviewModule_exports</title>
+<polygon fill="none" stroke="black" points="90.5,-273 90.5,-325 405.5,-325 405.5,-273 90.5,-273"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TreeviewModule_declarations</title>
