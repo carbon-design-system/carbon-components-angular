@@ -89,7 +89,7 @@
     "@carbon/themes": "11.24.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@compodoc/compodoc": "1.1.21",
+    "@compodoc/compodoc": "1.1.25",
     "@storybook/addon-a11y": "7.6.7",
     "@storybook/addon-actions": "7.6.7",
     "@storybook/addon-essentials": "7.6.7",
