@@ -58,6 +58,8 @@ import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
+import View16 from "@carbon/icons/es/view/16";
+import ViewOff16 from "@carbon/icons/es/view--off/16";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -134,6 +136,8 @@ export class IconModule {
 			SettingsAdjust16,
 			Subtract16,
 			TrashCan16,
+			View16,
+			ViewOff16,
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,
