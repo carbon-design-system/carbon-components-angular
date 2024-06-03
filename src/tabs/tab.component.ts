@@ -63,8 +63,12 @@ import {
 			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'"
 			aria-live="polite">
-			<ng-content></ng-content>
+			<ng-template *ngIf="isTemplate(tabContent); else projectedContent" [ngTemplateOutlet]="tabContent"></ng-template>
 		</div>
+		<ng-template #projectedContent>
+			<ng-content></ng-content>
+		</ng-template>
+
 	`
 })
 export class Tab implements OnInit {
@@ -111,6 +115,9 @@ export class Tab implements OnInit {
 	@Input() set cacheActive(shouldCache: boolean) {
 		this._cacheActive = shouldCache;
 	}
+
+	@Input() tabContent: TemplateRef<any>;
+
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
@@ -149,5 +156,9 @@ export class Tab implements OnInit {
 	*/
 	shouldRender() {
 		return this.active || this.cacheActive;
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
