@@ -68,7 +68,6 @@ import {
 		<ng-template #projectedContent>
 			<ng-content></ng-content>
 		</ng-template>
-
 	`
 })
 export class Tab implements OnInit {
