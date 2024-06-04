@@ -63,11 +63,9 @@ import {
 			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'"
 			aria-live="polite">
-			<ng-template *ngIf="isTemplate(tabContent); else projectedContent" [ngTemplateOutlet]="tabContent"></ng-template>
-		</div>
-		<ng-template #projectedContent>
+			<ng-template *ngIf="isTemplate(tabContent)" [ngTemplateOutlet]="tabContent" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
 			<ng-content></ng-content>
-		</ng-template>
+		</div>
 	`
 })
 export class Tab implements OnInit {
@@ -114,14 +112,18 @@ export class Tab implements OnInit {
 	@Input() set cacheActive(shouldCache: boolean) {
 		this._cacheActive = shouldCache;
 	}
-
+	/**
+	 * Allows life cycle hooks to be called on the rendered content
+	 */
 	@Input() tabContent: TemplateRef<any>;
-
+	/**
+	 * Optional data for templates passed as implicit context
+	 */
+	@Input() templateContext: any;
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
-
 	/**
 	 * Used to set the id property on the element.
 	 */
