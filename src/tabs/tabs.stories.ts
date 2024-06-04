@@ -27,23 +27,19 @@ const Template = (args) => ({
 			[followFocus]="followFocus"
 			[isNavigation]="isNavigation"
 			[cacheActive]="cacheActive">
-			<cds-tab heading="one" [tabContent]="one"></cds-tab>
-			<cds-tab heading="two" [tabContent]="two"></cds-tab>
+			<cds-tab heading="one">Tab Content 1</cds-tab>
+			<cds-tab heading="two">Tab Content 2</cds-tab>
 			<cds-tab heading="three" [tabContent]="three"></cds-tab>
-			<cds-tab heading="four">Tab Content 4</cds-tab>
+			<cds-tab heading="four" [tabContent]="four"></cds-tab>
 		</cds-tabs>
 
 		<!-- Use templates if you would like to have lifecycle hooks called when cacheActive is false -->
-		<ng-template #one>
-			Tab Content 1
-		</ng-template>
-
-		<ng-template #two>
-			Tab Content 2
-		</ng-template>
-
 		<ng-template #three>
 			Tab Content 3
+		</ng-template>
+
+		<ng-template #four>
+			Tab Content 4
 		</ng-template>
 	`
 });
