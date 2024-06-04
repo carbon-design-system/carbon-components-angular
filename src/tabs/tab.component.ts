@@ -63,7 +63,11 @@ import {
 			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'"
 			aria-live="polite">
-			<ng-template *ngIf="isTemplate(tabContent)" [ngTemplateOutlet]="tabContent" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
+			<ng-template
+				*ngIf="isTemplate(tabContent)"
+				[ngTemplateOutlet]="tabContent"
+				[ngTemplateOutletContext]="{ $implicit: templateContext }">
+			</ng-template>
 			<ng-content></ng-content>
 		</div>
 	`
