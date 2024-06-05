@@ -31,11 +31,19 @@ import { Router } from "@angular/router";
 
 		<ng-template #sidenavItemRouterTpl>
 			<a
-				[routerLink]="route"
-				routerLinkActive="cds--side-nav__item--active"
-				(click)="navigate($event)"
-				ariaCurrentWhenActive="page"
 				[attr.title]="title ? title : null"
+				[routerLink]="route"
+ 				[relativeTo]="routeExtras?.relativeTo"
+				[queryParams]="routeExtras?.queryParams"
+				[fragment]="routeExtras?.fragment"
+				[queryParamsHandling]="routeExtras?.queryParamsHandling"
+				[preserveFragment]="routeExtras?.preserveFragment"
+				[skipLocationChange]="routeExtras?.skipLocationChange"
+				[replaceUrl]="routeExtras?.replaceUrl"
+				[state]="routeExtras?.state"
+				[info]="routeExtras?.info"
+				routerLinkActive="cds--side-nav__item--active"
+				ariaCurrentWhenActive="page"
 				class="cds--side-nav__link">
 				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
 			</a>
