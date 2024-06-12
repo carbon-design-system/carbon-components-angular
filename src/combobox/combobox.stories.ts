@@ -29,6 +29,7 @@ const getOptions = (override = {}) => {
 		warn: boolean("Show the warning state", false),
 		warnText: text("Text for the warning", "This is a warning"),
 		label: text("Label", "ComboBox label"),
+		hideLabel: boolean("Hide label", false),
 		helperText: text("Helper text", "Optional helper text."),
 		items: object("items", [
 			{ content: "one" },
@@ -131,7 +132,8 @@ class DynamicListComboBox implements AfterViewInit {
 				[invalidText]="invalidText"
 				[warn]="warn"
 				[warnText]="warnText"
-				[items]="_items">
+				[items]="_items"
+				[hideLabel]="hideLabel">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 			selected: {{ sampleForm.get("combobox").value | json }}
@@ -147,7 +149,8 @@ class DynamicListComboBox implements AfterViewInit {
 				[invalidText]="invalidText"
 				[warn]="warn"
 				[warnText]="warnText"
-				[items]="_items">
+				[items]="_items"
+				[hideLabel]="hideLabel">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 			selected: {{ sampleForm.get("multibox").value | json }}
@@ -164,6 +167,7 @@ class ReactiveFormsCombobox implements OnInit {
 	@Input() helperText = "";
 	@Input() size = "md";
 	@Input() theme = "dark";
+	@Input() hideLabel = false;
 	@Input() set items(newItems) {
 		if (!isEqual(this._items, newItems)) {
 			this._items = newItems;
@@ -290,6 +294,7 @@ storiesOf("Components|Combobox", module)
 					[warn]="warn"
 					[warnText]="warnText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[items]="items"
 					[theme]="theme"
@@ -322,6 +327,7 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[items]="items"
 					[theme]="theme"
@@ -347,6 +353,7 @@ storiesOf("Components|Combobox", module)
 					[size]="size"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[items]="items"
 					[theme]="theme"
@@ -382,6 +389,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[size]="size"
 					[helperText]="helperText"
 					[items]="items"
@@ -421,6 +429,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[warn]="warn"
 					[disabled]="disabled"
 					[size]="size"
@@ -472,6 +481,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[items]="items"
 					[theme]="theme"
@@ -508,6 +518,7 @@ storiesOf("Components|Combobox", module)
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[size]="size"
 					itemValueKey="content"
 					[helperText]="helperText"
