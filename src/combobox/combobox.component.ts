@@ -256,7 +256,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		return this._clearSelectionAria.value;
 	}
 	static comboBoxCount = 0;
-	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
+	@Input() id = `dropdown-${++ComboBox.comboBoxCount}`;
 	@Input() labelId = `dropdown-label-${ComboBox.comboBoxCount}`;
 	/**
 	 * List of items to fill the content with.
