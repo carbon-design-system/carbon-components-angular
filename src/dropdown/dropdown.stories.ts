@@ -58,6 +58,7 @@ const getProps = (overrides = {}) => Object.assign({}, {
 	warnText: text("Text for the warning", "This is a warning"),
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
+	hideLabel: boolean("Hide label", false),
 	helperText: text("Helper text", "Optional helper text."),
 	items: object("items", [
 		{ content: "one" },
@@ -84,6 +85,7 @@ const getProps = (overrides = {}) => Object.assign({}, {
 			<div style="width: 300px">
 				<ibm-dropdown
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
@@ -109,6 +111,7 @@ class ReactiveFormsStory implements OnInit {
 
 	@Input() items = [];
 	@Input() label = "";
+	@Input() hideLabel = false;
 	@Input() helperText = "";
 	@Input() invalid = false;
 	@Input() invalidText = "";
@@ -192,6 +195,7 @@ storiesOf("Components|Dropdown", module)
 		<div style="width: 300px">
 			<ibm-dropdown
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[size]="size"
 				[dropUp]="dropUp"
@@ -215,6 +219,7 @@ storiesOf("Components|Dropdown", module)
 		<div style="width: 300px">
 			<ibm-dropdown
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[size]="size"
 				[dropUp]="dropUp"
@@ -241,6 +246,7 @@ storiesOf("Components|Dropdown", module)
 			<ibm-dropdown
 				type="multi"
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[size]="size"
 				[dropUp]="dropUp"
@@ -272,6 +278,7 @@ storiesOf("Components|Dropdown", module)
 		<div style="width: 300px">
 			<ibm-dropdown
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[size]="size"
 				[invalid]="invalid"
@@ -313,6 +320,7 @@ storiesOf("Components|Dropdown", module)
 			-->
 			<app-reactive-forms
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
@@ -346,6 +354,7 @@ storiesOf("Components|Dropdown", module)
 		<div style="width: 300px">
 			<ibm-dropdown
 				[label]="label"
+				[hideLabel]="hideLabel"
 				[helperText]="helperText"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
