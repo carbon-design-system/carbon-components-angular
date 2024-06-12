@@ -29,9 +29,18 @@ const Template = (args) => ({
 			[cacheActive]="cacheActive">
 			<cds-tab heading="one">Tab Content 1</cds-tab>
 			<cds-tab heading="two">Tab Content 2</cds-tab>
-			<cds-tab heading="three">Tab Content 3</cds-tab>
-			<cds-tab heading="three">Tab Content 3</cds-tab>
+			<cds-tab heading="three" [tabContent]="three"></cds-tab>
+			<cds-tab heading="four" [tabContent]="four"></cds-tab>
 		</cds-tabs>
+
+		<!-- Use templates if you would like to have lifecycle hooks called when cacheActive is false -->
+		<ng-template #three>
+			Tab Content 3
+		</ng-template>
+
+		<ng-template #four>
+			Tab Content 4
+		</ng-template>
 	`
 });
 export const Basic = Template.bind({});
