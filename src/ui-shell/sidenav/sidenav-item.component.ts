@@ -41,7 +41,6 @@ import { Router } from "@angular/router";
 				[skipLocationChange]="routeExtras?.skipLocationChange"
 				[replaceUrl]="routeExtras?.replaceUrl"
 				[state]="routeExtras?.state"
-				[info]="routeExtras?.info"
 				routerLinkActive="cds--side-nav__item--active"
 				ariaCurrentWhenActive="page"
 				class="cds--side-nav__link">
