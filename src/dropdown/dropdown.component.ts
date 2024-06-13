@@ -187,7 +187,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Hide label while keeping it available for screen readers
+	 * Hide label while keeping it accessible for screen readers
 	 */
 	@Input() hideLabel = false;
 	/**

@@ -307,7 +307,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Hide label while keeping it available for screen readers
+	 * Hide label while keeping it accessible for screen readers
 	 */
 	@Input() hideLabel = false;
 	/**
