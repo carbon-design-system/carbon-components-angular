@@ -86,7 +86,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Context for template if any
+	 * Optional context for label if it's a template
 	 */
 	@Input() labelContext: any;
 	/**
