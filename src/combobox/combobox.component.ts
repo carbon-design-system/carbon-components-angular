@@ -46,7 +46,10 @@ import { Observable } from "rxjs";
 				[for]="id"
 				[id]="labelId"
 				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -303,6 +306,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Label for the combobox.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Hide label while keeping it accessible for screen readers
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the optional helper text.
 	 */

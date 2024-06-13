@@ -28,6 +28,7 @@ export default {
 	],
 	args: {
 		label: "Label",
+		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
 		invalid: false,
@@ -111,6 +112,7 @@ const Template = (args) => ({
 			[warn]="warn"
 			[warnText]="warnText"
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[helperText]="helperText"
 			[items]="items"
 			[theme]="theme"
@@ -180,6 +182,7 @@ const MultiTemplate = (args) => ({
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[warn]="warn"
 			[disabled]="disabled"
 			[size]="size"
