@@ -32,7 +32,12 @@ import { TreeViewService } from "./treeview.service";
 			*ngIf="label"
 			[id]="id"
 			class="cds--label">
-			{{label}}
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template
+				*ngIf="isTemplate(label)"
+				[ngTemplateOutlet]="label"
+				[ngTemplateOutletContext]="{ $implicit: labelContext }">
+			</ng-template>
 		</label>
 		<div
 			class="cds--tree"
@@ -80,6 +85,10 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Tree view label
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Context for template if any
+	 */
+	@Input() labelContext: any;
 	/**
 	 * Specify the size of the list items in the tree
 	 */
@@ -152,6 +161,10 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 		if (event.key === "ArrowDown") {
 			(this.treeWalker.nextNode() as HTMLElement)?.focus();
 		}
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	public isProjected() {
