@@ -28,7 +28,11 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 				'cds--contained-list--sm': size === ContainedListSize.Small,
 				'cds--contained-list--md': size === ContainedListSize.Medium,
 				'cds--contained-list--lg': size === ContainedListSize.Large,
-				'cds--contained-list--xl': size === ContainedListSize.ExtraLarge
+				'cds--contained-list--xl': size === ContainedListSize.ExtraLarge,
+				'cds--layout--size-sm': size === ContainedListSize.Small,
+				'cds--layout--size-md': size === ContainedListSize.Medium,
+				'cds--layout--size-lg': size === ContainedListSize.Large,
+				'cds--layout--size-xl': size === ContainedListSize.ExtraLarge
 			}">
 			<div class="cds--contained-list__header">
 				<div [id]="labelId" class="cds--contained-list__label">
