@@ -44,6 +44,7 @@ import { Observable } from "rxjs";
 			<label
 				*ngIf="label"
 				[for]="id"
+				[id]="labelId"
 				class="cds--label"
 				[ngClass]="{'cds--label--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
