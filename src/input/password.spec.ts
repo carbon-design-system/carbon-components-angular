@@ -15,7 +15,7 @@ import { Tooltip } from "../tooltip";
 })
 class TestPasswordInputComponent {}
 
-fdescribe("Password", () => {
+describe("Password", () => {
 	let fixture: ComponentFixture<TestPasswordInputComponent>;
 	let component: TestPasswordInputComponent;
 	let passwordEl: DebugElement;
