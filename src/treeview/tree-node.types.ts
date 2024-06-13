@@ -9,6 +9,7 @@ export interface Node {
 	expanded?: boolean;
 	selected?: boolean;
 	icon?: string | TemplateRef<any>;
+	iconContext?: any;
 	children?: Node[];
 	[key: string]: any;
 }

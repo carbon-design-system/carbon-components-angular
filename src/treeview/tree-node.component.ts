@@ -80,7 +80,11 @@ import { Node } from "./tree-node.types";
 							size="16">
 						</svg>
 					</ng-container>
-					<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
+					<ng-template
+						*ngIf="isTemplate(icon)"
+						[ngTemplateOutlet]="icon"
+						[ngTemplateOutletContext]="{ $implicit: iconContext }">
+					</ng-template>
 					{{label}}
 				</span>
 			</div>
@@ -113,6 +117,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	@Input() selected = false;
 	@Input() value;
 	@Input() icon: string | TemplateRef<any>;
+	@Input() iconContext: any;
 	@Input() children: Node[] = [];
 
 	/**
@@ -138,6 +143,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		this.selected = node.selected ?? this.selected;
 		this.depth = node.depth ?? this.depth;
 		this.children = node.children ?? this.children;
+		this.iconContext = node.iconText ?? this.iconContext;
 	}
 
 	get node() {
