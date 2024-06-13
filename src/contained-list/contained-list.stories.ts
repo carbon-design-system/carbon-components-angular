@@ -183,7 +183,8 @@ const withActionsTemplate = () => ({
 				<svg ibmIcon="subtract--alt" size="16" class="cds--btn__icon"></svg>
 			</button>
 		</ng-template>
-		<cds-contained-list label="List title">
+
+		<cds-contained-list label="List title" [size]="size">
 			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
 			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
 			<cds-contained-list-item [action]="action">List item</cds-contained-list-item>
@@ -195,6 +196,7 @@ export const withActions = withActionsTemplate.bind({});
 
 export const withActionsAndContextData = (args) => {
 	args = {
+		...args,
 		items: [
 			{
 				id: 1,
@@ -228,8 +230,7 @@ export const withActionsAndContextData = (args) => {
 					<svg ibmIcon="add" size="16" class="cds--btn__icon"></svg>
 				</button>
 			</ng-template>
-
-			<cds-contained-list label="List title">
+			<cds-contained-list label="List title" [size]="size">
 				<cds-contained-list-item
 					*ngFor="let item of items"
 					[action]="actionWithClick"
