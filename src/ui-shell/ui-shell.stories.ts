@@ -319,9 +319,9 @@ const SideNavigationUseRouterTemplate = (args) => ({
 					<svg cdsIcon="fade" size="16"></svg>
 					Link
 				</cds-sidenav-item>
-				<cds-sidenav-item [route]="['bar']" [useRouter]="true">
+				<cds-sidenav-item [route]="['bar']" [useRouter]="true" [routeExtras]="routeExtras">
 					<svg cdsIcon="fade" size="16"></svg>
-					Link
+					Link with query params
 				</cds-sidenav-item>
 				<cds-sidenav-menu title="Category title">
 					<svg cdsIcon="fade" icon size="16"></svg>
@@ -338,6 +338,13 @@ const SideNavigationUseRouterTemplate = (args) => ({
 });
 export const SideNavigationUseRouter = SideNavigationUseRouterTemplate.bind({});
 SideNavigationUseRouter.storyName = "Side Navigation with useRouter";
+SideNavigationUseRouter.args = {
+	routeExtras: {
+		queryParams: {
+			key: "value"
+		}
+	}
+};
 
 const SidePanelTemplate = (args) => ({
 	props: args,
