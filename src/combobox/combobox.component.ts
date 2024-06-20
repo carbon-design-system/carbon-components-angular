@@ -44,8 +44,12 @@ import { Observable } from "rxjs";
 			<label
 				*ngIf="label"
 				[for]="id"
+				[id]="labelId"
 				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -110,7 +114,7 @@ import { Observable } from "rxjs";
 						[ngClass]="{'cds--text-input--empty': !showClearButton}"
 						tabindex="0"
 						[id]="id"
-						[attr.aria-labelledby]="id"
+						[attr.aria-labelledby]="labelId"
 						[attr.aria-expanded]="open"
 						aria-haspopup="listbox"
 						[attr.maxlength]="maxLength"
@@ -258,6 +262,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	}
 	static comboBoxCount = 0;
 	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
+	@Input() labelId = `dropdown-label-${ComboBox.comboBoxCount++}`;
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -301,6 +306,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Label for the combobox.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Hide label while keeping it accessible for screen readers
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the optional helper text.
 	 */

@@ -22,6 +22,7 @@ export default {
 	],
 	args: {
 		label: "Label",
+		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
 		invalid: false,
@@ -88,6 +89,7 @@ const Template = (args) => ({
 	template: `
 		<cds-dropdown
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[skeleton]="skeleton"
 			[helperText]="helperText"
 			[size]="size"
@@ -115,6 +117,7 @@ const MultiTemplate = (args) => ({
 			[selectionFeedback]="selectionFeedback"
 			[(ngModel)]="model"
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[helperText]="helperText"
 			[size]="size"
 			[dropUp]="dropUp"
@@ -144,6 +147,7 @@ const ReactiveTemplate = (args) => ({
 		-->
 		<app-reactive-forms
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -161,6 +165,8 @@ const NgTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
+			[label]="label"
+			[hideLabel]="hideLabel"
 			[theme]="theme"
 			placeholder="Select"
 			[displayValue]="dropdownRenderer"

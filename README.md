@@ -55,7 +55,7 @@ That's it! Now we can run `npm start` and start building out our application!
   - IBMers should use our #carbon-ng Slack channel
 
 Angular version support matrix:
-| Angular | v3 | v4 | v5 (future release) |
+| Angular | v3 | v4 | v5 |
 | ------- | -- | -- | ------------------- |
 | 6       | ✅ | ❌ | ❌                   |
 | 7       | ✅ | ✅ | ❌                   |
@@ -68,6 +68,7 @@ Angular version support matrix:
 | 14      | ❌ | ✅ | ✅                   |
 | 15      | ❌ | ✅ | ✅                   |
 | 16      | ❌ | ❌ | ✅                   |
+| 17      | ❌ | ❌ | ✅                   |
 
 Carbon Components Angular version support matrix:
 | Carbon Components Angular version | Community support | Active support |

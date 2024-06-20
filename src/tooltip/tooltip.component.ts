@@ -7,6 +7,10 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
+	NgZone,
+	OnChanges,
+	Renderer2,
+	SimpleChanges,
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
@@ -37,14 +41,15 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			<ng-container *ngIf="!disabled">
 				<span class="cds--popover-content cds--tooltip-content">
 					<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description"></ng-template>
+					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
+					<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
 				</span>
-				<span class="cds--popover-caret"></span>
+				<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
 			</ng-container>
 		</span>
 	`
 })
-export class Tooltip extends PopoverContainer implements AfterContentChecked {
+export class Tooltip extends PopoverContainer implements OnChanges, AfterContentChecked {
 	static tooltipCount = 0;
 
 	@HostBinding("class.cds--tooltip") tooltipClass = true;
@@ -66,25 +71,42 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
+	/**
+	 * Optional data for templates passed as implicit context
+	 */
+	@Input() templateContext: any;
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	constructor(private ref: ChangeDetectorRef) {
-		super(ref);
+	private timeoutId: any; // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
+
+	constructor(
+		protected elementRef: ElementRef,
+		protected ngZone: NgZone,
+		protected renderer: Renderer2,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
+		super(elementRef, ngZone, renderer, changeDetectorRef);
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
 
 	@HostListener("mouseenter", ["$event"])
 	mouseenter(event) {
-		setTimeout(() => {
+		// If a mouseleave is triggered before the tooltip is displayed (before setTimeout of mouseenter completes)
+		// we trigger the mouseleave only avoiding having to unecessary show the tooltip
+		clearTimeout(this.timeoutId);
+		this.timeoutId = setTimeout(() => {
 			this.handleChange(true, event);
 		}, this.enterDelayMs);
 	}
 
 	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
-		setTimeout(() => {
+		// If a mouseleave is triggered before the tooltip is displayed (before setTimeout of mouseenter completes)
+		// we trigger the mouseleave only avoiding having to unecessary show the tooltip
+		clearTimeout(this.timeoutId);
+		this.timeoutId = setTimeout(() => {
 			this.handleChange(false, event);
 		}, this.leaveDelayMs);
 	}
@@ -110,6 +132,34 @@ export class Tooltip extends PopoverContainer implements AfterContentChecked {
 
 	isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Close the popover and reopen it with updated values without emitting an event
+	 * @param changes
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		// Close and reopen the popover, handle alignment/programmatic open/close
+		const originalState = this.isOpen;
+		this.handleChange(false);
+
+		// Ignore first change since content is not initialized
+		if ((changes.autoAlign && !changes.autoAlign.firstChange)
+			|| (changes.disabled && !changes.disabled.firstChange && !changes.disabled.currentValue)) {
+			/**
+			 * When `disabled` is `true`, popover content node is removed. So when re-enabling `disabled`,
+			 * we manually update view so querySelector can detect the popover content node.
+			 * Otherwise, the position of the popover will be incorrect when autoAlign is enabled.
+			 */
+			this.changeDetectorRef.detectChanges();
+
+			// Reset the inline styles
+			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
+			this.popoverContentRef.setAttribute("style", "");
+			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
+		}
+
+		this.handleChange(originalState);
 	}
 
 	/**

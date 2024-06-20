@@ -269,18 +269,11 @@ export class DatePicker implements
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
-				if (this.flatpickrInstance.selectedDates.length !== 2) {
-					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
-					// in some cases, so instead we do this
-					this.setDateValues([]);
-					this.doSelect([]);
-					return;
-				}
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
 				if (inputValue || rangeInputValue) {
 					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
-					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue || inputValue)]);
 					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
@@ -330,6 +323,10 @@ export class DatePicker implements
 	}
 
 	ngAfterViewInit() {
+		this.input.input.nativeElement.value = this._value[0] ?? "";
+		if (this.range) {
+			this.rangeInput.input.nativeElement.value = this._value[1] ?? "";
+		}
 		setTimeout(() => {
 			this.addInputListeners();
 		}, 0);

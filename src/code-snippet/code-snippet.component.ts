@@ -74,7 +74,9 @@ export enum SnippetType {
 			</div>
 			<div *ngIf="hasLeft" class="cds--snippet__overflow-indicator--left"></div>
 			<div *ngIf="hasRight" class="cds--snippet__overflow-indicator--right"></div>
-			<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
+			<ng-container *ngIf="!hideCopyButton;">
+				<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
+			</ng-container>
 			<button
 				*ngIf="isExpandable"
 				class="cds--btn cds--btn--ghost cds--btn--sm cds--snippet-btn--expand"
@@ -267,7 +269,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	onCopyButtonClicked() {
 		if (!this.disabled) {
 			window.navigator.clipboard
-				.writeText(this.code).then(() => {
+				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
 					this.showFeedback = true;
 					this.animating = true;
 					setTimeout(() => {

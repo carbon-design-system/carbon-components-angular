@@ -34,6 +34,11 @@ export class BaseIconButton {
 		"left" | "left-bottom" | "left-top" |
 		"right" | "right-bottom" | "right-top" = "bottom";
 	/**
+	 * **Experimental**: Use floating-ui to position the tooltip
+	 * This is not toggleable - should be assigned once
+	 */
+	@Input() autoAlign = false;
+	/**
 	 * Set delay before tooltip is shown
 	 */
 	@Input() enterDelayMs = 100;

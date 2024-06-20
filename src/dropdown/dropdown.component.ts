@@ -59,7 +59,10 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		*ngIf="label && !skeleton"
 		[for]="id"
 		class="cds--label"
-		[ngClass]="{'cds--label--disabled': disabled}">
+		[ngClass]="{
+			'cds--label--disabled': disabled,
+			'cds--visually-hidden': hideLabel
+		}">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
@@ -183,6 +186,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Label for the dropdown.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Hide label while keeping it accessible for screen readers
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the optional helper text.
 	 */

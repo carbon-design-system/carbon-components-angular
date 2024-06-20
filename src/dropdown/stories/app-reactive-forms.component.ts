@@ -18,6 +18,7 @@ import {
 			<div style="width: 300px">
 				<cds-dropdown
 					[label]="label"
+					[hideLabel]="hideLabel"
 					[helperText]="helperText"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
@@ -41,6 +42,7 @@ export class ReactiveFormsStory implements OnInit {
 
 	@Input() items = [];
 	@Input() label = "";
+	@Input() hideLabel = false;
 	@Input() helperText = "";
 	@Input() invalid = false;
 	@Input() invalidText = "";

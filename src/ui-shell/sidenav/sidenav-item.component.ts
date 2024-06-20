@@ -5,7 +5,8 @@ import {
 	Output,
 	EventEmitter,
 	OnChanges,
-	HostBinding
+	HostBinding,
+	SimpleChanges
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -16,7 +17,7 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
-		<a
+		<a *ngIf="!useRouter; else sidenavItemRouterTpl"
 			class="cds--side-nav__link"
 			[ngClass]="{
 				'cds--side-nav__item--active': active
@@ -25,13 +26,36 @@ import { Router } from "@angular/router";
 			[attr.aria-current]="(active ? 'page' : null)"
 			[attr.title]="title ? title : null"
 			(click)="navigate($event)">
+			<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+		</a>
+
+		<ng-template #sidenavItemRouterTpl>
+			<a
+				[attr.title]="title ? title : null"
+				[routerLink]="route"
+ 				[relativeTo]="routeExtras?.relativeTo"
+				[queryParams]="routeExtras?.queryParams"
+				[fragment]="routeExtras?.fragment"
+				[queryParamsHandling]="routeExtras?.queryParamsHandling"
+				[preserveFragment]="routeExtras?.preserveFragment"
+				[skipLocationChange]="routeExtras?.skipLocationChange"
+				[replaceUrl]="routeExtras?.replaceUrl"
+				[state]="routeExtras?.state"
+				routerLinkActive="cds--side-nav__item--active"
+				ariaCurrentWhenActive="page"
+				class="cds--side-nav__link">
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+			</a>
+		</ng-template>
+
+		<ng-template #sidenavItemContentTpl>
 			<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
 				<ng-content select="svg, [icon]"></ng-content>
 			</div>
 			<span class="cds--side-nav__link-text">
 				<ng-content></ng-content>
 			</span>
-		</a>
+		</ng-template>
 	`,
 	styles: [`
 		:host {
@@ -54,6 +78,11 @@ export class SideNavItem implements OnChanges {
 	get href() {
 		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
 
 	@HostBinding("class.cds--side-nav__item") get sideNav() {
 		return !this.isSubMenu;
@@ -104,13 +133,13 @@ export class SideNavItem implements OnChanges {
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
-	ngOnChanges(changes) {
+	ngOnChanges(changes: SimpleChanges) {
 		if (changes.active) {
 			this.selected.emit(this.active);
 		}
 	}
 
-	navigate(event) {
+	navigate(event: MouseEvent) {
 		if (this.router && this.route) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
