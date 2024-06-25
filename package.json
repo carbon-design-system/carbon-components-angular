@@ -109,7 +109,7 @@
     "element-closest-polyfill": "1.0.0",
     "exported-tests": "1.0.1",
     "file-type": "12.4.0",
-    "gulp": "4.0.0",
+    "gulp": "5.0.0",
     "gulp-concat": "2.6.1",
     "gulp-tap": "1.0.1",
     "husky": "8.0.1",
