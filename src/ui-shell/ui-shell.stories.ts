@@ -19,16 +19,19 @@ export default {
 	decorators: [
 		applicationConfig({
 			providers: [
-				importProvidersFrom(RouterModule.forRoot([
-					{
-						path: "bar",
-						component: BarComponent
-					},
-					{
-						path: "foo",
-						component: FooComponent
-					}
-				]))
+				importProvidersFrom(RouterModule.forRoot(
+					[
+						{
+							path: "bar",
+							component: BarComponent
+						},
+						{
+							path: "foo",
+							component: FooComponent
+						}
+					],
+					{ useHash: true }
+				))
 			]
 		}),
 		moduleMetadata({
