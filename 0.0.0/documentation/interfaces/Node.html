@@ -177,6 +177,13 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#iconContext" 
+>
+                                            iconContext
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#id" 
 >
                                             id
@@ -222,7 +229,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/treeview/tree-node.types.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/treeview/tree-node.types.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -425,6 +432,44 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="iconContext"></a>
+                                        <span class="name "><b>iconContext</b>
+                                            <a href="#iconContext">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>iconContext:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="id"></a>
                                         <span class="name "><b>id</b>
                                             <a href="#id">
@@ -584,6 +629,7 @@ export interface Node {
 	expanded?: boolean;
 	selected?: boolean;
 	icon?: string | TemplateRef&lt;any&gt;;
+	iconContext?: any;
 	children?: Node[];
 	[key: string]: any;
 }
