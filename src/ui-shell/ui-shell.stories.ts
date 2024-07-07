@@ -28,7 +28,7 @@ export default {
 						path: "foo",
 						component: FooComponent
 					}
-				]))
+				], { useHash: true }))
 			]
 		}),
 		moduleMetadata({
@@ -197,10 +197,10 @@ const HeaderWithTemplate = (args) => ({
 });
 export const HeaderWithTemp = HeaderWithTemplate.bind({});
 HeaderWithTemp.storyName = "Header with template";
-Header.args = {
+HeaderWithTemp.args = {
 	hasHamburger: true
 };
-Header.argTypes = {
+HeaderWithTemp.argTypes = {
 	expanded: {
 		action: "Menu clicked!"
 	}
@@ -229,7 +229,7 @@ const HeaderRouterTemplate = (args) => ({
 	`
 });
 export const HeaderWithRouter = HeaderRouterTemplate.bind({});
-Header.argTypes = {
+HeaderWithRouter.argTypes = {
 	expanded: {
 		action: "Menu clicked!"
 	}
@@ -301,7 +301,7 @@ const SideNavigationRouterTemplate = (args) => ({
 				</cds-sidenav-menu>
 			</cds-sidenav>
 		</div>
-		<div>
+		<div style="margin-left: 18rem">
 			<router-outlet></router-outlet>
 		</div>
 	`
@@ -559,7 +559,7 @@ const ModelTemplate = (args) => ({
 	`
 });
 export const WithModel = ModelTemplate.bind({});
-SideNavigationRail.args = {
+WithModel.args = {
 	options: [
 		{
 			content: "Option 1",
@@ -607,7 +607,7 @@ SideNavigationRail.args = {
 		]
 	}]
 };
-SideNavigationRail.argTypes = {
+WithModel.argTypes = {
 	options: {
 		control: false
 	},
