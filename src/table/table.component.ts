@@ -2,6 +2,7 @@ import {
 	Component,
 	ApplicationRef,
 	Input,
+	OnInit,
 	Output,
 	EventEmitter,
 	ElementRef,
@@ -247,7 +248,7 @@ import { TableRowSize } from "./table.types";
 		}
 	`]
 })
-export class Table implements AfterViewInit, OnDestroy {
+export class Table implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Creates a skeleton model with a row and column count specified by the user
 	 *
@@ -647,6 +648,12 @@ export class Table implements AfterViewInit, OnDestroy {
 		protected applicationRef: ApplicationRef,
 		protected i18n: I18n
 	) { }
+
+	ngOnInit() {
+		// Manually trigger check to see if all checkboxes are selected
+		// This is since subscription is made AFTER checkboxes are selected
+		this.updateSelectAllCheckbox();
+	}
 
 	ngAfterViewInit() {
 		this.isViewReady = true;
