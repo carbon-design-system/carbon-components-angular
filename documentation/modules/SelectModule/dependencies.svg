@@ -28,47 +28,47 @@
 <title>cluster_SelectModule_Select_providers</title>
 <polygon fill="none" stroke="black" points="293,-78 293,-241.59 895,-241.59 895,-78 293,-78"/>
 </g>
+<g id="clust6" class="cluster">
+<title>cluster_SelectModule_imports</title>
+<polygon fill="none" stroke="black" points="185,-189.59 185,-241.59 285,-241.59 285,-189.59 185,-189.59"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_SelectModule_declarations</title>
-<polygon fill="none" stroke="black" points="124,-189.59 124,-241.59 285,-241.59 285,-189.59 124,-189.59"/>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 177,-241.59 177,-189.59 16,-189.59"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_SelectModule_exports</title>
-<polygon fill="none" stroke="black" points="91,-319.59 91,-371.59 331,-371.59 331,-319.59 91,-319.59"/>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster_SelectModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 116,-241.59 116,-189.59 16,-189.59"/>
+<polygon fill="none" stroke="black" points="75,-319.59 75,-371.59 315,-371.59 315,-319.59 75,-319.59"/>
 </g>
 <!-- OptGroup -->
 <g id="node1" class="node">
 <title>OptGroup</title>
-<polygon fill="#ffffb3" stroke="black" points="277.26,-233.59 204.74,-233.59 204.74,-197.59 277.26,-197.59 277.26,-233.59"/>
-<text text-anchor="middle" x="241" y="-211.39" font-family="Times,serif" font-size="14.00">OptGroup</text>
+<polygon fill="#ffffb3" stroke="black" points="169.26,-233.59 96.74,-233.59 96.74,-197.59 169.26,-197.59 169.26,-233.59"/>
+<text text-anchor="middle" x="133" y="-211.39" font-family="Times,serif" font-size="14.00">OptGroup</text>
 </g>
 <!-- SelectModule -->
 <g id="node4" class="node">
 <title>SelectModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="246.76,-298.59 243.76,-302.59 222.76,-302.59 219.76,-298.59 153.24,-298.59 153.24,-262.59 246.76,-262.59 246.76,-298.59"/>
-<text text-anchor="middle" x="200" y="-276.39" font-family="Times,serif" font-size="14.00">SelectModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="230.76,-298.59 227.76,-302.59 206.76,-302.59 203.76,-298.59 137.24,-298.59 137.24,-262.59 230.76,-262.59 230.76,-298.59"/>
+<text text-anchor="middle" x="184" y="-276.39" font-family="Times,serif" font-size="14.00">SelectModule</text>
 </g>
 <!-- OptGroup&#45;&gt;SelectModule -->
 <g id="edge1" class="edge">
 <title>OptGroup&#45;&gt;SelectModule</title>
-<path fill="none" stroke="black" d="M225.75,-233.7C225.75,-233.7 225.75,-252.58 225.75,-252.58"/>
-<polygon fill="black" stroke="black" points="222.25,-252.58 225.75,-262.58 229.25,-252.58 222.25,-252.58"/>
+<path fill="none" stroke="black" d="M153.25,-233.7C153.25,-233.7 153.25,-252.58 153.25,-252.58"/>
+<polygon fill="black" stroke="black" points="149.75,-252.58 153.25,-262.58 156.75,-252.58 149.75,-252.58"/>
 </g>
 <!-- Option -->
 <g id="node2" class="node">
 <title>Option</title>
-<polygon fill="#ffffb3" stroke="black" points="186.39,-233.59 131.61,-233.59 131.61,-197.59 186.39,-197.59 186.39,-233.59"/>
-<text text-anchor="middle" x="159" y="-211.39" font-family="Times,serif" font-size="14.00">Option</text>
+<polygon fill="#ffffb3" stroke="black" points="78.39,-233.59 23.61,-233.59 23.61,-197.59 78.39,-197.59 78.39,-233.59"/>
+<text text-anchor="middle" x="51" y="-211.39" font-family="Times,serif" font-size="14.00">Option</text>
 </g>
 <!-- Option&#45;&gt;SelectModule -->
 <g id="edge2" class="edge">
 <title>Option&#45;&gt;SelectModule</title>
-<path fill="none" stroke="black" d="M169.78,-233.7C169.78,-233.7 169.78,-252.58 169.78,-252.58"/>
-<polygon fill="black" stroke="black" points="166.28,-252.58 169.78,-262.58 173.28,-252.58 166.28,-252.58"/>
+<path fill="none" stroke="black" d="M51,-233.7C51,-252.93 51,-280.59 51,-280.59 51,-280.59 127.11,-280.59 127.11,-280.59"/>
+<polygon fill="black" stroke="black" points="127.11,-284.09 137.11,-280.59 127.11,-277.09 127.11,-284.09"/>
 </g>
 <!-- Select -->
 <g id="node3" class="node">
@@ -79,44 +79,44 @@
 <!-- Select&#45;&gt;SelectModule -->
 <g id="edge3" class="edge">
 <title>Select&#45;&gt;SelectModule</title>
-<path fill="none" stroke="black" d="M461,-233.7C461,-252.93 461,-280.59 461,-280.59 461,-280.59 256.96,-280.59 256.96,-280.59"/>
-<polygon fill="black" stroke="black" points="256.96,-277.09 246.96,-280.59 256.96,-284.09 256.96,-277.09"/>
+<path fill="none" stroke="black" d="M461,-233.7C461,-252.93 461,-280.59 461,-280.59 461,-280.59 240.99,-280.59 240.99,-280.59"/>
+<polygon fill="black" stroke="black" points="240.99,-277.09 230.99,-280.59 240.99,-284.09 240.99,-277.09"/>
 </g>
 <!-- OptGroup  -->
 <g id="node7" class="node">
 <title>OptGroup </title>
-<polygon fill="#fb8072" stroke="black" points="323.26,-363.59 246.74,-363.59 246.74,-327.59 323.26,-327.59 323.26,-363.59"/>
-<text text-anchor="middle" x="285" y="-341.39" font-family="Times,serif" font-size="14.00">OptGroup </text>
+<polygon fill="#fb8072" stroke="black" points="307.26,-363.59 230.74,-363.59 230.74,-327.59 307.26,-327.59 307.26,-363.59"/>
+<text text-anchor="middle" x="269" y="-341.39" font-family="Times,serif" font-size="14.00">OptGroup </text>
 </g>
 <!-- SelectModule&#45;&gt;OptGroup  -->
 <g id="edge6" class="edge">
 <title>SelectModule&#45;&gt;OptGroup </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M238.03,-298.7C238.03,-317.93 238.03,-345.59 238.03,-345.59 238.03,-345.59 238.89,-345.59 238.89,-345.59"/>
-<polygon fill="black" stroke="black" points="236.65,-349.09 246.65,-345.59 236.65,-342.09 236.65,-349.09"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M222.03,-298.7C222.03,-317.93 222.03,-345.59 222.03,-345.59 222.03,-345.59 222.89,-345.59 222.89,-345.59"/>
+<polygon fill="black" stroke="black" points="220.65,-349.09 230.65,-345.59 220.65,-342.09 220.65,-349.09"/>
 </g>
 <!-- Option  -->
 <g id="node8" class="node">
 <title>Option </title>
-<polygon fill="#fb8072" stroke="black" points="229.39,-363.59 170.61,-363.59 170.61,-327.59 229.39,-327.59 229.39,-363.59"/>
-<text text-anchor="middle" x="200" y="-341.39" font-family="Times,serif" font-size="14.00">Option </text>
+<polygon fill="#fb8072" stroke="black" points="213.39,-363.59 154.61,-363.59 154.61,-327.59 213.39,-327.59 213.39,-363.59"/>
+<text text-anchor="middle" x="184" y="-341.39" font-family="Times,serif" font-size="14.00">Option </text>
 </g>
 <!-- SelectModule&#45;&gt;Option  -->
 <g id="edge7" class="edge">
 <title>SelectModule&#45;&gt;Option </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M200,-298.7C200,-298.7 200,-317.58 200,-317.58"/>
-<polygon fill="black" stroke="black" points="196.5,-317.58 200,-327.58 203.5,-317.58 196.5,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M184,-298.7C184,-298.7 184,-317.58 184,-317.58"/>
+<polygon fill="black" stroke="black" points="180.5,-317.58 184,-327.58 187.5,-317.58 180.5,-317.58"/>
 </g>
 <!-- Select  -->
 <g id="node9" class="node">
 <title>Select </title>
-<polygon fill="#fb8072" stroke="black" points="153,-363.59 99,-363.59 99,-327.59 153,-327.59 153,-363.59"/>
-<text text-anchor="middle" x="126" y="-341.39" font-family="Times,serif" font-size="14.00">Select </text>
+<polygon fill="#fb8072" stroke="black" points="137,-363.59 83,-363.59 83,-327.59 137,-327.59 137,-363.59"/>
+<text text-anchor="middle" x="110" y="-341.39" font-family="Times,serif" font-size="14.00">Select </text>
 </g>
 <!-- SelectModule&#45;&gt;Select  -->
 <g id="edge8" class="edge">
 <title>SelectModule&#45;&gt;Select </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M161.96,-298.7C161.96,-317.93 161.96,-345.59 161.96,-345.59 161.96,-345.59 161.09,-345.59 161.09,-345.59"/>
-<polygon fill="black" stroke="black" points="163.26,-342.09 153.26,-345.59 163.26,-349.09 163.26,-342.09"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M145.96,-298.7C145.96,-317.93 145.96,-345.59 145.96,-345.59 145.96,-345.59 145.09,-345.59 145.09,-345.59"/>
+<polygon fill="black" stroke="black" points="147.26,-342.09 137.26,-345.59 147.26,-349.09 147.26,-342.09"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Select, multi: true
@@ -143,14 +143,14 @@
 <!-- IconModule -->
 <g id="node6" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="108.43,-233.59 105.43,-237.59 84.43,-237.59 81.43,-233.59 23.57,-233.59 23.57,-197.59 108.43,-197.59 108.43,-233.59"/>
-<text text-anchor="middle" x="66" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="277.43,-233.59 274.43,-237.59 253.43,-237.59 250.43,-233.59 192.57,-233.59 192.57,-197.59 277.43,-197.59 277.43,-233.59"/>
+<text text-anchor="middle" x="235" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;SelectModule -->
 <g id="edge5" class="edge">
 <title>IconModule&#45;&gt;SelectModule</title>
-<path fill="none" stroke="black" d="M103.61,-233.7C103.61,-252.93 103.61,-280.59 103.61,-280.59 103.61,-280.59 143.21,-280.59 143.21,-280.59"/>
-<polygon fill="black" stroke="black" points="143.21,-284.09 153.21,-280.59 143.21,-277.09 143.21,-284.09"/>
+<path fill="none" stroke="black" d="M211.83,-233.7C211.83,-233.7 211.83,-252.58 211.83,-252.58"/>
+<polygon fill="black" stroke="black" points="208.33,-252.58 211.83,-262.58 215.33,-252.58 208.33,-252.58"/>
 </g>
 </g>
 </svg>
