@@ -72,7 +72,7 @@
 						],
 						"configDir": ".storybook",
 						"outputDir": "dist/docs/storybook",
-            "enableProdMode": false
+						"enableProdMode": false
 					}
 				}
 			}
