@@ -445,13 +445,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
 		}
 		this.onItemsReady(() => {
-			if (this.getListItems().length === 0) {
-				return;
-			}
-			
 			const selectedNewItems = [];
 			for (let newItem of value) {
-				if (newItem.selected) {
+				if (newItem && newItem.selected) {
 					// copy the item
 					let tempNewItem: string | ListItem = Object.assign({}, newItem);
 					// deleted selected because it's what we _want_ to change
