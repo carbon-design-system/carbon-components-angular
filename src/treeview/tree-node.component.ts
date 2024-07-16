@@ -51,7 +51,12 @@ import { Node } from "./tree-node.types";
 					</svg>
 				</ng-container>
 				<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
-				{{label}}
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template
+					*ngIf="isTemplate(label)"
+					[ngTemplateOutlet]="label"
+					[ngTemplateOutletContext]="{ $implicit: labelContext }">
+				</ng-template>
 			</div>
 			<div
 				*ngIf="children.length"
@@ -85,7 +90,12 @@ import { Node } from "./tree-node.types";
 						[ngTemplateOutlet]="icon"
 						[ngTemplateOutletContext]="{ $implicit: iconContext }">
 					</ng-template>
-					{{label}}
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template
+						*ngIf="isTemplate(label)"
+						[ngTemplateOutlet]="label"
+						[ngTemplateOutletContext]="{ $implicit: labelContext }">
+					</ng-template>
 				</span>
 			</div>
 			<div
@@ -114,6 +124,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	@Input() disabled = false;
 	@Input() expanded = false;
 	@Input() label: string | TemplateRef<any>;
+	@Input() labelContext: any;
 	@Input() selected = false;
 	@Input() value;
 	@Input() icon: string | TemplateRef<any>;
@@ -138,6 +149,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		this.disabled = node.disabled ?? this.disabled;
 		this.expanded = node.expanded ?? this.expanded;
 		this.label = node.label ?? this.label;
+		this.labelContext = node.labelContext ?? this.labelContext;
 		this.value = node.value ?? this.value;
 		this.icon = node.icon ?? this.icon;
 		this.selected = node.selected ?? this.selected;
