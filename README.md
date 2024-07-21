@@ -101,7 +101,7 @@ How to read this table:
 - **if you are contributing a fix**:
   - add your fix, update the documentation as needed
   - consider adding or modifying a test case to cover the fix
-- follow the [Angular style guide](https://angular.io/styleguide)
+- follow the [Angular style guide](https://angular.dev/style-guide)
 - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
 - submit a PR
 
