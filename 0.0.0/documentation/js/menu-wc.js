@@ -1111,13 +1111,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SideNavModule.html" data-type="entity-link" >SideNavModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' : 'data-bs-target="#xs-components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' }>
+                                            'data-bs-target="#components-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' : 'data-bs-target="#xs-components-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' :
-                                            'id="xs-components-links-module-SideNavModule-1610967950c32132f9d79a85c5f9a68964d706441e799842c0f364cd6226a51c042421f2c369d3c13bf4d8dd430bbaa01b8ff20b03bdf329e31210c556d8d179"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' :
+                                            'id="xs-components-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' }>
                                             <li class="link">
                                                 <a href="components/SideNav.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SideNav</a>
                                             </li>
@@ -1129,6 +1129,20 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                         </ul>
                                     </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#directives-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' : 'data-bs-target="#xs-directives-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' }>
+                                        <span class="icon ion-md-code-working"></span>
+                                        <span>Directives</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' :
+                                        'id="xs-directives-links-module-SideNavModule-2979f7e8324440b5d1a720f4c18110d5f88842806083d1b8fd462c0f144833fb9d800053dd9b961e34a875f17b35450c770b5f42ca6ddaf79262616cc83278d5"' }>
+                                        <li class="link">
+                                            <a href="directives/RouterLinkExtendedDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterLinkExtendedDirective</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                             <li class="link">
                                 <a href="modules/SkeletonModule.html" data-type="entity-link" >SkeletonModule</a>

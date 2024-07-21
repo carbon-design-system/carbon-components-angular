@@ -28,13 +28,13 @@
 <title>cluster_TilesModule_imports</title>
 <polygon fill="none" stroke="black" points="1001,-189.59 1001,-241.59 1309,-241.59 1309,-189.59 1001,-189.59"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TilesModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 993,-241.59 993,-189.59 16,-189.59"/>
-</g>
 <g id="clust11" class="cluster">
 <title>cluster_TilesModule_exports</title>
 <polygon fill="none" stroke="black" points="276,-319.59 276,-371.59 1276,-371.59 1276,-319.59 276,-319.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TilesModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 993,-241.59 993,-189.59 16,-189.59"/>
 </g>
 <g id="clust9" class="cluster">
 <title>cluster_TilesModule_TileGroup_providers</title>
