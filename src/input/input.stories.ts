@@ -32,6 +32,7 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[theme]="theme"
 			[placeholder]="placeholder"
+			[readonly]="readonly"
 			[autocomplete]="autocomplete">
 		</cds-text-label>
 	`
@@ -48,7 +49,8 @@ Basic.args = {
 	placeholder: "Placeholder",
 	autocomplete: "on",
 	theme: "dark",
-	size: "md"
+	size: "md",
+	readonly: false
 };
 Basic.argTypes = {
 	autocomplete: {
@@ -62,6 +64,10 @@ Basic.argTypes = {
 	size: {
 		options: ["sm", "md", "lg"],
 		control: "select"
+	},
+	readonly: {
+		options: [true, false],
+		control: "radio"
 	}
 };
 
