@@ -56,7 +56,6 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
-					[readonly]="readonly"
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
 				</cds-textarea-label>
@@ -72,6 +71,7 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
+					[readonlyWrapper]="readonly"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>

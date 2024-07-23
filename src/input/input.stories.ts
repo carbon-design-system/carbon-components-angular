@@ -22,6 +22,7 @@ const Template = (args) => ({
 		[invalidText]="invalidText"
 		[warn]="warn"
 		[disabled]="disabled"
+		[readonlyWrapper]="readonly"
 		[warnText]="warnText">
 		{{label}}
 		<input
