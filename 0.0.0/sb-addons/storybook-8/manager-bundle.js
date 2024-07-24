@@ -1,4 +1,0 @@
-try{
-var _=__STORYBOOKADDONS__,{addons:r,types:d,mockChannel:p}=__STORYBOOKADDONS__;var S=__STORYBOOKTHEMING__,{CacheProvider:T,ClassNames:b,Global:f,ThemeProvider:B,background:M,color:x,convert:C,create:t,createCache:N,createGlobal:y,createReset:D,css:I,darken:P,ensure:R,ignoreSsrWarning:k,isPropValid:v,jsx:G,keyframes:K,lighten:Y,styled:A,themes:H,typography:V,useTheme:j,withTheme:E}=__STORYBOOKTHEMING__;r.setConfig({theme:t({base:"light",fontBase:"'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",fontCode:"'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace",brandTitle:"carbon components angular",brandUrl:"https://github.com/IBM/carbon-components-angular"})});
-}catch(e){ console.error("[Storybook] One of your manager-entries failed: " + import.meta.url, e); }
-//# sourceMappingURL=manager-bundle.js.map
