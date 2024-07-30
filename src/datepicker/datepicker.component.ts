@@ -621,7 +621,7 @@ export class DatePicker implements
 			if (typeof this.flatpickrInstance.selectedDates[0] === "string") {
 				singleDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
-				// if date is not a string we can assume it's a Date and we should format
+			// if date is not a string we can assume it's a Date and we should format
 			} else if (!!this.flatpickrInstance.selectedDates[0]) {
 				singleDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
@@ -633,7 +633,7 @@ export class DatePicker implements
 				if (typeof this.flatpickrInstance.selectedDates[1] === "string") {
 					rangeDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
-					// if date is not a string we can assume it's a Date and we should format
+				// if date is not a string we can assume it's a Date and we should format
 				} else if (!!this.flatpickrInstance.selectedDates[1]) {
 					rangeDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
