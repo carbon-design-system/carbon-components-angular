@@ -41,6 +41,9 @@ export class ManyIconDemo implements OnInit {
 				iconMap.get(descriptor["name"]).push(descriptor);
 			}
 		}
-		this.groupedIcons = Array.from(iconMap.values());
+		// Render after a delay to prevent page from freezing
+		setTimeout(() => {
+			this.groupedIcons = Array.from(iconMap.values());
+		}, 1000);
 	}
 }

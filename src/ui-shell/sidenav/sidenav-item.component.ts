@@ -33,14 +33,7 @@ import { Router } from "@angular/router";
 			<a
 				[attr.title]="title ? title : null"
 				[routerLink]="route"
- 				[relativeTo]="routeExtras?.relativeTo"
-				[queryParams]="routeExtras?.queryParams"
-				[fragment]="routeExtras?.fragment"
-				[queryParamsHandling]="routeExtras?.queryParamsHandling"
-				[preserveFragment]="routeExtras?.preserveFragment"
-				[skipLocationChange]="routeExtras?.skipLocationChange"
-				[replaceUrl]="routeExtras?.replaceUrl"
-				[state]="routeExtras?.state"
+				[routeExtras]="routeExtras"
 				routerLinkActive="cds--side-nav__item--active"
 				ariaCurrentWhenActive="page"
 				class="cds--side-nav__link">

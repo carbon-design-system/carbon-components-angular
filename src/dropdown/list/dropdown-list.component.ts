@@ -445,24 +445,38 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
 		}
 		this.onItemsReady(() => {
+			const selectedNewItems = [];
+			for (let newItem of value) {
+				if (newItem && newItem.selected) {
+					// copy the item
+					let tempNewItem: string | ListItem = Object.assign({}, newItem);
+					// deleted selected because it's what we _want_ to change
+					delete tempNewItem.selected;
+					// stringify for compare later
+					tempNewItem = JSON.stringify(tempNewItem);
+					// add to the list of selected items
+					selectedNewItems.push(tempNewItem);
+				}
+			}
+
 			// loop through the list items and update the `selected` state for matching items in `value`
 			for (let oldItem of this.getListItems()) {
+				// fast path when no items are selected
+				if (selectedNewItems.length === 0) {
+					oldItem.selected = false;
+					continue;
+				}
+
 				// copy the item
 				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 				// deleted selected because it's what we _want_ to change
 				delete tempOldItem.selected;
 				// stringify for compare
 				tempOldItem = JSON.stringify(tempOldItem);
-				for (let newItem of value) {
-					// copy the item
-					let tempNewItem: string | ListItem = Object.assign({}, newItem);
-					// deleted selected because it's what we _want_ to change
-					delete tempNewItem.selected;
-					// stringify for compare
-					tempNewItem = JSON.stringify(tempNewItem);
+				for (let selectedNewItem of selectedNewItems) {
 					// do the compare
-					if (tempOldItem.includes(tempNewItem)) {
-						oldItem.selected = newItem.selected;
+					if (tempOldItem.includes(selectedNewItem)) {
+						oldItem.selected = true;
 						// if we've found a matching item, we can stop looping
 						break;
 					} else {

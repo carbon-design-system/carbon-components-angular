@@ -323,9 +323,11 @@ export class DatePicker implements
 	}
 
 	ngAfterViewInit() {
-		this.input.input.nativeElement.value = this._value[0] ?? "";
-		if (this.range) {
-			this.rangeInput.input.nativeElement.value = this._value[1] ?? "";
+		if (!this.skeleton) {
+			this.input.input.nativeElement.value = this._value[0] ?? "";
+			if (this.range) {
+				this.rangeInput.input.nativeElement.value = this._value[1] ?? "";
+			}
 		}
 		setTimeout(() => {
 			this.addInputListeners();
