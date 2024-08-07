@@ -28,13 +28,13 @@
 <title>cluster_TagModule_declarations</title>
 <polygon fill="none" stroke="black" points="224,-78 224,-130 380,-130 380,-78 224,-78"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_TagModule_exports</title>
-<polygon fill="none" stroke="black" points="181,-208 181,-260 341,-260 341,-208 181,-208"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_TagModule_imports</title>
 <polygon fill="none" stroke="black" points="116,-78 116,-130 216,-130 216,-78 116,-78"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_TagModule_exports</title>
+<polygon fill="none" stroke="black" points="181,-208 181,-260 341,-260 341,-208 181,-208"/>
 </g>
 <!-- Tag -->
 <g id="node1" class="node">
