@@ -22,7 +22,6 @@ const Template = (args) => ({
 		[invalidText]="invalidText"
 		[warn]="warn"
 		[disabled]="disabled"
-		[readonlyWrapper]="readonly"
 		[warnText]="warnText">
 		{{label}}
 		<input
@@ -65,10 +64,6 @@ Basic.argTypes = {
 	size: {
 		options: ["sm", "md", "lg"],
 		control: "select"
-	},
-	readonly: {
-		options: [true, false],
-		control: "radio"
 	}
 };
 

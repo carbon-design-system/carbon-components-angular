@@ -71,7 +71,6 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
-					[readonlyWrapper]="readonly"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
