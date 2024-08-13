@@ -19,7 +19,8 @@ import { Observable } from "rxjs";
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(checkedChange)="change.emit()"
-			[ariaLabel]="getAriaLabel() | async">
+			[hideLabel]="true">
+				{{getAriaLabel() | async}}
 		</cds-checkbox>
 	`,
 	styles: [`
