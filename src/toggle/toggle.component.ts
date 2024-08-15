@@ -21,6 +21,12 @@ export enum ToggleState {
 }
 
 /**
+ * @todo - Toggle component will no longer extend `Checkbox` component as of v6
+ * Toggle is no longer repies on using checkbox, so doesn't make sense for us to continue inheriting ALL checkbox
+ * component attributes.
+ */
+
+/**
  * Get started with importing the module:
  *
  * ```typescript
