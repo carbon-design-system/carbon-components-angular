@@ -28,6 +28,7 @@ const Template = (args) => ({
 			[warn]="warn"
 			[warnText]="warnText"
 			[size]="size"
+			[readonly]="readonly"
 			[disabled]="disabled">
 		</cds-number>
 	`
@@ -42,6 +43,7 @@ Basic.args = {
 	max: 100,
 	step: 1,
 	invalid: false,
+	readonly: false,
 	disabled: false,
 	size: "md",
 	theme: "dark"
