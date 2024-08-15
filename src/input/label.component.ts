@@ -187,10 +187,6 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Set the arialabel for label
 	 */
 	@Input() ariaLabel: string;
-	/**
-	 * Set to true for readonly state
-	 */
-	@Input() readonly: boolean;
 
 	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
