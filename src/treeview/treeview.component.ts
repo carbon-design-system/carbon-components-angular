@@ -70,7 +70,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Passing value will disregard projected content
 	 */
 	@Input() set tree(treeNodes: Node[]) {
-		this._tree = treeNodes.map((node) => Object.assign({}, node));
+		this._tree = treeNodes.map((node) => this.copyNode(node));
 		this.treeViewService.contentProjected = false;
 	}
 
@@ -169,5 +169,13 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	public isProjected() {
 		return this.treeViewService.contentProjected;
+	}
+
+	private copyNode(node: Node): Node {
+		const copiedNode = Object.assign({}, node)
+		if (node.children) {
+		  copiedNode.children = node.children.map(child => this.copyNode(child))
+		}
+		return copiedNode
 	}
 }
