@@ -7,6 +7,7 @@ export interface Node {
 	id?: string;
 	active?: boolean;
 	disabled?: boolean;
+	selectable?: boolean;
 	expanded?: boolean;
 	selected?: boolean;
 	icon?: string | TemplateRef<any>;
