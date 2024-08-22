@@ -207,10 +207,10 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 			this.selected = true;
 			this.active = true;
 			event.target.parentElement.focus();
-			const node = { id: this.id, label: this.label, value: this.value }
+			const node = { id: this.id, label: this.label, value: this.value };
 			// Passes event to all nodes to update highlighting & parent to emit
 			this.treeViewService.selectNode(node);
-			this.nodeSelect.emit({node, event})
+			this.nodeSelect.emit({node, event});
 		}
 	}
 
