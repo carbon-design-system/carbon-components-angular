@@ -213,7 +213,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 				// Passes event to all nodes to update highlighting & parent to emit
 				this.treeViewService.selectNode({ id: this.id, label: this.label, value: this.value });
 			} else {
-				this.toggleExpanded(event)
+				this.toggleExpanded(event);
 			}
 		}
 	}
@@ -244,7 +244,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	emitFocusEvent(event) {
 		const node = { id: this.id, label: this.label, value: this.value }
 		this.nodeFocus.emit({ node, event });
-		this.treeViewService.focusNode(node)
+		this.treeViewService.focusNode(node);
 	}
 
 	emitBlurEvent(event) {
