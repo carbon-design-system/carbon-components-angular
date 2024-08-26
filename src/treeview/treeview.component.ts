@@ -71,7 +71,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Passing value will disregard projected content
 	 */
 	@Input() set tree(treeNodes: Node[]) {
-		this._tree = treeNodes.map((node) => Object.assign({}, node));
+		this._tree = treeNodes.map((node) => this.copyNode(node));
 		this.treeViewService.contentProjected = false;
 	}
 
@@ -111,7 +111,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
-		protected treeViewService: TreeViewService,
+		public treeViewService: TreeViewService,
 		private elementRef: ElementRef
 	) {}
 
@@ -178,5 +178,14 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	public isProjected() {
 		return this.treeViewService.contentProjected;
+	}
+
+	private copyNode(node: Node): Node {
+		// making a recursive shallow copy to avoid performance issues when deeply cloning templateRefs if defined in the node
+		const copiedNode = Object.assign({}, node);
+		if (node.children) {
+		  copiedNode.children = node.children.map(child => this.copyNode(child));
+		}
+		return copiedNode;
 	}
 }
