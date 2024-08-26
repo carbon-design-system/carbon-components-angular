@@ -55,4 +55,25 @@ export class TreeViewService {
 		this.value.set(node.id, node);
 		this.selectionSubject.next(this.value);
 	}
+
+	/**
+	 * Removes selected node from the map
+	 * @param node: Node
+	 */
+	deselectNode(node: Node) {
+		if (!node) {
+			return;
+		}
+
+		this.value.delete(node.id);
+		this.selectionSubject.next(this.value);
+	}
+
+	/**
+	 * Removes all selected nodes from the map
+	 */
+	deselectAllNodes() {
+		this.value.clear();
+		this.selectionSubject.next(this.value);
+	}
 }
