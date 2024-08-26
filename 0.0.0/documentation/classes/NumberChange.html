@@ -322,6 +322,7 @@ export class NumberChange {
 					[attr.max]&#x3D;&quot;max&quot;
 					[attr.step]&#x3D;&quot;step&quot;
 					[disabled]&#x3D;&quot;disabled&quot;
+					[readonly]&#x3D;&quot;readonly&quot;
 					[required]&#x3D;&quot;required&quot;
 					[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 					[attr.data-invalid]&#x3D;&quot;invalid ? invalid : null&quot;
@@ -399,6 +400,10 @@ export class NumberComponent implements ControlValueAccessor {
 
 	@HostBinding(&quot;class.cds--form-item&quot;) containerClass &#x3D; true;
 
+	/**
+	 * Set to &#x60;true&#x60; for readonly state.
+	 */
+	@Input() @HostBinding(&quot;class.cds--number--readonly&quot;) readonly &#x3D; false;
 	/**
 	 * @deprecated since v5 - Use &#x60;cdsLayer&#x60; directive instead
 	 * &#x60;light&#x60; or &#x60;dark&#x60; number input theme.

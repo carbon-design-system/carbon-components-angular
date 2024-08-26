@@ -246,6 +246,10 @@
                                 <a href="#treeViewCount" >treeViewCount</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#treeViewService" >treeViewService</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#treeWalker" >treeWalker</a>
                             </li>
@@ -261,6 +265,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#copyNode" >copyNode</a>
+                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#isProjected" >isProjected</a>
@@ -627,6 +635,75 @@ Passing value will disregard projected content</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="copyNode"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>copyNode</b></span>
+                        <a href="#copyNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>copyNode(node: <a href="../interfaces/Node.html" target="_self">Node</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/treeview/treeview.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>node</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Node.html" target="_self" >Node</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Node.html" target="_self" >Node</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1059,6 +1136,33 @@ Passing value will disregard projected content</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="treeViewService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>treeViewService</b></span>
+                        <a href="#treeViewService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/TreeViewService.html" target="_self" >TreeViewService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/treeview/treeview.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="treeWalker"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -1298,7 +1402,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Passing value will disregard projected content
 	 */
 	@Input() set tree(treeNodes: Node[]) {
-		this._tree &#x3D; treeNodes.map((node) &#x3D;&gt; Object.assign({}, node));
+		this._tree &#x3D; treeNodes.map((node) &#x3D;&gt; this.copyNode(node));
 		this.treeViewService.contentProjected &#x3D; false;
 	}
 
@@ -1337,7 +1441,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
-		protected treeViewService: TreeViewService,
+		public treeViewService: TreeViewService,
 		private elementRef: ElementRef
 	) {}
 
@@ -1397,6 +1501,15 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	public isProjected() {
 		return this.treeViewService.contentProjected;
+	}
+
+	private copyNode(node: Node): Node {
+		// making a recursive shallow copy to avoid performance issues when deeply cloning templateRefs if defined in the node
+		const copiedNode &#x3D; Object.assign({}, node);
+		if (node.children) {
+		  copiedNode.children &#x3D; node.children.map(child &#x3D;&gt; this.copyNode(child));
+		}
+		return copiedNode;
 	}
 }
 </code></pre>

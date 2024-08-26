@@ -164,6 +164,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#deselectAllNodes" >deselectAllNodes</a>
+                            </li>
+                            <li>
+                                <a href="#deselectNode" >deselectNode</a>
+                            </li>
+                            <li>
                                 <a href="#selectNode" >selectNode</a>
                             </li>
                         </ul>
@@ -202,6 +208,119 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deselectAllNodes"></a>
+                    <span class="name">
+                        <span ><b>deselectAllNodes</b></span>
+                        <a href="#deselectAllNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deselectAllNodes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/treeview/treeview.service.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Removes all selected nodes from the map</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deselectNode"></a>
+                    <span class="name">
+                        <span ><b>deselectNode</b></span>
+                        <a href="#deselectNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deselectNode(node: <a href="../interfaces/Node.html" target="_self">Node</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/treeview/treeview.service.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Removes selected node from the map</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>node</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Node.html" target="_self" >Node</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>: Node</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -480,6 +599,27 @@ export class TreeViewService {
 			this.value.clear();
 		}
 		this.value.set(node.id, node);
+		this.selectionSubject.next(this.value);
+	}
+
+	/**
+	 * Removes selected node from the map
+	 * @param node: Node
+	 */
+	deselectNode(node: Node) {
+		if (!node) {
+			return;
+		}
+
+		this.value.delete(node.id);
+		this.selectionSubject.next(this.value);
+	}
+
+	/**
+	 * Removes all selected nodes from the map
+	 */
+	deselectAllNodes() {
+		this.value.clear();
 		this.selectionSubject.next(this.value);
 	}
 }
