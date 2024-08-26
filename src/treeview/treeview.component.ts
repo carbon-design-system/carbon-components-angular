@@ -109,7 +109,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
-		protected treeViewService: TreeViewService,
+		public treeViewService: TreeViewService,
 		private elementRef: ElementRef
 	) {}
 
