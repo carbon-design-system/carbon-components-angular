@@ -173,10 +173,10 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	private copyNode(node: Node): Node {
 		// making a recursive shallow copy to avoid performance issues when deeply cloning templateRefs if defined in the node
-		const copiedNode = Object.assign({}, node)
+		const copiedNode = Object.assign({}, node);
 		if (node.children) {
-		  copiedNode.children = node.children.map(child => this.copyNode(child))
+		  copiedNode.children = node.children.map(child => this.copyNode(child));
 		}
-		return copiedNode
+		return copiedNode;
 	}
 }
