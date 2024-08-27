@@ -73,6 +73,7 @@ export class NumberChange {
 					[attr.max]="max"
 					[attr.step]="step"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[required]="required"
 					[attr.aria-label]="ariaLabel"
 					[attr.data-invalid]="invalid ? invalid : null"
@@ -150,6 +151,10 @@ export class NumberComponent implements ControlValueAccessor {
 
 	@HostBinding("class.cds--form-item") containerClass = true;
 
+	/**
+	 * Set to `true` for readonly state.
+	 */
+	@Input() @HostBinding("class.cds--number--readonly") readonly = false;
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` number input theme.

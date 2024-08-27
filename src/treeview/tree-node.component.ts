@@ -129,6 +129,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	@Input() value;
 	@Input() icon: string | TemplateRef<any>;
 	@Input() iconContext: any;
+	@Input() gap = 0;
 	@Input() children: Node[] = [];
 
 	/**
@@ -154,6 +155,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		this.icon = node.icon ?? this.icon;
 		this.selected = node.selected ?? this.selected;
 		this.depth = node.depth ?? this.depth;
+		this.gap = node.gap ?? this.gap;
 		this.children = node.children ?? this.children;
 		this.iconContext = node.iconText ?? this.iconContext;
 	}
@@ -232,7 +234,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 			return this.depth + 2 + this.depth * 0.5;
 		}
 
-		return this.depth + 2.5;
+		return this.depth + this.gap + 2.5;
 	}
 
 	emitFocusEvent(event) {
