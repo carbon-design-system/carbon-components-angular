@@ -9,8 +9,9 @@ import { NotificationModule, BaseNotification } from "./";
 import {
 	DyanmicActionableStory,
 	NotificationStory,
-	ToastStory
+	ToastStory,
 } from "./stories";
+import { IconModule } from "../icon/icon.module";
 
 export default {
 	title: "Components/Notification",
@@ -19,15 +20,12 @@ export default {
 			declarations: [
 				DyanmicActionableStory,
 				NotificationStory,
-				ToastStory
+				ToastStory,
 			],
-			imports: [
-				NotificationModule,
-				ButtonModule
-			]
-		})
+			imports: [NotificationModule, ButtonModule, IconModule],
+		}),
 	],
-	component: BaseNotification
+	component: BaseNotification,
 } as Meta;
 
 const InlineTemplate = (args) => ({
@@ -38,15 +36,16 @@ const InlineTemplate = (args) => ({
 			title: 'Sample notification',
 			message: 'Sample error message',
 			showClose: showClose,
-			lowContrast: lowContrast}">
+			lowContrast: lowContrast,
+			icon: 'add'}">
 		</cds-inline-notification>
-	`
+	`,
 });
 export const InlineNotification = InlineTemplate.bind({});
 InlineNotification.args = {
 	showClose: true,
 	lowContrast: false,
-	type: "info"
+	type: "info",
 };
 InlineNotification.argTypes = {
 	type: {
@@ -56,10 +55,10 @@ InlineNotification.argTypes = {
 			"info-square",
 			"success",
 			"warning",
-			"warning-alt"
+			"warning-alt",
 		],
-		control: "select"
-	}
+		control: "select",
+	},
 };
 
 const ToastTemplate = (args) => ({
@@ -73,14 +72,14 @@ const ToastTemplate = (args) => ({
 			lowContrast: lowContrast,
 			showClose: showClose
 		}"></cds-toast>
-	`
+	`,
 });
 export const Toast = ToastTemplate.bind({});
 Toast.args = {
-	...InlineNotification.args
+	...InlineNotification.args,
 };
 Toast.argTypes = {
-	...InlineNotification.argTypes
+	...InlineNotification.argTypes,
 };
 
 const ActionableTemplate = (args) => ({
@@ -97,28 +96,28 @@ const ActionableTemplate = (args) => ({
 				variant: variant
 			}">
 		</cds-actionable-notification>
-	`
+	`,
 });
 export const Actionable = ActionableTemplate.bind({});
 Actionable.args = {
 	...InlineNotification.args,
-	variant: "inline"
+	variant: "inline",
 };
 Actionable.argTypes = {
 	...InlineNotification.argTypes,
 	variant: {
 		options: ["toast", "inline"],
-		control: "radio"
+		control: "radio",
 	},
 	actions: {
 		control: "object",
 		defaultValue: [
 			{
 				text: "Action",
-				click: new Subject<any>()
-			}
-		]
-	}
+				click: new Subject<any>(),
+			},
+		],
+	},
 };
 
 const DynamicActionableTemplate = (args) => ({
@@ -130,7 +129,7 @@ const DynamicActionableTemplate = (args) => ({
 		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/dynamic-actionable.component.ts
 		-->
 		<app-dynamic-actionable-story></app-dynamic-actionable-story>
-	`
+	`,
 });
 export const DynamicActionable = DynamicActionableTemplate.bind({});
 
@@ -143,7 +142,7 @@ const DynamicToastTemplate = (args) => ({
 		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/toast.component.ts
 		-->
 		<app-toast-story></app-toast-story>
-	`
+	`,
 });
 export const DynamicToast = DynamicToastTemplate.bind({});
 
@@ -156,7 +155,7 @@ const DynamicInlineTemplate = (args) => ({
 		https://github.com/IBM/carbon-components-angular/tree/master/src/notification/stories/notification.component.ts
 		-->
 		<app-notification-story></app-notification-story>
-	`
+	`,
 });
 export const DynamicInline = DynamicInlineTemplate.bind({});
 
@@ -218,7 +217,8 @@ const CustomTemplate = (args) => ({
 		</ng-template>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	styles: [`
+	styles: [
+		`
 		cds-toast {
 			width: 450px;
 			margin-bottom: 1rem;
@@ -237,9 +237,10 @@ const CustomTemplate = (args) => ({
 			display: flex;
 			justify-content: flex-end;
 		}
-	`]
+	`,
+	],
 });
 export const CustomContent = CustomTemplate.bind({});
 CustomContent.args = {
-	showClose: true
+	showClose: true,
 };

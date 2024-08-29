@@ -16,6 +16,7 @@ export interface NotificationContent {
 	showClose?: boolean;
 	lowContrast?: boolean;
 	template?: TemplateRef<any>;
+	icon?: string;
 }
 
 export interface ActionableContent extends NotificationContent {

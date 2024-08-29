@@ -20,7 +20,7 @@ import { BaseNotification } from "./base-notification.component";
 	template: `
 		<div class="cds--inline-notification__details">
 			<svg
-				[cdsIcon]="iconDictionary[notificationObj.type]"
+				[cdsIcon]="notificationObj.icon ?? iconDictionary[notificationObj.type]"
 				size="20"
 				*ngIf="notificationObj.type"
 				class="cds--inline-notification__icon">
