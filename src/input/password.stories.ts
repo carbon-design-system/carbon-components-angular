@@ -1,8 +1,8 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta } from "@storybook/angular";
-import { InputModule, PasswordInputLabelComponent } from ".";
 import { FormsModule } from "@angular/forms";
+import { Meta, moduleMetadata } from "@storybook/angular";
+import { InputModule, PasswordInputLabelComponent } from ".";
 
 export default {
 	title: "Components/Input/Password",
@@ -34,7 +34,8 @@ const Template = (args) => ({
 				[disabled]="disabled"
 				[theme]="theme"
 				[placeholder]="placeholder"
-				[autocomplete]="autocomplete">
+				[autocomplete]="autocomplete"
+				[readonly]="readonly">
 		</cds-password-label>
 	`
 });
@@ -50,7 +51,8 @@ Basic.args = {
 	placeholder: "Placeholder",
 	autocomplete: "on",
 	theme: "dark",
-	size: "md"
+	size: "md",
+	readonly: false
 };
 Basic.argTypes = {
 	autocomplete: {
