@@ -73,9 +73,8 @@ import { EventService } from "carbon-components-angular/utils";
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
 			<div
-			class="cds--slider-container"
-			[ngClass]="{ 'cds--slider-container--readonly': readonly }"
-			>
+				class="cds--slider-container"
+				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
 				<label [id]="bottomRangeId" class="cds--slider__range-label">
 					<ng-content select="[minLabel]"></ng-content>
 				</label>
