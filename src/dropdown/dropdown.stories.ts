@@ -25,6 +25,7 @@ export default {
 		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "A valid value is required",
 		warn: false,
@@ -101,6 +102,7 @@ const Template = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -128,6 +130,7 @@ const MultiTemplate = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -174,6 +177,7 @@ const NgTemplate = (args) => ({
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>
