@@ -7,6 +7,7 @@ export interface Node {
 	id?: string;
 	active?: boolean;
 	disabled?: boolean;
+	// selectable is only valid for nodes with childre. If true, the node won't become selected and if clicked it would only expand/compress itself
 	selectable?: boolean;
 	expanded?: boolean;
 	selected?: boolean;
