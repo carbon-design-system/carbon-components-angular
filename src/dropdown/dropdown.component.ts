@@ -77,6 +77,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'cds--list-box--inline': inline,
 			'cds--skeleton': skeleton,
 			'cds--dropdown--disabled cds--list-box--disabled': disabled,
+			'cds--dropdown--readonly': readonly,
 			'cds--dropdown--invalid': invalid,
 			'cds--dropdown--warning cds--list-box--warning': warn,
 			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
@@ -92,8 +93,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
+			[attr.aria-readonly]="readonly"
 			aria-haspopup="listbox"
-			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
+			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
 			[attr.disabled]="disabled ? true : null">
 			<div
@@ -224,6 +226,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Set to `true` to disable the dropdown.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a readonly state.
+	 */
+	@Input() readonly = false;
 	/**
 	 * Set to `true` for a loading dropdown.
 	 */
@@ -514,6 +520,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@HostListener("keydown", ["$event"])
 	onKeyDown(event: KeyboardEvent) {
+		if (this.readonly) {
+			return;
+		}
+
 		if ((event.key === "Escape") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
