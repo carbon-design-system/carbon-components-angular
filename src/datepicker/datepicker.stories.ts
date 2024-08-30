@@ -18,6 +18,7 @@ export default {
 		warnText: "This is a warning",
 		warn: false,
 		disabled: false,
+		readonly: false,
 		language: "en",
 		theme: "dark",
 		size: "md"
@@ -46,6 +47,7 @@ const Template = (args) => ({
 			[label]="label"
 			[placeholder]="placeholder"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -70,6 +72,7 @@ const SingleTemplate = (args) => ({
 			[theme]="theme"
 			[value]="value"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -85,6 +88,7 @@ const SingleTemplate = (args) => ({
 			[size]="size"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -120,6 +124,7 @@ const RangeTemplate = (args) => ({
 			[language]="language"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -141,6 +146,7 @@ const RangeTemplate = (args) => ({
 			[placeholder]="placeholder"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
