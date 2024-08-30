@@ -45,7 +45,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'cds--select--light': theme === 'light',
 					'cds--select--invalid': invalid,
 					'cds--select--warning': warn,
-					'cds--select--disabled': disabled
+					'cds--select--disabled': disabled,
+					'cds--select--readonly': readonly
 				}">
 				<label
 					*ngIf="label"
@@ -80,12 +81,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[disabled]="disabled"
 					(change)="onChange($event)"
 					[attr.aria-invalid]="invalid ? 'true' : null"
+					[attr.aria-readonly]="readonly ? 'true' : null"
 					class="cds--select-input"
 					[ngClass]="{
 						'cds--select-input--sm': size === 'sm',
 						'cds--select-input--md': size === 'md',
 						'cds--select-input--lg': size === 'lg'
-					}">
+					}"
+					(mousedown)="onMouseDown($event)"
+					(keydown)="onKeyDown($event)">
 					<ng-content></ng-content>
 				</select>
 				<svg
@@ -182,6 +186,10 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	 * Set to `true` for an invalid select component.
 	 */
 	@Input() invalid = false;
+	/**
+	 * Set to `true` for readonly state.
+	 */
+	@Input() readonly = false;
 
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
@@ -273,4 +281,24 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	 */
 	protected onChangeHandler = (_: any) => { };
 	protected onTouchedHandler = () => { };
+
+	onMouseDown(event: MouseEvent) {
+		/**
+		 * This prevents the select from opening with mouse
+		 */
+		if (this.readonly) {
+			event.preventDefault();
+			(<HTMLElement>event.target).focus();
+		}
+	}
+
+	onKeyDown(event: KeyboardEvent) {
+		const selectAccessKeys = ["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", " "];
+		/**
+		 * This prevents the select from opening for the above keys
+		 */
+		if (this.readonly && selectAccessKeys.includes(event.key)) {
+			event.preventDefault();
+		}
+	}
 }

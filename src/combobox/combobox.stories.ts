@@ -31,6 +31,7 @@ export default {
 		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "A valid value is required",
 		warn: false,
@@ -105,6 +106,7 @@ const Template = (args) => ({
 		<cds-combo-box
 			[(ngModel)]="model"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[size]="size"
 			[appendInline]="appendInline"
@@ -185,6 +187,7 @@ const MultiTemplate = (args) => ({
 			[hideLabel]="hideLabel"
 			[warn]="warn"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[helperText]="helperText"
 			[appendInline]="false"

@@ -13,6 +13,7 @@ export interface Node {
 	selected?: boolean;
 	icon?: string | TemplateRef<any>;
 	iconContext?: any;
+	gap?: number;
 	children?: Node[];
 	[key: string]: any;
 }
