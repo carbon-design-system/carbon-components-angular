@@ -63,6 +63,7 @@ import { Observable } from "rxjs";
 					'cds--list-box--md': size === 'md',
 					'cds--list-box--lg': size === 'lg',
 					'cds--list-box--disabled': disabled,
+					'cds--combo-box--readonly': readonly,
 					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
 				class="cds--list-box cds--combo-box"
@@ -74,7 +75,7 @@ import { Observable } from "rxjs";
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
 						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{'cds--tag--disabled': disabled}">
+						[ngClass]="{'cds--tag--disabled': disabled || readonly}">
 						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
@@ -84,7 +85,7 @@ import { Observable } from "rxjs";
 							class="cds--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
-							[disabled]="disabled"
+							[disabled]="disabled || readonly"
 							[attr.aria-label]="clearSelectionAria">
 							<svg
 								focusable="false"
@@ -106,6 +107,7 @@ import { Observable } from "rxjs";
 						autocomplete="off"
 						role="combobox"
 						[disabled]="disabled"
+						[readOnly]="readonly"
 						(input)="onSearch($event.target.value)"
 						(blur)="onBlur()"
 						(keydown.enter)="onSubmit($event)"
@@ -362,6 +364,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Set to `true` to disable combobox.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for readonly state.
+	 */
+	@Input() readonly = false;
 	/**
 	 * Emits a ListItem
 	 *
@@ -697,7 +703,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		this.open = true;
 		this._dropUp = false;
 
@@ -778,7 +784,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		event.stopPropagation();
 		event.preventDefault();
 
-		if (this.disabled) {
+		if (this.disabled || this.readonly) {
 			return;
 		}
 
