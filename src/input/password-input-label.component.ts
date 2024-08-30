@@ -200,7 +200,7 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	/**
 	 * Reference to the wrapper element.
 	 */
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper", { static: true }) wrapper: ElementRef<HTMLDivElement>;
 
 	/**
 	 * Binding for applying class to host element.
