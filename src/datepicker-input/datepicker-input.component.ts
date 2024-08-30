@@ -53,6 +53,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[placeholder]="placeholder"
 						[id]= "id"
 						[disabled]="disabled"
+						[readonly]="readonly"
 							(change)="onChange($event)"/>
 							<svg
 								*ngIf="type !== 'simple' && !warn && !invalid"
@@ -128,6 +129,8 @@ export class DatePickerInput {
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
+
+	@Input() readonly = false;
 	/**
 	 * Set to `true` for invalid state.
 	 */
