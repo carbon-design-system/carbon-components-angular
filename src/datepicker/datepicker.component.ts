@@ -452,7 +452,7 @@ export class DatePicker implements
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
-		if (this.readonly) {
+		if (this.readonly || this.skeleton) {
 			return;
 		}
 

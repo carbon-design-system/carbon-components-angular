@@ -22,8 +22,13 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				'cds--skeleton' : skeleton
 			}">
 			<div class="cds--date-picker-container">
+				<!-- Skeleton structure -->
+				<ng-container *ngIf="skeleton">
+					<span class="cds--label cds--skeleton"></span>
+					<div class="cds--date-picker__input cds--skeleton"></div>
+				</ng-container>
 				<label
-					*ngIf="label"
+					*ngIf="label && !skeleton"
 					[for]="id"
 					class="cds--label"
 					[ngClass]="{'cds--label--disabled': disabled}">
@@ -31,6 +36,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
 				<div class="cds--date-picker-input__wrapper"
+					*ngIf="!skeleton"
 					[ngClass]="{
 						'cds--date-picker-input__wrapper--invalid': invalid,
 						'cds--date-picker-input__wrapper--warn': warn
@@ -38,7 +44,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<span>
 						<input
 						#input
-						*ngIf="!skeleton"
 						autocomplete="off"
 						type="text"
 						class="cds--date-picker__input"
