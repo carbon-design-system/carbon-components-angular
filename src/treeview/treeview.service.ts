@@ -5,6 +5,7 @@ import { Node } from "./tree-node.types";
 @Injectable()
 export class TreeViewService {
 	selectionObservable: Observable<any | any[]>;
+	focusNodeObservable: Observable<Node>;
 	/**
 	 * Variable used across all nodes and wrapper to determine if we should allow content projection
 	 * or generate the tree
@@ -18,6 +19,7 @@ export class TreeViewService {
 	isMultiSelect = false;
 
 	private selectionSubject = new ReplaySubject<Map<string, Node>>(1);
+	private focusNodeSubject = new ReplaySubject<Node>(1);
 
 	/**
 	 * Hold's list of selected nodes and preserves order
@@ -26,6 +28,15 @@ export class TreeViewService {
 
 	constructor() {
 		this.selectionObservable = this.selectionSubject.asObservable();
+		this.focusNodeObservable = this.focusNodeSubject.asObservable();
+	}
+
+	/**
+	 * Emits the focused node
+	 * @param node: Node
+	 */
+	focusNode(node: Node) {
+		this.focusNodeSubject.next(node);
 	}
 
 	/**
