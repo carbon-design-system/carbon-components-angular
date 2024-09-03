@@ -150,21 +150,23 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	steps = [
 		{
-			text: "Step 1",
-			state: ["complete"]
+			label: "Step 1",
+			complete: true
 		},
 		{
-			text: "Step 2",
-			state: ["current"]
+			label: "Step 2",
+			current: true,
+			complete: false
 		},
 		{
-			text: "Step 3",
-			state: ["incomplete"]
+			label: "Step 3",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Step 4",
-			state: ["incomplete"],
-			optionalText: "Optional"
+			label: "Step 4",
+			complete: false,
+			secondaryLabel: "Optional"
 		}
 	];
 

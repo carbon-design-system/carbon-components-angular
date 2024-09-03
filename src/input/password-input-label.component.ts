@@ -200,7 +200,7 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	/**
 	 * Reference to the wrapper element.
 	 */
-	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+	@ViewChild("wrapper", { static: true }) wrapper: ElementRef<HTMLDivElement>;
 
 	/**
 	 * Binding for applying class to host element.
@@ -208,6 +208,9 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	@HostBinding("class.cds--form-item") labelClass = true;
 	@HostBinding("class.cds--password-input-wrapper") passwordInputWrapper = true;
 	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
+	@HostBinding("class.cds--text-input-wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("input")?.readOnly;
+	}
 
 	/**
 	 * Constructor for PasswordInputLabelComponent.
