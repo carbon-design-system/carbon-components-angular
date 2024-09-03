@@ -209,7 +209,7 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	@HostBinding("class.cds--password-input-wrapper") passwordInputWrapper = true;
 	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
 	@HostBinding("class.cds--text-input-wrapper--readonly") get isReadonly() {
-		return this.wrapper?.nativeElement.querySelector("input")?.readOnly;
+		return this.wrapper?.nativeElement.querySelector("input")?.readOnly ?? false;
 	}
 
 	/**
