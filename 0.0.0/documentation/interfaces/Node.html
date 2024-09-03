@@ -211,6 +211,13 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#selectable" 
+>
+                                            selectable
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#selected" 
 >
                                             selected
@@ -243,7 +250,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/treeview/tree-node.types.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/treeview/tree-node.types.ts:17</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -631,6 +638,44 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="selectable"></a>
+                                        <span class="name "><b>selectable</b>
+                                            <a href="#selectable">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>selectable:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="selected"></a>
                                         <span class="name "><b>selected</b>
                                             <a href="#selected">
@@ -717,6 +762,8 @@ export interface Node {
 	id?: string;
 	active?: boolean;
 	disabled?: boolean;
+	// selectable is only valid for nodes with children. If true, the node won&#x27;t become selected and if clicked it would only expand/compress itself
+	selectable?: boolean;
 	expanded?: boolean;
 	selected?: boolean;
 	icon?: string | TemplateRef&lt;any&gt;;
