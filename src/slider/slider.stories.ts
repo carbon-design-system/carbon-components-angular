@@ -27,6 +27,7 @@ const Template = (args) => ({
 			[skeleton]="skeleton"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			aria-Label="Label for slider value"
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
@@ -44,6 +45,7 @@ Basic.args = {
 	minLabel: "0",
 	maxLabel: "100",
 	disabled: false,
+	readonly: false,
 	shiftMultiplier: 4,
 	theme: "dark"
 };
@@ -68,6 +70,7 @@ const RangeTemplate = (args) => ({
 			[value]="value"
 			[shiftMultiplier]="shiftMultiplier"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			aria-Label="Label for slider value"
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>

@@ -26,6 +26,7 @@ export default {
 	args: {
 		skeleton: false,
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "Please select an option.",
 		warn: false,
@@ -63,6 +64,7 @@ const Template = (args) => ({
 		<cds-select
 			[skeleton]="skeleton"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -95,6 +97,7 @@ const NgModelTemplate = (args) => ({
 			[(ngModel)]="model"
 			[skeleton]="skeleton"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"

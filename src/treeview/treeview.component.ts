@@ -123,11 +123,9 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 			// Get all values from the map to emit
 			const nodes = [...nodesMap.values()];
 
-			// Update focus to reset arrow key traversal
-			// Select the current highlight node as the last node, since we preserve order in map
-			this.treeWalker.currentNode = this.elementRef.nativeElement.querySelector(`#${CSS.escape(nodes[nodes.length - 1].id)}`);
 			this.select.emit(this.treeViewService.isMultiSelect ? nodes : nodes[0]);
 		});
+		this.subscription.add(this.treeViewService.focusNodeObservable.subscribe(node => this.onNodeFocusChange(node)));
 	}
 
 	ngOnDestroy(): void {
@@ -170,6 +168,20 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 			return;
 		}
 		this.toggle.emit(eventOnNode.node)
+	}
+	
+	/**
+	 * Node focus change
+	 * @param node - Node
+	 */
+	onNodeFocusChange(node: Node) {
+		if (!node) {
+			// if for some reason the focused node is not defined we fallback on the root element of the treeview
+			this.treeWalker.currentNode = this.treeWalker.root;
+			return;
+		}
+		// Update current node based on focus change to have a better keyboard navigation experience
+		this.treeWalker.currentNode = this.elementRef.nativeElement.querySelector(`#${CSS.escape(node.id)}`);
 	}
 
 	public isTemplate(value) {
