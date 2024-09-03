@@ -163,13 +163,17 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 		}
 	}
 
+	/**
+	 * Propagate node toggle event
+	 * @param eventOnNode - EventOnNode
+	 */
 	onNodeToggle(eventOnNode: EventOnNode) {
 		if (!eventOnNode) {
 			return;
 		}
 		this.toggle.emit(eventOnNode.node)
 	}
-	
+
 	/**
 	 * Node focus change
 	 * @param node - Node
