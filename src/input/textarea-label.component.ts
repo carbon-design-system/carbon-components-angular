@@ -144,6 +144,10 @@ export class TextareaLabelComponent implements AfterViewInit {
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
+	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
+	}
+
 	/**
 	 * Creates an instance of Label.
 	 */
