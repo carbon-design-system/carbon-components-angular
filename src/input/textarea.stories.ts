@@ -32,6 +32,7 @@ const Template = (args) => ({
 			[theme]="theme"
 			[rows]="rows"
 			[cols]="cols"
+			[readonly]="readonly"
 			aria-label="textarea"></textarea>
 		</cds-textarea-label>
 	`
@@ -49,7 +50,8 @@ Basic.args = {
 	cols: 50,
 	rows: 4,
 	autocomplete: "on",
-	theme: "dark"
+	theme: "dark",
+	readonly: false
 };
 Basic.argTypes = {
 	autocomplete: {
