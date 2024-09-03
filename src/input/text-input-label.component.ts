@@ -139,7 +139,7 @@ export class TextInputLabelComponent implements AfterViewInit {
 	@HostBinding("class.cds--form-item") labelClass = true;
 
 	@HostBinding("class.cds--text-input-wrapper--readonly") get isReadonly() {
-		return this.wrapper?.nativeElement.querySelector("input")?.readOnly;
+		return this.wrapper?.nativeElement.querySelector("input")?.readOnly ?? false;
 	}
 
 	/**
