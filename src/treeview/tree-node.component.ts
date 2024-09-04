@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { TreeViewService } from "./treeview.service";
-import { Node } from "./tree-node.types";
+import { EventOnNode, Node } from "./tree-node.types";
 
 @Component({
 	selector: "cds-tree-node",
@@ -166,10 +166,10 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		return this._node;
 	}
 
-	@Output() nodeFocus = new EventEmitter();
-	@Output() nodeBlur = new EventEmitter();
-	@Output() nodeSelect = new EventEmitter();
-	@Output() nodetoggle = new EventEmitter();
+	@Output() nodeFocus = new EventEmitter<EventOnNode>();
+	@Output() nodeBlur = new EventEmitter<EventOnNode>();
+	@Output() nodeSelect = new EventEmitter<Node>();
+	@Output() nodetoggle = new EventEmitter<EventOnNode>();
 
 	offset;
 	private _node;
@@ -212,8 +212,10 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 			if (this.selectable || this.children.length === 0) {
 				this.selected = true;
 				this.active = true;
+				const node = { id: this.id, label: this.label, value: this.value };
 				// Passes event to all nodes to update highlighting & parent to emit
-				this.treeViewService.selectNode({ id: this.id, label: this.label, value: this.value });
+				this.treeViewService.selectNode(node);
+				this.nodeSelect.emit(node);
 			} else {
 				this.toggleExpanded(event);
 			}

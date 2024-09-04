@@ -13,7 +13,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Node } from "./tree-node.types";
+import { EventOnNode, Node } from "./tree-node.types";
 import { TreeViewService } from "./treeview.service";
 
 /**
@@ -57,7 +57,8 @@ import { TreeViewService } from "./treeview.service";
 			<ng-template #notProjected>
 				<cds-tree-node
 					*ngFor="let node of tree"
-					[node]="node">
+					[node]="node"
+					(nodetoggle)="onNodeToggle($event)">
 				</cds-tree-node>
 			</ng-template>
 		</div>
@@ -101,6 +102,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	@Output() select = new EventEmitter<Node | Node[]>();
+	@Output() toggle = new EventEmitter<Node>();
 	@ViewChild("treeWrapper") root: ElementRef;
 
 	private treeWalker: TreeWalker;
@@ -159,6 +161,17 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 		if (event.key === "ArrowDown") {
 			(this.treeWalker.nextNode() as HTMLElement)?.focus();
 		}
+	}
+
+	/**
+	 * Propagate node toggle event
+	 * @param eventOnNode - EventOnNode
+	 */
+	onNodeToggle(eventOnNode: EventOnNode) {
+		if (!eventOnNode) {
+			return;
+		}
+		this.toggle.emit(eventOnNode.node)
 	}
 
 	/**
