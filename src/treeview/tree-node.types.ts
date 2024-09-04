@@ -17,3 +17,8 @@ export interface Node {
 	children?: Node[];
 	[key: string]: any;
 }
+
+export interface EventOnNode {
+	node: Node;
+	event: Event;
+}
