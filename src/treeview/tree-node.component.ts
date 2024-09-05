@@ -246,7 +246,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	}
 
 	emitFocusEvent(event) {
-		const node = { id: this.id, label: this.label, value: this.value }
+		const node = { id: this.id, label: this.label, value: this.value };
 		this.nodeFocus.emit({ node, event });
 		this.treeViewService.focusNode(node);
 	}

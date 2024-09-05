@@ -137,6 +137,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	]
 })
 export class Select implements ControlValueAccessor, AfterViewInit {
+	@Input() set value(v) {
+		this._value = v;
+		if (this.select) {
+			this.select.nativeElement.value = this._value;
+		}
+	}
+
+	get value() {
+		return this._value;
+	}
+
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -202,17 +213,6 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	@ViewChild("select") select: ElementRef;
 
-	@Input() set value(v) {
-		this._value = v;
-		if (this.select) {
-			this.select.nativeElement.value = this._value;
-		}
-	}
-
-	get value() {
-		return this._value;
-	}
-
 	protected _value;
 
 	ngAfterViewInit() {
@@ -276,12 +276,6 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 		return value instanceof TemplateRef;
 	}
 
-	/**
-	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
-	 */
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
-
 	onMouseDown(event: MouseEvent) {
 		/**
 		 * This prevents the select from opening with mouse
@@ -301,4 +295,10 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 			event.preventDefault();
 		}
 	}
+
+	/**
+	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
+	 */
+	protected onChangeHandler = (_: any) => { };
+	protected onTouchedHandler = () => { };
 }
