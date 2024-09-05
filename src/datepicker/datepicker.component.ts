@@ -241,7 +241,8 @@ export class DatePicker implements
 			dateFormat: this.dateFormat,
 			locale: languages.default?.default[this.language] || languages.default[this.language],
 			// Little trick force "readonly mode" on datepicker input.
-			// Docs: Whether clicking on the input should open the picker. You could disable this if you wish to open the calendar manually with.open().
+			// Docs: Whether clicking on the input should open the picker.
+			// You could disable this if you wish to open the calendar manually with.open().
 			clickOpens: !this.readonly
 		});
 	}
