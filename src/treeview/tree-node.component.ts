@@ -110,7 +110,8 @@ import { EventOnNode, Node } from "./tree-node.types";
 						*ngFor="let childNode of children"
 						[node]="childNode"
 						[depth]="depth + 1"
-						[disabled]="disabled">
+						[disabled]="disabled"
+						(nodetoggle)="nodetoggle.emit($event)">
 					</cds-tree-node>
 				</ng-template>
 			</div>
