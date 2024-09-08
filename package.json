@@ -145,7 +145,6 @@
     "@floating-ui/dom": "1.6.3",
     "@ibm/telemetry-js": "^1.5.0",
     "flatpickr": "4.6.13",
-    "lodash": "4.17.21",
     "tslib": "2.3.0"
   }
 }
