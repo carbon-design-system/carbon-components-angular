@@ -8,9 +8,9 @@ function isObject(val) {
 class ComponentTests {
 	static defaults = {
 		selectors: {
-			root: "",
+			root: ""
 		},
-		classes: {},
+		classes: {}
 	};
 	settings: any = {};
 	tests: any[] = [];

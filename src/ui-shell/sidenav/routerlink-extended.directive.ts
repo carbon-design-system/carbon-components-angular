@@ -7,8 +7,7 @@ import { NavigationExtras, RouterLinkWithHref } from "@angular/router";
 })
 export class RouterLinkExtendedDirective
 	extends RouterLinkWithHref
-	implements OnChanges
-{
+	implements OnChanges {
 	// TODO: Change RouterLinkWithHref with RouterLink from angular 15 since RouterLinkWithHref has been deprecated
 	@Input() routeExtras: NavigationExtras;
 

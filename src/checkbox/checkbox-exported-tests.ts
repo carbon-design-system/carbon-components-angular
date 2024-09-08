@@ -4,8 +4,8 @@ import ComponentTests from "../exported-tests/component-tests";
 const defaults = {
 	selectors: {
 		root: "cds-checkbox",
-		input: "input",
-	},
+		input: "input"
+	}
 };
 
 class CheckboxExportedTests extends ComponentTests {
@@ -29,7 +29,7 @@ class CheckboxExportedTests extends ComponentTests {
 						const afterClickState = component.checked;
 						resolve({
 							initialState,
-							afterClickState,
+							afterClickState
 						});
 					}),
 				runComparison: (results) => {
@@ -37,14 +37,14 @@ class CheckboxExportedTests extends ComponentTests {
 					expect(results.initialState).to.be.false;
 					// tslint:disable-next-line
 					expect(results.afterClickState).to.be.true;
-				},
-			},
+				}
+			}
 		];
 		return [
 			{
 				name: "Basic checkbox tests",
-				tests: this.getTests(tests),
-			},
+				tests: this.getTests(tests)
+			}
 		];
 	}
 }
