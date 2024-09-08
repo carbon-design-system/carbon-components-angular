@@ -1,5 +1,3 @@
-import merge from "lodash-es/merge";
-
 function isObject(val) {
 	if (val === null) {
 		return false;
@@ -10,20 +8,20 @@ function isObject(val) {
 class ComponentTests {
 	static defaults = {
 		selectors: {
-			root: ""
+			root: "",
 		},
-		classes: {}
+		classes: {},
 	};
 	settings: any = {};
 	tests: any[] = [];
 
 	constructor(configs = {}) {
-		this.settings = merge({}, ComponentTests.defaults, configs);
+		this.settings = { ...ComponentTests.defaults, ...configs };
 	}
 
 	getTests(tests) {
 		if (isObject(tests)) {
-			return Object.keys(tests).map(i => tests[i]);
+			return Object.keys(tests).map((i) => tests[i]);
 		}
 		return tests;
 	}
