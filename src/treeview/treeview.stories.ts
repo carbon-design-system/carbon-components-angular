@@ -1,15 +1,9 @@
 /* tslint:disable variable-name */
 
 import { CommonModule } from "@angular/common";
-import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	TreeviewModule,
-	TreeViewComponent,
-	TreeNodeComponent
-} from "./";
-import cloneDeep from "lodash-es/cloneDeep";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { IconModule } from "../icon";
-
+import { TreeNodeComponent, TreeViewComponent, TreeviewModule } from "./";
 import { IconTreeviewDemoComponent } from "./stories/app-treeview-icons.component";
 
 export default {
@@ -17,34 +11,34 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [CommonModule, TreeviewModule, IconModule],
-			declarations: [IconTreeviewDemoComponent]
-		})
+			declarations: [IconTreeviewDemoComponent],
+		}),
 	],
 	component: TreeViewComponent,
 	subcomponents: TreeNodeComponent,
 	args: {
 		size: "sm",
-		isMultiSelect: false
+		isMultiSelect: false,
 	},
 	argTypes: {
 		size: {
 			options: ["xs", "sm"],
-			control: "radio"
+			control: "radio",
 		},
-		onSelect: { action: "clicked" }
-	}
+		onSelect: { action: "clicked" },
+	},
 } as Meta;
 
 const nodes = [
 	{
 		id: "1",
 		value: "Artificial intelligence",
-		label: "Artificial intelligence"
+		label: "Artificial intelligence",
 	},
 	{
 		id: "2",
 		value: "Blockchain",
-		label: "Blockchain"
+		label: "Blockchain",
 	},
 	{
 		id: "3",
@@ -54,19 +48,19 @@ const nodes = [
 			{
 				id: "3-1",
 				value: "Business process automation",
-				label: "Business process automation"
+				label: "Business process automation",
 			},
 			{
 				id: "3-2",
 				value: "Business process mapping",
-				label: "Business process mapping"
-			}
-		]
+				label: "Business process mapping",
+			},
+		],
 	},
 	{
 		id: "4",
 		value: "Business operations",
-		label: "Business operations"
+		label: "Business operations",
 	},
 	{
 		id: "5",
@@ -77,12 +71,12 @@ const nodes = [
 			{
 				id: "5-1",
 				value: "Containers",
-				label: "Containers"
+				label: "Containers",
 			},
 			{
 				id: "5-2",
 				value: "Databases",
-				label: "Databases"
+				label: "Databases",
 			},
 			{
 				id: "5-3",
@@ -93,7 +87,7 @@ const nodes = [
 					{
 						id: "5-4",
 						value: "Solutions",
-						label: "Solutions"
+						label: "Solutions",
 					},
 					{
 						id: "5-5",
@@ -104,13 +98,13 @@ const nodes = [
 							{
 								id: "5-6",
 								value: "Resources",
-								label: "Resources"
-							}
-						]
-					}
-				]
-			}
-		]
+								label: "Resources",
+							},
+						],
+					},
+				],
+			},
+		],
 	},
 	{
 		id: "6",
@@ -120,14 +114,14 @@ const nodes = [
 			{
 				id: "6-1",
 				value: "Big data",
-				label: "Big data"
+				label: "Big data",
 			},
 			{
 				id: "6-2",
 				value: "Business intelligence",
-				label: "Business intelligence"
-			}
-		]
+				label: "Business intelligence",
+			},
+		],
 	},
 	{
 		id: "7",
@@ -138,14 +132,14 @@ const nodes = [
 			{
 				id: "7-1",
 				value: "Child 1",
-				label: "Child 1"
+				label: "Child 1",
 			},
 			{
 				id: "7-2",
 				value: "Child 2",
-				label: "Child 2"
-			}
-		]
+				label: "Child 2",
+			},
+		],
 	},
 	{
 		id: "8",
@@ -157,12 +151,12 @@ const nodes = [
 			{
 				id: "8-1",
 				value: "Data storage",
-				label: "Data storage"
+				label: "Data storage",
 			},
 			{
 				id: "8-2",
 				value: "Enterprise servers",
-				label: "Enterprise servers"
+				label: "Enterprise servers",
 			},
 			{
 				id: "9",
@@ -173,19 +167,18 @@ const nodes = [
 					{
 						id: "9-1",
 						value: "Insights",
-						label: "Insights"
+						label: "Insights",
 					},
 					{
 						id: "9-2",
 						value: "Benefits",
-						label: "Benefits"
-					}
-				]
-			}
-		]
-	}
+						label: "Benefits",
+					},
+				],
+			},
+		],
+	},
 ];
-
 
 const Template = (args) => ({
 	props: args,
@@ -198,16 +191,16 @@ const Template = (args) => ({
 			[isMultiSelect]="isMultiSelect"
 			(select)="onSelect($event)">
 		</cds-tree-view>
-	`
+	`,
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	tree: nodes
+	tree: nodes,
 };
 Basic.argTypes = {
 	tree: {
-		control: false
-	}
+		control: false,
+	},
 };
 
 const ProjectedNodesTemplate = (args) => ({
@@ -244,27 +237,27 @@ const ProjectedNodesTemplate = (args) => ({
 				</ng-container>
 			</ng-container>
 		</cds-tree-view>
-	`
+	`,
 });
 export const ProjectedContent = ProjectedNodesTemplate.bind({});
 ProjectedContent.args = {
-	tree: nodes
+	tree: nodes,
 };
 ProjectedContent.argTypes = {
 	tree: {
-		control: false
-	}
+		control: false,
+	},
 };
 
 const IconsTemplate = (args) => ({
 	props: args,
 	template: `
 		<app-treeview-icon-component></app-treeview-icon-component>
-	`
+	`,
 });
 export const WithIcons = IconsTemplate.bind({});
 WithIcons.argTypes = {
 	tree: {
-		control: false
-	}
+		control: false,
+	},
 };
