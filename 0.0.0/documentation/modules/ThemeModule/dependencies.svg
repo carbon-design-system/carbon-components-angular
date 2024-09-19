@@ -28,13 +28,13 @@
 <title>cluster_ThemeModule_declarations</title>
 <polygon fill="none" stroke="black" points="245,-78 245,-130 367,-130 367,-78 245,-78"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ThemeModule_imports</title>
-<polygon fill="none" stroke="black" points="129,-78 129,-130 237,-130 237,-78 129,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_ThemeModule_exports</title>
 <polygon fill="none" stroke="black" points="185,-208 185,-260 311,-260 311,-208 185,-208"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ThemeModule_imports</title>
+<polygon fill="none" stroke="black" points="129,-78 129,-130 237,-130 237,-78 129,-78"/>
 </g>
 <!-- ThemeDirective -->
 <g id="node1" class="node">

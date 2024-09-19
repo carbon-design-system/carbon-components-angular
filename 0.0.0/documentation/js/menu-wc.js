@@ -1714,6 +1714,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ElementVisibilityEvent.html" data-type="entity-link" >ElementVisibilityEvent</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EventOnNode.html" data-type="entity-link" >EventOnNode</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/ExpandableTileTranslations.html" data-type="entity-link" >ExpandableTileTranslations</a>
                             </li>
                             <li class="link">

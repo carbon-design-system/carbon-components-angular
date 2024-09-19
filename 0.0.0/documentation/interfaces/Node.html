@@ -250,7 +250,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/treeview/tree-node.types.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/treeview/tree-node.types.ts:18</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -762,7 +762,8 @@ export interface Node {
 	id?: string;
 	active?: boolean;
 	disabled?: boolean;
-	// selectable is only valid for nodes with children. If true, the node won&#x27;t become selected and if clicked it would only expand/compress itself
+	// Selectable is only valid for nodes with children.
+	// If true, the node won&#x27;t become selected and if clicked it would only expand/compress itself
 	selectable?: boolean;
 	expanded?: boolean;
 	selected?: boolean;
@@ -771,6 +772,11 @@ export interface Node {
 	gap?: number;
 	children?: Node[];
 	[key: string]: any;
+}
+
+export interface EventOnNode {
+	node: Node;
+	event: Event;
 }
 </code></pre>
     </div>

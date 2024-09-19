@@ -249,7 +249,8 @@
 				*ngFor&#x3D;&quot;let childNode of children&quot;
 				[node]&#x3D;&quot;childNode&quot;
 				[depth]&#x3D;&quot;depth + 1&quot;
-				[disabled]&#x3D;&quot;disabled&quot;&gt;
+				[disabled]&#x3D;&quot;disabled&quot;
+				(nodetoggle)&#x3D;&quot;nodetoggle.emit($event)&quot;&gt;
 			&lt;/cds-tree-node&gt;
 		&lt;/ng-template&gt;
 	&lt;/div&gt;
@@ -459,7 +460,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/treeview/tree-node.component.ts:176</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/treeview/tree-node.component.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -520,7 +521,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/treeview/tree-node.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/treeview/tree-node.component.ts:124</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -546,7 +547,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/treeview/tree-node.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/treeview/tree-node.component.ts:135</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -572,7 +573,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/treeview/tree-node.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/treeview/tree-node.component.ts:141</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -605,7 +606,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/treeview/tree-node.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/treeview/tree-node.component.ts:125</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -631,7 +632,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/treeview/tree-node.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/treeview/tree-node.component.ts:127</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -657,7 +658,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/treeview/tree-node.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/treeview/tree-node.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -678,7 +679,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/treeview/tree-node.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/treeview/tree-node.component.ts:132</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -699,7 +700,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/treeview/tree-node.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/treeview/tree-node.component.ts:133</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -725,7 +726,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/treeview/tree-node.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/treeview/tree-node.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -746,7 +747,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/treeview/tree-node.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/treeview/tree-node.component.ts:128</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -767,7 +768,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/treeview/tree-node.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/treeview/tree-node.component.ts:129</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -788,7 +789,7 @@ Calculated by default when passing <code>Node</code> array to <code>TreeViewComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/treeview/tree-node.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/treeview/tree-node.component.ts:147</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -821,7 +822,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/treeview/tree-node.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/treeview/tree-node.component.ts:126</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -847,7 +848,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/treeview/tree-node.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/treeview/tree-node.component.ts:130</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -868,7 +869,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/treeview/tree-node.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/treeview/tree-node.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -892,7 +893,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/treeview/tree-node.component.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/treeview/tree-node.component.ts:171</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -913,7 +914,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/treeview/tree-node.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/treeview/tree-node.component.ts:170</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -934,7 +935,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/treeview/tree-node.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/treeview/tree-node.component.ts:172</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -955,7 +956,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/treeview/tree-node.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/treeview/tree-node.component.ts:173</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -988,8 +989,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="227"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:227</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:230</a></div>
                         </td>
                     </tr>
 
@@ -1031,8 +1032,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="252"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:252</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -1094,8 +1095,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="246"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:246</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:249</a></div>
                         </td>
                     </tr>
 
@@ -1159,8 +1160,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="299"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:299</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:302</a></div>
                         </td>
                     </tr>
 
@@ -1198,8 +1199,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="295"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:295</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:298</a></div>
                         </td>
                     </tr>
 
@@ -1261,8 +1262,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="272"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:272</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="275"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:275</a></div>
                         </td>
                     </tr>
 
@@ -1330,8 +1331,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="183"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:183</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -1369,8 +1370,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="201"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:201</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:202</a></div>
                         </td>
                     </tr>
 
@@ -1408,8 +1409,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="190"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:190</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:191</a></div>
                         </td>
                     </tr>
 
@@ -1447,8 +1448,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="209"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:209</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:210</a></div>
                         </td>
                     </tr>
 
@@ -1512,8 +1513,8 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="260"
-                                    class="link-to-prism">src/treeview/tree-node.component.ts:260</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/treeview/tree-node.component.ts:263</a></div>
                         </td>
                     </tr>
 
@@ -1582,7 +1583,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/treeview/tree-node.component.ts:175</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/treeview/tree-node.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -1602,7 +1603,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/treeview/tree-node.component.ts:174</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/treeview/tree-node.component.ts:175</a></div>
                         </td>
                     </tr>
 
@@ -1629,7 +1630,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/treeview/tree-node.component.ts:176</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/treeview/tree-node.component.ts:177</a></div>
                         </td>
                     </tr>
 
@@ -1661,7 +1662,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/treeview/tree-node.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/treeview/tree-node.component.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -1690,7 +1691,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/treeview/tree-node.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/treeview/tree-node.component.ts:166</a></div>
                                 </td>
                             </tr>
 
@@ -1701,7 +1702,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/treeview/tree-node.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/treeview/tree-node.component.ts:147</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1764,7 +1765,7 @@ Would simplify setting component attributes when dynamically rendering node.</p>
 } from &quot;@angular/core&quot;;
 import { Subscription } from &quot;rxjs&quot;;
 import { TreeViewService } from &quot;./treeview.service&quot;;
-import { Node } from &quot;./tree-node.types&quot;;
+import { EventOnNode, Node } from &quot;./tree-node.types&quot;;
 
 @Component({
 	selector: &quot;cds-tree-node&quot;,
@@ -1863,7 +1864,8 @@ import { Node } from &quot;./tree-node.types&quot;;
 						*ngFor&#x3D;&quot;let childNode of children&quot;
 						[node]&#x3D;&quot;childNode&quot;
 						[depth]&#x3D;&quot;depth + 1&quot;
-						[disabled]&#x3D;&quot;disabled&quot;&gt;
+						[disabled]&#x3D;&quot;disabled&quot;
+						(nodetoggle)&#x3D;&quot;nodetoggle.emit($event)&quot;&gt;
 					&lt;/cds-tree-node&gt;
 				&lt;/ng-template&gt;
 			&lt;/div&gt;
@@ -1919,10 +1921,10 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		return this._node;
 	}
 
-	@Output() nodeFocus &#x3D; new EventEmitter();
-	@Output() nodeBlur &#x3D; new EventEmitter();
-	@Output() nodeSelect &#x3D; new EventEmitter();
-	@Output() nodetoggle &#x3D; new EventEmitter();
+	@Output() nodeFocus &#x3D; new EventEmitter&lt;EventOnNode&gt;();
+	@Output() nodeBlur &#x3D; new EventEmitter&lt;EventOnNode&gt;();
+	@Output() nodeSelect &#x3D; new EventEmitter&lt;Node&gt;();
+	@Output() nodetoggle &#x3D; new EventEmitter&lt;EventOnNode&gt;();
 
 	offset;
 	private _node;
@@ -1965,8 +1967,10 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 			if (this.selectable || this.children.length &#x3D;&#x3D;&#x3D; 0) {
 				this.selected &#x3D; true;
 				this.active &#x3D; true;
+				const node &#x3D; { id: this.id, label: this.label, value: this.value };
 				// Passes event to all nodes to update highlighting &amp; parent to emit
-				this.treeViewService.selectNode({ id: this.id, label: this.label, value: this.value });
+				this.treeViewService.selectNode(node);
+				this.nodeSelect.emit(node);
 			} else {
 				this.toggleExpanded(event);
 			}
@@ -1997,7 +2001,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	}
 
 	emitFocusEvent(event) {
-		const node &#x3D; { id: this.id, label: this.label, value: this.value }
+		const node &#x3D; { id: this.id, label: this.label, value: this.value };
 		this.nodeFocus.emit({ node, event });
 		this.treeViewService.focusNode(node);
 	}
@@ -2083,7 +2087,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	[id]="id"	class="cds--tree-node"	[ngClass]="{		\'cds--tree-node--active\': active,		\'cds--tree-node--disabled\': disabled,		\'cds--tree-node--selected\': selected,		\'cds--tree-leaf-node\': !children.length,		\'cds--tree-parent-node\': children.length,		\'cds--tree-node--with-icon\': icon	}"	[attr.aria-expanded]="expanded || null"	[attr.aria-current]="active || null"	[attr.aria-selected]="disabled ? null : selected"	[attr.aria-disabled]="disabled"	role="treeitem"	[attr.tabindex]="selected ? 0 : -1"	(focus)="emitFocusEvent($event)"	(blur)="emitBlurEvent($event)"	(keydown)="navigateTree($event)">	<div		*ngIf="!children.length"		class="cds--tree-node__label"		[style.padding-inline-start.rem]="offset"		[style.margin-inline-start.rem]="-offset"		(click)="nodeClick($event)">		<!-- Icon -->		<ng-container *ngIf="icon && !isTemplate(icon)">			<svg				class="cds--tree-node__icon"				[cdsIcon]="icon"				size="16">			</svg>		</ng-container>		<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template			*ngIf="isTemplate(label)"			[ngTemplateOutlet]="label"			[ngTemplateOutletContext]="{ $implicit: labelContext }">		</ng-template>	</div>	<div		*ngIf="children.length"		class="cds--tree-node__label"		[style.padding-inline-start.rem]="offset"		[style.margin-inline-start.rem]="-offset"		role="group"		(click)="nodeClick($event)">		<span			class="cds--tree-parent-node__toggle"			[attr.disabled]="disabled || null"			(click)="toggleExpanded($event)">			<svg				class="cds--tree-parent-node__toggle-icon"				[ngClass]="{\'cds--tree-parent-node__toggle-icon--expanded\' : expanded}"				ibmIcon="caret--down"				size="16">			</svg>		</span>		<span class="cds--tree-node__label__details">			<!-- Icon -->			<ng-container *ngIf="icon && !isTemplate(icon)">				<svg					class="cds--tree-node__icon"					[cdsIcon]="icon"					size="16">				</svg>			</ng-container>			<ng-template				*ngIf="isTemplate(icon)"				[ngTemplateOutlet]="icon"				[ngTemplateOutletContext]="{ $implicit: iconContext }">			</ng-template>			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>			<ng-template				*ngIf="isTemplate(label)"				[ngTemplateOutlet]="label"				[ngTemplateOutletContext]="{ $implicit: labelContext }">			</ng-template>		</span>	</div>	<div		*ngIf="expanded"		role="group"		class="cds--tree-node__children">		<ng-container *ngIf="isProjected(); else notProjected">			<ng-content></ng-content>		</ng-container>		<ng-template #notProjected>			<cds-tree-node				*ngFor="let childNode of children"				[node]="childNode"				[depth]="depth + 1"				[disabled]="disabled">			</cds-tree-node>		</ng-template>	</div></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div	[id]="id"	class="cds--tree-node"	[ngClass]="{		\'cds--tree-node--active\': active,		\'cds--tree-node--disabled\': disabled,		\'cds--tree-node--selected\': selected,		\'cds--tree-leaf-node\': !children.length,		\'cds--tree-parent-node\': children.length,		\'cds--tree-node--with-icon\': icon	}"	[attr.aria-expanded]="expanded || null"	[attr.aria-current]="active || null"	[attr.aria-selected]="disabled ? null : selected"	[attr.aria-disabled]="disabled"	role="treeitem"	[attr.tabindex]="selected ? 0 : -1"	(focus)="emitFocusEvent($event)"	(blur)="emitBlurEvent($event)"	(keydown)="navigateTree($event)">	<div		*ngIf="!children.length"		class="cds--tree-node__label"		[style.padding-inline-start.rem]="offset"		[style.margin-inline-start.rem]="-offset"		(click)="nodeClick($event)">		<!-- Icon -->		<ng-container *ngIf="icon && !isTemplate(icon)">			<svg				class="cds--tree-node__icon"				[cdsIcon]="icon"				size="16">			</svg>		</ng-container>		<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template			*ngIf="isTemplate(label)"			[ngTemplateOutlet]="label"			[ngTemplateOutletContext]="{ $implicit: labelContext }">		</ng-template>	</div>	<div		*ngIf="children.length"		class="cds--tree-node__label"		[style.padding-inline-start.rem]="offset"		[style.margin-inline-start.rem]="-offset"		role="group"		(click)="nodeClick($event)">		<span			class="cds--tree-parent-node__toggle"			[attr.disabled]="disabled || null"			(click)="toggleExpanded($event)">			<svg				class="cds--tree-parent-node__toggle-icon"				[ngClass]="{\'cds--tree-parent-node__toggle-icon--expanded\' : expanded}"				ibmIcon="caret--down"				size="16">			</svg>		</span>		<span class="cds--tree-node__label__details">			<!-- Icon -->			<ng-container *ngIf="icon && !isTemplate(icon)">				<svg					class="cds--tree-node__icon"					[cdsIcon]="icon"					size="16">				</svg>			</ng-container>			<ng-template				*ngIf="isTemplate(icon)"				[ngTemplateOutlet]="icon"				[ngTemplateOutletContext]="{ $implicit: iconContext }">			</ng-template>			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>			<ng-template				*ngIf="isTemplate(label)"				[ngTemplateOutlet]="label"				[ngTemplateOutletContext]="{ $implicit: labelContext }">			</ng-template>		</span>	</div>	<div		*ngIf="expanded"		role="group"		class="cds--tree-node__children">		<ng-container *ngIf="isProjected(); else notProjected">			<ng-content></ng-content>		</ng-container>		<ng-template #notProjected>			<cds-tree-node				*ngFor="let childNode of children"				[node]="childNode"				[depth]="depth + 1"				[disabled]="disabled"				(nodetoggle)="nodetoggle.emit($event)">			</cds-tree-node>		</ng-template>	</div></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TreeNodeComponent'};
