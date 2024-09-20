@@ -268,6 +268,9 @@ export class NumberComponent implements ControlValueAccessor {
 		return this._incrementLabel.value;
 	}
 
+	/**
+	 * Experimental: enable fluid state
+	 */
 	@HostBinding("class.cds--number-input--fluid") @Input() fluid = false;
 
 	@HostBinding("class.cds--number-input--fluid--invalid") get fluidInvalid() {
