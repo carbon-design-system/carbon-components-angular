@@ -5,21 +5,27 @@
 		'cds--search--md': size === 'md',
 		'cds--search--lg': size === 'lg',
 		'cds--search--light': theme === 'light',
-		'cds--skeleton': skeleton,
+		'cds--skeleton': skeleton && !fluid,
 		'cds--search--expandable': expandable && !tableSearch,
 		'cds--search--expanded': expandable && !tableSearch && active,
 		'cds--toolbar-search': toolbar && !expandable,
 		'cds--toolbar-search--active': toolbar && !expandable && active,
 		'cds--toolbar-search-container-persistent': tableSearch && !expandable,
 		'cds--toolbar-search-container-expandable': tableSearch && expandable,
-		'cds--toolbar-search-container-active': tableSearch && expandable && active
+		'cds--toolbar-search-container-active': tableSearch && expandable && active,
+		'cds--search--fluid': fluid,
+		'cds--search--disabled': disabled
 	}"
 	role="search"
 	[attr.aria-label]="ariaLabel"
 	(click)="openSearch()">
-	<label class="cds--label" [for]="id">{{label}}</label>
+	<label
+		class="cds--label"
+		[for]="id"
+		[ngClass]="{ 'cds--skeleton': skeleton && fluid }"
+	>{{ !skeleton ? label : ''}}</label>
 
-	<div *ngIf="skeleton; else enableInput" class="cds--search-input"></div>
+	<div *ngIf="skeleton; else enableInput" class="cds--text-input cds--skeleton"></div>
 	<ng-template #enableInput>
 		<input
 			#input
