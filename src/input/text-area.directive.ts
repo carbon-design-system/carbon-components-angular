@@ -23,8 +23,13 @@ export class TextArea {
 
 	@HostBinding("class.cds--text-area") baseClass = true;
 	@HostBinding("class.cds--text-area--invalid") @Input() invalid = false;
+	@HostBinding("class.cds--text-area--warn") @Input() warn = false;
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 	@HostBinding("class.cds--text-area--light") get isLightTheme() {
 		return this.theme === "light";
 	}
+	
+	@HostBinding("attr.data-invalid") get getInvalidAttr() {
+		return this.invalid ? true : undefined;
+	};
 }
