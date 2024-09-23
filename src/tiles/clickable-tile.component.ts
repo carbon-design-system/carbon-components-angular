@@ -8,11 +8,6 @@ import {
 import { Router } from "@angular/router";
 
 /**
- * Security HTML anchor rel when target is set
- */
-const REL = "noreferrer noopener";
-
-/**
  * Build application's clickable tiles using this component. Get started with importing the module:
  *
  * ```typescript
@@ -39,7 +34,7 @@ const REL = "noreferrer noopener";
 		(click)="navigate($event)"
 		[attr.href]="disabled ? null : href"
 		[attr.target]="target"
-		[attr.rel]="rel"
+		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
 	</a>`
@@ -62,6 +57,11 @@ export class ClickableTile {
 	@Input() target: string;
 
 	/**
+	 * Sets the `rel` attribute on the `cds-clickable-tile` element.
+	 */
+	@Input() rel: string;
+
+	/**
 	 * Set to `true` to disable the clickable tile.
 	 */
 	@Input() disabled = false;
@@ -77,13 +77,6 @@ export class ClickableTile {
 	 * See: https://angular.io/api/router/Router#navigate
 	 */
 	@Input() routeExtras: any;
-
-	/**
-	 * rel only returns its value if target is defined
-	 */
-	get rel() {
-		return this.target ? REL : null;
-	}
 
 	/**
 	 * Emits the navigation status promise when the link is activated
