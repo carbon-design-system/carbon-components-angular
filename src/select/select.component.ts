@@ -32,11 +32,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "cds-select, ibm-select",
 	template: `
-		<div class="cds--form-item">
-			<ng-template [ngIf]="skeleton">
+		<div
+			[ngClass]="{
+				'cds--form-item': !skeleton,
+				'cds--select--fluid': fluid && !skeleton
+			}">
+			<ng-container *ngIf="skeleton && !fluid">
 				<div *ngIf="label" class="cds--label cds--skeleton"></div>
 				<div class="cds--select cds--skeleton"></div>
-			</ng-template>
+			</ng-container>
+			<ng-container *ngIf="skeleton && fluid">
+				<div class="cds--list-box__wrapper--fluid">
+					<div class="cds--list-box cds--skeleton">
+						<div class="cds--list-box__label"></div>
+						<div class="cds--list-box__field"></div>
+					</div>
+				</div>
+			</ng-container>
 			<div
 				*ngIf="!skeleton"
 				class="cds--select"
@@ -46,7 +58,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'cds--select--invalid': invalid,
 					'cds--select--warning': warn,
 					'cds--select--disabled': disabled,
-					'cds--select--readonly': readonly
+					'cds--select--readonly': readonly,
+					'cds--select--fluid--invalid': fluid && invalid,
+					'cds--select--fluid--focus': fluid && _isFocused
 				}">
 				<label
 					*ngIf="label"
@@ -60,7 +74,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngTemplateOutlet="noInline"></ng-container>
 				</div>
 				<div
-					*ngIf="helperText"
+					*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"
 					class="cds--form__helper-text"
 					[ngClass]="{
 						'cds--form__helper-text--disabled': disabled
@@ -89,7 +103,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						'cds--select-input--lg': size === 'lg'
 					}"
 					(mousedown)="onMouseDown($event)"
-					(keydown)="onKeyDown($event)">
+					(keydown)="onKeyDown($event)"
+					(focus)="fluid ? handleFocus($event) : null"
+					(blur)="fluid ? handleFocus($event) : null">
 					<ng-content></ng-content>
 				</select>
 				<svg
@@ -116,13 +132,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					size="16"
 					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>
+				<hr *ngIf="fluid" class="cds--select__divider" />
+				<div
+					*ngIf="invalid && invalidText && fluid" role="alert" class="cds--form-requirement" aria-live="polite">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
+				<div *ngIf="!invalid && warn && fluid" class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+				</div>
 			</div>
 			<div
-				*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
+				*ngIf="invalid && invalidText && !fluid" role="alert" class="cds--form-requirement" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
+			<div *ngIf="!invalid && warn && !fluid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
@@ -209,11 +235,18 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() theme: "light" | "dark" = "dark";
 	@Input() ariaLabel: string;
 
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid = false;
+
 	@Output() valueChange = new EventEmitter();
 
 	@ViewChild("select") select: ElementRef;
 
 	protected _value;
+
+	protected _isFocused = false;
 
 	ngAfterViewInit() {
 		if (
@@ -301,4 +334,9 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	 */
 	protected onChangeHandler = (_: any) => { };
 	protected onTouchedHandler = () => { };
+
+	handleFocus(event: FocusEvent) {
+		this._isFocused = event.type === "focus";
+	}
+
 }
