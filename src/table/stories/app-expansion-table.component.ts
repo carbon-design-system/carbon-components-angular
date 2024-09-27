@@ -47,6 +47,12 @@ class CustomHeaderItem extends TableHeaderItem {
 			(rowClick)="onRowClick($event)"
 			[isDataGrid]="isDataGrid">
 		</cds-table>
+
+		<br>
+
+		<button cdsButton="primary" size="sm" (click)="model.expandAllRows(true)">Expand all rows</button>
+
+		<button cdsButton="secondary" size="sm" (click)="model.expandAllRows(false)">Collapse all rows</button>
 	`
 })
 export class ExpansionTableStory implements AfterViewInit {

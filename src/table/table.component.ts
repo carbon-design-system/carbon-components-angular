@@ -187,6 +187,8 @@ import { TableRowSize } from "./table.types";
 			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
+			(expandAllRows)="model.expandAllRows(true)"
+			(collapseAllRows)="model.expandAllRows(false)"
 			(sort)="doSort($event)"
 			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
 			[filterTitle]="getFilterTitle()"
