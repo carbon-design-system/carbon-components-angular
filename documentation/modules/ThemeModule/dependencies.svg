@@ -24,23 +24,23 @@
 <title>cluster_ThemeModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="121,-70 121,-268 375,-268 375,-70 121,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ThemeModule_imports</title>
-<polygon fill="none" stroke="black" points="259,-78 259,-130 367,-130 367,-78 259,-78"/>
+<g id="clust2" class="cluster">
+<title>cluster_ThemeModule_declarations</title>
+<polygon fill="none" stroke="black" points="245,-78 245,-130 367,-130 367,-78 245,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_ThemeModule_exports</title>
 <polygon fill="none" stroke="black" points="185,-208 185,-260 311,-260 311,-208 185,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ThemeModule_declarations</title>
-<polygon fill="none" stroke="black" points="129,-78 129,-130 251,-130 251,-78 129,-78"/>
+<g id="clust4" class="cluster">
+<title>cluster_ThemeModule_imports</title>
+<polygon fill="none" stroke="black" points="129,-78 129,-130 237,-130 237,-78 129,-78"/>
 </g>
 <!-- ThemeDirective -->
 <g id="node1" class="node">
 <title>ThemeDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="243.46,-122 136.54,-122 136.54,-86 243.46,-86 243.46,-122"/>
-<text text-anchor="middle" x="190" y="-99.8" font-family="Times,serif" font-size="14.00">ThemeDirective</text>
+<polygon fill="#ffffb3" stroke="black" points="359.46,-122 252.54,-122 252.54,-86 359.46,-86 359.46,-122"/>
+<text text-anchor="middle" x="306" y="-99.8" font-family="Times,serif" font-size="14.00">ThemeDirective</text>
 </g>
 <!-- ThemeModule -->
 <g id="node2" class="node">
@@ -51,8 +51,8 @@
 <!-- ThemeDirective&#45;&gt;ThemeModule -->
 <g id="edge1" class="edge">
 <title>ThemeDirective&#45;&gt;ThemeModule</title>
-<path fill="none" stroke="black" d="M221.13,-122.11C221.13,-122.11 221.13,-140.99 221.13,-140.99"/>
-<polygon fill="black" stroke="black" points="217.63,-140.99 221.13,-150.99 224.63,-140.99 217.63,-140.99"/>
+<path fill="none" stroke="black" d="M274.87,-122.11C274.87,-122.11 274.87,-140.99 274.87,-140.99"/>
+<polygon fill="black" stroke="black" points="271.37,-140.99 274.87,-150.99 278.37,-140.99 271.37,-140.99"/>
 </g>
 <!-- ThemeDirective  -->
 <g id="node4" class="node">
@@ -69,14 +69,14 @@
 <!-- LayerModule -->
 <g id="node3" class="node">
 <title>LayerModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="359.19,-122 356.19,-126 335.19,-126 332.19,-122 266.81,-122 266.81,-86 359.19,-86 359.19,-122"/>
-<text text-anchor="middle" x="313" y="-99.8" font-family="Times,serif" font-size="14.00">LayerModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="229.19,-122 226.19,-126 205.19,-126 202.19,-122 136.81,-122 136.81,-86 229.19,-86 229.19,-122"/>
+<text text-anchor="middle" x="183" y="-99.8" font-family="Times,serif" font-size="14.00">LayerModule</text>
 </g>
 <!-- LayerModule&#45;&gt;ThemeModule -->
 <g id="edge2" class="edge">
 <title>LayerModule&#45;&gt;ThemeModule</title>
-<path fill="none" stroke="black" d="M282.06,-122.11C282.06,-122.11 282.06,-140.99 282.06,-140.99"/>
-<polygon fill="black" stroke="black" points="278.56,-140.99 282.06,-150.99 285.56,-140.99 278.56,-140.99"/>
+<path fill="none" stroke="black" d="M213.94,-122.11C213.94,-122.11 213.94,-140.99 213.94,-140.99"/>
+<polygon fill="black" stroke="black" points="210.44,-140.99 213.94,-150.99 217.44,-140.99 210.44,-140.99"/>
 </g>
 </g>
 </svg>
