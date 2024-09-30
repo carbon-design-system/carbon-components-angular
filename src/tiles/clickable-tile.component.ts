@@ -34,6 +34,7 @@ import { Router } from "@angular/router";
 		(click)="navigate($event)"
 		[attr.href]="disabled ? null : href"
 		[attr.target]="target"
+		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
 	</a>`
@@ -54,6 +55,11 @@ export class ClickableTile {
 	 * Sets the `target` attribute on the `cds-clickable-tile` element.
 	 */
 	@Input() target: string;
+
+	/**
+	 * Sets the `rel` attribute on the `cds-clickable-tile` element.
+	 */
+	@Input() rel: string;
 
 	/**
 	 * Set to `true` to disable the clickable tile.
