@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import merge from "lodash/merge";
 import ComponentTests from "../exported-tests/component-tests";
 
 const defaults = {
@@ -10,7 +11,7 @@ const defaults = {
 
 class CheckboxExportedTests extends ComponentTests {
 	constructor(configs) {
-		super({ ...defaults, ...configs });
+		super(merge({}, defaults, configs));
 		this.tests = this.tests.concat(this.structure());
 	}
 
@@ -18,8 +19,8 @@ class CheckboxExportedTests extends ComponentTests {
 		const tests = [
 			{
 				name: "initially be unchecked, be checked on click",
-				getActual: (fragment) =>
-					new Promise((resolve) => {
+				getActual: fragment =>
+					new Promise(resolve => {
 						const component = this.getComponent(
 							fragment,
 							`${this.settings.selectors.root} ${this.settings.selectors.input}`
@@ -32,7 +33,7 @@ class CheckboxExportedTests extends ComponentTests {
 							afterClickState
 						});
 					}),
-				runComparison: (results) => {
+					runComparison: results => {
 					// tslint:disable-next-line
 					expect(results.initialState).to.be.false;
 					// tslint:disable-next-line
@@ -40,12 +41,10 @@ class CheckboxExportedTests extends ComponentTests {
 				}
 			}
 		];
-		return [
-			{
-				name: "Basic checkbox tests",
-				tests: this.getTests(tests)
-			}
-		];
+		return [{
+			name: "Basic checkbox tests",
+			tests: this.getTests(tests)
+		}];
 	}
 }
 

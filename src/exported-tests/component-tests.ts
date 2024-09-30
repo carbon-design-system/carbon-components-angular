@@ -1,3 +1,5 @@
+import merge from "lodash-es/merge";
+
 function isObject(val) {
 	if (val === null) {
 		return false;
@@ -16,12 +18,12 @@ class ComponentTests {
 	tests: any[] = [];
 
 	constructor(configs = {}) {
-		this.settings = { ...ComponentTests.defaults, ...configs };
+		this.settings = merge({}, ComponentTests.defaults, configs);
 	}
 
 	getTests(tests) {
 		if (isObject(tests)) {
-			return Object.keys(tests).map((i) => tests[i]);
+			return Object.keys(tests).map(i => tests[i]);
 		}
 		return tests;
 	}
