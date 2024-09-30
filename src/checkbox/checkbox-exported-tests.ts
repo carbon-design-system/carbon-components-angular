@@ -1,7 +1,5 @@
 import { expect } from "chai";
-
 import merge from "lodash/merge";
-
 import ComponentTests from "../exported-tests/component-tests";
 
 const defaults = {
@@ -35,7 +33,7 @@ class CheckboxExportedTests extends ComponentTests {
 							afterClickState
 						});
 					}),
-				runComparison: results => {
+					runComparison: results => {
 					// tslint:disable-next-line
 					expect(results.initialState).to.be.false;
 					// tslint:disable-next-line
