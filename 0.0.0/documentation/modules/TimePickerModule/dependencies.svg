@@ -24,47 +24,47 @@
 <title>cluster_TimePickerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 854,-379.59 854,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_TimePickerModule_exports</title>
-<polygon fill="none" stroke="black" points="195,-319.59 195,-371.59 295,-371.59 295,-319.59 195,-319.59"/>
+<g id="clust4" class="cluster">
+<title>cluster_TimePickerModule_imports</title>
+<polygon fill="none" stroke="black" points="670,-189.59 670,-241.59 846,-241.59 846,-189.59 670,-189.59"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_TimePickerModule_TimePicker_providers</title>
-<polygon fill="none" stroke="black" points="200,-78 200,-241.59 846,-241.59 846,-78 200,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-241.59 662,-241.59 662,-78 16,-78"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_TimePickerModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 192,-241.59 192,-189.59 16,-189.59"/>
+<g id="clust5" class="cluster">
+<title>cluster_TimePickerModule_exports</title>
+<polygon fill="none" stroke="black" points="603,-319.59 603,-371.59 703,-371.59 703,-319.59 603,-319.59"/>
 </g>
 <!-- TimePicker -->
 <g id="node1" class="node">
 <title>TimePicker</title>
-<polygon fill="#ffffb3" stroke="black" points="426.81,-233.59 345.19,-233.59 345.19,-197.59 426.81,-197.59 426.81,-233.59"/>
-<text text-anchor="middle" x="386" y="-211.39" font-family="Times,serif" font-size="14.00">TimePicker</text>
+<polygon fill="#ffffb3" stroke="black" points="484.81,-233.59 403.19,-233.59 403.19,-197.59 484.81,-197.59 484.81,-233.59"/>
+<text text-anchor="middle" x="444" y="-211.39" font-family="Times,serif" font-size="14.00">TimePicker</text>
 </g>
 <!-- TimePickerModule -->
 <g id="node2" class="node">
 <title>TimePickerModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="307.36,-298.59 304.36,-302.59 283.36,-302.59 280.36,-298.59 182.64,-298.59 182.64,-262.59 307.36,-262.59 307.36,-298.59"/>
-<text text-anchor="middle" x="245" y="-276.39" font-family="Times,serif" font-size="14.00">TimePickerModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="715.36,-298.59 712.36,-302.59 691.36,-302.59 688.36,-298.59 590.64,-298.59 590.64,-262.59 715.36,-262.59 715.36,-298.59"/>
+<text text-anchor="middle" x="653" y="-276.39" font-family="Times,serif" font-size="14.00">TimePickerModule</text>
 </g>
 <!-- TimePicker&#45;&gt;TimePickerModule -->
 <g id="edge1" class="edge">
 <title>TimePicker&#45;&gt;TimePickerModule</title>
-<path fill="none" stroke="black" d="M386,-233.7C386,-252.93 386,-280.59 386,-280.59 386,-280.59 317.67,-280.59 317.67,-280.59"/>
-<polygon fill="black" stroke="black" points="317.67,-277.09 307.67,-280.59 317.67,-284.09 317.67,-277.09"/>
+<path fill="none" stroke="black" d="M484.85,-215.59C537.43,-215.59 622.08,-215.59 622.08,-215.59 622.08,-215.59 622.08,-252.48 622.08,-252.48"/>
+<polygon fill="black" stroke="black" points="618.58,-252.48 622.08,-262.48 625.58,-252.48 618.58,-252.48"/>
 </g>
 <!-- TimePicker  -->
 <g id="node5" class="node">
 <title>TimePicker </title>
-<polygon fill="#fb8072" stroke="black" points="287.31,-363.59 202.69,-363.59 202.69,-327.59 287.31,-327.59 287.31,-363.59"/>
-<text text-anchor="middle" x="245" y="-341.39" font-family="Times,serif" font-size="14.00">TimePicker </text>
+<polygon fill="#fb8072" stroke="black" points="695.31,-363.59 610.69,-363.59 610.69,-327.59 695.31,-327.59 695.31,-363.59"/>
+<text text-anchor="middle" x="653" y="-341.39" font-family="Times,serif" font-size="14.00">TimePicker </text>
 </g>
 <!-- TimePickerModule&#45;&gt;TimePicker  -->
 <g id="edge4" class="edge">
 <title>TimePickerModule&#45;&gt;TimePicker </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M245,-298.7C245,-298.7 245,-317.58 245,-317.58"/>
-<polygon fill="black" stroke="black" points="241.5,-317.58 245,-327.58 248.5,-317.58 241.5,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M653,-298.7C653,-298.7 653,-317.58 653,-317.58"/>
+<polygon fill="black" stroke="black" points="649.5,-317.58 653,-327.58 656.5,-317.58 649.5,-317.58"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true
@@ -73,10 +73,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="523" cy="-127.3" rx="314.66" ry="41.09"/>
-<text text-anchor="middle" x="523" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="523" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true</text>
-<text text-anchor="middle" x="523" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="339" cy="-127.3" rx="314.66" ry="41.09"/>
+<text text-anchor="middle" x="339" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="339" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true</text>
+<text text-anchor="middle" x="339" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true
@@ -85,20 +85,20 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TimePicker, multi: true
 }&#45;&gt;TimePicker</title>
-<path fill="none" stroke="black" d="M386,-164.48C386,-164.48 386,-187.22 386,-187.22"/>
-<polygon fill="black" stroke="black" points="382.5,-187.22 386,-197.22 389.5,-187.22 382.5,-187.22"/>
+<path fill="none" stroke="black" d="M444,-166.28C444,-166.28 444,-187.56 444,-187.56"/>
+<polygon fill="black" stroke="black" points="440.5,-187.56 444,-197.56 447.5,-187.56 440.5,-187.56"/>
 </g>
 <!-- TimePickerSelectModule -->
 <g id="node4" class="node">
 <title>TimePickerSelectModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="183.57,-233.59 180.57,-237.59 159.57,-237.59 156.57,-233.59 24.43,-233.59 24.43,-197.59 183.57,-197.59 183.57,-233.59"/>
-<text text-anchor="middle" x="104" y="-211.39" font-family="Times,serif" font-size="14.00">TimePickerSelectModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="837.57,-233.59 834.57,-237.59 813.57,-237.59 810.57,-233.59 678.43,-233.59 678.43,-197.59 837.57,-197.59 837.57,-233.59"/>
+<text text-anchor="middle" x="758" y="-211.39" font-family="Times,serif" font-size="14.00">TimePickerSelectModule</text>
 </g>
 <!-- TimePickerSelectModule&#45;&gt;TimePickerModule -->
 <g id="edge3" class="edge">
 <title>TimePickerSelectModule&#45;&gt;TimePickerModule</title>
-<path fill="none" stroke="black" d="M183.57,-215.59C191.09,-215.59 195.98,-215.59 195.98,-215.59 195.98,-215.59 195.98,-252.48 195.98,-252.48"/>
-<polygon fill="black" stroke="black" points="192.48,-252.48 195.98,-262.48 199.48,-252.48 192.48,-252.48"/>
+<path fill="none" stroke="black" d="M696.95,-233.7C696.95,-233.7 696.95,-252.58 696.95,-252.58"/>
+<polygon fill="black" stroke="black" points="693.45,-252.58 696.95,-262.58 700.45,-252.58 693.45,-252.58"/>
 </g>
 </g>
 </svg>
