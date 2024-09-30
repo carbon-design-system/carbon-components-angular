@@ -1,6 +1,6 @@
 import { Directive, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { NavigationExtras, RouterLinkWithHref } from "@angular/router";
-import { keys } from "lodash";
+import keys from "lodash/keys";
 
 @Directive({
 	// tslint:disable-next-line
