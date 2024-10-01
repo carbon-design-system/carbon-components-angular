@@ -96,10 +96,6 @@ export class ModalDemo {
 				[attr.aria-label]="ariaLabel"
 				#modal>
 				<ng-content></ng-content>
-				<div
-					*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"
-					class="cds--modal-content--overflow-indicator">
-				</div>
 			</div>
 		</cds-overlay>
 	`
@@ -164,7 +160,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		private renderer: Renderer2
 	) { }
 
-	ngOnChanges({ open }: SimpleChanges) {
+	ngOnChanges({ open, hasScrollingContent }: SimpleChanges) {
 		if (open) {
 			if (open.currentValue) {
 				// `100` is just enough time to allow the modal
@@ -179,6 +175,9 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 				this.trigger.focus();
 			}
 		}
+		if (hasScrollingContent) {
+			this.updateScrollbar();
+		}
 	}
 
 	/**
@@ -186,6 +185,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	ngAfterViewInit() {
 		this.focusInitialElement();
+		this.updateScrollbar();
 	}
 
 	/**
@@ -242,6 +242,18 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
 		} else {
 			setTimeout(() => this.modal.nativeElement.focus());
+		}
+	}
+
+	private updateScrollbar() {
+		const modalContent = this.modal ? this.modal.nativeElement.querySelector(".cds--modal-content") : null;
+		const showScrollbar = this.hasScrollingContent !== null ? this.hasScrollingContent : this.shouldShowScrollbar;
+		if (modalContent) {
+			if (showScrollbar) {
+				this.renderer.addClass(modalContent, "cds--modal-scroll-content");
+			} else {
+				this.renderer.removeClass(modalContent, "cds--modal-scroll-content");
+			}
 		}
 	}
 }
