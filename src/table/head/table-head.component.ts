@@ -33,8 +33,8 @@ import { TableRowSize } from "../table.types";
 				scope="col"
 				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')"
-				[allRowsExpanded]="model.expandableRowsCount() === model.expandedRowsCount()"
-				(change)="onExpandAllRowsChange($event)">
+				[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"
+				(expandedChange)="onExpandAllRowsChange($event)">
 			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"

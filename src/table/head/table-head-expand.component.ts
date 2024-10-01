@@ -15,8 +15,7 @@ import { Observable } from "rxjs";
 		<button
 			class="cds--table-expand__button"
 			[attr.aria-label]="getAriaLabel() | async"
-			(click)="change.emit(!allRowsExpanded)"
-		>
+			(click)="expandedChange.emit(!expanded)">
 			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
 		</button>
 	`
@@ -24,12 +23,12 @@ import { Observable } from "rxjs";
 export class TableHeadExpand {
 	@HostBinding("class.cds--table-expand") hostClass = true;
 
-	@Input() allRowsExpanded = false;
+	@Input() expanded = false;
 
-	@Output() change = new EventEmitter<boolean>();
+	@Output() expandedChange = new EventEmitter<boolean>();
 
 	@HostBinding("attr.data-previous-value") get previousValue() {
-		return this.allRowsExpanded ? "collapsed" : null;
+		return this.expanded ? "collapsed" : null;
 	}
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_ALL_BUTTON");
