@@ -22,8 +22,9 @@
 	<label
 		class="cds--label"
 		[for]="id"
-		[ngClass]="{ 'cds--skeleton': skeleton && fluid }"
-	>{{ !skeleton ? label : ''}}</label>
+		[ngClass]="{ 'cds--skeleton': skeleton && fluid }">
+		{{ !skeleton ? label : ''}}
+	</label>
 
 	<div *ngIf="skeleton; else enableInput" class="cds--text-input cds--skeleton"></div>
 	<ng-template #enableInput>
