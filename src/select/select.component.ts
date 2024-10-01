@@ -132,16 +132,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					size="16"
 					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>
-				<hr *ngIf="fluid" class="cds--select__divider" />
-				<div
-					*ngIf="invalid && invalidText && fluid" role="alert" class="cds--form-requirement" aria-live="polite">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-				</div>
-				<div *ngIf="!invalid && warn && fluid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
+				<ng-container *ngIf="fluid">
+					<hr class="cds--select__divider" />
+					<div
+						*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					</div>
+					<div *ngIf="!invalid && warn" class="cds--form-requirement">
+						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+					</div>
+				</ng-container>
 			</div>
 			<div
 				*ngIf="invalid && invalidText && !fluid" role="alert" class="cds--form-requirement" aria-live="polite">
