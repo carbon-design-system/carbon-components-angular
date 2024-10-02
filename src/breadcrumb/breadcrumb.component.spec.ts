@@ -120,6 +120,6 @@ describe("Breadcrumb", () => {
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();
 		expect(breadcrumbItemElements.length).toBe(4); // 4 because one is created for the overflow menu
-		expect(breadcrumbItemElements[1].children[0].name).toEqual("cds-overflow-menu");
+		expect(breadcrumbItemElements[1].children[0].name).toEqual("cds-icon-button");
 	});
 });
