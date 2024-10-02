@@ -76,7 +76,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					type="button"
 					kind="ghost"
 					size="md"
-					description="Options">
+					[description]="overflowMenuDescription">
 					<ng-template #overflowMenuTrigger>
 						<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
 					</ng-template>
@@ -161,6 +161,8 @@ export class Breadcrumb implements AfterContentInit {
 	get threshold(): number {
 		return this._threshold;
 	}
+
+	@Input() overflowMenuDescription: string = this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

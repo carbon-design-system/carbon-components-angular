@@ -1,6 +1,7 @@
 export default {
 	"BREADCRUMB": {
-		"LABEL": "Breadcrumb"
+		"LABEL": "Breadcrumb",
+		"OVERFLOW_MENU_DESCRIPTION": "Options"
 	},
 	"CODE_SNIPPET": {
 		"CODE_SNIPPET_TEXT": "Code Snippet Text",
