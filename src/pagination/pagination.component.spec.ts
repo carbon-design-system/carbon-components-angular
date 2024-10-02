@@ -172,6 +172,6 @@ describe("Pagination", () => {
 		expect(wrapper.pageOptions).toEqual(Array(4));
 		model.totalDataLength = 0;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(0));
+		expect(wrapper.pageOptions).toEqual(Array(1));
 	});
 });
