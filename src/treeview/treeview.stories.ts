@@ -1,15 +1,9 @@
 /* tslint:disable variable-name */
 
 import { CommonModule } from "@angular/common";
-import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	TreeviewModule,
-	TreeViewComponent,
-	TreeNodeComponent
-} from "./";
-import cloneDeep from "lodash-es/cloneDeep";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { IconModule } from "../icon";
-
+import { TreeNodeComponent, TreeViewComponent, TreeviewModule } from "./";
 import { IconTreeviewDemoComponent } from "./stories/app-treeview-icons.component";
 
 export default {
@@ -185,7 +179,6 @@ const nodes = [
 		]
 	}
 ];
-
 
 const Template = (args) => ({
 	props: args,
