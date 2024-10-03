@@ -12,18 +12,15 @@ import {
 	AfterContentInit,
 	HostBinding,
 	TemplateRef,
-	OnDestroy,
+	OnDestroy
 } from "@angular/core";
-import {
-	AbstractDropdownView,
-	DropdownService,
-} from "carbon-components-angular/dropdown";
+import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
 import { ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import {
 	getScrollableParents,
-	hasScrollableParents,
+	hasScrollableParents
 } from "carbon-components-angular/utils";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
@@ -52,21 +49,14 @@ import { Observable } from "rxjs";
 				[ngClass]="{
 					'cds--label--disabled': disabled,
 					'cds--visually-hidden': hideLabel
-				}"
-			>
-				<ng-container *ngIf="!isTemplate(label)">{{
-					label
-				}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(label)"
-					[ngTemplateOutlet]="label"
-				></ng-template>
+				}">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
 			<div
 				#listbox
 				[ngClass]="{
-					'cds--multi-select cds--multi-select--filterable':
-						type === 'multi',
+					'cds--multi-select cds--multi-select--filterable': type === 'multi',
 					'cds--list-box--light': theme === 'light',
 					'cds--list-box--expanded': open,
 					'cds--list-box--sm': size === 'sm',
@@ -77,20 +67,15 @@ import { Observable } from "rxjs";
 					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
 				class="cds--list-box cds--combo-box"
-				[attr.data-invalid]="invalid ? true : null"
-			>
+				[attr.data-invalid]="(invalid ? true : null)">
 				<div
 					class="cds--list-box__field"
 					(click)="toggleDropdown()"
-					(blur)="onBlur()"
-				>
+					(blur)="onBlur()">
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
 						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{
-							'cds--tag--disabled': disabled || readonly
-						}"
-					>
+						[ngClass]="{'cds--tag--disabled': disabled || readonly}">
 						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
@@ -101,8 +86,7 @@ import { Observable } from "rxjs";
 							tabindex="0"
 							[title]="clearSelectionsTitle"
 							[disabled]="disabled || readonly"
-							[attr.aria-label]="clearSelectionAria"
-						>
+							[attr.aria-label]="clearSelectionAria">
 							<svg
 								focusable="false"
 								preserveAspectRatio="xMidYMid meet"
@@ -112,11 +96,8 @@ import { Observable } from "rxjs";
 								width="16"
 								height="16"
 								viewBox="0 0 16 16"
-								aria-hidden="true"
-							>
-								<path
-									d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
-								></path>
+								aria-hidden="true">
+								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
 							</svg>
 						</button>
 					</div>
@@ -132,9 +113,7 @@ import { Observable } from "rxjs";
 						(keydown.enter)="onSubmit($event)"
 						[value]="selectedValue"
 						class="cds--text-input"
-						[ngClass]="{
-							'cds--text-input--empty': !showClearButton
-						}"
+						[ngClass]="{'cds--text-input--empty': !showClearButton}"
 						tabindex="0"
 						[id]="id"
 						[attr.aria-labelledby]="labelId"
@@ -143,20 +122,19 @@ import { Observable } from "rxjs";
 						[attr.maxlength]="maxLength"
 						[attr.aria-controls]="open ? view?.listId : null"
 						[attr.aria-autocomplete]="autocomplete"
-						[placeholder]="placeholder"
-					/>
+						[placeholder]="placeholder"/>
 					<svg
 						*ngIf="invalid"
 						cdsIcon="warning--filled"
 						size="16"
-						class="cds--list-box__invalid-icon"
-					></svg>
+						class="cds--list-box__invalid-icon">
+					</svg>
 					<svg
 						*ngIf="!invalid && warn"
 						cdsIcon="warning--alt--filled"
 						size="16"
-						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning"
-					></svg>
+						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+					</svg>
 					<div
 						*ngIf="showClearButton"
 						role="button"
@@ -166,8 +144,7 @@ import { Observable } from "rxjs";
 						[title]="clearSelectionTitle"
 						(keyup.enter)="clearInput($event)"
 						(click)="clearInput($event)"
-						(blur)="onBlur()"
-					>
+						(blur)="onBlur()">
 						<svg cdsIcon="close" size="16"></svg>
 					</div>
 					<button
@@ -177,53 +154,32 @@ import { Observable } from "rxjs";
 						tabindex="-1"
 						[title]="open ? closeMenuAria : openMenuAria"
 						[attr.aria-label]="open ? closeMenuAria : openMenuAria"
-						[ngClass]="{ 'cds--list-box__menu-icon--open': open }"
-					>
+						[ngClass]="{'cds--list-box__menu-icon--open': open}">
 						<svg cdsIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
 				<div
 					#dropdownMenu
 					[ngClass]="{
-						'cds--list-box--up':
-							this.dropUp !== null && this.dropUp !== undefined
-								? dropUp
-								: _dropUp
-					}"
-				>
+						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+					}">
 					<ng-content *ngIf="open"></ng-content>
 				</div>
 			</div>
 			<div
 				*ngIf="helperText && !invalid && !warn"
 				class="cds--form__helper-text"
-				[ngClass]="{ 'cds--form__helper-text--disabled': disabled }"
-			>
-				<ng-container *ngIf="!isTemplate(helperText)">{{
-					helperText
-				}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(helperText)"
-					[ngTemplateOutlet]="helperText"
-				></ng-template>
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
 			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{
-					invalidText
-				}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(invalidText)"
-					[ngTemplateOutlet]="invalidText"
-				></ng-template>
+				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
 			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{
-					warnText
-				}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(warnText)"
-					[ngTemplateOutlet]="warnText"
-				></ng-template>
+				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 			</div>
 		</div>
 	`,
@@ -231,13 +187,11 @@ import { Observable } from "rxjs";
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ComboBox,
-			multi: true,
-		},
-	],
+			multi: true
+		}
+	]
 })
-export class ComboBox
-	implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy
-{
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -375,8 +329,8 @@ export class ComboBox
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
-	 * Set to `true` to show a warning (contents set by warnText)
-	 */
+	* Set to `true` to show a warning (contents set by warnText)
+	*/
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -396,8 +350,7 @@ export class ComboBox
 	 * `fixed`: selected item stays at its position
 	 * `top-after-reopen`: selected item jump to top after reopen dropdown
 	 */
-	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" =
-		"top-after-reopen";
+	@Input() selectionFeedback: "top" | "fixed" | "top-after-reopen" = "top-after-reopen";
 	/**
 	 * Specify aria-autocomplete attribute of text input.
 	 * "list", is the expected value for a combobox that invokes a drop-down list
@@ -454,12 +407,12 @@ export class ComboBox
 	 * ```
 	 */
 	@Output() submit = new EventEmitter<{
-		items: ListItem[];
-		index: number;
+		items: ListItem[],
+		index: number,
 		value: {
-			content: string;
-			selected: boolean;
-		};
+			content: string,
+			selected: boolean
+		}
 	}>();
 	/** Emits an empty event when the menu is closed */
 	@Output() close = new EventEmitter<void>();
@@ -468,8 +421,7 @@ export class ComboBox
 	/** Emits an event when the clear button is clicked. */
 	@Output() clear = new EventEmitter<Event>();
 	/** ContentChild reference to the instantiated dropdown list */
-	@ContentChild(AbstractDropdownView, { static: true })
-	view: AbstractDropdownView;
+	@ContentChild(AbstractDropdownView, { static: true }) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
 	@ViewChild("input", { static: true }) input: ElementRef;
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
@@ -497,24 +449,12 @@ export class ComboBox
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
 	protected _placeholder = this.i18n.getOverridable("COMBOBOX.PLACEHOLDER");
-	protected _closeMenuAria = this.i18n.getOverridable(
-		"COMBOBOX.A11Y.CLOSE_MENU"
-	);
-	protected _openMenuAria = this.i18n.getOverridable(
-		"COMBOBOX.A11Y.OPEN_MENU"
-	);
-	protected _clearSelectionsTitle = this.i18n.getOverridable(
-		"COMBOBOX.CLEAR_SELECTIONS"
-	);
-	protected _clearSelectionsAria = this.i18n.getOverridable(
-		"COMBOBOX.A11Y.CLEAR_SELECTIONS"
-	);
-	protected _clearSelectionTitle = this.i18n.getOverridable(
-		"COMBOBOX.CLEAR_SELECTED"
-	);
-	protected _clearSelectionAria = this.i18n.getOverridable(
-		"COMBOBOX.A11Y.CLEAR_SELECTED"
-	);
+	protected _closeMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLOSE_MENU");
+	protected _openMenuAria = this.i18n.getOverridable("COMBOBOX.A11Y.OPEN_MENU");
+	protected _clearSelectionsTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTIONS");
+	protected _clearSelectionsAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTIONS");
+	protected _clearSelectionTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTED");
+	protected _clearSelectionAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTED");
 
 	/**
 	 * Creates an instance of ComboBox.
@@ -536,10 +476,7 @@ export class ComboBox
 			this.updateSelected();
 			// If new items are added into the combobox while there is search input,
 			// repeat the search. Search should only trigger for type 'single' when there is no value selected.
-			if (
-				this.type === "multi" ||
-				(this.type === "single" && !this.selectedValue)
-			) {
+			if (this.type === "multi" || (this.type === "single" && !this.selectedValue)) {
 				this.onSearch(this.input.nativeElement.value, false);
 			}
 		}
@@ -554,22 +491,18 @@ export class ComboBox
 			this.view.type = this.type;
 
 			// function to check if the event is organic (isUpdate === false) or programmatic
-			const isUpdate = (event) => event && event.isUpdate;
+			const isUpdate = event => event && event.isUpdate;
 
-			this.view.select.subscribe((event) => {
+			this.view.select.subscribe(event => {
 				if (Array.isArray(event)) {
 					this.updatePills();
 					if (!isUpdate(event)) {
 						if (this.itemValueKey && this.view.getSelected()) {
-							const values = this.view
-								.getSelected()
-								.map((item) => item[this.itemValueKey]);
+							const values = this.view.getSelected().map(item => item[this.itemValueKey]);
 							this.propagateChangeCallback(values);
-							// otherwise just pass up the values from `getSelected`
+						// otherwise just pass up the values from `getSelected`
 						} else {
-							this.propagateChangeCallback(
-								this.view.getSelected()
-							);
+							this.propagateChangeCallback(this.view.getSelected());
 						}
 						this.selected.emit(event);
 					}
@@ -581,9 +514,7 @@ export class ComboBox
 
 						if (!isUpdate(event)) {
 							if (this.itemValueKey) {
-								this.propagateChangeCallback(
-									event.item[this.itemValueKey]
-								);
+								this.propagateChangeCallback(event.item[this.itemValueKey]);
 							} else {
 								this.propagateChangeCallback(event.item);
 							}
@@ -598,9 +529,7 @@ export class ComboBox
 					// for select to even fire
 					// only focus for "organic" selections
 					if (!isUpdate(event)) {
-						this.elementRef.nativeElement
-							.querySelector("input")
-							.focus();
+						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
 						this.selected.emit(event.item);
 					}
@@ -613,13 +542,9 @@ export class ComboBox
 				this.updateSelected();
 			});
 
-			this.view.blurIntent
-				.pipe(filter((v) => v === "top"))
-				.subscribe(() => {
-					this.elementRef.nativeElement
-						.querySelector(".cds--text-input")
-						.focus();
-				});
+			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
+				this.elementRef.nativeElement.querySelector(".cds--text-input").focus();
+			});
 		}
 	}
 
@@ -631,12 +556,9 @@ export class ComboBox
 		// 1. if there are scrollable parents (not including body) don't append inline
 		//    this should also cover the case where the dropdown is in a modal
 		//    (where we _do_ want to append to the placeholder)
-		if (
-			this.appendInline === null &&
-			hasScrollableParents(this.elementRef.nativeElement)
-		) {
+		if (this.appendInline === null && hasScrollableParents(this.elementRef.nativeElement)) {
 			this.appendInline = false;
-			// 2. otherwise we should append inline
+		// 2. otherwise we should append inline
 		} else if (this.appendInline === null) {
 			this.appendInline = true;
 		}
@@ -658,23 +580,16 @@ export class ComboBox
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if (
-			ev.key === "ArrowDown" &&
-			(!this.dropdownMenu ||
-				!this.dropdownMenu.nativeElement.contains(ev.target))
-		) {
+		} else if ((ev.key === "ArrowDown")
+			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.preventDefault();
 			this.openDropdown();
-			setTimeout(() => {
-				this.view.initFocus();
-			}, 0);
+			setTimeout(() => { this.view.initFocus(); }, 0);
 		}
 
 		if (
-			this.open &&
-			ev.key === "Tab" &&
-			(this.dropdownMenu.nativeElement.contains(ev.target as Node) ||
-				ev.target === this.input.nativeElement)
+			this.open && ev.key === "Tab" &&
+			(this.dropdownMenu.nativeElement.contains(ev.target as Node) || ev.target === this.input.nativeElement)
 		) {
 			this.closeDropdown();
 		}
@@ -696,12 +611,7 @@ export class ComboBox
 		if (this.type === "single") {
 			if (this.itemValueKey) {
 				// clone the specified item and update its state
-				const newValue = Object.assign(
-					{},
-					this.view
-						.getListItems()
-						.find((item) => item[this.itemValueKey] === value)
-				);
+				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.itemValueKey] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
@@ -717,9 +627,7 @@ export class ComboBox
 				for (const v of value) {
 					for (const item of this.view.getListItems()) {
 						if (item[this.itemValueKey] === v) {
-							newValues.push(
-								Object.assign({}, item, { selected: true })
-							);
+							newValues.push(Object.assign({}, item, { selected: true }));
 						}
 					}
 				}
@@ -761,7 +669,7 @@ export class ComboBox
 	}
 
 	public clearSelected(event) {
-		this.items = this.items.map((item) => {
+		this.items = this.items.map(item => {
 			if (!item.disabled) {
 				item.selected = false;
 			}
@@ -795,9 +703,7 @@ export class ComboBox
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
-		if (this.disabled || this.readonly) {
-			return;
-		}
+		if (this.disabled || this.readonly) { return; }
 		this.open = true;
 		this._dropUp = false;
 
@@ -842,24 +748,15 @@ export class ComboBox
 			}
 		} else {
 			this.selectedValue = "";
-			if (
-				this.type === "multi" &&
-				(this.selectionFeedback === "top" ||
-					this.selectionFeedback === "top-after-reopen")
-			) {
+			if (this.type === "multi" &&
+				(this.selectionFeedback === "top" || this.selectionFeedback === "top-after-reopen")) {
 				this.view.reorderSelected();
 			}
 		}
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			const matches = this.view
-				.getListItems()
-				.some((item) =>
-					item.content
-						.toLowerCase()
-						.includes(searchString.toLowerCase())
-				);
+			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
 				if (!selected || !selected[0]) {
@@ -878,8 +775,8 @@ export class ComboBox
 			index: 0,
 			value: {
 				content: (event.target as HTMLInputElement).value,
-				selected: false,
-			},
+				selected: false
+			}
 		});
 	}
 
@@ -891,8 +788,7 @@ export class ComboBox
 			return;
 		}
 
-		if (this.type === "single") {
-			// don't want to clear selected or close if multi
+		if (this.type === "single") { // don't want to clear selected or close if multi
 			this.clearSelected(event);
 			this.closeDropdown();
 		}
@@ -913,8 +809,8 @@ export class ComboBox
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		if (event.key === "Escape" && this.open) {
-			event.stopImmediatePropagation(); // don't unintentionally close modal if inside of it
+		if ((event.key === "Escape") && this.open) {
+			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
@@ -924,13 +820,7 @@ export class ComboBox
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.input.nativeElement.focus();
-			this.input.nativeElement.dispatchEvent(
-				new KeyboardEvent("keydown", {
-					bubbles: true,
-					cancelable: true,
-					key: "Tab",
-				})
-			);
+			this.input.nativeElement.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true, cancelable: true, key: "Tab" }));
 			this.closeDropdown();
 		}
 	}
@@ -942,15 +832,8 @@ export class ComboBox
 		this.dropdownService.appendToBody(
 			this.listbox.nativeElement,
 			this.dropdownMenu.nativeElement,
-			`${this.elementRef.nativeElement.className}${
-				this.open ? " cds--list-box--expanded" : ""
-			}`
-		);
-		this.dropdownMenu.nativeElement.addEventListener(
-			"keydown",
-			this.keyboardNav,
-			true
-		);
+			`${this.elementRef.nativeElement.className}${this.open ? " cds--list-box--expanded" : ""}`);
+		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 
 	/**
@@ -958,11 +841,7 @@ export class ComboBox
 	 */
 	_appendToDropdown() {
 		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
-		this.dropdownMenu.nativeElement.removeEventListener(
-			"keydown",
-			this.keyboardNav,
-			true
-		);
+		this.dropdownMenu.nativeElement.removeEventListener("keydown", this.keyboardNav, true);
 	}
 
 	/**
@@ -971,25 +850,16 @@ export class ComboBox
 	 */
 	_shouldDropUp() {
 		// check if dropdownMenu exists first.
-		const menu =
-			this.dropdownMenu &&
-			this.dropdownMenu.nativeElement.querySelector(
-				".cds--list-box__menu"
-			);
+		const menu = this.dropdownMenu && this.dropdownMenu.nativeElement.querySelector(".cds--list-box__menu");
 		// check if menu exists first.
 		const menuRect = menu && menu.getBoundingClientRect();
 		if (menu && menuRect) {
 			const scrollableParents = getScrollableParents(menu);
-			return scrollableParents.reduce(
-				(shouldDropUp: boolean, parent: HTMLElement) => {
-					const parentRect = parent.getBoundingClientRect();
-					const isBelowParent = !(
-						menuRect.bottom <= parentRect.bottom
-					);
-					return shouldDropUp || isBelowParent;
-				},
-				false
-			);
+			return scrollableParents.reduce((shouldDropUp: boolean, parent: HTMLElement) => {
+				const parentRect = parent.getBoundingClientRect();
+				const isBelowParent = !(menuRect.bottom <= parentRect.bottom);
+				return shouldDropUp || isBelowParent;
+			}, false);
 		}
 
 		return false;
@@ -999,12 +869,10 @@ export class ComboBox
 	 * Handles clicks outside of the `Dropdown` list.
 	 */
 	_outsideClick(event) {
-		if (
-			!this.elementRef.nativeElement.contains(event.target) &&
+		if (!this.elementRef.nativeElement.contains(event.target) &&
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
-			!this.dropdownMenu.nativeElement.contains(event.target)
-		) {
+			!this.dropdownMenu.nativeElement.contains(event.target)) {
 			this.closeDropdown();
 		}
 	}
@@ -1022,12 +890,8 @@ export class ComboBox
 	}
 
 	protected checkForReorder() {
-		const topAfterReopen =
-			!this.open && this.selectionFeedback === "top-after-reopen";
-		if (
-			this.type === "multi" &&
-			(topAfterReopen || this.selectionFeedback === "top")
-		) {
+		const topAfterReopen = !this.open && this.selectionFeedback === "top-after-reopen";
+		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected(true);
 		}
 	}
