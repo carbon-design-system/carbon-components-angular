@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import merge from "lodash/merge";
+import merge from "lodash-es/merge";
 import ComponentTests from "../exported-tests/component-tests";
 
 const defaults = {
