@@ -199,7 +199,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/checkbox/checkbox-exported-tests.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/checkbox/checkbox-exported-tests.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -385,8 +385,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/checkbox/checkbox-exported-tests.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/checkbox/checkbox-exported-tests.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -560,9 +560,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { expect } from &quot;chai&quot;;
-
-import merge from &quot;lodash/merge&quot;;
-
+import merge from &quot;lodash-es/merge&quot;;
 import ComponentTests from &quot;../exported-tests/component-tests&quot;;
 
 const defaults &#x3D; {
@@ -596,7 +594,7 @@ class CheckboxExportedTests extends ComponentTests {
 							afterClickState
 						});
 					}),
-				runComparison: results &#x3D;&gt; {
+					runComparison: results &#x3D;&gt; {
 					// tslint:disable-next-line
 					expect(results.initialState).to.be.false;
 					// tslint:disable-next-line

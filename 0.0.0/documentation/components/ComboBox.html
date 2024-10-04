@@ -1147,7 +1147,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;dropdown-${ComboBox.comboBoxCount++}&#x60;</code>
+                        <i>Default value : </i><code>&#x60;combobox-${ComboBox.comboBoxCount++}&#x60;</code>
                     </td>
                 </tr>
                         <tr>
@@ -1336,7 +1336,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;dropdown-label-${ComboBox.comboBoxCount++}&#x60;</code>
+                        <i>Default value : </i><code>&#x60;combobox-label-${ComboBox.comboBoxCount++}&#x60;</code>
                     </td>
                 </tr>
                         <tr>
@@ -4875,8 +4875,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		return this._clearSelectionAria.value;
 	}
 	static comboBoxCount &#x3D; 0;
-	@Input() id &#x3D; &#x60;dropdown-${ComboBox.comboBoxCount++}&#x60;;
-	@Input() labelId &#x3D; &#x60;dropdown-label-${ComboBox.comboBoxCount++}&#x60;;
+	@Input() id &#x3D; &#x60;combobox-${ComboBox.comboBoxCount++}&#x60;;
+	@Input() labelId &#x3D; &#x60;combobox-label-${ComboBox.comboBoxCount++}&#x60;;
 	/**
 	 * List of items to fill the content with.
 	 *

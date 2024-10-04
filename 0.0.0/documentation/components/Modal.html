@@ -218,10 +218,6 @@ this.modalService.create({component: SampleModal, inputs: {modalText: &quot;Hell
 		[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 		#modal&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;hasScrollingContent !&#x3D;&#x3D; null ? hasScrollingContent : shouldShowScrollbar&quot;
-			class&#x3D;&quot;cds--modal-content--overflow-indicator&quot;&gt;
-		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/cds-overlay&gt;
 	</code></pre></td>
@@ -290,6 +286,10 @@ this.modalService.create({component: SampleModal, inputs: {modalText: &quot;Hell
                             </li>
                             <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateScrollbar" >updateScrollbar</a>
                             </li>
                         </ul>
                     </td>
@@ -388,7 +388,7 @@ this.modalService.create({component: SampleModal, inputs: {modalText: &quot;Hell
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/modal/modal.component.ts:156</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/modal/modal.component.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -475,7 +475,7 @@ this.modalService.create({component: SampleModal, inputs: {modalText: &quot;Hell
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/modal/modal.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/modal/modal.component.ts:116</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -507,7 +507,7 @@ this.modalService.create({component: SampleModal, inputs: {modalText: &quot;Hell
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/modal/modal.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/modal/modal.component.ts:134</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -542,7 +542,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modal/modal.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/modal/modal.component.ts:121</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -574,7 +574,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/modal/modal.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/modal/modal.component.ts:107</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -606,7 +606,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/modal/modal.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/modal/modal.component.ts:111</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -633,7 +633,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/modal/modal.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/modal/modal.component.ts:126</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -663,7 +663,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/modal/modal.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/modal/modal.component.ts:143</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -690,7 +690,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/modal/modal.component.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/modal/modal.component.ts:139</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -887,8 +887,8 @@ It is set to <code>null</code> by default which indicates not to override automa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/modal/modal.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/modal/modal.component.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -926,8 +926,8 @@ It is set to <code>null</code> by default which indicates not to override automa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="167"
-                                    class="link-to-prism">src/modal/modal.component.ts:167</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/modal/modal.component.ts:163</a></div>
                         </td>
                     </tr>
 
@@ -1009,6 +1009,45 @@ It is set to <code>null</code> by default which indicates not to override automa
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateScrollbar"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>updateScrollbar</b></span>
+                        <a href="#updateScrollbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateScrollbar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="248"
+                                    class="link-to-prism">src/modal/modal.component.ts:248</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
@@ -1044,7 +1083,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/modal/modal.component.ts:151</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/modal/modal.component.ts:147</a></div>
                         </td>
                     </tr>
 
@@ -1077,7 +1116,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/modal/modal.component.ts:162</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/modal/modal.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -1108,7 +1147,7 @@ It is set to <code>null</code> by default which indicates not to override automa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/modal/modal.component.ts:156</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/modal/modal.component.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -1261,10 +1300,6 @@ export class ModalDemo {
 				[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 				#modal&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;hasScrollingContent !&#x3D;&#x3D; null ? hasScrollingContent : shouldShowScrollbar&quot;
-					class&#x3D;&quot;cds--modal-content--overflow-indicator&quot;&gt;
-				&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/cds-overlay&gt;
 	&#x60;
@@ -1329,7 +1364,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		private renderer: Renderer2
 	) { }
 
-	ngOnChanges({ open }: SimpleChanges) {
+	ngOnChanges({ open, hasScrollingContent }: SimpleChanges) {
 		if (open) {
 			if (open.currentValue) {
 				// &#x60;100&#x60; is just enough time to allow the modal
@@ -1344,6 +1379,9 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 				this.trigger.focus();
 			}
 		}
+		if (hasScrollingContent) {
+			this.updateScrollbar();
+		}
 	}
 
 	/**
@@ -1351,6 +1389,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	ngAfterViewInit() {
 		this.focusInitialElement();
+		this.updateScrollbar();
 	}
 
 	/**
@@ -1409,6 +1448,18 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 			setTimeout(() &#x3D;&gt; this.modal.nativeElement.focus());
 		}
 	}
+
+	private updateScrollbar() {
+		const modalContent &#x3D; this.modal ? this.modal.nativeElement.querySelector(&quot;.cds--modal-content&quot;) : null;
+		const showScrollbar &#x3D; this.hasScrollingContent !&#x3D;&#x3D; null ? this.hasScrollingContent : this.shouldShowScrollbar;
+		if (modalContent) {
+			if (showScrollbar) {
+				this.renderer.addClass(modalContent, &quot;cds--modal-scroll-content&quot;);
+			} else {
+				this.renderer.removeClass(modalContent, &quot;cds--modal-scroll-content&quot;);
+			}
+		}
+	}
 }
 </code></pre>
     </div>
@@ -1440,7 +1491,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><cds-overlay	[theme]="theme"	[open]="open"	(overlaySelect)="overlaySelected.emit()">	<div		class="cds--modal-container"		[ngClass]="{			\'cds--modal-container--xs\': size === \'xs\',			\'cds--modal-container--sm\': size === \'sm\',			\'cds--modal-container--md\': size === \'md\',			\'cds--modal-container--lg\': size === \'lg\'		}"		role="dialog"		aria-modal="true"		style="z-index:1;"		[attr.aria-label]="ariaLabel"		#modal>		<ng-content></ng-content>		<div			*ngIf="hasScrollingContent !== null ? hasScrollingContent : shouldShowScrollbar"			class="cds--modal-content--overflow-indicator">		</div>	</div></cds-overlay>	</div>'
+        var COMPONENT_TEMPLATE = '<div><cds-overlay	[theme]="theme"	[open]="open"	(overlaySelect)="overlaySelected.emit()">	<div		class="cds--modal-container"		[ngClass]="{			\'cds--modal-container--xs\': size === \'xs\',			\'cds--modal-container--sm\': size === \'sm\',			\'cds--modal-container--md\': size === \'md\',			\'cds--modal-container--lg\': size === \'lg\'		}"		role="dialog"		aria-modal="true"		style="z-index:1;"		[attr.aria-label]="ariaLabel"		#modal>		<ng-content></ng-content>	</div></cds-overlay>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Modal'};

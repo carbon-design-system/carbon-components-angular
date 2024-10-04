@@ -32,13 +32,13 @@
 <title>cluster_TilesModule_TileGroup_providers</title>
 <polygon fill="none" stroke="black" points="909,-78 909,-241.59 1545,-241.59 1545,-78 909,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TilesModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 901,-241.59 901,-189.59 16,-189.59"/>
-</g>
 <g id="clust11" class="cluster">
 <title>cluster_TilesModule_exports</title>
 <polygon fill="none" stroke="black" points="390,-319.59 390,-371.59 1390,-371.59 1390,-319.59 390,-319.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TilesModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 901,-241.59 901,-189.59 16,-189.59"/>
 </g>
 <!-- ClickableTile -->
 <g id="node1" class="node">
