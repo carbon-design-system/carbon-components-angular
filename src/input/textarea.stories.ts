@@ -57,7 +57,6 @@ const Template = (args) => ({
 			cdsTextArea
 			[placeholder]="placeholder"
 			[invalid]="invalid"
-			[warn]="warn"
 			[disabled]="disabled"
 			[theme]="theme"
 			[rows]="rows"
