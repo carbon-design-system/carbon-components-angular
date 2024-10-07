@@ -60,7 +60,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'cds--select--disabled': disabled,
 					'cds--select--readonly': readonly,
 					'cds--select--fluid--invalid': fluid && invalid,
-					'cds--select--fluid--focus': fluid && _isFocused
+					'cds--select--fluid--focus': fluid && focused
 				}">
 				<label
 					*ngIf="label"
@@ -145,15 +145,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</div>
 				</ng-container>
 			</div>
-			<div
-				*ngIf="invalid && invalidText && !fluid" role="alert" class="cds--form-requirement" aria-live="polite">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn && !fluid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			<ng-container *ngIf="!fluid">
+				<div
+					*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
+				<div *ngIf="!invalid && warn" class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+				</div>
+			</ng-container>
 		</ng-template>
 	`,
 	providers: [
@@ -248,7 +250,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	protected _value;
 
-	protected _isFocused = false;
+	focused = false;
 
 	ngAfterViewInit() {
 		if (
@@ -338,7 +340,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	protected onTouchedHandler = () => { };
 
 	handleFocus(event: FocusEvent) {
-		this._isFocused = event.type === "focus";
+		this.focused = event.type === "focus";
 	}
 
 }
