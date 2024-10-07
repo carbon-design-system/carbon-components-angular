@@ -248,9 +248,9 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 
 	@ViewChild("select") select: ElementRef;
 
-	protected _value;
-
 	focused = false;
+
+	protected _value;
 
 	ngAfterViewInit() {
 		if (
@@ -333,14 +333,14 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 		}
 	}
 
+	handleFocus(event: FocusEvent) {
+		this.focused = event.type === "focus";
+	}
+
 	/**
 	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
 	protected onChangeHandler = (_: any) => { };
 	protected onTouchedHandler = () => { };
-
-	handleFocus(event: FocusEvent) {
-		this.focused = event.type === "focus";
-	}
 
 }
