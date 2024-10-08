@@ -152,7 +152,7 @@ describe("Pagination", () => {
 	});
 
 	/**
-	 * GH issue #3013
+	 * Number of pages should always be 1 even if totalDataLength is greater than 0
 	 */
 	it("should recalculate pages when changing data", () => {
 		const fixture = TestBed.createComponent(Pagination);
