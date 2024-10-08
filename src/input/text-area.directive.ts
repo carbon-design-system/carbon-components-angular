@@ -27,4 +27,8 @@ export class TextArea {
 	@HostBinding("class.cds--text-area--light") get isLightTheme() {
 		return this.theme === "light";
 	}
+
+	@HostBinding("attr.data-invalid") get getInvalidAttr() {
+		return this.invalid ? true : undefined;
+	}
 }
