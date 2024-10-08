@@ -321,8 +321,8 @@ export class Pagination {
 
 	get pageOptions() {
 		/**
-		 * Calculate number of pages based on totalDataLenght and itemsPerPage.
-		 * Even if totalDataLenght is 0, numberOfPages should be always at least 1.
+		 * Calculate number of pages based on totalDataLength and itemsPerPage.
+		 * Even if totalDataLength is 0, numberOfPages should be always at least 1.
 		 * New array will be constructed only if number of pages changes.
 		 */
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
