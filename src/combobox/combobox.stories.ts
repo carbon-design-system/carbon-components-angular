@@ -72,7 +72,8 @@ export default {
 		dropUp: false,
 		selectionFeedback: "top-after-reopen",
 		size: "md",
-		theme: "dark"
+		theme: "dark",
+		fluid: false
 	},
 	argTypes: {
 		size: {
@@ -119,6 +120,7 @@ const Template = (args) => ({
 			[items]="items"
 			[theme]="theme"
 			[dropUp]="dropUp"
+			[fluid]="fluid"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)"
@@ -176,6 +178,10 @@ Dynamic.parameters = {
 	}
 };
 
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
 
 const MultiTemplate = (args) => ({
 	props: args,
@@ -196,6 +202,7 @@ const MultiTemplate = (args) => ({
 			[selectionFeedback]="selectionFeedback"
 			[dropUp]="dropUp"
 			[appendInline]="appendInline"
+			[fluid]="fluid"
 			type="multi"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
