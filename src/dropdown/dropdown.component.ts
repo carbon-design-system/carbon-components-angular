@@ -69,7 +69,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 	<div
 		class="cds--list-box"
 		[ngClass]="{
-			'cds--dropdown': type !== 'multi',
+			'cds--dropdown': type !== 'multi' && !(skeleton && fluid),
 			'cds--multiselect': type === 'multi',
 			'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
 			'cds--dropdown--light': theme === 'light',
@@ -83,8 +83,11 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
 			'cds--dropdown--md cds--list-box--md': size === 'md',
 			'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-			'cds--list-box--expanded': !menuIsClosed
-		}">
+			'cds--list-box--expanded': !menuIsClosed,
+			'cds--list-box--invalid': invalid
+		}"
+		[attr.data-invalid]="invalid ? true : null">
+		<div *ngIf="skeleton && fluid" class="cds--list-box__label"></div>
 		<button
 			#dropdownButton
 			[id]="id"
@@ -96,7 +99,8 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			[attr.aria-readonly]="readonly"
 			aria-haspopup="listbox"
 			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
-			(blur)="onBlur()"
+			(focus)="fluid ? handleFocus($event) : null"
+			(blur)="fluid ? handleFocus($event) : onBlur()"
 			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
@@ -125,18 +129,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<svg
-				*ngIf="invalid"
-				class="cds--dropdown__invalid-icon"
-				cdsIcon="warning--filled"
-				size="16">
-			</svg>
-			<svg
-				*ngIf="!invalid && warn"
-				cdsIcon="warning--alt--filled"
-				size="16"
-				class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-			</svg>
 			<span class="cds--list-box__menu-icon">
 				<svg
 					*ngIf="!skeleton"
@@ -147,6 +139,18 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				</svg>
 			</span>
 		</button>
+		<svg
+			*ngIf="invalid"
+			class="cds--list-box__invalid-icon"
+			cdsIcon="warning--filled"
+			size="16">
+		</svg>
+		<svg
+			*ngIf="!invalid && warn"
+			cdsIcon="warning--alt--filled"
+			size="16"
+			class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+		</svg>
 		<div
 			#dropdownMenu
 			[ngClass]="{
@@ -155,8 +159,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
+	<hr *ngIf="fluid" class="cds--list-box__divider" />
 	<div
-		*ngIf="helperText && !invalid && !warn && !skeleton"
+		*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"
 		class="cds--form__helper-text"
 		[ngClass]="{
 			'cds--form__helper-text--disabled': disabled
@@ -319,6 +324,28 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ViewChild("dropdownMenu", { static: true }) dropdownMenu;
 
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
+
+	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
+	
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@HostBinding("class.cds--list-box__wrapper--fluid") @Input() fluid = false;
+
+	/**
+	 * Style needed to properly display label in fluid layout.
+	 * React implementation is using a div that is a block-level element.
+	 */
+	@HostBinding("style.display") display = "block";
+
+	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
+		return this.invalid && this.fluid;
+	}
+	
+	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
+		return this.fluid && this._isFocused && this.menuIsClosed;
+	}
+
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
@@ -351,6 +378,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 		this._writtenValue = val;
 	}
+
+	protected _isFocused = false;
 
 	/**
 	 * Creates an instance of Dropdown.
@@ -808,6 +837,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
+		}
+	}
+
+	handleFocus(event: FocusEvent) {
+		this._isFocused = event.type === "focus";
+		if (event.type === "blur") {
+			this.onBlur();
 		}
 	}
 }
