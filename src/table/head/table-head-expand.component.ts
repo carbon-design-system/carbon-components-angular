@@ -13,15 +13,21 @@ import { Observable } from "rxjs";
 	selector: "[cdsTableHeadExpand], [ibmTableHeadExpand]",
 	template: `
 		<button
+			*ngIf="showExpandAllToggle"
 			class="cds--table-expand__button"
 			[attr.aria-label]="getAriaLabel() | async"
 			(click)="expandedChange.emit(!expanded)">
 			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
 		</button>
+		<ng-container *ngIf="!showExpandAllToggle">
+			<ng-content></ng-content>
+		</ng-container>
 	`
 })
 export class TableHeadExpand {
 	@HostBinding("class.cds--table-expand") hostClass = true;
+
+	@Input() showExpandAllToggle = false;
 
 	@Input() expanded = false;
 

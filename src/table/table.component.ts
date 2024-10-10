@@ -197,6 +197,7 @@ import { TableRowSize } from "./table.types";
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
 			[showSelectionColumn]="showSelectionColumn"
 			[enableSingleSelect]="enableSingleSelect"
+			[showExpandAllToggle]="showExpandAllToggle"
 			[skeleton]="skeleton"
 			[sortAscendingLabel]="sortAscendingLabel"
 			[sortDescendingLabel]="sortDescendingLabel"
@@ -385,6 +386,11 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 	@Input() sortable = true;
 
 	@Input() noBorder = true;
+
+	/**
+	 * Set to `true` to show expansion toggle when table consists of row expansions
+	 */
+	@Input() showExpandAllToggle = false;
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;

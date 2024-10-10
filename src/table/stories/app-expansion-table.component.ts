@@ -45,7 +45,8 @@ class CustomHeaderItem extends TableHeaderItem {
 			[striped]="striped"
 			(sort)="customSort($event)"
 			(rowClick)="onRowClick($event)"
-			[isDataGrid]="isDataGrid">
+			[isDataGrid]="isDataGrid"
+			[showExpandAllToggle]="showExpandAllToggle">
 		</cds-table>
 
 		<br>
@@ -64,6 +65,7 @@ export class ExpansionTableStory implements AfterViewInit {
 	@Input() sortable = true;
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
+	@Input() showExpandAllToggle = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;

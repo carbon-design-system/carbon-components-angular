@@ -31,6 +31,7 @@ import { TableRowSize } from "../table.types";
 				cdsTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
+				[showExpandAllToggle]="showExpandAllToggle"
 				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
 				[id]="model.getId('expand')"
 				[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"
@@ -103,6 +104,8 @@ export class TableHead implements AfterViewInit {
 	@Input() skeleton = false;
 
 	@Input() stickyHeader = false;
+
+	@Input() showExpandAllToggle = false;
 
 	/**
 	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
