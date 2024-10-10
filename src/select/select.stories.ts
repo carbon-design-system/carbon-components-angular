@@ -35,7 +35,8 @@ export default {
 		helperText: "Optional helper text",
 		size: "md",
 		theme: "dark",
-		display: "default"
+		display: "default",
+		fluid: false
 	},
 	argTypes: {
 		size: {
@@ -74,6 +75,7 @@ const Template = (args) => ({
 			[helperText]="helperText"
 			[theme]="theme"
 			[(ngModel)]="model"
+			[fluid]="fluid"
 			[display]="display">
 			<option value="default" disabled selected hidden>Choose an option</option>
 			<option value="solong">A much longer option that is worth having around to check how text flows</option>
@@ -89,6 +91,11 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
 
 const NgModelTemplate = (args) => ({
 	props: args,
@@ -107,6 +114,7 @@ const NgModelTemplate = (args) => ({
 			[helperText]="helperText"
 			[theme]="theme"
 			[(ngModel)]="model"
+			[fluid]="fluid"
 			[display]="display"
 			ariaLabel='ngModel select'>
 			<option value="default" disabled selected hidden>Choose an option</option>

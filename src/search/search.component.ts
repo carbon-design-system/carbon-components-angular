@@ -41,6 +41,10 @@ export class Search implements ControlValueAccessor {
 		return !(this.toolbar || this.expandable);
 	}
 
+	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeletonClass() {
+		return this.skeleton && this.fluid;
+	}
+
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` search theme.
@@ -118,6 +122,10 @@ export class Search implements ControlValueAccessor {
 	 * Sets the aria label on the `div` element with the `search` role.
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid = false;
 	/**
 	 * Emits an event when value is changed.
 	 */
