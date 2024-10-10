@@ -417,7 +417,7 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Number of rows that can be expanded.
-	 * 
+	 *
 	 * @returns number
 	 */
 	expandableRowsCount() {
@@ -721,7 +721,7 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Expands / collapses all rows
-	 * 
+	 *
 	 * @param value expanded state of the rows. `true` is expanded and `false` is collapsed
 	 */
 	expandAllRows(value = true) {
