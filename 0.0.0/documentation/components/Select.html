@@ -177,11 +177,23 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;cds--form-item&quot;&gt;
-	&lt;ng-template [ngIf]&#x3D;&quot;skeleton&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
+	[ngClass]&#x3D;&quot;{
+		&#x27;cds--form-item&#x27;: !skeleton,
+		&#x27;cds--select--fluid&#x27;: fluid &amp;&amp; !skeleton
+	}&quot;&gt;
+	&lt;ng-container *ngIf&#x3D;&quot;skeleton &amp;&amp; !fluid&quot;&gt;
 		&lt;div *ngIf&#x3D;&quot;label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/div&gt;
 		&lt;div class&#x3D;&quot;cds--select cds--skeleton&quot;&gt;&lt;/div&gt;
-	&lt;/ng-template&gt;
+	&lt;/ng-container&gt;
+	&lt;ng-container *ngIf&#x3D;&quot;skeleton &amp;&amp; fluid&quot;&gt;
+		&lt;div class&#x3D;&quot;cds--list-box__wrapper--fluid&quot;&gt;
+			&lt;div class&#x3D;&quot;cds--list-box cds--skeleton&quot;&gt;
+				&lt;div class&#x3D;&quot;cds--list-box__label&quot;&gt;&lt;/div&gt;
+				&lt;div class&#x3D;&quot;cds--list-box__field&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/ng-container&gt;
 	&lt;div
 		*ngIf&#x3D;&quot;!skeleton&quot;
 		class&#x3D;&quot;cds--select&quot;
@@ -191,7 +203,9 @@
 			&#x27;cds--select--invalid&#x27;: invalid,
 			&#x27;cds--select--warning&#x27;: warn,
 			&#x27;cds--select--disabled&#x27;: disabled,
-			&#x27;cds--select--readonly&#x27;: readonly
+			&#x27;cds--select--readonly&#x27;: readonly,
+			&#x27;cds--select--fluid--invalid&#x27;: fluid &amp;&amp; invalid,
+			&#x27;cds--select--fluid--focus&#x27;: fluid &amp;&amp; focused
 		}&quot;&gt;
 		&lt;label
 			*ngIf&#x3D;&quot;label&quot;
@@ -205,7 +219,7 @@
 			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;noInline&quot;&gt;&lt;/ng-container&gt;
 		&lt;/div&gt;
 		&lt;div
-			*ngIf&#x3D;&quot;helperText&quot;
+			*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn &amp;&amp; !skeleton &amp;&amp; !fluid&quot;
 			class&#x3D;&quot;cds--form__helper-text&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;cds--form__helper-text--disabled&#x27;: disabled
@@ -234,7 +248,9 @@
 				&#x27;cds--select-input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 			}&quot;
 			(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
-			(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+			(keydown)&#x3D;&quot;onKeyDown($event)&quot;
+			(focus)&#x3D;&quot;fluid ? handleFocus($event) : null&quot;
+			(blur)&#x3D;&quot;fluid ? handleFocus($event) : null&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/select&gt;
 		&lt;svg
@@ -261,16 +277,30 @@
 			size&#x3D;&quot;16&quot;
 			class&#x3D;&quot;cds--select__invalid-icon cds--select__invalid-icon--warning&quot;&gt;
 		&lt;/svg&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+			&lt;hr class&#x3D;&quot;cds--select__divider&quot; /&gt;
+			&lt;div
+				*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+			&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
 	&lt;/div&gt;
-	&lt;div
-		*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-	&lt;/div&gt;
-	&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-	&lt;/div&gt;
+	&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
+		&lt;div
+			*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+		&lt;/div&gt;
+		&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+		&lt;/div&gt;
+	&lt;/ng-container&gt;
 &lt;/ng-template&gt;
 	</code></pre></td>
             </tr>
@@ -304,6 +334,9 @@
                                 <a href="#_value" >_value</a>
                             </li>
                             <li>
+                                <a href="#focused" >focused</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#onChangeHandler" >onChangeHandler</a>
                             </li>
@@ -334,6 +367,9 @@
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#focusOut" >focusOut</a>
+                            </li>
+                            <li>
+                                <a href="#handleFocus" >handleFocus</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -383,6 +419,9 @@
                             </li>
                             <li>
                                 <a href="#display" >display</a>
+                            </li>
+                            <li>
+                                <a href="#fluid" >fluid</a>
                             </li>
                             <li>
                                 <a href="#helperText" >helperText</a>
@@ -492,7 +531,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/select/select.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/select/select.component.ts:240</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -518,7 +557,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/select/select.component.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/select/select.component.ts:221</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -550,12 +589,44 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/select/select.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/select/select.component.ts:189</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p><code>inline</code> or <code>default</code> select displays</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fluid"></a>
+                        <b>fluid</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/select/select.component.ts:245</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Experimental: enable fluid state</p>
 </div>
                     </td>
                 </tr>
@@ -577,7 +648,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/select/select.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/select/select.component.ts:197</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -609,7 +680,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/select/select.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/select/select.component.ts:213</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -641,7 +712,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/select/select.component.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/select/select.component.ts:229</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -668,7 +739,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/select/select.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/select/select.component.ts:201</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -695,7 +766,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/select/select.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/select/select.component.ts:193</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -727,7 +798,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/select/select.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/select/select.component.ts:233</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -759,7 +830,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/select/select.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/select/select.component.ts:217</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -791,7 +862,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/select/select.component.ts:195</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/select/select.component.ts:225</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -823,7 +894,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/select/select.component.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/select/select.component.ts:239</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -844,7 +915,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/select/select.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/select/select.component.ts:170</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -870,7 +941,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/select/select.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/select/select.component.ts:205</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -897,7 +968,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/select/select.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/select/select.component.ts:209</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -927,7 +998,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/select/select.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/select/select.component.ts:247</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -955,8 +1026,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="271"
-                                    class="link-to-prism">src/select/select.component.ts:271</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/select/select.component.ts:308</a></div>
                         </td>
                     </tr>
 
@@ -1005,8 +1076,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="271"
-                                    class="link-to-prism">src/select/select.component.ts:271</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/select/select.component.ts:308</a></div>
                         </td>
                     </tr>
 
@@ -1020,6 +1091,73 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFocus"></a>
+                    <span class="name">
+                        <span ><b>handleFocus</b></span>
+                        <a href="#handleFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFocus(event: FocusEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="336"
+                                    class="link-to-prism">src/select/select.component.ts:336</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>FocusEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1046,8 +1184,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="275"
-                                    class="link-to-prism">src/select/select.component.ts:275</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="312"
+                                    class="link-to-prism">src/select/select.component.ts:312</a></div>
                         </td>
                     </tr>
 
@@ -1109,8 +1247,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="218"
-                                    class="link-to-prism">src/select/select.component.ts:218</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/select/select.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -1146,8 +1284,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="261"
-                                    class="link-to-prism">src/select/select.component.ts:261</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">src/select/select.component.ts:298</a></div>
                         </td>
                     </tr>
 
@@ -1212,8 +1350,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="289"
-                                    class="link-to-prism">src/select/select.component.ts:289</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="326"
+                                    class="link-to-prism">src/select/select.component.ts:326</a></div>
                         </td>
                     </tr>
 
@@ -1279,8 +1417,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="279"
-                                    class="link-to-prism">src/select/select.component.ts:279</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/select/select.component.ts:316</a></div>
                         </td>
                     </tr>
 
@@ -1346,8 +1484,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="239"
-                                    class="link-to-prism">src/select/select.component.ts:239</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/select/select.component.ts:276</a></div>
                         </td>
                     </tr>
 
@@ -1415,8 +1553,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="246"
-                                    class="link-to-prism">src/select/select.component.ts:246</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/select/select.component.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -1484,8 +1622,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="253"
-                                    class="link-to-prism">src/select/select.component.ts:253</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="290"
+                                    class="link-to-prism">src/select/select.component.ts:290</a></div>
                         </td>
                     </tr>
 
@@ -1553,8 +1691,8 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/select/select.component.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/select/select.component.ts:269</a></div>
                         </td>
                     </tr>
 
@@ -1622,7 +1760,32 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/select/select.component.ts:216</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/select/select.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focused"></a>
+                    <span class="name">
+                        <span ><b>focused</b></span>
+                        <a href="#focused"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/select/select.component.ts:251</a></div>
                         </td>
                     </tr>
 
@@ -1648,7 +1811,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/select/select.component.ts:302</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/select/select.component.ts:343</a></div>
                         </td>
                     </tr>
 
@@ -1680,7 +1843,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/select/select.component.ts:303</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/select/select.component.ts:344</a></div>
                         </td>
                     </tr>
 
@@ -1716,7 +1879,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/select/select.component.ts:214</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/select/select.component.ts:249</a></div>
                         </td>
                     </tr>
 
@@ -1748,7 +1911,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/select/select.component.ts:154</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/select/select.component.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -1783,7 +1946,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/select/select.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/select/select.component.ts:177</a></div>
                                 </td>
                             </tr>
 
@@ -1794,7 +1957,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/select/select.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/select/select.component.ts:170</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1871,11 +2034,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 @Component({
 	selector: &quot;cds-select, ibm-select&quot;,
 	template: &#x60;
-		&lt;div class&#x3D;&quot;cds--form-item&quot;&gt;
-			&lt;ng-template [ngIf]&#x3D;&quot;skeleton&quot;&gt;
+		&lt;div
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--form-item&#x27;: !skeleton,
+				&#x27;cds--select--fluid&#x27;: fluid &amp;&amp; !skeleton
+			}&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;skeleton &amp;&amp; !fluid&quot;&gt;
 				&lt;div *ngIf&#x3D;&quot;label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/div&gt;
 				&lt;div class&#x3D;&quot;cds--select cds--skeleton&quot;&gt;&lt;/div&gt;
-			&lt;/ng-template&gt;
+			&lt;/ng-container&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;skeleton &amp;&amp; fluid&quot;&gt;
+				&lt;div class&#x3D;&quot;cds--list-box__wrapper--fluid&quot;&gt;
+					&lt;div class&#x3D;&quot;cds--list-box cds--skeleton&quot;&gt;
+						&lt;div class&#x3D;&quot;cds--list-box__label&quot;&gt;&lt;/div&gt;
+						&lt;div class&#x3D;&quot;cds--list-box__field&quot;&gt;&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/ng-container&gt;
 			&lt;div
 				*ngIf&#x3D;&quot;!skeleton&quot;
 				class&#x3D;&quot;cds--select&quot;
@@ -1885,7 +2060,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 					&#x27;cds--select--invalid&#x27;: invalid,
 					&#x27;cds--select--warning&#x27;: warn,
 					&#x27;cds--select--disabled&#x27;: disabled,
-					&#x27;cds--select--readonly&#x27;: readonly
+					&#x27;cds--select--readonly&#x27;: readonly,
+					&#x27;cds--select--fluid--invalid&#x27;: fluid &amp;&amp; invalid,
+					&#x27;cds--select--fluid--focus&#x27;: fluid &amp;&amp; focused
 				}&quot;&gt;
 				&lt;label
 					*ngIf&#x3D;&quot;label&quot;
@@ -1899,7 +2076,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;noInline&quot;&gt;&lt;/ng-container&gt;
 				&lt;/div&gt;
 				&lt;div
-					*ngIf&#x3D;&quot;helperText&quot;
+					*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn &amp;&amp; !skeleton &amp;&amp; !fluid&quot;
 					class&#x3D;&quot;cds--form__helper-text&quot;
 					[ngClass]&#x3D;&quot;{
 						&#x27;cds--form__helper-text--disabled&#x27;: disabled
@@ -1928,7 +2105,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 						&#x27;cds--select-input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 					}&quot;
 					(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
-					(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+					(keydown)&#x3D;&quot;onKeyDown($event)&quot;
+					(focus)&#x3D;&quot;fluid ? handleFocus($event) : null&quot;
+					(blur)&#x3D;&quot;fluid ? handleFocus($event) : null&quot;&gt;
 					&lt;ng-content&gt;&lt;/ng-content&gt;
 				&lt;/select&gt;
 				&lt;svg
@@ -1955,16 +2134,30 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 					size&#x3D;&quot;16&quot;
 					class&#x3D;&quot;cds--select__invalid-icon cds--select__invalid-icon--warning&quot;&gt;
 				&lt;/svg&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+					&lt;hr class&#x3D;&quot;cds--select__divider&quot; /&gt;
+					&lt;div
+						*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+						&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+						&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+					&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+						&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+				&lt;/ng-container&gt;
 			&lt;/div&gt;
-			&lt;div
-				*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-			&lt;/div&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
+				&lt;div
+					*ngIf&#x3D;&quot;invalid &amp;&amp; invalidText&quot; role&#x3D;&quot;alert&quot; class&#x3D;&quot;cds--form-requirement&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+				&lt;/div&gt;
+				&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
+					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+				&lt;/div&gt;
+			&lt;/ng-container&gt;
 		&lt;/ng-template&gt;
 	&#x60;,
 	providers: [
@@ -2048,9 +2241,16 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
 	@Input() ariaLabel: string;
 
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid &#x3D; false;
+
 	@Output() valueChange &#x3D; new EventEmitter();
 
 	@ViewChild(&quot;select&quot;) select: ElementRef;
+
+	focused &#x3D; false;
 
 	protected _value;
 
@@ -2135,11 +2335,16 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 		}
 	}
 
+	handleFocus(event: FocusEvent) {
+		this.focused &#x3D; event.type &#x3D;&#x3D;&#x3D; &quot;focus&quot;;
+	}
+
 	/**
 	 * placeholder declarations. Replaced by the functions provided to &#x60;registerOnChange&#x60; and &#x60;registerOnTouched&#x60;
 	 */
 	protected onChangeHandler &#x3D; (_: any) &#x3D;&gt; { };
 	protected onTouchedHandler &#x3D; () &#x3D;&gt; { };
+
 }
 </code></pre>
     </div>
@@ -2171,7 +2376,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="cds--form-item">	<ng-template [ngIf]="skeleton">		<div *ngIf="label" class="cds--label cds--skeleton"></div>		<div class="cds--select cds--skeleton"></div>	</ng-template>	<div		*ngIf="!skeleton"		class="cds--select"		[ngClass]="{			\'cds--select--inline\': display === \'inline\',			\'cds--select--light\': theme === \'light\',			\'cds--select--invalid\': invalid,			\'cds--select--warning\': warn,			\'cds--select--disabled\': disabled,			\'cds--select--readonly\': readonly		}">		<label			*ngIf="label"			[for]="id"			class="cds--label"			[ngClass]="{\'cds--label--disabled\': disabled}">			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>		</label>		<div *ngIf="display === \'inline\'; else noInline" class="cds--select-input--inline__wrapper">			<ng-container *ngTemplateOutlet="noInline"></ng-container>		</div>		<div			*ngIf="helperText"			class="cds--form__helper-text"			[ngClass]="{				\'cds--form__helper-text--disabled\': disabled			}">			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>		</div>	</div></div><!-- select element: dynamically projected based on \'display\' variant --><ng-template #noInline>	<div class="cds--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">		<select			#select			[attr.id]="id"			[attr.aria-label]="ariaLabel"			[disabled]="disabled"			(change)="onChange($event)"			[attr.aria-invalid]="invalid ? \'true\' : null"			[attr.aria-readonly]="readonly ? \'true\' : null"			class="cds--select-input"			[ngClass]="{				\'cds--select-input--sm\': size === \'sm\',				\'cds--select-input--md\': size === \'md\',				\'cds--select-input--lg\': size === \'lg\'			}"			(mousedown)="onMouseDown($event)"			(keydown)="onKeyDown($event)">			<ng-content></ng-content>		</select>		<svg			focusable="false"			preserveAspectRatio="xMidYMid meet"			style="will-change: transform;"			xmlns="http://www.w3.org/2000/svg"			class="cds--select__arrow"			width="16"			height="16"			viewBox="0 0 16 16"			aria-hidden="true">			<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>		</svg>		<svg			*ngIf="invalid"			cdsIcon="warning--filled"			size="16"			class="cds--select__invalid-icon">		</svg>		<svg			*ngIf="!invalid && warn"			cdsIcon="warning--alt--filled"			size="16"			class="cds--select__invalid-icon cds--select__invalid-icon--warning">		</svg>	</div>	<div		*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">		<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>	</div>	<div *ngIf="!invalid && warn" class="cds--form-requirement">		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>	</div></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div	[ngClass]="{		\'cds--form-item\': !skeleton,		\'cds--select--fluid\': fluid && !skeleton	}">	<ng-container *ngIf="skeleton && !fluid">		<div *ngIf="label" class="cds--label cds--skeleton"></div>		<div class="cds--select cds--skeleton"></div>	</ng-container>	<ng-container *ngIf="skeleton && fluid">		<div class="cds--list-box__wrapper--fluid">			<div class="cds--list-box cds--skeleton">				<div class="cds--list-box__label"></div>				<div class="cds--list-box__field"></div>			</div>		</div>	</ng-container>	<div		*ngIf="!skeleton"		class="cds--select"		[ngClass]="{			\'cds--select--inline\': display === \'inline\',			\'cds--select--light\': theme === \'light\',			\'cds--select--invalid\': invalid,			\'cds--select--warning\': warn,			\'cds--select--disabled\': disabled,			\'cds--select--readonly\': readonly,			\'cds--select--fluid--invalid\': fluid && invalid,			\'cds--select--fluid--focus\': fluid && focused		}">		<label			*ngIf="label"			[for]="id"			class="cds--label"			[ngClass]="{\'cds--label--disabled\': disabled}">			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>		</label>		<div *ngIf="display === \'inline\'; else noInline" class="cds--select-input--inline__wrapper">			<ng-container *ngTemplateOutlet="noInline"></ng-container>		</div>		<div			*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"			class="cds--form__helper-text"			[ngClass]="{				\'cds--form__helper-text--disabled\': disabled			}">			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>		</div>	</div></div><!-- select element: dynamically projected based on \'display\' variant --><ng-template #noInline>	<div class="cds--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">		<select			#select			[attr.id]="id"			[attr.aria-label]="ariaLabel"			[disabled]="disabled"			(change)="onChange($event)"			[attr.aria-invalid]="invalid ? \'true\' : null"			[attr.aria-readonly]="readonly ? \'true\' : null"			class="cds--select-input"			[ngClass]="{				\'cds--select-input--sm\': size === \'sm\',				\'cds--select-input--md\': size === \'md\',				\'cds--select-input--lg\': size === \'lg\'			}"			(mousedown)="onMouseDown($event)"			(keydown)="onKeyDown($event)"			(focus)="fluid ? handleFocus($event) : null"			(blur)="fluid ? handleFocus($event) : null">			<ng-content></ng-content>		</select>		<svg			focusable="false"			preserveAspectRatio="xMidYMid meet"			style="will-change: transform;"			xmlns="http://www.w3.org/2000/svg"			class="cds--select__arrow"			width="16"			height="16"			viewBox="0 0 16 16"			aria-hidden="true">			<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>		</svg>		<svg			*ngIf="invalid"			cdsIcon="warning--filled"			size="16"			class="cds--select__invalid-icon">		</svg>		<svg			*ngIf="!invalid && warn"			cdsIcon="warning--alt--filled"			size="16"			class="cds--select__invalid-icon cds--select__invalid-icon--warning">		</svg>		<ng-container *ngIf="fluid">			<hr class="cds--select__divider" />			<div				*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>			</div>			<div *ngIf="!invalid && warn" class="cds--form-requirement">				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>			</div>		</ng-container>	</div>	<ng-container *ngIf="!fluid">		<div			*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>		</div>		<div *ngIf="!invalid && warn" class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>		</div>	</ng-container></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Select'};
