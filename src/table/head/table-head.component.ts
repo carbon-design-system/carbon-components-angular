@@ -31,8 +31,11 @@ import { TableRowSize } from "../table.types";
 				cdsTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
+				[showExpandAllToggle]="showExpandAllToggle"
 				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
-				[id]="model.getId('expand')">
+				[id]="model.getId('expand')"
+				[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"
+				(expandedChange)="onExpandAllRowsChange($event)">
 			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
@@ -102,6 +105,8 @@ export class TableHead implements AfterViewInit {
 
 	@Input() stickyHeader = false;
 
+	@Input() showExpandAllToggle = false;
+
 	/**
 	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
 	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
@@ -160,6 +165,18 @@ export class TableHead implements AfterViewInit {
 	 * @param model
 	 */
 	@Output() deselectAll = new EventEmitter<TableModel>();
+	/**
+	 * Emits if all rows are expanded.
+	 *
+	 * @param model
+	 */
+	@Output() expandAllRows = new EventEmitter<TableModel>();
+	/**
+	 * Emits if all rows are collapsed.
+	 *
+	 * @param model
+	 */
+	@Output() collapseAllRows = new EventEmitter<TableModel>();
 
 	public scrollbarWidth = 0;
 
@@ -181,6 +198,14 @@ export class TableHead implements AfterViewInit {
 			this.selectAll.emit(this.model);
 		} else {
 			this.deselectAll.emit(this.model);
+		}
+	}
+
+	onExpandAllRowsChange(expand: boolean) {
+		if (expand) {
+			this.expandAllRows.emit(this.model);
+		} else {
+			this.collapseAllRows.emit(this.model);
 		}
 	}
 
