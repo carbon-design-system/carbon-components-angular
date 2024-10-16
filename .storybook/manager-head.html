@@ -25,17 +25,33 @@
 	document.title = "Carbon Components Angular";
 </script>
 
-<!-- Google Analytics v4 setup -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G070S732G6"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag() { dataLayer.push(arguments); }
-	gtag('js', new Date());
-
-	gtag('config', 'G-G070S732G6', {
-		send_page_view: false
-	});
+<!-- Tealium/GA Set up -->
+<script type="text/javascript">
+	window._ibmAnalytics = {
+		settings: {
+			name: 'CarbonAngularStorybook',
+			isSpa: true,
+			tealiumProfileName: 'ibm-web-app',
+		},
+		onLoad: [['ibmStats.pageview', []]],
+	};
+	digitalData = {
+		page: {
+			pageInfo: {
+				ibm: {
+					siteId: 'IBM_' + _ibmAnalytics.settings.name,
+				},
+			},
+			category: {
+				primaryCategory: 'PC100',
+			},
+		},
+	};
 </script>
+<script
+	src="//1.www.s81c.com/common/stats/ibm-common.js"
+	type="text/javascript"
+	async="async"></script>
 
 <style>
 	footer {
