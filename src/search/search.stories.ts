@@ -17,7 +17,8 @@ export default {
 		skeleton: false,
 		size: "md",
 		theme: "dark",
-		autocomplete: "on"
+		autocomplete: "on",
+		fluid: false
 	},
 	argTypes: {
 		expandable: {
@@ -57,8 +58,15 @@ const Template = (args) => ({
 			[size]="size"
 			(valueChange)="valueChange($event)"
 			(clear)="clear()"
+			[fluid]="fluid"
+			[skeleton]="skeleton"
 			[expandable]="expandable">
 		</cds-search>
 	`
 });
 export const Basic = Template.bind({});
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
