@@ -53,9 +53,14 @@ export class TextInput {
 	}
 
 	@HostBinding("class.cds--text-input--invalid") @Input() invalid = false;
-	@HostBinding("class.cds--text-input__field-wrapper--warning") @Input() warn = false;
+	@HostBinding("class.cds--text-input--warning") @Input() warn = false;
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 	@HostBinding("class.cds--text-input--light") get isLightTheme() {
 		return this.theme === "light";
 	}
+
+	@HostBinding("attr.data-invalid") get getInvalidAttr() {
+		return this.invalid ? true : undefined;
+	};
+
 }
