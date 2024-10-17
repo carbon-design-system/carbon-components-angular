@@ -2,7 +2,7 @@
 
 version: 1
 projectId: dc98c0cb-616b-4fe4-9699-2ec03578aae6
-endpoint: https://www-api.ibm.com/ibm-telemetry/v1/telemetry
+endpoint: https://www-api.ibm.com/ibm-telemetry/v1/metrics
 collect:
   npm:
     dependencies: null
