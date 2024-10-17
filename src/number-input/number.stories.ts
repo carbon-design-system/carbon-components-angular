@@ -23,6 +23,8 @@ export default {
 		disabled: false,
 		size: "md",
 		theme: "dark",
+		warn: false,
+		warnText: "Warn text",
 		fluid: false
 	},
 	argTypes: {
@@ -80,6 +82,8 @@ const ModelTemplate = (args) => ({
 			[precision]="precision"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
 			[disabled]="disabled"
 			[(ngModel)]="value"
 			[fluid]="fluid">
@@ -94,9 +98,9 @@ const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-number
-		  label="Number input label"
-		  skeleton="true"
-		  [fluid]="fluid">
+			label="Number input label"
+			skeleton="true"
+			[fluid]="fluid">
 		</cds-number>
 	`
 });
