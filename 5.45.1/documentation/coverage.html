@@ -1,0 +1,3645 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">carbon-components-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content coverage">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Documentation coverage</li>
+</ol>
+
+<div>
+    <img src="./images/coverage-badge-documentation.svg">
+</div>
+
+<table class="table table-bordered coverage" id="coverage-table">
+    <thead class="coverage-header">
+        <tr>
+            <th>File</th>
+            <th>Type</th>
+            <th>Identifier</th>
+            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AccordionItem.html">src/accordion/accordion-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AccordionItem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Accordion.html">src/accordion/accordion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Accordion</td>
+            <td align="right" data-sort="25">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(2/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/BreadcrumbItemComponent.html">src/breadcrumb/breadcrumb-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>BreadcrumbItemComponent</td>
+            <td align="right" data-sort="21">
+                <span class="coverage-percent">21 %</span>
+                <span class="coverage-count">(3/14)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/BreadcrumbItem.html">src/breadcrumb/breadcrumb-item.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>BreadcrumbItem</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(8/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Breadcrumb.html">src/breadcrumb/breadcrumb.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Breadcrumb</td>
+            <td align="right" data-sort="14">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(2/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#MINIMUM_OVERFLOW_THRESHOLD">src/breadcrumb/breadcrumb.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>MINIMUM_OVERFLOW_THRESHOLD</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/BaseIconButton.html">src/button/base-icon-button.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>BaseIconButton</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(9/9)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ButtonSet.html">src/button/button-set.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ButtonSet</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/Button.html">src/button/button.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>Button</td>
+            <td align="right" data-sort="23">
+                <span class="coverage-percent">23 %</span>
+                <span class="coverage-count">(6/26)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/IconButton.html">src/button/icon-button.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>IconButton</td>
+            <td align="right" data-sort="68">
+                <span class="coverage-percent">68 %</span>
+                <span class="coverage-count">(20/29)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/CheckboxExportedTests.html">src/checkbox/checkbox-exported-tests.ts</a>
+            </td>
+            <td>class</td>
+            <td>CheckboxExportedTests</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#defaults">src/checkbox/checkbox-exported-tests.ts</a>
+            </td>
+            <td>variable</td>
+            <td>defaults</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Checkbox.html">src/checkbox/checkbox.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Checkbox</td>
+            <td align="right" data-sort="88">
+                <span class="coverage-percent">88 %</span>
+                <span class="coverage-count">(32/36)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/CodeSnippet.html">src/code-snippet/code-snippet.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>CodeSnippet</td>
+            <td align="right" data-sort="42">
+                <span class="coverage-percent">42 %</span>
+                <span class="coverage-count">(21/49)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ComboBox.html">src/combobox/combobox.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ComboBox</td>
+            <td align="right" data-sort="60">
+                <span class="coverage-percent">60 %</span>
+                <span class="coverage-count">(54/89)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#cycleTabs">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>cycleTabs</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#focusFirstFocusableElement">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>focusFirstFocusableElement</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#focusLastFocusableElement">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>focusLastFocusableElement</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#getFocusElementList">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>getFocusElementList</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#isElementFocused">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>isElementFocused</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#isFocusInFirstItem">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>isFocusInFirstItem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#isFocusInLastItem">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>isFocusInLastItem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#isVisible">src/common/tab.service.ts</a>
+            </td>
+            <td>function</td>
+            <td>isVisible</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#tabbableSelector">src/common/tab.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>tabbableSelector</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#tabbableSelectorIgnoreTabIndex">src/common/tab.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>tabbableSelectorIgnoreTabIndex</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#range">src/common/utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>range</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContainedListItem.html">src/contained-list/contained-list-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContainedListItem</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(12/15)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContainedList.html">src/contained-list/contained-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContainedList</td>
+            <td align="right" data-sort="90">
+                <span class="coverage-percent">90 %</span>
+                <span class="coverage-count">(10/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ContentSwitcherOption.html">src/content-switcher/content-switcher-option.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ContentSwitcherOption</td>
+            <td align="right" data-sort="13">
+                <span class="coverage-percent">13 %</span>
+                <span class="coverage-count">(3/23)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContentSwitcher.html">src/content-switcher/content-switcher.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContentSwitcher</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(3/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContextMenuDividerComponent.html">src/context-menu/context-menu-divider.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContextMenuDividerComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContextMenuGroupComponent.html">src/context-menu/context-menu-group.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContextMenuGroupComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContextMenuItemComponent.html">src/context-menu/context-menu-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContextMenuItemComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/43)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ContextMenuSelectionService.html">src/context-menu/context-menu-selection.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ContextMenuSelectionService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ContextMenuComponent.html">src/context-menu/context-menu.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContextMenuComponent</td>
+            <td align="right" data-sort="5">
+                <span class="coverage-percent">5 %</span>
+                <span class="coverage-count">(1/19)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DatePickerInput.html">src/datepicker-input/datepicker-input.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DatePickerInput</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(6/29)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#carbonFlatpickrMonthSelectPlugin">src/datepicker/carbon-flatpickr-month-select.ts</a>
+            </td>
+            <td>variable</td>
+            <td>carbonFlatpickrMonthSelectPlugin</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#config">src/datepicker/carbon-flatpickr-month-select.ts</a>
+            </td>
+            <td>variable</td>
+            <td>config</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#monthToStr">src/datepicker/carbon-flatpickr-month-select.ts</a>
+            </td>
+            <td>variable</td>
+            <td>monthToStr</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DatePicker.html">src/datepicker/datepicker.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DatePicker</td>
+            <td align="right" data-sort="41">
+                <span class="coverage-percent">41 %</span>
+                <span class="coverage-count">(28/68)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/CloseMeta.html">src/dialog/dialog-config.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>CloseMeta</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/DialogConfig.html">src/dialog/dialog-config.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>DialogConfig</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(15/15)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Dialog.html">src/dialog/dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Dialog</td>
+            <td align="right" data-sort="90">
+                <span class="coverage-percent">90 %</span>
+                <span class="coverage-count">(20/22)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/DialogDirective.html">src/dialog/dialog.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>DialogDirective</td>
+            <td align="right" data-sort="69">
+                <span class="coverage-percent">69 %</span>
+                <span class="coverage-count">(25/36)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/DialogService.html">src/dialog/dialog.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>DialogService</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(8/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OverflowMenuCustomPane.html">src/dialog/overflow-menu/overflow-menu-custom-pane.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OverflowMenuCustomPane</td>
+            <td align="right" data-sort="78">
+                <span class="coverage-percent">78 %</span>
+                <span class="coverage-count">(18/23)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OverflowMenuOption.html">src/dialog/overflow-menu/overflow-menu-option.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OverflowMenuOption</td>
+            <td align="right" data-sort="31">
+                <span class="coverage-percent">31 %</span>
+                <span class="coverage-count">(7/22)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#REL">src/dialog/overflow-menu/overflow-menu-option.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>REL</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OverflowMenuPane.html">src/dialog/overflow-menu/overflow-menu-pane.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OverflowMenuPane</td>
+            <td align="right" data-sort="64">
+                <span class="coverage-percent">64 %</span>
+                <span class="coverage-count">(16/25)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OverflowMenu.html">src/dialog/overflow-menu/overflow-menu.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OverflowMenu</td>
+            <td align="right" data-sort="30">
+                <span class="coverage-percent">30 %</span>
+                <span class="coverage-count">(4/13)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/OverflowMenuDirective.html">src/dialog/overflow-menu/overflow-menu.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>OverflowMenuDirective</td>
+            <td align="right" data-sort="61">
+                <span class="coverage-percent">61 %</span>
+                <span class="coverage-count">(26/42)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Documentation.html">src/documentation-component/documentation.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Documentation</td>
+            <td align="right" data-sort="14">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(1/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/AbstractDropdownView.html">src/dropdown/abstract-dropdown-view.class.ts</a>
+            </td>
+            <td>directive</td>
+            <td>AbstractDropdownView</td>
+            <td align="right" data-sort="90">
+                <span class="coverage-percent">90 %</span>
+                <span class="coverage-count">(20/22)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Dropdown.html">src/dropdown/dropdown.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Dropdown</td>
+            <td align="right" data-sort="70">
+                <span class="coverage-percent">70 %</span>
+                <span class="coverage-count">(54/77)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/DropdownService.html">src/dropdown/dropdown.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>DropdownService</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(5/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#defaultOffset">src/dropdown/dropdown.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>defaultOffset</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#watchFocusJump">src/dropdown/dropdowntools.ts</a>
+            </td>
+            <td>function</td>
+            <td>watchFocusJump</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#treetools">src/dropdown/dropdowntools.ts</a>
+            </td>
+            <td>variable</td>
+            <td>treetools</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ListItem.html">src/dropdown/list-item.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ListItem</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DropdownList.html">src/dropdown/list/dropdown-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DropdownList</td>
+            <td align="right" data-sort="78">
+                <span class="coverage-percent">78 %</span>
+                <span class="coverage-count">(40/51)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ScrollCustomEvent.html">src/dropdown/list/scroll-custom-event.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ScrollCustomEvent</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ScrollableList.html">src/dropdown/scrollable-list.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ScrollableList</td>
+            <td align="right" data-sort="18">
+                <span class="coverage-percent">18 %</span>
+                <span class="coverage-count">(5/27)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#EXPERIMENTAL_SERVICE_PROVIDER_FACTORY">src/experimental/experimental.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>EXPERIMENTAL_SERVICE_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#EXPERIMENTAL_SERVICE_PROVIDER">src/experimental/experimental.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>EXPERIMENTAL_SERVICE_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ExperimentalService.html">src/experimental/experimental.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ExperimentalService</td>
+            <td align="right" data-sort="85">
+                <span class="coverage-percent">85 %</span>
+                <span class="coverage-count">(6/7)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Experiment.html">src/experimental/experimental.service.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Experiment</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(1/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/ComponentTests.html">src/exported-tests/component-tests.ts</a>
+            </td>
+            <td>class</td>
+            <td>ComponentTests</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#isObject">src/exported-tests/component-tests.ts</a>
+            </td>
+            <td>function</td>
+            <td>isObject</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/FileItem.html">src/file-uploader/file-item.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>FileItem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/FileUploader.html">src/file-uploader/file-uploader.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>FileUploader</td>
+            <td align="right" data-sort="64">
+                <span class="coverage-percent">64 %</span>
+                <span class="coverage-count">(22/34)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#noop">src/file-uploader/file-uploader.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>noop</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/FileComponent.html">src/file-uploader/file.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>FileComponent</td>
+            <td align="right" data-sort="15">
+                <span class="coverage-percent">15 %</span>
+                <span class="coverage-count">(2/13)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ColumnDirective.html">src/grid/column.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ColumnDirective</td>
+            <td align="right" data-sort="28">
+                <span class="coverage-percent">28 %</span>
+                <span class="coverage-count">(4/14)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/GridDirective.html">src/grid/grid.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>GridDirective</td>
+            <td align="right" data-sort="26">
+                <span class="coverage-percent">26 %</span>
+                <span class="coverage-count">(6/23)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/GridService.html">src/grid/grid.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>GridService</td>
+            <td align="right" data-sort="16">
+                <span class="coverage-percent">16 %</span>
+                <span class="coverage-count">(1/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/RowDirective.html">src/grid/row.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>RowDirective</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#I18N_SERVICE_PROVIDER_FACTORY">src/i18n/i18n.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>I18N_SERVICE_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#I18N_SERVICE_PROVIDER">src/i18n/i18n.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>I18N_SERVICE_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/Overridable.html">src/i18n/i18n.service.ts</a>
+            </td>
+            <td>class</td>
+            <td>Overridable</td>
+            <td align="right" data-sort="87">
+                <span class="coverage-percent">87 %</span>
+                <span class="coverage-count">(7/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/I18n.html">src/i18n/i18n.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>I18n</td>
+            <td align="right" data-sort="78">
+                <span class="coverage-percent">78 %</span>
+                <span class="coverage-count">(11/14)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#replace">src/i18n/i18n.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>replace</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/ReplacePipe.html">src/i18n/replace.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>ReplacePipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/IconDirective.html">src/icon/icon.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>IconDirective</td>
+            <td align="right" data-sort="7">
+                <span class="coverage-percent">7 %</span>
+                <span class="coverage-count">(1/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#ICON_SERVICE_PROVIDER_FACTORY">src/icon/icon.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>ICON_SERVICE_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#ICON_SERVICE_PROVIDER">src/icon/icon.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>ICON_SERVICE_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/IconCache.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>class</td>
+            <td>IconCache</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/IconMemoryCache.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>class</td>
+            <td>IconMemoryCache</td>
+            <td align="right" data-sort="25">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(1/4)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/IconNameNotFoundError.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>class</td>
+            <td>IconNameNotFoundError</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(1/2)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/IconSizeNotFoundError.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>class</td>
+            <td>IconSizeNotFoundError</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(1/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/IconService.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>IconService</td>
+            <td align="right" data-sort="85">
+                <span class="coverage-percent">85 %</span>
+                <span class="coverage-count">(6/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/IconDescriptor.html">src/icon/icon.service.ts</a>
+            </td>
+            <td>interface</td>
+            <td>IconDescriptor</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(7/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/InlineLoading.html">src/inline-loading/inline-loading.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>InlineLoading</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(9/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TextInput.html">src/input/input.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TextInput</td>
+            <td align="right" data-sort="13">
+                <span class="coverage-percent">13 %</span>
+                <span class="coverage-count">(2/15)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Label.html">src/input/label.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Label</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(14/21)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PasswordInputLabelComponent.html">src/input/password-input-label.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PasswordInputLabelComponent</td>
+            <td align="right" data-sort="84">
+                <span class="coverage-percent">84 %</span>
+                <span class="coverage-count">(32/38)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/PasswordInput.html">src/input/password.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>PasswordInput</td>
+            <td align="right" data-sort="4">
+                <span class="coverage-percent">4 %</span>
+                <span class="coverage-count">(1/21)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TextArea.html">src/input/text-area.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TextArea</td>
+            <td align="right" data-sort="12">
+                <span class="coverage-percent">12 %</span>
+                <span class="coverage-count">(1/8)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TextInputLabelComponent.html">src/input/text-input-label.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TextInputLabelComponent</td>
+            <td align="right" data-sort="70">
+                <span class="coverage-percent">70 %</span>
+                <span class="coverage-count">(14/20)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TextareaLabelComponent.html">src/input/textarea-label.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TextareaLabelComponent</td>
+            <td align="right" data-sort="62">
+                <span class="coverage-percent">62 %</span>
+                <span class="coverage-count">(15/24)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/LayerDirective.html">src/layer/layer.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>LayerDirective</td>
+            <td align="right" data-sort="30">
+                <span class="coverage-percent">30 %</span>
+                <span class="coverage-count">(3/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#MAX_LEVEL">src/layer/layer.directive.ts</a>
+            </td>
+            <td>variable</td>
+            <td>MAX_LEVEL</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/StackDirective.html">src/layout/stack.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>StackDirective</td>
+            <td align="right" data-sort="37">
+                <span class="coverage-percent">37 %</span>
+                <span class="coverage-count">(3/8)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/Link.html">src/link/link.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>Link</td>
+            <td align="right" data-sort="62">
+                <span class="coverage-percent">62 %</span>
+                <span class="coverage-count">(5/8)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ListItemDirective.html">src/list/list-item.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ListItemDirective</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/List.html">src/list/list.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>List</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(1/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Loading.html">src/loading/loading.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Loading</td>
+            <td align="right" data-sort="83">
+                <span class="coverage-percent">83 %</span>
+                <span class="coverage-count">(5/6)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AlertModal.html">src/modal/alert-modal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AlertModal</td>
+            <td align="right" data-sort="27">
+                <span class="coverage-percent">27 %</span>
+                <span class="coverage-count">(5/18)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/AlertModalData.html">src/modal/alert-modal.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>AlertModalData</td>
+            <td align="right" data-sort="90">
+                <span class="coverage-percent">90 %</span>
+                <span class="coverage-count">(9/10)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ModalButton.html">src/modal/alert-modal.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ModalButton</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(4/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/BaseModal.html">src/modal/base-modal.class.ts</a>
+            </td>
+            <td>directive</td>
+            <td>BaseModal</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/BaseModalService.html">src/modal/base-modal.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>BaseModalService</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(4/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ModalContentText.html">src/modal/modal-content-text.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ModalContentText</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ModalContent.html">src/modal/modal-content.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ModalContent</td>
+            <td align="right" data-sort="25">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(1/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ModalFooter.html">src/modal/modal-footer.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ModalFooter</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ModalHeaderHeading.html">src/modal/modal-header-heading.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ModalHeaderHeading</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ModalHeaderLabel.html">src/modal/modal-header-label.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ModalHeaderLabel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ModalHeader.html">src/modal/modal-header.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ModalHeader</td>
+            <td align="right" data-sort="55">
+                <span class="coverage-percent">55 %</span>
+                <span class="coverage-count">(5/9)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Modal.html">src/modal/modal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Modal</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(15/20)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ModalService.html">src/modal/modal.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ModalService</td>
+            <td align="right" data-sort="71">
+                <span class="coverage-percent">71 %</span>
+                <span class="coverage-count">(5/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Overlay.html">src/modal/overlay.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Overlay</td>
+            <td align="right" data-sort="83">
+                <span class="coverage-percent">83 %</span>
+                <span class="coverage-count">(5/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ActionableButton.html">src/notification/actionable-button.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ActionableButton</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ActionableNotification.html">src/notification/actionable-notification.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ActionableNotification</td>
+            <td align="right" data-sort="23">
+                <span class="coverage-percent">23 %</span>
+                <span class="coverage-count">(6/26)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ActionableSubtitle.html">src/notification/actionable-subtitle.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ActionableSubtitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ActionableTitle.html">src/notification/actionable-title.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ActionableTitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/BaseNotification.html">src/notification/base-notification.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>BaseNotification</td>
+            <td align="right" data-sort="36">
+                <span class="coverage-percent">36 %</span>
+                <span class="coverage-count">(4/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ActionableContent.html">src/notification/notification-content.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ActionableContent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NotificationAction.html">src/notification/notification-content.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NotificationAction</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NotificationContent.html">src/notification/notification-content.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NotificationContent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NotificationLink.html">src/notification/notification-content.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NotificationLink</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ToastContent.html">src/notification/notification-content.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ToastContent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/NotificationDisplayService.html">src/notification/notification-display.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>NotificationDisplayService</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/NotificationSubtitle.html">src/notification/notification-subtitle.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>NotificationSubtitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/NotificationTitle.html">src/notification/notification-title.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>NotificationTitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Notification.html">src/notification/notification.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Notification</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(5/25)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/NotificationService.html">src/notification/notification.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>NotificationService</td>
+            <td align="right" data-sort="70">
+                <span class="coverage-percent">70 %</span>
+                <span class="coverage-count">(7/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToastCaption.html">src/notification/toast-caption.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToastCaption</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToastSubtitle.html">src/notification/toast-subtitle.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToastSubtitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToastTitle.html">src/notification/toast-title.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToastTitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Toast.html">src/notification/toast.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Toast</td>
+            <td align="right" data-sort="19">
+                <span class="coverage-percent">19 %</span>
+                <span class="coverage-count">(5/26)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/NumberComponent.html">src/number-input/number.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>NumberComponent</td>
+            <td align="right" data-sort="62">
+                <span class="coverage-percent">62 %</span>
+                <span class="coverage-count">(33/53)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/NumberChange.html">src/number-input/number.component.ts</a>
+            </td>
+            <td>class</td>
+            <td>NumberChange</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/PaginationModel.html">src/pagination/pagination-model.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>PaginationModel</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(3/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PaginationNavItem.html">src/pagination/pagination-nav/pagination-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PaginationNavItem</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(4/5)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PaginationNav.html">src/pagination/pagination-nav/pagination-nav.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PaginationNav</td>
+            <td align="right" data-sort="40">
+                <span class="coverage-percent">40 %</span>
+                <span class="coverage-count">(6/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PaginationNavTranslations.html">src/pagination/pagination-nav/pagination-nav.component.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PaginationNavTranslations</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PaginationOverflow.html">src/pagination/pagination-nav/pagination-overflow.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PaginationOverflow</td>
+            <td align="right" data-sort="42">
+                <span class="coverage-percent">42 %</span>
+                <span class="coverage-count">(3/7)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Pagination.html">src/pagination/pagination.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Pagination</td>
+            <td align="right" data-sort="38">
+                <span class="coverage-percent">38 %</span>
+                <span class="coverage-count">(10/26)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PaginationTranslations.html">src/pagination/pagination.component.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PaginationTranslations</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Placeholder.html">src/placeholder/placeholder.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Placeholder</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(4/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#PLACEHOLDER_SERVICE_PROVIDER_FACTORY">src/placeholder/placeholder.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>PLACEHOLDER_SERVICE_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#PLACEHOLDER_SERVICE_PROVIDER">src/placeholder/placeholder.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>PLACEHOLDER_SERVICE_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/PlaceholderService.html">src/placeholder/placeholder.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>PlaceholderService</td>
+            <td align="right" data-sort="45">
+                <span class="coverage-percent">45 %</span>
+                <span class="coverage-count">(5/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PopoverContent.html">src/popover/popover-content.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PopoverContent</td>
+            <td align="right" data-sort="14">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(1/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/PopoverContainer.html">src/popover/popover.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>PopoverContainer</td>
+            <td align="right" data-sort="51">
+                <span class="coverage-percent">51 %</span>
+                <span class="coverage-count">(15/29)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ProgressBar.html">src/progress-bar/progress-bar.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ProgressBar</td>
+            <td align="right" data-sort="34">
+                <span class="coverage-percent">34 %</span>
+                <span class="coverage-count">(8/23)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Step.html">src/progress-indicator/progress-indicator-step.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Step</td>
+            <td align="right" data-sort="87">
+                <span class="coverage-percent">87 %</span>
+                <span class="coverage-count">(7/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ProgressIndicator.html">src/progress-indicator/progress-indicator.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ProgressIndicator</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(3/15)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/RadioChange.html">src/radio/radio-change.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>RadioChange</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(3/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RadioGroup.html">src/radio/radio-group.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RadioGroup</td>
+            <td align="right" data-sort="77">
+                <span class="coverage-percent">77 %</span>
+                <span class="coverage-count">(34/44)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Radio.html">src/radio/radio.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Radio</td>
+            <td align="right" data-sort="52">
+                <span class="coverage-percent">52 %</span>
+                <span class="coverage-count">(12/23)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Search.html">src/search/search.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Search</td>
+            <td align="right" data-sort="74">
+                <span class="coverage-percent">74 %</span>
+                <span class="coverage-count">(37/50)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/OptGroup.html">src/select/optgroup.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>OptGroup</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/Option.html">src/select/option.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>Option</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Select.html">src/select/select.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Select</td>
+            <td align="right" data-sort="63">
+                <span class="coverage-percent">63 %</span>
+                <span class="coverage-count">(23/36)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SkeletonPlaceholder.html">src/skeleton/skeleton-placeholder.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SkeletonPlaceholder</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SkeletonText.html">src/skeleton/skeleton-text.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SkeletonText</td>
+            <td align="right" data-sort="14">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(1/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Slider.html">src/slider/slider.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Slider</td>
+            <td align="right" data-sort="60">
+                <span class="coverage-percent">60 %</span>
+                <span class="coverage-count">(35/58)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ListColumn.html">src/structured-list/list-column.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ListColumn</td>
+            <td align="right" data-sort="22">
+                <span class="coverage-percent">22 %</span>
+                <span class="coverage-count">(2/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ListHeader.html">src/structured-list/list-header.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ListHeader</td>
+            <td align="right" data-sort="18">
+                <span class="coverage-percent">18 %</span>
+                <span class="coverage-count">(2/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ListRow.html">src/structured-list/list-row.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ListRow</td>
+            <td align="right" data-sort="24">
+                <span class="coverage-percent">24 %</span>
+                <span class="coverage-count">(6/25)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/StructuredList.html">src/structured-list/structured-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>StructuredList</td>
+            <td align="right" data-sort="44">
+                <span class="coverage-percent">44 %</span>
+                <span class="coverage-count">(8/18)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableBody.html">src/table/body/table-body.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableBody</td>
+            <td align="right" data-sort="38">
+                <span class="coverage-percent">38 %</span>
+                <span class="coverage-count">(8/21)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableExpandedRow.html">src/table/body/table-expanded-row.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableExpandedRow</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableRowComponent.html">src/table/body/table-row.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableRowComponent</td>
+            <td align="right" data-sort="30">
+                <span class="coverage-percent">30 %</span>
+                <span class="coverage-count">(10/33)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableCheckbox.html">src/table/cell/table-checkbox.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableCheckbox</td>
+            <td align="right" data-sort="23">
+                <span class="coverage-percent">23 %</span>
+                <span class="coverage-count">(3/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableData.html">src/table/cell/table-data.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableData</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableExpandButton.html">src/table/cell/table-expand-button.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableExpandButton</td>
+            <td align="right" data-sort="16">
+                <span class="coverage-percent">16 %</span>
+                <span class="coverage-count">(2/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableRadio.html">src/table/cell/table-radio.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableRadio</td>
+            <td align="right" data-sort="13">
+                <span class="coverage-percent">13 %</span>
+                <span class="coverage-count">(2/15)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/DataGridInteractionModel.html">src/table/data-grid-interaction-model.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>DataGridInteractionModel</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(14/14)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/DataGridPosition.html">src/table/data-grid-interaction-model.class.ts</a>
+            </td>
+            <td>interface</td>
+            <td>DataGridPosition</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ExpandedRowHover.html">src/table/expanded-row-hover.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ExpandedRowHover</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TableHeadCellLabel.html">src/table/head/table-head-cell-label.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TableHeadCellLabel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableHeadCell.html">src/table/head/table-head-cell.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableHeadCell</td>
+            <td align="right" data-sort="5">
+                <span class="coverage-percent">5 %</span>
+                <span class="coverage-count">(1/19)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableHeadCheckbox.html">src/table/head/table-head-checkbox.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableHeadCheckbox</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableHeadExpand.html">src/table/head/table-head-expand.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableHeadExpand</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableHead.html">src/table/head/table-head.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableHead</td>
+            <td align="right" data-sort="21">
+                <span class="coverage-percent">21 %</span>
+                <span class="coverage-count">(7/32)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TableHeaderDescription.html">src/table/header/table-header-description.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TableHeaderDescription</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TableHeaderTitle.html">src/table/header/table-header-title.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TableHeaderTitle</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableHeader.html">src/table/header/table-header.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableHeader</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableAdapter.html">src/table/table-adapter.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableAdapter</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(7/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableCellAdapter.html">src/table/table-adapter.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableCellAdapter</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(4/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableDomAdapter.html">src/table/table-adapter.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableDomAdapter</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(13/13)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableRowAdapter.html">src/table/table-adapter.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableRowAdapter</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableContainer.html">src/table/table-container.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableContainer</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableHeaderItem.html">src/table/table-header-item.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableHeaderItem</td>
+            <td align="right" data-sort="86">
+                <span class="coverage-percent">86 %</span>
+                <span class="coverage-count">(19/22)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableItem.html">src/table/table-item.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableItem</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(8/10)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableModel.html">src/table/table-model.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableModel</td>
+            <td align="right" data-sort="77">
+                <span class="coverage-percent">77 %</span>
+                <span class="coverage-count">(41/53)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/TableRow.html">src/table/table-row.class.ts</a>
+            </td>
+            <td>class</td>
+            <td>TableRow</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Table.html">src/table/table.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Table</td>
+            <td align="right" data-sort="35">
+                <span class="coverage-percent">35 %</span>
+                <span class="coverage-count">(32/90)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TableDirective.html">src/table/table.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TableDirective</td>
+            <td align="right" data-sort="7">
+                <span class="coverage-percent">7 %</span>
+                <span class="coverage-count">(1/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/TableTranslations.html">src/table/table.types.ts</a>
+            </td>
+            <td>interface</td>
+            <td>TableTranslations</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableToolbarActions.html">src/table/toolbar/table-toolbar-actions.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableToolbarActions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableToolbarContent.html">src/table/toolbar/table-toolbar-content.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableToolbarContent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableToolbarSearch.html">src/table/toolbar/table-toolbar-search.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableToolbarSearch</td>
+            <td align="right" data-sort="64">
+                <span class="coverage-percent">64 %</span>
+                <span class="coverage-count">(35/54)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TableToolbar.html">src/table/toolbar/table-toolbar.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TableToolbar</td>
+            <td align="right" data-sort="7">
+                <span class="coverage-percent">7 %</span>
+                <span class="coverage-count">(1/14)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/BaseTabHeader.html">src/tabs/base-tab-header.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>BaseTabHeader</td>
+            <td align="right" data-sort="32">
+                <span class="coverage-percent">32 %</span>
+                <span class="coverage-count">(8/25)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TabHeaderGroup.html">src/tabs/tab-header-group.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TabHeaderGroup</td>
+            <td align="right" data-sort="29">
+                <span class="coverage-percent">29 %</span>
+                <span class="coverage-count">(10/34)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/TabHeader.html">src/tabs/tab-header.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>TabHeader</td>
+            <td align="right" data-sort="17">
+                <span class="coverage-percent">17 %</span>
+                <span class="coverage-count">(5/28)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TabHeaders.html">src/tabs/tab-headers.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TabHeaders</td>
+            <td align="right" data-sort="42">
+                <span class="coverage-percent">42 %</span>
+                <span class="coverage-count">(18/42)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TabSkeleton.html">src/tabs/tab-skeleton.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TabSkeleton</td>
+            <td align="right" data-sort="57">
+                <span class="coverage-percent">57 %</span>
+                <span class="coverage-count">(4/7)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Tab.html">src/tabs/tab.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Tab</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(17/21)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Tabs.html">src/tabs/tabs.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Tabs</td>
+            <td align="right" data-sort="93">
+                <span class="coverage-percent">93 %</span>
+                <span class="coverage-count">(14/15)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TagFilter.html">src/tag/tag-filter.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TagFilter</td>
+            <td align="right" data-sort="30">
+                <span class="coverage-percent">30 %</span>
+                <span class="coverage-count">(4/13)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Tag.html">src/tag/tag.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Tag</td>
+            <td align="right" data-sort="60">
+                <span class="coverage-percent">60 %</span>
+                <span class="coverage-count">(3/5)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ThemeDirective.html">src/theme/theme.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ThemeDirective</td>
+            <td align="right" data-sort="27">
+                <span class="coverage-percent">27 %</span>
+                <span class="coverage-count">(3/11)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ClickableTile.html">src/tiles/clickable-tile.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ClickableTile</td>
+            <td align="right" data-sort="72">
+                <span class="coverage-percent">72 %</span>
+                <span class="coverage-count">(8/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ExpandableTileAboveFoldDirective.html">src/tiles/expandable-tile-above.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ExpandableTileAboveFoldDirective</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ExpandableTileBelowFoldDirective.html">src/tiles/expandable-tile-below.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ExpandableTileBelowFoldDirective</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ExpandableTile.html">src/tiles/expandable-tile.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ExpandableTile</td>
+            <td align="right" data-sort="28">
+                <span class="coverage-percent">28 %</span>
+                <span class="coverage-count">(4/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ExpandableTileTranslations.html">src/tiles/expandable-tile.component.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ExpandableTileTranslations</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SelectionTile.html">src/tiles/selection-tile.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SelectionTile</td>
+            <td align="right" data-sort="38">
+                <span class="coverage-percent">38 %</span>
+                <span class="coverage-count">(7/18)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TileGroup.html">src/tiles/tile-group.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TileGroup</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(4/20)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/TileSelection.html">src/tiles/tile-selection.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>TileSelection</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Tile.html">src/tiles/tile.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Tile</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(1/5)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TimePickerSelect.html">src/timepicker-select/timepicker-select.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TimePickerSelect</td>
+            <td align="right" data-sort="48">
+                <span class="coverage-percent">48 %</span>
+                <span class="coverage-count">(21/43)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TimePicker.html">src/timepicker/timepicker.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TimePicker</td>
+            <td align="right" data-sort="21">
+                <span class="coverage-percent">21 %</span>
+                <span class="coverage-count">(6/28)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Toggle.html">src/toggle/toggle.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Toggle</td>
+            <td align="right" data-sort="71">
+                <span class="coverage-percent">71 %</span>
+                <span class="coverage-count">(37/52)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToggletipAction.html">src/toggletip/toggletip-action.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToggletipAction</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToggletipButton.html">src/toggletip/toggletip-button.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToggletipButton</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToggletipContent.html">src/toggletip/toggletip-content.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToggletipContent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/ToggletipLabel.html">src/toggletip/toggletip-label.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>ToggletipLabel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Toggletip.html">src/toggletip/toggletip.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Toggletip</td>
+            <td align="right" data-sort="38">
+                <span class="coverage-percent">38 %</span>
+                <span class="coverage-count">(15/39)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TooltipDefinition.html">src/tooltip/definition-tooptip.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TooltipDefinition</td>
+            <td align="right" data-sort="45">
+                <span class="coverage-percent">45 %</span>
+                <span class="coverage-count">(18/40)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Tooltip.html">src/tooltip/tooltip.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Tooltip</td>
+            <td align="right" data-sort="42">
+                <span class="coverage-percent">42 %</span>
+                <span class="coverage-count">(22/52)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/TooltipConfig.html">src/tooltip/tooltip.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>TooltipConfig</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(9/9)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#DEFAULT_TOOLTIP_CONFIG">src/tooltip/tooltip.interface.ts</a>
+            </td>
+            <td>variable</td>
+            <td>DEFAULT_TOOLTIP_CONFIG</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TreeNodeComponent.html">src/treeview/tree-node.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TreeNodeComponent</td>
+            <td align="right" data-sort="25">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(9/36)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/EventOnNode.html">src/treeview/tree-node.types.ts</a>
+            </td>
+            <td>interface</td>
+            <td>EventOnNode</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Node.html">src/treeview/tree-node.types.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Node</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TreeViewComponent.html">src/treeview/treeview.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TreeViewComponent</td>
+            <td align="right" data-sort="44">
+                <span class="coverage-percent">44 %</span>
+                <span class="coverage-count">(11/25)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/TreeViewService.html">src/treeview/treeview.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>TreeViewService</td>
+            <td align="right" data-sort="53">
+                <span class="coverage-percent">53 %</span>
+                <span class="coverage-count">(7/13)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Hamburger.html">src/ui-shell/header/hamburger.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Hamburger</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(6/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HeaderAction.html">src/ui-shell/header/header-action.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HeaderAction</td>
+            <td align="right" data-sort="93">
+                <span class="coverage-percent">93 %</span>
+                <span class="coverage-count">(14/15)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HeaderGlobal.html">src/ui-shell/header/header-global.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HeaderGlobal</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HeaderItem.html">src/ui-shell/header/header-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HeaderItem</td>
+            <td align="right" data-sort="53">
+                <span class="coverage-percent">53 %</span>
+                <span class="coverage-count">(7/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HeaderMenu.html">src/ui-shell/header/header-menu.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HeaderMenu</td>
+            <td align="right" data-sort="13">
+                <span class="coverage-percent">13 %</span>
+                <span class="coverage-count">(3/22)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/HeaderItemInterface.html">src/ui-shell/header/header-navigation-items.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>HeaderItemInterface</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NavigationItem.html">src/ui-shell/header/header-navigation-items.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NavigationItem</td>
+            <td align="right" data-sort="10">
+                <span class="coverage-percent">10 %</span>
+                <span class="coverage-count">(1/10)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HeaderNavigation.html">src/ui-shell/header/header-navigation.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HeaderNavigation</td>
+            <td align="right" data-sort="40">
+                <span class="coverage-percent">40 %</span>
+                <span class="coverage-count">(2/5)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Header.html">src/ui-shell/header/header.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Header</td>
+            <td align="right" data-sort="64">
+                <span class="coverage-percent">64 %</span>
+                <span class="coverage-count">(9/14)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/Panel.html">src/ui-shell/panel/panel.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>Panel</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SwitcherListItem.html">src/ui-shell/panel/switcher-list-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SwitcherListItem</td>
+            <td align="right" data-sort="46">
+                <span class="coverage-percent">46 %</span>
+                <span class="coverage-count">(7/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SwitcherList.html">src/ui-shell/panel/switcher-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SwitcherList</td>
+            <td align="right" data-sort="20">
+                <span class="coverage-percent">20 %</span>
+                <span class="coverage-count">(1/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./directives/RouterLinkExtendedDirective.html">src/ui-shell/sidenav/routerlink-extended.directive.ts</a>
+            </td>
+            <td>directive</td>
+            <td>RouterLinkExtendedDirective</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SideNavItem.html">src/ui-shell/sidenav/sidenav-item.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SideNavItem</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(9/18)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/SideNavItemInterface.html">src/ui-shell/sidenav/sidenav-item.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>SideNavItemInterface</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SideNavMenu.html">src/ui-shell/sidenav/sidenav-menu.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SideNavMenu</td>
+            <td align="right" data-sort="26">
+                <span class="coverage-percent">26 %</span>
+                <span class="coverage-count">(5/19)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SideNav.html">src/ui-shell/sidenav/sidenav.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SideNav</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(5/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#findNextElem">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>findNextElem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#findPrevElem">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>findPrevElem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#findSiblingElem">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>findSiblingElem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#focusNextElem">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>focusNextElem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#focusNextTree">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>focusNextTree</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#focusPrevElem">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>focusPrevElem</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#HcModeChecker">src/utils/a11y.ts</a>
+            </td>
+            <td>function</td>
+            <td>HcModeChecker</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AnimationFrameService.html">src/utils/animation-frame.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AnimationFrameService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AnimationFrameServiceSingleton.html">src/utils/animation-frame.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AnimationFrameServiceSingleton</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/DocumentService.html">src/utils/document.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>DocumentService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ElementService.html">src/utils/element.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ElementService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ElementVisibilityEvent.html">src/utils/element.types.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ElementVisibilityEvent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#getEventObservable">src/utils/event-observable.ts</a>
+            </td>
+            <td>variable</td>
+            <td>getEventObservable</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/EventService.html">src/utils/event.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>EventService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#merge">src/utils/object.ts</a>
+            </td>
+            <td>variable</td>
+            <td>merge</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#getScrollableParents">src/utils/scroll.ts</a>
+            </td>
+            <td>variable</td>
+            <td>getScrollableParents</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#hasScrollableParents">src/utils/scroll.ts</a>
+            </td>
+            <td>variable</td>
+            <td>hasScrollableParents</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#isScrollableElement">src/utils/scroll.ts</a>
+            </td>
+            <td>variable</td>
+            <td>isScrollableElement</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#isVisibleInContainer">src/utils/scroll.ts</a>
+            </td>
+            <td>variable</td>
+            <td>isVisibleInContainer</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#scrollableParentsObservable">src/utils/scroll.ts</a>
+            </td>
+            <td>variable</td>
+            <td>scrollableParentsObservable</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY">src/utils/utils.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#DOCUMENT_SERVICE_PROVIDER_FACTORY">src/utils/utils.module.ts</a>
+            </td>
+            <td>function</td>
+            <td>DOCUMENT_SERVICE_PROVIDER_FACTORY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER">src/utils/utils.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#DOCUMENT_SERVICE_PROVIDER">src/utils/utils.module.ts</a>
+            </td>
+            <td>variable</td>
+            <td>DOCUMENT_SERVICE_PROVIDER</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#clone">src/utils/utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>clone</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#closestAttr">src/utils/utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>closestAttr</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#matchesAttr">src/utils/utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>matchesAttr</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/functions.html#getScrollbarWidth">src/utils/window-tools.ts</a>
+            </td>
+            <td>function</td>
+            <td>getScrollbarWidth</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#_scrollbarWidth">src/utils/window-tools.ts</a>
+            </td>
+            <td>variable</td>
+            <td>_scrollbarWidth</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="js/libs/tablesort.min.js"></script>
+<script src="js/libs/tablesort.number.min.js"></script>
+<script>
+    new Tablesort(document.getElementById('coverage-table'));
+</script>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'coverage';
+            var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
