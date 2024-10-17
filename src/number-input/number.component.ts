@@ -275,19 +275,19 @@ export class NumberComponent implements ControlValueAccessor {
 
 	@HostBinding("class.cds--number-input--fluid--invalid") get fluidInvalid() {
 		return this.fluid && this.invalid;
-	};
+	}
 
 	@HostBinding("class.cds--number-input--fluid--disabled") get fluidDisabled() {
 		return this.fluid && this.disabled;
-	};
+	}
 
 	@HostBinding("class.cds--number-input--fluid--focus") get fluidFocus() {
 		return this.fluid && this._isFocused;
-	};
+	}
 
 	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeleton() {
 		return this.fluid && this.skeleton;
-	};
+	}
 
 	protected _isFocused = false;
 
@@ -399,10 +399,10 @@ export class NumberComponent implements ControlValueAccessor {
 	}
 
 	handleFocus(event: FocusEvent) {
-		if ('type' in event.target && (<HTMLInputElement>event.target).type === "button") {
+		if ("type" in event.target && (<HTMLInputElement>event.target).type === "button") {
 			this._isFocused = false;
 		} else {
-			this._isFocused = event.type === "focus" ? true : false;
+			this._isFocused = event.type === "focus";
 		}
 	}
 }
