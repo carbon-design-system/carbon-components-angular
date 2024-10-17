@@ -90,6 +90,7 @@ export default {
 		"CHECKBOX_HEADER": "Select all rows",
 		"CHECKBOX_ROW": "Select {{value}}",
 		"EXPAND_BUTTON": "Expand row",
+		"EXPAND_ALL_BUTTON": "Expand all rows",
 		"SORT_DESCENDING": "Sort rows by this header in descending order",
 		"SORT_ASCENDING": "Sort rows by this header in ascending order",
 		"ROW": "row"

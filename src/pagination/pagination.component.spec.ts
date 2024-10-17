@@ -1,4 +1,4 @@
-import { TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
@@ -149,5 +149,29 @@ describe("Pagination", () => {
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
 		expect(element.componentInstance.currentPage).toBe(5);
+	});
+
+	/**
+	 * Number of pages should always be 1 even if totalDataLength is greater than 0
+	 */
+	it("should recalculate pages when changing data", () => {
+		const fixture = TestBed.createComponent(Pagination);
+		const wrapper = fixture.componentInstance;
+		const model = new PaginationModel();
+		model.currentPage = 1;
+		model.pageLength = 5;
+		model.totalDataLength = 9;
+		wrapper.model = model;
+		fixture.detectChanges();
+		expect(wrapper.pageOptions).toEqual(Array(2));
+		model.totalDataLength = 2;
+		fixture.detectChanges();
+		expect(wrapper.pageOptions).toEqual(Array(1));
+		model.totalDataLength = 20;
+		fixture.detectChanges();
+		expect(wrapper.pageOptions).toEqual(Array(4));
+		model.totalDataLength = 0;
+		fixture.detectChanges();
+		expect(wrapper.pageOptions).toEqual(Array(1));
 	});
 });
