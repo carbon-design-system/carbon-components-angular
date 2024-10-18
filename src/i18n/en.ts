@@ -55,7 +55,8 @@ export default {
 		"DECREMENT": "Decrement value"
 	},
 	"OVERFLOW_MENU": {
-		"OVERFLOW": "Overflow"
+		"OVERFLOW": "Overflow",
+		"ICON_DESCRIPTION": "Options"
 	},
 	"SEARCH": {
 		"LABEL": "Search",
