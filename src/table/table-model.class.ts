@@ -411,6 +411,13 @@ export class TableModel implements PaginationModel {
 		this.dataChange.emit();
 	}
 
+	/**
+	 * Deletes all rows.
+	 */
+	deleteAllRows() {
+		this.data = [];
+	}
+
 	hasExpandableRows() {
 		return this.data.some(data => data.some(d => d && d.expandedData)); // checking for some in 2D array
 	}
