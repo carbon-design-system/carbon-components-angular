@@ -17,6 +17,8 @@ import { PlaceholderModule } from "carbon-components-angular/placeholder";
 import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { UtilsModule } from "carbon-components-angular/utils";
 import { IconModule } from "carbon-components-angular/icon";
+import { ButtonModule } from "carbon-components-angular/button";
+import { TooltipModule } from "carbon-components-angular/tooltip";
 
 @NgModule({
 	declarations: [
@@ -44,7 +46,9 @@ import { IconModule } from "carbon-components-angular/icon";
 		PlaceholderModule,
 		ExperimentalModule,
 		UtilsModule,
-		IconModule
+		IconModule,
+		ButtonModule,
+		TooltipModule
 	]
 })
 export class DialogModule {}
