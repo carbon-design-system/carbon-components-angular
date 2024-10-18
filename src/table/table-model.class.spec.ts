@@ -486,6 +486,8 @@ describe("Table", () => {
 		tableModel.deleteAllRows();
 
 		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.totalDataLength).toEqual(0);
+		// Should still equal to 1, since we default to [[]] when we set data to an empty array
 		expect(tableModel.rowsSelected.length).toEqual(1);
 		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.rowsExpanded.length).toEqual(1);
