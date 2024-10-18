@@ -416,13 +416,6 @@ export class TableModel implements PaginationModel {
 	 */
 	deleteAllRows() {
 		this.data = [];
-		this.rowsSelected = [];
-		this.rowsExpanded = [];
-		this.rowsContext = [];
-		this.rowsClass = [];
-		this.rowsIndices = [];
-
-		this.dataChange.emit();
 	}
 
 	hasExpandableRows() {

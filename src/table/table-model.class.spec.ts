@@ -485,12 +485,12 @@ describe("Table", () => {
 
 		tableModel.deleteAllRows();
 
-		expect(tableModel.data.length).toEqual(0);
-		expect(tableModel.rowsSelected.length).toEqual(0);
-		expect(tableModel.rowsContext.length).toEqual(0);
-		expect(tableModel.rowsExpanded.length).toEqual(0);
-		expect(tableModel.rowsClass.length).toEqual(0);
-		expect(tableModel.rowsIndices.length).toEqual(0);
+		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
+		expect(tableModel.rowsExpanded.length).toEqual(1);
+		expect(tableModel.rowsClass.length).toEqual(1);
+		expect(tableModel.rowsIndices.length).toEqual(1);
 	});
 
 	/* ****************************************************************
