@@ -475,7 +475,23 @@ describe("Table", () => {
 		expect(tableModel.header.length).toEqual(2);
 	});
 
+	it("should delete all rows", () => {
+		let tableModel  = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"})],
+			[new TableItem({data: "C"}), new TableItem({data: "D"})],
+			[new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
 
+		tableModel.deleteAllRows();
+
+		expect(tableModel.data.length).toEqual(0);
+		expect(tableModel.rowsSelected.length).toEqual(0);
+		expect(tableModel.rowsContext.length).toEqual(0);
+		expect(tableModel.rowsExpanded.length).toEqual(0);
+		expect(tableModel.rowsClass.length).toEqual(0);
+		expect(tableModel.rowsIndices.length).toEqual(0);
+	});
 
 	/* ****************************************************************
 	***********                                             ***********
