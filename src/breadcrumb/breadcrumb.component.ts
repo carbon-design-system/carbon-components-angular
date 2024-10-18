@@ -71,34 +71,29 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 				</ng-template>
 			</cds-breadcrumb-item>
 			<cds-breadcrumb-item>
-				<cds-icon-button
-					[buttonNgClass]="{ 'cds--overflow-menu': true }"
-					type="button"
-					kind="ghost"
-					size="md"
-					[description]="overflowMenuDescription">
-					<ng-template #overflowMenuTrigger>
-						<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
-					</ng-template>
-					<cds-overflow-menu
-						[customTrigger]="overflowMenuTrigger"
-						triggerClass="cds--btn--icon-only">
-						<li class="cds--overflow-menu-options__option"
-							*ngFor="let item of overflowItems">
-							<a class="cds--overflow-menu-options__btn"
-								href="{{item?.href}}"
-								(click)="navigate($event, item)"
-								style="text-decoration: none;">
-								<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>
-								<ng-template
-									*ngIf="item?.template"
-									[ngTemplateOutlet]="item?.template"
-									[ngTemplateOutletContext]="{ $implicit: item }">
-								</ng-template>
-							</a>
-						</li>
-					</cds-overflow-menu>
-				</cds-icon-button>
+				<ng-template #overflowMenuTrigger>
+					<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
+				</ng-template>
+				<cds-overflow-menu
+					[customTrigger]="overflowMenuTrigger"
+					triggerClass="cds--btn--icon-only"
+					[description]="description"
+					[autoAlign]="autoAlign">
+					<li class="cds--overflow-menu-options__option"
+						*ngFor="let item of overflowItems">
+						<a class="cds--overflow-menu-options__btn"
+							href="{{item?.href}}"
+							(click)="navigate($event, item)"
+							style="text-decoration: none;">
+							<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>
+							<ng-template
+								*ngIf="item?.template"
+								[ngTemplateOutlet]="item?.template"
+								[ngTemplateOutletContext]="{ $implicit: item }">
+							</ng-template>
+						</a>
+					</li>
+				</cds-overflow-menu>
 			</cds-breadcrumb-item>
 			<cds-breadcrumb-item
 				[href]="secondLast?.href"
@@ -162,7 +157,11 @@ export class Breadcrumb implements AfterContentInit {
 		return this._threshold;
 	}
 
-	@Input() overflowMenuDescription: string = this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION;
+	/**
+	 * **Experimental**: Auto align menu tooltip position
+	 */
+	@Input() autoAlign = false;
+	@Input() description: string = this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION;
 
 	/**
 	 * Emits the navigation status promise when the link is activated
