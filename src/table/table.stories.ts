@@ -482,7 +482,8 @@ const ExpansionTemplate = (args) => ({
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
-				[isDataGrid]="isDataGrid">
+				[isDataGrid]="isDataGrid"
+				[showExpandAllToggle]="showExpandAllToggle">
 			</app-expansion-table>
 		</cds-table-container>
 	`
@@ -491,7 +492,8 @@ export const WithExpansion = ExpansionTemplate.bind({});
 WithExpansion.args = {
 	...getProps({
 		description: "With expansion"
-	}, "args")
+	}, "args"),
+	showExpandAllToggle: false
 };
 
 const DyanmicContentTemplate = (args) => ({
