@@ -95,6 +95,7 @@ export interface PaginationNavTranslations {
 				<li class="cds--pagination-nav__list-item">
 					<cds-icon-button
 						kind="ghost"
+						size="md"
 						(click)="jumpToNext()"
 						[disabled]="rightArrowDisabled"
 						[description]="nextItemText.subject | async">
