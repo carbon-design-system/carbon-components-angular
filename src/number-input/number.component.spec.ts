@@ -108,6 +108,29 @@ describe("Number", () => {
 		buttonUp.click();
 		fixture.detectChanges();
 		expect(component.value).toEqual(2);
+	});	
+
+	it("should increment and set value to max if value + step exceeds max", () => {
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		component.value = 95;
+		component.step = 10;
+		component.max = 100;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(100);
+	});
+
+	it("should increment and set value to min if value + step is less than min", () => {
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		component.value = 0;
+		component.step = 2;
+		component.min = 5;
+		buttonUp.click();
+		fixture.detectChanges();
+	
+		expect(component.value).toBe(5);		
 	});
 
 	it("should not increment value if max is reached", () => {
@@ -128,6 +151,29 @@ describe("Number", () => {
 		fixture.detectChanges();
 		expect(component.value).toEqual(0);
 	});
+
+	it("should decrement and set value to max if value - step is less than max", () => {
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		component.value = 20;
+		component.step = 2;
+		component.max = 15;
+		buttonUp.click();
+		fixture.detectChanges();
+	
+		expect(component.value).toBe(15);		
+	});
+
+	it("should decrement and set value to min if value - step is less than min", () => {
+		fixture.detectChanges();
+		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		component.value = 6;
+		component.step = 2;
+		component.min = 5;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(5);
+	});	
 
 	it("should not decrement value min is reached", () => {
 		fixture.detectChanges();
