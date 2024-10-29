@@ -143,7 +143,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		 * Deprecated as of v5
 		 */
 		protected eventService: EventService
-	) { }
+	) {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
@@ -313,13 +313,13 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Empty method for child classes to override and specify additional init steps.
 	 * Run after DialogDirective completes it's ngOnInit.
 	 */
-	protected onDialogInit() { }
+	protected onDialogInit() {}
 
 	/**
 	 * Empty method for child to override and specify additional on changes steps.
 	 * run after DialogDirective completes it's ngOnChanges.
 	 */
-	protected onDialogChanges(_changes: SimpleChanges) { }
+	protected onDialogChanges(_changes: SimpleChanges) {}
 
-	protected updateConfig() { }
+	protected updateConfig() {}
 }
