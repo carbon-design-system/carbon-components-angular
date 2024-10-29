@@ -282,8 +282,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.isOpen = false;
 				this.onClose.emit();
 				this.isOpenChange.emit(false);
+				subscription.unsubscribe();
 			}
-			subscription.unsubscribe();
 		});
 
 		return this.dialogRef;
