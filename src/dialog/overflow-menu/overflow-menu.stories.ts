@@ -33,7 +33,11 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
+		<button (click)="show=!show">Click me!</button>
+		<br/><br/><br/><br/><br/><br/>
+
 		<cds-overflow-menu
+			*ngIf="show"
 			[placement]="placement"
 			[open]="open"
 			[flip]="flip"
@@ -50,10 +54,13 @@ const Template = (args) => ({
 			<cds-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</cds-overflow-menu-option>
 		</cds-overflow-menu>
 		<cds-placeholder></cds-placeholder>
+
+
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
+	show: true,
 	open: false,
 	flip: false,
 	offset: {
