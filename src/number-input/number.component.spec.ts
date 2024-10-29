@@ -152,9 +152,9 @@ describe("Number", () => {
 		expect(component.value).toEqual(0);
 	});
 
-	it("should decrement and set value to max if value - step is less than max", () => {
+	it("should decrement and set value to max if value - step exceeds max", () => {
 		fixture.detectChanges();
-		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
 		component.value = 20;
 		component.step = 2;
 		component.max = 15;
