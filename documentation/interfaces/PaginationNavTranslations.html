@@ -239,7 +239,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	HostBinding
 } from &quot;@angular/core&quot;;
 
 import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
@@ -287,7 +288,7 @@ export interface PaginationNavTranslations {
 				&lt;li class&#x3D;&quot;cds--pagination-nav__list-item&quot;&gt;
 					&lt;cds-icon-button
 						kind&#x3D;&quot;ghost&quot;
-						size&#x3D;&quot;md&quot;
+						[size]&#x3D;&quot;size&quot;
 						(click)&#x3D;&quot;jumpToPrevious()&quot;
 						[disabled]&#x3D;&quot;leftArrowDisabled&quot;
 						[description]&#x3D;&quot;previousItemText.subject | async&quot;&gt;
@@ -331,6 +332,7 @@ export interface PaginationNavTranslations {
 				&lt;li class&#x3D;&quot;cds--pagination-nav__list-item&quot;&gt;
 					&lt;cds-icon-button
 						kind&#x3D;&quot;ghost&quot;
+						[size]&#x3D;&quot;size&quot;
 						(click)&#x3D;&quot;jumpToNext()&quot;
 						[disabled]&#x3D;&quot;rightArrowDisabled&quot;
 						[description]&#x3D;&quot;nextItemText.subject | async&quot;&gt;
@@ -375,6 +377,22 @@ export class PaginationNav {
 		const valueWithDefaults &#x3D; merge(this.i18n.getMultiple(&quot;PAGINATION&quot;), value);
 		this.nextItemText.override(valueWithDefaults.NEXT);
 		this.previousItemText.override(valueWithDefaults.PREVIOUS);
+	}
+
+	/**
+	 * Sets the pagination nav size
+	 */
+	@Input() size: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;lg&quot;;
+
+	// Size
+	@HostBinding(&quot;class.cds--layout--size-sm&quot;) get smallLayoutSize() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;sm&quot;;
+	}
+	@HostBinding(&quot;class.cds--layout--size-md&quot;) get mediumLayoutSize() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;md&quot;;
+	}
+	@HostBinding(&quot;class.cds--layout--size-lg&quot;) get largeLayoutSize() {
+		return this.size &#x3D;&#x3D;&#x3D; &quot;lg&quot;;
 	}
 
 	/**

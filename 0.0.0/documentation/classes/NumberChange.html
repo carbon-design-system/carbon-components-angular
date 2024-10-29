@@ -256,7 +256,7 @@
 	TemplateRef,
 	HostListener
 } from &quot;@angular/core&quot;;
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
 import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
 import { Observable } from &quot;rxjs&quot;;
@@ -287,6 +287,7 @@ export class NumberChange {
 @Component({
 	selector: &quot;cds-number, ibm-number&quot;,
 	template: &#x60;
+		&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/label&gt;
 		&lt;div
 			data-numberinput
 			[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
@@ -300,7 +301,6 @@ export class NumberChange {
 				&#x27;cds--number--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
 				&#x27;cds--number--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 			}&quot;&gt;
-			&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/label&gt;
 			&lt;label
 				*ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot;
 				[for]&#x3D;&quot;id&quot;
@@ -327,6 +327,8 @@ export class NumberChange {
 					[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
 					[attr.data-invalid]&#x3D;&quot;invalid ? invalid : null&quot;
 					[placeholder]&#x3D;&quot;placeholder&quot;
+					(focus)&#x3D;&quot;fluid ? handleFocus($event): null&quot;
+					(blur)&#x3D;&quot;fluid ? handleFocus($event): null&quot;
 					(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 				&lt;svg
 					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
@@ -365,8 +367,9 @@ export class NumberChange {
 					&lt;div class&#x3D;&quot;cds--number__rule-divider&quot;&gt;&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
+			&lt;hr *ngIf&#x3D;&quot;fluid&quot; class&#x3D;&quot;cds--number-input__divider&quot; /&gt;
 			&lt;div
-				*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
+				*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn &amp;&amp; !fluid&quot;
 				class&#x3D;&quot;cds--form__helper-text&quot;
 				[ngClass]&#x3D;&quot;{
 					&#x27;cds--form__helper-text--disabled&#x27;: disabled
@@ -514,6 +517,29 @@ export class NumberComponent implements ControlValueAccessor {
 		return this._incrementLabel.value;
 	}
 
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@HostBinding(&quot;class.cds--number-input--fluid&quot;) @Input() fluid &#x3D; false;
+
+	@HostBinding(&quot;class.cds--number-input--fluid--invalid&quot;) get fluidInvalid() {
+		return this.fluid &amp;&amp; this.invalid;
+	}
+
+	@HostBinding(&quot;class.cds--number-input--fluid--disabled&quot;) get fluidDisabled() {
+		return this.fluid &amp;&amp; this.disabled;
+	}
+
+	@HostBinding(&quot;class.cds--number-input--fluid--focus&quot;) get fluidFocus() {
+		return this.fluid &amp;&amp; this._isFocused;
+	}
+
+	@HostBinding(&quot;class.cds--text-input--fluid__skeleton&quot;) get fluidSkeleton() {
+		return this.fluid &amp;&amp; this.skeleton;
+	}
+
+	protected _isFocused &#x3D; false;
+
 	protected _value &#x3D; 0;
 
 	protected _decrementLabel: Overridable &#x3D; this.i18n.getOverridable(&quot;NUMBER.DECREMENT&quot;);
@@ -619,6 +645,14 @@ export class NumberComponent implements ControlValueAccessor {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	handleFocus(event: FocusEvent) {
+		if (&quot;type&quot; in event.target &amp;&amp; (&lt;HTMLInputElement&gt;event.target).type &#x3D;&#x3D;&#x3D; &quot;button&quot;) {
+			this._isFocused &#x3D; false;
+		} else {
+			this._isFocused &#x3D; event.type &#x3D;&#x3D;&#x3D; &quot;focus&quot;;
+		}
 	}
 }
 export { NumberComponent as Number };

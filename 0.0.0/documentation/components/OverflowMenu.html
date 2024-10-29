@@ -133,6 +133,12 @@
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+    </p>
 
 
 
@@ -187,22 +193,36 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
-	[cdsOverflowMenu]&#x3D;&quot;options&quot;
-	[ngClass]&#x3D;&quot;{&#x27;cds--overflow-menu--open&#x27;: open}&quot;
-	class&#x3D;&quot;cds--overflow-menu {{triggerClass}}&quot;
-	[attr.aria-label]&#x3D;&quot;buttonLabel&quot;
-	[flip]&#x3D;&quot;flip&quot;
-	[isOpen]&#x3D;&quot;open&quot;
-	(isOpenChange)&#x3D;&quot;handleOpenChange($event)&quot;
-	[offset]&#x3D;&quot;offset&quot;
-	[wrapperClass]&#x3D;&quot;wrapperClass&quot;
-	aria-haspopup&#x3D;&quot;true&quot;
-	class&#x3D;&quot;cds--overflow-menu&quot;
-	type&#x3D;&quot;button&quot;
-	[placement]&#x3D;&quot;placement&quot;&gt;
-	&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
-&lt;/button&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;cds-tooltip
+	class&#x3D;&quot;cds--icon-tooltip&quot;
+	[description]&#x3D;&quot;description&quot;
+	[caret]&#x3D;&quot;caret&quot;
+	[dropShadow]&#x3D;&quot;dropShadow&quot;
+	[highContrast]&#x3D;&quot;highContrast&quot;
+	[isOpen]&#x3D;&quot;isOpen&quot;
+	[align]&#x3D;&quot;align&quot;
+	[autoAlign]&#x3D;&quot;autoAlign&quot;
+	[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
+	[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;&gt;
+	&lt;button
+		cdsButton&#x3D;&quot;ghost&quot;
+		[cdsOverflowMenu]&#x3D;&quot;options&quot;
+		[ngClass]&#x3D;&quot;{&#x27;cds--overflow-menu--open&#x27;: open}&quot;
+		class&#x3D;&quot;cds--overflow-menu {{triggerClass}}&quot;
+		[iconOnly]&#x3D;&quot;true&quot;
+		[attr.aria-label]&#x3D;&quot;buttonLabel&quot;
+		[flip]&#x3D;&quot;flip&quot;
+		[isOpen]&#x3D;&quot;open&quot;
+		(isOpenChange)&#x3D;&quot;handleOpenChange($event)&quot;
+		[offset]&#x3D;&quot;offset&quot;
+		[wrapperClass]&#x3D;&quot;wrapperClass&quot;
+		aria-haspopup&#x3D;&quot;true&quot;
+		type&#x3D;&quot;button&quot;
+		[placement]&#x3D;&quot;placement&quot;&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
+	&lt;/button&gt;
+&lt;/cds-tooltip&gt;
+
 &lt;ng-template #options&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/ng-template&gt;
@@ -274,6 +294,9 @@
                                 <a href="#customTrigger" >customTrigger</a>
                             </li>
                             <li>
+                                <a href="#description" >description</a>
+                            </li>
+                            <li>
                                 <a href="#flip" >flip</a>
                             </li>
                             <li>
@@ -290,6 +313,30 @@
                             </li>
                             <li>
                                 <a href="#wrapperClass" >wrapperClass</a>
+                            </li>
+                            <li>
+                                <a href="#align" >align</a>
+                            </li>
+                            <li>
+                                <a href="#autoAlign" >autoAlign</a>
+                            </li>
+                            <li>
+                                <a href="#caret" >caret</a>
+                            </li>
+                            <li>
+                                <a href="#dropShadow" >dropShadow</a>
+                            </li>
+                            <li>
+                                <a href="#enterDelayMs" >enterDelayMs</a>
+                            </li>
+                            <li>
+                                <a href="#highContrast" >highContrast</a>
+                            </li>
+                            <li>
+                                <a href="#isOpen" >isOpen</a>
+                            </li>
+                            <li>
+                                <a href="#leaveDelayMs" >leaveDelayMs</a>
                             </li>
                         </ul>
                     </td>
@@ -327,7 +374,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -400,7 +447,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:93</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -421,7 +468,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:107</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -430,6 +477,32 @@
 </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <b>description</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.i18n.get().OVERFLOW_MENU.ICON_DESCRIPTION</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:95</a></div>
+                            </td>
+                        </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -453,7 +526,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:97</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -474,7 +547,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:112</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -506,7 +579,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -532,7 +605,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:99</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -558,7 +631,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:119</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -590,9 +663,322 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:114</a></div>
                             </td>
                         </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="align"></a>
+                        <b>align</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;top&quot; | &quot;top-left&quot; | &quot;top-right&quot; | &quot;bottom&quot; | &quot;bottom-left&quot; | &quot;bottom-right&quot; | &quot;left&quot; | &quot;left-bottom&quot; | &quot;left-top&quot; | &quot;right&quot; | &quot;right-bottom&quot; | &quot;right-top&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;bottom&quot;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:32</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set popover alignment</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="autoAlign"></a>
+                        <b>autoAlign</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:40</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>Experimental</strong>: Use floating-ui to position the tooltip
+This is not toggleable - should be assigned once</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="caret"></a>
+                        <b>caret</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:16</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>false</code> to hide caret</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dropShadow"></a>
+                        <b>dropShadow</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:20</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>false</code> to hide shadow</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enterDelayMs"></a>
+                        <b>enterDelayMs</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>100</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:44</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set delay before tooltip is shown</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="highContrast"></a>
+                        <b>highContrast</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:24</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> to enable high contrast</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isOpen"></a>
+                        <b>isOpen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:28</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> to have the popover open by default</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="leaveDelayMs"></a>
+                        <b>leaveDelayMs</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>300</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/BaseIconButton.html" target="_self" >BaseIconButton</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:48</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set delay when tooltip disappears</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -614,7 +1000,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:103</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -647,8 +1033,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="108"
-                                    class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:108</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:127</a></div>
                         </td>
                     </tr>
 
@@ -729,7 +1115,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -754,6 +1140,7 @@
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { OverflowMenuDirective } from &quot;./overflow-menu.directive&quot;;
+import { BaseIconButton } from &quot;carbon-components-angular/button&quot;;
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
@@ -776,22 +1163,36 @@ import { OverflowMenuDirective } from &quot;./overflow-menu.directive&quot;;
 @Component({
 	selector: &quot;cds-overflow-menu, ibm-overflow-menu&quot;,
 	template: &#x60;
-		&lt;button
-			[cdsOverflowMenu]&#x3D;&quot;options&quot;
-			[ngClass]&#x3D;&quot;{&#x27;cds--overflow-menu--open&#x27;: open}&quot;
-			class&#x3D;&quot;cds--overflow-menu {{triggerClass}}&quot;
-			[attr.aria-label]&#x3D;&quot;buttonLabel&quot;
-			[flip]&#x3D;&quot;flip&quot;
-			[isOpen]&#x3D;&quot;open&quot;
-			(isOpenChange)&#x3D;&quot;handleOpenChange($event)&quot;
-			[offset]&#x3D;&quot;offset&quot;
-			[wrapperClass]&#x3D;&quot;wrapperClass&quot;
-			aria-haspopup&#x3D;&quot;true&quot;
-			class&#x3D;&quot;cds--overflow-menu&quot;
-			type&#x3D;&quot;button&quot;
-			[placement]&#x3D;&quot;placement&quot;&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
-		&lt;/button&gt;
+		&lt;cds-tooltip
+			class&#x3D;&quot;cds--icon-tooltip&quot;
+			[description]&#x3D;&quot;description&quot;
+			[caret]&#x3D;&quot;caret&quot;
+			[dropShadow]&#x3D;&quot;dropShadow&quot;
+			[highContrast]&#x3D;&quot;highContrast&quot;
+			[isOpen]&#x3D;&quot;isOpen&quot;
+			[align]&#x3D;&quot;align&quot;
+			[autoAlign]&#x3D;&quot;autoAlign&quot;
+			[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
+			[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;&gt;
+			&lt;button
+				cdsButton&#x3D;&quot;ghost&quot;
+				[cdsOverflowMenu]&#x3D;&quot;options&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--overflow-menu--open&#x27;: open}&quot;
+				class&#x3D;&quot;cds--overflow-menu {{triggerClass}}&quot;
+				[iconOnly]&#x3D;&quot;true&quot;
+				[attr.aria-label]&#x3D;&quot;buttonLabel&quot;
+				[flip]&#x3D;&quot;flip&quot;
+				[isOpen]&#x3D;&quot;open&quot;
+				(isOpenChange)&#x3D;&quot;handleOpenChange($event)&quot;
+				[offset]&#x3D;&quot;offset&quot;
+				[wrapperClass]&#x3D;&quot;wrapperClass&quot;
+				aria-haspopup&#x3D;&quot;true&quot;
+				type&#x3D;&quot;button&quot;
+				[placement]&#x3D;&quot;placement&quot;&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
+			&lt;/button&gt;
+		&lt;/cds-tooltip&gt;
+
 		&lt;ng-template #options&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/ng-template&gt;
@@ -818,8 +1219,10 @@ import { OverflowMenuDirective } from &quot;./overflow-menu.directive&quot;;
 	&#x60;],
 	encapsulation: ViewEncapsulation.None
 })
-export class OverflowMenu {
+export class OverflowMenu extends BaseIconButton {
 	@Input() buttonLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;
+
+	@Input() description &#x3D; this.i18n.get().OVERFLOW_MENU.ICON_DESCRIPTION;
 
 	@Input() flip &#x3D; false;
 
@@ -847,7 +1250,9 @@ export class OverflowMenu {
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+		super();
+	}
 
 	handleOpenChange(event: boolean) {
 		this.open &#x3D; event;
@@ -904,7 +1309,7 @@ export class OverflowMenu {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	[cdsOverflowMenu]="options"	[ngClass]="{\'cds--overflow-menu--open\': open}"	class="cds--overflow-menu {{triggerClass}}"	[attr.aria-label]="buttonLabel"	[flip]="flip"	[isOpen]="open"	(isOpenChange)="handleOpenChange($event)"	[offset]="offset"	[wrapperClass]="wrapperClass"	aria-haspopup="true"	class="cds--overflow-menu"	type="button"	[placement]="placement">	<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template></button><ng-template #options>	<ng-content></ng-content></ng-template><ng-template #defaultIcon>	<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div><cds-tooltip	class="cds--icon-tooltip"	[description]="description"	[caret]="caret"	[dropShadow]="dropShadow"	[highContrast]="highContrast"	[isOpen]="isOpen"	[align]="align"	[autoAlign]="autoAlign"	[enterDelayMs]="enterDelayMs"	[leaveDelayMs]="leaveDelayMs">	<button		cdsButton="ghost"		[cdsOverflowMenu]="options"		[ngClass]="{\'cds--overflow-menu--open\': open}"		class="cds--overflow-menu {{triggerClass}}"		[iconOnly]="true"		[attr.aria-label]="buttonLabel"		[flip]="flip"		[isOpen]="open"		(isOpenChange)="handleOpenChange($event)"		[offset]="offset"		[wrapperClass]="wrapperClass"		aria-haspopup="true"		type="button"		[placement]="placement">		<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>	</button></cds-tooltip><ng-template #options>	<ng-content></ng-content></ng-template><ng-template #defaultIcon>	<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'OverflowMenu'};

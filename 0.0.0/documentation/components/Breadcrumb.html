@@ -203,7 +203,14 @@
 			&lt;/ng-template&gt;
 		&lt;/cds-breadcrumb-item&gt;
 		&lt;cds-breadcrumb-item&gt;
-			&lt;cds-overflow-menu&gt;
+			&lt;ng-template #overflowMenuTrigger&gt;
+				&lt;svg class&#x3D;&quot;cds--overflow-menu__icon&quot; cdsIcon&#x3D;&quot;overflow-menu--horizontal&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+			&lt;/ng-template&gt;
+			&lt;cds-overflow-menu
+				[customTrigger]&#x3D;&quot;overflowMenuTrigger&quot;
+				triggerClass&#x3D;&quot;cds--btn--icon-only&quot;
+				[description]&#x3D;&quot;description&quot;
+				[autoAlign]&#x3D;&quot;autoAlign&quot;&gt;
 				&lt;li class&#x3D;&quot;cds--overflow-menu-options__option&quot;
 					*ngFor&#x3D;&quot;let item of overflowItems&quot;&gt;
 					&lt;a class&#x3D;&quot;cds--overflow-menu-options__btn&quot;
@@ -326,6 +333,12 @@
                                 <a href="#ariaLabel" >ariaLabel</a>
                             </li>
                             <li>
+                                <a href="#autoAlign" >autoAlign</a>
+                            </li>
+                            <li>
+                                <a href="#description" >description</a>
+                            </li>
+                            <li>
                                 <a href="#items" >items</a>
                             </li>
                             <li>
@@ -408,7 +421,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:186</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:199</a></div>
                             </td>
                         </tr>
 
@@ -481,7 +494,65 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:136</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="autoAlign"></a>
+                        <b>autoAlign</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:163</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>Experimental</strong>: Auto align menu tooltip position</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <b>description</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:164</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -502,7 +573,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:132</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -528,7 +599,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -549,7 +620,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -570,7 +641,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:149</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -594,7 +665,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:169</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -633,8 +704,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="194"
-                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:194</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -711,8 +782,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="190"
-                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:190</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -750,8 +821,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="202"
-                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:202</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:215</a></div>
                         </td>
                     </tr>
 
@@ -792,7 +863,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:186</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -819,7 +890,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:185</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:198</a></div>
                         </td>
                     </tr>
 
@@ -855,7 +926,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -884,7 +955,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:144</a></div>
                                 </td>
                             </tr>
 
@@ -895,7 +966,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:139</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -953,7 +1024,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:156</a></div>
                                 </td>
                             </tr>
 
@@ -964,7 +1035,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:149</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1022,7 +1093,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:171</a></div>
                                 </td>
                             </tr>
 
@@ -1044,7 +1115,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:175</a></div>
                                 </td>
                             </tr>
 
@@ -1066,7 +1137,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:182</a></div>
                                 </td>
                             </tr>
 
@@ -1088,7 +1159,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:186</a></div>
                                 </td>
                             </tr>
 
@@ -1110,7 +1181,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:177</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:190</a></div>
                                 </td>
                             </tr>
 
@@ -1132,7 +1203,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:194</a></div>
                                 </td>
                             </tr>
 
@@ -1216,7 +1287,14 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 				&lt;/ng-template&gt;
 			&lt;/cds-breadcrumb-item&gt;
 			&lt;cds-breadcrumb-item&gt;
-				&lt;cds-overflow-menu&gt;
+				&lt;ng-template #overflowMenuTrigger&gt;
+					&lt;svg class&#x3D;&quot;cds--overflow-menu__icon&quot; cdsIcon&#x3D;&quot;overflow-menu--horizontal&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+				&lt;/ng-template&gt;
+				&lt;cds-overflow-menu
+					[customTrigger]&#x3D;&quot;overflowMenuTrigger&quot;
+					triggerClass&#x3D;&quot;cds--btn--icon-only&quot;
+					[description]&#x3D;&quot;description&quot;
+					[autoAlign]&#x3D;&quot;autoAlign&quot;&gt;
 					&lt;li class&#x3D;&quot;cds--overflow-menu-options__option&quot;
 						*ngFor&#x3D;&quot;let item of overflowItems&quot;&gt;
 						&lt;a class&#x3D;&quot;cds--overflow-menu-options__btn&quot;
@@ -1294,6 +1372,12 @@ export class Breadcrumb implements AfterContentInit {
 	get threshold(): number {
 		return this._threshold;
 	}
+
+	/**
+	 * **Experimental**: Auto align menu tooltip position
+	 */
+	@Input() autoAlign &#x3D; false;
+	@Input() description: string &#x3D; this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION;
 
 	/**
 	 * Emits the navigation status promise when the link is activated
@@ -1380,7 +1464,7 @@ export class Breadcrumb implements AfterContentInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav #nav class="cds--breadcrumb"	[ngClass]="{		\'cds--skeleton\' : skeleton,		\'cds--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<cds-breadcrumb-item			*ngFor="let item of items"			[href]="item.href"			[route]="item.route"			[routeExtras]="item.routeExtras"			[current]="item.current"			[ariaCurrent]="item.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!item.template">{{item.content}}</ng-container>			<ng-template				*ngIf="item.template"				[ngTemplateOutlet]="item.template"				[ngTemplateOutletContext]="{ $implicit: item }">			</ng-template>		</cds-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<cds-breadcrumb-item			[href]="first?.href"			[route]="first?.route"			[routeExtras]="first?.routeExtras"			[current]="first?.current"			[ariaCurrent]="first?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>			<ng-template				*ngIf="first?.template"				[ngTemplateOutlet]="first?.template"				[ngTemplateOutletContext]="{ $implicit: first }">			</ng-template>		</cds-breadcrumb-item>		<cds-breadcrumb-item>			<cds-overflow-menu>				<li class="cds--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="cds--overflow-menu-options__btn"						href="{{item?.href}}"						(click)="navigate($event, item)"						style="text-decoration: none;">						<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>						<ng-template							*ngIf="item?.template"							[ngTemplateOutlet]="item?.template"							[ngTemplateOutletContext]="{ $implicit: item }">						</ng-template>					</a>				</li>			</cds-overflow-menu>		</cds-breadcrumb-item>		<cds-breadcrumb-item			[href]="secondLast?.href"			[route]="secondLast?.route"			[routeExtras]="secondLast?.routeExtras"			[current]="secondLast?.current"			[ariaCurrent]="secondLast?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>			<ng-template				*ngIf="secondLast?.template"				[ngTemplateOutlet]="secondLast?.template"				[ngTemplateOutletContext]="{ $implicit: secondLast }">			</ng-template>		</cds-breadcrumb-item>		<cds-breadcrumb-item			[href]="last?.href"			[route]="last?.route"			[routeExtras]="last?.routeExtras"			[current]="last?.current"			[ariaCurrent]="last?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>			<ng-template				*ngIf="last?.template"				[ngTemplateOutlet]="last?.template"				[ngTemplateOutletContext]="{ $implicit: last }">			</ng-template>		</cds-breadcrumb-item>	</ng-template></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav #nav class="cds--breadcrumb"	[ngClass]="{		\'cds--skeleton\' : skeleton,		\'cds--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<cds-breadcrumb-item			*ngFor="let item of items"			[href]="item.href"			[route]="item.route"			[routeExtras]="item.routeExtras"			[current]="item.current"			[ariaCurrent]="item.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!item.template">{{item.content}}</ng-container>			<ng-template				*ngIf="item.template"				[ngTemplateOutlet]="item.template"				[ngTemplateOutletContext]="{ $implicit: item }">			</ng-template>		</cds-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<cds-breadcrumb-item			[href]="first?.href"			[route]="first?.route"			[routeExtras]="first?.routeExtras"			[current]="first?.current"			[ariaCurrent]="first?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>			<ng-template				*ngIf="first?.template"				[ngTemplateOutlet]="first?.template"				[ngTemplateOutletContext]="{ $implicit: first }">			</ng-template>		</cds-breadcrumb-item>		<cds-breadcrumb-item>			<ng-template #overflowMenuTrigger>				<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>			</ng-template>			<cds-overflow-menu				[customTrigger]="overflowMenuTrigger"				triggerClass="cds--btn--icon-only"				[description]="description"				[autoAlign]="autoAlign">				<li class="cds--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="cds--overflow-menu-options__btn"						href="{{item?.href}}"						(click)="navigate($event, item)"						style="text-decoration: none;">						<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>						<ng-template							*ngIf="item?.template"							[ngTemplateOutlet]="item?.template"							[ngTemplateOutletContext]="{ $implicit: item }">						</ng-template>					</a>				</li>			</cds-overflow-menu>		</cds-breadcrumb-item>		<cds-breadcrumb-item			[href]="secondLast?.href"			[route]="secondLast?.route"			[routeExtras]="secondLast?.routeExtras"			[current]="secondLast?.current"			[ariaCurrent]="secondLast?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>			<ng-template				*ngIf="secondLast?.template"				[ngTemplateOutlet]="secondLast?.template"				[ngTemplateOutletContext]="{ $implicit: secondLast }">			</ng-template>		</cds-breadcrumb-item>		<cds-breadcrumb-item			[href]="last?.href"			[route]="last?.route"			[routeExtras]="last?.routeExtras"			[current]="last?.current"			[ariaCurrent]="last?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>			<ng-template				*ngIf="last?.template"				[ngTemplateOutlet]="last?.template"				[ngTemplateOutletContext]="{ $implicit: last }">			</ng-template>		</cds-breadcrumb-item>	</ng-template></nav></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Breadcrumb'};
