@@ -178,7 +178,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.updateConfig();
 	}
 
-
 	/**
 	 * Sets the config object and binds events for hovering or clicking before
 	 * running code from child class.
