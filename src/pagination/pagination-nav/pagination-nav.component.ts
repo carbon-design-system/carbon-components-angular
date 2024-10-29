@@ -149,13 +149,13 @@ export class PaginationNav {
 	@Input() size: "sm" | "md" | "lg" = "lg";
 
 	// Size
-	@HostBinding("class.cds--layout--size-sm") get sizeSm() {
+	@HostBinding("class.cds--layout--size-sm") get smallSize() {
 		return this.size === "sm";
 	}
-	@HostBinding("class.cds--layout--size-md") get sizeMd() {
+	@HostBinding("class.cds--layout--size-md") get mediumSize() {
 		return this.size === "md";
 	}
-	@HostBinding("class.cds--layout--size-lg") get sizeLg() {
+	@HostBinding("class.cds--layout--size-lg") get largeSize() {
 		return this.size === "lg";
 	}
 
