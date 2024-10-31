@@ -1,13 +1,14 @@
 /* tslint:disable variable-name */
 
 import { moduleMetadata, Meta } from "@storybook/angular";
+import { FormsModule } from "@angular/forms";
 import { NumberModule, NumberComponent } from "./";
 
 export default {
 	title: "Components/Number Input",
 	decorators: [
 		moduleMetadata({
-			imports: [NumberModule]
+			imports: [NumberModule, FormsModule]
 		})
 	],
 	args: {
@@ -35,7 +36,9 @@ export default {
 		theme: {
 			options: ["light", "dark"],
 			control: "radio"
-		}
+		},
+		// Actions
+		change: { action: 'changed'}
 	},
 	component: NumberComponent
 } as Meta;
@@ -57,7 +60,8 @@ const Template = (args) => ({
 			[size]="size"
 			[readonly]="readonly"
 			[disabled]="disabled"
-			[fluid]="fluid">
+			[fluid]="fluid"
+			(change)="change($event)">
 		</cds-number>
 	`
 });
@@ -86,7 +90,8 @@ const ModelTemplate = (args) => ({
 			[warnText]="warnText"
 			[disabled]="disabled"
 			[(ngModel)]="value"
-			[fluid]="fluid">
+			[fluid]="fluid"
+			(change)="change($event)">
 		</cds-number>
 		{{ value }}
 	`
@@ -100,7 +105,8 @@ const SkeletonTemplate = (args) => ({
 		<cds-number
 			label="Number input label"
 			skeleton="true"
-			[fluid]="fluid">
+			[fluid]="fluid"
+			(change)="change($event)">
 		</cds-number>
 	`
 });

@@ -352,6 +352,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Adds `step` to the current `value`.
 	 */
 	onIncrement(): void {
+		// if max is set and value + step is greater than max, set value to max
+		// example: max = 100, step = 10, value = 95 , value + step = 105, value will be set to 100 (max) instead of 105
+		if (this.max !== null && this.value + this.step > this.max) {
+			this.value = this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value + step is less than min, set value to min
+		// example: min = 5, step = 2, value = 0, value + step = 2, value will be set to 5 (min) instead of 2
+		if (this.min !== null && this.value + this.step < this.min) {
+			this.value = this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if max is not set or value + step is less than max, increment value by step
 		if (this.max === null || this.value + this.step <= this.max) {
 			this.value += this.step;
 			this.value = parseFloat(this.value.toPrecision(this.precision));
@@ -363,6 +380,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Subtracts `step` to the current `value`.
 	 */
 	onDecrement(): void {
+		// if max is set and value - step is greater than max, set value to max
+		// example: max = 15, step = 2, value = 20, value - step = 18, value will be set to 15 (max) instead of 18
+		if (this.max !== null && this.value - this.step > this.max) {
+			this.value = this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value - step is less than min, set value to min
+		// example: min = 5, step = 2, value = 6, value - step = 4, value will be set to 5 (min) instead of 4
+		if (this.min !== null && this.value - this.step < this.min) {
+			this.value = this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is not set or value - step is greater than min, decrement value by step
 		if (this.min === null || this.value - this.step >= this.min) {
 			this.value -= this.step;
 			this.value = parseFloat(this.value.toPrecision(this.precision));
