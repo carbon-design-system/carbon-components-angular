@@ -108,7 +108,7 @@ describe("Number", () => {
 		buttonUp.click();
 		fixture.detectChanges();
 		expect(component.value).toEqual(2);
-	});	
+	});
 
 	it("should increment and set value to max if value + step exceeds max", () => {
 		fixture.detectChanges();
@@ -129,8 +129,8 @@ describe("Number", () => {
 		component.min = 5;
 		buttonUp.click();
 		fixture.detectChanges();
-	
-		expect(component.value).toBe(5);		
+
+		expect(component.value).toBe(5);
 	});
 
 	it("should not increment value if max is reached", () => {
@@ -160,8 +160,8 @@ describe("Number", () => {
 		component.max = 15;
 		buttonUp.click();
 		fixture.detectChanges();
-	
-		expect(component.value).toBe(15);		
+
+		expect(component.value).toBe(15);
 	});
 
 	it("should decrement and set value to min if value - step is less than min", () => {
@@ -173,7 +173,7 @@ describe("Number", () => {
 		buttonUp.click();
 		fixture.detectChanges();
 		expect(component.value).toEqual(5);
-	});	
+	});
 
 	it("should not decrement value min is reached", () => {
 		fixture.detectChanges();
