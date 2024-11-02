@@ -38,7 +38,7 @@ export default {
 			control: "radio"
 		},
 		// Actions
-		change: { action: 'changed'}
+		change: { action: "changed"}
 	},
 	component: NumberComponent
 } as Meta;
