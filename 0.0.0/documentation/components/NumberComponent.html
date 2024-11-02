@@ -1504,8 +1504,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="384"
-                                    class="link-to-prism">src/number-input/number.component.ts:384</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="418"
+                                    class="link-to-prism">src/number-input/number.component.ts:418</a></div>
                         </td>
                     </tr>
 
@@ -1589,8 +1589,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="373"
-                                    class="link-to-prism">src/number-input/number.component.ts:373</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/number-input/number.component.ts:407</a></div>
                         </td>
                     </tr>
 
@@ -1626,8 +1626,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="377"
-                                    class="link-to-prism">src/number-input/number.component.ts:377</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="411"
+                                    class="link-to-prism">src/number-input/number.component.ts:411</a></div>
                         </td>
                     </tr>
 
@@ -1663,8 +1663,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="401"
-                                    class="link-to-prism">src/number-input/number.component.ts:401</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="435"
+                                    class="link-to-prism">src/number-input/number.component.ts:435</a></div>
                         </td>
                     </tr>
 
@@ -1732,8 +1732,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="397"
-                                    class="link-to-prism">src/number-input/number.component.ts:397</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="431"
+                                    class="link-to-prism">src/number-input/number.component.ts:431</a></div>
                         </td>
                     </tr>
 
@@ -1795,8 +1795,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="365"
-                                    class="link-to-prism">src/number-input/number.component.ts:365</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="382"
+                                    class="link-to-prism">src/number-input/number.component.ts:382</a></div>
                         </td>
                     </tr>
 
@@ -1873,8 +1873,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="392"
-                                    class="link-to-prism">src/number-input/number.component.ts:392</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="426"
+                                    class="link-to-prism">src/number-input/number.component.ts:426</a></div>
                         </td>
                     </tr>
 
@@ -3139,6 +3139,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Adds &#x60;step&#x60; to the current &#x60;value&#x60;.
 	 */
 	onIncrement(): void {
+		// if max is set and value + step is greater than max, set value to max
+		// example: max &#x3D; 100, step &#x3D; 10, value &#x3D; 95 , value + step &#x3D; 105, value will be set to 100 (max) instead of 105
+		if (this.max !&#x3D;&#x3D; null &amp;&amp; this.value + this.step &gt; this.max) {
+			this.value &#x3D; this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value + step is less than min, set value to min
+		// example: min &#x3D; 5, step &#x3D; 2, value &#x3D; 0, value + step &#x3D; 2, value will be set to 5 (min) instead of 2
+		if (this.min !&#x3D;&#x3D; null &amp;&amp; this.value + this.step &lt; this.min) {
+			this.value &#x3D; this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if max is not set or value + step is less than max, increment value by step
 		if (this.max &#x3D;&#x3D;&#x3D; null || this.value + this.step &lt;&#x3D; this.max) {
 			this.value +&#x3D; this.step;
 			this.value &#x3D; parseFloat(this.value.toPrecision(this.precision));
@@ -3150,6 +3167,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Subtracts &#x60;step&#x60; to the current &#x60;value&#x60;.
 	 */
 	onDecrement(): void {
+		// if max is set and value - step is greater than max, set value to max
+		// example: max &#x3D; 15, step &#x3D; 2, value &#x3D; 20, value - step &#x3D; 18, value will be set to 15 (max) instead of 18
+		if (this.max !&#x3D;&#x3D; null &amp;&amp; this.value - this.step &gt; this.max) {
+			this.value &#x3D; this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value - step is less than min, set value to min
+		// example: min &#x3D; 5, step &#x3D; 2, value &#x3D; 6, value - step &#x3D; 4, value will be set to 5 (min) instead of 4
+		if (this.min !&#x3D;&#x3D; null &amp;&amp; this.value - this.step &lt; this.min) {
+			this.value &#x3D; this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is not set or value - step is greater than min, decrement value by step
 		if (this.min &#x3D;&#x3D;&#x3D; null || this.value - this.step &gt;&#x3D; this.min) {
 			this.value -&#x3D; this.step;
 			this.value &#x3D; parseFloat(this.value.toPrecision(this.precision));
