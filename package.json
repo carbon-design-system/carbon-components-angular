@@ -29,7 +29,8 @@
       },
       {
         "name": "next",
-        "channel": "next"
+        "channel": "next",
+        "prerelease": "rc"
       },
       {
         "name": "v3",
