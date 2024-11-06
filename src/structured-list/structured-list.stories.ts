@@ -105,6 +105,28 @@ const SelectionTemplate = (args) => ({
 					Pellentesque vulputate nisl a porttitor interdum.
 				</cds-list-column>
 			</cds-list-row>
+			<cds-list-row value="row3">
+				<cds-list-column>Row 3</cds-list-column>
+				<cds-list-column nowrap="true">Row Three</cds-list-column>
+				<cds-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</cds-list-column>
+			</cds-list-row>
+			<cds-list-row value="row4">
+				<cds-list-column>Row 4</cds-list-column>
+				<cds-list-column nowrap="true">Row Four</cds-list-column>
+				<cds-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</cds-list-column>
+			</cds-list-row>
 		</cds-structured-list>
 		<p>{{valueSelected}}</p>
 	`

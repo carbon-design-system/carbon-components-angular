@@ -38,12 +38,13 @@ import { ListColumn } from "./list-column.component";
 		<ng-container *ngIf="selection">
 			<input
 				#input
-				tabindex="-1"
 				class="cds--structured-list-input cds--visually-hidden"
 				type="radio"
 				[value]="value"
 				[name]="name"
 				[title]="label"
+				(focus)="handleFocus(true)"
+				(blur)="handleFocus(false)"
 				(change)="onChange($event)"
 				[checked]="selected"/>
 			<div class="cds--structured-list-td">
@@ -80,7 +81,6 @@ export class ListRow implements AfterContentInit {
 	name = "list";
 
 	@HostBinding("class.cds--structured-list-row") wrapper = true;
-	@HostBinding("attr.tabindex") tabindex = this.selection ? "0" : null;
 	@HostBinding("attr.role") role = "row";
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
@@ -102,18 +102,17 @@ export class ListRow implements AfterContentInit {
 			this.input.nativeElement.click();
 		}
 	}
-
-	@HostListener("focus")
-	onfocus() {
-		this.isFocused = true;
-	}
-
-	@HostListener("blur")
-	onblur() {
-		this.isFocused = false;
-	}
-
+	
 	onChange(event) {
 		this.change.emit(event);
+	}
+
+	handleFocus(isFocused) {
+		if (this.selection) {
+			this.isFocused = isFocused;
+			if (this.isFocused) {
+				this.input.nativeElement.click();
+			}
+		}
 	}
 }
