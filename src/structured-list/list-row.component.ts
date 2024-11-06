@@ -102,7 +102,7 @@ export class ListRow implements AfterContentInit {
 			this.input.nativeElement.click();
 		}
 	}
-	
+
 	onChange(event) {
 		this.change.emit(event);
 	}
