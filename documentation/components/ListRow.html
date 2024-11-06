@@ -175,12 +175,13 @@
 &lt;ng-container *ngIf&#x3D;&quot;selection&quot;&gt;
 	&lt;input
 		#input
-		tabindex&#x3D;&quot;-1&quot;
 		class&#x3D;&quot;cds--structured-list-input cds--visually-hidden&quot;
 		type&#x3D;&quot;radio&quot;
 		[value]&#x3D;&quot;value&quot;
 		[name]&#x3D;&quot;name&quot;
 		[title]&#x3D;&quot;label&quot;
+		(focus)&#x3D;&quot;handleFocus(true)&quot;
+		(blur)&#x3D;&quot;handleFocus(false)&quot;
 		(change)&#x3D;&quot;onChange($event)&quot;
 		[checked]&#x3D;&quot;selected&quot;/&gt;
 	&lt;div class&#x3D;&quot;cds--structured-list-td&quot;&gt;
@@ -238,10 +239,6 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#tabindex" >tabindex</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
                                 <a href="#wrapper" >wrapper</a>
                             </li>
                         </ul>
@@ -257,11 +254,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngAfterContentInit" >ngAfterContentInit</a>
+                                <a href="#handleFocus" >handleFocus</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                <a href="#onblur" >onblur</a>
+                                <a href="#ngAfterContentInit" >ngAfterContentInit</a>
                             </li>
                             <li>
                                 <a href="#onChange" >onChange</a>
@@ -269,10 +265,6 @@
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#onclick" >onclick</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#onfocus" >onfocus</a>
                             </li>
                         </ul>
                     </td>
@@ -326,9 +318,6 @@
                                 <a href="#attr.role" >attr.role</a>
                             </li>
                             <li>
-                                <a href="#attr.tabindex" >attr.tabindex</a>
-                            </li>
-                            <li>
                                 <a href="#class.cds--structured-list-row" >class.cds--structured-list-row</a>
                             </li>
                             <li>
@@ -347,13 +336,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#blur" >blur</a>
-                            </li>
-                            <li>
                                 <a href="#click" >click</a>
-                            </li>
-                            <li>
-                                <a href="#focus" >focus</a>
                             </li>
                         </ul>
                     </td>
@@ -396,7 +379,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/structured-list/list-row.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/structured-list/list-row.component.ts:64</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -428,7 +411,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/structured-list/list-row.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/structured-list/list-row.component.ts:60</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -449,7 +432,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/structured-list/list-row.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/structured-list/list-row.component.ts:68</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -479,7 +462,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/structured-list/list-row.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/structured-list/list-row.component.ts:72</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -527,37 +510,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="attr.tabindex"></a>
-                    <span class="name">
-                        <span ><b>attr.tabindex</b></span>
-                        <a href="#attr.tabindex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.selection ? &quot;0&quot; : null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/structured-list/list-row.component.ts:83</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="class.cds--structured-list-row"></a>
                     <span class="name">
                         <span ><b>class.cds--structured-list-row</b></span>
@@ -578,7 +530,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/structured-list/list-row.component.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/structured-list/list-row.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -604,7 +556,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/structured-list/list-row.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/structured-list/list-row.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -615,34 +567,6 @@
 
     <section data-compodoc="block-methods">
     <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="blur"></a>
-                    <span class="name">
-                        <span ><b>blur</b></span>
-                        <a href="#blur"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>blur()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/structured-list/list-row.component.ts:112</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -670,40 +594,75 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="focus"></a>
-                    <span class="name">
-                        <span ><b>focus</b></span>
-                        <a href="#focus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>focus()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/structured-list/list-row.component.ts:107</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
 </section>
     <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFocus"></a>
+                    <span class="name">
+                        <span ><b>handleFocus</b></span>
+                        <a href="#handleFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFocus(isFocused)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/structured-list/list-row.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isFocused</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -745,52 +704,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onblur"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>onblur</b></span>
-                        <a href="#onblur"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onblur()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@HostListener(&#x27;blur&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/structured-list/list-row.component.ts:112</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="onChange"></a>
                     <span class="name">
                         <span ><b>onChange</b></span>
@@ -807,8 +720,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/structured-list/list-row.component.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/structured-list/list-row.component.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -881,52 +794,6 @@
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="100"
                                     class="link-to-prism">src/structured-list/list-row.component.ts:100</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onfocus"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>onfocus</b></span>
-                        <a href="#onfocus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onfocus()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@HostListener(&#x27;focus&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/structured-list/list-row.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -1070,7 +937,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/structured-list/list-row.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/structured-list/list-row.component.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -1142,7 +1009,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/structured-list/list-row.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/structured-list/list-row.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -1152,41 +1019,6 @@
 </div>
                 </td>
             </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tabindex"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>tabindex</b></span>
-                        <a href="#tabindex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.selection ? &quot;0&quot; : null</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @HostBinding(&#x27;attr.tabindex&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/structured-list/list-row.component.ts:83</a></div>
-                        </td>
-                    </tr>
-
 
         </tbody>
     </table>
@@ -1218,7 +1050,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/structured-list/list-row.component.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/structured-list/list-row.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -1247,7 +1079,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/structured-list/list-row.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/structured-list/list-row.component.ts:57</a></div>
                                 </td>
                             </tr>
 
@@ -1298,12 +1130,13 @@ import { ListColumn } from &quot;./list-column.component&quot;;
 		&lt;ng-container *ngIf&#x3D;&quot;selection&quot;&gt;
 			&lt;input
 				#input
-				tabindex&#x3D;&quot;-1&quot;
 				class&#x3D;&quot;cds--structured-list-input cds--visually-hidden&quot;
 				type&#x3D;&quot;radio&quot;
 				[value]&#x3D;&quot;value&quot;
 				[name]&#x3D;&quot;name&quot;
 				[title]&#x3D;&quot;label&quot;
+				(focus)&#x3D;&quot;handleFocus(true)&quot;
+				(blur)&#x3D;&quot;handleFocus(false)&quot;
 				(change)&#x3D;&quot;onChange($event)&quot;
 				[checked]&#x3D;&quot;selected&quot;/&gt;
 			&lt;div class&#x3D;&quot;cds--structured-list-td&quot;&gt;
@@ -1340,7 +1173,6 @@ export class ListRow implements AfterContentInit {
 	name &#x3D; &quot;list&quot;;
 
 	@HostBinding(&quot;class.cds--structured-list-row&quot;) wrapper &#x3D; true;
-	@HostBinding(&quot;attr.tabindex&quot;) tabindex &#x3D; this.selection ? &quot;0&quot; : null;
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;row&quot;;
 
 	@ContentChildren(ListColumn) columns: QueryList&lt;ListColumn&gt;;
@@ -1363,18 +1195,17 @@ export class ListRow implements AfterContentInit {
 		}
 	}
 
-	@HostListener(&quot;focus&quot;)
-	onfocus() {
-		this.isFocused &#x3D; true;
-	}
-
-	@HostListener(&quot;blur&quot;)
-	onblur() {
-		this.isFocused &#x3D; false;
-	}
-
 	onChange(event) {
 		this.change.emit(event);
+	}
+
+	handleFocus(isFocused) {
+		if (this.selection) {
+			this.isFocused &#x3D; isFocused;
+			if (this.isFocused) {
+				this.input.nativeElement.click();
+			}
+		}
 	}
 }
 </code></pre>
@@ -1407,7 +1238,7 @@ export class ListRow implements AfterContentInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-content></ng-content><ng-container *ngIf="selection">	<input		#input		tabindex="-1"		class="cds--structured-list-input cds--visually-hidden"		type="radio"		[value]="value"		[name]="name"		[title]="label"		(change)="onChange($event)"		[checked]="selected"/>	<div class="cds--structured-list-td">		<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>	</div></ng-container>	</div>'
+        var COMPONENT_TEMPLATE = '<div><ng-content></ng-content><ng-container *ngIf="selection">	<input		#input		class="cds--structured-list-input cds--visually-hidden"		type="radio"		[value]="value"		[name]="name"		[title]="label"		(focus)="handleFocus(true)"		(blur)="handleFocus(false)"		(change)="onChange($event)"		[checked]="selected"/>	<div class="cds--structured-list-td">		<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>	</div></ng-container>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'ListRow'};
