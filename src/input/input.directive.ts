@@ -59,7 +59,7 @@ export class TextInput {
 		return this.theme === "light";
 	}
 
-	@HostBinding("attr.data-invalid") get getInvalidAttr() {
+	@HostBinding("attr.data-invalid") get getInvalidAttribute() {
 		return this.invalid ? true : undefined;
 	}
 

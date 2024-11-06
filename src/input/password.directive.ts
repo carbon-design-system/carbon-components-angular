@@ -65,7 +65,7 @@ export class PasswordInput implements AfterViewInit {
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 
-	@HostBinding("attr.data-invalid") get getInvalidAttr() {
+	@HostBinding("attr.data-invalid") get getInvalidAttribute() {
 		return this.invalid ? true : undefined;
 	}
 
