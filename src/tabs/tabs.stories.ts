@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 
 
 import { TabsModule } from "./";
@@ -19,7 +19,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tabs
@@ -29,26 +29,35 @@ const Template: Story = (args) => ({
 			[cacheActive]="cacheActive">
 			<cds-tab heading="one">Tab Content 1</cds-tab>
 			<cds-tab heading="two">Tab Content 2</cds-tab>
-			<cds-tab heading="three">Tab Content 3</cds-tab>
-			<cds-tab heading="three">Tab Content 3</cds-tab>
+			<cds-tab heading="three" [tabContent]="three"></cds-tab>
+			<cds-tab heading="four" [tabContent]="four"></cds-tab>
 		</cds-tabs>
+
+		<!-- Use templates if you would like to have lifecycle hooks called when cacheActive is false -->
+		<ng-template #three>
+			Tab Content 3
+		</ng-template>
+
+		<ng-template #four>
+			Tab Content 4
+		</ng-template>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
 	followFocus: true,
 	cacheActive: true,
-	isNavigation: false
+	isNavigation: false,
+	type: "inline"
 };
 Basic.argTypes = {
 	type: {
 		options: ["inline", "contained"],
-		defaultValue: "inline",
 		control: "radio"
 	}
 };
 
-const WithTemplate: Story = (args) => ({
+const WithTemplate = (args) => ({
 	props: args,
 	template: `
 		<ng-template #customTabs let-item>
@@ -92,7 +101,7 @@ With.argTypes = {
 	...Basic.argTypes
 };
 
-const BeforeAndAfterTemplate: Story = (args) => ({
+const BeforeAndAfterTemplate = (args) => ({
 	props: args,
 	template: `
 		<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
@@ -126,7 +135,7 @@ BeforeAndAfter.argTypes = {
 	...Basic.argTypes
 };
 
-const TabHeaderGroupTemplate: Story = (args) => ({
+const TabHeaderGroupTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -150,7 +159,7 @@ TabheaderGroup.argTypes = {
 	...Basic.argTypes
 };
 
-const SkeletonTemplate: Story = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tabs skeleton="true">

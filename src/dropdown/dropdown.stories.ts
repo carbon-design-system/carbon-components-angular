@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { DropdownModule, Dropdown } from "./";
 import { PlaceholderModule } from "../placeholder";
 
@@ -22,8 +22,10 @@ export default {
 	],
 	args: {
 		label: "Label",
+		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "A valid value is required",
 		warn: false,
@@ -40,10 +42,30 @@ export default {
 			},
 			{
 				content: "four"
+			},
+			{
+				content: "five"
+			},
+			{
+				content: "six"
+			},
+			{
+				content: "seven"
+			},
+			{
+				content: "eight"
+			},
+			{
+				content: "nine"
+			},
+			{
+				content: "ten"
 			}
 		],
 		appendInline: false,
-		dropUp: false
+		dropUp: false,
+		size: "md",
+		theme: "dark"
 	},
 	argTypes: {
 		type: {
@@ -51,12 +73,10 @@ export default {
 		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		selected: { action: "Selection changed!" },
@@ -65,11 +85,12 @@ export default {
 	component: Dropdown
 } as Meta;
 
-const Template: Story<Dropdown> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[skeleton]="skeleton"
 			[helperText]="helperText"
 			[size]="size"
@@ -81,6 +102,7 @@ const Template: Story<Dropdown> = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -89,7 +111,7 @@ const Template: Story<Dropdown> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const MultiTemplate: Story<Dropdown> = (args) => ({
+const MultiTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
@@ -97,6 +119,7 @@ const MultiTemplate: Story<Dropdown> = (args) => ({
 			[selectionFeedback]="selectionFeedback"
 			[(ngModel)]="model"
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[helperText]="helperText"
 			[size]="size"
 			[dropUp]="dropUp"
@@ -107,6 +130,7 @@ const MultiTemplate: Story<Dropdown> = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -116,7 +140,7 @@ const MultiTemplate: Story<Dropdown> = (args) => ({
 });
 export const Multiselect = MultiTemplate.bind({});
 
-const ReactiveTemplate: Story<Dropdown> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -126,6 +150,7 @@ const ReactiveTemplate: Story<Dropdown> = (args) => ({
 		-->
 		<app-reactive-forms
 			[label]="label"
+			[hideLabel]="hideLabel"
 			[helperText]="helperText"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -139,10 +164,12 @@ const ReactiveTemplate: Story<Dropdown> = (args) => ({
 });
 export const ReactiveForms = ReactiveTemplate.bind({});
 
-const NgTemplate: Story<Dropdown> = (args) => ({
+const NgTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-dropdown
+			[label]="label"
+			[hideLabel]="hideLabel"
 			[theme]="theme"
 			placeholder="Select"
 			[displayValue]="dropdownRenderer"
@@ -150,6 +177,7 @@ const NgTemplate: Story<Dropdown> = (args) => ({
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>

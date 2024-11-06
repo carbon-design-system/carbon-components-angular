@@ -18,7 +18,13 @@ import { I18n } from "carbon-components-angular/i18n";
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
- *  [See demo](../../?path=/story/components-breadcrumb--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { BreadcrumbModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-breadcrumb--basic)
  */
 @Component({
 	selector: "cds-breadcrumb, ibm-breadcrumb",
@@ -65,7 +71,14 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 				</ng-template>
 			</cds-breadcrumb-item>
 			<cds-breadcrumb-item>
-				<cds-overflow-menu>
+				<ng-template #overflowMenuTrigger>
+					<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
+				</ng-template>
+				<cds-overflow-menu
+					[customTrigger]="overflowMenuTrigger"
+					triggerClass="cds--btn--icon-only"
+					[description]="description"
+					[autoAlign]="autoAlign">
 					<li class="cds--overflow-menu-options__option"
 						*ngFor="let item of overflowItems">
 						<a class="cds--overflow-menu-options__btn"
@@ -143,6 +156,12 @@ export class Breadcrumb implements AfterContentInit {
 	get threshold(): number {
 		return this._threshold;
 	}
+
+	/**
+	 * **Experimental**: Auto align menu tooltip position
+	 */
+	@Input() autoAlign = false;
+	@Input() description: string = this.i18n.get().BREADCRUMB.OVERFLOW_MENU_DESCRIPTION;
 
 	/**
 	 * Emits the navigation status promise when the link is activated

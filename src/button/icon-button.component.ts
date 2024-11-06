@@ -12,6 +12,15 @@ import {
 import { BaseIconButton } from "./base-icon-button.component";
 import { ButtonSize, ButtonType } from "./button.types";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ButtonModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-button-icon-button--basic)
+ */
 @Component({
 	selector: "cds-icon-button, ibm-icon-button",
 	template: `
@@ -24,6 +33,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 		[highContrast]="highContrast"
 		[isOpen]="isOpen"
 		[align]="align"
+		[autoAlign]="autoAlign"
 		[enterDelayMs]="enterDelayMs"
 		[leaveDelayMs]="leaveDelayMs"
 		(click)="emitClickEvent($event, 'tooltip')">

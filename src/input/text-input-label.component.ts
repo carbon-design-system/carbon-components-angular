@@ -9,6 +9,22 @@ import {
 	ChangeDetectorRef
 } from "@angular/core";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { InputModule } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-text-label>
+ * 	Label
+ * 	<input cdsText type="text" class="input-field">
+ * </cds-text-label>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-input--basic)
+ */
 @Component({
 	selector: "cds-text-label, ibm-text-label",
 	template: `
@@ -33,7 +49,7 @@ import {
 			[attr.data-invalid]="(invalid ? true : null)"
 			#wrapper>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				cdsIcon="warning--filled"
 				size="16"
 				class="cds--text-input__invalid-icon">
@@ -46,7 +62,7 @@ import {
 			</svg>
 			<ng-template *ngIf="textInputTemplate; else textInputContent" [ngTemplateOutlet]="textInputTemplate"></ng-template>
 			<ng-template #textInputContent>
-				<ng-content select="input[type=text],div"></ng-content>
+				<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 			</ng-template>
 		</div>
 		<div
@@ -56,7 +72,7 @@ import {
 			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
-		<div *ngIf="!warn && invalid" class="cds--form-requirement">
+		<div *ngIf="invalid" class="cds--form-requirement">
 			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 		</div>
@@ -121,6 +137,10 @@ export class TextInputLabelComponent implements AfterViewInit {
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
+
+	@HostBinding("class.cds--text-input-wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("input")?.readOnly ?? false;
+	}
 
 	/**
 	 * Creates an instance of Label.

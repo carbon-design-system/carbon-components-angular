@@ -26,6 +26,12 @@ import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ComboBoxModule } from 'carbon-components-angular';
+ * ```
+ *
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
@@ -38,8 +44,12 @@ import { Observable } from "rxjs";
 			<label
 				*ngIf="label"
 				[for]="id"
+				[id]="labelId"
 				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -53,6 +63,7 @@ import { Observable } from "rxjs";
 					'cds--list-box--md': size === 'md',
 					'cds--list-box--lg': size === 'lg',
 					'cds--list-box--disabled': disabled,
+					'cds--combo-box--readonly': readonly,
 					'cds--combo-box--warning cds--list-box--warning': warn
 				}"
 				class="cds--list-box cds--combo-box"
@@ -64,7 +75,7 @@ import { Observable } from "rxjs";
 					<div
 						*ngIf="type === 'multi' && pills.length > 0"
 						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{'cds--tag--disabled': disabled}">
+						[ngClass]="{'cds--tag--disabled': disabled || readonly}">
 						<span class="cds--tag__label">{{ pills.length }}</span>
 						<button
 							type="button"
@@ -74,7 +85,7 @@ import { Observable } from "rxjs";
 							class="cds--tag__close-icon"
 							tabindex="0"
 							[title]="clearSelectionsTitle"
-							[disabled]="disabled"
+							[disabled]="disabled || readonly"
 							[attr.aria-label]="clearSelectionAria">
 							<svg
 								focusable="false"
@@ -96,6 +107,7 @@ import { Observable } from "rxjs";
 						autocomplete="off"
 						role="combobox"
 						[disabled]="disabled"
+						[readOnly]="readonly"
 						(input)="onSearch($event.target.value)"
 						(blur)="onBlur()"
 						(keydown.enter)="onSubmit($event)"
@@ -104,7 +116,7 @@ import { Observable } from "rxjs";
 						[ngClass]="{'cds--text-input--empty': !showClearButton}"
 						tabindex="0"
 						[id]="id"
-						[attr.aria-labelledby]="id"
+						[attr.aria-labelledby]="labelId"
 						[attr.aria-expanded]="open"
 						aria-haspopup="listbox"
 						[attr.maxlength]="maxLength"
@@ -112,7 +124,7 @@ import { Observable } from "rxjs";
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
 					<svg
-						*ngIf="!warn && invalid"
+						*ngIf="invalid"
 						cdsIcon="warning--filled"
 						size="16"
 						class="cds--list-box__invalid-icon">
@@ -161,7 +173,7 @@ import { Observable } from "rxjs";
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 			</div>
-			<div *ngIf="!warn && invalid" class="cds--form-requirement">
+			<div *ngIf="invalid" class="cds--form-requirement">
 				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
@@ -251,7 +263,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		return this._clearSelectionAria.value;
 	}
 	static comboBoxCount = 0;
-	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
+	@Input() id = `combobox-${ComboBox.comboBoxCount++}`;
+	@Input() labelId = `combobox-label-${ComboBox.comboBoxCount++}`;
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -295,6 +308,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Label for the combobox.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Hide label while keeping it accessible for screen readers
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the optional helper text.
 	 */
@@ -347,6 +364,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Set to `true` to disable combobox.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for readonly state.
+	 */
+	@Input() readonly = false;
 	/**
 	 * Emits a ListItem
 	 *
@@ -483,6 +504,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						} else {
 							this.propagateChangeCallback(this.view.getSelected());
 						}
+						this.selected.emit(event);
 					}
 				} else {
 					// If type is single, dropdown list will emit an object
@@ -509,11 +531,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					if (!isUpdate(event)) {
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
+						this.selected.emit(event.item);
 					}
 					this.closeDropdown();
-				}
-				if (!isUpdate(event) && !Array.isArray(event)) {
-					this.selected.emit(event.item);
 				}
 			});
 			// update the rest of combobox with any pre-selected items
@@ -562,7 +582,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			this.closeDropdown();
 		} else if ((ev.key === "ArrowDown")
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
-			ev.stopPropagation();
+			ev.preventDefault();
 			this.openDropdown();
 			setTimeout(() => { this.view.initFocus(); }, 0);
 		}
@@ -683,7 +703,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		this.open = true;
 		this._dropUp = false;
 
@@ -763,6 +783,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	clearInput(event) {
 		event.stopPropagation();
 		event.preventDefault();
+
+		if (this.disabled || this.readonly) {
+			return;
+		}
 
 		if (this.type === "single") { // don't want to clear selected or close if multi
 			this.clearSelected(event);

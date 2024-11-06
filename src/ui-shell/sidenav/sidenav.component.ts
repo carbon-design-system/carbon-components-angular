@@ -16,7 +16,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 	selector: "cds-sidenav, ibm-sidenav",
 	template: `
 		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
-			<ng-content select="cds-sidenav-header"></ng-content>
+			<ng-content select="cds-sidenav-header,ibm-sidenav-header"></ng-content>
 			<div role="list">
 				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
 					<ng-container *ngFor="let navigationItem of navigationItems">
@@ -25,12 +25,14 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 							[href]="navigationItem.href"
 							[route]="navigationItem.route"
 							[routeExtras]="navigationItem.routeExtras"
+							[useRouter]="useRouter"
 							[title]="navigationItem.title">
 							{{ navigationItem.content }}
 						</cds-sidenav-item>
 						<cds-sidenav-menu
 							*ngIf="navigationItem.type === 'menu'"
 							[title]="navigationItem.title"
+							[useRouter]="useRouter"
 							[menuItems]="navigationItem.menuItems">
 						</cds-sidenav-menu>
 					</ng-container>
@@ -100,6 +102,11 @@ export class SideNav {
 	 * navigation items.
 	 */
 	@Input() navigationItems: NavigationItem[];
+
+	/**
+	 * Use the routerLink attribute on <a> tag for navigation instead of using event handlers
+	 */
+	@Input() useRouter = false;
 
 	constructor(public i18n: I18n) { }
 

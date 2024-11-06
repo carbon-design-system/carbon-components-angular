@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	SelectModule,
 	Select,
@@ -26,27 +26,29 @@ export default {
 	args: {
 		skeleton: false,
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "Please select an option.",
 		warn: false,
 		warnText: "This is a warning!",
 		label: "Select label",
-		helperText: "Optional helper text"
+		helperText: "Optional helper text",
+		size: "md",
+		theme: "dark",
+		display: "default",
+		fluid: false
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		display: {
 			options: ["default", "inline"],
-			defaultValue: "on",
 			control: "radio"
 		}
 	},
@@ -57,12 +59,13 @@ export default {
 	}
 } as Meta;
 
-const Template: Story<Select> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-select
 			[skeleton]="skeleton"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -72,6 +75,7 @@ const Template: Story<Select> = (args) => ({
 			[helperText]="helperText"
 			[theme]="theme"
 			[(ngModel)]="model"
+			[fluid]="fluid"
 			[display]="display">
 			<option value="default" disabled selected hidden>Choose an option</option>
 			<option value="solong">A much longer option that is worth having around to check how text flows</option>
@@ -87,20 +91,20 @@ const Template: Story<Select> = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
-Basic.argTypes = {
-	model: {
-		defaultValue: "default",
-		control: false
-	}
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
 };
 
-const NgModelTemplate: Story<Select> = (args) => ({
+const NgModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select
 			[(ngModel)]="model"
 			[skeleton]="skeleton"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -110,6 +114,7 @@ const NgModelTemplate: Story<Select> = (args) => ({
 			[helperText]="helperText"
 			[theme]="theme"
 			[(ngModel)]="model"
+			[fluid]="fluid"
 			[display]="display"
 			ariaLabel='ngModel select'>
 			<option value="default" disabled selected hidden>Choose an option</option>
@@ -120,15 +125,17 @@ const NgModelTemplate: Story<Select> = (args) => ({
 	`
 });
 export const NgModel = NgModelTemplate.bind({});
+NgModel.args = {
+	model: "option2"
+};
 NgModel.argTypes = {
 	model: {
-		defaultValue: "option2",
 		options: ["default", "option1", "option2", "option3"],
 		control: "select"
 	}
 };
 
-const ReactiveTemplate: Story<Select> = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -146,7 +153,7 @@ ReactiveForms.parameters = {
 	}
 };
 
-const OptionsSelectedTemplate: Story<Select> = (args) => ({
+const OptionsSelectedTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select label="Type">
@@ -180,7 +187,7 @@ OptionsSelected.argTypes = {
 	}
 };
 
-const ValuePropertyTemplate: Story<Select> = (args) => ({
+const ValuePropertyTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-select label="Type" [value]="selected">

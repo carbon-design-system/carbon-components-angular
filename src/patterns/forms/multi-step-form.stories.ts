@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../../grid";
 import { UIShellModule } from "../../ui-shell";
 import { DropdownModule } from "../../dropdown";
@@ -150,21 +150,23 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	steps = [
 		{
-			text: "Step 1",
-			state: ["complete"]
+			label: "Step 1",
+			complete: true
 		},
 		{
-			text: "Step 2",
-			state: ["current"]
+			label: "Step 2",
+			current: true,
+			complete: false
 		},
 		{
-			text: "Step 3",
-			state: ["incomplete"]
+			label: "Step 3",
+			complete: false,
+			invalid: true
 		},
 		{
-			text: "Step 4",
-			state: ["incomplete"],
-			optionalText: "Optional"
+			label: "Step 4",
+			complete: false,
+			secondaryLabel: "Optional"
 		}
 	];
 
@@ -219,7 +221,7 @@ export default {
 	]
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--

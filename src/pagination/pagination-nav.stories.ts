@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { PaginationModule, PaginationNav } from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
@@ -17,7 +17,7 @@ export default {
 	component: PaginationNav
 } as Meta;
 
-const Template: Story<PaginationNav> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -29,7 +29,8 @@ const Template: Story<PaginationNav> = (args) => ({
 			[disabled]="disabled"
 			[totalDataLength]="totalDataLength"
 			[numOfItemsToShow]="numOfItemsToShow"
-			[skeleton]="skeleton">
+			[skeleton]="skeleton"
+			[size]="size">
 		</app-pagination>
 	`
 });
@@ -38,5 +39,6 @@ Basic.args = {
 	disabled: false,
 	totalDataLength: 10,
 	numOfItemsToShow: 4,
-	skeleton: false
+	skeleton: false,
+	size: "md"
 };

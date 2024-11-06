@@ -1,0 +1,25 @@
+import { TemplateRef } from "@angular/core";
+
+export interface Node {
+	label: string | TemplateRef<any>;
+	labelContext?: any;
+	value?: any;
+	id?: string;
+	active?: boolean;
+	disabled?: boolean;
+	// Selectable is only valid for nodes with children.
+	// If true, the node won't become selected and if clicked it would only expand/compress itself
+	selectable?: boolean;
+	expanded?: boolean;
+	selected?: boolean;
+	icon?: string | TemplateRef<any>;
+	iconContext?: any;
+	gap?: number;
+	children?: Node[];
+	[key: string]: any;
+}
+
+export interface EventOnNode {
+	node: Node;
+	event: Event;
+}

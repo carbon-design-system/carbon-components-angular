@@ -13,7 +13,6 @@ import {
 	AfterViewChecked,
 	AfterViewInit,
 	ViewChild,
-	AfterContentInit,
 	OnInit,
 	SimpleChange
 } from "@angular/core";
@@ -22,11 +21,34 @@ import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
+import { Options } from "flatpickr/dist/types/options";
 import { DatePickerInput } from "carbon-components-angular/datepicker-input";
-import { ElementService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
+ * Due to type error, we have to use square brackets property accessor
+ * There is a webpack issue when attempting to access exported languages from flatpickr l10n Angular 14+ apps
+ * languages.default[locale] fails in app consuming CCA library but passes in test
+ * languages.default.default[locale] fails in test but works in app consuming CCA library.
+ *
+ * To please both scenarios, we are adding a condition to prevent tests from failing
+ */
+if (languages.default?.default["en"]?.weekdays) {
+	(languages.default.default["en"].weekdays.shorthand as string[]) = languages.default.default["en"].weekdays.longhand.map(day => {
+		if (day === "Thursday") {
+			return "Th";
+		}
+		return day.charAt(0);
+	});
+}
+
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { DatePickerModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-date-picker--single)
  */
 @Component({
@@ -52,6 +74,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[warn]="warn"
@@ -74,6 +97,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[invalid]="rangeInvalid"
 					[invalidText]="rangeInvalidText"
 					[warn]="rangeWarn"
@@ -101,8 +125,7 @@ export class DatePicker implements
 	OnDestroy,
 	OnChanges,
 	AfterViewChecked,
-	AfterViewInit,
-	AfterContentInit {
+	AfterViewInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -162,6 +185,8 @@ export class DatePicker implements
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
+
+	@Input() readonly = false;
 	/**
 	 * Set to `true` to display the invalid state.
 	 */
@@ -202,10 +227,10 @@ export class DatePicker implements
 	@Input() plugins = [];
 
 	@Input()
-	set flatpickrOptions(options) {
+	set flatpickrOptions(options: Partial<Options>) {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
 	}
-	get flatpickrOptions() {
+	get flatpickrOptions(): Partial<Options> {
 		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
 			plugins.push(rangePlugin({ input: `#${this.id}-rangeInput`, position: "left" }));
@@ -214,7 +239,11 @@ export class DatePicker implements
 			mode: this.range ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat,
-			locale: languages.default[this.language]
+			locale: languages.default?.default[this.language] || languages.default[this.language],
+			// Little trick force "readonly mode" on datepicker input.
+			// Docs: Whether clicking on the input should open the picker.
+			// You could disable this if you wish to open the calendar manually with.open().
+			clickOpens: !this.readonly
 		});
 	}
 
@@ -231,7 +260,7 @@ export class DatePicker implements
 
 	protected _value = [];
 
-	protected _flatpickrOptions = {
+	protected _flatpickrOptions: Partial<Options> = {
 		allowInput: true
 	};
 
@@ -248,18 +277,11 @@ export class DatePicker implements
 			// This makes sure that the `flatpickrInstance selectedDates` are in sync with the values of
 			// the inputs when the calendar closes.
 			if (this.range && this.flatpickrInstance) {
-				if (this.flatpickrInstance.selectedDates.length !== 2) {
-					// we could `this.flatpickrInstance.clear()` but it insists on opening the second picker
-					// in some cases, so instead we do this
-					this.setDateValues([]);
-					this.doSelect([]);
-					return;
-				}
 				const inputValue = this.input.input.nativeElement.value;
 				const rangeInputValue = this.rangeInput.input.nativeElement.value;
 				if (inputValue || rangeInputValue) {
 					const parseDate = (date: string) => this.flatpickrInstance.parseDate(date, this.dateFormat);
-					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue)]);
+					this.setDateValues([parseDate(inputValue), parseDate(rangeInputValue || inputValue)]);
 					this.doSelect(this.flatpickrInstance.selectedDates);
 				}
 			}
@@ -300,7 +322,8 @@ export class DatePicker implements
 			"id",
 			"value",
 			"plugins",
-			"flatpickrOptions"
+			"flatpickrOptions",
+			"readonly"
 		];
 		const changeKeys = Object.keys(changes);
 		if (changeKeys.some(key => flatpickrChangeKeys.includes(key))) {
@@ -309,6 +332,12 @@ export class DatePicker implements
 	}
 
 	ngAfterViewInit() {
+		if (!this.skeleton) {
+			this.input.input.nativeElement.value = this._value[0] ?? "";
+			if (this.range) {
+				this.rangeInput.input.nativeElement.value = this._value[1] ?? "";
+			}
+		}
 		setTimeout(() => {
 			this.addInputListeners();
 		}, 0);
@@ -328,16 +357,6 @@ export class DatePicker implements
 				}
 			}
 		}
-	}
-
-	ngAfterContentInit() {
-		(languages.default.en.weekdays.shorthand as string[])
-			= languages.default.en.weekdays.longhand.map(day => {
-				if (day === "Thursday") {
-					return "Th";
-				}
-				return day.charAt(0);
-			});
 	}
 
 	@HostListener("focusin")
@@ -434,6 +453,10 @@ export class DatePicker implements
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
+		if (this.readonly || this.skeleton) {
+			return;
+		}
+
 		if (this.range) {
 			datepickerInput.input.nativeElement.click();
 
@@ -473,6 +496,13 @@ export class DatePicker implements
 		// flatpickr calendar using a keyboard.
 		const addFocusCalendarListener = (element: HTMLInputElement) => {
 			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				// Listeners are added just once, so a check is needed here.
+				if (this.readonly) {
+					return;
+				}
+				if (event.key === "Escape") {
+					this.flatpickrInstance.close();
+				}
 				if (event.key === "ArrowDown") {
 					if (!this.flatpickrInstance.isOpen) {
 						this.flatpickrInstance.open();

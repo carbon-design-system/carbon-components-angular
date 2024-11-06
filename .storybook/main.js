@@ -10,7 +10,8 @@ module.exports = {
 				backgrounds: false
 			}
 		},
-		"@storybook/addon-a11y"
+		"@storybook/addon-a11y",
+		"@storybook/addon-storysource"
 	],
 	framework: {
 		name: "@storybook/angular",

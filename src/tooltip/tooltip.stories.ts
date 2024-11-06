@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { TooltipModule, Tooltip } from "./";
 
 export default {
@@ -13,9 +13,14 @@ export default {
 	args: {
 		isOpen: true,
 		caret: true,
-		description: "Occassionally, services are updated in a specified time window to ensure no down time for customers."
+		description: "Occassionally, services are updated in a specified time window to ensure no down time for customers.",
+		align: "bottom",
+		autoAlign: false
 	},
 	argTypes: {
+		autoAlign: {
+			control: false
+		},
 		onOpen: {
 			control: "Opened!"
 		},
@@ -28,29 +33,25 @@ export default {
 		align: {
 			options: [
 				"top",
-				"top-left",
-				"top-right",
-				"bottom",
-				"bottom-left",
-				"bottom-right",
-				"left",
-				"left-bottom",
-				"left-top",
+				"top-start",
+				"top-end",
 				"right",
-				"right-bottom",
-				"right-top"
+				"right-start",
+				"right-end",
+				"bottom",
+				"bottom-start",
+				"bottom-end",
+				"left",
+				"left-start",
+				"left-end"
 			],
-			defaultValue: "bottom",
 			control: "select"
 		}
-	},
-	parameters: {
-		layout: "centered"
 	},
 	component: Tooltip
 } as Meta;
 
-const Template: Story<Tooltip> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-tooltip
@@ -85,8 +86,17 @@ const Template: Story<Tooltip> = (args) => ({
 	`]
 });
 export const Basic = Template.bind({});
+Basic.parameters = {
+	docs: {
+		story: {
+			inline: false,
+			iframeHeight: "18rem"
+		}
+	},
+	layout: "centered"
+};
 
-const EllipsesTemplate: Story<Tooltip> = (args) => ({
+const EllipsesTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tooltip
@@ -114,4 +124,59 @@ Ellipses.argTypes = {
 	description: {
 		control: false
 	}
+};
+Ellipses.parameters = {
+	docs: {
+		story: {
+			inline: false,
+			iframeHeight: "18rem"
+		}
+	},
+	layout: "centered"
+};
+
+const AutoAlignTemplate = (args) => ({
+	props: args,
+	template: `
+		<div style="height:3000px">
+			Scrolling will update the position of the popover:
+			<div style="position: absolute; top: 500px; left: 500px;">
+				<cds-tooltip
+					[isOpen]="isOpen"
+					[caret]="caret"
+					[align]="align"
+					[autoAlign]="true"
+					(onOpen)="onOpen($event)"
+					(onClose)="onClose($event)"
+					(isOpenChange)="isOpenChange($event)"
+					[description]="description">
+					<button type="button" class="tooltip-trigger">
+						<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+							<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
+						</svg>
+					</button>
+				</cds-tooltip>
+			</div>
+		</div>
+	`,
+	styles: [`
+		.tooltip-trigger {
+			box-sizing: border-box;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
+			background: white;
+			border: 1px solid var(--cds-border-subtle);
+			cursor: pointer;
+		}
+		svg { fill: var(--cds-background-inverse); }
+	`]
+});
+export const WithAutoAlign = AutoAlignTemplate.bind({});
+WithAutoAlign.args = {
+	autoAlign: true,
+	align: "top"
 };

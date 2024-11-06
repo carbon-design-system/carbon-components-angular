@@ -21,11 +21,23 @@ export enum ToggleState {
 }
 
 /**
- * [See demo](../../?path=/story/components-toggle--basic)
+ * @todo - Toggle component will no longer extend `Checkbox` component as of v6
+ * Toggle is no longer repies on using checkbox, so doesn't make sense for us to continue inheriting ALL checkbox
+ * component attributes.
+ */
+
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ToggleModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-toggle [(ngModel)]="toggleState">Toggle</cds-toggle>
  * ```
+ *
+ * [See demo](../../?path=/story/components-toggle--basic)
  */
 @Component({
 	selector: "cds-toggle, ibm-toggle",

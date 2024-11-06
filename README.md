@@ -55,7 +55,7 @@ That's it! Now we can run `npm start` and start building out our application!
   - IBMers should use our #carbon-ng Slack channel
 
 Angular version support matrix:
-| Angular | v3 | v4 | v5 (future release) |
+| Angular | v3 | v4 | v5 |
 | ------- | -- | -- | ------------------- |
 | 6       | ✅ | ❌ | ❌                   |
 | 7       | ✅ | ✅ | ❌                   |
@@ -68,6 +68,8 @@ Angular version support matrix:
 | 14      | ❌ | ✅ | ✅                   |
 | 15      | ❌ | ✅ | ✅                   |
 | 16      | ❌ | ❌ | ✅                   |
+| 17      | ❌ | ❌ | ✅                   |
+| 18      | ❌ | ❌ | ✅                   |
 
 Carbon Components Angular version support matrix:
 | Carbon Components Angular version | Community support | Active support |
@@ -99,7 +101,7 @@ How to read this table:
 - **if you are contributing a fix**:
   - add your fix, update the documentation as needed
   - consider adding or modifying a test case to cover the fix
-- follow the [Angular style guide](https://angular.io/styleguide)
+- follow the [Angular style guide](https://angular.dev/style-guide)
 - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
 - submit a PR
 
@@ -163,3 +165,11 @@ To keep our build dependencies local we use npm scripts to run our webpack, gulp
 
 ## Code of Conduct
 Read our code of conduct [here](./.github/CODE_OF_CONDUCT.md)
+
+## <picture><source height="20" width="20" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ibm-telemetry/telemetry-js/main/docs/images/ibm-telemetry-dark.svg"><source height="20" width="20" media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ibm-telemetry/telemetry-js/main/docs/images/ibm-telemetry-light.svg"><img height="20" width="20" alt="IBM Telemetry" src="https://raw.githubusercontent.com/ibm-telemetry/telemetry-js/main/docs/images/ibm-telemetry-light.svg"></picture> IBM Telemetry
+
+This package uses IBM Telemetry to collect de-identified and anonymized metrics data. By installing
+this package as a dependency you are agreeing to telemetry collection. To opt out, see
+[Opting out of IBM Telemetry data collection](https://github.com/ibm-telemetry/telemetry-js/tree/main#opting-out-of-ibm-telemetry-data-collection).
+For more information on the data being collected, please see the
+[IBM Telemetry documentation](https://github.com/ibm-telemetry/telemetry-js/tree/main#ibm-telemetry-collection-basics).

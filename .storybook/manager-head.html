@@ -10,19 +10,63 @@
 <meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
+<footer>
+	<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+</footer>
+
+<script
+	key="8"
+	type="module"
+	src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
+</script>
+
 <!-- Storybook override -->
 <script>
 	document.title = "Carbon Components Angular";
 </script>
 
-<!-- Google Analytics v4 setup -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G070S732G6"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag() { dataLayer.push(arguments); }
-	gtag('js', new Date());
-
-	gtag('config', 'G-G070S732G6', {
-		send_page_view: false
-	});
+<!-- Tealium/GA Set up -->
+<script type="text/javascript">
+	window._ibmAnalytics = {
+		settings: {
+			name: 'CarbonAngularStorybook',
+			isSpa: true,
+			tealiumProfileName: 'ibm-web-app',
+		},
+		onLoad: [['ibmStats.pageview', []]],
+	};
+	digitalData = {
+		page: {
+			pageInfo: {
+				ibm: {
+					siteId: 'IBM_' + _ibmAnalytics.settings.name,
+				},
+			},
+			category: {
+				primaryCategory: 'PC100',
+			},
+		},
+	};
 </script>
+<script
+	src="//1.www.s81c.com/common/stats/ibm-common.js"
+	type="text/javascript"
+	async="async">
+</script>
+
+<style>
+	footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 9999;
+	}
+
+	#root > div {
+		/*
+		 * Subtracting the height of the footer to prevent
+		 * overlaying the footer ontop of content
+		 */
+		height: calc(100vh - 48px);
+	}
+</style>

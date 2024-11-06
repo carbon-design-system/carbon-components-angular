@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LoadingModule, Loading } from "./";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 	component: Loading
 } as Meta;
 
-const Template: Story<Loading> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-loading [isActive]="isActive" [size]="size" [overlay]="overlay"></cds-loading>
@@ -22,12 +22,12 @@ const Template: Story<Loading> = (args) => ({
 export const Basic = Template.bind({});
 Basic.args = {
 	isActive: true,
-	overlay: false
+	overlay: false,
+	size: "normal"
 };
 Basic.argTypes = {
 	size: {
 		options: ["sm", "normal"],
-		defaultValue: "normal",
 		control: "radio"
 	}
 };

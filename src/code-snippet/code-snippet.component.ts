@@ -18,11 +18,17 @@ export enum SnippetType {
 }
 
 /**
- * [See demo](../../?path=/story/components-code-snippet--basic)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { CodeSnippetModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <cds-code-snippet>Code</cds-code-snippet>
  * ```
+ *
+ * [See demo](../../?path=/story/components-code-snippet--basic)
  */
 @Component({
 	selector: "cds-code-snippet, ibm-code-snippet",
@@ -37,7 +43,9 @@ export enum SnippetType {
 					[ngClass]="{
 						'cds--snippet--light': theme === 'light'
 					}">
-					<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					<code #code>
+						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					</code>
 				</span>
 			</ng-template>
 		</ng-container>
@@ -62,11 +70,13 @@ export enum SnippetType {
 				<pre
 					#codeContent
 					*ngIf="!skeleton"
-					(scroll)="(display === 'multi' ? handleScroll() : null)"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>
+					(scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></code></pre>
 			</div>
 			<div *ngIf="hasLeft" class="cds--snippet__overflow-indicator--left"></div>
 			<div *ngIf="hasRight" class="cds--snippet__overflow-indicator--right"></div>
-			<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
+			<ng-container *ngIf="!hideCopyButton;">
+				<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
+			</ng-container>
 			<button
 				*ngIf="isExpandable"
 				class="cds--btn cds--btn--ghost cds--btn--sm cds--snippet-btn--expand"
@@ -108,7 +118,9 @@ export enum SnippetType {
 					'tabindex': '0'
 				}">
 				<ng-container *ngIf="display === 'inline'">
-					<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					<code #code>
+						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+					</code>
 				</ng-container>
 				<ng-container *ngIf="display !== 'inline'">
 					<svg cdsIcon="copy" size="16" class="cds--snippet__icon"></svg>
@@ -117,7 +129,7 @@ export enum SnippetType {
 		</ng-template>
 
 		<ng-template #codeTemplate>
-			<code #code><ng-content></ng-content></code>
+			<ng-content></ng-content>
 		</ng-template>
 	`
 })
@@ -222,6 +234,10 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	}
 
 	handleScroll() {
+		if (this.skeleton) {
+			return;
+		}
+
 		let ref;
 		switch (this.display) {
 			case "multi":
@@ -266,6 +282,11 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 
 	ngOnInit() {
 		this.calculateContainerHeight();
+	}
+
+	ngAfterViewInit() {
+		this.canExpand();
+		this.handleScroll();
 		if (window) {
 			this.eventService.on(window as any, "resize", () => {
 				this.canExpand();
@@ -274,15 +295,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 		}
 	}
 
-	ngAfterViewInit() {
-		setTimeout(() => {
-			this.canExpand();
-			this.handleScroll();
-		});
-	}
-
 	calculateContainerHeight() {
-		if (this.display === "multi") {
+		if (this.display === "multi" && !this.skeleton) {
 			this.styles = {};
 			if (this.expanded) {
 				if (this.maxExpandedNumberOfRows > 0) {
@@ -303,7 +317,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	}
 
 	protected canExpand() {
-		if (this.display === "multi") {
+		if (this.display === "multi" && !this.skeleton) {
 			const height = this.codeContent.nativeElement.getBoundingClientRect().height;
 			if (
 				this.maxCollapsedNumberOfRows > 0 &&

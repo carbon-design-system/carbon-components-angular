@@ -5,17 +5,19 @@ import {
 } from "@angular/core";
 
 /**
- * A convenience directive for applying styling to a link.
+ * A convenience directive for applying styling to a link. Get started with importing the module:
  *
- * [See demo](../../?path=/story/components-link--basic)
- *
- * Example:
+ * ```typescript
+ * import { LinkModule } from 'carbon-components-angular';
+ * ```
  *
  * ```html
  * <a href="#" cdsLink>A link</a>
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
+ *
+ * [See demo](../../?path=/story/components-link--basic)
  */
 @Directive({
 	selector: "[cdsLink], [ibmLink]"

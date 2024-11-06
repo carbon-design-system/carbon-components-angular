@@ -16,6 +16,15 @@ import { TileSelection } from "./tile-selection.interface";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { TilesModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-tiles-grouped--selectable)
+ */
 @Component({
 	selector: "cds-tile-group, ibm-tile-group",
 	template: `

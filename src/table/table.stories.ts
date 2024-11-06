@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
 import { NFormsModule } from "../forms";
 import { ButtonModule } from "../button";
@@ -112,7 +112,7 @@ export default {
 	}
 } as Meta;
 
-const Template: Story = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -150,7 +150,7 @@ Basic.argTypes = {
 	...getProps({}, "argTypes")
 };
 
-const NoDataTemplate: Story = (args) => ({
+const NoDataTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -191,7 +191,7 @@ WithoutData.args = {
 	}, "args")
 };
 
-const ToolbarTemplate: Story = (args) => ({
+const ToolbarTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -289,7 +289,7 @@ WithToolbar.argTypes = {
 	}, "argTypes")
 };
 
-const DisabledRowsTemplate: Story = (args) => ({
+const DisabledRowsTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -362,7 +362,7 @@ WithDisabledRows.argTypes = {
 	}
 };
 
-const WithoutActionTemplate: Story = (args) => ({
+const WithoutActionTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -411,7 +411,7 @@ WithToolbarWithoutToolbarAction.args = {
 	}, "args")
 };
 
-const FilteringOverridingTemplate: Story = (args) => ({
+const FilteringOverridingTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -435,7 +435,7 @@ FilteringOverriding.args = {
 	...getProps({}, "args")
 };
 
-const FilteringTemplate: Story = (args) => ({
+const FilteringTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--
@@ -462,7 +462,7 @@ Filtering.args = {
 	}, "args")
 };
 
-const ExpansionTemplate: Story = (args) => ({
+const ExpansionTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -482,7 +482,8 @@ const ExpansionTemplate: Story = (args) => ({
 				[stickyHeader]="stickyHeader"
 				[skeleton]="skeleton"
 				[striped]="striped"
-				[isDataGrid]="isDataGrid">
+				[isDataGrid]="isDataGrid"
+				[showExpandAllToggle]="showExpandAllToggle">
 			</app-expansion-table>
 		</cds-table-container>
 	`
@@ -491,10 +492,11 @@ export const WithExpansion = ExpansionTemplate.bind({});
 WithExpansion.args = {
 	...getProps({
 		description: "With expansion"
-	}, "args")
+	}, "args"),
+	showExpandAllToggle: false
 };
 
-const DyanmicContentTemplate: Story = (args) => ({
+const DyanmicContentTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -526,7 +528,7 @@ WithDynamicContent.args = {
 	}, "args")
 };
 
-const OverflowMenuTemplate: Story = (args) => ({
+const OverflowMenuTemplate = (args) => ({
 	props: {
 		...getProps({
 			description: "With overflow menu"
@@ -562,7 +564,7 @@ export const WithOverflowMenu = OverflowMenuTemplate.bind({});
 // 	}, "args")
 // };
 
-const PaginationTemplate: Story = (args) => ({
+const PaginationTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-table-container>
@@ -595,7 +597,7 @@ WithPagination.args = {
 	}, "args")
 };
 
-const FromComponentsTemplate: Story = (args) => ({
+const FromComponentsTemplate = (args) => ({
 	props: args,
 	template: `
 		<table cdsTable [sortable]="false">
@@ -631,7 +633,7 @@ FromComponents.args = {
 	...getProps({}, "args")
 };
 
-const SkeletonTemplate: Story = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--

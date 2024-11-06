@@ -44,16 +44,25 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * - `[appendInline]="false"` will always append to the body/`cds-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { DropdownModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-dropdown--basic)
  */
 @Component({
 	selector: "cds-dropdown, ibm-dropdown",
 	template: `
 	<label
-		*ngIf="label"
+		*ngIf="label && !skeleton"
 		[for]="id"
 		class="cds--label"
-		[ngClass]="{'cds--label--disabled': disabled}">
+		[ngClass]="{
+			'cds--label--disabled': disabled,
+			'cds--visually-hidden': hideLabel
+		}">
 		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 	</label>
@@ -68,6 +77,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			'cds--list-box--inline': inline,
 			'cds--skeleton': skeleton,
 			'cds--dropdown--disabled cds--list-box--disabled': disabled,
+			'cds--dropdown--readonly': readonly,
 			'cds--dropdown--invalid': invalid,
 			'cds--dropdown--warning cds--list-box--warning': warn,
 			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
@@ -83,8 +93,9 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
+			[attr.aria-readonly]="readonly"
 			aria-haspopup="listbox"
-			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
+			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
 			[attr.disabled]="disabled ? true : null">
 			<div
@@ -115,7 +126,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
 			<svg
-				*ngIf="!warn && invalid"
+				*ngIf="invalid"
 				class="cds--dropdown__invalid-icon"
 				cdsIcon="warning--filled"
 				size="16">
@@ -145,7 +156,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		</div>
 	</div>
 	<div
-		*ngIf="helperText && !invalid && !warn"
+		*ngIf="helperText && !invalid && !warn && !skeleton"
 		class="cds--form__helper-text"
 		[ngClass]="{
 			'cds--form__helper-text--disabled': disabled
@@ -153,7 +164,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 	</div>
-	<div *ngIf="!warn && invalid" class="cds--form-requirement">
+	<div *ngIf="invalid" class="cds--form-requirement">
 		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
 		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 	</div>
@@ -177,6 +188,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Label for the dropdown.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Hide label while keeping it accessible for screen readers
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the optional helper text.
 	 */
@@ -211,6 +226,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Set to `true` to disable the dropdown.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a readonly state.
+	 */
+	@Input() readonly = false;
 	/**
 	 * Set to `true` for a loading dropdown.
 	 */
@@ -501,6 +520,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@HostListener("keydown", ["$event"])
 	onKeyDown(event: KeyboardEvent) {
+		if (this.readonly) {
+			return;
+		}
+
 		if ((event.key === "Escape") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
@@ -551,7 +574,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * otherwise the placeholder will be returned.
 	 */
 	getDisplayStringValue(): Observable<string> {
-		if (!this.view) {
+		if (!this.view || this.skeleton) {
 			return;
 		}
 		let selected = this.view.getSelected();

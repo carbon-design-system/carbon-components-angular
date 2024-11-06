@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule } from "../icon";
 import { ButtonModule, Button } from "./";
 
@@ -14,6 +14,12 @@ export default {
 			]
 		})
 	],
+	args: {
+		kind: "primary",
+		size: "md",
+		isExpressive: "false",
+		disabled: false
+	},
 	argTypes: {
 		kind: {
 			options: [
@@ -26,22 +32,18 @@ export default {
 				"danger--tertiary",
 				"danger--ghost"
 			],
-			defaultValue: "primary",
 			control: { type: "select" },
 			name: "cdsButton"
 		},
 		size: {
 			options: ["sm", "md", "lg", "xl", "2xl"],
-			defaultValue: "md",
 			control: { type: "select" }
 		},
 		isExpressive: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		disabled: {
-			type: "boolean",
-			defaultValue: false
+			type: "boolean"
 		},
 		// Actions
 		onClick: { action: "clicked" },
@@ -56,7 +58,7 @@ export default {
 	component: Button
 } as Meta;
 
-const Template: Story<Button> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<button
@@ -75,7 +77,7 @@ const Template: Story<Button> = (args) => ({
 });
 export const Basic = Template.bind({});
 
-const WithIconTemplate: Story<Button> = (args) => ({
+const WithIconTemplate = (args) => ({
 	props: args,
 	template: `
 		<button

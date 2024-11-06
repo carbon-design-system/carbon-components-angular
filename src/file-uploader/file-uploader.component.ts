@@ -14,6 +14,12 @@ import { FileItem } from "./file-item.interface";
 const noop = () => { };
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { FileUploaderModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-file-uploader--basic)
  */
 @Component({
@@ -21,7 +27,7 @@ const noop = () => { };
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
-			<p class="cds--label-description">{{description}}</p>
+			<p class="cds--label-description" role="alert">{{description}}</p>
 			<div class="cds--file">
 				<label
 					*ngIf="drop"
@@ -231,6 +237,9 @@ export class FileUploader implements ControlValueAccessor {
 	onDragOver(event) {
 		event.stopPropagation();
 		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
 		this.dragOver = true;
 	}
 
@@ -243,6 +252,9 @@ export class FileUploader implements ControlValueAccessor {
 	onDrop(event) {
 		event.stopPropagation();
 		event.preventDefault();
+		if (this.disabled) {
+			return;
+		}
 
 		const transferredFiles: Array<File> = Array.from(event.dataTransfer.files);
 		const newFiles = new Set<FileItem>(this.files);

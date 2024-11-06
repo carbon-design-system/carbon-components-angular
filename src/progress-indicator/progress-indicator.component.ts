@@ -8,6 +8,12 @@ import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ProgressIndicatorModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-progress-indicator--basic)
  */
 @Component({

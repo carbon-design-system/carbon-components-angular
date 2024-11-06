@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import { TilesModule, ClickableTile } from "./";
 
@@ -14,7 +14,7 @@ export default {
 	component: ClickableTile
 } as Meta;
 
-const Template: Story<ClickableTile> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-clickable-tile
@@ -30,7 +30,7 @@ Basic.args = {
 	href: "https://www.carbondesignsystem.com/"
 };
 
-const LayerTemplate: Story<ClickableTile> = (args) => ({
+const LayerTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-clickable-tile>

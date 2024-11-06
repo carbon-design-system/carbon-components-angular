@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	ContentSwitcherModule,
 	ContentSwitcher,
@@ -23,7 +23,7 @@ export default {
 	subcomponents: ContentSwitcherOption
 } as Meta;
 
-const Template: Story<ContentSwitcher> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-content-switcher (selected)="selected($event)">

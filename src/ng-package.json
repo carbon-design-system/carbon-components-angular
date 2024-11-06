@@ -6,9 +6,11 @@
 	},
 	"allowedNonPeerDependencies": [
 		"@carbon/utils-position",
-		"flatpickr",
 		"@carbon/icon-helpers",
 		"@carbon/icons",
-		"@carbon/telemetry"
+		"@floating-ui/dom",
+		"@ibm/telemetry-js",
+		"flatpickr",
+		"lodash-es"
 	]
 }

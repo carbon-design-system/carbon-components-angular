@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import {
 	TilesModule,
@@ -27,7 +27,7 @@ export default {
 	}
 } as Meta;
 
-const SelectableTemplate: Story<TileGroup> = (args) => ({
+const SelectableTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tile-group (selected)="selected($event)" [multiple]="false">
@@ -44,7 +44,7 @@ Selectable.argTypes = {
 	}
 };
 
-const MultiTemplate: Story<TileGroup> = (args) => ({
+const MultiTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tile-group (selected)="selected($event)" [multiple]="true">
@@ -61,7 +61,7 @@ Multiselect.argTypes = {
 	}
 };
 
-const LayerTemplate: Story<TileGroup> = (args) => ({
+const LayerTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-tile-group (selected)="selected($event)" [multiple]="false">

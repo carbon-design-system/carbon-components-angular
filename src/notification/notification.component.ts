@@ -7,7 +7,7 @@ import {
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
-import { of } from "rxjs";
+import { isObservable, of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
 
 /**
@@ -56,7 +56,7 @@ export class Notification extends BaseNotification {
 		return this._notificationObj;
 	}
 	set notificationObj(obj: NotificationContent) {
-		if (obj.closeLabel) {
+		if (obj.closeLabel && !isObservable(obj.closeLabel)) {
 			obj.closeLabel = of(obj.closeLabel);
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);

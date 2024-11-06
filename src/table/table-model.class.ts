@@ -69,6 +69,8 @@ export class TableModel implements PaginationModel {
 	dataChange = new EventEmitter();
 	rowsSelectedChange = new EventEmitter<number>();
 	rowsExpandedChange = new EventEmitter<number>();
+	rowsExpandedAllChange = new EventEmitter();
+	rowsCollapsedAllChange = new EventEmitter();
 	/**
 	 * Gets emitted when `selectAll` is called. Emits false if all rows are deselected and true if
 	 * all rows are selected.
@@ -409,8 +411,27 @@ export class TableModel implements PaginationModel {
 		this.dataChange.emit();
 	}
 
+	/**
+	 * Deletes all rows.
+	 */
+	deleteAllRows() {
+		this.data = [];
+	}
+
 	hasExpandableRows() {
 		return this.data.some(data => data.some(d => d && d.expandedData)); // checking for some in 2D array
+	}
+
+	/**
+	 * Number of rows that can be expanded.
+	 *
+	 * @returns number
+	 */
+	expandableRowsCount() {
+		return this.data.reduce((counter, _, index) => {
+			counter = (this.isRowExpandable(index)) ? counter + 1 : counter;
+			return counter;
+		}, 0);
 	}
 
 	isRowExpandable(index: number) {
@@ -703,6 +724,27 @@ export class TableModel implements PaginationModel {
 	expandRow(index: number, value = true) {
 		this.rowsExpanded[index] = value;
 		this.rowsExpandedChange.emit(index);
+	}
+
+	/**
+	 * Expands / collapses all rows
+	 *
+	 * @param value expanded state of the rows. `true` is expanded and `false` is collapsed
+	 */
+	expandAllRows(value = true) {
+		if (this.data.length > 0) {
+			for (let i = 0; i < this.data.length; i++) {
+				if (this.isRowExpandable(i)) {
+					this.rowsExpanded[i] = value;
+				}
+			}
+
+			if (value) {
+				this.rowsExpandedAllChange.emit();
+			} else {
+				this.rowsCollapsedAllChange.emit();
+			}
+		}
 	}
 
 	/**

@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { CheckboxModule, Checkbox } from "./";
 import { ReactiveFormsStory } from "./stories";
 
@@ -20,7 +20,7 @@ export default {
 	component: Checkbox
 } as Meta;
 
-const Template: Story<Checkbox> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<fieldset class="cds--fieldset">
@@ -50,7 +50,7 @@ Basic.argTypes = {
 	onIndeterminateChange: { action: "Indeterminate Change!" }
 };
 
-const ModelTemplate: Story<Checkbox> = (args) => ({
+const ModelTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-checkbox
@@ -73,7 +73,7 @@ WithNgModel.parameters = {
 	controls: { disabled: true }
 };
 
-const ReactiveTemplate: Story = (args) => ({
+const ReactiveTemplate = (args) => ({
 	props: args,
 	template: `
 	<!--

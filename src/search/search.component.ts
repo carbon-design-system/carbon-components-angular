@@ -12,6 +12,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { SearchModule } from 'carbon-components-angular';
+ * ```
+ *
  * [See demo](../../?path=/story/components-search--basic)
  */
 @Component({
@@ -31,7 +37,13 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.cds--form-item") get containerClass() { return !(this.toolbar || this.expandable); }
+	@HostBinding("class.cds--form-item") get containerClass() {
+		return !(this.toolbar || this.expandable);
+	}
+
+	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeletonClass() {
+		return this.skeleton && this.fluid;
+	}
 
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
@@ -110,6 +122,10 @@ export class Search implements ControlValueAccessor {
 	 * Sets the aria label on the `div` element with the `search` role.
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid = false;
 	/**
 	 * Emits an event when value is changed.
 	 */
@@ -215,9 +231,18 @@ export class Search implements ControlValueAccessor {
 	keyDown(event: KeyboardEvent) {
 		if (this.toolbar || this.expandable) {
 			if (event.key === "Escape") {
-				this.active = false;
+				if (this.value === "") {
+					this.active = false;
+					this.open.emit(this.active);
+				}
 			} else if (event.key === "Enter") {
 				this.openSearch();
+			}
+		}
+
+		if (event.key === "Escape") {
+			if (this.value !== "") {
+				this.clearSearch();
 			}
 		}
 	}

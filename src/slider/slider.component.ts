@@ -18,7 +18,11 @@ import { EventService } from "carbon-components-angular/utils";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * [See demo](../../?path=/story/components-slider--advanced)
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { SliderModule } from 'carbon-components-angular';
+ * ```
  *
  * The simplest possible slider usage looks something like:
  *
@@ -52,6 +56,8 @@ import { EventService } from "carbon-components-angular/utils";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
+ *
+ * [See demo](../../?path=/story/components-slider--advanced)
  */
 @Component({
 	selector: "cds-slider, ibm-slider",
@@ -66,44 +72,53 @@ import { EventService } from "carbon-components-angular/utils";
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
-			<div class="cds--slider-container">
+			<div
+				class="cds--slider-container"
+				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
 				<label [id]="bottomRangeId" class="cds--slider__range-label">
 					<ng-content select="[minLabel]"></ng-content>
 				</label>
 				<div
 					class="cds--slider"
-					[ngClass]="{'cds--slider--disabled': disabled}">
+					(click)="onClick($event)"
+					[ngClass]="{
+						'cds--slider--disabled': disabled,
+						'cds--slider--readonly': readonly
+					}">
 					<ng-container *ngIf="!isRange()">
-						<div
-							#thumbs
-							role="slider"
-							[id]="id"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(value) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event)"
-							(keydown)="onKeyDown($event)">
+						<div class="cds--slider__thumb-wrapper"
+							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event)"
+								(keydown)="onKeyDown($event)">
+							</div>
 						</div>
 					</ng-container>
 					<ng-container *ngIf="isRange()">
-						<div
-							#thumbs
-							*ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy"
-							role="slider"
-							[id]="id + (i > 0 ? '-' + i : '')"
-							[attr.aria-labelledby]="labelId"
-							class="cds--slider__thumb"
-							[ngStyle]="{left: getFractionComplete(thumb) * 100 + '%'}"
-							tabindex="0"
-							(mousedown)="onMouseDown($event, i)"
-							(keydown)="onKeyDown($event, i)">
+						<div class="cds--slider__thumb-wrapper"
+						 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}"
+						 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">
+							<div
+								#thumbs
+								role="slider"
+								[id]="id + (i > 0 ? '-' + i : '')"
+								[attr.aria-labelledby]="labelId"
+								class="cds--slider__thumb"
+								tabindex="0"
+								(mousedown)="onMouseDown($event, i)"
+								(keydown)="onKeyDown($event, i)">
+							</div>
 						</div>
 					</ng-container>
 					<div
 						#track
-						class="cds--slider__track"
-						(click)="onClick($event)">
+						class="cds--slider__track">
 					</div>
 					<div
 						#filledTrack
@@ -266,6 +281,18 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	get disabled() {
 		return this._disabled;
 	}
+	/** Set to `true` for a readonly state. */
+	@Input() set readonly(v: boolean) {
+		this._readonly = v;
+		// for some reason `this.input` never exists here, so we have to query for it here too
+		const inputs = this.getInputs();
+		if (inputs && inputs.length > 0) {
+			inputs.forEach(input => input.readOnly = v);
+		}
+	}
+	get readonly() {
+		return this._readonly;
+	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number | number[]> = new EventEmitter();
 	@HostBinding("class.cds--form-item") hostClass = true;
@@ -287,6 +314,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _value = [this.min];
 	protected _previousValue = [this.min];
 	protected _disabled = false;
+	protected _readonly = false;
 	protected _focusedThumbIndex = 0;
 
 	constructor(
@@ -440,11 +468,24 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		this.value = this.value;
 	}
 
-	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
+	/**
+	 * Handles clicks on the slider, and setting the value to it's "real" equivalent.
+	 * Will assign the value to the closest thumb if in range mode.
+	 * */
 	onClick(event) {
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
-		this._value[0] = this.convertToValue(event.clientX - trackLeft);
+		const trackValue = this.convertToValue(event.clientX - trackLeft);
+		if (this.isRange()) {
+			if (Math.abs(this._value[0] - trackValue) < Math.abs(this._value[1] - trackValue)) {
+				this._value[0] = trackValue;
+			} else {
+				this._value[1] = trackValue;
+			}
+		} else {
+			this._value[0] = trackValue;
+		}
+
 		this.value = this.value;
 	}
 
@@ -455,7 +496,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 
 	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
 	onMouseMove(event) {
-		if (this.disabled || !this.isMouseDown) { return; }
+		if (this.disabled || this.readonly || !this.isMouseDown) { return; }
 		const track = this.track.nativeElement.getBoundingClientRect();
 
 		let value;
@@ -490,7 +531,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 */
 	onMouseDown(event, index = 0) {
 		event.preventDefault();
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		this._focusedThumbIndex = index;
 		this.thumbs.toArray()[index].nativeElement.focus();
 		this.isMouseDown = true;
@@ -507,7 +548,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 * @param {boolean} thumb If true then `thumb` is pressed down, otherwise `thumb2` is pressed down.
 	 */
 	onKeyDown(event: KeyboardEvent, index = 0) {
-		if (this.disableArrowKeys) {
+		if (this.disableArrowKeys || this.readonly) {
 			return;
 		}
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;

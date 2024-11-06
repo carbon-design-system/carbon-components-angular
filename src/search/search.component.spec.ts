@@ -85,6 +85,59 @@ describe("Search", () => {
 		expect(component.value).toEqual("");
 	});
 
+	it("should clear the input when the clear button is clicked on the expandable component", () => {
+		component.expandable = true;
+		component.value = "TextToClear";
+		fixture.detectChanges();
+		clearButtonElement = fixture.debugElement.query(By.css("button")).nativeElement;
+		clearButtonElement.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual("");
+	});
+
+	it("should clear the input when the escape key is pressed", () => {
+		clearButtonElement = fixture.debugElement.query(By.css("button")).nativeElement;
+		component.value = "TextToClear";
+		fixture.detectChanges();
+		expect(clearButtonElement.className.includes("cds--search-close--hidden")).toEqual(false);
+		component.keyDown(new KeyboardEvent("keydown", {
+			"key": "Escape"
+		}));
+		fixture.detectChanges();
+		expect(component.value).toBe("");
+		expect(clearButtonElement.className.includes("cds--search-close--hidden")).toEqual(true);
+	});
+
+	it("should clear the input and keep the expanded state open when the escape key is pressed", () => {
+		component.expandable = true;
+		component.active = true;
+		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
+		component.value = "TextToClear";
+		fixture.detectChanges();
+		expect(containerElement.className.includes("cds--search--expanded")).toEqual(true);
+		component.keyDown(new KeyboardEvent("keydown", {
+			"key": "Escape"
+		}));
+		fixture.detectChanges();
+		expect(component.value).toBe("");
+		expect(containerElement.className.includes("cds--search--expanded")).toEqual(true);
+	});
+
+	it("should close the expandable search component when esc is pressed when content is empty", () => {
+		component.expandable = true;
+		component.active = true;
+		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
+		component.value = "";
+		fixture.detectChanges();
+		expect(containerElement.className.includes("cds--search--expanded")).toEqual(true);
+		component.keyDown(new KeyboardEvent("keydown", {
+			"key": "Escape"
+		}));
+		fixture.detectChanges();
+		expect(component.active).toEqual(false);
+		expect(containerElement.className.includes("cds--search--expanded")).toEqual(false);
+	});
+
 	it("should have dark and light theme", () => {
 		containerElement = fixture.debugElement.query(By.css(".cds--search")).nativeElement;
 		component.theme = "dark";

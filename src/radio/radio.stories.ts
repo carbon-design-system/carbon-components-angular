@@ -1,7 +1,7 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { RadioModule, RadioGroup, Radio } from "./";
 
 import { ReactiveFormsStory } from "./stories";
@@ -22,7 +22,7 @@ export default {
 	subcomponents: Radio
 } as Meta;
 
-const Template: Story<Radio> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-radio-group
@@ -54,7 +54,9 @@ Basic.args = {
 	invalid: false,
 	invalidText: "Error message goes here and can wrap lines",
 	warn: false,
-	warnText: "Warning message goes here and can wrap lines"
+	warnText: "Warning message goes here and can wrap lines",
+	orientation: "horizontal",
+	labelPlacement: "right"
 };
 Basic.argTypes = {
 	onChange: {
@@ -62,17 +64,15 @@ Basic.argTypes = {
 	},
 	orientation: {
 		options: ["horizontal", "vertical"],
-		defaultValue: "horizontal",
 		control: "radio"
 	},
 	labelPlacement: {
 		options: ["left", "right"],
-		defaultValue: "right",
 		control: "radio"
 	}
 };
 
-const SkeletonTemplate: Story<Radio> = (args) => ({
+const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-radio-group skeleton="true">
@@ -82,7 +82,7 @@ const SkeletonTemplate: Story<Radio> = (args) => ({
 });
 export const Skeleton = SkeletonTemplate.bind({});
 
-const ReactiveFormsTemplate: Story<Radio> = (args) => ({
+const ReactiveFormsTemplate = (args) => ({
 	props: args,
 	template: `
 		<!--

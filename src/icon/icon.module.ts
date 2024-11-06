@@ -38,6 +38,7 @@ import ErrorFilled16 from "@carbon/icons/es/error--filled/16";
 import ErrorFilled20 from "@carbon/icons/es/error--filled/20";
 import Fade16 from "@carbon/icons/es/fade/16";
 import Fade20 from "@carbon/icons/es/fade/20";
+import Folder16 from "@carbon/icons/es/folder/16";
 import Incomplete16 from "@carbon/icons/es/incomplete/16";
 import InformationFilled16 from "@carbon/icons/es/information--filled/16";
 import InformationFilled20 from "@carbon/icons/es/information--filled/20";
@@ -57,6 +58,8 @@ import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
+import View16 from "@carbon/icons/es/view/16";
+import ViewOff16 from "@carbon/icons/es/view--off/16";
 
 // either provides a new instance of IconService, or returns the parent
 export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
@@ -118,6 +121,7 @@ export class IconModule {
 			ErrorFilled20,
 			Fade16,
 			Fade20,
+			Folder16,
 			Incomplete16,
 			InformationFilled16,
 			InformationFilled20,
@@ -132,6 +136,8 @@ export class IconModule {
 			SettingsAdjust16,
 			Subtract16,
 			TrashCan16,
+			View16,
+			ViewOff16,
 			Warning16,
 			WarningFilled16,
 			WarningFilled20,

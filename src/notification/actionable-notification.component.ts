@@ -4,7 +4,7 @@ import {
 	HostBinding
 } from "@angular/core";
 
-import { of } from "rxjs";
+import { isObservable, of } from "rxjs";
 import { ActionableContent, NotificationVariants } from "./notification-content.interface";
 import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
@@ -76,7 +76,7 @@ export class ActionableNotification extends BaseNotification {
 		return this._notificationObj;
 	}
 	set notificationObj(obj: ActionableContent) {
-		if (obj.closeLabel) {
+		if (obj.closeLabel && !isObservable(obj.closeLabel)) {
 			obj.closeLabel = of(obj.closeLabel);
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);

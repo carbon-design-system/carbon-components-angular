@@ -5,6 +5,15 @@ import {
 	TemplateRef
 } from "@angular/core";
 
+/**
+ * Get started with importing the module:
+ *
+ * ```typescript
+ * import { ProgressBarModule } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-progress-bar--basic)
+ */
 @Component({
 	selector: "cds-progress-bar, ibm-progress-bar",
 	template: `
@@ -33,8 +42,8 @@ import {
 			class="cds--progress-bar__track"
 			role="progressbar"
 			[attr.aria-invalid]="isError"
-			[attr.labelledby]="id"
-			[attr.describedby]="helperText ? helperId: null"
+			[attr.aria-labelledby]="id"
+			[attr.aria-describedby]="helperText ? helperId : null"
 			[attr.aria-valuemin]="!indeterminate ? 0 : null"
 			[attr.aria-valuemax]="!indeterminate ? max : null"
 			[attr.aria-valuenow]="!indeterminate ? value : null">

@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta, Story  } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { SearchModule, Search } from "./";
 
 export default {
@@ -14,22 +14,27 @@ export default {
 		expandable: false,
 		placeholder: "Search",
 		disabled: false,
-		skeleton: false
+		skeleton: false,
+		size: "md",
+		theme: "dark",
+		autocomplete: "on",
+		fluid: false
 	},
 	argTypes: {
+		expandable: {
+			type: "boolean",
+			defaultValue: false
+		},
 		size: {
 			options: ["sm", "md", "lg"],
-			defaultValue: "md",
 			control: "radio"
 		},
 		theme: {
 			options: ["light", "dark"],
-			defaultValue: "dark",
 			control: "radio"
 		},
 		autocomplete: {
 			options: ["on", "off"],
-			defaultValue: "on",
 			control: "radio"
 		},
 		clear: {
@@ -42,7 +47,7 @@ export default {
 	component: Search
 } as Meta;
 
-const Template: Story<Search> = (args) => ({
+const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-search
@@ -52,8 +57,16 @@ const Template: Story<Search> = (args) => ({
 			[disabled]="disabled"
 			[size]="size"
 			(valueChange)="valueChange($event)"
-			(clear)="clear()">
+			(clear)="clear()"
+			[fluid]="fluid"
+			[skeleton]="skeleton"
+			[expandable]="expandable">
 		</cds-search>
 	`
 });
 export const Basic = Template.bind({});
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
