@@ -1,6 +1,7 @@
 export default {
 	"BREADCRUMB": {
-		"LABEL": "Breadcrumb"
+		"LABEL": "Breadcrumb",
+		"OVERFLOW_MENU_DESCRIPTION": "Options"
 	},
 	"CODE_SNIPPET": {
 		"CODE_SNIPPET_TEXT": "Code Snippet Text",
@@ -54,7 +55,8 @@ export default {
 		"DECREMENT": "Decrement value"
 	},
 	"OVERFLOW_MENU": {
-		"OVERFLOW": "Overflow"
+		"OVERFLOW": "Overflow",
+		"ICON_DESCRIPTION": "Options"
 	},
 	"SEARCH": {
 		"LABEL": "Search",
@@ -89,6 +91,7 @@ export default {
 		"CHECKBOX_HEADER": "Select all rows",
 		"CHECKBOX_ROW": "Select {{value}}",
 		"EXPAND_BUTTON": "Expand row",
+		"EXPAND_ALL_BUTTON": "Expand all rows",
 		"SORT_DESCENDING": "Sort rows by this header in descending order",
 		"SORT_ASCENDING": "Sort rows by this header in ascending order",
 		"ROW": "row"
