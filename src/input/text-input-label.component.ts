@@ -70,33 +70,35 @@ import {
 					<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 				</ng-template>
 
-				<hr *ngIf="fluid" class="cds--text-input__divider" />
-
-				<!-- Not a fan of duplicating these two divs here. But they need to be here for a fluid layout. -->
-				<div *ngIf="fluid && invalid" class="cds--form-requirement">
+				<ng-container *ngIf="fluid">
+					<hr class="cds--text-input__divider" />
+					<div *ngIf="invalid" class="cds--form-requirement">
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					</div>
+					<div *ngIf="!invalid && warn" class="cds--form-requirement">
+						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+					</div>
+				</ng-container>
+			</div>
+			<ng-container *ngIf="!fluid">
+				<div
+					*ngIf="helperText && !invalid && !warn"
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				</div>
+				<div *ngIf="invalid" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 				</div>
-				<div *ngIf="fluid && !invalid && warn" class="cds--form-requirement">
+				<div *ngIf="!invalid && warn" class="cds--form-requirement">
 					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 				</div>
-			</div>
-			<div
-				*ngIf="helperText && !invalid && !warn && !fluid"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="!fluid && invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!fluid && !invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			</ng-container>
 		</div>
 	`
 })
