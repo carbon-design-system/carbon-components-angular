@@ -31,7 +31,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
+		<cds-structured-list [condensed]="condensed">
 			<cds-list-header>
 				<cds-list-column nowrap="true">Column 1</cds-list-column>
 				<cds-list-column nowrap="true">Column 2</cds-list-column>
@@ -64,19 +64,15 @@ const Template = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	border: false,
-	condensed: false,
-	nowrap: false
+	condensed: false
 };
 
 const SelectionTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-structured-list
-			[border]="border"
 			[condensed]="condensed"
-			[nowrap]="nowrap"
-			selection="true"
+			[selection]="true"
 			[(ngModel)]="valueSelected">
 			<cds-list-header>
 				<cds-list-column nowrap="true">Column 1</cds-list-column>
