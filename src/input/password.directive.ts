@@ -67,7 +67,7 @@ export class PasswordInput implements AfterViewInit {
 
 	@HostBinding("attr.data-invalid") get getInvalidAttr() {
 		return this.invalid ? true : undefined;
-	};
+	}
 
 	private _type = "password";
 

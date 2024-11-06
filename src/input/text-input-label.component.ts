@@ -81,7 +81,7 @@ import {
 					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
 					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
 				</div>
-			</div>	
+			</div>
 			<div
 				*ngIf="helperText && !invalid && !warn && !fluid"
 				class="cds--form__helper-text"

@@ -61,6 +61,6 @@ export class TextInput {
 
 	@HostBinding("attr.data-invalid") get getInvalidAttr() {
 		return this.invalid ? true : undefined;
-	};
+	}
 
 }
