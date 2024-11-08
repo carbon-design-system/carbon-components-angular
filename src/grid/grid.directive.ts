@@ -110,6 +110,7 @@ export class GridDirective implements OnInit, OnDestroy {
 	}
 
 	// Make all children grids a sub grid
+	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => GridDirective), { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
 		if (this.cssGridEnabled) {
 			list.forEach((grid) => {

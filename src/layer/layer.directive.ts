@@ -86,6 +86,7 @@ export class LayerDirective implements AfterContentInit {
 	}
 
 	// We use forward ref to resolve circular dependency
+	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => LayerDirective), { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	// Holds user passsed level
