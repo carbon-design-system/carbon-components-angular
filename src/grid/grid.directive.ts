@@ -1,6 +1,7 @@
 import {
 	ContentChildren,
 	Directive,
+	forwardRef,
 	HostBinding,
 	Input,
 	OnDestroy,
@@ -109,7 +110,7 @@ export class GridDirective implements OnInit, OnDestroy {
 	}
 
 	// Make all children grids a sub grid
-	@ContentChildren(GridDirective, { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
+	@ContentChildren(forwardRef(() => GridDirective), { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
 		if (this.cssGridEnabled) {
 			list.forEach((grid) => {
 				// Prevents initial (parent) grid element from being turned into a subgrid
