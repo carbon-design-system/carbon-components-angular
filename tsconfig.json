@@ -1,32 +1,33 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
-		"declaration": true,
-		"experimentalDecorators": true,
-		"downlevelIteration": true,
-		"esModuleInterop": true,
-		"importHelpers": true,
-		"lib": [
-			"es2016",
-			"dom"
-		],
-		"sourceMap": true,
-		"inlineSources": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"outDir": "./dist-pkg",
-		"rootDir": ".",
-		"target": "es2020",
-		"skipLibCheck": true,
-		"typeRoots": [
-			"./node_modules/@types"
-		],
-		"paths": {
-			"carbon-components-angular/*": [
-				"./src/*/index"
-			]
-		}
-	},
+    "baseUrl": ".",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "sourceMap": true,
+    "inlineSources": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist-pkg",
+    "rootDir": ".",
+    "target": "ES2022",
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "carbon-components-angular/*": [
+        "./src/*/index"
+      ]
+    },
+    "useDefineForClassFields": false
+  },
 	"exclude": [
 		"**/*.stories.ts",
 		"**/stories/**",

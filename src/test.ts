@@ -9,16 +9,9 @@ import {
 	platformBrowserDynamicTesting
 } from "@angular/platform-browser-dynamic/testing";
 
-// Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
-declare var require: any;
-
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
 	BrowserDynamicTestingModule,
 	platformBrowserDynamicTesting(),
 	{ teardown: { destroyAfterEach: false } }
 );
-// Then we find all the tests.
-const context = require.context("./", true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
