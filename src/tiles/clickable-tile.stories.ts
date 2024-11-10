@@ -2,7 +2,7 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
-import { IconModule } from '../icon';
+import { IconModule } from "../icon";
 import { TilesModule, ClickableTile } from "./";
 
 export default {
