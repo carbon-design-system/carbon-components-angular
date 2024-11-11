@@ -3,33 +3,39 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	Input
+	Input,
+	TemplateRef
 } from "@angular/core";
 import { Tag } from "./tag.component";
 
 @Component({
 	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
-		<span
-			class="cds--tag__label"
-			[attr.title]="title ? title : null"
-			(click)="onClick($event)">
-			<ng-content></ng-content>
-		</span>
-		<button
-			class="cds--tag__close-icon"
-			(click)="onClose($event)"
-			[disabled]="disabled"
-			[title]="closeButtonLabel">
-			<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
-			<svg cdsIcon="close" size="16"></svg>
-		</button>
+		<ng-container *ngIf="!skeleton">
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<span
+				class="cds--tag__label"
+				[attr.title]="title ? title : null"
+				(click)="onClick($event)">
+				<ng-content></ng-content>
+			</span>
+			<button
+				class="cds--tag__close-icon"
+				(click)="onClose($event)"
+				[disabled]="disabled"
+				[title]="closeButtonLabel">
+				<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
+				<svg cdsIcon="close" size="16"></svg>
+			</button>
+		</ng-container>
 	`
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";
 	@Input() disabled: boolean;
 	@Input() title: string;
+
+	@Input() icon: string | TemplateRef<any>;
 
 	/**
 	 * Function for close/delete the tag
@@ -59,8 +65,16 @@ export class TagFilter extends Tag {
 		this.close.emit();
 	}
 
+	/**
+	 * @todo
+	 * Remove `cds--tag--${this.size}` in v7
+	 */
 	@HostBinding("attr.class") get attrClass() {
-		return `cds--tag cds--tag--filter cds--tag--${this.type} cds--tag--${this.size} cds--layout--size-${this.size} ${this.class}${this.disabled ? " cds--tag--disabled" : ""}`;
+		const disabledClass = this.disabled ? "cds--tag--disabled" : "";
+		const sizeClass = `cds--tag--${this.size} cds--layout--size-${this.size}`;
+		const skeletonClass = this.skeleton ? "cds--skeleton" : "";
+
+		return `cds--tag cds--tag--filter cds--tag--${this.type} ${disabledClass} ${sizeClass} ${skeletonClass} ${this.class}`;
 	}
 
 	@HostBinding("attr.aria-label") get attrAriaLabel() {
