@@ -35,8 +35,6 @@ export class TagFilter extends Tag {
 	@Input() disabled: boolean;
 	@Input() title: string;
 
-	@Input() icon: string | TemplateRef<any>;
-
 	/**
 	 * Function for close/delete the tag
 	 */
