@@ -32,7 +32,7 @@ import { Tag } from "./tag.component";
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";
-	@Input() disabled: boolean;
+	@Input() disabled = false;
 	@Input() title: string;
 
 	/**
