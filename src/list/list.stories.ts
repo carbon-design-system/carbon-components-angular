@@ -13,6 +13,9 @@ export default {
 	parameters: {
 		layout: "centered"
 	},
+	args: {
+		isExpressive: false
+	},
 	component: List
 } as Meta;
 
@@ -20,13 +23,13 @@ const Template = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>
-		<ol cdsList>
+		<ol cdsList [isExpressive]="isExpressive">
 			<li cdsListItem>One</li>
 			<li cdsListItem>Two</li>
 			<li cdsListItem>Three</li>
 		</ol>
 		<p>Unordered List</p>
-		<ul cdsList>
+		<ul cdsList [isExpressive]="isExpressive">
 			<li cdsListItem>One</li>
 			<li cdsListItem>Two</li>
 			<li cdsListItem>Three</li>
@@ -39,7 +42,7 @@ const NestingTemplate = (args) => ({
 	props: args,
 	template: `
 		<p>Ordered List</p>
-		<ol cdsList>
+		<ol cdsList [isExpressive]="isExpressive">
 			<li cdsListItem>
 				One
 				<ol cdsList>
@@ -52,10 +55,10 @@ const NestingTemplate = (args) => ({
 			<li cdsListItem>Three</li>
 		</ol>
 		<p>Unordered List</p>
-		<ul cdsList>
+		<ul cdsList [isExpressive]="isExpressive">
 			<li cdsListItem>
 				One
-				<ul cdsList>
+				<ul cdsList [isExpressive]="isExpressive">
 					<li cdsListItem>Nested one</li>
 					<li cdsListItem>Nested two</li>
 					<li cdsListItem>Nested three</li>
