@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 
 import { Tile } from "./tile.component";
 import { ClickableTile } from "./clickable-tile.component";
+import { ClickableTileIconDirective } from "./clickable-tile-icon.directive";
 import { ExpandableTile } from "./expandable-tile.component";
 import { ExpandableTileAboveFoldDirective } from "./expandable-tile-above.directive";
 import { ExpandableTileBelowFoldDirective } from "./expandable-tile-below.directive";
@@ -16,6 +17,7 @@ import { LinkModule } from "carbon-components-angular/link";
 	declarations: [
 		Tile,
 		ClickableTile,
+		ClickableTileIconDirective,
 		ExpandableTileAboveFoldDirective,
 		ExpandableTileBelowFoldDirective,
 		ExpandableTile,
@@ -25,6 +27,7 @@ import { LinkModule } from "carbon-components-angular/link";
 	exports: [
 		Tile,
 		ClickableTile,
+		ClickableTileIconDirective,
 		ExpandableTileAboveFoldDirective,
 		ExpandableTileBelowFoldDirective,
 		ExpandableTile,
