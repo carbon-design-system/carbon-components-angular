@@ -31,7 +31,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
+		<cds-structured-list [condensed]="condensed">
 			<cds-list-header>
 				<cds-list-column nowrap="true">Column 1</cds-list-column>
 				<cds-list-column nowrap="true">Column 2</cds-list-column>
@@ -64,19 +64,15 @@ const Template = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	border: false,
-	condensed: false,
-	nowrap: false
+	condensed: false
 };
 
 const SelectionTemplate = (args) => ({
 	props: args,
 	template: `
 		<cds-structured-list
-			[border]="border"
 			[condensed]="condensed"
-			[nowrap]="nowrap"
-			selection="true"
+			[selection]="true"
 			[(ngModel)]="valueSelected">
 			<cds-list-header>
 				<cds-list-column nowrap="true">Column 1</cds-list-column>
@@ -97,6 +93,28 @@ const SelectionTemplate = (args) => ({
 			<cds-list-row value="row2">
 				<cds-list-column>Row 2</cds-list-column>
 				<cds-list-column nowrap="true">Row Two</cds-list-column>
+				<cds-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</cds-list-column>
+			</cds-list-row>
+			<cds-list-row value="row3">
+				<cds-list-column>Row 3</cds-list-column>
+				<cds-list-column nowrap="true">Row Three</cds-list-column>
+				<cds-list-column>
+					Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Nunc dui magna,
+					finibus id tortor sed, aliquet bibendum augue.
+					Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+					Pellentesque vulputate nisl a porttitor interdum.
+				</cds-list-column>
+			</cds-list-row>
+			<cds-list-row value="row4">
+				<cds-list-column>Row 4</cds-list-column>
+				<cds-list-column nowrap="true">Row Four</cds-list-column>
 				<cds-list-column>
 					Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit. Nunc dui magna,

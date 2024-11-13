@@ -45,8 +45,15 @@ class CustomHeaderItem extends TableHeaderItem {
 			[striped]="striped"
 			(sort)="customSort($event)"
 			(rowClick)="onRowClick($event)"
-			[isDataGrid]="isDataGrid">
+			[isDataGrid]="isDataGrid"
+			[showExpandAllToggle]="showExpandAllToggle">
 		</cds-table>
+
+		<br>
+
+		<button cdsButton="primary" size="sm" (click)="model.expandAllRows(true)">Expand all rows</button>
+
+		<button cdsButton="secondary" size="sm" (click)="model.expandAllRows(false)">Collapse all rows</button>
 	`
 })
 export class ExpansionTableStory implements AfterViewInit {
@@ -58,6 +65,7 @@ export class ExpansionTableStory implements AfterViewInit {
 	@Input() sortable = true;
 	@Input() stickyHeader = false;
 	@Input() skeleton = false;
+	@Input() showExpandAllToggle = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;

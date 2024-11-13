@@ -475,7 +475,25 @@ describe("Table", () => {
 		expect(tableModel.header.length).toEqual(2);
 	});
 
+	it("should delete all rows", () => {
+		let tableModel  = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"})],
+			[new TableItem({data: "C"}), new TableItem({data: "D"})],
+			[new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
 
+		tableModel.deleteAllRows();
+
+		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.totalDataLength).toEqual(0);
+		// Should still equal to 1, since we default to [[]] when we set data to an empty array
+		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
+		expect(tableModel.rowsExpanded.length).toEqual(1);
+		expect(tableModel.rowsClass.length).toEqual(1);
+		expect(tableModel.rowsIndices.length).toEqual(1);
+	});
 
 	/* ****************************************************************
 	***********                                             ***********
@@ -759,5 +777,35 @@ describe("Table", () => {
 		expect(tableModel.header[0].data).toEqual("h1");
 		expect(tableModel.header[1].data).toEqual("h2");
 		expect(tableModel.header[2].data).toEqual("h3");
+	});
+
+	it("should expand and collapse all rows", () => {
+		let tableModel  = new TableModel();
+
+		spyOn(tableModel.rowsExpandedAllChange, "emit");
+		spyOn(tableModel.rowsCollapsedAllChange, "emit");
+
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A", expandedData: "EX1"}), new TableItem({data: "B"})],
+			[new TableItem({data: "C"}), new TableItem({data: "D"})],
+			[new TableItem({data: "E", expandedData: "EX2"}), new TableItem({data: "F"})],
+			[new TableItem({data: "G"}), new TableItem({data: "H"})]
+		];
+
+		expect(tableModel.expandableRowsCount()).toBe(2);
+		expect(tableModel.expandedRowsCount()).toBe(0);
+
+		tableModel.expandAllRows(true);
+		expect(tableModel.rowsExpandedAllChange.emit).toHaveBeenCalledWith();
+		expect(tableModel.expandedRowsCount()).toBe(2);
+		expect(tableModel.rowsExpanded).toEqual([true, false, true, false]);
+
+		tableModel.expandAllRows(false);
+		expect(tableModel.rowsCollapsedAllChange.emit).toHaveBeenCalledWith();
+		expect(tableModel.expandedRowsCount()).toBe(0);
+		expect(tableModel.rowsExpanded).toEqual([false, false, false, false]);
 	});
 });

@@ -11,7 +11,7 @@ import { Step } from "./progress-indicator-step.interface";
  * Get started with importing the module:
  *
  * ```typescript
- * import { ProgressIndictorModule } from 'carbon-components-angular';
+ * import { ProgressIndicatorModule } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-indicator--basic)

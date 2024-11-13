@@ -1,3 +1,4 @@
+export * from "./clickable-tile-icon.directive";
 export * from "./clickable-tile.component";
 export * from "./expandable-tile.component";
 export * from "./expandable-tile-above.directive";

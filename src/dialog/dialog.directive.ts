@@ -17,6 +17,7 @@ import { DialogService } from "./dialog.service";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { EventService } from "carbon-components-angular/utils";
 import { Dialog } from "./dialog.component";
+import { fromEvent, Subscription } from "rxjs";
 
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
@@ -125,6 +126,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	protected dialogRef: ComponentRef<Dialog>;
 
+	private subscriptions: Subscription[] = [];
+
 	/**
 	 * Creates an instance of DialogDirective.
 	 * @param elementRef
@@ -136,6 +139,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		protected elementRef: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected dialogService: DialogService,
+		/**
+		 * Deprecated as of v5
+		 */
 		protected eventService: EventService
 	) {}
 
@@ -180,49 +186,55 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// fix for safari hijacking clicks
 		this.dialogService.singletonClickListen();
 
-		const element = this.elementRef.nativeElement;
+		const element: HTMLElement = this.elementRef.nativeElement;
 
-		this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-			if (event.target === this.dialogConfig.parentRef.nativeElement &&
-				(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
-				event.key === "Escape") {
-				this.close({
-					reason: CloseReasons.interaction,
-					target: event.target
-				});
-			}
-		});
+		this.subscriptions.push(
+			fromEvent(element, "keydown").subscribe((event: KeyboardEvent) => {
+				if (event.target === this.dialogConfig.parentRef.nativeElement &&
+					(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+					event.key === "Escape") {
+					this.close({
+						reason: CloseReasons.interaction,
+						target: event.target
+					});
+				}
+			})
+		);
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			this.eventService.on(element, "mouseenter", this.open.bind(this));
-			this.eventService.on(element, this.closeTrigger, (event) => {
-				this.close({
-					reason: CloseReasons.interaction,
-					target: event.target
-				});
-			});
-			this.eventService.on(element, "focus", this.open.bind(this));
-			this.eventService.on(element, "blur", (event) => {
-				this.close({
-					reason: CloseReasons.interaction,
-					target: event.target
-				});
-			});
-		} else {
-			this.eventService.on(element, "click", (event) => {
-				this.toggle({
-					reason: CloseReasons.interaction,
-					target: event.target
-				});
-			});
-			this.eventService.on(element, "keydown", (event: KeyboardEvent) => {
-				if (event.key === "Enter" || event.key === " ") {
-					setTimeout(() => {
-						this.open();
+			this.subscriptions.push(
+				fromEvent(element, "mouseenter").subscribe(() => this.open()),
+				fromEvent(element, this.closeTrigger).subscribe((event) => {
+					this.close({
+						reason: CloseReasons.interaction,
+						target: event.target
 					});
-				}
-			});
+				}),
+				fromEvent(element, "focus").subscribe(() => this.open()),
+				fromEvent(element, "blur").subscribe((event) => {
+					this.close({
+						reason: CloseReasons.interaction,
+						target: event.target
+					});
+				})
+			);
+		} else {
+			this.subscriptions.push(
+				fromEvent(element, "click").subscribe((event) => {
+					this.toggle({
+						reason: CloseReasons.interaction,
+						target: event.target
+					});
+				}),
+				fromEvent(element, "keydown").subscribe((event: KeyboardEvent) => {
+					if (event.key === "Enter" || event.key === " ") {
+						setTimeout(() => {
+							this.open();
+						});
+					}
+				})
+			);
 		}
 
 		DialogDirective.dialogCounter++;
@@ -241,6 +253,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.close({
 			reason: CloseReasons.destroyed
 		});
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 
 	/**
@@ -259,7 +272,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		// Handles emitting all the close events to clean everything up
 		// Also enforce accessibility on close by updating an aria attr on the nativeElement.
-		this.dialogRef.instance.close.subscribe((meta: CloseMeta) => {
+		const subscription = this.dialogRef.instance.close.subscribe((meta: CloseMeta) => {
 			if (!this.dialogRef) { return; }
 			if (this.dialogConfig.shouldClose && this.dialogConfig.shouldClose(meta)) {
 				// close the dialog, emit events, and clear out the open states
@@ -268,6 +281,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.isOpen = false;
 				this.onClose.emit();
 				this.isOpenChange.emit(false);
+				subscription.unsubscribe();
 			}
 		});
 

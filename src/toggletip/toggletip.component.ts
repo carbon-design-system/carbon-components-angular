@@ -9,9 +9,10 @@ import {
 	HostListener,
 	Input,
 	NgZone,
+	OnDestroy,
 	Renderer2
 } from "@angular/core";
-import { fromEvent } from "rxjs";
+import { fromEvent, Subscription } from "rxjs";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
@@ -34,7 +35,7 @@ import { ToggletipButton } from "./toggletip-button.directive";
 		</cds-popover-content>
 	`
 })
-export class Toggletip extends PopoverContainer implements AfterViewInit {
+export class Toggletip extends PopoverContainer implements AfterViewInit, OnDestroy {
 	static toggletipCounter = 0;
 
 	@Input() id = `tooltip-${Toggletip.toggletipCounter++}`;
@@ -45,6 +46,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
 	documentClick = this.handleFocusOut.bind(this);
+	private subscription: Subscription;
 
 	constructor(
 		protected hostElement: ElementRef,
@@ -61,7 +63,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 		this.initializeReferences();
 
 		// Listen for click events on trigger
-		fromEvent(this.btn.nativeElement, "click")
+		this.subscription = fromEvent(this.btn.nativeElement, "click")
 			.subscribe((event: Event) => {
 				// Add/Remove event listener based on isOpen to improve performance when there
 				// are a lot of toggletips
@@ -96,6 +98,10 @@ export class Toggletip extends PopoverContainer implements AfterViewInit {
 		if (!this.hostElement.nativeElement.contains(event.target)) {
 			this.handleExpansion(false, event);
 		}
+	}
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe();
 	}
 
 	private handleExpansion(state = false, event: Event) {
