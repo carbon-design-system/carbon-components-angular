@@ -31,7 +31,14 @@ export type TagType = "red" |
  */
 @Component({
 	selector: "cds-tag, ibm-tag",
-	template: `<ng-content></ng-content>`
+	template: `
+		<ng-container *ngIf="!skeleton">
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<span class="cds--tag__label">
+				<ng-content></ng-content>
+			</span>
+		</ng-container>
+	`
 })
 export class Tag {
 	/**
@@ -42,11 +49,20 @@ export class Tag {
 	/**
 	 * Tag render size
 	 */
-	@Input() size: "sm" | "md" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@Input() class = "";
 
+	@Input() skeleton = false;
+
+	/**
+	 * @todo
+	 * Remove `cds--tag--${this.size}` in v7
+	 */
 	@HostBinding("attr.class") get attrClass() {
-		return `cds--tag cds--tag--${this.type} cds--tag--${this.size} cds--layout--size-${this.size} ${this.class}`;
+		const skeletonClass = this.skeleton ? "cds--skeleton" : "";
+		const sizeClass = `cds--tag--${this.size} cds--layout--size-${this.size}`;
+
+		return `cds--tag cds--tag--${this.type} ${sizeClass} ${skeletonClass} ${this.class}`;
 	}
 }
