@@ -43,7 +43,7 @@ jobs:
     # We use Node v20 for building since it is current lts. Node v16 is no longer supported in Angular 17.
     strategy:
       matrix:
-        angular-version: [17, 18]
+        angular-version: [18]
         node-version: [20.x]
 
     steps:
