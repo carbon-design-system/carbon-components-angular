@@ -25,7 +25,9 @@ export default {
 		theme: "dark",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		maxlength: undefined,
+		enableCounter: false
 	},
 	argTypes: {
 		autocomplete: {
@@ -35,6 +37,9 @@ export default {
 		theme: {
 			options: ["light", "dark"],
 			control: "radio"
+		},
+		maxlength: {
+			control: "number"
 		}
 	},
 	component: TextareaLabelComponent
@@ -51,7 +56,8 @@ const Template = (args) => ({
 		[fluid]="fluid"
 		[skeleton]="skeleton"
 		[warn]="warn"
-		[warnText]="warnText">
+		[warnText]="warnText"
+		[enableCounter]="enableCounter">
 		{{label}}
 		<textarea
 			cdsTextArea
@@ -62,7 +68,10 @@ const Template = (args) => ({
 			[rows]="rows"
 			[cols]="cols"
 			[readonly]="readonly"
-			aria-label="textarea"></textarea>
+			[maxlength]="maxlength"
+			aria-label="textarea"
+			style="width: 100%;">
+		</textarea>
 		</cds-textarea-label>
 	`
 });
