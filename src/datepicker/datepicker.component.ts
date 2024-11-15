@@ -226,6 +226,16 @@ export class DatePicker implements
 
 	@Input() plugins = [];
 
+	/**
+	 * The minimum date that a user can start picking from.
+	 */
+	@Input() minDate: string | number;
+
+	/**
+	 * The maximum date that a user can pick to.
+	 */
+	@Input() maxDate: string | number;
+
 	@Input()
 	set flatpickrOptions(options: Partial<Options>) {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
@@ -240,6 +250,8 @@ export class DatePicker implements
 			plugins,
 			dateFormat: this.dateFormat,
 			locale: languages.default?.default[this.language] || languages.default[this.language],
+			maxDate: this.maxDate,
+            minDate: this.minDate,
 			// Little trick force "readonly mode" on datepicker input.
 			// Docs: Whether clicking on the input should open the picker.
 			// You could disable this if you wish to open the calendar manually with.open().

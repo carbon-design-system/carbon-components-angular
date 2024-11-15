@@ -131,6 +131,8 @@ const RangeTemplate = (args) => ({
 			[warnText]="warnText"
 			[rangeInvalid]="invalid"
 			[rangeInvalidText]="invalidText"
+			[minDate]="minDate"
+			[maxDate]="maxDate"
 			[dateFormat]="dateFormat"
 			[value]="value"
 			(valueChange)="valueChange($event)"
@@ -153,6 +155,8 @@ const RangeTemplate = (args) => ({
 			[warnText]="warnText"
 			[rangeWarn]="warn"
 			[rangeWarnText]="warnText"
+			[minDate]="minDate"
+			[maxDate]="maxDate"
 			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
@@ -162,8 +166,10 @@ const RangeTemplate = (args) => ({
 export const Range = RangeTemplate.bind({});
 Range.args = {
 	dateFormat: "d/m/Y",
-	value: ["01/02/24", "08/02/24"],
-	language: "en"
+	value: ["02/11/24", "08/11/24"],
+	language: "en",
+	minDate: "01/11/24",
+	maxDate: "30/11/24"
 };
 Range.argTypes = {
 	language: {
