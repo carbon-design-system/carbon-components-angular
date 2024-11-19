@@ -1,5 +1,5 @@
 {
-	"compilerOptions": {
+  "compilerOptions": {
     "baseUrl": ".",
     "declaration": true,
     "experimentalDecorators": true,
@@ -27,18 +27,18 @@
     },
     "useDefineForClassFields": false
   },
-	"exclude": [
-		"**/*.stories.ts",
-		"**/stories/**",
-		"**/*.spec.ts",
-		"**/node_modules/**",
-		"**/dist/**"
-	],
-	"angularCompilerOptions": {
-		"skipTemplateCodegen": true,
-		"strictMetadataEmit": false,
-		"fullTemplateTypeCheck": false,
-		"enableIvy": true,
-		"compilationMode": "partial"
-	}
+  "exclude": [
+    "**/*.stories.ts",
+    "**/stories/**",
+    "**/*.spec.ts",
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": false,
+    "fullTemplateTypeCheck": false,
+    "enableIvy": true,
+    "compilationMode": "partial"
+  }
 }

@@ -1,5 +1,5 @@
 {
-	"compilerOptions": {
+  "compilerOptions": {
     "baseUrl": "",
     "declaration": true,
     "experimentalDecorators": true,
@@ -34,18 +34,18 @@
     },
     "useDefineForClassFields": false
   },
-	"files": [
-		"src/test.ts"
-	],
-	"include": [
-		"src/**/*.spec.ts"
-	],
-	"angularCompilerOptions": {
-		"annotateForClosureCompiler": true,
-		"skipTemplateCodegen": true,
-		"strictMetadataEmit": true,
-		"fullTemplateTypeCheck": true,
-		"strictInjectionParameters": true,
-		"enableResourceInlining": true
-	}
+  "files": [
+    "src/test.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  }
 }
