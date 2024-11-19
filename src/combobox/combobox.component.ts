@@ -680,7 +680,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
 		const selected = this.view.getSelected();
-		this.propagateChangeCallback(selected);
+
+		// in case there are disabled items they should be mapped according to itemValueKey
+        if (this.itemValueKey && selected) {
+            const values = selected.map((item) => item[this.itemValueKey]);
+            this.propagateChangeCallback(values);
+        } else {
+            this.propagateChangeCallback(selected);
+        }
+
 		this.selected.emit(selected as any);
 		this.clear.emit(event);
 	}
