@@ -152,7 +152,6 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 		this.rows.forEach(row => {
 			setSelection(row);
 			row.name = this.name;
-			row.tabindex = this.selection ? "0" : null;
 			row.change.subscribe(() => {
 				this.selected.emit({
 					value: row.value,
@@ -160,6 +159,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 					name: this.name
 				});
 				this.onChange(row.value);
+				this.writeValue(row.value);
 			});
 		});
 		this.updateChildren();

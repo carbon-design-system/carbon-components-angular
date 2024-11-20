@@ -3,7 +3,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	HostBinding
 } from "@angular/core";
 
 import { I18n, Overridable } from "carbon-components-angular/i18n";
@@ -51,7 +52,7 @@ export interface PaginationNavTranslations {
 				<li class="cds--pagination-nav__list-item">
 					<cds-icon-button
 						kind="ghost"
-						size="md"
+						[size]="size"
 						(click)="jumpToPrevious()"
 						[disabled]="leftArrowDisabled"
 						[description]="previousItemText.subject | async">
@@ -95,6 +96,7 @@ export interface PaginationNavTranslations {
 				<li class="cds--pagination-nav__list-item">
 					<cds-icon-button
 						kind="ghost"
+						[size]="size"
 						(click)="jumpToNext()"
 						[disabled]="rightArrowDisabled"
 						[description]="nextItemText.subject | async">
@@ -139,6 +141,22 @@ export class PaginationNav {
 		const valueWithDefaults = merge(this.i18n.getMultiple("PAGINATION"), value);
 		this.nextItemText.override(valueWithDefaults.NEXT);
 		this.previousItemText.override(valueWithDefaults.PREVIOUS);
+	}
+
+	/**
+	 * Sets the pagination nav size
+	 */
+	@Input() size: "sm" | "md" | "lg" = "lg";
+
+	// Size
+	@HostBinding("class.cds--layout--size-sm") get smallLayoutSize() {
+		return this.size === "sm";
+	}
+	@HostBinding("class.cds--layout--size-md") get mediumLayoutSize() {
+		return this.size === "md";
+	}
+	@HostBinding("class.cds--layout--size-lg") get largeLayoutSize() {
+		return this.size === "lg";
 	}
 
 	/**

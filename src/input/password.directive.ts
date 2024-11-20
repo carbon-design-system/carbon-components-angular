@@ -51,7 +51,7 @@ export class PasswordInput implements AfterViewInit {
 
 	@HostBinding("class.cds--text-input") inputClass = true;
 	@HostBinding("class.cds--text-input--invalid") @Input() invalid = false;
-	@HostBinding("class.cds--text-input__field-wrapper--warning") @Input() warn = false;
+	@HostBinding("class.cds--text-input--warning") @Input() warn = false;
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
 
 	/**
@@ -64,6 +64,10 @@ export class PasswordInput implements AfterViewInit {
 	 * Input field render size
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
+
+	@HostBinding("attr.data-invalid") get getInvalidAttribute() {
+		return this.invalid ? true : undefined;
+	}
 
 	private _type = "password";
 

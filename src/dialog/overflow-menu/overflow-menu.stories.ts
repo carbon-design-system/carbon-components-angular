@@ -54,6 +54,7 @@ const Template = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
+	show: true,
 	open: false,
 	flip: false,
 	offset: {
