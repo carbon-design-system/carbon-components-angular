@@ -43,22 +43,22 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					}">
 					<span>
 						<input
-						#input
-						autocomplete="off"
-						type="text"
-						class="cds--date-picker__input"
-						[ngClass]="{
-							'cds--date-picker__input--sm': size === 'sm',
-							'cds--date-picker__input--md': size === 'md',
-							'cds--date-picker__input--lg': size === 'lg'
-						}"
-						[attr.data-invalid]="invalid ? true : undefined"
-						[value]="value"
-						[pattern]="pattern"
-						[placeholder]="placeholder"
-						[id]= "id"
-						[disabled]="disabled"
-						[readonly]="readonly"
+							#input
+							autocomplete="off"
+							type="text"
+							class="cds--date-picker__input"
+							[ngClass]="{
+								'cds--date-picker__input--sm': size === 'sm',
+								'cds--date-picker__input--md': size === 'md',
+								'cds--date-picker__input--lg': size === 'lg'
+							}"
+							[attr.data-invalid]="invalid ? true : undefined"
+							[value]="value"
+							[pattern]="pattern"
+							[placeholder]="placeholder"
+							[id]= "id"
+							[disabled]="disabled"
+							[readonly]="readonly"
 							(change)="onChange($event)"/>
 							<svg
 								*ngIf="type !== 'simple' && !warn && !invalid"

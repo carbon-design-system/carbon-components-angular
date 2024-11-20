@@ -4,7 +4,8 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	forwardRef
 } from "@angular/core";
 
 const MAX_LEVEL = 2;
@@ -84,7 +85,9 @@ export class LayerDirective implements AfterContentInit {
 		return this.layer === 2;
 	}
 
-	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
+	// We use forward ref to resolve circular dependency
+	// tslint:disable-next-line:no-forward-ref
+	@ContentChildren(forwardRef(() => LayerDirective), { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	// Holds user passsed level
 	private _passedLevel;

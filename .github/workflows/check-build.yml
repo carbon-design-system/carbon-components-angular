@@ -11,15 +11,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # We use Node v18 for building since CCA@v5 is using Angular 14.
+    # We use Node v20 for building since CCA@v5 is using Angular 17.
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Run build
@@ -29,7 +29,7 @@ jobs:
         cd dist
         npm pack
     - name: Upload dist
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist/carbon-components-angular-0.0.0.tgz
@@ -43,17 +43,17 @@ jobs:
     # We use Node v20 for building since it is current lts. Node v16 is no longer supported in Angular 17.
     strategy:
       matrix:
-        angular-version: [14, 15, 16, 17, 18]
+        angular-version: [18]
         node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Download dist
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: dist
     - run: |
