@@ -29,6 +29,7 @@ describe("TagFilter", () => {
 
 	it("should call onClick on label click", () => {
 		fixture = TestBed.createComponent(TagFilterTest);
+		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css(".cds--tag__label"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.click, "emit");
@@ -39,6 +40,7 @@ describe("TagFilter", () => {
 
 	it("should call both onClick and onClose on close icon click", () => {
 		fixture = TestBed.createComponent(TagFilterTest);
+		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css(".cds--tag__close-icon"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.close, "emit");
@@ -52,6 +54,7 @@ describe("TagFilter", () => {
 	it("should not call onClick when disabled", () => {
 		fixture = TestBed.createComponent(TagFilterTest);
 		fixture.componentInstance.disabled = true;
+		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css(".cds--tag__label"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.click, "emit");
@@ -63,6 +66,7 @@ describe("TagFilter", () => {
 	it("should not call onClick nor onClose when disabled", () => {
 		fixture = TestBed.createComponent(TagFilterTest);
 		fixture.componentInstance.disabled = true;
+		fixture.detectChanges();
 		debugElement = fixture.debugElement.query(By.css(".cds--tag__close-icon"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.close, "emit");
