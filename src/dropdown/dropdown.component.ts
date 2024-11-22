@@ -188,6 +188,25 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
+	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
+		return this.invalid && this.fluid;
+	}
+
+	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
+		return this.fluid && this._isFocused && this.menuIsClosed;
+	}
+
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
+
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
 	 * Label for the dropdown.
@@ -331,14 +350,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@HostBinding("class.cds--list-box__wrapper--fluid") @Input() fluid = false;
 
-	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
-		return this.invalid && this.fluid;
-	}
-
-	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
-		return this.fluid && this._isFocused && this.menuIsClosed;
-	}
-
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
@@ -360,19 +371,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	protected onTouchedCallback: () => void = this._noop;
 
+	protected _isFocused = false;
+
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
-	protected get writtenValue() {
-		return this._writtenValue;
-	}
-	protected set writtenValue(val: any[]) {
-		if (val && val.length === 0) {
-			this.clearSelected();
-		}
-		this._writtenValue = val;
-	}
-
-	protected _isFocused = false;
 
 	/**
 	 * Creates an instance of Dropdown.
@@ -823,6 +825,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		return value instanceof TemplateRef;
 	}
 
+	handleFocus(event: FocusEvent) {
+		this._isFocused = event.type === "focus";
+		if (event.type === "blur") {
+			this.onBlur();
+		}
+	}
+
 	/**
 	 * Controls when it's needed to apply the selection feedback
 	 */
@@ -830,13 +839,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
-		}
-	}
-
-	handleFocus(event: FocusEvent) {
-		this._isFocused = event.type === "focus";
-		if (event.type === "blur") {
-			this.onBlur();
 		}
 	}
 }
