@@ -326,22 +326,15 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
-	
 	/**
 	 * Experimental: enable fluid state
 	 */
 	@HostBinding("class.cds--list-box__wrapper--fluid") @Input() fluid = false;
 
-	/**
-	 * Style needed to properly display label in fluid layout.
-	 * React implementation is using a div that is a block-level element.
-	 */
-	@HostBinding("style.display") display = "block";
-
 	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
 		return this.invalid && this.fluid;
 	}
-	
+
 	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
 		return this.fluid && this._isFocused && this.menuIsClosed;
 	}
