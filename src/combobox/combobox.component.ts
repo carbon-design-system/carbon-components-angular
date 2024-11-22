@@ -42,7 +42,7 @@ import { Observable } from "rxjs";
 	template: `
 		<div
 			class="cds--list-box__wrapper"
-			[ngClass]="{ 
+			[ngClass]="{
 				'cds--list-box__wrapper--fluid': fluid,
 				'cds--list-box__wrapper--fluid--invalid': fluid && invalid,
 				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused
@@ -439,7 +439,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("input", { static: true }) input: ElementRef;
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
-	@HostBinding("style.display") display = "block";
 
 	public open = false;
 
