@@ -82,7 +82,7 @@
     "@angular/platform-browser-dynamic": "18.2.12",
     "@angular/router": "18.2.12",
     "@babel/core": "7.9.6",
-    "@carbon/styles": "1.67.0",
+    "@carbon/styles": "1.70.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@compodoc/compodoc": "1.1.26",

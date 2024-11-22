@@ -91,7 +91,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 			"aria-label": this.ariaLabel,
 			"aria-labelledby": this.ariaLabelledBy,
 			"aria-hidden": this.ariaHidden,
-			focusable: this.isFocusable.toString()
+			focusable: this.isFocusable.toString(),
+			fill: icon.attrs.fill
 		});
 
 		const attrKeys = Object.keys(attributes);
