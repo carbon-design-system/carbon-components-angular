@@ -1,4 +1,5 @@
 import {
+	AfterContentInit,
 	AfterViewInit,
 	ChangeDetectorRef,
 	Component,
@@ -102,7 +103,7 @@ import {
 		</div>
 	`
 })
-export class TextInputLabelComponent implements AfterViewInit {
+export class TextInputLabelComponent implements AfterViewInit, AfterContentInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -208,6 +209,10 @@ export class TextInputLabelComponent implements AfterViewInit {
 				divElement.setAttribute("id", this.labelInputID);
 			}
 		}
+	}
+
+	ngAfterContentInit() {
+		this.changeDetectorRef.detectChanges();
 	}
 
 	public isTemplate(value) {
