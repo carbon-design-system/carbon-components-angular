@@ -891,6 +891,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		}
 	}
 
+	handleFocus(event: FocusEvent) {
+		this._isFocused = event.type === "focus";
+	}
+
 	protected updateSelected() {
 		const selected = this.view.getSelected();
 		if (this.type === "multi") {
@@ -908,9 +912,5 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected(true);
 		}
-	}
-
-	handleFocus(event: FocusEvent) {
-		this._isFocused = event.type === "focus";
 	}
 }
