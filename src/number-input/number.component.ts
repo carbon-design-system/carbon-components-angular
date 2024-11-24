@@ -130,19 +130,7 @@ export class NumberChange {
 			@if (fluid) {
 				<hr class="cds--number-input__divider" />
 			}
-			@if (helperText && !invalid && !warn && !fluid) {
-				<div
-					class="cds--form__helper-text"
-					[ngClass]="{
-						'cds--form__helper-text--disabled': disabled
-					}">
-					@if (isTemplate(helperText)) {
-						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
-					} @else {
-						{{helperText}}
-					}
-				</div>
-			} @else if (invalid) {
+			@if (invalid) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(invalidText)) {
 						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
@@ -156,6 +144,18 @@ export class NumberChange {
 						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 					} @else {
 						{{warnText}}
+					}
+				</div>
+			} @else if(helperText && !fluid) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{
+						'cds--form__helper-text--disabled': disabled
+					}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					} @else {
+						{{helperText}}
 					}
 				</div>
 			}

@@ -37,52 +37,67 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				'cds--form-item': !skeleton,
 				'cds--select--fluid': fluid && !skeleton
 			}">
-			<ng-container *ngIf="skeleton && !fluid">
-				<div *ngIf="label" class="cds--label cds--skeleton"></div>
+			@if (skeleton && !fluid) {
+				@if (label) {
+					<div class="cds--label cds--skeleton"></div>
+				}
 				<div class="cds--select cds--skeleton"></div>
-			</ng-container>
-			<ng-container *ngIf="skeleton && fluid">
+			}
+			@if (skeleton && fluid) {
 				<div class="cds--list-box__wrapper--fluid">
 					<div class="cds--list-box cds--skeleton">
 						<div class="cds--list-box__label"></div>
 						<div class="cds--list-box__field"></div>
 					</div>
 				</div>
-			</ng-container>
-			<div
-				*ngIf="!skeleton"
-				class="cds--select"
-				[ngClass]="{
-					'cds--select--inline': display === 'inline',
-					'cds--select--light': theme === 'light',
-					'cds--select--invalid': invalid,
-					'cds--select--warning': warn,
-					'cds--select--disabled': disabled,
-					'cds--select--readonly': readonly,
-					'cds--select--fluid--invalid': fluid && invalid,
-					'cds--select--fluid--focus': fluid && focused
-				}">
-				<label
-					*ngIf="label"
-					[for]="id"
-					class="cds--label"
-					[ngClass]="{'cds--label--disabled': disabled}">
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-				</label>
-				<div *ngIf="display === 'inline'; else noInline" class="cds--select-input--inline__wrapper">
-					<ng-container *ngTemplateOutlet="noInline"></ng-container>
-				</div>
+			}
+			@if (!skeleton) {
 				<div
-					*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"
-					class="cds--form__helper-text"
+					class="cds--select"
 					[ngClass]="{
-						'cds--form__helper-text--disabled': disabled
+						'cds--select--inline': display === 'inline',
+						'cds--select--light': theme === 'light',
+						'cds--select--invalid': invalid,
+						'cds--select--warning': warn,
+						'cds--select--disabled': disabled,
+						'cds--select--readonly': readonly,
+						'cds--select--fluid--invalid': fluid && invalid,
+						'cds--select--fluid--focus': fluid && focused
 					}">
-					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+					@if (label) {
+						<label
+							[for]="id"
+							class="cds--label"
+							[ngClass]="{'cds--label--disabled': disabled}">
+							@if (isTemplate(label)) {
+								<ng-template [ngTemplateOutlet]="label"></ng-template>
+							} @else {
+								{{label}}
+							}
+						</label>
+					}
+					@if (display === 'inline') {
+						<div class="cds--select-input--inline__wrapper">
+							<ng-container *ngTemplateOutlet="noInline"></ng-container>
+						</div>
+					} @else {
+						<ng-container *ngTemplateOutlet="noInline"></ng-container>
+					}
+					@if (helperText && !invalid && !warn && !skeleton && !fluid) {
+						<div
+							class="cds--form__helper-text"
+							[ngClass]="{
+								'cds--form__helper-text--disabled': disabled
+							}">
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText" />
+							} @else {
+								{{helperText}}
+							}
+						</div>
+					}
 				</div>
-			</div>
+			}
 		</div>
 
 		<!-- select element: dynamically projected based on 'display' variant -->
@@ -120,42 +135,65 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					aria-hidden="true">
 					<path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
 				</svg>
-				<svg
-					*ngIf="invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--select__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
-				</svg>
-				<ng-container *ngIf="fluid">
+				@if (invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--select__invalid-icon">
+					</svg>
+				} @else if (warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--select__invalid-icon cds--select__invalid-icon--warning">
+					</svg>
+				}
+				@if (fluid) {
 					<hr class="cds--select__divider" />
-					<div
-						*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-					</div>
-					<div *ngIf="!invalid && warn" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-					</div>
-				</ng-container>
+					@if (invalid) {
+						<div
+							role="alert"
+							class="cds--form-requirement"
+							aria-live="polite">
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText" />
+							} @else {
+								{{invalidText}}
+							}
+						</div>
+					} @else if (warn) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText" />
+							} @else {
+								{{warnText}}
+							}
+						</div>
+					}
+				}
 			</div>
-			<ng-container *ngIf="!fluid">
-				<div
-					*ngIf="invalid && invalidText" role="alert" class="cds--form-requirement" aria-live="polite">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-				</div>
-				<div *ngIf="!invalid && warn" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
-			</ng-container>
+			@if (!fluid) {
+				@if (invalid) {
+					<div
+						role="alert"
+						class="cds--form-requirement"
+						aria-live="polite">
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						} @else {
+							{{invalidText}}
+						}
+					</div>
+				} @else if (warn) {
+					<div class="cds--form-requirement">
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText" />
+						} @else {
+							{{warnText}}
+						}
+					</div>
+				}
+			}
 		</ng-template>
 	`,
 	providers: [

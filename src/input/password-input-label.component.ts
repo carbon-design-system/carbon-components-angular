@@ -56,13 +56,13 @@ import { BaseIconButton } from "carbon-components-angular/button";
 					}"
 					[attr.data-invalid]="invalid ? true : null"
 					#wrapper>
-					@if (!warn && invalid) {
+					@if (invalid) {
 						<svg
 							cdsIcon="warning--filled"
 							size="16"
 							class="cds--text-input__invalid-icon">
 						</svg>
-					} @else if (!invalid && warn) {
+					} @else if (warn) {
 						<svg
 							cdsIcon="warning--alt--filled"
 							size="16"
@@ -107,7 +107,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 									{{ invalidText }}
 								}
 							</div>
-						} @else if (!invalid && warn) {
+						} @else if (warn) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(warnText)) {
 									<ng-template [ngTemplateOutlet]="warnText"></ng-template>
@@ -119,19 +119,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 					}
 				</div>
 				@if (!fluid) {
-					@if (!skeleton && helperText && !invalid && !warn) {
-						<div
-							class="cds--form__helper-text"
-							[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
-							@if (isTemplate(helperText)) {
-								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
-							} @else {
-								{{ helperText }}
-							}
-						</div>
-					}
-
-					@if (!warn && invalid) {
+					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {
 								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
@@ -139,12 +127,22 @@ import { BaseIconButton } from "carbon-components-angular/button";
 								{{ invalidText }}
 							}
 						</div>
-					} @else if (!invalid && warn) {
+					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
 								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 							} @else {
 								{{ warnText }}
+							}
+						</div>
+					} @else if(helperText && !skeleton) {
+						<div
+							class="cds--form__helper-text"
+							[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+							} @else {
+								{{ helperText }}
 							}
 						</div>
 					}

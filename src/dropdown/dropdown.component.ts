@@ -153,7 +153,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 					cdsIcon="warning--filled"
 					size="16">
 				</svg>
-			} @else if(!invalid && warn) {
+			} @else if(warn) {
 				<svg
 					cdsIcon="warning--alt--filled"
 					size="16"
@@ -173,7 +173,23 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		@if (fluid) {
 			<hr class="cds--list-box__divider" />
 		}
-		@if (helperText && !invalid && !warn && !skeleton && !fluid) {
+		@if (invalid) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+				} @else {
+					{{ invalidText }}
+				}
+			</div>
+		} @else if (warn) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(warnText)) {
+					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+				} @else {
+					{{warnText}}
+				}
+			</div>
+		} @else if(helperText && !fluid) {
 			<div
 				class="cds--form__helper-text"
 				[ngClass]="{
@@ -184,22 +200,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
 				} @else {
 					{{helperText}}
-				}
-			</div>
-		} @else if (invalid) {
-			<div class="cds--form-requirement">
-				@if (isTemplate(invalidText)) {
-					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
-				} @else {
-					{{ invalidText }}
-				}
-			</div>
-		} @else if (!invalid && warn) {
-			<div class="cds--form-requirement">
-				@if (isTemplate(warnText)) {
-					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
-				} @else {
-					{{warnText}}
 				}
 			</div>
 		}

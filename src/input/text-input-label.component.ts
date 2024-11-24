@@ -60,7 +60,7 @@ import {
 							size="16"
 							class="cds--text-input__invalid-icon">
 						</svg>
-					} @else if(!invalid && warn) {
+					} @else if(warn) {
 						<svg
 							cdsIcon="warning--alt--filled"
 							size="16"
@@ -82,7 +82,7 @@ import {
 									{{ invalidText }}
 								}
 							</div>
-						} @else if (!invalid && warn) {
+						} @else if (warn) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(warnText)) {
 									<ng-template [ngTemplateOutlet]="warnText"></ng-template>
@@ -94,33 +94,33 @@ import {
 					}
 				</div>
 				@if (!fluid) {
-				@if (helperText && !invalid && !warn) {
-					<div
-					class="cds--form__helper-text"
-					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-						@if (isTemplate(helperText)) {
-							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
-						} @else {
-							{{ helperText }}
-						}
-					</div>
-				} @else if (invalid) {
-					<div class="cds--form-requirement">
-						@if (isTemplate(invalidText)) {
-							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
-						} @else {
-							{{ invalidText }}
-						}
-					</div>
-				} @else if (!invalid && warn) {
-					<div class="cds--form-requirement">
-						@if (isTemplate(warnText)) {
-							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
-						} @else {
-							{{ warnText }}
-						}
-					</div>
-				}
+					@if (invalid) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							} @else {
+								{{ invalidText }}
+							}
+						</div>
+					} @else if (warn) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+							} @else {
+								{{ warnText }}
+							}
+						</div>
+					} @else if(helperText) {
+						<div
+							class="cds--form__helper-text"
+							[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+							} @else {
+								{{ helperText }}
+							}
+						</div>
+					}
 				}
 		</div>
 	}

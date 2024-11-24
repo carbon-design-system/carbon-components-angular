@@ -143,7 +143,7 @@ import { Observable } from "rxjs";
 							size="16"
 							class="cds--list-box__invalid-icon">
 						</svg>
-					} @else if (!invalid && warn) {
+					} @else if (warn) {
 						<svg
 							cdsIcon="warning--alt--filled"
 							size="16"
@@ -187,7 +187,23 @@ import { Observable } from "rxjs";
 			@if (fluid) {
 				<hr class="cds--list-box__divider" />
 			}
-			@if (helperText && !invalid && !warn && !fluid) {
+			@if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					} @else {
+						{{ invalidText }}
+					}
+				</div>
+			} @else if (warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			} @else if(helperText && !fluid) {
 				<div
 					class="cds--form__helper-text"
 					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
@@ -196,22 +212,6 @@ import { Observable } from "rxjs";
 						} @else {
 							{{helperText}}
 						}
-				</div>
-			} @else if (invalid) {
-				<div class="cds--form-requirement">
-					@if (isTemplate(invalidText)) {
-						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
-					} @else {
-						{{ invalidText }}
-					}
-				</div>
-			} @else if (!invalid && warn) {
-				<div class="cds--form-requirement">
-					@if (isTemplate(warnText)) {
-						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
-					} @else {
-						{{warnText}}
-					}
 				</div>
 			}
 		</div>

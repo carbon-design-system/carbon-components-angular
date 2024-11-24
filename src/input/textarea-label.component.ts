@@ -57,19 +57,20 @@ import { TextArea } from "./text-area.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				@if (!fluid && invalid) {
-					<svg
-						cdsIcon="warning--filled"
-						size="16"
-						class="cds--text-area__invalid-icon">
-					</svg>
-				}
-				@if (!fluid && !invalid && warn) {
-					<svg
-						cdsIcon="warning--alt--filled"
-						size="16"
-						class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
-					</svg>
+				@if(!fluid) {
+					@if (invalid) {
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--text-area__invalid-icon">
+						</svg>
+					} @else if (warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+						</svg>
+					}
 				}
 				@if (textAreaTemplate) {
 					<ng-template [ngTemplateOutlet]="textAreaTemplate"></ng-template>
@@ -92,8 +93,7 @@ import { TextArea } from "./text-area.directive";
 								class="cds--text-area__invalid-icon">
 							</svg>
 						</div>
-					}
-					@if (!invalid && warn) {
+					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
 								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
@@ -110,15 +110,7 @@ import { TextArea } from "./text-area.directive";
 				}
 			</div>
 			@if (!fluid) {
-				@if (helperText && !invalid && !warn) {
-					<div class="cds--form__helper-text" [ngClass]="{'cds--form__helper-text--disabled': disabled}">
-						@if (isTemplate(helperText)) {
-							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
-						} @else {
-							{{ helperText }}
-						}
-					</div>
-				} @else if (invalid) {
+				@if (invalid) {
 					<div class="cds--form-requirement">
 						@if (isTemplate(invalidText)) {
 							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
@@ -126,12 +118,20 @@ import { TextArea } from "./text-area.directive";
 							{{ invalidText }}
 						}
 					</div>
-				}@else if (!invalid && warn) {
+				} @else if (warn) {
 					<div class="cds--form-requirement">
 						@if (isTemplate(warnText)) {
 							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 						} @else {
 							{{ warnText }}
+						}
+					</div>
+				} @else if(helperText) {
+					<div class="cds--form__helper-text" [ngClass]="{'cds--form__helper-text--disabled': disabled}">
+						@if (isTemplate(helperText)) {
+							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+						} @else {
+							{{ helperText }}
 						}
 					</div>
 				}

@@ -121,8 +121,7 @@ import { PasswordInput } from "./password.directive";
 						size="16"
 						class="cds--text-input__invalid-icon">
 					</svg>
-				}
-				@if (!invalid && warn) {
+				} @else if (warn) {
 					<svg
 						cdsIcon="warning--alt--filled"
 						size="16"
@@ -131,17 +130,7 @@ import { PasswordInput } from "./password.directive";
 				}
 				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
 			</div>
-			@if (!skeleton && helperText && !invalid && !warn) {
-				<div
-					class="cds--form__helper-text"
-					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-					@if (isTemplate(helperText)) {
-						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
-					} @else {
-						{{helperText}}
-					}
-				</div>
-			} @else if (invalid) {
+			@if (invalid) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(invalidText)) {
 						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
@@ -149,12 +138,22 @@ import { PasswordInput } from "./password.directive";
 						{{invalidText}}
 					}
 				</div>
-			} @else if (!invalid && warn) {
+			} @else if (warn) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(warnText)) {
 						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 					} @else {
 						{{warnText}}
+					}
+				</div>
+			} @else if(helperText && !skeleton) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					} @else {
+						{{helperText}}
 					}
 				</div>
 			}
