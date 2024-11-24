@@ -19,48 +19,53 @@ import { BaseNotification } from "./base-notification.component";
 	selector: "cds-actionable-notification, ibm-actionable-notification",
 	template: `
 		<div class="cds--actionable-notification__details">
-			<svg
-				[cdsIcon]="iconDictionary[notificationObj.type]"
-				size="20"
-				*ngIf="notificationObj.type"
-				[ngClass]="{
-					'cds--inline-notification__icon': notificationObj.variant === 'inline',
-					'cds--toast-notification__icon': notificationObj.variant === 'toast'
-				}"
-				class="cds--actionable-notification__icon">
-			</svg>
+			@if (notificationObj.type) {
+				<svg
+					[cdsIcon]="iconDictionary[notificationObj.type]"
+					size="20"
+					[ngClass]="{
+						'cds--inline-notification__icon': notificationObj.variant === 'inline',
+						'cds--toast-notification__icon': notificationObj.variant === 'toast'
+					}"
+					class="cds--actionable-notification__icon">
+				</svg>
+			}
 			<div class="cds--actionable-notification__text-wrapper">
 				<div class="cds--actionable-notification__content">
-					<div *ngIf="!notificationObj.template" cdsActionableTitle [innerHTML]="notificationObj.title"></div>
-					<div *ngIf="!notificationObj.template" cdsActionableSubtitle>
-						<span [innerHTML]="notificationObj.message"></span>
-						<ng-container *ngFor="let link of notificationObj.links">
-							<a cdsLink [href]="link.href">{{link.text}}</a>
-						</ng-container>
-					</div>
-					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
+					@if (!notificationObj.template) {
+						<div cdsActionableTitle [innerHTML]="notificationObj.title"></div>
+						<div cdsActionableSubtitle>
+							<span [innerHTML]="notificationObj.message"></span>
+							@for (link of notificationObj.links; track link) {
+								<a cdsLink [href]="link.href">{{link.text}}</a>
+							}
+						</div>
+					}
+					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }" />
 				</div>
 			</div>
 		</div>
-		<ng-container *ngIf="!notificationObj.actionsTemplate">
+		@if (!notificationObj.actionsTemplate) {
+			@for (action of notificationObj.actions; track action) {
+				<button
+					(click)="onClick(action, $event)"
+					[cdsButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
+					size="sm"
+					cdsActionableButton>
+					{{action.text}}
+				</button>
+			}
+		}
+		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }" />
+		@if (!isCloseHidden) {
 			<button
-				*ngFor="let action of notificationObj.actions"
-				(click)="onClick(action, $event)"
-				[cdsButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
-				size="sm"
-				cdsActionableButton>
-				{{action.text}}
+				(click)="onClose()"
+				class="cds--actionable-notification__close-button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				type="button">
+				<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
 			</button>
-		</ng-container>
-		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }"></ng-container>
-		<button
-			*ngIf="!isCloseHidden"
-			(click)="onClose()"
-			class="cds--actionable-notification__close-button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			type="button">
-			<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
-		</button>
+		}
 	`
 })
 export class ActionableNotification extends BaseNotification {

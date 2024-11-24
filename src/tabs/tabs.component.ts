@@ -37,22 +37,22 @@ import { TabHeaders } from "./tab-headers.component";
 @Component({
 	selector: "cds-tabs, ibm-tabs",
 	template: `
-		<ng-container *ngIf="skeleton">
+		@if (skeleton) {
 			<cds-tabs-skeleton></cds-tabs-skeleton>
-		</ng-container>
-		<ng-container *ngIf="!skeleton">
-			<cds-tab-headers
-				*ngIf="hasTabHeaders() && position === 'top'"
-				[theme]="theme"
-				[tabs]="tabs"
-				[followFocus]="followFocus"
-				[cacheActive]="cacheActive"
-				[contentBefore]="before"
-				[contentAfter]="after"
-				[ariaLabel]="ariaLabel"
-				[ariaLabelledby]="ariaLabelledby"
-				[type]="type">
-			</cds-tab-headers>
+		} @else {
+			@if (hasTabHeaders() && position === 'top') {
+				<cds-tab-headers
+					[theme]="theme"
+					[tabs]="tabs"
+					[followFocus]="followFocus"
+					[cacheActive]="cacheActive"
+					[contentBefore]="before"
+					[contentAfter]="after"
+					[ariaLabel]="ariaLabel"
+					[ariaLabelledby]="ariaLabelledby"
+					[type]="type">
+				</cds-tab-headers>
+			}
 			<ng-content></ng-content>
 			<ng-template #before>
 				<ng-content select="[before]"></ng-content>
@@ -60,13 +60,14 @@ import { TabHeaders } from "./tab-headers.component";
 			<ng-template #after>
 				<ng-content select="[after]"></ng-content>
 			</ng-template>
-			<cds-tab-headers
-				*ngIf="hasTabHeaders() && position === 'bottom'"
-				[tabs]="tabs"
-				[cacheActive]="cacheActive"
-				[type]="type">
-			</cds-tab-headers>
-		</ng-container>
+			@if (hasTabHeaders() && position === 'bottom') {
+				<cds-tab-headers
+					[tabs]="tabs"
+					[cacheActive]="cacheActive"
+					[type]="type">
+				</cds-tab-headers>
+			}
+		}
 	`
 })
 export class Tabs implements AfterContentInit, OnChanges {

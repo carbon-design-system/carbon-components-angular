@@ -62,16 +62,33 @@ import { EventService } from "carbon-components-angular/utils";
 @Component({
 	selector: "cds-slider, ibm-slider",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label
-				*ngIf="label"
-				[for]="id"
-				[id]="labelId"
-				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+		@if(skeleton) {
+			@if (label) {
+				<label class="cds--label cds--skeleton"></label>
+			}
+			<div class="cds--slider-container cds--skeleton">
+				<span class="cds--slider__range-label"></span>
+				<div class="cds--slider">
+					<div class="cds--slider__thumb"></div>
+					<div class="cds--slider__track"></div>
+					<div class="cds--slider__filled-track"></div>
+				</div>
+				<span class="cds--slider__range-label"></span>
+			</div>
+		} @else {
+			@if (label) {
+				<label
+					[for]="id"
+					[id]="labelId"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label"></ng-template>
+					} @else {
+						{{label}}
+					}
+				</label>
+			}
 			<div
 				class="cds--slider-container"
 				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
@@ -85,7 +102,22 @@ import { EventService } from "carbon-components-angular/utils";
 						'cds--slider--disabled': disabled,
 						'cds--slider--readonly': readonly
 					}">
-					<ng-container *ngIf="!isRange()">
+					@if (isRange()) {
+						@for (thumb of value; track trackThumbsBy(i, thumb); let i = $index) {
+							<div class="cds--slider__thumb-wrapper" [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}">
+								<div
+									#thumbs
+									role="slider"
+									[id]="id + (i > 0 ? '-' + i : '')"
+									[attr.aria-labelledby]="labelId"
+									class="cds--slider__thumb"
+									tabindex="0"
+									(mousedown)="onMouseDown($event, i)"
+									(keydown)="onKeyDown($event, i)">
+								</div>
+							</div>
+						}
+					} @else {
 						<div class="cds--slider__thumb-wrapper"
 							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
 							<div
@@ -99,31 +131,9 @@ import { EventService } from "carbon-components-angular/utils";
 								(keydown)="onKeyDown($event)">
 							</div>
 						</div>
-					</ng-container>
-					<ng-container *ngIf="isRange()">
-						<div class="cds--slider__thumb-wrapper"
-						 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}"
-						 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">
-							<div
-								#thumbs
-								role="slider"
-								[id]="id + (i > 0 ? '-' + i : '')"
-								[attr.aria-labelledby]="labelId"
-								class="cds--slider__thumb"
-								tabindex="0"
-								(mousedown)="onMouseDown($event, i)"
-								(keydown)="onKeyDown($event, i)">
-							</div>
-						</div>
-					</ng-container>
-					<div
-						#track
-						class="cds--slider__track">
-					</div>
-					<div
-						#filledTrack
-						class="cds--slider__filled-track">
-					</div>
+					}
+					<div #track class="cds--slider__track"></div>
+					<div #filledTrack class="cds--slider__filled-track"></div>
 					<input
 						#range
 						aria-label="slider"
@@ -139,20 +149,7 @@ import { EventService } from "carbon-components-angular/utils";
 				</label>
 				<ng-content select="input"></ng-content>
 			</div>
-		</ng-container>
-
-		<ng-template #skeletonTemplate>
-			<label *ngIf="label" class="cds--label cds--skeleton"></label>
-			<div class="cds--slider-container cds--skeleton">
-				<span class="cds--slider__range-label"></span>
-				<div class="cds--slider">
-					<div class="cds--slider__thumb"></div>
-					<div class="cds--slider__track"></div>
-					<div class="cds--slider__filled-track"></div>
-				</div>
-				<span class="cds--slider__range-label"></span>
-			</div>
-		</ng-template>
+		}
 	`,
 	providers: [
 		{

@@ -16,23 +16,23 @@ import { TableRowSize } from "../table.types";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
-		<ng-container *ngIf="model">
-			<td
-				*ngIf="model.hasExpandableRows()"
-				cdsTableExpandButton
-				class="cds--table-expand-v2"
-				[expanded]="expanded"
-				[expandable]="expandable"
-				[skeleton]="skeleton"
-				[ariaLabel]="getExpandButtonAriaLabel()"
-				[headers]="model.getHeaderId('expand')"
-				(expandRow)="expandRow.emit()">
-			</td>
-			<ng-container *ngIf="!skeleton && showSelectionColumn && !enableSingleSelect">
+		@if (model) {
+			@if (model.hasExpandableRows()) {
 				<td
-					*ngIf="!showSelectionColumnCheckbox; else tableCheckboxTemplate">
+					cdsTableExpandButton
+					class="cds--table-expand-v2"
+					[expanded]="expanded"
+					[expandable]="expandable"
+					[skeleton]="skeleton"
+					[ariaLabel]="getExpandButtonAriaLabel()"
+					[headers]="model.getHeaderId('expand')"
+					(expandRow)="expandRow.emit()">
 				</td>
-				<ng-template #tableCheckboxTemplate>
+			}
+			@if (!skeleton && showSelectionColumn && !enableSingleSelect) {
+				@if (!showSelectionColumnCheckbox) {
+					<td></td>
+				} @else {
 					<td
 						cdsTableCheckbox
 						class="cds--table-column-checkbox"
@@ -44,47 +44,50 @@ import { TableRowSize } from "../table.types";
 						[headers]="model.getHeaderId('select')"
 						(selectedChange)="onSelectionChange()">
 					</td>
-				</ng-template>
-			</ng-container>
-			<td
-				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				cdsTableRadio
-				[selected]="selected"
-				[label]="getCheckboxLabel()"
-				[row]="row"
-				[skeleton]="skeleton"
-				[headers]="model.getHeaderId('select')"
-				(change)="onSelectionChange()">
-			</td>
-			<ng-container *ngFor="let item of row; let j = index">
+				}
+			}
+			@if (!skeleton && showSelectionColumn && enableSingleSelect) {
 				<td
-					*ngIf="item && model.getHeader(j) && model.getHeader(j).visible"
-					cdsTableData
-					[headers]="model.getHeaderId(j, item.colSpan)"
-					[item]="item"
-					[title]="item.title"
-					[class]="model.getHeader(j).className"
-					[ngStyle]="model.getHeader(j).style"
+					cdsTableRadio
+					[selected]="selected"
+					[label]="getCheckboxLabel()"
+					[row]="row"
 					[skeleton]="skeleton"
-					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan"
-					(click)="onRowClick()"
-					(keydown.enter)="onRowClick()">
+					[headers]="model.getHeaderId('select')"
+					(change)="onSelectionChange()">
 				</td>
-				<td
-					*ngIf="item && model.getHeader(j) == null"
-					cdsTableData
-					[headers]="model.getHeaderId(j, item.colSpan)"
-					[item]="item"
-					[title]="item.title"
-					[skeleton]="skeleton"
-					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan"
-					(click)="onRowClick()"
-					(keydown.enter)="onRowClick()">
-				</td>
-			</ng-container>
-		</ng-container>
+			}
+			@for (item of row; track item; let j = $index) {
+				@if (item && model.getHeader(j) && model.getHeader(j).visible) {
+					<td
+						cdsTableData
+						[headers]="model.getHeaderId(j, item.colSpan)"
+						[item]="item"
+						[title]="item.title"
+						[class]="model.getHeader(j).className"
+						[ngStyle]="model.getHeader(j).style"
+						[skeleton]="skeleton"
+						[attr.colspan]="item.colSpan"
+						[attr.rowspan]="item.rowSpan"
+						(click)="onRowClick()"
+						(keydown.enter)="onRowClick()">
+					</td>
+				}
+				@if (item && model.getHeader(j) == null) {
+					<td
+						cdsTableData
+						[headers]="model.getHeaderId(j, item.colSpan)"
+						[item]="item"
+						[title]="item.title"
+						[skeleton]="skeleton"
+						[attr.colspan]="item.colSpan"
+						[attr.rowspan]="item.rowSpan"
+						(click)="onRowClick()"
+						(keydown.enter)="onRowClick()">
+					</td>
+				}
+			}
+		}
 		<ng-content></ng-content>
 	`
 })

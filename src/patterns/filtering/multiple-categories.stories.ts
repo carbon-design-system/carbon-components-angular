@@ -32,11 +32,13 @@ import { UIShellModule } from "../../ui-shell";
 						labelPlacement="right"
 						[(ngModel)]="radio"
 						(change)="onRadioChange($event)">
-						<cds-radio *ngFor="let radio of radios"
-							[value]="radio.color"
-							[disabled]="radio.disabled">
-							{{radio.color}}
-						</cds-radio>
+						@for (radio of radios; track radio) {
+							<cds-radio
+								[value]="radio.color"
+								[disabled]="radio.disabled">
+								{{radio.color}}
+							</cds-radio>
+						}
 					</cds-radio-group>
 				</fieldset>
 				<fieldset class="cds--fieldset">
@@ -45,21 +47,22 @@ import { UIShellModule } from "../../ui-shell";
 							<legend class="cds--label">Type</legend>
 						</div>
 						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<cds-tag-filter
-								*ngIf="checkBoxFilters.size > 0"
-								(close)="resetCheckboxList()">
-								{{checkBoxFilters.size}}
-							</cds-tag-filter>
+							@if (checkBoxFilters.size > 0) {
+								<cds-tag-filter (close)="resetCheckboxList()">
+									{{checkBoxFilters.size}}
+								</cds-tag-filter>
+							}
 						</div>
 					</div>
-					<cds-checkbox
-						*ngFor="let listItem of checkboxList"
-						[hideLabel]="hideLabel"
-						[checked]="listItem.checked"
-						[value]="listItem.value"
-						(change)="onCheckboxChange($event)">
-						{{ listItem.value }}
-					</cds-checkbox>
+					@for (listItem of checkboxList; track listItem) {
+						<cds-checkbox
+							[hideLabel]="hideLabel"
+							[checked]="listItem.checked"
+							[value]="listItem.value"
+							(change)="onCheckboxChange($event)">
+							{{ listItem.value }}
+						</cds-checkbox>
+					}
 				</fieldset>
 			</div>
 			<div cdsCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">

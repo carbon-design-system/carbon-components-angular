@@ -38,7 +38,9 @@ export class NumberChange {
 @Component({
 	selector: "cds-number, ibm-number",
 	template: `
-		<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
+		@if (skeleton && label) {
+			<label class="cds--label cds--skeleton"></label>
+		}
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -52,14 +54,18 @@ export class NumberChange {
 				'cds--number--md': size === 'md',
 				'cds--number--lg': size === 'lg'
 			}">
-			<label
-				*ngIf="!skeleton && label"
-				[for]="id"
-				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+			@if (!skeleton && label) {
+				<label
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
+					@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label"></ng-template>
+					} @else {
+						{{label}}
+					}
+				</label>
+			}
 			<div
 				class="cds--number__input-wrapper"
 				[ngClass]="{
@@ -81,61 +87,78 @@ export class NumberChange {
 					(focus)="fluid ? handleFocus($event): null"
 					(blur)="fluid ? handleFocus($event): null"
 					(change)="onNumberInputChange($event)"/>
-				<svg
-					*ngIf="!skeleton && invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--number__invalid">
-				</svg>
-				<svg
-					*ngIf="!skeleton && !invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--number__invalid cds--number__invalid--warning">
-				</svg>
-				<div *ngIf="!skeleton" class="cds--number__controls">
-					<button
-						class="cds--number__control-btn down-icon"
-						type="button"
-						[attr.disabled]="disabled ? true : null"
-						aria-live="polite"
-						aria-atomic="true"
-						[attr.aria-label]="getDecrementLabel() | async"
-						(click)="onDecrement()">
-						<svg cdsIcon="subtract" size="16"></svg>
-					</button>
-					<div class="cds--number__rule-divider"></div>
-					<button
-						class="cds--number__control-btn up-icon"
-						type="button"
-						[attr.disabled]="disabled ? true : null"
-						aria-live="polite"
-						aria-atomic="true"
-						[attr.aria-label]="getIncrementLabel() | async"
-						(click)="onIncrement()">
-						<svg cdsIcon="add" size="16"></svg>
-					</button>
-					<div class="cds--number__rule-divider"></div>
+				@if(!skeleton) {
+					@if (invalid) {
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--number__invalid">
+						</svg>
+					} @else if(warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--number__invalid cds--number__invalid--warning">
+						</svg>
+					}
+					<div class="cds--number__controls">
+						<button
+							class="cds--number__control-btn down-icon"
+							type="button"
+							[attr.disabled]="disabled ? true : null"
+							aria-live="polite"
+							aria-atomic="true"
+							[attr.aria-label]="getDecrementLabel() | async"
+							(click)="onDecrement()">
+							<svg cdsIcon="subtract" size="16"></svg>
+						</button>
+						<div class="cds--number__rule-divider"></div>
+						<button
+							class="cds--number__control-btn up-icon"
+							type="button"
+							[attr.disabled]="disabled ? true : null"
+							aria-live="polite"
+							aria-atomic="true"
+							[attr.aria-label]="getIncrementLabel() | async"
+							(click)="onIncrement()">
+							<svg cdsIcon="add" size="16"></svg>
+						</button>
+						<div class="cds--number__rule-divider"></div>
+					</div>
+				}
+			</div>
+			@if (fluid) {
+				<hr class="cds--number-input__divider" />
+			}
+			@if (helperText && !invalid && !warn && !fluid) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{
+						'cds--form__helper-text--disabled': disabled
+					}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					} @else {
+						{{helperText}}
+					}
 				</div>
-			</div>
-			<hr *ngIf="fluid" class="cds--number-input__divider" />
-			<div
-				*ngIf="helperText && !invalid && !warn && !fluid"
-				class="cds--form__helper-text"
-				[ngClass]="{
-					'cds--form__helper-text--disabled': disabled
-				}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			} @else if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					} @else {
+						{{invalidText}}
+					}
+				</div>
+			} @else if (warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			}
 		</div>
 	`,
 	providers: [

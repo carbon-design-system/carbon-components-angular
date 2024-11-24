@@ -21,17 +21,21 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 @Component({
 	selector: "cds-timepicker, ibm-timepicker",
 	template: `
-		<label
-		*ngIf="!skeleton && label"
-		[for]="id"
-		class="cds--label"
-		[ngClass]="{
-			'cds--label--disabled': disabled,
-			'cds--visually-hidden': hideLabel
-		}">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
+		@if (!skeleton && label) {
+			<label
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label"></ng-template>
+				} @else {
+					{{label}}
+				}
+			</label>
+		}
 		<div
 			class="cds--time-picker"
 			[ngClass]="{
@@ -60,10 +64,15 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			</div>
 			<ng-content></ng-content>
 		</div>
-		<div *ngIf="invalid" class="cds--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
+		@if (invalid) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+				} @else {
+					{{invalidText}}
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{

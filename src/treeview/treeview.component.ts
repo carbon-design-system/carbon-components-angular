@@ -28,17 +28,17 @@ import { TreeViewService } from "./treeview.service";
 @Component({
 	selector: "cds-tree-view",
 	template: `
-		<label
-			*ngIf="label"
-			[id]="id"
-			class="cds--label">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template
-				*ngIf="isTemplate(label)"
-				[ngTemplateOutlet]="label"
-				[ngTemplateOutletContext]="{ $implicit: labelContext }">
-			</ng-template>
-		</label>
+		@if (label) {
+			<label
+				[id]="id"
+				class="cds--label">
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
+				} @else {
+					{{label}}
+				}
+			</label>
+		}
 		<div
 			class="cds--tree"
 			[ngClass]="{
@@ -51,16 +51,16 @@ import { TreeViewService } from "./treeview.service";
 			role="tree"
 			(keydown)="navigateTree($event)"
 			#treeWrapper>
-			<ng-container *ngIf="isProjected(); else notProjected">
+			@if (isProjected()) {
 				<ng-content></ng-content>
-			</ng-container>
-			<ng-template #notProjected>
-				<cds-tree-node
-					*ngFor="let node of tree"
-					[node]="node"
-					(nodetoggle)="onNodeToggle($event)">
-				</cds-tree-node>
-			</ng-template>
+			} @else {
+				@for (node of tree; track node) {
+					<cds-tree-node
+						[node]="node"
+						(nodetoggle)="onNodeToggle($event)">
+					</cds-tree-node>
+				}
+			}
 		</div>
 	`,
 	providers: [TreeViewService]

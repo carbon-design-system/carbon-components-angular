@@ -63,36 +63,41 @@ export interface PaginationNavTranslations {
 						</svg>
 					</cds-icon-button>
 				</li>
-				<cds-pagination-nav-item
-					*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"
-					page="1"
-					(click)="currentPage = 1"
-					[isActive]="currentPage == 1">
-				</cds-pagination-nav-item>
-				<cds-pagination-overflow
-					*ngIf="frontCuts"
-					[count]="frontCuts"
-					[fromIndex]="startOffset"
-					(change)="handleOverflowSelection($event)">
-				</cds-pagination-overflow>
-				<cds-pagination-nav-item
-					*ngFor="let page of getPages();"
-					[page]="page"
-					(click)="currentPage = page"
-					[isActive]="currentPage == page">
-				</cds-pagination-nav-item>
-				<cds-pagination-overflow
-					*ngIf="backCuts"
-					[count]="backCuts"
-					[fromIndex]="totalNumbersArray.length - backCuts - 1"
-					(change)="handleOverflowSelection($event)">
-				</cds-pagination-overflow>
-				<cds-pagination-nav-item
-					*ngIf="totalDataLength > 1"
-					[page]="totalNumbersArray.length"
-					(click)="currentPage = totalNumbersArray.length"
-					[isActive]="currentPage == totalNumbersArray.length">
-				</cds-pagination-nav-item>
+				@if (this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)) {
+					<cds-pagination-nav-item
+						page="1"
+						(click)="currentPage = 1"
+						[isActive]="currentPage == 1">
+					</cds-pagination-nav-item>
+				}
+				@if (frontCuts) {
+					<cds-pagination-overflow
+						[count]="frontCuts"
+						[fromIndex]="startOffset"
+						(change)="handleOverflowSelection($event)">
+					</cds-pagination-overflow>
+				}
+				@for (page of getPages(); track page) {
+					<cds-pagination-nav-item
+						[page]="page"
+						(click)="currentPage = page"
+						[isActive]="currentPage == page">
+					</cds-pagination-nav-item>
+				}
+				@if (backCuts) {
+					<cds-pagination-overflow
+						[count]="backCuts"
+						[fromIndex]="totalNumbersArray.length - backCuts - 1"
+						(change)="handleOverflowSelection($event)">
+					</cds-pagination-overflow>
+				}
+				@if (totalDataLength > 1) {
+					<cds-pagination-nav-item
+						[page]="totalNumbersArray.length"
+						(click)="currentPage = totalNumbersArray.length"
+						[isActive]="currentPage == totalNumbersArray.length">
+					</cds-pagination-nav-item>
+				}
 				<li class="cds--pagination-nav__list-item">
 					<cds-icon-button
 						kind="ghost"

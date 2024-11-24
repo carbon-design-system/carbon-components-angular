@@ -36,85 +36,86 @@ import { EventOnNode, Node } from "./tree-node.types";
 			(focus)="emitFocusEvent($event)"
 			(blur)="emitBlurEvent($event)"
 			(keydown)="navigateTree($event)">
-			<div
-				*ngIf="!children.length"
-				class="cds--tree-node__label"
-				[style.padding-inline-start.rem]="offset"
-				[style.margin-inline-start.rem]="-offset"
-				(click)="nodeClick($event)">
-				<!-- Icon -->
-				<ng-container *ngIf="icon && !isTemplate(icon)">
-					<svg
-						class="cds--tree-node__icon"
-						[cdsIcon]="icon"
-						size="16">
-					</svg>
-				</ng-container>
-				<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(label)"
-					[ngTemplateOutlet]="label"
-					[ngTemplateOutletContext]="{ $implicit: labelContext }">
-				</ng-template>
-			</div>
-			<div
-				*ngIf="children.length"
-				class="cds--tree-node__label"
-				[style.padding-inline-start.rem]="offset"
-				[style.margin-inline-start.rem]="-offset"
-				role="group"
-				(click)="nodeClick($event)">
-				<span
-					class="cds--tree-parent-node__toggle"
-					[attr.disabled]="disabled || null"
-					(click)="toggleExpanded($event)">
-					<svg
-						class="cds--tree-parent-node__toggle-icon"
-						[ngClass]="{'cds--tree-parent-node__toggle-icon--expanded' : expanded}"
-						ibmIcon="caret--down"
-						size="16">
-					</svg>
-				</span>
-				<span class="cds--tree-node__label__details">
+			@if (children.length) {
+				<div
+					class="cds--tree-node__label"
+					[style.padding-inline-start.rem]="offset"
+					[style.margin-inline-start.rem]="-offset"
+					role="group"
+					(click)="nodeClick($event)">
+					<span
+						class="cds--tree-parent-node__toggle"
+						[attr.disabled]="disabled || null"
+						(click)="toggleExpanded($event)">
+						<svg
+							class="cds--tree-parent-node__toggle-icon"
+							[ngClass]="{'cds--tree-parent-node__toggle-icon--expanded' : expanded}"
+							ibmIcon="caret--down"
+							size="16">
+						</svg>
+					</span>
+					<span class="cds--tree-node__label__details">
+						<!-- Icon -->
+						@if (isTemplate(icon)) {
+							<ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: iconContext }" />
+						} @else if(icon) {
+							<svg
+								class="cds--tree-node__icon"
+								[cdsIcon]="icon"
+								size="16">
+							</svg>
+						}
+						@if (isTemplate(label)) {
+							<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
+						} @else {
+							{{label}}
+						}
+					</span>
+				</div>
+			} @else {
+				<div
+					class="cds--tree-node__label"
+					[style.padding-inline-start.rem]="offset"
+					[style.margin-inline-start.rem]="-offset"
+					(click)="nodeClick($event)">
 					<!-- Icon -->
-					<ng-container *ngIf="icon && !isTemplate(icon)">
+					@if (isTemplate(icon)) {
+						<ng-template [ngTemplateOutlet]="icon"></ng-template>
+					} @else if(icon){
 						<svg
 							class="cds--tree-node__icon"
 							[cdsIcon]="icon"
 							size="16">
 						</svg>
-					</ng-container>
-					<ng-template
-						*ngIf="isTemplate(icon)"
-						[ngTemplateOutlet]="icon"
-						[ngTemplateOutletContext]="{ $implicit: iconContext }">
-					</ng-template>
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template
-						*ngIf="isTemplate(label)"
-						[ngTemplateOutlet]="label"
-						[ngTemplateOutletContext]="{ $implicit: labelContext }">
-					</ng-template>
-				</span>
-			</div>
-			<div
-				*ngIf="expanded"
-				role="group"
-				class="cds--tree-node__children">
-				<ng-container *ngIf="isProjected(); else notProjected">
-					<ng-content></ng-content>
-				</ng-container>
-				<ng-template #notProjected>
-					<cds-tree-node
-						*ngFor="let childNode of children"
-						[node]="childNode"
-						[depth]="depth + 1"
-						[disabled]="disabled"
-						(nodetoggle)="nodetoggle.emit($event)">
-					</cds-tree-node>
-				</ng-template>
-			</div>
+					}
+					@if (isTemplate(label)) {
+						<ng-template
+							[ngTemplateOutlet]="label"
+							[ngTemplateOutletContext]="{ $implicit: labelContext }">
+						</ng-template>
+					} @else {
+						{{label}}
+					}
+				</div>
+			}
+			@if (expanded) {
+				<div
+					role="group"
+					class="cds--tree-node__children">
+					@if (isProjected()) {
+						<ng-content></ng-content>
+					} @else {
+						@for (childNode of children; track childNode) {
+							<cds-tree-node
+								[node]="childNode"
+								[depth]="depth + 1"
+								[disabled]="disabled"
+								(nodetoggle)="nodetoggle.emit($event)">
+							</cds-tree-node>
+						}
+					}
+				</div>
+			}
 		</div>
 	`
 })

@@ -19,28 +19,32 @@ import { BaseNotification } from "./base-notification.component";
 	selector: "cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification",
 	template: `
 		<div class="cds--inline-notification__details">
-			<svg
-				[cdsIcon]="iconDictionary[notificationObj.type]"
-				size="20"
-				*ngIf="notificationObj.type"
-				class="cds--inline-notification__icon">
-			</svg>
+			@if (notificationObj.type) {
+				<svg
+					[cdsIcon]="iconDictionary[notificationObj.type]"
+					size="20"
+					class="cds--inline-notification__icon">
+				</svg>
+			}
 			<div class="cds--inline-notification__text-wrapper">
-				<div *ngIf="!notificationObj.template" cdsNotificationTitle [innerHTML]="notificationObj.title"></div>
-				<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>
-					<span [innerHTML]="notificationObj.message"></span>
-				</div>
-				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
+				@if (!notificationObj.template) {
+					<div cdsNotificationTitle [innerHTML]="notificationObj.title"></div>
+					<div cdsNotificationSubtitle>
+						<span [innerHTML]="notificationObj.message"></span>
+					</div>
+				}
+				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}" />
 			</div>
 		</div>
-		<button
-			*ngIf="!isCloseHidden"
-			(click)="onClose()"
-			class="cds--inline-notification__close-button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			type="button">
-			<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
-		</button>
+		@if (!isCloseHidden) {
+			<button
+				(click)="onClose()"
+				class="cds--inline-notification__close-button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				type="button">
+				<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
+			</button>
+		}
 	`
 })
 export class Notification extends BaseNotification {
