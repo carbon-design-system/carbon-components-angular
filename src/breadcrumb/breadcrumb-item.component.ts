@@ -12,17 +12,18 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
-	<a
-		class="cds--link"
-		[href]="(skeleton ? '/#' : href)"
-		(click)="navigate($event)"
-		[attr.aria-current]="(current ? ariaCurrent : null)"
-		*ngIf="useTemplate(); else content">
-		<ng-container *ngTemplateOutlet="content"></ng-container>
-	</a>
-	<ng-template #content>
-		<ng-content></ng-content>
-	</ng-template>`
+		@if (useTemplate()) {
+			<a
+				class="cds--link"
+				[href]="(skeleton ? '/#' : href)"
+				(click)="navigate($event)"
+				[attr.aria-current]="(current ? ariaCurrent : null)">
+				<ng-container *ngTemplateOutlet="content" />
+			</a>
+		} @else {
+			<ng-content></ng-content>
+		}
+	`
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {

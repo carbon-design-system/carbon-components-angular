@@ -43,7 +43,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 		</button>
 		<div class="cds--side-nav__menu" role="list">
 			<ng-content></ng-content>
-			<ng-container *ngFor="let menuItem of menuItems">
+			@for (menuItem of menuItems; track menuItem) {
 				<cds-sidenav-item
 					[href]="menuItem.href"
 					[route]="menuItem.route"
@@ -52,7 +52,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 					[isSubMenu]="true">
 					{{ menuItem.content }}
 				</cds-sidenav-item>
-			</ng-container>
+			}
 		</div>
 	`
 })

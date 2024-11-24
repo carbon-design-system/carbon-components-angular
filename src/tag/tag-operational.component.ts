@@ -9,12 +9,12 @@ import { Tag } from "./tag.component";
 @Component({
 	selector: "cds-tag-operational, ibm-tag-operational",
 	template: `
-		<ng-container *ngIf="!skeleton">
+		@if (!skeleton) {
 			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
-		</ng-container>
+		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })

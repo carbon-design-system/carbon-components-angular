@@ -3,11 +3,9 @@ import { Component, Input, OnChanges } from "@angular/core";
 @Component({
 	selector: "cds-skeleton-text, ibm-skeleton-text",
 	template: `
-		<p
-			*ngFor="let width of lineWidths"
-			class="cds--skeleton__text"
-			[style.width]="width">
-		</p>
+		@for (width of lineWidths; track width) {
+			<p class="cds--skeleton__text" [style.width]="width"></p>
+		}
 	`
 })
 export class SkeletonText implements OnChanges {

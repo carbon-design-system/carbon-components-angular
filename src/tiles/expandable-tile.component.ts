@@ -25,32 +25,32 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `
-		<button
-			*ngIf="!interactive"
-			class="cds--tile cds--tile--expandable"
-			[ngClass]="{
-				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light'
-			}"
-			[ngStyle]="{'max-height': expandedHeight + 'px'}"
-			type="button"
-			(click)="onClick()"
-			[attr.aria-expanded]="expanded"
-			[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
-				<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
-		</button>
-
-		<div
-			*ngIf="interactive"
-			class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
-			[ngClass]="{
-				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light'
-			}"
-			[ngStyle]="{'max-height': expandedHeight + 'px'}"
-			[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
-			<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
-		</div>
+		@if (interactive) {
+			<div
+				class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
+				[ngClass]="{
+					'cds--tile--is-expanded' : expanded,
+					'cds--tile--light': theme === 'light'
+				}"
+				[ngStyle]="{'max-height': expandedHeight + 'px'}"
+				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
+				<ng-container *ngTemplateOutlet="expandableTileContent" />
+			</div>
+		} @else {
+			<button
+				class="cds--tile cds--tile--expandable"
+				[ngClass]="{
+					'cds--tile--is-expanded' : expanded,
+					'cds--tile--light': theme === 'light'
+				}"
+				[ngStyle]="{'max-height': expandedHeight + 'px'}"
+				type="button"
+				(click)="onClick()"
+				[attr.aria-expanded]="expanded"
+				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
+					<ng-container *ngTemplateOutlet="expandableTileContent" />
+			</button>
+		}
 
 		<ng-template #chevronIcon>
 			<svg cdsIcon="chevron--down" size="16"></svg>
@@ -61,18 +61,20 @@ export interface ExpandableTileTranslations {
 				<div class="cds--tile-content">
 					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
 				</div>
-				<div *ngIf="!interactive" class="cds--tile__chevron">
-					<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
-				</div>
-				<button
-					*ngIf="interactive"
-					class="cds--tile__chevron cds--tile__chevron--interactive"
-					type="button"
-					(click)="onClick()"
-					[attr.aria-expanded]="expanded"
-					[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">
-					<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
-				</button>
+				@if (interactive) {
+					<button
+						class="cds--tile__chevron cds--tile__chevron--interactive"
+						type="button"
+						(click)="onClick()"
+						[attr.aria-expanded]="expanded"
+						[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">
+						<ng-container *ngTemplateOutlet="chevronIcon" />
+					</button>
+				} @else {
+					<div class="cds--tile__chevron">
+						<ng-container *ngTemplateOutlet="chevronIcon" />
+					</div>
+				}
 				<div class="cds--tile-content">
 					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>
 				</div>

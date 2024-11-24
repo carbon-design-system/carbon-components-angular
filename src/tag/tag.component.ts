@@ -32,12 +32,12 @@ export type TagType = "red" |
 @Component({
 	selector: "cds-tag, ibm-tag",
 	template: `
-		<ng-container *ngIf="!skeleton">
+		@if (!skeleton) {
 			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
-		</ng-container>
+		}
 	`
 })
 export class Tag {

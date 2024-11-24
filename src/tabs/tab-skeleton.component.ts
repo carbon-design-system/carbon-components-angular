@@ -11,13 +11,13 @@ import {
 	selector: "cds-tabs-skeleton, ibm-tabs-skeleton",
 	template: `
 		<ul class="cds--tabs__nav">
-			<li
-				*ngFor="let i of numOfSkeletonTabs"
-				class="cds--tabs__nav-item">
-				<div class="cds--tabs__nav-link">
-					<span></span>
-				</div>
-			</li>
+			@for (i of numOfSkeletonTabs; track i) {
+				<li class="cds--tabs__nav-item">
+					<div class="cds--tabs__nav-link">
+						<span></span>
+					</div>
+				</li>
+			}
 		</ul>
 	`
 })

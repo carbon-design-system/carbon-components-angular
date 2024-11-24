@@ -11,7 +11,7 @@ import { Tag } from "./tag.component";
 @Component({
 	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
-		<ng-container *ngIf="!skeleton">
+		@if (!skeleton) {
 			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
 			<span
 				class="cds--tag__label"
@@ -27,7 +27,7 @@ import { Tag } from "./tag.component";
 				<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
 				<svg cdsIcon="close" size="16"></svg>
 			</button>
-		</ng-container>
+		}
 	`
 })
 export class TagFilter extends Tag {

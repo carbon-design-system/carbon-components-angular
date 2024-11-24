@@ -17,9 +17,13 @@ import {
 			<div>
 				<ng-content></ng-content>
 			</div>
-			<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
+			@if (autoAlign) {
+				<span class="cds--popover-caret cds--popover--auto-align"></span>
+			}
 		</span>
-		<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
+		@if (!autoAlign) {
+			<span class="cds--popover-caret"></span>
+		}
 	`
 })
 export class PopoverContent implements AfterViewInit {

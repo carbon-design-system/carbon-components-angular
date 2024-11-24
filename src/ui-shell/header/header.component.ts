@@ -23,35 +23,39 @@ import { I18n } from "carbon-components-angular/i18n";
 		<header
 			class="cds--header"
 			[attr.aria-label]="brand + ' ' + name">
-			<a
-				*ngIf="skipTo"
-				class="cds--skip-to-content"
-				[href]="skipTo"
-				tabindex="0">
-				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
-			</a>
+			@if (skipTo) {
+				<a
+					class="cds--skip-to-content"
+					[href]="skipTo"
+					tabindex="0">
+					{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
+				</a>
+			}
 			<ng-content select="cds-hamburger,ibm-hamburger"></ng-content>
-			<ng-template
-				*ngIf="isTemplate(brand)"
-				[ngTemplateOutlet]="brand">
-			</ng-template>
-			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
-				<a
-					*ngSwitchCase="false"
-					class="cds--header__name"
-					[href]="href"
-					(click)="navigate($event)">
-					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-					{{name}}
-				</a>
-				<a
-					*ngSwitchCase="true"
-					class="cds--header__name"
-					[routerLink]="route">
-					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-					{{name}}
-				</a>
-			</ng-container>
+			@if (isTemplate(brand)) {
+				<ng-template [ngTemplateOutlet]="brand" />
+			} @else {
+
+				@switch (useRouter) {
+					@case (false) {
+						<a
+							class="cds--header__name"
+							[href]="href"
+							(click)="navigate($event)">
+							<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+							{{name}}
+						</a>
+					}
+					@case (true) {
+						<a
+							class="cds--header__name"
+							[routerLink]="route">
+							<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+							{{name}}
+						</a>
+					}
+				}
+			}
 			<ng-content></ng-content>
 		</header>
 	`

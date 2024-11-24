@@ -38,34 +38,34 @@ const REL = "noreferrer noopener";
 @Component({
 	selector: "cds-overflow-menu-option, ibm-overflow-menu-option",
 	template: `
-		<button
-			*ngIf="!href"
-			class="cds--overflow-menu-options__btn {{innerClass}}"
-			role="menuitem"
-			[tabindex]="tabIndex"
-			(focus)="onFocus()"
-			(blur)="onBlur()"
-			(click)="onClick()"
-			[disabled]="disabled"
-			[attr.title]="title">
-			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
-		</button>
-
-		<a
-			*ngIf="href"
-			class="cds--overflow-menu-options__btn {{innerClass}}"
-			role="menuitem"
-			[tabindex]="tabIndex"
-			(focus)="onFocus()"
-			(blur)="onBlur()"
-			(click)="onClick()"
-			[attr.disabled]="disabled"
-			[href]="href"
-			[attr.target]="target"
-			[attr.rel]="rel"
-			[attr.title]="title">
-			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
-		</a>
+		@if (href) {
+			<a
+				class="cds--overflow-menu-options__btn {{innerClass}}"
+				role="menuitem"
+				[tabindex]="tabIndex"
+				(focus)="onFocus()"
+				(blur)="onBlur()"
+				(click)="onClick()"
+				[attr.disabled]="disabled"
+				[href]="href"
+				[attr.target]="target"
+				[attr.rel]="rel"
+				[attr.title]="title">
+				<ng-container *ngTemplateOutlet="tempOutlet" />
+			</a>
+		} @else {
+			<button
+				class="cds--overflow-menu-options__btn {{innerClass}}"
+				role="menuitem"
+				[tabindex]="tabIndex"
+				(focus)="onFocus()"
+				(blur)="onBlur()"
+				(click)="onClick()"
+				[disabled]="disabled"
+				[attr.title]="title">
+				<ng-container *ngTemplateOutlet="tempOutlet" />
+			</button>
+		}
 
 		<ng-template #tempOutlet>
 			<div class="cds--overflow-menu-options__option-content">

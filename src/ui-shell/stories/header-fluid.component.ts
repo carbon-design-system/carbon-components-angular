@@ -21,10 +21,9 @@ export class FooComponent { }
 				(selected)="hasHamburger = !hasHamburger"
 				class="cds--header__menu-toggle__hidden"></cds-hamburger>
 			<cds-header-navigation [navigationItems]="headerItems"></cds-header-navigation>
-			<cds-sidenav
-				*ngIf="hasHamburger"
-				[navigationItems]="headerItems"
-				class="cds--header__menu-toggle__hidden"></cds-sidenav>
+			@if (hasHamburger) {
+				<cds-sidenav [navigationItems]="headerItems" class="cds--header__menu-toggle__hidden" />
+			}
 		</cds-header>
 	`
 })
