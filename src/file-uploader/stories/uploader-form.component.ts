@@ -17,13 +17,14 @@ import { FileItem } from "../";
 			[(ngModel)]="model"
 			[disabled]="disabled">
 		</cds-file-uploader>
-		<button
-			cdsButton
-			*ngIf="model && model.size > 0"
-			(click)="onUpload()"
-			style="margin-top:20px">
-			Upload
-		</button>
+		@if (model && model.size > 0) {
+			<button
+				cdsButton
+				(click)="onUpload()"
+				style="margin-top:20px">
+				Upload
+			</button>
+		}
 		<button cdsButton (click)="removeFiles()">Remove all</button>
 	`
 })

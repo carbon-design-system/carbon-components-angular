@@ -47,18 +47,22 @@ import { Observable } from "rxjs";
 				'cds--list-box__wrapper--fluid--invalid': fluid && invalid,
 				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused
 			}">
-			<label
-				*ngIf="label"
-				[for]="id"
-				[id]="labelId"
-				class="cds--label"
-				[ngClass]="{
-					'cds--label--disabled': disabled,
-					'cds--visually-hidden': hideLabel
-				}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+			@if (label) {
+				<label
+					[for]="id"
+					[id]="labelId"
+					class="cds--label"
+					[ngClass]="{
+						'cds--label--disabled': disabled,
+						'cds--visually-hidden': hideLabel
+					}">
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label"></ng-template>
+					} @else {
+						{{label}}
+					}
+				</label>
+			}
 			<div
 				#listbox
 				[ngClass]="{
@@ -79,35 +83,36 @@ import { Observable } from "rxjs";
 					class="cds--list-box__field"
 					(click)="toggleDropdown()"
 					(blur)="onBlur()">
-					<div
-						*ngIf="type === 'multi' && pills.length > 0"
-						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{'cds--tag--disabled': disabled || readonly}">
-						<span class="cds--tag__label">{{ pills.length }}</span>
-						<button
-							type="button"
-							(click)="clearSelected($event)"
-							(blur)="onBlur()"
-							(keydown.enter)="clearSelected($event)"
-							class="cds--tag__close-icon"
-							tabindex="0"
-							[title]="clearSelectionsTitle"
-							[disabled]="disabled || readonly"
-							[attr.aria-label]="clearSelectionAria">
-							<svg
-								focusable="false"
-								preserveAspectRatio="xMidYMid meet"
-								style="will-change: transform;"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16"
-								aria-hidden="true">
-								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-							</svg>
-						</button>
-					</div>
+					@if (type === 'multi' && pills.length > 0) {
+						<div
+							class="cds--tag cds--tag--filter cds--tag--high-contrast"
+							[ngClass]="{'cds--tag--disabled': disabled || readonly}">
+							<span class="cds--tag__label">{{ pills.length }}</span>
+							<button
+								type="button"
+								(click)="clearSelected($event)"
+								(blur)="onBlur()"
+								(keydown.enter)="clearSelected($event)"
+								class="cds--tag__close-icon"
+								tabindex="0"
+								[title]="clearSelectionsTitle"
+								[disabled]="disabled || readonly"
+								[attr.aria-label]="clearSelectionAria">
+								<svg
+									focusable="false"
+									preserveAspectRatio="xMidYMid meet"
+									style="will-change: transform;"
+									role="img"
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									aria-hidden="true">
+									<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+								</svg>
+							</button>
+						</div>
+					}
 					<input
 						#input
 						type="text"
@@ -131,30 +136,33 @@ import { Observable } from "rxjs";
 						[attr.aria-controls]="open ? view?.listId : null"
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
-					<svg
-						*ngIf="invalid"
-						cdsIcon="warning--filled"
-						size="16"
-						class="cds--list-box__invalid-icon">
-					</svg>
-					<svg
-						*ngIf="!invalid && warn"
-						cdsIcon="warning--alt--filled"
-						size="16"
-						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-					</svg>
-					<div
-						*ngIf="showClearButton"
-						role="button"
-						class="cds--list-box__selection"
-						tabindex="0"
-						[attr.aria-label]="clearSelectionAria"
-						[title]="clearSelectionTitle"
-						(keyup.enter)="clearInput($event)"
-						(click)="clearInput($event)"
-						(blur)="onBlur()">
-						<svg cdsIcon="close" size="16"></svg>
-					</div>
+					@if (invalid) {
+						<svg
+
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--list-box__invalid-icon">
+						</svg>
+					} @else if (!invalid && warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+						</svg>
+					}
+					@if (showClearButton) {
+						<div
+							role="button"
+							class="cds--list-box__selection"
+							tabindex="0"
+							[attr.aria-label]="clearSelectionAria"
+							[title]="clearSelectionTitle"
+							(keyup.enter)="clearInput($event)"
+							(click)="clearInput($event)"
+							(blur)="onBlur()">
+							<svg cdsIcon="close" size="16"></svg>
+						</div>
+					}
 					<button
 						type="button"
 						role="button"
@@ -171,25 +179,41 @@ import { Observable } from "rxjs";
 					[ngClass]="{
 						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 					}">
-					<ng-content *ngIf="open"></ng-content>
+					@if (open) {
+						<ng-content></ng-content>
+					}
 				</div>
 			</div>
-			<hr *ngIf="fluid" class="cds--list-box__divider" />
-			<div
-				*ngIf="helperText && !invalid && !warn && !fluid"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			@if (fluid) {
+				<hr class="cds--list-box__divider" />
+			}
+			@if (helperText && !invalid && !warn && !fluid) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+						@if (isTemplate(helperText)) {
+							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+						} @else {
+							{{helperText}}
+						}
+				</div>
+			} @else if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					} @else {
+						{{ invalidText }}
+					}
+				</div>
+			} @else if (!invalid && warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			}
 		</div>
 	`,
 	providers: [

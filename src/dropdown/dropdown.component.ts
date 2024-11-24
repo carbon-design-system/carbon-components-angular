@@ -55,128 +55,154 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 @Component({
 	selector: "cds-dropdown, ibm-dropdown",
 	template: `
-	<label
-		*ngIf="label && !skeleton"
-		[for]="id"
-		class="cds--label"
-		[ngClass]="{
-			'cds--label--disabled': disabled,
-			'cds--visually-hidden': hideLabel
-		}">
-		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-	</label>
-	<div
-		class="cds--list-box"
-		[ngClass]="{
-			'cds--dropdown': type !== 'multi' && !(skeleton && fluid),
-			'cds--multiselect': type === 'multi',
-			'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
-			'cds--dropdown--light': theme === 'light',
-			'cds--list-box--light': theme === 'light',
-			'cds--list-box--inline': inline,
-			'cds--skeleton': skeleton,
-			'cds--dropdown--disabled cds--list-box--disabled': disabled,
-			'cds--dropdown--readonly': readonly,
-			'cds--dropdown--invalid': invalid,
-			'cds--dropdown--warning cds--list-box--warning': warn,
-			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
-			'cds--dropdown--md cds--list-box--md': size === 'md',
-			'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-			'cds--list-box--expanded': !menuIsClosed,
-			'cds--list-box--invalid': invalid
-		}"
-		[attr.data-invalid]="invalid ? true : null">
-		<div *ngIf="skeleton && fluid" class="cds--list-box__label"></div>
-		<button
-			#dropdownButton
-			[id]="id"
-			type="button"
-			class="cds--list-box__field"
-			[ngClass]="{'a': !menuIsClosed}"
-			[attr.aria-expanded]="!menuIsClosed"
-			[attr.aria-disabled]="disabled"
-			[attr.aria-readonly]="readonly"
-			aria-haspopup="listbox"
-			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
-			(focus)="fluid ? handleFocus($event) : null"
-			(blur)="fluid ? handleFocus($event) : onBlur()"
-			[attr.disabled]="disabled ? true : null">
-			<div
-				(click)="clearSelected()"
-				(keydown.enter)="clearSelected()"
-				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
-				tabindex="0"
-				[title]="clearText">
-				{{getSelectedCount()}}
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					role="img"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-				</svg>
-			</div>
-			<span *ngIf="isRenderString()" class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
-			<ng-template
-				*ngIf="!isRenderString()"
-				[ngTemplateOutletContext]="getRenderTemplateContext()"
-				[ngTemplateOutlet]="displayValue">
-			</ng-template>
-			<span class="cds--list-box__menu-icon">
-				<svg
-					*ngIf="!skeleton"
-					cdsIcon="chevron--down"
-					size="16"
-					[attr.aria-label]="menuButtonLabel"
-					[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
-				</svg>
-			</span>
-		</button>
-		<svg
-			*ngIf="invalid"
-			class="cds--list-box__invalid-icon"
-			cdsIcon="warning--filled"
-			size="16">
-		</svg>
-		<svg
-			*ngIf="!invalid && warn"
-			cdsIcon="warning--alt--filled"
-			size="16"
-			class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-		</svg>
-		<div
-			#dropdownMenu
+		@if (label && !skeleton) {
+			<label
+			[for]="id"
+			class="cds--label"
 			[ngClass]="{
-				'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				'cds--label--disabled': disabled,
+				'cds--visually-hidden': hideLabel
 			}">
-			<ng-content *ngIf="!menuIsClosed"></ng-content>
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label"></ng-template>
+				} @else {
+					{{label}}
+				}
+			</label>
+		}
+		<div
+			class="cds--list-box"
+			[ngClass]="{
+				'cds--dropdown': type !== 'multi' && !(skeleton && fluid),
+				'cds--multiselect': type === 'multi',
+				'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
+				'cds--dropdown--light': theme === 'light',
+				'cds--list-box--light': theme === 'light',
+				'cds--list-box--inline': inline,
+				'cds--skeleton': skeleton,
+				'cds--dropdown--disabled cds--list-box--disabled': disabled,
+				'cds--dropdown--readonly': readonly,
+				'cds--dropdown--invalid': invalid,
+				'cds--dropdown--warning cds--list-box--warning': warn,
+				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
+				'cds--dropdown--md cds--list-box--md': size === 'md',
+				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
+				'cds--list-box--expanded': !menuIsClosed,
+				'cds--list-box--invalid': invalid
+			}"
+			[attr.data-invalid]="invalid ? true : null">
+			@if (skeleton && fluid) {
+				<div class="cds--list-box__label"></div>
+			}
+			<button
+				#dropdownButton
+				[id]="id"
+				type="button"
+				class="cds--list-box__field"
+				[ngClass]="{'a': !menuIsClosed}"
+				[attr.aria-expanded]="!menuIsClosed"
+				[attr.aria-disabled]="disabled"
+				[attr.aria-readonly]="readonly"
+				aria-haspopup="listbox"
+				(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
+				(focus)="fluid ? handleFocus($event) : null"
+				(blur)="fluid ? handleFocus($event) : onBlur()"
+				[attr.disabled]="disabled ? true : null">
+				@if (type === 'multi' && getSelectedCount() > 0) {
+					<div
+						(click)="clearSelected()"
+						(keydown.enter)="clearSelected()"
+
+						class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
+						tabindex="0"
+						[title]="clearText">
+						{{getSelectedCount()}}
+						<svg
+							focusable="false"
+							preserveAspectRatio="xMidYMid meet"
+							style="will-change: transform;"
+							role="img"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 16 16"
+							aria-hidden="true">
+							<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+						</svg>
+					</div>
+				}
+				@if (isRenderString()) {
+					<span class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
+				} @else {
+					<ng-template [ngTemplateOutletContext]="getRenderTemplateContext()" [ngTemplateOutlet]="displayValue" />
+				}
+				<span class="cds--list-box__menu-icon">
+					@if (!skeleton) {
+						<svg
+							cdsIcon="chevron--down"
+							size="16"
+							[attr.aria-label]="menuButtonLabel"
+							[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
+						</svg>
+					}
+				</span>
+			</button>
+			@if (invalid) {
+				<svg
+					class="cds--list-box__invalid-icon"
+					cdsIcon="warning--filled"
+					size="16">
+				</svg>
+			} @else if(!invalid && warn) {
+				<svg
+					cdsIcon="warning--alt--filled"
+					size="16"
+					class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+				</svg>
+			}
+			<div
+				#dropdownMenu
+				[ngClass]="{
+					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				}">
+				@if (!menuIsClosed) {
+					<ng-content></ng-content>
+				}
+			</div>
 		</div>
-	</div>
-	<hr *ngIf="fluid" class="cds--list-box__divider" />
-	<div
-		*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"
-		class="cds--form__helper-text"
-		[ngClass]="{
-			'cds--form__helper-text--disabled': disabled
-		}">
-		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-	</div>
-	<div *ngIf="invalid" class="cds--form-requirement">
-		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-	</div>
-	<div *ngIf="!invalid && warn" class="cds--form-requirement">
-		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-	</div>
+		@if (fluid) {
+			<hr class="cds--list-box__divider" />
+		}
+		@if (helperText && !invalid && !warn && !skeleton && !fluid) {
+			<div
+				class="cds--form__helper-text"
+				[ngClass]="{
+					'cds--form__helper-text--disabled': disabled
+				}">
+
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+				} @else {
+					{{helperText}}
+				}
+			</div>
+		} @else if (invalid) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+				} @else {
+					{{ invalidText }}
+				}
+			</div>
+		} @else if (!invalid && warn) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(warnText)) {
+					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+				} @else {
+					{{warnText}}
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{

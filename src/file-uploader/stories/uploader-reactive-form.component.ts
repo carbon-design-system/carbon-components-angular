@@ -29,13 +29,14 @@ import {
 				[disabled]="disabled"
 				formControlName="files">
 			</cds-file-uploader>
-			<button
-				cdsButton
-				*ngIf="formGroup.get('files').value && formGroup.get('files').value.size > 0"
-				type="submit"
-				style="margin-top: 20px">
-				Upload
-			</button>
+			@if (formGroup.get('files').value && formGroup.get('files').value.size > 0) {
+				<button
+					cdsButton
+					type="submit"
+					style="margin-top: 20px">
+					Upload
+				</button>
+			}
 		</form>
 		<form [formGroup]="disabledFormGroup" (ngSubmit)="onUpload()">
 			<cds-file-uploader
@@ -50,9 +51,11 @@ import {
 				formControlName="files">
 			</cds-file-uploader>
 			<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-			<button cdsButton *ngIf="disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0" type="submit">
-				Upload
-			</button>
+			@if (disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0) {
+				<button cdsButton type="submit">
+					Upload
+				</button>
+			}
 		</form>
 	`
 })

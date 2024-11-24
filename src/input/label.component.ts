@@ -44,8 +44,9 @@ import { PasswordInput } from "./password.directive";
 			<ng-content></ng-content>
 		</ng-template>
 
-		<ng-container [ngSwitch]="type">
-			<ng-container *ngSwitchCase="'TextArea'">
+
+		@switch (type) {
+			@case ('TextArea') {
 				<cds-textarea-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -59,8 +60,8 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
 				</cds-textarea-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'TextInput'">
+			}
+			@case ('TextInput') {
 				<cds-text-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -74,8 +75,9 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'PasswordInput'">
+			}
+			@case ('PasswordInput') {
+
 				<cds-password-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -89,11 +91,11 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[passwordInputTemplate]="inputContentTemplate">
 				</cds-password-label>
-			</ng-container>
-			<ng-container *ngSwitchDefault>
+			}
+			@default {
 				<ng-template [ngTemplateOutlet]="default"></ng-template>
-			</ng-container>
-		</ng-container>
+			}
+		}
 
 		<ng-template #default>
 			<label
@@ -113,35 +115,49 @@ import { PasswordInput } from "./password.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				<svg
-					*ngIf="invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-input__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
+				@if (invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--text-input__invalid-icon">
+					</svg>
+				}
+				@if (!invalid && warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+					</svg>
+				}
 				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
 			</div>
-			<div
-				*ngIf="!skeleton && helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			@if (!skeleton && helperText && !invalid && !warn) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					} @else {
+						{{helperText}}
+					}
+				</div>
+			} @else if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					} @else {
+						{{invalidText}}
+					}
+				</div>
+			} @else if (!invalid && warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			}
 		</ng-template>
 	`
 })

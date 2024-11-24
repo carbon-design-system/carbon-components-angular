@@ -52,64 +52,66 @@ import {
 						</cds-progress-indicator>
 					</div>
 				</div>
-				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
-					<ng-container *ngSwitchCase="1">
-						<form [formGroup]="step2FormGroup">
+				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}">
+					@switch (currentStep) {
+						@case (1) {
+							<form [formGroup]="step2FormGroup">
+								<div cdsGrid>
+									<div cdsRow>
+										<h4>Create a new workspace</h4>
+										<label class="form-label">
+											When you create a workspace, you connect IBM Cloud
+											Schematics to existing Github / Gitlab repos that host
+											your Terraform templates.
+										</label>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-label>
+											Workspace name
+											<input
+												cdsText
+												[autocomplete]="false"
+												formControlName="workspaceName">
+										</cds-label>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-dropdown
+											class="dropdown"
+											label="Resource group"
+											value="content"
+											formControlName="resourceGroup"
+											[dropUp]="false">
+											<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
+										</cds-dropdown>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-label>
+											Description (optional)
+											<textarea
+												cdsTextArea
+												placeholder="What is the purpose of this workspace?"
+												formControlName="purpose"
+												[rows]="3"
+												aria-label="textarea"></textarea>
+										</cds-label>
+									</div>
+									<div cdsRow class="form-item">
+										<button cdsButton (click)="changeStep(2)">Step 3</button>
+									</div>
+								</div>
+							</form>
+						}
+						@case (2) {
 							<div cdsGrid>
 								<div cdsRow>
-									<h4>Create a new workspace</h4>
-									<label class="form-label">
-										When you create a workspace, you connect IBM Cloud
-										Schematics to existing Github / Gitlab repos that host
-										your Terraform templates.
-									</label>
+									Step 3 form!
 								</div>
 								<div cdsRow class="form-item">
-									<cds-label>
-										Workspace name
-										<input
-											cdsText
-											[autocomplete]="false"
-											formControlName="workspaceName">
-									</cds-label>
-								</div>
-								<div cdsRow class="form-item">
-									<cds-dropdown
-										class="dropdown"
-										label="Resource group"
-										value="content"
-										formControlName="resourceGroup"
-										[dropUp]="false">
-										<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
-									</cds-dropdown>
-								</div>
-								<div cdsRow class="form-item">
-									<cds-label>
-										Description (optional)
-										<textarea
-											cdsTextArea
-											placeholder="What is the purpose of this workspace?"
-											formControlName="purpose"
-											[rows]="3"
-											aria-label="textarea"></textarea>
-									</cds-label>
-								</div>
-								<div cdsRow class="form-item">
-									<button cdsButton (click)="changeStep(2)">Step 3</button>
+									<button cdsButton (click)="changeStep(1)">Step 2</button>
 								</div>
 							</div>
-						</form>
-					</ng-container>
-					<ng-container *ngSwitchCase="2">
-						<div cdsGrid>
-							<div cdsRow>
-								Step 3 form!
-							</div>
-							<div cdsRow class="form-item">
-								<button cdsButton (click)="changeStep(1)">Step 2</button>
-							</div>
-						</div>
-					</ng-container>
+						}
+					}
 				</div>
 			</div>
 		</div>
