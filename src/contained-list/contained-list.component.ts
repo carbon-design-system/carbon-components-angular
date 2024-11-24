@@ -45,12 +45,12 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 
 				@if (action) {
 					<div class="cds--contained-list__action">
-						<ng-template [ngTemplateOutlet]="action"></ng-template>
+						<ng-template [ngTemplateOutlet]="action" />
 					</div>
 				}
 			</div>
 			<div role="list" [attr.aria-labelledby]="labelId">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</div>
 	`,

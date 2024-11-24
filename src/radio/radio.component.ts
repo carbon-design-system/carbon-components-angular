@@ -49,7 +49,7 @@ import { RadioChange } from "./radio-change.class";
 			[for]="id"
 			id="label-{{id}}">
 			<span class="cds--radio-button__appearance"></span>
-			<ng-content></ng-content>
+			<ng-content />
 		</label>
 	`,
 	providers: [

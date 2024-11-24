@@ -21,7 +21,7 @@ import { I18n } from "carbon-components-angular/i18n";
 	selector: "cds-modal-header, ibm-modal-header",
 	template: `
 		<header class="cds--modal-header {{theme}}">
-			<ng-content></ng-content>
+			<ng-content />
 			<div class="cds--modal-close-button">
 				@if (showCloseButton) {
 					<cds-icon-button

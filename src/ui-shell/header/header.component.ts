@@ -31,7 +31,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 				</a>
 			}
-			<ng-content select="cds-hamburger,ibm-hamburger"></ng-content>
+			<ng-content select="cds-hamburger,ibm-hamburger" />
 			@if (isTemplate(brand)) {
 				<ng-template [ngTemplateOutlet]="brand" />
 			} @else {
@@ -56,7 +56,7 @@ import { I18n } from "carbon-components-angular/i18n";
 					}
 				}
 			}
-			<ng-content></ng-content>
+			<ng-content />
 		</header>
 	`
 })

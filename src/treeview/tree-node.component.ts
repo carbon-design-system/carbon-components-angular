@@ -80,7 +80,7 @@ import { EventOnNode, Node } from "./tree-node.types";
 					(click)="nodeClick($event)">
 					<!-- Icon -->
 					@if (isTemplate(icon)) {
-						<ng-template [ngTemplateOutlet]="icon"></ng-template>
+						<ng-template [ngTemplateOutlet]="icon" />
 					} @else if(icon){
 						<svg
 							class="cds--tree-node__icon"
@@ -103,7 +103,7 @@ import { EventOnNode, Node } from "./tree-node.types";
 					role="group"
 					class="cds--tree-node__children">
 					@if (isProjected()) {
-						<ng-content></ng-content>
+						<ng-content />
 					} @else {
 						@for (childNode of children; track childNode) {
 							<cds-tree-node

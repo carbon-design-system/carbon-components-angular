@@ -30,7 +30,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			[buttonAttributes]="{
 				'aria-label': ariaLabel
 			}">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-icon-button>
 	`
 })

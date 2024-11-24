@@ -17,25 +17,25 @@ import {
 				type="button"
 				[disabled]="disabled"
 				(click)="onClick()">
-				<ng-content select="[cdsContainedListItemButton],[ibmContainedListItemButton]"></ng-content>
+				<ng-content select="[cdsContainedListItemButton],[ibmContainedListItemButton]" />
 			</button>
 		} @else {
 			<div class="cds--contained-list-item__content">
 				@if (icon) {
 					<div class="cds--contained-list-item__icon">
 						@if (isTemplate(icon)) {
-							<ng-template [ngTemplateOutlet]="icon"></ng-template>
+							<ng-template [ngTemplateOutlet]="icon" />
 						} @else {
 							<svg [ibmIcon]="icon" size="16"></svg>
 						}
 					</div>
 				}
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		}
 		@if (action) {
 			<div class="cds--contained-list-item__action">
-				<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }"></ng-template>
+				<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }" />
 			</div>
 		}
 	`,

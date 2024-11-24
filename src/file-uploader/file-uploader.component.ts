@@ -50,7 +50,7 @@ const noop = () => { };
 							(dragleave)="onDragLeave($event)"
 							(drop)="onDrop($event)">
 								@if (isTemplate(dropText)) {
-									<ng-template [ngTemplateOutlet]="dropText"></ng-template>
+									<ng-template [ngTemplateOutlet]="dropText" />
 								} @else {
 									{{dropText}}
 								}

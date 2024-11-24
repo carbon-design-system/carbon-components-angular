@@ -34,7 +34,7 @@ import { ListColumn } from "./list-column.component";
 @Component({
 	selector: "cds-list-row, ibm-list-row",
 	template: `
-		<ng-content></ng-content>
+		<ng-content />
 		@if (selection) {
 			<input
 				#input

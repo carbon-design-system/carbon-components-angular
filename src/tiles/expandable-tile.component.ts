@@ -59,7 +59,7 @@ export interface ExpandableTileTranslations {
 		<ng-template #expandableTileContent>
 			<div #container>
 				<div class="cds--tile-content">
-					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
+					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold" />
 				</div>
 				@if (interactive) {
 					<button
@@ -76,7 +76,7 @@ export interface ExpandableTileTranslations {
 					</div>
 				}
 				<div class="cds--tile-content">
-					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>
+					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold" />
 				</div>
 			</div>
 		</ng-template>

@@ -54,7 +54,7 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			(scroll)="handleScroll()"
 			#tabList>
 			<ng-container [ngTemplateOutlet]="contentBefore" />
-			<ng-content></ng-content>
+			<ng-content />
 			<ng-container [ngTemplateOutlet]="contentAfter" />
 		</div>
 		<button

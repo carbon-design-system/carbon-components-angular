@@ -15,7 +15,7 @@ import { Table } from "../index";
 			[skeleton]="skeleton"
 			[size]="size"
 			[striped]="striped">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	`
 })

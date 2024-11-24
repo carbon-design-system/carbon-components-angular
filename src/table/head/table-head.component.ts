@@ -88,7 +88,7 @@ import { TableRowSize } from "../table.types";
 			}
 			</tr>
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	styles: [`
 		.cds--table-expand-v2 {

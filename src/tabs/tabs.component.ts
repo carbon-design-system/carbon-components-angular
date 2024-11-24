@@ -53,12 +53,12 @@ import { TabHeaders } from "./tab-headers.component";
 					[type]="type">
 				</cds-tab-headers>
 			}
-			<ng-content></ng-content>
+			<ng-content />
 			<ng-template #before>
-				<ng-content select="[before]"></ng-content>
+				<ng-content select="[before]" />
 			</ng-template>
 			<ng-template #after>
-				<ng-content select="[after]"></ng-content>
+				<ng-content select="[after]" />
 			</ng-template>
 			@if (hasTabHeaders() && position === 'bottom') {
 				<cds-tab-headers

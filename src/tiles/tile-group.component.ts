@@ -32,13 +32,13 @@ import { takeUntil } from "rxjs/operators";
 			@if (legend) {
 				<legend class="cds--label">
 					@if (isTemplate(legend)) {
-						<ng-template [ngTemplateOutlet]="legend"></ng-template>
+						<ng-template [ngTemplateOutlet]="legend" />
 					} @else {
 						{{legend}}
 					}
 				</legend>
 			}
-			<ng-content select="ibm-selection-tile,cds-selection-tile"></ng-content>
+			<ng-content select="ibm-selection-tile,cds-selection-tile" />
 		</fieldset>`,
 	providers: [
 		{

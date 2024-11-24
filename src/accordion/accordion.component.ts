@@ -31,7 +31,7 @@ import { AccordionItem } from "./accordion-item.component";
 				'cds--layout--size-lg': size === 'lg'
 			}"
 			role="list">
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
 	`
 })

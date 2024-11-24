@@ -64,7 +64,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				'cds--visually-hidden': hideLabel
 			}">
 				@if (isTemplate(label)) {
-					<ng-template [ngTemplateOutlet]="label"></ng-template>
+					<ng-template [ngTemplateOutlet]="label" />
 				} @else {
 					{{label}}
 				}
@@ -166,7 +166,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 				}">
 				@if (!menuIsClosed) {
-					<ng-content></ng-content>
+					<ng-content />
 				}
 			</div>
 		</div>
@@ -176,7 +176,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		@if (invalid) {
 			<div class="cds--form-requirement">
 				@if (isTemplate(invalidText)) {
-					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					<ng-template [ngTemplateOutlet]="invalidText" />
 				} @else {
 					{{ invalidText }}
 				}
@@ -184,7 +184,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 		} @else if (warn) {
 			<div class="cds--form-requirement">
 				@if (isTemplate(warnText)) {
-					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					<ng-template [ngTemplateOutlet]="warnText" />
 				} @else {
 					{{warnText}}
 				}
@@ -197,7 +197,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				}">
 
 				@if (isTemplate(helperText)) {
-					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					<ng-template [ngTemplateOutlet]="helperText" />
 				} @else {
 					{{helperText}}
 				}

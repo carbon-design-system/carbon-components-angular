@@ -69,7 +69,7 @@ const REL = "noreferrer noopener";
 
 		<ng-template #tempOutlet>
 			<div class="cds--overflow-menu-options__option-content">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</ng-template>
 	`

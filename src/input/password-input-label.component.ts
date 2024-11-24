@@ -43,9 +43,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
 					'cds--label--disabled': disabled
 				}">
 				@if (labelTemplate) {
-					<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+					<ng-template [ngTemplateOutlet]="labelTemplate" />
 				} @else {
-					<ng-content></ng-content>
+					<ng-content />
 				}
 			</label>
 			<div class="cds--text-input__field-outer-wrapper">
@@ -69,7 +69,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 							class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
 						</svg>
 					}
-					<ng-content select="[cdsPassword], [ibmPassword]"></ng-content>
+					<ng-content select="[cdsPassword], [ibmPassword]" />
 					<cds-tooltip
 						[description]="passwordIsVisible ? hidePasswordLabel : showPasswordLabel"
 						[disabled]="disabled"
@@ -102,7 +102,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 						@if (invalid) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(invalidText)) {
-									<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+									<ng-template [ngTemplateOutlet]="invalidText" />
 								} @else {
 									{{ invalidText }}
 								}
@@ -110,7 +110,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 						} @else if (warn) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(warnText)) {
-									<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+									<ng-template [ngTemplateOutlet]="warnText" />
 								} @else {
 									{{ warnText }}
 								}
@@ -122,7 +122,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+								<ng-template [ngTemplateOutlet]="invalidText" />
 							} @else {
 								{{ invalidText }}
 							}
@@ -130,7 +130,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+								<ng-template [ngTemplateOutlet]="warnText" />
 							} @else {
 								{{ warnText }}
 							}
@@ -140,7 +140,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 							class="cds--form__helper-text"
 							[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
 							@if (isTemplate(helperText)) {
-								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+								<ng-template [ngTemplateOutlet]="helperText" />
 							} @else {
 								{{ helperText }}
 							}

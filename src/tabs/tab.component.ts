@@ -69,7 +69,7 @@ import {
 						[ngTemplateOutletContext]="{ $implicit: templateContext }">
 					</ng-template>
 				}
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		}
 	`

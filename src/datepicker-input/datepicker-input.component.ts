@@ -33,7 +33,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							class="cds--label"
 							[ngClass]="{'cds--label--disabled': disabled}">
 							@if (isTemplate(label)) {
-								<ng-template [ngTemplateOutlet]="label"></ng-template>
+								<ng-template [ngTemplateOutlet]="label" />
 							} @else {
 								{{label}}
 							}
@@ -90,7 +90,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+								<ng-template [ngTemplateOutlet]="invalidText" />
 							} @else {
 								{{invalidText}}
 							}
@@ -98,7 +98,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+								<ng-template [ngTemplateOutlet]="warnText" />
 							} @else {
 								{{warnText}}
 							}
@@ -108,7 +108,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							class="cds--form__helper-text"
 							[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 							@if (isTemplate(helperText)) {
-								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+								<ng-template [ngTemplateOutlet]="helperText" />
 							} @else {
 								{{helperText}}
 							}

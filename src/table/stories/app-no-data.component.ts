@@ -18,7 +18,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	`
 })

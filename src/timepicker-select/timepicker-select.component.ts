@@ -32,7 +32,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				[disabled]="disabled"
 				(change)="onChange($event)"
 				class="cds--select-input">
-				<ng-content></ng-content>
+				<ng-content />
 			</select>
 			@if (!skeleton) {
 				<svg cdsIcon="chevron--down" size="16" class="cds--select__arrow"></svg>

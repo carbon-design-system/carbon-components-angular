@@ -24,7 +24,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			[attr.aria-expanded]="expanded"
 			type="button">
 			<div class="cds--side-nav__icon">
-				<ng-content select="svg, [icon]"></ng-content>
+				<ng-content select="svg, [icon]" />
 			</div>
 			<span class="cds--side-nav__submenu-title">{{title}}</span>
 			<div class="cds--side-nav__icon cds--side-nav__icon--small cds--side-nav__submenu-chevron">
@@ -42,7 +42,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			</div>
 		</button>
 		<div class="cds--side-nav__menu" role="list">
-			<ng-content></ng-content>
+			<ng-content />
 			@for (menuItem of menuItems; track menuItem) {
 				<cds-sidenav-item
 					[href]="menuItem.href"

@@ -12,12 +12,12 @@ import { Tag } from "./tag.component";
 	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
 		@if (!skeleton) {
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span
 				class="cds--tag__label"
 				[attr.title]="title ? title : null"
 				(click)="onClick($event)">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
 			<button
 				class="cds--tag__close-icon"

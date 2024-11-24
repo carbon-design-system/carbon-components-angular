@@ -57,7 +57,7 @@ import { Observable } from "rxjs";
 						'cds--visually-hidden': hideLabel
 					}">
 					@if (isTemplate(label)) {
-						<ng-template [ngTemplateOutlet]="label"></ng-template>
+						<ng-template [ngTemplateOutlet]="label" />
 					} @else {
 						{{label}}
 					}
@@ -180,7 +180,7 @@ import { Observable } from "rxjs";
 						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 					}">
 					@if (open) {
-						<ng-content></ng-content>
+						<ng-content />
 					}
 				</div>
 			</div>
@@ -190,7 +190,7 @@ import { Observable } from "rxjs";
 			@if (invalid) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(invalidText)) {
-						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						<ng-template [ngTemplateOutlet]="invalidText" />
 					} @else {
 						{{ invalidText }}
 					}
@@ -198,7 +198,7 @@ import { Observable } from "rxjs";
 			} @else if (warn) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(warnText)) {
-						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+						<ng-template [ngTemplateOutlet]="warnText" />
 					} @else {
 						{{warnText}}
 					}
@@ -208,7 +208,7 @@ import { Observable } from "rxjs";
 					class="cds--form__helper-text"
 					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 						@if (isTemplate(helperText)) {
-							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+							<ng-template [ngTemplateOutlet]="helperText" />
 						} @else {
 							{{helperText}}
 						}

@@ -221,7 +221,7 @@ import { TableRowSize } from "./table.types";
 				[skeleton]="skeleton">
 			</tbody>
 		} @else {
-			<ng-content></ng-content>
+			<ng-content />
 		}
 
 		<tfoot>

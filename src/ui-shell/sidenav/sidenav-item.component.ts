@@ -27,7 +27,7 @@ import { Router } from "@angular/router";
 				[attr.aria-current]="(active ? 'page' : null)"
 				[attr.title]="title ? title : null"
 				(click)="navigate($event)">
-				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
 			</a>
 		} @else {
 
@@ -38,18 +38,18 @@ import { Router } from "@angular/router";
 				routerLinkActive="cds--side-nav__item--active"
 				ariaCurrentWhenActive="page"
 				class="cds--side-nav__link">
-				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
 			</a>
 		}
 
 		<ng-template #sidenavItemContentTpl>
 			@if (!isSubMenu) {
 				<div class="cds--side-nav__icon">
-					<ng-content select="svg, [icon]"></ng-content>
+					<ng-content select="svg, [icon]" />
 				</div>
 			}
 			<span class="cds--side-nav__link-text">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
 		</ng-template>
 	`,

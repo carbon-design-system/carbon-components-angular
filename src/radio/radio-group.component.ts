@@ -58,13 +58,13 @@ import { RadioChange } from "./radio-change.class";
 			@if (legend) {
 				<legend class="cds--label">
 					@if (isTemplate(legend)) {
-						<ng-template [ngTemplateOutlet]="legend"></ng-template>
+						<ng-template [ngTemplateOutlet]="legend" />
 					} @else {
 						{{legend}}
 					}
 				</legend>
 			}
-			<ng-content></ng-content>
+			<ng-content />
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
 			@if (invalid) {
@@ -75,7 +75,7 @@ import { RadioChange } from "./radio-change.class";
 				</svg>
 				<div class="cds--form-requirement">
 					@if (isTemplate(invalidText)) {
-						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						<ng-template [ngTemplateOutlet]="invalidText" />
 					} @else {
 						{{ invalidText }}
 					}
@@ -88,7 +88,7 @@ import { RadioChange } from "./radio-change.class";
 				</svg>
 				<div class="cds--form-requirement">
 					@if (isTemplate(warnText)) {
-						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+						<ng-template [ngTemplateOutlet]="warnText" />
 					} @else {
 						{{ warnText }}
 					}
@@ -100,7 +100,7 @@ import { RadioChange } from "./radio-change.class";
 				class="cds--form__helper-text"
 				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 				@if (isTemplate(helperText)) {
-					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					<ng-template [ngTemplateOutlet]="helperText" />
 				} @else {
 					{{helperText}}
 				}

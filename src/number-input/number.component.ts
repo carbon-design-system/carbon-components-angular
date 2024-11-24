@@ -60,7 +60,7 @@ export class NumberChange {
 					class="cds--label"
 					[ngClass]="{'cds--label--disabled': disabled}">
 					@if (isTemplate(label)) {
-					<ng-template [ngTemplateOutlet]="label"></ng-template>
+					<ng-template [ngTemplateOutlet]="label" />
 					} @else {
 						{{label}}
 					}
@@ -133,7 +133,7 @@ export class NumberChange {
 			@if (invalid) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(invalidText)) {
-						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						<ng-template [ngTemplateOutlet]="invalidText" />
 					} @else {
 						{{invalidText}}
 					}
@@ -141,7 +141,7 @@ export class NumberChange {
 			} @else if (warn) {
 				<div class="cds--form-requirement">
 					@if (isTemplate(warnText)) {
-						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+						<ng-template [ngTemplateOutlet]="warnText" />
 					} @else {
 						{{warnText}}
 					}
@@ -153,7 +153,7 @@ export class NumberChange {
 						'cds--form__helper-text--disabled': disabled
 					}">
 					@if (isTemplate(helperText)) {
-						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+						<ng-template [ngTemplateOutlet]="helperText" />
 					} @else {
 						{{helperText}}
 					}

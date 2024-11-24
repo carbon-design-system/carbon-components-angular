@@ -30,7 +30,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					'cds--visually-hidden': hideLabel
 				}">
 				@if (isTemplate(label)) {
-					<ng-template [ngTemplateOutlet]="label"></ng-template>
+					<ng-template [ngTemplateOutlet]="label" />
 				} @else {
 					{{label}}
 				}
@@ -62,12 +62,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					type="text"
 					class="cds--time-picker__input-field cds--text-input">
 			</div>
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
 		@if (invalid) {
 			<div class="cds--form-requirement">
 				@if (isTemplate(invalidText)) {
-					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					<ng-template [ngTemplateOutlet]="invalidText" />
 				} @else {
 					{{invalidText}}
 				}

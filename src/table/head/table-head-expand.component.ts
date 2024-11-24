@@ -20,7 +20,7 @@ import { Observable } from "rxjs";
 				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
 			</button>
 		} @else {
-			<ng-content></ng-content>
+			<ng-content />
 		}
 	`
 })

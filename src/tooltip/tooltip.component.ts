@@ -30,7 +30,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<span #contentWrapper>
-			<ng-content></ng-content>
+			<ng-content />
 		</span>
 		@if (description) {
 			<span
@@ -41,7 +41,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 				@if (!disabled) {
 					<span class="cds--popover-content cds--tooltip-content">
 						@if (isTemplate(description)) {
-							<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
+							<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
 						} @else {
 							{{description}}
 						}

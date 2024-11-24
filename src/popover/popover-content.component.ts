@@ -15,7 +15,7 @@ import {
 	template: `
 		<span class="cds--popover-content" #content>
 			<div>
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 			@if (autoAlign) {
 				<span class="cds--popover-caret cds--popover--auto-align"></span>

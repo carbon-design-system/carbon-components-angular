@@ -66,7 +66,7 @@ export enum ToggleState {
 						'cds--visually-hidden': hideLabel
 					}">
 					@if (isTemplate(label)) {
-						<ng-template [ngTemplateOutlet]="label"></ng-template>
+						<ng-template [ngTemplateOutlet]="label" />
 					} @else {
 						{{label}}
 					}

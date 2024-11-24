@@ -33,9 +33,9 @@ export type TagType = "red" |
 	selector: "cds-tag, ibm-tag",
 	template: `
 		@if (!skeleton) {
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
 		}
 	`

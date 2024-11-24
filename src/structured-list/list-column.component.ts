@@ -16,7 +16,7 @@ import { Component, HostBinding, Input } from "@angular/core";
 		@if (skeleton) {
 			<span></span>
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`
 })
 export class ListColumn {

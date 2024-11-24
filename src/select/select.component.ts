@@ -70,7 +70,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 							class="cds--label"
 							[ngClass]="{'cds--label--disabled': disabled}">
 							@if (isTemplate(label)) {
-								<ng-template [ngTemplateOutlet]="label"></ng-template>
+								<ng-template [ngTemplateOutlet]="label" />
 							} @else {
 								{{label}}
 							}
@@ -121,7 +121,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					(keydown)="onKeyDown($event)"
 					(focus)="fluid ? handleFocus($event) : null"
 					(blur)="fluid ? handleFocus($event) : null">
-					<ng-content></ng-content>
+					<ng-content />
 				</select>
 				<svg
 					focusable="false"
@@ -179,7 +179,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="cds--form-requirement"
 						aria-live="polite">
 						@if (isTemplate(invalidText)) {
-							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							<ng-template [ngTemplateOutlet]="invalidText" />
 						} @else {
 							{{invalidText}}
 						}

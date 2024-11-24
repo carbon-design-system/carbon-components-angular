@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 	selector: "cds-header-item, ibm-header-item",
 	template: `
 		@if (useRouter) {
-			<ng-template #content><ng-content></ng-content></ng-template>
+			<ng-template #content><ng-content /></ng-template>
 			<a
 				class="cds--header__menu-item"
 				tabindex="0"

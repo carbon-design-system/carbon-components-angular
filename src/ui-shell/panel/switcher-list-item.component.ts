@@ -23,7 +23,7 @@ import { Router } from "@angular/router";
 			[href]="href"
 			[target]="target"
 			(click)="navigate($event)">
-			<ng-content></ng-content>
+			<ng-content />
 		</a>
 	`
 })

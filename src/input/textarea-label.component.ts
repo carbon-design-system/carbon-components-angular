@@ -44,9 +44,9 @@ import { TextArea } from "./text-area.directive";
 						'cds--label--disabled': disabled
 					}">
 					@if (labelTemplate) {
-						<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+						<ng-template [ngTemplateOutlet]="labelTemplate" />
 					} @else {
-						<ng-content></ng-content>
+						<ng-content />
 					}
 				</label>
 			</div>
@@ -73,9 +73,9 @@ import { TextArea } from "./text-area.directive";
 					}
 				}
 				@if (textAreaTemplate) {
-					<ng-template [ngTemplateOutlet]="textAreaTemplate"></ng-template>
+					<ng-template [ngTemplateOutlet]="textAreaTemplate" />
 				} @else {
-					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
+					<ng-content select="[cdsTextArea],[ibmTextArea],textarea" />
 				}
 
 				@if (fluid) {
@@ -83,7 +83,7 @@ import { TextArea } from "./text-area.directive";
 					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+								<ng-template [ngTemplateOutlet]="invalidText" />
 							} @else {
 								{{ invalidText }}
 							}
@@ -96,7 +96,7 @@ import { TextArea } from "./text-area.directive";
 					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+								<ng-template [ngTemplateOutlet]="warnText" />
 							} @else {
 								{{ warnText }}
 							}
@@ -113,7 +113,7 @@ import { TextArea } from "./text-area.directive";
 				@if (invalid) {
 					<div class="cds--form-requirement">
 						@if (isTemplate(invalidText)) {
-							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							<ng-template [ngTemplateOutlet]="invalidText" />
 						} @else {
 							{{ invalidText }}
 						}
@@ -121,7 +121,7 @@ import { TextArea } from "./text-area.directive";
 				} @else if (warn) {
 					<div class="cds--form-requirement">
 						@if (isTemplate(warnText)) {
-							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+							<ng-template [ngTemplateOutlet]="warnText" />
 						} @else {
 							{{ warnText }}
 						}
@@ -129,7 +129,7 @@ import { TextArea } from "./text-area.directive";
 				} @else if(helperText) {
 					<div class="cds--form__helper-text" [ngClass]="{'cds--form__helper-text--disabled': disabled}">
 						@if (isTemplate(helperText)) {
-							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+							<ng-template [ngTemplateOutlet]="helperText" />
 						} @else {
 							{{ helperText }}
 						}

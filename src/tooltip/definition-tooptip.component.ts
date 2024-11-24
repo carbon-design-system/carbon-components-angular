@@ -31,7 +31,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			(blur)="onBlur($event)"
 			(click)="onClick($event)"
 			type="button">
-			<ng-content></ng-content>
+			<ng-content />
 		</button>
 		@if (description) {
 			<span
@@ -44,7 +44,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 						{{description}}
 					}
 					@if (isTemplate(description)) {
-						<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
+						<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
 					} @else {
 						{{description}}
 					}

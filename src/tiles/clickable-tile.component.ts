@@ -36,7 +36,7 @@ import { Router } from "@angular/router";
 		[attr.target]="target"
 		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
-		<ng-content></ng-content>
+		<ng-content />
 	</a>`
 })
 export class ClickableTile {

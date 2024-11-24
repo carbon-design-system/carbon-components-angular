@@ -14,7 +14,7 @@ import { Component, HostBinding } from "@angular/core";
 @Component({
 	selector: "cds-switcher-list, ibm-switcher-list",
 	template: `
-			<ng-content></ng-content>
+			<ng-content />
 	`,
 	styles: [`
 		:host {

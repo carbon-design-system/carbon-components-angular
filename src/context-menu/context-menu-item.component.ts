@@ -35,7 +35,7 @@ import { ContextMenuComponent } from "./context-menu.component";
 				<svg cdsIcon="caret--right" size="16"></svg>
 			}
 		</div>
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	styles: [`
 		:host {

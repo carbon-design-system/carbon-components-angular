@@ -50,7 +50,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 			(click)="emitClickEvent($event)"
 			(focus)="focus.emit($event)"
 			(blur)="blur.emit($event)">
-			<ng-content></ng-content>
+			<ng-content />
 		</button>
 	</cds-tooltip>
 	`

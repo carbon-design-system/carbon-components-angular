@@ -88,7 +88,7 @@ import { TableRowSize } from "../table.types";
 				}
 			}
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`
 })
 export class TableRowComponent {

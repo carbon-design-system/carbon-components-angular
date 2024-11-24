@@ -12,7 +12,7 @@ import { NavigationItem } from "./header-navigation-items.interface";
 	template: `
 		<nav class="cds--header__nav" [attr.aria-label]="ariaLabel">
 			<div class="cds--header__menu-bar" role="list">
-				<ng-content></ng-content>
+				<ng-content />
 				@for (navigationItem of navigationItems; track navigationItem) {
 					@if (navigationItem.type === 'item') {
 						<cds-header-item

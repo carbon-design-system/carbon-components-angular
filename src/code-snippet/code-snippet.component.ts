@@ -133,7 +133,7 @@ export enum SnippetType {
 		</ng-template>
 
 		<ng-template #codeTemplate>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 	`
 })

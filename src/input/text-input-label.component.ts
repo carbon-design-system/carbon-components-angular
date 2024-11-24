@@ -41,9 +41,9 @@ import {
 					'cds--label--disabled': disabled
 				}">
 				@if (labelTemplate) {
-					<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+					<ng-template [ngTemplateOutlet]="labelTemplate" />
 				} @else {
-					<ng-content></ng-content>
+					<ng-content />
 				}
 			</label>
 			<div class="cds--text-input__field-outer-wrapper">
@@ -68,16 +68,16 @@ import {
 						</svg>
 					}
 					@if (textInputTemplate) {
-						<ng-template [ngTemplateOutlet]="textInputTemplate"></ng-template>
+						<ng-template [ngTemplateOutlet]="textInputTemplate" />
 					} @else {
-						<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
+						<ng-content select="[cdsText],[ibmText],input[type=text],div" />
 					}
 					@if (fluid) {
 						<hr class="cds--text-input__divider" />
 						@if (invalid) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(invalidText)) {
-									<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+									<ng-template [ngTemplateOutlet]="invalidText" />
 								} @else {
 									{{ invalidText }}
 								}
@@ -85,7 +85,7 @@ import {
 						} @else if (warn) {
 							<div class="cds--form-requirement">
 								@if (isTemplate(warnText)) {
-									<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+									<ng-template [ngTemplateOutlet]="warnText" />
 								} @else {
 									{{ warnText }}
 								}
@@ -97,7 +97,7 @@ import {
 					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+								<ng-template [ngTemplateOutlet]="invalidText" />
 							} @else {
 								{{ invalidText }}
 							}
@@ -105,7 +105,7 @@ import {
 					} @else if (warn) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+								<ng-template [ngTemplateOutlet]="warnText" />
 							} @else {
 								{{ warnText }}
 							}
@@ -115,7 +115,7 @@ import {
 							class="cds--form__helper-text"
 							[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 							@if (isTemplate(helperText)) {
-								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+								<ng-template [ngTemplateOutlet]="helperText" />
 							} @else {
 								{{ helperText }}
 							}

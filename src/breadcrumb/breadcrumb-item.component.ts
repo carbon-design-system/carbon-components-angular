@@ -21,7 +21,7 @@ import { Router } from "@angular/router";
 				<ng-container *ngTemplateOutlet="content" />
 			</a>
 		} @else {
-			<ng-content></ng-content>
+			<ng-content />
 		}
 	`
 })

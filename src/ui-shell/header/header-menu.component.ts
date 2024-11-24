@@ -24,7 +24,7 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 			(click)="navigate($event)">
 			{{title}}
 			@if (icon) {
-				<ng-template [ngTemplateOutlet]="icon"></ng-template>
+				<ng-template [ngTemplateOutlet]="icon" />
 			} @else {
 				<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">
 					<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
@@ -32,7 +32,7 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 			}
 		</a>
 		<div class="cds--header__menu" [attr.aria-label]="title">
-			<ng-content></ng-content>
+			<ng-content />
 			@for (headerItem of headerItems; track headerItem) {
 				<cds-header-item
 					[href]="headerItem.href"

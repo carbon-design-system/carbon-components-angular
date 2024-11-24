@@ -83,7 +83,7 @@ import { EventService } from "carbon-components-angular/utils";
 					class="cds--label"
 					[ngClass]="{'cds--label--disabled': disabled}">
 					@if (isTemplate(label)) {
-						<ng-template [ngTemplateOutlet]="label"></ng-template>
+						<ng-template [ngTemplateOutlet]="label" />
 					} @else {
 						{{label}}
 					}
@@ -93,7 +93,7 @@ import { EventService } from "carbon-components-angular/utils";
 				class="cds--slider-container"
 				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
 				<label [id]="bottomRangeId" class="cds--slider__range-label">
-					<ng-content select="[minLabel]"></ng-content>
+					<ng-content select="[minLabel]" />
 				</label>
 				<div
 					class="cds--slider"
@@ -145,9 +145,9 @@ import { EventService } from "carbon-components-angular/utils";
 						[value]="value.toString()">
 				</div>
 				<label [id]="topRangeId" class="cds--slider__range-label">
-					<ng-content select="[maxLabel]"></ng-content>
+					<ng-content select="[maxLabel]" />
 				</label>
-				<ng-content select="input"></ng-content>
+				<ng-content select="input" />
 			</div>
 		}
 	`,

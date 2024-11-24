@@ -40,7 +40,7 @@ import {
 					<p class="cds--skeleton__text" style="width: 80%"></p>
 					<p class="cds--skeleton__text" style="width: 95%"></p>
 				} @else {
-					<ng-content></ng-content>
+					<ng-content />
 				}
 			</div>
 		</div>

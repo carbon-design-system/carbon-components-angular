@@ -12,9 +12,9 @@ import {
 	selector: "cds-tag-selectable, ibm-tag-selectable",
 	template: `
 		@if (!skeleton) {
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
 		}
 	`,

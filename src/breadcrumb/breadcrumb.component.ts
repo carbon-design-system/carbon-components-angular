@@ -36,7 +36,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			}"
 			[attr.aria-label]="ariaLabel">
 			@if (shouldShowContent) {
-				<ng-content></ng-content>
+				<ng-content />
 			}
 			@if (shouldShowOverflow) {
 				<cds-breadcrumb-item

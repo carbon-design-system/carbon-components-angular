@@ -52,7 +52,7 @@ import { TreeViewService } from "./treeview.service";
 			(keydown)="navigateTree($event)"
 			#treeWrapper>
 			@if (isProjected()) {
-				<ng-content></ng-content>
+				<ng-content />
 			} @else {
 				@for (node of tree; track node) {
 					<cds-tree-node

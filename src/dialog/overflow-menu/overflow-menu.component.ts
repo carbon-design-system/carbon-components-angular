@@ -60,7 +60,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				type="button"
 				[placement]="placement">
 				@if (customTrigger) {
-					<ng-template [ngTemplateOutlet]="customTrigger"></ng-template>
+					<ng-template [ngTemplateOutlet]="customTrigger" />
 				} @else {
 					<svg
 						cdsIcon="overflow-menu--vertical"
@@ -72,7 +72,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 		</cds-tooltip>
 
 		<ng-template #options>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 	`,
 	styles: [`

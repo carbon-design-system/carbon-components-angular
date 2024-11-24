@@ -57,7 +57,7 @@ export enum CheckboxState {
 					'cds--skeleton' : skeleton
 				}">
 				<span [ngClass]="{'cds--visually-hidden' : hideLabel}" class="cds--checkbox-label-text">
-					<ng-content></ng-content>
+					<ng-content />
 				</span>
 			</label>
 		</div>
