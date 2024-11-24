@@ -7,13 +7,17 @@ import { IconService } from "../";
 	selector: "app-demo-many-icon",
 	template: `
 		<table>
-			<tr *ngFor="let group of groupedIcons">
-				<td *ngFor="let icon of group">
-					<svg [cdsIcon]="icon.name" [size]="icon.size"></svg>
-					<div>name: <code>{{icon.name}}</code></div>
-					<div>size: <code>{{icon.size}}</code></div>
-				</td>
-			</tr>
+			@for (group of groupedIcons; track group) {
+				<tr>
+					@for (icon of group; track icon) {
+						<td>
+							<svg [cdsIcon]="icon.name" [size]="icon.size"></svg>
+							<div>name: <code>{{icon.name}}</code></div>
+							<div>size: <code>{{icon.size}}</code></div>
+						</td>
+					}
+				</tr>
+			}
 		</table>
 	`,
 	styles: [

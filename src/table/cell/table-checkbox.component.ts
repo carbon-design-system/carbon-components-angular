@@ -14,16 +14,17 @@ import { TableRowSize } from "../table.types";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableCheckbox], [ibmTableCheckbox]",
 	template: `
-		<cds-checkbox
-			*ngIf="!skeleton"
-			inline="true"
-			[name]="name"
-			[checked]="selected"
-			[disabled]="disabled"
-			(checkedChange)="selectedChange.emit()"
-			[hideLabel]="true">
-				{{getLabel() | i18nReplace:getSelectionLabelValue(row) | async}}
-		</cds-checkbox>
+		@if (!skeleton) {
+			<cds-checkbox
+				inline="true"
+				[name]="name"
+				[checked]="selected"
+				[disabled]="disabled"
+				(checkedChange)="selectedChange.emit()"
+				[hideLabel]="true">
+					{{getLabel() | i18nReplace:getSelectionLabelValue(row) | async}}
+			</cds-checkbox>
+		}
 	`
 })
 export class TableCheckbox {

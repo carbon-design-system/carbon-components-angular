@@ -14,14 +14,15 @@ import { Observable } from "rxjs";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableRadio], [ibmTableRadio]",
 	template: `
-		<cds-radio
-			*ngIf="!skeleton"
-			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[checked]="selected"
-			[disabled]="disabled"
-			(change)="change.emit()">
-		</cds-radio>
+		@if (!skeleton) {
+			<cds-radio
+				[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+				[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+				[checked]="selected"
+				[disabled]="disabled"
+				(change)="change.emit()">
+			</cds-radio>
+		}
 	`
 })
 export class TableRadio {

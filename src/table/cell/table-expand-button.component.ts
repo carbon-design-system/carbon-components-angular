@@ -12,13 +12,14 @@ import { Observable } from "rxjs";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableExpandButton], [ibmTableExpandButton]",
 	template: `
-		<button
-			*ngIf="expandable"
-			class="cds--table-expand__button"
-			[attr.aria-label]="getAriaLabel() | async"
-			(click)="expandRow.emit()">
-			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
-		</button>
+		@if (expandable) {
+			<button
+				class="cds--table-expand__button"
+				[attr.aria-label]="getAriaLabel() | async"
+				(click)="expandRow.emit()">
+				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
+			</button>
+		}
 	`
 })
 export class TableExpandButton {

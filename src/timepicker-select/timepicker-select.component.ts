@@ -21,7 +21,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "cds-timepicker-select, ibm-timepicker-select",
 	template: `
-		<label *ngIf="!skeleton && label" [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
+		@if (!skeleton && label) {
+			<label [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
+		}
 		<div class="cds--select-input__wrapper">
 			<select
 				#select
@@ -32,7 +34,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="cds--select-input">
 				<ng-content></ng-content>
 			</select>
-			<svg cdsIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg>
+			@if (!skeleton) {
+				<svg cdsIcon="chevron--down" size="16" class="cds--select__arrow"></svg>
+			}
 		</div>
 	`,
 	providers: [

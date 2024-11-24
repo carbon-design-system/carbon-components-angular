@@ -12,16 +12,16 @@ import { Observable } from "rxjs";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableHeadExpand], [ibmTableHeadExpand]",
 	template: `
-		<button
-			*ngIf="showExpandAllToggle"
-			class="cds--table-expand__button"
-			[attr.aria-label]="getAriaLabel() | async"
-			(click)="expandedChange.emit(!expanded)">
-			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
-		</button>
-		<ng-container *ngIf="!showExpandAllToggle">
+		@if (showExpandAllToggle) {
+			<button
+				class="cds--table-expand__button"
+				[attr.aria-label]="getAriaLabel() | async"
+				(click)="expandedChange.emit(!expanded)">
+				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
+			</button>
+		} @else {
 			<ng-content></ng-content>
-		</ng-container>
+		}
 	`
 })
 export class TableHeadExpand {

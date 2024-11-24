@@ -25,7 +25,9 @@ import { ListColumn } from "./list-column.component";
 	template: `
 		<div class="cds--structured-list-row cds--structured-list-row--header-row" role="row">
 			<ng-content></ng-content>
-			<div *ngIf="selection" class="cds--structured-list-th"></div>
+			@if (selection) {
+				<div class="cds--structured-list-th"></div>
+			}
 		</div>
 	`
 })

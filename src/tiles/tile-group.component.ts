@@ -29,10 +29,15 @@ import { takeUntil } from "rxjs/operators";
 	selector: "cds-tile-group, ibm-tile-group",
 	template: `
 		<fieldset>
-			<legend *ngIf="legend" class="cds--label">
-				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
-				<ng-template #legendLabel>{{legend}}</ng-template>
-			</legend>
+			@if (legend) {
+				<legend class="cds--label">
+					@if (isTemplate(legend)) {
+						<ng-template [ngTemplateOutlet]="legend"></ng-template>
+					} @else {
+						{{legend}}
+					}
+				</legend>
+			}
 			<ng-content select="ibm-selection-tile,cds-selection-tile"></ng-content>
 		</fieldset>`,
 	providers: [

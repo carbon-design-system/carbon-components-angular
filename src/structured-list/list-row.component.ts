@@ -35,7 +35,7 @@ import { ListColumn } from "./list-column.component";
 	selector: "cds-list-row, ibm-list-row",
 	template: `
 		<ng-content></ng-content>
-		<ng-container *ngIf="selection">
+		@if (selection) {
 			<input
 				#input
 				class="cds--structured-list-input cds--visually-hidden"
@@ -46,11 +46,11 @@ import { ListColumn } from "./list-column.component";
 				(focus)="handleFocus(true)"
 				(blur)="handleFocus(false)"
 				(change)="onChange($event)"
-				[checked]="selected"/>
+				[checked]="selected" />
 			<div class="cds--structured-list-td">
 				<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
 			</div>
-		</ng-container>
+		}
 	`
 })
 export class ListRow implements AfterContentInit {

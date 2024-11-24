@@ -9,9 +9,9 @@ import {
 	selector: "[cdsTableExpandedRow], [ibmTableExpandedRow]",
 	template: `
 		<td [attr.colspan]="row.length + 2">
-			<ng-container *ngIf="!firstExpandedTemplateInRow(row)">
+			@if (!firstExpandedTemplateInRow(row)) {
 				{{firstExpandedDataInRow(row)}}
-			</ng-container>
+			}
 			<ng-template
 				[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
 				[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">

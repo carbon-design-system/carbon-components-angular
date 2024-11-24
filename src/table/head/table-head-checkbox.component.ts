@@ -12,16 +12,16 @@ import { Observable } from "rxjs";
 	// tslint:disable-next-line: component-selector
 	selector: "[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]",
 	template: `
-		<cds-checkbox
-			*ngIf="!skeleton"
-			inline="true"
-			[name]="name"
-			[checked]="checked"
-			[indeterminate]="indeterminate"
-			(checkedChange)="change.emit()"
-			[hideLabel]="true">
-				{{getAriaLabel() | async}}
-		</cds-checkbox>
+		@if (!skeleton) {
+			<cds-checkbox
+				[name]="name"
+				[checked]="checked"
+				[indeterminate]="indeterminate"
+				(checkedChange)="change.emit()"
+				[hideLabel]="true">
+					{{getAriaLabel() | async}}
+			</cds-checkbox>
+		}
 	`,
 	styles: [`
         :host { width: 10px; }

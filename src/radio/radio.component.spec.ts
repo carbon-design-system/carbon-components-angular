@@ -9,11 +9,14 @@ import { RadioGroup } from "./radio-group.component";
 @Component({
 	selector: "test-component",
 	template: `
-	<cds-radio-group [(ngModel)]="radio">
-		<cds-radio *ngFor="let one of manyRadios" [value]="one"
-			class="indent">Radio {{one}}
-		</cds-radio>
-	</cds-radio-group>`
+		<cds-radio-group [(ngModel)]="radio">
+			@for (one of manyRadios; track one) {
+				<cds-radio [value]="one" class="indent">
+					Radio {{one}}
+				</cds-radio>
+			}
+		</cds-radio-group>
+		`
 })
 class RadioTest {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
