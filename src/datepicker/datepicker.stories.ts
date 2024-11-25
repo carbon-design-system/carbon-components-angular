@@ -132,6 +132,7 @@ const RangeTemplate = (args) => ({
 			[rangeInvalid]="invalid"
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
+			[flatpickrOptions]="flatpickrOptions"
 			[value]="value"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
@@ -154,6 +155,7 @@ const RangeTemplate = (args) => ({
 			[rangeWarn]="warn"
 			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
+			[flatpickrOptions]="flatpickrOptions"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
 		</cds-date-picker>
@@ -162,8 +164,12 @@ const RangeTemplate = (args) => ({
 export const Range = RangeTemplate.bind({});
 Range.args = {
 	dateFormat: "d/m/Y",
-	value: ["01/02/24", "08/02/24"],
-	language: "en"
+	value: ["02/11/24", "08/11/24"],
+	language: "en",
+	flatpickrOptions: {
+		minDate: new Date("11/01/24"),
+		maxDate: new Date("11/30/24"),
+	}
 };
 Range.argTypes = {
 	language: {
