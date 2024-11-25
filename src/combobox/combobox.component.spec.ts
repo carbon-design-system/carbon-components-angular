@@ -21,16 +21,20 @@ import { PlaceholderModule } from "./../placeholder/index";
 		placeholder="placeholder"
 		label="label"
 		[items]="items"
-		[(ngModel)]="model">
+		[(ngModel)]="model"
+		[type]="type"
+		[itemValueKey]="itemValueKey">
 		<cds-dropdown-list></cds-dropdown-list>
 	</cds-combo-box>`
 })
 class ComboboxTest {
 	items = [
-		{content: "one", selected: false},
-		{content: "two", selected: false},
-		{content: "three", selected: false}
+		{id: "1", content: "one", selected: false},
+		{id: "2", content: "two", selected: false},
+		{id: "3", content: "three", selected: false}
 	];
+	type = 'single';
+	itemValueKey = undefined;
 	model: ListItem;
 }
 
@@ -76,6 +80,7 @@ describe("Combo box", () => {
 		fixture.detectChanges();
 
 		expect(element.nativeElement.querySelector("input").value).toBe("one");
+		expect(wrapper.model.id).toBe("1");
 		expect(wrapper.model.content).toBe("one");
 		expect(wrapper.model.selected).toBe(true);
 
@@ -173,9 +178,9 @@ describe("Combo box", () => {
 		textInput.dispatchEvent(new Event("input"));
 
 		wrapper.items = [
-			{content: "four", selected: false},
-			{content: "five", selected: false},
-			{content: "six", selected: false}
+			{id: "4", content: "four", selected: false},
+			{id: "5", content: "five", selected: false},
+			{id: "6", content: "six", selected: false}
 		];
 
 		fixture.detectChanges();
@@ -183,5 +188,25 @@ describe("Combo box", () => {
 		const itemEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item"));
 
 		expect(itemEls.length).toEqual(2);
+	});
+
+	it("should update model by itemValueKey when specified", () => {
+		fixture = TestBed.createComponent(ComboboxTest);
+		wrapper = fixture.componentInstance;
+		wrapper.type = "multi";
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		expect(wrapper.model).toEqual(['1']);
 	});
 });
