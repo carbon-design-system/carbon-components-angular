@@ -225,7 +225,6 @@ export class DatePicker implements
 	@Input() skeleton = false;
 
 	@Input() plugins = [];
-	
 	@Input()
 	set flatpickrOptions(options: Partial<Options>) {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
