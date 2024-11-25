@@ -5315,7 +5315,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				// clone the items and update their state based on the received value array
 				// this way we don&#x27;t lose any additional metadata that may be passed in via the &#x60;items&#x60; Input
 				let newValues &#x3D; [];
-				for (const v of value) {
+				for (const v of value ?? []) {
 					for (const item of this.view.getListItems()) {
 						if (item[this.itemValueKey] &#x3D;&#x3D;&#x3D; v) {
 							newValues.push(Object.assign({}, item, { selected: true }));
