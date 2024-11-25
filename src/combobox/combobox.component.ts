@@ -40,7 +40,13 @@ import { Observable } from "rxjs";
 @Component({
 	selector: "cds-combo-box, ibm-combo-box",
 	template: `
-		<div class="cds--list-box__wrapper">
+		<div
+			class="cds--list-box__wrapper"
+			[ngClass]="{
+				'cds--list-box__wrapper--fluid': fluid,
+				'cds--list-box__wrapper--fluid--invalid': fluid && invalid,
+				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused
+			}">
 			<label
 				*ngIf="label"
 				[for]="id"
@@ -64,7 +70,8 @@ import { Observable } from "rxjs";
 					'cds--list-box--lg': size === 'lg',
 					'cds--list-box--disabled': disabled,
 					'cds--combo-box--readonly': readonly,
-					'cds--combo-box--warning cds--list-box--warning': warn
+					'cds--combo-box--warning cds--list-box--warning': warn,
+					'cds--list-box--invalid': invalid
 				}"
 				class="cds--list-box cds--combo-box"
 				[attr.data-invalid]="(invalid ? true : null)">
@@ -109,7 +116,8 @@ import { Observable } from "rxjs";
 						[disabled]="disabled"
 						[readOnly]="readonly"
 						(input)="onSearch($event.target.value)"
-						(blur)="onBlur()"
+						(focus)="fluid ? handleFocus($event) : null"
+						(blur)="fluid ? handleFocus($event) : onBlur()"
 						(keydown.enter)="onSubmit($event)"
 						[value]="selectedValue"
 						class="cds--text-input"
@@ -166,8 +174,9 @@ import { Observable } from "rxjs";
 					<ng-content *ngIf="open"></ng-content>
 				</div>
 			</div>
+			<hr *ngIf="fluid" class="cds--list-box__divider" />
 			<div
-				*ngIf="helperText && !invalid && !warn"
+				*ngIf="helperText && !invalid && !warn && !fluid"
 				class="cds--form__helper-text"
 				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
 				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
@@ -369,6 +378,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	@Input() readonly = false;
 	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid = false;
+	/**
 	 * Emits a ListItem
 	 *
 	 * Example:
@@ -426,7 +439,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@ViewChild("input", { static: true }) input: ElementRef;
 	@ViewChild("listbox", { static: true }) listbox: ElementRef;
 	@HostBinding("class.cds--list-box__wrapper") hostClass = true;
-	@HostBinding("style.display") display = "block";
 
 	public open = false;
 
@@ -455,6 +467,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	protected _clearSelectionsAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTIONS");
 	protected _clearSelectionTitle = this.i18n.getOverridable("COMBOBOX.CLEAR_SELECTED");
 	protected _clearSelectionAria = this.i18n.getOverridable("COMBOBOX.A11Y.CLEAR_SELECTED");
+
+	protected _isFocused = false;
 
 	/**
 	 * Creates an instance of ComboBox.
@@ -624,7 +638,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				// clone the items and update their state based on the received value array
 				// this way we don't lose any additional metadata that may be passed in via the `items` Input
 				let newValues = [];
-				for (const v of value) {
+				for (const v of value ?? []) {
 					for (const item of this.view.getListItems()) {
 						if (item[this.itemValueKey] === v) {
 							newValues.push(Object.assign({}, item, { selected: true }));
@@ -680,7 +694,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
 		const selected = this.view.getSelected();
-		this.propagateChangeCallback(selected);
+
+		// in case there are disabled items they should be mapped according to itemValueKey
+        if (this.itemValueKey && selected) {
+            const values = selected.map((item) => item[this.itemValueKey]);
+            this.propagateChangeCallback(values);
+        } else {
+            this.propagateChangeCallback(selected);
+        }
+
 		this.selected.emit(selected as any);
 		this.clear.emit(event);
 	}
@@ -875,6 +897,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			!this.dropdownMenu.nativeElement.contains(event.target)) {
 			this.closeDropdown();
 		}
+	}
+
+	handleFocus(event: FocusEvent) {
+		this._isFocused = event.type === "focus";
 	}
 
 	protected updateSelected() {
