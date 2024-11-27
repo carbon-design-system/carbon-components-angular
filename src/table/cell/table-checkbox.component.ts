@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableCheckbox], [ibmTableCheckbox]",
 	template: `
 		@if (!skeleton) {

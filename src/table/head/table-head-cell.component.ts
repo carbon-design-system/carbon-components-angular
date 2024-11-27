@@ -12,7 +12,7 @@ import { map } from "rxjs/operators";
 import { TableHeaderItem } from "../table-header-item.class";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHeadCell], [ibmTableHeadCell]",
 	template: `
 		@if (sortable && this.sort.observers.length > 0 && column.sortable) {

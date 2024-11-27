@@ -5,7 +5,7 @@ import {
 import { TableItem } from "../table-item.class";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableData], [ibmTableData]",
 	template: `
 		@if (!skeleton && !item.template) {

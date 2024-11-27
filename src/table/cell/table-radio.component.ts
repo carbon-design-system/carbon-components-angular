@@ -11,7 +11,7 @@ import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableRadio], [ibmTableRadio]",
 	template: `
 		@if (!skeleton) {

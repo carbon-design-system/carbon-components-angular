@@ -22,7 +22,7 @@ import { TableRowSize } from "../table.types";
  * ```
  */
 @Component({
-	// tslint:disable-next-line:component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHead], [ibmTableHead]",
 	template: `
 		@if (model) {

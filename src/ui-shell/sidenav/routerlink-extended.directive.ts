@@ -3,7 +3,7 @@ import { NavigationExtras, RouterLink } from "@angular/router";
 import keys from "lodash-es/keys";
 
 @Directive({
-	// tslint:disable-next-line
+	// eslint-disable-next-line @angular-eslint/directive-selector
 	selector: "[routerLink]"
 })
 export class RouterLinkExtendedDirective extends RouterLink implements OnChanges {
