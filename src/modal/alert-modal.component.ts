@@ -64,7 +64,7 @@ import { BaseModal } from "./base-modal.class";
 			</div>
 			@if (buttons.length > 0) {
 				<cds-modal-footer>
-					@for (button of buttons; track button; let i = $index) {
+					@for (button of buttons; track button.id; let i = $index) {
 						<button
 							[cdsButton]="button.type"
 							(click)="buttonClicked(i)"

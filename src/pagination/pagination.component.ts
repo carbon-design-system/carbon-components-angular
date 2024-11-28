@@ -149,8 +149,8 @@ export interface PaginationTranslations {
 										class="cds--select-input"
 										[disabled]="pageInputDisabled"
 										[(ngModel)]="currentPage">
-										@for (page of pageOptions; track page; let i = $index) {
-											<option class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
+										@for (page of pageOptions; track page;) {
+											<option class="cds--select-option" [value]="page">{{page}}</option>
 										}
 									</select>
 								}
@@ -355,7 +355,11 @@ export class Pagination {
 		 */
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
 		if (this._pageOptions.length !== numberOfPages) {
-			this._pageOptions = Array(numberOfPages);
+			const pageArray = Array(numberOfPages);
+			for(let i = 0; i < numberOfPages; i++) {
+				pageArray[i] = i+1;
+			}
+			this._pageOptions = pageArray;
 		}
 		return this._pageOptions;
 	}

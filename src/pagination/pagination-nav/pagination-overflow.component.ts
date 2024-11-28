@@ -62,7 +62,11 @@ export class PaginationOverflow {
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {
-		return [...Array(this.count)];
+		const rangeArray = Array(this.count >= 0 ? this.count : 0);
+		for(let i = 0; i < rangeArray.length; i++) {
+			rangeArray[i] = i + 1;
+		}
+		return rangeArray;
 	}
 
 	constructor(protected i18n: I18n) {}

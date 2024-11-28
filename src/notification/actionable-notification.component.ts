@@ -36,7 +36,7 @@ import { BaseNotification } from "./base-notification.component";
 						<div cdsActionableTitle [innerHTML]="notificationObj.title"></div>
 						<div cdsActionableSubtitle>
 							<span [innerHTML]="notificationObj.message"></span>
-							@for (link of notificationObj.links; track link) {
+							@for (link of notificationObj.links; track link.href) {
 								<a cdsLink [href]="link.href">{{link.text}}</a>
 							}
 						</div>
