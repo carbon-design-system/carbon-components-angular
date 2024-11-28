@@ -47,9 +47,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ariaCurrent]="first?.ariaCurrent"
 					(navigation)="navigation.emit($event)">
 					@if (first?.template) {
-						<ng-template
-						[ngTemplateOutlet]="first?.template"
-						[ngTemplateOutletContext]="{ $implicit: first }" />
+						<ng-template [ngTemplateOutlet]="first?.template" [ngTemplateOutletContext]="{ $implicit: first }" />
 					} @else {
 						{{first?.content}}
 					}
@@ -70,9 +68,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 									(click)="navigate($event, item)"
 									style="text-decoration: none;">
 									@if (item?.template) {
-										<ng-template
-											[ngTemplateOutlet]="item?.template"
-											[ngTemplateOutletContext]="{ $implicit: item }" />
+										<ng-template [ngTemplateOutlet]="item?.template" [ngTemplateOutletContext]="{ $implicit: item }" />
 									} @else {
 										{{item?.content}}
 									}
@@ -89,10 +85,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ariaCurrent]="secondLast?.ariaCurrent"
 					(navigation)="navigation.emit($event)">
 					@if (secondLast?.template) {
-						<ng-template
-
-						[ngTemplateOutlet]="secondLast?.template"
-						[ngTemplateOutletContext]="{ $implicit: secondLast }" />
+						<ng-template [ngTemplateOutlet]="secondLast?.template" [ngTemplateOutletContext]="{ $implicit: secondLast }" />
 					} @else {
 						{{secondLast?.content}}
 					}
