@@ -356,8 +356,8 @@ export class Pagination {
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
 		if (this._pageOptions.length !== numberOfPages) {
 			const pageArray = Array(numberOfPages);
-			for(let i = 0; i < numberOfPages; i++) {
-				pageArray[i] = i+1;
+			for (let i = 0; i < numberOfPages; i++) {
+				pageArray[i] = i + 1;
 			}
 			this._pageOptions = pageArray;
 		}

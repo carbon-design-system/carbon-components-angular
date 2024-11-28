@@ -7,7 +7,7 @@ import { I18nModule } from "./../../i18n/index";
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
-import { RouterLinkExtendedDirective} from './routerlink-extended.directive';
+import { RouterLinkExtendedDirective } from "./routerlink-extended.directive";
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -65,8 +65,8 @@ describe("SideNav", () => {
 						initialNavigation: "disabled",
 						useHash: true
 					}),
-				I18nModule,
-			],
+				I18nModule
+			]
 		});
 	});
 

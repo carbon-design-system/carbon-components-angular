@@ -63,7 +63,7 @@ export class PaginationOverflow {
 
 	get countAsArray() {
 		const rangeArray = Array(this.count >= 0 ? this.count : 0);
-		for(let i = 0; i < rangeArray.length; i++) {
+		for (let i = 0; i < rangeArray.length; i++) {
 			rangeArray[i] = i + 1;
 		}
 		return rangeArray;
