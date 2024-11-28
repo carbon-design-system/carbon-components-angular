@@ -150,7 +150,11 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-combo-box"));
-		expect(element.nativeElement.textContent).toBe("label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.textContent).toBe(" label ");
 	});
 
 	it("should set placeholder to 'placeholder'", () => {

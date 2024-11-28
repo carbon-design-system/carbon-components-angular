@@ -7,6 +7,7 @@ import { I18nModule } from "./../../i18n/index";
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
+import { RouterLinkExtendedDirective} from './routerlink-extended.directive';
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -46,23 +47,26 @@ describe("SideNav", () => {
 				SideNav,
 				SideNavItem,
 				SideNavMenu,
+				RouterLinkExtendedDirective,
 				SideNavTest,
 				FooComponent
 			],
 			imports: [
 				CommonModule,
-				I18nModule,
-				RouterModule.forRoot([
-					{
-						path: "foo",
-						component: FooComponent
-					}
-				],
+
+				RouterModule.forRoot(
+					[
+						{
+							path: "foo",
+							component: FooComponent
+						}
+					],
 					{
 						initialNavigation: "disabled",
 						useHash: true
-					})
-			]
+					}),
+				I18nModule,
+			],
 		});
 	});
 
