@@ -168,7 +168,7 @@ Range.args = {
 	language: "en",
 	flatpickrOptions: {
 		minDate: new Date("11/01/24"),
-		maxDate: new Date("11/30/24"),
+		maxDate: new Date("11/30/24")
 	}
 };
 Range.argTypes = {

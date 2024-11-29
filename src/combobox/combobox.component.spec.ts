@@ -33,7 +33,7 @@ class ComboboxTest {
 		{id: "2", content: "two", selected: false},
 		{id: "3", content: "three", selected: false}
 	];
-	type = 'single';
+	type = "single";
 	itemValueKey = undefined;
 	model: ListItem;
 }
@@ -207,6 +207,6 @@ describe("Combo box", () => {
 		dropdownOption.click();
 		fixture.detectChanges();
 
-		expect(wrapper.model).toEqual(['1']);
+		expect(wrapper.model).toEqual(["1"]);
 	});
 });
