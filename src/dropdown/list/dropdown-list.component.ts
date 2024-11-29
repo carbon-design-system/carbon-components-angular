@@ -80,9 +80,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 						@if (!listTpl && type === 'multi') {
 							<div
 								class="cds--form-item cds--checkbox-wrapper">
-								<label
-									[attr.data-contained-checkbox-state]="item.selected"
-									class="cds--checkbox-label">
+								<label [attr.data-contained-checkbox-state]="item.selected" class="cds--checkbox-label">
 									<input
 										class="cds--checkbox"
 										type="checkbox"
@@ -103,10 +101,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 							</svg>
 						}
 						@if (listTpl) {
-							<ng-template
-								[ngTemplateOutletContext]="{item: item}"
-								[ngTemplateOutlet]="listTpl">
-							</ng-template>
+							<ng-template [ngTemplateOutletContext]="{item: item}" [ngTemplateOutlet]="listTpl" />
 						}
 					</div>
 				</li>

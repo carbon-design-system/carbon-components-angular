@@ -225,9 +225,7 @@ import { TableRowSize } from "./table.types";
 		}
 
 		<tfoot>
-			<ng-template
-				[ngTemplateOutlet]="footerTemplate">
-			</ng-template>
+			<ng-template [ngTemplateOutlet]="footerTemplate" />
 			@if (this.model.isLoading) {
 				<tr>
 					<td class="table_loading-indicator">

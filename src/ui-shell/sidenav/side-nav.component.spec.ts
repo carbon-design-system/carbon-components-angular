@@ -53,7 +53,6 @@ describe("SideNav", () => {
 			],
 			imports: [
 				CommonModule,
-
 				RouterModule.forRoot(
 					[
 						{
@@ -64,7 +63,8 @@ describe("SideNav", () => {
 					{
 						initialNavigation: "disabled",
 						useHash: true
-					}),
+					}
+				),
 				I18nModule
 			]
 		});

@@ -4,6 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
+import { range } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -17,32 +18,32 @@ import { I18n } from "carbon-components-angular/i18n";
 @Component({
 	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
-		@if (count > 1) {
+		@if (count === 1) {
+			<cds-pagination-nav-item [page]="fromIndex + 1"></cds-pagination-nav-item>
+		} @else if (count > 1) {
 			<li class="cds--pagination-nav__list-item">
 				<div class="cds--pagination-nav__select">
-				<select
-					[attr.aria-label]="ariaLabel"
-					class="cds--pagination-nav__page cds--pagination-nav__page--select"
-					(change)="handleChange($event)">
-					<option value="" hidden></option>
-					@for (item of countAsArray; track item; let i = $index) {
-						<option>
-							{{fromIndex + i + 1}}
-						</option>
-					}
-				</select>
-				<div class="cds--pagination-nav__select-icon-wrapper">
-					<svg
-						cdsIcon="overflow-menu--horizontal"
-						size="16"
-						style="display: inherit"
-						class="cds--pagination-nav__select-icon">
-					</svg>
-				</div>
+					<select
+						[attr.aria-label]="ariaLabel"
+						class="cds--pagination-nav__page cds--pagination-nav__page--select"
+						(change)="handleChange($event)">
+						<option value="" hidden></option>
+						@for (item of countAsArray; track item; let i = $index) {
+							<option>
+								{{fromIndex + i + 1}}
+							</option>
+						}
+					</select>
+					<div class="cds--pagination-nav__select-icon-wrapper">
+						<svg
+							cdsIcon="overflow-menu--horizontal"
+							size="16"
+							style="display: inherit"
+							class="cds--pagination-nav__select-icon">
+						</svg>
+					</div>
 				</div>
 			</li>
-		} @else if (count === 1) {
-			<cds-pagination-nav-item [page]="fromIndex + 1"></cds-pagination-nav-item>
 		}
 	`
 })
@@ -62,10 +63,7 @@ export class PaginationOverflow {
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {
-		const rangeArray = Array(this.count >= 0 ? this.count : 0);
-		for (let i = 0; i < rangeArray.length; i++) {
-			rangeArray[i] = i + 1;
-		}
+		const rangeArray = range((this.count >= 0 ? this.count : 0), 1);
 		return rangeArray;
 	}
 

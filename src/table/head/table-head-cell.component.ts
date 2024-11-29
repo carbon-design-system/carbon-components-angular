@@ -76,9 +76,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 						}
 					</span>
 				}
-				<ng-template
-					[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
-				</ng-template>
+				<ng-template [ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}" />
 			</div>
 		}
 	`

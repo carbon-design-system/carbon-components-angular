@@ -89,10 +89,7 @@ import { EventOnNode, Node } from "./tree-node.types";
 						</svg>
 					}
 					@if (isTemplate(label)) {
-						<ng-template
-							[ngTemplateOutlet]="label"
-							[ngTemplateOutletContext]="{ $implicit: labelContext }">
-						</ng-template>
+						<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
 					} @else {
 						{{label}}
 					}

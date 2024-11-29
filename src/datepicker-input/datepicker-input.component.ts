@@ -26,20 +26,19 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					@if (skeleton) {
 						<span class="cds--label cds--skeleton"></span>
 						<div class="cds--date-picker__input cds--skeleton"></div>
-					}
-					@if (label && !skeleton) {
-						<label
-							[for]="id"
-							class="cds--label"
-							[ngClass]="{'cds--label--disabled': disabled}">
-							@if (isTemplate(label)) {
-								<ng-template [ngTemplateOutlet]="label" />
-							} @else {
-								{{label}}
-							}
-						</label>
-					}
-					@if (!skeleton) {
+					} @else {
+						@if (label) {
+							<label
+								[for]="id"
+								class="cds--label"
+								[ngClass]="{'cds--label--disabled': disabled}">
+								@if (isTemplate(label)) {
+									<ng-template [ngTemplateOutlet]="label" />
+								} @else {
+									{{label}}
+								}
+							</label>
+						}
 						<div class="cds--date-picker-input__wrapper"
 							[ngClass]="{
 								'cds--date-picker-input__wrapper--invalid': invalid,
@@ -87,6 +86,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 							</span>
 						</div>
 					}
+
 					@if (invalid) {
 						<div class="cds--form-requirement">
 							@if (isTemplate(invalidText)) {

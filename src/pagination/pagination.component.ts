@@ -6,9 +6,10 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { ExperimentalService } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
+import { range } from "carbon-components-angular/common";
 
 export interface PaginationTranslations {
 	ITEMS_PER_PAGE: string;
@@ -78,10 +79,8 @@ export interface PaginationTranslations {
 								[disabled]="pageInputDisabled"
 								class="cds--select-input">
 								@for (option of itemsPerPageOptions; track option) {
-									<option
-										class="cds--select-option"
-										[value]="option">
-											{{ option }}
+									<option class="cds--select-option" [value]="option">
+										{{ option }}
 									</option>
 								}
 							</select>
@@ -167,20 +166,20 @@ export interface PaginationTranslations {
 					}
 
 					@if (!pagesUnknown && lastPage <= 1) {
-							<span class="cds--pagination__text">
-								@if (!showPageInput) {
-									{{currentPage}}
-								}
-								{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
-							</span>
+						<span class="cds--pagination__text">
+							@if (!showPageInput) {
+								{{currentPage}}
+							}
+							{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
+						</span>
 					}
 					@if (!pagesUnknown && lastPage > 1) {
-							<span class="cds--pagination__text">
-								@if (!showPageInput) {
-									{{currentPage}}
-								}
-								{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
-							</span>
+						<span class="cds--pagination__text">
+							@if (!showPageInput) {
+								{{currentPage}}
+							}
+							{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
+						</span>
 					}
 					<div class="cds--pagination__control-buttons">
 						<button
@@ -200,9 +199,7 @@ export interface PaginationTranslations {
 						<button
 							cdsButton="ghost"
 							iconOnly="true"
-							class="
-								cds--pagination__button
-								cds--pagination__button--forward"
+							class="cds--pagination__button cds--pagination__button--forward"
 							[ngClass]="{
 								'cds--pagination__button--no-index': currentPage >= lastPage || disabled
 							}"
@@ -355,11 +352,7 @@ export class Pagination {
 		 */
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
 		if (this._pageOptions.length !== numberOfPages) {
-			const pageArray = Array(numberOfPages);
-			for (let i = 0; i < numberOfPages; i++) {
-				pageArray[i] = i + 1;
-			}
-			this._pageOptions = pageArray;
+			this._pageOptions = range(numberOfPages, 1);
 		}
 		return this._pageOptions;
 	}

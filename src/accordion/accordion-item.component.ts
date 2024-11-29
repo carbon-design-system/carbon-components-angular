@@ -19,10 +19,7 @@ import {
 			class="cds--accordion__heading">
 			<svg cdsIcon="chevron--right" size="16" class="cds--accordion__arrow"></svg>
 			@if (isTemplate(title)) {
-				<ng-template
-					[ngTemplateOutlet]="title"
-					[ngTemplateOutletContext]="context">
-				</ng-template>
+				<ng-template [ngTemplateOutlet]="title" [ngTemplateOutletContext]="context" />
 			} @else {
 				<p
 					class="cds--accordion__title"

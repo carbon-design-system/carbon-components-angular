@@ -195,7 +195,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngClass]="{
 					'cds--form__helper-text--disabled': disabled
 				}">
-
 				@if (isTemplate(helperText)) {
 					<ng-template [ngTemplateOutlet]="helperText" />
 				} @else {

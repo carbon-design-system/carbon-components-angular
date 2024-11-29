@@ -17,7 +17,17 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
-		@if (!useRouter) {
+		@if (useRouter) {
+			<a
+				[attr.title]="title ? title : null"
+				[routerLink]="route"
+				[routeExtras]="routeExtras"
+				routerLinkActive="cds--side-nav__item--active"
+				ariaCurrentWhenActive="page"
+				class="cds--side-nav__link">
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
+			</a>
+		} @else {
 			<a
 				class="cds--side-nav__link"
 				[ngClass]="{
@@ -27,17 +37,6 @@ import { Router } from "@angular/router";
 				[attr.aria-current]="(active ? 'page' : null)"
 				[attr.title]="title ? title : null"
 				(click)="navigate($event)">
-				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
-			</a>
-		} @else {
-
-			<a
-				[attr.title]="title ? title : null"
-				[routerLink]="route"
-				[routeExtras]="routeExtras"
-				routerLinkActive="cds--side-nav__item--active"
-				ariaCurrentWhenActive="page"
-				class="cds--side-nav__link">
 				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
 			</a>
 		}

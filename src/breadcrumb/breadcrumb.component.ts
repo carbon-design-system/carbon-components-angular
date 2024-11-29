@@ -98,9 +98,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ariaCurrent]="last?.ariaCurrent"
 					(navigation)="navigation.emit($event)">
 					@if (last?.template) {
-						<ng-template
-						[ngTemplateOutlet]="last?.template"
-						[ngTemplateOutletContext]="{ $implicit: last }" />
+						<ng-template [ngTemplateOutlet]="last?.template" [ngTemplateOutletContext]="{ $implicit: last }" />
 					} @else {
 						{{last?.content}}
 					}

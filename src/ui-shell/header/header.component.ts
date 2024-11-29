@@ -35,25 +35,21 @@ import { I18n } from "carbon-components-angular/i18n";
 			@if (isTemplate(brand)) {
 				<ng-template [ngTemplateOutlet]="brand" />
 			} @else {
-
-				@switch (useRouter) {
-					@case (false) {
-						<a
-							class="cds--header__name"
-							[href]="href"
-							(click)="navigate($event)">
-							<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-							{{name}}
-						</a>
-					}
-					@case (true) {
-						<a
-							class="cds--header__name"
-							[routerLink]="route">
-							<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-							{{name}}
-						</a>
-					}
+				@if (useRouter) {
+					<a
+						class="cds--header__name"
+						[routerLink]="route">
+						<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+						{{name}}
+					</a>
+				} @else {
+					<a
+						class="cds--header__name"
+						[href]="href"
+						(click)="navigate($event)">
+						<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+						{{name}}
+					</a>
 				}
 			}
 			<ng-content />

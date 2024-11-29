@@ -57,19 +57,19 @@ import { TableRowSize } from "../table.types";
 						'cds--batch-actions--active': selected
 					}">
 					<div class="cds--batch-summary">
-					@if (count; as n) {
-						<p class="cds--batch-summary__para">
-							@if (_batchTextLegacy.subject | async; as legacyText) {
-								<span>{{n}}</span> {{legacyText}}
-							} @else {
-								@if (n === 1) {
-									<span>{{_batchTextSingle.subject | async}}</span>
-								} @else if(n !== 1) {
-									<span>{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+						@if (count; as n) {
+							<p class="cds--batch-summary__para">
+								@if (_batchTextLegacy.subject | async; as legacyText) {
+									<span>{{n}}</span> {{legacyText}}
+								} @else {
+									@if (n === 1) {
+										<span>{{_batchTextSingle.subject | async}}</span>
+									} @else if(n > 1) {
+										<span>{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+									}
 								}
-							}
-						</p>
-					}
+							</p>
+						}
 					</div>
 					<div class="cds--action-list">
 						<ng-content select="cds-table-toolbar-actions,ibm-table-toolbar-actions" />
