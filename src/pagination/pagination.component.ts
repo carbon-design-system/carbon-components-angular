@@ -227,7 +227,7 @@ export class Pagination {
 	 */
 	@Input() model: PaginationModel;
 	/**
- 	 * Set to `true` to disable the backward/forward buttons.
+	 * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() disabled = false;
 	/**
@@ -261,7 +261,7 @@ export class Pagination {
 	 * ```
 	 */
 	@Input()
-	set translations (value: PaginationTranslations) {
+	set translations(value: PaginationTranslations) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("PAGINATION"), value);
 		this.itemsPerPageText.override(valueWithDefaults.ITEMS_PER_PAGE);
 		this.optionsListText.override(valueWithDefaults.OPEN_LIST_OF_OPTIONS);
@@ -352,7 +352,7 @@ export class Pagination {
 		 */
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
 		if (this._pageOptions.length !== numberOfPages) {
-			this._pageOptions = range(numberOfPages, 1);
+			this._pageOptions = range(numberOfPages + 1, 1);
 		}
 		return this._pageOptions;
 	}

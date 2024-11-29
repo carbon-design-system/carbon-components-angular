@@ -63,7 +63,7 @@ export class PaginationOverflow {
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {
-		const rangeArray = range((this.count >= 0 ? this.count : 0), 1);
+		const rangeArray = range((this.count >= 0 ? this.count + 1 : 0), 1);
 		return rangeArray;
 	}
 
