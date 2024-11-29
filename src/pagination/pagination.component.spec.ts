@@ -174,4 +174,22 @@ describe("Pagination", () => {
 		fixture.detectChanges();
 		expect(wrapper.pageOptions).toEqual(Array(1));
 	});
+
+	it("should replace the select with a number input when the pagination threshold is reached", () => {
+		const fixture = TestBed.createComponent(PaginationTest);
+		const wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-pagination"));
+
+		element.componentInstance.pageSelectThreshold = 500;
+		fixture.detectChanges();
+		expect(element.nativeElement.querySelector(".cds--select__page-number input")).toBe(null);
+		expect(element.nativeElement.querySelector(".cds--select__page-number select")).toBeDefined();
+
+		element.componentInstance.pageSelectThreshold = 2;
+		fixture.detectChanges();
+		expect(element.nativeElement.querySelector(".cds--select__page-number input")).toBeDefined();
+		expect(element.nativeElement.querySelector(".cds--select__page-number select")).toBe(null);
+
+	});
 });
