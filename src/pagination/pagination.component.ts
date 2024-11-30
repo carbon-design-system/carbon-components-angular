@@ -152,8 +152,6 @@ export interface PaginationTranslations {
 											<option class="cds--select-option" [value]="page">{{page}}</option>
 										}
 									</select>
-								}
-								@if (pageOptions.length <= 1000) {
 									<svg
 										cdsIcon="chevron--down"
 										size="16"
