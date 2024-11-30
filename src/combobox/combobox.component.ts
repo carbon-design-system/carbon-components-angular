@@ -638,7 +638,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				// clone the items and update their state based on the received value array
 				// this way we don't lose any additional metadata that may be passed in via the `items` Input
 				let newValues = [];
-				for (const v of value) {
+				for (const v of value ?? []) {
 					for (const item of this.view.getListItems()) {
 						if (item[this.itemValueKey] === v) {
 							newValues.push(Object.assign({}, item, { selected: true }));
@@ -696,12 +696,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		const selected = this.view.getSelected();
 
 		// in case there are disabled items they should be mapped according to itemValueKey
-        if (this.itemValueKey && selected) {
-            const values = selected.map((item) => item[this.itemValueKey]);
-            this.propagateChangeCallback(values);
-        } else {
-            this.propagateChangeCallback(selected);
-        }
+		if (this.itemValueKey && selected) {
+			const values = selected.map((item) => item[this.itemValueKey]);
+			this.propagateChangeCallback(values);
+		} else {
+			this.propagateChangeCallback(selected);
+		}
 
 		this.selected.emit(selected as any);
 		this.clear.emit(event);

@@ -137,7 +137,7 @@ export interface PaginationTranslations {
 						<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<svg
-						*ngIf="pageOptions.length <= 1000"
+						*ngIf="pageOptions.length <= pageSelectThreshold"
 						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit;"

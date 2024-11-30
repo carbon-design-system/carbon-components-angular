@@ -81,7 +81,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		const svg = root.tagName.toUpperCase() !== "SVG" ? svgElement : root;
-		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+		const xmlns = "http://www.w3.org/2000/svg";
+		svg.setAttribute("xmlns", xmlns);
 
 		const attributes = getAttributes({
 			width: icon.attrs.width,
