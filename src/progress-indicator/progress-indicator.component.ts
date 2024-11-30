@@ -19,54 +19,59 @@ import { Step } from "./progress-indicator-step.interface";
 @Component({
 	selector: "cds-progress-indicator, ibm-progress-indicator",
 	template: `
-	<ul
-		data-progress
-		data-progress-current
-		class="cds--progress"
-		[ngClass]="{
-			'cds--skeleton': skeleton,
-			'cds--progress--vertical': (orientation === 'vertical'),
-			'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
-		}">
-		<li
-			class="cds--progress-step"
-			*ngFor="let step of steps; let i = index"
+		<ul
+			data-progress
+			data-progress-current
+			class="cds--progress"
 			[ngClass]="{
-				'cds--progress-step--disabled' : step.disabled,
-				'cds--progress-step--complete' : step.complete,
-				'cds--progress-step--incomplete' : !step.complete && i !== current,
-				'cds--progress-step--current': i === current
+				'cds--skeleton': skeleton,
+				'cds--progress--vertical': (orientation === 'vertical'),
+				'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
 			}">
-			<button
-				type="button"
-				class="cds--progress-step-button"
-				[ngClass]="{
-					'cds--progress-step-button--unclickable': !step.onClick || current === i
-				}"
-				[disabled]="step.disabled"
-				[attr.aria-disabled]="step.disabled"
-				[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
-				[title]="step.label"
-				(click)="onClick(i)">
-				<span class="cds--assistive-text">
-					{{this.translations[getCurrentState(i)?.toUpperCase()]}}
-				</span>
-				<svg
-					[cdsIcon]="statusIcons[getCurrentState(i)]"
-					size="16"
+			@for (step of steps; track step; let i = $index) {
+				<li
+					class="cds--progress-step"
 					[ngClass]="{
-						'cds--progress__warning': step.invalid && i !== current
+						'cds--progress-step--disabled' : step.disabled,
+						'cds--progress-step--complete' : step.complete,
+						'cds--progress-step--incomplete' : !step.complete && i !== current,
+						'cds--progress-step--current': i === current
 					}">
-					<title *ngIf="step.description">{{step.description}}</title>
-				</svg>
-				<div class="cds--progress-text">
-					<p class="cds--progress-label">{{step.label}}</p>
-					<p *ngIf="step.secondaryLabel" class="cds--progress-optional">{{step.secondaryLabel}}</p>
-				</div>
-				<span class="cds--progress-line"></span>
-			</button>
-		</li>
-	</ul>
+					<button
+						type="button"
+						class="cds--progress-step-button"
+						[ngClass]="{
+							'cds--progress-step-button--unclickable': !step.onClick || current === i
+						}"
+						[disabled]="step.disabled"
+						[attr.aria-disabled]="step.disabled"
+						[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
+						[title]="step.label"
+						(click)="onClick(i)">
+						<span class="cds--assistive-text">
+							{{this.translations[getCurrentState(i)?.toUpperCase()]}}
+						</span>
+						<svg
+							[cdsIcon]="statusIcons[getCurrentState(i)]"
+							size="16"
+							[ngClass]="{
+								'cds--progress__warning': step.invalid && i !== current
+							}">
+							@if (step.description) {
+								<title>{{step.description}}</title>
+							}
+						</svg>
+						<div class="cds--progress-text">
+							<p class="cds--progress-label">{{step.label}}</p>
+							@if (step.secondaryLabel) {
+								<p class="cds--progress-optional">{{step.secondaryLabel}}</p>
+							}
+						</div>
+						<span class="cds--progress-line"></span>
+					</button>
+				</li>
+			}
+		</ul>
 	`
 })
 export class ProgressIndicator {

@@ -37,15 +37,16 @@ import { PasswordInput } from "./password.directive";
 	selector: "cds-label, ibm-label",
 	template: `
 		<ng-template #inputContentTemplate>
-			<ng-content select="input,textarea,div"></ng-content>
+			<ng-content select="input,textarea,div" />
 		</ng-template>
 
 		<ng-template #labelContentTemplate>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 
-		<ng-container [ngSwitch]="type">
-			<ng-container *ngSwitchCase="'TextArea'">
+
+		@switch (type) {
+			@case ('TextArea') {
 				<cds-textarea-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -59,8 +60,8 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
 				</cds-textarea-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'TextInput'">
+			}
+			@case ('TextInput') {
 				<cds-text-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -74,8 +75,9 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'PasswordInput'">
+			}
+			@case ('PasswordInput') {
+
 				<cds-password-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -89,11 +91,11 @@ import { PasswordInput } from "./password.directive";
 					[labelTemplate]="labelContentTemplate"
 					[passwordInputTemplate]="inputContentTemplate">
 				</cds-password-label>
-			</ng-container>
-			<ng-container *ngSwitchDefault>
-				<ng-template [ngTemplateOutlet]="default"></ng-template>
-			</ng-container>
-		</ng-container>
+			}
+			@default {
+				<ng-template [ngTemplateOutlet]="default" />
+			}
+		}
 
 		<ng-template #default>
 			<label
@@ -104,7 +106,7 @@ import { PasswordInput } from "./password.directive";
 					'cds--label--disabled': disabled,
 					'cds--skeleton': skeleton
 				}">
-				<ng-template [ngTemplateOutlet]="labelContentTemplate"></ng-template>
+				<ng-template [ngTemplateOutlet]="labelContentTemplate" />
 			</label>
 			<div
 				class="cds--text-input__field-wrapper"
@@ -113,35 +115,48 @@ import { PasswordInput } from "./password.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				<svg
-					*ngIf="invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-input__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
-				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
+				@if (invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--text-input__invalid-icon">
+					</svg>
+				} @else if (warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+					</svg>
+				}
+				<ng-template [ngTemplateOutlet]="inputContentTemplate" />
 			</div>
-			<div
-				*ngIf="!skeleton && helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			@if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText" />
+					} @else {
+						{{invalidText}}
+					}
+				</div>
+			} @else if (warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText" />
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			} @else if(helperText && !skeleton) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText" />
+					} @else {
+						{{helperText}}
+					}
+				</div>
+			}
 		</ng-template>
 	`
 })

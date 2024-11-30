@@ -20,15 +20,22 @@ import { ContextMenuComponent } from "./context-menu.component";
 	selector: "cds-context-menu-item, ibm-context-menu-item",
 	template: `
 		<div class="cds--menu-item__icon">
-			<svg *ngIf="selectable && checked" cdsIcon="checkmark" size="16"></svg>
-			<svg *ngIf="!selectable && icon" [cdsIcon]="icon" size="16"></svg>
+			@if (selectable && checked) {
+				<svg cdsIcon="checkmark" size="16"></svg>
+			} @else if (!selectable && icon) {
+				<svg [cdsIcon]="icon" size="16"></svg>
+			}
 		</div>
 		<div class="cds--menu-item__label" [title]="label">{{label}}</div>
 		<div class="cds--menu-item__shortcut">
-			<ng-container *ngIf="info">{{info}}</ng-container>
-			<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
+			@if (info) {
+				{{info}}
+			}
+			@if (hasChildren) {
+				<svg cdsIcon="caret--right" size="16"></svg>
+			}
 		</div>
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	styles: [`
 		:host {

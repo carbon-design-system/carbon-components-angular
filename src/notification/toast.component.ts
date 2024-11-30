@@ -19,28 +19,32 @@ import { BaseNotification } from "./base-notification.component";
 @Component({
 	selector: "cds-toast, ibm-toast",
 	template: `
-		<svg
-			[cdsIcon]="iconDictionary[notificationObj.type]"
-			size="20"
-			*ngIf="notificationObj.type"
-			class="cds--toast-notification__icon">
-		</svg>
+		@if (notificationObj.type) {
+			<svg
+				[cdsIcon]="iconDictionary[notificationObj.type]"
+				size="20"
+				class="cds--toast-notification__icon">
+			</svg>
+		}
 		<div class="cds--toast-notification__details">
-			<h3 *ngIf="!notificationObj.template" cdsToastTitle [innerHTML]="notificationObj.title"></h3>
-			<div *ngIf="!notificationObj.template" cdsToastSubtitle>
-				<span [innerHTML]="notificationObj.subtitle"></span>
-			</div>
-			<p *ngIf="!notificationObj.template" cdsToastCaption [innerHTML]="notificationObj.caption"></p>
-			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
+			@if (!notificationObj.template) {
+				<h3 cdsToastTitle [innerHTML]="notificationObj.title"></h3>
+				<div cdsToastSubtitle>
+					<span [innerHTML]="notificationObj.subtitle"></span>
+				</div>
+				<p cdsToastCaption [innerHTML]="notificationObj.caption"></p>
+			}
+			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }" />
 		</div>
-		<button
-			*ngIf="!isCloseHidden"
-			class="cds--toast-notification__close-button"
-			type="button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			(click)="onClose()">
-			<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
-		</button>
+		@if (!isCloseHidden) {
+			<button
+				class="cds--toast-notification__close-button"
+				type="button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				(click)="onClose()">
+				<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
+			</button>
+		}
 	`
 })
 export class Toast extends BaseNotification implements OnInit {

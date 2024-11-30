@@ -29,102 +29,99 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 @Component({
 	selector: "cds-breadcrumb, ibm-breadcrumb",
 	template: `
-	<nav #nav class="cds--breadcrumb"
-		[ngClass]="{
-			'cds--skeleton' : skeleton,
-			'cds--breadcrumb--no-trailing-slash' : noTrailingSlash
-		}"
-		[attr.aria-label]="ariaLabel">
-		<ng-template [ngIf]="shouldShowContent">
-			<ng-content></ng-content>
-		</ng-template>
-		<ng-template [ngIf]="!shouldShowOverflow">
-			<cds-breadcrumb-item
-				*ngFor="let item of items"
-				[href]="item.href"
-				[route]="item.route"
-				[routeExtras]="item.routeExtras"
-				[current]="item.current"
-				[ariaCurrent]="item.ariaCurrent"
-				(navigation)="navigation.emit($event)">
-				<ng-container *ngIf="!item.template">{{item.content}}</ng-container>
-				<ng-template
-					*ngIf="item.template"
-					[ngTemplateOutlet]="item.template"
-					[ngTemplateOutletContext]="{ $implicit: item }">
-				</ng-template>
-			</cds-breadcrumb-item>
-		</ng-template>
-		<ng-template [ngIf]="shouldShowOverflow">
-			<cds-breadcrumb-item
-				[href]="first?.href"
-				[route]="first?.route"
-				[routeExtras]="first?.routeExtras"
-				[current]="first?.current"
-				[ariaCurrent]="first?.ariaCurrent"
-				(navigation)="navigation.emit($event)">
-				<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>
-				<ng-template
-					*ngIf="first?.template"
-					[ngTemplateOutlet]="first?.template"
-					[ngTemplateOutletContext]="{ $implicit: first }">
-				</ng-template>
-			</cds-breadcrumb-item>
-			<cds-breadcrumb-item>
-				<ng-template #overflowMenuTrigger>
-					<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
-				</ng-template>
-				<cds-overflow-menu
-					[customTrigger]="overflowMenuTrigger"
-					triggerClass="cds--btn--icon-only"
-					[description]="description"
-					[autoAlign]="autoAlign">
-					<li class="cds--overflow-menu-options__option"
-						*ngFor="let item of overflowItems">
-						<a class="cds--overflow-menu-options__btn"
-							href="{{item?.href}}"
-							(click)="navigate($event, item)"
-							style="text-decoration: none;">
-							<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>
-							<ng-template
-								*ngIf="item?.template"
-								[ngTemplateOutlet]="item?.template"
-								[ngTemplateOutletContext]="{ $implicit: item }">
-							</ng-template>
-						</a>
-					</li>
-				</cds-overflow-menu>
-			</cds-breadcrumb-item>
-			<cds-breadcrumb-item
-				[href]="secondLast?.href"
-				[route]="secondLast?.route"
-				[routeExtras]="secondLast?.routeExtras"
-				[current]="secondLast?.current"
-				[ariaCurrent]="secondLast?.ariaCurrent"
-				(navigation)="navigation.emit($event)">
-				<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>
-				<ng-template
-					*ngIf="secondLast?.template"
-					[ngTemplateOutlet]="secondLast?.template"
-					[ngTemplateOutletContext]="{ $implicit: secondLast }">
-				</ng-template>
-			</cds-breadcrumb-item>
-			<cds-breadcrumb-item
-				[href]="last?.href"
-				[route]="last?.route"
-				[routeExtras]="last?.routeExtras"
-				[current]="last?.current"
-				[ariaCurrent]="last?.ariaCurrent"
-				(navigation)="navigation.emit($event)">
-				<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>
-				<ng-template
-					*ngIf="last?.template"
-					[ngTemplateOutlet]="last?.template"
-					[ngTemplateOutletContext]="{ $implicit: last }">
-				</ng-template>
-			</cds-breadcrumb-item>
-		</ng-template>
-	</nav>`
+		<nav #nav class="cds--breadcrumb"
+			[ngClass]="{
+				'cds--skeleton' : skeleton,
+				'cds--breadcrumb--no-trailing-slash' : noTrailingSlash
+			}"
+			[attr.aria-label]="ariaLabel">
+			@if (shouldShowContent) {
+				<ng-content />
+			}
+			@if (shouldShowOverflow) {
+				<cds-breadcrumb-item
+					[href]="first?.href"
+					[route]="first?.route"
+					[routeExtras]="first?.routeExtras"
+					[current]="first?.current"
+					[ariaCurrent]="first?.ariaCurrent"
+					(navigation)="navigation.emit($event)">
+					@if (first?.template) {
+						<ng-template [ngTemplateOutlet]="first?.template" [ngTemplateOutletContext]="{ $implicit: first }" />
+					} @else {
+						{{first?.content}}
+					}
+				</cds-breadcrumb-item>
+				<cds-breadcrumb-item>
+					<ng-template #overflowMenuTrigger>
+						<svg class="cds--overflow-menu__icon" cdsIcon="overflow-menu--horizontal" size="16"></svg>
+					</ng-template>
+					<cds-overflow-menu
+						[customTrigger]="overflowMenuTrigger"
+						triggerClass="cds--btn--icon-only"
+						[description]="description"
+						[autoAlign]="autoAlign">
+						@for (item of overflowItems; track item) {
+							<li class="cds--overflow-menu-options__option">
+								<a class="cds--overflow-menu-options__btn"
+									href="{{item?.href}}"
+									(click)="navigate($event, item)"
+									style="text-decoration: none;">
+									@if (item?.template) {
+										<ng-template [ngTemplateOutlet]="item?.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+									} @else {
+										{{item?.content}}
+									}
+								</a>
+							</li>
+						}
+					</cds-overflow-menu>
+				</cds-breadcrumb-item>
+				<cds-breadcrumb-item
+					[href]="secondLast?.href"
+					[route]="secondLast?.route"
+					[routeExtras]="secondLast?.routeExtras"
+					[current]="secondLast?.current"
+					[ariaCurrent]="secondLast?.ariaCurrent"
+					(navigation)="navigation.emit($event)">
+					@if (secondLast?.template) {
+						<ng-template [ngTemplateOutlet]="secondLast?.template" [ngTemplateOutletContext]="{ $implicit: secondLast }" />
+					} @else {
+						{{secondLast?.content}}
+					}
+				</cds-breadcrumb-item>
+				<cds-breadcrumb-item
+					[href]="last?.href"
+					[route]="last?.route"
+					[routeExtras]="last?.routeExtras"
+					[current]="last?.current"
+					[ariaCurrent]="last?.ariaCurrent"
+					(navigation)="navigation.emit($event)">
+					@if (last?.template) {
+						<ng-template [ngTemplateOutlet]="last?.template" [ngTemplateOutletContext]="{ $implicit: last }" />
+					} @else {
+						{{last?.content}}
+					}
+				</cds-breadcrumb-item>
+			} @else {
+				@for (item of items; track item) {
+					<cds-breadcrumb-item
+						[href]="item.href"
+						[route]="item.route"
+						[routeExtras]="item.routeExtras"
+						[current]="item.current"
+						[ariaCurrent]="item.ariaCurrent"
+						(navigation)="navigation.emit($event)">
+						@if (item.template) {
+							<ng-template [ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+						} @else {
+							{{item.content}}
+						}
+					</cds-breadcrumb-item>
+				}
+			}
+		</nav>
+	`
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;

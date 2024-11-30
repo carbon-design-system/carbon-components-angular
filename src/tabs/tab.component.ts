@@ -55,21 +55,20 @@ import {
 @Component({
 	selector: "cds-tab, ibm-tab",
 	template: `
-		<div
-			[attr.tabindex]="tabIndex"
-			role="tabpanel"
-			*ngIf="shouldRender()"
-			class="cds--tab-content"
-			[ngStyle]="{'display': active ? null : 'none'}"
-			[attr.aria-labelledby]="id + '-header'"
-			aria-live="polite">
-			<ng-template
-				*ngIf="isTemplate(tabContent)"
-				[ngTemplateOutlet]="tabContent"
-				[ngTemplateOutletContext]="{ $implicit: templateContext }">
-			</ng-template>
-			<ng-content></ng-content>
-		</div>
+		@if (shouldRender()) {
+			<div
+				[attr.tabindex]="tabIndex"
+				role="tabpanel"
+				class="cds--tab-content"
+				[ngStyle]="{'display': active ? null : 'none'}"
+				[attr.aria-labelledby]="id + '-header'"
+				aria-live="polite">
+				@if (isTemplate(tabContent)) {
+					<ng-template [ngTemplateOutlet]="tabContent" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
+				}
+				<ng-content />
+			</div>
+		}
 	`
 })
 export class Tab implements OnInit {

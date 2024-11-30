@@ -44,7 +44,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 				'cds--content-switcher--lg': size === 'lg'
 			}"
 			role="tablist">
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
 	`
 })

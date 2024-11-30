@@ -15,28 +15,29 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-header-item, ibm-header-item",
 	template: `
-		<ng-container [ngSwitch]="useRouter">
-			<ng-template #content><ng-content></ng-content></ng-template>
+		@if (useRouter) {
+			<ng-template #content>
+				<ng-content />
+			</ng-template>
 			<a
-				*ngSwitchCase="false"
 				class="cds--header__menu-item"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 				[href]="href"
 				(click)="navigate($event)">
-				<ng-container *ngTemplateOutlet="content"></ng-container>
+				<ng-container *ngTemplateOutlet="content" />
 			</a>
+		} @else {
 			<a
-				*ngSwitchCase="true"
 				class="cds--header__menu-item"
 				[routerLinkActive]="['cds--header__menu-item--current']"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 				[routerLink]="route"
 				[routerLinkActive]="activeLinkClass">
-				<ng-container *ngTemplateOutlet="content"></ng-container>
+				<ng-container *ngTemplateOutlet="content" />
 			</a>
-		</ng-container>
+		}
 	`,
 	styles: [`
 		:host {

@@ -33,24 +33,21 @@ export enum SnippetType {
 @Component({
 	selector: "cds-code-snippet, ibm-code-snippet",
 	template: `
-		<ng-container *ngIf="display === 'inline'; else notInline">
-			<ng-container *ngIf="!hideCopyButton; else noBtnInline">
-				<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
-			</ng-container>
-			<ng-template #noBtnInline>
+		@if (display === 'inline') {
+			@if (!hideCopyButton) {
+				<ng-container *ngTemplateOutlet="buttonTemplate" />
+			} @else {
 				<span
 					class="cds--snippet cds--snippet--inline cds--snippet--no-copy"
 					[ngClass]="{
 						'cds--snippet--light': theme === 'light'
 					}">
 					<code #code>
-						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
+						<ng-container *ngTemplateOutlet="codeTemplate" />
 					</code>
 				</span>
-			</ng-template>
-		</ng-container>
-
-		<ng-template #notInline>
+			}
+		} @else {
 			<div
 				#codeContainer
 				class="cds--snippet-container"
@@ -59,77 +56,84 @@ export enum SnippetType {
 				[attr.role]="display==='single' ? 'textarea' : null"
 				[ngStyle]="styles"
 				(scroll)="(display === 'single' ? handleScroll() : null)">
-				<ng-container *ngIf="skeleton">
-					<span *ngIf="display === 'single'; else multiSkeleton"></span>
-					<ng-template #multiSkeleton>
+				@if (skeleton) {
+					@if (display === 'single') {
+						<span></span>
+					} @else {
 						<span></span>
 						<span></span>
 						<span></span>
-					</ng-template>
-				</ng-container>
-				<pre
-					#codeContent
-					*ngIf="!skeleton"
-					(scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></code></pre>
+					}
+				}
+				@if (!skeleton) {
+					<pre #codeContent (scroll)="(display === 'multi' ? handleScroll() : null)">
+						<code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code>
+					</pre>
+				}
 			</div>
-			<div *ngIf="hasLeft" class="cds--snippet__overflow-indicator--left"></div>
-			<div *ngIf="hasRight" class="cds--snippet__overflow-indicator--right"></div>
-			<ng-container *ngIf="!hideCopyButton;">
-				<ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
-			</ng-container>
-			<button
-				*ngIf="isExpandable"
-				class="cds--btn cds--btn--ghost cds--btn--sm cds--snippet-btn--expand"
-				(click)="toggleSnippetExpansion()"
-				type="button">
-				<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-				<svg cdsIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
-			</button>
-		</ng-template>
+			@if (hasLeft) {
+				<div class="cds--snippet__overflow-indicator--left"></div>
+			}
+			@if (hasRight) {
+				<div class="cds--snippet__overflow-indicator--right"></div>
+			}
+			@if (!hideCopyButton) {
+				<ng-container *ngTemplateOutlet="buttonTemplate" />
+			}
+			@if (isExpandable) {
+				<button
+					class="cds--btn cds--btn--ghost cds--btn--sm cds--snippet-btn--expand"
+					(click)="toggleSnippetExpansion()"
+					type="button">
+					<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
+					<svg cdsIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
+				</button>
+			}
+		}
 
 		<ng-template #buttonTemplate>
-			<cds-icon-button
-				*ngIf="!skeleton"
-				[description]="showFeedback ? feedbackText : copyButtonDescription"
-				[align]="align"
-				[dropShadow]="dropShadow"
-				[caret]="caret"
-				[highContrast]="highContrast"
-				[isOpen]="isOpen"
-				[enterDelayMs]="enterDelayMs"
-				[leaveDelayMs]="leaveDelayMs"
-				type="button"
-				kind="primary"
-				size="md"
-				(click)="onCopyButtonClicked($event)"
-				[buttonNgClass]="{
-					'cds--snippet--light': theme === 'light',
-					'cds--snippet--inline': display === 'inline',
-					'cds--btn--icon-only': display !== 'inline',
-					'cds--copy-btn': display !== 'inline',
-					'cds--copy-btn--animating': animating,
-					'cds--copy-btn--fade-in': showFeedback,
-					'cds--copy-btn--fade-out': !showFeedback && animating,
-					'cds--snippet cds--copy': true
-				}"
-				[buttonAttributes]="{
-					'aria-label': translations.COPY_CODE,
-					'aria-live': 'polite',
-					'tabindex': '0'
-				}">
-				<ng-container *ngIf="display === 'inline'">
-					<code #code>
-						<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>
-					</code>
-				</ng-container>
-				<ng-container *ngIf="display !== 'inline'">
-					<svg cdsIcon="copy" size="16" class="cds--snippet__icon"></svg>
-				</ng-container>
-			</cds-icon-button>
+			@if (!skeleton) {
+				<cds-icon-button
+					[description]="showFeedback ? feedbackText : copyButtonDescription"
+					[align]="align"
+					[dropShadow]="dropShadow"
+					[caret]="caret"
+					[highContrast]="highContrast"
+					[isOpen]="isOpen"
+					[enterDelayMs]="enterDelayMs"
+					[leaveDelayMs]="leaveDelayMs"
+					type="button"
+					kind="primary"
+					size="md"
+					(click)="onCopyButtonClicked($event)"
+					[buttonNgClass]="{
+						'cds--snippet--light': theme === 'light',
+						'cds--snippet--inline': display === 'inline',
+						'cds--btn--icon-only': display !== 'inline',
+						'cds--copy-btn': display !== 'inline',
+						'cds--copy-btn--animating': animating,
+						'cds--copy-btn--fade-in': showFeedback,
+						'cds--copy-btn--fade-out': !showFeedback && animating,
+						'cds--snippet cds--copy': true
+					}"
+					[buttonAttributes]="{
+						'aria-label': translations.COPY_CODE,
+						'aria-live': 'polite',
+						'tabindex': '0'
+					}">
+					@if (display === 'inline') {
+						<code #code>
+							<ng-container *ngTemplateOutlet="codeTemplate" />
+						</code>
+					} @else {
+						<svg cdsIcon="copy" size="16" class="cds--snippet__icon"></svg>
+					}
+				</cds-icon-button>
+			}
 		</ng-template>
 
 		<ng-template #codeTemplate>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 	`
 })

@@ -4,6 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
+import { range } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -17,29 +18,33 @@ import { I18n } from "carbon-components-angular/i18n";
 @Component({
 	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
-		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
-			<div class="cds--pagination-nav__select">
-			<select
-				[attr.aria-label]="ariaLabel"
-				class="cds--pagination-nav__page cds--pagination-nav__page--select"
-				(change)="handleChange($event)">
-				<option value="" hidden></option>
-				<option
-				*ngFor="let item of countAsArray; let i = index">
-					{{fromIndex + i + 1}}
-				</option>
-			</select>
-			<div class="cds--pagination-nav__select-icon-wrapper">
-				<svg
-					cdsIcon="overflow-menu--horizontal"
-					size="16"
-					style="display: inherit"
-					class="cds--pagination-nav__select-icon">
-				</svg>
-			</div>
-			</div>
-		</li>
-		<cds-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></cds-pagination-nav-item>
+		@if (count === 1) {
+			<cds-pagination-nav-item [page]="fromIndex + 1"></cds-pagination-nav-item>
+		} @else if (count > 1) {
+			<li class="cds--pagination-nav__list-item">
+				<div class="cds--pagination-nav__select">
+					<select
+						[attr.aria-label]="ariaLabel"
+						class="cds--pagination-nav__page cds--pagination-nav__page--select"
+						(change)="handleChange($event)">
+						<option value="" hidden></option>
+						@for (item of countAsArray; track item; let i = $index) {
+							<option>
+								{{fromIndex + i + 1}}
+							</option>
+						}
+					</select>
+					<div class="cds--pagination-nav__select-icon-wrapper">
+						<svg
+							cdsIcon="overflow-menu--horizontal"
+							size="16"
+							style="display: inherit"
+							class="cds--pagination-nav__select-icon">
+						</svg>
+					</div>
+				</div>
+			</li>
+		}
 	`
 })
 export class PaginationOverflow {
@@ -58,7 +63,8 @@ export class PaginationOverflow {
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {
-		return [...Array(this.count)];
+		const rangeArray = range((this.count >= 0 ? this.count + 1 : 0), 1);
+		return rangeArray;
 	}
 
 	constructor(protected i18n: I18n) {}

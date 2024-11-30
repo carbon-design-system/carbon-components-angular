@@ -13,8 +13,10 @@ import { Component, HostBinding, Input } from "@angular/core";
 @Component({
 	selector: "cds-list-column, ibm-list-column",
 	template: `
-		<span *ngIf="skeleton"></span>
-		<ng-content></ng-content>
+		@if (skeleton) {
+			<span></span>
+		}
+		<ng-content />
 	`
 })
 export class ListColumn {

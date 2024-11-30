@@ -203,45 +203,50 @@ import { TableRowSize } from "./table.types";
 			[sortDescendingLabel]="sortDescendingLabel"
 			[stickyHeader]="stickyHeader">
 		</thead>
-		<tbody
-			cdsTableBody
-			(deselectRow)="onSelectRow($event)"
-			(scroll)="onScroll($event)"
-			(selectRow)="onSelectRow($event)"
-			[checkboxRowLabel]="getCheckboxRowLabel()"
-			[enableSingleSelect]="enableSingleSelect"
-			(rowClick)="onRowClick($event)"
-			[expandButtonAriaLabel]="expandButtonAriaLabel"
-			[model]="model"
-			[size]="size"
-			[ngStyle]="{'overflow-y': 'scroll'}"
-			[selectionLabelColumn]="selectionLabelColumn"
-			[showSelectionColumn]="showSelectionColumn"
-			[skeleton]="skeleton"
-			*ngIf="!noData; else noDataTemplate">
-		</tbody>
-		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
+		@if (!noData) {
+			<tbody
+				cdsTableBody
+				(deselectRow)="onSelectRow($event)"
+				(scroll)="onScroll($event)"
+				(selectRow)="onSelectRow($event)"
+				[checkboxRowLabel]="getCheckboxRowLabel()"
+				[enableSingleSelect]="enableSingleSelect"
+				(rowClick)="onRowClick($event)"
+				[expandButtonAriaLabel]="expandButtonAriaLabel"
+				[model]="model"
+				[size]="size"
+				[ngStyle]="{'overflow-y': 'scroll'}"
+				[selectionLabelColumn]="selectionLabelColumn"
+				[showSelectionColumn]="showSelectionColumn"
+				[skeleton]="skeleton">
+			</tbody>
+		} @else {
+			<ng-content />
+		}
+
 		<tfoot>
-			<ng-template
-				[ngTemplateOutlet]="footerTemplate">
-			</ng-template>
-			<tr *ngIf="this.model.isLoading">
-				<td class="table_loading-indicator">
-					<div class="cds--loading cds--loading--small">
-						<svg class="cds--loading__svg" viewBox="-75 -75 150 150">
-							<circle class="cds--loading__stroke" cx="0" cy="0" r="37.5" />
-						</svg>
-					</div>
-				</td>
-			</tr>
-			<tr *ngIf="this.model.isEnd">
-				<td class="table_end-indicator">
-					<h5>{{getEndOfDataText() | async}}</h5>
-					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{getScrollTopText() | async}}
-					</button>
-				</td>
-			</tr>
+			<ng-template [ngTemplateOutlet]="footerTemplate" />
+			@if (this.model.isLoading) {
+				<tr>
+					<td class="table_loading-indicator">
+						<div class="cds--loading cds--loading--small">
+							<svg class="cds--loading__svg" viewBox="-75 -75 150 150">
+								<circle class="cds--loading__stroke" cx="0" cy="0" r="37.5" />
+							</svg>
+						</div>
+					</td>
+				</tr>
+			}
+			@if (this.model.isEnd) {
+				<tr>
+					<td class="table_end-indicator">
+						<h5>{{getEndOfDataText() | async}}</h5>
+						<button (click)="scrollToTop($event)" class="btn--secondary-sm">
+							{{getScrollTopText() | async}}
+						</button>
+					</td>
+				</tr>
+			}
 		</tfoot>
 	</table>
 	`,

@@ -18,9 +18,11 @@ import { FileItem } from "../";
 			[fileItemSize]="fileItemSize"
 			[disabled]="disabled">
 		</cds-file-uploader>
-		<button cdsButton *ngIf="files && files.size > 0" (click)="onUpload()" style="margin-top:20px">
-			Upload
-		</button>
+		@if (files && files.size > 0) {
+			<button cdsButton (click)="onUpload()" style="margin-top:20px">
+				Upload
+			</button>
+		}
 	`
 })
 export class FileUploaderStory {

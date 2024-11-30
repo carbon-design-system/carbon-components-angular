@@ -20,7 +20,7 @@ import {
 @Component({
 	selector: "cds-context-menu, ibm-context-menu",
 	template: `
-			<ng-content></ng-content>
+			<ng-content />
 	`,
 	styles: [`
 		:host {

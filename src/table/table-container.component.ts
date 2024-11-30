@@ -10,7 +10,7 @@ import { Table } from "./table.component";
 
 @Component({
 	selector: "cds-table-container, ibm-table-container",
-	template: `<ng-content></ng-content>`,
+	template: `<ng-content />`,
 	styles: [`
 		:host { display: block }
 	`]

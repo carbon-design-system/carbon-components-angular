@@ -80,12 +80,13 @@ import {
 			</form>
 		</div>
 	</div>
-	<cds-loading
-		*ngIf="isLoading"
-		[isActive]="isLoading"
-		size="normal"
-		[overlay]="overlay">
-	</cds-loading>
+	@if (isLoading) {
+		<cds-loading
+			[isActive]="isLoading"
+			size="normal"
+			[overlay]="overlay">
+		</cds-loading>
+	}
 	`,
 	styles: [`
 		.header {

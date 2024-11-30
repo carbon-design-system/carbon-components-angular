@@ -21,18 +21,19 @@ import { I18n } from "carbon-components-angular/i18n";
 	selector: "cds-modal-header, ibm-modal-header",
 	template: `
 		<header class="cds--modal-header {{theme}}">
-			<ng-content></ng-content>
+			<ng-content />
 			<div class="cds--modal-close-button">
-				<cds-icon-button
-					*ngIf="showCloseButton"
-					type="button"
-					[buttonNgClass]="buttonNgClass"
-					[buttonAttributes]="buttonAttributes"
-					align="left"
-					[description]="closeLabel"
-					(click)="onClose()">
-					<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
-				</cds-icon-button>
+				@if (showCloseButton) {
+					<cds-icon-button
+						type="button"
+						[buttonNgClass]="buttonNgClass"
+						[buttonAttributes]="buttonAttributes"
+						align="left"
+						[description]="closeLabel"
+						(click)="onClose()">
+						<svg cdsIcon="close" size="20" class="cds--modal-close__icon"></svg>
+					</cds-icon-button>
+				}
 			</div>
 		</header>
 

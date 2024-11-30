@@ -86,28 +86,30 @@ if (languages.default?.default["en"]?.weekdays) {
 				</cds-date-picker-input>
 			</div>
 
-			<div *ngIf="range" class="cds--date-picker-container">
-				<cds-date-picker-input
-					#rangeInput
-					[label]="rangeLabel"
-					[placeholder]="placeholder"
-					[pattern]="inputPattern"
-					[id]="id + '-rangeInput'"
-					[size]="size"
-					[type]="(range ? 'range' : 'single')"
-					[hasIcon]="(range ? true : null)"
-					[disabled]="disabled"
-					[readonly]="readonly"
-					[invalid]="rangeInvalid"
-					[invalidText]="rangeInvalidText"
-					[warn]="rangeWarn"
-					[warnText]="rangeWarnText"
-					[skeleton]="skeleton"
-					[helperText]="rangeHelperText"
-					(valueChange)="onRangeValueChange($event)"
-					(click)="openCalendar(rangeInput)">
-				</cds-date-picker-input>
-			</div>
+			@if (range) {
+				<div class="cds--date-picker-container">
+					<cds-date-picker-input
+						#rangeInput
+						[label]="rangeLabel"
+						[placeholder]="placeholder"
+						[pattern]="inputPattern"
+						[id]="id + '-rangeInput'"
+						[size]="size"
+						[type]="(range ? 'range' : 'single')"
+						[hasIcon]="(range ? true : null)"
+						[disabled]="disabled"
+						[readonly]="readonly"
+						[invalid]="rangeInvalid"
+						[invalidText]="rangeInvalidText"
+						[warn]="rangeWarn"
+						[warnText]="rangeWarnText"
+						[skeleton]="skeleton"
+						[helperText]="rangeHelperText"
+						(valueChange)="onRangeValueChange($event)"
+						(click)="openCalendar(rangeInput)">
+					</cds-date-picker-input>
+				</div>
+			}
 		</div>
 	</div>
 	`,

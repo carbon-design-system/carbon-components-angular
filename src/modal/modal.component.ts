@@ -95,7 +95,7 @@ export class ModalDemo {
 				style="z-index:1;"
 				[attr.aria-label]="ariaLabel"
 				#modal>
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</cds-overlay>
 	`

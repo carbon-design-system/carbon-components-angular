@@ -18,27 +18,27 @@ import {
 			(click)="toggleExpanded()"
 			class="cds--accordion__heading">
 			<svg cdsIcon="chevron--right" size="16" class="cds--accordion__arrow"></svg>
-			<p *ngIf="!isTemplate(title)"
-				class="cds--accordion__title"
-				[ngClass]="{
-					'cds--skeleton__text': skeleton
-				}">
-				{{!skeleton ? title : null}}
-			</p>
-			<ng-template
-				*ngIf="isTemplate(title)"
-				[ngTemplateOutlet]="title"
-				[ngTemplateOutletContext]="context">
-			</ng-template>
+			@if (isTemplate(title)) {
+				<ng-template [ngTemplateOutlet]="title" [ngTemplateOutletContext]="context" />
+			} @else {
+				<p
+					class="cds--accordion__title"
+					[ngClass]="{
+						'cds--skeleton__text': skeleton
+					}">
+					{{!skeleton ? title : null}}
+				</p>
+			}
 		</button>
 		<div class="cds--accordion__wrapper">
 			<div [id]="id" class="cds--accordion__content">
-				<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
-				<ng-template #skeletonTemplate>
+				@if (skeleton) {
 					<p class="cds--skeleton__text" style="width: 90%"></p>
 					<p class="cds--skeleton__text" style="width: 80%"></p>
 					<p class="cds--skeleton__text" style="width: 95%"></p>
-				</ng-template>
+				} @else {
+					<ng-content />
+				}
 			</div>
 		</div>
 	`,

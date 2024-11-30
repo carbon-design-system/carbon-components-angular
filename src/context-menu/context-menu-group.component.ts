@@ -15,7 +15,7 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 @Component({
 	selector: "cds-context-menu-group, ibm-context-menu-group",
 	template: `
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	providers: [ContextMenuSelectionService]
 })

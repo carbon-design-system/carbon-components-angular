@@ -13,7 +13,7 @@ import { Component, Input } from "@angular/core";
 			[ngClass]="{
 				'cds--header-panel--expanded': expanded
 			}">
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
 	`
 })

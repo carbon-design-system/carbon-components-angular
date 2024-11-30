@@ -53,7 +53,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	</cds-table-container>
 

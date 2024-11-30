@@ -19,8 +19,11 @@ import { I18n } from "carbon-components-angular/i18n";
 			class="cds--header__menu-trigger cds--header__action cds--header__menu-toggle"
 			[attr.aria-label]="active ? activeTitle : inactiveTitle"
 			[attr.title]="active ? activeTitle : inactiveTitle">
-			<svg *ngIf="!active" cdsIcon="menu" size="20"></svg>
-			<svg *ngIf="active" cdsIcon="close" size="20"></svg>
+			@if (active) {
+				<svg cdsIcon="close" size="20"></svg>
+			} @else {
+				<svg cdsIcon="menu" size="20"></svg>
+			}
 		</button>
 	`
 })

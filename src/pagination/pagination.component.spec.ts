@@ -163,16 +163,16 @@ describe("Pagination", () => {
 		model.totalDataLength = 9;
 		wrapper.model = model;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(2));
+		expect(wrapper.pageOptions.length).toEqual(2);
 		model.totalDataLength = 2;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(1));
+		expect(wrapper.pageOptions.length).toEqual(1);
 		model.totalDataLength = 20;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(4));
+		expect(wrapper.pageOptions.length).toEqual(4);
 		model.totalDataLength = 0;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(1));
+		expect(wrapper.pageOptions.length).toEqual(1);
 	});
 
 	it("should replace the select with a number input when the pagination threshold is reached", () => {

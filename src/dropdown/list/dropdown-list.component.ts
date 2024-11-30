@@ -60,54 +60,54 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			tabindex="-1"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
-			<li
-				role="option"
-				*ngFor="let item of displayItems; let i = index"
-				(click)="doClick($event, item)"
-				class="cds--list-box__menu-item"
-				[attr.aria-selected]="item.selected"
-				[id]="getItemId(i)"
-				[attr.title]=" showTitles ? item.content : null"
-				[attr.disabled]="item.disabled ? true : null"
-				[ngClass]="{
-					'cds--list-box__menu-item--active': item.selected,
-					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
-				}">
-				<div
-					#listItem
-					tabindex="-1"
-					class="cds--list-box__menu-item__option">
+			@for (item of displayItems; track item; let i = $index) {
+				<li
+					role="option"
+					(click)="doClick($event, item)"
+					class="cds--list-box__menu-item"
+					[attr.aria-selected]="item.selected"
+					[id]="getItemId(i)"
+					[attr.title]=" showTitles ? item.content : null"
+					[attr.disabled]="item.disabled ? true : null"
+					[ngClass]="{
+						'cds--list-box__menu-item--active': item.selected,
+						'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
+					}">
 					<div
-						*ngIf="!listTpl && type === 'multi'"
-						class="cds--form-item cds--checkbox-wrapper">
-						<label
-							[attr.data-contained-checkbox-state]="item.selected"
-							class="cds--checkbox-label">
-							<input
-								class="cds--checkbox"
-								type="checkbox"
-								[checked]="item.selected"
-								[disabled]="item.disabled"
-								tabindex="-1">
-							<span class="cds--checkbox-appearance"></span>
-							<span class="cds--checkbox-label-text">{{item.content}}</span>
-						</label>
+						#listItem
+						tabindex="-1"
+						class="cds--list-box__menu-item__option">
+						@if (!listTpl && type === 'multi') {
+							<div
+								class="cds--form-item cds--checkbox-wrapper">
+								<label [attr.data-contained-checkbox-state]="item.selected" class="cds--checkbox-label">
+									<input
+										class="cds--checkbox"
+										type="checkbox"
+										[checked]="item.selected"
+										[disabled]="item.disabled"
+										tabindex="-1">
+									<span class="cds--checkbox-appearance"></span>
+									<span class="cds--checkbox-label-text">{{item.content}}</span>
+								</label>
+							</div>
+						}
+						@if (!listTpl && type === 'single') {
+							{{item.content}}
+							<svg
+								cdsIcon="checkmark"
+								size="16"
+								class="cds--list-box__menu-item__selected-icon">
+							</svg>
+						}
+						@if (listTpl) {
+							<ng-template [ngTemplateOutletContext]="{item: item}" [ngTemplateOutlet]="listTpl" />
+						}
 					</div>
-					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
-					<svg
-						*ngIf="!listTpl && type === 'single'"
-						cdsIcon="checkmark"
-						size="16"
-						class="cds--list-box__menu-item__selected-icon">
-					</svg>
-					<ng-template
-						*ngIf="listTpl"
-						[ngTemplateOutletContext]="{item: item}"
-						[ngTemplateOutlet]="listTpl">
-					</ng-template>
-				</div>
-			</li>
-		</ul>`,
+				</li>
+			}
+		</ul>
+	`,
 	providers: [
 		{
 			provide: AbstractDropdownView,

@@ -57,7 +57,11 @@ describe("DatePicker", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.detectChanges();
-		expect(element.nativeElement.textContent).toEqual("Date picker label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.textContent).toEqual(" Date picker label ");
 	});
 
 	it("should set the value of the component to be the value specified in the wrapper", async() => {
@@ -114,7 +118,7 @@ describe("DatePicker", () => {
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
 		expect(element.nativeElement.getAttribute("invalidText")).toEqual("invalid text");
-		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual(" invalid text ");
 	});
 
 	it("should call onValueChange on valueChange event", () => {

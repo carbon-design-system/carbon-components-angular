@@ -55,43 +55,57 @@ import { RadioChange } from "./radio-change.class";
 				'cds--radio-button-group--warning': !invalid && warn
 			}"
 			[attr.data-invalid]="invalid ? true : null">
-			<legend *ngIf="legend" class="cds--label">
-				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
-				<ng-template #legendLabel>{{legend}}</ng-template>
-			</legend>
-			<ng-content></ng-content>
+			@if (legend) {
+				<legend class="cds--label">
+					@if (isTemplate(legend)) {
+						<ng-template [ngTemplateOutlet]="legend" />
+					} @else {
+						{{legend}}
+					}
+				</legend>
+			}
+			<ng-content />
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
-			<ng-container *ngIf="invalid">
+			@if (invalid) {
 				<svg
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--radio-button__invalid-icon">
 				</svg>
 				<div class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText" />
+					} @else {
+						{{ invalidText }}
+					}
 				</div>
-			</ng-container>
-			<ng-container *ngIf="!invalid && warn">
+			} @else if (warn) {
 				<svg
 					cdsIcon="warning--alt--filled"
 					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
 					size="16">
 				</svg>
 				<div class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText" />
+					} @else {
+						{{ warnText }}
+					}
 				</div>
-			</ng-container>
+			}
 		</div>
-		<div
-			*ngIf="helperText && !invalid && !warn"
-			class="cds--form__helper-text"
-			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
+		@if (helperText && !invalid && !warn) {
+			<div
+				class="cds--form__helper-text"
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText" />
+				} @else {
+					{{helperText}}
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{

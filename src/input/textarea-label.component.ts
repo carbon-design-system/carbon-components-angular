@@ -31,11 +31,10 @@ import { TextArea } from "./text-area.directive";
 @Component({
 	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `
-		<ng-container *ngIf="skeleton">
+		@if (skeleton) {
 			<span class="cds--label cds--skeleton"></span>
 			<div class="cds--text-area cds--skeleton"></div>
-		</ng-container>
-		<ng-container *ngIf="!skeleton">
+		} @else {
 			<div class="cds--text-area__label-wrapper">
 				<label
 					[for]="labelInputID"
@@ -44,10 +43,11 @@ import { TextArea } from "./text-area.directive";
 					[ngClass]="{
 						'cds--label--disabled': disabled
 					}">
-					<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-					<ng-template #labelContent>
-						<ng-content></ng-content>
-					</ng-template>
+					@if (labelTemplate) {
+						<ng-template [ngTemplateOutlet]="labelTemplate" />
+					} @else {
+						<ng-content />
+					}
 				</label>
 			</div>
 			<div
@@ -57,63 +57,86 @@ import { TextArea } from "./text-area.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				<svg
-					*ngIf="!fluid && invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-area__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!fluid && !invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
-				</svg>
-				<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
-				<ng-template #textAreaContent>
-					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
-				</ng-template>
-
-				<ng-container *ngIf="fluid">
-					<hr class="cds--text-area__divider" />
-					<div *ngIf="invalid" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				@if(!fluid) {
+					@if (invalid) {
 						<svg
 							cdsIcon="warning--filled"
 							size="16"
 							class="cds--text-area__invalid-icon">
 						</svg>
-					</div>
-					<div *ngIf="!invalid && warn" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+					} @else if (warn) {
 						<svg
 							cdsIcon="warning--alt--filled"
 							size="16"
 							class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
 						</svg>
-					</div>
-				</ng-container>
+					}
+				}
+				@if (textAreaTemplate) {
+					<ng-template [ngTemplateOutlet]="textAreaTemplate" />
+				} @else {
+					<ng-content select="[cdsTextArea],[ibmTextArea],textarea" />
+				}
+
+				@if (fluid) {
+					<hr class="cds--text-area__divider" />
+					@if (invalid) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText" />
+							} @else {
+								{{ invalidText }}
+							}
+							<svg
+								cdsIcon="warning--filled"
+								size="16"
+								class="cds--text-area__invalid-icon">
+							</svg>
+						</div>
+					} @else if (warn) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText" />
+							} @else {
+								{{ warnText }}
+							}
+							<svg
+								cdsIcon="warning--alt--filled"
+								size="16"
+								class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+							</svg>
+						</div>
+					}
+				}
 			</div>
-			<ng-container *ngIf="!fluid">
-				<div
-					*ngIf="helperText && !invalid && !warn"
-					class="cds--form__helper-text"
-					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
-				<div *ngIf="invalid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-				</div>
-				<div *ngIf="!invalid && warn" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
-			</ng-container>
-		</ng-container>
+			@if (!fluid) {
+				@if (invalid) {
+					<div class="cds--form-requirement">
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="invalidText" />
+						} @else {
+							{{ invalidText }}
+						}
+					</div>
+				} @else if (warn) {
+					<div class="cds--form-requirement">
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText" />
+						} @else {
+							{{ warnText }}
+						}
+					</div>
+				} @else if(helperText) {
+					<div class="cds--form__helper-text" [ngClass]="{'cds--form__helper-text--disabled': disabled}">
+						@if (isTemplate(helperText)) {
+							<ng-template [ngTemplateOutlet]="helperText" />
+						} @else {
+							{{ helperText }}
+						}
+					</div>
+				}
+			}
+		}
 	`
 })
 export class TextareaLabelComponent implements AfterViewInit {

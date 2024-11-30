@@ -26,7 +26,7 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<cds-dropdown-list></cds-dropdown-list>
+				<cds-dropdown-list />
 			</cds-combo-box>
 			selected: {{ sampleForm.get("combobox").value | json }}
 			<cds-combo-box
@@ -42,7 +42,7 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<cds-dropdown-list></cds-dropdown-list>
+				<cds-dropdown-list />
 			</cds-combo-box>
 			selected: {{ sampleForm.get("multibox").value | json }}
 		</form>

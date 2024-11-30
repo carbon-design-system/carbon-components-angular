@@ -29,78 +29,101 @@ import {
 @Component({
 	selector: "cds-text-label, ibm-text-label",
 	template: `
-		<ng-container *ngIf="skeleton">
+		@if (skeleton) {
 			<span class="cds--label cds--skeleton"></span>
 			<div class="cds--text-input cds--skeleton"></div>
-		</ng-container>
-		<label
-			*ngIf="!skeleton"
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="cds--label"
-			[ngClass]="{
-				'cds--label--disabled': disabled
-			}">
-			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-			<ng-template #labelContent>
-				<ng-content></ng-content>
-			</ng-template>
-		</label>
-		<div *ngIf="!skeleton" class="cds--text-input__field-outer-wrapper">
-			<div
-				class="cds--text-input__field-wrapper"
+		} @else {
+			<label
+				[for]="labelInputID"
+				[attr.aria-label]="ariaLabel"
+				class="cds--label"
 				[ngClass]="{
-					'cds--text-input__field-wrapper--warning': warn
-				}"
-				[attr.data-invalid]="(invalid ? true : null)"
-				#wrapper>
-				<svg
-					*ngIf="invalid && !warn"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-input__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
-				<ng-template *ngIf="textInputTemplate; else textInputContent" [ngTemplateOutlet]="textInputTemplate"></ng-template>
-				<ng-template #textInputContent>
-					<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
-				</ng-template>
-
-				<ng-container *ngIf="fluid">
-					<hr class="cds--text-input__divider" />
-					<div *ngIf="invalid" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-					</div>
-					<div *ngIf="!invalid && warn" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-					</div>
-				</ng-container>
-			</div>
-			<ng-container *ngIf="!fluid">
+					'cds--label--disabled': disabled
+				}">
+				@if (labelTemplate) {
+					<ng-template [ngTemplateOutlet]="labelTemplate" />
+				} @else {
+					<ng-content />
+				}
+			</label>
+			<div class="cds--text-input__field-outer-wrapper">
 				<div
-					*ngIf="helperText && !invalid && !warn"
-					class="cds--form__helper-text"
-					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+					class="cds--text-input__field-wrapper"
+					[ngClass]="{
+						'cds--text-input__field-wrapper--warning': warn
+					}"
+					[attr.data-invalid]="(invalid ? true : null)"
+					#wrapper>
+					@if (invalid) {
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--text-input__invalid-icon">
+						</svg>
+					} @else if(warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+						</svg>
+					}
+					@if (textInputTemplate) {
+						<ng-template [ngTemplateOutlet]="textInputTemplate" />
+					} @else {
+						<ng-content select="[cdsText],[ibmText],input[type=text],div" />
+					}
+					@if (fluid) {
+						<hr class="cds--text-input__divider" />
+						@if (invalid) {
+							<div class="cds--form-requirement">
+								@if (isTemplate(invalidText)) {
+									<ng-template [ngTemplateOutlet]="invalidText" />
+								} @else {
+									{{ invalidText }}
+								}
+							</div>
+						} @else if (warn) {
+							<div class="cds--form-requirement">
+								@if (isTemplate(warnText)) {
+									<ng-template [ngTemplateOutlet]="warnText" />
+								} @else {
+									{{ warnText }}
+								}
+							</div>
+						}
+					}
 				</div>
-				<div *ngIf="invalid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-				</div>
-				<div *ngIf="!invalid && warn" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
-			</ng-container>
+				@if (!fluid) {
+					@if (invalid) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText" />
+							} @else {
+								{{ invalidText }}
+							}
+						</div>
+					} @else if (warn) {
+						<div class="cds--form-requirement">
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText" />
+							} @else {
+								{{ warnText }}
+							}
+						</div>
+					} @else if(helperText) {
+						<div
+							class="cds--form__helper-text"
+							[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText" />
+							} @else {
+								{{ helperText }}
+							}
+						</div>
+					}
+				}
 		</div>
+	}
 	`
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit {

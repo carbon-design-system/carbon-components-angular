@@ -51,7 +51,6 @@ describe("Layer", () => {
 
 	it("should have additional user provided classes", () => {
 		let fixture: ComponentFixture<TestNestedLayerComponent> = TestBed.createComponent(TestNestedLayerComponent);
-		console.log(fixture.debugElement);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective)).nativeElement;

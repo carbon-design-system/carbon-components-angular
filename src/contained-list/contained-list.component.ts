@@ -36,16 +36,21 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			}">
 			<div class="cds--contained-list__header">
 				<div [id]="labelId" class="cds--contained-list__label">
-					<ng-container *ngIf="!isTemplate(label)">{{ label }}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{ label }}
+					}
 				</div>
 
-				<div class="cds--contained-list__action" *ngIf="action">
-					<ng-template [ngTemplateOutlet]="action"></ng-template>
-				</div>
+				@if (action) {
+					<div class="cds--contained-list__action">
+						<ng-template [ngTemplateOutlet]="action" />
+					</div>
+				}
 			</div>
 			<div role="list" [attr.aria-labelledby]="labelId">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</div>
 	`,

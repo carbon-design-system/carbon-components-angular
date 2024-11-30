@@ -16,66 +16,69 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 	selector: "cds-sidenav, ibm-sidenav",
 	template: `
 		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
-			<ng-content select="cds-sidenav-header,ibm-sidenav-header"></ng-content>
+			<ng-content select="cds-sidenav-header,ibm-sidenav-header" />
 			<div role="list">
 				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
-					<ng-container *ngFor="let navigationItem of navigationItems">
-						<cds-sidenav-item
-							*ngIf="navigationItem.type === 'item'"
-							[href]="navigationItem.href"
-							[route]="navigationItem.route"
-							[routeExtras]="navigationItem.routeExtras"
-							[useRouter]="useRouter"
-							[title]="navigationItem.title">
-							{{ navigationItem.content }}
-						</cds-sidenav-item>
-						<cds-sidenav-menu
-							*ngIf="navigationItem.type === 'menu'"
-							[title]="navigationItem.title"
-							[useRouter]="useRouter"
-							[menuItems]="navigationItem.menuItems">
-						</cds-sidenav-menu>
-					</ng-container>
+					@for (navigationItem of navigationItems; track navigationItem) {
+						@if (navigationItem.type === 'item') {
+							<cds-sidenav-item
+								[href]="navigationItem.href"
+								[route]="navigationItem.route"
+								[routeExtras]="navigationItem.routeExtras"
+								[useRouter]="useRouter"
+								[title]="navigationItem.title">
+								{{ navigationItem.content }}
+							</cds-sidenav-item>
+						}
+						@if (navigationItem.type === 'menu') {
+							<cds-sidenav-menu
+								[title]="navigationItem.title"
+								[useRouter]="useRouter"
+								[menuItems]="navigationItem.menuItems" />
+						}
+					}
 				</div>
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 			<footer class="cds--side-nav__footer">
-				<button
-					*ngIf="allowExpansion"
-					class="cds--side-nav__toggle"
-					type="button"
-					[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
-					(click)="toggle()">
-					<div class="cds--side-nav__icon">
-						<svg
-							*ngIf="expanded"
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							style="will-change: transform;"
-							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
-							viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>
-						</svg>
-						<svg
-							*ngIf="!expanded"
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							style="will-change: transform;"
-							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
-							viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>
-						</svg>
-					</div>
-					<span class="cds--assistive-text">
-						{{(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async}}
-					</span>
-				</button>
+				@if (allowExpansion) {
+					<button
+						class="cds--side-nav__toggle"
+						type="button"
+						[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
+						(click)="toggle()">
+						<div class="cds--side-nav__icon">
+							@if (expanded) {
+								<svg
+									focusable="false"
+									preserveAspectRatio="xMidYMid meet"
+									style="will-change: transform;"
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 32 32"
+									aria-hidden="true">
+									<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>
+								</svg>
+							} @else {
+								<svg
+									focusable="false"
+									preserveAspectRatio="xMidYMid meet"
+									style="will-change: transform;"
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 32 32"
+									aria-hidden="true">
+									<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>
+								</svg>
+							}
+						</div>
+						<span class="cds--assistive-text">
+							{{(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async}}
+						</span>
+					</button>
+				}
 			</footer>
 		</nav>
 	`,

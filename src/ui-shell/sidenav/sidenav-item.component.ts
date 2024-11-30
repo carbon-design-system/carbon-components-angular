@@ -17,19 +17,7 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-sidenav-item, ibm-sidenav-item",
 	template: `
-		<a *ngIf="!useRouter; else sidenavItemRouterTpl"
-			class="cds--side-nav__link"
-			[ngClass]="{
-				'cds--side-nav__item--active': active
-			}"
-			[href]="href"
-			[attr.aria-current]="(active ? 'page' : null)"
-			[attr.title]="title ? title : null"
-			(click)="navigate($event)">
-			<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
-		</a>
-
-		<ng-template #sidenavItemRouterTpl>
+		@if (useRouter) {
 			<a
 				[attr.title]="title ? title : null"
 				[routerLink]="route"
@@ -37,16 +25,30 @@ import { Router } from "@angular/router";
 				routerLinkActive="cds--side-nav__item--active"
 				ariaCurrentWhenActive="page"
 				class="cds--side-nav__link">
-				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl"></ng-template>
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
 			</a>
-		</ng-template>
+		} @else {
+			<a
+				class="cds--side-nav__link"
+				[ngClass]="{
+					'cds--side-nav__item--active': active
+				}"
+				[href]="href"
+				[attr.aria-current]="(active ? 'page' : null)"
+				[attr.title]="title ? title : null"
+				(click)="navigate($event)">
+				<ng-template [ngTemplateOutlet]="sidenavItemContentTpl" />
+			</a>
+		}
 
 		<ng-template #sidenavItemContentTpl>
-			<div *ngIf="!isSubMenu" class="cds--side-nav__icon">
-				<ng-content select="svg, [icon]"></ng-content>
-			</div>
+			@if (!isSubMenu) {
+				<div class="cds--side-nav__icon">
+					<ng-content select="svg, [icon]" />
+				</div>
+			}
 			<span class="cds--side-nav__link-text">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
 		</ng-template>
 	`,

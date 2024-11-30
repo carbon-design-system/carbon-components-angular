@@ -17,27 +17,32 @@ import {
 @Component({
 	selector: "cds-progress-bar, ibm-progress-bar",
 	template: `
-		<div
-			*ngIf="label"
-			class="cds--progress-bar__label"
-			[id]="id">
-			<span class="cds--progress-bar__label-text">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</span>
-			<svg
-				*ngIf="isFinished"
-				fill="currentColor"
-				cdsIcon="checkmark--filled"
-				class="cds--progress-bar__status-icon">
-			</svg>
-			<svg
-				*ngIf="isError"
-				fill="currentColor"
-				cdsIcon="error--filled"
-				class="cds--progress-bar__status-icon">
-			</svg>
-		</div>
+		@if (label) {
+			<div
+				class="cds--progress-bar__label"
+				[id]="id">
+				<span class="cds--progress-bar__label-text">
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{label}}
+					}
+				</span>
+				@if (isFinished) {
+					<svg
+						fill="currentColor"
+						cdsIcon="checkmark--filled"
+						class="cds--progress-bar__status-icon">
+					</svg>
+				} @else if (isError) {
+					<svg
+						fill="currentColor"
+						cdsIcon="error--filled"
+						class="cds--progress-bar__status-icon">
+					</svg>
+				}
+			</div>
+		}
 		<div
 			class="cds--progress-bar__track"
 			role="progressbar"
@@ -54,13 +59,17 @@ import {
 				}">
 			</div>
 		</div>
-		<div
-			[id]="helperId"
-			*ngIf="helperText"
-			class="cds--progress-bar__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
+		@if (helperText) {
+			<div
+				[id]="helperId"
+				class="cds--progress-bar__helper-text">
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText" />
+				} @else {
+					{{helperText}}
+				}
+			</div>
+		}
 	`
 })
 export class ProgressBar {

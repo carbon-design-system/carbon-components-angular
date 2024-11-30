@@ -53,9 +53,9 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			[attr.aria-label]="ariaLabel"
 			(scroll)="handleScroll()"
 			#tabList>
-			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
-			<ng-content></ng-content>
-			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
+			<ng-container [ngTemplateOutlet]="contentBefore" />
+			<ng-content />
+			<ng-container [ngTemplateOutlet]="contentAfter" />
 		</div>
 		<button
 			type="button"

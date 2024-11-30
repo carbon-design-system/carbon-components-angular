@@ -24,8 +24,10 @@ import { ListColumn } from "./list-column.component";
 	selector: "cds-list-header, ibm-list-header",
 	template: `
 		<div class="cds--structured-list-row cds--structured-list-row--header-row" role="row">
-			<ng-content></ng-content>
-			<div *ngIf="selection" class="cds--structured-list-th"></div>
+			<ng-content />
+			@if (selection) {
+				<div class="cds--structured-list-th"></div>
+			}
 		</div>
 	`
 })

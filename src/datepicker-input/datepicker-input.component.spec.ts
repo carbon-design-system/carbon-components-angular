@@ -68,7 +68,11 @@ describe("Select", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
-		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe("label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe(" label ");
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {
@@ -94,7 +98,7 @@ describe("Select", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
 		expect(element.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
-		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe(" invalid text ");
 	});
 
 	it("should set theme to dark", () => {

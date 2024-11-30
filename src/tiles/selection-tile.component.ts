@@ -38,7 +38,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				</svg>
 			</div>
 			<div class="cds--tile-content">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</label>
 	`

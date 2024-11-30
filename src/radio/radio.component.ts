@@ -24,20 +24,22 @@ import { RadioChange } from "./radio-change.class";
 @Component({
 	selector: "cds-radio, ibm-radio",
 	template: `
-		<input
-			*ngIf="!skeleton"
-			class="cds--radio-button"
-			type="radio"
-			[checked]="checked"
-			[disabled]="disabled || disabledFromGroup"
-			[name]="name"
-			[id]="id"
-			[required]="required"
-			[attr.value]="value"
-			[attr.aria-labelledby]="ariaLabelledby"
-			(change)="onChange($event)"
-			(click)="onClick($event)">
-		<div *ngIf="skeleton" class="cds--radio-button cds--skeleton"></div>
+		@if (skeleton) {
+			<div class="cds--radio-button cds--skeleton"></div>
+		} @else {
+			<input
+				class="cds--radio-button"
+				type="radio"
+				[checked]="checked"
+				[disabled]="disabled || disabledFromGroup"
+				[name]="name"
+				[id]="id"
+				[required]="required"
+				[attr.value]="value"
+				[attr.aria-labelledby]="ariaLabelledby"
+				(change)="onChange($event)"
+				(click)="onClick($event)">
+		}
 		<label
 			class="cds--radio-button__label"
 			[attr.aria-label]="ariaLabel"
@@ -47,7 +49,7 @@ import { RadioChange } from "./radio-change.class";
 			[for]="id"
 			id="label-{{id}}">
 			<span class="cds--radio-button__appearance"></span>
-			<ng-content></ng-content>
+			<ng-content />
 		</label>
 	`,
 	providers: [

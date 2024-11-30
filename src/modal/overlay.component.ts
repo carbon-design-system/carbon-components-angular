@@ -25,7 +25,7 @@ import {
 			}"
 			(click)="overlayClick($event)"
 			#overlay>
-			<ng-content></ng-content>
+			<ng-content />
 		</section>
 	`
 })

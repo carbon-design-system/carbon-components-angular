@@ -20,11 +20,13 @@ import {
 					value="radio">
 					zero
 				</cds-radio>
-				<cds-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</cds-radio>
+				@for (radio of manyRadios; track radio) {
+					<cds-radio
+						[value]="radio.num"
+						[disabled]="radio.disabled">
+						{{radio.num}}
+					</cds-radio>
+				}
 			</cds-radio-group>
 		</form>
 		<button (click)="changeSelected()">Set selected to three</button>

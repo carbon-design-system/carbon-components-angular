@@ -23,10 +23,7 @@ import { Dialog } from "../dialog.component";
 			(click)="onClick($event)"
 			#dialog
 			[attr.aria-label]="dialogConfig.menuLabel">
-			<ng-template
-				[ngTemplateOutlet]="dialogConfig.content"
-				[ngTemplateOutletContext]="{overflowMenu: this}">
-			</ng-template>
+			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</div>
 	`
 })

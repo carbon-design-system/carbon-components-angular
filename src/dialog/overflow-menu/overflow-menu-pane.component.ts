@@ -32,10 +32,7 @@ import { closestAttr } from "carbon-components-angular/utils";
 			class="cds--overflow-menu-options cds--overflow-menu-options--open"
 			(click)="onClose($event)"
 			[attr.aria-label]="dialogConfig.menuLabel">
-			<ng-template
-				[ngTemplateOutlet]="dialogConfig.content"
-				[ngTemplateOutletContext]="{overflowMenu: this}">
-			</ng-template>
+			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</ul>
 	`
 })

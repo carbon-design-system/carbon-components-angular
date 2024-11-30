@@ -25,7 +25,7 @@ import { TableItem } from "../table-item.class";
 			[isDataGrid]="isDataGrid"
 			[ariaLabelledby]="ariaLabelledby"
 			[ariaDescribedby]="ariaDescribedby">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	`
 })

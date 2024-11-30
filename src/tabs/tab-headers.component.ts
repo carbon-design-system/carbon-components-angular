@@ -58,35 +58,33 @@ import { Tab } from "./tab.component";
 			role="tablist"
 			[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"
 			(scroll)="handleScroll()">
-			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
-			<button
-				*ngFor="let tab of tabs; let i = index;"
-				#tabItem
-				role="tab"
-				[attr.aria-selected]="tab.active"
-				[attr.tabindex]="(tab.active?0:-1)"
-				[attr.aria-controls]="tab.id"
-				[attr.aria-disabled]="tab.disabled"
-				[ngClass]="{
-					'cds--tabs__nav-item--selected': tab.active,
-					'cds--tabs__nav-item--disabled': tab.disabled
-				}"
-				class="cds--tabs__nav-item cds--tabs__nav-link"
-				type="button"
-				draggable="false"
-				id="{{tab.id}}-header"
-				(focus)="onTabFocus(tabItem, i)"
-				(click)="selectTab(tabItem, tab, i)">
-				<ng-container *ngIf="!tab.headingIsTemplate">
-					{{ tab.heading }}
-				</ng-container>
-				<ng-template
-					*ngIf="tab.headingIsTemplate"
-					[ngTemplateOutlet]="tab.heading"
-					[ngTemplateOutletContext]="{$implicit: tab.context}">
-				</ng-template>
-			</button>
-			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
+			<ng-container [ngTemplateOutlet]="contentBefore" />
+			@for (tab of tabs; track tab; let i = $index) {
+				<button
+					#tabItem
+					role="tab"
+					[attr.aria-selected]="tab.active"
+					[attr.tabindex]="(tab.active?0:-1)"
+					[attr.aria-controls]="tab.id"
+					[attr.aria-disabled]="tab.disabled"
+					[ngClass]="{
+						'cds--tabs__nav-item--selected': tab.active,
+						'cds--tabs__nav-item--disabled': tab.disabled
+					}"
+					class="cds--tabs__nav-item cds--tabs__nav-link"
+					type="button"
+					draggable="false"
+					id="{{tab.id}}-header"
+					(focus)="onTabFocus(tabItem, i)"
+					(click)="selectTab(tabItem, tab, i)">
+					@if (tab.headingIsTemplate) {
+						<ng-template [ngTemplateOutlet]="tab.heading" [ngTemplateOutletContext]="{$implicit: tab.context}" />
+					} @else {
+						{{ tab.heading }}
+					}
+				</button>
+			}
+			<ng-container [ngTemplateOutlet]="contentAfter" />
 		</div>
 		<button
 			type="button"

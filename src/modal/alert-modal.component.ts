@@ -62,17 +62,19 @@ import { BaseModal } from "./base-modal.class";
 			<div cdsModalContent #modalContent>
 				<p [innerHTML]="content"></p>
 			</div>
-			<cds-modal-footer *ngIf="buttons.length > 0">
-				<ng-container *ngFor="let button of buttons; let i = index">
-					<button
-						[cdsButton]="button.type"
-						(click)="buttonClicked(i)"
-						[id]="button.id"
-						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
-						{{button.text}}
-					</button>
-				</ng-container>
-			</cds-modal-footer>
+			@if (buttons.length > 0) {
+				<cds-modal-footer>
+					@for (button of buttons; track button.id; let i = $index) {
+						<button
+							[cdsButton]="button.type"
+							(click)="buttonClicked(i)"
+							[id]="button.id"
+							[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
+							{{button.text}}
+						</button>
+					}
+				</cds-modal-footer>
+			}
 		</cds-modal>
 	`
 })

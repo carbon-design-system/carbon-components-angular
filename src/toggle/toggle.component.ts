@@ -43,7 +43,10 @@ export enum ToggleState {
 @Component({
 	selector: "cds-toggle, ibm-toggle",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemplate;">
+		@if (skeleton) {
+			<div class="cds--toggle__skeleton-circle"></div>
+			<div class="cds--toggle__skeleton-rectangle"></div>
+		} @else {
 			<button
 				class="cds--toggle__button"
 				[disabled]="disabled"
@@ -62,8 +65,11 @@ export enum ToggleState {
 					[ngClass]="{
 						'cds--visually-hidden': hideLabel
 					}">
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{label}}
+					}
 				</span>
 				<div
 					class="cds--toggle__appearance"
@@ -75,25 +81,22 @@ export enum ToggleState {
 						[ngClass]="{
 							'cds--toggle__switch--checked': checked
 						}">
-						<svg
-							*ngIf="size === 'sm'"
-							class='cds--toggle__check'
-							width="6px"
-							height="5px"
-							viewBox="0 0 6 5">
-							<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
-						</svg>
+						@if (size === 'sm') {
+							<svg
+								class='cds--toggle__check'
+								width="6px"
+								height="5px"
+								viewBox="0 0 6 5">
+								<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
+							</svg>
+						}
 					</div>
 					<span class="cds--toggle__text">
 						{{(hideLabel ? label : (getCheckedText() | async))}}
 					</span>
 				</div>
 			</label>
-		</ng-container>
-		<ng-template #skeletonTemplate>
-			<div class="cds--toggle__skeleton-circle"></div>
-			<div class="cds--toggle__skeleton-rectangle"></div>
-		</ng-template>
+		}
 	`,
 	providers: [
 		{

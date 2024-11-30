@@ -59,15 +59,20 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				aria-haspopup="true"
 				type="button"
 				[placement]="placement">
-				<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
+				@if (customTrigger) {
+					<ng-template [ngTemplateOutlet]="customTrigger" />
+				} @else {
+					<svg
+						cdsIcon="overflow-menu--vertical"
+						size="16"
+						class="cds--overflow-menu__icon">
+					</svg>
+				}
 			</button>
 		</cds-tooltip>
 
 		<ng-template #options>
-			<ng-content></ng-content>
-		</ng-template>
-		<ng-template #defaultIcon>
-			<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
+			<ng-content />
 		</ng-template>
 	`,
 	styles: [`
