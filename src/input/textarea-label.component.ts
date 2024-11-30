@@ -49,6 +49,11 @@ import { TextArea } from "./text-area.directive";
 						<ng-content></ng-content>
 					</ng-template>
 				</label>
+				<div
+					*ngIf="enableCounter && textArea?.maxlength > 0 && textArea.elementRef"
+					class="cds--label">
+					{{textArea.elementRef?.nativeElement?.value?.length}} / {{textArea.maxlength}}
+				</div>
 			</div>
 			<div
 				class="cds--text-area__wrapper"
@@ -166,6 +171,10 @@ export class TextareaLabelComponent implements AfterViewInit {
 	 * Set the arialabel for label
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Enable textarea character counter
+	 */
+	@Input() enableCounter = false;
 
 	/**
 	 * Experimental: enable fluid state
@@ -175,8 +184,7 @@ export class TextareaLabelComponent implements AfterViewInit {
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
-	// @ts-ignore
-	@ContentChild(TextArea, { static: false }) textArea: TextArea;
+	@ContentChild(TextArea) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
