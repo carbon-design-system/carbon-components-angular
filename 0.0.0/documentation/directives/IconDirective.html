@@ -548,8 +548,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/icon/icon.directive.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/icon/icon.directive.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -585,8 +585,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/icon/icon.directive.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/icon/icon.directive.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -890,7 +890,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		const svg &#x3D; root.tagName.toUpperCase() !&#x3D;&#x3D; &quot;SVG&quot; ? svgElement : root;
-		svg.setAttribute(&quot;xmlns&quot;, &quot;http://www.w3.org/2000/svg&quot;);
+		const xmlns &#x3D; &quot;http://www.w3.org/2000/svg&quot;;
+		svg.setAttribute(&quot;xmlns&quot;, xmlns);
 
 		const attributes &#x3D; getAttributes({
 			width: icon.attrs.width,
@@ -919,7 +920,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		if (attributes[&quot;title&quot;]) {
-			const title &#x3D; document.createElement(&quot;title&quot;);
+			const title &#x3D; document.createElementNS(xmlns, &quot;title&quot;);
 			title.textContent &#x3D; attributes.title;
 			IconDirective.titleIdCounter++;
 			title.setAttribute(&quot;id&quot;, &#x60;${icon.name}-title-${IconDirective.titleIdCounter}&#x60;);

@@ -5373,12 +5373,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		const selected &#x3D; this.view.getSelected();
 
 		// in case there are disabled items they should be mapped according to itemValueKey
-        if (this.itemValueKey &amp;&amp; selected) {
-            const values &#x3D; selected.map((item) &#x3D;&gt; item[this.itemValueKey]);
-            this.propagateChangeCallback(values);
-        } else {
-            this.propagateChangeCallback(selected);
-        }
+		if (this.itemValueKey &amp;&amp; selected) {
+			const values &#x3D; selected.map((item) &#x3D;&gt; item[this.itemValueKey]);
+			this.propagateChangeCallback(values);
+		} else {
+			this.propagateChangeCallback(selected);
+		}
 
 		this.selected.emit(selected as any);
 		this.clear.emit(event);

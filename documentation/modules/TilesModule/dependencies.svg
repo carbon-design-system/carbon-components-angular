@@ -24,21 +24,21 @@
 <title>cluster_TilesModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 2057,-379.59 2057,-70 8,-70"/>
 </g>
-<g id="clust10" class="cluster">
-<title>cluster_TilesModule_TileGroup_providers</title>
-<polygon fill="none" stroke="black" points="1413,-78 1413,-241.59 2049,-241.59 2049,-78 1413,-78"/>
-</g>
 <g id="clust11" class="cluster">
 <title>cluster_TilesModule_imports</title>
-<polygon fill="none" stroke="black" points="1097,-189.59 1097,-241.59 1405,-241.59 1405,-189.59 1097,-189.59"/>
+<polygon fill="none" stroke="black" points="1741,-189.59 1741,-241.59 2049,-241.59 2049,-189.59 1741,-189.59"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TilesModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 1089,-241.59 1089,-189.59 16,-189.59"/>
+<g id="clust10" class="cluster">
+<title>cluster_TilesModule_TileGroup_providers</title>
+<polygon fill="none" stroke="black" points="1097,-78 1097,-241.59 1733,-241.59 1733,-78 1097,-78"/>
 </g>
 <g id="clust12" class="cluster">
 <title>cluster_TilesModule_exports</title>
 <polygon fill="none" stroke="black" points="367,-319.59 367,-371.59 1557,-371.59 1557,-319.59 367,-319.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TilesModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 1089,-241.59 1089,-189.59 16,-189.59"/>
 </g>
 <!-- ClickableTile -->
 <g id="node1" class="node">
@@ -133,14 +133,14 @@
 <!-- TileGroup -->
 <g id="node8" class="node">
 <title>TileGroup</title>
-<polygon fill="#ffffb3" stroke="black" points="1631.32,-233.59 1556.68,-233.59 1556.68,-197.59 1631.32,-197.59 1631.32,-233.59"/>
-<text text-anchor="middle" x="1594" y="-211.39" font-family="Times,serif" font-size="14.00">TileGroup</text>
+<polygon fill="#ffffb3" stroke="black" points="1315.32,-233.59 1240.68,-233.59 1240.68,-197.59 1315.32,-197.59 1315.32,-233.59"/>
+<text text-anchor="middle" x="1278" y="-211.39" font-family="Times,serif" font-size="14.00">TileGroup</text>
 </g>
 <!-- TileGroup&#45;&gt;TilesModule -->
 <g id="edge8" class="edge">
 <title>TileGroup&#45;&gt;TilesModule</title>
-<path fill="none" stroke="black" d="M1594,-233.9C1594,-253.74 1594,-282.59 1594,-282.59 1594,-282.59 939.75,-282.59 939.75,-282.59"/>
-<polygon fill="black" stroke="black" points="939.75,-279.09 929.75,-282.59 939.75,-286.09 939.75,-279.09"/>
+<path fill="none" stroke="black" d="M1253.87,-233.6C1253.87,-249.64 1253.87,-270.59 1253.87,-270.59 1253.87,-270.59 939.64,-270.59 939.64,-270.59"/>
+<polygon fill="black" stroke="black" points="939.64,-267.09 929.64,-270.59 939.64,-274.09 939.64,-267.09"/>
 </g>
 <!-- ClickableTile  -->
 <g id="node14" class="node">
@@ -163,8 +163,8 @@
 <!-- TilesModule&#45;&gt;ClickableTileIconDirective  -->
 <g id="edge14" class="edge">
 <title>TilesModule&#45;&gt;ClickableTileIconDirective </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M929.82,-290.59C1032.1,-290.59 1277.94,-290.59 1277.94,-290.59 1277.94,-290.59 1277.94,-317.58 1277.94,-317.58"/>
-<polygon fill="black" stroke="black" points="1274.44,-317.58 1277.94,-327.58 1281.44,-317.58 1274.44,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M929.89,-290.59C1034.31,-290.59 1288.91,-290.59 1288.91,-290.59 1288.91,-290.59 1288.91,-317.58 1288.91,-317.58"/>
+<polygon fill="black" stroke="black" points="1285.41,-317.58 1288.91,-327.58 1292.41,-317.58 1285.41,-317.58"/>
 </g>
 <!-- ExpandableTile  -->
 <g id="node16" class="node">
@@ -175,8 +175,8 @@
 <!-- TilesModule&#45;&gt;ExpandableTile  -->
 <g id="edge15" class="edge">
 <title>TilesModule&#45;&gt;ExpandableTile </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M929.74,-294.59C1008.02,-294.59 1163.96,-294.59 1163.96,-294.59 1163.96,-294.59 1163.96,-317.47 1163.96,-317.47"/>
-<polygon fill="black" stroke="black" points="1160.46,-317.47 1163.96,-327.47 1167.46,-317.47 1160.46,-317.47"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M929.72,-294.59C1013.6,-294.59 1188.89,-294.59 1188.89,-294.59 1188.89,-294.59 1188.89,-317.47 1188.89,-317.47"/>
+<polygon fill="black" stroke="black" points="1185.39,-317.47 1188.89,-327.47 1192.39,-317.47 1185.39,-317.47"/>
 </g>
 <!-- ExpandableTileAboveFoldDirective  -->
 <g id="node17" class="node">
@@ -245,10 +245,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TileGroup, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="1731" cy="-127.3" rx="309.77" ry="41.09"/>
-<text text-anchor="middle" x="1731" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="1731" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TileGroup, multi: true</text>
-<text text-anchor="middle" x="1731" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="1415" cy="-127.3" rx="309.77" ry="41.09"/>
+<text text-anchor="middle" x="1415" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="1415" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TileGroup, multi: true</text>
+<text text-anchor="middle" x="1415" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TileGroup, multi: true
@@ -257,44 +257,44 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: TileGroup, multi: true
 }&#45;&gt;TileGroup</title>
-<path fill="none" stroke="black" d="M1594,-164.48C1594,-164.48 1594,-187.22 1594,-187.22"/>
-<polygon fill="black" stroke="black" points="1590.5,-187.22 1594,-197.22 1597.5,-187.22 1590.5,-187.22"/>
+<path fill="none" stroke="black" d="M1278,-164.48C1278,-164.48 1278,-187.22 1278,-187.22"/>
+<polygon fill="black" stroke="black" points="1274.5,-187.22 1278,-197.22 1281.5,-187.22 1274.5,-187.22"/>
 </g>
 <!-- I18nModule -->
 <g id="node11" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1396.71,-233.59 1393.71,-237.59 1372.71,-237.59 1369.71,-233.59 1311.29,-233.59 1311.29,-197.59 1396.71,-197.59 1396.71,-233.59"/>
-<text text-anchor="middle" x="1354" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="2040.71,-233.59 2037.71,-237.59 2016.71,-237.59 2013.71,-233.59 1955.29,-233.59 1955.29,-197.59 2040.71,-197.59 2040.71,-233.59"/>
+<text text-anchor="middle" x="1998" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;TilesModule -->
 <g id="edge10" class="edge">
 <title>I18nModule&#45;&gt;TilesModule</title>
-<path fill="none" stroke="black" d="M1354,-233.81C1354,-252.42 1354,-278.59 1354,-278.59 1354,-278.59 939.61,-278.59 939.61,-278.59"/>
-<polygon fill="black" stroke="black" points="939.61,-275.09 929.61,-278.59 939.61,-282.09 939.61,-275.09"/>
+<path fill="none" stroke="black" d="M1998,-233.9C1998,-253.74 1998,-282.59 1998,-282.59 1998,-282.59 939.59,-282.59 939.59,-282.59"/>
+<polygon fill="black" stroke="black" points="939.59,-279.09 929.59,-282.59 939.59,-286.09 939.59,-279.09"/>
 </g>
 <!-- IconModule -->
 <g id="node12" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1293.43,-233.59 1290.43,-237.59 1269.43,-237.59 1266.43,-233.59 1208.57,-233.59 1208.57,-197.59 1293.43,-197.59 1293.43,-233.59"/>
-<text text-anchor="middle" x="1251" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1937.43,-233.59 1934.43,-237.59 1913.43,-237.59 1910.43,-233.59 1852.57,-233.59 1852.57,-197.59 1937.43,-197.59 1937.43,-233.59"/>
+<text text-anchor="middle" x="1895" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;TilesModule -->
 <g id="edge11" class="edge">
 <title>IconModule&#45;&gt;TilesModule</title>
-<path fill="none" stroke="black" d="M1226.93,-233.61C1226.93,-250.96 1226.93,-274.59 1226.93,-274.59 1226.93,-274.59 939.87,-274.59 939.87,-274.59"/>
-<polygon fill="black" stroke="black" points="939.87,-271.09 929.87,-274.59 939.87,-278.09 939.87,-271.09"/>
+<path fill="none" stroke="black" d="M1895,-233.81C1895,-252.42 1895,-278.59 1895,-278.59 1895,-278.59 939.68,-278.59 939.68,-278.59"/>
+<polygon fill="black" stroke="black" points="939.68,-275.09 929.68,-278.59 939.68,-282.09 939.68,-275.09"/>
 </g>
 <!-- LinkModule -->
 <g id="node13" class="node">
 <title>LinkModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1190.99,-233.59 1187.99,-237.59 1166.99,-237.59 1163.99,-233.59 1105.01,-233.59 1105.01,-197.59 1190.99,-197.59 1190.99,-233.59"/>
-<text text-anchor="middle" x="1148" y="-211.39" font-family="Times,serif" font-size="14.00">LinkModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1834.99,-233.59 1831.99,-237.59 1810.99,-237.59 1807.99,-233.59 1749.01,-233.59 1749.01,-197.59 1834.99,-197.59 1834.99,-233.59"/>
+<text text-anchor="middle" x="1792" y="-211.39" font-family="Times,serif" font-size="14.00">LinkModule</text>
 </g>
 <!-- LinkModule&#45;&gt;TilesModule -->
 <g id="edge12" class="edge">
 <title>LinkModule&#45;&gt;TilesModule</title>
-<path fill="none" stroke="black" d="M1111.8,-233.6C1111.8,-249.64 1111.8,-270.59 1111.8,-270.59 1111.8,-270.59 939.81,-270.59 939.81,-270.59"/>
-<polygon fill="black" stroke="black" points="939.81,-267.09 929.81,-270.59 939.81,-274.09 939.81,-267.09"/>
+<path fill="none" stroke="black" d="M1792,-233.61C1792,-250.96 1792,-274.59 1792,-274.59 1792,-274.59 939.7,-274.59 939.7,-274.59"/>
+<polygon fill="black" stroke="black" points="939.7,-271.09 929.7,-274.59 939.7,-278.09 939.7,-271.09"/>
 </g>
 </g>
 </svg>
