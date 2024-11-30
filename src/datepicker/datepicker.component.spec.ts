@@ -85,10 +85,11 @@ describe("DatePicker", () => {
 
 	it("should disable input", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
+		fixture.detectChanges();
 		fixture.componentInstance.disabled = true;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("input"));
-		expect(element.nativeElement.disabled).toBe(true);
+		expect(element.nativeElement.disabled).toBeTruthy();
 	});
 
 	it("should set date format to m/d/Y", () => {

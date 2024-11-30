@@ -1,50 +1,51 @@
 {
-	"compilerOptions": {
-		"baseUrl": "",
-		"declaration": true,
-		"experimentalDecorators": true,
-		"downlevelIteration": true,
-		"esModuleInterop": true,
-		"importHelpers": true,
-		"lib": [
-			"es2016",
-			"dom"
-		],
-		"sourceMap": true,
-		"inlineSources": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"outDir": "./dist/spec",
-		"target": "es2020",
-		"typeRoots": [
-			"./node_modules/@types"
-		],
-		"types": [
-			"jasmine",
-			"node",
-			"resize-observer-browser"
-		],
-		"paths": {
-			"carbon-components-angular": [
-				"./src/index"
-			],
-			"carbon-components-angular/*": [
-				"./src/*/index"
-			]
-		},
-	},
-	"files": [
-		"src/test.ts"
-	],
-	"include": [
-		"src/**/*.spec.ts"
-	],
-	"angularCompilerOptions": {
-		"annotateForClosureCompiler": true,
-		"skipTemplateCodegen": true,
-		"strictMetadataEmit": true,
-		"fullTemplateTypeCheck": true,
-		"strictInjectionParameters": true,
-		"enableResourceInlining": true
-	}
+  "compilerOptions": {
+    "baseUrl": "",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "sourceMap": true,
+    "inlineSources": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist/spec",
+    "target": "ES2022",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "jasmine",
+      "node",
+      "resize-observer-browser"
+    ],
+    "paths": {
+      "carbon-components-angular": [
+        "./src/index"
+      ],
+      "carbon-components-angular/*": [
+        "./src/*/index"
+      ]
+    },
+    "useDefineForClassFields": false
+  },
+  "files": [
+    "src/test.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  }
 }

@@ -99,7 +99,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		const attrKeys = Object.keys(attributes);
 		for (let i = 0; i < attrKeys.length; i++) {
 			const key = attrKeys[i];
-			const value = attributes[key];
+			const value = attributes[key] as string;
 
 			if (key === "title") {
 				continue;
@@ -111,8 +111,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		if (attributes["title"]) {
-			const title = document.createElementNS(xmlns, "title");
-			title.textContent = attributes.title;
+			const title = document.createElement("title");
+			title.textContent = attributes.title as string;
 			IconDirective.titleIdCounter++;
 			title.setAttribute("id", `${icon.name}-title-${IconDirective.titleIdCounter}`);
 			// title must be first for screen readers

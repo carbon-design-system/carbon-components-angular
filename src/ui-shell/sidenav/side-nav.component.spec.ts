@@ -60,8 +60,7 @@ describe("SideNav", () => {
 				],
 					{
 						initialNavigation: "disabled",
-						useHash: true,
-						relativeLinkResolution: "corrected"
+						useHash: true
 					})
 			]
 		});
