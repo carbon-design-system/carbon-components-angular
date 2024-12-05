@@ -9,10 +9,14 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList,
-	ApplicationRef
+	QueryList
 } from "@angular/core";
-import { Observable, isObservable, Subscription, of } from "rxjs";
+import {
+	Observable,
+	isObservable,
+	Subscription,
+	of
+} from "rxjs";
 import { first } from "rxjs/operators";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -224,7 +228,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n, protected appRef: ApplicationRef) {}
+	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -564,7 +568,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index = this.displayItems.indexOf(item);
 			this.highlightedItem = this.getItemId(this.index);
 			this.doEmitSelect(false);
-			this.appRef.tick();
 		}
 	}
 

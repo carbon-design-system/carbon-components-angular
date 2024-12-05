@@ -25,7 +25,6 @@ import {
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
-import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
 import { ElementService, getScrollableParents } from "carbon-components-angular/utils";
 import { hasScrollableParents } from "carbon-components-angular/utils";
