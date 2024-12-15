@@ -4,7 +4,8 @@ import {
 	HostBinding,
 	ViewChild,
 	AfterViewInit,
-	OnInit
+	OnInit,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -66,9 +67,7 @@ export enum SnippetType {
 					}
 				}
 				@if (!skeleton) {
-					<pre #codeContent (scroll)="(display === 'multi' ? handleScroll() : null)">
-						<code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code>
-					</pre>
+					<pre #codeContent (scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code></pre>
 				}
 			</div>
 			@if (hasLeft) {
@@ -135,7 +134,8 @@ export enum SnippetType {
 		<ng-template #codeTemplate>
 			<ng-content />
 		</ng-template>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
 	@HostBinding("class.cds--snippet") get snippetClass() {
