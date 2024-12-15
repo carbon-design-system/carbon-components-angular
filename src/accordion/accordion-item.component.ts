@@ -4,7 +4,8 @@ import {
 	HostBinding,
 	Output,
 	TemplateRef,
-	EventEmitter
+	EventEmitter,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 @Component({
@@ -46,7 +47,8 @@ import {
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush	 
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
