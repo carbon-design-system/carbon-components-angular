@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	HostBinding,
@@ -17,7 +18,8 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 	template: `
 		<ng-content />
 	`,
-	providers: [ContextMenuSelectionService]
+	providers: [ContextMenuSelectionService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@HostBinding("attr.role") role = "group";

@@ -5,7 +5,8 @@ import {
 	Input,
 	SimpleChanges,
 	OnChanges,
-	HostBinding
+	HostBinding,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 /**
@@ -26,7 +27,8 @@ import {
 		:host {
 			display: block;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuComponent implements OnChanges {
 	@Input() open = false;

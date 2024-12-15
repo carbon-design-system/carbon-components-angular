@@ -10,7 +10,8 @@ import {
 	Optional,
 	OnInit,
 	AfterContentInit,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
@@ -41,7 +42,8 @@ import { ContextMenuComponent } from "./context-menu.component";
 		:host {
 			grid-template-columns: 1rem 1fr max-content;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
 	@HostBinding("class.cds--menu-item") optionClass = true;
