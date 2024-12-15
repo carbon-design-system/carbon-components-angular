@@ -12,7 +12,9 @@ import {
 	AfterContentInit,
 	HostBinding,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef
 } from "@angular/core";
 import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
 import { ListItem } from "carbon-components-angular/dropdown";
@@ -138,7 +140,6 @@ import { Observable } from "rxjs";
 						[placeholder]="placeholder"/>
 					@if (invalid) {
 						<svg
-
 							cdsIcon="warning--filled"
 							size="16"
 							class="cds--list-box__invalid-icon">
@@ -222,7 +223,8 @@ import { Observable } from "rxjs";
 			useExisting: ComboBox,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
@@ -500,7 +502,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	constructor(
 		protected elementRef: ElementRef,
 		protected dropdownService: DropdownService,
-		protected i18n: I18n
+		protected i18n: I18n,
+		protected cdr: ChangeDetectorRef
 	) {}
 
 	/**
@@ -743,6 +746,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		}
 
 		document.removeEventListener("click", this.outsideClick, true);
+
+		this.cdr.markForCheck();
 	}
 
 	/**
@@ -766,6 +771,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				this._dropUp = this._shouldDropUp();
 			}
 		}, 0);
+
+		this.cdr.markForCheck();
 	}
 
 	/**
