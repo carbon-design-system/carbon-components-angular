@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -53,7 +54,8 @@ import { ButtonSize, ButtonType } from "./button.types";
 			<ng-content />
 		</button>
 	</cds-tooltip>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**

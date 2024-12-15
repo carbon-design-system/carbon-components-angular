@@ -1,4 +1,4 @@
-import { Component, HostBinding } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
 
 /**
  * Get started with importing the module:
@@ -11,7 +11,8 @@ import { Component, HostBinding } from "@angular/core";
  */
 @Component({
 	selector: "cds-button-set, ibm-button-set",
-	template: "<ng-content />"
+	template: "<ng-content />",
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonSet {
 	@HostBinding("class.cds--btn-set") buttonSetClass = true;
