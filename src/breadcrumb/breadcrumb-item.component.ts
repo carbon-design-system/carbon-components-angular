@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
 		<ng-template #content>
-  		<ng-content/>
+  			<ng-content/>
 		</ng-template>
 
 		@if (useTemplate()) {
