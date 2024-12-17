@@ -150,7 +150,7 @@ export type TranslationStrings = {
  */
 @Injectable()
 export class I18n {
-	protected translationStrings: TranslationStrings = EN
+	protected translationStrings: TranslationStrings = EN;
 
 	protected translations = new Map();
 
