@@ -14,7 +14,8 @@ import {
 	AfterViewInit,
 	ViewChild,
 	OnInit,
-	SimpleChange
+	SimpleChange,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -120,7 +121,8 @@ if (languages.default?.default["en"]?.weekdays) {
 			multi: true
 		}
 	],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatePicker implements
 	OnInit,

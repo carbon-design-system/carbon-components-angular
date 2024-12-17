@@ -7,7 +7,8 @@ import {
 	EventEmitter,
 	AfterViewInit,
 	HostListener,
-	ElementRef
+	ElementRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
@@ -46,7 +47,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 			role="tablist">
 			<ng-content />
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";

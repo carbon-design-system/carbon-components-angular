@@ -5,7 +5,8 @@ import {
 	EventEmitter,
 	ElementRef,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -124,7 +125,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: DatePickerInput,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
