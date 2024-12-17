@@ -27,7 +27,7 @@ import { ButtonSize, ButtonType } from "./button.types";
 	<cds-tooltip
 		class="cds--icon-tooltip"
 		[description]="description"
-		[disabled]="disabled"
+		[disabled]="showTooltipWhenDisabled ? false : disabled"
 		[caret]="caret"
 		[dropShadow]="dropShadow"
 		[highContrast]="highContrast"
@@ -123,6 +123,10 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	 * The string or template content to be exposed by the tooltip.
 	 */
 	@Input() description: string | TemplateRef<any>;
+	/**
+	 * Indicates whether the tooltip should be shown when the button is disabled
+	 */
+	@Input() showTooltipWhenDisabled = false;
 
 	/**
 	 * Common button events

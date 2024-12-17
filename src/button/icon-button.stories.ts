@@ -23,7 +23,8 @@ export default {
 		size: "md",
 		isExpressive: "false",
 		disabled: false,
-		autoAlign: false
+		autoAlign: false,
+		showTooltipWhenDisabled: false
 	},
 	argTypes: {
 		align: {
@@ -54,6 +55,9 @@ export default {
 		disabled: {
 			type: "boolean"
 		},
+		showTooltipWhenDisabled: {
+			type: "boolean"
+		},
 		// Actions
 		onClick: { action: "clicked" },
 		onMouseEnter: { action: "mouseenter" },
@@ -79,6 +83,7 @@ const Template = (args) => ({
 			[buttonNgClass]="buttonNgClass"
 			[buttonAttributes]="buttonAttributes"
 			[disabled]="disabled"
+			[showTooltipWhenDisabled]="showTooltipWhenDisabled"
 			description="Icon Description"
 			(click)="onClick($event)"
 			(mouseenter)="onMouseEnter($event)"
@@ -115,6 +120,7 @@ const AutoAlignTemplate = (args) => ({
 					[isOpen]="isOpen"
 					[buttonNgClass]="buttonNgClass"
 					[disabled]="disabled"
+					[showTooltipWhenDisabled]="showTooltipWhenDisabled"
 					[description]="description"
 					(click)="onClick($event)"
 					(mouseenter)="onMouseEnter($event)"
@@ -134,3 +140,4 @@ WithAutoAlign.args = {
 	align: "top",
 	isOpen: true
 };
+

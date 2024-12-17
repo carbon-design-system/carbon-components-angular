@@ -44,7 +44,7 @@ That's it! Now we can run `npm start` and start building out our application!
 
 > *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` scss is our recommended setup.
 
-[![Edit Carbon Components Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0129r494ql)
+[![Edit Carbon Components Angular](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-exxkq4?file=src%2Fmain.ts)
 
 ### Support
 
