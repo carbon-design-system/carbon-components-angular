@@ -3,7 +3,8 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { AccordionItem } from "./accordion-item.component";
 
@@ -33,7 +34,8 @@ import { AccordionItem } from "./accordion-item.component";
 			role="list">
 			<ng-content />
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Accordion implements AfterContentInit {
 	/**

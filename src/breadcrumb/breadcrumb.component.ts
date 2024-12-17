@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	Optional,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
@@ -121,7 +122,8 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 				}
 			}
 		</nav>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush	 
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;

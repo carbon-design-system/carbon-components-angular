@@ -4,7 +4,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional
+	Optional,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -12,6 +13,10 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
+		<ng-template #content>
+  			<ng-content />
+		</ng-template>
+
 		@if (useTemplate()) {
 			<a
 				class="cds--link"
@@ -21,9 +26,10 @@ import { Router } from "@angular/router";
 				<ng-container *ngTemplateOutlet="content" />
 			</a>
 		} @else {
-			<ng-content />
+			<ng-container *ngTemplateOutlet="content" />
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush	 
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {

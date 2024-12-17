@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 /**
  * Base button with common input properties for configuring icon button.
@@ -7,7 +7,8 @@ import { Component, Input } from "@angular/core";
  * Used by pagination nav icon button, code snippet, etc.
  */
 @Component({
-	template: ""
+	template: "",
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseIconButton {
 	/**
