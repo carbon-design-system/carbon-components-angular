@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, componentWrapperDecorator } from "@storybook/angular";
 import { Story, Meta } from "@storybook/angular";
 import {
