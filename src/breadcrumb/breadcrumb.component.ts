@@ -123,7 +123,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			}
 		</nav>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush	 
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;

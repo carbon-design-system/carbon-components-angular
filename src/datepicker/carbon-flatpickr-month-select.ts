@@ -48,6 +48,7 @@ export const carbonFlatpickrMonthSelectPlugin = fp => {
 			0,
 			fp.monthElements.length,
 			...fp.monthElements.map(() => {
+				// eslint-disable-next-line no-underscore-dangle
 				const monthElement = fp._createElement(
 					"span",
 					config.classFlatpickrCurrentMonth

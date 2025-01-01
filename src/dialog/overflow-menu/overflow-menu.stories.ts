@@ -18,7 +18,7 @@ export default {
 		})
 	],
 	args: {
-			placement: "bottom"
+		placement: "bottom"
 	},
 	argTypes: {
 		code: {
@@ -87,10 +87,18 @@ const LinkTemplate = (args) => ({
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 					An example option that is really long to show what should be done to handle long text
 				</cds-overflow-menu-option>
-				<cds-overflow-menu-option href="https://www.ibm.com" target="_blank" (selected)="selected($event)">Option 2</cds-overflow-menu-option>
+				<cds-overflow-menu-option
+					href="https://www.ibm.com"
+					target="_blank"
+					(selected)="selected($event)"
+				>Option 2</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</cds-overflow-menu-option>
-				<cds-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</cds-overflow-menu-option>
+				<cds-overflow-menu-option
+					href="https://www.ibm.com"
+					disabled="true"
+					(selected)="selected($event)"
+				>Disabled</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
 					Danger option
 				</cds-overflow-menu-option>

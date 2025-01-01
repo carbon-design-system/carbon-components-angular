@@ -23,7 +23,7 @@ describe("Search", () => {
 			],
 			providers: []
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {

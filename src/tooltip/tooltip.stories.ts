@@ -135,8 +135,9 @@ Ellipses.parameters = {
 
 const AutoAlignTemplate = (args) => ({
 	props: args,
-	template: `
-		<div style="height:3000px">
+	template:
+		/* eslint-disable max-len */
+		`<div style="height:3000px">
 			Scrolling will update the position of the popover:
 			<div style="position: absolute; top: 500px; left: 500px;">
 				<cds-tooltip
@@ -155,8 +156,9 @@ const AutoAlignTemplate = (args) => ({
 					</button>
 				</cds-tooltip>
 			</div>
-		</div>
-	`,
+		</div>`
+		/* eslint-enable max-len */
+	,
 	styles: [`
 		.tooltip-trigger {
 			box-sizing: border-box;

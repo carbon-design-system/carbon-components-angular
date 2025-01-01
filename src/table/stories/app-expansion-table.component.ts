@@ -103,7 +103,10 @@ export class ExpansionTableStory implements AfterViewInit {
 				}),
 				new TableItem({ data: "swer" })
 			],
-			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
+			[
+				new TableItem({ data: "Name 2" }),
+				new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })
+			],
 			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],

@@ -112,7 +112,7 @@ import { IconModule } from "./icon/icon.module";
 			</div>
 		</section>
 	`,
-	/* eslint-disable max-len */
+
 	styles: [`
 		.overview-page__banner {
 			height: 100vh;

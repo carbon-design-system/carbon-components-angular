@@ -14,8 +14,9 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
  */
 @Component({
 	selector: "cds-sidenav, ibm-sidenav",
-	template: `
-		<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
+	template:
+		/* eslint-disable max-len */
+		`<nav class="cds--side-nav__items" [attr.aria-label]="ariaLabel">
 			<ng-content select="cds-sidenav-header,ibm-sidenav-header" />
 			<div role="list">
 				<div class="cds--side-nav__header-navigation cds--side-nav__header-divider">
@@ -82,6 +83,7 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 			</footer>
 		</nav>
 	`,
+	/* eslint-enable max-len */
 	encapsulation: ViewEncapsulation.None
 })
 export class SideNav {

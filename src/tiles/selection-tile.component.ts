@@ -11,8 +11,9 @@ import { I18n } from "carbon-components-angular/i18n";
 
 @Component({
 	selector: "cds-selection-tile, ibm-selection-tile",
-	template: `
-		<input
+	template:
+		/* eslint-disable max-len */
+		`<input
 			#input
 			[attr.tabindex]="disabled ? null : 0"
 			class="cds--tile-input"
@@ -40,8 +41,8 @@ import { I18n } from "carbon-components-angular/i18n";
 			<div class="cds--tile-content">
 				<ng-content />
 			</div>
-		</label>
-	`
+		</label>`
+		/* eslint-disable max-len */
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
@@ -96,7 +97,7 @@ export class SelectionTile implements AfterViewInit {
 	 * tile selection.
 	 */
 	multiple = true;	// Set to true because of the way tile group sets it up.
-						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
+	// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
 	@ViewChild("input", { static: true }) input;
 

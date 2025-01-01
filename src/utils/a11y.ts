@@ -77,8 +77,8 @@ export function focusPrevElem(elem, parentRef = null) {
 					let lastFocElms = prevElem.querySelectorAll("[tabindex='0']");
 					let arrLen = lastFocElms.length - 1;
 					for (let i = arrLen; i >= 0; i--) {
-						if (!!(lastFocElms[i].offsetWidth || lastFocElms[i].offsetHeight ||
-							lastFocElms[i].getClientRects().length)) {
+						if (lastFocElms[i].offsetWidth || lastFocElms[i].offsetHeight ||
+							lastFocElms[i].getClientRects().length) {
 							focusableElem = lastFocElms[i];
 							break;
 						}

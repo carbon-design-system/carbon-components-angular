@@ -59,6 +59,7 @@ export class LayerDirective implements AfterContentInit {
 					if (layer === this) {
 						return;
 					}
+					// eslint-disable-next-line no-underscore-dangle
 					layer.layer = typeof layer._passedLevel === "number" ? layer._passedLevel : this.layer + 1;
 				});
 			}

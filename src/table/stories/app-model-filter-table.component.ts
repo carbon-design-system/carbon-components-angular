@@ -165,7 +165,7 @@ export class FilterWithModelStory implements OnInit {
 
 	overflowOnClick = (event: any) => {
 		event.stopPropagation();
-	}
+	};
 
 	ngOnInit() {
 		this.model.header = [

@@ -153,8 +153,12 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 					const computedStyle = getComputedStyle(this.caretRef);
 					const offset = computedStyle.getPropertyValue("--cds-popover-offset");
 					const height = computedStyle.getPropertyValue("--cds-popover-caret-height");
-					this.caretOffset = (offset?.includes("px") ? Number(offset.split("px", 1)[0]) : Number(offset.split("rem", 1)[0]) * 16) || 10;
-					this.caretHeight = (height?.includes("px") ? Number(height.split("px", 1)[0]) : Number(height.split("rem", 1)[0]) * 16) || 6;
+					this.caretOffset = (offset?.includes("px")
+						? Number(offset.split("px", 1)[0])
+						: Number(offset.split("rem", 1)[0]) * 16) || 10;
+					this.caretHeight = (height?.includes("px")
+						? Number(height.split("px", 1)[0])
+						: Number(height.split("rem", 1)[0]) * 16) || 6;
 				}
 				if (this.elementRef.nativeElement && this.popoverContentRef) {
 					this.unmountFloatingElement = autoUpdate(

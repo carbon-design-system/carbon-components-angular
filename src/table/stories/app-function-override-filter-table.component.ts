@@ -163,7 +163,7 @@ export class FilterByFunctionOverrideStory implements OnInit {
 
 	overflowOnClick = (event: any) => {
 		event.stopPropagation();
-	}
+	};
 
 	ngOnInit() {
 		this.model.header = [

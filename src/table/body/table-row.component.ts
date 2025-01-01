@@ -73,7 +73,7 @@ import { TableRowSize } from "../table.types";
 						(keydown.enter)="onRowClick()">
 					</td>
 				}
-				@if (item && model.getHeader(j) == null) {
+				@if (item && model.getHeader(j) === null) {
 					<td
 						cdsTableData
 						[headers]="model.getHeaderId(j, item.colSpan)"

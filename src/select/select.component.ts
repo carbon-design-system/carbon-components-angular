@@ -357,7 +357,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 		 */
 		if (this.readonly) {
 			event.preventDefault();
-			(<HTMLElement>event.target).focus();
+			(event.target as HTMLElement).focus();
 		}
 	}
 

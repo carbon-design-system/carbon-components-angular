@@ -33,10 +33,10 @@ class CheckboxExportedTests extends ComponentTests {
 							afterClickState
 						});
 					}),
-					runComparison: results => {
-					// eslint-disable-next-line no-unused-expressions
+				runComparison: results => {
+					// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 					expect(results.initialState).to.be.false;
-					// eslint-disable-next-line no-unused-expressions
+					// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 					expect(results.afterClickState).to.be.true;
 				}
 			}

@@ -137,7 +137,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 						});
 					}
 				}
-			);
+				);
 		}
 
 		this.placeDialog();
