@@ -72,14 +72,19 @@ import { EventService } from "carbon-components-angular/utils";
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
-			<div class="cds--slider-container">
+			<div
+				class="cds--slider-container"
+				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
 				<label [id]="bottomRangeId" class="cds--slider__range-label">
 					<ng-content select="[minLabel]"></ng-content>
 				</label>
 				<div
 					class="cds--slider"
 					(click)="onClick($event)"
-					[ngClass]="{'cds--slider--disabled': disabled}">
+					[ngClass]="{
+						'cds--slider--disabled': disabled,
+						'cds--slider--readonly': readonly
+					}">
 					<ng-container *ngIf="!isRange()">
 						<div class="cds--slider__thumb-wrapper"
 							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
@@ -276,6 +281,18 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	get disabled() {
 		return this._disabled;
 	}
+	/** Set to `true` for a readonly state. */
+	@Input() set readonly(v: boolean) {
+		this._readonly = v;
+		// for some reason `this.input` never exists here, so we have to query for it here too
+		const inputs = this.getInputs();
+		if (inputs && inputs.length > 0) {
+			inputs.forEach(input => input.readOnly = v);
+		}
+	}
+	get readonly() {
+		return this._readonly;
+	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number | number[]> = new EventEmitter();
 	@HostBinding("class.cds--form-item") hostClass = true;
@@ -297,6 +314,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _value = [this.min];
 	protected _previousValue = [this.min];
 	protected _disabled = false;
+	protected _readonly = false;
 	protected _focusedThumbIndex = 0;
 
 	constructor(
@@ -455,7 +473,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 * Will assign the value to the closest thumb if in range mode.
 	 * */
 	onClick(event) {
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
 		const trackValue = this.convertToValue(event.clientX - trackLeft);
 		if (this.isRange()) {
@@ -478,7 +496,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 
 	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
 	onMouseMove(event) {
-		if (this.disabled || !this.isMouseDown) { return; }
+		if (this.disabled || this.readonly || !this.isMouseDown) { return; }
 		const track = this.track.nativeElement.getBoundingClientRect();
 
 		let value;
@@ -513,7 +531,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 */
 	onMouseDown(event, index = 0) {
 		event.preventDefault();
-		if (this.disabled) { return; }
+		if (this.disabled || this.readonly) { return; }
 		this._focusedThumbIndex = index;
 		this.thumbs.toArray()[index].nativeElement.focus();
 		this.isMouseDown = true;
@@ -530,7 +548,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	 * @param {boolean} thumb If true then `thumb` is pressed down, otherwise `thumb2` is pressed down.
 	 */
 	onKeyDown(event: KeyboardEvent, index = 0) {
-		if (this.disableArrowKeys) {
+		if (this.disableArrowKeys || this.readonly) {
 			return;
 		}
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;

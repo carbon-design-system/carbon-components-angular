@@ -1,4 +1,9 @@
-import { Directive, ElementRef, HostBinding } from "@angular/core";
+import {
+	Directive,
+	ElementRef,
+	HostBinding,
+	Input
+} from "@angular/core";
 
 /**
  * Applies either ordered or unordered styling to the list container it is applied to.
@@ -32,6 +37,11 @@ export class List {
 	@HostBinding("class.cds--list--nested") get nested() {
 		return !!(this.elementRef.nativeElement.parentElement && this.elementRef.nativeElement.parentElement.tagName === "LI");
 	}
+
+	/**
+	 * Set to `true` to make list expressive
+	 */
+	@Input() @HostBinding("class.cds--list--expressive") isExpressive = false;
 
 	constructor(protected elementRef: ElementRef) {}
 }

@@ -13,7 +13,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Node } from "./tree-node.types";
+import { EventOnNode, Node } from "./tree-node.types";
 import { TreeViewService } from "./treeview.service";
 
 /**
@@ -57,7 +57,8 @@ import { TreeViewService } from "./treeview.service";
 			<ng-template #notProjected>
 				<cds-tree-node
 					*ngFor="let node of tree"
-					[node]="node">
+					[node]="node"
+					(nodetoggle)="onNodeToggle($event)">
 				</cds-tree-node>
 			</ng-template>
 		</div>
@@ -70,7 +71,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Passing value will disregard projected content
 	 */
 	@Input() set tree(treeNodes: Node[]) {
-		this._tree = treeNodes.map((node) => Object.assign({}, node));
+		this._tree = treeNodes.map((node) => this.copyNode(node));
 		this.treeViewService.contentProjected = false;
 	}
 
@@ -101,6 +102,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	@Output() select = new EventEmitter<Node | Node[]>();
+	@Output() toggle = new EventEmitter<Node>();
 	@ViewChild("treeWrapper") root: ElementRef;
 
 	private treeWalker: TreeWalker;
@@ -109,7 +111,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
-		protected treeViewService: TreeViewService,
+		public treeViewService: TreeViewService,
 		private elementRef: ElementRef
 	) {}
 
@@ -121,11 +123,9 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 			// Get all values from the map to emit
 			const nodes = [...nodesMap.values()];
 
-			// Update focus to reset arrow key traversal
-			// Select the current highlight node as the last node, since we preserve order in map
-			this.treeWalker.currentNode = this.elementRef.nativeElement.querySelector(`#${CSS.escape(nodes[nodes.length - 1].id)}`);
 			this.select.emit(this.treeViewService.isMultiSelect ? nodes : nodes[0]);
 		});
+		this.subscription.add(this.treeViewService.focusNodeObservable.subscribe(node => this.onNodeFocusChange(node)));
 	}
 
 	ngOnDestroy(): void {
@@ -163,11 +163,45 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 		}
 	}
 
+	/**
+	 * Propagate node toggle event
+	 * @param eventOnNode - EventOnNode
+	 */
+	onNodeToggle(eventOnNode: EventOnNode) {
+		if (!eventOnNode) {
+			return;
+		}
+		this.toggle.emit(eventOnNode.node);
+	}
+
+	/**
+	 * Node focus change
+	 * @param node - Node
+	 */
+	onNodeFocusChange(node: Node) {
+		if (!node) {
+			// if for some reason the focused node is not defined we fallback on the root element of the treeview
+			this.treeWalker.currentNode = this.treeWalker.root;
+			return;
+		}
+		// Update current node based on focus change to have a better keyboard navigation experience
+		this.treeWalker.currentNode = this.elementRef.nativeElement.querySelector(`#${CSS.escape(node.id)}`);
+	}
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 
 	public isProjected() {
 		return this.treeViewService.contentProjected;
+	}
+
+	private copyNode(node: Node): Node {
+		// making a recursive shallow copy to avoid performance issues when deeply cloning templateRefs if defined in the node
+		const copiedNode = Object.assign({}, node);
+		if (node.children) {
+			copiedNode.children = node.children.map(child => this.copyNode(child));
+		}
+		return copiedNode;
 	}
 }

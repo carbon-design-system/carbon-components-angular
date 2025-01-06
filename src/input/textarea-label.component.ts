@@ -31,58 +31,89 @@ import { TextArea } from "./text-area.directive";
 @Component({
 	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `
-		<label
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="cds--label"
-			[ngClass]="{
-				'cds--label--disabled': disabled,
-				'cds--skeleton': skeleton
-			}">
-			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-			<ng-template #labelContent>
-				<ng-content></ng-content>
-			</ng-template>
-		</label>
-		<div
-			class="cds--text-area__wrapper"
-			[ngClass]="{
-				'cds--text-input__field-wrapper--warning': warn
-			}"
-			[attr.data-invalid]="(invalid ? true : null)"
-			#wrapper>
-			<svg
-				*ngIf="invalid"
-				cdsIcon="warning--filled"
-				size="16"
-				class="cds--text-area__invalid-icon">
-			</svg>
-			<svg
-				*ngIf="!invalid && warn"
-				cdsIcon="warning--alt--filled"
-				size="16"
-				class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-			</svg>
-			<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
-			<ng-template #textAreaContent>
-				<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
-			</ng-template>
-		</div>
-		<div
-			*ngIf="!skeleton && helperText && !invalid && !warn"
-			class="cds--form__helper-text"
-			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-		<div *ngIf="invalid" class="cds--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
-		<div *ngIf="!invalid && warn" class="cds--form-requirement">
-			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-		</div>
+		<ng-container *ngIf="skeleton">
+			<span class="cds--label cds--skeleton"></span>
+			<div class="cds--text-area cds--skeleton"></div>
+		</ng-container>
+		<ng-container *ngIf="!skeleton">
+			<div class="cds--text-area__label-wrapper">
+				<label
+					[for]="labelInputID"
+					[attr.aria-label]="ariaLabel"
+					class="cds--label"
+					[ngClass]="{
+						'cds--label--disabled': disabled
+					}">
+					<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
+					<ng-template #labelContent>
+						<ng-content></ng-content>
+					</ng-template>
+				</label>
+			</div>
+			<div
+				class="cds--text-area__wrapper"
+				[ngClass]="{
+					'cds--text-area__wrapper--warn': warn
+				}"
+				[attr.data-invalid]="(invalid ? true : null)"
+				#wrapper>
+				<svg
+					*ngIf="!fluid && invalid"
+					cdsIcon="warning--filled"
+					size="16"
+					class="cds--text-area__invalid-icon">
+				</svg>
+				<svg
+					*ngIf="!fluid && !invalid && warn"
+					cdsIcon="warning--alt--filled"
+					size="16"
+					class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+				</svg>
+				<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
+				<ng-template #textAreaContent>
+					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
+				</ng-template>
+
+				<ng-container *ngIf="fluid">
+					<hr class="cds--text-area__divider" />
+					<div *ngIf="invalid" class="cds--form-requirement">
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--text-area__invalid-icon">
+						</svg>
+					</div>
+					<div *ngIf="!invalid && warn" class="cds--form-requirement">
+						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+						</svg>
+					</div>
+				</ng-container>
+			</div>
+			<ng-container *ngIf="!fluid">
+				<div
+					*ngIf="helperText && !invalid && !warn"
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				</div>
+				<div *ngIf="invalid" class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
+				<div *ngIf="!invalid && warn" class="cds--form-requirement">
+					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
+					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+				</div>
+			</ng-container>
+		</ng-container>
 	`
 })
 export class TextareaLabelComponent implements AfterViewInit {
@@ -136,6 +167,11 @@ export class TextareaLabelComponent implements AfterViewInit {
 	 */
 	@Input() ariaLabel: string;
 
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@Input() fluid = false;
+
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
@@ -143,6 +179,18 @@ export class TextareaLabelComponent implements AfterViewInit {
 	@ContentChild(TextArea, { static: false }) textArea: TextArea;
 
 	@HostBinding("class.cds--form-item") labelClass = true;
+
+	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
+	}
+
+	@HostBinding("class.cds--text-area--fluid") get fluidClass() {
+		return this.fluid && !this.skeleton;
+	}
+
+	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
+		return this.fluid && this.skeleton;
+	}
 
 	/**
 	 * Creates an instance of Label.

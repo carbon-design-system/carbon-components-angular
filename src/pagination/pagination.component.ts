@@ -137,7 +137,7 @@ export interface PaginationTranslations {
 						<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<svg
-						*ngIf="pageOptions.length <= 1000"
+						*ngIf="pageOptions.length <= pageSelectThreshold"
 						cdsIcon="chevron--down"
 						size="16"
 						style="display: inherit;"
@@ -320,8 +320,14 @@ export class Pagination {
 	}
 
 	get pageOptions() {
-		if (this.totalDataLength && this._pageOptions.length !== this.totalDataLength) {
-			this._pageOptions = Array(Math.ceil(this.totalDataLength / this.itemsPerPage));
+		/**
+		 * Calculate number of pages based on totalDataLength and itemsPerPage.
+		 * Even if totalDataLength is 0, numberOfPages should be always at least 1.
+		 * New array will be constructed only if number of pages changes.
+		 */
+		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
+		if (this._pageOptions.length !== numberOfPages) {
+			this._pageOptions = Array(numberOfPages);
 		}
 		return this._pageOptions;
 	}

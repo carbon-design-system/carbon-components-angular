@@ -29,7 +29,8 @@
       },
       {
         "name": "next",
-        "channel": "next"
+        "channel": "next",
+        "prerelease": "rc"
       },
       {
         "name": "v3",
@@ -85,7 +86,7 @@
     "@angular/platform-browser-dynamic": "14.3.0",
     "@angular/router": "14.3.0",
     "@babel/core": "7.9.6",
-    "@carbon/styles": "1.56.0",
+    "@carbon/styles": "1.70.0",
     "@carbon/themes": "11.24.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
@@ -121,7 +122,6 @@
     "karma-coverage-istanbul-reporter": "3.0.2",
     "karma-jasmine": "4.0.0",
     "karma-jasmine-html-reporter": "1.7.0",
-    "lodash-es": "4.17.21",
     "ng-packagr": "14.2.2",
     "postcss": "8.4.14",
     "postcss-loader": "7.0.0",
@@ -145,6 +145,7 @@
     "@floating-ui/dom": "1.6.3",
     "@ibm/telemetry-js": "^1.5.0",
     "flatpickr": "4.6.13",
+    "lodash-es": "4.17.21",
     "tslib": "2.3.0"
   }
 }

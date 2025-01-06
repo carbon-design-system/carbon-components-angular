@@ -1,8 +1,8 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta } from "@storybook/angular";
-import { InputModule, PasswordInputLabelComponent } from ".";
 import { FormsModule } from "@angular/forms";
+import { Meta, moduleMetadata } from "@storybook/angular";
+import { InputModule, PasswordInputLabelComponent } from ".";
 
 export default {
 	title: "Components/Input/Password",
@@ -11,6 +11,36 @@ export default {
 			imports: [InputModule, FormsModule]
 		})
 	],
+	args: {
+		disabled: false,
+		invalid: false,
+		invalidText: "Invalid entry",
+		warn: false,
+		warnText: "This is a warning!",
+		label: "Text input label",
+		helperText: "Optional helper text",
+		placeholder: "Placeholder",
+		autocomplete: "on",
+		theme: "dark",
+		size: "md",
+		readonly: false,
+		fluid: false,
+		skeleton: false
+	},
+	argTypes: {
+		autocomplete: {
+			options: ["on", "off"],
+			control: "radio"
+		},
+		theme: {
+			options: ["light", "dark"],
+			control: "radio"
+		},
+		size: {
+			options: ["sm", "md", "lg"],
+			control: "select"
+		}
+	},
 	component: PasswordInputLabelComponent
 } as Meta;
 
@@ -23,6 +53,8 @@ const Template = (args) => ({
 			[invalidText]="invalidText"
 			[warn]="warn"
 			[disabled]="disabled"
+			[fluid]="fluid"
+			[skeleton]="skeleton"
 			[warnText]="warnText">
 			{{ label }}
 			<input
@@ -34,37 +66,16 @@ const Template = (args) => ({
 				[disabled]="disabled"
 				[theme]="theme"
 				[placeholder]="placeholder"
-				[autocomplete]="autocomplete">
+				[autocomplete]="autocomplete"
+				[readonly]="readonly">
 		</cds-password-label>
 	`
 });
 export const Basic = Template.bind({});
-Basic.args = {
-	disabled: false,
-	invalid: false,
-	invalidText: "Invalid entry",
-	warn: false,
-	warnText: "This is a warning!",
-	label: "Text input label",
-	helperText: "Optional helper text",
-	placeholder: "Placeholder",
-	autocomplete: "on",
-	theme: "dark",
-	size: "md"
-};
-Basic.argTypes = {
-	autocomplete: {
-		options: ["on", "off"],
-		control: "radio"
-	},
-	theme: {
-		options: ["light", "dark"],
-		control: "radio"
-	},
-	size: {
-		options: ["sm", "md", "lg"],
-		control: "select"
-	}
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
 };
 
 const SkeletonTemplate = (args) => ({

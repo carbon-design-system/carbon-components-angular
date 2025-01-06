@@ -2,13 +2,18 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
+import { IconModule } from "../icon";
 import { TilesModule, ClickableTile } from "./";
 
 export default {
 	title: "Components/Tiles/Clickable",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule]
+			imports: [
+				TilesModule,
+				LayerModule,
+				IconModule
+			]
 		})
 	],
 	component: ClickableTile
@@ -22,6 +27,11 @@ const Template = (args) => ({
 			[href]="href"
 			target="_blank">
 			Click the tile to open the Carbon Design System
+			<svg
+				cdsClickableTileIcon
+				cdsIcon="caret--right"
+				size="16">
+			</svg>
 		</cds-clickable-tile>
 	`
 });

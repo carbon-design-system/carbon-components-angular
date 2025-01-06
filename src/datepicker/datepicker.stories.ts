@@ -18,6 +18,7 @@ export default {
 		warnText: "This is a warning",
 		warn: false,
 		disabled: false,
+		readonly: false,
 		language: "en",
 		theme: "dark",
 		size: "md"
@@ -46,6 +47,7 @@ const Template = (args) => ({
 			[label]="label"
 			[placeholder]="placeholder"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
@@ -70,6 +72,7 @@ const SingleTemplate = (args) => ({
 			[theme]="theme"
 			[value]="value"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -85,6 +88,7 @@ const SingleTemplate = (args) => ({
 			[size]="size"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -120,6 +124,7 @@ const RangeTemplate = (args) => ({
 			[language]="language"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -127,6 +132,7 @@ const RangeTemplate = (args) => ({
 			[rangeInvalid]="invalid"
 			[rangeInvalidText]="invalidText"
 			[dateFormat]="dateFormat"
+			[flatpickrOptions]="flatpickrOptions"
 			[value]="value"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
@@ -141,6 +147,7 @@ const RangeTemplate = (args) => ({
 			[placeholder]="placeholder"
 			[theme]="theme"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[warn]="warn"
@@ -148,6 +155,7 @@ const RangeTemplate = (args) => ({
 			[rangeWarn]="warn"
 			[rangeWarnText]="warnText"
 			[dateFormat]="dateFormat"
+			[flatpickrOptions]="flatpickrOptions"
 			(valueChange)="valueChange($event)"
 			[helperText]="helperText">
 		</cds-date-picker>
@@ -156,8 +164,12 @@ const RangeTemplate = (args) => ({
 export const Range = RangeTemplate.bind({});
 Range.args = {
 	dateFormat: "d/m/Y",
-	value: ["01/02/24", "08/02/24"],
-	language: "en"
+	value: ["02/11/24", "08/11/24"],
+	language: "en",
+	flatpickrOptions: {
+		minDate: new Date("11/01/24"),
+		maxDate: new Date("11/30/24")
+	}
 };
 Range.argTypes = {
 	language: {

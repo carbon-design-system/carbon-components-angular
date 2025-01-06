@@ -1,15 +1,9 @@
 /* tslint:disable variable-name */
 
 import { CommonModule } from "@angular/common";
-import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	TreeviewModule,
-	TreeViewComponent,
-	TreeNodeComponent
-} from "./";
-import cloneDeep from "lodash-es/cloneDeep";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { IconModule } from "../icon";
-
+import { TreeNodeComponent, TreeViewComponent, TreeviewModule } from "./";
 import { IconTreeviewDemoComponent } from "./stories/app-treeview-icons.component";
 
 export default {
@@ -131,34 +125,52 @@ const nodes = [
 	},
 	{
 		id: "7",
+		value: "Not selectable node",
+		label: "Not selectable node",
+		selectable: false,
+		children: [
+			{
+				id: "7-1",
+				value: "Child 1",
+				label: "Child 1"
+			},
+			{
+				id: "7-2",
+				value: "Child 2",
+				label: "Child 2"
+			}
+		]
+	},
+	{
+		id: "8",
 		value: "IT infrastructure",
 		label: "IT infrastructure",
 		expanded: true,
 		disabled: true,
 		children: [
 			{
-				id: "7-1",
+				id: "8-1",
 				value: "Data storage",
 				label: "Data storage"
 			},
 			{
-				id: "7-2",
+				id: "8-2",
 				value: "Enterprise servers",
 				label: "Enterprise servers"
 			},
 			{
-				id: "8",
+				id: "9",
 				value: "Hybrid cloud infrastructure",
 				label: "Hybrid cloud infrastructure",
 				expanded: true,
 				children: [
 					{
-						id: "8-1",
+						id: "9-1",
 						value: "Insights",
 						label: "Insights"
 					},
 					{
-						id: "8-2",
+						id: "9-2",
 						value: "Benefits",
 						label: "Benefits"
 					}
@@ -167,7 +179,6 @@ const nodes = [
 		]
 	}
 ];
-
 
 const Template = (args) => ({
 	props: args,

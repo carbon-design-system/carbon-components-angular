@@ -81,7 +81,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		const svg = root.tagName.toUpperCase() !== "SVG" ? svgElement : root;
-		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+		const xmlns = "http://www.w3.org/2000/svg";
+		svg.setAttribute("xmlns", xmlns);
 
 		const attributes = getAttributes({
 			width: icon.attrs.width,
@@ -91,7 +92,8 @@ export class IconDirective implements AfterViewInit, OnChanges {
 			"aria-label": this.ariaLabel,
 			"aria-labelledby": this.ariaLabelledBy,
 			"aria-hidden": this.ariaHidden,
-			focusable: this.isFocusable.toString()
+			focusable: this.isFocusable.toString(),
+			fill: icon.attrs.fill
 		});
 
 		const attrKeys = Object.keys(attributes);
@@ -109,7 +111,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		if (attributes["title"]) {
-			const title = document.createElement("title");
+			const title = document.createElementNS(xmlns, "title");
 			title.textContent = attributes.title;
 			IconDirective.titleIdCounter++;
 			title.setAttribute("id", `${icon.name}-title-${IconDirective.titleIdCounter}`);

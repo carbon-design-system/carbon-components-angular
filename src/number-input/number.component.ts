@@ -7,7 +7,7 @@ import {
 	TemplateRef,
 	HostListener
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
@@ -38,6 +38,7 @@ export class NumberChange {
 @Component({
 	selector: "cds-number, ibm-number",
 	template: `
+		<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -51,7 +52,6 @@ export class NumberChange {
 				'cds--number--md': size === 'md',
 				'cds--number--lg': size === 'lg'
 			}">
-			<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
 			<label
 				*ngIf="!skeleton && label"
 				[for]="id"
@@ -73,10 +73,13 @@ export class NumberChange {
 					[attr.max]="max"
 					[attr.step]="step"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[required]="required"
 					[attr.aria-label]="ariaLabel"
 					[attr.data-invalid]="invalid ? invalid : null"
 					[placeholder]="placeholder"
+					(focus)="fluid ? handleFocus($event): null"
+					(blur)="fluid ? handleFocus($event): null"
 					(change)="onNumberInputChange($event)"/>
 				<svg
 					*ngIf="!skeleton && invalid"
@@ -115,8 +118,9 @@ export class NumberChange {
 					<div class="cds--number__rule-divider"></div>
 				</div>
 			</div>
+			<hr *ngIf="fluid" class="cds--number-input__divider" />
 			<div
-				*ngIf="helperText && !invalid && !warn"
+				*ngIf="helperText && !invalid && !warn && !fluid"
 				class="cds--form__helper-text"
 				[ngClass]="{
 					'cds--form__helper-text--disabled': disabled
@@ -150,6 +154,10 @@ export class NumberComponent implements ControlValueAccessor {
 
 	@HostBinding("class.cds--form-item") containerClass = true;
 
+	/**
+	 * Set to `true` for readonly state.
+	 */
+	@Input() @HostBinding("class.cds--number--readonly") readonly = false;
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` number input theme.
@@ -260,6 +268,29 @@ export class NumberComponent implements ControlValueAccessor {
 		return this._incrementLabel.value;
 	}
 
+	/**
+	 * Experimental: enable fluid state
+	 */
+	@HostBinding("class.cds--number-input--fluid") @Input() fluid = false;
+
+	@HostBinding("class.cds--number-input--fluid--invalid") get fluidInvalid() {
+		return this.fluid && this.invalid;
+	}
+
+	@HostBinding("class.cds--number-input--fluid--disabled") get fluidDisabled() {
+		return this.fluid && this.disabled;
+	}
+
+	@HostBinding("class.cds--number-input--fluid--focus") get fluidFocus() {
+		return this.fluid && this._isFocused;
+	}
+
+	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeleton() {
+		return this.fluid && this.skeleton;
+	}
+
+	protected _isFocused = false;
+
 	protected _value = 0;
 
 	protected _decrementLabel: Overridable = this.i18n.getOverridable("NUMBER.DECREMENT");
@@ -321,6 +352,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Adds `step` to the current `value`.
 	 */
 	onIncrement(): void {
+		// if max is set and value + step is greater than max, set value to max
+		// example: max = 100, step = 10, value = 95 , value + step = 105, value will be set to 100 (max) instead of 105
+		if (this.max !== null && this.value + this.step > this.max) {
+			this.value = this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value + step is less than min, set value to min
+		// example: min = 5, step = 2, value = 0, value + step = 2, value will be set to 5 (min) instead of 2
+		if (this.min !== null && this.value + this.step < this.min) {
+			this.value = this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if max is not set or value + step is less than max, increment value by step
 		if (this.max === null || this.value + this.step <= this.max) {
 			this.value += this.step;
 			this.value = parseFloat(this.value.toPrecision(this.precision));
@@ -332,6 +380,23 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Subtracts `step` to the current `value`.
 	 */
 	onDecrement(): void {
+		// if max is set and value - step is greater than max, set value to max
+		// example: max = 15, step = 2, value = 20, value - step = 18, value will be set to 15 (max) instead of 18
+		if (this.max !== null && this.value - this.step > this.max) {
+			this.value = this.max;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is set and value - step is less than min, set value to min
+		// example: min = 5, step = 2, value = 6, value - step = 4, value will be set to 5 (min) instead of 4
+		if (this.min !== null && this.value - this.step < this.min) {
+			this.value = this.min;
+			this.emitChangeEvent();
+			return;
+		}
+
+		// if min is not set or value - step is greater than min, decrement value by step
 		if (this.min === null || this.value - this.step >= this.min) {
 			this.value -= this.step;
 			this.value = parseFloat(this.value.toPrecision(this.precision));
@@ -365,6 +430,14 @@ export class NumberComponent implements ControlValueAccessor {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	handleFocus(event: FocusEvent) {
+		if ("type" in event.target && (<HTMLInputElement>event.target).type === "button") {
+			this._isFocused = false;
+		} else {
+			this._isFocused = event.type === "focus";
+		}
 	}
 }
 export { NumberComponent as Number };

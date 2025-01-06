@@ -74,6 +74,7 @@ if (languages.default?.default["en"]?.weekdays) {
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? false : true)"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[invalid]="invalid"
 					[invalidText]="invalidText"
 					[warn]="warn"
@@ -96,6 +97,7 @@ if (languages.default?.default["en"]?.weekdays) {
 					[type]="(range ? 'range' : 'single')"
 					[hasIcon]="(range ? true : null)"
 					[disabled]="disabled"
+					[readonly]="readonly"
 					[invalid]="rangeInvalid"
 					[invalidText]="rangeInvalidText"
 					[warn]="rangeWarn"
@@ -183,6 +185,8 @@ export class DatePicker implements
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
+
+	@Input() readonly = false;
 	/**
 	 * Set to `true` to display the invalid state.
 	 */
@@ -235,7 +239,11 @@ export class DatePicker implements
 			mode: this.range ? "range" : "single",
 			plugins,
 			dateFormat: this.dateFormat,
-			locale: languages.default?.default[this.language] || languages.default[this.language]
+			locale: languages.default?.default[this.language] || languages.default[this.language],
+			// Little trick force "readonly mode" on datepicker input.
+			// Docs: Whether clicking on the input should open the picker.
+			// You could disable this if you wish to open the calendar manually with.open().
+			clickOpens: !this.readonly
 		});
 	}
 
@@ -314,7 +322,8 @@ export class DatePicker implements
 			"id",
 			"value",
 			"plugins",
-			"flatpickrOptions"
+			"flatpickrOptions",
+			"readonly"
 		];
 		const changeKeys = Object.keys(changes);
 		if (changeKeys.some(key => flatpickrChangeKeys.includes(key))) {
@@ -444,6 +453,10 @@ export class DatePicker implements
 	 * Handles opening the calendar "properly" when the calendar icon is clicked.
 	 */
 	openCalendar(datepickerInput: DatePickerInput) {
+		if (this.readonly || this.skeleton) {
+			return;
+		}
+
 		if (this.range) {
 			datepickerInput.input.nativeElement.click();
 
@@ -483,6 +496,10 @@ export class DatePicker implements
 		// flatpickr calendar using a keyboard.
 		const addFocusCalendarListener = (element: HTMLInputElement) => {
 			element.addEventListener("keydown", (event: KeyboardEvent) => {
+				// Listeners are added just once, so a check is needed here.
+				if (this.readonly) {
+					return;
+				}
 				if (event.key === "Escape") {
 					this.flatpickrInstance.close();
 				}

@@ -25,6 +25,7 @@ export default {
 		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "A valid value is required",
 		warn: false,
@@ -64,7 +65,8 @@ export default {
 		appendInline: false,
 		dropUp: false,
 		size: "md",
-		theme: "dark"
+		theme: "dark",
+		fluid: false
 	},
 	argTypes: {
 		type: {
@@ -101,6 +103,8 @@ const Template = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
+			[fluid]="fluid"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -108,6 +112,11 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
 
 const MultiTemplate = (args) => ({
 	props: args,
@@ -128,6 +137,8 @@ const MultiTemplate = (args) => ({
 			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
+			[readonly]="readonly"
+			[fluid]="fluid"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -174,6 +185,7 @@ const NgTemplate = (args) => ({
 			[invalid]="invalid"
 			[invalidText]="invalidText"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>

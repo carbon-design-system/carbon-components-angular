@@ -12,6 +12,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 /**
+ * @deprecated since v5 - Use boolean
  * Defines the set of states for a toggle component.
  */
 export enum ToggleState {
@@ -19,6 +20,12 @@ export enum ToggleState {
 	Checked,
 	Unchecked
 }
+
+/**
+ * @todo - Toggle component will no longer extend `Checkbox` component as of v6
+ * Toggle is no longer repies on using checkbox, so doesn't make sense for us to continue inheriting ALL checkbox
+ * component attributes.
+ */
 
 /**
  * Get started with importing the module:
@@ -44,7 +51,8 @@ export enum ToggleState {
 				role="switch"
 				type="button"
 				[attr.aria-checked]="checked"
-				(click)="onClick($event)">
+				(click)="onClick($event)"
+				[attr.aria-label]="ariaLabel">
 			</button>
 			<label
 				class="cds--toggle__label"
@@ -136,6 +144,11 @@ export class Toggle extends Checkbox {
 	 * Set to `true` to hide the toggle label & set toggle on/off text to label.
 	 */
 	@Input() hideLabel = false;
+
+	/**
+	 * Set `aria-label` property for the button when label is empty
+	 */
+	@Input() ariaLabel: string;
 
 	@HostBinding("class.cds--toggle--skeleton") @Input() skeleton = false;
 

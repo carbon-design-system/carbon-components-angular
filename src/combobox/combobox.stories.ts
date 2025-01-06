@@ -31,6 +31,7 @@ export default {
 		hideLabel: false,
 		helperText: "Optional helper text",
 		disabled: false,
+		readonly: false,
 		invalid: false,
 		invalidText: "A valid value is required",
 		warn: false,
@@ -71,7 +72,8 @@ export default {
 		dropUp: false,
 		selectionFeedback: "top-after-reopen",
 		size: "md",
-		theme: "dark"
+		theme: "dark",
+		fluid: false
 	},
 	argTypes: {
 		size: {
@@ -105,6 +107,7 @@ const Template = (args) => ({
 		<cds-combo-box
 			[(ngModel)]="model"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[invalid]="invalid"
 			[size]="size"
 			[appendInline]="appendInline"
@@ -117,6 +120,7 @@ const Template = (args) => ({
 			[items]="items"
 			[theme]="theme"
 			[dropUp]="dropUp"
+			[fluid]="fluid"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)"
@@ -174,6 +178,10 @@ Dynamic.parameters = {
 	}
 };
 
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
+};
 
 const MultiTemplate = (args) => ({
 	props: args,
@@ -185,6 +193,7 @@ const MultiTemplate = (args) => ({
 			[hideLabel]="hideLabel"
 			[warn]="warn"
 			[disabled]="disabled"
+			[readonly]="readonly"
 			[size]="size"
 			[helperText]="helperText"
 			[appendInline]="false"
@@ -193,6 +202,7 @@ const MultiTemplate = (args) => ({
 			[selectionFeedback]="selectionFeedback"
 			[dropUp]="dropUp"
 			[appendInline]="appendInline"
+			[fluid]="fluid"
 			type="multi"
 			(selected)="selected($event)"
 			(submit)="submit($event)"

@@ -1,6 +1,6 @@
 /* tslint:disable variable-name */
 
-import { moduleMetadata, Meta } from "@storybook/angular";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { InputModule, TextareaLabelComponent } from "./";
 
 export default {
@@ -10,6 +10,33 @@ export default {
 			imports: [InputModule]
 		})
 	],
+	args: {
+		disabled: false,
+		invalid: false,
+		invalidText: "Invalid entry",
+		warn: false,
+		warnText: "This is a warning!",
+		label: "Text input label",
+		helperText: "Optional helper text",
+		placeholder: "Placeholder",
+		cols: 50,
+		rows: 4,
+		autocomplete: "on",
+		theme: "dark",
+		readonly: false,
+		fluid: false,
+		skeleton: false
+	},
+	argTypes: {
+		autocomplete: {
+			options: ["on", "off"],
+			control: "radio"
+		},
+		theme: {
+			options: ["light", "dark"],
+			control: "radio"
+		}
+	},
 	component: TextareaLabelComponent
 } as Meta;
 
@@ -21,6 +48,8 @@ const Template = (args) => ({
 		[invalid]="invalid"
 		[disabled]="disabled"
 		[invalidText]="invalidText"
+		[fluid]="fluid"
+		[skeleton]="skeleton"
 		[warn]="warn"
 		[warnText]="warnText">
 		{{label}}
@@ -32,34 +61,16 @@ const Template = (args) => ({
 			[theme]="theme"
 			[rows]="rows"
 			[cols]="cols"
+			[readonly]="readonly"
 			aria-label="textarea"></textarea>
 		</cds-textarea-label>
 	`
 });
 export const Basic = Template.bind({});
-Basic.args = {
-	disabled: false,
-	invalid: false,
-	invalidText: "Invalid entry",
-	warn: false,
-	warnText: "This is a warning!",
-	label: "Text input label",
-	helperText: "Optional helper text",
-	placeholder: "Placeholder",
-	cols: 50,
-	rows: 4,
-	autocomplete: "on",
-	theme: "dark"
-};
-Basic.argTypes = {
-	autocomplete: {
-		options: ["on", "off"],
-		control: "radio"
-	},
-	theme: {
-		options: ["light", "dark"],
-		control: "radio"
-	}
+
+export const Fluid = Template.bind({});
+Fluid.args = {
+	fluid: true
 };
 
 const SkeletonTemplate = (args) => ({
