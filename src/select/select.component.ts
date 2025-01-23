@@ -1,11 +1,12 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	EventEmitter,
+	HostListener,
 	Input,
 	Output,
-	HostListener,
-	EventEmitter,
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
@@ -164,7 +165,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: Select,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() set value(v) {
