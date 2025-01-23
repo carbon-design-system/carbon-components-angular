@@ -8,7 +8,7 @@ import {
 	HostListener,
 	Input,
 	Output,
-	ViewChild,
+	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -29,10 +29,10 @@ import { I18n } from "carbon-components-angular/i18n";
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Search,
-			multi: true,
-		},
+			multi: true
+		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Search implements ControlValueAccessor {
 	/**
