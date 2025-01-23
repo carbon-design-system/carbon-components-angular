@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from "@angular/core";
+import { Component, Input, HostBinding, ChangeDetectionStrategy } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -25,7 +25,8 @@ import { I18n } from "carbon-components-angular/i18n";
 				<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 			</svg>
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Loading {
 	/**
