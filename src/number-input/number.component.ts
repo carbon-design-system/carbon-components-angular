@@ -1,11 +1,12 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
-	Input,
-	HostBinding,
 	EventEmitter,
+	HostBinding,
+	HostListener,
+	Input,
 	Output,
-	TemplateRef,
-	HostListener
+	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -144,7 +145,8 @@ export class NumberChange {
 			useExisting: NumberComponent,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberComponent implements ControlValueAccessor {
 	/**
