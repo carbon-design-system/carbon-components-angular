@@ -1,14 +1,16 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
-	Input,
-	EventEmitter,
-	Output,
-	HostBinding,
 	ElementRef,
+	EventEmitter,
+	HostBinding,
 	HostListener,
-	ViewChild
+	Input,
+	Output,
+	ViewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -27,9 +29,10 @@ import { I18n } from "carbon-components-angular/i18n";
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Search,
-			multi: true
-		}
-	]
+			multi: true,
+		},
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Search implements ControlValueAccessor {
 	/**
@@ -41,7 +44,8 @@ export class Search implements ControlValueAccessor {
 		return !(this.toolbar || this.expandable);
 	}
 
-	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeletonClass() {
+	@HostBinding("class.cds--text-input--fluid__skeleton")
+	get fluidSkeletonClass() {
 		return this.skeleton && this.fluid;
 	}
 
@@ -151,7 +155,11 @@ export class Search implements ControlValueAccessor {
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected cdr: ChangeDetectorRef
+	) {
 		Search.searchCount++;
 	}
 
@@ -193,7 +201,8 @@ export class Search implements ControlValueAccessor {
 	 * @param search The input text.
 	 */
 	onSearch(search: string) {
-		if (this.isComposing) { // check for IME use
+		if (this.isComposing) {
+			// check for IME use
 			return;
 		}
 		this.value = search;
@@ -234,6 +243,7 @@ export class Search implements ControlValueAccessor {
 				if (this.value === "") {
 					this.active = false;
 					this.open.emit(this.active);
+					this.cdr.markForCheck();
 				}
 			} else if (event.key === "Enter") {
 				this.openSearch();
@@ -243,6 +253,7 @@ export class Search implements ControlValueAccessor {
 		if (event.key === "Escape") {
 			if (this.value !== "") {
 				this.clearSearch();
+				this.cdr.markForCheck();
 			}
 		}
 	}
@@ -250,10 +261,14 @@ export class Search implements ControlValueAccessor {
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
 		this.onTouched();
-		if ((this.expandable || this.toolbar) &&
+		if (
+			(this.expandable || this.toolbar) &&
 			this.inputRef &&
 			this.inputRef.nativeElement.value === "" &&
-			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget)) {
+			!(this.elementRef.nativeElement as HTMLElement).contains(
+				event.relatedTarget
+			)
+		) {
 			this.active = false;
 			this.open.emit(this.active);
 		}
@@ -263,9 +278,14 @@ export class Search implements ControlValueAccessor {
 	focusIn(event) {
 		this.onTouched();
 		// set input focus if search icon get focus from tab key press event.
-		if ((this.expandable || this.toolbar) &&
-			this.inputRef && !event.relatedTarget &&
-			!(this.elementRef.nativeElement as HTMLElement).contains(event.relatedTarget) ) {
+		if (
+			(this.expandable || this.toolbar) &&
+			this.inputRef &&
+			!event.relatedTarget &&
+			!(this.elementRef.nativeElement as HTMLElement).contains(
+				event.relatedTarget
+			)
+		) {
 			this.openSearch();
 		}
 	}
