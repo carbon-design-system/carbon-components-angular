@@ -1,8 +1,9 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
+	EventEmitter,
 	Input,
-	Output,
-	EventEmitter
+	Output
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
@@ -67,7 +68,8 @@ import { Step } from "./progress-indicator-step.interface";
 			</button>
 		</li>
 	</ul>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressIndicator {
 	@Input() get current() {
