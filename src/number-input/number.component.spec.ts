@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/index";
 import { IconModule } from "../icon/index";
+import { Number } from "./number.component";
 
 describe("Number", () => {
 	let component: Number;
@@ -71,13 +71,13 @@ describe("Number", () => {
 	});
 
 	it("should bind input label", () => {
-		component.label = "Number Input";
+		fixture.componentRef.setInput("label", "Number Input");
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css(".cds--label")).nativeElement;
 		expect(labelElement.innerHTML.includes("Number Input")).toEqual(true);
 		expect(containerElement.className.includes("cds--number--nolabel")).toEqual(false);
 
-		component.label = null;
+		fixture.componentRef.setInput("label", null);
 		fixture.detectChanges();
 		expect(fixture.debugElement.query(By.css(".cds--label"))).toBeNull();
 		expect(containerElement.className.includes("cds--number--nolabel")).toEqual(true);
@@ -186,10 +186,10 @@ describe("Number", () => {
 	});
 
 	it("should have dark and light theme", () => {
-		component.theme = "dark";
+		fixture.componentRef.setInput("theme", "dark");
 		fixture.detectChanges();
 		expect(containerElement.className.includes("cds--number--light")).toEqual(false);
-		component.theme = "light";
+		fixture.componentRef.setInput("theme", "light");
 		fixture.detectChanges();
 		expect(containerElement.className.includes("cds--number--light")).toEqual(true);
 	});
