@@ -48,7 +48,7 @@ import {
 			display: list-item;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush	 
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
