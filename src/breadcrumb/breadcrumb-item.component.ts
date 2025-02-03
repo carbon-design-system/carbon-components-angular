@@ -29,7 +29,7 @@ import { Router } from "@angular/router";
 			<ng-container *ngTemplateOutlet="content" />
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush	 
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {

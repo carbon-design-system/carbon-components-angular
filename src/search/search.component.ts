@@ -1,14 +1,16 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
-	Input,
-	EventEmitter,
-	Output,
-	HostBinding,
 	ElementRef,
+	EventEmitter,
+	HostBinding,
 	HostListener,
+	Input,
+	Output,
 	ViewChild
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -29,7 +31,8 @@ import { I18n } from "carbon-components-angular/i18n";
 			useExisting: Search,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Search implements ControlValueAccessor {
 	/**
@@ -151,7 +154,11 @@ export class Search implements ControlValueAccessor {
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
 		Search.searchCount++;
 	}
 
@@ -234,6 +241,7 @@ export class Search implements ControlValueAccessor {
 				if (this.value === "") {
 					this.active = false;
 					this.open.emit(this.active);
+					this.changeDetectorRef.markForCheck();
 				}
 			} else if (event.key === "Enter") {
 				this.openSearch();
@@ -243,6 +251,7 @@ export class Search implements ControlValueAccessor {
 		if (event.key === "Escape") {
 			if (this.value !== "") {
 				this.clearSearch();
+				this.changeDetectorRef.markForCheck();
 			}
 		}
 	}
