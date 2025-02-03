@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input
+} from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
 /**
@@ -50,5 +55,5 @@ export class Loading {
 	 */
 	@Input() @HostBinding("class.cds--loading-overlay") overlay = false;
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 }

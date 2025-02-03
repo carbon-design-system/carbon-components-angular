@@ -154,7 +154,11 @@ export class Search implements ControlValueAccessor {
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected cdr: ChangeDetectorRef) {
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {
 		Search.searchCount++;
 	}
 
@@ -237,7 +241,7 @@ export class Search implements ControlValueAccessor {
 				if (this.value === "") {
 					this.active = false;
 					this.open.emit(this.active);
-					this.cdr.markForCheck();
+					this.changeDetectorRef.markForCheck();
 				}
 			} else if (event.key === "Enter") {
 				this.openSearch();
@@ -247,7 +251,7 @@ export class Search implements ControlValueAccessor {
 		if (event.key === "Escape") {
 			if (this.value !== "") {
 				this.clearSearch();
-				this.cdr.markForCheck();
+				this.changeDetectorRef.markForCheck();
 			}
 		}
 	}
