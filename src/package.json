@@ -15,6 +15,9 @@
   "peerDependencies": {
     "@carbon/styles": "^1.54.0"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "dependencies": {
     "@carbon/icon-helpers": "10.54.0",
     "@carbon/icons": "11.52.0",
