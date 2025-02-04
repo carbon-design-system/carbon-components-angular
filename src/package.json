@@ -16,7 +16,8 @@
     "@carbon/styles": "^1.54.0"
   },
   "publishConfig": {
-    "provenance": true
+    "provenance": true,
+    "access": "public"
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.54.0",
