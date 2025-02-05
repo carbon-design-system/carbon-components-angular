@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 export enum InlineLoadingState {
@@ -74,7 +75,8 @@ export enum InlineLoadingState {
 				<p class="cds--inline-loading__text">{{errorText}}</p>
 			}
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InlineLoading {
 	InlineLoadingState = InlineLoadingState;
