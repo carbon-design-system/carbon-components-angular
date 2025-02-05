@@ -379,7 +379,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
-	menuIsClosed = true;
+	@Input() menuIsClosed = true;
 
 	/**
 	 * controls whether the `drop-up` class is applied
