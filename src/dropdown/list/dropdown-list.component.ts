@@ -9,7 +9,8 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import {
 	Observable,
@@ -117,7 +118,8 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			provide: AbstractDropdownView,
 			useExisting: DropdownList
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	static listCount = 0;
