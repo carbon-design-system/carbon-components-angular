@@ -299,8 +299,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
-	  * Set to `true` to show a warning (contents set by warningText)
-	  */
+		* Set to `true` to show a warning (contents set by warningText)
+		*/
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -407,7 +407,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected dropdownService: DropdownService,
-		protected elementService: ElementService) {}
+		protected elementService: ElementService) { }
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
