@@ -10,7 +10,8 @@ import {
 	ElementRef,
 	ViewChildren,
 	QueryList,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	ChangeDetectorRef
 } from "@angular/core";
 import {
 	Observable,
@@ -230,7 +231,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n) { }
+	constructor(
+		public elementRef: ElementRef,
+		protected i18n: I18n,
+		protected changeDetectorRef: ChangeDetectorRef
+	) { }
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -294,6 +299,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this.displayItems) {
 				this.index = 0;
 			}
+			this.changeDetectorRef.markForCheck();
 		} else {
 			this.displayItems = this.getListItems();
 		}
