@@ -12,7 +12,8 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -208,7 +209,8 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			useExisting: Dropdown,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
