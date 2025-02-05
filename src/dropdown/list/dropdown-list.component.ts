@@ -228,7 +228,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(public elementRef: ElementRef, protected i18n: I18n) { }
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -538,7 +538,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				}
 			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement().scrollIntoView({  block: "nearest" });
+					this.getPrevElement().scrollIntoView({ block: "nearest" });
 				} else {
 					this.blurIntent.emit("top");
 				}
