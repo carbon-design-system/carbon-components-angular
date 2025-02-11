@@ -108,7 +108,7 @@ Multi.args = {
 			"@carbon/styles": "^1.2.0"
 		}
 	}`,
-	copyButtonDescription: 'Click to copy to clipboard!'
+	copyButtonDescription: "Click to copy to clipboard!"
 };
 Multi.argTypes = {
 	maxCollapsedNumberOfRows: {
