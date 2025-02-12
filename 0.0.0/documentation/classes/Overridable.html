@@ -797,7 +797,9 @@ export class Overridable {
 /**
  * An object of strings, should follow the same format as src/i18n/en.json
  */
-export type TranslationStrings &#x3D; { [key: string]: string };
+export type TranslationStrings &#x3D; {
+	[key: string]: string | TranslationStrings;
+};
 
 
 /**
@@ -810,7 +812,7 @@ export type TranslationStrings &#x3D; { [key: string]: string };
  */
 @Injectable()
 export class I18n {
-	protected translationStrings &#x3D; EN;
+	protected translationStrings: TranslationStrings &#x3D; EN;
 
 	protected translations &#x3D; new Map();
 
@@ -926,8 +928,8 @@ export class I18n {
 	 *
 	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
 	 */
-	public getValueFromPath(path): string | { [key: string]: string } {
-		let value &#x3D; this.translationStrings;
+	public getValueFromPath(path: string): string | TranslationStrings {
+		let value: string | TranslationStrings &#x3D; this.translationStrings;
 		for (const segment of path.split(&quot;.&quot;)) {
 			if (value[segment] !&#x3D;&#x3D; undefined &amp;&amp; value[segment] !&#x3D;&#x3D; null) {
 				value &#x3D; value[segment];
