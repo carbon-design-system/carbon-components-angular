@@ -33,11 +33,11 @@ import { I18n } from "carbon-components-angular/i18n";
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<div class="cds--tile__checkmark"
 				[class.cds--tile__checkmark--persistent]="multiple">
-				<svg *ngIf="!selected; else selectedCheckboxIcon"
+				<svg *ngIf="!selected; else selectedIcon"
 					[cdsIcon]="multiple ? 'checkbox' : 'checkmark'"
 					size="16">
 				</svg>
-				<ng-template #selectedCheckboxIcon>
+				<ng-template #selectedIcon>
 					<svg [cdsIcon]="multiple ? 'checkbox--checked--filled' : 'checkmark--filled'" size="16"></svg>
 				</ng-template>
 			</div>
