@@ -67,7 +67,7 @@ export default {
 		size: "md",
 		theme: "dark",
 		fluid: false,
-		menuIsClosed: true
+		isOpen: false
 	},
 	argTypes: {
 		type: {
@@ -106,7 +106,7 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
-			[menuIsClosed]="menuIsClosed"
+			[isOpen]="isOpen"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -141,7 +141,7 @@ const MultiTemplate = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
-			[menuIsClosed]="menuIsClosed"
+			[isOpen]="isOpen"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
