@@ -552,7 +552,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	/**
 	 * function passed in by `registerOnChange`
 	 */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
@@ -683,7 +683,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		return false;
 	}
 
-	_noop() { }
+	_noop() {}
 	/**
 	 * Handles clicks outside of the `Dropdown`.
 	 */
