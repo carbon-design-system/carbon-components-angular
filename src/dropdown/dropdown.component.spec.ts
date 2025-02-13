@@ -18,7 +18,7 @@ import { IconModule } from "../icon/index";
 	<cds-dropdown
 		placeholder="test"
 		class="custom-class"
-		[menuIsClosed]="menuIsClosed"
+		[isOpen]="isOpen"
 		(selected)="onSelect()"
 		[(ngModel)]="model">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -28,7 +28,7 @@ class DropdownTest {
 	model = null;
 	items = [{ content: "one", id: 0, selected: false }, { content: "two", id: 1, selected: false }];
 	selected: ListItem;
-	@Input() menuIsClosed = true;
+	@Input() isOpen = true;
 	onSelect() { }
 }
 
@@ -80,7 +80,7 @@ describe("Dropdown", () => {
 		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
-		fixture.componentRef.setInput("menuIsClosed", false);
+		fixture.componentRef.setInput("isOpen", false);
 		fixture.detectChanges();
 		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
