@@ -22,6 +22,8 @@ import Checkmark16 from "@carbon/icons/es/checkmark/16";
 import CheckmarkFilled16 from "@carbon/icons/es/checkmark--filled/16";
 import CheckmarkFilled20 from "@carbon/icons/es/checkmark--filled/20";
 import CheckmarkOutline16 from "@carbon/icons/es/checkmark--outline/16";
+import Checkbox16 from '@carbon/icons/es/checkbox/16';
+import CheckboxCheckedFilled16 from '@carbon/icons/es/checkbox--checked--filled/16';
 import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16";
 import CircleDash16 from "@carbon/icons/es/circle-dash/16";
@@ -105,6 +107,8 @@ export class IconModule {
 			CheckmarkFilled16,
 			CheckmarkFilled20,
 			CheckmarkOutline16,
+			Checkbox16,
+			CheckboxCheckedFilled16,
 			ChevronDown16,
 			ChevronRight16,
 			CircleDash16,
