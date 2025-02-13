@@ -96,7 +96,7 @@ export class FileComponent implements OnDestroy {
 		return this.size === "lg";
 	}
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	ngOnDestroy() {
 		this.remove.emit();

@@ -235,7 +235,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		public elementRef: ElementRef,
 		protected i18n: I18n,
 		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	) {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
