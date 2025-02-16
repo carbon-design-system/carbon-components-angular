@@ -28,6 +28,7 @@ import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angu
 import { Subscription } from "rxjs";
 
 type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
+
 @Component({
 	selector: "cds-menu-button",
 	template: `
@@ -70,7 +71,6 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	// Listen for click & determine if menu should close
 	@ContentChildren(ContextMenuItemComponent) set projectedMenuItems(itemList: QueryList<ContextMenuItemComponent>) {

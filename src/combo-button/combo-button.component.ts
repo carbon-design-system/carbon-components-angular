@@ -92,7 +92,7 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 	@Input() label: string;
 	@Input() disabled = false;
 	@Input() menuAlignment: ComboButtonPlacement = "bottom";
-	@Input() description;
+	@Input() description: string;
 	@Input() tooltipAutoAlign = false;
 	@Input() tooltipPlacement = "bottom";
 	@Input() @HostBinding("class.cds--combo-button__container--open") open = false;
