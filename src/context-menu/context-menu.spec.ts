@@ -61,6 +61,10 @@ describe("Menu", () => {
 		fixture.detectChanges();
 	});
 
+	it("should work", () => {
+		expect(wrapper instanceof MenuTestComponent).toBe(true);
+	});
+
 	it("should remove open css class when open is set to false", () => {
 		const menu = fixture.debugElement.query(By.css("cds-context-menu"));
 		wrapper.open = false;
@@ -70,14 +74,14 @@ describe("Menu", () => {
 
 	it("Should have red checkbox checked by default", () => {
 		const selectedRadio = fixture.debugElement.query(
-			By.css("cds-context-menu-item[type=\"checkbox\"][label=\"Red\"]")
+			By.css("cds-context-menu-item[type='checkbox'][label='Red']")
 		);
 		expect(selectedRadio.componentInstance.checked).toBeTrue();
 	});
 
 	it("Should have radio one selected by default", () => {
 		const selectedRadio = fixture.debugElement.query(
-			By.css("cds-context-menu-item[type=\"radio\"][value=\"one\"]")
+			By.css("cds-context-menu-item[type='radio'][value='one']")
 		);
 		expect(selectedRadio.componentInstance.checked).toBeTrue();
 	});
@@ -86,7 +90,7 @@ describe("Menu", () => {
 		spyOn(wrapper, "onRadioChange");
 
 		const radioTwo = fixture.debugElement.query(
-			By.css("cds-context-menu-item[type=\"radio\"][value=\"two\"]")
+			By.css("cds-context-menu-item[type='radio'][value='two']")
 		);
 
 		radioTwo.nativeElement.click();
@@ -106,7 +110,7 @@ describe("Menu", () => {
 
 	it("should detect if there is a child context menu", () => {
 		const flyoutElement = fixture.debugElement.query(
-			By.css("cds-context-menu-item[label=\"Radio flyout\"]")
+			By.css("cds-context-menu-item[label='Radio flyout']")
 		);
 		const flyoutComponent = flyoutElement.componentInstance;
 
