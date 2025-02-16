@@ -5,7 +5,9 @@ import {
 	Input,
 	SimpleChanges,
 	OnChanges,
-	HostBinding
+	HostBinding,
+	AfterViewInit,
+	ChangeDetectorRef
 } from "@angular/core";
 
 /**
@@ -28,7 +30,7 @@ import {
 		}
 	`]
 })
-export class ContextMenuComponent implements OnChanges {
+export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@Input() open = false;
 	@Input() position = {
 		left: 0,
@@ -46,11 +48,11 @@ export class ContextMenuComponent implements OnChanges {
 	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
 	@HostBinding("style.top.px") get topPosition() { return this.position.top; }
 
-	@HostBinding("class.cds--menu--with-icons") get classIcons() {
-		const svgElement = this.elementRef.nativeElement
-			.querySelector(".cds--menu-item .cds--menu-item__icon svg") as HTMLElement;
-		return svgElement;
-	}
+	/**
+	 * @todo - convert to getter in v6, should resolve expression has changed
+	 * after switching to on OnPush Change Detection Strategy
+	 */
+	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
 	constructor(protected elementRef: ElementRef) { }
 
@@ -58,6 +60,16 @@ export class ContextMenuComponent implements OnChanges {
 		if (changes.open && changes.open.currentValue) {
 			this.focusMenu();
 		}
+	}
+
+	ngAfterViewInit(): void {
+		setTimeout(() => {
+			const nativeElement = this.elementRef.nativeElement;
+			if (nativeElement) {
+				this.iconClass = !!nativeElement
+					.querySelector(".cds--menu-item .cds--menu-item__icon svg");
+			}
+		});
 	}
 
 	focusMenu() {
@@ -75,7 +87,7 @@ export class ContextMenuComponent implements OnChanges {
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
 		const menuItems: HTMLElement[] = (
 			Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
-			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
+				.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
 		);
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
