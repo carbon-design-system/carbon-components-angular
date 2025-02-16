@@ -10,9 +10,7 @@ import { Button } from "../button";
 
 @Component({
 	template: `
-		<cds-menu-button
-			[size]="size"
-			label="Menu button">
+		<cds-menu-button label="Menu button">
 			<cds-menu-item label="First action with a long label description"></cds-menu-item>
 			<cds-menu-item label="Second action"></cds-menu-item>
 			<cds-menu-item label="Third action" [disabled]="true"></cds-menu-item>
@@ -24,9 +22,7 @@ import { Button } from "../button";
 		</cds-menu-button>
 	`
 })
-class MenuButtonTestComponent {
-	@Input() size = "lg";
-}
+class MenuButtonTestComponent {}
 
 describe("Menu button", () => {
 	let fixture, wrapper;

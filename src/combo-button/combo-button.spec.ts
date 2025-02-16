@@ -10,9 +10,7 @@ import { Button } from "../button";
 
 @Component({
 	template: `
-		<cds-combo-button
-			[size]="size"
-			label="Menu button">
+		<cds-combo-button label="Menu button">
 			<cds-menu-item label="First action with a long label description"></cds-menu-item>
 			<cds-menu-item label="Second action"></cds-menu-item>
 			<cds-menu-item label="Third action" [disabled]="true"></cds-menu-item>
@@ -24,9 +22,7 @@ import { Button } from "../button";
 		</cds-combo-button>
 	`
 })
-class ComboButtonTestComponent {
-	@Input() size = "lg";
-}
+class ComboButtonTestComponent {}
 
 describe("Combo button", () => {
 	let fixture, wrapper;
