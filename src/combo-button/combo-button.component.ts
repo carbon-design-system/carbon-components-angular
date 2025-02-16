@@ -98,15 +98,9 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 	@Input() @HostBinding("class.cds--combo-button__container--open") open = false;
 	@Output() actionClick = new EventEmitter<Event>();
 	@HostBinding("class.cds--combo-button__container") comboButtonContainer = true;
-	@HostBinding("class.cds--combo-button__container--lg") get sizeLg() {
-		return this.size === "lg";
-	}
-	@HostBinding("class.cds--combo-button__container--md") get sizeMd() {
-		return this.size === "md";
-	}
-	@HostBinding("class.cds--combo-button__container--sm") get sizeSm() {
-		return this.size === "sm";
-	}
+	@HostBinding("class.cds--combo-button__container--lg") get sizeLg() { return this.size === "lg"; }
+	@HostBinding("class.cds--combo-button__container--md") get sizeMd() { return this.size === "md"; }
+	@HostBinding("class.cds--combo-button__container--sm") get sizeSm() { return this.size === "sm"; }
 
 	@ViewChild("menuTemplate") menuTemplate: TemplateRef<any>;
 
