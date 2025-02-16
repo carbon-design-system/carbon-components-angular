@@ -18,7 +18,7 @@ import {
  * [See demo](../../?path=/story/components-context-menu--basic)
  */
 @Component({
-	selector: "cds-context-menu, ibm-context-menu",
+	selector: "cds-menu, cds-context-menu, ibm-context-menu",
 	template: `
 			<ng-content></ng-content>
 	`,
@@ -34,10 +34,13 @@ export class ContextMenuComponent implements OnChanges {
 		left: 0,
 		top: 0
 	};
+	@Input() size: "sm" | "md" | "lg" = "lg";
 
-	@HostBinding("class.cds--menu") contextMenu = true;
-	@HostBinding("class.cds--menu--open") get contextMenuOpen() { return this.open; }
-	@HostBinding("class.cds--menu--shown") get showMenu() { return this.open; }
+	@HostBinding("class") get hostClass() {
+		const open = this.open ? "cds--menu--open cds--menu--shown" : "";
+		return `cds--menu cds--autoalign cds--menu--${this.size} ${open}`;
+	}
+
 	@HostBinding("attr.role") role = "menu";
 	@HostBinding("attr.tabindex") tabindex = "-1";
 	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }

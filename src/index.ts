@@ -24,6 +24,7 @@ export * from "carbon-components-angular/link";
 export * from "carbon-components-angular/list";
 export * from "carbon-components-angular/loading";
 export * from "carbon-components-angular/modal";
+export * from "carbon-components-angular/menu-button";
 export * from "carbon-components-angular/notification";
 export * from "carbon-components-angular/number-input";
 export * from "carbon-components-angular/pagination";
