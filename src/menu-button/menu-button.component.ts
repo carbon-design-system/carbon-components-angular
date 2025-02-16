@@ -34,14 +34,14 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 		<button
 			#reference
 			class="cds--menu-button__trigger"
-			[ngClass]="{'cds--menu-button__trigger--open': isMenuOpen}"
+			[ngClass]="{'cds--menu-button__trigger--open': open}"
 			[cdsButton]="kind"
 			[size]="size"
 			[attr.tabindex]="buttonTabIndex"
 			[disabled]="disabled"
 			type="button"
 			[attr.aria-haspopup]="true"
-			[attr.aria-expanded]="isMenuOpen"
+			[attr.aria-expanded]="open"
 			[attr.aria-controls]=""
 			(click)="toggleMenu()">
 			{{label}}
@@ -55,7 +55,7 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 			<cds-menu
 				mode="basic"
 				[size]="size"
-				[open]="isMenuOpen"
+				[open]="open"
 				[ngClass]="{
 					'cds--menu-button__bottom': this.menuAlignment === 'bottom',
 					'cds--menu-button__bottom-start': this.menuAlignment === 'bottom-start',
@@ -91,7 +91,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	@Input() menuAlignment: MenuButtonPlacement = "bottom";
 	@Input() buttonTabIndex: "0" | "1" | "-1" | string = "0";
 	@Input() disabled = false;
-	@Input() isMenuOpen = false;
+	@Input() open = false;
 	@Input() label: string;
 
 	@ViewChild("reference", { static: true }) referenceElement: ElementRef<HTMLButtonElement>;
@@ -129,8 +129,8 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	 * If user has passed in true for open, we dynamically open the menu
 	 */
 	ngAfterViewInit(): void {
-		if (this.isMenuOpen) {
-			this.isMenuOpen = !this.isMenuOpen;
+		if (this.open) {
+			this.open = !this.open;
 			this.toggleMenu();
 		}
 	}
@@ -191,8 +191,8 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	 * Handles emitting open/close event
 	 */
 	toggleMenu() {
-		this.isMenuOpen = !this.isMenuOpen;
-		if (this.isMenuOpen) {
+		this.open = !this.open;
+		if (this.open) {
 			// Render the template & append to view
 			const view = this.viewContainerRef.createEmbeddedView(this.menuTemplate);
 			this.menuRef = document.body.appendChild(view.rootNodes[0] as HTMLElement);
