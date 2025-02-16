@@ -56,7 +56,7 @@ describe("Menu button", () => {
 		menuButton.nativeElement.click();
 		fixture.detectChanges();
 		const menu = fixture.debugElement.query(By.css("cds-menu-button"));
-		expect(menu.componentInstance.isMenuOpen).toBeTrue();
+		expect(menu.componentInstance.open).toBeTrue();
 		expect(menuButton.nativeElement.className.includes("cds--menu-button__trigger--open"));
 	});
 
@@ -65,11 +65,11 @@ describe("Menu button", () => {
 		menuButton.nativeElement.click();
 		fixture.detectChanges();
 		const menu = fixture.debugElement.query(By.css("cds-menu-button"));
-		expect(menu.componentInstance.isMenuOpen).toBeTrue();
+		expect(menu.componentInstance.open).toBeTrue();
 		expect(menuButton.nativeElement.className.includes("cds--menu-button__trigger--open")).toBeTrue();
 		menuButton.nativeElement.click();
 		fixture.detectChanges();
-		expect(menu.componentInstance.isMenuOpen).toBeFalse();
+		expect(menu.componentInstance.open).toBeFalse();
 		expect(menuButton.nativeElement.className.includes("cds--menu-button__trigger--open")).toBeFalse();
 	});
 
