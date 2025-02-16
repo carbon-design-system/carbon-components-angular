@@ -41,7 +41,7 @@ class MenuTestComponent {
 	onRadioChange(event) {}
 }
 
-fdescribe("Menu", () => {
+describe("Menu", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
