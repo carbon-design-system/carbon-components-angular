@@ -64,7 +64,7 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 					'cds--menu-top-start': this.menuAlignment === 'top-start',
 					'cds--menu-top-end': this.menuAlignment === 'top-end'
 				}">
-				<ng-content></ng-content>
+				<ng-content select="cds-menu-item, cds-menu-divider"></ng-content>
 			</cds-menu>
 		</ng-template>
 	`,
