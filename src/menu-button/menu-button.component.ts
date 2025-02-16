@@ -43,7 +43,7 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 			[attr.aria-haspopup]="true"
 			[attr.aria-expanded]="isMenuOpen"
 			[attr.aria-controls]=""
-			(click)="handleChange()">
+			(click)="toggleMenu()">
 			{{label}}
 			<svg
 				cdsIcon="chevron--down"
@@ -131,7 +131,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	ngAfterViewInit(): void {
 		if (this.isMenuOpen) {
 			this.isMenuOpen = !this.isMenuOpen;
-			this.handleChange();
+			this.toggleMenu();
 		}
 	}
 
@@ -152,7 +152,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	handleMenuItemClick(event: ItemClickEvent) {
 		// If event is not type radio/checkbox, we close the menu
 		if (!event.type) {
-			this.handleChange();
+			this.toggleMenu();
 		}
 	}
 
@@ -164,7 +164,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	 */
 	handleFocusOut(event) {
 		if (!this.hostElement.nativeElement.contains(event.target)) {
-			this.handleChange();
+			this.toggleMenu();
 		}
 	}
 
@@ -190,7 +190,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	/**
 	 * Handles emitting open/close event
 	 */
-	handleChange() {
+	toggleMenu() {
 		this.isMenuOpen = !this.isMenuOpen;
 		if (this.isMenuOpen) {
 			// Render the template & append to view
