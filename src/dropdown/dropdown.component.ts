@@ -88,7 +88,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
 				'cds--dropdown--md cds--list-box--md': size === 'md',
 				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-				'cds--list-box--expanded': !isOpen,
+				'cds--list-box--expanded': isOpen,
 				'cds--list-box--invalid': invalid
 			}"
 			[attr.data-invalid]="invalid ? true : null">
@@ -100,8 +100,8 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[id]="id"
 				type="button"
 				class="cds--list-box__field"
-				[ngClass]="{'a': !isOpen}"
-				[attr.aria-expanded]="!isOpen"
+				[ngClass]="{'a': isOpen}"
+				[attr.aria-expanded]="isOpen"
 				[attr.aria-disabled]="disabled"
 				[attr.aria-readonly]="readonly"
 				aria-haspopup="listbox"
@@ -143,7 +143,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 							cdsIcon="chevron--down"
 							size="16"
 							[attr.aria-label]="menuButtonLabel"
-							[ngClass]="{'cds--list-box__menu-icon--open': !isOpen }">
+							[ngClass]="{'cds--list-box__menu-icon--open': isOpen }">
 						</svg>
 					}
 				</span>
@@ -166,7 +166,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				[ngClass]="{
 					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 				}">
-				@if (!isOpen) {
+				@if (isOpen) {
 					<ng-content />
 				}
 			</div>
@@ -220,7 +220,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
-		return this.fluid && this._isFocused && this.isOpen;
+		return this.fluid && this._isFocused && !this.isOpen;
 	}
 
 	protected get writtenValue() {
@@ -302,8 +302,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
-		* Set to `true` to show a warning (contents set by warningText)
-		*/
+	* Set to `true` to show a warning (contents set by warningText)
+	*/
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -583,14 +583,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			return;
 		}
 
-		if ((event.key === "Escape") && !this.isOpen) {
+		if ((event.key === "Escape") && this.isOpen) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (this.isOpen && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp")) {
+		} else if (!this.isOpen && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp")) {
 			if (this.disableArrowKeys && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
 				return;
 			}
@@ -598,17 +598,17 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			this.openMenu();
 		}
 
-		if (!this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
+		if (this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 
-		if (!this.isOpen && event.key === "Tab" && event.shiftKey) {
+		if (this.isOpen && event.key === "Tab" && event.shiftKey) {
 			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
 
-		if (this.isOpen) {
+		if (!this.isOpen) {
 			this.closedDropdownNavigation(event);
 		}
 	}
@@ -705,7 +705,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 	}
 	_outsideKey(event) {
-		if (!this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
+		if (this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 	}
@@ -713,14 +713,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.isOpen) {
+		if (event.key === "Escape" && this.isOpen) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (!this.isOpen && event.key === "Tab") {
+		} else if (this.isOpen && event.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.dropdownButton.nativeElement.focus();
@@ -742,7 +742,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	_appendToBody() {
 		const lightClass = this.theme === "light" ? " cds--list-box--light" : "";
-		const expandedClass = !this.isOpen ? " cds--list-box--expanded" : "";
+		const expandedClass = this.isOpen ? " cds--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
@@ -781,7 +781,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 
 		this._dropUp = false;
-		this.isOpen = false;
+		this.isOpen = true;
 
 		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
@@ -820,8 +820,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	closeMenu() {
 		// return early if the menu is already closed
-		if (this.isOpen) { return; }
-		this.isOpen = true;
+		if (!this.isOpen) { return; }
+		this.isOpen = false;
 		this.checkForReorder();
 		this.onClose.emit();
 		this.close.emit();
@@ -849,7 +849,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Controls toggling menu states between open/expanded and closed/collapsed.
 	 */
 	toggleMenu() {
-		if (this.isOpen) {
+		if (!this.isOpen) {
 			this.openMenu();
 		} else {
 			this.closeMenu();
@@ -871,7 +871,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Controls when it's needed to apply the selection feedback
 	 */
 	protected checkForReorder() {
-		const topAfterReopen = this.isOpen && this.selectionFeedback === "top-after-reopen";
+		const topAfterReopen = !this.isOpen && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
 		}
