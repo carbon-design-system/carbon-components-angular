@@ -43,7 +43,7 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 			type="button"
 			[attr.aria-haspopup]="true"
 			[attr.aria-expanded]="open"
-			[attr.aria-controls]=""
+			[attr.aria-controls]="open ? menuId : undefined"
 			(click)="toggleMenu()">
 			{{label}}
 			<svg
@@ -57,6 +57,7 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 				mode="basic"
 				[size]="size"
 				[open]="open"
+				[attr.id]="menuId"
 				[ngClass]="{
 					'cds--menu-button__bottom': this.menuAlignment === 'bottom',
 					'cds--menu-button__bottom-start': this.menuAlignment === 'bottom-start',
@@ -72,6 +73,9 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
+	static menuButtonCounter = 0;
+	@Input() menuId = `menu-button-${MenuButtonComponent.menuButtonCounter++}`;
+
 	// Listen for click & determine if menu should close
 	@ContentChildren(ContextMenuItemComponent) set projectedMenuItems(itemList: QueryList<ContextMenuItemComponent>) {
 		// Reset in case user dynamically updates menu item
@@ -110,7 +114,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 		protected hostElement: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	) { }
 
 
 	/**

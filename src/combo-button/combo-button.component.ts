@@ -32,8 +32,7 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 @Component({
 	selector: "cds-combo-button",
 	template: `
-	<!-- Todo aria-owns menu ID -->
-		<div class="cds--combo-button__primary-action">
+		<div class="cds--combo-button__primary-action" [attr.aria-owns]="open ? comboId : undefined">
 			<button
 				cdsButton="primary"
 				[size]="size"
@@ -48,8 +47,8 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 			[buttonNgClass]="{ 'cds--combo-button__trigger': true }"
 			[buttonAttributes]="{
 				'aria-haspopup': true,
-				'aria-expanded': open
-
+				'aria-expanded': open,
+				'aria-controls': open ? comboId : undefined
 			}"
 			[size]="size"
 			[description]="description"
@@ -67,7 +66,8 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 			<cds-menu
 				mode="basic"
 				[size]="size"
-				[open]="open">
+				[open]="open"
+				[attr.id]="comboId">
 				<ng-content select="cds-menu-item, cds-menu-divider"></ng-content>
 			</cds-menu>
 		</ng-template>
@@ -75,6 +75,8 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
+	static comboButtonCounter = 0;
+	@Input() comboId = `combo-button-${ComboButtonComponent.comboButtonCounter++}`;
 
 	// Listen for click & determine if menu should close
 	@ContentChildren(ContextMenuItemComponent) set projectedMenuItems(itemList: QueryList<ContextMenuItemComponent>) {
@@ -101,6 +103,9 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 	@HostBinding("class.cds--combo-button__container--lg") get sizeLg() { return this.size === "lg"; }
 	@HostBinding("class.cds--combo-button__container--md") get sizeMd() { return this.size === "md"; }
 	@HostBinding("class.cds--combo-button__container--sm") get sizeSm() { return this.size === "sm"; }
+	@HostBinding("attr.aria-owns") get ariaOwns() {
+		return this.open ? this.comboId : undefined;
+	}
 
 	@ViewChild("menuTemplate") menuTemplate: TemplateRef<any>;
 
@@ -117,7 +122,7 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 		protected hostElement: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	) { }
 
 
 	/**
