@@ -28,7 +28,7 @@ class DropdownTest {
 	model = null;
 	items = [{ content: "one", id: 0, selected: false }, { content: "two", id: 1, selected: false }];
 	selected: ListItem;
-	@Input() isOpen = true;
+	@Input() isOpen = false;
 	onSelect() { }
 }
 
@@ -80,7 +80,7 @@ describe("Dropdown", () => {
 		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
-		fixture.componentRef.setInput("isOpen", false);
+		fixture.componentRef.setInput("isOpen", true);
 		fixture.detectChanges();
 		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
