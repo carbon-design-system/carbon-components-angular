@@ -92,6 +92,7 @@ export enum SnippetType {
 				*ngIf="!skeleton"
 				[description]="showFeedback ? feedbackText : copyButtonDescription"
 				[align]="align"
+				[autoAlign]="autoAlign"
 				[dropShadow]="dropShadow"
 				[caret]="caret"
 				[highContrast]="highContrast"
