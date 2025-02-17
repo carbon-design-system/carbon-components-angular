@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { By	} from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { IconModule } from "../icon/index";
 import { I18nModule } from "../i18n/index";
@@ -29,9 +29,9 @@ import { PlaceholderModule } from "./../placeholder/index";
 })
 class ComboboxTest {
 	items = [
-		{id: "1", content: "one", selected: false},
-		{id: "2", content: "two", selected: false},
-		{id: "3", content: "three", selected: false}
+		{ id: "1", content: "one", selected: false },
+		{ id: "2", content: "two", selected: false },
+		{ id: "3", content: "three", selected: false }
 	];
 	type = "single";
 	itemValueKey = undefined;
@@ -55,7 +55,7 @@ describe("Combo box", () => {
 				UtilsModule,
 				PlaceholderModule
 			],
-			providers: [ DropdownService ]
+			providers: [DropdownService]
 		});
 	});
 
@@ -182,9 +182,9 @@ describe("Combo box", () => {
 		textInput.dispatchEvent(new Event("input"));
 
 		wrapper.items = [
-			{id: "4", content: "four", selected: false},
-			{id: "5", content: "five", selected: false},
-			{id: "6", content: "six", selected: false}
+			{ id: "4", content: "four", selected: false },
+			{ id: "5", content: "five", selected: false },
+			{ id: "6", content: "six", selected: false }
 		];
 
 		fixture.detectChanges();

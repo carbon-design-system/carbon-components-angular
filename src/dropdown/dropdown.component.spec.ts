@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { By	 } from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
@@ -18,6 +18,7 @@ import { IconModule } from "../icon/index";
 	<cds-dropdown
 		placeholder="test"
 		class="custom-class"
+		[isOpen]="isOpen"
 		(selected)="onSelect()"
 		[(ngModel)]="model">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -25,9 +26,10 @@ import { IconModule } from "../icon/index";
 })
 class DropdownTest {
 	model = null;
-	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
+	items = [{ content: "one", id: 0, selected: false }, { content: "two", id: 1, selected: false }];
 	selected: ListItem;
-	onSelect() {}
+	@Input() isOpen = false;
+	onSelect() { }
 }
 
 describe("Dropdown", () => {
@@ -47,7 +49,7 @@ describe("Dropdown", () => {
 				IconModule,
 				UtilsModule
 			],
-			providers: [ DropdownService ]
+			providers: [DropdownService]
 		});
 	});
 
@@ -78,7 +80,7 @@ describe("Dropdown", () => {
 		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
-		element.componentInstance.menuIsClosed = false;
+		fixture.componentRef.setInput("isOpen", true);
 		fixture.detectChanges();
 		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
