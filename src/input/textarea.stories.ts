@@ -49,29 +49,29 @@ const Template = (args) => ({
 	props: args,
 	template: `
 		<cds-textarea-label
-		[helperText]="helperText"
-		[invalid]="invalid"
-		[disabled]="disabled"
-		[invalidText]="invalidText"
-		[fluid]="fluid"
-		[skeleton]="skeleton"
-		[warn]="warn"
-		[warnText]="warnText"
-		[enableCounter]="enableCounter">
-		{{label}}
-		<textarea
-			cdsTextArea
-			[placeholder]="placeholder"
+			[helperText]="helperText"
 			[invalid]="invalid"
 			[disabled]="disabled"
-			[theme]="theme"
-			[rows]="rows"
-			[cols]="cols"
-			[readonly]="readonly"
-			[maxlength]="maxlength"
-			aria-label="textarea"
-			style="width: 100%;">
-		</textarea>
+			[invalidText]="invalidText"
+			[fluid]="fluid"
+			[skeleton]="skeleton"
+			[warn]="warn"
+			[warnText]="warnText"
+			[enableCounter]="enableCounter">
+			{{label}}
+			<textarea
+				cdsTextArea
+				[placeholder]="placeholder"
+				[invalid]="invalid"
+				[disabled]="disabled"
+				[theme]="theme"
+				[rows]="rows"
+				[cols]="cols"
+				[readonly]="readonly"
+				[maxlength]="maxlength"
+				[attr.aria-label]="textarea"
+				style="width: 100%;">
+			</textarea>
 		</cds-textarea-label>
 	`
 });

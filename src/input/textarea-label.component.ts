@@ -52,7 +52,7 @@ import { TextArea } from "./text-area.directive";
 				<div
 					*ngIf="enableCounter && textArea?.maxlength > 0 && textArea.elementRef"
 					class="cds--label">
-					{{textArea.elementRef?.nativeElement?.value?.length}} / {{textArea.maxlength}}
+					{{characterCounter}} / {{textArea.maxlength}}
 				</div>
 			</div>
 			<div
@@ -61,7 +61,8 @@ import { TextArea } from "./text-area.directive";
 					'cds--text-area__wrapper--warn': warn
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
-				#wrapper>
+				#wrapper
+				(keyup)="keyDownEvent($event)">
 				<svg
 					*ngIf="!fluid && invalid"
 					cdsIcon="warning--filled"
@@ -175,11 +176,11 @@ export class TextareaLabelComponent implements AfterViewInit {
 	 * Enable textarea character counter
 	 */
 	@Input() enableCounter = false;
-
 	/**
 	 * Experimental: enable fluid state
 	 */
 	@Input() fluid = false;
+	characterCounter = 0;
 
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
@@ -219,6 +220,7 @@ export class TextareaLabelComponent implements AfterViewInit {
 					this.changeDetectorRef.detectChanges();
 				}
 				inputElement.setAttribute("id", this.labelInputID);
+				this.characterCounter = this.textArea.elementRef?.nativeElement?.value?.length;
 				return;
 			}
 
@@ -235,5 +237,9 @@ export class TextareaLabelComponent implements AfterViewInit {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	keyDownEvent(event) {
+		this.characterCounter = event.target.textLength;
 	}
 }
