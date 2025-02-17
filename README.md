@@ -36,11 +36,11 @@ Next, we need to include carbon styles in `src/styles.scss`:
 
 ```scss
 @use '@carbon/styles/scss/config' with (
-    // Use flexbox for grid - stick to CSS Grid or Flexbox
-    // CSS Grid has become the default grid system in v11
-    $use-flexbox-grid: true,
+	// Use flexbox for grid - stick to CSS Grid or Flexbox
+	// CSS Grid has become the default grid system in v11
+	$use-flexbox-grid: true,
 	// Update path of fonts to exclude tilde, required for vite (Angular 16+)
-    $font-path: '@ibm/plex'
+	$font-path: '@ibm/plex'
 );
 
 @use '@carbon/styles';
