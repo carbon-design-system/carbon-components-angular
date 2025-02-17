@@ -82,7 +82,12 @@ const usageExamplesTemplate = () => ({
 		</ng-template>
 		<ng-template #overflowMenu let-item>
 			<ibm-tooltip class="cds--icon-tooltip" description="Options" align="left">
-				<ibm-overflow-menu [flip]="true" [customTrigger]="customTrigger" triggerClass="cds--toolbar-action" [offset]="{ x: 0, y: 0 }">
+				<ibm-overflow-menu
+					[flip]="true"
+					[customTrigger]="customTrigger"
+					triggerClass="cds--toolbar-action"
+					[offset]="{ x: 0, y: 0 }"
+				>
 					<ibm-overflow-menu-option>View details</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option [divider]="true" type="danger">Remove</ibm-overflow-menu-option>

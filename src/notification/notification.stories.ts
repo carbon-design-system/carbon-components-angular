@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";

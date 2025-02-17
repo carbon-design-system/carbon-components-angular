@@ -59,6 +59,7 @@ export class LayerDirective implements AfterContentInit {
 					if (layer === this) {
 						return;
 					}
+					// eslint-disable-next-line no-underscore-dangle
 					layer.layer = typeof layer._passedLevel === "number" ? layer._passedLevel : this.layer + 1;
 				});
 			}
@@ -86,7 +87,6 @@ export class LayerDirective implements AfterContentInit {
 	}
 
 	// We use forward ref to resolve circular dependency
-	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => LayerDirective), { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	// Holds user passsed level

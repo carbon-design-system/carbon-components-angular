@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	// tslint:disable-next-line
+	// eslint-disable-next-line @angular-eslint/directive-selector
 	selector: "optgroup"
 })
 export class OptGroup {

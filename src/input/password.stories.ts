@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { FormsModule } from "@angular/forms";
 import { Meta, moduleMetadata } from "@storybook/angular";
 import { InputModule, PasswordInputLabelComponent } from ".";

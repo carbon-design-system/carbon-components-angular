@@ -74,7 +74,7 @@ describe("FileUploader", () => {
 	it("should only accept .txt files", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("cds-file-uploader"));
+		element = fixture.debugElement.query(By.css("cds-file-uploader"));
 		expect(element.nativeElement.querySelector(".cds--file-input").getAttribute("accept")).toEqual(".txt");
 	});
 

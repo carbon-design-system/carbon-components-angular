@@ -67,7 +67,12 @@ export enum SnippetType {
 					}
 				}
 				@if (!skeleton) {
-					<pre #codeContent (scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code></pre>
+					<pre
+						#codeContent
+						(scroll)="(display === 'multi' ? handleScroll() : null)"
+					>
+						<code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code>
+					</pre>
 				}
 			</div>
 			@if (hasLeft) {
@@ -85,7 +90,12 @@ export enum SnippetType {
 					(click)="toggleSnippetExpansion()"
 					type="button">
 					<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-					<svg cdsIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
+					<svg
+						cdsIcon="chevron--down"
+						size="16"
+						class="cds--icon-chevron--down"
+						[attr.aria-label]="translations.SHOW_MORE_ICON"
+					></svg>
 				</button>
 			}
 		}
