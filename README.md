@@ -29,20 +29,37 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save carbon-components-angular @carbon/styles
+$ npm i --save carbon-components-angular @carbon/styles @carbon/icons
 ```
 
-Then we need to include carbon-components in `src/styles.scss`:
+Next, we need to include carbon styles in `src/styles.scss`:
 
 ```scss
-@use "@carbon/styles";
+@use '@carbon/styles/scss/config' with (
+    // Use flexbox for grid - stick to CSS Grid or Flexbox
+    // CSS Grid has become the default grid system in v11
+    $use-flexbox-grid: true,
+	// Update path of fonts to exclude tilde, required for vite
+    $font-path: '@ibm/plex'
+);
+
+@use '@carbon/styles';
+
+// Import css variables in root
+html {
+	@include styles.theme(styles.$white);
+}
 ```
 
-> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not pollute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
+Then we need to declare `@carbon/icons` as a module by creating a `module.d.ts` file (or use any existing declaration file - has `.d.ts` suffix) in your src directory:
+
+```ts
+declare module '@carbon/icons/*';
+```
 
 That's it! Now we can run `npm start` and start building out our application!
 
-> *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` scss is our recommended setup.
+> *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `@carbon/styles` scss is our recommended setup.
 
 [![Edit Carbon Components Angular](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-exxkq4?file=src%2Fmain.ts)
 
