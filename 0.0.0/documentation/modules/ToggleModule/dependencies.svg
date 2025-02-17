@@ -24,21 +24,21 @@
 <title>cluster_ToggleModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 632,-379.59 632,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ToggleModule_imports</title>
-<polygon fill="none" stroke="black" points="364,-189.59 364,-241.59 466,-241.59 466,-189.59 364,-189.59"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_ToggleModule_declarations</title>
 <polygon fill="none" stroke="black" points="284,-189.59 284,-241.59 356,-241.59 356,-189.59 284,-189.59"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ToggleModule_Toggle_providers</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-176.59 624,-176.59 624,-78 16,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_ToggleModule_exports</title>
 <polygon fill="none" stroke="black" points="329,-319.59 329,-371.59 405,-371.59 405,-319.59 329,-319.59"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ToggleModule_imports</title>
+<polygon fill="none" stroke="black" points="364,-189.59 364,-241.59 466,-241.59 466,-189.59 364,-189.59"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ToggleModule_Toggle_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-176.59 624,-176.59 624,-78 16,-78"/>
 </g>
 <!-- Toggle -->
 <g id="node1" class="node">
