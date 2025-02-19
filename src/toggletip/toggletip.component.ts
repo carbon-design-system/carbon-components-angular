@@ -29,9 +29,9 @@ import { ToggletipButton } from "./toggletip-button.directive";
 	selector: "cds-toggletip, ibm-toggletip",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<ng-content select="[cdsToggletipButton]" />
-		<cds-popover-content>
-			<ng-content select="[cdsToggletipContent]" />
+		<ng-content select="[cdsToggletipButton]"></ng-content>
+		<cds-popover-content [attr.id]="id" aria-live="polite">
+			<ng-content select="[cdsToggletipContent]"></ng-content>
 		</cds-popover-content>
 	`
 })
