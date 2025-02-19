@@ -30,7 +30,7 @@ import { ToggletipButton } from "./toggletip-button.directive";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-content select="[cdsToggletipButton]"></ng-content>
-		<cds-popover-content>
+		<cds-popover-content [attr.id]="id" aria-live="polite">
 			<ng-content select="[cdsToggletipContent]"></ng-content>
 		</cds-popover-content>
 	`
