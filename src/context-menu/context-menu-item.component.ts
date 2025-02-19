@@ -16,9 +16,10 @@ import {
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
 import { ContextMenuComponent } from "./context-menu.component";
+import { ItemClickEvent } from "./context-menu.types";
 
 @Component({
-	selector: "cds-context-menu-item, ibm-context-menu-item",
+	selector: "cds-menu-item, cds-context-menu-item, ibm-context-menu-item",
 	template: `
 		<div class="cds--menu-item__icon">
 			@if (selectable && checked) {
@@ -55,7 +56,11 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 		return this.type === "checkbox" ?
 			(this.checked ? true : false) : null;
 	}
-
+	@HostBinding("attr.aria-disabled") get ariaDisabled() {
+		return this.disabled;
+	}
+	@Input() @HostBinding("class.cds--menu-item--disabled") disabled = false;
+	@Input() @HostBinding("class.cds--menu-item--danger") danger = false;
 	@Input() label = "";
 	@Input() info = "";
 	@Input() type: null | "checkbox" | "radio" = null;
@@ -63,6 +68,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@Input() icon = "";
 	@Input() value = "";
 	@Output() checkedChange = new EventEmitter<boolean>();
+	@Output() itemClick = new EventEmitter<ItemClickEvent>();
 
 	hasChildren = false;
 	selectable = false;
@@ -73,7 +79,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	constructor(
 		protected elementRef: ElementRef,
 		@Optional() protected contextMenuSelectionService: ContextMenuSelectionService
-	) { }
+	) {}
 
 	ngOnInit() {
 		switch (this.type) {
@@ -137,6 +143,16 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 			if (this.type === "checkbox") {
 				this.contextMenuSelectionService.selectCheckbox(this.value);
 			}
+		}
+
+		if (!this.disabled) {
+			this.itemClick.emit({
+				event,
+				label: this.label,
+				info: this.info,
+				value: this.value,
+				type: this.type
+			});
 		}
 	}
 

@@ -95,6 +95,7 @@ export enum SnippetType {
 				<cds-icon-button
 					[description]="showFeedback ? feedbackText : copyButtonDescription"
 					[align]="align"
+					[autoAlign]="autoAlign"
 					[dropShadow]="dropShadow"
 					[caret]="caret"
 					[highContrast]="highContrast"
