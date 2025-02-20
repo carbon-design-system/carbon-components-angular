@@ -172,11 +172,15 @@
 		&#x27;cds--tile--disabled&#x27; : disabled
 	}&quot;
 	[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;TILES.TILE&#x27;) | async&quot;&gt;
-	&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;&gt;
-		&lt;svg width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
-			&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z&quot;
-				fill-rule&#x3D;&quot;evenodd&quot;/&gt;
+	&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;
+		[class.cds--tile__checkmark--persistent]&#x3D;&quot;multiple&quot;&gt;
+		&lt;svg *ngIf&#x3D;&quot;!selected; else selectedIcon&quot;
+			[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
+			size&#x3D;&quot;16&quot;&gt;
 		&lt;/svg&gt;
+		&lt;ng-template #selectedIcon&gt;
+			&lt;svg [cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox--checked--filled&#x27; : &#x27;checkmark--filled&#x27;&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+		&lt;/ng-template&gt;
 	&lt;/div&gt;
 	&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
@@ -344,7 +348,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tiles/selection-tile.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tiles/selection-tile.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -405,7 +409,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/tiles/selection-tile.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/tiles/selection-tile.component.ts:92</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -437,7 +441,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/tiles/selection-tile.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/tiles/selection-tile.component.ts:62</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -464,7 +468,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/tiles/selection-tile.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/tiles/selection-tile.component.ts:68</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -497,7 +501,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/tiles/selection-tile.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/tiles/selection-tile.component.ts:57</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -518,7 +522,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/tiles/selection-tile.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/tiles/selection-tile.component.ts:83</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -548,7 +552,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/tiles/selection-tile.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/tiles/selection-tile.component.ts:87</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -587,8 +591,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="120"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:120</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -630,8 +634,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="120"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:120</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -693,8 +697,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -730,8 +734,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -804,7 +808,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tiles/selection-tile.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tiles/selection-tile.component.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -831,7 +835,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/tiles/selection-tile.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/tiles/selection-tile.component.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -861,7 +865,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tiles/selection-tile.component.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tiles/selection-tile.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -886,7 +890,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/tiles/selection-tile.component.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/tiles/selection-tile.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -924,7 +928,7 @@ tile selection.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/tiles/selection-tile.component.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/tiles/selection-tile.component.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -962,7 +966,7 @@ tile selection.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/tiles/selection-tile.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/tiles/selection-tile.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -991,7 +995,7 @@ tile selection.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/tiles/selection-tile.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/tiles/selection-tile.component.ts:77</a></div>
                                 </td>
                             </tr>
 
@@ -1002,7 +1006,7 @@ tile selection.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/tiles/selection-tile.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/tiles/selection-tile.component.ts:68</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1085,11 +1089,15 @@ import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 				&#x27;cds--tile--disabled&#x27; : disabled
 			}&quot;
 			[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;TILES.TILE&#x27;) | async&quot;&gt;
-			&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;&gt;
-				&lt;svg width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
-					&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z&quot;
-						fill-rule&#x3D;&quot;evenodd&quot;/&gt;
+			&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;
+				[class.cds--tile__checkmark--persistent]&#x3D;&quot;multiple&quot;&gt;
+				&lt;svg *ngIf&#x3D;&quot;!selected; else selectedIcon&quot;
+					[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
+					size&#x3D;&quot;16&quot;&gt;
 				&lt;/svg&gt;
+				&lt;ng-template #selectedIcon&gt;
+					&lt;svg [cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox--checked--filled&#x27; : &#x27;checkmark--filled&#x27;&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+				&lt;/ng-template&gt;
 			&lt;/div&gt;
 			&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
@@ -1214,7 +1222,7 @@ export class SelectionTile implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><input	#input	[attr.tabindex]="disabled ? null : 0"	class="cds--tile-input"	[id]="id"	[disabled]="disabled"	[type]="(multiple ? \'checkbox\': \'radio\')"	[value]="value"	[name]="name"	(change)="onChange($event)"/><label	class="cds--tile cds--tile--selectable"	[for]="id"	[ngClass]="{		\'cds--tile--is-selected\' : selected,		\'cds--tile--light\': theme === \'light\',		\'cds--tile--disabled\' : disabled	}"	[attr.aria-label]="i18n.get(\'TILES.TILE\') | async">	<div class="cds--tile__checkmark">		<svg width="16" height="16" viewBox="0 0 16 16">			<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"				fill-rule="evenodd"/>		</svg>	</div>	<div class="cds--tile-content">		<ng-content></ng-content>	</div></label>	</div>'
+        var COMPONENT_TEMPLATE = '<div><input	#input	[attr.tabindex]="disabled ? null : 0"	class="cds--tile-input"	[id]="id"	[disabled]="disabled"	[type]="(multiple ? \'checkbox\': \'radio\')"	[value]="value"	[name]="name"	(change)="onChange($event)"/><label	class="cds--tile cds--tile--selectable"	[for]="id"	[ngClass]="{		\'cds--tile--is-selected\' : selected,		\'cds--tile--light\': theme === \'light\',		\'cds--tile--disabled\' : disabled	}"	[attr.aria-label]="i18n.get(\'TILES.TILE\') | async">	<div class="cds--tile__checkmark"		[class.cds--tile__checkmark--persistent]="multiple">		<svg *ngIf="!selected; else selectedIcon"			[cdsIcon]="multiple ? \'checkbox\' : \'checkmark\'"			size="16">		</svg>		<ng-template #selectedIcon>			<svg [cdsIcon]="multiple ? \'checkbox--checked--filled\' : \'checkmark--filled\'" size="16"></svg>		</ng-template>	</div>	<div class="cds--tile-content">		<ng-content></ng-content>	</div></label>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'SelectionTile'};

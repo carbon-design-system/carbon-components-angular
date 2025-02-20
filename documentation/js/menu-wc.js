@@ -602,13 +602,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/IconModule.html" data-type="entity-link" >IconModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-IconModule-8db020fe95b11626ba645eca08a3715285fd0c8b1ab585e3c9350a0cb2ef386151c763e144c85b412073ea8bc31ef7310a6edf01332323ebc2fef03d9bbebc35"' : 'data-bs-target="#xs-directives-links-module-IconModule-8db020fe95b11626ba645eca08a3715285fd0c8b1ab585e3c9350a0cb2ef386151c763e144c85b412073ea8bc31ef7310a6edf01332323ebc2fef03d9bbebc35"' }>
+                                        'data-bs-target="#directives-links-module-IconModule-25613c0f98264e0690f5939afa1ce875628429519deff2d7b8dc7725d2f93e5f9c52e93e6632b3b14011a34bd241e2b1b41899159599d81efdf22f20bef2dc73"' : 'data-bs-target="#xs-directives-links-module-IconModule-25613c0f98264e0690f5939afa1ce875628429519deff2d7b8dc7725d2f93e5f9c52e93e6632b3b14011a34bd241e2b1b41899159599d81efdf22f20bef2dc73"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-IconModule-8db020fe95b11626ba645eca08a3715285fd0c8b1ab585e3c9350a0cb2ef386151c763e144c85b412073ea8bc31ef7310a6edf01332323ebc2fef03d9bbebc35"' :
-                                        'id="xs-directives-links-module-IconModule-8db020fe95b11626ba645eca08a3715285fd0c8b1ab585e3c9350a0cb2ef386151c763e144c85b412073ea8bc31ef7310a6edf01332323ebc2fef03d9bbebc35"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-IconModule-25613c0f98264e0690f5939afa1ce875628429519deff2d7b8dc7725d2f93e5f9c52e93e6632b3b14011a34bd241e2b1b41899159599d81efdf22f20bef2dc73"' :
+                                        'id="xs-directives-links-module-IconModule-25613c0f98264e0690f5939afa1ce875628429519deff2d7b8dc7725d2f93e5f9c52e93e6632b3b14011a34bd241e2b1b41899159599d81efdf22f20bef2dc73"' }>
                                         <li class="link">
                                             <a href="directives/IconDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IconDirective</a>
                                         </li>
