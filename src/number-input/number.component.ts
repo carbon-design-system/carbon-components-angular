@@ -458,7 +458,7 @@ export class NumberComponent implements ControlValueAccessor {
 	}
 
 	handleFocus(event: FocusEvent) {
-		if ("type" in event.target && (<HTMLInputElement>event.target).type === "button") {
+		if ("type" in event.target && (event.target as HTMLInputElement).type === "button") {
 			this._isFocused = false;
 		} else {
 			this._isFocused = event.type === "focus";

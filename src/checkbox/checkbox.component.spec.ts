@@ -101,7 +101,6 @@ describe("Checkbox", () => {
 		element = setupFixture.debugElement.query(By.css("cds-checkbox"));
 		setupFixture.detectChanges();
 		const instance = new CheckboxExportedTest({});
-		// tslint:disable-next-line
 		new BDDTestParser((instance as any).tests, setupFixture.debugElement.nativeElement);
 	});
 });

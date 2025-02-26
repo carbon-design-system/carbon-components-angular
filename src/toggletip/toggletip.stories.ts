@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { LinkModule } from "../link";
 import { ButtonModule } from "../button";
@@ -116,8 +114,9 @@ Basic.parameters = {
 
 const AutoAlignTemplate = (args) => ({
 	props: args,
-	template: `
-		<div style="height:3000px">
+	template:
+		/* eslint-disable max-len */
+		`<div style="height:3000px">
 			Scrolling will update the position of the popover:
 			<div style="position: absolute; top: 500px; left: 500px;">
 			<span cdsToggletipLabel>Toggletip label</span>
@@ -145,8 +144,9 @@ const AutoAlignTemplate = (args) => ({
 					</div>
 				</cds-toggletip>
 			</div>
-		</div>
-	`,
+		</div>`
+		/* eslint-enable max-len */
+	,
 	styles: [`
 		.tooltip-trigger {
 			box-sizing: border-box;

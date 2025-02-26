@@ -92,10 +92,14 @@ export class ActionableNotification extends BaseNotification {
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--actionable-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
-	@HostBinding("class.cds--actionable-notification--info-square") get isInfoSquare() { return this.notificationObj.type === "info-square"; }
+	@HostBinding("class.cds--actionable-notification--info-square") get isInfoSquare() {
+		return this.notificationObj.type === "info-square";
+	}
 	@HostBinding("class.cds--actionable-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.cds--actionable-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
-	@HostBinding("class.cds--actionable-notification--warning-alt") get isWarningAlt() { return this.notificationObj.type === "warning-alt"; }
+	@HostBinding("class.cds--actionable-notification--warning-alt") get isWarningAlt() {
+		return this.notificationObj.type === "warning-alt";
+	}
 	@HostBinding("class.cds--actionable-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--actionable-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
 

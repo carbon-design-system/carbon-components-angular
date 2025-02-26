@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-underscore-dangle
 let _scrollbarWidth = -1;
 
 export function getScrollbarWidth() {

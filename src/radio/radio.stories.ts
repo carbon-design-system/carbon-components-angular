@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { RadioModule, RadioGroup, Radio } from "./";

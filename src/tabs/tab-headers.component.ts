@@ -118,7 +118,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	 * List of `Tab` components.
 	 */
 	// disable the next line because we need to rename the input
-	// tslint:disable-next-line
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input("tabs") tabInput: QueryList<Tab>;
 
 	@Input() translations = this.i18n.get().TABS;

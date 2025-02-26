@@ -5,14 +5,17 @@ import {
 } from "@angular/core";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableExpandedRow], [ibmTableExpandedRow]",
 	template: `
 		<td [attr.colspan]="row.length + 2">
 			@if (!firstExpandedTemplateInRow(row)) {
 				{{firstExpandedDataInRow(row)}}
 			}
-			<ng-template [ngTemplateOutlet]="firstExpandedTemplateInRow(row)" [ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}" />
+			<ng-template
+				[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
+				[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}"
+			/>
 		</td>
 	`
 })

@@ -51,8 +51,9 @@ export interface PaginationTranslations {
  */
 @Component({
 	selector: "cds-pagination, ibm-pagination",
-	template: `
-		<div
+	template:
+		/* eslint-disable max-len */
+		`<div
 			class="cds--pagination"
 			[ngClass]="{
 				'cds--skeleton': skeleton
@@ -210,8 +211,8 @@ export interface PaginationTranslations {
 					</div>
 				</div>
 			}
-		</div>
-	`
+		</div>`
+	/* eslint-enable max-len */
 })
 export class Pagination {
 	static paginationCounter = 0;

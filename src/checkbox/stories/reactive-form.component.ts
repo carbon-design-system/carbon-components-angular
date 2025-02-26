@@ -34,6 +34,7 @@ export class ReactiveFormsStory implements OnInit {
 	toggleDisable() {
 		const checkbox = this.formGroup.get("checkbox");
 		if (checkbox != null) {
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			checkbox.disabled ? checkbox.enable() : checkbox.disable();
 		}
 	}

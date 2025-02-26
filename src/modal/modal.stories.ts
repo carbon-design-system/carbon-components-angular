@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { PlaceholderModule } from "../placeholder";
 import { InputModule } from "../input";

@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { DocumentationModule } from "../documentation-component/documentation.module";
 import { AccordionModule, Accordion } from "./";
