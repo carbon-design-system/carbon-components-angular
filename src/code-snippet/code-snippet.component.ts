@@ -67,12 +67,7 @@ export enum SnippetType {
 					}
 				}
 				@if (!skeleton) {
-					<pre
-						#codeContent
-						(scroll)="(display === 'multi' ? handleScroll() : null)"
-					>
-						<code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code>
-					</pre>
+					<pre #codeContent (scroll)="(display === 'multi' ? handleScroll() : null)"><code #code><ng-container *ngTemplateOutlet="codeTemplate" /></code></pre>
 				}
 			</div>
 			@if (hasLeft) {
