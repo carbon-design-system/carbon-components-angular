@@ -135,7 +135,7 @@ export class Overridable {
 /**
  * An object of strings, should follow the same format as src/i18n/en.json
  */
-export type TranslationStrings = {
+export interface TranslationStrings  {
 	[key: string]: string | TranslationStrings;
 };
 

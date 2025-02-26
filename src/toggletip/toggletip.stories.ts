@@ -145,7 +145,7 @@ const AutoAlignTemplate = (args) => ({
 				</cds-toggletip>
 			</div>
 		</div>`
-		/* eslint-disable max-len */
+		/* eslint-enable max-len */
 	,
 	styles: [`
 		.tooltip-trigger {

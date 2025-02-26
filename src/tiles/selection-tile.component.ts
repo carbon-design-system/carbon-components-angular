@@ -42,7 +42,7 @@ import { I18n } from "carbon-components-angular/i18n";
 				<ng-content />
 			</div>
 		</label>`
-		/* eslint-disable max-len */
+		/* eslint-enable max-len */
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
