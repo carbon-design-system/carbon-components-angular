@@ -1,16 +1,16 @@
 import {
-	Component,
-	Input,
-	HostBinding,
-	ViewChild,
 	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input,
 	OnInit,
-	ChangeDetectionStrategy
+	ViewChild
 } from "@angular/core";
 
+import { BaseIconButton } from "carbon-components-angular/button";
 import { I18n } from "carbon-components-angular/i18n";
 import { EventService } from "carbon-components-angular/utils";
-import { BaseIconButton } from "carbon-components-angular/button";
 
 export enum SnippetType {
 	single = "single",
@@ -33,8 +33,9 @@ export enum SnippetType {
  */
 @Component({
 	selector: "cds-code-snippet, ibm-code-snippet",
-	template: `
-		@if (display === 'inline') {
+	template:
+	 	/* eslint-disable max-len */
+		`@if (display === 'inline') {
 			@if (!hideCopyButton) {
 				<ng-container *ngTemplateOutlet="buttonTemplate" />
 			} @else {
@@ -85,12 +86,7 @@ export enum SnippetType {
 					(click)="toggleSnippetExpansion()"
 					type="button">
 					<span class="cds--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
-					<svg
-						cdsIcon="chevron--down"
-						size="16"
-						class="cds--icon-chevron--down"
-						[attr.aria-label]="translations.SHOW_MORE_ICON"
-					></svg>
+					<svg cdsIcon="chevron--down" size="16" class="cds--icon-chevron--down" [attr.aria-label]="translations.SHOW_MORE_ICON"></svg>
 				</button>
 			}
 		}
@@ -141,6 +137,7 @@ export enum SnippetType {
 			<ng-content />
 		</ng-template>
 	`,
+	/* eslint-enable max-len */
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
