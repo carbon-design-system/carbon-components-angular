@@ -9,7 +9,9 @@ import {
 	ViewChild,
 	ElementRef,
 	ViewChildren,
-	QueryList
+	QueryList,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef
 } from "@angular/core";
 import {
 	Observable,
@@ -117,7 +119,8 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			provide: AbstractDropdownView,
 			useExisting: DropdownList
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	static listCount = 0;
@@ -228,7 +231,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(
+		public elementRef: ElementRef,
+		protected i18n: I18n,
+		protected changeDetectorRef: ChangeDetectorRef
+	) {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -292,6 +299,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this.displayItems) {
 				this.index = 0;
 			}
+			this.changeDetectorRef.markForCheck();
 		} else {
 			this.displayItems = this.getListItems();
 		}
@@ -538,7 +546,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				}
 			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement().scrollIntoView({  block: "nearest" });
+					this.getPrevElement().scrollIntoView({ block: "nearest" });
 				} else {
 					this.blurIntent.emit("top");
 				}

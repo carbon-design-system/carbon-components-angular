@@ -62,7 +62,12 @@ Inline.args = {
 const MultiTemplate = (args) => ({
 	props: args,
 	template: `
-		<cds-code-snippet display="multi">{{snippet}}</cds-code-snippet>
+		<cds-code-snippet
+			display="multi"
+			[autoAlign]="true"
+			[copyButtonDescription]="copyButtonDescription">
+			{{snippet}}
+		</cds-code-snippet>
 	`
 });
 export const Multi = MultiTemplate.bind({});
@@ -100,7 +105,8 @@ Multi.args = {
 			"zone.js": "^0.8.26 || ^0.9.0 || ^0.10.0",
 			"@carbon/styles": "^1.2.0"
 		}
-	}`
+	}`,
+	copyButtonDescription: "Click to copy to clipboard!"
 };
 Multi.argTypes = {
 	maxCollapsedNumberOfRows: {

@@ -15,11 +15,15 @@
   "peerDependencies": {
     "@carbon/styles": "^1.54.0"
   },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
   "dependencies": {
     "@carbon/icon-helpers": "10.54.0",
     "@carbon/icons": "11.52.0",
     "@carbon/utils-position": "1.1.4",
-    "@floating-ui/dom": "1.6.3",
+    "@floating-ui/dom": "1.6.13",
     "@ibm/telemetry-js": "^1.5.0",
     "flatpickr": "4.6.13",
     "lodash-es": "4.17.21",

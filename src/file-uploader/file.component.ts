@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -60,7 +61,8 @@ import { FileItem } from "./file-item.interface";
 				<p class="cds--form-requirement__supplement">{{fileItem.invalidText}}</p>
 			</div>
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileComponent implements OnDestroy {
 	/**
@@ -93,6 +95,7 @@ export class FileComponent implements OnDestroy {
 	@HostBinding("class.cds--file__selected-file--lg") get fileSizeLarge() {
 		return this.size === "lg";
 	}
+
 	constructor(protected i18n: I18n) {}
 
 	ngOnDestroy() {

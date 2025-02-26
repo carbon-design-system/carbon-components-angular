@@ -14,7 +14,7 @@ import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
 
 @Component({
-	selector: "cds-context-menu-group, ibm-context-menu-group",
+	selector: "cds-menu-group, cds-context-menu-group, ibm-context-menu-group",
 	template: `
 		<ng-content />
 	`,
@@ -33,7 +33,7 @@ export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 
 	private subscription = new Subscription();
 
-	constructor(protected contextMenuSelectionService: ContextMenuSelectionService) { }
+	constructor(protected contextMenuSelectionService: ContextMenuSelectionService) {}
 
 	ngOnInit() {
 		const { selectionObservable } = this.contextMenuSelectionService;

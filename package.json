@@ -60,7 +60,8 @@
     "url": "git@github.com:carbon-design-system/carbon-components-angular.git"
   },
   "publishConfig": {
-    "provenance": true
+    "provenance": true,
+    "access": "public"
   },
   "license": "Apache-2.0",
   "author": "IBM",
@@ -144,7 +145,7 @@
     "@carbon/icon-helpers": "10.54.0",
     "@carbon/icons": "11.52.0",
     "@carbon/utils-position": "1.1.4",
-    "@floating-ui/dom": "1.6.3",
+    "@floating-ui/dom": "1.6.13",
     "@ibm/telemetry-js": "^1.5.0",
     "flatpickr": "4.6.13",
     "lodash-es": "4.17.21",

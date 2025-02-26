@@ -4,7 +4,8 @@ import {
 	Output,
 	ViewChild,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -95,7 +96,8 @@ const noop = () => { };
 			useExisting: FileUploader,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileUploader implements ControlValueAccessor {
 	/**
