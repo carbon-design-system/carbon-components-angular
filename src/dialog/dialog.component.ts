@@ -1,25 +1,24 @@
 import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ElementRef,
-	ViewChild,
-	OnInit,
 	AfterViewInit,
-	OnDestroy,
+	Component,
+	ElementRef,
+	EventEmitter,
 	HostListener,
-	Optional
+	Input,
+	OnDestroy,
+	OnInit,
+	Optional,
+	Output,
+	ViewChild
 } from "@angular/core";
 import {
-	Observable,
 	Subscription
 } from "rxjs";
 // the AbsolutePosition is required to import the declaration correctly
-import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
+import Position, { position, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
-import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
+import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -136,8 +135,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 							reason: CloseReasons.hidden
 						});
 					}
-				}
-				);
+				});
 		}
 
 		this.placeDialog();
