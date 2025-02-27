@@ -160,7 +160,7 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 			// Reset the inline styles
 			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
-			this.popoverContentRef.setAttribute("style", "");
+			this.popoverContentRef?.setAttribute("style", "");
 			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
 		}
 
