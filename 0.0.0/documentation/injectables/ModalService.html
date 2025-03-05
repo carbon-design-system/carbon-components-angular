@@ -157,6 +157,10 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#environment" >environment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Static</span>
                                 <a href="#modalList" >modalList</a>
                             </li>
@@ -369,7 +373,7 @@ click: clickFunction,
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:28</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:47</a></code>
 </div>
                         </td>
                     </tr>
@@ -453,7 +457,7 @@ click: clickFunction,
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:71</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:95</a></code>
 </div>
                         </td>
                     </tr>
@@ -547,6 +551,61 @@ When called without parameters it destroys the most recently created/top most mo
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EnvironmentInjector</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EnvironmentInjector)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../injectables/BaseModalService.html" target="_self" >BaseModalService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:36</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current module/component injection enviornment
+Allows modules to use providers from calling component</p>
+<p>Root Module/
+└── Lazy loaded Feature Module/
+     ├── Provides Service &amp; imports modules
+     ├── Modal component (component that extends base component)
+     └── Modal component launcher (dynamically creates modal component)</p>
+<p>Passing EnvironmentInjector in <code>createComponent</code> will look for provider declaration in feature
+module instead of root module. This is required to pass correct context in a lazy-loaded applications.
+Services injected in root, will also be available as feature module enviornment will also hierarchically inherit
+the root services.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="modalList"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -575,7 +634,7 @@ When called without parameters it destroys the most recently created/top most mo
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:17</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:19</a></code>
 </div>
                         </td>
                     </tr>

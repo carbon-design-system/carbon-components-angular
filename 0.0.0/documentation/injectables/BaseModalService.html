@@ -144,6 +144,10 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#environment" >environment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Static</span>
                                 <a href="#modalList" >modalList</a>
                             </li>
@@ -192,7 +196,7 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modal/base-modal.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modal/base-modal.service.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -257,8 +261,8 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/modal/base-modal.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/modal/base-modal.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -335,8 +339,8 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/modal/base-modal.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/modal/base-modal.service.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -395,6 +399,54 @@ When called without parameters it destroys the most recently created/top most mo
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EnvironmentInjector</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EnvironmentInjector)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modal/base-modal.service.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current module/component injection enviornment
+Allows modules to use providers from calling component</p>
+<p>Root Module/
+└── Lazy loaded Feature Module/
+     ├── Provides Service &amp; imports modules
+     ├── Modal component (component that extends base component)
+     └── Modal component launcher (dynamically creates modal component)</p>
+<p>Passing EnvironmentInjector in <code>createComponent</code> will look for provider declaration in feature
+module instead of root module. This is required to pass correct context in a lazy-loaded applications.
+Services injected in root, will also be available as feature module enviornment will also hierarchically inherit
+the root services.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="modalList"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -417,7 +469,7 @@ When called without parameters it destroys the most recently created/top most mo
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modal/base-modal.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modal/base-modal.service.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -444,7 +496,7 @@ When called without parameters it destroys the most recently created/top most mo
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modal/base-modal.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modal/base-modal.service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -460,7 +512,9 @@ When called without parameters it destroys the most recently created/top most mo
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	ComponentRef,
 	Injector,
-	Injectable
+	Injectable,
+	inject,
+	EnvironmentInjector
 } from &quot;@angular/core&quot;;
 import { PlaceholderService } from &quot;carbon-components-angular/placeholder&quot;;
 import { tap, delay } from &quot;rxjs/operators&quot;;
@@ -474,6 +528,23 @@ import { tap, delay } from &quot;rxjs/operators&quot;;
 export class BaseModalService {
 	// track all our open modals
 	protected static modalList: Array&lt;ComponentRef&lt;any&gt;&gt; &#x3D; [];
+
+	/**
+	 * Current module/component injection enviornment
+	 * Allows modules to use providers from calling component
+	 *
+	 * Root Module/
+	 * └── Lazy loaded Feature Module/
+	 * 	 ├── Provides Service &amp; imports modules
+	 * 	 ├── Modal component (component that extends base component)
+	 * 	 └── Modal component launcher (dynamically creates modal component)
+	 *
+	 * Passing EnvironmentInjector in &#x60;createComponent&#x60; will look for provider declaration in feature
+	 * module instead of root module. This is required to pass correct context in a lazy-loaded applications.
+	 * Services injected in root, will also be available as feature module enviornment will also hierarchically inherit
+	 * the root services.
+	 */
+	protected environment: EnvironmentInjector &#x3D; inject(EnvironmentInjector);
 
 	/**
 	 * Creates an instance of &#x60;ModalService&#x60;.
@@ -493,7 +564,12 @@ export class BaseModalService {
 			useValue: data.inputs[inputName]
 		}));
 		const injector &#x3D; Injector.create({ providers: inputProviders });
-		const component &#x3D; this.placeholderService.createComponent(data.component, injector);
+		const component &#x3D; this.placeholderService.createComponent(
+			data.component,
+			injector,
+			undefined,
+			this.environment
+		);
 		let focusedElement &#x3D; document.activeElement as HTMLElement;
 		setTimeout(() &#x3D;&gt; {
 			component.instance.open &#x3D; true;

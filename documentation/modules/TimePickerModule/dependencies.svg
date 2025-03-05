@@ -24,13 +24,13 @@
 <title>cluster_TimePickerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 670,-379.59 670,-70 8,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_TimePickerModule_declarations</title>
-<polygon fill="none" stroke="black" points="290,-189.59 290,-241.59 388,-241.59 388,-189.59 290,-189.59"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_TimePickerModule_imports</title>
 <polygon fill="none" stroke="black" points="396,-189.59 396,-241.59 572,-241.59 572,-189.59 396,-189.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TimePickerModule_declarations</title>
+<polygon fill="none" stroke="black" points="290,-189.59 290,-241.59 388,-241.59 388,-189.59 290,-189.59"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TimePickerModule_exports</title>

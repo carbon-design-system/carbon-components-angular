@@ -1745,8 +1745,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="168"
-                                    class="link-to-prism">src/tooltip/tooltip.component.ts:168</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/tooltip/tooltip.component.ts:173</a></div>
                         </td>
                     </tr>
 
@@ -2895,8 +2895,13 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 		this.handleChange(false);
 
 		// Ignore first change since content is not initialized
-		if ((changes.autoAlign &amp;&amp; !changes.autoAlign.firstChange)
-			|| (changes.disabled &amp;&amp; !changes.disabled.firstChange &amp;&amp; !changes.disabled.currentValue)) {
+		if (
+			(changes.autoAlign &amp;&amp; !changes.autoAlign.firstChange)
+			|| (changes.disabled &amp;&amp; !changes.disabled.firstChange &amp;&amp; !changes.disabled.currentValue)
+			// If description is set to empty string when open &amp; autoAlign is true then set to a new value
+			// positioning of popover is broken because popover content ref/caret no longer exists
+			|| changes.description
+		) {
 			/**
 			 * When &#x60;disabled&#x60; is &#x60;true&#x60;, popover content node is removed. So when re-enabling &#x60;disabled&#x60;,
 			 * we manually update view so querySelector can detect the popover content node.
@@ -2906,7 +2911,7 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 			// Reset the inline styles
 			this.popoverContentRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;.cds--popover-content&quot;);
-			this.popoverContentRef.setAttribute(&quot;style&quot;, &quot;&quot;);
+			this.popoverContentRef?.setAttribute(&quot;style&quot;, &quot;&quot;);
 			this.caretRef &#x3D; this.elementRef.nativeElement.querySelector(&quot;span.cds--popover-caret&quot;);
 		}
 
