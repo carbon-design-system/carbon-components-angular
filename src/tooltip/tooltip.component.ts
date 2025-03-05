@@ -144,8 +144,13 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 		this.handleChange(false);
 
 		// Ignore first change since content is not initialized
-		if ((changes.autoAlign && !changes.autoAlign.firstChange)
-			|| (changes.disabled && !changes.disabled.firstChange && !changes.disabled.currentValue)) {
+		if (
+			(changes.autoAlign && !changes.autoAlign.firstChange)
+			|| (changes.disabled && !changes.disabled.firstChange && !changes.disabled.currentValue)
+			// If description is set to empty string when open & autoAlign is true then set to a new value
+			// positioning of popover is broken because popover content ref/caret no longer exists
+			|| changes.description
+		) {
 			/**
 			 * When `disabled` is `true`, popover content node is removed. So when re-enabling `disabled`,
 			 * we manually update view so querySelector can detect the popover content node.
@@ -155,7 +160,7 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 			// Reset the inline styles
 			this.popoverContentRef = this.elementRef.nativeElement.querySelector(".cds--popover-content");
-			this.popoverContentRef.setAttribute("style", "");
+			this.popoverContentRef?.setAttribute("style", "");
 			this.caretRef = this.elementRef.nativeElement.querySelector("span.cds--popover-caret");
 		}
 
