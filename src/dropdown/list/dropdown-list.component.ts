@@ -57,7 +57,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
-			tabindex="-1"
+			tabindex="0"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
 			<li
