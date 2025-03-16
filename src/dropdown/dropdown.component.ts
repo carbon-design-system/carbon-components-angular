@@ -96,7 +96,6 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			[attr.aria-readonly]="readonly"
 			aria-haspopup="listbox"
 			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
 			(focus)="fluid ? handleFocus($event) : null"
