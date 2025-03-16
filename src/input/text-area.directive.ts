@@ -1,4 +1,9 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import {
+	Directive,
+	ElementRef,
+	HostBinding,
+	Input
+} from "@angular/core";
 
 /**
  * A directive for applying styling to a textarea element.
@@ -28,7 +33,14 @@ export class TextArea {
 		return this.theme === "light";
 	}
 
+	/**
+	 * Binding maxlength to textarea
+	 */
+	@Input() @HostBinding("attr.maxlength") maxlength: number;
+
 	@HostBinding("attr.data-invalid") get getInvalidAttr() {
 		return this.invalid ? true : undefined;
 	}
+
+	constructor(public elementRef: ElementRef<HTMLTextAreaElement>) {}
 }
