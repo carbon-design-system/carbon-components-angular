@@ -156,8 +156,7 @@ const AutoAlignTemplate = (args) => ({
 				</cds-tooltip>
 			</div>
 		</div>
-	`
-	,
+	`,
 	styles: [`
 		.tooltip-trigger {
 			box-sizing: border-box;

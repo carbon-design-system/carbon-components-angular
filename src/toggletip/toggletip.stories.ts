@@ -143,8 +143,8 @@ const AutoAlignTemplate = (args) => ({
 					</div>
 				</cds-toggletip>
 			</div>
-		</div>`
-	,
+		</div>
+	`,
 	styles: [`
 		.tooltip-trigger {
 			box-sizing: border-box;
