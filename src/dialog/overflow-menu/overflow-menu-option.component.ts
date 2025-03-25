@@ -108,8 +108,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	 */
 	@Input() set target(value: Target) {
 		if (!Object.values(Target).includes(value)) {
-			console.warn(
-				`\`target\` must have one of the following values: ${Object.values(Target).join(", ")}.
+			console.warn(`\`target\` must have one of the following values: ${Object.values(Target).join(", ")}.
 Please use the \`Target\` enum exported by carbon-components-angular`);
 			return;
 		}

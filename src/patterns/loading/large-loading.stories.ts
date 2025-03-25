@@ -18,73 +18,74 @@ import {
 
 @Component({
 	selector: "app-sample-large-loading",
-	template:`
-		<div cdsGrid>
-			<div cdsRow class="header">
-				<cds-header name="Patterns">
-					<cds-hamburger></cds-hamburger>
-				</cds-header>
-			</div>
-			<div cdsRow class="progress-indicator-wrapper">
-				<cds-progress-indicator [steps]="steps"></cds-progress-indicator>
-			</div>
-			<div cdsRow class="form">
-				<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-					<div class="cds--form-item">
-						<cds-label
-							helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
-							[invalid]="isInvalid('input')"
-							invalidText="Please enter a response">
-							Text input label
-							<input
-								cdsText
-								formControlName="input"
-								placeholder="Optional placeholder text">
-						</cds-label>
-					</div>
-					<div class="cds--form-item">
-						<cds-label
-							helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
-							[invalid]="isInvalid('textArea')"
-							invalidText="Please enter a response">
-							Text input label
-							<textarea
-								cdsTextArea
-								formControlName="textArea"
-								placeholder="Optional placeholder text">
-							</textarea>
-						</cds-label>
-					</div>
-					<div class="cds--form-item">
-						<div class="dropdown-wrapper">
-							<cds-dropdown
-								label="Choose one option"
-								[invalid]="isInvalid('dropdown')"
-								invalidText="Please choose an option"
-								placeholder="Select an option"
-								formControlName="dropdown">
-								<cds-dropdown-list [items]="items"></cds-dropdown-list>
-							</cds-dropdown>
-						</div>
-					</div>
-					<div class="cds--form-item">
-						<button
-							class="form-button"
-							cdsButton
-							type="submit">
-							Show Loading
-						</button>
-					</div>
-				</form>
-			</div>
+	template: `
+	<div cdsGrid>
+		<div cdsRow class="header">
+			<cds-header name="Patterns">
+				<cds-hamburger></cds-hamburger>
+			</cds-header>
 		</div>
-		@if (isLoading) {
-			<cds-loading
-				[isActive]="isLoading"
-				size="normal"
-				[overlay]="overlay">
-			</cds-loading>
-		}`,
+		<div cdsRow class="progress-indicator-wrapper">
+			<cds-progress-indicator [steps]="steps"></cds-progress-indicator>
+		</div>
+		<div cdsRow class="form">
+			<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+				<div class="cds--form-item">
+					<cds-label
+						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
+						[invalid]="isInvalid('input')"
+						invalidText="Please enter a response">
+						Text input label
+						<input
+							cdsText
+							formControlName="input"
+							placeholder="Optional placeholder text">
+					</cds-label>
+				</div>
+				<div class="cds--form-item">
+					<cds-label
+						helperText="Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)"
+						[invalid]="isInvalid('textArea')"
+						invalidText="Please enter a response">
+						Text input label
+						<textarea
+							cdsTextArea
+							formControlName="textArea"
+							placeholder="Optional placeholder text">
+						</textarea>
+					</cds-label>
+				</div>
+				<div class="cds--form-item">
+					<div class="dropdown-wrapper">
+						<cds-dropdown
+							label="Choose one option"
+							[invalid]="isInvalid('dropdown')"
+							invalidText="Please choose an option"
+							placeholder="Select an option"
+							formControlName="dropdown">
+							<cds-dropdown-list [items]="items"></cds-dropdown-list>
+						</cds-dropdown>
+					</div>
+				</div>
+				<div class="cds--form-item">
+					<button
+						class="form-button"
+						cdsButton
+						type="submit">
+						Show Loading
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	@if (isLoading) {
+		<cds-loading
+			[isActive]="isLoading"
+			size="normal"
+			[overlay]="overlay">
+		</cds-loading>
+	}
+	`,
 	styles: [`
 		.header {
 			margin-bottom: 80px;

@@ -48,7 +48,6 @@ export const carbonFlatpickrMonthSelectPlugin = fp => {
 			0,
 			fp.monthElements.length,
 			...fp.monthElements.map(() => {
-
 				const monthElement = fp._createElement(
 					"span",
 					config.classFlatpickrCurrentMonth

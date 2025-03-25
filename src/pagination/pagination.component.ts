@@ -51,7 +51,7 @@ export interface PaginationTranslations {
  */
 @Component({
 	selector: "cds-pagination, ibm-pagination",
-	template:`
+	template: `
 		<div
 			class="cds--pagination"
 			[ngClass]="{
@@ -210,7 +210,8 @@ export interface PaginationTranslations {
 					</div>
 				</div>
 			}
-		</div>`
+		</div>
+	`
 })
 export class Pagination {
 	static paginationCounter = 0;

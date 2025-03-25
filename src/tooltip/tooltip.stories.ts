@@ -155,7 +155,8 @@ const AutoAlignTemplate = (args) => ({
 					</button>
 				</cds-tooltip>
 			</div>
-		</div>`
+		</div>
+	`
 	,
 	styles: [`
 		.tooltip-trigger {
