@@ -33,9 +33,8 @@ export enum SnippetType {
  */
 @Component({
 	selector: "cds-code-snippet, ibm-code-snippet",
-	template:
-	 	/* eslint-disable max-len */
-		`@if (display === 'inline') {
+	template: `
+		@if (display === 'inline') {
 			@if (!hideCopyButton) {
 				<ng-container *ngTemplateOutlet="buttonTemplate" />
 			} @else {
@@ -137,7 +136,6 @@ export enum SnippetType {
 			<ng-content />
 		</ng-template>
 	`,
-	/* eslint-enable max-len */
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {

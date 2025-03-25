@@ -18,9 +18,8 @@ import {
 
 @Component({
 	selector: "app-sample-large-loading",
-	template:
-		/* eslint-disable max-len */
-		`<div cdsGrid>
+	template:`
+		<div cdsGrid>
 			<div cdsRow class="header">
 				<cds-header name="Patterns">
 					<cds-hamburger></cds-hamburger>
@@ -86,7 +85,6 @@ import {
 				[overlay]="overlay">
 			</cds-loading>
 		}`,
-	/* eslint-enable max-len */
 	styles: [`
 		.header {
 			margin-bottom: 80px;

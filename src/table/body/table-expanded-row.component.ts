@@ -12,10 +12,7 @@ import {
 			@if (!firstExpandedTemplateInRow(row)) {
 				{{firstExpandedDataInRow(row)}}
 			}
-			<ng-template
-				[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
-				[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}"
-			/>
+			<ng-template [ngTemplateOutlet]="firstExpandedTemplateInRow(row)" [ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}" />
 		</td>
 	`
 })

@@ -10,8 +10,8 @@ module.exports = tseslint.config({
 		...tseslint.configs.stylistic,
 		...angular.configs.tsRecommended,
 	],
-	processor: angular.processInlineTemplates,
 	rules: {
+		// @todo - Enable v7/8?
 		"@angular-eslint/component-class-suffix": "off",
 		"@angular-eslint/component-selector": [
 			"error",
@@ -21,6 +21,7 @@ module.exports = tseslint.config({
 				style: "kebab-case"
 			}
 		],
+		// @todo - Enable v7/8?
 		"@angular-eslint/directive-class-suffix": "off",
 		"@angular-eslint/directive-selector": [
 			"error",
@@ -33,12 +34,14 @@ module.exports = tseslint.config({
 		"@angular-eslint/no-host-metadata-property": "error",
 		"@angular-eslint/no-input-rename": "error",
 		"@angular-eslint/no-inputs-metadata-property": "error",
+		// @todo - Enable v7/8 - Need to prepare a schematic
 		"@angular-eslint/no-output-native": "warn",
 		"@angular-eslint/no-output-on-prefix": "warn",
 		"@angular-eslint/no-output-rename": "error",
 		"@angular-eslint/no-outputs-metadata-property": "error",
 		"@angular-eslint/use-lifecycle-interface": "error",
 		"@angular-eslint/use-pipe-transform-interface": "error",
+		"@angular-eslint/no-attribute-decorator": "error",
 		"@typescript-eslint/adjacent-overload-signatures": "off",
 		"@typescript-eslint/array-type": "off",
 		"@typescript-eslint/ban-ts-comment": "off",
@@ -82,50 +85,44 @@ module.exports = tseslint.config({
 		"@typescript-eslint/no-wrapper-object-types": "off",
 		"@typescript-eslint/prefer-for-of": "off",
 		"@typescript-eslint/triple-slash-reference": "off",
-		"brace-style": ["error", "1tbs", {"allowSingleLine": true}],
+		"brace-style": ["error", "1tbs", { "allowSingleLine": true }],
 		"comma-dangle": ["error", "never"],
-		"comma-spacing": ["error", {"before": false, "after": true}],
+		"comma-spacing": ["error", { "before": false, "after": true }],
 		"curly": "error",
 		"eol-last": "error",
-		"eqeqeq": ["error", "always", {null: "ignore"}],
+		"eqeqeq": ["error", "always", { null: "ignore" }],
 		"guard-for-in": "error",
-		"indent": ["error", "tab", {"SwitchCase": 1}],
-		"keyword-spacing": ["error", {"before": true, "after": true}],
-		"max-len": ["error", {code: 140}],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"keyword-spacing": ["error", { "before": true, "after": true }],
+		"max-len": ["error", { "code": 140, "ignoreTemplateLiterals": true }],
 		"no-bitwise": "error",
 		"no-caller": "error",
 		"no-case-declarations": "error",
-		"no-console": "off",
+		"no-console": ["warn", { "allow": ["warn", "error"] }],
 		"no-debugger": "error",
 		"no-duplicate-case": "error",
 		"no-empty": "off",
 		"no-eval": "error",
 		"no-new-wrappers": "error",
 		"no-prototype-builtins": "off",
-		"no-restricted-globals": ["error", "event", "fdescribe"],
+		"no-restricted-globals": ["error", "event", "fdescribe", "fit"],
 		"no-self-assign": "off",
 		"no-shadow": "off",
 		"no-trailing-spaces": "error",
-		"no-underscore-dangle": ["error", {
-			"allowAfterThis": true,
-			"allowAfterSuper": true,
-			"allowAfterThisConstructor": true,
-			"enforceInMethodNames": false
-		}],
 		"no-unused-expressions": "off",
 		"no-useless-catch": "off",
 		"no-var": "error",
 		"prefer-const": "off",
-		"quotes": ["error", "double", {"avoidEscape": true, "allowTemplateLiterals": true}],
+		"quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
 		"radix": "error",
 		"semi": ["error", "always"],
 		"sort-keys": "off",
 		"space-before-blocks": "error",
 		"space-before-function-paren": "off",
 		"space-infix-ops": "error",
-		"spaced-comment": "off",
+		"spaced-comment": "off"
 	}
-	},
+},
 	{
 		// Everything in this config object targets our HTML files (external templates,
 		// and inline templates as long as we have the `processor` set on our TypeScript config above)
@@ -134,7 +131,9 @@ module.exports = tseslint.config({
 			...angular.configs.templateAccessibility,
 		],
 		files: ["**/*.html"],
+		processor: angular.processInlineTemplates,
 		rules: {
+			"max-len": "off",
 			"@angular-eslint/template/elements-content": "warn",
 			"@angular-eslint/template/label-has-associated-control": "warn",
 			"@angular-eslint/template/interactive-supports-focus": "warn",
@@ -142,6 +141,5 @@ module.exports = tseslint.config({
 			"@angular-eslint/template/role-has-required-aria": "warn",
 			"@angular-eslint/template/alt-text": "warn"
 		},
-	},
-
-	);
+	}
+);

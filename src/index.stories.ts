@@ -6,7 +6,6 @@ import { IconModule } from "./icon/icon.module";
 
 @Component({
 	selector: "app-welcome",
-	/* eslint-disable max-len */
 	template: `
 		<section class="overview-page__banner" aria-label="overview page banner">
 			<svg xmlns="http://www.w3.org/2000/svg" class="banner__background" viewBox="0 0 1530 823">
@@ -112,7 +111,6 @@ import { IconModule } from "./icon/icon.module";
 			</div>
 		</section>
 	`,
-
 	styles: [`
 		.overview-page__banner {
 			height: 100vh;
