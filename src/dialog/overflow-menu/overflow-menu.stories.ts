@@ -98,8 +98,9 @@ const LinkTemplate = (args) => ({
 				<cds-overflow-menu-option
 					href="https://www.ibm.com"
 					disabled="true"
-					(selected)="selected($event)"
-				>Disabled</cds-overflow-menu-option>
+					(selected)="selected($event)">
+					Disabled
+				</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
 					Danger option
 				</cds-overflow-menu-option>
