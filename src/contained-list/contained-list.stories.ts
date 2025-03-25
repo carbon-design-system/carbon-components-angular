@@ -86,8 +86,7 @@ const usageExamplesTemplate = () => ({
 					[flip]="true"
 					[customTrigger]="customTrigger"
 					triggerClass="cds--toolbar-action"
-					[offset]="{ x: 0, y: 0 }"
-				>
+					[offset]="{ x: 0, y: 0 }">
 					<ibm-overflow-menu-option>View details</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option [divider]="true" type="danger">Remove</ibm-overflow-menu-option>
