@@ -46,8 +46,7 @@ import { BaseModalService } from "./base-modal.service";
 								nPopover="Hello there"
 								title="Popover title"
 								placement="right"
-								appendInline="true"
-							>
+								appendInline="true">
 								<svg cdsIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
