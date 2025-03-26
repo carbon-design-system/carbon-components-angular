@@ -60,6 +60,7 @@ import {
 			role="tabpanel"
 			*ngIf="shouldRender()"
 			class="cds--tab-content"
+			[id]='id'
 			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'"
 			aria-live="polite">
