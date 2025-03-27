@@ -22,8 +22,7 @@ describe("Search", () => {
 				IconModule
 			],
 			providers: []
-		})
-		.compileComponents();
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {

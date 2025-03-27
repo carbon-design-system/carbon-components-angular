@@ -1,16 +1,16 @@
 import {
-	Component,
-	Input,
-	HostBinding,
-	ViewChild,
 	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input,
 	OnInit,
-	ChangeDetectionStrategy
+	ViewChild
 } from "@angular/core";
 
+import { BaseIconButton } from "carbon-components-angular/button";
 import { I18n } from "carbon-components-angular/i18n";
 import { EventService } from "carbon-components-angular/utils";
-import { BaseIconButton } from "carbon-components-angular/button";
 
 export enum SnippetType {
 	single = "single",

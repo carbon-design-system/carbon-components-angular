@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
+import { merge } from "carbon-components-angular/utils";
 import {
 	BehaviorSubject,
-	Observable,
-	isObservable,
 	iif,
+	isObservable,
+	Observable,
 	Subscription
 } from "rxjs";
 import { map } from "rxjs/operators";
-import { merge } from "carbon-components-angular/utils";
 
 import EN from "./en";
 
@@ -135,7 +135,7 @@ export class Overridable {
 /**
  * An object of strings, should follow the same format as src/i18n/en.json
  */
-export type TranslationStrings = {
+export interface TranslationStrings {
 	[key: string]: string | TranslationStrings;
 };
 

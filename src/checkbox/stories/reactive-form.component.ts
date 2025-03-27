@@ -34,7 +34,11 @@ export class ReactiveFormsStory implements OnInit {
 	toggleDisable() {
 		const checkbox = this.formGroup.get("checkbox");
 		if (checkbox != null) {
-			checkbox.disabled ? checkbox.enable() : checkbox.disable();
+			if (checkbox.disabled) {
+				checkbox.enable();
+			} else {
+				checkbox.disable();
+			}
 		}
 	}
 }

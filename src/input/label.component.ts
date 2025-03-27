@@ -207,11 +207,9 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	@ContentChild(TextArea) textArea: TextArea;
 
-	// @ts-ignore
 	@ContentChild(TextInput, { static: false }) textInput: TextInput;
 
-	@ContentChild(PasswordInput, { static: false })
-	passwordInput: PasswordInput;
+	@ContentChild(PasswordInput, { static: false }) passwordInput: PasswordInput;
 
 	@HostBinding("class.cds--form-item") get labelClass() {
 		return this.type === undefined;

@@ -1,6 +1,3 @@
-/* tslint:disable variable-name */
-
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule, IconDirective } from "./";
 import { IconDemo, ManyIconDemo } from "./stories";

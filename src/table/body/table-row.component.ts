@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
 		@if (model) {
@@ -73,7 +73,7 @@ import { TableRowSize } from "../table.types";
 						(keydown.enter)="onRowClick()">
 					</td>
 				}
-				@if (item && model.getHeader(j) == null) {
+				@if (item && model.getHeader(j) === null) {
 					<td
 						cdsTableData
 						[headers]="model.getHeaderId(j, item.colSpan)"

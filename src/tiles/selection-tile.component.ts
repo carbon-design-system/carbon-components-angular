@@ -40,8 +40,7 @@ import { I18n } from "carbon-components-angular/i18n";
 			<div class="cds--tile-content">
 				<ng-content />
 			</div>
-		</label>
-	`
+		</label>`
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
@@ -94,9 +93,11 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
+	 *
+	 * Set to true because of the way tile group sets it up.
+	 * If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 	 */
-	multiple = true;	// Set to true because of the way tile group sets it up.
-						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
+	multiple = true;
 
 	@ViewChild("input", { static: true }) input;
 

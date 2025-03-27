@@ -9,7 +9,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]",
 	template: `
 		@if (!skeleton) {

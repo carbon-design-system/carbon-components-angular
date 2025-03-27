@@ -1,13 +1,13 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	HostBinding,
 	HostListener,
 	Input,
-	SimpleChanges,
 	OnChanges,
-	HostBinding,
-	ChangeDetectionStrategy
+	SimpleChanges
 } from "@angular/core";
 
 /**
@@ -86,10 +86,9 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	handleNavigation(event: KeyboardEvent) {
 		const list: HTMLElement = this.elementRef.nativeElement;
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
-		const menuItems: HTMLElement[] = (
-			Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
-				.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
-		);
+		const menuItems: HTMLElement[] = (Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
+			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem)));
+
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
 

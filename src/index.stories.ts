@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
@@ -8,7 +6,6 @@ import { IconModule } from "./icon/icon.module";
 
 @Component({
 	selector: "app-welcome",
-	// tslint:disable:max-line-length
 	template: `
 		<section class="overview-page__banner" aria-label="overview page banner">
 			<svg xmlns="http://www.w3.org/2000/svg" class="banner__background" viewBox="0 0 1530 823">
@@ -114,7 +111,6 @@ import { IconModule } from "./icon/icon.module";
 			</div>
 		</section>
 	`,
-	// tslint:enable:max-line-length
 	styles: [`
 		.overview-page__banner {
 			height: 100vh;

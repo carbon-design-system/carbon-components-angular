@@ -262,7 +262,6 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * The `Radio` input items in the `RadioGroup`.
 	 */
-	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**

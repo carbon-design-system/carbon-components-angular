@@ -12,7 +12,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 @Component({
 	template: `
 		<ng-template #label>
-	  		<h1>My contained list</h1>
+			<h1>My contained list</h1>
 		</ng-template>
 
 		<ng-template #action>
@@ -115,7 +115,8 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const actionElementRef = wrapperFixture.nativeElement.querySelector(".cds--contained-list .cds--contained-list__action ibm-icon-button");
+			const actionElementRef = wrapperFixture.nativeElement
+				.querySelector(".cds--contained-list .cds--contained-list__action ibm-icon-button");
 			expect(actionElementRef).toBeTruthy();
 		});
 	});
@@ -141,7 +142,8 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const iconElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
+			const iconElement = wrapperFixture.debugElement
+				.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
 			expect(iconElement).toBeTruthy();
 		});
 

@@ -67,7 +67,7 @@ export interface PaginationNavTranslations {
 					<cds-pagination-nav-item
 						page="1"
 						(click)="currentPage = 1"
-						[isActive]="currentPage == 1">
+						[isActive]="currentPage === 1">
 					</cds-pagination-nav-item>
 				}
 				@if (frontCuts) {
@@ -81,7 +81,7 @@ export interface PaginationNavTranslations {
 					<cds-pagination-nav-item
 						[page]="page"
 						(click)="currentPage = page"
-						[isActive]="currentPage == page">
+						[isActive]="currentPage === page">
 					</cds-pagination-nav-item>
 				}
 				@if (backCuts) {
@@ -95,7 +95,7 @@ export interface PaginationNavTranslations {
 					<cds-pagination-nav-item
 						[page]="totalNumbersArray.length"
 						(click)="currentPage = totalNumbersArray.length"
-						[isActive]="currentPage == totalNumbersArray.length">
+						[isActive]="currentPage === totalNumbersArray.length">
 					</cds-pagination-nav-item>
 				}
 				<li class="cds--pagination-nav__list-item">

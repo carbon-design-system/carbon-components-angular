@@ -41,7 +41,12 @@ import { BaseModalService } from "./base-modal.service";
 					<cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
-							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
+							<button
+								class="btn--icon-link"
+								nPopover="Hello there"
+								title="Popover title"
+								placement="right"
+								appendInline="true">
 								<svg cdsIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
@@ -134,7 +139,8 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	@Input() hasScrollingContent: boolean = null;
 
 	/**
-	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
+	 * Emits event when click occurs within `n-overlay` element.
+	 * This is to track click events occurring outside bounds of the `Modal` object.
 	 */
 	@Output() overlaySelected = new EventEmitter();
 	/**

@@ -1,5 +1,3 @@
-/* tslint:disable variable-name */
-
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { TimePickerModule, TimePicker } from "./";
