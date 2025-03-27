@@ -129,10 +129,6 @@ export class Tab implements OnInit {
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
-	/**
-	 * Used to set the id property on the element.
-	 */
-	@HostBinding("attr.id") attrClass = this.id;
 
 	get cacheActive() {
 		return this._cacheActive;
