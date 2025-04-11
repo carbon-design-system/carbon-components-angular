@@ -28,13 +28,13 @@
 <title>cluster_TreeviewModule_TreeViewComponent_providers</title>
 <polygon fill="none" stroke="black" points="296,-78 296,-195 470,-195 470,-78 296,-78"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_TreeviewModule_imports</title>
-<polygon fill="none" stroke="black" points="188,-143 188,-195 288,-195 288,-143 188,-143"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_TreeviewModule_exports</title>
 <polygon fill="none" stroke="black" points="91,-273 91,-325 406,-325 406,-273 91,-273"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_TreeviewModule_imports</title>
+<polygon fill="none" stroke="black" points="188,-143 188,-195 288,-195 288,-143 188,-143"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_TreeviewModule_declarations</title>
