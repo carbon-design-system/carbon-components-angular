@@ -30,9 +30,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			[attr.aria-expanded]="isOpen"
 			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
-			(focus)="onClick($event)"
-			(mouseover)="onClick($event)"
-			(click)="onClick($event)"
+			(mousedown)="onClick($event)"
 			type="button">
 			<ng-content></ng-content>
 		</button>
@@ -65,6 +63,8 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	@Input() templateContext: any;
 
+	@Input() openOnHover = false;
+
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
@@ -95,6 +95,18 @@ export class TooltipDefinition extends PopoverContainer {
 	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
 		this.handleChange(false, event);
+	}
+
+	@HostListener("mouseenter", ["$event"])
+	mouseenter(event) {
+		if (this.openOnHover) {
+			this.handleChange(true, event);
+		}
+	}
+
+	@HostListener("focusin", ["$event"])
+	onFocus(event) {
+		this.handleChange(true, event);
 	}
 
 	public isTemplate(value) {
