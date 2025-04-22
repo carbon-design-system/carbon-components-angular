@@ -30,7 +30,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			[attr.aria-expanded]="isOpen"
 			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
-			(mousedown)="onClick($event)"
+			(click)="onClick($event)"
 			type="button">
 			<ng-content></ng-content>
 		</button>
