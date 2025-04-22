@@ -28,7 +28,10 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
 			[attr.aria-expanded]="isOpen"
+			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
+			(focus)="onClick($event)"
+			(mouseover)="onClick($event)"
 			(click)="onClick($event)"
 			type="button">
 			<ng-content></ng-content>
@@ -37,9 +40,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="isOpen"
+			[attr.aria-hidden]="!isOpen"
 			role="tooltip">
-			<span class="cds--popover-content cds--definition-tooltip">
+			<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
 				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
