@@ -22,101 +22,101 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_TreeviewModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="31.5,-70 31.5,-333 464.5,-333 464.5,-70 31.5,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="18,-70 18,-333 478,-333 478,-70 18,-70"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_TreeviewModule_exports</title>
-<polygon fill="none" stroke="black" points="90.5,-273 90.5,-325 405.5,-325 405.5,-273 90.5,-273"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_TreeviewModule_declarations</title>
-<polygon fill="none" stroke="black" points="147.5,-143 147.5,-195 456.5,-195 456.5,-143 147.5,-143"/>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_TreeviewModule_TreeViewComponent_providers</title>
-<polygon fill="none" stroke="black" points="137.5,-78 137.5,-130 311.5,-130 311.5,-78 137.5,-78"/>
+<polygon fill="none" stroke="black" points="97,-273 97,-325 412,-325 412,-273 97,-273"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_TreeviewModule_imports</title>
-<polygon fill="none" stroke="black" points="39.5,-143 39.5,-195 139.5,-195 139.5,-143 39.5,-143"/>
+<polygon fill="none" stroke="black" points="370,-143 370,-195 470,-195 470,-143 370,-143"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_TreeviewModule_TreeViewComponent_providers</title>
+<polygon fill="none" stroke="black" points="188,-78 188,-195 362,-195 362,-78 188,-78"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_TreeviewModule_declarations</title>
+<polygon fill="none" stroke="black" points="26,-143 26,-195 180,-195 180,-143 26,-143"/>
 </g>
 <!-- TreeNodeComponent -->
 <g id="node1" class="node">
 <title>TreeNodeComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="448.3,-187 310.7,-187 310.7,-151 448.3,-151 448.3,-187"/>
-<text text-anchor="middle" x="379.5" y="-164.8" font-family="Times,serif" font-size="14.00">TreeNodeComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="171.8,-187 34.2,-187 34.2,-151 171.8,-151 171.8,-187"/>
+<text text-anchor="middle" x="103" y="-164.8" font-family="Times,serif" font-size="14.00">TreeNodeComponent</text>
 </g>
 <!-- TreeviewModule -->
 <g id="node3" class="node">
 <title>TreeviewModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="280.9,-252 277.9,-256 256.9,-256 253.9,-252 168.1,-252 168.1,-216 280.9,-216 280.9,-252"/>
-<text text-anchor="middle" x="224.5" y="-229.8" font-family="Times,serif" font-size="14.00">TreeviewModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="331.4,-252 328.4,-256 307.4,-256 304.4,-252 218.6,-252 218.6,-216 331.4,-216 331.4,-252"/>
+<text text-anchor="middle" x="275" y="-229.8" font-family="Times,serif" font-size="14.00">TreeviewModule</text>
 </g>
 <!-- TreeNodeComponent&#45;&gt;TreeviewModule -->
 <g id="edge1" class="edge">
 <title>TreeNodeComponent&#45;&gt;TreeviewModule</title>
-<path fill="none" stroke="black" d="M354.38,-187.11C354.38,-206.34 354.38,-234 354.38,-234 354.38,-234 290.71,-234 290.71,-234"/>
-<polygon fill="black" stroke="black" points="290.71,-230.5 280.71,-234 290.71,-237.5 290.71,-230.5"/>
+<path fill="none" stroke="black" d="M138.13,-187.11C138.13,-206.34 138.13,-234 138.13,-234 138.13,-234 208.54,-234 208.54,-234"/>
+<polygon fill="black" stroke="black" points="208.54,-237.5 218.54,-234 208.54,-230.5 208.54,-237.5"/>
 </g>
 <!-- TreeViewComponent -->
 <g id="node2" class="node">
 <title>TreeViewComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="293.29,-187 155.71,-187 155.71,-151 293.29,-151 293.29,-187"/>
-<text text-anchor="middle" x="224.5" y="-164.8" font-family="Times,serif" font-size="14.00">TreeViewComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="343.79,-187 206.21,-187 206.21,-151 343.79,-151 343.79,-187"/>
+<text text-anchor="middle" x="275" y="-164.8" font-family="Times,serif" font-size="14.00">TreeViewComponent</text>
 </g>
 <!-- TreeViewComponent&#45;&gt;TreeviewModule -->
 <g id="edge2" class="edge">
 <title>TreeViewComponent&#45;&gt;TreeviewModule</title>
-<path fill="none" stroke="black" d="M224.5,-187.11C224.5,-187.11 224.5,-205.99 224.5,-205.99"/>
-<polygon fill="black" stroke="black" points="221,-205.99 224.5,-215.99 228,-205.99 221,-205.99"/>
+<path fill="none" stroke="black" d="M275,-187.11C275,-187.11 275,-205.99 275,-205.99"/>
+<polygon fill="black" stroke="black" points="271.5,-205.99 275,-215.99 278.5,-205.99 271.5,-205.99"/>
 </g>
 <!-- TreeNodeComponent  -->
 <g id="node6" class="node">
 <title>TreeNodeComponent </title>
-<polygon fill="#fb8072" stroke="black" points="397.8,-317 257.2,-317 257.2,-281 397.8,-281 397.8,-317"/>
-<text text-anchor="middle" x="327.5" y="-294.8" font-family="Times,serif" font-size="14.00">TreeNodeComponent </text>
+<polygon fill="#fb8072" stroke="black" points="404.3,-317 263.7,-317 263.7,-281 404.3,-281 404.3,-317"/>
+<text text-anchor="middle" x="334" y="-294.8" font-family="Times,serif" font-size="14.00">TreeNodeComponent </text>
 </g>
 <!-- TreeviewModule&#45;&gt;TreeNodeComponent  -->
 <g id="edge5" class="edge">
 <title>TreeviewModule&#45;&gt;TreeNodeComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M268.9,-252.11C268.9,-252.11 268.9,-270.99 268.9,-270.99"/>
-<polygon fill="black" stroke="black" points="265.4,-270.99 268.9,-280.99 272.4,-270.99 265.4,-270.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M297.4,-252.11C297.4,-252.11 297.4,-270.99 297.4,-270.99"/>
+<polygon fill="black" stroke="black" points="293.9,-270.99 297.4,-280.99 300.9,-270.99 293.9,-270.99"/>
 </g>
 <!-- TreeViewComponent  -->
 <g id="node7" class="node">
 <title>TreeViewComponent </title>
-<polygon fill="#fb8072" stroke="black" points="238.79,-317 98.21,-317 98.21,-281 238.79,-281 238.79,-317"/>
-<text text-anchor="middle" x="168.5" y="-294.8" font-family="Times,serif" font-size="14.00">TreeViewComponent </text>
+<polygon fill="#fb8072" stroke="black" points="245.29,-317 104.71,-317 104.71,-281 245.29,-281 245.29,-317"/>
+<text text-anchor="middle" x="175" y="-294.8" font-family="Times,serif" font-size="14.00">TreeViewComponent </text>
 </g>
 <!-- TreeviewModule&#45;&gt;TreeViewComponent  -->
 <g id="edge6" class="edge">
 <title>TreeviewModule&#45;&gt;TreeViewComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M203.6,-252.11C203.6,-252.11 203.6,-270.99 203.6,-270.99"/>
-<polygon fill="black" stroke="black" points="200.1,-270.99 203.6,-280.99 207.1,-270.99 200.1,-270.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M232.1,-252.11C232.1,-252.11 232.1,-270.99 232.1,-270.99"/>
+<polygon fill="black" stroke="black" points="228.6,-270.99 232.1,-280.99 235.6,-270.99 228.6,-270.99"/>
 </g>
 <!-- TreeViewService -->
 <g id="node4" class="node">
 <title>TreeViewService</title>
-<ellipse fill="#fdb462" stroke="black" cx="224.5" cy="-104" rx="78.69" ry="18"/>
-<text text-anchor="middle" x="224.5" y="-99.8" font-family="Times,serif" font-size="14.00">TreeViewService</text>
+<ellipse fill="#fdb462" stroke="black" cx="275" cy="-104" rx="78.69" ry="18"/>
+<text text-anchor="middle" x="275" y="-99.8" font-family="Times,serif" font-size="14.00">TreeViewService</text>
 </g>
 <!-- TreeViewService&#45;&gt;TreeViewComponent -->
 <g id="edge3" class="edge">
 <title>TreeViewService&#45;&gt;TreeViewComponent</title>
-<path fill="none" stroke="black" d="M224.5,-122.11C224.5,-122.11 224.5,-140.99 224.5,-140.99"/>
-<polygon fill="black" stroke="black" points="221,-140.99 224.5,-150.99 228,-140.99 221,-140.99"/>
+<path fill="none" stroke="black" d="M275,-122.11C275,-122.11 275,-140.99 275,-140.99"/>
+<polygon fill="black" stroke="black" points="271.5,-140.99 275,-150.99 278.5,-140.99 271.5,-140.99"/>
 </g>
 <!-- IconModule -->
 <g id="node5" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="131.93,-187 128.93,-191 107.93,-191 104.93,-187 47.07,-187 47.07,-151 131.93,-151 131.93,-187"/>
-<text text-anchor="middle" x="89.5" y="-164.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="462.43,-187 459.43,-191 438.43,-191 435.43,-187 377.57,-187 377.57,-151 462.43,-151 462.43,-187"/>
+<text text-anchor="middle" x="420" y="-164.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;TreeviewModule -->
 <g id="edge4" class="edge">
 <title>IconModule&#45;&gt;TreeviewModule</title>
-<path fill="none" stroke="black" d="M114.91,-187.11C114.91,-206.34 114.91,-234 114.91,-234 114.91,-234 158.1,-234 158.1,-234"/>
-<polygon fill="black" stroke="black" points="158.1,-237.5 168.1,-234 158.1,-230.5 158.1,-237.5"/>
+<path fill="none" stroke="black" d="M391.09,-187.11C391.09,-206.34 391.09,-234 391.09,-234 391.09,-234 341.35,-234 341.35,-234"/>
+<polygon fill="black" stroke="black" points="341.35,-230.5 331.35,-234 341.35,-237.5 341.35,-230.5"/>
 </g>
 </g>
 </svg>
