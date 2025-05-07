@@ -3286,7 +3286,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		const selected &#x3D; this.getSelected();
 		if (selected.length) {
 			this.index &#x3D; this.displayItems.indexOf(selected[0]);
-		} else if (this.hasNextElement()) {
+		} else if (this.index &lt; 0 &amp;&amp; this.hasNextElement()) {
 			this.getNextElement();
 		}
 	}
