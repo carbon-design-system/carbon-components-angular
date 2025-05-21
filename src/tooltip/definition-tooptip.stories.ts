@@ -62,6 +62,7 @@ const Template = (args) => ({
 				<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
 				<cds-tooltip-definition
 					[isOpen]="isOpen"
+					[openOnHover]="openOnHover"
 					[caret]="caret"
 					[align]="align"
 					(onOpen)="onOpen($event)"
@@ -101,6 +102,7 @@ const AutoAlignTemplate = (args) => ({
 				<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
 				<cds-tooltip-definition
 					[isOpen]="isOpen"
+					[openOnHover]="openOnHover"
 					[caret]="caret"
 					[align]="align"
 					[autoAlign]="true"
