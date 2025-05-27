@@ -83,4 +83,4 @@ function walkDirectory(dir) {
 	})
 }
 
-walkDirectory(entryDirectory)
+walkDirectory(entryDirectory);
