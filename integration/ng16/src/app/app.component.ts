@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DropdownModule, ListItem } from 'carbon-components-angular/DropdownModule';
-import { ButtonModule } from 'carbon-components-angular/ButtonModule';
+import { DropdownModule, ButtonModule, ListItem } from 'carbon-components-angular';
 
 @Component({
   selector: 'app-root',
