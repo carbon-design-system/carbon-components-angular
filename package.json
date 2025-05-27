@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash scripts/build.sh",
     "storybook": "ng run carbon-components-angular:storybook",
-    "docs:build": "compodoc -p tsconfig.doc.json -t",
+    "docs:build": "compodoc -p tsconfig.doc.json -t && node ./scripts/compliance.js",
     "docs:json": "compodoc --config compodoc.storybook.json",
     "lint": "tslint 'src/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts'",
