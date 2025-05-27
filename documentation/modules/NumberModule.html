@@ -10,7 +10,23 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-    </head>
+    
+	<style>
+		footer.carbon {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 9999;
+		}
+		#root > div {
+			/*
+			 * Subtracting the height of the footer to prevent
+			 * overlaying the footer ontop of content
+			 */
+			height: calc(100vh - 48px);
+		}
+	</style>
+</head>
     <body>
           <script>
                // Blocking script to avoid flickering dark mode
@@ -117,6 +133,10 @@
 <title>cluster_NumberModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="95,-70 95,-268 401,-268 401,-70 95,-70"/>
 </g>
+<g id="clust5" class="cluster">
+<title>cluster_NumberModule_exports</title>
+<polygon fill="none" stroke="black" points="198,-208 198,-260 280,-260 280,-208 198,-208"/>
+</g>
 <g id="clust4" class="cluster">
 <title>cluster_NumberModule_imports</title>
 <polygon fill="none" stroke="black" points="189,-78 189,-130 393,-130 393,-78 189,-78"/>
@@ -124,10 +144,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_NumberModule_declarations</title>
 <polygon fill="none" stroke="black" points="103,-78 103,-130 181,-130 181,-78 103,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_NumberModule_exports</title>
-<polygon fill="none" stroke="black" points="198,-208 198,-260 280,-260 280,-208 198,-208"/>
 </g>
 <!-- Number -->
 <g id="node1" class="node">
@@ -383,5 +399,27 @@ export class NumberModule { }
        <script src="../js/lazy-load-graphs.js"></script>
 
 
-    </body>
+    
+
+	<footer class="carbon">
+		<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+	</footer>
+
+	<script
+		key="8"
+		type="module"
+		src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
+	</script>
+
+	<!-- Storybook override -->
+	<script>
+		document.title = "Carbon Components Angular";
+	</script>
+
+	<script
+		src="//1.www.s81c.com/common/stats/ibm-common.js"
+		type="text/javascript"
+		async="async">
+	</script>
+</body>
 </html>

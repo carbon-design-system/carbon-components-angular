@@ -10,7 +10,23 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-    </head>
+    
+	<style>
+		footer.carbon {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 9999;
+		}
+		#root > div {
+			/*
+			 * Subtracting the height of the footer to prevent
+			 * overlaying the footer ontop of content
+			 */
+			height: calc(100vh - 48px);
+		}
+	</style>
+</head>
     <body>
           <script>
                // Blocking script to avoid flickering dark mode
@@ -117,10 +133,6 @@
 <title>cluster_ThemeModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="121,-70 121,-268 375,-268 375,-70 121,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_ThemeModule_exports</title>
-<polygon fill="none" stroke="black" points="185,-208 185,-260 311,-260 311,-208 185,-208"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ThemeModule_imports</title>
 <polygon fill="none" stroke="black" points="259,-78 259,-130 367,-130 367,-78 259,-78"/>
@@ -128,6 +140,10 @@
 <g id="clust2" class="cluster">
 <title>cluster_ThemeModule_declarations</title>
 <polygon fill="none" stroke="black" points="129,-78 129,-130 251,-130 251,-78 129,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_ThemeModule_exports</title>
+<polygon fill="none" stroke="black" points="185,-208 185,-260 311,-260 311,-208 185,-208"/>
 </g>
 <!-- ThemeDirective -->
 <g id="node1" class="node">
@@ -355,5 +371,27 @@ export class ThemeModule {}
        <script src="../js/lazy-load-graphs.js"></script>
 
 
-    </body>
+    
+
+	<footer class="carbon">
+		<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+	</footer>
+
+	<script
+		key="8"
+		type="module"
+		src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
+	</script>
+
+	<!-- Storybook override -->
+	<script>
+		document.title = "Carbon Components Angular";
+	</script>
+
+	<script
+		src="//1.www.s81c.com/common/stats/ibm-common.js"
+		type="text/javascript"
+		async="async">
+	</script>
+</body>
 </html>

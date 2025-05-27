@@ -10,7 +10,23 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-    </head>
+    
+	<style>
+		footer.carbon {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 9999;
+		}
+		#root > div {
+			/*
+			 * Subtracting the height of the footer to prevent
+			 * overlaying the footer ontop of content
+			 */
+			height: calc(100vh - 48px);
+		}
+	</style>
+</head>
     <body>
           <script>
                // Blocking script to avoid flickering dark mode
@@ -1154,5 +1170,27 @@ export class Header {
        <script src="../js/lazy-load-graphs.js"></script>
 
 
-    </body>
+    
+
+	<footer class="carbon">
+		<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+	</footer>
+
+	<script
+		key="8"
+		type="module"
+		src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
+	</script>
+
+	<!-- Storybook override -->
+	<script>
+		document.title = "Carbon Components Angular";
+	</script>
+
+	<script
+		src="//1.www.s81c.com/common/stats/ibm-common.js"
+		type="text/javascript"
+		async="async">
+	</script>
+</body>
 </html>
