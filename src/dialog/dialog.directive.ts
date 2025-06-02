@@ -117,7 +117,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 	@HostBinding("attr.role") role = "button";
 	@HostBinding("attr.aria-haspopup") hasPopup = true;
-	@HostBinding("attr.aria-owns") get ariaOwns(): string {
+	@HostBinding("attr.aria-controls") get ariaControls(): string {
 		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
