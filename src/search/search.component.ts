@@ -212,13 +212,13 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
+		this.doValueChange();
 		this.clear.emit();
-		this.propagateChange(this.value);
 	}
 
 	doValueChange() {
-		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
+		this.valueChange.emit(this.value);
 	}
 
 	openSearch() {

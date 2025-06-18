@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash scripts/build.sh",
     "storybook": "ng run carbon-components-angular:storybook",
-    "docs:build": "compodoc -p tsconfig.doc.json -t",
+    "docs:build": "compodoc -p tsconfig.doc.json -t && node ./scripts/compliance.js",
     "docs:json": "compodoc --config compodoc.storybook.json",
     "lint": "tslint 'src/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts'",
@@ -140,7 +140,7 @@
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.37.0",
-    "@carbon/icons": "11.14.0",
+    "@carbon/icons": "11.58.0",
     "@carbon/utils-position": "1.1.4",
     "@floating-ui/dom": "1.6.13",
     "@ibm/telemetry-js": "^1.5.0",
