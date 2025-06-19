@@ -82,9 +82,9 @@ export class ActionableNotification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount}`;
-	@HostBinding("attr.aria-labelledBy") notificationLabel = `Notification`;
-	@HostBinding("attr.aria-describedby") notificationDescription = `Notification-${ActionableNotification.notificationCount++}`;
+	notificationID = `notification-${ActionableNotification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
+	@HostBinding("attr.aria-describedby") notificationDescription = this.notificationID;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }

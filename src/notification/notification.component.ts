@@ -62,9 +62,9 @@ export class Notification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount}`;
-	@HostBinding("attr.aria-labelledBy") notificationLabel = `Notification`;
-	@HostBinding("attr.aria-describedby") notificationDescription = `Notification-${Notification.notificationCount++}`;
+	notificationID = `notification-${Notification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
+	@HostBinding("attr.aria-describedby") notificationDescription = this.notificationID;
 	@HostBinding("class.cds--inline-notification") notificationClass = true;
 	@HostBinding("class.cds--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
