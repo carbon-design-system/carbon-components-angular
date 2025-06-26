@@ -26,7 +26,12 @@ import { BaseNotification } from "./base-notification.component";
 				class="cds--inline-notification__icon">
 			</svg>
 			<div class="cds--inline-notification__text-wrapper">
-				<div *ngIf="!notificationObj.template" cdsNotificationTitle [innerHTML]="notificationObj.title"></div>
+				<div
+					cdsNotificationTitle
+					*ngIf="!notificationObj.template"
+					[innerHTML]="notificationObj.title"
+					[id]="notificationID">
+				</div>
 				<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>
 					<span [innerHTML]="notificationObj.message"></span>
 				</div>
@@ -62,7 +67,8 @@ export class Notification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
+	notificationID = `notification-${Notification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
 	@HostBinding("class.cds--inline-notification") notificationClass = true;
 	@HostBinding("class.cds--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }

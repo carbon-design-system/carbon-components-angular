@@ -28,6 +28,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
 			[attr.aria-expanded]="isOpen"
+			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
 			(click)="onClick($event)"
 			type="button">
@@ -37,9 +38,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			*ngIf="description"
 			class="cds--popover"
 			[id]="id"
-			[attr.aria-hidden]="isOpen"
+			[attr.aria-hidden]="!isOpen"
 			role="tooltip">
-			<span class="cds--popover-content cds--definition-tooltip">
+			<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
 				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
@@ -61,6 +62,8 @@ export class TooltipDefinition extends PopoverContainer {
 	 * Optional data for templates passed as implicit context
 	 */
 	@Input() templateContext: any;
+
+	@Input() openOnHover = false;
 
 	constructor(
 		protected elementRef: ElementRef,
@@ -92,6 +95,18 @@ export class TooltipDefinition extends PopoverContainer {
 	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
 		this.handleChange(false, event);
+	}
+
+	@HostListener("mouseenter", ["$event"])
+	mouseenter(event) {
+		if (this.openOnHover) {
+			this.handleChange(true, event);
+		}
+	}
+
+	@HostListener("focusin", ["$event"])
+	onFocus(event) {
+		this.handleChange(true, event);
 	}
 
 	public isTemplate(value) {

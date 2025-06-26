@@ -31,7 +31,12 @@ import { BaseNotification } from "./base-notification.component";
 			</svg>
 			<div class="cds--actionable-notification__text-wrapper">
 				<div class="cds--actionable-notification__content">
-					<div *ngIf="!notificationObj.template" cdsActionableTitle [innerHTML]="notificationObj.title"></div>
+					<div
+						cdsActionableTitle
+						*ngIf="!notificationObj.template"
+						[id]="notificationID"
+						[innerHTML]="notificationObj.title">
+					</div>
 					<div *ngIf="!notificationObj.template" cdsActionableSubtitle>
 						<span [innerHTML]="notificationObj.message"></span>
 						<ng-container *ngFor="let link of notificationObj.links">
@@ -82,7 +87,8 @@ export class ActionableNotification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount++}`;
+	notificationID = `actionable-notification-${ActionableNotification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }
