@@ -57,7 +57,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
-			tabindex="-1"
+			tabindex="0"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
 			<li
@@ -67,6 +67,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 				class="cds--list-box__menu-item"
 				[attr.aria-selected]="item.selected"
 				[id]="getItemId(i)"
+				[attr.tabindex]="highlightedItem === getItemId(i) ? 0 : null"
 				[attr.title]=" showTitles ? item.content : null"
 				[attr.disabled]="item.disabled ? true : null"
 				[ngClass]="{
