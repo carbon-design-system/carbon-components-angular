@@ -186,7 +186,7 @@ const HeaderWithTemplate = (args) => ({
 		</div>
 		<ng-template #brandTemplate>
 			<a class="cds--header__name">
-				<svg cdsIcon="carbon" size="32" style="stroke:white;fill:white"></svg>
+				<svg cdsIcon="carbon" size="16"></svg>
 				<span class="cds--header__name--prefix">IBM</span>
 				[Platform]
 			</a>
