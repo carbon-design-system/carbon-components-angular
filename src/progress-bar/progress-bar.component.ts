@@ -4,6 +4,8 @@ import {
 	Input,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet, NgStyle } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -70,7 +72,9 @@ import {
 				}
 			</div>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet, IconDirective, NgStyle]
 })
 export class ProgressBar {
 	/**

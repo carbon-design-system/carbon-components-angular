@@ -5,10 +5,11 @@ import { By	} from "@angular/platform-browser";
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
-import { I18nModule } from "../../i18n/index";
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`,
+	imports: [DropdownList],
+	standalone: true
 })
 class DropdownListTest {
 	items = [
@@ -22,7 +23,9 @@ class DropdownListTest {
 }
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`,
+	imports: [DropdownList],
+	standalone: true
 })
 class MultiTest {
 	items = [
@@ -39,13 +42,8 @@ describe("Dropdown list", () => {
 	let fixture: ComponentFixture<DropdownListTest>, wrapper: DropdownListTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DropdownList,
-				DropdownListTest,
-				ScrollableList
-			],
 			imports: [
-				I18nModule
+				DropdownListTest
 			]
 		});
 	});
@@ -87,13 +85,10 @@ describe("Dropdown multi list", () => {
 	let fixture: ComponentFixture<MultiTest>, wrapper: MultiTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
+			imports: [
 				DropdownList,
 				MultiTest,
 				ScrollableList
-			],
-			imports: [
-				I18nModule
 			]
 		});
 	});

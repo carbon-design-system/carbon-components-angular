@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { NgClass } from "@angular/common";
 
 /**
  * Represents an item in a switcher list.
@@ -25,7 +26,9 @@ import { Router } from "@angular/router";
 			(click)="navigate($event)">
 			<ng-content />
 		</a>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass]
 })
 export class SwitcherListItem {
 	/**

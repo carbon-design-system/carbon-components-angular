@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
  * Get started with importing the module:
  *
  * ```typescript
- * import { ButtonModule } from 'carbon-components-angular';
+ * import { Button } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-button-set--basic)
@@ -12,7 +12,8 @@ import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
 @Component({
 	selector: "cds-button-set, ibm-button-set",
 	template: "<ng-content />",
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ButtonSet {
 	@HostBinding("class.cds--btn-set") buttonSetClass = true;

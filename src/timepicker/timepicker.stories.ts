@@ -1,15 +1,15 @@
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TimePickerModule, TimePicker } from "./";
-import { TimePickerSelectModule } from "../timepicker-select";
+import { TimePicker } from "./";
+import { TimePickerSelect } from "../timepicker-select";
 
 export default {
 	title: "Components/Timepicker",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TimePickerModule,
-				TimePickerSelectModule,
+				TimePicker,
+				TimePickerSelect,
 				FormsModule
 			]
 		})

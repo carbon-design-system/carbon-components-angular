@@ -1,12 +1,12 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
-import { NumberModule, NumberComponent } from "./";
+import { NumberComponent } from "./";
 
 export default {
 	title: "Components/Number Input",
 	decorators: [
 		moduleMetadata({
-			imports: [NumberModule, FormsModule]
+			imports: [FormsModule]
 		})
 	],
 	args: {

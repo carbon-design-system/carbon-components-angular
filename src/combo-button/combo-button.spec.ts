@@ -1,11 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { ContextMenuModule } from "../context-menu";
-import { IconModule } from "../icon";
 import { By } from "@angular/platform-browser";
 
-import { ComboButtonModule } from "./combo-button.module";
-import { Button } from "../button";
+import { ComboButtonComponent } from "./combo-button.component";
+import { ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
 
 
 @Component({
@@ -20,7 +18,13 @@ import { Button } from "../button";
 			<cds-menu-divider></cds-menu-divider>
 			<cds-menu-item label="Danger action" [danger]="true"></cds-menu-item>
 		</cds-combo-button>
-	`
+	`,
+	standalone: true,
+	imports: [
+		ComboButtonComponent,
+		ContextMenuItemComponent,
+		ContextMenuDividerComponent
+	]
 })
 class ComboButtonTestComponent {}
 
@@ -28,13 +32,8 @@ describe("Combo button", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				ComboButtonTestComponent
-			],
 			imports: [
-				ComboButtonModule,
-				ContextMenuModule,
-				IconModule
+				ComboButtonTestComponent
 			]
 		});
 	});

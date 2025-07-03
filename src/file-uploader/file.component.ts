@@ -10,6 +10,8 @@ import {
 
 import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Loading } from "carbon-components-angular/loading";
 
 @Component({
 	selector: "cds-file, ibm-file",
@@ -62,7 +64,9 @@ import { FileItem } from "./file-item.interface";
 			</div>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [IconDirective, Loading]
 })
 export class FileComponent implements OnDestroy {
 	/**

@@ -5,8 +5,12 @@ import { ContainedListItem } from "./contained-list-item.component";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [ContainedList, ContainedListItem],
 	exports: [ContainedList, ContainedListItem],
-	imports: [CommonModule, IconModule]
+	imports: [
+		CommonModule,
+		IconModule,
+		ContainedList,
+		ContainedListItem
+	]
 })
 export class ContainedListModule {}

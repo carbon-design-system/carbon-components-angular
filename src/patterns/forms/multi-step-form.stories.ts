@@ -1,18 +1,19 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { GridModule } from "../../grid";
-import { UIShellModule } from "../../ui-shell";
-import { DropdownModule } from "../../dropdown";
-import { ButtonModule } from "../../button";
-import { InputModule } from "../../input";
-import { ProgressIndicatorModule } from "../../progress-indicator";
-import { BreadcrumbModule } from "../../breadcrumb";
+import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { Button } from "../../button";
+import { ProgressIndicator } from "../../progress-indicator";
+import { Breadcrumb, BreadcrumbItemComponent } from "../../breadcrumb";
 import {
 	FormBuilder,
 	FormControl,
 	FormGroup,
 	ReactiveFormsModule
 } from "@angular/forms";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
+import { Label, TextArea, TextInput } from "../../input";
 
 @Component({
 	selector: "app-multi-step-form",
@@ -143,7 +144,11 @@ import {
 		.form-item {
 			margin-top: 1.5rem;
 		}
-	`]
+	`],
+	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, ProgressIndicator, Button,
+		Breadcrumb, BreadcrumbItemComponent, ReactiveFormsModule, Dropdown, DropdownList, Header,
+		Hamburger,  Label, TextArea, TextInput],
+	standalone: true
 })
 class MultiStepFormStory implements OnInit, OnDestroy {
 	public step2FormGroup: FormGroup;
@@ -206,16 +211,9 @@ export default {
 	title: "Pattern/Forms",
 	decorators: [
 		moduleMetadata({
-			declarations: [ MultiStepFormStory ],
+			declarations: [  ],
 			imports: [
-				ButtonModule,
-				GridModule,
-				UIShellModule,
-				ProgressIndicatorModule,
-				BreadcrumbModule,
-				ReactiveFormsModule,
-				InputModule,
-				DropdownModule
+				MultiStepFormStory
 			]
 		})
 	]

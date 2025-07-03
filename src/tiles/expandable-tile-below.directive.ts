@@ -1,7 +1,8 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	selector: "[cdsBelowFold], [ibmBelowFold]"
+	selector: "[cdsBelowFold], [ibmBelowFold]",
+	standalone: true
 })
 export class ExpandableTileBelowFoldDirective {
 	@HostBinding("class.cds--tile-content__below-the-fold") belowFold = true;

@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 import { DialogService } from "./dialog.service";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
-import { EventService } from "carbon-components-angular/utils";
+import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
 import { Dialog } from "./dialog.component";
 import { fromEvent, Subscription } from "rxjs";
 
@@ -32,8 +32,11 @@ import { fromEvent, Subscription } from "rxjs";
 	selector: "[cdsDialog], [ibmDialog]",
 	exportAs: "dialog",
 	providers: [
-		DialogService
-	]
+		DialogService,
+		EventService,
+		DOCUMENT_SERVICE_PROVIDER
+	],
+	standalone: true
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	static dialogCounter = 0;

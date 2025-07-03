@@ -10,7 +10,8 @@ import {
 
 @Directive({
 	selector: "[cdsScrollableList], [ibmScrollableList]",
-	exportAs: "scrollable-list"
+	exportAs: "scrollable-list",
+	standalone: true
 })
 export class ScrollableList implements OnChanges, AfterViewInit {
 	/**
