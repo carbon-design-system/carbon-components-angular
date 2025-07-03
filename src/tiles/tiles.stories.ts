@@ -1,16 +1,18 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayerModule } from "../layer";
-import { SkeletonModule } from "../skeleton";
-import { TilesModule, Tile } from "./";
+import { LayerDirective } from "../layer";
+import { SkeletonPlaceholder, SkeletonText } from "../skeleton";
+import { Tile, TileGroup } from "./";
 
 export default {
 	title: "Components/Tiles",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TilesModule,
-				LayerModule,
-				SkeletonModule
+				Tile,
+				TileGroup,
+				LayerDirective,
+				SkeletonPlaceholder,
+				SkeletonText
 			]
 		})
 	],

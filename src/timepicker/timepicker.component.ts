@@ -8,6 +8,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Get started with importing the module:
@@ -80,7 +81,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			useExisting: TimePicker,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {
 	/**

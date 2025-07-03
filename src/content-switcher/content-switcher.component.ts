@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
+import { NgClass } from "@angular/common";
 
 /**
  * The content switcher can be used for toggling between distinct options.
@@ -48,7 +49,9 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 			<ng-content />
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass]
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() ariaLabel = "content switcher";

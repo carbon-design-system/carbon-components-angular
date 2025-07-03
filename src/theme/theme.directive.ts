@@ -21,7 +21,8 @@ export type ThemeType = "white" | "g10" | "g90" | "g100";
  */
 @Directive({
 	selector: "[cdsTheme], [ibmTheme]",
-	exportAs: "theme"
+	exportAs: "theme",
+	standalone: true
 })
 export class ThemeDirective implements AfterContentChecked {
 	/**

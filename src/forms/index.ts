@@ -14,14 +14,14 @@ export {
 	ToggleState
 } from "carbon-components-angular/toggle";
 export {
-	RadioModule,
 	Radio,
 	RadioChange,
 	RadioGroup
 } from "carbon-components-angular/radio";
 export {
-	InputModule,
 	Label,
+	PasswordInputLabelComponent,
+	PasswordInput,
 	TextArea,
 	TextInput,
 	TextInputLabelComponent,

@@ -29,7 +29,8 @@ import {
 			display: block;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@Input() open = false;

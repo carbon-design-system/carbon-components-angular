@@ -1,16 +1,20 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TagModule, Tag } from "./";
-import { IconModule } from "../icon";
-import { PopoverModule } from "../popover";
+import { Tag, TagFilter, TagOperationalComponent, TagSelectableComponent } from "./";
+import { IconDirective } from "../icon";
+import { PopoverContainer, PopoverContent } from "../popover";
 
 export default {
 	title: "Components/Tag",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TagModule,
-				IconModule,
-				PopoverModule
+				Tag,
+				IconDirective,
+				PopoverContainer,
+				PopoverContent,
+				TagOperationalComponent,
+				TagFilter,
+				TagSelectableComponent
 			]
 		})
 	],

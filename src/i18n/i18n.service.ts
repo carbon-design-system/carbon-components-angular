@@ -148,7 +148,7 @@ export interface TranslationStrings {
  * are a better choice)
  *
  */
-@Injectable()
+@Injectable({providedIn: "root"})
 export class I18n {
 	protected translationStrings: TranslationStrings = EN;
 

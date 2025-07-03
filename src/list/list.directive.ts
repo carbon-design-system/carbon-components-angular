@@ -21,7 +21,8 @@ import {
  * [See demo](../../?path=/story/components-list--basic)
  */
 @Directive({
-	selector: "[cdsList], [ibmList]"
+	selector: "[cdsList], [ibmList]",
+	standalone: true
 })
 export class List {
 	@HostBinding("class.cds--list--ordered") get ordered() {

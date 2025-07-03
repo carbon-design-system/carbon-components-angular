@@ -7,9 +7,19 @@ import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
-import { IconService } from "../../icon/icon.service";
+import { IconService } from "../../icon";
 import Add16 from "@carbon/icons/es/add/16";
 import Filter16 from "@carbon/icons/es/filter/16";
+import { Table } from "../table.component";
+import { TableContainer } from "../table-container.component";
+import { TableHeader } from "../header/table-header.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
+import { TableToolbarContent } from "../toolbar/table-toolbar-content.component";
+import { TableToolbarSearch } from "../toolbar/table-toolbar-search.component";
+import { ICON_SERVICE_PROVIDER, IconDirective } from "../../icon";
+import { Button } from "../../button";
+import { OverflowMenu, OverflowMenuDirective, OverflowMenuOption } from "../../dialog";
+import { Checkbox } from "../../checkbox";
 
 @Component({
 	selector: "app-function-override-filter-table",
@@ -82,7 +92,23 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			</cds-checkbox>
 		</div>
 	</ng-template>
-	`
+	`,
+	standalone: true,
+	providers: [ICON_SERVICE_PROVIDER],
+	imports: [
+		Table,
+		TableContainer,
+		TableHeader,
+		TableToolbar,
+		TableToolbarContent,
+		TableToolbarSearch,
+		IconDirective,
+		Button,
+		OverflowMenu,
+		OverflowMenuOption,
+		OverflowMenuDirective,
+		Checkbox
+	]
 })
 export class FilterByFunctionOverrideStory implements OnInit {
 	@Input() size = "md";

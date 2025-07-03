@@ -1,21 +1,13 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 
 import { Tag } from "./tag.component";
 import { TagFilter } from "./tag-filter.component";
-import { IconModule } from "carbon-components-angular/icon";
 import { TagIconDirective } from "./tag-icon.directive";
 import { TagSelectableComponent } from "./tag-selectable.component";
 import { TagOperationalComponent } from "./tag-operational.component";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Tag,
-		TagFilter,
-		TagIconDirective,
-		TagSelectableComponent,
-		TagOperationalComponent
-	],
 	exports: [
 		Tag,
 		TagFilter,
@@ -23,6 +15,12 @@ import { TagOperationalComponent } from "./tag-operational.component";
 		TagSelectableComponent,
 		TagOperationalComponent
 	],
-	imports: [CommonModule, IconModule]
+	imports: [
+		IconDirective,
+		Tag,
+		TagFilter,
+		TagIconDirective,
+		TagSelectableComponent,
+		TagOperationalComponent]
 })
 export class TagModule {}

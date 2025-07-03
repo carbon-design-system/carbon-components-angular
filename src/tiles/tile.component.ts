@@ -21,7 +21,8 @@ import {
  */
 @Component({
 	selector: "cds-tile, ibm-tile",
-	template: `<ng-content />`
+	template: `<ng-content />`,
+	standalone: true
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;

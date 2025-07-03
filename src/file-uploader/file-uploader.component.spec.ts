@@ -1,12 +1,7 @@
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
-import { ButtonModule } from "carbon-components-angular/button";
-import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
-import { FileComponent } from "./file.component";
-import { CommonModule } from "@angular/common";
-import { IconModule } from "../icon/index";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
 
@@ -20,7 +15,12 @@ import { FileItem } from "./file-item.interface";
 			multiple="true"
 			[(ngModel)]="files">
 		</cds-file-uploader>
-	`
+	`,
+	standalone: true,
+	imports: [
+		FileUploader,
+		FormsModule
+	]
 })
 class FileUploaderTest {
 	files = null;
@@ -30,17 +30,8 @@ describe("FileUploader", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				FileUploader,
-				FileUploaderTest,
-				FileComponent
-			],
 			imports: [
-				FormsModule,
-				CommonModule,
-				ButtonModule,
-				LoadingModule,
-				IconModule
+				FileUploaderTest
 			]
 		});
 	});
@@ -142,4 +133,3 @@ describe("FileUploader", () => {
 		expect(!!filesArray.find((fileItem: FileItem) => fileItem.file.name === fileToAdd.name)).toBe(true);
 	});
 });
-

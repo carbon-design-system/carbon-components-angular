@@ -5,6 +5,8 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * A toggle for the side navigation
@@ -25,7 +27,9 @@ import { I18n } from "carbon-components-angular/i18n";
 				<svg cdsIcon="menu" size="20"></svg>
 			}
 		</button>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, IconDirective]
 })
 export class Hamburger {
 	/**

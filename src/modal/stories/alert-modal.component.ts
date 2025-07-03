@@ -5,12 +5,15 @@ import {
 	ModalButton,
 	AlertModalType
 } from "../";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 
 @Component({
 	selector: "app-alert-modal-story",
 	template: `
 		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
-	`
+	`,
+	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER],
+	standalone: true
 })
 export class AlertModalStory {
 	@Input() modalType: AlertModalType;

@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { ButtonModule } from "../button";
-import { IconModule, IconService } from "../icon";
+import { Button, IconButton } from "../button";
+import { IconDirective, IconService, ICON_SERVICE_PROVIDER } from "../icon";
 import { ContainedListItem } from "./contained-list-item.component";
 import Apple16 from "@carbon/icons/es/apple/16";
 import Fish16 from "@carbon/icons/es/fish/16";
@@ -38,7 +38,10 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 				<ng-container ibmContainedListItemButton>Clickable list item</ng-container>
 			</cds-contained-list-item>
 		</cds-contained-list>
-	`
+	`,
+	standalone: true,
+	providers: [ICON_SERVICE_PROVIDER],
+	imports: [ContainedList, ContainedListItem, IconDirective, IconButton, Button]
 })
 class WrapperComponent {
 	constructor(private iconService: IconService) {
@@ -52,8 +55,7 @@ describe("ContainedList", () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ContainedList, ContainedListItem, WrapperComponent],
-			imports: [IconModule, ButtonModule]
+			imports: [WrapperComponent]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ContainedList);

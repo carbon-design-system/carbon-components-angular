@@ -10,15 +10,13 @@ import { ButtonModule } from "carbon-components-angular/button";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Breadcrumb,
-		BreadcrumbItemComponent
-	],
 	exports: [
 		Breadcrumb,
 		BreadcrumbItemComponent
 	],
 	imports: [
+		Breadcrumb,
+		BreadcrumbItemComponent,
 		CommonModule,
 		ButtonModule,
 		DialogModule,

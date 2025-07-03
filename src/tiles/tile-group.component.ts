@@ -15,6 +15,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { TileSelection } from "./tile-selection.interface";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Get started with importing the module:
@@ -46,7 +47,9 @@ import { takeUntil } from "rxjs/operators";
 			useExisting: TileGroup,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class TileGroup implements AfterContentInit, OnDestroy {
 	static tileGroupCount = 0;

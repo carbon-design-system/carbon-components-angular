@@ -21,7 +21,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 			(load)="onLoad()"
 			[src]="src">
 		</iframe>
-	`
+	`,
+	standalone: true
 })
 export class Documentation implements OnInit, OnDestroy {
 	@Input() set src(src: string) {

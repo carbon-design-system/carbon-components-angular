@@ -2,7 +2,8 @@ import { Directive, HostBinding, Input } from "@angular/core";
 import { TableRowSize } from "./table.types";
 
 @Directive({
-	selector: "[cdsTable], [ibmTable]"
+	selector: "[cdsTable], [ibmTable]",
+	standalone: true
 })
 export class TableDirective {
 	@Input() @HostBinding("class.cds--data-table--sort") sortable = true;

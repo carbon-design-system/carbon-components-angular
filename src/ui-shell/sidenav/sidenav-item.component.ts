@@ -9,7 +9,9 @@ import {
 	SimpleChanges
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { Router, RouterLinkActive, RouterLink } from "@angular/router";
+import { RouterLinkExtendedDirective } from "./routerlink-extended.directive";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
 
 /**
  * `SideNavItem` can either be a child of `SideNav` or `SideNavMenu`
@@ -56,7 +58,9 @@ import { Router } from "@angular/router";
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	standalone: true,
+	imports: [RouterLinkActive, RouterLink, RouterLinkExtendedDirective, NgTemplateOutlet, NgClass]
 })
 export class SideNavItem implements OnChanges {
 	/**

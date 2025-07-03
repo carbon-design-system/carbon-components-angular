@@ -13,13 +13,15 @@ import {
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	EventEmitter
 } from "@angular/core";
-import { EventService } from "carbon-components-angular/utils";
-import { I18n } from "carbon-components-angular/i18n";
+import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { Tab } from "./tab.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * The `TabHeaders` component contains the `Tab` items and controls scroll functionality
@@ -110,7 +112,10 @@ import { Tab } from "./tab.component";
 				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 			</svg>
 		</button>
-	`
+	`,
+	standalone: true,
+	providers: [EventService, DOCUMENT_SERVICE_PROVIDER, I18N_SERVICE_PROVIDER],
+	imports: [NgClass, NgTemplateOutlet]
 })
 
 export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {

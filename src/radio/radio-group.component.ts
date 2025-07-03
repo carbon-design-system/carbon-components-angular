@@ -15,6 +15,8 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -113,7 +115,9 @@ import { RadioChange } from "./radio-change.class";
 			useExisting: RadioGroup,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
 
@@ -257,6 +261,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
 	/**
