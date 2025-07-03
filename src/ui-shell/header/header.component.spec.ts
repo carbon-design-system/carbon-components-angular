@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../../i18n/index";
 import { Header } from "./header.component";
 import { Hamburger } from "../index";
 import { RouterModule } from "@angular/router";
@@ -17,7 +16,9 @@ import { RouterModule } from "@angular/router";
 		<cds-header>
 			<cds-hamburger></cds-hamburger>
 		</cds-header>
-	`
+	`,
+	standalone: true,
+	imports: [Header, Hamburger]
 })
 class HamburgerTest { }
 
@@ -28,8 +29,7 @@ describe("UI Shell Header", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Hamburger, HamburgerTest, Header],
-			imports: [I18nModule, RouterModule],
+			imports: [HamburgerTest],
 			providers: []
 		});
 

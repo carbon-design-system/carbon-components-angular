@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table";
-import { DropdownModule } from "../../dropdown";
-import { StructuredListModule } from "../../structured-list";
-import { GridModule } from "../../grid";
-import { RadioModule } from "../../radio";
-import { CheckboxModule } from "../../checkbox";
-import { ButtonModule } from "../../button";
-import { TagModule } from "../../tag/index";
-import { UIShellModule } from "../../ui-shell";
+import { TableModel, TableHeaderItem, TableItem, TableContainer, Table } from "../../table";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { StructuredList } from "../../structured-list";
+import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import { Radio, RadioGroup } from "../../radio";
+import { Button } from "../../button";
+import { Tag } from "../../tag/index";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
+import { FormsModule } from "@angular/forms";
 
 @Component({
 	selector: "app-sample-multi-categories",
@@ -90,7 +91,10 @@ import { UIShellModule } from "../../ui-shell";
 			width: 100%;
 		}
 	`
-	]
+	],
+	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, Tag, Radio, Header,
+		Hamburger, TableContainer, Table, RadioGroup, Radio, Button, FormsModule],
+	standalone: true
 })
 class SampleMultiCategories implements OnInit, OnDestroy {
 	model = new TableModel();
@@ -186,17 +190,8 @@ export default {
 	title: "Pattern/Filtering",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleMultiCategories],
 			imports: [
-				TableModule,
-				DropdownModule,
-				GridModule,
-				StructuredListModule,
-				RadioModule,
-				CheckboxModule,
-				ButtonModule,
-				TagModule,
-				UIShellModule
+				SampleMultiCategories
 			]
 		})
 	]

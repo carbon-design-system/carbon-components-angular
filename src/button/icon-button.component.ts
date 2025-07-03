@@ -12,12 +12,16 @@ import {
 } from "@angular/core";
 import { BaseIconButton } from "./base-icon-button.component";
 import { ButtonSize, ButtonType } from "./button.types";
+import { Tooltip } from "carbon-components-angular/tooltip";
+import { NgClass } from "@angular/common";
+import { Button } from "./button.directive";
+import { ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
  *
  * ```typescript
- * import { ButtonModule } from 'carbon-components-angular';
+ * import { Button } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-icon-button--basic)
@@ -55,7 +59,10 @@ import { ButtonSize, ButtonType } from "./button.types";
 		</button>
 	</cds-tooltip>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	providers: [ICON_SERVICE_PROVIDER],
+	imports: [Tooltip, NgClass, Button]
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**
@@ -133,8 +140,11 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**
 	 * Common button events
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<Event>();
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() focus = new EventEmitter<Event>();
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() blur = new EventEmitter<Event>();
 	/**
 	 * Event to emit when click event is fired from tooltip

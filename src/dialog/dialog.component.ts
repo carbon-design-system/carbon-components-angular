@@ -17,8 +17,9 @@ import {
 // the AbsolutePosition is required to import the declaration correctly
 import Position, { position, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
-import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
+import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
+import { DialogService } from "./dialog.service";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -26,7 +27,9 @@ import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface
  */
 @Component({
 	selector: "cds-dialog, ibm-dialog",
-	template: ""
+	template: "",
+	providers: [DialogService, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
+	standalone: true
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**

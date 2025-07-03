@@ -8,9 +8,13 @@ import {
 	TemplateRef,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
-import { BaseIconButton } from "carbon-components-angular/button";
+import { BaseIconButton, Button } from "carbon-components-angular/button";
+import { Tooltip } from "carbon-components-angular/tooltip";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
@@ -18,7 +22,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
  * Get started with importing the module:
  *
  * ```typescript
- * import { DialogModule } from 'carbon-components-angular';
+ * import { OverflowMenu, OverflowMenuOption } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -92,7 +96,10 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			transform: rotate(180deg);
 		}
 	`],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	standalone: true,
+	providers: [PlaceholderService, I18N_SERVICE_PROVIDER],
+	imports: [Tooltip, Button, OverflowMenuDirective, NgClass, NgTemplateOutlet, IconDirective]
 })
 export class OverflowMenu extends BaseIconButton {
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;

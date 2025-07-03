@@ -1,17 +1,15 @@
 import { TestBed } from "@angular/core/testing";
 
 import { Notification, NotificationDisplayService } from "./index";
-import { I18nModule } from "../i18n/index";
-import { IconModule } from "../icon/index";
+import { IconDirective } from "../icon/index";
 
 describe("Notification", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Notification],
 			providers: [NotificationDisplayService],
 			imports: [
-				I18nModule,
-				IconModule
+				IconDirective,
+				Notification
 			]
 		});
 	});

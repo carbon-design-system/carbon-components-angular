@@ -1,10 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { ContextMenuModule } from "../context-menu";
-import { IconModule } from "../icon";
+import { ContextMenuComponent, ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
+import { MenuButtonComponent } from "../menu-button";
 import { By } from "@angular/platform-browser";
 
-import { MenuButtonModule } from "./menu-button.module";
 import { Button } from "../button";
 
 
@@ -20,7 +19,14 @@ import { Button } from "../button";
 			<cds-menu-divider></cds-menu-divider>
 			<cds-menu-item label="Danger action" [danger]="true"></cds-menu-item>
 		</cds-menu-button>
-	`
+	`,
+	standalone: true,
+	imports: [
+		MenuButtonComponent,
+		ContextMenuComponent,
+		ContextMenuItemComponent,
+		ContextMenuDividerComponent
+	]
 })
 class MenuButtonTestComponent {}
 
@@ -28,13 +34,8 @@ describe("Menu button", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				MenuButtonTestComponent
-			],
 			imports: [
-				MenuButtonModule,
-				ContextMenuModule,
-				IconModule
+				MenuButtonTestComponent
 			]
 		});
 	});

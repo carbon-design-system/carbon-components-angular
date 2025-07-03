@@ -12,7 +12,9 @@ import { TooltipDefinition } from ".";
 			[autoAlign]="autoAlign">
 			definition
 		</cds-tooltip-definition>
-		`
+		`,
+	imports: [TooltipDefinition],
+	standalone: true
 })
 class TestTTDefinitionComponent {
 	@Input() isOpen = false;
@@ -28,7 +30,7 @@ describe("Definition tooltip", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestTTDefinitionComponent, TooltipDefinition]
+			imports: [TestTTDefinitionComponent]
 		});
 		fixture = TestBed.createComponent(TestTTDefinitionComponent);
 		component = fixture.componentInstance;

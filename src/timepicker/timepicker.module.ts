@@ -4,15 +4,13 @@ import { TimePicker } from "./timepicker.component";
 import { TimePickerSelectModule } from "carbon-components-angular/timepicker-select";
 
 @NgModule({
-	declarations: [
-		TimePicker
-	],
 	exports: [
 		TimePicker
 	],
 	imports: [
 		TimePickerSelectModule,
-		CommonModule
+		CommonModule,
+		TimePicker
 	]
 })
 export class TimePickerModule { }

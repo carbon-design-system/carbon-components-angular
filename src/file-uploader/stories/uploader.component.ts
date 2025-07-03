@@ -48,6 +48,7 @@ export class FileUploaderStory {
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
+						// eslint-disable-next-line no-console
 						console.log(fileItem);
 					}, 1500);
 				}

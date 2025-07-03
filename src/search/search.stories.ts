@@ -1,11 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { SearchModule, Search } from "./";
+import { Search } from "./";
 
 export default {
 	title: "Components/Search",
 	decorators: [
 		moduleMetadata({
-			imports: [SearchModule]
+			imports: [Search]
 		})
 	],
 	args: {

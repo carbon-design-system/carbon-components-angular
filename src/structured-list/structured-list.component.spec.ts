@@ -6,7 +6,6 @@ import { StructuredList } from "./structured-list.component";
 import { ListRow } from "./list-row.component";
 import { ListHeader } from "./list-header.component";
 import { ListColumn } from "./list-column.component";
-import { IconModule } from "../icon/index";
 
 @Component({
 	template: `
@@ -32,7 +31,15 @@ import { IconModule } from "../icon/index";
 				<cds-list-column>Test</cds-list-column>
 			</cds-list-row>
 		</cds-structured-list>
-	`
+	`,
+	standalone: true,
+	imports: [
+		ListRow,
+		ListHeader,
+		ListColumn,
+		StructuredList,
+		FormsModule
+	]
 })
 class StructuredListTest {
 	valueSelected = null;
@@ -44,16 +51,8 @@ describe("StructuredList", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				StructuredList,
-				StructuredListTest,
-				ListRow,
-				ListHeader,
-				ListColumn
-			],
 			imports: [
-				FormsModule,
-				IconModule
+				StructuredListTest
 			]
 		});
 	});

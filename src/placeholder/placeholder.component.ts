@@ -5,7 +5,7 @@ import {
 	ViewChild,
 	Input
 } from "@angular/core";
-import { PlaceholderService } from "./placeholder.service";
+import { PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER } from "./placeholder.service";
 
 /**
  * Using a modal, dialog (Tooltip, OverflowMenu), or any other component that draws out of the normal page flow
@@ -19,7 +19,9 @@ import { PlaceholderService } from "./placeholder.service";
  */
 @Component({
 	selector: "cds-placeholder, ibm-placeholder",
-	template: `<div #placeholder></div>`
+	template: `<div #placeholder></div>`,
+	providers: [PLACEHOLDER_SERVICE_PROVIDER],
+	standalone: true
 })
 export class Placeholder implements OnInit {
 	@Input() id: any;

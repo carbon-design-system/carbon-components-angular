@@ -5,9 +5,13 @@ import {
 	Output
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { TableRowComponent } from "./table-row.component";
+import { NgClass } from "@angular/common";
+import { TableExpandedRow } from "./table-expanded-row.component";
+import { ExpandedRowHover } from "../expanded-row-hover.directive";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -67,7 +71,9 @@ import { TableRowSize } from "../table.types";
 			}
 		}
 		<ng-content />
-	`
+	`,
+	standalone: true,
+	imports: [TableRowComponent, NgClass, TableExpandedRow, ExpandedRowHover]
 })
 export class TableBody {
 	@Input() model: TableModel;

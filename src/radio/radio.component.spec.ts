@@ -16,7 +16,9 @@ import { RadioGroup } from "./radio-group.component";
 				</cds-radio>
 			}
 		</cds-radio-group>
-		`
+		`,
+	standalone: true,
+	imports: [Radio, RadioGroup, FormsModule]
 })
 class RadioTest {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
@@ -26,8 +28,7 @@ class RadioTest {
 describe("RadioGroup", () => {
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Radio, RadioGroup, RadioTest],
-			imports: [FormsModule]
+			imports: [RadioTest]
 		}).compileComponents();
 	}));
 
@@ -60,7 +61,7 @@ describe("RadioComponent", () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Radio]
+			imports: [Radio]
 		}).compileComponents();
 	}));
 

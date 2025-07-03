@@ -11,13 +11,15 @@ import {
 	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
  *
  * ```typescript
- * import { SearchModule } from 'carbon-components-angular';
+ * import { Search } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-search--basic)
@@ -30,9 +32,12 @@ import { I18n } from "carbon-components-angular/i18n";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Search,
 			multi: true
-		}
+		},
+		I18N_SERVICE_PROVIDER
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, IconDirective]
 })
 export class Search implements ControlValueAccessor {
 	/**

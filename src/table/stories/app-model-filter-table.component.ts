@@ -10,6 +10,16 @@ import { TableItem } from "../table-item.class";
 import { IconService } from "../../icon/icon.service";
 import Add16 from "@carbon/icons/es/add/16";
 import Filter16 from "@carbon/icons/es/filter/16";
+import { Table } from "../table.component";
+import { Button } from "../../button";
+import { Checkbox } from "../../checkbox";
+import { OverflowMenu, OverflowMenuOption, OverflowMenuDirective } from "../../dialog";
+import { ICON_SERVICE_PROVIDER, IconDirective } from "../../icon";
+import { TableHeader } from "../header/table-header.component";
+import { TableContainer } from "../table-container.component";
+import { TableToolbarContent } from "../toolbar/table-toolbar-content.component";
+import { TableToolbarSearch } from "../toolbar/table-toolbar-search.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
 
 @Component({
 	selector: "app-model-filter-table",
@@ -82,7 +92,11 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			</cds-checkbox>
 		</div>
 	</ng-template>
-	`
+	`,
+	standalone: true,
+	providers: [ICON_SERVICE_PROVIDER],
+	imports: [Table, TableContainer, TableHeader, TableToolbar, TableToolbarContent, TableToolbarSearch,
+		IconDirective, Button, OverflowMenu, OverflowMenuOption, OverflowMenuDirective, Checkbox]
 })
 export class FilterWithModelStory implements OnInit {
 	@Input() size = "md";

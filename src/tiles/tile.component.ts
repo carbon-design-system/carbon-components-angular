@@ -23,7 +23,8 @@ import {
 @Component({
 	selector: "cds-tile, ibm-tile",
 	template: `<ng-content />`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;

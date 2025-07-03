@@ -12,7 +12,8 @@ import {
 import { Tab } from "./tab.component";
 
 @Directive({
-	selector: "[cdsTabHeader], [ibmTabHeader]"
+	selector: "[cdsTabHeader], [ibmTabHeader]",
+	standalone: true
 })
 export class TabHeader implements AfterViewInit {
 	@HostBinding("attr.tabIndex") get tabIndex() {

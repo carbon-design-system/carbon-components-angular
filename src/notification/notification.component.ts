@@ -5,10 +5,14 @@ import {
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { isObservable, of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { NotificationTitle } from "./notification-title.directive";
+import { NotificationSubtitle } from "./notification-subtitle.directive";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -45,7 +49,10 @@ import { BaseNotification } from "./base-notification.component";
 				<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
 			</button>
 		}
-	`
+	`,
+	standalone: true,
+	providers: [NotificationDisplayService, I18N_SERVICE_PROVIDER],
+	imports: [IconDirective, NotificationTitle, NotificationSubtitle, NgTemplateOutlet, AsyncPipe]
 })
 export class Notification extends BaseNotification {
 	private static notificationCount = 0;

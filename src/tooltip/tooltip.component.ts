@@ -15,12 +15,13 @@ import {
 	ViewChild
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Get started with importing the module:
  *
  * ```typescript
- * import { TooltipModule } from 'carbon-components-angular';
+ * import { Tooltip } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tooltip--basic)
@@ -55,7 +56,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 				}
 			</span>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class Tooltip extends PopoverContainer implements OnChanges, AfterContentChecked {
 	static tooltipCount = 0;

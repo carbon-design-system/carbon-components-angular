@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as Icons from "@carbon/icons";
 
-import { IconService } from "../";
+import { IconService, ICON_SERVICE_PROVIDER } from "../";
 
 @Component({
 	selector: "app-demo-many-icon",
@@ -27,7 +27,8 @@ import { IconService } from "../";
 				padding: 10px 0;
 			}
 		`
-	]
+	],
+	providers: [ICON_SERVICE_PROVIDER]
 })
 export class ManyIconDemo implements OnInit {
 	groupedIcons: any = [];

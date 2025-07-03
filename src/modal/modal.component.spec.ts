@@ -5,8 +5,7 @@ import { DebugElement } from "@angular/core";
 import { Modal } from "./modal.component";
 import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
-import { I18nModule } from "../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
+import { Placeholder } from "./../placeholder/index";
 import { BaseModalService } from "./base-modal.service";
 
 // snippet to add transform to style so karma doesn't die with
@@ -28,10 +27,9 @@ describe("Modal", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Modal, Overlay],
 			imports: [
-				I18nModule,
-				PlaceholderModule
+				Placeholder,
+				Modal, Overlay
 			],
 			providers: [ModalService, BaseModalService]
 		});

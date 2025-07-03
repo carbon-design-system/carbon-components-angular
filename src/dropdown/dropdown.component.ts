@@ -26,10 +26,20 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18n, I18N_SERVICE_PROVIDER } from "carbon-components-angular/i18n";
 import { DropdownService } from "./dropdown.service";
-import { ElementService, getScrollableParents } from "carbon-components-angular/utils";
+import {
+	AnimationFrameService,
+	AnimationFrameServiceSingleton,
+	DOCUMENT_SERVICE_PROVIDER,
+	ElementService,
+	EventService,
+	getScrollableParents
+} from "carbon-components-angular/utils";
 import { hasScrollableParents } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -48,7 +58,7 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * Get started with importing the module:
  *
  * ```typescript
- * import { DropdownModule } from 'carbon-components-angular';
+ * import { Dropdown, DropdownList } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-dropdown--basic)
@@ -209,9 +219,19 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Dropdown,
 			multi: true
-		}
+		},
+		PlaceholderService,
+		AnimationFrameService,
+		AnimationFrameServiceSingleton,
+		DropdownService,
+		ElementService,
+		EventService,
+		DOCUMENT_SERVICE_PROVIDER,
+		I18N_SERVICE_PROVIDER
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective, AsyncPipe]
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;

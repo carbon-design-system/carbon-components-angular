@@ -6,13 +6,11 @@ import { Documentation } from "./documentation.component";
 export { Documentation } from "./documentation.component";
 
 @NgModule({
-	declarations: [
-		Documentation
-	],
 	exports: [
 		Documentation
 	],
 	imports: [
+		Documentation,
 		CommonModule
 	]
 })

@@ -1,14 +1,14 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { IconModule } from "../icon";
-import { ButtonModule, Button } from "./";
+import { IconDirective } from "../icon";
+import { Button } from "./";
 
 export default {
 	title: "Components/Button",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ButtonModule,
-				IconModule
+				Button,
+				IconDirective
 			]
 		})
 	],

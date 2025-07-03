@@ -16,7 +16,8 @@ import {
  * [See demo](../../?path=/story/layout-stack--basic)
  */
 @Directive({
-	selector: "[cdsStack], [ibmStack]"
+	selector: "[cdsStack], [ibmStack]",
+	standalone: true
 })
 export class StackDirective {
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {

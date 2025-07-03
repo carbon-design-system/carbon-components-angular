@@ -26,6 +26,9 @@ import {
 	flip
 } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
+import { Button, IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
@@ -72,7 +75,9 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 			</cds-menu>
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [Button, IconButton, IconDirective, ContextMenuComponent]
 })
 export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static comboButtonCounter = 0;

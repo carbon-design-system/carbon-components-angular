@@ -1,13 +1,11 @@
 import {
 	Component,
 	Input,
-	Output,
-	EventEmitter,
-	HostBinding,
-	TemplateRef
+	HostBinding
 } from "@angular/core";
 import { Select } from "carbon-components-angular/select";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -45,7 +43,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: TimePickerSelect,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [IconDirective]
 })
 export class TimePickerSelect extends Select {
 	@HostBinding("class.cds--select") timeSelect = true;

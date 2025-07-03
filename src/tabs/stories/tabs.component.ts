@@ -1,4 +1,8 @@
 import { Component, Input } from "@angular/core";
+import { Tabs } from "../tabs.component";
+import { TabHeader } from "../tab-header.directive";
+import { TabHeaderGroup } from "../tab-header-group.component";
+import { Tab } from "../tab.component";
 
 @Component({
 	selector: "app-header-group",
@@ -40,7 +44,9 @@ import { Component, Input } from "@angular/core";
 		<cds-tab #content5>
 			Tab Content 5
 		</cds-tab>
-	`
+	`,
+	imports: [Tab, Tabs, TabHeader, TabHeaderGroup],
+	standalone: true
 })
 export class TabStory {
 	@Input() skeleton = false;

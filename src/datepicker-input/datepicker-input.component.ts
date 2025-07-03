@@ -9,6 +9,8 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective, ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-date-picker-input, ibm-date-picker-input",
@@ -124,9 +126,12 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: DatePickerInput,
 			multi: true
-		}
+		},
+		ICON_SERVICE_PROVIDER
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;

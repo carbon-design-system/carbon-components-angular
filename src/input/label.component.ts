@@ -14,6 +14,11 @@ import {
 import { TextArea } from "./text-area.directive";
 import { TextInput } from "./input.directive";
 import { PasswordInput } from "./password.directive";
+import { TextareaLabelComponent } from "./textarea-label.component";
+import { TextInputLabelComponent } from "./text-input-label.component";
+import { PasswordInputLabelComponent } from "./password-input-label.component";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -158,7 +163,9 @@ import { PasswordInput } from "./password.directive";
 				</div>
 			}
 		</ng-template>
-	`
+	`,
+	standalone: true,
+	imports: [TextareaLabelComponent, TextInputLabelComponent, PasswordInputLabelComponent, NgTemplateOutlet, NgClass, IconDirective]
 })
 export class Label implements AfterContentInit, AfterViewInit {
 	/**

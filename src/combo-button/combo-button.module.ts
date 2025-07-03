@@ -12,9 +12,9 @@ import { ComboButtonComponent } from "./combo-button.component";
 		CommonModule,
 		ButtonModule,
 		IconModule,
-		ContextMenuModule
+		ContextMenuModule,
+		ComboButtonComponent
 	],
-	exports: [ComboButtonComponent],
-	declarations: [ComboButtonComponent]
+	exports: [ComboButtonComponent]
 })
 export class ComboButtonModule { }

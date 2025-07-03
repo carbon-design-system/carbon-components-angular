@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	Input
 } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 
 /**
@@ -27,7 +28,9 @@ import {
 			#overlay>
 			<ng-content />
 		</section>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Overlay {
 	/**

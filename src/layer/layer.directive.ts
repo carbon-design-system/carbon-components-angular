@@ -14,14 +14,15 @@ const MAX_LEVEL = 2;
  * Applies layering styles to the div container it is applied to. Get started with importing the module:
  *
  * ```typescript
- * import { LayerModule } from 'carbon-components-angular';
+ * import { LayerDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-layer--basic)
  */
 @Directive({
 	selector: "[cdsLayer], [ibmLayer]",
-	exportAs: "layer"
+	exportAs: "layer",
+	standalone: true
 })
 export class LayerDirective implements AfterContentInit {
 

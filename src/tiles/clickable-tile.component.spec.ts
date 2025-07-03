@@ -9,7 +9,7 @@ import { ClickableTile } from "./clickable-tile.component";
 describe("ClickableTile", () => {
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ClickableTile, ClickableTileTest]
+			imports: [ClickableTileTest]
 		}).compileComponents();
 	}));
 
@@ -38,6 +38,8 @@ describe("ClickableTile", () => {
 	template: `
 	<cds-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
 		Test Clickable Tile
-	</cds-clickable-tile>`
+	</cds-clickable-tile>`,
+	imports: [ClickableTile],
+	standalone: true
 })
 class ClickableTileTest {}

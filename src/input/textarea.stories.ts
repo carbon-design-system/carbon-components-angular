@@ -1,11 +1,11 @@
 import { Meta, moduleMetadata } from "@storybook/angular";
-import { InputModule, TextareaLabelComponent } from "./";
+import { TextArea, TextInput, TextInputLabelComponent, TextareaLabelComponent } from "./";
 
 export default {
 	title: "Components/Input/Text area",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule]
+			imports: [TextArea, TextInput, TextInputLabelComponent]
 		})
 	],
 	args: {

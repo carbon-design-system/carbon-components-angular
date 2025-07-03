@@ -5,7 +5,9 @@ import { By } from "@angular/platform-browser";
 import { LayerDirective } from "./layer.directive";
 
 @Component({
-	template: `<div cdsLayer></div>`
+	template: `<div cdsLayer></div>`,
+	imports: [LayerDirective],
+	standalone: true
 })
 class TestLayerComponent {
 }
@@ -15,15 +17,16 @@ class TestLayerComponent {
 		<div cdsLayer>
 			<div cdsLayer class="test"></div>
 		</div>
-	`
+	`,
+	imports: [LayerDirective],
+	standalone: true
 })
 class TestNestedLayerComponent { }
 
 describe("Layer", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				LayerDirective,
+			imports: [
 				TestLayerComponent,
 				TestNestedLayerComponent
 			]

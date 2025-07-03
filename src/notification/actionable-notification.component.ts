@@ -6,9 +6,16 @@ import {
 
 import { isObservable, of } from "rxjs";
 import { ActionableContent, NotificationVariants } from "./notification-content.interface";
-import { I18n } from "carbon-components-angular/i18n";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { ActionableTitle } from "./actionable-title.directive";
+import { ActionableSubtitle } from "./actionable-subtitle.directive";
+import { Link } from "carbon-components-angular/link";
+import { ActionableButton } from "./actionable-button.directive";
+import { Button } from "carbon-components-angular/button";
 
 /**
  * Actionable notification allows for interactive elements within a notification. There are two variants offered, inline & toast.
@@ -66,7 +73,10 @@ import { BaseNotification } from "./base-notification.component";
 				<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
 			</button>
 		}
-	`
+	`,
+	standalone: true,
+	providers: [NotificationDisplayService, I18N_SERVICE_PROVIDER],
+	imports: [IconDirective, NgClass, ActionableTitle, ActionableSubtitle, Link, NgTemplateOutlet, ActionableButton, Button, AsyncPipe]
 })
 export class ActionableNotification extends BaseNotification {
 	private static notificationCount = 0;

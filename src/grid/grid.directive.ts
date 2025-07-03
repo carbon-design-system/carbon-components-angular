@@ -17,7 +17,7 @@ import { GridService } from "./grid.service";
  * Get started with importing the module:
  *
  * ```typescript
- * import { GridModule } from 'carbon-components-angular';
+ * import { GridDirective, GridService } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-grid--basic)
@@ -32,7 +32,8 @@ import { GridService } from "./grid.service";
 				return parentService || new GridService();
 			}
 		}
-	]
+	],
+	standalone: true
 })
 export class GridDirective implements OnInit, OnDestroy {
 	/**

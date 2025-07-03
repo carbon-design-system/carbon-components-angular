@@ -19,7 +19,8 @@ import {
 				</li>
 			}
 		</ul>
-	`
+	`,
+	standalone: true
 })
 export class TabSkeleton {
 	/**

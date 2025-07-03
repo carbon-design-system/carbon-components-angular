@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 		<footer class="cds--modal-footer">
 			<ng-content />
 		</footer>
-	`
+	`,
+	standalone: true
 })
 export class ModalFooter {}

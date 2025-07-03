@@ -5,14 +5,14 @@ import { PopoverContainer } from "./popover.directive";
 import { PopoverContent } from "./popover-content.component";
 
 @NgModule({
-	declarations: [
-		PopoverContainer,
-		PopoverContent
-	],
 	exports: [
 		PopoverContainer,
 		PopoverContent
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		PopoverContainer,
+		PopoverContent
+	]
 })
 export class PopoverModule {}

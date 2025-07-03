@@ -10,13 +10,6 @@ import { ToggletipButton } from "./toggletip-button.directive";
 import { ToggletipContent } from "./toggletip-content.directive";
 
 @NgModule({
-	declarations: [
-		Toggletip,
-		ToggletipLabel,
-		ToggletipAction,
-		ToggletipButton,
-		ToggletipContent
-	],
 	exports: [
 		Toggletip,
 		ToggletipLabel,
@@ -24,6 +17,14 @@ import { ToggletipContent } from "./toggletip-content.directive";
 		ToggletipButton,
 		ToggletipContent
 	],
-	imports: [CommonModule, PopoverModule]
+	imports: [
+		CommonModule,
+		PopoverModule,
+		Toggletip,
+		ToggletipLabel,
+		ToggletipAction,
+		ToggletipButton,
+		ToggletipContent
+	]
 })
 export class ToggletipModule {}

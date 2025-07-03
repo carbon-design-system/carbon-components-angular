@@ -1,8 +1,6 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { PlaceholderModule } from "../placeholder";
-import { InputModule } from "../input";
-import { ButtonModule } from "../button";
-import { ModalModule, Modal } from "./";
+import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../placeholder";
+import { Modal, ModalContent, ModalContentText, ModalFooter, ModalHeader, ModalHeaderHeading, ModalHeaderLabel } from "./";
 
 import {
 	ModalStory,
@@ -12,12 +10,24 @@ import {
 	AlertModalStory,
 	SampleFormModal
 } from "./stories";
+import { Button } from "../button";
 
 export default {
 	title: "Components/Modal",
 	decorators: [
 		moduleMetadata({
-			declarations: [
+			imports: [
+				// imports for the modals
+				Modal,
+				ModalHeader,
+				ModalFooter,
+				ModalContent,
+				ModalContentText,
+				ModalHeaderHeading,
+				ModalHeaderLabel,
+				Placeholder,
+				Button,
+				// stories
 				ModalStory,
 				SampleModal,
 				InputModal,
@@ -25,14 +35,18 @@ export default {
 				AlertModalStory,
 				SampleFormModal
 			],
-			imports: [
-				ModalModule,
-				InputModule,
-				ButtonModule,
-				PlaceholderModule
-			]
+			providers: [PLACEHOLDER_SERVICE_PROVIDER]
 		})
-	]
+	],
+	parameters:{
+		docs: {
+			story: {
+				inline: false,
+				height: "30rem"
+			}
+		},
+		layout: "centered"
+	}
 } as Meta;
 
 const Template = (args) => ({

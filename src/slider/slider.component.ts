@@ -13,7 +13,8 @@ import {
 	ChangeDetectorRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { EventService } from "carbon-components-angular/utils";
+import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
@@ -156,8 +157,12 @@ import { EventService } from "carbon-components-angular/utils";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Slider,
 			multi: true
-		}
-	]
+		},
+		DOCUMENT_SERVICE_PROVIDER,
+		EventService
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
 export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Used to generate unique IDs */

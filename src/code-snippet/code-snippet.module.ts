@@ -10,13 +10,11 @@ import { UtilsModule } from "carbon-components-angular/utils";
 import { CodeSnippet } from "./code-snippet.component";
 
 @NgModule({
-	declarations: [
-		CodeSnippet
-	],
 	exports: [
 		CodeSnippet
 	],
 	imports: [
+		CodeSnippet,
 		CommonModule,
 		ButtonModule,
 		I18nModule,

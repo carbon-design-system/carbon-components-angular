@@ -1,11 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { SkeletonModule, SkeletonPlaceholder } from "./";
+import { SkeletonText, SkeletonPlaceholder } from "./";
 
 export default {
 	title: "Components/Skeleton",
 	decorators: [
 		moduleMetadata({
-			imports: [SkeletonModule]
+			imports: [SkeletonText, SkeletonPlaceholder]
 		})
 	],
 	args: {

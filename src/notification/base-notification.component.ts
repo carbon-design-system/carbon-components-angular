@@ -23,7 +23,8 @@ import { NotificationDisplayService } from "./notification-display.service";
  * [See demo](../../?path=/story/components-notification--inline-notification)
  */
 @Component({
-	template: ""
+	template: "",
+	standalone: true
 })
 export class BaseNotification {
 	/**

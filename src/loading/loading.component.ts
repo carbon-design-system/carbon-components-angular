@@ -5,6 +5,7 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
 
 /**
  * Get started with importing the module:
@@ -31,7 +32,9 @@ import { I18n } from "carbon-components-angular/i18n";
 			</svg>
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Loading {
 	/**

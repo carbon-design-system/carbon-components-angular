@@ -40,7 +40,8 @@ export type TagType = "red" |
 			</span>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class Tag {
 	/**

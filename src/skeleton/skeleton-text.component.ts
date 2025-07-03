@@ -6,7 +6,8 @@ import { Component, Input, OnChanges } from "@angular/core";
 		@for (width of lineWidths; track width) {
 			<p class="cds--skeleton__text" [style.width]="width"></p>
 		}
-	`
+	`,
+	standalone: true
 })
 export class SkeletonText implements OnChanges {
 	@Input() lines = 5;
