@@ -1,18 +1,13 @@
 const path = require('path');
 module.exports = {
 	staticDirs: ["public"],
-	stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-	addons: [
-		"@storybook/addon-links",
-		{
-			name: "@storybook/addon-essentials",
-			options: {
-				backgrounds: false
-			}
-		},
-		"@storybook/addon-a11y",
-		"@storybook/addon-storysource"
-	],
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+	addons: ["@storybook/addon-links", {
+        name: "@storybook/addon-essentials",
+        options: {
+            backgrounds: false
+        }
+    }, "@storybook/addon-a11y", "@storybook/addon-storysource"],
 	framework: {
 		name: "@storybook/angular",
 		options: {}
@@ -20,7 +15,5 @@ module.exports = {
 	core: {
 		disableTelemetry: true
 	},
-	docs: {
-		autodocs: true
-	}
+	docs: {}
 };
