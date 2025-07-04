@@ -1,6 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	ContentSwitcherModule,
 	ContentSwitcher,
 	ContentSwitcherOption
 } from "./";
@@ -9,7 +8,10 @@ export default {
 	title: "Components/Content Switcher",
 	decorators: [
 		moduleMetadata({
-			imports: [ContentSwitcherModule]
+			imports: [
+				ContentSwitcher,
+				ContentSwitcherOption
+			]
 		})
 	],
 	argTypes: {

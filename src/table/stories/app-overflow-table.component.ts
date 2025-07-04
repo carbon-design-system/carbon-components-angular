@@ -8,6 +8,8 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
+import { Table } from "../table.component";
+import { OverflowMenu, OverflowMenuOption } from "../../dialog";
 
 @Component({
 	selector: "app-overflow-table",
@@ -37,7 +39,9 @@ import { TableHeaderItem } from "../table-header-item.class";
 			(rowClick)="onRowClick($event)"
 			[striped]="striped">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, OverflowMenu, OverflowMenuOption]
 })
 export class OverflowTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
@@ -71,6 +75,7 @@ export class OverflowTableStory implements AfterViewInit {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 }

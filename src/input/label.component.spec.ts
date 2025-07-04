@@ -12,8 +12,7 @@ describe("Label", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Label],
-			imports: [],
+			imports: [Label],
 			providers: []
 		});
 

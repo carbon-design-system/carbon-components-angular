@@ -10,6 +10,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
  * @deprecated since v5 - Use boolean
@@ -104,7 +105,9 @@ export enum ToggleState {
 			useExisting: Toggle,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
 export class Toggle extends Checkbox {
 	/**

@@ -1,12 +1,8 @@
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { I18nModule } from "../../i18n";
-import { ExperimentalModule } from "../../experimental";
+import { Component, type OnInit } from "@angular/core";
+import { I18N_SERVICE_PROVIDER } from "../../i18n";
 import { PaginationNav } from "./index";
-import { PaginationModule } from "../index";
 import { PaginationModel } from "../pagination-model.class";
 
 @Component({
@@ -17,7 +13,12 @@ import { PaginationModel } from "../pagination-model.class";
 			[numOfItemsToShow]="4"
 			(selectPage)="selectPage($event)">
 		</cds-pagination-nav>
-	`
+	`,
+	standalone: true,
+	imports: [
+		PaginationNav
+	],
+	providers: [I18N_SERVICE_PROVIDER]
 })
 class PaginationNavTest implements OnInit {
 	model = new PaginationModel();
@@ -37,24 +38,23 @@ describe("PaginationNav", () => {
 	let fixture, wrapper, paginationComponent;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ PaginationNavTest ],
 			imports: [
-				CommonModule,
-				FormsModule,
-				PaginationModule,
-				I18nModule,
-				ExperimentalModule
+				PaginationNavTest
 			]
 		});
 	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(PaginationNavTest);
-		paginationComponent = fixture.debugElement.query(By.css("cds-pagination-nav"));
+		paginationComponent = fixture.debugElement.query(
+			By.css("cds-pagination-nav")
+		);
 	});
 
 	it("should work", () => {
-		expect(paginationComponent.componentInstance instanceof PaginationNav).toBe(true);
+		expect(paginationComponent.componentInstance instanceof PaginationNav).toBe(
+			true
+		);
 	});
 
 	it("should emit selectPage with the correct page when current page changes", () => {
@@ -71,7 +71,9 @@ describe("PaginationNav", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		const navItems = paginationComponent.queryAll(By.css("cds-pagination-nav-item"));
+		const navItems = paginationComponent.queryAll(
+			By.css("cds-pagination-nav-item")
+		);
 		navItems[1].nativeElement.click();
 		expect(wrapper.selectPage).toHaveBeenCalled();
 		expect(wrapper.model.currentPage).toBe(2);

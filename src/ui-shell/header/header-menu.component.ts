@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HeaderItemInterface } from "./header-navigation-items.interface";
+import { NgTemplateOutlet } from "@angular/common";
+import { HeaderItem } from "./header-item.component";
 
 /**
  * Dropdown menu container for navigation items.
@@ -47,7 +49,9 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	standalone: true,
+	imports: [NgTemplateOutlet, HeaderItem]
 })
 export class HeaderMenu {
 	@HostBinding("class.cds--header__submenu") subMenu = true;

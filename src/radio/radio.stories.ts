@@ -1,6 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { RadioModule, RadioGroup, Radio } from "./";
+import { RadioGroup, Radio } from "./";
 
 import { ReactiveFormsStory } from "./stories";
 
@@ -12,7 +12,8 @@ export default {
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				RadioModule
+				Radio,
+				RadioGroup
 			]
 		})
 	],

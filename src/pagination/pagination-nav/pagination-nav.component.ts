@@ -1,4 +1,4 @@
-import { PaginationModel } from "../pagination-model.class";
+import type { PaginationModel } from "../pagination-model.class";
 import {
 	Component,
 	Input,
@@ -7,10 +7,15 @@ import {
 	HostBinding
 } from "@angular/core";
 
-import { I18n } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
+import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
 import { range } from "carbon-components-angular/common";
+import { IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PaginationNavItem } from "./pagination-item.component";
+import { PaginationOverflow } from "./pagination-overflow.component";
+import { AsyncPipe } from "@angular/common";
 
 export interface PaginationNavTranslations {
 	NEXT: string;
@@ -115,7 +120,16 @@ export interface PaginationNavTranslations {
 			</ul>
 		</div>
 	</div>
-	`
+	`,
+	standalone: true,
+	imports: [
+		IconButton,
+		IconDirective,
+		PaginationNavItem,
+		PaginationOverflow,
+		AsyncPipe
+	],
+	providers: [I18N_SERVICE_PROVIDER, EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class PaginationNav {
 	static paginationCounter = 0;
@@ -124,7 +138,7 @@ export class PaginationNav {
 	 */
 	@Input() model: PaginationModel;
 	/**
-	   * Set to `true` to disable the backward/forward buttons.
+	 * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() disabled = false;
 	/**
@@ -216,7 +230,10 @@ export class PaginationNav {
 	nextItemText = this.i18n.getOverridable("PAGINATION.NEXT");
 	previousItemText = this.i18n.getOverridable("PAGINATION.PREVIOUS");
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	constructor(
+		protected i18n: I18n,
+		protected experimental: ExperimentalService
+	) {
 		PaginationNav.paginationCounter++;
 	}
 
@@ -227,7 +244,10 @@ export class PaginationNav {
 	}
 
 	public jumpToNext() {
-		this.currentPage = this.currentPage < this.totalDataLength ? this.currentPage + 1 : this.totalDataLength;
+		this.currentPage =
+			this.currentPage < this.totalDataLength
+				? this.currentPage + 1
+				: this.totalDataLength;
 	}
 
 	public jumpToPrevious() {
@@ -239,7 +259,10 @@ export class PaginationNav {
 			return null;
 		}
 		const cuts = this.getCuts();
-		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
+		return this.totalNumbersArray.slice(
+			this.startOffset + cuts.front,
+			(1 + cuts.back) * -1
+		);
 	}
 
 	private getCuts(splitPoint = null) {

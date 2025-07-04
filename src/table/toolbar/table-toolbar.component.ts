@@ -7,6 +7,9 @@ import {
 } from "@angular/core";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableRowSize } from "../table.types";
+import { NgClass, AsyncPipe } from "@angular/common";
+import { Button } from "carbon-components-angular/button";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -85,7 +88,9 @@ import { TableRowSize } from "../table.types";
 			}
 			<ng-content />
 		</section>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, Button, AsyncPipe, ReplacePipe]
 })
 export class TableToolbar {
 	@Input() model: TableModel;
@@ -111,6 +116,7 @@ export class TableToolbar {
 		return { CANCEL: this._cancelText.value as string };
 	}
 
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() cancel = new EventEmitter();
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");

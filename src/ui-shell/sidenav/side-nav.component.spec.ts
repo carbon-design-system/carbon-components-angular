@@ -3,7 +3,6 @@ import { TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { CommonModule } from "@angular/common";
-import { I18nModule } from "./../../i18n/index";
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
@@ -12,7 +11,9 @@ import { RouterModule } from "@angular/router";
 
 @Component({
 	selector: "app-foo",
-	template: "<h1>foo</h1>"
+	template: "<h1>foo</h1>",
+	standalone: true,
+	imports: [CommonModule]
 })
 class FooComponent { }
 
@@ -26,7 +27,9 @@ class FooComponent { }
 				(navigation)="onNavigation($event)">
 			</cds-sidenav-item>
 		</cds-sidenav>
-	`
+	`,
+	standalone: true,
+	imports: [SideNav, SideNavItem, SideNavMenu, RouterModule]
 })
 class SideNavTest {
 	route = ["foo"];
@@ -43,29 +46,17 @@ describe("SideNav", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				SideNav,
-				SideNavItem,
-				SideNavMenu,
-				RouterLinkExtendedDirective,
-				SideNavTest,
-				FooComponent
-			],
 			imports: [
-				CommonModule,
-				RouterModule.forRoot(
-					[
-						{
-							path: "foo",
-							component: FooComponent
-						}
-					],
+				RouterModule.forRoot([
 					{
-						initialNavigation: "disabled",
-						useHash: true
+						path: "foo",
+						component: FooComponent
 					}
-				),
-				I18nModule
+				], {
+					initialNavigation: "disabled",
+					useHash: true
+				}),
+				SideNavTest
 			]
 		});
 	});

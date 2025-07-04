@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
-import { IconModule } from "../icon/index";
+import { IconDirective } from "../icon/index";
 import { AccordionItem } from "./accordion-item.component";
 import { Accordion } from "./accordion.component";
 
@@ -15,7 +15,12 @@ import { Accordion } from "./accordion.component";
 		[skeleton]="skeleton">
 			test-content
 		</cds-accordion-item>
-	<cds-accordion>`
+	<cds-accordion>`,
+	standalone: true,
+	imports: [
+		Accordion,
+		AccordionItem
+	]
 })
 class AccordionTest {
 	disabled = false;
@@ -28,14 +33,8 @@ describe("Accordion", () => {
 	let fixture, wrapper, debugElement;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Accordion,
-				AccordionItem,
-				AccordionTest
-			],
 			imports: [
-				FormsModule,
-				IconModule
+				AccordionTest
 			]
 		});
 	});

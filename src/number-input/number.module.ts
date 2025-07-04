@@ -6,12 +6,9 @@ import { CommonModule } from "@angular/common";
 // imports
 import { Number } from "./number.component";
 import { I18nModule } from "carbon-components-angular/i18n";
-import { IconModule } from "carbon-components-angular/icon";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Number
-	],
 	exports: [
 		Number
 	],
@@ -19,7 +16,8 @@ import { IconModule } from "carbon-components-angular/icon";
 		FormsModule,
 		CommonModule,
 		I18nModule,
-		IconModule
+		IconDirective,
+		Number
 	]
 })
 export class NumberModule { }

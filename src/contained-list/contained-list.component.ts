@@ -1,11 +1,11 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	HostBinding,
 	Input,
 	TemplateRef
 } from "@angular/core";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Get started with importing the module:
@@ -54,7 +54,9 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			</div>
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class ContainedList {
 	/** Used to generate unique IDs */

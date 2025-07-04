@@ -6,24 +6,24 @@ import { ThemeDirective } from "./theme.directive";
 import { LayerDirective } from "../layer";
 
 @Component({
-	template: `<div cdsTheme></div>`
+	template: `<div cdsTheme></div>`,
+	imports: [ThemeDirective],
+	standalone: true
 })
 class TestThemeComponent { }
 
 describe("Theme", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TestThemeComponent,
-				ThemeDirective,
-				LayerDirective
+			imports: [
+				TestThemeComponent
 			]
 		});
 	});
 
 	it("should assign theme class to div", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestThemeComponent, ThemeDirective]
+			imports: [TestThemeComponent, ThemeDirective]
 		});
 
 		let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
@@ -46,7 +46,8 @@ describe("Theme", () => {
 							<div cdsLayer id="nested-layer"></div>
 						</div>
 					</div>
-				`
+				`,
+				imports: [LayerDirective, ThemeDirective]
 			}
 		});
 

@@ -8,7 +8,8 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
  */
 @Component({
 	template: "",
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class BaseIconButton {
 	/**

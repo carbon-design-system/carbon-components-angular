@@ -22,18 +22,6 @@ import { BaseModal } from "./base-modal.class";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		AlertModal,
-		Modal,
-		ModalHeader,
-		ModalFooter,
-		Overlay,
-		ModalContent,
-		ModalContentText,
-		ModalHeaderHeading,
-		ModalHeaderLabel,
-		BaseModal
-	],
 	exports: [
 		AlertModal,
 		Modal,
@@ -52,7 +40,17 @@ import { IconModule } from "carbon-components-angular/icon";
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule,
-		IconModule
+		IconModule,
+		AlertModal,
+		Modal,
+		ModalHeader,
+		ModalFooter,
+		Overlay,
+		ModalContent,
+		ModalContentText,
+		ModalHeaderHeading,
+		ModalHeaderLabel,
+		BaseModal
 	]
 })
 export class ModalModule { }

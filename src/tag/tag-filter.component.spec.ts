@@ -2,12 +2,13 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 
-import { IconModule } from "../icon";
 import { TagFilter } from "./tag-filter.component";
 
 @Component({
 	template: `
-	<cds-tag-filter [disabled]="disabled">TagFilter</cds-tag-filter>`
+	<cds-tag-filter [disabled]="disabled">TagFilter</cds-tag-filter>`,
+	standalone: true,
+	imports: [TagFilter]
 })
 class TagFilterTest {
 	disabled = false;
@@ -17,12 +18,8 @@ describe("TagFilter", () => {
 	let fixture, debugElement;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TagFilter,
-				TagFilterTest
-			],
 			imports: [
-				IconModule
+				TagFilterTest
 			]
 		});
 	});

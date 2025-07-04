@@ -38,7 +38,8 @@ export type TagType = "red" |
 				<ng-content />
 			</span>
 		}
-	`
+	`,
+	standalone: true
 })
 export class Tag {
 	/**
