@@ -1,4 +1,4 @@
-import { moduleMetadata, Meta, Story } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ContainedListModule, ContainedList, ContainedListItem } from ".";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
