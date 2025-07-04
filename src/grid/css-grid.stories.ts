@@ -1,5 +1,5 @@
 import { moduleMetadata, componentWrapperDecorator } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular";
+import { Meta } from "@storybook/angular";
 import {
 	GridModule,
 	GridDirective,
