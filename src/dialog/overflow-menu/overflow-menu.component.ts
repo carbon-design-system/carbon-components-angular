@@ -96,7 +96,7 @@ export class OverflowMenu extends BaseIconButton {
 
 	@Input() flip = false;
 
-	@Input() placement: "bottom" | "top" = "bottom";
+	@Input() placement: "bottom" | "top" | "bottom,top" | "top,bottom" = "bottom";
 
 	@Input() open = false;
 
