@@ -12,13 +12,13 @@ export default {
 			imports: [ContentSwitcherModule]
 		})
 	],
-	argTypes: {
-		code: {
-			control: false
-		}
-	},
+	// argTypes: {
+	// 	code: {
+	// 		control: false
+	// 	}
+	// },
 	component: ContentSwitcher,
-	subcomponents: ContentSwitcherOption
+	subcomponents: {ContentSwitcherOption}
 } as Meta;
 
 const Template = (args) => ({
