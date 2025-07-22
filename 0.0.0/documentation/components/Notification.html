@@ -185,7 +185,12 @@
 		class&#x3D;&quot;cds--inline-notification__icon&quot;&gt;
 	&lt;/svg&gt;
 	&lt;div class&#x3D;&quot;cds--inline-notification__text-wrapper&quot;&gt;
-		&lt;div *ngIf&#x3D;&quot;!notificationObj.template&quot; cdsNotificationTitle [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/div&gt;
+		&lt;div
+			cdsNotificationTitle
+			*ngIf&#x3D;&quot;!notificationObj.template&quot;
+			[innerHTML]&#x3D;&quot;notificationObj.title&quot;
+			[id]&#x3D;&quot;notificationID&quot;&gt;
+		&lt;/div&gt;
 		&lt;div *ngIf&#x3D;&quot;!notificationObj.template&quot; cdsNotificationSubtitle&gt;
 			&lt;span [innerHTML]&#x3D;&quot;notificationObj.message&quot;&gt;&lt;/span&gt;
 		&lt;/div&gt;
@@ -237,8 +242,11 @@
                                 <a href="#notificationCount" >notificationCount</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#notificationID" >notificationID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#notificationLabel" >notificationLabel</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -319,7 +327,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#attr.id" >attr.id</a>
+                                <a href="#attr.aria-labelledBy" >attr.aria-labelledBy</a>
                             </li>
                             <li>
                                 <a href="#class.cds--inline-notification" >class.cds--inline-notification</a>
@@ -409,7 +417,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.component.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/notification/notification.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -477,7 +485,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/notification/notification.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/notification/notification.component.ts:60</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -533,10 +541,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="attr.id"></a>
+                    <a name="attr.aria-labelledBy"></a>
                     <span class="name">
-                        <span ><b>attr.id</b></span>
-                        <a href="#attr.id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>attr.aria-labelledBy</b></span>
+                        <a href="#attr.aria-labelledBy"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -548,12 +556,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;notification-${Notification.notificationCount++}&#x60;</code>
+                        <i>Default value : </i><code>this.notificationID</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/notification.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/notification/notification.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -584,7 +592,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/notification/notification.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/notification.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -610,7 +618,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/notification/notification.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/notification/notification.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -636,7 +644,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.component.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/notification/notification.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -662,7 +670,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/notification/notification.component.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -688,7 +696,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/notification/notification.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/notification/notification.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -714,7 +722,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/notification/notification.component.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/notification/notification.component.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -740,7 +748,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/notification/notification.component.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/notification/notification.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -766,7 +774,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/notification/notification.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/notification/notification.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -792,7 +800,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/notification.component.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/notification/notification.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -1048,7 +1056,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/notification/notification.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/notification.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -1081,7 +1089,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/notification/notification.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/notification/notification.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -1094,7 +1102,6 @@
                 <td class="col-md-4">
                     <a name="notificationID"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>notificationID</b></span>
                         <a href="#notificationID"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1105,18 +1112,44 @@
                         <i>Default value : </i><code>&#x60;notification-${Notification.notificationCount++}&#x60;</code>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/notification/notification.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificationLabel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>notificationLabel</b></span>
+                        <a href="#notificationLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.notificationID</code>
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @HostBinding(&#x27;attr.id&#x27;)<br />
+                            @HostBinding(&#x27;attr.aria-labelledBy&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/notification.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/notification/notification.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -1309,7 +1342,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/notification/notification.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/notification/notification.component.ts:60</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1333,7 +1366,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/notification/notification.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/notification/notification.component.ts:63</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1391,7 +1424,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/notification/notification.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/notification/notification.component.ts:73</a></div>
                                 </td>
                             </tr>
 
@@ -1413,7 +1446,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/notification/notification.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.component.ts:74</a></div>
                                 </td>
                             </tr>
 
@@ -1435,7 +1468,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/notification/notification.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/notification/notification.component.ts:75</a></div>
                                 </td>
                             </tr>
 
@@ -1457,7 +1490,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/notification/notification.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/notification/notification.component.ts:76</a></div>
                                 </td>
                             </tr>
 
@@ -1479,7 +1512,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/notification/notification.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/notification/notification.component.ts:77</a></div>
                                 </td>
                             </tr>
 
@@ -1501,7 +1534,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/notification/notification.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/notification/notification.component.ts:78</a></div>
                                 </td>
                             </tr>
 
@@ -1523,7 +1556,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/notification/notification.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/notification/notification.component.ts:79</a></div>
                                 </td>
                             </tr>
 
@@ -1545,7 +1578,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/notification/notification.component.ts:80</a></div>
                                 </td>
                             </tr>
 
@@ -1584,7 +1617,12 @@ import { BaseNotification } from &quot;./base-notification.component&quot;;
 				class&#x3D;&quot;cds--inline-notification__icon&quot;&gt;
 			&lt;/svg&gt;
 			&lt;div class&#x3D;&quot;cds--inline-notification__text-wrapper&quot;&gt;
-				&lt;div *ngIf&#x3D;&quot;!notificationObj.template&quot; cdsNotificationTitle [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/div&gt;
+				&lt;div
+					cdsNotificationTitle
+					*ngIf&#x3D;&quot;!notificationObj.template&quot;
+					[innerHTML]&#x3D;&quot;notificationObj.title&quot;
+					[id]&#x3D;&quot;notificationID&quot;&gt;
+				&lt;/div&gt;
 				&lt;div *ngIf&#x3D;&quot;!notificationObj.template&quot; cdsNotificationSubtitle&gt;
 					&lt;span [innerHTML]&#x3D;&quot;notificationObj.message&quot;&gt;&lt;/span&gt;
 				&lt;/div&gt;
@@ -1620,7 +1658,8 @@ export class Notification extends BaseNotification {
 		this._notificationObj &#x3D; Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding(&quot;attr.id&quot;) notificationID &#x3D; &#x60;notification-${Notification.notificationCount++}&#x60;;
+	notificationID &#x3D; &#x60;notification-${Notification.notificationCount++}&#x60;;
+	@HostBinding(&quot;attr.aria-labelledBy&quot;) notificationLabel &#x3D; this.notificationID;
 	@HostBinding(&quot;class.cds--inline-notification&quot;) notificationClass &#x3D; true;
 	@HostBinding(&quot;class.cds--inline-notification--error&quot;) get isError() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;error&quot;; }
 	@HostBinding(&quot;class.cds--inline-notification--info&quot;) get isInfo() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;info&quot;; }
@@ -1665,7 +1704,7 @@ export class Notification extends BaseNotification {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="cds--inline-notification__details">	<svg		[cdsIcon]="iconDictionary[notificationObj.type]"		size="20"		*ngIf="notificationObj.type"		class="cds--inline-notification__icon">	</svg>	<div class="cds--inline-notification__text-wrapper">		<div *ngIf="!notificationObj.template" cdsNotificationTitle [innerHTML]="notificationObj.title"></div>		<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>			<span [innerHTML]="notificationObj.message"></span>		</div>		<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>	</div></div><button	*ngIf="!isCloseHidden"	(click)="onClose()"	class="cds--inline-notification__close-button"	[attr.aria-label]="notificationObj.closeLabel | async"	type="button">	<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg></button>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="cds--inline-notification__details">	<svg		[cdsIcon]="iconDictionary[notificationObj.type]"		size="20"		*ngIf="notificationObj.type"		class="cds--inline-notification__icon">	</svg>	<div class="cds--inline-notification__text-wrapper">		<div			cdsNotificationTitle			*ngIf="!notificationObj.template"			[innerHTML]="notificationObj.title"			[id]="notificationID">		</div>		<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>			<span [innerHTML]="notificationObj.message"></span>		</div>		<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>	</div></div><button	*ngIf="!isCloseHidden"	(click)="onClose()"	class="cds--inline-notification__close-button"	[attr.aria-label]="notificationObj.closeLabel | async"	type="button">	<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Notification'};
