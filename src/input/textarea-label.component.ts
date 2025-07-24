@@ -11,6 +11,8 @@ import {
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -137,7 +139,9 @@ import { TextArea } from "./text-area.directive";
 				}
 			}
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextareaLabelComponent implements AfterViewInit {
 	/**

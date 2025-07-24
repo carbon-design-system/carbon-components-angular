@@ -7,6 +7,9 @@ import {
 	EventEmitter,
 	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
+import { IconDirective, IconService, ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
+import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 
 @Component({
 	selector: "cds-accordion-item, ibm-accordion-item",
@@ -48,7 +51,10 @@ import {
 			display: list-item;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	providers: [ICON_SERVICE_PROVIDER],
+	imports: [IconDirective, NgTemplateOutlet, NgClass]
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
@@ -62,6 +68,10 @@ export class AccordionItem {
 	@HostBinding("class.cds--accordion__item--active") @Input() expanded = false;
 	@HostBinding("class.cds--accordion__item--disabled") @Input() disabled = false;
 	@HostBinding("attr.role") role = "listitem";
+
+	constructor(private iconService: IconService) {
+		this.iconService.registerAll([ChevronDown16]);
+	}
 
 	public toggleExpanded() {
 		if (!this.skeleton) {

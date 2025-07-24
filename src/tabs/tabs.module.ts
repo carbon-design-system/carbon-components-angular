@@ -12,15 +12,6 @@ import { TabHeaders } from "./tab-headers.component";
 import { TabHeaderGroup } from "./tab-header-group.component";
 
 @NgModule({
-	declarations: [
-		BaseTabHeader,
-		Tabs,
-		Tab,
-		TabHeader,
-		TabHeaders,
-		TabHeaderGroup,
-		TabSkeleton
-	],
 	exports: [
 		Tabs,
 		Tab,
@@ -32,7 +23,14 @@ import { TabHeaderGroup } from "./tab-header-group.component";
 	imports: [
 		CommonModule,
 		UtilsModule,
-		I18nModule
+		I18nModule,
+		BaseTabHeader,
+		Tabs,
+		Tab,
+		TabHeader,
+		TabHeaders,
+		TabHeaderGroup,
+		TabSkeleton
 	]
 })
 export class TabsModule {}

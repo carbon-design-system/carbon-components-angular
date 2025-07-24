@@ -8,7 +8,7 @@ import {
  * A convenience directive for applying styling to a link. Get started with importing the module:
  *
  * ```typescript
- * import { LinkModule } from 'carbon-components-angular';
+ * import { Link } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -20,7 +20,8 @@ import {
  * [See demo](../../?path=/story/components-link--basic)
  */
 @Directive({
-	selector: "[cdsLink], [ibmLink]"
+	selector: "[cdsLink], [ibmLink]",
+	standalone: true
 })
 
 

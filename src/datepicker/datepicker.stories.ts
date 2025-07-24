@@ -1,11 +1,12 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DatePickerModule, DatePicker } from "./";
+import { DatePicker } from "./";
+import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 
 export default {
 	title: "Components/Date Picker",
 	decorators: [
 		moduleMetadata({
-			imports: [DatePickerModule]
+			imports: [DatePickerInput]
 		})
 	],
 	args: {

@@ -17,7 +17,9 @@ import { Table } from "../index";
 			[striped]="striped">
 			<ng-content />
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table]
 })
 export class SkeletonTableStory implements OnInit {
 	@Input() size = "md";

@@ -17,7 +17,8 @@ import { Component, HostBinding, Input } from "@angular/core";
 			<span></span>
 		}
 		<ng-content />
-	`
+	`,
+	standalone: true
 })
 export class ListColumn {
 	@Input() skeleton = false;

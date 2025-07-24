@@ -1,5 +1,4 @@
-import { NgModule, SkipSelf, Optional } from "@angular/core";
-
+import { SkipSelf, Optional, NgModule } from "@angular/core";
 import { I18n } from "./i18n.service";
 import { ReplacePipe } from "./replace.pipe";
 
@@ -16,7 +15,7 @@ export const I18N_SERVICE_PROVIDER = {
 };
 
 @NgModule({
-	declarations: [ReplacePipe],
+	imports: [ReplacePipe],
 	exports: [ReplacePipe],
 	providers: [
 		I18n,

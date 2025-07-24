@@ -1,7 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 
 import { Loading } from "./loading.component";
-import { I18nModule } from "../i18n/index";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
@@ -12,7 +11,9 @@ import { By } from "@angular/platform-browser";
 			[size]="size"
 			[overlay]="overlay"
 			title="title">
-		</cds-loading>`
+		</cds-loading>`,
+	imports: [Loading],
+	standalone: true
 })
 class LoadingTest {
 	isActive = true;
@@ -25,8 +26,7 @@ describe("Loading", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Loading, LoadingTest],
-			imports: [I18nModule]
+			imports: [LoadingTest]
 		});
 	});
 

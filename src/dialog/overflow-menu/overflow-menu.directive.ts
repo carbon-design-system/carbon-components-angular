@@ -10,7 +10,8 @@ import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
 import { OverflowMenuCustomPane } from "./overflow-menu-custom-pane.component";
-import { EventService } from "carbon-components-angular/utils";
+import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 
 /**
@@ -40,8 +41,12 @@ import { EventService } from "carbon-components-angular/utils";
 	selector: "[cdsOverflowMenu], [ibmOverflowMenu]",
 	exportAs: "overflowMenu",
 	providers: [
-		DialogService
-	]
+		DialogService,
+		EventService,
+		DOCUMENT_SERVICE_PROVIDER,
+		PlaceholderService
+	],
+	standalone: true
 })
 export class OverflowMenuDirective extends DialogDirective {
 	/**

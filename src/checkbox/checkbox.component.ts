@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { CheckboxValue } from "./checkbox.types";
+import { NgClass } from "@angular/common";
 
 /**
  * Defines the set of states for a checkbox component.
@@ -27,7 +28,7 @@ export enum CheckboxState {
  * Get started with importing the module:
  *
  * ```typescript
- * import { CheckboxModule } from 'carbon-components-angular';
+ * import { Checkbox } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-checkbox--basic)
@@ -69,7 +70,9 @@ export enum CheckboxState {
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
@@ -159,6 +162,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Emits click event.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<void>();
 
 	/**
