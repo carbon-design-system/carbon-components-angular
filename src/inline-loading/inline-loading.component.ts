@@ -34,47 +34,40 @@ export enum InlineLoadingState {
 	template: `
 		@if (state !== InlineLoadingState.Hidden) {
 			<div class="cds--inline-loading__animation">
-				@switch (state) {
-					@case (InlineLoadingState.Inactive || InlineLoadingState.Active) {
-						<div
-							class="cds--loading cds--loading--small"
-							[ngClass]="{
-								'cds--loading--stop': state === InlineLoadingState.Inactive
-							}">
-							<svg class="cds--loading__svg" viewBox="0 0 100 100">
-								<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
-								<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
-							</svg>
-						</div>
-					}
-					@case (InlineLoadingState.Finished) {
-						<svg
-							cdsIcon="checkmark--filled"
-							size="16"
-							class="cds--inline-loading__checkmark-container">
+				@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
+					<div
+						class="cds--loading cds--loading--small"
+						[ngClass]="{
+							'cds--loading--stop': state === InlineLoadingState.Inactive
+						}">
+						<svg class="cds--loading__svg" viewBox="0 0 100 100">
+							<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
+							<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 						</svg>
-					}
-					@case (InlineLoadingState.Error) {
-						<svg
-							cdsIcon="error--filled"
-							size="16"
-							class="cds--inline-loading--error">
-						</svg>
-					}
+					</div>
+				} @else if (state === InlineLoadingState.Finished) {
+					<svg
+						cdsIcon="checkmark--filled"
+						size="16"
+						class="cds--inline-loading__checkmark-container">
+					</svg>
+				} @else if (state === InlineLoadingState.Error) {
+					<svg
+						cdsIcon="error--filled"
+						size="16"
+						class="cds--inline-loading--error">
+					</svg>
 				}
 			</div>
 		}
-		@switch(state) {
-			@case(InlineLoadingState.Inactive || InlineLoadingState.Active) {
-				<p class="cds--inline-loading__text">{{loadingText}}</p>
-			}
-			@case(InlineLoadingState.Finished) {
-				<p class="cds--inline-loading__text">{{successText}}</p>
-			}
-			@case(InlineLoadingState.Error) {
-				<p class="cds--inline-loading__text">{{errorText}}</p>
-			}
+		@if(state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
+			<p class="cds--inline-loading__text">{{loadingText}}</p>
+		} @else if(state === InlineLoadingState.Finished) {
+			<p class="cds--inline-loading__text">{{successText}}</p>
+		} @else if(state === InlineLoadingState.Error) {
+			<p class="cds--inline-loading__text">{{errorText}}</p>
 		}
+
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
