@@ -13,7 +13,7 @@ export default {
 		})
 	],
 	component: TreeViewComponent,
-	subcomponents: TreeNodeComponent,
+	subcomponents: {TreeNodeComponent},
 	args: {
 		size: "sm",
 		isMultiSelect: false

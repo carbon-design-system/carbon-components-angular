@@ -135,9 +135,7 @@ const SkeletonTemplate = (args) => ({
 	template: `
 		<cds-structured-list
 			skeleton="true"
-			[border]="border"
-			[condensed]="condensed"
-			[nowrap]="nowrap">
+			[condensed]="condensed">
 			<cds-list-header>
 				<cds-list-column></cds-list-column>
 				<cds-list-column></cds-list-column>

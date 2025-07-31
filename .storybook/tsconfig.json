@@ -7,9 +7,7 @@
 		"allowSyntheticDefaultImports": true,
 	},
 	"include": [
-		"**/*.stories.ts",
-		"../src/**/*",
-		"../projects/**/*"
+		"../**/*.stories.ts",
 	],
-	"exclude": [],
+	"exclude": ["../src/**/*.spec.ts"],
 }
