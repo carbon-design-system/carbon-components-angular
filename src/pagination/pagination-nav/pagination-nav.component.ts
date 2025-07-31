@@ -120,7 +120,7 @@ export interface PaginationNavTranslations {
 export class PaginationNav {
 	static paginationCounter = 0;
 	/**
-	 * `PaginationNavModel` with the information about pages you're controlling.
+	 * `PaginationNavModel` with the information about pages you are controlling.
 	 */
 	@Input() model: PaginationModel;
 	/**
