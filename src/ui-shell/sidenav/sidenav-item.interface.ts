@@ -1,4 +1,4 @@
-import { HeaderItemInterface } from "../header/header.module";
+import { HeaderItemInterface } from "../header";
 
 export interface SideNavItemInterface extends HeaderItemInterface {
 	isSubMenu?: boolean;

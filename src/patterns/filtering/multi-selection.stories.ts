@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/index";
-import { DropdownModule } from "../../dropdown/index";
-import { GridModule } from "../../grid/index";
-import { UIShellModule } from "../../ui-shell/index";
+import { TableModel, TableHeaderItem, TableItem, Table, TableContainer } from "../../table/index";
+import { Hamburger, Header } from "../../ui-shell";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { ColumnDirective, GridDirective, RowDirective } from "../../grid/index";
+import { TableRow } from "../../table/table-row.class";
 
 @Component({
 	selector: "app-sample-multi-selection",
@@ -63,6 +64,18 @@ import { UIShellModule } from "../../ui-shell/index";
 			flex-grow: 1;
 		}
 	`
+	],
+	standalone: true,
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Header,
+		Table,
+		TableContainer,
+		Dropdown,
+		DropdownList,
+		Hamburger
 	]
 })
 class SampleMultiSelection implements OnInit, OnDestroy {
@@ -119,12 +132,8 @@ export default {
 	title: "Pattern/Filtering",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleMultiSelection],
 			imports: [
-				TableModule,
-				DropdownModule,
-				GridModule,
-				UIShellModule
+				SampleMultiSelection
 			]
 		})
 	]

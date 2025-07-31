@@ -5,7 +5,7 @@ import {
 	EventEmitter,
 	TemplateRef
 } from "@angular/core";
-import { BaseIconButton } from "carbon-components-angular/button";
+import { BaseIconButton, IconButton } from "carbon-components-angular/button";
 
 /**
  * Contained by `HeaderGlobal`. Generally used to trigger `Panel`s
@@ -32,7 +32,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			}">
 			<ng-content />
 		</cds-icon-button>
-	`
+	`,
+	standalone: true,
+	imports: [IconButton]
 })
 export class HeaderAction extends BaseIconButton {
 	/**

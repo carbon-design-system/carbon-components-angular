@@ -4,7 +4,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { TableModel } from "./table-model.class";
-import { Table, TableModule } from "./index";
+import { Table } from "./index";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
@@ -18,7 +18,9 @@ import { TableItem } from "./table-item.class";
 			size="md"
 			title="title"
 			[showSelectionColumn]="showSelectionColumn">
-		</cds-table>`
+		</cds-table>`,
+	imports: [Table],
+	standalone: true
 })
 class TableTest implements OnInit {
 	tableModel = new TableModel();
@@ -43,8 +45,7 @@ describe("Table", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ TableTest ],
-			imports: [ TableModule ]
+			imports: [TableTest]
 		});
 
 		fixture = TestBed.createComponent(TableTest);

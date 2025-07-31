@@ -1,17 +1,16 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { IconModule, IconDirective } from "./";
+import { ICON_SERVICE_PROVIDER, IconDirective, IconService } from "./";
 import { IconDemo, ManyIconDemo } from "./stories";
 
 export default {
 	title: "Components/Icon",
 	decorators: [
 		moduleMetadata({
+			imports: [IconDirective],
+			providers: [ICON_SERVICE_PROVIDER],
 			declarations: [
 				IconDemo,
 				ManyIconDemo
-			],
-			imports: [
-				IconModule
 			]
 		})
 	],

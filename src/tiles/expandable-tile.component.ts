@@ -7,6 +7,9 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
+import { NgClass, NgStyle, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Tile } from "./tile.component";
 
 export interface ExpandableTileTranslations {
 	EXPAND: string;
@@ -80,7 +83,9 @@ export interface ExpandableTileTranslations {
 				</div>
 			</div>
 		</ng-template>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, NgStyle, NgTemplateOutlet, IconDirective, AsyncPipe]
 })
 export class ExpandableTile implements AfterViewInit {
 	/**

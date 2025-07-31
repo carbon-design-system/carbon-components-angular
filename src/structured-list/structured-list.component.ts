@@ -10,6 +10,7 @@ import {
 import { ListRow } from "./list-row.component";
 import { ListHeader } from "./list-header.component";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NgClass } from "@angular/common";
 
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
@@ -80,7 +81,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			useExisting: StructuredList,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass]
 })
 export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	/**

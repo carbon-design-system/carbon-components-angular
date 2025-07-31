@@ -2,8 +2,17 @@ import { Component, Inject } from "@angular/core";
 import {
 	ModalService,
 	BaseModal,
-	ModalButtonType
+	ModalButtonType,
+	Modal,
+	ModalHeader,
+	ModalHeaderLabel,
+	ModalHeaderHeading,
+	ModalContent,
+	ModalContentText,
+	ModalFooter,
+	AlertModal
 } from "../";
+import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../../placeholder";
 
 @Component({
 	selector: "app-sample-modal",
@@ -25,7 +34,13 @@ import {
 				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</cds-modal-footer>
 		</cds-modal>
-	`
+		<!-- we need the placeholder again, somce this is standalone and we cannot assume that the higher component has a placeholder-->
+		<cds-placeholder></cds-placeholder>
+	`,
+	imports: [Modal, ModalHeader, ModalHeaderLabel, ModalHeaderHeading, ModalContent,
+		ModalContentText, ModalFooter, AlertModal, Placeholder],
+	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER],
+	standalone: true
 })
 export class SampleModal extends BaseModal {
 	constructor(

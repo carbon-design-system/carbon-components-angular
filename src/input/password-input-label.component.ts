@@ -11,6 +11,9 @@ import {
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
 import { BaseIconButton } from "carbon-components-angular/button";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Tooltip } from "carbon-components-angular/tooltip";
 
 /**
  * Get started with importing the module:
@@ -149,7 +152,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				}
 			</div>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective, Tooltip]
 })
 /**
  * Represents the Password Input Label Component.

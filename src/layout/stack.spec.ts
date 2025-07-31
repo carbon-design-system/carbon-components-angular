@@ -5,23 +5,23 @@ import { By } from "@angular/platform-browser";
 import { StackDirective } from "./stack.directive";
 
 @Component({
-	template: `<div cdsStack>Test</div>`
+	template: `<div cdsStack>Test</div>`,
+	imports: [StackDirective],
+	standalone: true
 })
 class TestStackComponent { }
 
 describe("Stack", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TestStackComponent,
-				StackDirective
-			]
+			imports: [TestStackComponent,
+				StackDirective]
 		});
 	});
 
 	it("should assign default stack class to div", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestStackComponent, StackDirective]
+			imports: [TestStackComponent]
 		});
 
 		let fixture: ComponentFixture<TestStackComponent> = TestBed.createComponent(TestStackComponent);

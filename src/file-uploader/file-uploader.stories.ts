@@ -1,8 +1,8 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { FileUploaderModule, FileUploader } from "./";
-import { NotificationModule } from "../notification";
-import { ButtonModule } from "../button";
+import { FileUploader } from "./";
+import { Notification } from "../notification";
+import { Button } from "../button";
 import {
 	FileUploaderStory,
 	NgModelFileUploaderStory,
@@ -21,11 +21,11 @@ export default {
 				ReactiveFormsStory
 			],
 			imports: [
-				FileUploaderModule,
+				FileUploader,
 				FormsModule,
 				ReactiveFormsModule,
-				NotificationModule,
-				ButtonModule
+				Notification,
+				Button
 			]
 		})
 	],

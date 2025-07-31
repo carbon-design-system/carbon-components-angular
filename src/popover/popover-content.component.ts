@@ -24,7 +24,8 @@ import {
 		@if (!autoAlign) {
 			<span class="cds--popover-caret"></span>
 		}
-	`
+	`,
+	standalone: true
 })
 export class PopoverContent implements AfterViewInit {
 	@HostBinding("class.cds--popover") popoverClass = true;

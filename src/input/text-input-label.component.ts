@@ -9,6 +9,8 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the module:
@@ -124,7 +126,9 @@ import {
 				}
 		</div>
 	}
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit {
 	/**

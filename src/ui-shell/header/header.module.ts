@@ -28,7 +28,12 @@ export {
 };
 
 @NgModule({
-	declarations: [
+	imports: [
+		CommonModule,
+		ButtonModule,
+		I18nModule,
+		IconModule,
+		RouterModule,
 		Header,
 		HeaderItem,
 		HeaderMenu,
@@ -36,13 +41,6 @@ export {
 		HeaderGlobal,
 		HeaderAction,
 		Hamburger
-	],
-	imports: [
-		CommonModule,
-		ButtonModule,
-		I18nModule,
-		IconModule,
-		RouterModule
 	],
 	exports: [
 		Header,

@@ -5,8 +5,10 @@ import {
 	EventEmitter,
 	HostBinding
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { IconDirective } from "carbon-components-angular/icon";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +22,9 @@ import { Observable } from "rxjs";
 				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
 			</button>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [IconDirective, AsyncPipe]
 })
 export class TableExpandButton {
 	/**

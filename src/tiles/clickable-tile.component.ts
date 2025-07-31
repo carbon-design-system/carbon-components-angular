@@ -6,6 +6,8 @@ import {
 	Optional
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Link } from "carbon-components-angular/link";
+import { NgClass } from "@angular/common";
 
 /**
  * Build application's clickable tiles using this component. Get started with importing the module:
@@ -37,7 +39,9 @@ import { Router } from "@angular/router";
 		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
 		<ng-content />
-	</a>`
+	</a>`,
+	standalone: true,
+	imports: [Link, NgClass]
 })
 export class ClickableTile {
 	/**

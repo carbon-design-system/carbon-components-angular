@@ -8,7 +8,8 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[cdsPassword], [ibmPassword]"
+	selector: "[cdsPassword], [ibmPassword]",
+	standalone: true
 })
 export class PasswordInput implements AfterViewInit {
 

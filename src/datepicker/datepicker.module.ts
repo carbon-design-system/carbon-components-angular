@@ -6,9 +6,6 @@ import { UtilsModule } from "carbon-components-angular/utils";
 import { I18nModule } from "carbon-components-angular/i18n";
 
 @NgModule({
-	declarations: [
-		DatePicker
-	],
 	exports: [
 		DatePicker,
 		DatePickerInputModule
@@ -17,7 +14,8 @@ import { I18nModule } from "carbon-components-angular/i18n";
 		CommonModule,
 		DatePickerInputModule,
 		UtilsModule,
-		I18nModule
+		I18nModule,
+		DatePicker
 	]
 })
 export class DatePickerModule { }

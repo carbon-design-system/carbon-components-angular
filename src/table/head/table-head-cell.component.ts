@@ -7,9 +7,11 @@ import {
 	OnChanges
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { map } from "rxjs/operators";
 import { TableHeaderItem } from "../table-header-item.class";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -79,7 +81,9 @@ import { TableHeaderItem } from "../table-header-item.class";
 				<ng-template [ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}" />
 			</div>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, TableHeadCellLabel, AsyncPipe]
 })
 export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;

@@ -6,17 +6,15 @@ import { AccordionItem } from "./accordion-item.component";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Accordion,
-		AccordionItem
-	],
 	exports: [
 		Accordion,
 		AccordionItem
 	],
 	imports: [
 		CommonModule,
-		IconModule
+		IconModule,
+		Accordion,
+		AccordionItem
 	]
 })
 export class AccordionModule { }
