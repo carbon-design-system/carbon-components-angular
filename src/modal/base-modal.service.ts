@@ -3,10 +3,12 @@ import {
 	Injector,
 	Injectable,
 	inject,
-	EnvironmentInjector
+	EnvironmentInjector,
+	Type
 } from "@angular/core";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { tap, delay } from "rxjs/operators";
+import {BaseModal} from "./base-modal.class";
 
 
 /**
@@ -44,7 +46,8 @@ export class BaseModalService {
 	 * Creates and renders the modal component that is passed in.
 	 * `inputs` is an optional parameter of `data` that can be passed to the `Modal` component.
 	 */
-	create<T>(data: { component: any, inputs?: any }): ComponentRef<any> {
+	create<T extends BaseModal, I extends Record<any, unknown> = Record<string, unknown>>(
+		data: { component: Type<T>, inputs?: I }): ComponentRef<T> {
 		let defaults = { inputs: {} };
 		data = Object.assign({}, defaults, data);
 
