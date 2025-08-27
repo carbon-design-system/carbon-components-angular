@@ -110,7 +110,7 @@ export class IconNameNotFoundError extends Error {
  */
 export class IconSizeNotFoundError extends Error {
 	constructor(size: string, name: string) {
-		super("Size ${size} for ${name} not found");
+		super(`Size ${size} for ${name} not found`);
 	}
 }
 
