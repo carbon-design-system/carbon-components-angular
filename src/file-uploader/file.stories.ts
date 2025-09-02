@@ -15,26 +15,26 @@ export default {
 				CustomFileIconsModule,
 				FileUploaderModule,
 				IconModule
-			],
-		}),
+			]
+		})
 	],
 	args: {
-		size: "md",
+		size: "md"
 	},
 	argTypes: {
 		size: {
 			options: ["sm", "md", "lg"],
-			control: "radio",
-		},
+			control: "radio"
+		}
 	},
-	component: FileComponent,
+	component: FileComponent
 } as Meta;
 
 const BasicFileTemplate = (args) => ({
 	props: args,
 	size: {
 		options: ["sm", "md", "lg"],
-		control: "radio",
+		control: "radio"
 	},
 	template: `
         <!--
@@ -43,7 +43,7 @@ const BasicFileTemplate = (args) => ({
         https://github.com/IBM/carbon-components-angular/tree/master/src/file-uploader/stories/basic-file.component.ts
         -->
         <app-basic-file [size]="size"></app-basic-file>
-    `,
+    `
 });
 export const BasicFile = BasicFileTemplate.bind({});
 
@@ -51,7 +51,7 @@ const CustomFileTemplate = (args) => ({
 	props: args,
 	size: {
 		options: ["sm", "md", "lg"],
-		control: "radio",
+		control: "radio"
 	},
 	template: `
         <!--
@@ -60,6 +60,6 @@ const CustomFileTemplate = (args) => ({
         https://github.com/IBM/carbon-components-angular/tree/master/src/file-uploader/stories/custom-file.component.ts
         -->
         <app-custom-file [size]="size"></app-custom-file>
-    `,
+    `
 });
 export const CustomFile = CustomFileTemplate.bind({});

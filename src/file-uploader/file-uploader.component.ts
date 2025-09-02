@@ -169,7 +169,7 @@ export class FileUploader implements ControlValueAccessor {
 	/**
 	 * Custom template used to render the file name of uploaded files
 	 */
-	@Input() fileNameTpl: TemplateRef<unknown>
+	@Input() fileNameTpl: TemplateRef<unknown>;
 	/**
 	 * Custom template used to render the file actions of uploaded files
 	 */

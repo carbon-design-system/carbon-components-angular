@@ -6,7 +6,7 @@ import View16 from "@carbon/icons/es/view/16";
 import { IconModule, IconService } from "../../icon";
 
 @NgModule({
-	imports: [CommonModule, IconModule],
+	imports: [CommonModule, IconModule]
 })
 export class CustomFileIconsModule {
 	constructor(private iconService: IconService) {

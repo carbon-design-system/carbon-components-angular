@@ -7,8 +7,7 @@ import { Component, Input } from "@angular/core";
 			[size]="size"
 			[fileItem]="fileItem"
 			[nameTpl]="nameTpl"
-			[actionsTpl]="actionsTpl"
-		>
+			[actionsTpl]="actionsTpl">
 		</cds-file>
 
 		<ng-template #nameTpl let-fileItem>
@@ -20,29 +19,27 @@ import { Component, Input } from "@angular/core";
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="View"
-				[size]="size"
-			>
+				[size]="size">
 				<svg ibmIcon="view" size="16"></svg>
 			</button>
 			<button
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="Download"
-				[size]="size"
-			>
+				[size]="size">
 				<svg ibmIcon="download" size="16"></svg>
 			</button>
 		</ng-template>
 	`,
-	styles: [],
+	styles: []
 })
 export class CustomFileStory {
 	@Input() size = "sm";
 
 	fileItem = {
 		file: new File(["foo"], "Lorem ipsum dolor sit amet.txt", {
-			type: "text/plain",
+			type: "text/plain"
 		}),
-		state: "edit",
+		state: "edit"
 	};
 }

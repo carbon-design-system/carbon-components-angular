@@ -5,7 +5,7 @@ import {
 	Input,
 	OnDestroy,
 	Output,
-	TemplateRef,
+	TemplateRef
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -18,25 +18,20 @@ import { FileItem } from "./file-item.interface";
 			<ng-template
 				*ngIf="isTemplate(nameTpl); else defaultName"
 				[ngTemplateOutlet]="nameTpl"
-				[ngTemplateOutletContext]="{ $implicit: fileItem }"
-			>
+				[ngTemplateOutletContext]="{ $implicit: fileItem }">
 			</ng-template>
 			<ng-template #defaultName>{{ fileItem.file.name }}</ng-template>
 		</p>
-		<span
-			*ngIf="fileItem.state === 'edit'"
-			class="cds--file__state-container"
-		>
+		<span *ngIf="fileItem.state === 'edit'" class="cds--file__state-container">
 			<svg
 				*ngIf="isInvalidText"
 				cdsIcon="warning--filled"
 				class="cds--file--invalid"
-				size="16"
-			></svg>
+				size="16">
+			</svg>
 			<ng-template
 				*ngIf="isTemplate(actionsTpl); else defaultActions"
-				[ngTemplateOutlet]="actionsTpl"
-			>
+				[ngTemplateOutlet]="actionsTpl">
 			</ng-template>
 			<ng-template #defaultActions>
 				<button
@@ -47,8 +42,7 @@ import { FileItem } from "./file-item.interface";
 					[attr.aria-label]="translations.REMOVE_BUTTON"
 					(click)="remove.emit()"
 					(keyup.enter)="remove.emit()"
-					(keyup.space)="remove.emit()"
-				>
+					(keyup.space)="remove.emit()">
 					<svg cdsIcon="trash-can" size="16"></svg>
 				</button>
 			</ng-template>
@@ -60,20 +54,18 @@ import { FileItem } from "./file-item.interface";
 		</span>
 		<span
 			*ngIf="fileItem.state === 'complete'"
-			class="cds--file__state-container"
-		>
+			class="cds--file__state-container">
 			<svg
 				cdsIcon="checkmark--filled"
 				size="16"
 				class="cds--file-complete"
-				[ariaLabel]="translations.CHECKMARK"
-			></svg>
+				[ariaLabel]="translations.CHECKMARK">
+			</svg>
 		</span>
 		<div
 			class="cds--form-requirement"
 			role="alert"
-			*ngIf="fileItem.invalid"
-		>
+			*ngIf="fileItem.invalid">
 			<div class="cds--form-requirement__title">
 				{{ fileItem.invalidTitle }}
 			</div>
@@ -81,7 +73,7 @@ import { FileItem } from "./file-item.interface";
 				{{ fileItem.invalidText }}
 			</p>
 		</div>
-	`,
+	`
 })
 export class FileComponent implements OnDestroy {
 	/**
@@ -109,8 +101,7 @@ export class FileComponent implements OnDestroy {
 
 	@HostBinding("class.cds--file__selected-file") selectedFile = true;
 
-	@HostBinding("class.cds--file__selected-file--invalid")
-	get isInvalidText() {
+	@HostBinding("class.cds--file__selected-file--invalid") get isInvalidText() {
 		return this.fileItem.invalidText;
 	}
 

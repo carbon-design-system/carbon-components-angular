@@ -18,15 +18,13 @@ import { FileItem } from "../";
 			[fileItemSize]="fileItemSize"
 			[disabled]="disabled"
 			[fileNameTpl]="nameTpl"
-			[fileActionsTpl]="actionsTpl"
-		>
+			[fileActionsTpl]="actionsTpl">
 		</cds-file-uploader>
 		<button
 			cdsButton
 			*ngIf="files && files.size > 0"
 			(click)="onUpload()"
-			style="margin-top:20px"
-		>
+			style="margin-top:20px">
 			Upload
 		</button>
 
@@ -39,20 +37,18 @@ import { FileItem } from "../";
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="View"
-				[size]="fileItemSize"
-			>
+				[size]="fileItemSize">
 				<svg ibmIcon="view" size="16"></svg>
 			</button>
 			<button
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="Download"
-				[size]="fileItemSize"
-			>
+				[size]="fileItemSize">
 				<svg ibmIcon="download" size="16"></svg>
 			</button>
 		</ng-template>
-	`,
+	`
 })
 export class FileUploaderWithCustomFileStory {
 	@Input() files = new Set<FileItem>();
