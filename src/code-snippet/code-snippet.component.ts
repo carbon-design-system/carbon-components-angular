@@ -22,10 +22,10 @@ export enum SnippetType {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { CodeSnippetModule } from 'carbon-components-angular';
+ * import { CodeSnippet } from 'carbon-components-angular';
  * ```
  *
  * ```html

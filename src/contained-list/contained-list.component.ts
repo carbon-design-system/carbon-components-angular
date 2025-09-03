@@ -8,10 +8,10 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContainedListModule } from 'carbon-components-angular';
+ * import { ContainedList, ContainedListItem } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-contained-list--basic)

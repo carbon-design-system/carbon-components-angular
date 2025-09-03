@@ -45,10 +45,10 @@ if (languages.default?.default["en"]?.weekdays) {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { DatePickerModule } from 'carbon-components-angular';
+ * import { DatePicker, DatePickerInput } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-date-picker--single)

@@ -30,10 +30,10 @@ export class NumberChange {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { NumberModule } from 'carbon-components-angular';
+ * import { NumberComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-number--basic)

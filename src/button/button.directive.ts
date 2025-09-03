@@ -6,7 +6,7 @@ import {
 import { ButtonSize, ButtonType } from "./button.types";
 
 /**
- * A convenience directive for applying styling to a button. Get started with importing the module:
+ * A convenience directive for applying styling to a button. Get started with importing the directive:
  *
  * ```typescript
  * import { Button } from 'carbon-components-angular';

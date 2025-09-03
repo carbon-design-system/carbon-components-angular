@@ -10,7 +10,7 @@ import { AccordionItem } from "./accordion-item.component";
 import { NgClass } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
  * import { Accordion, AccordionItem } from 'carbon-components-angular';

@@ -17,10 +17,10 @@ import { IconDirective } from "carbon-components-angular/icon";
 import { Tooltip } from "carbon-components-angular/tooltip";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { PasswordInputLabelComponent, PasswordInput } from 'carbon-components-angular';
  * ```
  *
  * ```html

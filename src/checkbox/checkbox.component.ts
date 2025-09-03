@@ -25,7 +25,7 @@ export enum CheckboxState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
  * import { Checkbox } from 'carbon-components-angular';

@@ -13,7 +13,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 /**
  * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Get started with importing the module:
+ * Get started with importing the directive:
  *
  * ```typescript
  * import { IconDirective } from 'carbon-components-angular';

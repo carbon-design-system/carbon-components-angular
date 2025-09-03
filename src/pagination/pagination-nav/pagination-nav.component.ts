@@ -23,10 +23,10 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * ```typescript
- * import { PaginationModule } from 'carbon-components-angular';
+ * import { PaginationNav } from 'carbon-components-angular';
  * ```
  *
  * ```html

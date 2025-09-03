@@ -18,10 +18,10 @@ import { TreeViewService } from "./treeview.service";
 import { TreeNodeComponent } from "./tree-node.component";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TreeviewModule } from 'carbon-components-angular';
+ * import { TreeViewComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tree-view--basic)

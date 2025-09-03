@@ -21,10 +21,10 @@ import { NgTemplateOutlet, NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { Label } from 'carbon-components-angular';
  * ```
  *
  * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components

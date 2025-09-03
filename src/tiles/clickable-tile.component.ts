@@ -11,10 +11,10 @@ import { Link } from "carbon-components-angular/link";
 import { NgClass } from "@angular/common";
 
 /**
- * Build application's clickable tiles using this component. Get started with importing the module:
+ * Build application's clickable tiles using this component. Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { ClickableTile } from 'carbon-components-angular';
  * ```
  *
  * ```html

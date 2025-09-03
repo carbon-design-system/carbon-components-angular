@@ -19,10 +19,10 @@ import { takeUntil } from "rxjs/operators";
 import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { Tile, TileGroup } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tiles-grouped--selectable)

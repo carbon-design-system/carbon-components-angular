@@ -23,10 +23,10 @@ import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angul
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { Breadcrumb } from 'carbon-components-angular';
+ * import { Breadcrumb, BreadcrumbItemComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-breadcrumb--basic)

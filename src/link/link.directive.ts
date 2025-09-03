@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 
 /**
- * A convenience directive for applying styling to a link. Get started with importing the module:
+ * A convenience directive for applying styling to a link. Get started with importing the directive:
  *
  * ```typescript
  * import { Link } from 'carbon-components-angular';

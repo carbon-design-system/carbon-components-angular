@@ -19,10 +19,10 @@ import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { SliderModule } from 'carbon-components-angular';
+ * import { Slider } from 'carbon-components-angular';
  * ```
  *
  * The simplest possible slider usage looks something like:

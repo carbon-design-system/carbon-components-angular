@@ -18,10 +18,10 @@ export interface ExpandableTileTranslations {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { ExpandableTile } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tiles-expandable--basic)

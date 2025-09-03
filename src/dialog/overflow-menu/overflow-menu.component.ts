@@ -19,7 +19,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
  * import { OverflowMenu, OverflowMenuOption } from 'carbon-components-angular';

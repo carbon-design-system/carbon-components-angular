@@ -22,10 +22,10 @@ export type TagType = "red" |
 	"outline";
 
 /**
- * Component that represents a tag for labelling/categorizing using keywords. Get started with importing the module:
+ * Component that represents a tag for labelling/categorizing using keywords. Get started with importing the component:
  *
  * ```typescript
- * import { TagModule } from 'carbon-components-angular';
+ * import { Tag } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tag--basic)

@@ -18,10 +18,10 @@ import { FileComponent } from "./file.component";
 const noop = () => { };
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { FileUploaderModule } from 'carbon-components-angular';
+ * import { FileUploader, FileComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-file-uploader--basic)
