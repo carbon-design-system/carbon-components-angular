@@ -8,7 +8,7 @@ import {
 	TemplateRef,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
 import { BaseIconButton, Button } from "carbon-components-angular/button";
 import { Tooltip } from "carbon-components-angular/tooltip";
@@ -98,7 +98,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	`],
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
-	providers: [PlaceholderService, I18N_SERVICE_PROVIDER],
+	providers: [PlaceholderService],
 	imports: [Tooltip, Button, OverflowMenuDirective, NgClass, NgTemplateOutlet, IconDirective]
 })
 export class OverflowMenu extends BaseIconButton {

@@ -7,7 +7,7 @@ import {
 	HostBinding
 } from "@angular/core";
 
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
 import { range } from "carbon-components-angular/common";
@@ -129,7 +129,7 @@ export interface PaginationNavTranslations {
 		PaginationOverflow,
 		AsyncPipe
 	],
-	providers: [I18N_SERVICE_PROVIDER, EXPERIMENTAL_SERVICE_PROVIDER]
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class PaginationNav {
 	static paginationCounter = 0;

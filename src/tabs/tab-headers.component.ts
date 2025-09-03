@@ -17,7 +17,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { Tab } from "./tab.component";
@@ -114,7 +114,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		</button>
 	`,
 	standalone: true,
-	providers: [EventService, DOCUMENT_SERVICE_PROVIDER, I18N_SERVICE_PROVIDER],
+	providers: [EventService, DOCUMENT_SERVICE_PROVIDER],
 	imports: [NgClass, NgTemplateOutlet]
 })
 

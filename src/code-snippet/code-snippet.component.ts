@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { BaseIconButton } from "carbon-components-angular/button";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
 import { NgTemplateOutlet, NgClass, NgStyle } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -141,7 +141,7 @@ export enum SnippetType {
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	providers: [I18N_SERVICE_PROVIDER, EventService, DOCUMENT_SERVICE_PROVIDER],
+	providers: [EventService, DOCUMENT_SERVICE_PROVIDER],
 	imports: [NgTemplateOutlet, NgClass, NgStyle, IconDirective, IconButton]
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {

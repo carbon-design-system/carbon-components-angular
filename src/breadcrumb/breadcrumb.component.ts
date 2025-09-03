@@ -14,7 +14,7 @@ import {
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 import { Router } from "@angular/router";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 import { OverflowMenu } from "carbon-components-angular/dialog";
@@ -129,7 +129,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	providers: [I18N_SERVICE_PROVIDER, EventService, DOCUMENT_SERVICE_PROVIDER],
+	providers: [EventService, DOCUMENT_SERVICE_PROVIDER],
 	imports: [NgClass, BreadcrumbItemComponent, NgTemplateOutlet, IconDirective, OverflowMenu]
 })
 export class Breadcrumb implements AfterContentInit {

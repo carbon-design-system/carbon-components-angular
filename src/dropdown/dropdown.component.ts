@@ -26,7 +26,7 @@ import {
 } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { I18n, I18N_SERVICE_PROVIDER } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { DropdownService } from "./dropdown.service";
 import {
 	AnimationFrameService,
@@ -226,8 +226,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 		DropdownService,
 		ElementService,
 		EventService,
-		DOCUMENT_SERVICE_PROVIDER,
-		I18N_SERVICE_PROVIDER
+		DOCUMENT_SERVICE_PROVIDER
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,

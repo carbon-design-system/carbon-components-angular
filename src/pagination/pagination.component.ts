@@ -6,7 +6,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18N_SERVICE_PROVIDER, I18n, ReplacePipe } from "carbon-components-angular/i18n";
+import { I18n, ReplacePipe } from "carbon-components-angular/i18n";
 import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
 import { range } from "carbon-components-angular/common";
@@ -218,7 +218,7 @@ export interface PaginationTranslations {
 	`,
 	standalone: true,
 	imports: [NgClass, FormsModule, IconDirective, NgStyle, Button, AsyncPipe, ReplacePipe],
-	providers: [I18N_SERVICE_PROVIDER, EXPERIMENTAL_SERVICE_PROVIDER]
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class Pagination {
 	static paginationCounter = 0;
