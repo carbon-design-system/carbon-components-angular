@@ -7,13 +7,17 @@ import { Observable, Subject } from "rxjs";
 
 import { ModalService } from "../";
 import { InputModal } from "./input-modal.component";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 
 @Component({
 	selector: "app-data-passing-modal",
 	template: `
 		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
 		<h3>Data passed from input modal on input change: </h3>{{ modalInputValue }}
-	`
+	`,
+	standalone: true,
+	providers: [ModalService],
+	imports: [InputModal]
 })
 export class DataPassingModal implements AfterContentInit {
 	@Input() modalText = "Hello, World";

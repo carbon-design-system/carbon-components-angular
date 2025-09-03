@@ -12,16 +12,17 @@ import {
  *
  * If a `ul` or `ol` is nested within a `li` the directive will apply nested list styling.
  *
- * Get started with importing the module:
+ * Get started with importing the directives:
  *
  * ```typescript
- * import { ListModule } from 'carbon-components-angular';
+ * import { List, ListItemDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-list--basic)
  */
 @Directive({
-	selector: "[cdsList], [ibmList]"
+	selector: "[cdsList], [ibmList]",
+	standalone: true
 })
 export class List {
 	@HostBinding("class.cds--list--ordered") get ordered() {

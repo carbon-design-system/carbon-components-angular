@@ -11,14 +11,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
+import { Button } from "carbon-components-angular/button";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { FileComponent } from "./file.component";
 
 const noop = () => { };
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { FileUploaderModule } from 'carbon-components-angular';
+ * import { FileUploader, FileComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-file-uploader--basic)
@@ -97,7 +100,9 @@ const noop = () => { };
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [Button, NgClass, NgTemplateOutlet, FileComponent]
 })
 export class FileUploader implements ControlValueAccessor {
 	/**

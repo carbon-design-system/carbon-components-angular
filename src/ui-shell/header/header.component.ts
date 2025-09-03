@@ -7,8 +7,9 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
  * A fixed header and navigation.
@@ -54,7 +55,10 @@ import { I18n } from "carbon-components-angular/i18n";
 			}
 			<ng-content />
 		</header>
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet, RouterLink, AsyncPipe],
+	providers: [Router]
 })
 export class Header {
 	/**

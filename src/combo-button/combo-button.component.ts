@@ -26,9 +26,27 @@ import {
 	flip
 } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
+import { Button, IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+/**
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { ComboButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-combo-button>
+ * 	<cds-menu-item label="First action"></cds-menu-item>
+ * </cds-combo-button>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-combo-button--basic)
+ */
 @Component({
 	selector: "cds-combo-button",
 	template: `
@@ -72,7 +90,9 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 			</cds-menu>
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [Button, IconButton, IconDirective, ContextMenuComponent]
 })
 export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static comboButtonCounter = 0;

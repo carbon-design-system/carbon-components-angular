@@ -5,10 +5,10 @@ import {
 } from "@angular/core";
 
 /**
- * Build application's tiles using this component. Get started with importing the module:
+ * Build application's tiles using this component. Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { Tile } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -21,7 +21,8 @@ import {
  */
 @Component({
 	selector: "cds-tile, ibm-tile",
-	template: `<ng-content />`
+	template: `<ng-content />`,
+	standalone: true
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;

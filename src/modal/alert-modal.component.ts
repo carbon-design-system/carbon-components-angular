@@ -6,6 +6,14 @@ import {
 	Optional
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
+import { Modal } from "./modal.component";
+import { ModalHeader } from "./modal-header.component";
+import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { ModalHeaderHeading } from "./modal-header-heading.directive";
+import { ModalContent } from "./modal-content.directive";
+import { ModalFooter } from "./modal-footer.component";
+import { Button } from "carbon-components-angular/button";
+import { BaseModalService } from "./base-modal.service";
 
 /**
  * Component to create standard modals for presenting content or asking for user's input.
@@ -76,7 +84,10 @@ import { BaseModal } from "./base-modal.class";
 				</cds-modal-footer>
 			}
 		</cds-modal>
-	`
+	`,
+	standalone: true,
+	providers: [BaseModalService],
+	imports: [Modal, ModalHeader, ModalHeaderLabel, ModalHeaderHeading, ModalContent, ModalFooter, Button]
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
 	@ViewChild("modalContent", { static: true }) modalContent: { nativeElement: any; };

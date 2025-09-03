@@ -1,12 +1,13 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ComboBoxModule, ComboBox } from "./";
+import { ComboBox } from "./";
 
 import {
 	DynamicListComboBox,
 	ReactiveFormsCombobox,
 	MockQueryCombobox
 } from "./stories";
+import { DropdownList } from "../dropdown";
 
 export default {
 	title: "Components/Combobox",
@@ -20,8 +21,10 @@ export default {
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				ComboBoxModule
+				ComboBox,
+				DropdownList
 			]
+
 		})
 	],
 	args: {

@@ -1,15 +1,8 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { SliderModule, Slider } from "./";
+import { Slider } from "./";
 
 export default {
 	title: "Components/Slider",
-	decorators: [
-		moduleMetadata({
-			imports: [
-				SliderModule
-			]
-		})
-	],
 	component: Slider
 } as Meta;
 

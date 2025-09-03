@@ -1,7 +1,7 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 
 
-import { TabsModule } from "./";
+import { Tab, TabHeader, TabHeaderGroup, TabHeaders, TabSkeleton, Tabs } from "./";
 
 import { TabStory } from "./stories";
 
@@ -10,9 +10,16 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TabsModule
-			],
-			declarations: [TabStory]
+				Tabs,
+				Tab,
+				TabHeader,
+				TabHeaderGroup,
+				TabHeaders,
+				TabSkeleton,
+
+				//stories
+				TabStory
+			]
 		})
 	]
 } as Meta;

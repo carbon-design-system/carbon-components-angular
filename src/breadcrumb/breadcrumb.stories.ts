@@ -1,6 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	BreadcrumbModule,
 	Breadcrumb,
 	BreadcrumbItemComponent,
 	BreadcrumbItem
@@ -25,7 +24,10 @@ export default {
 	title: "Components/Breadcrumb",
 	decorators: [
 		moduleMetadata({
-			imports: [BreadcrumbModule]
+			imports: [
+				Breadcrumb,
+				BreadcrumbItemComponent
+			]
 		})
 	],
 	args: {
@@ -41,8 +43,7 @@ export default {
 			control: false
 		}
 	},
-	component: Breadcrumb,
-	subcomponents: { BreadcrumbItemComponent }
+	component: Breadcrumb
 } as Meta;
 
 const Template = (args) => ({
@@ -149,4 +150,3 @@ Skeleton.parameters = {
 		disable: true
 	}
 };
-

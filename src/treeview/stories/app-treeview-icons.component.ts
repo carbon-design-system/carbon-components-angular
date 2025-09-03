@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, TemplateRef, ViewChild } from "@angular/core";
 import { Node } from "../tree-node.types";
+import { IconDirective } from "../../icon";
+import { TreeViewComponent } from "../";
 
 @Component({
 	selector: "app-treeview-icon-component",
@@ -13,7 +15,9 @@ import { Node } from "../tree-node.types";
 		<ng-template #document>
 			<svg cdsIcon="document" class="cds--tree-node__icon" size="16"></svg>
 		</ng-template>
-	`
+	`,
+	imports: [IconDirective, TreeViewComponent],
+	standalone: true
 })
 export class IconTreeviewDemoComponent implements AfterViewInit {
 	tree: Node[] = [];

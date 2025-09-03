@@ -10,6 +10,12 @@ import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ToastTitle } from "./toast-title.directive";
+import { ToastSubtitle } from "./toast-subtitle.directive";
+import { ToastCaption } from "./toast-caption.directive";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { NotificationService } from "./notification.service";
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -45,7 +51,10 @@ import { BaseNotification } from "./base-notification.component";
 				<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
 			</button>
 		}
-	`
+	`,
+	standalone: true,
+	providers: [NotificationDisplayService],
+	imports: [IconDirective, ToastTitle, ToastSubtitle, ToastCaption, NgTemplateOutlet, AsyncPipe]
 })
 export class Toast extends BaseNotification implements OnInit {
 	private static toastCount = 0;

@@ -13,7 +13,8 @@ import { Table } from "./table.component";
 	template: `<ng-content />`,
 	styles: [`
 		:host { display: block }
-	`]
+	`],
+	standalone: true
 })
 export class TableContainer implements AfterContentInit {
 	@HostBinding("class.cds--data-table-container") containerClass = true;

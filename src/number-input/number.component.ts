@@ -12,6 +12,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Used to emit changes performed on number input components.
@@ -28,10 +30,10 @@ export class NumberChange {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { NumberModule } from 'carbon-components-angular';
+ * import { NumberComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-number--basic)
@@ -169,7 +171,9 @@ export class NumberChange {
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective, AsyncPipe]
 })
 export class NumberComponent implements ControlValueAccessor {
 	/**
@@ -273,6 +277,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<NumberChange>();
 
 	@Input()

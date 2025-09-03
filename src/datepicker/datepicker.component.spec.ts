@@ -1,12 +1,8 @@
-import { TestBed, fakeAsync, waitForAsync } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { IconModule } from "../icon/index";
 import { FormsModule } from "@angular/forms";
-import { UtilsModule } from "../utils/utils.module";
-import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
@@ -21,7 +17,12 @@ import { I18nModule } from "../i18n/i18n.module";
 		dateFormat="m/d/Y"
 		(valueChange)="onValueChange()">
 	</cds-date-picker>
-	`
+	`,
+	standalone: true,
+	imports: [
+		DatePicker,
+		FormsModule
+	]
 })
 class DatePickerTest {
 	value = new Date(new Date().getFullYear(), 5, 15);
@@ -34,16 +35,8 @@ describe("DatePicker", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DatePicker,
-				DatePickerTest,
-				DatePickerInput
-			],
 			imports: [
-				IconModule,
-				UtilsModule,
-				FormsModule,
-				I18nModule
+				DatePickerTest
 			]
 		});
 	});

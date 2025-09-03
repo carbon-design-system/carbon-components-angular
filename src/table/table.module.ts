@@ -4,12 +4,10 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 // internal module imports
-import { NFormsModule } from "carbon-components-angular/forms";
-import { DialogModule } from "carbon-components-angular/dialog";
-import { I18nModule } from "carbon-components-angular/i18n";
-import { ButtonModule } from "carbon-components-angular/button";
-import { SearchModule } from "carbon-components-angular/search";
-import { IconModule } from "carbon-components-angular/icon";
+import { Dialog } from "carbon-components-angular/dialog";
+
+import { Search } from "carbon-components-angular/search";
+import { IconDirective } from "carbon-components-angular/icon";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
@@ -39,6 +37,7 @@ import { TableCheckbox } from "./cell/table-checkbox.component";
 import { TableRadio } from "./cell/table-radio.component";
 import { TableExpandButton } from "./cell/table-expand-button.component";
 import { TableHeadCellLabel } from "./head/table-head-cell-label.directive";
+import { I18nModule } from "carbon-components-angular/i18n";
 
 // model exports
 export { TableModel } from "./table-model.class";
@@ -49,33 +48,6 @@ export * from "./table-adapter.class";
 export * from "./data-grid-interaction-model.class";
 
 @NgModule({
-	declarations: [
-		// toolbar and utility components
-		TableToolbar,
-		TableContainer,
-		TableHeader,
-		TableHeaderTitle,
-		TableHeaderDescription,
-		TableHeadCellLabel,
-		TableToolbarActions,
-		TableToolbarSearch,
-		TableToolbarContent,
-		ExpandedRowHover,
-		// core table components
-		Table,
-		TableDirective,
-		TableHead,
-		TableHeadCell,
-		TableHeadCheckbox,
-		TableHeadExpand,
-		TableBody,
-		TableRowComponent,
-		TableExpandedRow,
-		TableData,
-		TableCheckbox,
-		TableRadio,
-		TableExpandButton
-	],
 	exports: [
 		// toolbar and utility components
 		TableToolbar,
@@ -105,13 +77,36 @@ export * from "./data-grid-interaction-model.class";
 	],
 	imports: [
 		CommonModule,
-		NFormsModule,
 		FormsModule,
-		DialogModule,
-		ButtonModule,
-		SearchModule,
+		Dialog,
+		Search,
 		I18nModule,
-		IconModule
+		IconDirective,
+		// toolbar and utility components
+		TableToolbar,
+		TableContainer,
+		TableHeader,
+		TableHeaderTitle,
+		TableHeaderDescription,
+		TableHeadCellLabel,
+		TableToolbarActions,
+		TableToolbarSearch,
+		TableToolbarContent,
+		ExpandedRowHover,
+		// core table components
+		Table,
+		TableDirective,
+		TableHead,
+		TableHeadCell,
+		TableHeadCheckbox,
+		TableHeadExpand,
+		TableBody,
+		TableRowComponent,
+		TableExpandedRow,
+		TableData,
+		TableCheckbox,
+		TableRadio,
+		TableExpandButton
 	]
 })
 export class TableModule {}

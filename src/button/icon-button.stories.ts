@@ -1,7 +1,7 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { IconModule } from "../icon";
+import { IconDirective } from "../icon";
 import {
-	ButtonModule,
+	Button,
 	IconButton
 } from "./";
 
@@ -10,8 +10,8 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ButtonModule,
-				IconModule
+				Button,
+				IconDirective
 			]
 		})
 	],
@@ -138,4 +138,3 @@ WithAutoAlign.args = {
 	align: "top",
 	isOpen: true
 };
-

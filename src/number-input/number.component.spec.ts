@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { FormsModule } from "@angular/forms";
-import { I18nModule } from "../i18n/index";
-import { IconModule } from "../icon/index";
+import { IconDirective } from "../icon/index";
 import { Number } from "./number.component";
 
 describe("Number", () => {
@@ -18,11 +17,10 @@ describe("Number", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Number],
 			imports: [
-				I18nModule,
 				FormsModule,
-				IconModule
+				IconDirective,
+				Number
 			],
 			providers: []
 		});

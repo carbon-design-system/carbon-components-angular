@@ -8,7 +8,10 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
-import { clone } from "../../utils/index";
+import { clone } from "carbon-components-angular/utils";
+import { Table } from "../table.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
+import { Button } from "carbon-components-angular/button";
 
 export class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
@@ -53,7 +56,9 @@ export class CustomHeaderItem extends TableHeaderItem {
 			(rowClick)="onRowClick($event)"
 			(sort)="customSort($event)">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, TableToolbar, Button]
 })
 export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
@@ -121,6 +126,7 @@ export class DynamicTableStory implements AfterViewInit {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 }

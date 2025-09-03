@@ -1,8 +1,8 @@
 import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ButtonModule } from "../button";
-import { NotificationModule, BaseNotification } from "./";
+import { Button } from "../button";
+import { Notification, BaseNotification, Toast, ActionableNotification } from "./";
 
 import {
 	DyanmicActionableStory,
@@ -20,8 +20,10 @@ export default {
 				ToastStory
 			],
 			imports: [
-				NotificationModule,
-				ButtonModule
+				Notification,
+				ActionableNotification,
+				Toast,
+				Button
 			]
 		})
 	],
@@ -73,11 +75,12 @@ const ToastTemplate = (args) => ({
 		}"></cds-toast>
 	`
 });
-export const Toast = ToastTemplate.bind({});
-Toast.args = {
+export const BasicToastStory = ToastTemplate.bind({});
+BasicToastStory.storyName = "Toast";
+BasicToastStory.args = {
 	...InlineNotification.args
 };
-Toast.argTypes = {
+BasicToastStory.argTypes = {
 	...InlineNotification.argTypes
 };
 

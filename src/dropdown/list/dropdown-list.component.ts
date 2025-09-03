@@ -26,6 +26,10 @@ import { AbstractDropdownView } from "../abstract-dropdown-view.class";
 import { ListItem } from "../list-item.interface";
 import { watchFocusJump } from "../dropdowntools";
 import { ScrollCustomEvent } from "./scroll-custom-event.interface";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { DropdownService } from "../dropdown.service";
+import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-components-angular/utils";
 
 
 /**
@@ -118,9 +122,14 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 		{
 			provide: AbstractDropdownView,
 			useExisting: DropdownList
-		}
+		},
+		DropdownService,
+		AnimationFrameService,
+		AnimationFrameServiceSingleton
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	static listCount = 0;

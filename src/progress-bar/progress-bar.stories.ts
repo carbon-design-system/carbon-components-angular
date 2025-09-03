@@ -1,13 +1,8 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ProgressBarModule, ProgressBar } from "./";
+import { ProgressBar } from "./";
 
 export default {
 	title: "Components/Progress Bar",
-	decorators: [
-		moduleMetadata({
-			imports: [ProgressBarModule]
-		})
-	],
 	component: ProgressBar
 } as Meta;
 

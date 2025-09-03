@@ -14,10 +14,14 @@ import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the directives:
  *
  * ```typescript
- * import { GridModule } from 'carbon-components-angular';
+ * import {
+ * 	GridDirective,
+ * 	ColumnDirective,
+ * 	RowDirective
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-grid--basic)
@@ -32,7 +36,8 @@ import { GridService } from "./grid.service";
 				return parentService || new GridService();
 			}
 		}
-	]
+	],
+	standalone: true
 })
 export class GridDirective implements OnInit, OnDestroy {
 	/**

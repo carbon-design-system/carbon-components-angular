@@ -7,12 +7,14 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ProgressIndicatorModule } from 'carbon-components-angular';
+ * import { ProgressIndicator } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-indicator--basic)
@@ -74,7 +76,9 @@ import { Step } from "./progress-indicator-step.interface";
 			}
 		</ul>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, IconDirective]
 })
 export class ProgressIndicator {
 	@Input() get current() {

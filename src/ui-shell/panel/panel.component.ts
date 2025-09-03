@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 /**
  * `Panel` is a component that can be used to display content on the right side of the screen.
@@ -15,7 +16,9 @@ import { Component, Input } from "@angular/core";
 			}">
 			<ng-content />
 		</div>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Panel {
 	/**

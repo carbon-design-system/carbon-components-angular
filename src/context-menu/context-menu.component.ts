@@ -11,10 +11,15 @@ import {
 } from "@angular/core";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContextMenuModule } from 'carbon-components-angular';
+ * import {
+ * 	ContextMenuDividerComponent,
+ * 	ContextMenuGroupComponent,
+ * 	ContextMenuItemComponent,
+ * 	ContextMenuComponent
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-context-menu--basic)
@@ -29,7 +34,8 @@ import {
 			display: block;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@Input() open = false;

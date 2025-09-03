@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table";
-import { DropdownModule } from "../../dropdown";
-import { GridModule } from "../../grid";
-import { UIShellModule } from "../../ui-shell";
+import { TableModel, TableHeaderItem, TableItem, Table, TableContainer } from "../../table";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-single-selection",
@@ -63,6 +64,19 @@ import { UIShellModule } from "../../ui-shell";
 			margin-left: 20px;
 		}
 	`
+	],
+	standalone: true,
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		Table,
+		TableContainer,
+		Dropdown,
+		DropdownList,
+		Header,
+		Hamburger
 	]
 })
 class SampleSingleSelection implements OnInit, OnDestroy {
@@ -120,12 +134,8 @@ export default {
 	title: "Pattern/Filtering",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleSingleSelection],
 			imports: [
-				TableModule,
-				DropdownModule,
-				GridModule,
-				UIShellModule
+				SampleSingleSelection
 			]
 		})
 	]

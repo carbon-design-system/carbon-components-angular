@@ -6,10 +6,14 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { I18n } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
+import { I18n, ReplacePipe } from "carbon-components-angular/i18n";
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
 import { range } from "carbon-components-angular/common";
+import { NgClass, NgStyle, AsyncPipe } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Button } from "carbon-components-angular/button";
 
 export interface PaginationTranslations {
 	ITEMS_PER_PAGE: string;
@@ -24,10 +28,10 @@ export interface PaginationTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * ```typescript
- * import { PaginationModule } from 'carbon-components-angular';
+ * import { Pagination } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -211,7 +215,10 @@ export interface PaginationTranslations {
 				</div>
 			}
 		</div>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, FormsModule, IconDirective, NgStyle, Button, AsyncPipe, ReplacePipe],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class Pagination {
 	static paginationCounter = 0;

@@ -23,8 +23,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
 import { Options } from "flatpickr/dist/types/options";
-import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 
 /**
  * Due to type error, we have to use square brackets property accessor
@@ -44,10 +45,10 @@ if (languages.default?.default["en"]?.weekdays) {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { DatePickerModule } from 'carbon-components-angular';
+ * import { DatePicker, DatePickerInput } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-date-picker--single)
@@ -122,7 +123,9 @@ if (languages.default?.default["en"]?.weekdays) {
 		}
 	],
 	encapsulation: ViewEncapsulation.None,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, DatePickerInput]
 })
 export class DatePicker implements
 	OnInit,
