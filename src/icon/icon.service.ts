@@ -200,7 +200,7 @@ export class IconMemoryCache extends IconCache {
  *
  * If needed it is possible to register an icon under a different name, via `registerAs`.
  */
-@Injectable()
+@Injectable({providedIn: "root"})
 export class IconService {
 
 	private iconCache: IconCache = new IconMemoryCache();
@@ -309,15 +309,3 @@ export class IconService {
 		this.iconCache = options.cache;
 	}
 }
-
-// either provides a new instance of IconService, or returns the parent
-export function ICON_SERVICE_PROVIDER_FACTORY(parentService: IconService) {
-	return parentService || new IconService();
-}
-
-// icon service *must* be a singleton to ensure that icons are accessible globally and not duplicated
-export const ICON_SERVICE_PROVIDER = {
-	provide: IconService,
-	deps: [[new Optional(), new SkipSelf(), IconService]],
-	useFactory: ICON_SERVICE_PROVIDER_FACTORY
-};

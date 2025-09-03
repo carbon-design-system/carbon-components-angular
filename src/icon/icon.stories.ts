@@ -1,5 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ICON_SERVICE_PROVIDER, IconDirective, IconService } from "./";
+import { IconDirective } from "./";
 import { IconDemo, ManyIconDemo } from "./stories";
 
 export default {
@@ -7,7 +7,6 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [IconDirective],
-			providers: [ICON_SERVICE_PROVIDER],
 			declarations: [
 				IconDemo,
 				ManyIconDemo

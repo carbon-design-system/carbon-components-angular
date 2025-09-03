@@ -14,7 +14,7 @@ import { Table } from "../table.component";
 import { Button } from "../../button";
 import { Checkbox } from "../../checkbox";
 import { OverflowMenu, OverflowMenuOption, OverflowMenuDirective } from "../../dialog";
-import { ICON_SERVICE_PROVIDER, IconDirective } from "../../icon";
+import { IconDirective } from "../../icon";
 import { TableHeader } from "../header/table-header.component";
 import { TableContainer } from "../table-container.component";
 import { TableToolbarContent } from "../toolbar/table-toolbar-content.component";
@@ -94,7 +94,6 @@ import { TableToolbar } from "../toolbar/table-toolbar.component";
 	</ng-template>
 	`,
 	standalone: true,
-	providers: [ICON_SERVICE_PROVIDER],
 	imports: [Table, TableContainer, TableHeader, TableToolbar, TableToolbarContent, TableToolbarSearch,
 		IconDirective, Button, OverflowMenu, OverflowMenuOption, OverflowMenuDirective, Checkbox]
 })

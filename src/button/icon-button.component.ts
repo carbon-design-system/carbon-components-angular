@@ -15,7 +15,6 @@ import { ButtonSize, ButtonType } from "./button.types";
 import { Tooltip } from "carbon-components-angular/tooltip";
 import { NgClass } from "@angular/common";
 import { Button } from "./button.directive";
-import { ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
 
 /**
  * Get started with importing the components:
@@ -61,7 +60,6 @@ import { ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	providers: [ICON_SERVICE_PROVIDER],
 	imports: [Tooltip, NgClass, Button]
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {

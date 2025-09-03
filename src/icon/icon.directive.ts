@@ -6,7 +6,7 @@ import {
 	OnChanges,
 	SimpleChanges
 } from "@angular/core";
-import { IconService, ICON_SERVICE_PROVIDER } from "./icon.service";
+import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 
@@ -23,7 +23,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
  */
 @Directive({
 	selector: "[cdsIcon], [ibmIcon]",
-	providers: [ICON_SERVICE_PROVIDER, PlaceholderService],
+	providers: [PlaceholderService],
 	standalone: true
 })
 export class IconDirective implements AfterViewInit, OnChanges {

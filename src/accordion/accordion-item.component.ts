@@ -8,7 +8,7 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { NgTemplateOutlet, NgClass } from "@angular/common";
-import { IconDirective, IconService, ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
+import { IconDirective, IconService } from "carbon-components-angular/icon";
 import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 
 @Component({
@@ -53,7 +53,6 @@ import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 	`],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	providers: [ICON_SERVICE_PROVIDER],
 	imports: [IconDirective, NgTemplateOutlet, NgClass]
 })
 export class AccordionItem {

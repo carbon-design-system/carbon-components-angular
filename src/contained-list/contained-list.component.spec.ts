@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Button, IconButton } from "../button";
-import { IconDirective, IconService, ICON_SERVICE_PROVIDER } from "../icon";
+import { IconDirective, IconService } from "../icon";
 import { ContainedListItem } from "./contained-list-item.component";
 import Apple16 from "@carbon/icons/es/apple/16";
 import Fish16 from "@carbon/icons/es/fish/16";
@@ -40,7 +40,6 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 		</cds-contained-list>
 	`,
 	standalone: true,
-	providers: [ICON_SERVICE_PROVIDER],
 	imports: [ContainedList, ContainedListItem, IconDirective, IconButton, Button]
 })
 class WrapperComponent {
