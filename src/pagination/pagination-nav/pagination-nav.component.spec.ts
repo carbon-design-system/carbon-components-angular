@@ -1,7 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component, type OnInit } from "@angular/core";
-import { I18N_SERVICE_PROVIDER } from "../../i18n";
 import { PaginationNav } from "./index";
 import { PaginationModel } from "../pagination-model.class";
 
@@ -17,8 +16,7 @@ import { PaginationModel } from "../pagination-model.class";
 	standalone: true,
 	imports: [
 		PaginationNav
-	],
-	providers: [I18N_SERVICE_PROVIDER]
+	]
 })
 class PaginationNavTest implements OnInit {
 	model = new PaginationModel();

@@ -11,7 +11,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
@@ -32,8 +32,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Search,
 			multi: true
-		},
-		I18N_SERVICE_PROVIDER
+		}
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,

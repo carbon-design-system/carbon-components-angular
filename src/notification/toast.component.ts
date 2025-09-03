@@ -8,7 +8,7 @@ import {
 import { isObservable, of } from "rxjs";
 import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { BaseNotification } from "./base-notification.component";
 import { IconDirective } from "carbon-components-angular/icon";
 import { ToastTitle } from "./toast-title.directive";
@@ -53,7 +53,7 @@ import { NotificationService } from "./notification.service";
 		}
 	`,
 	standalone: true,
-	providers: [NotificationDisplayService, I18N_SERVICE_PROVIDER],
+	providers: [NotificationDisplayService],
 	imports: [IconDirective, ToastTitle, ToastSubtitle, ToastCaption, NgTemplateOutlet, AsyncPipe]
 })
 export class Toast extends BaseNotification implements OnInit {

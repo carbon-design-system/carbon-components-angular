@@ -6,7 +6,6 @@ import {
 	PaginationOverflow } from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
-import { I18N_SERVICE_PROVIDER } from "../i18n";
 
 // Storybook starts here
 export default {

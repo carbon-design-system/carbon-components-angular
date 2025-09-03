@@ -4,7 +4,6 @@ import {
 	BreadcrumbItemComponent,
 	BreadcrumbItem
 } from "./";
-import { I18N_SERVICE_PROVIDER } from "../i18n";
 
 let breadcrumbItems;
 
@@ -28,8 +27,7 @@ export default {
 			imports: [
 				Breadcrumb,
 				BreadcrumbItemComponent
-			],
-			providers: [I18N_SERVICE_PROVIDER]
+			]
 		})
 	],
 	args: {

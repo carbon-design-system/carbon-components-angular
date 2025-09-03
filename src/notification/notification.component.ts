@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { isObservable, of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
@@ -51,7 +51,7 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 		}
 	`,
 	standalone: true,
-	providers: [NotificationDisplayService, I18N_SERVICE_PROVIDER],
+	providers: [NotificationDisplayService],
 	imports: [IconDirective, NotificationTitle, NotificationSubtitle, NgTemplateOutlet, AsyncPipe]
 })
 export class Notification extends BaseNotification {

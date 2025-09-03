@@ -6,7 +6,7 @@ import {
 
 import { isObservable, of } from "rxjs";
 import { ActionableContent, NotificationVariants } from "./notification-content.interface";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { BaseNotification } from "./base-notification.component";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -75,7 +75,7 @@ import { Button } from "carbon-components-angular/button";
 		}
 	`,
 	standalone: true,
-	providers: [NotificationDisplayService, I18N_SERVICE_PROVIDER],
+	providers: [NotificationDisplayService],
 	imports: [IconDirective, NgClass, ActionableTitle, ActionableSubtitle, Link, NgTemplateOutlet, ActionableButton, Button, AsyncPipe]
 })
 export class ActionableNotification extends BaseNotification {

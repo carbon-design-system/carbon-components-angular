@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router, RouterLink } from "@angular/router";
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
@@ -58,7 +58,7 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 	`,
 	standalone: true,
 	imports: [NgTemplateOutlet, RouterLink, AsyncPipe],
-	providers: [I18N_SERVICE_PROVIDER, Router]
+	providers: [Router]
 })
 export class Header {
 	/**

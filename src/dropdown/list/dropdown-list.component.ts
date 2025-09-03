@@ -21,7 +21,7 @@ import {
 } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { I18N_SERVICE_PROVIDER, I18n } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { AbstractDropdownView } from "../abstract-dropdown-view.class";
 import { ListItem } from "../list-item.interface";
 import { watchFocusJump } from "../dropdowntools";
@@ -125,8 +125,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 		},
 		DropdownService,
 		AnimationFrameService,
-		AnimationFrameServiceSingleton,
-		I18N_SERVICE_PROVIDER
+		AnimationFrameServiceSingleton
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
