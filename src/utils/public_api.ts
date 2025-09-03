@@ -26,10 +26,6 @@ export {
 	closestAttr
 } from "./utils";
 export {
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER,
-	ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY,
-	DOCUMENT_SERVICE_PROVIDER,
-	DOCUMENT_SERVICE_PROVIDER_FACTORY,
 	UtilsModule
 } from "./utils.module";
 export { getScrollbarWidth } from "./window-tools";

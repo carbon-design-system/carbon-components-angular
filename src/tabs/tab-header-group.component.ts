@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
-import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { EventService } from "carbon-components-angular/utils";
 
 import { TabHeader } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
@@ -84,7 +84,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		</button>
 	`,
 	standalone: true,
-	providers: [DOCUMENT_SERVICE_PROVIDER, EventService],
+	providers: [EventService],
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit {

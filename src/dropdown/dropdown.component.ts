@@ -31,7 +31,7 @@ import { DropdownService } from "./dropdown.service";
 import {
 	AnimationFrameService,
 	AnimationFrameServiceSingleton,
-	DOCUMENT_SERVICE_PROVIDER,
+
 	ElementService,
 	EventService,
 	getScrollableParents
@@ -225,8 +225,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 		AnimationFrameServiceSingleton,
 		DropdownService,
 		ElementService,
-		EventService,
-		DOCUMENT_SERVICE_PROVIDER
+		EventService
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,

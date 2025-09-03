@@ -8,7 +8,7 @@ import {
 	HostBinding,
 	Renderer2
 } from "@angular/core";
-import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { EventService } from "carbon-components-angular/utils";
 
 /**
  * There are two ways to create a tab, this class is a collection of features
@@ -17,7 +17,7 @@ import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angul
 @Component({
 	template: "",
 	standalone: true,
-	providers: [EventService, DOCUMENT_SERVICE_PROVIDER]
+	providers: [EventService]
 })
 export class BaseTabHeader {
 	/**
