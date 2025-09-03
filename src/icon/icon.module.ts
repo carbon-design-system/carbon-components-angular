@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 
 // imports
 import { IconDirective } from "./icon.directive";
-import { IconService, ICON_SERVICE_PROVIDER } from "./icon.service";
+import { IconService } from "./icon.service";
 
 @NgModule({
 	exports: [
@@ -13,9 +13,6 @@ import { IconService, ICON_SERVICE_PROVIDER } from "./icon.service";
 	imports: [
 		CommonModule,
 		IconDirective
-	],
-	providers: [
-		ICON_SERVICE_PROVIDER
 	]
 })
 export class IconModule {

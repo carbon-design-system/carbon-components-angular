@@ -10,7 +10,5 @@ export {
 	IconMemoryCache,
 	IconNameNotFoundError,
 	IconService,
-	IconSizeNotFoundError,
-	ICON_SERVICE_PROVIDER,
-	ICON_SERVICE_PROVIDER_FACTORY
+	IconSizeNotFoundError
 } from "./icon.service";
