@@ -13,7 +13,7 @@ import {
 	ChangeDetectorRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { EventService } from "carbon-components-angular/utils";
 import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 
 /**
@@ -158,7 +158,7 @@ import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 			useExisting: Slider,
 			multi: true
 		},
-		DOCUMENT_SERVICE_PROVIDER,
+
 		EventService
 	],
 	standalone: true,

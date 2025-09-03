@@ -10,7 +10,7 @@ import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
 import { OverflowMenuCustomPane } from "./overflow-menu-custom-pane.component";
-import { DOCUMENT_SERVICE_PROVIDER, EventService } from "carbon-components-angular/utils";
+import { EventService } from "carbon-components-angular/utils";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 
@@ -43,7 +43,6 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	providers: [
 		DialogService,
 		EventService,
-		DOCUMENT_SERVICE_PROVIDER,
 		PlaceholderService
 	],
 	standalone: true
