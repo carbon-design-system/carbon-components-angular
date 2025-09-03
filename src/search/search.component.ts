@@ -16,7 +16,7 @@ import { NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
  * import { Search } from 'carbon-components-angular';

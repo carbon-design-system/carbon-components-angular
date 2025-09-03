@@ -11,10 +11,10 @@ import { NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ProgressIndicatorModule } from 'carbon-components-angular';
+ * import { ProgressIndicator } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-indicator--basic)

@@ -23,10 +23,10 @@ export enum InlineLoadingState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and the enum:
  *
  * ```typescript
- * import { InlineLoadingModule } from 'carbon-components-angular';
+ * import { InlineLoading, InlineLoadingState } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-inline-loading--basic)

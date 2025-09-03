@@ -18,10 +18,10 @@ import { Button } from "./button.directive";
 import { ICON_SERVICE_PROVIDER } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { Button } from 'carbon-components-angular';
+ * import { IconButton } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-icon-button--basic)

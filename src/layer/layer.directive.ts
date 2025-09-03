@@ -11,7 +11,7 @@ import {
 const MAX_LEVEL = 2;
 
 /**
- * Applies layering styles to the div container it is applied to. Get started with importing the module:
+ * Applies layering styles to the div container it is applied to. Get started with importing the directive:
  *
  * ```typescript
  * import { LayerDirective } from 'carbon-components-angular';

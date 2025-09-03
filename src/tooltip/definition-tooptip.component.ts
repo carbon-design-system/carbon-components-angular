@@ -13,7 +13,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
  * import { Tooltip } from 'carbon-components-angular';

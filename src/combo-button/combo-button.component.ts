@@ -32,6 +32,21 @@ import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+/**
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { ComboButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-combo-button>
+ * 	<cds-menu-item label="First action"></cds-menu-item>
+ * </cds-combo-button>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-combo-button--basic)
+ */
 @Component({
 	selector: "cds-combo-button",
 	template: `

@@ -17,7 +17,7 @@ import { PopoverContainer, PopoverContent } from "carbon-components-angular/popo
 import { ToggletipButton } from "./toggletip-button.directive";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
  * import { Toggletip } from 'carbon-components-angular';

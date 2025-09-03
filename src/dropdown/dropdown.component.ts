@@ -55,7 +55,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
  * - `[appendInline]="false"` will always append to the body/`cds-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
  * import { Dropdown, DropdownList } from 'carbon-components-angular';

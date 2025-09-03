@@ -8,10 +8,10 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TimePickerSelectModule } from 'carbon-components-angular';
+ * import { TimePickerSelect } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-time-picker-select--simple)

@@ -11,10 +11,10 @@ import { LayerDirective } from "carbon-components-angular/layer";
 export type ThemeType = "white" | "g10" | "g90" | "g100";
 
 /**
- * Applies theme styles to the div container it is applied to. Get started with importing the module:
+ * Applies theme styles to the div container it is applied to. Get started with importing the directive:
  *
  * ```typescript
- * import { ThemeModule } from 'carbon-components-angular';
+ * import { ThemeDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-theme--basic)

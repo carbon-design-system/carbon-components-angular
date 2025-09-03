@@ -14,10 +14,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * `cds-select` provides a styled `select` component. Get started with importing the module:
+ * `cds-select` provides a styled `select` component. Get started with importing the component:
  *
  * ```typescript
- * import { SelectModule } from 'carbon-components-angular';
+ * import { Select } from 'carbon-components-angular';
  * ```
  *
  * ```html

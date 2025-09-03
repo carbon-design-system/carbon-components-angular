@@ -19,10 +19,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { RadioModule } from 'carbon-components-angular';
+ * import { RadioGroup, Radio } from 'carbon-components-angular';
  * ```
  *
  * Ex:

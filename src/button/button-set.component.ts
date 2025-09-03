@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { Button } from 'carbon-components-angular';
+ * import { ButtonSet } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-button-set--basic)

@@ -33,6 +33,17 @@ import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+
+/**
+ *
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { MenuButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-menu-button--basic)
+ */
 @Component({
 	selector: "cds-menu-button",
 	template: `

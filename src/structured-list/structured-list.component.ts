@@ -17,10 +17,10 @@ import { NgClass } from "@angular/common";
  *
  * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { StructuredListModule } from 'carbon-components-angular';
+ * import { StructuredList, ListHeader, ListRow, ListColumn } from 'carbon-components-angular';
  * ```
  *
  * ```html

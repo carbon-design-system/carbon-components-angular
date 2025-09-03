@@ -14,10 +14,14 @@ import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the directives:
  *
  * ```typescript
- * import { GridDirective, GridService } from 'carbon-components-angular';
+ * import {
+ * 	GridDirective,
+ * 	ColumnDirective,
+ * 	RowDirective
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-grid--basic)

@@ -18,10 +18,10 @@ import { NgClass } from "@angular/common";
  * The content switcher can be used for toggling between distinct options.
  * Similar to tabs, but without an associated content panel.
  *
- * Get started with importing the module:
+ * Get started with importing the components and directives:
  *
  * ```typescript
- * import { ContentSwitcherModule } from 'carbon-components-angular';
+ * import { ContentSwitcher, ContentSwitcherOption } from 'carbon-components-angular';
  * ```
  *
  * ```html

@@ -29,10 +29,10 @@ export enum ToggleState {
  */
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ToggleModule } from 'carbon-components-angular';
+ * import { Toggle } from 'carbon-components-angular';
  * ```
  *
  * ```html

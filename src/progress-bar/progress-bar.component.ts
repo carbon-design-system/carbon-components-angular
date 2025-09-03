@@ -8,10 +8,10 @@ import { NgTemplateOutlet, NgStyle } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ProgressBarModule } from 'carbon-components-angular';
+ * import { ProgressBar } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-bar--basic)

@@ -11,10 +11,15 @@ import {
 } from "@angular/core";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContextMenuModule } from 'carbon-components-angular';
+ * import {
+ * 	ContextMenuDividerComponent,
+ * 	ContextMenuGroupComponent,
+ * 	ContextMenuItemComponent,
+ * 	ContextMenuComponent
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-context-menu--basic)
