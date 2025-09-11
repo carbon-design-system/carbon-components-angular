@@ -73,8 +73,10 @@ const noop = () => { };
 					<ng-container *ngFor="let fileItem of files">
 						<cds-file
 							[fileItem]="fileItem"
-							(remove)="removeFile(fileItem)"
-							[size]="fileItemSize">
+							[nameTpl]="fileNameTpl"
+							[actionsTpl]="fileActionsTpl"
+							[size]="fileItemSize"
+							(remove)="removeFile(fileItem)">
 						</cds-file>
 					</ng-container>
 				</div>
@@ -164,6 +166,14 @@ export class FileUploader implements ControlValueAccessor {
 	 * Set to `true` to disable upload button
 	 */
 	@Input() disabled = false;
+	/**
+	 * Custom template used to render the file name of uploaded files
+	 */
+	@Input() fileNameTpl: TemplateRef<unknown>;
+	/**
+	 * Custom template used to render the file actions of uploaded files
+	 */
+	@Input() fileActionsTpl: TemplateRef<unknown>;
 
 	@Output() filesChange = new EventEmitter<any>();
 
