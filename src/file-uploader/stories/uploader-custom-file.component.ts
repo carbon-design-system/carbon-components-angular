@@ -5,6 +5,8 @@ import { FileItem } from "../";
 @Component({
 	selector: "app-file-uploader-with-custom-file",
 	template: `
+		<p *ngIf="lastViewedFile">Last viewed file: {{ lastViewedFile | json }}</p>
+		<p *ngIf="lastDownloadedFile">Last downloaded file: {{ lastDownloadedFile | json }}</p>
 		<cds-file-uploader
 			[title]="title"
 			[description]="description"
@@ -32,25 +34,30 @@ import { FileItem } from "../";
 			<a href="#" cdsLink>{{ fileItem.file.name }}</a>
 		</ng-template>
 
-		<ng-template #actionsTpl>
+		<ng-template #actionsTpl let-fileItem>
 			<button
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="View"
-				[size]="fileItemSize">
+				[size]="fileItemSize"
+				(click)="onViewClick(fileItem)">
 				<svg ibmIcon="view" size="16"></svg>
 			</button>
 			<button
 				ibmButton="ghost"
 				iconOnly="true"
 				aria-label="Download"
-				[size]="fileItemSize">
+				[size]="fileItemSize"
+				(click)="onDownloadClick(fileItem)">
 				<svg ibmIcon="download" size="16"></svg>
 			</button>
 		</ng-template>
 	`
 })
 export class FileUploaderWithCustomFileStory {
+	lastViewedFile: FileItem | null = null;
+	lastDownloadedFile: FileItem | null = null;
+
 	@Input() files = new Set<FileItem>();
 	@Input() title;
 	@Input() description;
@@ -64,6 +71,14 @@ export class FileUploaderWithCustomFileStory {
 	@Input() fileItemSize: "sm" | "md" | "lg" = "lg";
 
 	protected maxSize = 500000;
+
+	onViewClick(file: FileItem) {
+		this.lastViewedFile = file;
+	}
+
+	onDownloadClick(file: FileItem) {
+		this.lastDownloadedFile = file;
+	}
 
 	onUpload() {
 		this.files.forEach((fileItem) => {

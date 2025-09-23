@@ -1,3 +1,5 @@
+/* tslint:disable variable-name */
+
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Meta, moduleMetadata } from "@storybook/angular";
 import { ButtonModule } from "../button";
