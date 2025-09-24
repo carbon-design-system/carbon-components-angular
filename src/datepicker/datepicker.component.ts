@@ -503,7 +503,8 @@ export class DatePicker implements
 				if (event.key === "Escape") {
 					this.flatpickrInstance.close();
 				}
-				if (event.key === "ArrowDown") {
+				if (event.key === "Tab") {
+					event.preventDefault();
 					if (!this.flatpickrInstance.isOpen) {
 						this.flatpickrInstance.open();
 					}
