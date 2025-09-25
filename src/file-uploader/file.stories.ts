@@ -1,3 +1,5 @@
+/* tslint:disable variable-name */
+
 import { Meta, moduleMetadata } from "@storybook/angular";
 
 import { ButtonModule } from "../button";
