@@ -31,7 +31,8 @@ import { FileItem } from "./file-item.interface";
 			</svg>
 			<ng-template
 				*ngIf="isTemplate(actionsTpl); else defaultActions"
-				[ngTemplateOutlet]="actionsTpl">
+				[ngTemplateOutlet]="actionsTpl"
+				[ngTemplateOutletContext]="{ $implicit: fileItem }">
 			</ng-template>
 			<ng-template #defaultActions>
 				<button
