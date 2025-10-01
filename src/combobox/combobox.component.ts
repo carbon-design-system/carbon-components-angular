@@ -546,8 +546,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
 						this.selected.emit(event.item);
+						this.closeDropdown();
 					}
-					this.closeDropdown();
 				}
 			});
 			// update the rest of combobox with any pre-selected items
@@ -691,9 +691,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		});
 		this.view.items = this.items;
 		this.updatePills();
-		// clearSelected can only fire on type=multi
-		// so we just emit getSelected() (just in case there's any disabled but selected items)
-		const selected = this.view.getSelected();
+		// On type=multi we just emit getSelected() (just in case there's any disabled but selected items)
+		const selected = this.type === "multi" ? this.view.getSelected() : undefined;
 
 		// in case there are disabled items they should be mapped according to itemValueKey
 		if (this.itemValueKey && selected) {
