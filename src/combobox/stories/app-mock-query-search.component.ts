@@ -35,6 +35,14 @@ export class MockQueryCombobox {
 	}
 
 	selected(event: any) {
-		this.currentlySelected = event;
+		/**
+		 * Related to #ref-1245723
+		 * Update this on major release
+		 */
+		if (Array.isArray(event) && !event.length) {
+			this.currentlySelected = undefined;
+		} else {
+			this.currentlySelected = event;
+		}
 	}
 }
