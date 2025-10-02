@@ -36,7 +36,7 @@ export class MockQueryCombobox {
 
 	selected(event: any) {
 		/**
-		 * Related to #ref-1245723
+		 * #ref-1245723
 		 * Update this on major release
 		 */
 		if (Array.isArray(event) && !event.length) {
