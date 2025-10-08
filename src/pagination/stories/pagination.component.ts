@@ -16,7 +16,7 @@ import { PaginationModel } from "..";
 			[pagesUnknown]="pagesUnknown"
 			[showPageInput]="showPageInput"
 			[skeleton]="skeleton"
-			[previousDisabled]="previousDisabled"
+			[backwardDisabled]="backwardDisabled"
 			[forwardDisabled]="forwardDisabled"
 			(selectPage)="selectPage($event)">
 		</cds-pagination>
@@ -29,7 +29,7 @@ export class PaginationStory implements OnInit {
 	@Input() pageInputDisabled = false;
 	@Input() pagesUnknown = false;
 	@Input() showPageInput = true;
-	@Input() previousDisabled = false;
+	@Input() backwardDisabled = false;
 	@Input() forwardDisabled = false;
 
 	@Input() get totalDataLength() {
