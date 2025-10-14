@@ -117,7 +117,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@HostListener("click", ["$event"])
 	handleClick(event: MouseEvent & KeyboardEvent) {
 		event.stopPropagation();
-		if(this.disabled) {
+		if (this.disabled) {
 			return;
 		}
 		if (this.hasChildren) {
