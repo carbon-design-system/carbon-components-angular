@@ -8,11 +8,13 @@ export interface NotificationContent {
 	[key: string]: any;
 	type: NotificationType;
 	title: string;
+	titleHtml?: string;
 	target?: string;
 	duration?: number;
 	smart?: boolean;
 	closeLabel?: any;
 	message?: string;
+	messageHtml?: string;
 	showClose?: boolean;
 	lowContrast?: boolean;
 	template?: TemplateRef<any>;
