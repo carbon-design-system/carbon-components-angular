@@ -32,7 +32,7 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 					*ngIf="!notificationObj.template"
 					[id]="notificationID">
 					  <ng-container *ngIf="notificationObj.titleHtml; else plainTitle">
-   						 <div [innerHTML]="safeNotificationTitleHtml"></div> 
+   						 <div [innerHTML]="safeNotificationTitleHtml"></div>
  					   </ng-container>
  						 <ng-template #plainTitle>
 							{{ notificationObj.title }}
@@ -43,7 +43,7 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
     					<span [innerHTML]="safeNotificationMessageHtml"></span>
  					  </ng-container>
  					 <ng-template #plainMessage>
-						 <span>{{ notificationObj.message }}</span> 
+						 <span>{{ notificationObj.message }}</span>
  					 </ng-template>
 				</div>
 				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>

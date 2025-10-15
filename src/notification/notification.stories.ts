@@ -255,10 +255,10 @@ const HtmlTemplate = (args) => ({
       showClose: showClose
     }">
     </cds-notification>
-  `,
+  `
 });
 
 export const HtmlContent = HtmlTemplate.bind({});
 HtmlContent.args = {
-	showClose: true,
+	showClose: true
 };
