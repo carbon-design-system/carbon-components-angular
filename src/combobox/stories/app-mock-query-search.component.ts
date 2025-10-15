@@ -23,12 +23,12 @@ export class MockQueryCombobox {
 				{ content: `Random ${Math.random()}` },
 				{ content: `Random ${Math.random()}` },
 				{ content: `Random ${Math.random()}` },
-				{ content: `Random ${Math.random()}` },
+				{ content: `Random ${Math.random()}` }
 			];
 
 			// Include current selected in the list to avoid auto clear
 			if (this.currentlySelected) {
-				array.push(this.currentlySelected)
+				array.push(this.currentlySelected);
 			}
 			this.filterItems = array;
 		}, 1000);
