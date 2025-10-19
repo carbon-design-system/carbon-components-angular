@@ -243,3 +243,22 @@ export const CustomContent = CustomTemplate.bind({});
 CustomContent.args = {
 	showClose: true
 };
+
+const HtmlTemplate = (args) => ({
+	props: args,
+	template: `
+    <!-- Notification with HTML title and message -->
+    <cds-notification [notificationObj]="{
+      type: 'success',
+      titleHtml: '<b>Success!</b> Operation completed.',
+      messageHtml: 'Your request has been <u>processed successfully</u>.',
+      showClose: showClose
+    }">
+    </cds-notification>
+  `
+});
+
+export const HtmlContent = HtmlTemplate.bind({});
+HtmlContent.args = {
+	showClose: true
+};
