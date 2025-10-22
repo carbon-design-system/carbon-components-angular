@@ -4,7 +4,7 @@ import {
 	EventEmitter,
 	HostBinding,
 	Input,
-	TemplateRef
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { Tag } from "./tag.component";
 
@@ -28,7 +28,8 @@ import { Tag } from "./tag.component";
 				<svg cdsIcon="close" size="16"></svg>
 			</button>
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";

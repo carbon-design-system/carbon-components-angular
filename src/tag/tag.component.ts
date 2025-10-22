@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 /**
@@ -38,7 +39,8 @@ export type TagType = "red" |
 				<ng-content />
 			</span>
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tag {
 	/**
