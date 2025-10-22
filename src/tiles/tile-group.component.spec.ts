@@ -6,7 +6,7 @@ import { TilesModule, TileGroup, SelectionTile } from "./";
 
 @Component({
 	template: `
-		<cds-tile-group [multiple]="false">
+		<cds-tile-group [multiple]="multiple">
 			<cds-selection-tile value="tile1" [selected]="true">First</cds-selection-tile>
 			<cds-selection-tile value="tile2">Second</cds-selection-tile>
 			<cds-selection-tile value="tile3">Third</cds-selection-tile>
@@ -14,6 +14,7 @@ import { TilesModule, TileGroup, SelectionTile } from "./";
 	`
 })
 class SingleSelectHostComponent {
+	multiple = false;
 	@ViewChild(TileGroup, { static: true }) group!: TileGroup;
 	@ViewChildren(SelectionTile) tiles!: QueryList<SelectionTile>;
 }
@@ -29,11 +30,8 @@ describe("TileGroup", () => {
 			}).compileComponents();
 		}));
 
-		beforeEach(() => {
-			fixture = TestBed.createComponent(SingleSelectHostComponent);
-		});
-
 		it("clears previous selection when another tile is chosen", fakeAsync(() => {
+			fixture = TestBed.createComponent(SingleSelectHostComponent);
 			fixture.detectChanges();
 			tick();
 			fixture.detectChanges();
@@ -74,6 +72,46 @@ describe("TileGroup", () => {
 			expect(tiles[0].selected).toBeFalse();
 			expect(tiles[1].selected).toBeFalse();
 			expect(tiles[2].selected).toBeTrue();
+		}));
+
+		it("keeps multiple selections when enabled", fakeAsync(() => {
+			fixture = TestBed.createComponent(SingleSelectHostComponent);
+			fixture.componentInstance.multiple = true;
+
+			fixture.detectChanges();
+			tick();
+			fixture.detectChanges();
+
+			const labels = fixture.debugElement.queryAll(By.css("label.cds--tile--selectable"));
+
+			labels[1].nativeElement.click();
+			labels[2].nativeElement.click();
+			fixture.detectChanges();
+			tick();
+			fixture.detectChanges();
+
+			const tiles = fixture.componentInstance.tiles.toArray();
+			expect(tiles[0].selected).toBeTrue();
+			expect(tiles[1].selected).toBeTrue();
+			expect(tiles[2].selected).toBeTrue();
+
+			expect(labels[0].nativeElement.classList).toContain("cds--tile--is-selected");
+			expect(labels[1].nativeElement.classList).toContain("cds--tile--is-selected");
+			expect(labels[2].nativeElement.classList).toContain("cds--tile--is-selected");
+
+			// deselect the middle tile should not affect the others
+			labels[1].nativeElement.click();
+			fixture.detectChanges();
+			tick();
+			fixture.detectChanges();
+
+			expect(tiles[0].selected).toBeTrue();
+			expect(tiles[1].selected).toBeFalse();
+			expect(tiles[2].selected).toBeTrue();
+
+			expect(labels[0].nativeElement.classList).toContain("cds--tile--is-selected");
+			expect(labels[1].nativeElement.classList).not.toContain("cds--tile--is-selected");
+			expect(labels[2].nativeElement.classList).toContain("cds--tile--is-selected");
 		}));
 	});
 });
