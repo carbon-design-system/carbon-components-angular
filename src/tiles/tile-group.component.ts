@@ -105,6 +105,14 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 					tile.change
 						.pipe(takeUntil(this.unsubscribeTiles$))
 						.subscribe(() => {
+							if (!this.multiple) {
+								this.selectionTiles.forEach(otherTile => {
+									if (otherTile !== tile) {
+										otherTile.selected = false;
+									}
+								});
+								tile.selected = true;
+							}
 							this.selected.emit({
 								value: tile.value,
 								selected: tile.selected,
