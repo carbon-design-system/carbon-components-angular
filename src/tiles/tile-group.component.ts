@@ -8,7 +8,8 @@ import {
 	ContentChildren,
 	QueryList,
 	OnDestroy,
-	TemplateRef
+	TemplateRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { SelectionTile } from "./selection-tile.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -46,7 +47,8 @@ import { takeUntil } from "rxjs/operators";
 			useExisting: TileGroup,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileGroup implements AfterContentInit, OnDestroy {
 	static tileGroupCount = 0;

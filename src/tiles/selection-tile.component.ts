@@ -5,7 +5,9 @@ import {
 	EventEmitter,
 	ViewChild,
 	HostListener,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectorRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
@@ -40,7 +42,8 @@ import { I18n } from "carbon-components-angular/i18n";
 			<div class="cds--tile-content">
 				<ng-content />
 			</div>
-		</label>`
+		</label>`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
@@ -67,6 +70,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			this.input.nativeElement.checked = this._selected;
 		}
+		this.changeDetectorRef.markForCheck();
 	}
 
 	get selected() {
@@ -105,7 +109,7 @@ export class SelectionTile implements AfterViewInit {
 	// the value and check again when input exists in `AfterViewInit`.
 	protected _selected = null;
 
-	constructor(public i18n: I18n) {
+	constructor(public i18n: I18n, protected changeDetectorRef: ChangeDetectorRef) {
 		SelectionTile.tileCount++;
 	}
 
@@ -113,6 +117,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			setTimeout(() => {
 				this.input.nativeElement.checked = this._selected;
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}
@@ -129,5 +134,3 @@ export class SelectionTile implements AfterViewInit {
 		this.change.emit(event);
 	}
 }
-
-
