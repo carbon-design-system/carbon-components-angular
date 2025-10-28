@@ -3,7 +3,8 @@ import {
 	Input,
 	ElementRef,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
@@ -80,7 +81,8 @@ export interface ExpandableTileTranslations {
 				</div>
 			</div>
 		</ng-template>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExpandableTile implements AfterViewInit {
 	/**
