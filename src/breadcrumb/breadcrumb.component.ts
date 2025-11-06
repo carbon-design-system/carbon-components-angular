@@ -15,14 +15,18 @@ import { BreadcrumbItem } from "./breadcrumb-item.interface";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 import { Router } from "@angular/router";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { OverflowMenu } from "carbon-components-angular/dialog";
+import {  EventService } from "carbon-components-angular/utils";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { BreadcrumbModule } from 'carbon-components-angular';
+ * import { Breadcrumb, BreadcrumbItemComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-breadcrumb--basic)
@@ -123,7 +127,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			}
 		</nav>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	providers: [EventService],
+	imports: [NgClass, BreadcrumbItemComponent, NgTemplateOutlet, IconDirective, OverflowMenu]
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;

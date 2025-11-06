@@ -12,12 +12,15 @@ import {
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
 import { BaseIconButton } from "carbon-components-angular/button";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Tooltip } from "carbon-components-angular/tooltip";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { PasswordInputLabelComponent, PasswordInput } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -151,7 +154,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			</div>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective, Tooltip]
 })
 /**
  * Represents the Password Input Label Component.

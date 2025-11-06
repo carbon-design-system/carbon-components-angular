@@ -1,4 +1,4 @@
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT, NgTemplateOutlet, NgClass } from "@angular/common";
 import {
 	Component,
 	Input,
@@ -15,12 +15,13 @@ import {
 import { Subscription } from "rxjs";
 import { EventOnNode, Node } from "./tree-node.types";
 import { TreeViewService } from "./treeview.service";
+import { TreeNodeComponent } from "./tree-node.component";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TreeviewModule } from 'carbon-components-angular';
+ * import { TreeViewComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tree-view--basic)
@@ -63,7 +64,9 @@ import { TreeViewService } from "./treeview.service";
 			}
 		</div>
 	`,
-	providers: [TreeViewService]
+	providers: [TreeViewService],
+	standalone: true,
+	imports: [NgTemplateOutlet, NgClass, TreeNodeComponent]
 })
 export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	/**
@@ -102,6 +105,8 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	@Output() select = new EventEmitter<Node | Node[]>();
+
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() toggle = new EventEmitter<Node>();
 	@ViewChild("treeWrapper") root: ElementRef;
 

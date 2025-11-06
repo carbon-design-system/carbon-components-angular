@@ -7,12 +7,14 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Link } from "carbon-components-angular/link";
+import { NgClass } from "@angular/common";
 
 /**
- * Build application's clickable tiles using this component. Get started with importing the module:
+ * Build application's clickable tiles using this component. Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { ClickableTile } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -39,7 +41,9 @@ import { Router } from "@angular/router";
 		[attr.aria-disabled]="disabled">
 		<ng-content />
 	</a>`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [Link, NgClass]
 })
 export class ClickableTile {
 	/**

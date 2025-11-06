@@ -13,14 +13,14 @@ import {
 	Renderer2
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
-import { PopoverContainer } from "carbon-components-angular/popover";
+import { PopoverContainer, PopoverContent } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ToggletipModule } from 'carbon-components-angular';
+ * import { Toggletip } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-toggletip--basic)
@@ -33,7 +33,9 @@ import { ToggletipButton } from "./toggletip-button.directive";
 		<cds-popover-content [attr.id]="id" aria-live="polite">
 			<ng-content select="[cdsToggletipContent]"></ng-content>
 		</cds-popover-content>
-	`
+	`,
+	standalone: true,
+	imports: [PopoverContent]
 })
 export class Toggletip extends PopoverContainer implements AfterViewInit, OnDestroy {
 	static toggletipCounter = 0;

@@ -7,16 +7,17 @@ import {
 } from "@angular/core";
 
 /**
- * Stack elements horizontally or vertically using this helper directive. Get started with importing the module:
+ * Stack elements horizontally or vertically using this helper directive. Get started with importing the directive:
  *
  * ```typescript
- * import { LayoutModule } from 'carbon-components-angular';
+ * import { StackDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/layout-stack--basic)
  */
 @Directive({
-	selector: "[cdsStack], [ibmStack]"
+	selector: "[cdsStack], [ibmStack]",
+	standalone: true
 })
 export class StackDirective {
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {

@@ -14,7 +14,8 @@ import { Observable } from "rxjs";
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
 @Directive({
-	selector: "[cdsAbstractDropdownView], [ibmAbstractDropdownView]"
+	selector: "[cdsAbstractDropdownView], [ibmAbstractDropdownView]",
+	standalone: true
 })
 export class AbstractDropdownView {
 	/**

@@ -5,12 +5,13 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { LoadingModule } from 'carbon-components-angular';
+ * import { Loading } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-loading--basic)
@@ -31,7 +32,9 @@ import { I18n } from "carbon-components-angular/i18n";
 			</svg>
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Loading {
 	/**

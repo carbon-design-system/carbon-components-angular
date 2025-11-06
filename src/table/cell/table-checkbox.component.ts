@@ -4,11 +4,14 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { Checkbox } from "carbon-components-angular/checkbox";
+import { AsyncPipe } from "@angular/common";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -25,7 +28,9 @@ import { TableRowSize } from "../table.types";
 					{{getLabel() | i18nReplace:getSelectionLabelValue(row) | async}}
 			</cds-checkbox>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [Checkbox, AsyncPipe, ReplacePipe]
 })
 export class TableCheckbox {
 	@Input() row: TableItem[];

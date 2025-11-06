@@ -8,8 +8,13 @@ import {
 import {
 	FormBuilder,
 	FormGroup,
-	FormControl
+	FormControl,
+	FormsModule,
+	NgControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+import { Dropdown, DropdownList } from "../";
+import { JsonPipe } from "@angular/common";
 
 @Component({
 	selector: "app-reactive-forms",
@@ -35,7 +40,9 @@ import {
 		</form>
 		<br>
 		<code>{{ formGroup.get("roles").value | json }}</code>
-	`
+	`,
+	imports: [Dropdown, DropdownList, JsonPipe, ReactiveFormsModule],
+	standalone: true
 })
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;

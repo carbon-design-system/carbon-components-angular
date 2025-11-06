@@ -19,7 +19,6 @@ import {
 	ToggletipContent,
 	ToggletipLabel
 } from "./";
-import { PopoverContent } from "../popover";
 
 @Component({
 	template: `
@@ -36,7 +35,9 @@ import { PopoverContent } from "../popover";
 				</div>
 			</div>
 		</cds-toggletip>
-		`
+		`,
+	imports: [Toggletip, ToggletipContent, ToggletipButton, ToggletipAction, ToggletipLabel],
+	standalone: true
 })
 class TestToggletipComponent {
 	@Input() isOpen = false;
@@ -54,17 +55,10 @@ describe("Toggletip", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			schemas: [CUSTOM_ELEMENTS_SCHEMA],
-			declarations: [
-				TestToggletipComponent,
-				Toggletip,
-				ToggletipAction,
-				ToggletipButton,
-				ToggletipContent,
-				ToggletipLabel,
-				// Need to import popover content since we use the component in toggletip
-				PopoverContent
-			]
+			imports: [
+				TestToggletipComponent
+			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 		fixture = TestBed.createComponent(TestToggletipComponent);
 		component = fixture.componentInstance;

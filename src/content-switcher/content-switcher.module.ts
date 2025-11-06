@@ -5,14 +5,14 @@ import { ContentSwitcher } from "./content-switcher.component";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 
 @NgModule({
-	declarations: [
-		ContentSwitcher,
-		ContentSwitcherOption
-	],
 	exports: [
 		ContentSwitcher,
 		ContentSwitcherOption
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ContentSwitcher,
+		ContentSwitcherOption
+	]
 })
 export class ContentSwitcherModule { }

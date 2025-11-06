@@ -17,6 +17,7 @@ import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
 import { ContextMenuComponent } from "./context-menu.component";
 import { ItemClickEvent } from "./context-menu.types";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-menu-item, cds-context-menu-item, ibm-context-menu-item",
@@ -44,7 +45,9 @@ import { ItemClickEvent } from "./context-menu.types";
 			grid-template-columns: 1rem 1fr max-content;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [IconDirective]
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
 	@HostBinding("class.cds--menu-item") optionClass = true;

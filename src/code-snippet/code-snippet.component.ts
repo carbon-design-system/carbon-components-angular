@@ -11,6 +11,9 @@ import {
 import { BaseIconButton } from "carbon-components-angular/button";
 import { I18n } from "carbon-components-angular/i18n";
 import { EventService } from "carbon-components-angular/utils";
+import { NgTemplateOutlet, NgClass, NgStyle } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { IconButton } from "carbon-components-angular/button";
 
 export enum SnippetType {
 	single = "single",
@@ -19,10 +22,10 @@ export enum SnippetType {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { CodeSnippetModule } from 'carbon-components-angular';
+ * import { CodeSnippet } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -136,7 +139,10 @@ export enum SnippetType {
 			<ng-content />
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	providers: [EventService],
+	imports: [NgTemplateOutlet, NgClass, NgStyle, IconDirective, IconButton]
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
 	@HostBinding("class.cds--snippet") get snippetClass() {

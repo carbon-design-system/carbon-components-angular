@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { FormsModule } from "@angular/forms";
-import { I18nModule } from "../i18n/index";
-import { IconModule } from "../icon/index";
+import { IconDirective } from "../icon/index";
 import { Search } from "./search.component";
 
 describe("Search", () => {
@@ -15,11 +14,10 @@ describe("Search", () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Search],
 			imports: [
 				FormsModule,
-				I18nModule,
-				IconModule
+				IconDirective,
+				Search
 			],
 			providers: []
 		}).compileComponents();

@@ -12,6 +12,7 @@ import {
 	Output
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * `ListRow` provides a container for the `ListColumn`s that make up the body of a structured list.
@@ -51,7 +52,9 @@ import { ListColumn } from "./list-column.component";
 				<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
 			</div>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [IconDirective]
 })
 export class ListRow implements AfterContentInit {
 	@HostBinding("class.cds--structured-list-row--focused-within") get focusClass() {
@@ -69,6 +72,7 @@ export class ListRow implements AfterContentInit {
 	/**
 	 * Internal event used to notify the containing `StructuredList` of changes.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<Event> = new EventEmitter();
 
 	/**

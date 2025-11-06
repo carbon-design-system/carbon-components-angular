@@ -16,12 +16,13 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { TileSelection } from "./tile-selection.interface";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { Tile, TileGroup } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tiles-grouped--selectable)
@@ -48,7 +49,9 @@ import { takeUntil } from "rxjs/operators";
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class TileGroup implements AfterContentInit, OnDestroy {
 	static tileGroupCount = 0;

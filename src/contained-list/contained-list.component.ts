@@ -1,17 +1,17 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	HostBinding,
 	Input,
 	TemplateRef
 } from "@angular/core";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContainedListModule } from 'carbon-components-angular';
+ * import { ContainedList, ContainedListItem } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-contained-list--basic)
@@ -54,7 +54,9 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			</div>
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class ContainedList {
 	/** Used to generate unique IDs */

@@ -9,10 +9,11 @@ import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
-import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
+import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { closestAttr } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -34,7 +35,10 @@ import { closestAttr } from "carbon-components-angular/utils";
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</ul>
-	`
+	`,
+	standalone: true,
+	providers: [I18n, EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	constructor(

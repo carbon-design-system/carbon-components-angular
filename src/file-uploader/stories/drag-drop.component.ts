@@ -87,6 +87,7 @@ export class DragAndDropStory {
 			filePromiseArray.filter(filePromise => filePromise.accept)
 				.map(acceptedFile => acceptedFile.file))
 			.then(acceptedFiles => this.files = new Set<any>(acceptedFiles))
+			// eslint-disable-next-line no-console
 			.catch(error => console.log(error));
 	}
 
@@ -98,6 +99,7 @@ export class DragAndDropStory {
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
+						// eslint-disable-next-line no-console
 						console.log(fileItem);
 					}, 1500);
 				}

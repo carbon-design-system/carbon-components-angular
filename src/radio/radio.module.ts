@@ -6,13 +6,9 @@ import { CommonModule } from "@angular/common";
 // imports
 import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
-import { IconModule } from "carbon-components-angular/icon";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Radio,
-		RadioGroup
-	],
 	exports: [
 		Radio,
 		RadioGroup
@@ -20,7 +16,9 @@ import { IconModule } from "carbon-components-angular/icon";
 	imports: [
 		CommonModule,
 		FormsModule,
-		IconModule
+		IconDirective,
+		Radio,
+		RadioGroup
 	]
 })
 export class RadioModule { }

@@ -1,13 +1,13 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 
 
-import { ToggleModule, Toggle } from "./";
+import { Toggle } from "./";
 
 export default {
 	title: "Components/Toggle",
 	decorators: [
 		moduleMetadata({
-			imports: [ToggleModule]
+			imports: [Toggle]
 		})
 	],
 	component: Toggle

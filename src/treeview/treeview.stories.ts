@@ -1,15 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { Meta, moduleMetadata } from "@storybook/angular";
-import { IconModule } from "../icon";
-import { TreeNodeComponent, TreeViewComponent, TreeviewModule } from "./";
+import { IconDirective } from "../icon";
+import { TreeNodeComponent, TreeViewComponent } from "./";
 import { IconTreeviewDemoComponent } from "./stories/app-treeview-icons.component";
 
 export default {
 	title: "Components/Tree view",
 	decorators: [
 		moduleMetadata({
-			imports: [CommonModule, TreeviewModule, IconModule],
-			declarations: [IconTreeviewDemoComponent]
+			imports: [CommonModule, TreeViewComponent, IconDirective, TreeNodeComponent, IconTreeviewDemoComponent]
 		})
 	],
 	component: TreeViewComponent,

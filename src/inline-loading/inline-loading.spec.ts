@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { InlineLoading, InlineLoadingState } from "./inline-loading.component";
-import { I18nModule } from "../i18n/i18n.module";
 
 describe("Inline Loading", () => {
 	let component: InlineLoading;
@@ -9,8 +8,7 @@ describe("Inline Loading", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [InlineLoading],
-			imports: [I18nModule]
+			imports: [InlineLoading]
 		});
 
 		fixture = TestBed.createComponent(InlineLoading);

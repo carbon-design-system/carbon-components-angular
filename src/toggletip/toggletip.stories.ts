@@ -1,8 +1,7 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LinkModule } from "../link";
-import { ButtonModule } from "../button";
+import { Link } from "../link";
+import { Button } from "../button";
 import {
-	ToggletipModule,
 	Toggletip,
 	ToggletipAction,
 	ToggletipButton,
@@ -15,9 +14,13 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ToggletipModule,
-				LinkModule,
-				ButtonModule
+				Toggletip,
+				ToggletipAction,
+				ToggletipButton,
+				ToggletipContent,
+				ToggletipLabel,
+				Link,
+				Button
 			]
 		})
 	],

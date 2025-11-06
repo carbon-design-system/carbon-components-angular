@@ -5,15 +5,17 @@ import {
 } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	TableModule,
 	TableModel,
 	TableHeaderItem,
-	TableItem
+	TableItem,
+	Table,
+	TableContainer
 } from "../../table";
-import { DropdownModule } from "../../dropdown";
-import { GridModule } from "../../grid";
-import { ButtonModule } from "../../button";
-import { UIShellModule } from "../../ui-shell";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import { Button } from "../../button";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-progressive-loading",
@@ -91,7 +93,10 @@ import { UIShellModule } from "../../ui-shell";
 			margin-bottom: 40px;
 		}
 		`
-	]
+	],
+	standalone: true,
+	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, Dropdown, DropdownList,
+		Table, TableContainer, Button, Header, Hamburger]
 })
 class SampleProgressiveLoading implements OnInit, OnDestroy {
 	model = new TableModel();
@@ -161,13 +166,8 @@ export default {
 	title: "Pattern/Loading",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleProgressiveLoading],
 			imports: [
-				TableModule,
-				DropdownModule,
-				GridModule,
-				ButtonModule,
-				UIShellModule
+				SampleProgressiveLoading
 			]
 		})
 	]

@@ -10,12 +10,14 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { TextInput, TextInputLabelComponent, } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -126,7 +128,9 @@ import {
 		</div>
 	}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit {
 	/**

@@ -5,13 +5,14 @@ import {
 	EventEmitter,
 	OnInit,
 	OnDestroy,
-	AfterContentInit,
 	TemplateRef,
 	AfterContentChecked
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { TreeViewService } from "./treeview.service";
 import { EventOnNode, Node } from "./tree-node.types";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-tree-node",
@@ -114,7 +115,9 @@ import { EventOnNode, Node } from "./tree-node.types";
 				</div>
 			}
 		</div>
-	`
+	`,
+	standalone: true,
+	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy {
 	static treeNodeCount = 0;

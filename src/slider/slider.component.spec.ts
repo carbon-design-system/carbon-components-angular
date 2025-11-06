@@ -14,7 +14,11 @@ import { UtilsModule } from "../utils/utils.module";
 		[disabled]="disabled"
 		[max]="max"
 		[min]="min">
-	</cds-slider>`
+	</cds-slider>`,
+	standalone: true,
+	imports: [
+		Slider
+	]
 })
 class SliderTest {
 	disabled = false;
@@ -28,13 +32,8 @@ describe("Slider", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Slider,
-				SliderTest
-			],
 			imports: [
-				CommonModule,
-				UtilsModule
+				SliderTest
 			]
 		});
 	});

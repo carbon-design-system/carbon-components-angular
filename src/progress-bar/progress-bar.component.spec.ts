@@ -15,7 +15,9 @@ import { ProgressBar } from "./";
 			[type]="type"
 			[value]="value">
 		</cds-progress-bar>
-		`
+		`,
+	imports: [ProgressBar],
+	standalone: true
 })
 class TestProgessBarComponent {
 	@Input() label = "Label";
@@ -34,7 +36,7 @@ describe("Progress bar", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestProgessBarComponent, ProgressBar]
+			imports: [TestProgessBarComponent]
 		});
 		fixture = TestBed.createComponent(TestProgessBarComponent);
 		component = fixture.componentInstance;

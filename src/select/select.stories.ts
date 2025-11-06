@@ -1,7 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	SelectModule,
 	Select,
 	Option,
 	OptGroup
@@ -14,7 +13,6 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				SelectModule,
 				FormsModule,
 				ReactiveFormsModule
 			],

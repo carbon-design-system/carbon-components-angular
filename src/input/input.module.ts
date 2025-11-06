@@ -9,14 +9,26 @@ import { TextInput } from "./input.directive";
 import { TextArea } from "./text-area.directive";
 import { TextareaLabelComponent } from "./textarea-label.component";
 import { TextInputLabelComponent } from "./text-input-label.component";
-import { IconModule } from "carbon-components-angular/icon";
+import { IconDirective } from "carbon-components-angular/icon";
 import { PasswordInput } from "./password.directive";
 import { PasswordInputLabelComponent } from "./password-input-label.component";
-import { TooltipModule } from "carbon-components-angular/tooltip";
-import { ButtonModule } from "carbon-components-angular/button";
+
+
 
 @NgModule({
-	declarations: [
+	exports: [
+		Label,
+		TextInputLabelComponent,
+		TextInput,
+		TextareaLabelComponent,
+		TextArea,
+		PasswordInputLabelComponent,
+		PasswordInput
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		IconDirective,
 		Label,
 		TextInput,
 		TextArea,
@@ -24,22 +36,6 @@ import { ButtonModule } from "carbon-components-angular/button";
 		TextareaLabelComponent,
 		TextInputLabelComponent,
 		PasswordInputLabelComponent
-	],
-	exports: [
-		Label,
-		TextareaLabelComponent,
-		TextInputLabelComponent,
-		PasswordInputLabelComponent,
-		TextInput,
-		TextArea,
-		PasswordInput
-	],
-	imports: [
-		CommonModule,
-		FormsModule,
-		IconModule,
-		ButtonModule,
-		TooltipModule
 	]
 })
 export class InputModule { }

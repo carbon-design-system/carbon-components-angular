@@ -33,7 +33,8 @@ type oldPlacement = "top-left"
 	| "right-top";
 
 @Directive({
-	selector: "[cdsPopover], [ibmPopover]"
+	selector: "[cdsPopover], [ibmPopover]",
+	standalone: true
 })
 export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
@@ -87,10 +88,12 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Emits an event when the dialog is closed
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix
 	@Output() onClose: EventEmitter<Event> = new EventEmitter();
 	/**
 	 * Emits an event when the dialog is opened
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix
 	@Output() onOpen: EventEmitter<Event> = new EventEmitter();
 	/**
 	 * Emits an event when the state of `isOpen` changes. Allows `isOpen` to be double bound

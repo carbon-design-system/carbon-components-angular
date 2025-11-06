@@ -1,20 +1,23 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DropdownModule, Dropdown } from "./";
-import { PlaceholderModule } from "../placeholder";
+import { Dropdown, DropdownList } from "./";
+import { Placeholder } from "../placeholder";
 
 import { ReactiveFormsStory } from "./stories";
+import { JsonPipe } from "@angular/common";
 
 export default {
 	title: "Components/Dropdown",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				DropdownModule,
-				PlaceholderModule
+				Dropdown,
+				DropdownList,
+				Placeholder,
+				ReactiveFormsStory,
+				JsonPipe
 			]
 		})
 	],

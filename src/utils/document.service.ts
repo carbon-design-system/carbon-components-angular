@@ -3,7 +3,7 @@ import { Observable, Subscription } from "rxjs";
 import { EventHandler } from "./types";
 import { getEventObservable } from "./event-observable";
 
-@Injectable()
+@Injectable({providedIn: "root"})
 export class DocumentService implements OnDestroy {
 	protected globalEvents = new Map<string, Observable<Event>>();
 

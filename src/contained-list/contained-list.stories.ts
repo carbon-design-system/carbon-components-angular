@@ -1,38 +1,46 @@
 import { moduleMetadata, Meta, Story } from "@storybook/angular";
-import { ContainedListModule, ContainedList, ContainedListItem } from ".";
-import { ButtonModule } from "../button";
-import { IconModule } from "../icon";
-import { LayerModule } from "../layer";
-import { LayoutModule } from "../layout";
-import { TagModule } from "../tag";
-import { DialogModule } from "../dialog";
-import { TooltipModule } from "../tooltip";
-import { SearchModule } from "../search";
+import { ContainedList, ContainedListItem } from ".";
+import { Button, IconButton } from "../button";
+import { LayerDirective } from "../layer";
+import { StackDirective } from "../layout";
+import { Tag } from "../tag";
+import { Tooltip } from "../tooltip";
+import { Search } from "../search";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
-import { ContainedListStoryModule } from "./stories/contained-list-story.module";
+import { ContainedListStoryModule  } from "./stories/contained-list-story.module";
+import { OverflowMenu, OverflowMenuOption } from "../dialog";
+import { IconDirective } from "../icon";
+import { I18n } from "../i18n";
+import { PlaceholderService } from "../placeholder";
+
+
 
 export default {
 	title: "Components/Contained List",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ContainedListModule,
+				Button,
+				ContainedList,
+				ContainedListItem,
 				ContainedListStoryModule,
-				ButtonModule,
-				IconModule,
-				LayerModule,
-				LayoutModule,
-				TagModule,
-				DialogModule,
-				TooltipModule,
-				SearchModule
+				IconButton,
+				IconDirective,
+				LayerDirective,
+				OverflowMenu,
+				OverflowMenuOption,
+				StackDirective,
+				Search,
+				Tag,
+				Tooltip
+			],
+			providers: [
+				I18n,
+				PlaceholderService
 			]
 		})
 	],
 	component: ContainedList,
-	subcomponents: {
-		ContainedListItem
-	},
 	args: {
 		isInset: false,
 		kind: ContainedListKind.OnPage,
@@ -362,4 +370,3 @@ const withListTitleDecoratorsTemplate = () => ({
 	`
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
-

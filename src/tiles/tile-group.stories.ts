@@ -1,16 +1,15 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayerModule } from "../layer";
+import { LayerDirective } from "../layer";
 import {
-	TilesModule,
-	SelectionTile,
-	TileGroup
+	TileGroup,
+	SelectionTile
 } from "./";
 
 export default {
 	title: "Components/Tiles/Grouped",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule]
+			imports: [TileGroup, SelectionTile, LayerDirective]
 		})
 	],
 	argTypes: {

@@ -3,7 +3,6 @@ import {
 	Input,
 	OnInit
 } from "@angular/core";
-import { NotificationService } from "../../notification";
 
 import {
 	FormBuilder,

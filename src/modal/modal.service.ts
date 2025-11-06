@@ -56,4 +56,3 @@ export class ModalService extends BaseModalService {
 		});
 	}
 }
-

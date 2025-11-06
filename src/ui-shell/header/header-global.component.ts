@@ -7,7 +7,8 @@ import { Component, HostBinding } from "@angular/core";
 	selector: "cds-header-global, ibm-header-global",
 	template: `
 		<ng-content />
-	`
+	`,
+	standalone: true
 })
 export class HeaderGlobal {
 	@HostBinding("class.cds--header__global") hostClass = true;

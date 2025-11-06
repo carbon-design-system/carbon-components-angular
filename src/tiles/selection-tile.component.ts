@@ -10,6 +10,7 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass, AsyncPipe } from "@angular/common";
 
 @Component({
 	selector: "cds-selection-tile, ibm-selection-tile",
@@ -43,7 +44,9 @@ import { I18n } from "carbon-components-angular/i18n";
 				<ng-content />
 			</div>
 		</label>`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, AsyncPipe]
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
@@ -83,6 +86,7 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Internal event used to notify the containing `TileGroup` of changes.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<Event> = new EventEmitter();
 
 	/**

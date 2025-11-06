@@ -13,7 +13,9 @@ import { TreeNodeComponent } from "./tree-node.component";
 			[tree]="tree"
 			(selected)="onSelect()">
 		</cds-tree-view>
-	`
+	`,
+	imports: [TreeViewComponent, TreeNodeComponent],
+	standalone: true
 })
 class TreeviewTestComponent {
 	tree = [
@@ -59,11 +61,7 @@ describe("Treeview", () => {
 
 	beforeEach(async () => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TreeviewTestComponent,
-				TreeNodeComponent,
-				TreeViewComponent
-			]
+			imports: [TreeviewTestComponent]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TreeviewTestComponent);
@@ -117,4 +115,3 @@ describe("Treeview", () => {
 		expect(selectSpy).toHaveBeenCalled();
 	}));
 });
-

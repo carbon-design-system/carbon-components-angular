@@ -2,7 +2,6 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
-import { IconModule } from "../icon/index";
 import { Select } from "./select.component";
 
 @Component({
@@ -10,7 +9,12 @@ import { Select } from "./select.component";
 		<cds-select (valueChange)="onChange($event)" [(ngModel)]="model">
 			<option value="option1"> Option 1 </option>
 		</cds-select>
-		`
+		`,
+	standalone: true,
+	imports: [
+		FormsModule,
+		Select
+	]
 })
 class SelectTest {
 	model = null;
@@ -24,13 +28,8 @@ describe("Select", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Select,
-				SelectTest
-			],
 			imports: [
-				FormsModule,
-				IconModule
+				SelectTest
 			]
 		});
 	});

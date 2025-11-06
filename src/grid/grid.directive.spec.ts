@@ -3,7 +3,6 @@ import {
 	TestBed,
 	waitForAsync,
 	fakeAsync,
-	tick,
 	flush
 } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
@@ -14,18 +13,17 @@ import { GridDirective } from "./grid.directive";
 
 @Component({
 	selector: "cds-test-grid",
-	template: ""
+	template: "",
+	standalone: true,
+	imports: [GridDirective, RowDirective, ColumnDirective]
 })
 class TestGridComponent {}
 
 describe("GridDirective", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TestGridComponent,
-				GridDirective,
-				RowDirective,
-				ColumnDirective
+			imports: [
+				TestGridComponent
 			]
 		});
 	});

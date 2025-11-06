@@ -9,17 +9,18 @@ import { IconButton } from "./icon-button.component";
 import { TooltipModule } from "carbon-components-angular/tooltip";
 
 @NgModule({
-	declarations: [
-		Button,
-		ButtonSet,
-		BaseIconButton,
-		IconButton
-	],
 	exports: [
 		Button,
 		ButtonSet,
 		IconButton
 	],
-	imports: [CommonModule, TooltipModule]
+	imports: [
+		CommonModule,
+		TooltipModule,
+		Button,
+		ButtonSet,
+		BaseIconButton,
+		IconButton
+	]
 })
 export class ButtonModule { }

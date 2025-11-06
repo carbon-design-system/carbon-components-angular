@@ -26,9 +26,24 @@ import {
 } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
 import { Subscription } from "rxjs";
+import { NgClass } from "@angular/common";
+import { Button } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+
+/**
+ *
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { MenuButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-menu-button--basic)
+ */
 @Component({
 	selector: "cds-menu-button",
 	template: `
@@ -70,7 +85,9 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 			</cds-menu>
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, Button, IconDirective, ContextMenuComponent]
 })
 export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static menuButtonCounter = 0;

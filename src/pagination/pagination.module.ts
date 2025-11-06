@@ -8,16 +8,10 @@ import { ExperimentalModule } from "carbon-components-angular/experimental";
 import { PaginationNav } from "./pagination-nav/pagination-nav.component";
 import { PaginationNavItem } from "./pagination-nav/pagination-item.component";
 import { PaginationOverflow } from "./pagination-nav/pagination-overflow.component";
-import { IconModule } from "carbon-components-angular/icon";
-import { ButtonModule } from "carbon-components-angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
+
 
 @NgModule({
-	declarations: [
-		Pagination,
-		PaginationNav,
-		PaginationNavItem,
-		PaginationOverflow
-	],
 	exports: [
 		Pagination,
 		PaginationNav,
@@ -29,8 +23,11 @@ import { ButtonModule } from "carbon-components-angular/forms";
 		FormsModule,
 		I18nModule,
 		ExperimentalModule,
-		IconModule,
-		ButtonModule
+		IconDirective,
+		Pagination,
+		PaginationNav,
+		PaginationNavItem,
+		PaginationOverflow
 	]
 })
 export class PaginationModule {}

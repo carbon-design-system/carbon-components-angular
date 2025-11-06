@@ -1,11 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ListModule, List } from "./";
+import { List } from "./";
 
 export default {
 	title: "Components/List",
 	decorators: [
 		moduleMetadata({
-			imports: [ListModule]
+			imports: [List]
 		})
 	],
 	parameters: {

@@ -8,20 +8,23 @@ import {
 } from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 /**
  * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Get started with importing the module:
+ * Get started with importing the directive:
  *
  * ```typescript
- * import { IconModule } from 'carbon-components-angular';
+ * import { IconDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-icon--basic)
  */
 @Directive({
-	selector: "[cdsIcon], [ibmIcon]"
+	selector: "[cdsIcon], [ibmIcon]",
+	providers: [PlaceholderService],
+	standalone: true
 })
 export class IconDirective implements AfterViewInit, OnChanges {
 

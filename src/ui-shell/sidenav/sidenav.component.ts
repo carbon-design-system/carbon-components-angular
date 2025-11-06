@@ -6,6 +6,9 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { NavigationItem } from "../header/header-navigation-items.interface";
+import { SideNavItem } from "./sidenav-item.component";
+import { SideNavMenu } from "./sidenav-menu.component";
+import { AsyncPipe } from "@angular/common";
 
 /**
  * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
@@ -82,7 +85,9 @@ import { NavigationItem } from "../header/header-navigation-items.interface";
 			</footer>
 		</nav>
 	`,
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	standalone: true,
+	imports: [SideNavItem, SideNavMenu, AsyncPipe]
 })
 export class SideNav {
 	@HostBinding("class.cds--side-nav") hostClass = true;

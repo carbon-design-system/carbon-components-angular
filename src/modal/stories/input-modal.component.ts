@@ -1,5 +1,7 @@
 import { Component, Inject } from "@angular/core";
-import { ModalService, BaseModal } from "../";
+import { ModalService, BaseModal, Modal, ModalHeader, ModalFooter } from "../";
+import { Label, TextInput } from "../../input";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 
 @Component({
 	selector: "app-input-modal",
@@ -23,7 +25,10 @@ import { ModalService, BaseModal } from "../";
 				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
 			</cds-modal-footer>
 		</cds-modal>
-	`
+	`,
+	standalone: true,
+	imports: [Modal, ModalHeader, TextInput, Label, ModalFooter],
+	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER]
 })
 export class InputModal extends BaseModal {
 	constructor(

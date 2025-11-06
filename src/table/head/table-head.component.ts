@@ -8,9 +8,12 @@ import {
 
 import { TableModel } from "../table-model.class";
 import { getScrollbarWidth } from "carbon-components-angular/utils";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.types";
+import { TableHeadExpand } from "./table-head-expand.component";
+import { NgClass, NgStyle } from "@angular/common";
+import { TableHeadCheckbox } from "./table-head-checkbox.component";
+import { TableHeadCell } from "./table-head-cell.component";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -94,7 +97,9 @@ import { TableRowSize } from "../table.types";
 		.cds--table-expand-v2 {
 			padding-left: 2.5rem;
 		}
-	`]
+	`],
+	standalone: true,
+	imports: [TableHeadExpand, NgClass, TableHeadCheckbox, TableHeadCell, NgStyle]
 })
 export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
