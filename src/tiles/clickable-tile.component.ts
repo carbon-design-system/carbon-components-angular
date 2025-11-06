@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional
+	Optional,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -37,7 +38,8 @@ import { Router } from "@angular/router";
 		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
 		<ng-content />
-	</a>`
+	</a>`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClickableTile {
 	/**

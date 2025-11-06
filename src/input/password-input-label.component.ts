@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ViewChild,
 	ChangeDetectorRef,
-	ContentChild
+	ContentChild,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
 import { BaseIconButton } from "carbon-components-angular/button";
@@ -149,7 +150,8 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				}
 			</div>
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 /**
  * Represents the Password Input Label Component.

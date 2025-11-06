@@ -1,6 +1,7 @@
 import {
 	AfterContentInit,
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
 	ElementRef,
@@ -124,7 +125,8 @@ import {
 				}
 		</div>
 	}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit {
 	/**

@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ViewChild,
 	ContentChild,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -137,7 +138,8 @@ import { TextArea } from "./text-area.directive";
 				}
 			}
 		}
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaLabelComponent implements AfterViewInit {
 	/**

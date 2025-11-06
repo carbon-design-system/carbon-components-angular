@@ -1,7 +1,8 @@
 import {
 	Component,
 	HostBinding,
-	Input
+	Input,
+	ChangeDetectionStrategy
 } from "@angular/core";
 
 /**
@@ -21,7 +22,8 @@ import {
  */
 @Component({
 	selector: "cds-tile, ibm-tile",
-	template: `<ng-content />`
+	template: `<ng-content />`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;
