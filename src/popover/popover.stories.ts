@@ -24,15 +24,6 @@ export default {
 		autoAlign: {
 			control: false
 		},
-		onOpen: {
-			control: "Opened!"
-		},
-		onClose: {
-			control: "Closed!"
-		},
-		isOpenChange: {
-			control: "Is Open Change!"
-		},
 		align: {
 			options: [
 				"top",
