@@ -62,7 +62,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 						triggerClass="cds--btn--icon-only"
 						[description]="description"
 						[autoAlign]="autoAlign">
-						@for (item of overflowItems; track item) {
+						@for (item of overflowItems; track $index) {
 							<li class="cds--overflow-menu-options__option">
 								<a class="cds--overflow-menu-options__btn"
 									href="{{item?.href}}"
@@ -105,7 +105,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					}
 				</cds-breadcrumb-item>
 			} @else {
-				@for (item of items; track item) {
+				@for (item of items; track $index) {
 					<cds-breadcrumb-item
 						[href]="item.href"
 						[route]="item.route"
