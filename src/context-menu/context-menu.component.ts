@@ -47,11 +47,6 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@HostBinding("attr.tabindex") tabindex = "-1";
 	@HostBinding("style.left.px") get leftPosition() { return this.position.left; }
 	@HostBinding("style.top.px") get topPosition() { return this.position.top; }
-
-	/**
-	 * @todo - convert to getter in v6, should resolve expression has changed
-	 * after switching to on OnPush Change Detection Strategy
-	 */
 	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
 	constructor(protected elementRef: ElementRef) { }
@@ -66,8 +61,8 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 		setTimeout(() => {
 			const nativeElement = this.elementRef.nativeElement;
 			if (nativeElement) {
-				this.iconClass = !!nativeElement
-					.querySelector(".cds--menu-item .cds--menu-item__icon svg");
+				this.iconClass = !!this.elementRef.nativeElement
+					.querySelectorAll(".cds--menu-item[icon], .cds--menu-item[type='checkbox'], .cds--menu-item[type='radio']").length;
 			}
 		});
 	}
