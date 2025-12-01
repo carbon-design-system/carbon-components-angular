@@ -33,7 +33,11 @@ import { ItemClickEvent } from "./context-menu.types";
 	`,
 	styles: [`
 		:host {
-			grid-template-columns: 1rem 1fr max-content;
+			grid-template-columns: 1fr max-content;
+
+			&[icon], &[type="checkbox"], &[type="radio"] {
+				grid-template-columns: 1rem 1fr max-content;
+			}
 		}
 	`]
 })
