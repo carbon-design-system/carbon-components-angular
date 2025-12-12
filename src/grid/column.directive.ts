@@ -114,7 +114,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 						 * These objects are used to position the column
 						 */
 						if (this.columnNumbers[key]["start"]) {
-							// col-start is simular equivalent of flex offset
+							// col-start is similar equivalent of flex offset
 							this._columnClasses.push(`cds--${key}:col-start-${this.columnNumbers[key].start}`);
 						}
 						if (this.columnNumbers[key]["end"]) {
@@ -129,7 +129,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 				});
 
 				Object.keys(this.offsets).forEach(key => {
-					this._columnClasses.push(`cds--${key}:col-start${this.offsets[key] + 1}`);
+					this._columnClasses.push(`cds--${key}:col-start-${this.offsets[key] + 1}`);
 				});
 			} else {
 				// Set column classes for flex grid
