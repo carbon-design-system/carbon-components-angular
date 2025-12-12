@@ -510,9 +510,11 @@ export class DatePicker implements
 
 					const calendarContainer = this.flatpickrInstance.calendarContainer;
 					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+					const selectedDateElem = calendarContainer && calendarContainer.querySelector(".selected");
+					const todayDateElem = calendarContainer && calendarContainer.querySelector(".today");
 
 					if (dayElement) {
-						dayElement.focus();
+						(todayDateElem || selectedDateElem || dayElement).focus();
 
 						// If the user manually inputs a value into the date field and presses arrow down,
 						// datepicker input onchange will be triggered when focus is removed from it and
@@ -591,6 +593,7 @@ export class DatePicker implements
 
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
+			element.setAttribute("role", "button");
 			element.classList.add("cds--date-picker__day");
 			if (!this.value) {
 				return;
@@ -606,7 +609,7 @@ export class DatePicker implements
 	protected updateAttributes() {
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		Array.from(calendarContainer).forEach(calendar => {
-			calendar.setAttribute("role", "region");
+			calendar.setAttribute("role", "application");
 			calendar.setAttribute("aria-label", this.ariaLabel);
 		});
 	}

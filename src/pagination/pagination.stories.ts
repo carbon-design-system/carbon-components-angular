@@ -32,6 +32,8 @@ const Template = (args) => ({
 			[pagesUnknown]="pagesUnknown"
 			[totalDataLength]="totalDataLength"
 			[showPageInput]="showPageInput"
+			[backwardDisabled]="backwardDisabled"
+			[forwardDisabled]="forwardDisabled"
 			[skeleton]="skeleton">
 		</app-pagination>
 	`
@@ -40,8 +42,10 @@ export const Basic = Template.bind({});
 Basic.args = {
 	disabled: false,
 	pageInputDisabled: false,
-	pageUnknown: false,
+	pagesUnknown: false,
 	totalDataLength: 105,
 	showPageInput: true,
-	skeleton: false
+	skeleton: false,
+	backwardDisabled: false,
+	forwardDisabled: false
 };
