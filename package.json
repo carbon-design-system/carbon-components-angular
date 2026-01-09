@@ -80,7 +80,7 @@
     "@angular/common": "14.3.0",
     "@angular/compiler": "14.3.0",
     "@angular/compiler-cli": "14.3.0",
-    "@angular/core": "14.3.0",
+    "@angular/core": "19.2.18",
     "@angular/forms": "14.3.0",
     "@angular/platform-browser": "14.3.0",
     "@angular/platform-browser-dynamic": "14.3.0",
