@@ -289,12 +289,12 @@ you load the page.</p>
 				iconOnly&#x3D;&quot;true&quot;
 				class&#x3D;&quot;cds--pagination__button cds--pagination__button--backward&quot;
 				[ngClass]&#x3D;&quot;{
-					&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || disabled
+					&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || backwardDisabled
 				}&quot;
 				tabindex&#x3D;&quot;0&quot;
 				[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
-				[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
+				[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || backwardDisabled ? true : null)&quot;&gt;
 				&lt;svg cdsIcon&#x3D;&quot;caret--left&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 			&lt;/button&gt;
 
@@ -305,12 +305,12 @@ you load the page.</p>
 					cds--pagination__button
 					cds--pagination__button--forward&quot;
 				[ngClass]&#x3D;&quot;{
-					&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || disabled
+					&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || forwardDisabled
 				}&quot;
 				tabindex&#x3D;&quot;0&quot;
 				[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
-				[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
+				[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || forwardDisabled ? true : null)&quot;&gt;
 				&lt;svg cdsIcon&#x3D;&quot;caret--right&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 			&lt;/button&gt;
 		&lt;/div&gt;
@@ -401,7 +401,13 @@ you load the page.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#backwardDisabled" >backwardDisabled</a>
+                            </li>
+                            <li>
                                 <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#forwardDisabled" >forwardDisabled</a>
                             </li>
                             <li>
                                 <a href="#itemsPerPageOptions" >itemsPerPageOptions</a>
@@ -457,6 +463,9 @@ you load the page.</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#disabled" >disabled</a>
+                                </li>
+                                <li>
                                     <a href="#translations" >translations</a>
                                 </li>
                                 <li>
@@ -504,7 +513,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/pagination/pagination.component.ts:349</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/pagination/pagination.component.ts:355</a></div>
                             </td>
                         </tr>
 
@@ -560,8 +569,8 @@ you load the page.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="disabled"></a>
-                        <b>disabled</b>
+                        <a name="backwardDisabled"></a>
+                        <b>backwardDisabled</b>
                     </td>
                 </tr>
                 <tr>
@@ -577,6 +586,27 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/pagination/pagination.component.ts:225</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/pagination/pagination.component.ts:207</a></div>
                             </td>
                         </tr>
@@ -586,6 +616,32 @@ you load the page.</p>
 </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="forwardDisabled"></a>
+                        <b>forwardDisabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/pagination/pagination.component.ts:226</a></div>
+                            </td>
+                        </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -609,7 +665,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/pagination/pagination.component.ts:258</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/pagination/pagination.component.ts:264</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -669,7 +725,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/pagination/pagination.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/pagination/pagination.component.ts:214</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -701,7 +757,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/pagination/pagination.component.ts:220</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/pagination/pagination.component.ts:223</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -727,7 +783,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/pagination/pagination.component.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/pagination/pagination.component.ts:222</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -759,7 +815,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/pagination/pagination.component.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/pagination/pagination.component.ts:218</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -818,7 +874,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/pagination/pagination.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/pagination/pagination.component.ts:245</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -858,7 +914,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/pagination/pagination.component.ts:266</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/pagination/pagination.component.ts:272</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -905,7 +961,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/pagination/pagination.component.ts:349</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/pagination/pagination.component.ts:355</a></div>
                         </td>
                     </tr>
 
@@ -930,7 +986,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/pagination/pagination.component.ts:340</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/pagination/pagination.component.ts:346</a></div>
                         </td>
                     </tr>
 
@@ -955,7 +1011,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/pagination/pagination.component.ts:336</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/pagination/pagination.component.ts:342</a></div>
                         </td>
                     </tr>
 
@@ -980,7 +1036,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="341" class="link-to-prism">src/pagination/pagination.component.ts:341</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/pagination/pagination.component.ts:347</a></div>
                         </td>
                     </tr>
 
@@ -1005,7 +1061,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/pagination/pagination.component.ts:335</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="341" class="link-to-prism">src/pagination/pagination.component.ts:341</a></div>
                         </td>
                     </tr>
 
@@ -1030,7 +1086,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/pagination/pagination.component.ts:338</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/pagination/pagination.component.ts:344</a></div>
                         </td>
                     </tr>
 
@@ -1055,7 +1111,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/pagination/pagination.component.ts:346</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="352" class="link-to-prism">src/pagination/pagination.component.ts:352</a></div>
                         </td>
                     </tr>
 
@@ -1080,7 +1136,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/pagination/pagination.component.ts:347</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="353" class="link-to-prism">src/pagination/pagination.component.ts:353</a></div>
                         </td>
                     </tr>
 
@@ -1105,7 +1161,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/pagination/pagination.component.ts:339</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/pagination/pagination.component.ts:345</a></div>
                         </td>
                     </tr>
 
@@ -1130,7 +1186,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/pagination/pagination.component.ts:345</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/pagination/pagination.component.ts:351</a></div>
                         </td>
                     </tr>
 
@@ -1187,7 +1243,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/pagination/pagination.component.ts:342</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="348" class="link-to-prism">src/pagination/pagination.component.ts:348</a></div>
                         </td>
                     </tr>
 
@@ -1212,7 +1268,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/pagination/pagination.component.ts:344</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/pagination/pagination.component.ts:350</a></div>
                         </td>
                     </tr>
 
@@ -1237,7 +1293,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/pagination/pagination.component.ts:343</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/pagination/pagination.component.ts:349</a></div>
                         </td>
                     </tr>
 
@@ -1250,6 +1306,67 @@ data is finally loaded.</p>
     <h3 id="accessors">
         Accessors
     </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <span class="name"><b>disabled</b><a href="#disabled"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>disabled(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/pagination/pagination.component.ts:207</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set to <code>true</code> to disable the backward/forward buttons.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -1267,7 +1384,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/pagination/pagination.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/pagination/pagination.component.ts:245</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1337,7 +1454,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/pagination/pagination.component.ts:268</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/pagination/pagination.component.ts:274</a></div>
                                 </td>
                             </tr>
 
@@ -1348,7 +1465,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/pagination/pagination.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/pagination/pagination.component.ts:277</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1402,7 +1519,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/pagination/pagination.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/pagination/pagination.component.ts:282</a></div>
                                 </td>
                             </tr>
 
@@ -1413,7 +1530,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/pagination/pagination.component.ts:279</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/pagination/pagination.component.ts:285</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1467,7 +1584,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/pagination/pagination.component.ts:286</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/pagination/pagination.component.ts:292</a></div>
                                 </td>
                             </tr>
 
@@ -1489,7 +1606,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/pagination/pagination.component.ts:292</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/pagination/pagination.component.ts:298</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1522,7 +1639,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/pagination/pagination.component.ts:297</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/pagination/pagination.component.ts:303</a></div>
                                 </td>
                             </tr>
 
@@ -1544,7 +1661,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/pagination/pagination.component.ts:301</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/pagination/pagination.component.ts:307</a></div>
                                 </td>
                             </tr>
 
@@ -1566,7 +1683,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/pagination/pagination.component.ts:310</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">src/pagination/pagination.component.ts:316</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1599,7 +1716,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/pagination/pagination.component.ts:317</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/pagination/pagination.component.ts:323</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1632,7 +1749,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/pagination/pagination.component.ts:322</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="328" class="link-to-prism">src/pagination/pagination.component.ts:328</a></div>
                                 </td>
                             </tr>
 
@@ -1806,12 +1923,12 @@ export interface PaginationTranslations {
 					iconOnly&#x3D;&quot;true&quot;
 					class&#x3D;&quot;cds--pagination__button cds--pagination__button--backward&quot;
 					[ngClass]&#x3D;&quot;{
-						&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || disabled
+						&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || backwardDisabled
 					}&quot;
 					tabindex&#x3D;&quot;0&quot;
 					[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 					(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
-					[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
+					[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || backwardDisabled ? true : null)&quot;&gt;
 					&lt;svg cdsIcon&#x3D;&quot;caret--left&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 				&lt;/button&gt;
 
@@ -1822,12 +1939,12 @@ export interface PaginationTranslations {
 						cds--pagination__button
 						cds--pagination__button--forward&quot;
 					[ngClass]&#x3D;&quot;{
-						&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || disabled
+						&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || forwardDisabled
 					}&quot;
 					tabindex&#x3D;&quot;0&quot;
 					[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 					(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
-					[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
+					[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || forwardDisabled ? true : null)&quot;&gt;
 					&lt;svg cdsIcon&#x3D;&quot;caret--right&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 				&lt;/button&gt;
 			&lt;/div&gt;
@@ -1849,7 +1966,10 @@ export class Pagination {
 	/**
  	 * Set to &#x60;true&#x60; to disable the backward/forward buttons.
 	 */
-	@Input() disabled &#x3D; false;
+	@Input() set disabled(value: boolean) {
+		this.backwardDisabled &#x3D; value;
+		this.forwardDisabled &#x3D; value;
+	}
 	/**
 	 * Set to &#x60;true&#x60; to disable the select box that changes the page.
 	 */
@@ -1863,6 +1983,9 @@ export class Pagination {
 	 */
 	@Input() pagesUnknown &#x3D; false;
 	@Input() pageSelectThreshold &#x3D; 1000;
+
+	@Input() backwardDisabled &#x3D; false;
+	@Input() forwardDisabled &#x3D; false;
 
 	/**
 	 * Expects an object that contains some or all of:
@@ -2027,7 +2150,7 @@ export class Pagination {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	class="cds--pagination"	[ngClass]="{		\'cds--skeleton\': skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="cds--pagination__left">		<p class="cds--skeleton__text" style="width: 70px"></p>		<p class="cds--skeleton__text" style="width: 35px"></p>		<p class="cds--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="cds--pagination__left">		<ng-container *ngIf="showPageInput">			<label class="cds--pagination__text" [for]="itemsPerPageSelectId">				{{itemsPerPageText.subject | async}}			</label>			<div				class="cds--select cds--select--inline cds--select__item-count"				[class.cds--select--disabled]="pageInputDisabled">				<select					[id]="itemsPerPageSelectId"					[(ngModel)]="itemsPerPage"					[disabled]="pageInputDisabled"					class="cds--select-input">					<option						class="cds--select-option"						*ngFor="let option of itemsPerPageOptions"						[value]="option">							{{ option }}					</option>				</select>				<svg					cdsIcon="chevron--down"					size="16"					style="display: inherit"					class="cds--select__arrow"					aria-hidden="true"					[attr.ariaLabel]="optionsListText.subject | async">				</svg>			</div>		</ng-container>		<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="!pagesUnknown && totalDataLength > 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="cds--pagination__right">		<p class="cds--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="cds--pagination__right">		<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__page-text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{pageText.subject | async}}		</span>		<ng-container *ngIf="showPageInput">			<div				class="cds--select cds--select--inline cds--select__page-number"				[class.cds--select--disabled]="pageInputDisabled">				<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>				<input					*ngIf="pageOptions.length > pageSelectThreshold"					style="padding-right: 1rem; margin-right: 1rem;"					[id]="currentPageSelectId"					type="number"					min="1"					[max]="pageOptions.length"					class="cds--select-input"					[(ngModel)]="currentPage">				<select					*ngIf="pageOptions.length <= pageSelectThreshold"					[id]="currentPageSelectId"					class="cds--select-input"					[disabled]="pageInputDisabled"					[(ngModel)]="currentPage">					<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>				</select>				<svg					*ngIf="pageOptions.length <= pageSelectThreshold"					cdsIcon="chevron--down"					size="16"					style="display: inherit;"					class="cds--select__arrow"					[attr.ariaLabel]="optionsListText.subject | async">				</svg>			</div>		</ng-container>		<span *ngIf="!pagesUnknown && lastPage <= 1" class="cds--pagination__text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<span *ngIf="!pagesUnknown && lastPage > 1" class="cds--pagination__text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<div class="cds--pagination__control-buttons">			<button				cdsButton="ghost"				iconOnly="true"				class="cds--pagination__button cds--pagination__button--backward"				[ngClass]="{					\'cds--pagination__button--no-index\': currentPage <= 1 || disabled				}"				tabindex="0"				[attr.aria-label]="backwardText.subject | async"				(click)="selectPage.emit(previousPage)"				[disabled]="(currentPage <= 1 || disabled ? true : null)">				<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>			</button>			<button				cdsButton="ghost"				iconOnly="true"				class="					cds--pagination__button					cds--pagination__button--forward"				[ngClass]="{					\'cds--pagination__button--no-index\': currentPage >= lastPage || disabled				}"				tabindex="0"				[attr.aria-label]="forwardText.subject | async"				(click)="selectPage.emit(nextPage)"				[disabled]="(currentPage >= lastPage || disabled ? true : null)">				<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>			</button>		</div>	</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div	class="cds--pagination"	[ngClass]="{		\'cds--skeleton\': skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="cds--pagination__left">		<p class="cds--skeleton__text" style="width: 70px"></p>		<p class="cds--skeleton__text" style="width: 35px"></p>		<p class="cds--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="cds--pagination__left">		<ng-container *ngIf="showPageInput">			<label class="cds--pagination__text" [for]="itemsPerPageSelectId">				{{itemsPerPageText.subject | async}}			</label>			<div				class="cds--select cds--select--inline cds--select__item-count"				[class.cds--select--disabled]="pageInputDisabled">				<select					[id]="itemsPerPageSelectId"					[(ngModel)]="itemsPerPage"					[disabled]="pageInputDisabled"					class="cds--select-input">					<option						class="cds--select-option"						*ngFor="let option of itemsPerPageOptions"						[value]="option">							{{ option }}					</option>				</select>				<svg					cdsIcon="chevron--down"					size="16"					style="display: inherit"					class="cds--select__arrow"					aria-hidden="true"					[attr.ariaLabel]="optionsListText.subject | async">				</svg>			</div>		</ng-container>		<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="!pagesUnknown && totalDataLength > 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}		</span>		<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{\'margin-left\': showPageInput ? null : 0}">			{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="cds--pagination__right">		<p class="cds--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="cds--pagination__right">		<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__page-text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{pageText.subject | async}}		</span>		<ng-container *ngIf="showPageInput">			<div				class="cds--select cds--select--inline cds--select__page-number"				[class.cds--select--disabled]="pageInputDisabled">				<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>				<input					*ngIf="pageOptions.length > pageSelectThreshold"					style="padding-right: 1rem; margin-right: 1rem;"					[id]="currentPageSelectId"					type="number"					min="1"					[max]="pageOptions.length"					class="cds--select-input"					[(ngModel)]="currentPage">				<select					*ngIf="pageOptions.length <= pageSelectThreshold"					[id]="currentPageSelectId"					class="cds--select-input"					[disabled]="pageInputDisabled"					[(ngModel)]="currentPage">					<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>				</select>				<svg					*ngIf="pageOptions.length <= pageSelectThreshold"					cdsIcon="chevron--down"					size="16"					style="display: inherit;"					class="cds--select__arrow"					[attr.ariaLabel]="optionsListText.subject | async">				</svg>			</div>		</ng-container>		<span *ngIf="!pagesUnknown && lastPage <= 1" class="cds--pagination__text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<span *ngIf="!pagesUnknown && lastPage > 1" class="cds--pagination__text">			<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>			{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}		</span>		<div class="cds--pagination__control-buttons">			<button				cdsButton="ghost"				iconOnly="true"				class="cds--pagination__button cds--pagination__button--backward"				[ngClass]="{					\'cds--pagination__button--no-index\': currentPage <= 1 || backwardDisabled				}"				tabindex="0"				[attr.aria-label]="backwardText.subject | async"				(click)="selectPage.emit(previousPage)"				[disabled]="(currentPage <= 1 || backwardDisabled ? true : null)">				<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>			</button>			<button				cdsButton="ghost"				iconOnly="true"				class="					cds--pagination__button					cds--pagination__button--forward"				[ngClass]="{					\'cds--pagination__button--no-index\': currentPage >= lastPage || forwardDisabled				}"				tabindex="0"				[attr.aria-label]="forwardText.subject | async"				(click)="selectPage.emit(nextPage)"				[disabled]="(currentPage >= lastPage || forwardDisabled ? true : null)">				<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>			</button>		</div>	</div></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Pagination'};

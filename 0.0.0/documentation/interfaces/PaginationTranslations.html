@@ -686,12 +686,12 @@ export interface PaginationTranslations {
 					iconOnly&#x3D;&quot;true&quot;
 					class&#x3D;&quot;cds--pagination__button cds--pagination__button--backward&quot;
 					[ngClass]&#x3D;&quot;{
-						&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || disabled
+						&#x27;cds--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1 || backwardDisabled
 					}&quot;
 					tabindex&#x3D;&quot;0&quot;
 					[attr.aria-label]&#x3D;&quot;backwardText.subject | async&quot;
 					(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
-					[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || disabled ? true : null)&quot;&gt;
+					[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 || backwardDisabled ? true : null)&quot;&gt;
 					&lt;svg cdsIcon&#x3D;&quot;caret--left&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 				&lt;/button&gt;
 
@@ -702,12 +702,12 @@ export interface PaginationTranslations {
 						cds--pagination__button
 						cds--pagination__button--forward&quot;
 					[ngClass]&#x3D;&quot;{
-						&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || disabled
+						&#x27;cds--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage || forwardDisabled
 					}&quot;
 					tabindex&#x3D;&quot;0&quot;
 					[attr.aria-label]&#x3D;&quot;forwardText.subject | async&quot;
 					(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
-					[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || disabled ? true : null)&quot;&gt;
+					[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage || forwardDisabled ? true : null)&quot;&gt;
 					&lt;svg cdsIcon&#x3D;&quot;caret--right&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--btn__icon&quot;&gt;&lt;/svg&gt;
 				&lt;/button&gt;
 			&lt;/div&gt;
@@ -729,7 +729,10 @@ export class Pagination {
 	/**
  	 * Set to &#x60;true&#x60; to disable the backward/forward buttons.
 	 */
-	@Input() disabled &#x3D; false;
+	@Input() set disabled(value: boolean) {
+		this.backwardDisabled &#x3D; value;
+		this.forwardDisabled &#x3D; value;
+	}
 	/**
 	 * Set to &#x60;true&#x60; to disable the select box that changes the page.
 	 */
@@ -743,6 +746,9 @@ export class Pagination {
 	 */
 	@Input() pagesUnknown &#x3D; false;
 	@Input() pageSelectThreshold &#x3D; 1000;
+
+	@Input() backwardDisabled &#x3D; false;
+	@Input() forwardDisabled &#x3D; false;
 
 	/**
 	 * Expects an object that contains some or all of:
