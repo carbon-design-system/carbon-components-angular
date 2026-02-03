@@ -510,8 +510,8 @@ export class DatePicker implements
 
 					const calendarContainer = this.flatpickrInstance.calendarContainer;
 					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
-					const selectedDateElem = calendarContainer && calendarContainer.querySelector('.selected');
-					const todayDateElem = calendarContainer && calendarContainer.querySelector('.today');
+					const selectedDateElem = calendarContainer && calendarContainer.querySelector(".selected");
+					const todayDateElem = calendarContainer && calendarContainer.querySelector(".today");
 
 					if (dayElement) {
 						(todayDateElem || selectedDateElem || dayElement).focus();
@@ -593,7 +593,7 @@ export class DatePicker implements
 
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
-			element.setAttribute('role', 'button');
+			element.setAttribute("role", "button");
 			element.classList.add("cds--date-picker__day");
 			if (!this.value) {
 				return;
