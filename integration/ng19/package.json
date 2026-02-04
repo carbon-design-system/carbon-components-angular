@@ -18,7 +18,9 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
-    "carbon-components-angular": "^5.40.2",
+    "@carbon/icons": "^11.44.1",
+    "@carbon/styles": "^1.60.1",
+    "carbon-components-angular": "latest",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
