@@ -2,9 +2,11 @@ import {
 	Component,
 	Input,
 	OnInit,
-	HostBinding
+	HostBinding,
+	SecurityContext
 } from "@angular/core";
 
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { isObservable, of } from "rxjs";
 import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
@@ -45,6 +47,7 @@ import { BaseNotification } from "./base-notification.component";
 })
 export class Toast extends BaseNotification implements OnInit {
 	private static toastCount = 0;
+	private _notificationObj!: ToastContent;
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -54,11 +57,17 @@ export class Toast extends BaseNotification implements OnInit {
 		if (obj.closeLabel && !isObservable(obj.closeLabel)) {
 			obj.closeLabel = of(obj.closeLabel);
 		}
-		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
+		this._notificationObj = {
+			...this.defaultNotificationObj,
+			...obj,
+			title: this.sanitize(obj.title),
+			subtitle: this.sanitize(obj.subtitle),
+			caption: this.sanitize(obj.caption)
+		};
 	}
 
 	get notificationObj(): ToastContent {
-		return this._notificationObj as ToastContent;
+		return this._notificationObj;
 	}
 
 
@@ -73,7 +82,7 @@ export class Toast extends BaseNotification implements OnInit {
 	@HostBinding("class.cds--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--toast-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
+	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n, private sanitizer: DomSanitizer) {
 		super(notificationDisplayService, i18n);
 	}
 
@@ -81,5 +90,12 @@ export class Toast extends BaseNotification implements OnInit {
 		if (!this.notificationObj.closeLabel) {
 			this.notificationObj.closeLabel = this.i18n.get().NOTIFICATION.CLOSE_BUTTON;
 		}
+	}
+
+	private sanitize(value?: string): SafeHtml | undefined {
+		if (!value) {
+			return value;
+		}
+		return this.sanitizer.sanitize(SecurityContext.HTML, value) ?? undefined;
 	}
 }
