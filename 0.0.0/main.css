@@ -5603,8 +5603,7 @@ li.cds--accordion__item--disabled:last-of-type {
 .cds--slug .cds--slug-actions {
   position: absolute;
   justify-content: flex-end;
-  -webkit-backdrop-filter: blur(85px);
-          backdrop-filter: blur(85px);
+  backdrop-filter: blur(85px);
   background: rgba(0, 0, 0, 0.01);
   border-end-end-radius: 0.5rem;
   border-end-start-radius: 0.5rem;
@@ -6797,8 +6796,7 @@ fieldset[disabled] .cds--form__helper-text {
 @media print {
   .cds--checkbox-label::before,
 .cds--checkbox-label::after {
-    -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 .cds--checkbox-label::before {
@@ -10773,8 +10771,7 @@ fieldset[disabled] .cds--form__helper-text {
 }
 @media print {
   .cds--radio-button:checked + .cds--radio-button__label .cds--radio-button__appearance::before {
-    -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 .cds--radio-button:disabled + .cds--radio-button__label {
