@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as Icons from "@carbon/pictograms";
 
-import { IconService } from "../";
+import { IconService } from "..";
 
 @Component({
 	selector: "app-demo-many-pictograms",
@@ -19,7 +19,6 @@ import { IconService } from "../";
 	styles: [
 		`
 			.pictogram {
-				white-space: nowrap;
 				padding: 1rem 0;
 			}
 		`
@@ -38,7 +37,6 @@ export class ManyPictogramsDemo implements OnInit {
 				if (!iconMap.has(descriptor["name"])) {
 					iconMap.set(descriptor["name"], descriptor);
 				}
-				// iconMap.get(descriptor["name"]).push(descriptor);
 			}
 		}
 		// Render after a delay to prevent page from freezing

@@ -68,7 +68,8 @@ const AllPictogramsTemplate = (args) => ({
 	template: `
 		<!--
 			app-* components are for demo purposes only.
-			You can create your own implementation by using the component source as an example.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/pictograms-demo.component.ts
 		-->
 		<app-demo-many-pictograms></app-demo-many-pictograms>
 	`
