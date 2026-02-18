@@ -86,6 +86,7 @@
     "@angular/platform-browser-dynamic": "14.3.0",
     "@angular/router": "14.3.0",
     "@babel/core": "7.9.6",
+    "@carbon/pictograms": "^12.69.0",
     "@carbon/styles": "1.88.0",
     "@carbon/themes": "11.24.0",
     "@commitlint/cli": "17.0.3",
