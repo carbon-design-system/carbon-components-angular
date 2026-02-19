@@ -182,9 +182,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		this.subscriptions.push(
 			fromEvent(element, "keydown").subscribe((event: KeyboardEvent) => {
+				// "Esc" is an IE specific value
 				if (event.target === this.dialogConfig.parentRef.nativeElement &&
 					(event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
-					event.key === "Escape") {
+					event.key === "Escape" || event.key === "Esc") {
 					this.close({
 						reason: CloseReasons.interaction,
 						target: event.target
@@ -304,13 +305,13 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Empty method for child classes to override and specify additional init steps.
 	 * Run after DialogDirective completes it's ngOnInit.
 	 */
-	protected onDialogInit() { }
+	protected onDialogInit() {}
 
 	/**
 	 * Empty method for child to override and specify additional on changes steps.
 	 * run after DialogDirective completes it's ngOnChanges.
 	 */
-	protected onDialogChanges(_changes: SimpleChanges) { }
+	protected onDialogChanges(_changes: SimpleChanges) {}
 
-	protected updateConfig() { }
+	protected updateConfig() {}
 }
