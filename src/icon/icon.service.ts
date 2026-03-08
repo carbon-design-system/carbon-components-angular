@@ -195,8 +195,8 @@ export class IconService {
 	 * Registers an icon based on a uniqe name and metadata provided by `@carbon/icons`
 	 */
 	public registerAs(name: string, descriptor: object) {
-		const { size } = descriptor as IconDescriptor;
-		this.iconCache.set(name, size.toString(), descriptor);
+		let { size, attrs: { width } } = descriptor as IconDescriptor;
+		this.iconCache.set(name, (size ?? width).toString(), descriptor);
 	}
 
 	/**

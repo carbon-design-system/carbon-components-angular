@@ -3,7 +3,8 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule, IconDirective } from "./";
-import { IconDemo, ManyIconDemo } from "./stories";
+import { GridModule } from '../grid';
+import { IconDemo, ManyIconDemo, ManyPictogramsDemo } from "./stories";
 
 export default {
 	title: "Components/Icon",
@@ -11,10 +12,12 @@ export default {
 		moduleMetadata({
 			declarations: [
 				IconDemo,
-				ManyIconDemo
+				ManyIconDemo,
+				ManyPictogramsDemo
 			],
 			imports: [
-				IconModule
+				IconModule,
+				GridModule
 			]
 		})
 	],
@@ -59,3 +62,16 @@ const AllIconTemplate = (args) => ({
 	`
 });
 export const AllIcon = AllIconTemplate.bind({});
+
+const AllPictogramsTemplate = (args) => ({
+	props: args,
+	template: `
+		<!--
+			app-* components are for demo purposes only.
+			You can create your own implementation by using the component source found at:
+			https://github.com/IBM/carbon-components-angular/tree/master/src/icon/stories/pictograms-demo.component.ts
+		-->
+		<app-demo-many-pictograms></app-demo-many-pictograms>
+	`
+});
+export const AllPictograms = AllPictogramsTemplate.bind({});
