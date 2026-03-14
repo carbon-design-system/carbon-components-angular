@@ -956,7 +956,7 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 				});
 
 				Object.keys(this.offsets).forEach(key &#x3D;&gt; {
-					this._columnClasses.push(&#x60;cds--${key}:col-start${this.offsets[key] + 1}&#x60;);
+					this._columnClasses.push(&#x60;cds--${key}:col-start-${this.offsets[key]}&#x60;);
 				});
 			} else {
 				// Set column classes for flex grid
