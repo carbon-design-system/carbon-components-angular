@@ -1,6 +1,8 @@
 import {
 	Component,
 	Input,
+	Output,
+	EventEmitter,
 	AfterViewInit,
 	ElementRef,
 	HostBinding,
@@ -41,7 +43,9 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			[attr.aria-label]="ariaLabel"
 			class="cds--label"
 			[ngClass]="{
-				'cds--label--disabled': disabled
+				'cds--label--disabled': disabled,
+				'cds--visually-hidden': hideLabel,
+				'cds--label--inline': inline
 			}">
 			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
 			<ng-template #labelContent>
@@ -49,7 +53,7 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			</ng-template>
 		</label>
 
-		<div *ngIf="!skeleton" class="cds--text-input__field-outer-wrapper">
+		<div *ngIf="!skeleton" class="cds--text-input__field-outer-wrapper" [ngClass]="{'cds--text-input__field-outer-wrapper--inline': inline}">
 			<div
 			class="cds--text-input__field-wrapper"
 			[ngClass]="{
@@ -221,6 +225,24 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	@Input() fluid = false;
 
 	/**
+	 * Set to `true` to hide the label visually, but keep accessible to
+	 * screen readers.
+	 */
+	@Input() hideLabel = false;
+
+	/**
+	 * Set to `true` to render the label and field side-by-side instead of stacked.
+	 */
+	@Input() inline = false;
+
+	/**
+	 * Emits whenever the show/hide password visibility toggle button is clicked.
+	 * Mirrors the `onTogglePasswordVisibility` prop of the React `PasswordInput`
+	 * component.
+	 */
+	@Output() togglePasswordVisibility = new EventEmitter<"password" | "text">();
+
+	/**
 	 * Reference to the wrapper element.
 	 */
 	@ViewChild("wrapper", { static: true }) wrapper: ElementRef<HTMLDivElement>;
@@ -233,6 +255,10 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
 	@HostBinding("class.cds--text-input-wrapper--readonly") get isReadonly() {
 		return this.wrapper?.nativeElement.querySelector("input")?.readOnly ?? false;
+	}
+
+	@HostBinding("class.cds--text-input-wrapper--inline") get isInlineWrapper() {
+		return this.inline;
 	}
 
 	@HostBinding("class.cds--text-input--fluid") get fluidClass() {
@@ -285,5 +311,6 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 		this.inputType = this.inputType === "password" ? "text" : "password";
 		this.textInput.type = this.inputType;
 		this.passwordIsVisible = this.inputType === "text";
+		this.togglePasswordVisibility.emit(this.inputType);
 	}
 }
