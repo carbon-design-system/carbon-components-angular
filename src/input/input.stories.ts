@@ -24,7 +24,10 @@ export default {
 		size: "md",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		inline: false,
+		enableCounter: false,
+		maxCount: 500
 	},
 	argTypes: {
 		autocomplete: {
@@ -54,7 +57,10 @@ const Template = (args) => ({
 		[disabled]="disabled"
 		[fluid]="fluid"
 		[skeleton]="skeleton"
-		[warnText]="warnText">
+		[warnText]="warnText"
+		[enableCounter]="enableCounter"
+		[maxCount]="maxCount"
+		[inline]="inline">
 		{{label}}
 		<input
 			cdsText
