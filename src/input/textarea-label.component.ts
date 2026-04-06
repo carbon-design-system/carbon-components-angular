@@ -128,6 +128,18 @@ import { TextArea } from "./text-area.directive";
 	`
 })
 export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+
+	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
+	}
+
+	@HostBinding("class.cds--text-area--fluid") get fluidClass() {
+		return this.fluid && !this.skeleton;
+	}
+
+	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
+		return this.fluid && this.skeleton;
+	}
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -211,11 +223,6 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	/** Tracks current character / word count for the counter display. */
 	textCount = 0;
 
-	/** Cached reference to the textarea element, set once in ngAfterViewInit. */
-	private _textareaElement: HTMLTextAreaElement | null = null;
-	/** Cached listener so it can be removed precisely (avoids anonymous-function leak). */
-	private _inputListener: ((e: Event) => void) | null = null;
-
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
@@ -224,17 +231,10 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
-	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
-		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
-	}
-
-	@HostBinding("class.cds--text-area--fluid") get fluidClass() {
-		return this.fluid && !this.skeleton;
-	}
-
-	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
-		return this.fluid && this.skeleton;
-	}
+	/** Cached reference to the textarea element, set once in ngAfterViewInit. */
+	private _textareaElement: HTMLTextAreaElement | null = null;
+	/** Cached listener so it can be removed precisely (avoids anonymous-function leak). */
+	private _inputListener: ((e: Event) => void) | null = null;
 
 	/**
 	 * Creates an instance of Label.
@@ -306,6 +306,10 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	ngOnDestroy() {
 		this._detachCounterListener();
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	/**
@@ -388,9 +392,5 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 			return value.match(/\p{L}+/gu)?.length || 0;
 		}
 		return value.length;
-	}
-
-	public isTemplate(value) {
-		return value instanceof TemplateRef;
 	}
 }

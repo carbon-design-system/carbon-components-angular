@@ -41,7 +41,7 @@ export default {
 			options: ["sm", "md", "lg"],
 			control: "select"
 		},
-		toggleVisibility: { action: "clicked" },
+		toggleVisibility: { action: "clicked" }
 	},
 	component: PasswordInputLabelComponent
 } as Meta;
