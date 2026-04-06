@@ -25,7 +25,10 @@ export default {
 		theme: "dark",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		enableCounter: false,
+		maxCount: 500,
+		counterMode: "character"
 	},
 	argTypes: {
 		autocomplete: {
@@ -34,6 +37,10 @@ export default {
 		},
 		theme: {
 			options: ["light", "dark"],
+			control: "radio"
+		},
+		counterMode: {
+			options: ["word", "character"],
 			control: "radio"
 		}
 	},
@@ -51,7 +58,10 @@ const Template = (args) => ({
 		[fluid]="fluid"
 		[skeleton]="skeleton"
 		[warn]="warn"
-		[warnText]="warnText">
+		[warnText]="warnText"
+		[enableCounter]="enableCounter"
+		[maxCount]="maxCount"
+		[counterMode]="counterMode">
 		{{label}}
 		<textarea
 			cdsTextArea
