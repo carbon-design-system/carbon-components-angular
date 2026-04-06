@@ -56,6 +56,10 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
+					[hideLabel]="hideLabel"
+					[enableCounter]="enableCounter"
+					[maxCount]="maxCount"
+					[counterMode]="counterMode"
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
 				</cds-textarea-label>
@@ -71,6 +75,11 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
+					[hideLabel]="hideLabel"
+					[inline]="inline"
+					[size]="size"
+					[enableCounter]="enableCounter"
+					[maxCount]="maxCount"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
@@ -86,6 +95,8 @@ import { PasswordInput } from "./password.directive";
 					[warn]="warn"
 					[warnText]="warnText"
 					[ariaLabel]="ariaLabel"
+					[hideLabel]="hideLabel"
+					[inline]="inline"
 					[labelTemplate]="labelContentTemplate"
 					[passwordInputTemplate]="inputContentTemplate">
 				</cds-password-label>
@@ -187,6 +198,41 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Set the arialabel for label
 	 */
 	@Input() ariaLabel: string;
+
+	/**
+	 * Set to `true` to hide the label visually, but keep accessible to
+	 * screen readers.
+	 */
+	@Input() hideLabel = false;
+
+	/**
+	 * Set to `true` to render the label and field side-by-side instead of stacked.
+	 * Applies to `TextInput` and `PasswordInput` label variants.
+	 */
+	@Input() inline = false;
+
+	/**
+	 * The render size for the `TextInput`. Used to compute INLINE label size
+	 * variant classes.
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
+
+	/**
+	 * When `true` (and `maxCount` is set), displays a live character/word
+	 * counter alongside the label.
+	 */
+	@Input() enableCounter = false;
+
+	/**
+	 * Maximum number of characters (or words) allowed. Required for the
+	 * counter to display.
+	 */
+	@Input() maxCount: number;
+
+	/**
+	 * Determines whether the `TextArea` counter counts characters or words.
+	 */
+	@Input() counterMode: "character" | "word" = "character";
 
 	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 
