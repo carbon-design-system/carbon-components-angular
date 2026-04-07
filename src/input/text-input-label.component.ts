@@ -241,7 +241,7 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	@Input() size: "sm" | "md" | "lg" = "md";
 
 	/**
-	 * When `true` (and `maxCount` is set), displays a live character/word
+	 * Set to `true` (`maxCount` must be set) to displays a live character
 	 * counter alongside the label.
 	 */
 	@Input() enableCounter = false;

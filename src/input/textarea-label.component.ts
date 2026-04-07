@@ -202,7 +202,7 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	@Input() hideLabel = false;
 
 	/**
-	 * When `true` (and `maxCount` is set), displays a live character/word
+	 * Set to `true` (`maxCount` must be set) to displays a live character/word
 	 * counter alongside the label.
 	 */
 	@Input() enableCounter = false;
@@ -216,11 +216,11 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	/**
 	 * Determines whether the counter counts characters or words.
 	 * When `"word"` and `maxCount` is set, input is clamped to `maxCount` words
-	 * on each change — excess words are trimmed from the end of the value.
+	 * on each change. Excess words are trimmed from the end of the value.
 	 */
 	@Input() counterMode: "character" | "word" = "character";
 
-	/** Tracks current character / word count for the counter display. */
+	//  Tracks current character / word count for the counter display.
 	textCount = 0;
 
 	// @ts-ignore
@@ -231,15 +231,15 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
-	/** Cached reference to the textarea element, set once in ngAfterViewInit. */
+	// Cached reference to the textarea element, set once in ngAfterViewInit.
 	private _textareaElement: HTMLTextAreaElement | null = null;
-	/** Cached listener so it can be removed precisely (avoids anonymous-function leak). */
+	// Cached listener so it can be removed precisely (avoids anonymous-function leak)
 	private _inputListener: ((e: Event) => void) | null = null;
 
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) { }
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
 
 	/**
 	 * Sets the id on the input item associated with the `Label` and attaches the
@@ -313,9 +313,8 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	}
 
 	/**
-	 * Keeps the textarea's `maxlength` attribute in sync with `maxCount`.
-	 * Only set in character mode — word mode enforces its limit in JS and must
-	 * not restrict raw character length via the HTML attribute.
+	 * Keeps the textarea's `maxlength` attribute in sync with `maxCount`. This is only set
+	 * when counterMode is set to `character`. When counterMode is set to `word`, we enforce limit via JS.
 	 * If `maxCount` is unset or the mode is `"word"`, any previously applied
 	 * `maxlength` is removed so the textarea is unrestricted by the attribute.
 	 */
@@ -342,7 +341,7 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 			const el = e.target as HTMLTextAreaElement;
 			// Word-mode enforcement: clamp value to maxCount words on each input so
 			// the textarea never holds more words than allowed.  Character mode relies
-			// on the native `maxlength` attribute set by the consumer.
+			// on the native `maxlength` attribute set by the developer.
 			if (this.counterMode === "word" && this.maxCount != null) {
 				const clamped = this._truncateToWordLimit(el.value || "", this.maxCount);
 				if (clamped !== el.value) {
