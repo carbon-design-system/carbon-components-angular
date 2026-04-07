@@ -90,7 +90,12 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 		</section>
 	`,
 	standalone: true,
-	imports: [NgClass, Button, AsyncPipe, ReplacePipe]
+	imports: [
+		NgClass,
+		Button,
+		AsyncPipe,
+		ReplacePipe
+	]
 })
 export class TableToolbar {
 	@Input() model: TableModel;

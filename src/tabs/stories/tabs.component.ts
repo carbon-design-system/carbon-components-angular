@@ -45,7 +45,12 @@ import { Tab } from "../tab.component";
 			Tab Content 5
 		</cds-tab>
 	`,
-	imports: [Tab, Tabs, TabHeader, TabHeaderGroup],
+	imports: [
+		Tab,
+		Tabs,
+		TabHeader,
+		TabHeaderGroup
+	],
 	standalone: true
 })
 export class TabStory {
