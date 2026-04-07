@@ -360,7 +360,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Send changes back to the model */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/** Register a change propagation function for `ControlValueAccessor` */
 	registerOnChange(fn: any) {
@@ -368,7 +368,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Callback to notify the model when our input has been touched */
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
 	/** Register a callback to notify when our input has been touched */
 	registerOnTouched(fn: any) {

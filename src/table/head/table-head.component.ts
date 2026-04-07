@@ -99,7 +99,13 @@ import { TableHeadCell } from "./table-head-cell.component";
 		}
 	`],
 	standalone: true,
-	imports: [TableHeadExpand, NgClass, TableHeadCheckbox, TableHeadCell, NgStyle]
+	imports: [
+		TableHeadExpand,
+		NgClass,
+		TableHeadCheckbox,
+		TableHeadCell,
+		NgStyle
+	]
 })
 export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;

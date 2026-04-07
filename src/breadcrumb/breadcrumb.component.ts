@@ -130,7 +130,13 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
 	providers: [EventService],
-	imports: [NgClass, BreadcrumbItemComponent, NgTemplateOutlet, IconDirective, OverflowMenu]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		BreadcrumbItemComponent,
+		IconDirective,
+		OverflowMenu
+	]
 })
 export class Breadcrumb implements AfterContentInit {
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;
@@ -204,7 +210,7 @@ export class Breadcrumb implements AfterContentInit {
 	protected _threshold: number;
 	protected _skeleton = false;
 
-	constructor(protected i18n: I18n, @Optional() protected router: Router) { }
+	constructor(protected i18n: I18n, @Optional() protected router: Router) {}
 
 	ngAfterContentInit() {
 		this.updateChildren();

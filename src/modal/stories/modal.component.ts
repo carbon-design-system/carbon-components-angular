@@ -18,7 +18,7 @@ export class ModalStory {
 	@Input() size = "md";
 	@Input() showCloseButton = true;
 
-	constructor(protected modalService: ModalService) { }
+	constructor(protected modalService: ModalService) {}
 
 	openModal() {
 		this.modalService.create({

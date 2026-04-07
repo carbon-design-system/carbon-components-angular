@@ -111,7 +111,7 @@ export class Header {
 	constructor(
 		public i18n: I18n,
 		protected domSanitizer: DomSanitizer,
-		@Optional() protected router: Router) { }
+		@Optional() protected router: Router) {}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;

@@ -24,4 +24,4 @@ import { IconModule } from "carbon-components-angular/icon";
 		IconModule
 	]
 })
-export class BreadcrumbModule { }
+export class BreadcrumbModule {}

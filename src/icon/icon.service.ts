@@ -1,4 +1,4 @@
-import { Injectable, Optional, SkipSelf } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { toString } from "@carbon/icon-helpers";
 
 // icon imports

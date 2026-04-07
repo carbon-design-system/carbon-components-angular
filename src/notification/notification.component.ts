@@ -52,7 +52,13 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 	`,
 	standalone: true,
 	providers: [NotificationDisplayService],
-	imports: [IconDirective, NotificationTitle, NotificationSubtitle, NgTemplateOutlet, AsyncPipe]
+	imports: [
+		IconDirective,
+		NotificationTitle,
+		NotificationSubtitle,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Notification extends BaseNotification {
 	private static notificationCount = 0;

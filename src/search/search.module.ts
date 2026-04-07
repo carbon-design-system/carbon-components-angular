@@ -20,4 +20,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		Search
 	]
 })
-export class SearchModule { }
+export class SearchModule {}

@@ -10,7 +10,7 @@ import { IconService } from "../";
 	`
 })
 export class IconDemo implements OnInit {
-	constructor(protected iconService: IconService) { }
+	constructor(protected iconService: IconService) {}
 
 	ngOnInit() {
 		this.iconService.register(Accessibility16);

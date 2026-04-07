@@ -15,7 +15,7 @@ import { Button } from "carbon-components-angular/button";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { FileComponent } from "./file.component";
 
-const noop = () => { };
+const noop = () => {};
 
 /**
  * Get started with importing the components:
@@ -102,7 +102,12 @@ const noop = () => { };
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [Button, NgClass, NgTemplateOutlet, FileComponent]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		Button,
+		FileComponent
+	]
 })
 export class FileUploader implements ControlValueAccessor {
 	/**

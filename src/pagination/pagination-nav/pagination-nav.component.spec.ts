@@ -50,9 +50,7 @@ describe("PaginationNav", () => {
 	});
 
 	it("should work", () => {
-		expect(paginationComponent.componentInstance instanceof PaginationNav).toBe(
-			true
-		);
+		expect(paginationComponent.componentInstance instanceof PaginationNav).toBe(true);
 	});
 
 	it("should emit selectPage with the correct page when current page changes", () => {

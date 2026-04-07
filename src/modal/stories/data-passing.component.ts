@@ -26,7 +26,7 @@ export class DataPassingModal implements AfterContentInit {
 	protected modalInputValue = "";
 	protected data: Observable<string> = new Subject<string>();
 
-	constructor(protected modalService: ModalService) { }
+	constructor(protected modalService: ModalService) {}
 
 	openModal() {
 		this.modalService.create({

@@ -17,4 +17,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		FileComponent
 	]
 })
-export class FileUploaderModule { }
+export class FileUploaderModule {}

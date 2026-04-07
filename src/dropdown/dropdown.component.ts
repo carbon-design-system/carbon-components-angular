@@ -229,7 +229,12 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, NgTemplateOutlet, IconDirective, AsyncPipe]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;

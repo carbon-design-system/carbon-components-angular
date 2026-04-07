@@ -13,4 +13,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		DatePickerInput
 	]
 })
-export class DatePickerInputModule { }
+export class DatePickerInputModule {}

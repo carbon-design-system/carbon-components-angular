@@ -18,4 +18,4 @@ import { I18nModule } from "carbon-components-angular/i18n";
 		DatePicker
 	]
 })
-export class DatePickerModule { }
+export class DatePickerModule {}

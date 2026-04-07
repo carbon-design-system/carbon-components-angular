@@ -307,7 +307,7 @@ export class DatePicker implements
 	constructor(
 		protected elementRef: ElementRef,
 		protected i18n: I18n
-	) { }
+	) {}
 
 	ngOnInit() {
 		// if i18n is set to anything other than en we'll want to change the language
@@ -418,9 +418,9 @@ export class DatePicker implements
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * Cleans up our flatpickr instance

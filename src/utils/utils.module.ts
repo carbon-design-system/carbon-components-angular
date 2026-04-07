@@ -16,4 +16,4 @@ import { DocumentService } from "./document.service";
 		EventService
 	]
 })
-export class UtilsModule { }
+export class UtilsModule {}

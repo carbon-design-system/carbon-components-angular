@@ -91,9 +91,9 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 		TileGroup.tileGroupCount++;
 	}
 
-	onChange = (_: any) => { };
+	onChange = (_: any) => {};
 
-	onTouched = () => { };
+	onTouched = () => {};
 
 	ngAfterContentInit() {
 		const updateTiles = () => {

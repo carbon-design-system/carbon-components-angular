@@ -8,6 +8,11 @@ import { TreeNodeComponent } from "./tree-node.component";
 
 @NgModule({
 	exports: [TreeViewComponent, TreeNodeComponent],
-	imports: [CommonModule, IconDirective, TreeViewComponent, TreeNodeComponent]
+	imports: [
+		CommonModule,
+		IconDirective,
+		TreeViewComponent,
+		TreeNodeComponent
+	]
 })
 export class TreeviewModule {}

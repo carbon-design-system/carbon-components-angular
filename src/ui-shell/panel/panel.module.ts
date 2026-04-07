@@ -27,4 +27,4 @@ export {
 		SwitcherListItem
 	]
 })
-export class PanelModule { }
+export class PanelModule {}

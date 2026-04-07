@@ -38,4 +38,4 @@ import { PasswordInputLabelComponent } from "./password-input-label.component";
 		PasswordInputLabelComponent
 	]
 })
-export class InputModule { }
+export class InputModule {}

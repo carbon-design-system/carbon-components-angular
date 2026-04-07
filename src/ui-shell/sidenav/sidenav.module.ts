@@ -33,4 +33,4 @@ export {
 		SideNavMenu
 	]
 })
-export class SideNavModule { }
+export class SideNavModule {}

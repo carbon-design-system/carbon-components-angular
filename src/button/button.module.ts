@@ -23,4 +23,4 @@ import { TooltipModule } from "carbon-components-angular/tooltip";
 		IconButton
 	]
 })
-export class ButtonModule { }
+export class ButtonModule {}

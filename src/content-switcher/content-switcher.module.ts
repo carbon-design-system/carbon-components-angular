@@ -15,4 +15,4 @@ import { ContentSwitcherOption } from "./content-switcher-option.directive";
 		ContentSwitcherOption
 	]
 })
-export class ContentSwitcherModule { }
+export class ContentSwitcherModule {}

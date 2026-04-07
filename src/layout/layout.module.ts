@@ -10,4 +10,4 @@ import { StackDirective } from "./stack.directive";
 		StackDirective
 	]
 })
-export class LayoutModule { }
+export class LayoutModule {}

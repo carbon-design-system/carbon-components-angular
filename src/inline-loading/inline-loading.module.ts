@@ -8,4 +8,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 	exports: [InlineLoading],
 	imports: [CommonModule, IconDirective, InlineLoading]
 })
-export class InlineLoadingModule { }
+export class InlineLoadingModule {}

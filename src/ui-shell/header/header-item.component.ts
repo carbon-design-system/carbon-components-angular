@@ -46,7 +46,12 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		}
 	`],
 	standalone: true,
-	imports: [NgClass, NgTemplateOutlet, RouterLinkActive, RouterLink],
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		RouterLinkActive,
+		RouterLink
+	],
 	providers: [Router]
 })
 export class HeaderItem {
@@ -97,7 +102,7 @@ export class HeaderItem {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	navigate(event) {
 		if (this.router && this.route) {

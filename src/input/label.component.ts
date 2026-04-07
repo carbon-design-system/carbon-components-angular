@@ -165,7 +165,14 @@ import { IconDirective } from "carbon-components-angular/icon";
 		</ng-template>
 	`,
 	standalone: true,
-	imports: [TextareaLabelComponent, TextInputLabelComponent, PasswordInputLabelComponent, NgTemplateOutlet, NgClass, IconDirective]
+	imports: [
+		NgTemplateOutlet,
+		NgClass,
+		TextareaLabelComponent,
+		TextInputLabelComponent,
+		PasswordInputLabelComponent,
+		IconDirective
+	]
 })
 export class Label implements AfterContentInit, AfterViewInit {
 	/**

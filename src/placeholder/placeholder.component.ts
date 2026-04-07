@@ -33,7 +33,7 @@ export class Placeholder implements OnInit {
 	/**
 	 * Creates an instance of `Placeholder`.
 	 */
-	constructor(public placeholderService: PlaceholderService) { }
+	constructor(public placeholderService: PlaceholderService) {}
 
 	/**
 	 * Registers the components view with `PlaceholderService`

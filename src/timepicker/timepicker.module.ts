@@ -13,4 +13,4 @@ import { TimePickerSelectModule } from "carbon-components-angular/timepicker-sel
 		TimePicker
 	]
 })
-export class TimePickerModule { }
+export class TimePickerModule {}

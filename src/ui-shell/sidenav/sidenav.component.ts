@@ -116,7 +116,7 @@ export class SideNav {
 	 */
 	@Input() useRouter = false;
 
-	constructor(public i18n: I18n) { }
+	constructor(public i18n: I18n) {}
 
 	toggle() {
 		this.expanded = !this.expanded;

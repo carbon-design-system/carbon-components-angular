@@ -1,10 +1,9 @@
 // modules
-import { NgModule, Optional, SkipSelf } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 // imports
 import { IconDirective } from "./icon.directive";
-import { IconService } from "./icon.service";
 
 @NgModule({
 	exports: [
@@ -16,6 +15,4 @@ import { IconService } from "./icon.service";
 	]
 })
 export class IconModule {
-	constructor(protected iconService: IconService) {
-	}
 }

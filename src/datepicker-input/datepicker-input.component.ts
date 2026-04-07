@@ -191,7 +191,7 @@ export class DatePickerInput {
 
 	@ViewChild("input") input: ElementRef;
 
-	constructor(protected elementRef: ElementRef) { }
+	constructor(protected elementRef: ElementRef) {}
 
 	onChange(event) {
 		this.value = event.target.value;
@@ -212,9 +212,9 @@ export class DatePickerInput {
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;

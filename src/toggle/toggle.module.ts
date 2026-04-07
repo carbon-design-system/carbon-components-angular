@@ -18,4 +18,4 @@ import { Toggle } from "./toggle.component";
 		Toggle
 	]
 })
-export class ToggleModule { }
+export class ToggleModule {}

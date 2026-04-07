@@ -68,7 +68,7 @@ export class BaseNotification {
 	constructor(
 		protected notificationDisplayService: NotificationDisplayService,
 		protected i18n: I18n
-	) { }
+	) {}
 
 	/**
 	 * Emits close event.

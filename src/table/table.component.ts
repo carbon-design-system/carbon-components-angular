@@ -260,7 +260,15 @@ import { TableBody } from "./body/table-body.component";
 		}
 	`],
 	standalone: true,
-	imports: [TableDirective, NgClass, TableHead, TableBody, NgStyle, NgTemplateOutlet, AsyncPipe]
+	imports: [
+		TableDirective,
+		NgClass,
+		TableHead,
+		TableBody,
+		NgStyle,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Table implements OnInit, AfterViewInit, OnDestroy {
 	/**
@@ -666,7 +674,7 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 		protected elementRef: ElementRef,
 		protected applicationRef: ApplicationRef,
 		protected i18n: I18n
-	) { }
+	) {}
 
 	ngOnInit() {
 		// Manually trigger check to see if all checkboxes are selected

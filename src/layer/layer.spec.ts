@@ -21,7 +21,7 @@ class TestLayerComponent {
 	imports: [LayerDirective],
 	standalone: true
 })
-class TestNestedLayerComponent { }
+class TestNestedLayerComponent {}
 
 describe("Layer", () => {
 	beforeEach(() => {

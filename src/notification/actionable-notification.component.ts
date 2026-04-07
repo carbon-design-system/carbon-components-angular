@@ -76,7 +76,17 @@ import { Button } from "carbon-components-angular/button";
 	`,
 	standalone: true,
 	providers: [NotificationDisplayService],
-	imports: [IconDirective, NgClass, ActionableTitle, ActionableSubtitle, Link, NgTemplateOutlet, ActionableButton, Button, AsyncPipe]
+	imports: [
+		IconDirective,
+		NgClass,
+		ActionableTitle,
+		ActionableSubtitle,
+		Link,
+		NgTemplateOutlet,
+		ActionableButton,
+		Button,
+		AsyncPipe
+	]
 })
 export class ActionableNotification extends BaseNotification {
 	private static notificationCount = 0;

@@ -18,4 +18,4 @@ export const EXPERIMENTAL_SERVICE_PROVIDER = {
 		EXPERIMENTAL_SERVICE_PROVIDER
 	]
 })
-export class ExperimentalModule { }
+export class ExperimentalModule {}

@@ -142,9 +142,9 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 
 	protected _skeleton = false;
 
-	onChange = (_: any) => { };
+	onChange = (_: any) => {};
 
-	onTouched = () => { };
+	onTouched = () => {};
 
 	ngAfterContentInit() {
 		const setSelection = (rowOrHeader: ListRow | ListHeader) => {

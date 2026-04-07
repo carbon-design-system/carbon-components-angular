@@ -60,7 +60,13 @@ import { NgTemplateOutlet, NgClass } from "@angular/common";
 		}
 	`],
 	standalone: true,
-	imports: [RouterLinkActive, RouterLink, RouterLinkExtendedDirective, NgTemplateOutlet, NgClass]
+	imports: [
+		NgTemplateOutlet,
+		NgClass,
+		RouterLinkActive,
+		RouterLink,
+		RouterLinkExtendedDirective
+	]
 })
 export class SideNavItem implements OnChanges {
 	/**

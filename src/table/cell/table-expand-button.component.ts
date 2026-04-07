@@ -58,7 +58,7 @@ export class TableExpandButton {
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

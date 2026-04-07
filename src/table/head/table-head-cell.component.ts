@@ -83,7 +83,12 @@ import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 		}
 	`,
 	standalone: true,
-	imports: [NgClass, NgTemplateOutlet, TableHeadCellLabel, AsyncPipe]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		TableHeadCellLabel,
+		AsyncPipe
+	]
 })
 export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
@@ -130,7 +135,7 @@ export class TableHeadCell implements OnChanges {
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	ngOnChanges() {
 		// Since it's not an input, and it touches the view, we're using `ngOnChanges`

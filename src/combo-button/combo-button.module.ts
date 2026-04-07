@@ -17,4 +17,4 @@ import { ComboButtonComponent } from "./combo-button.component";
 	],
 	exports: [ComboButtonComponent]
 })
-export class ComboButtonModule { }
+export class ComboButtonModule {}

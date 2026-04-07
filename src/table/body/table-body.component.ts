@@ -73,7 +73,12 @@ import { ExpandedRowHover } from "../expanded-row-hover.directive";
 		<ng-content />
 	`,
 	standalone: true,
-	imports: [TableRowComponent, NgClass, TableExpandedRow, ExpandedRowHover]
+	imports: [
+		TableRowComponent,
+		NgClass,
+		TableExpandedRow,
+		ExpandedRowHover
+	]
 })
 export class TableBody {
 	@Input() model: TableModel;
@@ -147,7 +152,7 @@ export class TableBody {
 	protected _checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	/**
 	 * Triggered when a single row is clicked.

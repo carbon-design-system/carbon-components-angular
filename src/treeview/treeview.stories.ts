@@ -8,7 +8,13 @@ export default {
 	title: "Components/Tree view",
 	decorators: [
 		moduleMetadata({
-			imports: [CommonModule, TreeViewComponent, IconDirective, TreeNodeComponent, IconTreeviewDemoComponent]
+			imports: [
+				CommonModule,
+				TreeViewComponent,
+				IconDirective,
+				TreeNodeComponent,
+				IconTreeviewDemoComponent
+			]
 		})
 	],
 	component: TreeViewComponent,

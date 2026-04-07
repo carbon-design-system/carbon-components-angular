@@ -92,8 +92,21 @@ import { FormsModule } from "@angular/forms";
 		}
 	`
 	],
-	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, Tag, Radio, Header,
-		Hamburger, TableContainer, Table, RadioGroup, Radio, Button, FormsModule],
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		Tag,
+		Radio,
+		Header,
+		Hamburger,
+		TableContainer,
+		Table, RadioGroup,
+		Radio,
+		Button,
+		FormsModule
+	],
 	standalone: true
 })
 class SampleMultiCategories implements OnInit, OnDestroy {

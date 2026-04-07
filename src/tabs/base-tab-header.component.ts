@@ -90,7 +90,7 @@ export class BaseTabHeader {
 		protected changeDetectorRef: ChangeDetectorRef,
 		protected eventService: EventService,
 		protected renderer: Renderer2
-	) { }
+	) {}
 
 	handleScroll() {
 		this.changeDetectorRef.markForCheck();

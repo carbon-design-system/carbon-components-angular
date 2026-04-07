@@ -54,7 +54,14 @@ import { NotificationService } from "./notification.service";
 	`,
 	standalone: true,
 	providers: [NotificationDisplayService],
-	imports: [IconDirective, ToastTitle, ToastSubtitle, ToastCaption, NgTemplateOutlet, AsyncPipe]
+	imports: [
+		IconDirective,
+		ToastTitle,
+		ToastSubtitle,
+		ToastCaption,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Toast extends BaseNotification implements OnInit {
 	private static toastCount = 0;

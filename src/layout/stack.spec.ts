@@ -9,7 +9,7 @@ import { StackDirective } from "./stack.directive";
 	imports: [StackDirective],
 	standalone: true
 })
-class TestStackComponent { }
+class TestStackComponent {}
 
 describe("Stack", () => {
 	beforeEach(() => {

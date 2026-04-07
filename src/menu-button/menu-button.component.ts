@@ -87,7 +87,12 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, Button, IconDirective, ContextMenuComponent]
+	imports: [
+		NgClass,
+		Button,
+		IconDirective,
+		ContextMenuComponent
+	]
 })
 export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static menuButtonCounter = 0;
@@ -131,7 +136,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 		protected hostElement: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	) {}
 
 
 	/**

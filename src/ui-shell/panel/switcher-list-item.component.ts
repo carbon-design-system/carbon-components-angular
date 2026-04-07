@@ -82,7 +82,7 @@ export class SwitcherListItem {
 	protected _href = "#";
 	protected _target = "";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	navigate(event) {
 		if (this.router && this.route) {

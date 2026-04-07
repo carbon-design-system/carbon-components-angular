@@ -27,7 +27,13 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 		</cds-modal>
 	`,
 	standalone: true,
-	imports: [Modal, ModalHeader, TextInput, Label, ModalFooter],
+	imports: [
+		Modal,
+		ModalHeader,
+		TextInput,
+		Label,
+		ModalFooter
+	],
 	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER]
 })
 export class InputModal extends BaseModal {

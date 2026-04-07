@@ -87,7 +87,15 @@ import { BaseModalService } from "./base-modal.service";
 	`,
 	standalone: true,
 	providers: [BaseModalService],
-	imports: [Modal, ModalHeader, ModalHeaderLabel, ModalHeaderHeading, ModalContent, ModalFooter, Button]
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalHeaderLabel,
+		ModalHeaderHeading,
+		ModalContent,
+		ModalFooter,
+		Button
+	]
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
 	@ViewChild("modalContent", { static: true }) modalContent: { nativeElement: any; };

@@ -17,4 +17,4 @@ import { MenuButtonComponent } from "./menu-button.component";
 	exports: [MenuButtonComponent],
 	providers: []
 })
-export class MenuButton { }
+export class MenuButton {}

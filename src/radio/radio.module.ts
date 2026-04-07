@@ -21,4 +21,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		RadioGroup
 	]
 })
-export class RadioModule { }
+export class RadioModule {}

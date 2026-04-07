@@ -87,7 +87,13 @@ export interface ExpandableTileTranslations {
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, NgStyle, NgTemplateOutlet, IconDirective, AsyncPipe]
+	imports: [
+		NgClass,
+		NgStyle,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class ExpandableTile implements AfterViewInit {
 	/**

@@ -36,7 +36,13 @@ import {
 			</div>
 		</cds-toggletip>
 		`,
-	imports: [Toggletip, ToggletipContent, ToggletipButton, ToggletipAction, ToggletipLabel],
+	imports: [
+		Toggletip,
+		ToggletipContent,
+		ToggletipButton,
+		ToggletipAction,
+		ToggletipLabel
+	],
 	standalone: true
 })
 class TestToggletipComponent {

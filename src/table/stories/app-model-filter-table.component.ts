@@ -94,8 +94,20 @@ import { TableToolbar } from "../toolbar/table-toolbar.component";
 	</ng-template>
 	`,
 	standalone: true,
-	imports: [Table, TableContainer, TableHeader, TableToolbar, TableToolbarContent, TableToolbarSearch,
-		IconDirective, Button, OverflowMenu, OverflowMenuOption, OverflowMenuDirective, Checkbox]
+	imports: [
+		Table,
+		TableContainer,
+		TableHeader,
+		TableToolbar,
+		TableToolbarContent,
+		TableToolbarSearch,
+		IconDirective,
+		Button,
+		OverflowMenu,
+		OverflowMenuOption,
+		OverflowMenuDirective,
+		Checkbox
+	]
 })
 export class FilterWithModelStory implements OnInit {
 	@Input() size = "md";

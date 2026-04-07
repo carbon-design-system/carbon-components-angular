@@ -217,7 +217,15 @@ export interface PaginationTranslations {
 		</div>
 	`,
 	standalone: true,
-	imports: [NgClass, FormsModule, IconDirective, NgStyle, Button, AsyncPipe, ReplacePipe],
+	imports: [
+		NgClass,
+		FormsModule,
+		IconDirective,
+		NgStyle,
+		Button,
+		AsyncPipe,
+		ReplacePipe
+	],
 	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class Pagination {

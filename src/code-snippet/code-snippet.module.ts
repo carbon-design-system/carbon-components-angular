@@ -22,4 +22,4 @@ import { CodeSnippet } from "./code-snippet.component";
 		IconModule
 	]
 })
-export class CodeSnippetModule { }
+export class CodeSnippetModule {}

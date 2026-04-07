@@ -10,7 +10,7 @@ import { LayerDirective } from "../layer";
 	imports: [ThemeDirective],
 	standalone: true
 })
-class TestThemeComponent { }
+class TestThemeComponent {}
 
 describe("Theme", () => {
 	beforeEach(() => {

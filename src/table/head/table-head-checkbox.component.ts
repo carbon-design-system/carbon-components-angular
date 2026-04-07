@@ -58,7 +58,7 @@ export class TableHeadCheckbox {
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

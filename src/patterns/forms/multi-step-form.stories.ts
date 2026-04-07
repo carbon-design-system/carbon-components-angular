@@ -145,9 +145,24 @@ import { Label, TextArea, TextInput } from "../../input";
 			margin-top: 1.5rem;
 		}
 	`],
-	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, ProgressIndicator, Button,
-		Breadcrumb, BreadcrumbItemComponent, ReactiveFormsModule, Dropdown, DropdownList, Header,
-		Hamburger,  Label, TextArea, TextInput],
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		ProgressIndicator,
+		Button,
+		Breadcrumb,
+		BreadcrumbItemComponent,
+		ReactiveFormsModule,
+		Dropdown,
+		DropdownList,
+		Header,
+		Hamburger,
+		Label,
+		TextArea,
+		TextInput
+	],
 	standalone: true
 })
 class MultiStepFormStory implements OnInit, OnDestroy {
@@ -183,7 +198,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	currentStep = 1;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	ngOnInit() {
 		document.querySelector(".sb-show-main")?.classList.add("full-page");

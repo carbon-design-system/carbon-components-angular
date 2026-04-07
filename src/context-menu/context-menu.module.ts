@@ -23,4 +23,4 @@ import { ContextMenuComponent } from "./context-menu.component";
 		ContextMenuComponent
 	]
 })
-export class ContextMenuModule { }
+export class ContextMenuModule {}

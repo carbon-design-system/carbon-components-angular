@@ -29,7 +29,7 @@ class DropdownTest {
 	items = [{ content: "one", id: 0, selected: false }, { content: "two", id: 1, selected: false }];
 	selected: ListItem;
 	@Input() isOpen = false;
-	onSelect() { }
+	onSelect() {}
 }
 
 describe("Dropdown", () => {

@@ -20,4 +20,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		Number
 	]
 })
-export class NumberModule { }
+export class NumberModule {}

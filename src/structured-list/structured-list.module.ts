@@ -23,4 +23,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		ListColumn
 	]
 })
-export class StructuredListModule { }
+export class StructuredListModule {}

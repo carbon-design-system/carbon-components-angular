@@ -40,7 +40,13 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 		</cds-contained-list>
 	`,
 	standalone: true,
-	imports: [ContainedList, ContainedListItem, IconDirective, IconButton, Button]
+	imports: [
+		ContainedList,
+		ContainedListItem,
+		IconDirective,
+		IconButton,
+		Button
+	]
 })
 class WrapperComponent {
 	constructor(private iconService: IconService) {

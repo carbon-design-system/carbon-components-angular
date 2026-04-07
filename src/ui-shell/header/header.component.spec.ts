@@ -20,7 +20,7 @@ import { RouterModule } from "@angular/router";
 	standalone: true,
 	imports: [Header, Hamburger]
 })
-class HamburgerTest { }
+class HamburgerTest {}
 
 describe("UI Shell Header", () => {
 	let component: Header;

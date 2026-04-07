@@ -72,7 +72,7 @@ export class PasswordInput implements AfterViewInit {
 
 	private _type = "password";
 
-	constructor(protected elementRef: ElementRef, protected renderer: Renderer2) { }
+	constructor(protected elementRef: ElementRef, protected renderer: Renderer2) {}
 
 	ngAfterViewInit(): void {
 		this.renderer.setAttribute(this.elementRef.nativeElement, "type", this._type);

@@ -61,7 +61,7 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	 */
 	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
-	constructor(protected elementRef: ElementRef) { }
+	constructor(protected elementRef: ElementRef) {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.open && changes.open.currentValue) {

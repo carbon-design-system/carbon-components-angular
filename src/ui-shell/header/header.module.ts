@@ -52,4 +52,4 @@ export {
 		Hamburger
 	]
 })
-export class HeaderModule { }
+export class HeaderModule {}

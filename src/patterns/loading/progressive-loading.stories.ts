@@ -95,8 +95,19 @@ import { Hamburger, Header } from "../../ui-shell";
 		`
 	],
 	standalone: true,
-	imports: [GridDirective, RowDirective, ColumnDirective, Checkbox, Dropdown, DropdownList,
-		Table, TableContainer, Button, Header, Hamburger]
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		Dropdown,
+		DropdownList,
+		Table,
+		TableContainer,
+		Button,
+		Header,
+		Hamburger
+	]
 })
 class SampleProgressiveLoading implements OnInit, OnDestroy {
 	model = new TableModel();

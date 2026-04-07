@@ -15,7 +15,7 @@ import { RouterModule } from "@angular/router";
 	standalone: true,
 	imports: [CommonModule]
 })
-class FooComponent { }
+class FooComponent {}
 
 @Component({
 	template: `

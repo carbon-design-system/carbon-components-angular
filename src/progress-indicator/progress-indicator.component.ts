@@ -115,7 +115,7 @@ export class ProgressIndicator {
 
 	private _current: number;
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	/**
 	 * Executes click function if `onClick` exists for step

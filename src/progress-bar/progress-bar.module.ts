@@ -14,4 +14,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		ProgressBar
 	]
 })
-export class ProgressBarModule { }
+export class ProgressBarModule {}

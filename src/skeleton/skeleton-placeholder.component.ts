@@ -15,4 +15,4 @@ import { Component } from "@angular/core";
 		<div class="cds--skeleton__placeholder"></div>`,
 	standalone: true
 })
-export class SkeletonPlaceholder { }
+export class SkeletonPlaceholder {}

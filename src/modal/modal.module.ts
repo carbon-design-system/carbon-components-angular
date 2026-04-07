@@ -53,4 +53,4 @@ import { IconModule } from "carbon-components-angular/icon";
 		BaseModal
 	]
 })
-export class ModalModule { }
+export class ModalModule {}

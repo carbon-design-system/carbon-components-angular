@@ -173,7 +173,12 @@ export class NumberChange {
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, NgTemplateOutlet, IconDirective, AsyncPipe]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class NumberComponent implements ControlValueAccessor {
 	/**
@@ -371,12 +376,12 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Called when number input is blurred. Needed to properly implement `ControlValueAccessor`.
 	 */
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
 	 */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * Adds `step` to the current `value`.

@@ -382,7 +382,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => {};
+	protected onTouchedHandler = () => {};
 
 }

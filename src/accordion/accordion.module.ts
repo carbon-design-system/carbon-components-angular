@@ -17,4 +17,4 @@ import { IconModule } from "carbon-components-angular/icon";
 		AccordionItem
 	]
 })
-export class AccordionModule { }
+export class AccordionModule {}

@@ -154,6 +154,6 @@ export class TimePicker implements ControlValueAccessor {
 		return value instanceof TemplateRef;
 	}
 
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => {};
+	protected onTouchedHandler = () => {};
 }

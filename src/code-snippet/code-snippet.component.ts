@@ -142,7 +142,13 @@ export enum SnippetType {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
 	providers: [EventService],
-	imports: [NgTemplateOutlet, NgClass, NgStyle, IconDirective, IconButton]
+	imports: [
+		NgTemplateOutlet,
+		NgClass,
+		NgStyle,
+		IconDirective,
+		IconButton
+	]
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
 	@HostBinding("class.cds--snippet") get snippetClass() {

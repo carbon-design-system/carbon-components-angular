@@ -92,7 +92,12 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [Button, IconButton, IconDirective, ContextMenuComponent]
+	imports: [
+		Button,
+		IconButton,
+		IconDirective,
+		ContextMenuComponent
+	]
 })
 export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static comboButtonCounter = 0;
@@ -142,7 +147,7 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 		protected hostElement: ElementRef,
 		protected viewContainerRef: ViewContainerRef,
 		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	) {}
 
 
 	/**

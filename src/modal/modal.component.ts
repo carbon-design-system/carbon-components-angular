@@ -169,7 +169,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 		public modalService: BaseModalService,
 		@Inject(DOCUMENT) private document: Document,
 		private renderer: Renderer2
-	) { }
+	) {}
 
 	ngOnChanges({ open, hasScrollingContent }: SimpleChanges) {
 		if (open) {

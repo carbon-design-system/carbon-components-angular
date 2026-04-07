@@ -15,4 +15,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		TimePickerSelect
 	]
 })
-export class TimePickerSelectModule { }
+export class TimePickerSelectModule {}

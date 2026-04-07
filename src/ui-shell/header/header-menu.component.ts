@@ -85,7 +85,7 @@ export class HeaderMenu {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
+	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) {}
 
 	@HostListener("click")
 	onClick() {

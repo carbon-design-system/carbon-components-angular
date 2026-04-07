@@ -72,7 +72,7 @@ export class BreadcrumbItemComponent {
 
 	protected _href: string;
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	useTemplate() {
 		return this.skeleton || this._href || this.route;

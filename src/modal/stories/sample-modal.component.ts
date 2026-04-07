@@ -37,8 +37,17 @@ import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../../placeholder";
 		<!-- we need the placeholder again, somce this is standalone and we cannot assume that the higher component has a placeholder-->
 		<cds-placeholder></cds-placeholder>
 	`,
-	imports: [Modal, ModalHeader, ModalHeaderLabel, ModalHeaderHeading, ModalContent,
-		ModalContentText, ModalFooter, AlertModal, Placeholder],
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalHeaderLabel,
+		ModalHeaderHeading,
+		ModalContent,
+		ModalContentText,
+		ModalFooter,
+		AlertModal,
+		Placeholder
+	],
 	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER],
 	standalone: true
 })

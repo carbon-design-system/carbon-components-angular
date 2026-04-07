@@ -5,13 +5,13 @@ import { Hamburger, HeaderNavigation, NavigationItem, SideNav } from "../";
 	selector: "app-bar",
 	template: "<h1>bar</h1>"
 })
-export class BarComponent { }
+export class BarComponent {}
 
 @Component({
 	selector: "app-foo",
 	template: "<h1>foo</h1>"
 })
-export class FooComponent { }
+export class FooComponent {}
 
 @Component({
 	selector: "app-header-fluid",

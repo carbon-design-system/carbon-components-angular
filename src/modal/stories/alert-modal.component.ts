@@ -24,7 +24,7 @@ export class AlertModalStory {
 	@Input() size: "xs" | "sm" | "md" | "lg";
 	@Input() showCloseButton: boolean;
 
-	constructor(protected modalService: ModalService) { }
+	constructor(protected modalService: ModalService) {}
 
 	openModal() {
 		this.modalService.show({

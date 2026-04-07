@@ -24,4 +24,4 @@ import { IconDirective } from "carbon-components-angular/icon";
 		OptGroup
 	]
 })
-export class SelectModule { }
+export class SelectModule {}

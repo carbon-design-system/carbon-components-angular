@@ -14,4 +14,4 @@ export { Documentation } from "./documentation.component";
 		CommonModule
 	]
 })
-export class DocumentationModule { }
+export class DocumentationModule {}

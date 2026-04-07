@@ -41,7 +41,12 @@ import { JsonPipe } from "@angular/common";
 		<br>
 		<code>{{ formGroup.get("roles").value | json }}</code>
 	`,
-	imports: [Dropdown, DropdownList, JsonPipe, ReactiveFormsModule],
+	imports: [
+		Dropdown,
+		DropdownList,
+		JsonPipe,
+		ReactiveFormsModule
+	],
 	standalone: true
 })
 export class ReactiveFormsStory implements OnInit {
@@ -65,7 +70,7 @@ export class ReactiveFormsStory implements OnInit {
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
-	constructor(protected formBuilder: FormBuilder) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

@@ -11,4 +11,4 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "./placeholder.service";
 	providers: [PLACEHOLDER_SERVICE_PROVIDER],
 	imports: [CommonModule, Placeholder]
 })
-export class PlaceholderModule { }
+export class PlaceholderModule {}

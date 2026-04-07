@@ -39,7 +39,17 @@ import { Label, TextInput } from "../../input";
 			margin-bottom: 30px;
 		}
 	`],
-	imports: [Modal, ModalHeader, ModalHeaderLabel, ModalHeaderHeading, ModalFooter, Label, TextInput, ModalContent, ModalContentText],
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalHeaderLabel,
+		ModalHeaderHeading,
+		ModalFooter,
+		Label,
+		TextInput,
+		ModalContent,
+		ModalContentText
+	],
 	standalone: true
 })
-export class SampleFormModal extends BaseModal { }
+export class SampleFormModal extends BaseModal {}

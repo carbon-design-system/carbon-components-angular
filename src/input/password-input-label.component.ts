@@ -156,7 +156,12 @@ import { Tooltip } from "carbon-components-angular/tooltip";
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, NgTemplateOutlet, IconDirective, Tooltip]
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		Tooltip
+	]
 })
 /**
  * Represents the Password Input Label Component.

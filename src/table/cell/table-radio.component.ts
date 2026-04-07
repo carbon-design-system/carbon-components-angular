@@ -73,7 +73,7 @@ export class TableRadio {
 
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

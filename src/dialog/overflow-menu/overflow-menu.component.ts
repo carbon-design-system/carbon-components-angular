@@ -99,7 +99,14 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
 	providers: [PlaceholderService],
-	imports: [Tooltip, Button, OverflowMenuDirective, NgClass, NgTemplateOutlet, IconDirective]
+	imports: [
+		Tooltip,
+		Button,
+		OverflowMenuDirective,
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective
+	]
 })
 export class OverflowMenu extends BaseIconButton {
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
