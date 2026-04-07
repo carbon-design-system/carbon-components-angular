@@ -924,7 +924,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		const attrKeys &#x3D; Object.keys(attributes);
 		for (let i &#x3D; 0; i &lt; attrKeys.length; i++) {
 			const key &#x3D; attrKeys[i];
-			const value &#x3D; attributes[key];
+			const value &#x3D; attributes[key] as string;
 
 			if (key &#x3D;&#x3D;&#x3D; &quot;title&quot;) {
 				continue;
@@ -937,7 +937,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 
 		if (attributes[&quot;title&quot;]) {
 			const title &#x3D; document.createElementNS(xmlns, &quot;title&quot;);
-			title.textContent &#x3D; attributes.title;
+			title.textContent &#x3D; attributes.title as string;
 			IconDirective.titleIdCounter++;
 			title.setAttribute(&quot;id&quot;, &#x60;${icon.name}-title-${IconDirective.titleIdCounter}&#x60;);
 			// title must be first for screen readers
