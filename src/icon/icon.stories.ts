@@ -3,7 +3,7 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { IconModule, IconDirective } from "./";
-import { GridModule } from '../grid';
+import { GridModule } from "../grid";
 import { IconDemo, ManyIconDemo, ManyPictogramsDemo } from "./stories";
 
 export default {
