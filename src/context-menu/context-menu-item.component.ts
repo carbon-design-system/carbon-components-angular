@@ -11,7 +11,8 @@ import {
 	OnInit,
 	AfterContentInit,
 	OnDestroy,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	ChangeDetectorRef
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
@@ -81,6 +82,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 
 	constructor(
 		protected elementRef: ElementRef,
+		private changeDetectorRef: ChangeDetectorRef,
 		@Optional() protected contextMenuSelectionService: ContextMenuSelectionService
 	) {}
 
@@ -111,6 +113,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 				if (this.type === "checkbox") {
 					this.handleSelection(value.includes(this.value));
 				}
+				this.changeDetectorRef.markForCheck();
 			});
 			this.subscriptions.add(subscription);
 		}
