@@ -38,6 +38,7 @@ export * from "carbon-components-angular/search";
 export * from "carbon-components-angular/select";
 export * from "carbon-components-angular/skeleton";
 export * from "carbon-components-angular/slider";
+export * from "carbon-components-angular/slug";
 export * from "carbon-components-angular/structured-list";
 export * from "carbon-components-angular/table";
 export * from "carbon-components-angular/tabs";
