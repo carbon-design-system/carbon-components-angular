@@ -5,7 +5,8 @@ import {
 	EventEmitter,
 	ViewChild,
 	HostListener,
-	AfterViewInit
+	AfterViewInit,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
@@ -28,7 +29,9 @@ import { I18n } from "carbon-components-angular/i18n";
 			[ngClass]="{
 				'cds--tile--is-selected' : selected,
 				'cds--tile--light': theme === 'light',
-				'cds--tile--disabled' : disabled
+				'cds--tile--disabled' : disabled,
+				'cds--tile--decorator': !!decorator,
+				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
 			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<div class="cds--tile__checkmark"
@@ -44,6 +47,11 @@ import { I18n } from "carbon-components-angular/i18n";
 			<div class="cds--tile-content">
 				<ng-content></ng-content>
 			</div>
+			<ng-container *ngIf="decorator">
+				<div class="cds--tile--inner-decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			</ng-container>
 		</label>
 	`
 })
@@ -90,6 +98,16 @@ export class SelectionTile implements AfterViewInit {
 	 * Set to `true` to disable the selection tile.
 	 */
 	@Input() disabled = false;
+
+	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
 
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.

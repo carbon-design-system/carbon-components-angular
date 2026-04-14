@@ -7,12 +7,16 @@ import {
 	SelectionTile,
 	TileGroup
 } from "./";
+import { SlugModule } from "../slug";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tiles/Grouped",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule]
+			imports: [TilesModule, LayerModule, SlugModule, ButtonModule, IconModule]
 		})
 	],
 	argTypes: {
@@ -39,6 +43,34 @@ const SelectableTemplate = (args) => ({
 });
 export const Selectable = SelectableTemplate.bind({});
 Selectable.argTypes = {
+	selected: {
+		action: "Tile selected!"
+	}
+};
+
+const withAILabelTemplate = (args) => ({
+	props: args,
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-tile-group (selected)="selected($event)" [multiple]="false">
+			<cds-selection-tile value="t1" [decorator]="decoratorTpl">Tile with decorator</cds-selection-tile>
+			<cds-selection-tile value="t2">Plain tile</cds-selection-tile>
+		</cds-tile-group>
+		<ng-template #decoratorTpl>
+			<cds-slug
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_SLUG_INNER + `
+			</cds-slug>
+		</ng-template>
+	`
+});
+export const withAILabel = withAILabelTemplate.bind({});
+withAILabel.argTypes = {
 	selected: {
 		action: "Tile selected!"
 	}

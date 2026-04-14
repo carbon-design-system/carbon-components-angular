@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 
 /**
@@ -37,6 +38,11 @@ export type TagType = "red" |
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
+			<ng-container *ngIf="decorator">
+				<div class="cds--tag__decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			</ng-container>
 		</ng-container>
 	`
 })
@@ -54,6 +60,11 @@ export class Tag {
 	@Input() class = "";
 
 	@Input() skeleton = false;
+
+	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * @todo

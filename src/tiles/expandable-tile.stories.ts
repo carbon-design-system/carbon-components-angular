@@ -4,6 +4,9 @@ import { moduleMetadata, Meta, Story } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import { ButtonModule } from "../button";
 import { TilesModule, ExpandableTile } from "./";
+import { SlugModule } from "../slug";
+import { IconModule } from "../icon";
+import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tiles/Expandable",
@@ -12,7 +15,9 @@ export default {
 			imports: [
 				ButtonModule,
 				LayerModule,
-				TilesModule
+				TilesModule,
+				SlugModule,
+				IconModule
 			]
 		})
 	],
@@ -86,3 +91,24 @@ WithLayers.parameters = {
 		disable: true
 	}
 };
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-expandable-tile [decorator]="decoratorTpl">
+			<span cdsAboveFold style="height: 120px">Above the fold</span>
+			<span cdsBelowFold style="height: 120px">Below the fold</span>
+		</cds-expandable-tile>
+		<ng-template #decoratorTpl>
+			<cds-slug
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_SLUG_INNER + `
+			</cds-slug>
+		</ng-template>
+	`
+});

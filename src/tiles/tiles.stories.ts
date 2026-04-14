@@ -4,6 +4,10 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import { SkeletonModule } from "../skeleton";
 import { TilesModule, Tile } from "./";
+import { SlugModule } from "../slug";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tiles",
@@ -12,7 +16,10 @@ export default {
 			imports: [
 				TilesModule,
 				LayerModule,
-				SkeletonModule
+				SkeletonModule,
+				SlugModule,
+				ButtonModule,
+				IconModule
 			]
 		})
 	],
@@ -66,3 +73,23 @@ const SkeletonTemplate = (args) => ({
 	`]
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-tile [decorator]="decoratorTpl">
+			Tile with AI label
+		</cds-tile>
+		<ng-template #decoratorTpl>
+			<cds-slug
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_SLUG_INNER + `
+			</cds-slug>
+		</ng-template>
+	`
+});

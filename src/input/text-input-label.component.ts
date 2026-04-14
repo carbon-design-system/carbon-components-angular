@@ -93,7 +93,8 @@ import {
 			<div
 				class="cds--text-input__field-wrapper"
 				[ngClass]="{
-					'cds--text-input__field-wrapper--warning': warn
+					'cds--text-input__field-wrapper--warning': warn,
+					'cds--text-input__field-wrapper--decorator': !!decorator
 				}"
 					[attr.data-invalid]="(invalid ? true : null)"
 					#wrapper>
@@ -113,6 +114,11 @@ import {
 					<ng-template #textInputContent>
 						<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 					</ng-template>
+					<ng-container *ngIf="decorator">
+						<div class="cds--text-input__field-inner-wrapper--decorator">
+							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+						</div>
+					</ng-container>
 
 					<ng-container *ngIf="fluid">
 						<hr class="cds--text-input__divider" />
@@ -224,6 +230,11 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	@Input() fluid = false;
 
 	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
 	 * Set to `true` to hide the label visually, but keep accessible to
 	 * screen readers.
 	 */
@@ -275,6 +286,8 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	/**
 	 * Sets the id on the input item associated with the `Label` and attaches the
 	 * counter listener when `enableCounter` is already `true` on first render.
+	 * Sets the id on the input item associated with the `Label` and attaches the
+	 * counter listener when `enableCounter` is already `true` on first render.
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
@@ -287,6 +300,14 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 					this.changeDetectorRef.detectChanges();
 				}
 				inputElement.setAttribute("id", this.labelInputID);
+
+				this._inputElement = inputElement;
+
+				if (this.enableCounter) {
+					this.textCount = inputElement.value?.length || 0;
+					this._attachCounterListener();
+				}
+
 
 				this._inputElement = inputElement;
 

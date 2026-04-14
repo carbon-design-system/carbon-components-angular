@@ -63,7 +63,8 @@ export class NumberChange {
 			<div
 				class="cds--number__input-wrapper"
 				[ngClass]="{
-					'cds--number__input-wrapper--warning': warn
+					'cds--number__input-wrapper--warning': warn,
+					'cds--number__input-wrapper--decorator': !!decorator
 				}">
 				<input
 					type="number"
@@ -81,6 +82,11 @@ export class NumberChange {
 					(focus)="fluid ? handleFocus($event): null"
 					(blur)="fluid ? handleFocus($event): null"
 					(change)="onNumberInputChange($event)"/>
+				<ng-container *ngIf="decorator">
+					<div class="cds--number__input-inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<svg
 					*ngIf="!skeleton && invalid"
 					cdsIcon="warning--filled"
@@ -217,6 +223,11 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
 	/**
 	 * Sets the optional helper text.
 	 */

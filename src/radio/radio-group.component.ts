@@ -52,12 +52,18 @@ import { RadioChange } from "./radio-change.class";
 				'cds--radio-button-group--vertical': orientation === 'vertical',
 				'cds--radio-button-group--label-left': labelPlacement === 'left',
 				'cds--radio-button-group--invalid': invalid,
-				'cds--radio-button-group--warning': !invalid && warn
+				'cds--radio-button-group--warning': !invalid && warn,
+				'cds--radio-button-group--decorator': !!decorator
 			}"
 			[attr.data-invalid]="invalid ? true : null">
 			<legend *ngIf="legend" class="cds--label">
 				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
 				<ng-template #legendLabel>{{legend}}</ng-template>
+				<ng-container *ngIf="decorator">
+					<div class="cds--radio-button-group-inner--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 			</legend>
 			<ng-content></ng-content>
 		</fieldset>
@@ -204,6 +210,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input() labelPlacement: "right" | "left" =  "right";
 
 	@Input() legend: string | TemplateRef<any>;
+
+	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Used to set the `aria-label` attribute on the radio group element.

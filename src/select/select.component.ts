@@ -60,7 +60,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'cds--select--disabled': disabled,
 					'cds--select--readonly': readonly,
 					'cds--select--fluid--invalid': fluid && invalid,
-					'cds--select--fluid--focus': fluid && focused
+					'cds--select--fluid--focus': fluid && focused,
+					'cds--select--decorator': !!decorator
 				}">
 				<label
 					*ngIf="label"
@@ -132,6 +133,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					size="16"
 					class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 				</svg>
+				<ng-container *ngIf="decorator">
+					<div class="cds--select__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<ng-container *ngIf="fluid">
 					<hr class="cds--select__divider" />
 					<div
@@ -243,6 +249,11 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	 * Experimental: enable fluid state
 	 */
 	@Input() fluid = false;
+
+	/**
+	 * Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	@Output() valueChange = new EventEmitter();
 

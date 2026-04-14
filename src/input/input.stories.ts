@@ -2,12 +2,16 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { InputModule, TextInputLabelComponent } from "./";
+import { SlugModule } from "../slug";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule]
+			imports: [InputModule, SlugModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -93,3 +97,24 @@ const SkeletonTemplate = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-text-label [decorator]="decoratorTpl">
+			Text input with decorator
+			<input cdsText placeholder="Placeholder" />
+		</cds-text-label>
+		<ng-template #decoratorTpl>
+			<cds-slug
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_SLUG_INNER + `
+			</cds-slug>
+		</ng-template>
+	`
+});
