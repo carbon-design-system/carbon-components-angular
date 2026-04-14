@@ -14,16 +14,17 @@ export {
 };
 
 @NgModule({
-	declarations: [
+	imports: [
+		CommonModule,
+		I18nModule,
 		Panel,
 		SwitcherList,
 		SwitcherListItem
 	],
-	imports: [CommonModule, I18nModule],
 	exports: [
 		Panel,
 		SwitcherList,
 		SwitcherListItem
 	]
 })
-export class PanelModule { }
+export class PanelModule {}

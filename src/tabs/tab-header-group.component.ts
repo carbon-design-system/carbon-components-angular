@@ -19,6 +19,7 @@ import { EventService } from "carbon-components-angular/utils";
 
 import { TabHeader } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	selector: "cds-tab-header-group, ibm-tab-header-group",
@@ -81,7 +82,10 @@ import { BaseTabHeader } from "./base-tab-header.component";
 				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 			</svg>
 		</button>
-	`
+	`,
+	standalone: true,
+	providers: [EventService],
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit {
 	@Input() isNavigation = false;

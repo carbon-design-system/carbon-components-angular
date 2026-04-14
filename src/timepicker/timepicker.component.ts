@@ -8,12 +8,13 @@ import {
 	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TimePickerModule } from 'carbon-components-angular';
+ * import { TimePicker } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-time-picker--simple)
@@ -80,7 +81,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			useExisting: TimePicker,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {
 	/**
@@ -151,6 +154,6 @@ export class TimePicker implements ControlValueAccessor {
 		return value instanceof TemplateRef;
 	}
 
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => {};
+	protected onTouchedHandler = () => {};
 }

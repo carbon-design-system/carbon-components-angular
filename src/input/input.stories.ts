@@ -1,11 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { InputModule, TextInputLabelComponent } from "./";
+import { Label, TextInput, TextInputLabelComponent } from "./";
 
 export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule]
+			imports: [TextInput, Label]
 		})
 	],
 	args: {

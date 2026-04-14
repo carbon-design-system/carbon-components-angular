@@ -5,6 +5,8 @@ import {
 	Input
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * ***Inputs***
@@ -37,7 +39,9 @@ import { I18n } from "carbon-components-angular/i18n";
 			</div>
 		</header>
 
-	`
+	`,
+	standalone: true,
+	imports: [IconButton, IconDirective]
 })
 export class ModalHeader {
 	/**

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../i18n/index";
 import { Toggle } from "./toggle.component";
 
 describe("Toggle", () => {
@@ -12,8 +11,7 @@ describe("Toggle", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Toggle],
-			imports: [I18nModule],
+			imports: [Toggle],
 			providers: []
 		});
 

@@ -4,7 +4,8 @@ import { Component, HostBinding } from "@angular/core";
 	selector: "cds-table-header, ibm-table-header",
 	template: `
 		<ng-content />
-	`
+	`,
+	standalone: true
 })
 export class TableHeader {
 	@HostBinding("class.cds--data-table-header") headerClass = true;

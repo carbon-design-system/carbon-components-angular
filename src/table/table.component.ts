@@ -23,6 +23,10 @@ import { merge } from "carbon-components-angular/utils";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
 import { TableRowSize } from "./table.types";
+import { TableDirective } from "./table.directive";
+import { NgClass, NgStyle, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { TableHead } from "./head/table-head.component";
+import { TableBody } from "./body/table-body.component";
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -254,7 +258,17 @@ import { TableRowSize } from "./table.types";
 		:host {
 			display: block;
 		}
-	`]
+	`],
+	standalone: true,
+	imports: [
+		TableDirective,
+		NgClass,
+		TableHead,
+		TableBody,
+		NgStyle,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Table implements OnInit, AfterViewInit, OnDestroy {
 	/**
@@ -660,7 +674,7 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 		protected elementRef: ElementRef,
 		protected applicationRef: ApplicationRef,
 		protected i18n: I18n
-	) { }
+	) {}
 
 	ngOnInit() {
 		// Manually trigger check to see if all checkboxes are selected

@@ -19,7 +19,8 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 		<ng-content />
 	`,
 	providers: [ContextMenuSelectionService],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@HostBinding("attr.role") role = "group";

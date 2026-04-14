@@ -1,8 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
-import { IconModule } from "../icon/index";
 import { TimePickerSelect } from "./timepicker-select.component";
 
 @Component({
@@ -11,7 +9,11 @@ import { TimePickerSelect } from "./timepicker-select.component";
 		<option class="test" selected value="AM">AM</option>
 		<option class="test2" value="PM">PM</option>
 	</cds-timepicker-select>
-	`
+	`,
+	standalone: true,
+	imports: [
+		TimePickerSelect
+	]
 })
 class TimePickerSelectTest {
 	onChange(event) {}
@@ -21,13 +23,8 @@ describe("TimePickerSelect", () => {
 	let fixture, wrapper, element, component;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TimePickerSelect,
-				TimePickerSelectTest
-			],
 			imports: [
-				FormsModule,
-				IconModule
+				TimePickerSelectTest
 			]
 		});
 	});

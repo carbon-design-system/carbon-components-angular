@@ -6,6 +6,8 @@ import {
 	HostBinding,
 	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 export enum InlineLoadingState {
 	/** It hides the whole component. */
@@ -21,10 +23,10 @@ export enum InlineLoadingState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and the enum:
  *
  * ```typescript
- * import { InlineLoadingModule } from 'carbon-components-angular';
+ * import { InlineLoading, InlineLoadingState } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-inline-loading--basic)
@@ -69,7 +71,9 @@ export enum InlineLoadingState {
 		}
 
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, IconDirective]
 })
 export class InlineLoading {
 	InlineLoadingState = InlineLoadingState;

@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { TimePicker } from "./timepicker.component";
@@ -13,7 +12,9 @@ import { TimePicker } from "./timepicker.component";
 		label="test"
 		size="lg"
 		disabled="false">
-	</cds-timepicker>`
+	</cds-timepicker>`,
+	standalone: true,
+	imports: [TimePicker]
 })
 class TimePickerTest {
 	value = "12:12";
@@ -24,12 +25,8 @@ describe("TimePicker", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TimePicker,
-				TimePickerTest
-			],
 			imports: [
-				FormsModule
+				TimePickerTest
 			]
 		});
 	});

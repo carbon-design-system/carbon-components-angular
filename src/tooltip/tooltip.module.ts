@@ -6,14 +6,15 @@ import { Tooltip } from "./tooltip.component";
 import { TooltipDefinition } from "./definition-tooptip.component";
 
 @NgModule({
-	declarations: [
-		Tooltip,
-		TooltipDefinition
-	],
 	exports: [
 		Tooltip,
 		TooltipDefinition
 	],
-	imports: [CommonModule, PopoverModule]
+	imports: [
+		CommonModule,
+		PopoverModule,
+		Tooltip,
+		TooltipDefinition
+	]
 })
 export class TooltipModule {}

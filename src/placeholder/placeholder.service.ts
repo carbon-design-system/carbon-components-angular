@@ -1,7 +1,9 @@
 import {
 	ComponentRef,
 	ViewContainerRef,
-	Injector
+	Injector,
+	Optional,
+	SkipSelf
 } from "@angular/core";
 import { Injectable } from "@angular/core";
 
@@ -88,3 +90,15 @@ export class PlaceholderService {
 		return this.viewContainerRef.element.nativeElement.contains(element);
 	}
 }
+
+// either provides a new instance of PlaceholderService, or returns the parent
+export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: PlaceholderService) {
+	return parentService || new PlaceholderService();
+}
+
+// placeholder service *must* be a singleton to ensure the placeholder viewRef is accessible globally
+export const PLACEHOLDER_SERVICE_PROVIDER = {
+	provide: PlaceholderService,
+	deps: [[new Optional(), new SkipSelf(), PlaceholderService]],
+	useFactory: PLACEHOLDER_SERVICE_PROVIDER_FACTORY
+};

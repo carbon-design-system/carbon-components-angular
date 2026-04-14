@@ -3,6 +3,7 @@ import {
 	Input
 } from "@angular/core";
 import { TableItem } from "../table-item.class";
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -14,7 +15,9 @@ import { TableItem } from "../table-item.class";
 		@if (!skeleton) {
 			<ng-template [ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}" />
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class TableData {
 	@Input() item: TableItem;

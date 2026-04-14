@@ -1,5 +1,9 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { PaginationModule, PaginationNav } from "./";
+import {
+	Pagination,
+	PaginationNav,
+	PaginationNavItem,
+	PaginationOverflow } from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
 
@@ -8,8 +12,13 @@ export default {
 	title: "Components/Pagination Nav",
 	decorators: [
 		moduleMetadata({
-			imports: [PaginationModule],
-			declarations: [PaginationNavStory]
+			imports: [
+				Pagination,
+				PaginationNav,
+				PaginationNavItem,
+				PaginationOverflow,
+				PaginationNavStory
+			]
 		})
 	],
 	component: PaginationNav
@@ -27,7 +36,6 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[totalDataLength]="totalDataLength"
 			[numOfItemsToShow]="numOfItemsToShow"
-			[skeleton]="skeleton"
 			[size]="size">
 		</app-pagination>
 	`

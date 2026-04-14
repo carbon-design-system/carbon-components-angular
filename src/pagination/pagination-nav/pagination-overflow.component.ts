@@ -6,6 +6,9 @@ import {
 } from "@angular/core";
 import { range } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
+import { PaginationNavItem } from "./pagination-item.component";
+import { FormsModule } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Used to present a selection of pages when there is an overflow
@@ -45,7 +48,9 @@ import { I18n } from "carbon-components-angular/i18n";
 				</div>
 			</li>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [PaginationNavItem, FormsModule, IconDirective]
 })
 export class PaginationOverflow {
 	/**
@@ -60,6 +65,7 @@ export class PaginationOverflow {
 	/**
 	 * Emits click event
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {

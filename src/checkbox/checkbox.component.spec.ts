@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
@@ -17,7 +16,12 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 		[indeterminate]="indeterminate"
 		[(ngModel)]="model">
 	</cds-checkbox>
-	`
+	`,
+	standalone: true,
+	imports: [
+		Checkbox,
+		FormsModule
+	]
 })
 class CheckboxTest {
 	model = false;
@@ -33,8 +37,7 @@ const testingSetup = (checkboxComponent) => {
 	// configureTestingModule normally happens in `beforeEach`, but needed here because
 	// Exported Tests need access to the compiled component into the `fixture` variable
 	TestBed.configureTestingModule({
-		declarations: [Checkbox, CheckboxTest],
-		imports: [CommonModule, FormsModule]
+		imports: [CheckboxTest]
 	});
 
 	return TestBed.createComponent(checkboxComponent);

@@ -9,12 +9,14 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { PlaceholderService } from "carbon-components-angular/placeholder";
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
 		<ng-template #content>
-  			<ng-content />
+			<ng-content />
 		</ng-template>
 
 		@if (useTemplate()) {
@@ -29,7 +31,10 @@ import { Router } from "@angular/router";
 			<ng-container *ngTemplateOutlet="content" />
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgTemplateOutlet],
+	providers: [PlaceholderService]
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {
@@ -67,7 +72,7 @@ export class BreadcrumbItemComponent {
 
 	protected _href: string;
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	useTemplate() {
 		return this.skeleton || this._href || this.route;

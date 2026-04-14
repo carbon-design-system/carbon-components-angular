@@ -1,8 +1,8 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
-import { ButtonModule } from "./button";
-import { IconModule } from "./icon/icon.module";
+import { Button } from "./button";
+import { IconDirective } from "./icon";
 
 @Component({
 	selector: "app-welcome",
@@ -171,7 +171,7 @@ export default {
 	title: "Getting Started",
 	decorators: [
 		moduleMetadata({
-			imports: [ButtonModule, IconModule],
+			imports: [Button, IconDirective],
 			declarations: [WelcomeStory]
 		})
 	],

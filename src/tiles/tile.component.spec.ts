@@ -10,7 +10,7 @@ describe("Tile", () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tile]
+			imports: [Tile]
 		}).compileComponents();
 	}));
 

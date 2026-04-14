@@ -7,6 +7,7 @@ import {
 	TemplateRef,
 	HostBinding
 } from "@angular/core";
+import { NgStyle, NgTemplateOutlet } from "@angular/common";
 
 /**
 * The `Tab` component is a child of the `Tabs` component.
@@ -69,7 +70,9 @@ import {
 				<ng-content />
 			</div>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [NgStyle, NgTemplateOutlet]
 })
 export class Tab implements OnInit {
 	private static counter = 0;

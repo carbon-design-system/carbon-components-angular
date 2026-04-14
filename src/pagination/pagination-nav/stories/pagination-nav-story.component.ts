@@ -4,7 +4,7 @@ import {
 	OnInit
 } from "@angular/core";
 
-import { PaginationModel } from "../..";
+import { Pagination, PaginationModel, PaginationNav, PaginationNavItem } from "../..";
 
 @Component({
 	selector: "app-pagination",
@@ -16,7 +16,9 @@ import { PaginationModel } from "../..";
 			[numOfItemsToShow]="numOfItemsToShow"
 			[size]="size">
 		</cds-pagination-nav>
-	`
+	`,
+	standalone: true,
+	imports: [PaginationNav, PaginationNavItem]
 })
 export class PaginationNavStory implements OnInit {
 	@Input() model = new PaginationModel();
@@ -37,6 +39,7 @@ export class PaginationNavStory implements OnInit {
 	}
 
 	selectPage(page) {
+		// eslint-disable-next-line no-console
 		console.log("Loading page", page, "from pagination model");
 		this.model.currentPage = page;
 	}

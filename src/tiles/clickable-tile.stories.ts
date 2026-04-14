@@ -1,16 +1,16 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayerModule } from "../layer";
-import { IconModule } from "../icon";
-import { TilesModule, ClickableTile } from "./";
+import { LayerDirective } from "../layer";
+import { IconDirective } from "../icon";
+import { ClickableTile } from "./";
 
 export default {
 	title: "Components/Tiles/Clickable",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TilesModule,
-				LayerModule,
-				IconModule
+				ClickableTile,
+				LayerDirective,
+				IconDirective
 			]
 		})
 	],

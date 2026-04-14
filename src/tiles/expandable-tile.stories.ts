@@ -1,16 +1,18 @@
 import { moduleMetadata, Meta, Story } from "@storybook/angular";
-import { LayerModule } from "../layer";
-import { ButtonModule } from "../button";
-import { TilesModule, ExpandableTile } from "./";
+import { LayerDirective } from "../layer";
+import { Button } from "../button";
+import { ExpandableTile, ExpandableTileAboveFoldDirective, ExpandableTileBelowFoldDirective } from "./";
 
 export default {
 	title: "Components/Tiles/Expandable",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ButtonModule,
-				LayerModule,
-				TilesModule
+				Button,
+				LayerDirective,
+				ExpandableTile,
+				ExpandableTileAboveFoldDirective,
+				ExpandableTileBelowFoldDirective
 			]
 		})
 	],

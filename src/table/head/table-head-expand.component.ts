@@ -7,6 +7,8 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { IconDirective } from "carbon-components-angular/icon";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -22,7 +24,9 @@ import { Observable } from "rxjs";
 		} @else {
 			<ng-content />
 		}
-	`
+	`,
+	standalone: true,
+	imports: [IconDirective, AsyncPipe]
 })
 export class TableHeadExpand {
 	@HostBinding("class.cds--table-expand") hostClass = true;
@@ -39,7 +43,7 @@ export class TableHeadExpand {
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_ALL_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

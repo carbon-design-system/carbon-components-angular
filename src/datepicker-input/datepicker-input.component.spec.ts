@@ -3,8 +3,6 @@ import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
 import { DatePickerInput } from "./datepicker-input.component";
-import { IconModule } from "../icon/index";
-import { CommonModule } from "@angular/common";
 
 @Component({
 	template: `
@@ -18,7 +16,12 @@ import { CommonModule } from "@angular/common";
 			(valueChange)="valueChange($event)"
 			[(ngModel)]="model">
 		</cds-date-picker-input>
-		`
+		`,
+	standalone: true,
+	imports: [
+		DatePickerInput,
+		FormsModule
+	]
 })
 class DatePickerInputTest {
 	model = null;
@@ -34,14 +37,8 @@ describe("Select", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DatePickerInput,
-				DatePickerInputTest
-			],
 			imports: [
-				CommonModule,
-				IconModule,
-				FormsModule
+				DatePickerInputTest
 			]
 		});
 	});

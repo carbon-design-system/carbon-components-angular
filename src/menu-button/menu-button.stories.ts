@@ -1,17 +1,18 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { MenuButtonModule, MenuButtonComponent } from "./";
+import { MenuButtonComponent } from "./";
 
-import { IconModule } from "../icon";
-import { ContextMenuModule } from "../context-menu";
+import { IconDirective } from "../icon";
+import { ContextMenuComponent, ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
 
 export default {
 	title: "Components/Menu button",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				MenuButtonModule,
-				IconModule,
-				ContextMenuModule
+				IconDirective,
+				ContextMenuComponent,
+				ContextMenuItemComponent,
+				ContextMenuDividerComponent
 			]
 		})
 	],

@@ -9,6 +9,9 @@ import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
+import { Radio } from "carbon-components-angular/radio";
+import { AsyncPipe } from "@angular/common";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -23,7 +26,9 @@ import { Observable } from "rxjs";
 				(change)="change.emit()">
 			</cds-radio>
 		}
-	`
+	`,
+	standalone: true,
+	imports: [Radio, AsyncPipe, ReplacePipe]
 })
 export class TableRadio {
 	@Input() row: any[];
@@ -63,11 +68,12 @@ export class TableRadio {
 	/**
 	 * Emits if a single row is selected.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter();
 
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { RadioChange } from "./radio-change.class";
+import { NgClass } from "@angular/common";
 
 /**
  * class: Radio (extends Checkbox)
@@ -58,7 +59,9 @@ import { RadioChange } from "./radio-change.class";
 			useExisting: Radio,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass]
 })
 export class Radio {
 	/**
@@ -109,6 +112,7 @@ export class Radio {
 	/**
 	 * emits when the state of the radio changes
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<RadioChange>();
 
 	@HostBinding("class.cds--radio-button-wrapper") hostClass = true;

@@ -4,6 +4,8 @@ import {
 	Input
 } from "@angular/core";
 import { NavigationItem } from "./header-navigation-items.interface";
+import { HeaderItem } from "./header-item.component";
+import { HeaderMenu } from "./header-menu.component";
 /**
  * Container for header navigation items
  */
@@ -34,7 +36,9 @@ import { NavigationItem } from "./header-navigation-items.interface";
 				}
 			</div>
 		</nav>
-	`
+	`,
+	standalone: true,
+	imports: [HeaderItem, HeaderMenu]
 })
 export class HeaderNavigation {
 	@HostBinding("style.height.%") height = 100;

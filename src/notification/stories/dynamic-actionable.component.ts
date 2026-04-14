@@ -12,7 +12,7 @@ import { NotificationService } from "../";
 })
 export class DyanmicActionableStory {
 	actionSubject = new Subject<any>();
-	constructor(protected notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) {}
 
 	showNotification() {
 		this.notificationService.showActionable({

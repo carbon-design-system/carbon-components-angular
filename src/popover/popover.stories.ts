@@ -1,6 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	PopoverModule,
 	PopoverContainer,
 	PopoverContent
 } from "./";
@@ -9,7 +8,10 @@ export default {
 	title: "Components/Popover",
 	decorators: [
 		moduleMetadata({
-			imports: [PopoverModule]
+			imports: [
+				PopoverContainer,
+				PopoverContent
+			]
 		})
 	],
 	args: {

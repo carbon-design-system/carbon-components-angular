@@ -16,7 +16,8 @@ import { Tag } from "./tag.component";
 			</span>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class TagOperationalComponent extends Tag {
 	@HostBinding("attr.role") role = "button";

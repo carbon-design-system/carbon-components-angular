@@ -7,6 +7,8 @@ import {
 	Output,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-contained-list-item, ibm-contained-list-item",
@@ -39,7 +41,9 @@ import {
 			</div>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgTemplateOutlet, IconDirective]
 })
 export class ContainedListItem {
 	/**
@@ -74,6 +78,7 @@ export class ContainedListItem {
 	/**
 	 * Emits click event.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<void>();
 
 	/**

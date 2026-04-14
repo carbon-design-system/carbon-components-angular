@@ -1,4 +1,4 @@
-import { NgModule, SkipSelf, Optional } from "@angular/core";
+import { SkipSelf, Optional, NgModule } from "@angular/core";
 import { ExperimentalService } from "./experimental.service";
 
 // either provides a new instance of ExperimentalService, or returns the parent
@@ -18,4 +18,4 @@ export const EXPERIMENTAL_SERVICE_PROVIDER = {
 		EXPERIMENTAL_SERVICE_PROVIDER
 	]
 })
-export class ExperimentalModule { }
+export class ExperimentalModule {}
