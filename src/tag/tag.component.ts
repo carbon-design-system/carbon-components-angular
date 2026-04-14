@@ -62,7 +62,7 @@ export class Tag {
 	@Input() skeleton = false;
 
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 

@@ -227,7 +227,7 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	@Input() counterMode: "character" | "word" = "character";
 
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 

@@ -153,11 +153,11 @@ export class DatePicker implements
 	@Input() label: string | TemplateRef<any>;
 	@Input() helperText: string | TemplateRef<any>;
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 	/**
-	 * Optional decorator (e.g. AI label) on the range end field when `range` is `true`.
+	 * **Experimental**: Optional decorator (e.g. AI label) on the range end field when `range` is `true`.
 	 */
 	@Input() rangeDecorator: TemplateRef<any>;
 	@Input() rangeHelperText: string | TemplateRef<any>;

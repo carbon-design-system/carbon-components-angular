@@ -224,7 +224,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 

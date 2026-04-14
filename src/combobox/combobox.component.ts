@@ -333,7 +333,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	@Input() helperText: string | TemplateRef<any>;
 
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 	/**

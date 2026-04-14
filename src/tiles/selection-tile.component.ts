@@ -100,7 +100,7 @@ export class SelectionTile implements AfterViewInit {
 	@Input() disabled = false;
 
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 
