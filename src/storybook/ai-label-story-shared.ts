@@ -1,5 +1,5 @@
 /**
- * Shared Storybook snippets for `cds-slug` (AI label) stories.
+ * Shared Storybook snippets for `cds-ai-label` (AI label) stories.
  */
 
 export const AI_LABEL_STORY_STYLES = [`
@@ -44,7 +44,7 @@ export const AI_LABEL_STORY_STYLES = [`
 /**
  * Popover body markup (no actions).
  */
-export const AI_LABEL_SLUG_BODY_HTML = `
+export const AI_LABEL_BODY_HTML = `
 	<div>
 		<p class="secondary">AI Explained</p>
 		<h2 class="ai-label-heading">84%</h2>
@@ -60,9 +60,9 @@ export const AI_LABEL_SLUG_BODY_HTML = `
 `;
 
 /**
- * Icon + primary action row for cds-slug (cdsAILabelActions).
+ * Icon + primary action row for cds-ai-label (cdsAILabelActions).
  */
-export const AI_LABEL_SLUG_ACTIONS_HTML = `
+export const AI_LABEL_ACTIONS_HTML = `
 	<div cdsAILabelActions>
 		<cds-icon-button kind="ghost" align="top" description="View">
 			<svg cdsIcon="view" size="16"></svg>
@@ -78,21 +78,21 @@ export const AI_LABEL_SLUG_ACTIONS_HTML = `
 `;
 
 /**
- * Full projected content for `cds-slug` (body + actions).
+ * Full projected content for `cds-ai-label` (body + actions).
  */
-export const AI_LABEL_SLUG_INNER = `${AI_LABEL_SLUG_BODY_HTML}\n${AI_LABEL_SLUG_ACTIONS_HTML}`;
+export const AI_LABEL_INNER = `${AI_LABEL_BODY_HTML}\n${AI_LABEL_ACTIONS_HTML}`;
 
 /**
  * Mini badge only — typical field / tile / dropdown decorator.
  */
-export const AI_LABEL_SLUG_DECORATOR_MINI = `<cds-slug size="mini" aiText="AI"></cds-slug>`;
+export const AI_LABEL_DECORATOR_MINI = `<cds-ai-label size="mini" aiText="AI"></cds-ai-label>`;
 
 /**
  * Small badge — modal header / simple decorator.
  */
-export const AI_LABEL_SLUG_DECORATOR_SM = `<cds-slug size="sm" aiText="AI"></cds-slug>`;
+export const AI_LABEL_DECORATOR_SM = `<cds-ai-label size="sm" aiText="AI"></cds-ai-label>`;
 
 /**
  * Inline small — typical tag decorator.
  */
-export const AI_LABEL_SLUG_DECORATOR_TAG_INLINE = `<cds-slug size="sm" kind="inline" aiText="AI"></cds-slug>`;
+export const AI_LABEL_DECORATOR_TAG_INLINE = `<cds-ai-label size="sm" kind="inline" aiText="AI"></cds-ai-label>`;

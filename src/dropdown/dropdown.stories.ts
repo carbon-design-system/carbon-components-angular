@@ -6,10 +6,10 @@ import { DropdownModule, Dropdown } from "./";
 import { PlaceholderModule } from "../placeholder";
 
 import { ReactiveFormsStory } from "./stories";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Dropdown",
@@ -21,7 +21,7 @@ export default {
 				ReactiveFormsModule,
 				DropdownModule,
 				PlaceholderModule,
-				SlugModule,
+				AILabelModule,
 				ButtonModule,
 				IconModule
 			]
@@ -234,15 +234,15 @@ const withAILabelTemplate = (args) => ({
 			</cds-dropdown>
 		</div>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });
@@ -285,15 +285,15 @@ const multiselectWithAILabelTemplate = (args) => ({
 			</cds-dropdown>
 		</div>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

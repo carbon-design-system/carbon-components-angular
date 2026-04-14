@@ -4,8 +4,8 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
 import { LinkModule } from "../link";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
-import { SlugModule, SlugComponent, AILabelContent, AILabelActions } from "./";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AILabelModule, AILabelComponent, AILabelContent, AILabelActions } from ".";
 
 const alignOptions = [
 	"top",
@@ -23,10 +23,10 @@ const alignOptions = [
 ];
 
 export default {
-	title: "Components/Slug",
+	title: "Components/AILabel",
 	decorators: [
 		moduleMetadata({
-			imports: [SlugModule, ButtonModule, IconModule, LinkModule]
+			imports: [AILabelModule, ButtonModule, IconModule, LinkModule]
 		})
 	],
 	args: {
@@ -62,7 +62,7 @@ export default {
 		onClose: { action: "onClose" },
 		isOpenChange: { action: "isOpenChange" }
 	},
-	component: SlugComponent,
+	component: AILabelComponent,
 	subcomponents: { AILabelContent, AILabelActions }
 } as Meta;
 
@@ -70,7 +70,7 @@ const Template = (args) => ({
 	props: args,
 	template: `
 		<div class="ai-label-container">
-			<cds-slug
+			<cds-ai-label
 				[aiText]="aiText"
 				[kind]="kind"
 				[size]="size"
@@ -84,8 +84,8 @@ const Template = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</div>
 	`,
 	styles: AI_LABEL_STORY_STYLES
@@ -103,7 +103,7 @@ const InlineTemplate = (args) => ({
 	props: args,
 	template: `
 		<div class="ai-label-container">
-			<cds-slug
+			<cds-ai-label
 				[aiText]="aiText"
 				kind="inline"
 				[size]="size"
@@ -117,8 +117,8 @@ const InlineTemplate = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</div>
 	`,
 	styles: AI_LABEL_STORY_STYLES
@@ -146,7 +146,7 @@ const InlineWithContentTemplate = (args) => ({
 	props: args,
 	template: `
 		<div class="ai-label-container">
-			<cds-slug
+			<cds-ai-label
 				[aiText]="aiText"
 				kind="inline"
 				[textLabel]="textLabel"
@@ -161,8 +161,8 @@ const InlineWithContentTemplate = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</div>
 	`,
 	styles: AI_LABEL_STORY_STYLES
@@ -191,14 +191,14 @@ const RevertTemplate = (args) => ({
 	props: args,
 	template: `
 		<div class="ai-label-container">
-			<cds-slug
+			<cds-ai-label
 				[aiText]="aiText"
 				[size]="size"
 				[revertActive]="revertActive"
 				[revertLabel]="revertLabel"
 				(revertClick)="revertClick($event)">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</div>
 	`,
 	styles: AI_LABEL_STORY_STYLES
@@ -223,7 +223,7 @@ const AutoAlignTemplate = (args) => ({
 			<p style="padding: 1rem;">Scroll down — the popover repositions automatically.</p>
 			<div style="position: absolute; top: 700px; left: 700px;">
 				<div class="ai-label-container">
-					<cds-slug
+					<cds-ai-label
 						[aiText]="aiText"
 						[kind]="kind"
 						[size]="size"
@@ -234,8 +234,8 @@ const AutoAlignTemplate = (args) => ({
 						(onOpen)="onOpen($event)"
 						(onClose)="onClose($event)"
 						(isOpenChange)="isOpenChange($event)">
-						` + AI_LABEL_SLUG_INNER + `
-					</cds-slug>
+						` + AI_LABEL_INNER + `
+					</cds-ai-label>
 				</div>
 			</div>
 		</div>

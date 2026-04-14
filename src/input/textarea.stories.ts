@@ -2,16 +2,16 @@
 
 import { Meta, moduleMetadata } from "@storybook/angular";
 import { InputModule, TextareaLabelComponent } from "./";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Input/Text area",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule, SlugModule, ButtonModule, IconModule]
+			imports: [InputModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -105,7 +105,7 @@ export const withAILabel = () => ({
 			<textarea cdsTextArea rows="4" placeholder="Placeholder" aria-label="textarea" style="width: 100%;"></textarea>
 		</cds-textarea-label>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
@@ -113,8 +113,8 @@ export const withAILabel = () => ({
 				[align]="'bottom-end'"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

@@ -12,20 +12,20 @@ import { ButtonModule } from "carbon-components-angular/button";
 import { IconModule } from "carbon-components-angular/icon";
 import { PopoverModule } from "carbon-components-angular/popover";
 
-import { SlugComponent } from "./slug.component";
-import { SlugPopoverDirective } from "./slug-popover.directive";
+import { AILabelComponent } from "./ai-label.component";
+import { AILabelPopoverDirective } from "./ai-label-popover.directive";
 import { AILabelContent } from "./ai-label-content.directive";
 import { AILabelActions } from "./ai-label-actions.directive";
 
 @NgModule({
 	declarations: [
-		SlugComponent,
-		SlugPopoverDirective,
+		AILabelComponent,
+		AILabelPopoverDirective,
 		AILabelContent,
 		AILabelActions
 	],
 	exports: [
-		SlugComponent,
+		AILabelComponent,
 		AILabelContent,
 		AILabelActions
 	],
@@ -36,4 +36,4 @@ import { AILabelActions } from "./ai-label-actions.directive";
 		PopoverModule
 	]
 })
-export class SlugModule {}
+export class AILabelModule {}

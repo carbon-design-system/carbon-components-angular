@@ -7,16 +7,16 @@ import {
 	SelectionTile,
 	TileGroup
 } from "./";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tiles/Grouped",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule, SlugModule, ButtonModule, IconModule]
+			imports: [TilesModule, LayerModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	argTypes: {
@@ -57,15 +57,15 @@ const withAILabelTemplate = (args) => ({
 			<cds-selection-tile value="t2">Plain tile</cds-selection-tile>
 		</cds-tile-group>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

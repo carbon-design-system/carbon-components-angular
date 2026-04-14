@@ -5,10 +5,10 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { RadioModule, RadioGroup, Radio } from "./";
 
 import { ReactiveFormsStory } from "./stories";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Radio",
@@ -19,7 +19,7 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				RadioModule,
-				SlugModule,
+				AILabelModule,
 				ButtonModule,
 				IconModule
 			]
@@ -115,7 +115,7 @@ const withAILabelTemplate = (args) => ({
 			<cds-radio-group
 				legend="Group label"
 				orientation="vertical"
-				[decorator]="slugDefaultTpl"
+				[decorator]="aiLabelDefaultTpl"
 				ariaLabel="radiogroup"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
@@ -134,8 +134,8 @@ const withAILabelTemplate = (args) => ({
 				[invalidText]="invalidText"
 				[warn]="warn"
 				[warnText]="warnText">
-				<cds-radio value="radio-4" id="radio-4" [checked]="true" [decorator]="slugDefaultTpl">Radio button label</cds-radio>
-				<cds-radio value="radio-5" id="radio-5" [decorator]="slugDefaultTpl">Radio button label</cds-radio>
+				<cds-radio value="radio-4" id="radio-4" [checked]="true" [decorator]="aiLabelDefaultTpl">Radio button label</cds-radio>
+				<cds-radio value="radio-5" id="radio-5" [decorator]="aiLabelDefaultTpl">Radio button label</cds-radio>
 				<cds-radio value="radio-6" id="radio-6">Radio button label</cds-radio>
 			</cds-radio-group>
 
@@ -147,33 +147,33 @@ const withAILabelTemplate = (args) => ({
 				[invalidText]="invalidText"
 				[warn]="warn"
 				[warnText]="warnText">
-				<cds-radio value="radio-7" id="radio-7" [checked]="true" [decorator]="slugInlineTpl">Radio button label</cds-radio>
-				<cds-radio value="radio-8" id="radio-8" [decorator]="slugInlineTpl">Radio button label</cds-radio>
+				<cds-radio value="radio-7" id="radio-7" [checked]="true" [decorator]="aiLabelInlineTpl">Radio button label</cds-radio>
+				<cds-radio value="radio-8" id="radio-8" [decorator]="aiLabelInlineTpl">Radio button label</cds-radio>
 				<cds-radio value="radio-9" id="radio-9">Radio button label</cds-radio>
 			</cds-radio-group>
 		</div>
 
-		<ng-template #slugDefaultTpl>
-			<cds-slug
+		<ng-template #aiLabelDefaultTpl>
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="md"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
-		<ng-template #slugInlineTpl>
-			<cds-slug
+		<ng-template #aiLabelInlineTpl>
+			<cds-ai-label
 				class="ai-label-container"
 				kind="inline"
 				size="md"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

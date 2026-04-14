@@ -1,18 +1,18 @@
 import { Directive, HostBinding } from "@angular/core";
 
 /**
- * Host for actions inside a `<cds-slug>` popover. Applies `cds--toggletip-actions`
+ * Host for actions inside a `<cds-ai-label>` popover. Applies `cds--toggletip-actions`
  * and `cds--ai-label-actions`.
  *
  * ```html
- * <cds-slug>
+ * <cds-ai-label>
  *   <div cdsAILabelContent>
  *     <p>Explanation text</p>
  *     <div cdsAILabelActions>
  *       <button cdsButton="ghost" size="sm">View details</button>
  *     </div>
  *   </div>
- * </cds-slug>
+ * </cds-ai-label>
  * ```
  */
 @Directive({

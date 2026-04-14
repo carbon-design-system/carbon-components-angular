@@ -3,16 +3,16 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
 import { NumberModule, NumberComponent } from "./";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Number Input",
 	decorators: [
 		moduleMetadata({
-			imports: [NumberModule, FormsModule, SlugModule, ButtonModule, IconModule]
+			imports: [NumberModule, FormsModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -126,15 +126,15 @@ export const withAILabel = () => ({
 			[max]="100">
 		</cds-number>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

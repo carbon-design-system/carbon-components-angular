@@ -2,14 +2,13 @@ import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testin
 import { Component, DebugElement, Input } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
-import { SlugComponent } from "./slug.component";
-import { SlugModule } from "./slug.module";
-import { SlugPopoverDirective } from "./slug-popover.directive";
+import { AILabelModule } from "./ai-label.module";
+import { AILabelPopoverDirective } from "./ai-label-popover.directive";
 import { AILabelActions } from "./ai-label-actions.directive";
 
 @Component({
 	template: `
-		<cds-slug
+		<cds-ai-label
 			[id]="id"
 			[aiText]="aiText"
 			[textLabel]="textLabel"
@@ -22,12 +21,12 @@ import { AILabelActions } from "./ai-label-actions.directive";
 			[align]="align"
 			[(isOpen)]="isOpen"
 			(revertClick)="onRevert($event)">
-			<p class="slug-projection">Child content</p>
-		</cds-slug>
+			<p class="ai-label-projection">Child content</p>
+		</cds-ai-label>
 	`
 })
-class TestSlugComponent {
-	@Input() id = "test-slug-id";
+class TestAILabelHostComponent {
+	@Input() id = "test-ai-label-id";
 	@Input() aiText = "AI";
 	@Input() textLabel: string;
 	@Input() kind: "default" | "inline" = "default";
@@ -47,55 +46,53 @@ class TestSlugComponent {
 })
 class TestAILabelActionsComponent {}
 
-describe("Slug", () => {
-	let fixture: ComponentFixture<TestSlugComponent>;
-	let component: TestSlugComponent;
-	let slugEl: DebugElement;
-	let slug: SlugComponent;
-	let popoverHost: SlugPopoverDirective;
+describe("AILabel", () => {
+	let fixture: ComponentFixture<TestAILabelHostComponent>;
+	let component: TestAILabelHostComponent;
+	let hostEl: DebugElement;
+	let popoverHost: AILabelPopoverDirective;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [SlugModule],
-			declarations: [TestSlugComponent]
+			imports: [AILabelModule],
+			declarations: [TestAILabelHostComponent]
 		});
-		fixture = TestBed.createComponent(TestSlugComponent);
+		fixture = TestBed.createComponent(TestAILabelHostComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		slugEl = fixture.debugElement.query(By.css("cds-slug"));
-		slug = slugEl.componentInstance as SlugComponent;
-		const popoverEl = slugEl.query(By.directive(SlugPopoverDirective));
-		popoverHost = popoverEl.injector.get(SlugPopoverDirective);
+		hostEl = fixture.debugElement.query(By.css("cds-ai-label"));
+		const popoverEl = hostEl.query(By.directive(AILabelPopoverDirective));
+		popoverHost = popoverEl.injector.get(AILabelPopoverDirective);
 	});
 
 	it("should create", () => {
 		expect(component).toBeTruthy();
-		expect(slugEl).not.toBeNull();
+		expect(hostEl).not.toBeNull();
 	});
 
 	it("should render projected content", () => {
-		const projected = fixture.debugElement.query(By.css(".slug-projection"));
+		const projected = fixture.debugElement.query(By.css(".ai-label-projection"));
 		expect(projected.nativeElement.textContent).toContain("Child content");
 	});
 
 	it("should respect aiText on the trigger", () => {
 		component.aiText = "IA";
 		fixture.detectChanges();
-		const trigger = slugEl.query(By.css(".cds--ai-label__text"));
+		const trigger = hostEl.query(By.css(".cds--ai-label__text"));
 		expect(trigger.nativeElement.textContent.trim()).toBe("IA");
 	});
 
 	it("should respect size on the trigger", () => {
 		component.size = "xl";
 		fixture.detectChanges();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		expect(btn.nativeElement.classList.contains("cds--ai-label__button--xl")).toBe(true);
 	});
 
 	it("should respect kind inline on the trigger", () => {
 		component.kind = "inline";
 		fixture.detectChanges();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		expect(btn.nativeElement.classList.contains("cds--ai-label__button--inline")).toBe(true);
 	});
 
@@ -103,7 +100,7 @@ describe("Slug", () => {
 		component.kind = "inline";
 		component.textLabel = "Test text";
 		fixture.detectChanges();
-		const additional = slugEl.query(By.css(".cds--ai-label__additional-text"));
+		const additional = hostEl.query(By.css(".cds--ai-label__additional-text"));
 		expect(additional).not.toBeNull();
 		expect(additional.nativeElement.textContent.trim()).toBe("Test text");
 	});
@@ -112,13 +109,13 @@ describe("Slug", () => {
 		component.kind = "default";
 		component.textLabel = "Test text";
 		fixture.detectChanges();
-		expect(slugEl.query(By.css(".cds--ai-label__additional-text"))).toBeNull();
+		expect(hostEl.query(By.css(".cds--ai-label__additional-text"))).toBeNull();
 	});
 
 	it("should apply ai-label on the host and toggletip on the inner popover wrapper", () => {
-		expect(slugEl.nativeElement.classList.contains("cds--ai-label")).toBe(true);
-		expect(slugEl.nativeElement.classList.contains("cds--toggletip")).toBe(false);
-		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		expect(hostEl.nativeElement.classList.contains("cds--ai-label")).toBe(true);
+		expect(hostEl.nativeElement.classList.contains("cds--toggletip")).toBe(false);
+		const popoverWrapper = hostEl.query(By.css(".cds--popover-container"));
 		expect(popoverWrapper.nativeElement.classList.contains("cds--toggletip")).toBe(true);
 	});
 
@@ -126,7 +123,7 @@ describe("Slug", () => {
 		component.aiText = "AI";
 		component.ariaLabel = "Show information";
 		fixture.detectChanges();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		expect(btn.nativeElement.getAttribute("aria-label")).toBe("AI Show information");
 	});
 
@@ -134,15 +131,15 @@ describe("Slug", () => {
 		component.kind = "inline";
 		component.textLabel = "Text goes here";
 		fixture.detectChanges();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		expect(btn.nativeElement.getAttribute("aria-label")).toBe("AI Text goes here");
 	});
 
 	it("should associate trigger with popover id", () => {
 		component.id = "my-popover-id";
 		fixture.detectChanges();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
-		const panel = slugEl.query(By.css("span.cds--popover"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
+		const panel = hostEl.query(By.css("span.cds--popover"));
 		expect(btn.nativeElement.getAttribute("aria-controls")).toBe("my-popover-id");
 		expect(panel.nativeElement.getAttribute("id")).toBe("my-popover-id");
 	});
@@ -151,7 +148,7 @@ describe("Slug", () => {
 		component.autoAlign = false;
 		component.align = "bottom-start";
 		fixture.detectChanges();
-		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		const popoverWrapper = hostEl.query(By.css(".cds--popover-container"));
 		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
 		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--auto-align")).toBe(false);
 	});
@@ -160,7 +157,7 @@ describe("Slug", () => {
 		component.autoAlign = true;
 		component.align = "bottom-start";
 		fixture.detectChanges();
-		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		const popoverWrapper = hostEl.query(By.css(".cds--popover-container"));
 		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--auto-align")).toBe(true);
 		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
 	});
@@ -168,20 +165,20 @@ describe("Slug", () => {
 	it("should render caret inside popover content when autoAlign is true", () => {
 		component.autoAlign = true;
 		fixture.detectChanges();
-		const innerCaret = slugEl.query(By.css(".cds--popover-content .cds--popover-caret.cds--popover--auto-align"));
+		const innerCaret = hostEl.query(By.css(".cds--popover-content .cds--popover-caret.cds--popover--auto-align"));
 		expect(innerCaret).not.toBeNull();
 	});
 
 	it("should render outer caret when autoAlign is false", () => {
 		component.autoAlign = false;
 		fixture.detectChanges();
-		const outerCaret = slugEl.query(By.css("span.cds--popover > span.cds--popover-caret"));
+		const outerCaret = hostEl.query(By.css("span.cds--popover > span.cds--popover-caret"));
 		expect(outerCaret).not.toBeNull();
 	});
 
 	it("should open and close when the trigger is clicked", fakeAsync(() => {
 		spyOn(popoverHost.isOpenChange, "emit").and.callThrough();
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		btn.nativeElement.click();
 		tick();
 		fixture.detectChanges();
@@ -198,7 +195,7 @@ describe("Slug", () => {
 
 	it("should markForCheck when toggling", () => {
 		const spy = spyOn((popoverHost as any).changeDetectorRef, "markForCheck");
-		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
+		const btn = hostEl.query(By.css("button.cds--toggletip-button"));
 		btn.nativeElement.click();
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
@@ -207,11 +204,11 @@ describe("Slug", () => {
 	it("should apply revert modifier and show icon button when revertActive", () => {
 		component.revertActive = true;
 		fixture.detectChanges();
-		expect(slugEl.nativeElement.classList.contains("cds--ai-label--revert")).toBe(true);
-		const iconBtn = slugEl.query(By.css("cds-icon-button"));
+		expect(hostEl.nativeElement.classList.contains("cds--ai-label--revert")).toBe(true);
+		const iconBtn = hostEl.query(By.css("cds-icon-button"));
 		expect(iconBtn).not.toBeNull();
-		expect(slugEl.query(By.css("button.cds--toggletip-button"))).toBeNull();
-		expect(slugEl.query(By.css(`span#${component.id}.cds--popover`))).toBeNull();
+		expect(hostEl.query(By.css("button.cds--toggletip-button"))).toBeNull();
+		expect(hostEl.query(By.css(`span#${component.id}.cds--popover`))).toBeNull();
 	});
 
 	it("should emit revertClick when revert icon button is activated", () => {
@@ -227,7 +224,7 @@ describe("Slug", () => {
 		component.revertActive = true;
 		component.revertLabel = "Test revert label";
 		fixture.detectChanges();
-		const iconTooltip = slugEl.query(By.css("cds-icon-button cds-tooltip"));
+		const iconTooltip = hostEl.query(By.css("cds-icon-button cds-tooltip"));
 		expect(iconTooltip).not.toBeNull();
 		expect(iconTooltip.componentInstance.description).toBe("Test revert label");
 	});
@@ -239,7 +236,7 @@ describe("AILabelActions", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [SlugModule],
+			imports: [AILabelModule],
 			declarations: [TestAILabelActionsComponent]
 		});
 		fixture = TestBed.createComponent(TestAILabelActionsComponent);

@@ -2,16 +2,16 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { DatePickerModule, DatePicker } from "./";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Date Picker",
 	decorators: [
 		moduleMetadata({
-			imports: [DatePickerModule, SlugModule, ButtonModule, IconModule]
+			imports: [DatePickerModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -83,15 +83,15 @@ const withAILabelTemplate = (args) => ({
 			(valueChange)="valueChange($event)">
 		</cds-date-picker>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

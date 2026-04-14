@@ -1,4 +1,4 @@
 export * from "./ai-label-actions.directive";
 export * from "./ai-label-content.directive";
-export * from "./slug.component";
-export * from "./slug.module";
+export * from "./ai-label.component";
+export * from "./ai-label.module";

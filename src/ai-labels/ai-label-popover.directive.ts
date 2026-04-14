@@ -11,13 +11,13 @@ import {
 import { PopoverContainer } from "carbon-components-angular/popover";
 
 /**
- * Popover/toggletip behavior for `cds-slug`, applied to an inner wrapper so
+ * Popover/toggletip behavior for `cds-ai-label`, applied to an inner wrapper so
  * `cds--popover-*` classes are not merged onto the `cds--ai-label` host.
  */
 @Directive({
-	selector: "[cdsSlugPopover]"
+	selector: "[cdsAILabelPopover]"
 })
-export class SlugPopoverDirective extends PopoverContainer implements OnChanges {
+export class AILabelPopoverDirective extends PopoverContainer implements OnChanges {
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,

@@ -6,8 +6,8 @@ import { InputModule } from "../input";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
 import { ModalModule, Modal } from "./";
-import { SlugModule } from "../slug";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AILabelModule } from "../ai-labels";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 import {
 	ModalStory,
@@ -36,7 +36,7 @@ export default {
 				ButtonModule,
 				IconModule,
 				PlaceholderModule,
-				SlugModule
+				AILabelModule
 			]
 		})
 	]
@@ -221,15 +221,15 @@ const withAILabelTemplate = (args) => ({
 			</cds-modal-footer>
 		</cds-modal>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="sm"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });
@@ -299,15 +299,15 @@ const composedWithAILabelTemplate = (args) => ({
 			</cds-modal>
 		</div>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="md"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

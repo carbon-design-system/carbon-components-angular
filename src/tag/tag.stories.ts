@@ -4,9 +4,9 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { TagModule, Tag } from "./";
 import { IconModule } from "../icon";
 import { PopoverModule } from "../popover";
-import { SlugModule } from "../slug";
+import { AILabelModule } from "../ai-labels";
 import { ButtonModule } from "../button";
-import { AI_LABEL_SLUG_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tag",
@@ -16,7 +16,7 @@ export default {
 				TagModule,
 				IconModule,
 				PopoverModule,
-				SlugModule,
+				AILabelModule,
 				ButtonModule
 			]
 		})
@@ -169,15 +169,15 @@ export const withAILabel = () => ({
 			Tag with decorator
 		</cds-tag>
 		<ng-template #decoratorTpl>
-			<cds-slug
+			<cds-ai-label
 				class="ai-label-container"
 				kind="inline"
 				size="sm"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
-				` + AI_LABEL_SLUG_INNER + `
-			</cds-slug>
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
 		</ng-template>
 	`
 });

@@ -467,7 +467,7 @@ export class DatePicker implements
 			return;
 		}
 
-		// Skips opening when the click is on the decorator region so the slug triggers
+		// Skips opening when the click is on the decorator region so the AI label triggers
 		if (this.isDecoratorClick(event)) {
 			if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
 				this.flatpickrInstance.close();

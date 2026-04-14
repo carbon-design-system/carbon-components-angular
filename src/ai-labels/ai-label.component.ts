@@ -15,12 +15,12 @@ import {
 } from "@angular/core";
 import { Placement } from "@floating-ui/dom";
 
-import { SlugPopoverDirective } from "./slug-popover.directive";
+import { AILabelPopoverDirective } from "./ai-label-popover.directive";
 
 /**
  * @deprecated alignments — use `Placement` names
  */
-type DeprecatedSlugAlign =
+type DeprecatedAILabelAlign =
 	| "top-left"
 	| "top-right"
 	| "bottom-left"
@@ -31,17 +31,17 @@ type DeprecatedSlugAlign =
 	| "right-top";
 
 /**
- * AI-branded toggletip control (`cds-slug`). Renders an "AI" badge that opens a
+ * AI-branded toggletip control (`cds-ai-label`). Renders an "AI" badge that opens a
  * popover; projected content and optional actions use `ng-content`.
  *
  * Get started with importing the module:
  *
  * ```typescript
- * import { SlugModule } from 'carbon-components-angular';
+ * import { AILabelModule } from 'carbon-components-angular';
  * ```
  *
  * ```html
- * <cds-slug size="md">
+ * <cds-ai-label size="md">
  *   <div>
  *     <p>AI Explained</p>
  *     <h2>84%</h2>
@@ -50,25 +50,25 @@ type DeprecatedSlugAlign =
  *   <div cdsAILabelActions>
  *     <button cdsButton="ghost" size="sm">View details</button>
  *   </div>
- * </cds-slug>
+ * </cds-ai-label>
  * ```
  *
  * `[cdsAILabelActions]` adds `cds--toggletip-actions` and `cds--ai-label-actions`
  * to its host. Place it as a **sibling** of the body content, both direct
- * children of `<cds-slug>`. `[cdsAILabelContent]` is an optional marker; the
+ * children of `<cds-ai-label>`. `[cdsAILabelContent]` is an optional marker; the
  * `cds--ai-label-content` / `cds--toggletip-content` classes come from this
  * component’s template.
  *
- * [See demo](../../?path=/story/components-slug--default)
+ * [See demo](../../?path=/story/components-ai-label--default)
  */
 @Component({
-	selector: "cds-slug, ibm-slug",
+	selector: "cds-ai-label, ibm-ai-label",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<ng-container *ngIf="!revertActive">
 			<span
-				#slugPopoverHost
-				cdsSlugPopover
+				#aiLabelPopoverHost
+				cdsAILabelPopover
 				class="cds--toggletip"
 				[isOpen]="isOpen"
 				(isOpenChange)="onPopoverIsOpenChange($event)"
@@ -118,8 +118,8 @@ type DeprecatedSlugAlign =
 		</cds-icon-button>
 	`
 })
-export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
-	static slugCount = 0;
+export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+	static labelCounter = 0;
 
 	@HostBinding("class.cds--ai-label") aiLabelClass = true;
 	@HostBinding("class.cds--ai-label--revert") get revertClass() {
@@ -130,7 +130,7 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 * Set alignment of popover. Deprecated Carbon alignments are mapped to
 	 * floating-ui placements.
 	 */
-	@Input() align: DeprecatedSlugAlign | Placement;
+	@Input() align: DeprecatedAILabelAlign | Placement;
 
 	/**
 	 * Show caret at the alignment position.
@@ -176,7 +176,7 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 * Unique id used to associate the trigger button with the popover panel
 	 * via `aria-controls` / `id`.
 	 */
-	@Input() id = `ai-label-${SlugComponent.slugCount++}`;
+	@Input() id = `ai-label-${AILabelComponent.labelCounter++}`;
 
 	/**
 	 * Text inside the AI badge.
@@ -227,8 +227,8 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Output() revertClick = new EventEmitter<MouseEvent>();
 
-	@ViewChild("slugPopoverHost", { read: SlugPopoverDirective })
-	private slugPopover: SlugPopoverDirective;
+	@ViewChild("aiLabelPopoverHost", { read: AILabelPopoverDirective })
+	private aiLabelPopover: AILabelPopoverDirective;
 
 	private readonly documentClick = this.handleOutsideClick.bind(this);
 
@@ -282,7 +282,7 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 		} else {
 			document.removeEventListener("click", this.documentClick);
 		}
-		this.slugPopover?.handleChange(opening, event);
+		this.aiLabelPopover?.handleChange(opening, event);
 	}
 
 	onRevertButtonClick(event: MouseEvent): void {
@@ -294,7 +294,7 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 		if (this.isOpen && event.key === "Escape") {
 			event.stopPropagation();
 			document.removeEventListener("click", this.documentClick);
-			this.slugPopover?.handleChange(false, event);
+			this.aiLabelPopover?.handleChange(false, event);
 		}
 	}
 
@@ -303,7 +303,7 @@ export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	private handleOutsideClick(event: MouseEvent): void {
 		if (!this.elementRef.nativeElement.contains(event.target as Node)) {
-			this.slugPopover?.handleChange(false, event);
+			this.aiLabelPopover?.handleChange(false, event);
 			document.removeEventListener("click", this.documentClick);
 		}
 	}
