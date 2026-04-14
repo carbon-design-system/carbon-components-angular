@@ -31,9 +31,7 @@ export interface ExpandableTileTranslations {
 			class="cds--tile cds--tile--expandable"
 			[ngClass]="{
 				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light',
-				'cds--tile--decorator': !!decorator,
-				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
+				'cds--tile--light': theme === 'light'
 			}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			type="button"
@@ -63,6 +61,11 @@ export interface ExpandableTileTranslations {
 
 		<ng-template #expandableTileContent>
 			<div #container>
+				<ng-container *ngIf="interactive && decorator">
+					<div class="cds--tile--inner-decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<div class="cds--tile-content">
 					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
 				</div>
@@ -81,11 +84,6 @@ export interface ExpandableTileTranslations {
 				<div class="cds--tile-content">
 					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>
 				</div>
-				<ng-container *ngIf="decorator">
-					<div class="cds--tile--inner-decorator">
-						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
-					</div>
-				</ng-container>
 			</div>
 		</ng-template>
 	`
@@ -107,7 +105,7 @@ export class ExpandableTile implements AfterViewInit {
 	@Input() interactive = false;
 
 	/**
-	 * Optional decorator (e.g. AI label).
+	 * **Experimental**: Optional decorator (e.g. AI label).
 	 */
 	@Input() decorator: TemplateRef<any>;
 

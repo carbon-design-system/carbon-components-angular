@@ -95,15 +95,16 @@ WithLayers.parameters = {
 export const withAILabel = () => ({
 	styles: AI_LABEL_STORY_STYLES,
 	template: `
-		<cds-expandable-tile [decorator]="decoratorTpl">
-			<span cdsAboveFold style="height: 120px">Above the fold</span>
-			<span cdsBelowFold style="height: 120px">Below the fold</span>
+		<cds-expandable-tile [decorator]="decoratorTpl" [interactive]="true">
+			<div cdsAboveFold style="height: 200px">Above the fold</div>
+			<div cdsBelowFold style="height: 200px">Below the fold</div>
 		</cds-expandable-tile>
 		<ng-template #decoratorTpl>
 			<cds-ai-label
 				class="ai-label-container"
 				kind="default"
 				size="mini"
+				[align]="'bottom-end'"
 				[autoAlign]="true"
 				aiText="AI"
 				ariaLabel="Show information">
