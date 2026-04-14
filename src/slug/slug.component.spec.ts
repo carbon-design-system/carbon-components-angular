@@ -2,10 +2,9 @@ import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testin
 import { Component, DebugElement, Input } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
-import { PopoverContainer } from "../popover";
-
-import { Slug } from "./slug.component";
+import { SlugComponent } from "./slug.component";
 import { SlugModule } from "./slug.module";
+import { SlugPopoverDirective } from "./slug-popover.directive";
 import { AILabelActions } from "./ai-label-actions.directive";
 
 @Component({
@@ -21,7 +20,7 @@ import { AILabelActions } from "./ai-label-actions.directive";
 			[ariaLabel]="ariaLabel"
 			[autoAlign]="autoAlign"
 			[align]="align"
-			[isOpen]="isOpen"
+			[(isOpen)]="isOpen"
 			(revertClick)="onRevert($event)">
 			<p class="slug-projection">Child content</p>
 		</cds-slug>
@@ -52,8 +51,8 @@ describe("Slug", () => {
 	let fixture: ComponentFixture<TestSlugComponent>;
 	let component: TestSlugComponent;
 	let slugEl: DebugElement;
-	let slug: Slug;
-	let popoverHost: PopoverContainer;
+	let slug: SlugComponent;
+	let popoverHost: SlugPopoverDirective;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -64,8 +63,9 @@ describe("Slug", () => {
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		slugEl = fixture.debugElement.query(By.css("cds-slug"));
-		slug = slugEl.componentInstance as Slug;
-		popoverHost = slugEl.componentInstance as PopoverContainer;
+		slug = slugEl.componentInstance as SlugComponent;
+		const popoverEl = slugEl.query(By.directive(SlugPopoverDirective));
+		popoverHost = popoverEl.injector.get(SlugPopoverDirective);
 	});
 
 	it("should create", () => {
@@ -115,9 +115,11 @@ describe("Slug", () => {
 		expect(slugEl.query(By.css(".cds--ai-label__additional-text"))).toBeNull();
 	});
 
-	it("should apply toggletip and ai-label classes on the host", () => {
-		expect(slugEl.nativeElement.classList.contains("cds--toggletip")).toBe(true);
+	it("should apply ai-label on the host and toggletip on the inner popover wrapper", () => {
 		expect(slugEl.nativeElement.classList.contains("cds--ai-label")).toBe(true);
+		expect(slugEl.nativeElement.classList.contains("cds--toggletip")).toBe(false);
+		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		expect(popoverWrapper.nativeElement.classList.contains("cds--toggletip")).toBe(true);
 	});
 
 	it("should set aria-label on trigger from aiText and ariaLabel by default", () => {
@@ -149,16 +151,18 @@ describe("Slug", () => {
 		component.autoAlign = false;
 		component.align = "bottom-start";
 		fixture.detectChanges();
-		expect(slugEl.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
-		expect(slugEl.nativeElement.classList.contains("cds--popover--auto-align")).toBe(false);
+		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
+		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--auto-align")).toBe(false);
 	});
 
 	it("should apply auto-align class when autoAlign is true", () => {
 		component.autoAlign = true;
 		component.align = "bottom-start";
 		fixture.detectChanges();
-		expect(slugEl.nativeElement.classList.contains("cds--popover--auto-align")).toBe(true);
-		expect(slugEl.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
+		const popoverWrapper = slugEl.query(By.css(".cds--popover-container"));
+		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--auto-align")).toBe(true);
+		expect(popoverWrapper.nativeElement.classList.contains("cds--popover--bottom-start")).toBe(true);
 	});
 
 	it("should render caret inside popover content when autoAlign is true", () => {
@@ -176,7 +180,7 @@ describe("Slug", () => {
 	});
 
 	it("should open and close when the trigger is clicked", fakeAsync(() => {
-		spyOn(popoverHost.isOpenChange, "emit");
+		spyOn(popoverHost.isOpenChange, "emit").and.callThrough();
 		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
 		btn.nativeElement.click();
 		tick();
@@ -193,7 +197,7 @@ describe("Slug", () => {
 	}));
 
 	it("should markForCheck when toggling", () => {
-		const spy = spyOn((slug as any).changeDetectorRef, "markForCheck");
+		const spy = spyOn((popoverHost as any).changeDetectorRef, "markForCheck");
 		const btn = slugEl.query(By.css("button.cds--toggletip-button"));
 		btn.nativeElement.click();
 		fixture.detectChanges();

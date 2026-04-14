@@ -1,22 +1,34 @@
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	EventEmitter,
 	HostBinding,
 	HostListener,
 	Input,
-	NgZone,
 	OnChanges,
 	OnDestroy,
 	Output,
-	Renderer2,
 	SimpleChanges,
 	ViewChild
 } from "@angular/core";
-import { PopoverContainer } from "carbon-components-angular/popover";
+import { Placement } from "@floating-ui/dom";
+
+import { SlugPopoverDirective } from "./slug-popover.directive";
+
+/**
+ * @deprecated alignments — use `Placement` names
+ */
+type DeprecatedSlugAlign =
+	| "top-left"
+	| "top-right"
+	| "bottom-left"
+	| "bottom-right"
+	| "left-bottom"
+	| "left-top"
+	| "right-bottom"
+	| "right-top";
 
 /**
  * AI-branded toggletip control (`cds-slug`). Renders an "AI" badge that opens a
@@ -53,31 +65,46 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	selector: "cds-slug, ibm-slug",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button
-			*ngIf="!revertActive"
-			type="button"
-			[attr.aria-label]="computedAriaLabel"
-			[attr.aria-expanded]="isOpen"
-			[attr.aria-controls]="id"
-			[ngClass]="triggerClasses"
-			(click)="onTriggerClick($event)">
-			<span class="cds--ai-label__text">{{aiText}}</span>
-			<span *ngIf="kind === 'inline' && textLabel" class="cds--ai-label__additional-text">{{textLabel}}</span>
-		</button>
+		<ng-container *ngIf="!revertActive">
+			<span
+				#slugPopoverHost
+				cdsSlugPopover
+				class="cds--toggletip"
+				[isOpen]="isOpen"
+				(isOpenChange)="onPopoverIsOpenChange($event)"
+				(onOpen)="onOpen.emit($event)"
+				(onClose)="onClose.emit($event)"
+				[align]="align"
+				[caret]="caret"
+				[dropShadow]="dropShadow"
+				[highContrast]="highContrast"
+				[autoAlign]="autoAlign"
+				[alignmentAxisOffset]="alignmentAxisOffset">
+				<button
+					type="button"
+					[attr.aria-label]="computedAriaLabel"
+					[attr.aria-expanded]="isOpen"
+					[attr.aria-controls]="id"
+					[ngClass]="triggerClasses"
+					(click)="onTriggerClick($event)">
+					<span class="cds--ai-label__text">{{aiText}}</span>
+					<span *ngIf="kind === 'inline' && textLabel" class="cds--ai-label__additional-text">{{textLabel}}</span>
+				</button>
 
-		<span
-			*ngIf="!revertActive"
-			[id]="id"
-			class="cds--popover"
-			aria-live="polite">
-			<span #popoverContent class="cds--popover-content cds--ai-label-content">
-				<div class="cds--toggletip-content">
-					<ng-content></ng-content>
-				</div>
-				<span *ngIf="autoAlign" #caretAutoAlign class="cds--popover-caret cds--popover--auto-align"></span>
+				<span
+					[id]="id"
+					class="cds--popover"
+					aria-live="polite">
+					<span class="cds--popover-content cds--ai-label-content">
+						<div class="cds--toggletip-content">
+							<ng-content></ng-content>
+						</div>
+						<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
+					</span>
+					<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
+				</span>
 			</span>
-			<span *ngIf="!autoAlign" #caretNonAutoAlign class="cds--popover-caret"></span>
-		</span>
+		</ng-container>
 
 		<cds-icon-button
 			*ngIf="revertActive"
@@ -91,20 +118,65 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 		</cds-icon-button>
 	`
 })
-export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
+export class SlugComponent implements AfterViewInit, OnChanges, OnDestroy {
 	static slugCount = 0;
 
-	@HostBinding("class.cds--toggletip") toggletipClass = true;
 	@HostBinding("class.cds--ai-label") aiLabelClass = true;
 	@HostBinding("class.cds--ai-label--revert") get revertClass() {
 		return this.revertActive;
 	}
 
 	/**
+	 * Set alignment of popover. Deprecated Carbon alignments are mapped to
+	 * floating-ui placements.
+	 */
+	@Input() align: DeprecatedSlugAlign | Placement;
+
+	/**
+	 * Show caret at the alignment position.
+	 */
+	@Input() caret = true;
+
+	/**
+	 * Enable drop shadow around the popover container.
+	 */
+	@Input() dropShadow = false;
+
+	/**
+	 * Enable high contrast for popover container.
+	 */
+	@Input() highContrast = true;
+
+	/**
+	 * **Experimental**: Use floating-ui to position the tooltip.
+	 */
+	@Input() autoAlign = false;
+
+	/**
+	 * Whether the callout is open.
+	 */
+	@Input() isOpen = false;
+
+	/**
+	 * Emits when the callout is closed.
+	 */
+	@Output() onClose = new EventEmitter<Event>();
+
+	/**
+	 * Emits when the callout is opened.
+	 */
+	@Output() onOpen = new EventEmitter<Event>();
+
+	/**
+	 * Emits when `isOpen` changes (two-way binding).
+	 */
+	@Output() isOpenChange = new EventEmitter<boolean>();
+
+	/**
 	 * Unique id used to associate the trigger button with the popover panel
 	 * via `aria-controls` / `id`.
 	 */
-	@Input() id = `ai-label-${Slug.slugCount++}`;
+	@Input() id = `ai-label-${SlugComponent.slugCount++}`;
 
 	/**
 	 * Text inside the AI badge.
@@ -127,6 +199,14 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 	@Input() size: "mini" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" = "xs";
 
 	/**
+	 * Horizontal shift along the alignment axis when `autoAlign` is on, matching
+	 * React `AILabel` (`alignmentAxisOffset={isSmallIcon ? -24 : 0}` on `Toggletip`).
+	 */
+	get alignmentAxisOffset(): number {
+		return ["mini", "2xs", "xs"].includes(this.size) ? -24 : 0;
+	}
+
+	/**
 	 * When `true`, shows the revert icon instead of the badge (AI-generated value
 	 * is active and can be reverted).
 	 */
@@ -147,28 +227,16 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 	 */
 	@Output() revertClick = new EventEmitter<MouseEvent>();
 
-	@ViewChild("popoverContent") private popoverContent: ElementRef<HTMLSpanElement>;
-
-	/**
-	 * Bypasses `querySelector` which would otherwise pick up carets from nested
-	 * components (e.g. the `cds-tooltip` inside a projected `cds-icon-button`).
-	 */
-	// Direct reference to the caret rendered when `autoAlign=true`.
-	@ViewChild("caretAutoAlign") private caretAutoAlignRef: ElementRef<HTMLSpanElement>;
-	// Direct reference to the caret rendered when `autoAlign=false`.
-	@ViewChild("caretNonAutoAlign") private caretNonAutoAlignRef: ElementRef<HTMLSpanElement>;
+	@ViewChild("slugPopoverHost", { read: SlugPopoverDirective })
+	private slugPopover: SlugPopoverDirective;
 
 	private readonly documentClick = this.handleOutsideClick.bind(this);
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
-		this.highContrast = true;
-		this.dropShadow = false;
+	constructor(private elementRef: ElementRef) {}
+
+	onPopoverIsOpenChange(open: boolean): void {
+		this.isOpen = open;
+		this.isOpenChange.emit(open);
 	}
 
 	get triggerClasses(): Record<string, boolean> {
@@ -190,29 +258,7 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 		return `${this.aiText} ${suffix}`;
 	}
 
-	/**
-	 * Returns the caret element that belongs to THIS component's popover, regardless of the `autoAlign` state.
-	 * Using `querySelector("span.cds--popover-caret")` walks the full subtree and would match carets from
-	 * nested components.
-	 */
-	private resolveCaretRef(): HTMLElement | null {
-		return (this.autoAlign ? this.caretAutoAlignRef : this.caretNonAutoAlignRef)?.nativeElement ?? null;
-	}
-
-	/**
-	 * Override `PopoverContainer.initializeReferences` to bind popoverContentRef and caretRef via ViewChild references.
-	 */
-	initializeReferences(): void {
-		this.updateAlignmentClass(this._align);
-		this.popoverContentRef = this.popoverContent?.nativeElement;
-		this.caretRef = this.resolveCaretRef();
-		this.handleChange(this.isOpen);
-	}
-
-
 	ngAfterViewInit(): void {
-		super.ngAfterViewInit();
-
 		if (this.isOpen) {
 			document.addEventListener("click", this.documentClick);
 		}
@@ -223,26 +269,10 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 			this.isOpen = false;
 			document.removeEventListener("click", this.documentClick);
 		}
-
-		const originalState = this.isOpen;
-		this.handleChange(false);
-
-		if (
-			(changes.autoAlign && !changes.autoAlign.firstChange)
-			|| (changes.revertActive && !changes.revertActive.firstChange)
-		) {
-			this.changeDetectorRef.detectChanges();
-			this.popoverContentRef = this.popoverContent?.nativeElement;
-			this.popoverContentRef?.setAttribute("style", "");
-			this.caretRef = this.resolveCaretRef();
-		}
-
-		this.handleChange(originalState);
 	}
 
 	ngOnDestroy(): void {
 		document.removeEventListener("click", this.documentClick);
-		super.ngOnDestroy();
 	}
 
 	onTriggerClick(event: MouseEvent): void {
@@ -252,7 +282,7 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 		} else {
 			document.removeEventListener("click", this.documentClick);
 		}
-		this.expand(opening, event);
+		this.slugPopover?.handleChange(opening, event);
 	}
 
 	onRevertButtonClick(event: MouseEvent): void {
@@ -264,24 +294,16 @@ export class Slug extends PopoverContainer implements AfterViewInit, OnChanges, 
 		if (this.isOpen && event.key === "Escape") {
 			event.stopPropagation();
 			document.removeEventListener("click", this.documentClick);
-			this.expand(false, event);
+			this.slugPopover?.handleChange(false, event);
 		}
 	}
 
 	/**
-	 * Toggles the popover
-	 */
-	private expand(state: boolean, event?: Event): void {
-		this.handleChange(state, event);
-	}
-
-	/**
 	 * Dismisses the popover when a click lands outside the host element.
-	 * Added / removed on each toggle to keep the document listener count low.
 	 */
 	private handleOutsideClick(event: MouseEvent): void {
 		if (!this.elementRef.nativeElement.contains(event.target as Node)) {
-			this.expand(false, event);
+			this.slugPopover?.handleChange(false, event);
 			document.removeEventListener("click", this.documentClick);
 		}
 	}
