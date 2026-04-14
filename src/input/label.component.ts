@@ -99,7 +99,6 @@ import { PasswordInput } from "./password.directive";
 					[ariaLabel]="ariaLabel"
 					[hideLabel]="hideLabel"
 					[inline]="inline"
-					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
 					[passwordInputTemplate]="inputContentTemplate">
 				</cds-password-label>

@@ -286,8 +286,6 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	/**
 	 * Sets the id on the input item associated with the `Label` and attaches the
 	 * counter listener when `enableCounter` is already `true` on first render.
-	 * Sets the id on the input item associated with the `Label` and attaches the
-	 * counter listener when `enableCounter` is already `true` on first render.
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
@@ -300,14 +298,6 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 					this.changeDetectorRef.detectChanges();
 				}
 				inputElement.setAttribute("id", this.labelInputID);
-
-				this._inputElement = inputElement;
-
-				if (this.enableCounter) {
-					this.textCount = inputElement.value?.length || 0;
-					this._attachCounterListener();
-				}
-
 
 				this._inputElement = inputElement;
 
