@@ -10,7 +10,7 @@ import {
 } from "./";
 
 import { ReactiveFormsSelect } from "./stories";
-import { AILabelModule } from "../ai-labels";
+import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";

@@ -4,7 +4,7 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { TagModule, Tag } from "./";
 import { IconModule } from "../icon";
 import { PopoverModule } from "../popover";
-import { AILabelModule } from "../ai-labels";
+import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
