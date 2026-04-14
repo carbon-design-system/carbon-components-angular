@@ -86,6 +86,7 @@ export const withAILabel = () => ({
 				kind="default"
 				size="mini"
 				[autoAlign]="true"
+				[align]="'bottom-end'"
 				aiText="AI"
 				ariaLabel="Show information">
 				` + AI_LABEL_INNER + `

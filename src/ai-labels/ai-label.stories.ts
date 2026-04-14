@@ -84,7 +84,31 @@ const Template = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_INNER + `
+					<div>
+						<p class="secondary">AI Explained</p>
+						<h2 class="ai-label-heading">84%</h2>
+						<p class="secondary bold">Confidence score</p>
+						<p class="secondary">
+							Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+						</p>
+						<hr />
+						<p class="secondary">Model type</p>
+						<p class="bold">Foundation model</p>
+					</div>
+
+					<div cdsAILabelActions>
+						<cds-icon-button kind="ghost" align="top" description="View">
+							<svg cdsIcon="view" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Download">
+							<svg cdsIcon="download" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Folders">
+							<svg cdsIcon="folder" size="16"></svg>
+						</cds-icon-button>
+						<button cdsButton type="button">View details</button>
+					</div>
 			</cds-ai-label>
 		</div>
 	`,
@@ -117,7 +141,31 @@ const InlineTemplate = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_INNER + `
+					<div>
+						<p class="secondary">AI Explained</p>
+						<h2 class="ai-label-heading">84%</h2>
+						<p class="secondary bold">Confidence score</p>
+						<p class="secondary">
+							Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+						</p>
+						<hr />
+						<p class="secondary">Model type</p>
+						<p class="bold">Foundation model</p>
+					</div>
+
+					<div cdsAILabelActions>
+						<cds-icon-button kind="ghost" align="top" description="View">
+							<svg cdsIcon="view" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Download">
+							<svg cdsIcon="download" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Folders">
+							<svg cdsIcon="folder" size="16"></svg>
+						</cds-icon-button>
+						<button cdsButton type="button">View details</button>
+					</div>
 			</cds-ai-label>
 		</div>
 	`,
@@ -161,7 +209,31 @@ const InlineWithContentTemplate = (args) => ({
 				(onOpen)="onOpen($event)"
 				(onClose)="onClose($event)"
 				(isOpenChange)="isOpenChange($event)">
-				` + AI_LABEL_INNER + `
+					<div>
+						<p class="secondary">AI Explained</p>
+						<h2 class="ai-label-heading">84%</h2>
+						<p class="secondary bold">Confidence score</p>
+						<p class="secondary">
+							Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+						</p>
+						<hr />
+						<p class="secondary">Model type</p>
+						<p class="bold">Foundation model</p>
+					</div>
+
+					<div cdsAILabelActions>
+						<cds-icon-button kind="ghost" align="top" description="View">
+							<svg cdsIcon="view" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Download">
+							<svg cdsIcon="download" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Folders">
+							<svg cdsIcon="folder" size="16"></svg>
+						</cds-icon-button>
+						<button cdsButton type="button">View details</button>
+					</div>
 			</cds-ai-label>
 		</div>
 	`,
@@ -197,7 +269,31 @@ const RevertTemplate = (args) => ({
 				[revertActive]="revertActive"
 				[revertLabel]="revertLabel"
 				(revertClick)="revertClick($event)">
-				` + AI_LABEL_INNER + `
+					<div>
+						<p class="secondary">AI Explained</p>
+						<h2 class="ai-label-heading">84%</h2>
+						<p class="secondary bold">Confidence score</p>
+						<p class="secondary">
+							Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+						</p>
+						<hr />
+						<p class="secondary">Model type</p>
+						<p class="bold">Foundation model</p>
+					</div>
+
+					<div cdsAILabelActions>
+						<cds-icon-button kind="ghost" align="top" description="View">
+							<svg cdsIcon="view" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Download">
+							<svg cdsIcon="download" size="16"></svg>
+						</cds-icon-button>
+						<cds-icon-button kind="ghost" align="top" description="Folders">
+							<svg cdsIcon="folder" size="16"></svg>
+						</cds-icon-button>
+						<button cdsButton type="button">View details</button>
+					</div>
 			</cds-ai-label>
 		</div>
 	`,
@@ -234,7 +330,31 @@ const AutoAlignTemplate = (args) => ({
 						(onOpen)="onOpen($event)"
 						(onClose)="onClose($event)"
 						(isOpenChange)="isOpenChange($event)">
-						` + AI_LABEL_INNER + `
+						<div>
+							<p class="secondary">AI Explained</p>
+							<h2 class="ai-label-heading">84%</h2>
+							<p class="secondary bold">Confidence score</p>
+							<p class="secondary">
+								Lorem ipsum dolor sit amet, di os consectetur adipiscing elit, sed do
+								eiusmod tempor incididunt ut fsil labore et dolore magna aliqua.
+							</p>
+							<hr />
+							<p class="secondary">Model type</p>
+							<p class="bold">Foundation model</p>
+						</div>
+
+						<div cdsAILabelActions>
+							<cds-icon-button kind="ghost" align="top" description="View">
+								<svg cdsIcon="view" size="16"></svg>
+							</cds-icon-button>
+							<cds-icon-button kind="ghost" align="top" description="Download">
+								<svg cdsIcon="download" size="16"></svg>
+							</cds-icon-button>
+							<cds-icon-button kind="ghost" align="top" description="Folders">
+								<svg cdsIcon="folder" size="16"></svg>
+							</cds-icon-button>
+							<button cdsButton type="button">View details</button>
+						</div>
 					</cds-ai-label>
 				</div>
 			</div>
