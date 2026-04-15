@@ -201,7 +201,8 @@ import { TableRowSize } from "./table.types";
 			[skeleton]="skeleton"
 			[sortAscendingLabel]="sortAscendingLabel"
 			[sortDescendingLabel]="sortDescendingLabel"
-			[stickyHeader]="stickyHeader">
+			[stickyHeader]="stickyHeader"
+			[withRowAILabels]="withRowAILabels">
 		</thead>
 		<tbody
 			cdsTableBody
@@ -218,6 +219,7 @@ import { TableRowSize } from "./table.types";
 			[selectionLabelColumn]="selectionLabelColumn"
 			[showSelectionColumn]="showSelectionColumn"
 			[skeleton]="skeleton"
+			[withRowAILabels]="withRowAILabels"
 			*ngIf="!noData; else noDataTemplate">
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
@@ -479,6 +481,11 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 	 * Set to `false` to remove table rows (zebra) stripes.
 	 */
 	@Input() striped = true;
+
+	/**
+	 * When true, rows that set `TableItem.hasAILabelDecorator` on the decorator column receive AI row styling.
+	 */
+	@Input() withRowAILabels = false;
 
 	/**
 	 * Allows table content to scroll horizontally

@@ -9,6 +9,8 @@ import { IconService } from "./icon.service";
 // icon imports
 import Add16 from "@carbon/icons/es/add/16";
 import Add20 from "@carbon/icons/es/add/20";
+import ArrowDown16 from "@carbon/icons/es/arrow--down/16";
+import ArrowsVertical16 from "@carbon/icons/es/arrows--vertical/16";
 import Bee16 from "@carbon/icons/es/bee/16";
 import Bee20 from "@carbon/icons/es/bee/20";
 import Calendar16 from "@carbon/icons/es/calendar/16";
@@ -95,6 +97,8 @@ export class IconModule {
 		iconService.registerAll([
 			Add16,
 			Add20,
+			ArrowDown16,
+			ArrowsVertical16,
 			Bee16,
 			Bee20,
 			Calendar16,
