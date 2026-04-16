@@ -5,17 +5,22 @@ import { CommonModule } from "@angular/common";
 
 // imports
 import { Checkbox } from "./checkbox.component";
+import { CheckboxGroup } from "./checkbox-group.component";
+import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
 	declarations: [
-		Checkbox
+		Checkbox,
+		CheckboxGroup
 	],
 	exports: [
-		Checkbox
+		Checkbox,
+		CheckboxGroup
 	],
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		IconModule
 	]
 })
 export class CheckboxModule { }
