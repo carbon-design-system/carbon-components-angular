@@ -60,6 +60,7 @@ import { PasswordInput } from "./password.directive";
 					[enableCounter]="enableCounter"
 					[maxCount]="maxCount"
 					[counterMode]="counterMode"
+					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
 					[textAreaTemplate]="inputContentTemplate">
 				</cds-textarea-label>
@@ -80,6 +81,7 @@ import { PasswordInput } from "./password.directive";
 					[size]="size"
 					[enableCounter]="enableCounter"
 					[maxCount]="maxCount"
+					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
 					[textInputTemplate]="inputContentTemplate">
 				</cds-text-label>
@@ -233,6 +235,11 @@ export class Label implements AfterContentInit, AfterViewInit {
 	 * Determines whether the `TextArea` counter counts characters or words.
 	 */
 	@Input() counterMode: "character" | "word" = "character";
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
 

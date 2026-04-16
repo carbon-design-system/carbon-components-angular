@@ -3,7 +3,8 @@ import {
 	Input,
 	ElementRef,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
@@ -45,7 +46,9 @@ export interface ExpandableTileTranslations {
 			class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
 			[ngClass]="{
 				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light'
+				'cds--tile--light': theme === 'light',
+				'cds--tile--decorator': !!decorator,
+				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
 			}"
 			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
@@ -58,6 +61,11 @@ export interface ExpandableTileTranslations {
 
 		<ng-template #expandableTileContent>
 			<div #container>
+				<ng-container *ngIf="interactive && decorator">
+					<div class="cds--tile--inner-decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<div class="cds--tile-content">
 					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
 				</div>
@@ -95,6 +103,17 @@ export class ExpandableTile implements AfterViewInit {
 	 * Controls the interactive state
 	 */
 	@Input() interactive = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
+
 	/**
 	 * Expects an object that contains some or all of:
 	 * ```

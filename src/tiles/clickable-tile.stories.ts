@@ -4,6 +4,9 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerModule } from "../layer";
 import { IconModule } from "../icon";
 import { TilesModule, ClickableTile } from "./";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tiles/Clickable",
@@ -12,7 +15,9 @@ export default {
 			imports: [
 				TilesModule,
 				LayerModule,
-				IconModule
+				IconModule,
+				AILabelModule,
+				ButtonModule
 			]
 		})
 	],
@@ -62,3 +67,25 @@ WithLayers.parameters = {
 		disable: true
 	}
 };
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-clickable-tile [href]="href" [decorator]="decoratorTpl" target="_blank">
+			Clickable tile with decorator
+		</cds-clickable-tile>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				[align]="'bottom-end'"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`,
+	props: { href: "https://www.carbondesignsystem.com/" }
+});
