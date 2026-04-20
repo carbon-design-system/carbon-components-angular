@@ -328,7 +328,8 @@ export class NumberChange {
 			&lt;div
 				class&#x3D;&quot;cds--number__input-wrapper&quot;
 				[ngClass]&#x3D;&quot;{
-					&#x27;cds--number__input-wrapper--warning&#x27;: warn
+					&#x27;cds--number__input-wrapper--warning&#x27;: warn,
+					&#x27;cds--number__input-wrapper--decorator&#x27;: !!decorator
 				}&quot;&gt;
 				&lt;input
 					type&#x3D;&quot;number&quot;
@@ -346,6 +347,11 @@ export class NumberChange {
 					(focus)&#x3D;&quot;fluid ? handleFocus($event): null&quot;
 					(blur)&#x3D;&quot;fluid ? handleFocus($event): null&quot;
 					(change)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+					&lt;div class&#x3D;&quot;cds--number__input-inner-wrapper--decorator&quot;&gt;
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+				&lt;/ng-container&gt;
 				&lt;svg
 					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
 					cdsIcon&#x3D;&quot;warning--filled&quot;
@@ -482,6 +488,11 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the text inside the &#x60;label&#x60; tag.
 	 */
 	@Input() label: string | TemplateRef&lt;any&gt;;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef&lt;any&gt;;
+
 	/**
 	 * Sets the optional helper text.
 	 */

@@ -178,50 +178,74 @@
 		&#x27;cds--table-sort--active&#x27;: column.sorted,
 		&#x27;cds--table-sort--descending&#x27;: column.ascending
 	}&quot;
-	(click)&#x3D;&quot;onClick()&quot;&gt;
+	(click)&#x3D;&quot;onClick($event)&quot;&gt;
 	&lt;span
+		*ngIf&#x3D;&quot;headerAILabelDecoratorLayout&quot;
 		class&#x3D;&quot;cds--table-sort__flex&quot;
 		[title]&#x3D;&quot;column.title&quot;
 		tabindex&#x3D;&quot;-1&quot;&gt;
-		&lt;div *ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot; cdsTableHeadCellLabel&gt;
-			{{column.data}}
-		&lt;/div&gt;
+		&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
+		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+	&lt;div
+		#decoratorInner
+		class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
+		(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
 		&lt;ng-template
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
 			[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 			[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 		&lt;/ng-template&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;!skeleton&quot;
-			focusable&#x3D;&quot;false&quot;
-			preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-			style&#x3D;&quot;will-change: transform;&quot;
-			xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-			class&#x3D;&quot;cds--table-sort__icon&quot;
-			width&#x3D;&quot;16&quot;
-			height&#x3D;&quot;16&quot;
-			viewBox&#x3D;&quot;0 0 16 16&quot;
-			aria-hidden&#x3D;&quot;true&quot;&gt;
-			&lt;path d&#x3D;&quot;M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;!skeleton&quot;
-			focusable&#x3D;&quot;false&quot;
-			preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-			style&#x3D;&quot;will-change: transform;&quot;
-			xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-			class&#x3D;&quot;cds--table-sort__icon-unsorted&quot;
-			width&#x3D;&quot;16&quot;
-			height&#x3D;&quot;16&quot;
-			viewBox&#x3D;&quot;0 0 16 16&quot;
-			aria-hidden&#x3D;&quot;true&quot;&gt;
-			&lt;path d&#x3D;&quot;M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
+	&lt;/div&gt;
+	&lt;/span&gt;
+	&lt;span
+		*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout&quot;
+		class&#x3D;&quot;cds--table-sort__flex&quot;
+		[title]&#x3D;&quot;column.title&quot;
+		tabindex&#x3D;&quot;-1&quot;&gt;
+		&lt;div
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot;
+			cdsTableHeadCellLabel
+			[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+			[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+			{{column.data}}
+		&lt;/div&gt;
+		&lt;div
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
+			cdsTableHeadCellLabel
+			[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+			[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+			&lt;ng-template
+				[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+				[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+			&lt;/ng-template&gt;
+		&lt;/div&gt;
+		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
 	&lt;/span&gt;
 &lt;/button&gt;
 &lt;div
+	*ngIf&#x3D;&quot;headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
 	class&#x3D;&quot;cds--table-header-label&quot;
-	*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable&quot;&gt;
+	[ngClass]&#x3D;&quot;{
+		&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+		&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
+		&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
+	}&quot;&gt;
+	&lt;span *ngIf&#x3D;&quot;getHeaderLabelText()&quot;&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
+	&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
+		&lt;ng-template
+			[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+			[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+		&lt;/ng-template&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div
+	class&#x3D;&quot;cds--table-header-label&quot;
+	*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+		&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
+	}&quot;&gt;
 	&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;
 		&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
 			{{column.data}}
@@ -272,6 +296,10 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                <a href="#decoratorInnerRef" >decoratorInnerRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#theadAction" >theadAction</a>
                             </li>
                         </ul>
@@ -287,6 +315,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getHeaderLabelText" >getHeaderLabelText</a>
+                            </li>
+                            <li>
                                 <a href="#getSortAscendingLabel" >getSortAscendingLabel</a>
                             </li>
                             <li>
@@ -297,6 +328,9 @@
                             </li>
                             <li>
                                 <a href="#onClick" >onClick</a>
+                            </li>
+                            <li>
+                                <a href="#onDecoratorRegionClick" >onDecoratorRegionClick</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -360,6 +394,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#class.cds--table-sort__header" >class.cds--table-sort__header</a>
+                            </li>
+                            <li>
+                                <a href="#class.cds--table-sort__header--ai-label" >class.cds--table-sort__header--ai-label</a>
+                            </li>
+                            <li>
+                                <a href="#class.cds--table-sort__header--decorator" >class.cds--table-sort__header--decorator</a>
+                            </li>
+                            <li>
                                 <a href="#class.thead_action" >class.thead_action</a>
                             </li>
                         </ul>
@@ -384,6 +427,18 @@
                                 <li>
                                     <a href="#filterTitle" >filterTitle</a>
                                 </li>
+                                <li>
+                                    <a href="#sortHeaderHost" >sortHeaderHost</a>
+                                </li>
+                                <li>
+                                    <a href="#sortHeaderAILabelHost" >sortHeaderAILabelHost</a>
+                                </li>
+                                <li>
+                                    <a href="#sortHeaderDecoratorHost" >sortHeaderDecoratorHost</a>
+                                </li>
+                                <li>
+                                    <a href="#headerAILabelDecoratorLayout" >headerAILabelDecoratorLayout</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -402,7 +457,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/table/head/table-head-cell.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -458,7 +513,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/table/head/table-head-cell.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head-cell.component.ts:109</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -479,7 +534,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/table/head/table-head-cell.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head-cell.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -505,7 +560,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/table/head/table-head-cell.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/table/head/table-head-cell.component.ts:111</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -531,7 +586,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/table/head/table-head-cell.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head-cell.component.ts:113</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -552,7 +607,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/table/head/table-head-cell.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -573,7 +628,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/table/head/table-head-cell.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -597,7 +652,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/head/table-head-cell.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/table/head/table-head-cell.component.ts:145</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -611,6 +666,84 @@
 </section>
     <section data-compodoc="block-properties">
     <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--table-sort__header"></a>
+                    <span class="name">
+                        <span ><b>class.cds--table-sort__header</b></span>
+                        <a href="#class.cds--table-sort__header"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head-cell.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--table-sort__header--ai-label"></a>
+                    <span class="name">
+                        <span ><b>class.cds--table-sort__header--ai-label</b></span>
+                        <a href="#class.cds--table-sort__header--ai-label"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head-cell.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--table-sort__header--decorator"></a>
+                    <span class="name">
+                        <span ><b>class.cds--table-sort__header--decorator</b></span>
+                        <a href="#class.cds--table-sort__header--decorator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head-cell.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -634,7 +767,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/table/head/table-head-cell.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/table/head/table-head-cell.component.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -649,6 +782,45 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHeaderLabelText"></a>
+                    <span class="name">
+                        <span ><b>getHeaderLabelText</b></span>
+                        <a href="#getHeaderLabelText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getHeaderLabelText()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Text label for the column when <code>hasAILabelHeader</code> uses a separate <code>template</code> for the slug.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -669,8 +841,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="139"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:139</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:201</a></div>
                         </td>
                     </tr>
 
@@ -706,8 +878,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:197</a></div>
                         </td>
                     </tr>
 
@@ -743,8 +915,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -773,15 +945,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onClick()</code>
+<code>onClick(event: MouseEvent)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="143"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:143</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -789,10 +961,109 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDecoratorRegionClick"></a>
+                    <span class="name">
+                        <span ><b>onDecoratorRegionClick</b></span>
+                        <a href="#onDecoratorRegionClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDecoratorRegionClick(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="208"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:208</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Prevent focus from moving to parent button when click on decorator</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -819,8 +1090,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:149</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:226</a></div>
                         </td>
                     </tr>
 
@@ -861,7 +1132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/table/head/table-head-cell.component.ts:172</a></div>
                         </td>
                     </tr>
 
@@ -887,7 +1158,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/table/head/table-head-cell.component.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/table/head/table-head-cell.component.ts:171</a></div>
                         </td>
                     </tr>
 
@@ -913,7 +1184,43 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/table/head/table-head-cell.component.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/table/head/table-head-cell.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decoratorInnerRef"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>decoratorInnerRef</b></span>
+                        <a href="#decoratorInnerRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;decoratorInner&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/table/head/table-head-cell.component.ts:147</a></div>
                         </td>
                     </tr>
 
@@ -948,7 +1255,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/table/head/table-head-cell.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/table/head/table-head-cell.component.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -977,7 +1284,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/table/head/table-head-cell.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/table/head/table-head-cell.component.ts:120</a></div>
                                 </td>
                             </tr>
 
@@ -988,7 +1295,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/table/head/table-head-cell.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1046,7 +1353,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/table/head/table-head-cell.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/table/head/table-head-cell.component.ts:129</a></div>
                                 </td>
                             </tr>
 
@@ -1057,7 +1364,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/table/head/table-head-cell.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1115,7 +1422,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/table/head/table-head-cell.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/table/head/table-head-cell.component.ts:138</a></div>
                                 </td>
                             </tr>
 
@@ -1126,7 +1433,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/table/head/table-head-cell.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head-cell.component.ts:134</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1168,6 +1475,105 @@
                     </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortHeaderHost"></a>
+                        <span class="name"><b>sortHeaderHost</b><a href="#sortHeaderHost"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortHeaderHost()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head-cell.component.ts:151</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortHeaderAILabelHost"></a>
+                        <span class="name"><b>sortHeaderAILabelHost</b><a href="#sortHeaderAILabelHost"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortHeaderAILabelHost()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head-cell.component.ts:155</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortHeaderDecoratorHost"></a>
+                        <span class="name"><b>sortHeaderDecoratorHost</b><a href="#sortHeaderDecoratorHost"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortHeaderDecoratorHost()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head-cell.component.ts:159</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="headerAILabelDecoratorLayout"></a>
+                        <span class="name"><b>headerAILabelDecoratorLayout</b><a href="#headerAILabelDecoratorLayout"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>headerAILabelDecoratorLayout()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/table/head/table-head-cell.component.ts:166</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>When the column uses a separate template for the slug/AI: label text + sort icons + <code>cds--table-header-label--decorator-inner</code>.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
 </section>
 </div>
 
@@ -1175,11 +1581,13 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
+	ElementRef,
 	Input,
 	Output,
 	EventEmitter,
 	HostBinding,
-	OnChanges
+	OnChanges,
+	ViewChild
 } from &quot;@angular/core&quot;;
 import { Observable, OperatorFunction } from &quot;rxjs&quot;;
 import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
@@ -1199,50 +1607,74 @@ import { TableHeaderItem } from &quot;../table-header-item.class&quot;;
 				&#x27;cds--table-sort--active&#x27;: column.sorted,
 				&#x27;cds--table-sort--descending&#x27;: column.ascending
 			}&quot;
-			(click)&#x3D;&quot;onClick()&quot;&gt;
+			(click)&#x3D;&quot;onClick($event)&quot;&gt;
 			&lt;span
+				*ngIf&#x3D;&quot;headerAILabelDecoratorLayout&quot;
 				class&#x3D;&quot;cds--table-sort__flex&quot;
 				[title]&#x3D;&quot;column.title&quot;
 				tabindex&#x3D;&quot;-1&quot;&gt;
-				&lt;div *ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot; cdsTableHeadCellLabel&gt;
-					{{column.data}}
-				&lt;/div&gt;
+				&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
+				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+			&lt;div
+				#decoratorInner
+				class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
+				(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
 				&lt;ng-template
-					*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
 					[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 					[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 				&lt;/ng-template&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!skeleton&quot;
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					style&#x3D;&quot;will-change: transform;&quot;
-					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-					class&#x3D;&quot;cds--table-sort__icon&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 16 16&quot;
-					aria-hidden&#x3D;&quot;true&quot;&gt;
-					&lt;path d&#x3D;&quot;M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!skeleton&quot;
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					style&#x3D;&quot;will-change: transform;&quot;
-					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-					class&#x3D;&quot;cds--table-sort__icon-unsorted&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 16 16&quot;
-					aria-hidden&#x3D;&quot;true&quot;&gt;
-					&lt;path d&#x3D;&quot;M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
+			&lt;/div&gt;
+			&lt;/span&gt;
+			&lt;span
+				*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout&quot;
+				class&#x3D;&quot;cds--table-sort__flex&quot;
+				[title]&#x3D;&quot;column.title&quot;
+				tabindex&#x3D;&quot;-1&quot;&gt;
+				&lt;div
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot;
+					cdsTableHeadCellLabel
+					[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+					[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+					{{column.data}}
+				&lt;/div&gt;
+				&lt;div
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
+					cdsTableHeadCellLabel
+					[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+					[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+					&lt;ng-template
+						[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+						[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+					&lt;/ng-template&gt;
+				&lt;/div&gt;
+				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
 			&lt;/span&gt;
 		&lt;/button&gt;
 		&lt;div
+			*ngIf&#x3D;&quot;headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
 			class&#x3D;&quot;cds--table-header-label&quot;
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable&quot;&gt;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+				&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
+				&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
+			}&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;getHeaderLabelText()&quot;&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
+			&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
+				&lt;ng-template
+					[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+					[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+				&lt;/ng-template&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div
+			class&#x3D;&quot;cds--table-header-label&quot;
+			*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+				&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
+			}&quot;&gt;
 			&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
 					{{column.data}}
@@ -1293,7 +1725,28 @@ export class TableHeadCell implements OnChanges {
 	 */
 	@Output() sort &#x3D; new EventEmitter();
 
+	@ViewChild(&quot;decoratorInner&quot;) decoratorInnerRef: ElementRef;
+
 	@HostBinding(&quot;class.thead_action&quot;) theadAction &#x3D; false;
+
+	@HostBinding(&quot;class.cds--table-sort__header&quot;) get sortHeaderHost() {
+		return this.sortable &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; this.column?.sortable;
+	}
+
+	@HostBinding(&quot;class.cds--table-sort__header--ai-label&quot;) get sortHeaderAILabelHost() {
+		return this.column?.hasAILabelHeader &amp;&amp; this.sortHeaderHost;
+	}
+
+	@HostBinding(&quot;class.cds--table-sort__header--decorator&quot;) get sortHeaderDecoratorHost() {
+		return this.column?.hasAILabelHeader &amp;&amp; this.column?.template &amp;&amp; this.sortHeaderHost;
+	}
+
+	/**
+	 * When the column uses a separate template for the slug/AI: label text + sort icons + &#x60;cds--table-header-label--decorator-inner&#x60;.
+	 */
+	get headerAILabelDecoratorLayout(): boolean {
+		return !!(this.column?.hasAILabelHeader &amp;&amp; this.column?.template);
+	}
 
 	protected _sortDescendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;);
 	protected _sortAscendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;);
@@ -1302,9 +1755,24 @@ export class TableHeadCell implements OnChanges {
 	constructor(protected i18n: I18n) { }
 
 	ngOnChanges() {
-		// Since it&#x27;s not an input, and it touches the view, we&#x27;re using &#x60;ngOnChanges&#x60;
-		// &#x60;get&#x60;ters have caused issues in the past with the view updating outside of change detection
-		this.theadAction &#x3D; !!this.column.filterTemplate || this.sort.observers.length &gt; 0;
+		this.theadAction &#x3D; !!(this.column &amp;&amp; this.column.filterTemplate) || this.sort.observers.length &gt; 0;
+	}
+
+	/**
+	 * Text label for the column when &#x60;hasAILabelHeader&#x60; uses a separate &#x60;template&#x60; for the slug.
+	 */
+	getHeaderLabelText(): string {
+		if (!this.column) {
+			return &quot;&quot;;
+		}
+		const d &#x3D; this.column.data;
+		if (d !&#x3D; null &amp;&amp; typeof d &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; &quot;label&quot; in d &amp;&amp; (d as { label?: unknown }).label !&#x3D; null) {
+			return String((d as { label: unknown }).label);
+		}
+		if (typeof d &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
+			return d;
+		}
+		return &quot;&quot;;
 	}
 
 	getSortDescendingLabel(): Observable&lt;string&gt; {
@@ -1315,10 +1783,25 @@ export class TableHeadCell implements OnChanges {
 		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
 	}
 
-	onClick() {
-		if (!this.skeleton) {
-			this.sort.emit();
+	/**
+	 * Prevent focus from moving to parent button when click on decorator
+	 */
+	onDecoratorRegionClick(event: MouseEvent) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
+
+	onClick(event: MouseEvent) {
+		if (this.skeleton) {
+			return;
 		}
+		if (
+			this.column?.hasAILabelHeader &amp;&amp;
+			this.decoratorInnerRef?.nativeElement?.contains(event.target)
+		) {
+			return;
+		}
+		this.sort.emit();
 	}
 
 	protected sortLabelMap(): OperatorFunction&lt;string, string&gt; {
@@ -1329,7 +1812,10 @@ export class TableHeadCell implements OnChanges {
 			if (this.column.formatSortLabel) {
 				return this.column.formatSortLabel(str, this.column.ariaSortLabel);
 			}
-			return &#x60;${this.column.data} - ${str}&#x60;;
+			const header &#x3D;
+				this.getHeaderLabelText() ||
+				(typeof this.column.data &#x3D;&#x3D;&#x3D; &quot;string&quot; ? this.column.data : &quot;&quot;);
+			return &#x60;${header} - ${str}&#x60;;
 		});
 	}
 }
@@ -1363,9 +1849,9 @@ export class TableHeadCell implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	class="cds--table-sort"	*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'cds--table-sort--active\': column.sorted,		\'cds--table-sort--descending\': column.ascending	}"	(click)="onClick()">	<span		class="cds--table-sort__flex"		[title]="column.title"		tabindex="-1">		<div *ngIf="!skeleton && !column.template" cdsTableHeadCellLabel>			{{column.data}}		</div>		<ng-template			*ngIf="!skeleton && column.template"			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>		<svg			*ngIf="!skeleton"			focusable="false"			preserveAspectRatio="xMidYMid meet"			style="will-change: transform;"			xmlns="http://www.w3.org/2000/svg"			class="cds--table-sort__icon"			width="16"			height="16"			viewBox="0 0 16 16"			aria-hidden="true">			<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>		</svg>		<svg			*ngIf="!skeleton"			focusable="false"			preserveAspectRatio="xMidYMid meet"			style="will-change: transform;"			xmlns="http://www.w3.org/2000/svg"			class="cds--table-sort__icon-unsorted"			width="16"			height="16"			viewBox="0 0 16 16"			aria-hidden="true">			<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>		</svg>	</span></button><div	class="cds--table-header-label"	*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">	<span *ngIf="!column.template" [title]="column.data">		<ng-container *ngIf="!skeleton">			{{column.data}}		</ng-container>	</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></div>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
-    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
+        var COMPONENT_TEMPLATE = '<div><button	class="cds--table-sort"	*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'cds--table-sort--active\': column.sorted,		\'cds--table-sort--descending\': column.ascending	}"	(click)="onClick($event)">	<span		*ngIf="headerAILabelDecoratorLayout"		class="cds--table-sort__flex"		[title]="column.title"		tabindex="-1">		<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>		<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>		<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>	<div		#decoratorInner		class="cds--table-header-label--decorator-inner"		(click)="onDecoratorRegionClick($event)">		<ng-template			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>	</div>	</span>	<span		*ngIf="!headerAILabelDecoratorLayout"		class="cds--table-sort__flex"		[title]="column.title"		tabindex="-1">		<div			*ngIf="!skeleton && !column.template"			cdsTableHeadCellLabel			[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"			[class.cds--table-header-label--slug]="column.hasAILabelHeader">			{{column.data}}		</div>		<div			*ngIf="!skeleton && column.template"			cdsTableHeadCellLabel			[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"			[class.cds--table-header-label--slug]="column.hasAILabelHeader">			<ng-template				[ngTemplateOutlet]="column.template"				[ngTemplateOutletContext]="{data: column.data}">			</ng-template>		</div>		<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>		<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>	</span></button><div	*ngIf="headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"	class="cds--table-header-label"	[ngClass]="{		\'cds--table-header-label--ai-label\': column.hasAILabelHeader,		\'cds--table-header-label--slug\': column.hasAILabelHeader,		\'cds--table-header-label--decorator\': column.hasAILabelHeader	}">	<span *ngIf="getHeaderLabelText()">{{ getHeaderLabelText() }}</span>	<div class="cds--table-header-label--decorator-inner">		<ng-template			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>	</div></div><div	class="cds--table-header-label"	*ngIf="!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"	[ngClass]="{		\'cds--table-header-label--ai-label\': column.hasAILabelHeader,		\'cds--table-header-label--slug\': column.hasAILabelHeader	}">	<span *ngIf="!column.template" [title]="column.data">		<ng-container *ngIf="!skeleton">			{{column.data}}		</ng-container>	</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></div>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
+    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TableHeadCell'};
 </script>
 <script src="../js/tree.js"></script>

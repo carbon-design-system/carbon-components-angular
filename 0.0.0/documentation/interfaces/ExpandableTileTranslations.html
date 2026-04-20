@@ -255,7 +255,8 @@
 	Input,
 	ElementRef,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	TemplateRef
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { merge } from &quot;carbon-components-angular/utils&quot;;
@@ -297,7 +298,9 @@ export interface ExpandableTileTranslations {
 			class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;cds--tile--is-expanded&#x27; : expanded,
-				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+				&#x27;cds--tile--decorator&#x27;: !!decorator,
+				&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
 			}&quot;
 			[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
 			[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
@@ -310,6 +313,11 @@ export interface ExpandableTileTranslations {
 
 		&lt;ng-template #expandableTileContent&gt;
 			&lt;div #container&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;interactive &amp;&amp; decorator&quot;&gt;
+					&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+				&lt;/ng-container&gt;
 				&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 					&lt;ng-content select&#x3D;&quot;[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold&quot;&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
@@ -347,6 +355,17 @@ export class ExpandableTile implements AfterViewInit {
 	 * Controls the interactive state
 	 */
 	@Input() interactive &#x3D; false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef&lt;any&gt;;
+
+	/**
+	 * When &#x60;true&#x60; with a &#x60;decorator&#x60;, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners &#x3D; false;
+
 	/**
 	 * Expects an object that contains some or all of:
 	 * &#x60;&#x60;&#x60;

@@ -202,12 +202,18 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 		&#x27;cds--radio-button-group--vertical&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;,
 		&#x27;cds--radio-button-group--label-left&#x27;: labelPlacement &#x3D;&#x3D;&#x3D; &#x27;left&#x27;,
 		&#x27;cds--radio-button-group--invalid&#x27;: invalid,
-		&#x27;cds--radio-button-group--warning&#x27;: !invalid &amp;&amp; warn
+		&#x27;cds--radio-button-group--warning&#x27;: !invalid &amp;&amp; warn,
+		&#x27;cds--radio-button-group--decorator&#x27;: !!decorator
 	}&quot;
 	[attr.data-invalid]&#x3D;&quot;invalid ? true : null&quot;&gt;
 	&lt;legend *ngIf&#x3D;&quot;legend&quot; class&#x3D;&quot;cds--label&quot;&gt;
 		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(legend); else legendLabel;&quot; [ngTemplateOutlet]&#x3D;&quot;legend&quot;&gt;&lt;/ng-template&gt;
 		&lt;ng-template #legendLabel&gt;{{legend}}&lt;/ng-template&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+			&lt;div class&#x3D;&quot;cds--radio-button-group-inner--decorator&quot;&gt;
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
 	&lt;/legend&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/fieldset&gt;
@@ -390,6 +396,9 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                                 <a href="#ariaLabelledby" >ariaLabelledby</a>
                             </li>
                             <li>
+                                <a href="#decorator" >decorator</a>
+                            </li>
+                            <li>
                                 <a href="#disabled" >disabled</a>
                             </li>
                             <li>
@@ -526,7 +535,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/radio/radio-group.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/radio/radio-group.component.ts:222</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -553,12 +562,39 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/radio/radio-group.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/radio/radio-group.component.ts:227</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Used to set the <code>aria-labelledby</code> attribute on the radio group element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="decorator"></a>
+                        <b>decorator</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/radio/radio-group.component.ts:217</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>Experimental</strong>: Optional decorator (e.g. AI label).</p>
 </div>
                     </td>
                 </tr>
@@ -580,7 +616,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/radio/radio-group.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/radio/radio-group.component.ts:177</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -607,7 +643,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/radio/radio-group.component.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/radio/radio-group.component.ts:232</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -639,7 +675,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/radio/radio-group.component.ts:226</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/radio/radio-group.component.ts:237</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -666,7 +702,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/radio/radio-group.component.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/radio/radio-group.component.ts:242</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -698,7 +734,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/radio/radio-group.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/radio/radio-group.component.ts:210</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -719,7 +755,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/radio/radio-group.component.ts:206</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/radio/radio-group.component.ts:212</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -740,7 +776,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/radio/radio-group.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/radio/radio-group.component.ts:162</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -772,7 +808,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/radio/radio-group.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/radio/radio-group.component.ts:208</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -793,7 +829,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/radio/radio-group.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/radio/radio-group.component.ts:116</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -820,7 +856,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/radio/radio-group.component.ts:186</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/radio/radio-group.component.ts:192</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -847,7 +883,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/radio/radio-group.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/radio/radio-group.component.ts:142</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -879,7 +915,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/radio/radio-group.component.ts:236</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/radio/radio-group.component.ts:247</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -906,7 +942,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/radio/radio-group.component.ts:241</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/radio/radio-group.component.ts:252</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -936,7 +972,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/radio/radio-group.component.ts:246</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/radio/radio-group.component.ts:257</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -973,7 +1009,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/radio/radio-group.component.ts:257</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/radio/radio-group.component.ts:268</a></div>
                         </td>
                     </tr>
 
@@ -1009,8 +1045,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="392"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:392</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="403"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:403</a></div>
                         </td>
                     </tr>
 
@@ -1043,8 +1079,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="287"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:287</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:298</a></div>
                         </td>
                     </tr>
 
@@ -1082,8 +1118,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="328"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:328</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:339</a></div>
                         </td>
                     </tr>
 
@@ -1160,8 +1196,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="392"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:392</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="403"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:403</a></div>
                         </td>
                     </tr>
 
@@ -1199,8 +1235,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="406"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:406</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="417"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:417</a></div>
                         </td>
                     </tr>
 
@@ -1262,8 +1298,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="362"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:362</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:373</a></div>
                         </td>
                     </tr>
 
@@ -1299,8 +1335,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="372"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:372</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="383"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:383</a></div>
                         </td>
                     </tr>
 
@@ -1338,8 +1374,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="379"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:379</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="390"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:390</a></div>
                         </td>
                     </tr>
 
@@ -1409,8 +1445,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="387"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:387</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="398"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:398</a></div>
                         </td>
                     </tr>
 
@@ -1483,8 +1519,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="321"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:321</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="332"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:332</a></div>
                         </td>
                     </tr>
 
@@ -1560,8 +1596,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="410"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:410</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="421"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:421</a></div>
                         </td>
                     </tr>
 
@@ -1599,8 +1635,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="416"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:416</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="427"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:427</a></div>
                         </td>
                     </tr>
 
@@ -1636,8 +1672,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="337"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:337</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="348"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:348</a></div>
                         </td>
                     </tr>
 
@@ -1675,8 +1711,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="296"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:296</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:307</a></div>
                         </td>
                     </tr>
 
@@ -1714,8 +1750,8 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="354"
-                                    class="link-to-prism">src/radio/radio-group.component.ts:354</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/radio/radio-group.component.ts:365</a></div>
                         </td>
                     </tr>
 
@@ -1788,7 +1824,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/radio/radio-group.component.ts:266</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/radio/radio-group.component.ts:277</a></div>
                         </td>
                     </tr>
 
@@ -1820,7 +1856,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/radio/radio-group.component.ts:282</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/radio/radio-group.component.ts:293</a></div>
                         </td>
                     </tr>
 
@@ -1858,7 +1894,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/radio/radio-group.component.ts:278</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/radio/radio-group.component.ts:289</a></div>
                         </td>
                     </tr>
 
@@ -1890,7 +1926,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/radio/radio-group.component.ts:270</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/radio/radio-group.component.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -1928,7 +1964,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/radio/radio-group.component.ts:274</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/radio/radio-group.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -1960,7 +1996,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/radio/radio-group.component.ts:262</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/radio/radio-group.component.ts:273</a></div>
                         </td>
                     </tr>
 
@@ -1997,7 +2033,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="399" class="link-to-prism">src/radio/radio-group.component.ts:399</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="410" class="link-to-prism">src/radio/radio-group.component.ts:410</a></div>
                         </td>
                     </tr>
 
@@ -2028,7 +2064,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/radio/radio-group.component.ts:404</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="415" class="link-to-prism">src/radio/radio-group.component.ts:415</a></div>
                         </td>
                     </tr>
 
@@ -2069,7 +2105,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/radio/radio-group.component.ts:257</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/radio/radio-group.component.ts:268</a></div>
                         </td>
                     </tr>
 
@@ -2107,7 +2143,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/radio/radio-group.component.ts:200</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/radio/radio-group.component.ts:206</a></div>
                         </td>
                     </tr>
 
@@ -2149,7 +2185,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/radio/radio-group.component.ts:252</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/radio/radio-group.component.ts:263</a></div>
                         </td>
                     </tr>
 
@@ -2184,7 +2220,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/radio/radio-group.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/radio/radio-group.component.ts:134</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2202,7 +2238,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/radio/radio-group.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/radio/radio-group.component.ts:116</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2262,7 +2298,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/radio/radio-group.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/radio/radio-group.component.ts:154</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2280,7 +2316,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/radio/radio-group.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/radio/radio-group.component.ts:142</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2340,7 +2376,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/radio/radio-group.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/radio/radio-group.component.ts:169</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2358,7 +2394,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/radio/radio-group.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/radio/radio-group.component.ts:162</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2418,7 +2454,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/radio/radio-group.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/radio/radio-group.component.ts:184</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2440,7 +2476,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/radio/radio-group.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/radio/radio-group.component.ts:177</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2500,7 +2536,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/radio/radio-group.component.ts:186</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/radio/radio-group.component.ts:192</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2522,7 +2558,7 @@ Radio selected: {{radio}}</code></pre></div><b>Example :</b><div><pre class="lin
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/radio/radio-group.component.ts:193</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/radio/radio-group.component.ts:199</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2625,12 +2661,18 @@ import { RadioChange } from &quot;./radio-change.class&quot;;
 				&#x27;cds--radio-button-group--vertical&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;,
 				&#x27;cds--radio-button-group--label-left&#x27;: labelPlacement &#x3D;&#x3D;&#x3D; &#x27;left&#x27;,
 				&#x27;cds--radio-button-group--invalid&#x27;: invalid,
-				&#x27;cds--radio-button-group--warning&#x27;: !invalid &amp;&amp; warn
+				&#x27;cds--radio-button-group--warning&#x27;: !invalid &amp;&amp; warn,
+				&#x27;cds--radio-button-group--decorator&#x27;: !!decorator
 			}&quot;
 			[attr.data-invalid]&#x3D;&quot;invalid ? true : null&quot;&gt;
 			&lt;legend *ngIf&#x3D;&quot;legend&quot; class&#x3D;&quot;cds--label&quot;&gt;
 				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(legend); else legendLabel;&quot; [ngTemplateOutlet]&#x3D;&quot;legend&quot;&gt;&lt;/ng-template&gt;
 				&lt;ng-template #legendLabel&gt;{{legend}}&lt;/ng-template&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+					&lt;div class&#x3D;&quot;cds--radio-button-group-inner--decorator&quot;&gt;
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+					&lt;/div&gt;
+				&lt;/ng-container&gt;
 			&lt;/legend&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/fieldset&gt;
@@ -2777,6 +2819,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input() labelPlacement: &quot;right&quot; | &quot;left&quot; &#x3D;  &quot;right&quot;;
 
 	@Input() legend: string | TemplateRef&lt;any&gt;;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef&lt;any&gt;;
 
 	/**
 	 * Used to set the &#x60;aria-label&#x60; attribute on the radio group element.
@@ -3036,9 +3083,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><fieldset	class="cds--radio-button-group"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[ngClass]="{		\'cds--radio-button-group--vertical\': orientation === \'vertical\',		\'cds--radio-button-group--label-left\': labelPlacement === \'left\',		\'cds--radio-button-group--invalid\': invalid,		\'cds--radio-button-group--warning\': !invalid && warn	}"	[attr.data-invalid]="invalid ? true : null">	<legend *ngIf="legend" class="cds--label">		<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>		<ng-template #legendLabel>{{legend}}</ng-template>	</legend>	<ng-content></ng-content></fieldset><div class="cds--radio-button__validation-msg">	<ng-container *ngIf="invalid">		<svg			cdsIcon="warning--filled"			size="16"			class="cds--radio-button__invalid-icon">		</svg>		<div class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>		</div>	</ng-container>	<ng-container *ngIf="!invalid && warn">		<svg			cdsIcon="warning--alt--filled"			class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"			size="16">		</svg>		<div class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>		</div>	</ng-container></div><div	*ngIf="helperText && !invalid && !warn"	class="cds--form__helper-text"	[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
-    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
+        var COMPONENT_TEMPLATE = '<div><fieldset	class="cds--radio-button-group"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[ngClass]="{		\'cds--radio-button-group--vertical\': orientation === \'vertical\',		\'cds--radio-button-group--label-left\': labelPlacement === \'left\',		\'cds--radio-button-group--invalid\': invalid,		\'cds--radio-button-group--warning\': !invalid && warn,		\'cds--radio-button-group--decorator\': !!decorator	}"	[attr.data-invalid]="invalid ? true : null">	<legend *ngIf="legend" class="cds--label">		<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>		<ng-template #legendLabel>{{legend}}</ng-template>		<ng-container *ngIf="decorator">			<div class="cds--radio-button-group-inner--decorator">				<ng-template [ngTemplateOutlet]="decorator"></ng-template>			</div>		</ng-container>	</legend>	<ng-content></ng-content></fieldset><div class="cds--radio-button__validation-msg">	<ng-container *ngIf="invalid">		<svg			cdsIcon="warning--filled"			size="16"			class="cds--radio-button__invalid-icon">		</svg>		<div class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>		</div>	</ng-container>	<ng-container *ngIf="!invalid && warn">		<svg			cdsIcon="warning--alt--filled"			class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"			size="16">		</svg>		<div class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>		</div>	</ng-container></div><div	*ngIf="helperText && !invalid && !warn"	class="cds--form__helper-text"	[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">	<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>	<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template></div>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
+    var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'RadioGroup'};
 </script>
 <script src="../js/tree.js"></script>
