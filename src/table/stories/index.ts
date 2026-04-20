@@ -6,4 +6,5 @@ export * from "./app-pagination-table.component";
 export * from "./app-skeleton-table.component";
 export * from "./app-function-override-filter-table.component";
 export * from "./app-table.component";
+export * from "./app-table-ai-label.component";
 export * from "./app-no-data.component";

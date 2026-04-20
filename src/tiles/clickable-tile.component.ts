@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional
+	Optional,
+	TemplateRef
 } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -28,7 +29,9 @@ import { Router } from "@angular/router";
 		class="cds--tile cds--tile--clickable"
 		[ngClass]="{
 			'cds--tile--light': theme === 'light',
-			'cds--tile--disabled cds--link--disabled' : disabled
+			'cds--tile--disabled cds--link--disabled' : disabled,
+			'cds--tile--decorator': !!decorator,
+			'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
 		}"
 		tabindex="0"
 		(click)="navigate($event)"
@@ -37,6 +40,11 @@ import { Router } from "@angular/router";
 		[attr.rel]="rel ? rel : null"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
+		<ng-container *ngIf="decorator">
+			<div class="cds--tile--inner-decorator">
+				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+			</div>
+		</ng-container>
 	</a>`
 })
 export class ClickableTile {
@@ -65,6 +73,16 @@ export class ClickableTile {
 	 * Set to `true` to disable the clickable tile.
 	 */
 	@Input() disabled = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
 
 	/**
 	 * Array of commands to send to the router when the link is activated

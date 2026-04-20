@@ -1,7 +1,8 @@
 import {
 	Component,
 	HostBinding,
-	Input
+	Input,
+	TemplateRef
 } from "@angular/core";
 
 /**
@@ -21,7 +22,14 @@ import {
  */
 @Component({
 	selector: "cds-tile, ibm-tile",
-	template: `<ng-content></ng-content>`
+	template: `
+		<ng-content></ng-content>
+		<ng-container *ngIf="decorator">
+			<div class="cds--tile--inner-decorator">
+				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+			</div>
+		</ng-container>
+	`
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;
@@ -29,6 +37,24 @@ export class Tile {
 	@HostBinding("class.cds--tile--light") get lightThemeEnabled() {
 		return this.theme === "light";
 	}
+
+	@HostBinding("class.cds--tile--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
+	@HostBinding("class.cds--tile--decorator-rounded") get decoratorRounded() {
+		return !!this.decorator && this.hasRoundedCorners;
+	}
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded-corner styling.
+	 */
+	@Input() hasRoundedCorners = false;
 
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead

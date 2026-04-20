@@ -81,8 +81,9 @@ if (languages.default?.default["en"]?.weekdays) {
 					[warnText]="warnText"
 					[skeleton]="skeleton"
 					[helperText]="helperText"
+					[decorator]="decorator"
 					(valueChange)="onValueChange($event)"
-					(click)="openCalendar(input)">
+					(click)="openCalendar(input, $event)">
 				</cds-date-picker-input>
 			</div>
 
@@ -104,8 +105,9 @@ if (languages.default?.default["en"]?.weekdays) {
 					[warnText]="rangeWarnText"
 					[skeleton]="skeleton"
 					[helperText]="rangeHelperText"
+					[decorator]="rangeDecorator"
 					(valueChange)="onRangeValueChange($event)"
-					(click)="openCalendar(rangeInput)">
+					(click)="openCalendar(rangeInput, $event)">
 				</cds-date-picker-input>
 			</div>
 		</div>
@@ -150,6 +152,14 @@ export class DatePicker implements
 
 	@Input() label: string | TemplateRef<any>;
 	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label) on the range end field when `range` is `true`.
+	 */
+	@Input() rangeDecorator: TemplateRef<any>;
 	@Input() rangeHelperText: string | TemplateRef<any>;
 	@Input() rangeLabel: string;
 
@@ -450,10 +460,18 @@ export class DatePicker implements
 	}
 
 	/**
-	 * Handles opening the calendar "properly" when the calendar icon is clicked.
+	 * Opens the calendar "properly" when the calendar if it was already open.
 	 */
-	openCalendar(datepickerInput: DatePickerInput) {
+	openCalendar(datepickerInput: DatePickerInput, event?: Event) {
 		if (this.readonly || this.skeleton) {
+			return;
+		}
+
+		// Skips opening when the click is on the decorator region so the AI label triggers
+		if (this.isDecoratorClick(event)) {
+			if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
+				this.flatpickrInstance.close();
+			}
 			return;
 		}
 
@@ -474,6 +492,15 @@ export class DatePicker implements
 			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
 			this.flatpickrInstance.open();
 		}
+	}
+
+	private isDecoratorClick(event: Event | undefined): boolean {
+		if (!event?.target) {
+			return false;
+		}
+		const t = event.target;
+		const el = t instanceof Element ? t : (t as Node).parentElement;
+		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
 	}
 
 	protected updateCalendarListeners() {

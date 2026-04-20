@@ -1,33 +1,6 @@
 import { Injectable } from "@angular/core";
 import { toString } from "@carbon/icon-helpers";
 
-// icon imports
-import {
-	Add16,
-	Calendar16,
-	CaretDown16,
-	CaretLeft16,
-	CaretRight16,
-	CaretUp16,
-	Checkmark16,
-	CheckmarkFilled16,
-	CheckmarkOutline16,
-	ChevronDown16,
-	ChevronRight16,
-	Close16,
-	Copy16,
-	Download16,
-	ErrorFilled16,
-	InformationFilled16,
-	Menu16,
-	OverflowMenuVertical16,
-	Save16,
-	Settings16,
-	TrashCan16,
-	Warning16,
-	WarningFilled16
-} from "@carbon/icons";
-
 /**
  * An object that represents a parsed icon
  */
