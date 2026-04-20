@@ -28,6 +28,7 @@ import { TableRowSize } from "../table.types";
 					[showSelectionColumn]="showSelectionColumn"
 					[enableSingleSelect]="enableSingleSelect"
 					[skeleton]="skeleton"
+					[withRowAILabels]="withRowAILabels"
 					(selectRow)="onRowCheckboxChange(i)"
 					(deselectRow)="onRowCheckboxChange(i)"
 					(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"
@@ -59,7 +60,8 @@ import { TableRowSize } from "../table.types";
 						[showSelectionColumn]="showSelectionColumn"
 						[row]="expandedDataRow"
 						[size]="size"
-						[skeleton]="skeleton">
+						[skeleton]="skeleton"
+						[withRowAILabels]="withRowAILabels">
 					</tr>
 				</ng-container>
 			</ng-container>
@@ -116,6 +118,11 @@ export class TableBody {
 	@Input() selectionLabelColumn: number;
 
 	@Input() skeleton = false;
+
+	/**
+	 * Enables Carbon styles when the first column is an AI decorator column (`TableItem.hasAILabelDecorator`).
+	 */
+	@Input() withRowAILabels = false;
 
 	/**
 	 * Emits if a single row is selected.

@@ -39,45 +39,51 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					*ngIf="!skeleton"
 					[ngClass]="{
 						'cds--date-picker-input__wrapper--invalid': invalid,
-						'cds--date-picker-input__wrapper--warn': warn
+						'cds--date-picker-input__wrapper--warn': warn,
+						'cds--date-picker-input__wrapper--decorator': !!decorator
 					}">
 					<span>
 						<input
-						#input
-						autocomplete="off"
-						type="text"
-						class="cds--date-picker__input"
-						[ngClass]="{
-							'cds--date-picker__input--sm': size === 'sm',
-							'cds--date-picker__input--md': size === 'md',
-							'cds--date-picker__input--lg': size === 'lg'
-						}"
-						[attr.data-invalid]="invalid ? true : undefined"
-						[value]="value"
-						[pattern]="pattern"
-						[placeholder]="placeholder"
-						[id]= "id"
-						[disabled]="disabled"
-						[readonly]="readonly"
+							#input
+							autocomplete="off"
+							type="text"
+							class="cds--date-picker__input"
+							[ngClass]="{
+								'cds--date-picker__input--sm': size === 'sm',
+								'cds--date-picker__input--md': size === 'md',
+								'cds--date-picker__input--lg': size === 'lg'
+							}"
+							[attr.data-invalid]="invalid ? true : undefined"
+							[value]="value"
+							[pattern]="pattern"
+							[placeholder]="placeholder"
+							[id]="id"
+							[disabled]="disabled"
+							[readonly]="readonly"
 							(change)="onChange($event)"/>
-							<svg
-								*ngIf="type !== 'simple' && !warn && !invalid"
-								cdsIcon="calendar"
-								size="16"
-								class="cds--date-picker__icon">
-							</svg>
-							<svg
-								*ngIf="invalid"
-								class="cds--date-picker__icon cds--date-picker__icon--invalid"
-								cdsIcon="warning--filled"
-								size="16">
-							</svg>
-							<svg
-								*ngIf="!invalid && warn"
-								cdsIcon="warning--alt--filled"
-								size="16"
-								class="cds--date-picker__icon cds--date-picker__icon--warn">
-							</svg>
+						<ng-container *ngIf="decorator">
+							<div class="cds--date-picker-input-inner-wrapper--decorator">
+								<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+							</div>
+						</ng-container>
+						<svg
+							*ngIf="type !== 'simple' && !warn && !invalid"
+							cdsIcon="calendar"
+							size="16"
+							class="cds--date-picker__icon">
+						</svg>
+						<svg
+							*ngIf="invalid"
+							class="cds--date-picker__icon cds--date-picker__icon--invalid"
+							cdsIcon="warning--filled"
+							size="16">
+						</svg>
+						<svg
+							*ngIf="!invalid && warn"
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--date-picker__icon cds--date-picker__icon--warn">
+						</svg>
 					</span>
 				</div>
 				<div
@@ -157,6 +163,11 @@ export class DatePickerInput {
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	@Input() skeleton = false;
 
