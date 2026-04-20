@@ -21,4 +21,4 @@ import { PanelModule } from "./panel/panel.module";
 		PanelModule
 	]
 })
-export class UIShellModule { }
+export class UIShellModule {}

@@ -22,7 +22,7 @@ import {
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

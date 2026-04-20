@@ -29,7 +29,8 @@ import { ListColumn } from "./list-column.component";
 				<div class="cds--structured-list-th"></div>
 			}
 		</div>
-	`
+	`,
+	standalone: true
 })
 export class ListHeader implements AfterContentInit {
 	@HostBinding("class.cds--structured-list-thead") wrapper = true;

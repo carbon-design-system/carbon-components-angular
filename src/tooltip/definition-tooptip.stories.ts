@@ -1,11 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TooltipModule, TooltipDefinition } from "./";
+import { Tooltip, TooltipDefinition } from "./";
 
 export default {
 	title: "Components/Definition Tooltip",
 	decorators: [
 		moduleMetadata({
-			imports: [TooltipModule]
+			imports: [Tooltip]
 		})
 	],
 	parameters: {

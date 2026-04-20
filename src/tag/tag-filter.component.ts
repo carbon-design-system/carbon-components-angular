@@ -7,6 +7,7 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { Tag } from "./tag.component";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-tag-filter, ibm-tag-filter",
@@ -29,7 +30,9 @@ import { Tag } from "./tag.component";
 			</button>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [IconDirective]
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";
@@ -49,6 +52,7 @@ export class TagFilter extends Tag {
 	 * to on the immediate close button element. `action` distinguishes between clicks on
 	 * the tag vs. clicks on the close button.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<{ action: "click" | "close" }>();
 
 	onClick(event: any) {

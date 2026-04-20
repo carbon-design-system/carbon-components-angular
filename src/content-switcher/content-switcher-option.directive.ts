@@ -11,7 +11,8 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[cdsContentOption], [ibmContentOption]"
+	selector: "[cdsContentOption], [ibmContentOption]",
+	standalone: true
 })
 export class ContentSwitcherOption implements OnInit {
 	/**

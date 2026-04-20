@@ -7,12 +7,13 @@ import {
 	ChangeDetectionStrategy
 } from "@angular/core";
 import { AccordionItem } from "./accordion-item.component";
+import { NgClass } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { AccordionModule } from 'carbon-components-angular';
+ * import { Accordion, AccordionItem } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-accordion--basic)
@@ -35,7 +36,9 @@ import { AccordionItem } from "./accordion-item.component";
 			<ng-content />
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass]
 })
 export class Accordion implements AfterContentInit {
 	/**

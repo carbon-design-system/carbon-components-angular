@@ -1,17 +1,19 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ComboButtonModule, ComboButtonComponent } from "./";
+import { ComboButtonComponent } from "./";
 
-import { IconModule } from "../icon";
-import { ContextMenuModule } from "../context-menu";
+import { IconDirective } from "../icon";
+import { ContextMenuComponent, ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
 
 export default {
 	title: "Components/Combo button",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ComboButtonModule,
-				IconModule,
-				ContextMenuModule
+				ComboButtonComponent,
+				IconDirective,
+				ContextMenuComponent,
+				ContextMenuItemComponent,
+				ContextMenuDividerComponent
 			]
 		})
 	],

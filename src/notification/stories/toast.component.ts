@@ -10,7 +10,7 @@ import { NotificationService } from "../";
 	providers: [NotificationService]
 })
 export class ToastStory {
-	constructor(protected notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) {}
 
 	showToast() {
 		this.notificationService.showToast({

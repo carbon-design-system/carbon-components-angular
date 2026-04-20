@@ -1,17 +1,17 @@
 import { Component, Input } from "@angular/core";
-import { NavigationItem } from "../";
+import { Hamburger, HeaderNavigation, NavigationItem, SideNav } from "../";
 
 @Component({
 	selector: "app-bar",
 	template: "<h1>bar</h1>"
 })
-export class BarComponent { }
+export class BarComponent {}
 
 @Component({
 	selector: "app-foo",
 	template: "<h1>foo</h1>"
 })
-export class FooComponent { }
+export class FooComponent {}
 
 @Component({
 	selector: "app-header-fluid",
@@ -25,7 +25,8 @@ export class FooComponent { }
 				<cds-sidenav [navigationItems]="headerItems" class="cds--header__menu-toggle__hidden" />
 			}
 		</cds-header>
-	`
+	`,
+	imports: [SideNav, HeaderNavigation, Hamburger]
 })
 export class HeaderFluidComponent {
 	@Input() headerItems: NavigationItem[];

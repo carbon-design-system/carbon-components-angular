@@ -10,16 +10,17 @@ import {
 import { ListRow } from "./list-row.component";
 import { ListHeader } from "./list-header.component";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NgClass } from "@angular/common";
 
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
  *
  * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { StructuredListModule } from 'carbon-components-angular';
+ * import { StructuredList, ListHeader, ListRow, ListColumn } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -80,7 +81,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			useExisting: StructuredList,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass]
 })
 export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	/**
@@ -139,9 +142,9 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 
 	protected _skeleton = false;
 
-	onChange = (_: any) => { };
+	onChange = (_: any) => {};
 
-	onTouched = () => { };
+	onTouched = () => {};
 
 	ngAfterContentInit() {
 		const setSelection = (rowOrHeader: ListRow | ListHeader) => {

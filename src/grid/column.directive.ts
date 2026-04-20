@@ -11,7 +11,8 @@ import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
 
 @Directive({
-	selector: "[cdsCol], [ibmCol]"
+	selector: "[cdsCol], [ibmCol]",
+	standalone: true
 })
 export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 	@HostBinding("class")

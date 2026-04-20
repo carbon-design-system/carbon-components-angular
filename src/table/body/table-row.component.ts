@@ -11,6 +11,11 @@ import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { TableExpandButton } from "../cell/table-expand-button.component";
+import { TableCheckbox } from "../cell/table-checkbox.component";
+import { TableRadio } from "../cell/table-radio.component";
+import { TableData } from "../cell/table-data.component";
+import { NgStyle } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -89,7 +94,15 @@ import { TableRowSize } from "../table.types";
 			}
 		}
 		<ng-content />
-	`
+	`,
+	standalone: true,
+	imports: [
+		TableExpandButton,
+		TableCheckbox,
+		TableRadio,
+		TableData,
+		NgStyle
+	]
 })
 export class TableRowComponent {
 	/**
@@ -207,7 +220,7 @@ export class TableRowComponent {
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	@HostListener("click")
 	onHostClick() {

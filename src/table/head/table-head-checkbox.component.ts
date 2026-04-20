@@ -7,6 +7,8 @@ import {
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { Checkbox } from "carbon-components-angular/checkbox";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -25,7 +27,9 @@ import { Observable } from "rxjs";
 	`,
 	styles: [`
         :host { width: 10px; }
-    `]
+    `],
+	standalone: true,
+	imports: [Checkbox, AsyncPipe]
 })
 export class TableHeadCheckbox {
 	private static tableSelectAllCount = 0;
@@ -47,13 +51,14 @@ export class TableHeadCheckbox {
 		return this._ariaLabel.value;
 	}
 
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<void>();
 
 	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
-	constructor(protected i18n: I18n) { }
+	constructor(protected i18n: I18n) {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

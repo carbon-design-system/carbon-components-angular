@@ -28,7 +28,7 @@ import {
 export class ReactiveFormsSelect implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	clearSelection() {
 		this.formGroup.get("selecterino")?.setValue("default");

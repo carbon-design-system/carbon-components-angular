@@ -4,8 +4,10 @@ import { CommonModule } from "@angular/common";
 import { LayerDirective } from "./layer.directive";
 
 @NgModule({
-	declarations: [LayerDirective],
 	exports: [LayerDirective],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		LayerDirective
+	]
 })
 export class LayerModule {}

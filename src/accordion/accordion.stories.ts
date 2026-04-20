@@ -1,12 +1,12 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DocumentationModule } from "../documentation-component/documentation.module";
-import { AccordionModule, Accordion } from "./";
+import { Documentation } from "../documentation-component/documentation.component";
+import { Accordion, AccordionItem } from "./";
 
 export default {
 	title: "Components/Accordion",
 	decorators: [
 		moduleMetadata({
-			imports: [AccordionModule, DocumentationModule]
+			imports: [Accordion, Documentation, AccordionItem]
 		})
 	],
 	component: Accordion

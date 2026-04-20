@@ -7,6 +7,8 @@ import {
 	EventEmitter,
 	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-accordion-item, ibm-accordion-item",
@@ -48,7 +50,9 @@ import {
 			display: list-item;
 		}
 	`],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [IconDirective, NgTemplateOutlet, NgClass]
 })
 export class AccordionItem {
 	static accordionItemCount = 0;

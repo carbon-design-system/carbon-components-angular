@@ -16,22 +16,26 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef
 } from "@angular/core";
-import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
-import { ListItem } from "carbon-components-angular/dropdown";
+import { AbstractDropdownView, DropdownService, ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import {
+	AnimationFrameService,
+	AnimationFrameServiceSingleton,
 	getScrollableParents,
 	hasScrollableParents
 } from "carbon-components-angular/utils";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import {  PlaceholderService } from "carbon-components-angular/placeholder";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ComboBoxModule } from 'carbon-components-angular';
+ * import { ComboBox, DropdownList } from 'carbon-components-angular';
  * ```
  *
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -222,9 +226,16 @@ import { Observable } from "rxjs";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ComboBox,
 			multi: true
-		}
+		},
+		DropdownService,
+		AnimationFrameService,
+		AnimationFrameServiceSingleton,
+		PlaceholderService,
+		I18n
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
 	/**
@@ -445,6 +456,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * }
 	 * ```
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() submit = new EventEmitter<{
 		items: ListItem[],
 		index: number,

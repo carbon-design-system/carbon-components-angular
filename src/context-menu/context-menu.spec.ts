@@ -1,8 +1,10 @@
 import { Component, Input } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { ContextMenuModule } from "./context-menu.module";
-import { IconModule } from "../icon";
 import { By } from "@angular/platform-browser";
+import { ContextMenuComponent } from "./context-menu.component";
+import { ContextMenuItemComponent } from "./context-menu-item.component";
+import { ContextMenuDividerComponent } from "./context-menu-divider.component";
+import { ContextMenuGroupComponent } from "./context-menu-group.component";
 
 
 
@@ -32,7 +34,14 @@ import { By } from "@angular/platform-browser";
 				</cds-context-menu>
 			</cds-context-menu-item>
 		</cds-context-menu>
-	`
+	`,
+	standalone: true,
+	imports: [
+		ContextMenuComponent,
+		ContextMenuItemComponent,
+		ContextMenuDividerComponent,
+		ContextMenuGroupComponent
+	]
 })
 class MenuTestComponent {
 	@Input() open = true;
@@ -45,12 +54,8 @@ describe("Menu", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				MenuTestComponent
-			],
 			imports: [
-				ContextMenuModule,
-				IconModule
+				MenuTestComponent
 			]
 		});
 	});

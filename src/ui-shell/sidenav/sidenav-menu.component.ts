@@ -54,7 +54,9 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 				</cds-sidenav-item>
 			}
 		</div>
-	`
+	`,
+	standalone: true,
+	imports: [SideNavItem]
 })
 export class SideNavMenu implements AfterContentInit, OnDestroy {
 	@HostBinding("class.cds--side-nav__item") navItem = true;

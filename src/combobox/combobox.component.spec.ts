@@ -1,18 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-
-import { IconModule } from "../icon/index";
-import { I18nModule } from "../i18n/index";
 
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
-import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
-import { UtilsModule } from "../utils";
-import { DropdownService } from "./../dropdown/index";
-import { PlaceholderModule } from "./../placeholder/index";
 
 
 @Component({
@@ -25,7 +18,13 @@ import { PlaceholderModule } from "./../placeholder/index";
 		[type]="type"
 		[itemValueKey]="itemValueKey">
 		<cds-dropdown-list></cds-dropdown-list>
-	</cds-combo-box>`
+	</cds-combo-box>`,
+	standalone: true,
+	imports: [
+		ComboBox,
+		DropdownList,
+		FormsModule
+	]
 })
 class ComboboxTest {
 	items = [
@@ -42,20 +41,9 @@ describe("Combo box", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				ComboBox,
-				DropdownList,
-				ComboboxTest,
-				ScrollableList
-			],
 			imports: [
-				IconModule,
-				I18nModule,
-				FormsModule,
-				UtilsModule,
-				PlaceholderModule
-			],
-			providers: [DropdownService]
+				ComboboxTest
+			]
 		});
 	});
 

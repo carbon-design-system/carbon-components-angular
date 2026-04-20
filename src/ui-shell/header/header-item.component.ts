@@ -7,7 +7,8 @@ import {
 	HostBinding
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { Router, RouterLinkActive, RouterLink } from "@angular/router";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Individual item in the header. May be used a direct child of `HeaderNavigation` or `HeaderMenu`
@@ -35,7 +36,7 @@ import { Router } from "@angular/router";
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 				[routerLink]="route"
 				[routerLinkActive]="activeLinkClass">
-				<ng-container *ngTemplateOutlet="content" />
+					<ng-container *ngTemplateOutlet="content" />
 			</a>
 		}
 	`,
@@ -43,7 +44,15 @@ import { Router } from "@angular/router";
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	standalone: true,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		RouterLinkActive,
+		RouterLink
+	],
+	providers: [Router]
 })
 export class HeaderItem {
 	@HostBinding("attr.role") role = "listitem";
@@ -67,7 +76,7 @@ export class HeaderItem {
 	/**
 	 * String or array of string class names to apply when active
 	 */
-	@Input() activeLinkClass: string | string[];
+	@Input() activeLinkClass: string | string[] = "";
 
 	/**
 	 * Applies selected styles to the item if a user sets this to true.
@@ -93,7 +102,7 @@ export class HeaderItem {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
 
 	navigate(event) {
 		if (this.router && this.route) {

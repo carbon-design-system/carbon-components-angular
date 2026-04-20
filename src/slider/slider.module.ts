@@ -5,11 +5,11 @@ import { Slider } from "./slider.component";
 import { UtilsModule } from "carbon-components-angular/utils";
 
 @NgModule({
-	declarations: [Slider],
 	exports: [Slider],
 	imports: [
 		CommonModule,
-		UtilsModule
+		UtilsModule,
+		Slider
 	]
 })
 export class SliderModule {}

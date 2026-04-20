@@ -5,7 +5,8 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[cdsTableHeaderTitle], [ibmTableHeaderTitle]"
+	selector: "[cdsTableHeaderTitle], [ibmTableHeaderTitle]",
+	standalone: true
 })
 export class TableHeaderTitle {
 	static counter = 0;

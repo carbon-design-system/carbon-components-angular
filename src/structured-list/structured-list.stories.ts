@@ -1,7 +1,6 @@
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	StructuredListModule,
 	StructuredList,
 	ListColumn,
 	ListHeader,
@@ -13,17 +12,15 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				StructuredListModule,
-				FormsModule
+				FormsModule,
+				ListHeader,
+				ListRow,
+				ListColumn,
+				StructuredList
 			]
 		})
 	],
-	component: StructuredList,
-	subcomponents: {
-		ListHeader,
-		ListRow,
-		ListColumn
-	}
+	component: StructuredList
 } as Meta;
 
 const Template = (args) => ({

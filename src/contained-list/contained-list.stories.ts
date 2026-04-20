@@ -9,23 +9,31 @@ import { DialogModule } from "../dialog";
 import { TooltipModule } from "../tooltip";
 import { SearchModule } from "../search";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
-import { ContainedListStoryModule } from "./stories/contained-list-story.module";
+import { ContainedListStoryModule  } from "./stories/contained-list-story.module";
+import { I18n } from "../i18n";
+import { PlaceholderService } from "../placeholder";
+
+
 
 export default {
 	title: "Components/Contained List",
 	decorators: [
 		moduleMetadata({
 			imports: [
+				ButtonModule,
 				ContainedListModule,
 				ContainedListStoryModule,
-				ButtonModule,
 				IconModule,
 				LayerModule,
-				LayoutModule,
-				TagModule,
 				DialogModule,
-				TooltipModule,
-				SearchModule
+				LayoutModule,
+				SearchModule,
+				TagModule,
+				TooltipModule
+			],
+			providers: [
+				I18n,
+				PlaceholderService
 			]
 		})
 	],
@@ -362,4 +370,3 @@ const withListTitleDecoratorsTemplate = () => ({
 	`
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
-

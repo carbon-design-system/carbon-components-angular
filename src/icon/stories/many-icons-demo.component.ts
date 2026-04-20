@@ -32,7 +32,7 @@ import { IconService } from "../";
 export class ManyIconDemo implements OnInit {
 	groupedIcons: any = [];
 
-	constructor(protected iconService: IconService) { }
+	constructor(protected iconService: IconService) {}
 
 	ngOnInit() {
 		const iconMap = new Map();

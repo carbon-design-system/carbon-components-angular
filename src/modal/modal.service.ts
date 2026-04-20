@@ -50,10 +50,9 @@ export class ModalService extends BaseModalService {
 				hasScrollingContent: data.hasScrollingContent !== undefined ? data.hasScrollingContent : null,
 				size: data.size,
 				buttons: data.buttons || [],
-				close: data.close || (() => { }),
+				close: data.close || (() => {}),
 				showCloseButton: data.showCloseButton
 			}
 		});
 	}
 }
-

@@ -7,6 +7,7 @@ import {
 	EventEmitter,
 	AfterViewInit
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Available HTML anchor targets
@@ -72,7 +73,9 @@ const REL = "noreferrer noopener";
 				<ng-content />
 			</div>
 		</ng-template>
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class OverflowMenuOption implements AfterViewInit {
 	@HostBinding("class.cds--overflow-menu-options__option") optionClass = true;

@@ -18,7 +18,8 @@ import {
 			</span>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class TagSelectableComponent {
 	@HostBinding("attr.role") role = "button";

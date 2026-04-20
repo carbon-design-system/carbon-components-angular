@@ -1,11 +1,9 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
-import { NFormsModule } from "../forms";
-import { ButtonModule } from "../button";
-import { IconModule } from "../icon/icon.module";
-import { SearchModule } from "../search";
-import { PaginationModule } from "../pagination";
-import { DialogModule } from "../dialog";
+import { Button } from "../button";
+import { Search } from "../search";
+import { Dialog, OverflowMenu, OverflowMenuOption } from "../dialog";
+import { TableRow } from "./table-row.class";
 import {
 	TableStory,
 	DynamicTableStory,
@@ -18,11 +16,21 @@ import {
 	TableNoDataStory
 } from "./stories";
 import {
-	TableModule,
 	TableModel,
 	TableItem,
 	TableHeaderItem,
-	TableRow
+	TableContainer,
+	TableHeader,
+	TableToolbar,
+	TableToolbarActions,
+	TableToolbarContent,
+	TableToolbarSearch,
+	TableData,
+	TableRowComponent,
+	TableDirective,
+	TableHeaderTitle,
+	TableHeadCell,
+	TableBody
 } from "./";
 
 const simpleModel = new TableModel();
@@ -80,16 +88,26 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				NFormsModule,
 				FormsModule,
-				TableModule,
-				PaginationModule,
-				DialogModule,
-				SearchModule,
-				IconModule,
-				ButtonModule
-			],
-			declarations: [
+				Dialog,
+				Search,
+				Button,
+				TableContainer,
+				TableHeader,
+				TableToolbar,
+				TableToolbarActions,
+				TableToolbarContent,
+				TableToolbarSearch,
+				TableRowComponent,
+				OverflowMenu,
+				OverflowMenuOption,
+				TableDirective,
+				TableHeaderTitle,
+				TableHeadCell,
+				TableBody,
+				TableData,
+
+				// stories
 				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
@@ -281,6 +299,7 @@ WithToolbar.argTypes = {
 			type: "function",
 			control: false,
 			defaultValue: () => {
+				// eslint-disable-next-line no-console
 				console.log("Custom cancel method");
 			}
 		}

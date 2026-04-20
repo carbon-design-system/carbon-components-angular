@@ -4,16 +4,20 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { BaseModal, ModalModule } from "../../modal";
+import { BaseModal, Modal, ModalContent, ModalFooter, ModalHeader } from "../../modal";
 import {
+	Table,
+	TableContainer,
 	TableHeaderItem,
 	TableItem,
 	TableModel,
-	TableModule
+	TableToolbar,
+	TableToolbarContent,
+	TableToolbarSearch
 } from "../../table/index";
-import { ButtonModule } from "../../button";
-import { ProgressIndicatorModule } from "../../progress-indicator";
-import { LinkModule } from "../../link";
+import { Button } from "../../button";
+import { ProgressIndicator } from "../../progress-indicator";
+import { Link } from "../../link";
 
 @Component({
 	selector: "app-modal-with-table",
@@ -96,7 +100,22 @@ import { LinkModule } from "../../link";
 			left: 1rem;
 		}
 	`
-	]
+	],
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalContent,
+		ModalFooter,
+		Table,
+		TableContainer,
+		TableToolbar,
+		TableToolbarContent,
+		TableToolbarSearch,
+		Button,
+		ProgressIndicator,
+		Link
+	],
+	standalone: true
 })
 class ModalWithTableStory extends BaseModal implements OnInit {
 	steps = [
@@ -192,16 +211,23 @@ export default {
 	title: "Pattern/Dialogs",
 	decorators: [
 		moduleMetadata({
-			declarations: [ModalWithTableStory],
+			declarations: [],
 			imports: [
-				ModalModule,
-				TableModule,
-				ButtonModule,
-				ProgressIndicatorModule,
-				LinkModule
+
+				// Story
+				ModalWithTableStory
 			]
 		})
-	]
+	],
+	parameters:{
+		docs: {
+			story: {
+				inline: false,
+				height: "30rem"
+			}
+		},
+		layout: "centered"
+	}
 } as Meta;
 
 const Template = (args) => ({

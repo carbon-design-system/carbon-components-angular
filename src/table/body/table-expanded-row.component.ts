@@ -3,6 +3,7 @@ import {
 	HostBinding,
 	Input
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -14,7 +15,9 @@ import {
 			}
 			<ng-template [ngTemplateOutlet]="firstExpandedTemplateInRow(row)" [ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}" />
 		</td>
-	`
+	`,
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class TableExpandedRow {
 	@Input() row: any[];

@@ -43,7 +43,7 @@ export class ReactiveFormsStory implements AfterViewInit, OnInit {
 		{ num: "four", disabled: true }
 	];
 
-	constructor(protected formBuilder: FormBuilder) { }
+	constructor(protected formBuilder: FormBuilder) {}
 
 	changeSelected() {
 		this.formGroup.get("radioGroup")?.setValue("three");

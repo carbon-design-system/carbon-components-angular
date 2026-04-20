@@ -14,14 +14,15 @@ import {
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EventService } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { SliderModule } from 'carbon-components-angular';
+ * import { Slider } from 'carbon-components-angular';
  * ```
  *
  * The simplest possible slider usage looks something like:
@@ -156,8 +157,12 @@ import { EventService } from "carbon-components-angular/utils";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Slider,
 			multi: true
-		}
-	]
+		},
+
+		EventService
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
 export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Used to generate unique IDs */
@@ -355,7 +360,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Send changes back to the model */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/** Register a change propagation function for `ControlValueAccessor` */
 	registerOnChange(fn: any) {
@@ -363,7 +368,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Callback to notify the model when our input has been touched */
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
 	/** Register a callback to notify when our input has been touched */
 	registerOnTouched(fn: any) {

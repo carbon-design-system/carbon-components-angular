@@ -11,7 +11,8 @@ import {
  * `ModalService` depends on the `close` event to correctly clean up the component.
  */
 @Directive({
-	selector: "[cdsBaseModal], [ibmBaseModal]"
+	selector: "[cdsBaseModal], [ibmBaseModal]",
+	standalone: true
 })
 export class BaseModal {
 	/**

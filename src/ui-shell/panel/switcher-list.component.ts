@@ -20,7 +20,8 @@ import { Component, HostBinding } from "@angular/core";
 		:host {
 			display: block;
 		}
-	`]
+	`],
+	standalone: true
 })
 export class SwitcherList {
 	@HostBinding("class.cds--switcher") switcher = true;

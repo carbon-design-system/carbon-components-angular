@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
+import { TabSkeleton } from "./tab-skeleton.component";
 
 /**
  * Build out your application's tabs using this component.
@@ -68,7 +69,9 @@ import { TabHeaders } from "./tab-headers.component";
 				</cds-tab-headers>
 			}
 		}
-	`
+	`,
+	standalone: true,
+	imports: [TabSkeleton, TabHeaders]
 })
 export class Tabs implements AfterContentInit, OnChanges {
 	/**

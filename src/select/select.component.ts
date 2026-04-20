@@ -10,12 +10,14 @@ import {
 	ViewChild
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * `cds-select` provides a styled `select` component. Get started with importing the module:
+ * `cds-select` provides a styled `select` component. Get started with importing the component:
  *
  * ```typescript
- * import { SelectModule } from 'carbon-components-angular';
+ * import { Select } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -202,7 +204,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: Select,
 			multi: true
 		}
-	]
+	],
+	standalone: true,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() set value(v) {
@@ -378,7 +382,7 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => {};
+	protected onTouchedHandler = () => {};
 
 }

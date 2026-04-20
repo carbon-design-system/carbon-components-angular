@@ -18,17 +18,19 @@ export {
 };
 
 @NgModule({
-	declarations: [
+	imports: [
+		CommonModule,
+		I18nModule,
+		RouterModule,
 		SideNav,
 		SideNavItem,
 		SideNavMenu,
 		RouterLinkExtendedDirective
 	],
-	imports: [CommonModule, I18nModule, RouterModule],
 	exports: [
 		SideNav,
 		SideNavItem,
 		SideNavMenu
 	]
 })
-export class SideNavModule { }
+export class SideNavModule {}

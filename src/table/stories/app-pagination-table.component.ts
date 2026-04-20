@@ -8,6 +8,9 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
+import { Table } from "../table.component";
+import { Label } from "../../input";
+import { Pagination } from "../../pagination";
 
 @Component({
 	selector: "app-pagination-table",
@@ -38,7 +41,9 @@ import { TableItem } from "../table-item.class";
 			[skeleton]="skeleton">
 		</cds-table>
 		<cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
-	`
+	`,
+	standalone: true,
+	imports: [Table, Label, Pagination]
 })
 export class PaginationTableStory implements OnInit {
 	@Input() model = new TableModel();
@@ -112,6 +117,7 @@ export class PaginationTableStory implements OnInit {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 
