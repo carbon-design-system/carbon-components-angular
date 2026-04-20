@@ -4,10 +4,13 @@ import { breakpoints } from '@carbon/layout';
 // Add compodoc
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import {
-	components
+	classes,
+	components,
+	directives,
+	interfaces,
+	miscellaneous,
+	pipes
 } from "../dist/docs/documentation.json";
-
-import docJson from "../dist/docs/documentation.json";
 
 /**
  * Remove public properties from docs Json for each component.
@@ -38,8 +41,12 @@ components = components.map(comp => ({
 
 // Integrate compodoc documentation with storybook
 setCompodocJson({
-	...docJson,
-	components
+	classes,
+	components,
+	directives,
+	interfaces,
+	miscellaneous,
+	pipes
 });
 
 // Set carbon viewports options
@@ -83,11 +90,9 @@ export const parameters = {
 			},
 		},
 	},
-
 	controls: {
 		expanded: true
 	},
-
 	docs: {
 		codePanel: true
 	}
