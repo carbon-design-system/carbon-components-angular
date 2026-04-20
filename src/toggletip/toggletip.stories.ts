@@ -30,6 +30,15 @@ export default {
 		autoAlign: {
 			control: false
 		},
+		onOpen: {
+			action: "onOpen"
+		},
+		onClose: {
+			action: "onClose"
+		},
+		isOpenChange: {
+			action: "isOpenChange"
+		},
 		align: {
 			options: [
 				"top",

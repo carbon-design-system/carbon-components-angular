@@ -12,11 +12,6 @@ export default {
 			imports: [ContentSwitcherModule]
 		})
 	],
-	// argTypes: {
-	// 	code: {
-	// 		control: false
-	// 	}
-	// },
 	component: ContentSwitcher,
 	subcomponents: {ContentSwitcherOption}
 } as Meta;
