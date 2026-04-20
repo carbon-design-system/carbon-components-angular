@@ -24,167 +24,167 @@
 <title>cluster_PaginationModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1004,-268 1004,-70 8,-70"/>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster_PaginationModule_exports</title>
-<polygon fill="none" stroke="black" points="231,-208 231,-260 746,-260 746,-208 231,-208"/>
+<g id="clust2" class="cluster">
+<title>cluster_PaginationModule_declarations</title>
+<polygon fill="none" stroke="black" points="496,-78 496,-130 996,-130 996,-78 496,-78"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_PaginationModule_imports</title>
-<polygon fill="none" stroke="black" points="524,-78 524,-130 996,-130 996,-78 524,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 488,-130 488,-78 16,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_PaginationModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 516,-130 516,-78 16,-78"/>
+<g id="clust8" class="cluster">
+<title>cluster_PaginationModule_exports</title>
+<polygon fill="none" stroke="black" points="209,-208 209,-260 724,-260 724,-208 209,-208"/>
 </g>
 <!-- Pagination -->
 <g id="node1" class="node">
 <title>Pagination</title>
-<polygon fill="#ffffb3" stroke="black" points="507.88,-122 432.12,-122 432.12,-86 507.88,-86 507.88,-122"/>
-<text text-anchor="middle" x="470" y="-99.8" font-family="Times,serif" font-size="14.00">Pagination</text>
+<polygon fill="#ffffb3" stroke="black" points="987.88,-122 912.12,-122 912.12,-86 987.88,-86 987.88,-122"/>
+<text text-anchor="middle" x="950" y="-99.8" font-family="Times,serif" font-size="14.00">Pagination</text>
 </g>
 <!-- PaginationModule -->
 <g id="node5" class="node">
 <title>PaginationModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="581.93,-187 578.93,-191 557.93,-191 554.93,-187 462.07,-187 462.07,-151 581.93,-151 581.93,-187"/>
-<text text-anchor="middle" x="522" y="-164.8" font-family="Times,serif" font-size="14.00">PaginationModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="559.93,-187 556.93,-191 535.93,-191 532.93,-187 440.07,-187 440.07,-151 559.93,-151 559.93,-187"/>
+<text text-anchor="middle" x="500" y="-164.8" font-family="Times,serif" font-size="14.00">PaginationModule</text>
 </g>
 <!-- Pagination&#45;&gt;PaginationModule -->
 <g id="edge1" class="edge">
 <title>Pagination&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M485.11,-122.11C485.11,-122.11 485.11,-140.99 485.11,-140.99"/>
-<polygon fill="black" stroke="black" points="481.61,-140.99 485.11,-150.99 488.61,-140.99 481.61,-140.99"/>
+<path fill="none" stroke="black" d="M950,-122.13C950,-142.57 950,-173 950,-173 950,-173 569.76,-173 569.76,-173"/>
+<polygon fill="black" stroke="black" points="569.76,-169.5 559.76,-173 569.76,-176.5 569.76,-169.5"/>
 </g>
 <!-- PaginationNav -->
 <g id="node2" class="node">
 <title>PaginationNav</title>
-<polygon fill="#ffffb3" stroke="black" points="413.71,-122 314.29,-122 314.29,-86 413.71,-86 413.71,-122"/>
-<text text-anchor="middle" x="364" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationNav</text>
+<polygon fill="#ffffb3" stroke="black" points="893.71,-122 794.29,-122 794.29,-86 893.71,-86 893.71,-122"/>
+<text text-anchor="middle" x="844" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationNav</text>
 </g>
 <!-- PaginationNav&#45;&gt;PaginationModule -->
 <g id="edge2" class="edge">
 <title>PaginationNav&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M402.21,-122.01C402.21,-138.05 402.21,-159 402.21,-159 402.21,-159 452.11,-159 452.11,-159"/>
-<polygon fill="black" stroke="black" points="452.11,-162.5 462.11,-159 452.11,-155.5 452.11,-162.5"/>
+<path fill="none" stroke="black" d="M844,-122.27C844,-140.56 844,-166 844,-166 844,-166 569.92,-166 569.92,-166"/>
+<polygon fill="black" stroke="black" points="569.92,-162.5 559.92,-166 569.92,-169.5 569.92,-162.5"/>
 </g>
 <!-- PaginationNavItem -->
 <g id="node3" class="node">
 <title>PaginationNavItem</title>
-<polygon fill="#ffffb3" stroke="black" points="296.36,-122 171.64,-122 171.64,-86 296.36,-86 296.36,-122"/>
-<text text-anchor="middle" x="234" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationNavItem</text>
+<polygon fill="#ffffb3" stroke="black" points="776.36,-122 651.64,-122 651.64,-86 776.36,-86 776.36,-122"/>
+<text text-anchor="middle" x="714" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationNavItem</text>
 </g>
 <!-- PaginationNavItem&#45;&gt;PaginationModule -->
 <g id="edge3" class="edge">
 <title>PaginationNavItem&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M267.96,-122.27C267.96,-140.56 267.96,-166 267.96,-166 267.96,-166 452.12,-166 452.12,-166"/>
-<polygon fill="black" stroke="black" points="452.12,-169.5 462.12,-166 452.12,-162.5 452.12,-169.5"/>
+<path fill="none" stroke="black" d="M683.63,-122.01C683.63,-138.05 683.63,-159 683.63,-159 683.63,-159 569.87,-159 569.87,-159"/>
+<polygon fill="black" stroke="black" points="569.87,-155.5 559.87,-159 569.87,-162.5 569.87,-155.5"/>
 </g>
 <!-- PaginationOverflow -->
 <g id="node4" class="node">
 <title>PaginationOverflow</title>
-<polygon fill="#ffffb3" stroke="black" points="153.52,-122 24.48,-122 24.48,-86 153.52,-86 153.52,-122"/>
-<text text-anchor="middle" x="89" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationOverflow</text>
+<polygon fill="#ffffb3" stroke="black" points="633.52,-122 504.48,-122 504.48,-86 633.52,-86 633.52,-122"/>
+<text text-anchor="middle" x="569" y="-99.8" font-family="Times,serif" font-size="14.00">PaginationOverflow</text>
 </g>
 <!-- PaginationOverflow&#45;&gt;PaginationModule -->
 <g id="edge4" class="edge">
 <title>PaginationOverflow&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M89,-122.13C89,-142.57 89,-173 89,-173 89,-173 452.25,-173 452.25,-173"/>
-<polygon fill="black" stroke="black" points="452.25,-176.5 462.25,-173 452.25,-169.5 452.25,-176.5"/>
+<path fill="none" stroke="black" d="M531.98,-122.11C531.98,-122.11 531.98,-140.99 531.98,-140.99"/>
+<polygon fill="black" stroke="black" points="528.48,-140.99 531.98,-150.99 535.48,-140.99 528.48,-140.99"/>
 </g>
 <!-- Pagination  -->
 <g id="node10" class="node">
 <title>Pagination </title>
-<polygon fill="#fb8072" stroke="black" points="737.88,-252 658.12,-252 658.12,-216 737.88,-216 737.88,-252"/>
-<text text-anchor="middle" x="698" y="-229.8" font-family="Times,serif" font-size="14.00">Pagination </text>
+<polygon fill="#fb8072" stroke="black" points="715.88,-252 636.12,-252 636.12,-216 715.88,-216 715.88,-252"/>
+<text text-anchor="middle" x="676" y="-229.8" font-family="Times,serif" font-size="14.00">Pagination </text>
 </g>
 <!-- PaginationModule&#45;&gt;Pagination  -->
 <g id="edge9" class="edge">
 <title>PaginationModule&#45;&gt;Pagination </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M581.8,-180C629.71,-180 688.96,-180 688.96,-180 688.96,-180 688.96,-205.72 688.96,-205.72"/>
-<polygon fill="black" stroke="black" points="685.46,-205.72 688.96,-215.72 692.46,-205.72 685.46,-205.72"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M559.79,-180C599.34,-180 643.94,-180 643.94,-180 643.94,-180 643.94,-205.72 643.94,-205.72"/>
+<polygon fill="black" stroke="black" points="640.44,-205.72 643.94,-215.72 647.44,-205.72 640.44,-205.72"/>
 </g>
 <!-- PaginationNav  -->
 <g id="node11" class="node">
 <title>PaginationNav </title>
-<polygon fill="#fb8072" stroke="black" points="640.21,-252 537.79,-252 537.79,-216 640.21,-216 640.21,-252"/>
-<text text-anchor="middle" x="589" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationNav </text>
+<polygon fill="#fb8072" stroke="black" points="618.21,-252 515.79,-252 515.79,-216 618.21,-216 618.21,-252"/>
+<text text-anchor="middle" x="567" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationNav </text>
 </g>
 <!-- PaginationModule&#45;&gt;PaginationNav  -->
 <g id="edge10" class="edge">
 <title>PaginationModule&#45;&gt;PaginationNav </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M559.68,-187.11C559.68,-187.11 559.68,-205.99 559.68,-205.99"/>
-<polygon fill="black" stroke="black" points="556.18,-205.99 559.68,-215.99 563.18,-205.99 556.18,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M537.68,-187.11C537.68,-187.11 537.68,-205.99 537.68,-205.99"/>
+<polygon fill="black" stroke="black" points="534.18,-205.99 537.68,-215.99 541.18,-205.99 534.18,-205.99"/>
 </g>
 <!-- PaginationNavItem  -->
 <g id="node12" class="node">
 <title>PaginationNavItem </title>
-<polygon fill="#fb8072" stroke="black" points="519.36,-252 390.64,-252 390.64,-216 519.36,-216 519.36,-252"/>
-<text text-anchor="middle" x="455" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationNavItem </text>
+<polygon fill="#fb8072" stroke="black" points="497.36,-252 368.64,-252 368.64,-216 497.36,-216 497.36,-252"/>
+<text text-anchor="middle" x="433" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationNavItem </text>
 </g>
 <!-- PaginationModule&#45;&gt;PaginationNavItem  -->
 <g id="edge11" class="edge">
 <title>PaginationModule&#45;&gt;PaginationNavItem </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M490.73,-187.11C490.73,-187.11 490.73,-205.99 490.73,-205.99"/>
-<polygon fill="black" stroke="black" points="487.23,-205.99 490.73,-215.99 494.23,-205.99 487.23,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M468.73,-187.11C468.73,-187.11 468.73,-205.99 468.73,-205.99"/>
+<polygon fill="black" stroke="black" points="465.23,-205.99 468.73,-215.99 472.23,-205.99 465.23,-205.99"/>
 </g>
 <!-- PaginationOverflow  -->
 <g id="node13" class="node">
 <title>PaginationOverflow </title>
-<polygon fill="#fb8072" stroke="black" points="372.52,-252 239.48,-252 239.48,-216 372.52,-216 372.52,-252"/>
-<text text-anchor="middle" x="306" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationOverflow </text>
+<polygon fill="#fb8072" stroke="black" points="350.52,-252 217.48,-252 217.48,-216 350.52,-216 350.52,-252"/>
+<text text-anchor="middle" x="284" y="-229.8" font-family="Times,serif" font-size="14.00">PaginationOverflow </text>
 </g>
 <!-- PaginationModule&#45;&gt;PaginationOverflow  -->
 <g id="edge12" class="edge">
 <title>PaginationModule&#45;&gt;PaginationOverflow </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M462.05,-180C410.18,-180 343.45,-180 343.45,-180 343.45,-180 343.45,-205.72 343.45,-205.72"/>
-<polygon fill="black" stroke="black" points="339.95,-205.72 343.45,-215.72 346.95,-205.72 339.95,-205.72"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M440.11,-180C378.04,-180 290.01,-180 290.01,-180 290.01,-180 290.01,-205.72 290.01,-205.72"/>
+<polygon fill="black" stroke="black" points="286.51,-205.72 290.01,-215.72 293.51,-205.72 286.51,-205.72"/>
 </g>
 <!-- ButtonModule -->
 <g id="node6" class="node">
 <title>ButtonModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="987.67,-122 984.67,-126 963.67,-126 960.67,-122 890.33,-122 890.33,-86 987.67,-86 987.67,-122"/>
-<text text-anchor="middle" x="939" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="479.67,-122 476.67,-126 455.67,-126 452.67,-122 382.33,-122 382.33,-86 479.67,-86 479.67,-122"/>
+<text text-anchor="middle" x="431" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
 </g>
 <!-- ButtonModule&#45;&gt;PaginationModule -->
 <g id="edge5" class="edge">
 <title>ButtonModule&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M939,-122.13C939,-142.57 939,-173 939,-173 939,-173 591.75,-173 591.75,-173"/>
-<polygon fill="black" stroke="black" points="591.75,-169.5 581.75,-173 591.75,-176.5 591.75,-169.5"/>
+<path fill="none" stroke="black" d="M460.06,-122.11C460.06,-122.11 460.06,-140.99 460.06,-140.99"/>
+<polygon fill="black" stroke="black" points="456.56,-140.99 460.06,-150.99 463.56,-140.99 456.56,-140.99"/>
 </g>
 <!-- ExperimentalModule -->
 <g id="node7" class="node">
 <title>ExperimentalModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="872.47,-122 869.47,-126 848.47,-126 845.47,-122 737.53,-122 737.53,-86 872.47,-86 872.47,-122"/>
-<text text-anchor="middle" x="805" y="-99.8" font-family="Times,serif" font-size="14.00">ExperimentalModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="364.47,-122 361.47,-126 340.47,-126 337.47,-122 229.53,-122 229.53,-86 364.47,-86 364.47,-122"/>
+<text text-anchor="middle" x="297" y="-99.8" font-family="Times,serif" font-size="14.00">ExperimentalModule</text>
 </g>
 <!-- ExperimentalModule&#45;&gt;PaginationModule -->
 <g id="edge6" class="edge">
 <title>ExperimentalModule&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M805.09,-122.27C805.09,-140.56 805.09,-166 805.09,-166 805.09,-166 592.04,-166 592.04,-166"/>
-<polygon fill="black" stroke="black" points="592.04,-162.5 582.04,-166 592.04,-169.5 592.04,-162.5"/>
+<path fill="none" stroke="black" d="M357.5,-122.01C357.5,-138.05 357.5,-159 357.5,-159 357.5,-159 429.98,-159 429.98,-159"/>
+<polygon fill="black" stroke="black" points="429.98,-162.5 439.98,-159 429.98,-155.5 429.98,-162.5"/>
 </g>
 <!-- I18nModule -->
 <g id="node8" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="719.71,-122 716.71,-126 695.71,-126 692.71,-122 634.29,-122 634.29,-86 719.71,-86 719.71,-122"/>
-<text text-anchor="middle" x="677" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="211.71,-122 208.71,-126 187.71,-126 184.71,-122 126.29,-122 126.29,-86 211.71,-86 211.71,-122"/>
+<text text-anchor="middle" x="169" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;PaginationModule -->
 <g id="edge7" class="edge">
 <title>I18nModule&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M649.33,-122.01C649.33,-138.05 649.33,-159 649.33,-159 649.33,-159 591.94,-159 591.94,-159"/>
-<polygon fill="black" stroke="black" points="591.94,-155.5 581.94,-159 591.94,-162.5 591.94,-155.5"/>
+<path fill="none" stroke="black" d="M169,-122.27C169,-140.56 169,-166 169,-166 169,-166 430.06,-166 430.06,-166"/>
+<polygon fill="black" stroke="black" points="430.06,-169.5 440.06,-166 430.06,-162.5 430.06,-169.5"/>
 </g>
 <!-- IconModule -->
 <g id="node9" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="616.43,-122 613.43,-126 592.43,-126 589.43,-122 531.57,-122 531.57,-86 616.43,-86 616.43,-122"/>
-<text text-anchor="middle" x="574" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="108.43,-122 105.43,-126 84.43,-126 81.43,-122 23.57,-122 23.57,-86 108.43,-86 108.43,-122"/>
+<text text-anchor="middle" x="66" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;PaginationModule -->
 <g id="edge8" class="edge">
 <title>IconModule&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="black" d="M556.75,-122.11C556.75,-122.11 556.75,-140.99 556.75,-140.99"/>
-<polygon fill="black" stroke="black" points="553.25,-140.99 556.75,-150.99 560.25,-140.99 553.25,-140.99"/>
+<path fill="none" stroke="black" d="M66,-122.13C66,-142.57 66,-173 66,-173 66,-173 430.11,-173 430.11,-173"/>
+<polygon fill="black" stroke="black" points="430.11,-176.5 440.11,-173 430.11,-169.5 430.11,-176.5"/>
 </g>
 </g>
 </svg>

@@ -32,13 +32,13 @@
 <title>cluster_StructuredListModule_imports</title>
 <polygon fill="none" stroke="black" points="301,-189.59 301,-241.59 401,-241.59 401,-189.59 301,-189.59"/>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster_StructuredListModule_exports</title>
-<polygon fill="none" stroke="black" points="50,-319.59 50,-371.59 456,-371.59 456,-319.59 50,-319.59"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_StructuredListModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 293,-241.59 293,-189.59 16,-189.59"/>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_StructuredListModule_exports</title>
+<polygon fill="none" stroke="black" points="50,-319.59 50,-371.59 456,-371.59 456,-319.59 50,-319.59"/>
 </g>
 <!-- ListColumn -->
 <g id="node1" class="node">

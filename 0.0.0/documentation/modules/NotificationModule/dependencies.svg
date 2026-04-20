@@ -28,17 +28,17 @@
 <title>cluster_NotificationModule_declarations</title>
 <polygon fill="none" stroke="black" points="1049,-78 1049,-130 2489,-130 2489,-78 1049,-78"/>
 </g>
-<g id="clust18" class="cluster">
-<title>cluster_NotificationModule_providers</title>
-<polygon fill="none" stroke="black" points="600,-78 600,-130 1041,-130 1041,-78 600,-78"/>
+<g id="clust15" class="cluster">
+<title>cluster_NotificationModule_imports</title>
+<polygon fill="none" stroke="black" points="465,-78 465,-130 1041,-130 1041,-78 465,-78"/>
 </g>
 <g id="clust16" class="cluster">
 <title>cluster_NotificationModule_exports</title>
 <polygon fill="none" stroke="black" points="705,-208 705,-260 2054,-260 2054,-208 705,-208"/>
 </g>
-<g id="clust15" class="cluster">
-<title>cluster_NotificationModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 592,-130 592,-78 16,-78"/>
+<g id="clust18" class="cluster">
+<title>cluster_NotificationModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 457,-130 457,-78 16,-78"/>
 </g>
 <!-- ActionableButton -->
 <g id="node1" class="node">
@@ -295,8 +295,8 @@
 <!-- NotificationModule&#45;&gt;ToastCaption  -->
 <g id="edge26" class="edge">
 <title>NotificationModule&#45;&gt;ToastCaption </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1239.39,-180C1142.48,-180 969,-180 969,-180 969,-180 969,-205.72 969,-205.72"/>
-<polygon fill="black" stroke="black" points="965.5,-205.72 969,-215.72 972.5,-205.72 965.5,-205.72"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1239.14,-180C1143.92,-180 975.82,-180 975.82,-180 975.82,-180 975.82,-205.72 975.82,-205.72"/>
+<polygon fill="black" stroke="black" points="972.32,-205.72 975.82,-215.72 979.32,-205.72 972.32,-205.72"/>
 </g>
 <!-- ToastSubtitle  -->
 <g id="node28" class="node">
@@ -319,92 +319,92 @@
 <!-- NotificationModule&#45;&gt;ToastTitle  -->
 <g id="edge28" class="edge">
 <title>NotificationModule&#45;&gt;ToastTitle </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1239.36,-175C1101.19,-175 786.09,-175 786.09,-175 786.09,-175 786.09,-205.98 786.09,-205.98"/>
-<polygon fill="black" stroke="black" points="782.59,-205.98 786.09,-215.98 789.59,-205.98 782.59,-205.98"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1239.15,-175C1100.97,-175 786.52,-175 786.52,-175 786.52,-175 786.52,-205.98 786.52,-205.98"/>
+<polygon fill="black" stroke="black" points="783.02,-205.98 786.52,-215.98 790.02,-205.98 783.02,-205.98"/>
 </g>
 <!-- ButtonModule -->
 <g id="node14" class="node">
 <title>ButtonModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="583.67,-122 580.67,-126 559.67,-126 556.67,-122 486.33,-122 486.33,-86 583.67,-86 583.67,-122"/>
-<text text-anchor="middle" x="535" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1032.67,-122 1029.67,-126 1008.67,-126 1005.67,-122 935.33,-122 935.33,-86 1032.67,-86 1032.67,-122"/>
+<text text-anchor="middle" x="984" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
 </g>
 <!-- ButtonModule&#45;&gt;NotificationModule -->
 <g id="edge13" class="edge">
 <title>ButtonModule&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M535,-122.03C535,-139.06 535,-162 535,-162 535,-162 1229.17,-162 1229.17,-162"/>
-<polygon fill="black" stroke="black" points="1229.17,-165.5 1239.17,-162 1229.17,-158.5 1229.17,-165.5"/>
+<path fill="none" stroke="black" d="M1024.65,-122.24C1024.65,-137.57 1024.65,-157 1024.65,-157 1024.65,-157 1229.14,-157 1229.14,-157"/>
+<polygon fill="black" stroke="black" points="1229.14,-160.5 1239.14,-157 1229.14,-153.5 1229.14,-160.5"/>
 </g>
 <!-- ExperimentalModule -->
 <g id="node15" class="node">
 <title>ExperimentalModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="468.47,-122 465.47,-126 444.47,-126 441.47,-122 333.53,-122 333.53,-86 468.47,-86 468.47,-122"/>
-<text text-anchor="middle" x="401" y="-99.8" font-family="Times,serif" font-size="14.00">ExperimentalModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="917.47,-122 914.47,-126 893.47,-126 890.47,-122 782.53,-122 782.53,-86 917.47,-86 917.47,-122"/>
+<text text-anchor="middle" x="850" y="-99.8" font-family="Times,serif" font-size="14.00">ExperimentalModule</text>
 </g>
 <!-- ExperimentalModule&#45;&gt;NotificationModule -->
 <g id="edge14" class="edge">
 <title>ExperimentalModule&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M401,-122C401,-139.68 401,-164 401,-164 401,-164 1229.21,-164 1229.21,-164"/>
-<polygon fill="black" stroke="black" points="1229.21,-167.5 1239.21,-164 1229.21,-160.5 1229.21,-167.5"/>
+<path fill="none" stroke="black" d="M910.28,-122.01C910.28,-138.05 910.28,-159 910.28,-159 910.28,-159 1229.03,-159 1229.03,-159"/>
+<polygon fill="black" stroke="black" points="1229.03,-162.5 1239.03,-159 1229.03,-155.5 1229.03,-162.5"/>
 </g>
 <!-- I18nModule -->
 <g id="node16" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="315.71,-122 312.71,-126 291.71,-126 288.71,-122 230.29,-122 230.29,-86 315.71,-86 315.71,-122"/>
-<text text-anchor="middle" x="273" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="764.71,-122 761.71,-126 740.71,-126 737.71,-122 679.29,-122 679.29,-86 764.71,-86 764.71,-122"/>
+<text text-anchor="middle" x="722" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;NotificationModule -->
 <g id="edge15" class="edge">
 <title>I18nModule&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M273,-122.22C273,-140.83 273,-167 273,-167 273,-167 1229.35,-167 1229.35,-167"/>
-<polygon fill="black" stroke="black" points="1229.35,-170.5 1239.35,-167 1229.35,-163.5 1229.35,-170.5"/>
+<path fill="none" stroke="black" d="M739.04,-122.03C739.04,-139.06 739.04,-162 739.04,-162 739.04,-162 1229.13,-162 1229.13,-162"/>
+<polygon fill="black" stroke="black" points="1229.13,-165.5 1239.13,-162 1229.13,-158.5 1229.13,-165.5"/>
 </g>
 <!-- IconModule -->
 <g id="node17" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="212.43,-122 209.43,-126 188.43,-126 185.43,-122 127.57,-122 127.57,-86 212.43,-86 212.43,-122"/>
-<text text-anchor="middle" x="170" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="661.43,-122 658.43,-126 637.43,-126 634.43,-122 576.57,-122 576.57,-86 661.43,-86 661.43,-122"/>
+<text text-anchor="middle" x="619" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;NotificationModule -->
 <g id="edge16" class="edge">
 <title>IconModule&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M170,-122.11C170,-141.34 170,-169 170,-169 170,-169 1229.25,-169 1229.25,-169"/>
-<polygon fill="black" stroke="black" points="1229.25,-172.5 1239.25,-169 1229.25,-165.5 1229.25,-172.5"/>
+<path fill="none" stroke="black" d="M619,-122C619,-139.68 619,-164 619,-164 619,-164 1229.27,-164 1229.27,-164"/>
+<polygon fill="black" stroke="black" points="1229.27,-167.5 1239.27,-164 1229.27,-160.5 1229.27,-167.5"/>
 </g>
 <!-- LinkModule -->
 <g id="node18" class="node">
 <title>LinkModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="109.99,-122 106.99,-126 85.99,-126 82.99,-122 24.01,-122 24.01,-86 109.99,-86 109.99,-122"/>
-<text text-anchor="middle" x="67" y="-99.8" font-family="Times,serif" font-size="14.00">LinkModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="558.99,-122 555.99,-126 534.99,-126 531.99,-122 473.01,-122 473.01,-86 558.99,-86 558.99,-122"/>
+<text text-anchor="middle" x="516" y="-99.8" font-family="Times,serif" font-size="14.00">LinkModule</text>
 </g>
 <!-- LinkModule&#45;&gt;NotificationModule -->
 <g id="edge17" class="edge">
 <title>LinkModule&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M67,-122.22C67,-142.37 67,-172 67,-172 67,-172 1229.15,-172 1229.15,-172"/>
-<polygon fill="black" stroke="black" points="1229.15,-175.5 1239.15,-172 1229.15,-168.5 1229.15,-175.5"/>
+<path fill="none" stroke="black" d="M516,-122.22C516,-140.83 516,-167 516,-167 516,-167 1229.26,-167 1229.26,-167"/>
+<polygon fill="black" stroke="black" points="1229.26,-170.5 1239.26,-167 1229.26,-163.5 1229.26,-170.5"/>
 </g>
 <!-- NotificationDisplayService -->
 <g id="node30" class="node">
 <title>NotificationDisplayService</title>
-<ellipse fill="#fdb462" stroke="black" cx="916" cy="-104" rx="116.89" ry="18"/>
-<text text-anchor="middle" x="916" y="-99.8" font-family="Times,serif" font-size="14.00">NotificationDisplayService</text>
+<ellipse fill="#fdb462" stroke="black" cx="332" cy="-104" rx="116.89" ry="18"/>
+<text text-anchor="middle" x="332" y="-99.8" font-family="Times,serif" font-size="14.00">NotificationDisplayService</text>
 </g>
 <!-- NotificationDisplayService&#45;&gt;NotificationModule -->
 <g id="edge29" class="edge">
 <title>NotificationDisplayService&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M1024.58,-110.93C1024.58,-125.3 1024.58,-157 1024.58,-157 1024.58,-157 1229.12,-157 1229.12,-157"/>
-<polygon fill="black" stroke="black" points="1229.12,-160.5 1239.12,-157 1229.12,-153.5 1229.12,-160.5"/>
+<path fill="none" stroke="black" d="M332,-122.11C332,-141.34 332,-169 332,-169 332,-169 1229.29,-169 1229.29,-169"/>
+<polygon fill="black" stroke="black" points="1229.29,-172.5 1239.29,-169 1229.29,-165.5 1229.29,-172.5"/>
 </g>
 <!-- NotificationService -->
 <g id="node31" class="node">
 <title>NotificationService</title>
-<ellipse fill="#fdb462" stroke="black" cx="695" cy="-104" rx="86.81" ry="18"/>
-<text text-anchor="middle" x="695" y="-99.8" font-family="Times,serif" font-size="14.00">NotificationService</text>
+<ellipse fill="#fdb462" stroke="black" cx="111" cy="-104" rx="86.81" ry="18"/>
+<text text-anchor="middle" x="111" y="-99.8" font-family="Times,serif" font-size="14.00">NotificationService</text>
 </g>
 <!-- NotificationService&#45;&gt;NotificationModule -->
 <g id="edge30" class="edge">
 <title>NotificationService&#45;&gt;NotificationModule</title>
-<path fill="none" stroke="black" d="M747.57,-118.45C747.57,-134.75 747.57,-159 747.57,-159 747.57,-159 1229.28,-159 1229.28,-159"/>
-<polygon fill="black" stroke="black" points="1229.28,-162.5 1239.28,-159 1229.28,-155.5 1229.28,-162.5"/>
+<path fill="none" stroke="black" d="M111,-122.22C111,-142.37 111,-172 111,-172 111,-172 1229.33,-172 1229.33,-172"/>
+<polygon fill="black" stroke="black" points="1229.33,-175.5 1239.33,-172 1229.33,-168.5 1229.33,-175.5"/>
 </g>
 </g>
 </svg>
