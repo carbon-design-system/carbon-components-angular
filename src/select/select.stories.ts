@@ -10,6 +10,10 @@ import {
 } from "./";
 
 import { ReactiveFormsSelect } from "./stories";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Select",
@@ -18,7 +22,10 @@ export default {
 			imports: [
 				SelectModule,
 				FormsModule,
-				ReactiveFormsModule
+				ReactiveFormsModule,
+				AILabelModule,
+				ButtonModule,
+				IconModule
 			],
 			declarations: [ReactiveFormsSelect]
 		})
@@ -208,3 +215,25 @@ ValueProperty.argTypes = {
 		control: "select"
 	}
 };
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-select label="Select" [decorator]="decoratorTpl">
+			<option value="a">Option A</option>
+			<option value="b">Option B</option>
+		</cds-select>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				[align]="'bottom-end'"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});

@@ -115,6 +115,11 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	@HostBinding("class.cds--popover--auto-align") @Input() autoAlign = false;
 	@HostBinding("class.cds--popover-container") containerClass = true;
 	@Input() @HostBinding("class.cds--popover--open") isOpen = false;
+	/**
+	 * **Experimental:** Provide an offset value for alignment axis.
+	 * Only takes effect when `autoalign` is enabled.
+	 */
+	@Input() alignmentAxisOffset?: number;
 
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
@@ -185,6 +190,14 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	recomputePosition() {
 		// Run outside of angular zone to avoid unnecessary change detection and rely on floating-ui
 		this.ngZone.runOutsideAngular(async () => {
+			const offsetMiddleware =
+				this.alignmentAxisOffset !== undefined && this.alignmentAxisOffset !== null
+					? offset({
+						mainAxis: this.caretOffset,
+						alignmentAxis: this.alignmentAxisOffset
+					})
+					: offset(this.caretOffset);
+
 			const { x, y, placement, middlewareData } = await computePosition(
 				this.elementRef.nativeElement,
 				this.popoverContentRef,
@@ -192,9 +205,9 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 					placement: this._align,
 					strategy: "fixed",
 					middleware: [
-						offset(this.caretOffset),
+						offsetMiddleware,
 						flip({ fallbackAxisSideDirection: "start" }),
-						arrow({ element: this.caretRef })
+						arrow({ element: this.caretRef, padding: 16 })
 					]
 				});
 

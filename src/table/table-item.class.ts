@@ -106,6 +106,17 @@ export class TableItem {
 	 */
 	colSpan = 1;
 
+	/**
+	 * Optional extra classes on this cell’s `td` (merged with the column header `className`).
+	 */
+	cellClassName: string;
+
+	/**
+	 * When true, this row includes an AI label / decorator in the first column and row-level AI styles apply
+	 * (with `cds-table` `[withRowAILabels]="true"`).
+	 */
+	hasAILabelDecorator = false;
+
 	get title() {
 		if (typeof this._title === "string") {
 			return this._title;

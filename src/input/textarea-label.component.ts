@@ -64,7 +64,8 @@ import { TextArea } from "./text-area.directive";
 			<div
 				class="cds--text-area__wrapper"
 				[ngClass]="{
-					'cds--text-area__wrapper--warn': warn
+					'cds--text-area__wrapper--warn': warn,
+					'cds--text-area__wrapper--decorator': !!decorator
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
@@ -84,6 +85,11 @@ import { TextArea } from "./text-area.directive";
 				<ng-template #textAreaContent>
 					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
 				</ng-template>
+				<ng-container *ngIf="decorator">
+					<div class="cds--text-area__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 
 				<ng-container *ngIf="fluid">
 					<hr class="cds--text-area__divider" />
@@ -219,6 +225,11 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	 * on each change. Excess words are trimmed from the end of the value.
 	 */
 	@Input() counterMode: "character" | "word" = "character";
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	//  Tracks current character / word count for the counter display.
 	textCount = 0;

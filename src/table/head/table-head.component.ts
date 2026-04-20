@@ -28,6 +28,21 @@ import { TableRowSize } from "../table.types";
 	<ng-container *ngIf="model">
 		<tr>
 			<th
+				*ngIf="withRowAILabels && model.header[0] && model.header[0].visible"
+				[ngStyle]="model.header[0].style"
+				cdsTableHeadCell
+				scope="col"
+				[class]="model.header[0].className"
+				[sortable]="sortable"
+				[skeleton]="skeleton"
+				[id]="model.getId(0)"
+				[column]="model.header[0]"
+				[filterTitle]="getFilterTitle()"
+				[attr.colspan]="model.header[0].colSpan"
+				[attr.rowspan]="model.header[0].rowSpan"
+				(sort)="sort.emit(0)">
+			</th>
+			<th
 				cdsTableHeadExpand
 				*ngIf="model.hasExpandableRows()"
 				scope="col"
@@ -57,7 +72,7 @@ import { TableRowSize } from "../table.types";
 			</th>
 			<ng-container *ngFor="let column of model.header; let i = index">
 				<th
-					*ngIf="column && column.visible"
+					*ngIf="column && column.visible && (!withRowAILabels || i > 0)"
 					[ngStyle]="column.style"
 					cdsTableHeadCell
 					scope="col"
@@ -112,6 +127,11 @@ export class TableHead implements AfterViewInit {
 	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
 	 */
 	@Input() sortable = true;
+
+	/**
+	 * When true, the first model column is rendered before expand/selection (Carbon AI row decorator column).
+	 */
+	@Input() withRowAILabels = false;
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

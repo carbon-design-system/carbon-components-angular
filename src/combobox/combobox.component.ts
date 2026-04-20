@@ -45,7 +45,8 @@ import { Observable } from "rxjs";
 			[ngClass]="{
 				'cds--list-box__wrapper--fluid': fluid,
 				'cds--list-box__wrapper--fluid--invalid': fluid && invalid,
-				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused
+				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused,
+				'cds--list-box__wrapper--decorator': !!decorator
 			}">
 			<label
 				*ngIf="label"
@@ -166,6 +167,11 @@ import { Observable } from "rxjs";
 						<svg cdsIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
+				<ng-container *ngIf="decorator">
+					<div class="cds--list-box__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<div
 					#dropdownMenu
 					[ngClass]="{
@@ -325,6 +331,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
