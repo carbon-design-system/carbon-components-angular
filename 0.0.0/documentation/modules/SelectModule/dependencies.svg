@@ -24,21 +24,21 @@
 <title>cluster_SelectModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 626,-379.59 626,-70 8,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_SelectModule_declarations</title>
-<polygon fill="none" stroke="black" points="277,-189.59 277,-241.59 510,-241.59 510,-189.59 277,-189.59"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_SelectModule_imports</title>
 <polygon fill="none" stroke="black" points="518,-189.59 518,-241.59 618,-241.59 618,-189.59 518,-189.59"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_SelectModule_exports</title>
-<polygon fill="none" stroke="black" points="316,-319.59 316,-371.59 556,-371.59 556,-319.59 316,-319.59"/>
+<g id="clust2" class="cluster">
+<title>cluster_SelectModule_declarations</title>
+<polygon fill="none" stroke="black" points="277,-189.59 277,-241.59 510,-241.59 510,-189.59 277,-189.59"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_SelectModule_Select_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-176.59 618,-176.59 618,-78 16,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_SelectModule_exports</title>
+<polygon fill="none" stroke="black" points="316,-319.59 316,-371.59 556,-371.59 556,-319.59 316,-319.59"/>
 </g>
 <!-- OptGroup -->
 <g id="node1" class="node">
