@@ -3,7 +3,8 @@ import {
 	Input,
 	HostBinding,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { RadioChange } from "./radio-change.class";
@@ -47,7 +48,14 @@ import { RadioChange } from "./radio-change.class";
 			[for]="id"
 			id="label-{{id}}">
 			<span class="cds--radio-button__appearance"></span>
-			<ng-content></ng-content>
+			<span class="cds--radio-button__label-text">
+				<ng-content></ng-content>
+				<ng-container *ngIf="decorator">
+					<div class="cds--radio-button-wrapper-inner--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
+			</span>
 		</label>
 	`,
 	providers: [
@@ -111,9 +119,18 @@ export class Radio {
 
 	@HostBinding("class.cds--radio-button-wrapper") hostClass = true;
 
+	@HostBinding("class.cds--radio-button-wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
 	@HostBinding("class.cds--radio-button-wrapper--label-left") get labelLeft() {
 		return this.labelPlacement === "left";
 	}
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Reflects whether or not the input is disabled at `RadioGroup` level.

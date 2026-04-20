@@ -9,6 +9,8 @@ import { IconService } from "./icon.service";
 // icon imports
 import Add16 from "@carbon/icons/es/add/16";
 import Add20 from "@carbon/icons/es/add/20";
+import ArrowDown16 from "@carbon/icons/es/arrow--down/16";
+import ArrowsVertical16 from "@carbon/icons/es/arrows--vertical/16";
 import Bee16 from "@carbon/icons/es/bee/16";
 import Bee20 from "@carbon/icons/es/bee/20";
 import Calendar16 from "@carbon/icons/es/calendar/16";
@@ -60,6 +62,7 @@ import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
+import Undo16 from "@carbon/icons/es/undo/16";
 import View16 from "@carbon/icons/es/view/16";
 import ViewOff16 from "@carbon/icons/es/view--off/16";
 
@@ -94,6 +97,8 @@ export class IconModule {
 		iconService.registerAll([
 			Add16,
 			Add20,
+			ArrowDown16,
+			ArrowsVertical16,
 			Bee16,
 			Bee20,
 			Calendar16,
@@ -140,6 +145,7 @@ export class IconModule {
 			SettingsAdjust16,
 			Subtract16,
 			TrashCan16,
+			Undo16,
 			View16,
 			ViewOff16,
 			Warning16,

@@ -21,7 +21,8 @@ import {
 			class="cds--modal cds--modal-tall"
 			[ngClass]="{
 				'cds--modal--danger': theme === 'danger',
-				'is-visible': open
+				'is-visible': open,
+				'cds--modal--decorator': hasModalDecorator
 			}"
 			(click)="overlayClick($event)"
 			#overlay>
@@ -35,6 +36,10 @@ export class Overlay {
 	 */
 	@Input() theme: "default" | "danger" = "default";
 	@Input() open = false;
+	/**
+	 * When `true`, applies `cds--modal--decorator` for AI-label
+	 */
+	@Input() hasModalDecorator = false;
 	/**
 	 * To emit the event where the user selects the overlay behind the `Modal`.
 	 */

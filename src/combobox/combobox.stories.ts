@@ -9,6 +9,10 @@ import {
 	ReactiveFormsCombobox,
 	MockQueryCombobox
 } from "./stories";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Combobox",
@@ -22,7 +26,10 @@ export default {
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				ComboBoxModule
+				ComboBoxModule,
+				AILabelModule,
+				ButtonModule,
+				IconModule
 			]
 		})
 	],
@@ -257,3 +264,47 @@ MockQuerySearch.parameters = {
 		disable: true
 	}
 };
+
+const withAILabelTemplate = (args) => ({
+	props: args,
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<div style="width: 400px">
+			<cds-combo-box
+				[(ngModel)]="model"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[label]="label"
+				[hideLabel]="hideLabel"
+				[helperText]="helperText"
+				[items]="items"
+				[theme]="theme"
+				[dropUp]="dropUp"
+				[fluid]="fluid"
+				[decorator]="decoratorTpl"
+				(selected)="selected($event)"
+				(submit)="submit($event)"
+				(search)="search($event)"
+				(clear)="clear($event)">
+				<cds-dropdown-list></cds-dropdown-list>
+			</cds-combo-box>
+		</div>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});
+export const withAILabel = withAILabelTemplate.bind({});
+
+export const filterableWithAILabel = withAILabelTemplate.bind({});
+filterableWithAILabel.storyName = "Filterable with AI label";
