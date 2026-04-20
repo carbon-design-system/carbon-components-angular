@@ -23,7 +23,8 @@ export default {
 		caret: true,
 		description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.",
 		align: "bottom",
-		autoAlign: false
+		autoAlign: false,
+		openOnHover: true
 	},
 	argTypes: {
 		autoAlign: {

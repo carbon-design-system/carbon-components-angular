@@ -45,7 +45,8 @@ import { Observable } from "rxjs";
 			[ngClass]="{
 				'cds--list-box__wrapper--fluid': fluid,
 				'cds--list-box__wrapper--fluid--invalid': fluid && invalid,
-				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused
+				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused,
+				'cds--list-box__wrapper--decorator': !!decorator
 			}">
 			<label
 				*ngIf="label"
@@ -166,6 +167,11 @@ import { Observable } from "rxjs";
 						<svg cdsIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
+				<ng-container *ngIf="decorator">
+					<div class="cds--list-box__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				</ng-container>
 				<div
 					#dropdownMenu
 					[ngClass]="{
@@ -325,6 +331,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 	/**
 	 * set to `true` to place the dropdown view inline with the component
 	 */
@@ -546,8 +557,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.elementRef.nativeElement.querySelector("input").focus();
 						this.view.filterBy("");
 						this.selected.emit(event.item);
+						this.closeDropdown();
 					}
-					this.closeDropdown();
 				}
 			});
 			// update the rest of combobox with any pre-selected items
@@ -691,8 +702,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		});
 		this.view.items = this.items;
 		this.updatePills();
-		// clearSelected can only fire on type=multi
-		// so we just emit getSelected() (just in case there's any disabled but selected items)
+		/**
+		 * @todo - In next major version update to the following:
+		 * const selected = this.type === "multi" ? this.view.getSelected() : undefined;
+		 *
+		 * Previously it returned an empty array even for type === 'single'
+		 * Also resolve #ref-1245723
+		 */
+		// On type=multi we just emit getSelected() (just in case there's any disabled but selected items)
 		const selected = this.view.getSelected();
 
 		// in case there are disabled items they should be mapped according to itemValueKey

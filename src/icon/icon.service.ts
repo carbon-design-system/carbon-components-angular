@@ -1,33 +1,6 @@
 import { Injectable } from "@angular/core";
 import { toString } from "@carbon/icon-helpers";
 
-// icon imports
-import {
-	Add16,
-	Calendar16,
-	CaretDown16,
-	CaretLeft16,
-	CaretRight16,
-	CaretUp16,
-	Checkmark16,
-	CheckmarkFilled16,
-	CheckmarkOutline16,
-	ChevronDown16,
-	ChevronRight16,
-	Close16,
-	Copy16,
-	Download16,
-	ErrorFilled16,
-	InformationFilled16,
-	Menu16,
-	OverflowMenuVertical16,
-	Save16,
-	Settings16,
-	TrashCan16,
-	Warning16,
-	WarningFilled16
-} from "@carbon/icons";
-
 /**
  * An object that represents a parsed icon
  */
@@ -110,7 +83,7 @@ export class IconNameNotFoundError extends Error {
  */
 export class IconSizeNotFoundError extends Error {
 	constructor(size: string, name: string) {
-		super("Size ${size} for ${name} not found");
+		super(`Size ${size} for ${name} not found`);
 	}
 }
 
@@ -195,8 +168,8 @@ export class IconService {
 	 * Registers an icon based on a uniqe name and metadata provided by `@carbon/icons`
 	 */
 	public registerAs(name: string, descriptor: object) {
-		const { size } = descriptor as IconDescriptor;
-		this.iconCache.set(name, size.toString(), descriptor);
+		let { size, attrs: { width } } = descriptor as IconDescriptor;
+		this.iconCache.set(name, (size ?? width).toString(), descriptor);
 	}
 
 	/**

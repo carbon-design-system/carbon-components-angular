@@ -161,12 +161,12 @@ export interface PaginationTranslations {
 					iconOnly="true"
 					class="cds--pagination__button cds--pagination__button--backward"
 					[ngClass]="{
-						'cds--pagination__button--no-index': currentPage <= 1 || disabled
+						'cds--pagination__button--no-index': currentPage <= 1 || backwardDisabled
 					}"
 					tabindex="0"
 					[attr.aria-label]="backwardText.subject | async"
 					(click)="selectPage.emit(previousPage)"
-					[disabled]="(currentPage <= 1 || disabled ? true : null)">
+					[disabled]="(currentPage <= 1 || backwardDisabled ? true : null)">
 					<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>
 				</button>
 
@@ -177,12 +177,12 @@ export interface PaginationTranslations {
 						cds--pagination__button
 						cds--pagination__button--forward"
 					[ngClass]="{
-						'cds--pagination__button--no-index': currentPage >= lastPage || disabled
+						'cds--pagination__button--no-index': currentPage >= lastPage || forwardDisabled
 					}"
 					tabindex="0"
 					[attr.aria-label]="forwardText.subject | async"
 					(click)="selectPage.emit(nextPage)"
-					[disabled]="(currentPage >= lastPage || disabled ? true : null)">
+					[disabled]="(currentPage >= lastPage || forwardDisabled ? true : null)">
 					<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>
 				</button>
 			</div>
@@ -204,7 +204,10 @@ export class Pagination {
 	/**
  	 * Set to `true` to disable the backward/forward buttons.
 	 */
-	@Input() disabled = false;
+	@Input() set disabled(value: boolean) {
+		this.backwardDisabled = value;
+		this.forwardDisabled = value;
+	}
 	/**
 	 * Set to `true` to disable the select box that changes the page.
 	 */
@@ -218,6 +221,9 @@ export class Pagination {
 	 */
 	@Input() pagesUnknown = false;
 	@Input() pageSelectThreshold = 1000;
+
+	@Input() backwardDisabled = false;
+	@Input() forwardDisabled = false;
 
 	/**
 	 * Expects an object that contains some or all of:

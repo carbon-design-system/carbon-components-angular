@@ -11,7 +11,8 @@ import {
 	OnChanges,
 	Renderer2,
 	Inject,
-	OnDestroy
+	OnDestroy,
+	TemplateRef
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
@@ -81,6 +82,7 @@ export class ModalDemo {
 		<cds-overlay
 			[theme]="theme"
 			[open]="open"
+			[hasModalDecorator]="!!decorator"
 			(overlaySelect)="overlaySelected.emit()">
 			<div
 				class="cds--modal-container"
@@ -132,6 +134,10 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
 	@Input() hasScrollingContent: boolean = null;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.

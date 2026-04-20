@@ -45,17 +45,17 @@ describe("Definition tooltip", () => {
 
 	it("should open/close tooltip definition popover on button click", () => {
 		spyOn(tooltipEl.componentInstance.isOpenChange, "emit");
-		buttonEl.triggerEventHandler("click", new Event("click"));
+		buttonEl.triggerEventHandler("mousedown", new MouseEvent("mousedown", { button: 0 }));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
-		buttonEl.triggerEventHandler("click", new Event("click"));
+		buttonEl.triggerEventHandler("mousedown", new MouseEvent("mousedown", { button: 0 }));
 		fixture.detectChanges();
 		expect(tooltipEl.componentInstance.isOpenChange.emit).toHaveBeenCalled();
 	});
 
 	it("should markForCheck given the changeDetectorRef is set", () => {
 		const spy = spyOn(tooltipEl.componentInstance.changeDetectorRef, "markForCheck");
-		buttonEl.triggerEventHandler("click", new Event("click"));
+		buttonEl.triggerEventHandler("mousedown", new MouseEvent("mousedown", { button: 0 }));
 		fixture.detectChanges();
 		expect(spy).toHaveBeenCalled();
 	});

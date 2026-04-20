@@ -1,14 +1,17 @@
 /* tslint:disable variable-name */
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { moduleMetadata, Meta } from "@storybook/angular";
-import { FileUploaderModule, FileUploader } from "./";
-import { NotificationModule } from "../notification";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { NotificationModule } from "../notification";
+import { FileUploader, FileUploaderModule } from "./";
 import {
-	FileUploaderStory,
-	NgModelFileUploaderStory,
+	CustomFileIconsModule,
 	DragAndDropStory,
+	FileUploaderStory,
+	FileUploaderWithCustomFileStory,
+	NgModelFileUploaderStory,
 	ReactiveFormsStory
 } from "./stories";
 
@@ -18,16 +21,19 @@ export default {
 		moduleMetadata({
 			declarations: [
 				FileUploaderStory,
+				FileUploaderWithCustomFileStory,
 				NgModelFileUploaderStory,
 				DragAndDropStory,
 				ReactiveFormsStory
 			],
 			imports: [
+				ButtonModule,
+				CustomFileIconsModule,
 				FileUploaderModule,
 				FormsModule,
-				ReactiveFormsModule,
+				IconModule,
 				NotificationModule,
-				ButtonModule
+				ReactiveFormsModule
 			]
 		})
 	],
@@ -80,6 +86,37 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+
+const CustomFile = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/file-uploader/stories/uploader-custom-file.component.ts
+		-->
+		<app-file-uploader-with-custom-file
+			[title]="title"
+			[description]="description"
+			[buttonText]="buttonText"
+			[buttonType]="buttonType"
+			[accept]="accept"
+			[multiple]="multiple"
+			[size]="size"
+			[fileItemSize]="fileItemSize"
+			[disabled]="disabled">
+		</app-file-uploader-with-custom-file>
+	`
+});
+export const UploaderWithCustomFile = CustomFile.bind({});
+UploaderWithCustomFile.argTypes = {
+	size: {
+		control: false
+	},
+	buttonType: {
+		control: false
+	}
+};
 
 const DragAndDropTemplate = (args) => ({
 	props: args,

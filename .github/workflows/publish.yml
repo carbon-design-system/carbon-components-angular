@@ -46,7 +46,7 @@ jobs:
       - name: Publish package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.CARBON_BOT_NPM_TOKEN }}
         run: npm run semantic-release
 
       # Push storybook build to gh-pages branch if pushed to `master` branch

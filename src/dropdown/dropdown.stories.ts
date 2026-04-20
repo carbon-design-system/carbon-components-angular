@@ -6,6 +6,10 @@ import { DropdownModule, Dropdown } from "./";
 import { PlaceholderModule } from "../placeholder";
 
 import { ReactiveFormsStory } from "./stories";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Dropdown",
@@ -16,7 +20,10 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				DropdownModule,
-				PlaceholderModule
+				PlaceholderModule,
+				AILabelModule,
+				ButtonModule,
+				IconModule
 			]
 		})
 	],
@@ -202,3 +209,92 @@ const NgTemplate = (args) => ({
 	`
 });
 export const WithTemplate = NgTemplate.bind({});
+
+const withAILabelTemplate = (args) => ({
+	props: args,
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<div style="width: 400px">
+			<cds-dropdown
+				[label]="label"
+				[hideLabel]="hideLabel"
+				[helperText]="helperText"
+				[size]="size"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[theme]="theme"
+				placeholder="Select"
+				[disabled]="disabled"
+				[readonly]="readonly"
+				[dropUp]="false"
+				[decorator]="decoratorTpl"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<cds-dropdown-list [items]="items"></cds-dropdown-list>
+			</cds-dropdown>
+		</div>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});
+export const withAILabel = withAILabelTemplate.bind({});
+withAILabel.args = {
+	invalid: false,
+	invalidText: "Error message goes here",
+	warn: false,
+	warnText: "Warning message goes here"
+};
+
+const multiselectWithAILabelTemplate = (args) => ({
+	props: args,
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<div style="width: 400px">
+			<cds-dropdown
+				type="multi"
+				[selectionFeedback]="selectionFeedback"
+				[(ngModel)]="model"
+				[label]="label"
+				[hideLabel]="hideLabel"
+				[helperText]="helperText"
+				[size]="size"
+				[dropUp]="dropUp"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[warn]="warn"
+				[warnText]="warnText"
+				[theme]="theme"
+				placeholder="Select"
+				[disabled]="disabled"
+				[readonly]="readonly"
+				[dropUp]="false"
+				[fluid]="fluid"
+				[decorator]="decoratorTpl"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<cds-dropdown-list [items]="items"></cds-dropdown-list>
+			</cds-dropdown>
+		</div>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});
+export const multiselectWithAILabel = multiselectWithAILabelTemplate.bind({});

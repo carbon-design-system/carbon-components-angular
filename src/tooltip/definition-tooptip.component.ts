@@ -30,7 +30,7 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			[attr.aria-expanded]="isOpen"
 			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
-			(click)="onClick($event)"
+			(mousedown)="onClick($event)"
 			type="button">
 			<ng-content></ng-content>
 		</button>
@@ -39,7 +39,9 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			class="cds--popover"
 			[id]="id"
 			[attr.aria-hidden]="!isOpen"
-			role="tooltip">
+			role="tooltip"
+			(mousedown)="onPopoverMouseDown()"
+			(mouseup)="onPopoverMouseUp()">
 			<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
 				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
 				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
@@ -65,6 +67,11 @@ export class TooltipDefinition extends PopoverContainer {
 
 	@Input() openOnHover = false;
 
+	/**
+	 * Helper variable to ensure button blur doesn't fire on `click` of popover content
+	 */
+	private isInteractingWithPopover = false;
+
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
@@ -77,11 +84,24 @@ export class TooltipDefinition extends PopoverContainer {
 	}
 
 	onBlur(event: Event) {
-		this.handleChange(false, event);
+		// Only close if user is not interacting with popover content
+		if (!this.isInteractingWithPopover) {
+			this.handleChange(false, event);
+		}
 	}
 
-	onClick(event: Event) {
-		this.handleChange(!this.isOpen, event);
+	onClick(event: MouseEvent) {
+		if (event.button === 0) {
+			this.handleChange(!this.isOpen, event);
+		}
+	}
+
+	onPopoverMouseDown() {
+		this.isInteractingWithPopover = true;
+	}
+
+	onPopoverMouseUp() {
+		this.isInteractingWithPopover = false;
 	}
 
 	@HostListener("keyup", ["$event"])

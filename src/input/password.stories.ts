@@ -25,7 +25,8 @@ export default {
 		size: "md",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		inline: false
 	},
 	argTypes: {
 		autocomplete: {
@@ -39,7 +40,8 @@ export default {
 		size: {
 			options: ["sm", "md", "lg"],
 			control: "select"
-		}
+		},
+		toggleVisibility: { action: "clicked" }
 	},
 	component: PasswordInputLabelComponent
 } as Meta;
@@ -55,7 +57,10 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[fluid]="fluid"
 			[skeleton]="skeleton"
-			[warnText]="warnText">
+			[inline]="inline"
+			[hideLabel]="hideLabel"
+			[warnText]="warnText"
+			(togglePasswordVisibility)="toggleVisibility($event)">
 			{{ label }}
 			<input
 				cdsPassword

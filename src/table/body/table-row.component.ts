@@ -18,6 +18,20 @@ import { TableRowSize } from "../table.types";
 	template: `
 		<ng-container *ngIf="model">
 			<td
+				*ngIf="withRowAILabels && row[0] && model.getHeader(0) && model.getHeader(0).visible"
+				cdsTableData
+				[headers]="model.getHeaderId(0, row[0].colSpan)"
+				[item]="row[0]"
+				[title]="row[0].title"
+				[class]="cellClassNames(0, row[0])"
+				[ngStyle]="model.getHeader(0).style"
+				[skeleton]="skeleton"
+				[attr.colspan]="row[0].colSpan"
+				[attr.rowspan]="row[0].rowSpan"
+				(click)="onRowClick()"
+				(keydown.enter)="onRowClick()">
+			</td>
+			<td
 				*ngIf="model.hasExpandableRows()"
 				cdsTableExpandButton
 				class="cds--table-expand-v2"
@@ -58,12 +72,12 @@ import { TableRowSize } from "../table.types";
 			</td>
 			<ng-container *ngFor="let item of row; let j = index">
 				<td
-					*ngIf="item && model.getHeader(j) && model.getHeader(j).visible"
+					*ngIf="(!withRowAILabels || j > 0) && item && model.getHeader(j) && model.getHeader(j).visible"
 					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
-					[class]="model.getHeader(j).className"
+					[class]="cellClassNames(j, item)"
 					[ngStyle]="model.getHeader(j).style"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
@@ -72,11 +86,12 @@ import { TableRowSize } from "../table.types";
 					(keydown.enter)="onRowClick()">
 				</td>
 				<td
-					*ngIf="item && model.getHeader(j) == null"
+					*ngIf="(!withRowAILabels || j > 0) && item && model.getHeader(j) == null"
 					cdsTableData
 					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
 					[title]="item.title"
+					[class]="cellClassNames(j, item)"
 					[skeleton]="skeleton"
 					[attr.colspan]="item.colSpan"
 					[attr.rowspan]="item.rowSpan"
@@ -181,6 +196,19 @@ export class TableRowComponent {
 		return this.selected;
 	}
 
+	/**
+	 * When true (and the row carries an AI decorator), applies Carbon AI row classes.
+	 */
+	@Input() withRowAILabels = false;
+
+	@HostBinding("class.cds--data-table--ai-label-row") get aiLabelRowClass() {
+		return this.withRowAILabels && this.row?.[0]?.hasAILabelDecorator === true;
+	}
+
+	@HostBinding("class.cds--data-table--slug-row") get slugRowClass() {
+		return this.withRowAILabels && this.row?.[0]?.hasAILabelDecorator === true;
+	}
+
 	@HostBinding("class.cds--parent-row") get parentRowClass() {
 		return this.expandable;
 	}
@@ -231,5 +259,14 @@ export class TableRowComponent {
 
 	getExpandButtonAriaLabel(): Observable<string> {
 		return this._expandButtonAriaLabel.subject;
+	}
+
+	cellClassNames(j: number, item: TableItem): string {
+		const header = this.model.getHeader(j);
+		const parts = [header?.className, item?.cellClassName].filter(Boolean);
+		if (header?.hasAILabelHeader) {
+			parts.push("cds--table-cell--column-slug");
+		}
+		return parts.join(" ");
 	}
 }

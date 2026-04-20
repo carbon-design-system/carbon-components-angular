@@ -2,12 +2,16 @@
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { InputModule, TextInputLabelComponent } from "./";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule]
+			imports: [InputModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -24,7 +28,10 @@ export default {
 		size: "md",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		inline: false,
+		enableCounter: false,
+		maxCount: 500
 	},
 	argTypes: {
 		autocomplete: {
@@ -54,7 +61,10 @@ const Template = (args) => ({
 		[disabled]="disabled"
 		[fluid]="fluid"
 		[skeleton]="skeleton"
-		[warnText]="warnText">
+		[warnText]="warnText"
+		[enableCounter]="enableCounter"
+		[maxCount]="maxCount"
+		[inline]="inline">
 		{{label}}
 		<input
 			cdsText
@@ -87,3 +97,24 @@ const SkeletonTemplate = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-text-label [decorator]="decoratorTpl">
+			Text input with decorator
+			<input cdsText placeholder="Placeholder" />
+		</cds-text-label>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});
