@@ -2,7 +2,8 @@ import {
 	Component,
 	Output,
 	EventEmitter,
-	Input
+	Input,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 
@@ -22,6 +23,11 @@ import { I18n } from "carbon-components-angular/i18n";
 	template: `
 		<header class="cds--modal-header {{theme}}">
 			<ng-content></ng-content>
+			<ng-container *ngIf="decorator">
+				<div class="cds--modal--inner__decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			</ng-container>
 			<div class="cds--modal-close-button">
 				<cds-icon-button
 					*ngIf="showCloseButton"
@@ -53,6 +59,11 @@ export class ModalHeader {
 	 * Set to `false` to hide the close button.
 	 */
 	@Input() showCloseButton = true;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * To emit the event of clicking on the close icon within the modal.

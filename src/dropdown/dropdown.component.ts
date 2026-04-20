@@ -138,6 +138,11 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 				</svg>
 			</span>
 		</button>
+		<ng-container *ngIf="decorator">
+			<div class="cds--list-box__inner-wrapper--decorator">
+				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+			</div>
+		</ng-container>
 		<svg
 			*ngIf="invalid"
 			class="cds--list-box__invalid-icon"
@@ -219,6 +224,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 	/**
 	 * Value displayed if no item is selected.
 	 */
@@ -344,6 +353,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
+
+	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
 	/**
 	 * Experimental: enable fluid state
 	 */

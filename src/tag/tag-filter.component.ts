@@ -3,8 +3,7 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	Input,
-	TemplateRef
+	Input
 } from "@angular/core";
 import { Tag } from "./tag.component";
 
@@ -19,6 +18,11 @@ import { Tag } from "./tag.component";
 				(click)="onClick($event)">
 				<ng-content></ng-content>
 			</span>
+			<ng-container *ngIf="decorator">
+				<div class="cds--tag__decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			</ng-container>
 			<button
 				class="cds--tag__close-icon"
 				(click)="onClose($event)"
