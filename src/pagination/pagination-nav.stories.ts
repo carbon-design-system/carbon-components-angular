@@ -45,6 +45,5 @@ Basic.args = {
 	disabled: false,
 	totalDataLength: 10,
 	numOfItemsToShow: 4,
-	skeleton: false,
 	size: "md"
 };

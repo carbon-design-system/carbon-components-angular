@@ -14,13 +14,8 @@ export default {
 			]
 		})
 	],
-	argTypes: {
-		code: {
-			control: false
-		}
-	},
 	component: ContentSwitcher,
-	subcomponents: ContentSwitcherOption
+	subcomponents: {ContentSwitcherOption}
 } as Meta;
 
 const Template = (args) => ({

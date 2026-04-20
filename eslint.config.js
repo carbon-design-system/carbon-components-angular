@@ -1,9 +1,16 @@
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
 
-module.exports = tseslint.config({
-	files: ["src/**/*.ts"],
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import angular from "angular-eslint";
+
+export default tseslint.config(
+	{
+		ignores: ["**/dist/**", "**/node_modules/**", "**/coverage/**"]
+	},
+	{
+		files: ["src/**/*.ts"],
 	extends: [
 		eslint.configs.recommended,
 		...tseslint.configs.recommended,
@@ -141,5 +148,6 @@ module.exports = tseslint.config({
 			"@angular-eslint/template/role-has-required-aria": "warn",
 			"@angular-eslint/template/alt-text": "warn"
 		},
-	}
+	},
+	storybook.configs['flat/recommended'],
 );

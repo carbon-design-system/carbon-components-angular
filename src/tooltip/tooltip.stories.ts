@@ -20,13 +20,13 @@ export default {
 			control: false
 		},
 		onOpen: {
-			control: "Opened!"
+			action: "onOpen"
 		},
 		onClose: {
-			control: "Closed!"
+			action: "onClose"
 		},
 		isOpenChange: {
-			control: "Is Open Change!"
+			action: "isOpenChange"
 		},
 		align: {
 			options: [
