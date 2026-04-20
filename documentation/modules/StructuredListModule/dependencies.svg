@@ -28,13 +28,13 @@
 <title>cluster_StructuredListModule_exports</title>
 <polygon fill="none" stroke="black" points="220,-319.59 220,-371.59 626,-371.59 626,-319.59 220,-319.59"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_StructuredListModule_declarations</title>
-<polygon fill="none" stroke="black" points="183,-189.59 183,-241.59 574,-241.59 574,-189.59 183,-189.59"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_StructuredListModule_imports</title>
 <polygon fill="none" stroke="black" points="582,-189.59 582,-241.59 682,-241.59 682,-189.59 582,-189.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_StructuredListModule_declarations</title>
+<polygon fill="none" stroke="black" points="183,-189.59 183,-241.59 574,-241.59 574,-189.59 183,-189.59"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_StructuredListModule_StructuredList_providers</title>
