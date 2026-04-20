@@ -4,6 +4,9 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { TagModule, Tag } from "./";
 import { IconModule } from "../icon";
 import { PopoverModule } from "../popover";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Tag",
@@ -12,7 +15,9 @@ export default {
 			imports: [
 				TagModule,
 				IconModule,
-				PopoverModule
+				PopoverModule,
+				AILabelModule,
+				ButtonModule
 			]
 		})
 	],
@@ -156,3 +161,23 @@ export const OperationalTag = OperationalTagTemplate.bind({});
 OperationalTag.argTypes = {
 	onClick: { action: "clicked" }
 };
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-tag [type]="'gray'" [decorator]="decoratorTpl">
+			Tag with decorator
+		</cds-tag>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="inline"
+				size="sm"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});

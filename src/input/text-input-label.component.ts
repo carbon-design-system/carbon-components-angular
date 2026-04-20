@@ -93,7 +93,8 @@ import {
 			<div
 				class="cds--text-input__field-wrapper"
 				[ngClass]="{
-					'cds--text-input__field-wrapper--warning': warn
+					'cds--text-input__field-wrapper--warning': warn,
+					'cds--text-input__field-wrapper--decorator': !!decorator
 				}"
 					[attr.data-invalid]="(invalid ? true : null)"
 					#wrapper>
@@ -113,6 +114,11 @@ import {
 					<ng-template #textInputContent>
 						<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>
 					</ng-template>
+					<ng-container *ngIf="decorator">
+						<div class="cds--text-input__field-inner-wrapper--decorator">
+							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+						</div>
+					</ng-container>
 
 					<ng-container *ngIf="fluid">
 						<hr class="cds--text-input__divider" />
@@ -222,6 +228,11 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	 * Experimental: enable fluid state
 	 */
 	@Input() fluid = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Set to `true` to hide the label visually, but keep accessible to
