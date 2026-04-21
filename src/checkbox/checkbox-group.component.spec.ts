@@ -16,8 +16,7 @@ import { CheckboxModule } from "./checkbox.module";
 			[warn]="warn"
 			[warnText]="warnText"
 			[readOnly]="readOnly"
-			[orientation]="orientation"
-		>
+			[orientation]="orientation">
 			<cds-checkbox id="checkbox-label-1">Checkbox label</cds-checkbox>
 			<cds-checkbox id="checkbox-label-2">Checkbox label</cds-checkbox>
 		</cds-checkbox-group>
@@ -48,8 +47,7 @@ class GroupDecoratorHost {}
 	template: `
 		<cds-checkbox-group
 			legend="Checkbox heading"
-			[readOnly]="groupReadOnly"
-		>
+			[readOnly]="groupReadOnly">
 			<cds-checkbox id="checkbox-a1">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-a2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
@@ -63,11 +61,8 @@ class GroupReadOnlyInheritBothHost {
 	template: `
 		<cds-checkbox-group
 			legend="Checkbox heading"
-			[readOnly]="groupReadOnly"
-		>
-			<cds-checkbox id="checkbox-1" [readOnly]="false"
-				>Checkbox 1</cds-checkbox
-			>
+			[readOnly]="groupReadOnly">
+			<cds-checkbox id="checkbox-1" [readOnly]="false">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`
@@ -91,9 +86,7 @@ class GroupInvalidInheritBothHost {
 @Component({
 	template: `
 		<cds-checkbox-group legend="Checkbox heading" [invalid]="groupInvalid">
-			<cds-checkbox id="checkbox-1" [invalid]="false"
-				>Checkbox 1</cds-checkbox
-			>
+			<cds-checkbox id="checkbox-1" [invalid]="false">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`

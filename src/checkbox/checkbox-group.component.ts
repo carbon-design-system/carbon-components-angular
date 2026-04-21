@@ -90,14 +90,13 @@ import { Checkbox } from "./checkbox.component";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxGroup implements OnChanges, AfterContentInit {
-
-	private static _nextGroupHelperId = 0;
+	private static nextHelperId = 0;
 	@HostBinding("class.cds--form-item") hostFormItem = true;
 
 	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => Checkbox), { descendants: true }) checkboxes: QueryList<Checkbox>;
 
-	readonly helperTextId = `checkbox-group-helper-${CheckboxGroup._nextGroupHelperId++}`;
+	readonly helperTextId = `checkbox-group-helper-${CheckboxGroup.nextHelperId++}`;
 
 	@Input() legend: string | TemplateRef<any>;
 
