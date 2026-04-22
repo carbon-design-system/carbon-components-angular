@@ -24,6 +24,10 @@
 <title>cluster_MenuButtonModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 570,-268 570,-70 8,-70"/>
 </g>
+<g id="clust5" class="cluster">
+<title>cluster_MenuButtonModule_exports</title>
+<polygon fill="none" stroke="black" points="220,-208 220,-260 392,-260 392,-208 220,-208"/>
+</g>
 <g id="clust4" class="cluster">
 <title>cluster_MenuButtonModule_imports</title>
 <polygon fill="none" stroke="black" points="192,-78 192,-130 562,-130 562,-78 192,-78"/>
@@ -31,10 +35,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_MenuButtonModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 184,-130 184,-78 16,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_MenuButtonModule_exports</title>
-<polygon fill="none" stroke="black" points="220,-208 220,-260 392,-260 392,-208 220,-208"/>
 </g>
 <!-- MenuButtonComponent -->
 <g id="node1" class="node">

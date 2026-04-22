@@ -178,15 +178,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CheckboxModule.html" data-type="entity-link" >CheckboxModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CheckboxModule-748ab2aba9dee171c0c84304030b4a80d86a0fb7ad6142b7cabba7be41bbde43ed94698ae610d48db3bd6d3f760f3e0da79738a7fc4e4cc71351ae3aa7f4ad03"' : 'data-bs-target="#xs-components-links-module-CheckboxModule-748ab2aba9dee171c0c84304030b4a80d86a0fb7ad6142b7cabba7be41bbde43ed94698ae610d48db3bd6d3f760f3e0da79738a7fc4e4cc71351ae3aa7f4ad03"' }>
+                                            'data-bs-target="#components-links-module-CheckboxModule-e61ff822d1dc3c376855b1e06a4b717dbac288581db17c0f5523b732ba77643461dff32c87610a19e35ba1ec6e06df788ef7aa7666720093bd4c49b6278e1012"' : 'data-bs-target="#xs-components-links-module-CheckboxModule-e61ff822d1dc3c376855b1e06a4b717dbac288581db17c0f5523b732ba77643461dff32c87610a19e35ba1ec6e06df788ef7aa7666720093bd4c49b6278e1012"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CheckboxModule-748ab2aba9dee171c0c84304030b4a80d86a0fb7ad6142b7cabba7be41bbde43ed94698ae610d48db3bd6d3f760f3e0da79738a7fc4e4cc71351ae3aa7f4ad03"' :
-                                            'id="xs-components-links-module-CheckboxModule-748ab2aba9dee171c0c84304030b4a80d86a0fb7ad6142b7cabba7be41bbde43ed94698ae610d48db3bd6d3f760f3e0da79738a7fc4e4cc71351ae3aa7f4ad03"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CheckboxModule-e61ff822d1dc3c376855b1e06a4b717dbac288581db17c0f5523b732ba77643461dff32c87610a19e35ba1ec6e06df788ef7aa7666720093bd4c49b6278e1012"' :
+                                            'id="xs-components-links-module-CheckboxModule-e61ff822d1dc3c376855b1e06a4b717dbac288581db17c0f5523b732ba77643461dff32c87610a19e35ba1ec6e06df788ef7aa7666720093bd4c49b6278e1012"' }>
                                             <li class="link">
                                                 <a href="components/Checkbox.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >Checkbox</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/CheckboxGroup.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CheckboxGroup</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -1800,6 +1803,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/BreadcrumbItem.html" data-type="entity-link" >BreadcrumbItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CheckboxGroupHost.html" data-type="entity-link" >CheckboxGroupHost</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/CloseMeta.html" data-type="entity-link" >CloseMeta</a>

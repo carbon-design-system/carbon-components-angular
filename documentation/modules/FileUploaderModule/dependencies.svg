@@ -24,13 +24,13 @@
 <title>cluster_FileUploaderModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 682,-379.59 682,-70 8,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_FileUploaderModule_declarations</title>
-<polygon fill="none" stroke="black" points="99,-189.59 99,-241.59 326,-241.59 326,-189.59 99,-189.59"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_FileUploaderModule_imports</title>
 <polygon fill="none" stroke="black" points="334,-189.59 334,-241.59 674,-241.59 674,-189.59 334,-189.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_FileUploaderModule_declarations</title>
+<polygon fill="none" stroke="black" points="99,-189.59 99,-241.59 326,-241.59 326,-189.59 99,-189.59"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_FileUploaderModule_FileUploader_providers</title>
