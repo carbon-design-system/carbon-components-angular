@@ -20,6 +20,7 @@ import {
 		<div
 			*ngIf="label"
 			class="cds--progress-bar__label"
+			[ngClass]="{'cds--visually-hidden': hideLabel}"
 			[id]="id">
 			<span class="cds--progress-bar__label-text">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
@@ -41,6 +42,7 @@ import {
 		<div
 			class="cds--progress-bar__track"
 			role="progressbar"
+			[attr.aria-busy]="!isFinished"
 			[attr.aria-invalid]="isError"
 			[attr.aria-labelledby]="id"
 			[attr.aria-describedby]="helperText ? helperId : null"
@@ -146,6 +148,11 @@ export class ProgressBar {
 	 * Size of the progress bar, default is `big`
 	 */
 	@Input() size: "small" | "big" = "big";
+
+	/**
+	 * Set to `true` to visually hide the label while keeping it available to assistive technologies.
+	 */
+	@Input() hideLabel = false;
 
 	@HostBinding("class.cds--progress-bar") defaultClass = true;
 	private _value = undefined;

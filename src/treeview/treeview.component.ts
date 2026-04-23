@@ -31,7 +31,8 @@ import { TreeViewService } from "./treeview.service";
 		<label
 			*ngIf="label"
 			[id]="id"
-			class="cds--label">
+			class="cds--label"
+			[ngClass]="{'cds--visually-hidden': hideLabel}">
 			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 			<ng-template
 				*ngIf="isTemplate(label)"
@@ -86,6 +87,11 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Tree view label
 	 */
 	@Input() label: string | TemplateRef<any>;
+
+	/**
+	 * Set to `true` to visually hide the label while keeping it available for accessibility.
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Optional context for label if it's a template
 	 */
