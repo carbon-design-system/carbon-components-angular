@@ -23,7 +23,10 @@ const Template = (args) => ({
 			cdsLink
 			[size]="size"
 			[disabled]="disabled"
-			[inline]="inline">link</a>
+			[visited]="visited"
+			[inline]="inline">
+			link
+		</a>
 	`
 });
 export const Basic = Template.bind({});
@@ -41,7 +44,8 @@ const IconTemplate = (args) => ({
 			cdsLink
 			[disabled]="disabled"
 			[size]="size"
-			[inline]="inline">
+			[inline]="inline"
+			[visited]="visited">
 			Link
 			<svg cdsLinkIcon cdsIcon="close" size="16"></svg>
 		</a>
