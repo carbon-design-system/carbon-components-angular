@@ -18,13 +18,19 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<a href="#" cdsLink [disabled]="disabled" [inline]="inline">link</a>
+		<a
+			href="#"
+			cdsLink
+			[size]="size"
+			[disabled]="disabled"
+			[inline]="inline">link</a>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
 	disabled: false,
-	inline: false
+	inline: false,
+	size: "md"
 };
 
 const IconTemplate = (args) => ({
@@ -34,6 +40,7 @@ const IconTemplate = (args) => ({
 			href="#"
 			cdsLink
 			[disabled]="disabled"
+			[size]="size"
 			[inline]="inline">
 			Link
 			<svg cdsLinkIcon cdsIcon="close" size="16"></svg>
@@ -43,5 +50,6 @@ const IconTemplate = (args) => ({
 export const WithIcon = IconTemplate.bind({});
 WithIcon.args = {
 	disabled: false,
-	inline: false
+	inline: false,
+	size: "md"
 };
