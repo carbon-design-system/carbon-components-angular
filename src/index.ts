@@ -1,4 +1,5 @@
 export * from "carbon-components-angular/accordion";
+export * from "carbon-components-angular/aspect-ratio";
 export * from "carbon-components-angular/breadcrumb";
 export * from "carbon-components-angular/button";
 export * from "carbon-components-angular/checkbox";
