@@ -111,7 +111,15 @@ export class FileUploader implements ControlValueAccessor {
 	/**
 	 * Type set for button
 	 */
-	@Input() buttonType: "primary" | "secondary" | "tertiary" | "ghost" | "danger" = "primary";
+	@Input() buttonType:
+		| "primary"
+		| "secondary"
+		| "tertiary"
+		| "ghost"
+		| "danger"
+		| "danger--primary"
+		| "danger--tertiary"
+		| "danger--ghost" = "primary";
 	/**
 	 * Text set to the title
 	 */

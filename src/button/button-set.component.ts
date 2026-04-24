@@ -1,4 +1,4 @@
-import { Component, HostBinding } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 
 /**
  * Get started with importing the module:
@@ -11,8 +11,39 @@ import { Component, HostBinding } from "@angular/core";
  */
 @Component({
 	selector: "cds-button-set, ibm-button-set",
-	template: "<ng-content></ng-content>"
+	template: `
+		<div *ngIf="fluid" class="cds--btn-set__fluid-inner cds--btn-set__fluid-inner--auto-stack">
+			<ng-container *ngTemplateOutlet="content"></ng-container>
+		</div>
+		<ng-container *ngIf="!fluid">
+			<ng-container *ngTemplateOutlet="content"></ng-container>
+		</ng-container>
+
+		<ng-template #content>
+			<ng-content></ng-content>
+		</ng-template>
+	`
 })
 export class ButtonSet {
 	@HostBinding("class.cds--btn-set") buttonSetClass = true;
+
+	/**
+	 * When `true`, buttons grow to fill the container width (fluid button set).
+	 */
+	@Input() fluid = false;
+
+	/**
+	 * When `true`, stacks buttons vertically. Use with non-fluid layouts, otherwise `fluid` will override style
+	 */
+	@Input() stacked = false;
+
+	@HostBinding("class.cds--btn-set--fluid")
+	get fluidClass(): boolean {
+		return this.fluid;
+	}
+
+	@HostBinding("class.cds--btn-set--stacked")
+	get stackedClass(): boolean {
+		return this.stacked;
+	}
 }

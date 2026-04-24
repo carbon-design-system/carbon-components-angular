@@ -32,7 +32,8 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	<nav #nav class="cds--breadcrumb"
 		[ngClass]="{
 			'cds--skeleton' : skeleton,
-			'cds--breadcrumb--no-trailing-slash' : noTrailingSlash
+			'cds--breadcrumb--no-trailing-slash' : noTrailingSlash,
+			'cds--breadcrumb--sm' : size === 'sm'
 		}"
 		[attr.aria-label]="ariaLabel">
 		<ng-template [ngIf]="shouldShowContent">
@@ -132,6 +133,11 @@ export class Breadcrumb implements AfterContentInit {
 	@Input() items: Array<BreadcrumbItem>;
 
 	@Input() noTrailingSlash = false;
+
+	/**
+	 * Set to `sm` for compact breadcrumb text. Defaults to `md`.
+	 */
+	@Input() size: "sm" | "md" = "md";
 
 	@Input() ariaLabel: string = this.i18n.get().BREADCRUMB.LABEL;
 
