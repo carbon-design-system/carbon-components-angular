@@ -8,13 +8,13 @@ export default {
 	title: "Components/Button/Button Set",
 	decorators: [
 		moduleMetadata({
-			imports: [ButtonModule, IconModule],
-		}),
+			imports: [ButtonModule, IconModule]
+		})
 	],
 	parameters: {
-		layout: "centered",
+		layout: "centered"
 	},
-	component: ButtonSet,
+	component: ButtonSet
 } as Meta;
 
 const Template = (args) => ({
@@ -24,12 +24,12 @@ const Template = (args) => ({
 			<button cdsButton="secondary">Button</button>
 			<button cdsButton>Button</button>
 		</cds-button-set>
-	`,
+	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
 	fluid: false,
-	stacked: false,
+	stacked: false
 };
 
 const FluidTemplate = (args) => ({
@@ -40,10 +40,10 @@ const FluidTemplate = (args) => ({
 			<button cdsButton="secondary" [size]="size">Button</button>
 			<button cdsButton>Button</button>
 		</cds-button-set>
-	`,
+	`
 });
 export const Fluid = FluidTemplate.bind({});
 Fluid.args = {
 	fluid: true,
-	stacked: false,
+	stacked: false
 };

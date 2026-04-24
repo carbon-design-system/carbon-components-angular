@@ -20,7 +20,7 @@ export default {
 		},
 		aspectRatioBase: {
 			control: false
-		},
+		}
 	}
 } as Meta;
 
