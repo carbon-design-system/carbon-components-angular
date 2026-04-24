@@ -89,7 +89,7 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	@Input() label: string | TemplateRef<any>;
 
 	/**
-	 * Set to `true` to visually hide the label while keeping it available for accessibility.
+	 * Set to `true` to visually hide the label while keeping it available to assistive technologies.
 	 */
 	@Input() hideLabel = false;
 	/**
