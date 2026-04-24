@@ -37,31 +37,31 @@ export class AspectRatioDirective {
 	/**
 	 * Set ratio class based on `ratio` input
 	 */
-	@HostBinding("class.cds--aspect-ratio--1x1") get ar1x1() {
+	@HostBinding("class.cds--aspect-ratio--1x1") get ratio1x1() {
 		return this.ratio === "1x1";
 	}
-	@HostBinding("class.cds--aspect-ratio--2x3") get ar2x3() {
+	@HostBinding("class.cds--aspect-ratio--2x3") get ratio2x3() {
 		return this.ratio === "2x3";
 	}
-	@HostBinding("class.cds--aspect-ratio--3x2") get ar3x2() {
+	@HostBinding("class.cds--aspect-ratio--3x2") get ratio3x2() {
 		return this.ratio === "3x2";
 	}
-	@HostBinding("class.cds--aspect-ratio--3x4") get ar3x4() {
+	@HostBinding("class.cds--aspect-ratio--3x4") get ratio3x4() {
 		return this.ratio === "3x4";
 	}
-	@HostBinding("class.cds--aspect-ratio--4x3") get ar4x3() {
+	@HostBinding("class.cds--aspect-ratio--4x3") get ratio4x3() {
 		return this.ratio === "4x3";
 	}
-	@HostBinding("class.cds--aspect-ratio--1x2") get ar1x2() {
+	@HostBinding("class.cds--aspect-ratio--1x2") get ratio1x2() {
 		return this.ratio === "1x2";
 	}
-	@HostBinding("class.cds--aspect-ratio--2x1") get ar2x1() {
+	@HostBinding("class.cds--aspect-ratio--2x1") get ratio2x1() {
 		return this.ratio === "2x1";
 	}
-	@HostBinding("class.cds--aspect-ratio--9x16") get ar9x16() {
+	@HostBinding("class.cds--aspect-ratio--9x16") get ratio9x16() {
 		return this.ratio === "9x16";
 	}
-	@HostBinding("class.cds--aspect-ratio--16x9") get ar16x9() {
+	@HostBinding("class.cds--aspect-ratio--16x9") get ratio16x9() {
 		return this.ratio === "16x9";
 	}
 }
