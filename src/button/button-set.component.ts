@@ -33,7 +33,7 @@ export class ButtonSet {
 	@Input() fluid = false;
 
 	/**
-	 * When `true`, stacks buttons vertically. Use with non-fluid layouts; with `fluid` enabled, layout follows the fluid styles.
+	 * When `true`, stacks buttons vertically. Use with non-fluid layouts, otherwise `fluid` will override style
 	 */
 	@Input() stacked = false;
 

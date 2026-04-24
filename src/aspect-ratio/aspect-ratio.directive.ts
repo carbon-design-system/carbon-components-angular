@@ -15,8 +15,7 @@ export type AspectRatioValue =
  * Applies Carbon aspect ratio box classes (`cds--aspect-ratio`) to the host element.
  *
  * ```html
- * <div [cdsAspectRatio]="'16x9'">...</div>
- * <cds-aspect-ratio [ratio]="'16x9'">...</cds-aspect-ratio>
+ * <div cdsAspectRatio ratio="16x9">...</div>
  * ```
  *
  * ```typescript
