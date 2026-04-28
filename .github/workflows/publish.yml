@@ -3,7 +3,7 @@ name: Deploy
 on:
   # Runs on pushes targeting release branches
   push:
-    branches: ["master", "next", "v3", "v9"]
+    branches: ["master", "next", "v3", "v9", "v10"]
 
   # Allows us to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,17 +21,17 @@ jobs:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on pull requests
-      id-token: write # to enable use of ODIC for npm provenance
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       # Checkout to branch
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Set up node to use v20
+      # Node 22.14+ required by semantic-release v25
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22.x"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 

@@ -14,7 +14,7 @@ jobs:
     # We use Node v20 for building since CCA@v5 is using Angular 17.
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -40,11 +40,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # We use Node v20 for building since it is current lts. Node v16 is no longer supported in Angular 17.
     strategy:
       matrix:
         angular-version: [18]
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
     - uses: actions/checkout@v4
