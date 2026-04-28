@@ -3,6 +3,7 @@ import {
 	Component,
 	ElementRef,
 	forwardRef,
+	HostBinding,
 	Input,
 	ViewChild
 } from "@angular/core";
@@ -123,8 +124,7 @@ import { TabHeaderBase } from "./tab-header.directive";
 				</svg>
 			</button>
 		</div>
-	`,
-	styles: [`:host { display: contents; }`]
+	`
 })
 export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 	/**
@@ -159,6 +159,8 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 	 * Icon-only tabs: open the tooltip on first render.
 	 */
 	@Input() defaultOpen = false;
+
+	@HostBinding("style.display") displayContents = "contents";
 
 	@ViewChild("tabButton") tabButton: ElementRef<HTMLButtonElement>;
 
