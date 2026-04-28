@@ -2,6 +2,9 @@ import {
 	Component,
 	QueryList,
 	Input,
+	Output,
+	EventEmitter,
+	HostBinding,
 	HostListener,
 	ContentChildren,
 	AfterContentInit,
@@ -11,13 +14,15 @@ import {
 	ChangeDetectorRef,
 	ViewChild,
 	OnInit,
+	OnDestroy,
 	Renderer2
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
+import { I18n } from "carbon-components-angular/i18n";
 
-import { TabHeader } from "./tab-header.directive";
+import { TabHeaderBase } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
 
 @Component({
@@ -29,6 +34,10 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
+			[attr.aria-hidden]="true"
+			[attr.tabindex]="-1"
+			[attr.aria-label]="translations.BUTTON_ARIA_LEFT"
+			[attr.title]="translations.BUTTON_ARIA_LEFT"
 			(click)="handleOverflowNavClick(-1, tabHeaderQuery.length)"
 			(pointerdown)="handleOverflowNavMouseDown(-1)"
 			(pointerup)="handleOverflowNavMouseUp()"
@@ -51,6 +60,7 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			class="cds--tab--list"
 			role="tablist"
 			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby || null"
 			(scroll)="handleScroll()"
 			#tabList>
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
@@ -63,6 +73,10 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
+			[attr.aria-hidden]="true"
+			[attr.tabindex]="-1"
+			[attr.aria-label]="translations.BUTTON_ARIA_RIGHT"
+			[attr.title]="translations.BUTTON_ARIA_RIGHT"
 			(click)="handleOverflowNavClick(1, tabHeaderQuery.length)"
 			(pointerdown)="handleOverflowNavMouseDown(1)"
 			(pointerup)="handleOverflowNavMouseUp()"
@@ -83,46 +97,94 @@ import { BaseTabHeader } from "./base-tab-header.component";
 		</button>
 	`
 })
-export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit {
+export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	/**
+	 * i18n strings for overflow controls and the tab list `aria-label` fallback.
+	 */
+	@Input() translations = this.i18n.get().TABS;
+
+	/**
+	 * When `true`, sets each tab panel `tabindex` to `-1` for navigation-style usage.
+	 */
 	@Input() isNavigation = false;
 
 	/**
-	 * ContentChildren of all the tabHeaders.
+	 * Emits when a tab close control is used (with `dismissable`).
+	 * The emitted value is the tab index.
 	 */
-	@ContentChildren(TabHeader) tabHeaderQuery: QueryList<TabHeader>;
+	@Output() tabClose: EventEmitter<number> = new EventEmitter<number>();
+
+	/**
+	 * Projected tab headers (`TabHeaderBase`: directive or `cds-tab-header`).
+	 */
+	@ContentChildren(TabHeaderBase) tabHeaderQuery: QueryList<TabHeaderBase>;
 
 	@ViewChild("tabList", { static: true }) headerContainer;
-	/**
-	 * Keeps track of all the subscriptions to the tab header selection events.
-	 */
 	selectedSubscriptionTracker = new Subscription();
+	closeSubscriptionTracker = new Subscription();
 
 	/**
-	 * Controls the manual focusing done by tabbing through headings.
+	 * Index of the selected tab for keyboard logic.
 	 */
 	currentSelectedTab = 0;
+
+	/**
+	 * Focused tab index when `followFocus` is false (manual activation).
+	 */
+	activeIndex: number | null = null;
+
+	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
+		return this.distributeWidth;
+	}
+
+	/**
+	 * We use taller rows when any header has a secondary label.
+	 */
+	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
+		return this.hasSecondaryLabelTabs;
+	}
+
+	get hasSecondaryLabelTabs(): boolean {
+		if (!this.tabHeaderQuery || this.type !== "contained") {
+			return false;
+		}
+		return this.tabHeaderQuery.toArray().some(
+			h =>
+				h.secondaryLabel != null &&
+				String(h.secondaryLabel).trim() !== ""
+		);
+	}
 
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
 		protected eventService: EventService,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected i18n: I18n
 	) {
 		super(elementRef, changeDetectorRef, eventService, renderer);
+		this.translations = this.i18n.get().TABS;
 	}
 
-	// keyboard accessibility
 	/**
-	 * Controls the keydown events used for tabbing through the headings.
+	 * True when `fullWidth` applies (contained, fewer than 9 headers).
 	 */
+	get distributeWidth(): boolean {
+		return (
+			this.fullWidth &&
+			this.type === "contained" &&
+			(this.tabHeaderQuery ? this.tabHeaderQuery.length < 9 : false)
+		);
+	}
+
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		let tabHeadersArray = this.tabHeaderQuery.toArray();
+		const tabHeadersArray = this.tabHeaderQuery.toArray();
 
 		if (event.key === "ArrowRight") {
 			if (this.currentSelectedTab < tabHeadersArray.length - 1) {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab + 1].disabled) {
+				if (this.isAutomaticActivation && !tabHeadersArray[this.currentSelectedTab + 1].disabled) {
 					tabHeadersArray[this.currentSelectedTab + 1].selectTab();
 				} else {
 					tabHeadersArray[this.currentSelectedTab + 1].focus();
@@ -130,7 +192,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 				}
 			} else {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[0].disabled) {
+				if (this.isAutomaticActivation && !tabHeadersArray[0].disabled) {
 					tabHeadersArray[0].selectTab();
 				} else {
 					tabHeadersArray[0].focus();
@@ -142,7 +204,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 		if (event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab - 1].disabled) {
+				if (this.isAutomaticActivation && !tabHeadersArray[this.currentSelectedTab - 1].disabled) {
 					tabHeadersArray[this.currentSelectedTab - 1].selectTab();
 				} else {
 					tabHeadersArray[this.currentSelectedTab - 1].focus();
@@ -150,7 +212,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 				}
 			} else {
 				event.preventDefault();
-				if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
+				if (this.isAutomaticActivation && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 					tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 				} else {
 					tabHeadersArray[tabHeadersArray.length - 1].focus();
@@ -161,7 +223,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 
 		if (event.key === "Home") {
 			event.preventDefault();
-			if (this.followFocus && !tabHeadersArray[0].disabled) {
+			if (this.isAutomaticActivation && !tabHeadersArray[0].disabled) {
 				tabHeadersArray[0].selectTab();
 			} else {
 				tabHeadersArray[0].focus();
@@ -171,7 +233,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 
 		if (event.key === "End") {
 			event.preventDefault();
-			if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
+			if (this.isAutomaticActivation && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 				tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 			} else {
 				tabHeadersArray[tabHeadersArray.length - 1].focus();
@@ -179,7 +241,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 			}
 		}
 
-		if ((event.key === " ") && !this.followFocus) {
+		if ((event.key === " ") && !this.isAutomaticActivation) {
 			tabHeadersArray[this.currentSelectedTab].selectTab();
 		}
 	}
@@ -189,39 +251,66 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	}
 
 	ngAfterContentInit() {
+		// IMPORTANT: a `Subscription` becomes permanently `closed` after
+		// `unsubscribe()` is called on it. Any subsequent `.add(child)` call
+		// tears down the child immediately, so we must allocate fresh
+		// trackers here (otherwise none of the per-header subscriptions
+		// below would ever fire and tabs would never be deactivated).
 		this.selectedSubscriptionTracker.unsubscribe();
+		this.closeSubscriptionTracker.unsubscribe();
+		this.selectedSubscriptionTracker = new Subscription();
+		this.closeSubscriptionTracker = new Subscription();
 
 		if (this.tabHeaderQuery) {
 			this.tabHeaderQuery.toArray()
 				.forEach(tabHeader => {
 					tabHeader.cacheActive = this.cacheActive;
+					tabHeader.dismissable = this.dismissable;
 					tabHeader.paneTabIndex = this.isNavigation ? null : 0;
 				});
 		}
 
-		const selectedSubscriptions = this.tabHeaderQuery.toArray().forEach(tabHeader => {
-			tabHeader.selected.subscribe(() => {
-				this.currentSelectedTab = this.tabHeaderQuery.toArray().indexOf(tabHeader);
-				// The Filter takes the current selected tab out, then all other headers are
-				// deactivated and their associated pane references are also deactivated.
-				this.tabHeaderQuery.toArray().filter(header => header !== tabHeader)
-					.forEach(filteredHeader => {
-						filteredHeader.active = false;
-						if (filteredHeader.paneReference) {
-							filteredHeader.paneReference.active = false;
-						}
-					});
-			});
+		this.tabHeaderQuery.toArray().forEach(tabHeader => {
+			this.selectedSubscriptionTracker.add(
+				tabHeader.selected.subscribe(() => {
+					this.currentSelectedTab = this.tabHeaderQuery.toArray().indexOf(tabHeader);
+					// The Filter takes the current selected tab out, then all other headers are
+					// deactivated and their associated pane references are also deactivated.
+					this.tabHeaderQuery.toArray().filter(header => header !== tabHeader)
+						.forEach(filteredHeader => {
+							filteredHeader.active = false;
+							if (filteredHeader.paneReference) {
+								filteredHeader.paneReference.active = false;
+							}
+						});
+				})
+			);
+
+			this.closeSubscriptionTracker.add(
+				tabHeader.tabClose.subscribe(() => {
+					const index = this.tabHeaderQuery.toArray().indexOf(tabHeader);
+					this.tabClose.emit(index);
+				})
+			);
 		});
-		this.selectedSubscriptionTracker.add(selectedSubscriptions);
 
 		setTimeout(() => this.tabHeaderQuery.toArray()[this.currentSelectedTab].selectTab());
+	}
+
+	ngOnDestroy() {
+		this.selectedSubscriptionTracker.unsubscribe();
+		this.closeSubscriptionTracker.unsubscribe();
+		clearTimeout(this.scrollDebounceTimer);
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.tabHeaderQuery) {
 			if (changes.cacheActive) {
 				this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.cacheActive = this.cacheActive);
+			}
+
+			if (changes.dismissable) {
+				this.tabHeaderQuery.toArray().forEach(tabHeader => tabHeader.dismissable = this.dismissable);
 			}
 
 			if (changes.isNavigation) {

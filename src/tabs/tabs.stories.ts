@@ -1,20 +1,23 @@
 /* tslint:disable variable-name */
 
 import { moduleMetadata, Meta } from "@storybook/angular";
-
+import { GridModule } from "../grid/grid.module";
+import { IconModule } from "../icon/icon.module";
 
 import { TabsModule } from "./";
 
-import { TabStory } from "./stories";
+import { TabsStoryModule } from "./stories";
 
 export default {
 	title: "Components/Tabs",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TabsModule
-			],
-			declarations: [TabStory]
+				IconModule,
+				GridModule,
+				TabsModule,
+				TabsStoryModule
+			]
 		})
 	]
 } as Meta;
@@ -48,11 +51,11 @@ Basic.args = {
 	followFocus: true,
 	cacheActive: true,
 	isNavigation: false,
-	type: "inline"
+	type: "line"
 };
 Basic.argTypes = {
 	type: {
-		options: ["inline", "contained"],
+		options: ["line", "contained"],
 		control: "radio"
 	}
 };
@@ -135,30 +138,6 @@ BeforeAndAfter.argTypes = {
 	...Basic.argTypes
 };
 
-const TabHeaderGroupTemplate = (args) => ({
-	props: args,
-	template: `
-		<!--
-		app-* components are for demo purposes only.
-		You can create your own implementation by using the component source found at:
-		https://github.com/IBM/carbon-components-angular/tree/master/src/pagination/stories/pagination.component.ts
-		-->
-		<app-header-group
-			[type]="type"
-			[followFocus]="followFocus"
-			[cacheActive]="cacheActive"
-			[isNavigation]="isNavigation">
-		</app-header-group>
-	`
-});
-export const TabheaderGroup = TabHeaderGroupTemplate.bind({});
-TabheaderGroup.args = {
-	...Basic.args
-};
-TabheaderGroup.argTypes = {
-	...Basic.argTypes
-};
-
 const SkeletonTemplate = (args) => ({
 	props: args,
 	template: `
@@ -171,6 +150,44 @@ const SkeletonTemplate = (args) => ({
 			<p>Tab skeleton component for cds-tab-header-group:</p>
 			<cds-tabs-skeleton></cds-tabs-skeleton>
 		</div>
+
+		<div style="margin-top: 5rem">
+			<p>Contained tab skeleton:</p>
+			<cds-tabs-skeleton [contained]="true"></cds-tabs-skeleton>
+		</div>
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+const ContainedWithSecondaryLabelsTemplate = (args) => ({
+	props: args,
+	template: `
+		<cds-tabs type="contained">
+			<cds-tab heading="Engage" secondaryLabel="(21/25)">Tab Content 1</cds-tab>
+			<cds-tab heading="Analyze" secondaryLabel="(12/16)">Tab Content 2</cds-tab>
+			<cds-tab heading="Remediate" secondaryLabel="(0/7)">Tab Content 3</cds-tab>
+			<cds-tab heading="Assets" secondaryLabel="(4/12)">Tab Content 4</cds-tab>
+			<cds-tab heading="Monitoring" secondaryLabel="(0/10)" disabled="true">Tab Content 5</cds-tab>
+		</cds-tabs>
+	`
+});
+export const ContainedWithSecondaryLabels = ContainedWithSecondaryLabelsTemplate.bind({});
+ContainedWithSecondaryLabels.storyName = "Contained with secondary labels";
+
+const ContainedFullWidthTemplate = (args) => ({
+	props: args,
+	template: `
+		<cds-tabs type="contained" [fullWidth]="true">
+			<cds-tab heading="TLS">Tab Content 1</cds-tab>
+			<cds-tab heading="Origin">Tab Content 2</cds-tab>
+			<cds-tab heading="Rate limiting" disabled="true">Tab Content 3</cds-tab>
+			<cds-tab heading="WAF">Tab Content 4</cds-tab>
+			<cds-tab heading="IP Firewall">Tab Content 5</cds-tab>
+			<cds-tab heading="Firewall rules">Tab Content 6</cds-tab>
+			<cds-tab heading="Range">Tab Content 7</cds-tab>
+			<cds-tab heading="Mutual TLS">Tab Content 8</cds-tab>
+		</cds-tabs>
+	`
+});
+export const ContainedFullWidth = ContainedFullWidthTemplate.bind({});
+ContainedFullWidth.storyName = "Contained full width";

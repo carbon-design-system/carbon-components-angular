@@ -2,7 +2,10 @@ import {
 	Component,
 	QueryList,
 	Input,
+	Output,
+	EventEmitter,
 	HostListener,
+	HostBinding,
 	ViewChild,
 	ContentChildren,
 	AfterContentInit,
@@ -39,7 +42,10 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
-			[title]="translations.BUTTON_ARIA_LEFT">
+			[attr.aria-hidden]="true"
+			[attr.tabindex]="-1"
+			[attr.aria-label]="translations.BUTTON_ARIA_LEFT"
+			[attr.title]="translations.BUTTON_ARIA_LEFT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -57,37 +63,120 @@ import { Tab } from "./tab.component";
 			class="cds--tab--list"
 			role="tablist"
 			[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"
+			[attr.aria-labelledby]="ariaLabelledby || null"
 			(scroll)="handleScroll()">
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
+			<ng-container *ngFor="let tab of tabs; let i = index;">
+				<cds-tooltip
+					*ngIf="tab.iconOnly; else inlineTabItem"
+					align="bottom"
+					[autoAlign]="true"
+					class="cds--icon-tooltip"
+					[description]="tab.iconLabel"
+					[enterDelayMs]="tab.enterDelayMs ?? 100"
+					[leaveDelayMs]="tab.leaveDelayMs ?? 300"
+					[defaultOpen]="tab.defaultOpen"
+					[disabled]="tab.disabled">
+					<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
+				</cds-tooltip>
+				<ng-template #inlineTabItem>
+					<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
+				</ng-template>
+				<div
+					*ngIf="dismissable"
+					class="cds--tabs__nav-item--close">
+					<button
+						type="button"
+						[attr.tabindex]="-1"
+						[attr.aria-disabled]="tab.disabled"
+						[attr.aria-hidden]="!(tab.active && !tab.disabled)"
+						[disabled]="tab.disabled"
+						class="cds--tabs__nav-item--close-icon"
+						[ngClass]="{
+							'cds--tabs__nav-item--close-icon--selected': tab.active,
+							'cds--tabs__nav-item--close-icon--disabled': tab.disabled
+						}"
+						[attr.title]="getCloseTitle(tab)"
+						(click)="handleClose($event, tab, i)">
+						<svg
+							focusable="false"
+							preserveAspectRatio="xMidYMid meet"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="currentColor"
+							width="16"
+							height="16"
+							viewBox="0 0 32 32"
+							[attr.aria-label]="tab.closeButtonAriaLabel"
+							[attr.aria-hidden]="!(tab.active && !tab.disabled)">
+							<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
+						</svg>
+					</button>
+				</div>
+			</ng-container>
+			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
+		</div>
+		<ng-template #tabItemTpl let-tab="tab" let-i="i">
 			<button
-				*ngFor="let tab of tabs; let i = index;"
 				#tabItem
 				role="tab"
 				[attr.aria-selected]="tab.active"
 				[attr.tabindex]="(tab.active?0:-1)"
 				[attr.aria-controls]="tab.id"
 				[attr.aria-disabled]="tab.disabled"
+				[attr.aria-label]="tab.iconOnly ? tab.iconLabel : null"
+				[disabled]="tab.disabled"
 				[ngClass]="{
 					'cds--tabs__nav-item--selected': tab.active,
-					'cds--tabs__nav-item--disabled': tab.disabled
+					'cds--tabs__nav-item--disabled': tab.disabled,
+					'cds--tabs__nav-item--icon-only': tab.iconOnly,
+					'cds--tabs__nav-item--icon-only__20': tab.iconOnly && iconSize === 'lg'
 				}"
 				class="cds--tabs__nav-item cds--tabs__nav-link"
 				type="button"
 				draggable="false"
 				id="{{tab.id}}-header"
+				[attr.title]="tab.iconOnly ? tab.iconLabel : (tab.title || (!tab.headingIsTemplate ? tab.heading : null))"
 				(focus)="onTabFocus(tabItem, i)"
+				(keydown)="handleTabKeyDown($event, tab, i)"
 				(click)="selectTab(tabItem, tab, i)">
-				<ng-container *ngIf="!tab.headingIsTemplate">
-					{{ tab.heading }}
+				<ng-container *ngIf="tab.iconOnly; else labeledTab">
+					<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+					<span
+						*ngIf="!tab.disabled && tab.badgeIndicator"
+						class="cds--badge-indicator"
+						aria-hidden="true">
+					</span>
 				</ng-container>
-				<ng-template
-					*ngIf="tab.headingIsTemplate"
-					[ngTemplateOutlet]="tab.heading"
-					[ngTemplateOutletContext]="{$implicit: tab.context}">
+				<ng-template #labeledTab>
+					<div class="cds--tabs__nav-item-label-wrapper">
+						<div *ngIf="dismissable && tab.icon" class="cds--tabs__nav-item--icon-left">
+							<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+						</div>
+						<span class="cds--tabs__nav-item-label">
+							<ng-container *ngIf="!tab.headingIsTemplate">
+								{{ tab.heading }}
+							</ng-container>
+							<ng-template
+								*ngIf="tab.headingIsTemplate"
+								[ngTemplateOutlet]="tab.heading"
+								[ngTemplateOutletContext]="{$implicit: tab.context}">
+							</ng-template>
+						</span>
+						<div
+							*ngIf="!dismissable && tab.icon"
+							class="cds--tabs__nav-item--icon">
+							<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+						</div>
+					</div>
+					<div
+						*ngIf="hasSecondaryLabelTabs && tab.secondaryLabel"
+						class="cds--tabs__nav-item-secondary-label"
+						[attr.title]="tab.secondaryLabel">
+						{{ tab.secondaryLabel }}
+					</div>
 				</ng-template>
 			</button>
-			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
-		</div>
+		</ng-template>
 		<button
 			type="button"
 			(click)="handleOverflowNavClick(1, tabs.length)"
@@ -99,7 +188,10 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
-			[title]="translations.BUTTON_ARIA_RIGHT">
+			[attr.aria-hidden]="true"
+			[attr.tabindex]="-1"
+			[attr.aria-label]="translations.BUTTON_ARIA_RIGHT"
+			[attr.title]="translations.BUTTON_ARIA_RIGHT">
 			<svg
 				focusable="false"
 				preserveAspectRatio="xMidYMid meet"
@@ -123,18 +215,27 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	// tslint:disable-next-line
 	@Input("tabs") tabInput: QueryList<Tab>;
 
+	/**
+	 * i18n strings for overflow controls and the tab list `aria-label` fallback.
+	 */
 	@Input() translations = this.i18n.get().TABS;
+
+	/**
+	 * Emits when a tab close control is used (with `dismissable`).
+	 * The emitted value is the tab index.
+	 */
+	@Output() tabClose: EventEmitter<number> = new EventEmitter<number>();
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 */
 	@ViewChild("tabList", { static: true }) headerContainer: ElementRef<HTMLElement>;
 	/**
-	 * ContentChild of all the n-tabs
+	 * ContentChild of all the tabs
 	 */
 	@ContentChildren(Tab) tabQuery: QueryList<Tab>;
 	/**
-	 * set to tabQuery if tabInput is empty
+	 * Set to tabQuery if tabInput is empty
 	 */
 	tabs: QueryList<Tab>;
 	/**
@@ -145,6 +246,20 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	 * The DOM element containing the `Tab` headings displayed.
 	 */
 	@ViewChildren("tabItem") allTabHeaders: QueryList<ElementRef>;
+
+	/**
+	 * Focused tab index when `followFocus` is false (manual activation).
+	 */
+	activeIndex: number | null = null;
+
+	@HostBinding("class.cds--tabs--tall") get tallClass() {
+		return this.hasSecondaryLabelTabs;
+	}
+
+	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
+		return this.distributeWidth;
+	}
+
 	private resizeObserver: ResizeObserver;
 
 	constructor(
@@ -157,64 +272,97 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		super(elementRef, changeDetectorRef, eventService, renderer);
 	}
 
+	get hasSecondaryLabelTabs(): boolean {
+		if (!this.tabs || this.type !== "contained") {
+			return false;
+		}
+		return this.tabs.toArray().some(tab => typeof tab.secondaryLabel !== "undefined" && tab.secondaryLabel !== null);
+	}
+
+	/**
+	 * True when `fullWidth` applies (contained, fewer than 9 tabs).
+	 */
+	get distributeWidth(): boolean {
+		return (
+			this.fullWidth &&
+			this.type === "contained" &&
+			(this.tabs ? this.tabs.length < 9 : false)
+		);
+	}
+
 	// keyboard accessibility
 	/**
 	 * Controls the keydown events used for tabbing through the headings.
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		let tabsArray = this.tabs.toArray();
+		const tabsArray = this.tabs.toArray();
+		const enabledTabs = tabsArray.filter(tab => !tab.disabled);
+		if (enabledTabs.length === 0) {
+			return;
+		}
+
+		const referenceIndex = this.isAutomaticActivation ?
+			this.currentSelectedTab :
+			(this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab);
+		const currentEnabledIndex = Math.max(0, enabledTabs.indexOf(tabsArray[referenceIndex]));
+
+		let nextEnabledIndex = currentEnabledIndex;
+		let handled = false;
 
 		if (event.key === "ArrowRight") {
-			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
-				event.preventDefault();
-				if (this.followFocus) {
-					this.selectTab(event.target, tabsArray[this.currentSelectedTab + 1], this.currentSelectedTab);
-				}
-				this.allTabHeaders.toArray()[this.currentSelectedTab + 1].nativeElement.focus();
-			} else {
-				event.preventDefault();
-				if (this.followFocus) {
-					this.selectTab(event.target, tabsArray[0], 0);
-				}
-				this.allTabHeaders.first.nativeElement.focus();
-			}
+			nextEnabledIndex = (currentEnabledIndex + 1) % enabledTabs.length;
+			handled = true;
+		} else if (event.key === "ArrowLeft") {
+			nextEnabledIndex = (enabledTabs.length + currentEnabledIndex - 1) % enabledTabs.length;
+			handled = true;
+		} else if (event.key === "Home") {
+			nextEnabledIndex = 0;
+			handled = true;
+		} else if (event.key === "End") {
+			nextEnabledIndex = enabledTabs.length - 1;
+			handled = true;
 		}
 
-		if (event.key === "ArrowLeft") {
-			if (this.currentSelectedTab > 0) {
-				event.preventDefault();
-				if (this.followFocus) {
-					this.selectTab(event.target, tabsArray[this.currentSelectedTab - 1], this.currentSelectedTab);
-				}
-				this.allTabHeaders.toArray()[this.currentSelectedTab - 1].nativeElement.focus();
-			} else {
-				event.preventDefault();
-				if (this.followFocus) {
-					this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
-				}
-				this.allTabHeaders.toArray()[this.allTabHeaders.length - 1].nativeElement.focus();
-			}
-		}
-
-		if (event.key === "Home") {
+		if (handled) {
 			event.preventDefault();
-			if (this.followFocus) {
-				this.selectTab(event.target, tabsArray[0], 0);
+			const nextTab = enabledTabs[nextEnabledIndex];
+			const nextIndex = tabsArray.indexOf(nextTab);
+
+			if (this.isAutomaticActivation) {
+				this.selectTab(this.allTabHeaders.toArray()[nextIndex].nativeElement, nextTab, nextIndex);
+			} else {
+				this.activeIndex = nextIndex;
 			}
-			this.allTabHeaders.toArray()[0].nativeElement.focus();
+			this.allTabHeaders.toArray()[nextIndex].nativeElement.focus();
+			return;
 		}
 
-		if (event.key === "End") {
-			event.preventDefault();
-			if (this.followFocus) {
-				this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
-			}
-			this.allTabHeaders.toArray()[this.allTabHeaders.length - 1].nativeElement.focus();
+		if ((event.key === " " || event.key === "Spacebar") && !this.isAutomaticActivation) {
+			const focusIndex = this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab;
+			this.selectTab(this.allTabHeaders.toArray()[focusIndex].nativeElement, tabsArray[focusIndex], focusIndex);
 		}
+	}
 
-		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
-			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
+	@HostListener("blur", ["$event"])
+	handleBlur(event: FocusEvent) {
+		const relatedTarget = event.relatedTarget as Node | null;
+		const container = this.headerContainer?.nativeElement;
+		if (container && relatedTarget && container.contains(relatedTarget)) {
+			return;
+		}
+		// Reset active index to selected tab index when followFocus is false
+		if (!this.isAutomaticActivation) {
+			this.activeIndex = this.currentSelectedTab;
+		}
+	}
+
+	/**
+	 * `Delete` closes dismissable tabs.
+	 */
+	handleTabKeyDown(event: KeyboardEvent, tab: Tab, index: number) {
+		if (this.dismissable && event.key === "Delete") {
+			this.handleClose(event, tab, index);
 		}
 	}
 
@@ -228,7 +376,8 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	}
 
 	ngOnDestroy(): void {
-		this.resizeObserver.unobserve(this.headerContainer.nativeElement);
+		this.resizeObserver?.unobserve(this.headerContainer.nativeElement);
+		clearTimeout(this.scrollDebounceTimer);
 	}
 
 	ngAfterContentInit() {
@@ -241,6 +390,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
 		this.tabs.changes.subscribe(() => {
 			this.setFirstTab();
+			this.changeDetectorRef.markForCheck();
 		});
 		this.setFirstTab();
 	}
@@ -255,9 +405,17 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	 * Controls manually focusing tabs.
 	 */
 	onTabFocus(ref: HTMLElement, index: number) {
-		this.currentSelectedTab = index;
+		if (this.isAutomaticActivation) {
+			this.currentSelectedTab = index;
+		} else {
+			this.activeIndex = index;
+		}
 		// reset scroll left because we're already handling it
 		this.headerContainer.nativeElement.parentElement.scrollLeft = 0;
+
+		if (this.scrollIntoView) {
+			this.scrollTabIntoView(this.allTabHeaders.toArray()[index]?.nativeElement);
+		}
 	}
 
 	getSelectedTab(): any {
@@ -277,9 +435,75 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		}
 
 		this.currentSelectedTab = tabIndex;
+		this.activeIndex = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
 		tab.doSelect();
+
+		if (this.scrollIntoView) {
+			this.scrollTabIntoView(this.allTabHeaders.toArray()[tabIndex]?.nativeElement);
+		}
+	}
+
+	/**
+	 * Emit close index and move focus to a nearby enabled tab.
+	 */
+	handleClose(event: Event, tab: Tab, tabIndex: number) {
+		event.stopPropagation();
+		if (tab.disabled) {
+			return;
+		}
+		tab.tabClose.emit();
+		this.tabClose.emit(tabIndex);
+
+		// Move focus to a neighboring enabled tab (next-then-previous).
+		const headers = this.allTabHeaders?.toArray() ?? [];
+		const findNextEnabled = (start: number, step: number) => {
+			let i = start;
+			while (i >= 0 && i < headers.length) {
+				const candidate = this.tabs.toArray()[i];
+				if (candidate && !candidate.disabled && i !== tabIndex) {
+					return headers[i]?.nativeElement;
+				}
+				i += step;
+			}
+			return null;
+		};
+		const nextEl = findNextEnabled(tabIndex + 1, 1) || findNextEnabled(tabIndex - 1, -1);
+		if (nextEl) {
+			(nextEl as HTMLElement).focus();
+		}
+	}
+
+	getCloseTitle(tab: Tab): string {
+		const label = !tab.headingIsTemplate && typeof tab.heading === "string" ? ` ${tab.heading}` : "";
+		return `Remove${label} tab`;
+	}
+
+	/**
+	 * Scroll the given tab element into view if it is not already visible.
+	 */
+	protected scrollTabIntoView(tabEl: HTMLElement | null) {
+		if (!tabEl || !this.headerContainer?.nativeElement) {
+			return;
+		}
+		const container = this.headerContainer.nativeElement;
+		if (container.scrollWidth <= container.clientWidth) {
+			return;
+		}
+
+		const buttonWidth = this.OVERFLOW_BUTTON_OFFSET;
+		const tabWidth = tabEl.getBoundingClientRect().width;
+		const start = tabEl.offsetLeft;
+		const end = start + tabWidth;
+		const visibleStart = container.scrollLeft + buttonWidth;
+		const visibleEnd = container.scrollLeft + container.clientWidth - buttonWidth;
+
+		if (start < visibleStart) {
+			container.scrollLeft = start - buttonWidth;
+		} else if (end > visibleEnd) {
+			container.scrollLeft = end + buttonWidth - container.clientWidth;
+		}
 	}
 
 	/**
@@ -293,6 +517,8 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 				firstTab.active = true;
 			}
 			if (firstTab) {
+				this.currentSelectedTab = this.tabs.toArray().indexOf(firstTab);
+				this.activeIndex = this.currentSelectedTab;
 				firstTab.doSelect();
 			}
 		});
