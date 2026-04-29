@@ -155,12 +155,7 @@ export class Tab implements OnInit {
 	 */
 	@Input() secondaryLabel: string;
 	/**
-	 * Set to `true` to render a close button on the tab. Use along with the
-	 * parent `Tabs` `dismissable` input.
-	 */
-	@Input() dismissable = false;
-	/**
-	 * Sets the aria-label of the close button. Used when `dismissable` is `true`.
+	 * Sets the aria-label of the close button when the parent `Tabs` uses `dismissable`.
 	 */
 	@Input() closeButtonAriaLabel = "Press delete to remove tab";
 	/**

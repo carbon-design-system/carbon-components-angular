@@ -326,8 +326,8 @@ class IconTabBadgeTest {}
 			[dismissable]="true"
 			ariaLabel="List of tabs"
 			(tabClose)="onTabClose($event)">
-			<cds-tab heading="Tab Label 1" [dismissable]="true">P1</cds-tab>
-			<cds-tab heading="Tab Label 2" [dismissable]="true">P2</cds-tab>
+			<cds-tab heading="Tab Label 1">P1</cds-tab>
+			<cds-tab heading="Tab Label 2">P2</cds-tab>
 		</cds-tabs>
 	`
 })

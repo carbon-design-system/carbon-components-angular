@@ -1,5 +1,8 @@
-import { Component, forwardRef, Input, TemplateRef } from "@angular/core";
-
+import { 
+	Component,
+	forwardRef,
+	Input
+} from "@angular/core";
 import { Tab } from "./tab.component";
 
 /**

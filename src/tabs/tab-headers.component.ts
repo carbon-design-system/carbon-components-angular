@@ -42,7 +42,7 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': leftOverflowNavButtonHidden
 			}"
-			[attr.aria-hidden]="true"
+			[attr.aria-hidden]="leftOverflowNavButtonHidden"
 			[attr.tabindex]="-1"
 			[attr.aria-label]="translations.BUTTON_ARIA_LEFT"
 			[attr.title]="translations.BUTTON_ARIA_LEFT">
@@ -188,7 +188,7 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'cds--tab--overflow-nav-button--hidden': rightOverflowNavButtonHidden
 			}"
-			[attr.aria-hidden]="true"
+			[attr.aria-hidden]="rightOverflowNavButtonHidden"
 			[attr.tabindex]="-1"
 			[attr.aria-label]="translations.BUTTON_ARIA_RIGHT"
 			[attr.title]="translations.BUTTON_ARIA_RIGHT">

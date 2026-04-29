@@ -167,7 +167,7 @@ const ContainedWithSecondaryLabelsTemplate = (args) => ({
 			<cds-tab heading="Analyze" secondaryLabel="(12/16)">Tab Content 2</cds-tab>
 			<cds-tab heading="Remediate" secondaryLabel="(0/7)">Tab Content 3</cds-tab>
 			<cds-tab heading="Assets" secondaryLabel="(4/12)">Tab Content 4</cds-tab>
-			<cds-tab heading="Monitoring" secondaryLabel="(0/10)" disabled="true">Tab Content 5</cds-tab>
+			<cds-tab heading="Monitoring" secondaryLabel="(0/10)" [disabled]="true">Tab Content 5</cds-tab>
 		</cds-tabs>
 	`
 });
@@ -180,7 +180,7 @@ const ContainedFullWidthTemplate = (args) => ({
 		<cds-tabs type="contained" [fullWidth]="true">
 			<cds-tab heading="TLS">Tab Content 1</cds-tab>
 			<cds-tab heading="Origin">Tab Content 2</cds-tab>
-			<cds-tab heading="Rate limiting" disabled="true">Tab Content 3</cds-tab>
+			<cds-tab heading="Rate limiting" [disabled]="true">Tab Content 3</cds-tab>
 			<cds-tab heading="WAF">Tab Content 4</cds-tab>
 			<cds-tab heading="IP Firewall">Tab Content 5</cds-tab>
 			<cds-tab heading="Firewall rules">Tab Content 6</cds-tab>
