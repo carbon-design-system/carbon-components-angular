@@ -270,7 +270,19 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 				});
 		}
 
-		this.tabHeaderQuery.toArray().forEach(tabHeader => {
+		const headersArray = this.tabHeaderQuery.toArray();
+
+		// Set initial selected tab (`active`)
+		let initialSelectedIndex = headersArray.findIndex(
+			h => h.active || !!(h.paneReference && h.paneReference.active)
+		);
+		if (initialSelectedIndex < 0) {
+			initialSelectedIndex = 0;
+		}
+		this.currentSelectedTab = initialSelectedIndex;
+		this.activeIndex = initialSelectedIndex;
+
+		headersArray.forEach(tabHeader => {
 			this.selectedSubscriptionTracker.add(
 				tabHeader.selected.subscribe(() => {
 					this.currentSelectedTab = this.tabHeaderQuery.toArray().indexOf(tabHeader);
