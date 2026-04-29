@@ -139,7 +139,7 @@ export class TabHeaderGroupVertical
 			return;
 		}
 
-		const referenceIndex = this.isAutomaticActivation
+		const referenceIndex = this.followFocus
 			? this.currentSelectedTab
 			: (this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab);
 		const currentEnabledIndex = Math.max(0, enabledHeaders.indexOf(tabHeadersArray[referenceIndex]));
@@ -166,7 +166,7 @@ export class TabHeaderGroupVertical
 			const nextHeader = enabledHeaders[nextEnabledIndex];
 			const nextIndex = tabHeadersArray.indexOf(nextHeader);
 
-			if (this.isAutomaticActivation) {
+			if (this.followFocus) {
 				nextHeader.selectTab();
 				this.currentSelectedTab = nextIndex;
 			} else {
@@ -176,7 +176,7 @@ export class TabHeaderGroupVertical
 			return;
 		}
 
-		if ((event.key === " " || event.key === "Spacebar") && !this.isAutomaticActivation) {
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			const focusIndex = this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab;
 			tabHeadersArray[focusIndex].selectTab();
 			this.currentSelectedTab = focusIndex;
@@ -190,7 +190,7 @@ export class TabHeaderGroupVertical
 		if (container && relatedTarget && container.contains(relatedTarget)) {
 			return;
 		}
-		if (!this.isAutomaticActivation) {
+		if (!this.followFocus) {
 			this.activeIndex = this.currentSelectedTab;
 		}
 	}

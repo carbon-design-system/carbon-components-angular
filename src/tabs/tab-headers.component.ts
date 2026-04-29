@@ -302,7 +302,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 			return;
 		}
 
-		const referenceIndex = this.isAutomaticActivation ?
+		const referenceIndex = this.followFocus ?
 			this.currentSelectedTab :
 			(this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab);
 		const currentEnabledIndex = Math.max(0, enabledTabs.indexOf(tabsArray[referenceIndex]));
@@ -329,7 +329,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 			const nextTab = enabledTabs[nextEnabledIndex];
 			const nextIndex = tabsArray.indexOf(nextTab);
 
-			if (this.isAutomaticActivation) {
+			if (this.followFocus) {
 				this.selectTab(this.allTabHeaders.toArray()[nextIndex].nativeElement, nextTab, nextIndex);
 			} else {
 				this.activeIndex = nextIndex;
@@ -338,7 +338,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 			return;
 		}
 
-		if ((event.key === " " || event.key === "Spacebar") && !this.isAutomaticActivation) {
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			const focusIndex = this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab;
 			this.selectTab(this.allTabHeaders.toArray()[focusIndex].nativeElement, tabsArray[focusIndex], focusIndex);
 		}
@@ -352,7 +352,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 			return;
 		}
 		// Reset active index to selected tab index when followFocus is false
-		if (!this.isAutomaticActivation) {
+		if (!this.followFocus) {
 			this.activeIndex = this.currentSelectedTab;
 		}
 	}
@@ -405,7 +405,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	 * Controls manually focusing tabs.
 	 */
 	onTabFocus(ref: HTMLElement, index: number) {
-		if (this.isAutomaticActivation) {
+		if (this.followFocus) {
 			this.currentSelectedTab = index;
 		} else {
 			this.activeIndex = index;

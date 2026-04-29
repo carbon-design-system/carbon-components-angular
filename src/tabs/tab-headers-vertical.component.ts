@@ -141,7 +141,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 			return;
 		}
 
-		const referenceIndex = this.isAutomaticActivation ?
+		const referenceIndex = this.followFocus ?
 			this.currentSelectedTab :
 			(this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab);
 		const currentEnabledIndex = Math.max(0, enabledTabs.indexOf(tabsArray[referenceIndex]));
@@ -168,7 +168,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 			const nextTab = enabledTabs[nextEnabledIndex];
 			const nextIndex = tabsArray.indexOf(nextTab);
 
-			if (this.isAutomaticActivation) {
+			if (this.followFocus) {
 				this.selectTab(nextTab, nextIndex);
 			} else {
 				this.activeIndex = nextIndex;
@@ -177,7 +177,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 			return;
 		}
 
-		if ((event.key === " " || event.key === "Spacebar") && !this.isAutomaticActivation) {
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			const focusIndex = this.activeIndex !== null ? this.activeIndex : this.currentSelectedTab;
 			this.selectTab(tabsArray[focusIndex], focusIndex);
 		}
@@ -190,7 +190,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 		if (container && relatedTarget && container.contains(relatedTarget)) {
 			return;
 		}
-		if (!this.isAutomaticActivation) {
+		if (!this.followFocus) {
 			this.activeIndex = this.currentSelectedTab;
 		}
 	}
@@ -231,7 +231,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 	}
 
 	onTabFocus(index: number) {
-		if (this.isAutomaticActivation) {
+		if (this.followFocus) {
 			this.currentSelectedTab = index;
 		} else {
 			this.activeIndex = index;

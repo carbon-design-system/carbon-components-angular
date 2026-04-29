@@ -184,7 +184,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 		if (event.key === "ArrowRight") {
 			if (this.currentSelectedTab < tabHeadersArray.length - 1) {
 				event.preventDefault();
-				if (this.isAutomaticActivation && !tabHeadersArray[this.currentSelectedTab + 1].disabled) {
+				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab + 1].disabled) {
 					tabHeadersArray[this.currentSelectedTab + 1].selectTab();
 				} else {
 					tabHeadersArray[this.currentSelectedTab + 1].focus();
@@ -192,7 +192,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 				}
 			} else {
 				event.preventDefault();
-				if (this.isAutomaticActivation && !tabHeadersArray[0].disabled) {
+				if (this.followFocus && !tabHeadersArray[0].disabled) {
 					tabHeadersArray[0].selectTab();
 				} else {
 					tabHeadersArray[0].focus();
@@ -204,7 +204,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 		if (event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
-				if (this.isAutomaticActivation && !tabHeadersArray[this.currentSelectedTab - 1].disabled) {
+				if (this.followFocus && !tabHeadersArray[this.currentSelectedTab - 1].disabled) {
 					tabHeadersArray[this.currentSelectedTab - 1].selectTab();
 				} else {
 					tabHeadersArray[this.currentSelectedTab - 1].focus();
@@ -212,7 +212,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 				}
 			} else {
 				event.preventDefault();
-				if (this.isAutomaticActivation && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
+				if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 					tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 				} else {
 					tabHeadersArray[tabHeadersArray.length - 1].focus();
@@ -223,7 +223,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 
 		if (event.key === "Home") {
 			event.preventDefault();
-			if (this.isAutomaticActivation && !tabHeadersArray[0].disabled) {
+			if (this.followFocus && !tabHeadersArray[0].disabled) {
 				tabHeadersArray[0].selectTab();
 			} else {
 				tabHeadersArray[0].focus();
@@ -233,7 +233,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 
 		if (event.key === "End") {
 			event.preventDefault();
-			if (this.isAutomaticActivation && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
+			if (this.followFocus && !tabHeadersArray[tabHeadersArray.length - 1].disabled) {
 				tabHeadersArray[tabHeadersArray.length - 1].selectTab();
 			} else {
 				tabHeadersArray[tabHeadersArray.length - 1].focus();
@@ -241,7 +241,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 			}
 		}
 
-		if ((event.key === " ") && !this.isAutomaticActivation) {
+		if ((event.key === " ") && !this.followFocus) {
 			tabHeadersArray[this.currentSelectedTab].selectTab();
 		}
 	}

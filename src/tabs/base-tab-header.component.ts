@@ -24,10 +24,10 @@ export class BaseTabHeader {
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * Set to 'true' to have tabs automatically activated and have their content displayed
-	 * when they receive focus.
+	 * When `true` (default), moving focus moves activation (automatic activation).
+	 * When `false`, activation follows focus only after Space/Enter (manual activation).
 	 */
-	@Input() followFocus: boolean;
+	@Input() followFocus = true;
 	/**
 	 * Sets the aria label on the nav element.
 	 */
@@ -132,14 +132,6 @@ export class BaseTabHeader {
 		const tabList = this.headerContainer.nativeElement;
 		return !this.hasHorizontalOverflow ||
 			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
-	}
-
-	/**
-	 * Resolves whether tabs should be activated automatically on focus or only
-	 * when explicitly activated (click / Space).
-	 */
-	get isAutomaticActivation(): boolean {
-		return this.followFocus !== false;
 	}
 
 	constructor(
