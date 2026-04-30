@@ -19,6 +19,7 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
+import { I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { TabHeaderBase } from "./tab-header.directive";
@@ -49,7 +50,7 @@ const VERTICAL_TAB_HEIGHT = 64;
 			#tabList
 			class="cds--tab--list"
 			role="tablist"
-			[attr.aria-label]="ariaLabel"
+			[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"
 			[attr.aria-labelledby]="ariaLabelledby || null">
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
 			<ng-content></ng-content>
@@ -61,6 +62,11 @@ const VERTICAL_TAB_HEIGHT = 64;
 export class TabHeaderGroupVertical
 	extends BaseTabHeader
 	implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	/**
+	 * i18n strings for the tab list `aria-label` fallback.
+	 */
+	@Input() translations = this.i18n.get().TABS;
+
 	/**
 	 * When `true`, sets each tab panel `tabindex` to `-1` for navigation-style usage.
 	 */
@@ -120,7 +126,8 @@ export class TabHeaderGroupVertical
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
 		protected eventService: EventService,
-		protected renderer: Renderer2
+		protected renderer: Renderer2,
+		protected i18n: I18n
 	) {
 		super(elementRef, changeDetectorRef, eventService, renderer);
 		this.type = "contained";

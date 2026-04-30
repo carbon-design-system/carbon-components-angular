@@ -163,7 +163,6 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 		protected i18n: I18n
 	) {
 		super(elementRef, changeDetectorRef, eventService, renderer);
-		this.translations = this.i18n.get().TABS;
 	}
 
 	/**
