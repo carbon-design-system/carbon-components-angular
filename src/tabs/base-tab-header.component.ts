@@ -24,10 +24,9 @@ export class BaseTabHeader {
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * When `true` (default), moving focus moves activation (automatic activation).
-	 * When `false`, activation follows focus only after Space/Enter (manual activation).
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
-	@Input() followFocus = true;
+	@Input() followFocus: boolean = true;
 	/**
 	 * Sets the aria label on the nav element.
 	 */
