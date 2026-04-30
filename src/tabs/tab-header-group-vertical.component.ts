@@ -248,7 +248,8 @@ export class TabHeaderGroupVertical
 
 		setTimeout(() => {
 			const headers = this.tabHeaderQuery.toArray();
-			const initialIndex = Math.max(0, headers.findIndex(h => h.active));
+			const activeIdx = headers.findIndex(h => h.active || h.paneReference?.active);
+			const initialIndex = activeIdx >= 0 ? activeIdx : 0;
 			this.currentSelectedTab = initialIndex;
 			this.activeIndex = initialIndex;
 			headers[initialIndex]?.selectTab();

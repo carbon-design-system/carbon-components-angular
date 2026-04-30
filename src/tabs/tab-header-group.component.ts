@@ -98,6 +98,39 @@ import { BaseTabHeader } from "./base-tab-header.component";
 	`
 })
 export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+
+	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
+		return this.distributeWidth;
+	}
+
+	/**
+	 * We use taller rows when any header has a secondary label.
+	 */
+	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
+		return this.hasSecondaryLabelTabs;
+	}
+
+	get hasSecondaryLabelTabs(): boolean {
+		if (!this.tabHeaderQuery || this.type !== "contained") {
+			return false;
+		}
+		return this.tabHeaderQuery.toArray().some(
+			h =>
+				h.secondaryLabel != null &&
+				String(h.secondaryLabel).trim() !== ""
+		);
+	}
+
+	/**
+	 * True when `fullWidth` applies (contained, fewer than 9 headers).
+	 */
+	get distributeWidth(): boolean {
+		return (
+			this.fullWidth &&
+			this.type === "contained" &&
+			(this.tabHeaderQuery ? this.tabHeaderQuery.length < 9 : false)
+		);
+	}
 	/**
 	 * i18n strings for overflow controls and the tab list `aria-label` fallback.
 	 */
@@ -133,28 +166,6 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	 */
 	activeIndex: number | null = null;
 
-	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
-		return this.distributeWidth;
-	}
-
-	/**
-	 * We use taller rows when any header has a secondary label.
-	 */
-	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
-		return this.hasSecondaryLabelTabs;
-	}
-
-	get hasSecondaryLabelTabs(): boolean {
-		if (!this.tabHeaderQuery || this.type !== "contained") {
-			return false;
-		}
-		return this.tabHeaderQuery.toArray().some(
-			h =>
-				h.secondaryLabel != null &&
-				String(h.secondaryLabel).trim() !== ""
-		);
-	}
-
 	constructor(
 		protected elementRef: ElementRef,
 		protected changeDetectorRef: ChangeDetectorRef,
@@ -163,17 +174,6 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 		protected i18n: I18n
 	) {
 		super(elementRef, changeDetectorRef, eventService, renderer);
-	}
-
-	/**
-	 * True when `fullWidth` applies (contained, fewer than 9 headers).
-	 */
-	get distributeWidth(): boolean {
-		return (
-			this.fullWidth &&
-			this.type === "contained" &&
-			(this.tabHeaderQuery ? this.tabHeaderQuery.length < 9 : false)
-		);
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -271,16 +271,6 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 
 		const headersArray = this.tabHeaderQuery.toArray();
 
-		// Set initial selected tab (`active`)
-		let initialSelectedIndex = headersArray.findIndex(
-			h => h.active || !!(h.paneReference && h.paneReference.active)
-		);
-		if (initialSelectedIndex < 0) {
-			initialSelectedIndex = 0;
-		}
-		this.currentSelectedTab = initialSelectedIndex;
-		this.activeIndex = initialSelectedIndex;
-
 		headersArray.forEach(tabHeader => {
 			this.selectedSubscriptionTracker.add(
 				tabHeader.selected.subscribe(() => {
@@ -305,7 +295,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 			);
 		});
 
-		setTimeout(() => this.tabHeaderQuery.toArray()[this.currentSelectedTab].selectTab());
+		this.setFirstTab();
 	}
 
 	ngOnDestroy() {
@@ -340,5 +330,23 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 			headingIsTemplate: false,
 			heading: ""
 		};
+	}
+
+	/**
+	 * Determines which `Tab` is initially selected.
+	 */
+	protected setFirstTab() {
+		setTimeout(() => {
+			const headers = this.tabHeaderQuery.toArray();
+			let selectedHeader = headers.find(h => h.active || h.paneReference?.active);
+			if (!selectedHeader && headers.length > 0) {
+				selectedHeader = headers[0];
+			}
+			if (selectedHeader) {
+				selectedHeader.selectTab();
+				this.activeIndex = this.currentSelectedTab;
+				this.changeDetectorRef.markForCheck();
+			}
+		});
 	}
 }
