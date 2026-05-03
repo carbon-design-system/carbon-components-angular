@@ -28,13 +28,13 @@
 <title>cluster_CheckboxModule_declarations</title>
 <polygon fill="none" stroke="black" points="550,-189.59 550,-241.59 765,-241.59 765,-189.59 550,-189.59"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_CheckboxModule_imports</title>
-<polygon fill="none" stroke="black" points="773,-189.59 773,-241.59 873,-241.59 873,-189.59 773,-189.59"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_CheckboxModule_exports</title>
 <polygon fill="none" stroke="black" points="583,-319.59 583,-371.59 805,-371.59 805,-319.59 583,-319.59"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_CheckboxModule_imports</title>
+<polygon fill="none" stroke="black" points="773,-189.59 773,-241.59 873,-241.59 873,-189.59 773,-189.59"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_CheckboxModule_CheckboxGroup_providers</title>

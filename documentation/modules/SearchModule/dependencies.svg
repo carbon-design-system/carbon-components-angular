@@ -24,14 +24,6 @@
 <title>cluster_SearchModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 630,-379.59 630,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_SearchModule_imports</title>
-<polygon fill="none" stroke="black" points="362,-189.59 362,-241.59 566,-241.59 566,-189.59 362,-189.59"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_SearchModule_exports</title>
-<polygon fill="none" stroke="black" points="375,-319.59 375,-371.59 449,-371.59 449,-319.59 375,-319.59"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_SearchModule_declarations</title>
 <polygon fill="none" stroke="black" points="284,-189.59 284,-241.59 354,-241.59 354,-189.59 284,-189.59"/>
@@ -39,6 +31,14 @@
 <g id="clust3" class="cluster">
 <title>cluster_SearchModule_Search_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-176.59 622,-176.59 622,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_SearchModule_exports</title>
+<polygon fill="none" stroke="black" points="188,-319.59 188,-371.59 262,-371.59 262,-319.59 188,-319.59"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_SearchModule_imports</title>
+<polygon fill="none" stroke="black" points="72,-189.59 72,-241.59 276,-241.59 276,-189.59 72,-189.59"/>
 </g>
 <!-- Search -->
 <g id="node1" class="node">
@@ -49,26 +49,26 @@
 <!-- SearchModule -->
 <g id="node2" class="node">
 <title>SearchModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="460.64,-298.59 457.64,-302.59 436.64,-302.59 433.64,-298.59 363.36,-298.59 363.36,-262.59 460.64,-262.59 460.64,-298.59"/>
-<text text-anchor="middle" x="412" y="-276.39" font-family="Times,serif" font-size="14.00">SearchModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="273.64,-298.59 270.64,-302.59 249.64,-302.59 246.64,-298.59 176.36,-298.59 176.36,-262.59 273.64,-262.59 273.64,-298.59"/>
+<text text-anchor="middle" x="225" y="-276.39" font-family="Times,serif" font-size="14.00">SearchModule</text>
 </g>
 <!-- Search&#45;&gt;SearchModule -->
 <g id="edge1" class="edge">
 <title>Search&#45;&gt;SearchModule</title>
-<path fill="none" stroke="black" d="M319,-233.7C319,-252.93 319,-280.59 319,-280.59 319,-280.59 353.32,-280.59 353.32,-280.59"/>
-<polygon fill="black" stroke="black" points="353.32,-284.09 363.32,-280.59 353.32,-277.09 353.32,-284.09"/>
+<path fill="none" stroke="black" d="M319,-233.7C319,-252.93 319,-280.59 319,-280.59 319,-280.59 283.65,-280.59 283.65,-280.59"/>
+<polygon fill="black" stroke="black" points="283.65,-277.09 273.65,-280.59 283.65,-284.09 283.65,-277.09"/>
 </g>
 <!-- Search  -->
 <g id="node6" class="node">
 <title>Search </title>
-<polygon fill="#fb8072" stroke="black" points="440.59,-363.59 383.41,-363.59 383.41,-327.59 440.59,-327.59 440.59,-363.59"/>
-<text text-anchor="middle" x="412" y="-341.39" font-family="Times,serif" font-size="14.00">Search </text>
+<polygon fill="#fb8072" stroke="black" points="253.59,-363.59 196.41,-363.59 196.41,-327.59 253.59,-327.59 253.59,-363.59"/>
+<text text-anchor="middle" x="225" y="-341.39" font-family="Times,serif" font-size="14.00">Search </text>
 </g>
 <!-- SearchModule&#45;&gt;Search  -->
 <g id="edge5" class="edge">
 <title>SearchModule&#45;&gt;Search </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M412,-298.7C412,-298.7 412,-317.58 412,-317.58"/>
-<polygon fill="black" stroke="black" points="408.5,-317.58 412,-327.58 415.5,-317.58 408.5,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M225,-298.7C225,-298.7 225,-317.58 225,-317.58"/>
+<polygon fill="black" stroke="black" points="221.5,-317.58 225,-327.58 228.5,-317.58 221.5,-317.58"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Search, multi: true
@@ -95,26 +95,26 @@
 <!-- I18nModule -->
 <g id="node4" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="557.71,-233.59 554.71,-237.59 533.71,-237.59 530.71,-233.59 472.29,-233.59 472.29,-197.59 557.71,-197.59 557.71,-233.59"/>
-<text text-anchor="middle" x="515" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="267.71,-233.59 264.71,-237.59 243.71,-237.59 240.71,-233.59 182.29,-233.59 182.29,-197.59 267.71,-197.59 267.71,-233.59"/>
+<text text-anchor="middle" x="225" y="-211.39" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;SearchModule -->
 <g id="edge3" class="edge">
 <title>I18nModule&#45;&gt;SearchModule</title>
-<path fill="none" stroke="black" d="M515,-233.7C515,-252.93 515,-280.59 515,-280.59 515,-280.59 470.79,-280.59 470.79,-280.59"/>
-<polygon fill="black" stroke="black" points="470.79,-277.09 460.79,-280.59 470.79,-284.09 470.79,-277.09"/>
+<path fill="none" stroke="black" d="M225,-233.7C225,-233.7 225,-252.58 225,-252.58"/>
+<polygon fill="black" stroke="black" points="221.5,-252.58 225,-262.58 228.5,-252.58 221.5,-252.58"/>
 </g>
 <!-- IconModule -->
 <g id="node5" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="454.43,-233.59 451.43,-237.59 430.43,-237.59 427.43,-233.59 369.57,-233.59 369.57,-197.59 454.43,-197.59 454.43,-233.59"/>
-<text text-anchor="middle" x="412" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="164.43,-233.59 161.43,-237.59 140.43,-237.59 137.43,-233.59 79.57,-233.59 79.57,-197.59 164.43,-197.59 164.43,-233.59"/>
+<text text-anchor="middle" x="122" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;SearchModule -->
 <g id="edge4" class="edge">
 <title>IconModule&#45;&gt;SearchModule</title>
-<path fill="none" stroke="black" d="M412,-233.7C412,-233.7 412,-252.58 412,-252.58"/>
-<polygon fill="black" stroke="black" points="408.5,-252.58 412,-262.58 415.5,-252.58 408.5,-252.58"/>
+<path fill="none" stroke="black" d="M122,-233.7C122,-252.93 122,-280.59 122,-280.59 122,-280.59 166.21,-280.59 166.21,-280.59"/>
+<polygon fill="black" stroke="black" points="166.21,-284.09 176.21,-280.59 166.21,-277.09 166.21,-284.09"/>
 </g>
 </g>
 </svg>
