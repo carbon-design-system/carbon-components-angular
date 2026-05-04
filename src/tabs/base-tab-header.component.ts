@@ -19,8 +19,8 @@ import { EventService } from "carbon-components-angular/utils";
 })
 export class BaseTabHeader {
 	/**
-	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
-	 * Duplicate from `n-tabs` to support standalone headers
+	 * Set to `true` to have `Tab` items cached and not reloaded on tab switching.
+	 * Duplicated from `cds-tabs` to support standalone headers.
 	 */
 	@Input() cacheActive = false;
 	/**
@@ -36,11 +36,48 @@ export class BaseTabHeader {
 	 */
 	@Input() ariaLabelledby: string;
 
+	/**
+	 * Template projected before tab items inside the tab list.
+	 */
 	@Input() contentBefore: TemplateRef<any>;
+	/**
+	 * Template projected after tab items inside the tab list.
+	 */
 	@Input() contentAfter: TemplateRef<any>;
 
+	/**
+	 * Visual style of the tab list: `line` or `contained`.
+	 */
 	@Input() type: "line" | "contained" = "line";
+	/**
+	 * Theme for contained tabs: `dark` or `light`.
+	 */
 	@Input() theme: "dark" | "light" = "dark";
+
+	/**
+	 * When using icon-only tabs, icon size: `default` (16px) or `lg` (20px).
+	 */
+	@Input() iconSize: "default" | "lg";
+
+	/**
+	 * **Contained only**: Evenly sized tabs across the row (**must** have fewer than 9 tabs).
+	 */
+	@Input() fullWidth = false;
+
+	/**
+	 * Show a close control on each tab.
+	 */
+	@Input() dismissable = false;
+
+	/**
+	 * Scroll the active tab into view on focus/select.
+	 */
+	@Input() scrollIntoView = false;
+
+	/**
+	 * Debounce (ms) for tab list scroll events; affects overflow chevron updates.
+	 */
+	@Input() scrollDebounceWait = 200;
 
 	@HostBinding("class.cds--tabs") tabsClass = true;
 	@HostBinding("class.cds--tabs--contained") get containedClass() {
@@ -48,6 +85,18 @@ export class BaseTabHeader {
 	}
 	@HostBinding("class.cds--tabs--light") get themeClass() {
 		return this.theme === "light";
+	}
+	@HostBinding("class.cds--tabs--dismissable") get dismissableClass() {
+		return this.dismissable;
+	}
+	@HostBinding("class.cds--tabs__icon--default") get iconSizeDefaultClass() {
+		return this.iconSize === "default";
+	}
+	@HostBinding("class.cds--tabs__icon--lg") get iconSizeLgClass() {
+		return this.iconSize === "lg";
+	}
+	@HostBinding("class.cds--layout--size-lg") get layoutSizeLgClass() {
+		return this.iconSize === "lg";
 	}
 
 	/**
@@ -66,6 +115,7 @@ export class BaseTabHeader {
 
 	protected longPressInterval = null;
 	protected tickInterval = null;
+	protected scrollDebounceTimer: any = null;
 
 	get hasHorizontalOverflow() {
 		const tabList = this.headerContainer.nativeElement;
@@ -91,7 +141,16 @@ export class BaseTabHeader {
 	) { }
 
 	handleScroll() {
-		this.changeDetectorRef.markForCheck();
+		// Debounce the change detection trigger so the scroll arrow visibility
+		// updates do not fire on every scroll tick.
+		if (this.scrollDebounceWait <= 0) {
+			this.changeDetectorRef.markForCheck();
+			return;
+		}
+		clearTimeout(this.scrollDebounceTimer);
+		this.scrollDebounceTimer = setTimeout(() => {
+			this.changeDetectorRef.markForCheck();
+		}, this.scrollDebounceWait);
 	}
 
 	handleOverflowNavClick(direction: number, numOftabs = 0) {
