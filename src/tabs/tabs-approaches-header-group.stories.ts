@@ -1,12 +1,15 @@
 /* tslint:disable variable-name */
 
 import {
+	AfterViewInit,
 	ChangeDetectorRef,
 	Component,
 	Input,
+	OnDestroy,
 	ViewChildren,
 	QueryList
 } from "@angular/core";
+import { Subscription } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../grid/grid.module";
 import { IconModule } from "../icon/icon.module";
@@ -42,15 +45,15 @@ import { TabsStoryModule } from "./stories";
 		<cds-tab *ngFor="let tab of renderedTabs">{{ tab.content }}</cds-tab>
 	`
 })
-class StoryDismissableTabHeaderGroupComponent {
+class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestroy {
 
-	get panesReady(): boolean {
-		return (
-			!!this.paneQuery &&
-			this.paneQuery.length === this.renderedTabs.length &&
-			this.renderedTabs.length > 0
-		);
-	}
+	/**
+	 * A stored flag (not a getter reading ViewChildren): binding `paneQuery.length` into the
+	 * template races Angular's query lifecycle and triggers NG0100 in dev mode when the guard
+	 * flips mid–change detection. Deferring updates to after the current turn keeps bindings stable.
+	 */
+	panesReady = false;
+
 	@Input() type: "line" | "contained" = "line";
 	@Input() followFocus = true;
 	@Input() cacheActive = true;
@@ -66,7 +69,33 @@ class StoryDismissableTabHeaderGroupComponent {
 
 	@ViewChildren(Tab) private paneQuery!: QueryList<Tab>;
 
+	private paneQueryChangesSub!: Subscription;
+
 	constructor(private cdr: ChangeDetectorRef) {}
+
+	ngAfterViewInit(): void {
+		this.paneQueryChangesSub = this.paneQuery.changes.subscribe(() =>
+			this.scheduleRefreshPanesReady()
+		);
+		this.scheduleRefreshPanesReady();
+	}
+
+	ngOnDestroy(): void {
+		this.paneQueryChangesSub?.unsubscribe();
+	}
+
+	private scheduleRefreshPanesReady(): void {
+		queueMicrotask(() => {
+			const ready =
+				!!this.paneQuery &&
+				this.paneQuery.length === this.renderedTabs.length &&
+				this.renderedTabs.length > 0;
+			if (ready !== this.panesReady) {
+				this.panesReady = ready;
+				this.cdr.detectChanges();
+			}
+		});
+	}
 
 	paneAt(index: number): Tab {
 		return this.paneQuery.get(index) as Tab;
@@ -74,7 +103,7 @@ class StoryDismissableTabHeaderGroupComponent {
 
 	onTabClose(tabIndex: number) {
 		this.renderedTabs = this.renderedTabs.filter((_, i) => i !== tabIndex);
-		this.cdr.detectChanges();
+		this.scheduleRefreshPanesReady();
 	}
 }
 
