@@ -78,6 +78,11 @@ export class TabHeaderGroupVertical
 	@Output() tabClose = new EventEmitter<number>();
 
 	/**
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
+	 */
+	@Input() followFocus = true;
+
+	/**
 	 * ContentChildren of all the tab headers (both directive and component
 	 * forms — see `TabHeaderBase`).
 	 */

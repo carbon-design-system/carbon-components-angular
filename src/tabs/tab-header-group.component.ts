@@ -250,11 +250,7 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	}
 
 	ngAfterContentInit() {
-		// IMPORTANT: a `Subscription` becomes permanently `closed` after
-		// `unsubscribe()` is called on it. Any subsequent `.add(child)` call
-		// tears down the child immediately, so we must allocate fresh
-		// trackers here (otherwise none of the per-header subscriptions
-		// below would ever fire and tabs would never be deactivated).
+		// Reallocate trackers because subscriptions are permanently closed after unsubscribe
 		this.selectedSubscriptionTracker.unsubscribe();
 		this.closeSubscriptionTracker.unsubscribe();
 		this.selectedSubscriptionTracker = new Subscription();

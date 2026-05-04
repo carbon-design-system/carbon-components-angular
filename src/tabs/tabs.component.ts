@@ -93,8 +93,7 @@ export class Tabs implements AfterContentInit, OnChanges {
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * When `true`, the tab panel is activated when a tab header receives focus.
-	 * When `false`, the panel activates only on click or Space.
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus = true;
 	/**
