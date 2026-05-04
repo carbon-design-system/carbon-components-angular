@@ -26,7 +26,7 @@ export class BaseTabHeader {
 	/**
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
-	@Input() followFocus = true;
+	@Input() followFocus: boolean;
 	/**
 	 * Sets the aria label on the nav element.
 	 */
