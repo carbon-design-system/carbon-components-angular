@@ -39,7 +39,7 @@ import { TabHeaderBase } from "./tab-header.directive";
 			[description]="iconLabel"
 			[enterDelayMs]="enterDelayMs"
 			[leaveDelayMs]="leaveDelayMs"
-			[defaultOpen]="defaultOpen"
+			[isOpen]="isTooltipOpen"
 			[disabled]="disabled">
 			<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container>
 		</cds-tooltip>
@@ -158,7 +158,7 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 	/**
 	 * Icon-only tabs: open the tooltip on first render.
 	 */
-	@Input() defaultOpen = false;
+	@Input() isTooltipOpen = false;
 
 	@HostBinding("style.display") displayContents = "contents";
 

@@ -336,7 +336,7 @@ class HGDismissableTabsTest {
 
 @Component({
 	template: `
-		<cds-tab-header-group [ariaLabel]="'List of tabs'">
+		<cds-tab-header-group [followFocus]="true" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="k1">Tab Label 1</cds-tab-header>
 			<cds-tab-header [paneReference]="k2">Tab Label 2</cds-tab-header>
 			<cds-tab-header [paneReference]="k3">Tab Label 3</cds-tab-header>

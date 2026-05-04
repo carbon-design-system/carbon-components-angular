@@ -15,19 +15,6 @@ import { Tab } from "./tab.component";
 import { TabsStoryModule } from "./stories";
 
 /**
- * Fine-grained composition: `cds-tab-header-group` / `cds-tab-header-group-vertical`
- * with `[paneReference]` and sibling `cds-tab` panes.
- */
-export default {
-	title: "Components/Tabs/Tab header (Fine-grained)",
-	decorators: [
-		moduleMetadata({
-			imports: [TabsStoryModule, IconModule, GridModule, TabsModule]
-		})
-	]
-} as Meta;
-
-/**
  * Panes are projected before the header group in the DOM so `ViewChildren(Tab)` is
  * populated before headers bind `[paneReference]`; flex order keeps the tab bar on top.
  */
@@ -90,6 +77,20 @@ class StoryDismissableTabHeaderGroupComponent {
 		this.cdr.detectChanges();
 	}
 }
+
+/**
+ * Fine-grained composition: `cds-tab-header-group` / `cds-tab-header-group-vertical`
+ * with `[paneReference]` and sibling `cds-tab` panes.
+ */
+export default {
+	title: "Components/Tabs/Tab header (Fine-grained)",
+	decorators: [
+		moduleMetadata({
+			imports: [TabsStoryModule, IconModule, GridModule, TabsModule],
+			declarations: [StoryDismissableTabHeaderGroupComponent]
+		})
+	]
+} as Meta;
 
 const headerGroupRegular = (args) => ({
 	props: args,
@@ -390,11 +391,6 @@ const headerGroupDismissable = (args) => ({
 });
 export const Dismissable = headerGroupDismissable.bind({});
 Dismissable.storyName = "Dismissable";
-Dismissable.decorators = [
-	moduleMetadata({
-		declarations: [StoryDismissableTabHeaderGroupComponent]
-	})
-];
 Dismissable.args = {
 	followFocus: true,
 	cacheActive: true,

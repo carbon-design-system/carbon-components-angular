@@ -75,7 +75,7 @@ import { Tab } from "./tab.component";
 					[description]="tab.iconLabel"
 					[enterDelayMs]="tab.enterDelayMs ?? 100"
 					[leaveDelayMs]="tab.leaveDelayMs ?? 300"
-					[defaultOpen]="tab.defaultOpen"
+					[isOpen]="tab.isTooltipOpen"
 					[disabled]="tab.disabled">
 					<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
 				</cds-tooltip>

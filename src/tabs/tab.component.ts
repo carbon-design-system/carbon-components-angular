@@ -181,7 +181,7 @@ export class Tab implements OnInit {
 	/**
 	 * Icon-only tabs: open the tooltip on first render.
 	 */
-	@Input() defaultOpen = false;
+	@Input() isTooltipOpen = false;
 	/**
 	 * Emits when this tab becomes selected.
 	 */
