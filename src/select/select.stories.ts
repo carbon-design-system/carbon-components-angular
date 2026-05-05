@@ -31,6 +31,7 @@ export default {
 		})
 	],
 	args: {
+		hideLabel: false,
 		skeleton: false,
 		disabled: false,
 		readonly: false,
@@ -83,7 +84,8 @@ const Template = (args) => ({
 			[theme]="theme"
 			[(ngModel)]="model"
 			[fluid]="fluid"
-			[display]="display">
+			[display]="display"
+			[hideLabel]="hideLabel">
 			<option value="default" disabled selected hidden>Choose an option</option>
 			<option value="solong">A much longer option that is worth having around to check how text flows</option>
 			<optgroup label="Category 1">
