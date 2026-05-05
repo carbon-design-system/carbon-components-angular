@@ -62,6 +62,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 		<div
 			class="cds--structured-list"
 			role="table"
+			[attr.aria-label]="ariaLabel"
 			[ngClass]="{
 				'cds--structured-list--flush': flushed,
 				'cds--structured-list--selection': selection,
@@ -103,6 +104,10 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 * Used when `selection = true` as the row radio group `name`
 	 */
 	@Input() name = `structured-list-${StructuredList.listCount++}`;
+	/**
+	 * Accessible label applied to the `role="table"` container.
+	 */
+	@Input() ariaLabel = "Structured list section";
 
 	/**
 	 * Sets the skeleton value for all `ListHeader` to the skeleton value of `StructuredList`.
