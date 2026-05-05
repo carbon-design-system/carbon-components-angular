@@ -85,6 +85,9 @@ export class Button {
 	/**
 	 * @todo remove `cds--btn--${size}` classes in v12
 	 */
+	@HostBinding("class.cds--btn--xs") get extraSmallSize() {
+		return this.size === "xs" && !this.isExpressive;
+	}
 	@HostBinding("class.cds--btn--sm") get smallSize() {
 		return this.size === "sm" && !this.isExpressive;
 	}
@@ -102,6 +105,9 @@ export class Button {
 	}
 
 	// Size classes
+	@HostBinding("class.cds--layout--size-xs") get extraSmallLayoutSize() {
+		return this.size === "xs" && !this.isExpressive;
+	}
 	@HostBinding("class.cds--layout--size-sm") get smallLayoutSize() {
 		return this.size === "sm" && !this.isExpressive;
 	}
