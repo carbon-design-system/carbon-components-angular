@@ -16,7 +16,8 @@ export default {
 	args: {
 		loadingText: "Loading data...",
 		successText: "Data loaded!",
-		errorText: "Data not found"
+		errorText: "Data not found",
+		iconDescription: "Inline loading status"
 	},
 	argTypes: {
 		onSuccess: {
@@ -39,7 +40,8 @@ const Template = (args) => ({
 			(onSuccess)="onSuccess()"
 			[loadingText]="loadingText"
 			[successText]="successText"
-			[errorText]="errorText">
+			[errorText]="errorText"
+			[iconDescription]="iconDescription">
 		</app-inline-loading>
 	`
 });
