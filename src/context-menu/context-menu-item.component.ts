@@ -29,6 +29,7 @@ import { ItemClickEvent } from "./context-menu.types";
 			<ng-container *ngIf="info">{{info}}</ng-container>
 			<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
 		</div>
+		<span *ngIf="danger && dangerDescription" class="cds--visually-hidden">{{dangerDescription}}</span>
 		<ng-content></ng-content>
 	`,
 	styles: [`
@@ -58,6 +59,11 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@Input() checked = false;
 	@Input() icon = "";
 	@Input() value = "";
+	/**
+	 * Provide a description of the menu item for assistive technology when
+	 * `danger` is `true`. Renders a visually-hidden description when shown.
+	 */
+	@Input() dangerDescription = "";
 	@Output() checkedChange = new EventEmitter<boolean>();
 	@Output() itemClick = new EventEmitter<ItemClickEvent>();
 
