@@ -25,7 +25,6 @@ export class TextArea {
 	@HostBinding("class.cds--text-area--invalid") @Input() invalid = false;
 	/**
 	 * Set to `true` to put the textarea in a warning state.
-	 * Mirrors the `warn` prop of the React `TextArea` component.
 	 */
 	@HostBinding("class.cds--text-area--warn") @Input() warn = false;
 	@HostBinding("class.cds--skeleton") @Input() skeleton = false;
