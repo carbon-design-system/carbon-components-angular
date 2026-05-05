@@ -6,6 +6,10 @@ import { Component, Input, OnChanges } from "@angular/core";
 		<p
 			*ngFor="let width of lineWidths"
 			class="cds--skeleton__text"
+			[ngClass]="{
+				'cds--skeleton__heading': heading,
+				'cds--skeleton__text--ai': ai
+			}"
 			[style.width]="width">
 		</p>
 	`
@@ -16,6 +20,16 @@ export class SkeletonText implements OnChanges {
 	@Input() minLineWidth = 100;
 
 	@Input() maxLineWidth = 300;
+
+	/**
+	 * Render a heading-styled skeleton instead of body text.
+	 */
+	@Input() heading = false;
+
+	/**
+	 * When `true`, applies the AI skeleton styling
+	 */
+	@Input() ai = false;
 
 	lineWidths: Array<string>;
 

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 /**
  * Get started with importing the module:
@@ -12,6 +12,14 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "cds-skeleton-placeholder, ibm-skeleton-placeholder",
 	template: `
-		<div class="cds--skeleton__placeholder"></div>`
+		<div
+			class="cds--skeleton__placeholder"
+			[class.cds--skeleton__placeholder--ai]="ai">
+		</div>`
 })
-export class SkeletonPlaceholder { }
+export class SkeletonPlaceholder {
+	/**
+	 * When `true`, applies the AI skeleton gradient treatment
+	 */
+	@Input() ai = false;
+}
