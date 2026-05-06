@@ -6,8 +6,7 @@ import {
 	SimpleChanges,
 	OnChanges,
 	HostBinding,
-	AfterViewInit,
-	ChangeDetectorRef
+	AfterViewInit
 } from "@angular/core";
 
 /**
@@ -36,7 +35,7 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 		left: 0,
 		top: 0
 	};
-	@Input() size: "sm" | "md" | "lg" = "lg";
+	@Input() size: "xs" | "sm" | "md" | "lg" = "lg";
 
 	@HostBinding("class") get hostClass() {
 		const open = this.open ? "cds--menu--open cds--menu--shown" : "";

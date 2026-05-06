@@ -7,7 +7,9 @@ import {
 	EventEmitter,
 	AfterViewInit,
 	HostListener,
-	ElementRef
+	ElementRef,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
@@ -41,20 +43,41 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 			[ngClass]="{
 				'cds--content-switcher--sm': size === 'sm',
 				'cds--content-switcher--md': size === 'md',
-				'cds--content-switcher--lg': size === 'lg'
+				'cds--content-switcher--lg': size === 'lg',
+				'cds--content-switcher--low-contrast': lowContrast
 			}"
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
 	`
 })
-export class ContentSwitcher implements AfterViewInit {
+export class ContentSwitcher implements AfterViewInit, OnChanges {
 	@Input() ariaLabel = "content switcher";
 
 	/**
 	 * Set content switcher size
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
+
+	/**
+	 * Specify whether the ContentSwitcher should be the low contrast variant.
+	 */
+	@Input() lowContrast = false;
+
+	/**
+	 * When `automatic`, the focused switcher will be selected by default. For `manual`,
+	 * user will have to manually select via Enter/space (which fire the native click handler).
+	 *
+	 * Passes selected mode to all content switcher children
+	 */
+	@Input() selectionMode: "automatic" | "manual" = "automatic";
+
+	/**
+	 * Index of the currently selected option (zero-based). When set, the
+	 * matching `cdsContentOption` is activated and any other option becomes
+	 * inactive.
+	 */
+	@Input() selectedIndex: number | undefined;
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`
@@ -65,12 +88,29 @@ export class ContentSwitcher implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef) {}
 
-	ngAfterViewInit() {
-		const firstActive = this.options.find(option => option.active);
-		// delay setting active until the DOM has settled
-		if (!firstActive) {
-			setTimeout(() => this.options.first.active = true);
+	ngOnChanges(changes: SimpleChanges) {
+		if (this.options) {
+			if (changes.selectedIndex) {
+				this.applySelectedIndex();
+			}
+			if (changes.selectionMode) {
+				this.options.forEach(option => option.selectionMode = this.selectionMode);
+			}
 		}
+	}
+
+	ngAfterViewInit() {
+		if (this.selectedIndex !== undefined) {
+			this.applySelectedIndex();
+		} else {
+			const firstActive = this.options.find(option => option.active);
+			// delay setting active until the DOM has settled
+			if (!firstActive) {
+				setTimeout(() => this.options.first.active = true);
+			}
+		}
+		// propagate selectionMode so each option can honor 'manual' selection
+		this.options.forEach(option => option.selectionMode = this.selectionMode);
 		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option => {
 			option.selected.subscribe((_: boolean) => {
@@ -120,5 +160,22 @@ export class ContentSwitcher implements AfterViewInit {
 				buttonList[buttonList.length - 1].focus();
 				break;
 		}
+	}
+
+	private applySelectedIndex() {
+		if (this.selectedIndex === undefined) {
+			return;
+		}
+		const list = this.options.toArray();
+		if (!list.length) {
+			return;
+		}
+		const target = list[this.selectedIndex];
+		if (!target) {
+			return;
+		}
+		list.forEach(option => {
+			option.active = option === target;
+		});
 	}
 }

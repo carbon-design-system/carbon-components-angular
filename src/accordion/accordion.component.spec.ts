@@ -8,17 +8,18 @@ import { Accordion } from "./accordion.component";
 
 @Component({
 	template: `
-	<cds-accordion [size]="size">
+	<cds-accordion [size]="size" [disabled]="accordionDisabled">
 		<cds-accordion-item
 		[disabled]="disabled"
 		[title]="title"
 		[skeleton]="skeleton">
 			test-content
 		</cds-accordion-item>
-	<cds-accordion>`
+	</cds-accordion>`
 })
 class AccordionTest {
 	disabled = false;
+	accordionDisabled = false;
 	title = "Section 1";
 	skeleton = "false";
 	size = "md";
@@ -74,6 +75,46 @@ describe("Accordion", () => {
 		debugElement.nativeElement.click();
 		fixture.detectChanges();
 		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("false");
+	});
+
+	it("should disable items when accordion disabled is true, overriding item disabled=false", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		wrapper.disabled = false;
+		wrapper.accordionDisabled = true;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css(".cds--accordion__heading"));
+		debugElement.nativeElement.click();
+		fixture.detectChanges();
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("false");
+	});
+
+	it("should restore item disabled when accordion disabled becomes false", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		wrapper.disabled = true;
+		wrapper.accordionDisabled = true;
+		fixture.detectChanges();
+		wrapper.accordionDisabled = false;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css(".cds--accordion__heading"));
+		debugElement.nativeElement.click();
+		fixture.detectChanges();
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("false");
+	});
+
+	it("should allow expand when accordion and item are not disabled", () => {
+		fixture = TestBed.createComponent(AccordionTest);
+		wrapper = fixture.componentInstance;
+		wrapper.disabled = false;
+		wrapper.accordionDisabled = true;
+		fixture.detectChanges();
+		wrapper.accordionDisabled = false;
+		fixture.detectChanges();
+		debugElement = fixture.debugElement.query(By.css(".cds--accordion__heading"));
+		debugElement.nativeElement.click();
+		fixture.detectChanges();
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("true");
 	});
 
 	it("should set test-content into accordion item", () => {

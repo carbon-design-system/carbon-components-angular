@@ -58,11 +58,29 @@ export class AccordionItem {
 
 	@HostBinding("class.cds--accordion__item") itemClass = true;
 	@HostBinding("class.cds--accordion__item--active") @Input() expanded = false;
-	@HostBinding("class.cds--accordion__item--disabled") @Input() disabled = false;
+	@HostBinding("class.cds--accordion__item--disabled") get disabledHostClass(): boolean {
+		return this.disabled;
+	}
 	@HostBinding("attr.role") role = "listitem";
 
+	protected _itemDisabled = false;
+	protected _parentDisabled = false;
+
+	@Input() set disabled(value: boolean) {
+		this._itemDisabled = value;
+	}
+
+	get disabled(): boolean {
+		return this._parentDisabled || this._itemDisabled;
+	}
+
+	// Called by Accordion to cascade disabled without overwriting the item `disabled` input.
+	setParentDisabled(value: boolean): void {
+		this._parentDisabled = value;
+	}
+
 	public toggleExpanded() {
-		if (!this.skeleton) {
+		if (!this.skeleton && !this.disabled) {
 			this.expanded = !this.expanded;
 			this.selected.emit({id: this.id, expanded: this.expanded});
 		}

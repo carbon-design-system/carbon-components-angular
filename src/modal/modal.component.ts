@@ -90,7 +90,8 @@ export class ModalDemo {
 					'cds--modal-container--xs': size === 'xs',
 					'cds--modal-container--sm': size === 'sm',
 					'cds--modal-container--md': size === 'md',
-					'cds--modal-container--lg': size === 'lg'
+					'cds--modal-container--lg': size === 'lg',
+					'cds--modal-container--full-width': isFullWidth
 				}"
 				role="dialog"
 				aria-modal="true"
@@ -116,6 +117,12 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 * Label for the modal.
 	 */
 	@Input() ariaLabel = "default";
+
+	/**
+	 * Render the modal in full-width layout (applies the
+	 * `cds--modal-container--full-width` modifier).
+	 */
+	@Input() isFullWidth = false;
 
 	/**
 	 * Controls the visibility of the modal when used directly in a template
@@ -155,7 +162,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
 	 */
-	selectorPrimaryFocus = "[modal-primary-focus]";
+	@Input() selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
 	 * Creates an instance of `Modal`.

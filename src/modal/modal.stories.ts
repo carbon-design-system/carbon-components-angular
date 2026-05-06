@@ -50,14 +50,22 @@ const Template = (args) => ({
 		You can create your own implementation by using the component source found at:
 		https://github.com/IBM/carbon-components-angular/tree/master/src/modal/stories/modal.component.ts
 		-->
-		<app-modal-story [modalText]="modalText" [size]="size" [showCloseButton]="showCloseButton"></app-modal-story>
+		<app-modal-story
+			[modalText]="modalText"
+			[size]="size"
+			[showCloseButton]="showCloseButton"
+			[isFullWidth]="isFullWidth"
+			[ariaLabelledby]="ariaLabelledby">
+		</app-modal-story>
 		<cds-placeholder></cds-placeholder>
 	`
 });
 export const Basic = Template.bind({});
 Basic.args = {
 	modalText: "Hello, world!",
-	showCloseButton: true
+	showCloseButton: true,
+	isFullWidth: false,
+	ariaLabelledby: "sample-modal-heading"
 };
 
 const FormTemplate = (args) => ({

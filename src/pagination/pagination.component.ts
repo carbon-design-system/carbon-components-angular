@@ -54,7 +54,10 @@ export interface PaginationTranslations {
 	<div
 		class="cds--pagination"
 		[ngClass]="{
-			'cds--skeleton': skeleton
+			'cds--skeleton': skeleton,
+			'cds--pagination--sm': size === 'sm',
+			'cds--pagination--md': size === 'md',
+			'cds--pagination--lg': size === 'lg'
 		}">
 		<!-- left skeleton div -->
 		<div *ngIf="skeleton" class="cds--pagination__left">
@@ -212,6 +215,10 @@ export class Pagination {
 	 * Set to `true` to disable the select box that changes the page.
 	 */
 	@Input() pageInputDisabled = false;
+	/**
+	 * Set `size` of pagination
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Controls wether or not to show the page selects
 	 */

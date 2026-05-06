@@ -84,6 +84,15 @@ class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestro
 		this.paneQueryChangesSub?.unsubscribe();
 	}
 
+	paneAt(index: number): Tab {
+		return this.paneQuery.get(index) as Tab;
+	}
+
+	onTabClose(tabIndex: number) {
+		this.renderedTabs = this.renderedTabs.filter((_, i) => i !== tabIndex);
+		this.scheduleRefreshPanesReady();
+	}
+
 	private scheduleRefreshPanesReady(): void {
 		queueMicrotask(() => {
 			const ready =
@@ -95,15 +104,6 @@ class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestro
 				this.cdr.detectChanges();
 			}
 		});
-	}
-
-	paneAt(index: number): Tab {
-		return this.paneQuery.get(index) as Tab;
-	}
-
-	onTabClose(tabIndex: number) {
-		this.renderedTabs = this.renderedTabs.filter((_, i) => i !== tabIndex);
-		this.scheduleRefreshPanesReady();
 	}
 }
 

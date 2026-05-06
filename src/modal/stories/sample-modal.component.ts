@@ -11,6 +11,7 @@ import {
 		<cds-modal
 			[size]="size"
 			[open]="open"
+			[isFullWidth]="isFullWidth"
 			(overlaySelected)="closeModal()">
 			<cds-modal-header (closeSelect)="closeModal()" [showCloseButton]="showCloseButton">
 				<h2 cdsModalHeaderLabel>Label</h2>
@@ -31,6 +32,7 @@ export class SampleModal extends BaseModal {
 	constructor(
 		@Inject("modalText") public modalText,
 		@Inject("size") public size,
+		@Inject("isFullWidth") public isFullWidth,
 		@Inject("showCloseButton") public showCloseButton = true,
 		protected modalService: ModalService) {
 		super();

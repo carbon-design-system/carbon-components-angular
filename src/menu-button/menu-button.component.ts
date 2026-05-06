@@ -91,7 +91,7 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	@HostBinding("class.cds--menu-button__container") containerClass = true;
 
 	@Input() kind: "primary" | "tertiary" | "ghost" = "primary";
-	@Input() size: "sm" | "md" | "lg" = "lg";
+	@Input() size: "xs" | "sm" | "md" | "lg" = "lg";
 	@Input() menuAlignment: MenuButtonPlacement = "bottom";
 	@Input() buttonTabIndex: "0" | "1" | "-1" | string = "0";
 	@Input() disabled = false;

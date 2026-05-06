@@ -67,7 +67,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					*ngIf="label"
 					[for]="id"
 					class="cds--label"
-					[ngClass]="{'cds--label--disabled': disabled}">
+					[ngClass]="{
+						'cds--label--disabled': disabled,
+						'cds--visually-hidden': hideLabel
+					}">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
@@ -244,6 +247,12 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 	@Input() ariaLabel: string;
+
+	/**
+	 * Specify whether the visible label should be hidden but still available
+	 * to assistive technology.
+	 */
+	@Input() hideLabel = false;
 
 	/**
 	 * Experimental: enable fluid state

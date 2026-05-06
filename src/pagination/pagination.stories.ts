@@ -29,6 +29,7 @@ const Template = (args) => ({
 		<app-pagination
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
+			[paginationSize]="paginationSize"
 			[pagesUnknown]="pagesUnknown"
 			[totalDataLength]="totalDataLength"
 			[showPageInput]="showPageInput"
@@ -42,6 +43,7 @@ export const Basic = Template.bind({});
 Basic.args = {
 	disabled: false,
 	pageInputDisabled: false,
+	paginationSize: "md",
 	pagesUnknown: false,
 	totalDataLength: 105,
 	showPageInput: true,

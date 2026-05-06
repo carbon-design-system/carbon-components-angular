@@ -45,7 +45,8 @@ export class NumberChange {
 			class="cds--number"
 			[ngClass]="{
 				'cds--number--light': theme === 'light',
-				'cds--number--nolabel': !label,
+				'cds--number--nolabel': hideLabel || !label,
+				'cds--number--nosteppers': hideSteppers,
 				'cds--number--helpertext': helperText,
 				'cds--skeleton' : skeleton,
 				'cds--number--sm': size === 'sm',
@@ -56,7 +57,10 @@ export class NumberChange {
 				*ngIf="!skeleton && label"
 				[for]="id"
 				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -78,6 +82,8 @@ export class NumberChange {
 					[required]="required"
 					[attr.aria-label]="ariaLabel"
 					[attr.data-invalid]="invalid ? invalid : null"
+					[attr.inputmode]="inputMode || null"
+					[attr.pattern]="pattern || null"
 					[placeholder]="placeholder"
 					(focus)="fluid ? handleFocus($event): null"
 					(blur)="fluid ? handleFocus($event): null"
@@ -99,7 +105,7 @@ export class NumberChange {
 					size="16"
 					class="cds--number__invalid cds--number__invalid--warning">
 				</svg>
-				<div *ngIf="!skeleton" class="cds--number__controls">
+				<div *ngIf="!skeleton && !hideSteppers" class="cds--number__controls">
 					<button
 						class="cds--number__control-btn down-icon"
 						type="button"
@@ -256,6 +262,27 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Sets the arialabel for input
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Visually hide the label while keeping it available for screen readers.
+	 */
+	@Input() hideLabel = false;
+	/**
+	 * Hide the increment / decrement controls.
+	 */
+	@Input() hideSteppers = false;
+	/**
+	 * `inputmode` attribute hint for mobile keyboards.
+	 * Instruct the browser which keyboard to display on mobile devices. Defaults
+	 * to `decimal`, but note that standard numeric keyboards vary across devices
+	 * and operating systems.
+	 *
+	 * https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/
+	 */
+	@Input() inputMode = "decimal";
+	/**
+	 * `pattern` attribute applied to the underlying `<input>`.
+	 */
+	@Input() pattern: string;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
