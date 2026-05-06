@@ -45,7 +45,7 @@ export class NumberChange {
 			class="cds--number"
 			[ngClass]="{
 				'cds--number--light': theme === 'light',
-				'cds--number--nolabel': hideLabel,
+				'cds--number--nolabel': hideLabel || !label,
 				'cds--number--nosteppers': hideSteppers,
 				'cds--number--helpertext': helperText,
 				'cds--skeleton' : skeleton,
