@@ -30,7 +30,9 @@ export default {
 		theme: "dark",
 		warn: false,
 		warnText: "Warn text",
-		fluid: false
+		fluid: false,
+		hideLabel: false,
+		hideSteppers: false
 	},
 	argTypes: {
 		size: {
@@ -65,6 +67,8 @@ const Template = (args) => ({
 			[readonly]="readonly"
 			[disabled]="disabled"
 			[fluid]="fluid"
+			[hideLabel]="hideLabel"
+			[hideSteppers]="hideSteppers"
 			(change)="change($event)">
 		</cds-number>
 	`
@@ -95,6 +99,8 @@ const ModelTemplate = (args) => ({
 			[disabled]="disabled"
 			[(ngModel)]="value"
 			[fluid]="fluid"
+			[hideLabel]="hideLabel"
+			[hideSteppers]="hideSteppers"
 			(change)="change($event)">
 		</cds-number>
 		{{ value }}
