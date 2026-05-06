@@ -278,7 +278,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 *
 	 * https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/
 	 */
-	@Input() inputMode: string = "decimal";
+	@Input() inputMode = "decimal";
 	/**
 	 * `pattern` attribute applied to the underlying `<input>`.
 	 */

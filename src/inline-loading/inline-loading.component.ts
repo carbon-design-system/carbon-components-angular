@@ -100,7 +100,7 @@ export class InlineLoading {
 	 * otherwise).
 	 */
 	@HostBinding("attr.aria-live") get hostAriaLive(): string | null {
-		if(this.state === InlineLoadingState.Hidden) {
+		if (this.state === InlineLoadingState.Hidden) {
 			return null;
 		}
 		return this.state === InlineLoadingState.Inactive ? "off" : "assertive";
