@@ -73,8 +73,8 @@ export class Accordion implements AfterContentInit {
 
 	/**
 	 * Specify whether the entire accordion should be disabled.
-	 * When set on the Accordion, the value cascades to all child AccordionItems
-	 * unless they explicitly override the `disabled` input.
+	 * When `true`, all items are disabled regardless of their own `disabled` input.
+	 * When `false`, each item uses its own `disabled` binding again.
 	 */
 	@Input()
 	set disabled(value: boolean) {
@@ -94,8 +94,7 @@ export class Accordion implements AfterContentInit {
 		if (this.children) {
 			this.children.toArray().forEach(child => {
 				child.skeleton = this.skeleton;
-				child.disabled = this.disabled;
-				// No accordion-item should be expanded when disabled
+				child.setParentDisabled(this.disabled);
 				if (this.disabled) {
 					child.expanded = false;
 				}
