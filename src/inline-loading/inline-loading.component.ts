@@ -96,7 +96,7 @@ export class InlineLoading {
 	@Input() iconDescription: string;
 
 	/**
-	 * `aria-live` value applied to the host based on `state` (`'assertive'` for error states, `'polite'`
+	 * `aria-live` value applied to the host based on `state` (`'off'` for inactive states, `'assertive'`
 	 * otherwise).
 	 */
 	@HostBinding("attr.aria-live") get hostAriaLive(): string | null {
