@@ -50,6 +50,13 @@ export class ContentSwitcherOption implements OnInit {
 	@HostBinding("attr.aria-selected") ariaSelected = false;
 	@HostBinding("attr.tabIndex") tabindex = "-1";
 
+	/**
+	 * @internal
+	 * When `automatic`, the focused switcher will be selected by default. For `manual`,
+	 * user will have to manually select via Enter/space (which fire the native click handler)
+	 */
+	public selectionMode: "automatic" | "manual" = "automatic";
+
 	protected _active = false;
 
 	constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
@@ -68,14 +75,17 @@ export class ContentSwitcherOption implements OnInit {
 		this.onFocus.emit(event);
 		// skip setting and emitting if the option is already active
 		if (this.active) { return; }
+		// In manual selection mode, focus only moves focus, not select switcher
+		if (this.selectionMode === "manual") {
+			return;
+		}
 		this.active = true;
 		this.selected.emit(true);
 	}
 
 	/*
-	* encapsulating the content in a span with cds--content-switcher__label class
-	* to mimic what is done in the react version
-	*/
+	 * Wrap projected content in a span with the `cds--content-switcher__label` class.
+	 */
 	ngOnInit(): void {
 		const hostNativeElement = (this.hostElement.nativeElement as HTMLElement);
 		const spanWrapper = this.renderer.createElement("span");
