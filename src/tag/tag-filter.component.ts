@@ -20,6 +20,13 @@ import { IconDirective } from "carbon-components-angular/icon";
 				(click)="onClick($event)">
 				<ng-content />
 			</span>
+			@if (decorator) {
+
+				<div class="cds--tag__decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+
+}
 			<button
 				class="cds--tag__close-icon"
 				(click)="onClose($event)"

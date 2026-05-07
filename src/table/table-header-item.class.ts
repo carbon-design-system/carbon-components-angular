@@ -97,6 +97,11 @@ export class TableHeaderItem {
 	className: string;
 
 	/**
+	 * When true, this column header includes an AI label and applies Carbon AI table styles.
+	 */
+	hasAILabelHeader = false;
+
+	/**
 	 * Style for the column, applied to every element in the column.
 	 *
 	 * ngStyle-like format

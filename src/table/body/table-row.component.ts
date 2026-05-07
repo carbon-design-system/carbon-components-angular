@@ -22,6 +22,21 @@ import { NgStyle } from "@angular/common";
 	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
 		@if (model) {
+			@if (withRowAILabels && row[0] && model.getHeader(0) && model.getHeader(0).visible) {
+				<td
+					cdsTableData
+					[headers]="model.getHeaderId(0, row[0].colSpan)"
+					[item]="row[0]"
+					[title]="row[0].title"
+					[class]="cellClassNames(0, row[0])"
+					[ngStyle]="model.getHeader(0).style"
+					[skeleton]="skeleton"
+					[attr.colspan]="row[0].colSpan"
+					[attr.rowspan]="row[0].rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
+				</td>
+			}
 			@if (model.hasExpandableRows()) {
 				<td
 					cdsTableExpandButton
@@ -63,13 +78,13 @@ import { NgStyle } from "@angular/common";
 				</td>
 			}
 			@for (item of row; track item; let j = $index) {
-				@if (item && model.getHeader(j) && model.getHeader(j).visible) {
+				@if ((!withRowAILabels || j > 0) && item && model.getHeader(j) && model.getHeader(j).visible) {
 					<td
 						cdsTableData
 						[headers]="model.getHeaderId(j, item.colSpan)"
 						[item]="item"
 						[title]="item.title"
-						[class]="model.getHeader(j).className"
+						[class]="cellClassNames(j, item)"
 						[ngStyle]="model.getHeader(j).style"
 						[skeleton]="skeleton"
 						[attr.colspan]="item.colSpan"
@@ -78,12 +93,13 @@ import { NgStyle } from "@angular/common";
 						(keydown.enter)="onRowClick()">
 					</td>
 				}
-				@if (item && model.getHeader(j) === null) {
+				@if ((!withRowAILabels || j > 0) && item && model.getHeader(j) == null) {
 					<td
 						cdsTableData
 						[headers]="model.getHeaderId(j, item.colSpan)"
 						[item]="item"
 						[title]="item.title"
+						[class]="cellClassNames(j, item)"
 						[skeleton]="skeleton"
 						[attr.colspan]="item.colSpan"
 						[attr.rowspan]="item.rowSpan"
@@ -93,7 +109,7 @@ import { NgStyle } from "@angular/common";
 				}
 			}
 		}
-		<ng-content />
+		<ng-content></ng-content>
 	`,
 	standalone: true,
 	imports: [
@@ -197,6 +213,19 @@ export class TableRowComponent {
 		return this.selected;
 	}
 
+	/**
+	 * When true (and the row carries an AI decorator), applies Carbon AI row classes.
+	 */
+	@Input() withRowAILabels = false;
+
+	@HostBinding("class.cds--data-table--ai-label-row") get aiLabelRowClass() {
+		return this.withRowAILabels && this.row?.[0]?.hasAILabelDecorator === true;
+	}
+
+	@HostBinding("class.cds--data-table--slug-row") get slugRowClass() {
+		return this.withRowAILabels && this.row?.[0]?.hasAILabelDecorator === true;
+	}
+
 	@HostBinding("class.cds--parent-row") get parentRowClass() {
 		return this.expandable;
 	}
@@ -247,5 +276,14 @@ export class TableRowComponent {
 
 	getExpandButtonAriaLabel(): Observable<string> {
 		return this._expandButtonAriaLabel.subject;
+	}
+
+	cellClassNames(j: number, item: TableItem): string {
+		const header = this.model.getHeader(j);
+		const parts = [header?.className, item?.cellClassName].filter(Boolean);
+		if (header?.hasAILabelHeader) {
+			parts.push("cds--table-cell--column-slug");
+		}
+		return parts.join(" ");
 	}
 }

@@ -21,7 +21,11 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-content-switcher (selected)="selected($event)">
+		<cds-content-switcher
+			[lowContrast]="lowContrast"
+			[selectionMode]="selectionMode"
+			[selectedIndex]="selectedIndex"
+			(selected)="selected($event)">
 			<button cdsContentOption name="First">First section</button>
 			<button cdsContentOption name="Second">Second section</button>
 			<button cdsContentOption name="Third">Third section</button>
@@ -29,3 +33,11 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+Basic.args = {
+	lowContrast: false,
+	selectionMode: "automatic",
+	selectedIndex: 0
+};
+Basic.argTypes = {
+	selected: { action: "selected" }
+};

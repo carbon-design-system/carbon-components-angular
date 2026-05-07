@@ -40,6 +40,28 @@ export class Link {
 	@HostBinding("class.cds--link--inline") inline = false;
 
 	/**
+	 * Set to `sm`, `md`, or `lg` to scale the link typography.
+	 */
+	@Input() size: "sm" | "md" | "lg";
+
+	@HostBinding("class.cds--link--sm") get sizeSm(): boolean {
+		return this.size === "sm";
+	}
+
+	@HostBinding("class.cds--link--md") get sizeMd(): boolean {
+		return this.size === "md";
+	}
+
+	@HostBinding("class.cds--link--lg") get sizeLg(): boolean {
+		return this.size === "lg";
+	}
+
+	/**
+	 * Set to `true` to apply visited link styling.
+	 */
+	@Input() @HostBinding("class.cds--link--visited") visited = false;
+
+	/**
 	 * Set to true to disable link.
 	 */
 	@Input()

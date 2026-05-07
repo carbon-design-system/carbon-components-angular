@@ -114,7 +114,7 @@ export class IconDirective implements AfterViewInit, OnChanges {
 		}
 
 		if (attributes["title"]) {
-			const title = document.createElement("title");
+			const title = document.createElementNS(xmlns, "title");
 			title.textContent = attributes.title as string;
 			IconDirective.titleIdCounter++;
 			title.setAttribute("id", `${icon.name}-title-${IconDirective.titleIdCounter}`);

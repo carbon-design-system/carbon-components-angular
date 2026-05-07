@@ -56,165 +56,182 @@ export interface PaginationTranslations {
 @Component({
 	selector: "cds-pagination, ibm-pagination",
 	template: `
-		<div
-			class="cds--pagination"
-			[ngClass]="{
-				'cds--skeleton': skeleton
-			}">
-			<!-- left skeleton div -->
-			@if (skeleton) {
-				<div class="cds--pagination__left">
-					<p class="cds--skeleton__text" style="width: 70px"></p>
-					<p class="cds--skeleton__text" style="width: 35px"></p>
-					<p class="cds--skeleton__text" style="width: 105px"></p>
+	<div
+		class="cds--pagination"
+		[ngClass]="{
+			'cds--skeleton': skeleton,
+			'cds--pagination--sm': size === 'sm',
+			'cds--pagination--md': size === 'md',
+			'cds--pagination--lg': size === 'lg'
+		}">
+		<!-- left skeleton div -->
+		@if (skeleton) {
+			<div class="cds--pagination__left">
+				<p class="cds--skeleton__text" style="width: 70px"></p>
+				<p class="cds--skeleton__text" style="width: 35px"></p>
+				<p class="cds--skeleton__text" style="width: 105px"></p>
+			</div>
+		}
+
+		@if (!skeleton) {
+			<div class="cds--pagination__left">
+			@if (showPageInput) {
+
+				<label class="cds--pagination__text" [for]="itemsPerPageSelectId">
+					{{itemsPerPageText.subject | async}}
+				</label>
+				<div
+					class="cds--select cds--select--inline cds--select__item-count"
+					[class.cds--select--disabled]="pageInputDisabled">
+					<select
+						[id]="itemsPerPageSelectId"
+						[(ngModel)]="itemsPerPage"
+						[disabled]="pageInputDisabled"
+						class="cds--select-input">
+						@for (option of itemsPerPageOptions; track option) {
+							<option
+								class="cds--select-option"
+								[value]="option">
+								{{ option }}
+							</option>
+						}
+					</select>
+					<svg
+						cdsIcon="chevron--down"
+						size="16"
+						style="display: inherit"
+						class="cds--select__arrow"
+						aria-hidden="true"
+						[attr.ariaLabel]="optionsListText.subject | async">
+					</svg>
 				</div>
-			} @else {
-				<div class="cds--pagination__left">
-					@if (showPageInput) {
-						<label class="cds--pagination__text" [for]="itemsPerPageSelectId">
-							{{itemsPerPageText.subject | async}}
-						</label>
-						<div
-							class="cds--select cds--select--inline cds--select__item-count"
-							[class.cds--select--disabled]="pageInputDisabled">
-							<select
-								[id]="itemsPerPageSelectId"
-								[(ngModel)]="itemsPerPage"
-								[disabled]="pageInputDisabled"
-								class="cds--select-input">
-								@for (option of itemsPerPageOptions; track option) {
-									<option class="cds--select-option" [value]="option">
-										{{ option }}
-									</option>
-								}
-							</select>
-							<svg
-								cdsIcon="chevron--down"
-								size="16"
-								style="display: inherit"
-								class="cds--select__arrow"
-								aria-hidden="true"
-								[attr.ariaLabel]="optionsListText.subject | async">
-							</svg>
-						</div>
-					}
-					@if (!pagesUnknown && totalDataLength <= 1) {
-						<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-							{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
-						</span>
-					}
-					@if (!pagesUnknown && totalDataLength > 1) {
-						<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-							{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
-						</span>
-					}
-					@if (pagesUnknown) {
-						<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-							{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
-						</span>
-					}
-				</div>
+
+}
+			@if (!pagesUnknown && totalDataLength <= 1) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+				</span>
 			}
-
-			<!-- right skeleton div -->
-			@if (skeleton) {
-				<div class="cds--pagination__right">
-					<p class="cds--skeleton__text" style="width: 70px"></p>
-				</div>
-			} @else {
-				<div class="cds--pagination__right">
-					@if (pagesUnknown) {
-						<span class="cds--pagination__text cds--pagination__page-text">
-							@if (!showPageInput) {
-								{{currentPage}}
-							}
-							{{pageText.subject | async}}
-						</span>
-					}
-					@if (showPageInput) {
-							<div
-								class="cds--select cds--select--inline cds--select__page-number"
-								[class.cds--select--disabled]="pageInputDisabled">
-								<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>
-								@if (pageOptions.length > pageSelectThreshold) {
-									<input
-										style="padding-right: 1rem; margin-right: 1rem;"
-										[id]="currentPageSelectId"
-										type="number"
-										min="1"
-										[max]="pageOptions.length"
-										class="cds--select-input"
-										[(ngModel)]="currentPage">
-									}
-								@if (pageOptions.length <= pageSelectThreshold) {
-									<select
-										[id]="currentPageSelectId"
-										class="cds--select-input"
-										[disabled]="pageInputDisabled"
-										[(ngModel)]="currentPage">
-										@for (page of pageOptions; track page;) {
-											<option class="cds--select-option" [value]="page">{{page}}</option>
-										}
-									</select>
-									<svg
-										cdsIcon="chevron--down"
-										size="16"
-										style="display: inherit;"
-										class="cds--select__arrow"
-										[attr.ariaLabel]="optionsListText.subject | async">
-									</svg>
-								}
-							</div>
-					}
-
-					@if (!pagesUnknown && lastPage <= 1) {
-						<span class="cds--pagination__text">
-							@if (!showPageInput) {
-								{{currentPage}}
-							}
-							{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
-						</span>
-					}
-					@if (!pagesUnknown && lastPage > 1) {
-						<span class="cds--pagination__text">
-							@if (!showPageInput) {
-								{{currentPage}}
-							}
-							{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
-						</span>
-					}
-					<div class="cds--pagination__control-buttons">
-						<button
-							cdsButton="ghost"
-							iconOnly="true"
-							class="cds--pagination__button cds--pagination__button--backward"
-							[ngClass]="{
-								'cds--pagination__button--no-index': currentPage <= 1 || disabled
-							}"
-							tabindex="0"
-							[attr.aria-label]="backwardText.subject | async"
-							(click)="selectPage.emit(previousPage)"
-							[disabled]="(currentPage <= 1 || disabled ? true : null)">
-							<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>
-						</button>
-
-						<button
-							cdsButton="ghost"
-							iconOnly="true"
-							class="cds--pagination__button cds--pagination__button--forward"
-							[ngClass]="{
-								'cds--pagination__button--no-index': currentPage >= lastPage || disabled
-							}"
-							tabindex="0"
-							[attr.aria-label]="forwardText.subject | async"
-							(click)="selectPage.emit(nextPage)"
-							[disabled]="(currentPage >= lastPage || disabled ? true : null)">
-							<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>
-						</button>
-					</div>
-				</div>
+			@if (!pagesUnknown && totalDataLength > 1) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+				</span>
+			}
+			@if (pagesUnknown) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
+				</span>
 			}
 		</div>
+}
+
+		<!-- right skeleton div -->
+		@if (skeleton) {
+			<div class="cds--pagination__right">
+				<p class="cds--skeleton__text" style="width: 70px"></p>
+			</div>
+		}
+
+		@if (!skeleton) {
+			<div class="cds--pagination__right">
+			@if (pagesUnknown) {
+				<span class="cds--pagination__text cds--pagination__page-text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{pageText.subject | async}}
+				</span>
+			}
+			@if (showPageInput) {
+
+				<div
+					class="cds--select cds--select--inline cds--select__page-number"
+					[class.cds--select--disabled]="pageInputDisabled">
+					<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>
+					@if (pageOptions.length > pageSelectThreshold) {
+						<input
+							style="padding-right: 1rem; margin-right: 1rem;"
+							[id]="currentPageSelectId"
+							type="number"
+							min="1"
+							[max]="pageOptions.length"
+							class="cds--select-input"
+							[(ngModel)]="currentPage">
+					}
+					@if (pageOptions.length <= pageSelectThreshold) {
+						<select
+							[id]="currentPageSelectId"
+							class="cds--select-input"
+							[disabled]="pageInputDisabled"
+							[(ngModel)]="currentPage">
+							@for (page of pageOptions; track page; let i = $index) {
+								<option class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
+							}
+						</select>
+					}
+					@if (pageOptions.length <= pageSelectThreshold) {
+						<svg
+							cdsIcon="chevron--down"
+							size="16"
+							style="display: inherit;"
+							class="cds--select__arrow"
+							[attr.ariaLabel]="optionsListText.subject | async">
+						</svg>
+					}
+				</div>
+
+}
+
+			@if (!pagesUnknown && lastPage <= 1) {
+				<span class="cds--pagination__text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
+				</span>
+			}
+			@if (!pagesUnknown && lastPage > 1) {
+				<span class="cds--pagination__text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
+				</span>
+			}
+			<div class="cds--pagination__control-buttons">
+				<button
+					cdsButton="ghost"
+					iconOnly="true"
+					class="cds--pagination__button cds--pagination__button--backward"
+					[ngClass]="{
+						'cds--pagination__button--no-index': currentPage <= 1 || backwardDisabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="backwardText.subject | async"
+					(click)="selectPage.emit(previousPage)"
+					[disabled]="(currentPage <= 1 || backwardDisabled ? true : null)">
+					<svg cdsIcon="caret--left" size="16" class="cds--btn__icon"></svg>
+				</button>
+
+				<button
+					cdsButton="ghost"
+					iconOnly="true"
+					class="
+						cds--pagination__button
+						cds--pagination__button--forward"
+					[ngClass]="{
+						'cds--pagination__button--no-index': currentPage >= lastPage || forwardDisabled
+					}"
+					tabindex="0"
+					[attr.aria-label]="forwardText.subject | async"
+					(click)="selectPage.emit(nextPage)"
+					[disabled]="(currentPage >= lastPage || forwardDisabled ? true : null)">
+					<svg cdsIcon="caret--right" size="16" class="cds--btn__icon"></svg>
+				</button>
+			</div>
+		</div>
+}
+	</div>
 	`,
 	standalone: true,
 	imports: [
@@ -242,11 +259,18 @@ export class Pagination {
 	/**
 	 * Set to `true` to disable the backward/forward buttons.
 	 */
-	@Input() disabled = false;
+	@Input() set disabled(value: boolean) {
+		this.backwardDisabled = value;
+		this.forwardDisabled = value;
+	}
 	/**
 	 * Set to `true` to disable the select box that changes the page.
 	 */
 	@Input() pageInputDisabled = false;
+	/**
+	 * Set `size` of pagination
+	 */
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Controls wether or not to show the page selects
 	 */
@@ -256,6 +280,9 @@ export class Pagination {
 	 */
 	@Input() pagesUnknown = false;
 	@Input() pageSelectThreshold = 1000;
+
+	@Input() backwardDisabled = false;
+	@Input() forwardDisabled = false;
 
 	/**
 	 * Expects an object that contains some or all of:

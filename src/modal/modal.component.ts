@@ -11,7 +11,8 @@ import {
 	OnChanges,
 	Renderer2,
 	Inject,
-	OnDestroy
+	OnDestroy,
+	TemplateRef
 } from "@angular/core";
 import { DOCUMENT, NgClass } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
@@ -88,6 +89,7 @@ export class ModalDemo {
 		<cds-overlay
 			[theme]="theme"
 			[open]="open"
+			[hasModalDecorator]="!!decorator"
 			(overlaySelect)="overlaySelected.emit()">
 			<div
 				class="cds--modal-container"
@@ -95,7 +97,8 @@ export class ModalDemo {
 					'cds--modal-container--xs': size === 'xs',
 					'cds--modal-container--sm': size === 'sm',
 					'cds--modal-container--md': size === 'md',
-					'cds--modal-container--lg': size === 'lg'
+					'cds--modal-container--lg': size === 'lg',
+					'cds--modal-container--full-width': isFullWidth
 				}"
 				role="dialog"
 				aria-modal="true"
@@ -126,6 +129,12 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	@Input() ariaLabel = "default";
 
 	/**
+	 * Render the modal in full-width layout (applies the
+	 * `cds--modal-container--full-width` modifier).
+	 */
+	@Input() isFullWidth = false;
+
+	/**
 	 * Controls the visibility of the modal when used directly in a template
 	 */
 	@Input() open = false;
@@ -142,6 +151,10 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 * It is set to `null` by default which indicates not to override automatic detection.
 	 */
 	@Input() hasScrollingContent: boolean = null;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element.
@@ -160,7 +173,7 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
 	 */
-	selectorPrimaryFocus = "[modal-primary-focus]";
+	@Input() selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
 	 * Creates an instance of `Modal`.

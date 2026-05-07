@@ -67,7 +67,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 			class="cds--list-box__menu cds--multi-select"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
-			tabindex="-1"
+			tabindex="0"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
 			@for (item of displayItems; track item; let i = $index) {
@@ -77,6 +77,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 					class="cds--list-box__menu-item"
 					[attr.aria-selected]="item.selected"
 					[id]="getItemId(i)"
+					[attr.tabindex]="highlightedItem === getItemId(i) ? 0 : null"
 					[attr.title]=" showTitles ? item.content : null"
 					[attr.disabled]="item.disabled ? true : null"
 					[ngClass]="{
@@ -88,9 +89,10 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 						tabindex="-1"
 						class="cds--list-box__menu-item__option">
 						@if (!listTpl && type === 'multi') {
-							<div
-								class="cds--form-item cds--checkbox-wrapper">
-								<label [attr.data-contained-checkbox-state]="item.selected" class="cds--checkbox-label">
+							<div class="cds--form-item cds--checkbox-wrapper">
+								<label
+									[attr.data-contained-checkbox-state]="item.selected"
+									class="cds--checkbox-label">
 									<input
 										class="cds--checkbox"
 										type="checkbox"
@@ -111,7 +113,10 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 							</svg>
 						}
 						@if (listTpl) {
-							<ng-template [ngTemplateOutletContext]="{item: item}" [ngTemplateOutlet]="listTpl" />
+							<ng-template
+								[ngTemplateOutletContext]="{item: item}"
+								[ngTemplateOutlet]="listTpl">
+							</ng-template>
 						}
 					</div>
 				</li>
@@ -529,7 +534,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		const selected = this.getSelected();
 		if (selected.length) {
 			this.index = this.displayItems.indexOf(selected[0]);
-		} else if (this.hasNextElement()) {
+		} else if (this.index < 0 && this.hasNextElement()) {
 			this.getNextElement();
 		}
 	}

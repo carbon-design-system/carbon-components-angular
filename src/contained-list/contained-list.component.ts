@@ -45,7 +45,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 				@if (action) {
 					<div class="cds--contained-list__action">
-						<ng-template [ngTemplateOutlet]="action" />
+						<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }" />
 					</div>
 				}
 			</div>
@@ -66,6 +66,11 @@ export class ContainedList {
 	 * A slot for a possible interactive element to render within the list header.
 	 */
 	@Input() action: TemplateRef<any>;
+
+	/**
+	 * Optional interactive element data.
+	 */
+	@Input() actionData: any;
 
 	/**
 	 * Specify whether the dividing lines in between list items should be inset.

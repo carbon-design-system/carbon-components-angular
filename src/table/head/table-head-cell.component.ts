@@ -1,10 +1,12 @@
 import {
 	Component,
+	ElementRef,
 	Input,
 	Output,
 	EventEmitter,
 	HostBinding,
-	OnChanges
+	OnChanges,
+	ViewChild
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
 import { I18n } from "carbon-components-angular/i18n";
@@ -26,51 +28,90 @@ import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 					'cds--table-sort--active': column.sorted,
 					'cds--table-sort--descending': column.ascending
 				}"
-				(click)="onClick()">
-				<span
-					class="cds--table-sort__flex"
-					[title]="column.title"
-					tabindex="-1">
-					@if(!skeleton) {
-						@if(column.template) {
-							<ng-template [ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}" />
-						} @else {
-							<div cdsTableHeadCellLabel>
+				(click)="onClick($event)">
+				@if (headerAILabelDecoratorLayout) {
+					<span
+						class="cds--table-sort__flex"
+						[title]="column.title"
+						tabindex="-1">
+						<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
+						}
+						<div
+							#decoratorInner
+							class="cds--table-header-label--decorator-inner"
+							(click)="onDecoratorRegionClick($event)">
+							<ng-template
+								[ngTemplateOutlet]="column.template"
+								[ngTemplateOutletContext]="{data: column.data}">
+							</ng-template>
+						</div>
+					</span>
+				}
+				@if (!headerAILabelDecoratorLayout) {
+					<span
+						class="cds--table-sort__flex"
+						[title]="column.title"
+						tabindex="-1">
+						@if (!skeleton && !column.template) {
+							<div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
+								[class.cds--table-header-label--slug]="column.hasAILabelHeader">
 								{{column.data}}
 							</div>
 						}
-
-						<svg
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							style="will-change: transform;"
-							xmlns="http://www.w3.org/2000/svg"
-							class="cds--table-sort__icon"
-							width="16"
-							height="16"
-							viewBox="0 0 16 16"
-							aria-hidden="true">
-							<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>
-						</svg>
-
-						<svg
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							style="will-change: transform;"
-							xmlns="http://www.w3.org/2000/svg"
-							class="cds--table-sort__icon-unsorted"
-							width="16"
-							height="16"
-							viewBox="0 0 16 16"
-							aria-hidden="true">
-							<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>
-						</svg>
-					}
-				</span>
+						@if (!skeleton && column.template) {
+							<div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
+								[class.cds--table-header-label--slug]="column.hasAILabelHeader">
+								<ng-template
+									[ngTemplateOutlet]="column.template"
+									[ngTemplateOutletContext]="{data: column.data}">
+								</ng-template>
+							</div>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
+						}
+					</span>
+				}
 			</button>
 		}
-		@if (!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable) {
-			<div class="cds--table-header-label">
+		@if (headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {
+			<div
+				class="cds--table-header-label"
+				[ngClass]="{
+					'cds--table-header-label--ai-label': column.hasAILabelHeader,
+					'cds--table-header-label--slug': column.hasAILabelHeader,
+					'cds--table-header-label--decorator': column.hasAILabelHeader
+				}">
+				@if (getHeaderLabelText()) {
+					<span>{{ getHeaderLabelText() }}</span>
+				}
+				<div class="cds--table-header-label--decorator-inner">
+					<ng-template
+						[ngTemplateOutlet]="column.template"
+						[ngTemplateOutletContext]="{data: column.data}">
+					</ng-template>
+				</div>
+			</div>
+		}
+		@if (!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {
+			<div
+				class="cds--table-header-label"
+				[ngClass]="{
+					'cds--table-header-label--ai-label': column.hasAILabelHeader,
+					'cds--table-header-label--slug': column.hasAILabelHeader
+				}">
 				@if (!column.template) {
 					<span [title]="column.data">
 						@if (!skeleton) {
@@ -78,7 +119,10 @@ import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 						}
 					</span>
 				}
-				<ng-template [ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}" />
+				<ng-template
+					[ngTemplateOutlet]="column.template"
+					[ngTemplateOutletContext]="{data: column.data}">
+				</ng-template>
 			</div>
 		}
 	`,
@@ -129,7 +173,28 @@ export class TableHeadCell implements OnChanges {
 	 */
 	@Output() sort = new EventEmitter();
 
+	@ViewChild("decoratorInner") decoratorInnerRef: ElementRef;
+
 	@HostBinding("class.thead_action") theadAction = false;
+
+	@HostBinding("class.cds--table-sort__header") get sortHeaderHost() {
+		return this.sortable && this.sort.observers.length > 0 && this.column?.sortable;
+	}
+
+	@HostBinding("class.cds--table-sort__header--ai-label") get sortHeaderAILabelHost() {
+		return this.column?.hasAILabelHeader && this.sortHeaderHost;
+	}
+
+	@HostBinding("class.cds--table-sort__header--decorator") get sortHeaderDecoratorHost() {
+		return this.column?.hasAILabelHeader && this.column?.template && this.sortHeaderHost;
+	}
+
+	/**
+	 * When the column uses a separate template for the slug/AI: label text + sort icons + `cds--table-header-label--decorator-inner`.
+	 */
+	get headerAILabelDecoratorLayout(): boolean {
+		return !!(this.column?.hasAILabelHeader && this.column?.template);
+	}
 
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
@@ -138,9 +203,24 @@ export class TableHeadCell implements OnChanges {
 	constructor(protected i18n: I18n) {}
 
 	ngOnChanges() {
-		// Since it's not an input, and it touches the view, we're using `ngOnChanges`
-		// `get`ters have caused issues in the past with the view updating outside of change detection
-		this.theadAction = !!this.column.filterTemplate || this.sort.observers.length > 0;
+		this.theadAction = !!(this.column && this.column.filterTemplate) || this.sort.observers.length > 0;
+	}
+
+	/**
+	 * Text label for the column when `hasAILabelHeader` uses a separate `template` for the slug.
+	 */
+	getHeaderLabelText(): string {
+		if (!this.column) {
+			return "";
+		}
+		const d = this.column.data;
+		if (d != null && typeof d === "object" && "label" in d && (d as { label?: unknown }).label != null) {
+			return String((d as { label: unknown }).label);
+		}
+		if (typeof d === "string") {
+			return d;
+		}
+		return "";
 	}
 
 	getSortDescendingLabel(): Observable<string> {
@@ -151,10 +231,25 @@ export class TableHeadCell implements OnChanges {
 		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
 	}
 
-	onClick() {
-		if (!this.skeleton) {
-			this.sort.emit();
+	/**
+	 * Prevent focus from moving to parent button when click on decorator
+	 */
+	onDecoratorRegionClick(event: MouseEvent) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
+
+	onClick(event: MouseEvent) {
+		if (this.skeleton) {
+			return;
 		}
+		if (
+			this.column?.hasAILabelHeader &&
+			this.decoratorInnerRef?.nativeElement?.contains(event.target)
+		) {
+			return;
+		}
+		this.sort.emit();
 	}
 
 	protected sortLabelMap(): OperatorFunction<string, string> {
@@ -165,7 +260,10 @@ export class TableHeadCell implements OnChanges {
 			if (this.column.formatSortLabel) {
 				return this.column.formatSortLabel(str, this.column.ariaSortLabel);
 			}
-			return `${this.column.data} - ${str}`;
+			const header =
+				this.getHeaderLabelText() ||
+				(typeof this.column.data === "string" ? this.column.data : "");
+			return `${header} - ${str}`;
 		});
 	}
 }

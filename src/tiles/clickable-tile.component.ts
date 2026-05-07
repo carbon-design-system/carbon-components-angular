@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	Optional,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	TemplateRef
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Link } from "carbon-components-angular/link";
@@ -26,21 +27,31 @@ import { NgClass } from "@angular/common";
 @Component({
 	selector: "cds-clickable-tile, ibm-clickable-tile",
 	template: `
-	<a
-		cdsLink
-		class="cds--tile cds--tile--clickable"
-		[ngClass]="{
-			'cds--tile--light': theme === 'light',
-			'cds--tile--disabled cds--link--disabled' : disabled
-		}"
-		tabindex="0"
-		(click)="navigate($event)"
-		[attr.href]="disabled ? null : href"
-		[attr.target]="target"
-		[attr.rel]="rel ? rel : null"
-		[attr.aria-disabled]="disabled">
-		<ng-content />
-	</a>`,
+		<a
+			cdsLink
+			class="cds--tile cds--tile--clickable"
+			[ngClass]="{
+				'cds--tile--light': theme === 'light',
+				'cds--tile--disabled cds--link--disabled' : disabled,
+				'cds--tile--decorator': !!decorator,
+				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
+			}"
+			tabindex="0"
+			(click)="navigate($event)"
+			[attr.href]="disabled ? null : href"
+			[attr.target]="target"
+			[attr.rel]="rel ? rel : null"
+			[attr.aria-disabled]="disabled">
+			<ng-content></ng-content>
+			@if (decorator) {
+
+				<div class="cds--tile--inner-decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+
+}
+		</a>
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
 	imports: [Link, NgClass]
@@ -71,6 +82,16 @@ export class ClickableTile {
 	 * Set to `true` to disable the clickable tile.
 	 */
 	@Input() disabled = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
 
 	/**
 	 * Array of commands to send to the router when the link is activated

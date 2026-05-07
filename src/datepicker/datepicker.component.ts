@@ -83,8 +83,9 @@ if (languages.default?.default["en"]?.weekdays) {
 					[warnText]="warnText"
 					[skeleton]="skeleton"
 					[helperText]="helperText"
+					[decorator]="decorator"
 					(valueChange)="onValueChange($event)"
-					(click)="openCalendar(input)">
+					(click)="openCalendar(input, $event)">
 				</cds-date-picker-input>
 			</div>
 
@@ -107,8 +108,9 @@ if (languages.default?.default["en"]?.weekdays) {
 						[warnText]="rangeWarnText"
 						[skeleton]="skeleton"
 						[helperText]="rangeHelperText"
+						[decorator]="rangeDecorator"
 						(valueChange)="onRangeValueChange($event)"
-						(click)="openCalendar(rangeInput)">
+						(click)="openCalendar(rangeInput, $event)">
 					</cds-date-picker-input>
 				</div>
 			}
@@ -157,6 +159,14 @@ export class DatePicker implements
 
 	@Input() label: string | TemplateRef<any>;
 	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label) on the range end field when `range` is `true`.
+	 */
+	@Input() rangeDecorator: TemplateRef<any>;
 	@Input() rangeHelperText: string | TemplateRef<any>;
 	@Input() rangeLabel: string;
 
@@ -457,10 +467,18 @@ export class DatePicker implements
 	}
 
 	/**
-	 * Handles opening the calendar "properly" when the calendar icon is clicked.
+	 * Opens the calendar "properly" when the calendar if it was already open.
 	 */
-	openCalendar(datepickerInput: DatePickerInput) {
+	openCalendar(datepickerInput: DatePickerInput, event?: Event) {
 		if (this.readonly || this.skeleton) {
+			return;
+		}
+
+		// Skips opening when the click is on the decorator region so the AI label triggers
+		if (this.isDecoratorClick(event)) {
+			if (this.isFlatpickrLoaded() && this.flatpickrInstance.isOpen) {
+				this.flatpickrInstance.close();
+			}
 			return;
 		}
 
@@ -481,6 +499,15 @@ export class DatePicker implements
 			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
 			this.flatpickrInstance.open();
 		}
+	}
+
+	private isDecoratorClick(event: Event | undefined): boolean {
+		if (!event?.target) {
+			return false;
+		}
+		const t = event.target;
+		const el = t instanceof Element ? t : (t as Node).parentElement;
+		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
 	}
 
 	protected updateCalendarListeners() {
@@ -517,9 +544,11 @@ export class DatePicker implements
 
 					const calendarContainer = this.flatpickrInstance.calendarContainer;
 					const dayElement = calendarContainer && calendarContainer.querySelector(".flatpickr-day[tabindex]");
+					const selectedDateElem = calendarContainer && calendarContainer.querySelector(".selected");
+					const todayDateElem = calendarContainer && calendarContainer.querySelector(".today");
 
 					if (dayElement) {
-						dayElement.focus();
+						(todayDateElem || selectedDateElem || dayElement).focus();
 
 						// If the user manually inputs a value into the date field and presses arrow down,
 						// datepicker input onchange will be triggered when focus is removed from it and
@@ -598,6 +627,7 @@ export class DatePicker implements
 
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
+			element.setAttribute("role", "button");
 			element.classList.add("cds--date-picker__day");
 			if (!this.value) {
 				return;
@@ -613,7 +643,7 @@ export class DatePicker implements
 	protected updateAttributes() {
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		Array.from(calendarContainer).forEach(calendar => {
-			calendar.setAttribute("role", "region");
+			calendar.setAttribute("role", "application");
 			calendar.setAttribute("aria-label", this.ariaLabel);
 		});
 	}

@@ -4,7 +4,14 @@ import { Component, Input, OnChanges } from "@angular/core";
 	selector: "cds-skeleton-text, ibm-skeleton-text",
 	template: `
 		@for (width of lineWidths; track width) {
-			<p class="cds--skeleton__text" [style.width]="width"></p>
+			<p
+				class="cds--skeleton__text"
+				[ngClass]="{
+					'cds--skeleton__heading': heading,
+					'cds--skeleton__text--ai': ai
+				}"
+				[style.width]="width">
+			</p>
 		}
 	`,
 	standalone: true
@@ -15,6 +22,16 @@ export class SkeletonText implements OnChanges {
 	@Input() minLineWidth = 100;
 
 	@Input() maxLineWidth = 300;
+
+	/**
+	 * Render a heading-styled skeleton instead of body text.
+	 */
+	@Input() heading = false;
+
+	/**
+	 * When `true`, applies the AI skeleton styling
+	 */
+	@Input() ai = false;
 
 	lineWidths: Array<string>;
 

@@ -1,7 +1,9 @@
 import {
 	ComponentRef,
 	Injector,
-	Injectable
+	Injectable,
+	inject,
+	EnvironmentInjector
 } from "@angular/core";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { tap, delay } from "rxjs/operators";
@@ -15,6 +17,23 @@ import { tap, delay } from "rxjs/operators";
 export class BaseModalService {
 	// track all our open modals
 	protected static modalList: Array<ComponentRef<any>> = [];
+
+	/**
+	 * Current module/component injection enviornment
+	 * Allows modules to use providers from calling component
+	 *
+	 * Root Module/
+	 * └── Lazy loaded Feature Module/
+	 * 	 ├── Provides Service & imports modules
+	 * 	 ├── Modal component (component that extends base component)
+	 * 	 └── Modal component launcher (dynamically creates modal component)
+	 *
+	 * Passing EnvironmentInjector in `createComponent` will look for provider declaration in feature
+	 * module instead of root module. This is required to pass correct context in a lazy-loaded applications.
+	 * Services injected in root, will also be available as feature module enviornment will also hierarchically inherit
+	 * the root services.
+	 */
+	protected environment: EnvironmentInjector = inject(EnvironmentInjector);
 
 	/**
 	 * Creates an instance of `ModalService`.
@@ -34,7 +53,12 @@ export class BaseModalService {
 			useValue: data.inputs[inputName]
 		}));
 		const injector = Injector.create({ providers: inputProviders });
-		const component = this.placeholderService.createComponent(data.component, injector);
+		const component = this.placeholderService.createComponent(
+			data.component,
+			injector,
+			undefined,
+			this.environment
+		);
 		let focusedElement = document.activeElement as HTMLElement;
 		setTimeout(() => {
 			component.instance.open = true;

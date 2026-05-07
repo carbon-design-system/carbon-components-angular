@@ -40,15 +40,19 @@ import { Button } from "carbon-components-angular/button";
 			<div class="cds--actionable-notification__text-wrapper">
 				<div class="cds--actionable-notification__content">
 					@if (!notificationObj.template) {
-						<div cdsActionableTitle [innerHTML]="notificationObj.title"></div>
+						<div
+							cdsActionableTitle
+							[id]="notificationID"
+							[innerHTML]="notificationObj.title">
+						</div>
 						<div cdsActionableSubtitle>
 							<span [innerHTML]="notificationObj.message"></span>
-							@for (link of notificationObj.links; track link.href) {
+							@for (link of notificationObj.links; track link) {
 								<a cdsLink [href]="link.href">{{link.text}}</a>
 							}
 						</div>
 					}
-					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }" />
+					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 				</div>
 			</div>
 		</div>
@@ -63,7 +67,7 @@ import { Button } from "carbon-components-angular/button";
 				</button>
 			}
 		}
-		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }" />
+		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }"></ng-container>
 		@if (!isCloseHidden) {
 			<button
 				(click)="onClose()"
@@ -107,7 +111,8 @@ export class ActionableNotification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${ActionableNotification.notificationCount++}`;
+	notificationID = `actionable-notification-${ActionableNotification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
 	@HostBinding("class.cds--actionable-notification") notificationClass = true;
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }

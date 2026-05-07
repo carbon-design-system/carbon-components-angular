@@ -54,57 +54,72 @@ import { IconDirective } from "carbon-components-angular/icon";
 				'cds--radio-button-group--vertical': orientation === 'vertical',
 				'cds--radio-button-group--label-left': labelPlacement === 'left',
 				'cds--radio-button-group--invalid': invalid,
-				'cds--radio-button-group--warning': !invalid && warn
+				'cds--radio-button-group--warning': !invalid && warn,
+				'cds--radio-button-group--decorator': !!decorator
 			}"
 			[attr.data-invalid]="invalid ? true : null">
 			@if (legend) {
 				<legend class="cds--label">
 					@if (isTemplate(legend)) {
-						<ng-template [ngTemplateOutlet]="legend" />
+						<ng-template [ngTemplateOutlet]="legend"></ng-template>
 					} @else {
 						{{legend}}
 					}
+
+					@if (decorator) {
+						<div class="cds--radio-button-group-inner--decorator">
+							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+						</div>
+					}
 				</legend>
 			}
-			<ng-content />
+			<ng-content></ng-content>
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
 			@if (invalid) {
+
 				<svg
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--radio-button__invalid-icon">
 				</svg>
 				<div class="cds--form-requirement">
-					@if (isTemplate(invalidText)) {
-						<ng-template [ngTemplateOutlet]="invalidText" />
-					} @else {
+					@if (!isTemplate(invalidText)) {
 						{{ invalidText }}
 					}
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					}
 				</div>
-			} @else if (warn) {
+
+			}
+			@if (!invalid && warn) {
+
 				<svg
 					cdsIcon="warning--alt--filled"
 					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
 					size="16">
 				</svg>
 				<div class="cds--form-requirement">
+					@if (!isTemplate(warnText)) {
+						{{warnText}}
+					}
 					@if (isTemplate(warnText)) {
-						<ng-template [ngTemplateOutlet]="warnText" />
-					} @else {
-						{{ warnText }}
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 					}
 				</div>
+
 			}
 		</div>
 		@if (helperText && !invalid && !warn) {
 			<div
 				class="cds--form__helper-text"
 				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				@if (isTemplate(helperText)) {
-					<ng-template [ngTemplateOutlet]="helperText" />
-				} @else {
+				@if (!isTemplate(helperText)) {
 					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
 				}
 			</div>
 		}
@@ -222,6 +237,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input() labelPlacement: "right" | "left" =  "right";
 
 	@Input() legend: string | TemplateRef<any>;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Used to set the `aria-label` attribute on the radio group element.

@@ -18,7 +18,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "carbon-components-angular/common";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
@@ -205,7 +205,8 @@ import { TableBody } from "./body/table-body.component";
 			[skeleton]="skeleton"
 			[sortAscendingLabel]="sortAscendingLabel"
 			[sortDescendingLabel]="sortDescendingLabel"
-			[stickyHeader]="stickyHeader">
+			[stickyHeader]="stickyHeader"
+			[withRowAILabels]="withRowAILabels">
 		</thead>
 		@if (!noData) {
 			<tbody
@@ -222,14 +223,18 @@ import { TableBody } from "./body/table-body.component";
 				[ngStyle]="{'overflow-y': 'scroll'}"
 				[selectionLabelColumn]="selectionLabelColumn"
 				[showSelectionColumn]="showSelectionColumn"
-				[skeleton]="skeleton">
+				[skeleton]="skeleton"
+				[withRowAILabels]="withRowAILabels"
+			>
 			</tbody>
 		} @else {
-			<ng-content />
+			<ng-content></ng-content>
 		}
 
 		<tfoot>
-			<ng-template [ngTemplateOutlet]="footerTemplate" />
+			<ng-template
+				[ngTemplateOutlet]="footerTemplate">
+			</ng-template>
 			@if (this.model.isLoading) {
 				<tr>
 					<td class="table_loading-indicator">
@@ -498,6 +503,11 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 	 * Set to `false` to remove table rows (zebra) stripes.
 	 */
 	@Input() striped = true;
+
+	/**
+	 * When true, rows that set `TableItem.hasAILabelDecorator` on the decorator column receive AI row styling.
+	 */
+	@Input() withRowAILabels = false;
 
 	/**
 	 * Allows table content to scroll horizontally

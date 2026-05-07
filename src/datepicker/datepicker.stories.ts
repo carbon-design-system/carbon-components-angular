@@ -1,12 +1,15 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DatePicker } from "./";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
+import { DatePickerModule, DatePicker } from "./";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Date Picker",
 	decorators: [
 		moduleMetadata({
-			imports: [DatePickerInput]
+			imports: [DatePickerModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -57,6 +60,40 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+
+const withAILabelTemplate = (args) => ({
+	props: args,
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-date-picker
+			[theme]="theme"
+			[label]="label"
+			[placeholder]="placeholder"
+			[disabled]="disabled"
+			[readonly]="readonly"
+			[size]="size"
+			[type]="'single'"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[warn]="warn"
+			[warnText]="warnText"
+			[decorator]="decoratorTpl"
+			(valueChange)="valueChange($event)">
+		</cds-date-picker>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});
+export const withAILabel = withAILabelTemplate.bind({});
 
 const SingleTemplate = (args) => ({
 	props: args,

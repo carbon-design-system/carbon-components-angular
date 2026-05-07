@@ -1,8 +1,10 @@
-import { Checkbox } from "carbon-components-angular/checkbox";
+import { Checkbox, CHECKBOX_GROUP_HOST, CheckboxGroupHost } from "carbon-components-angular/checkbox";
 import {
 	ChangeDetectorRef,
 	Component,
+	Inject,
 	Input,
+	Optional,
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
@@ -177,8 +179,12 @@ export class Toggle extends Checkbox {
 	/**
 	 * Creates an instance of Toggle.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
-		super(changeDetectorRef);
+	constructor(
+		protected changeDetectorRef: ChangeDetectorRef,
+		@Optional() @Inject(CHECKBOX_GROUP_HOST) hostGroup: CheckboxGroupHost | null,
+		protected i18n: I18n
+	) {
+		super(changeDetectorRef, hostGroup);
 		Toggle.toggleCount++;
 	}
 

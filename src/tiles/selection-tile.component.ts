@@ -7,10 +7,12 @@ import {
 	HostListener,
 	AfterViewInit,
 	ChangeDetectorRef,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
-import { NgClass, AsyncPipe } from "@angular/common";
+import { NgClass, AsyncPipe, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-selection-tile, ibm-selection-tile",
@@ -31,22 +33,35 @@ import { NgClass, AsyncPipe } from "@angular/common";
 			[ngClass]="{
 				'cds--tile--is-selected' : selected,
 				'cds--tile--light': theme === 'light',
-				'cds--tile--disabled' : disabled
+				'cds--tile--disabled' : disabled,
+				'cds--tile--decorator': !!decorator,
+				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
 			}"
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
-			<div class="cds--tile__checkmark">
-				<svg width="16" height="16" viewBox="0 0 16 16">
-					<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
-						fill-rule="evenodd"/>
-				</svg>
+			<div class="cds--tile__checkmark"
+				[class.cds--tile__checkmark--persistent]="multiple">
+				@if (!selected) {
+					<svg
+						[cdsIcon]="multiple ? 'checkbox' : 'checkmark'"
+						size="16">
+					</svg>
+				} @else {
+					<svg [cdsIcon]="multiple ? 'checkbox--checked--filled' : 'checkmark--filled'" size="16"></svg>
+				}
 			</div>
 			<div class="cds--tile-content">
-				<ng-content />
+				<ng-content></ng-content>
 			</div>
-		</label>`,
+			@if (decorator) {
+				<div class="cds--tile--inner-decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			}
+		</label>
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [NgClass, AsyncPipe]
+	imports: [NgClass, AsyncPipe, NgTemplateOutlet, IconDirective]
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
@@ -93,6 +108,16 @@ export class SelectionTile implements AfterViewInit {
 	 * Set to `true` to disable the selection tile.
 	 */
 	@Input() disabled = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
 
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.

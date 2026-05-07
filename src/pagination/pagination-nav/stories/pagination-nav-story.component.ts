@@ -12,6 +12,7 @@ import { Pagination, PaginationModel, PaginationNav, PaginationNavItem } from ".
 		<cds-pagination-nav
 			[model]="model"
 			[disabled]="disabled"
+			[loop]="loop"
 			(selectPage)="selectPage($event)"
 			[numOfItemsToShow]="numOfItemsToShow"
 			[size]="size">
@@ -23,8 +24,9 @@ import { Pagination, PaginationModel, PaginationNav, PaginationNavItem } from ".
 export class PaginationNavStory implements OnInit {
 	@Input() model = new PaginationModel();
 	@Input() disabled = false;
+	@Input() loop = false;
 	@Input() pageInputDisabled = false;
-	@Input() numOfItemsToShow = false;
+	@Input() numOfItemsToShow = 4;
 	@Input() size: "sm" | "md" | "lg" = "md";
 
 	@Input() get totalDataLength() {

@@ -39,7 +39,10 @@ import { IconDirective } from "carbon-components-angular/icon";
 				<svg cdsIcon="caret--right" size="16"></svg>
 			}
 		</div>
-		<ng-content />
+		@if (danger && dangerDescription) {
+			<span class="cds--visually-hidden">{{dangerDescription}}</span>
+		}
+		<ng-content></ng-content>
 	`,
 	styles: [`
 		:host {
@@ -71,6 +74,11 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@Input() checked = false;
 	@Input() icon = "";
 	@Input() value = "";
+	/**
+	 * Provide a description of the menu item for assistive technology when
+	 * `danger` is `true`. Renders a visually-hidden description when shown.
+	 */
+	@Input() dangerDescription = "";
 	@Output() checkedChange = new EventEmitter<boolean>();
 	@Output() itemClick = new EventEmitter<ItemClickEvent>();
 
@@ -132,6 +140,9 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	@HostListener("click", ["$event"])
 	handleClick(event: MouseEvent & KeyboardEvent) {
 		event.stopPropagation();
+		if (this.disabled) {
+			return;
+		}
 		if (this.hasChildren) {
 			this.openSubMenu();
 			this.childContextMenu.focusMenu();

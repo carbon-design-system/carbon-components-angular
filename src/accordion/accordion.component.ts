@@ -30,7 +30,8 @@ import { NgClass } from "@angular/common";
 				'cds--accordion--lg': size === 'lg',
 				'cds--layout--size-sm': size === 'sm',
 				'cds--layout--size-md': size === 'md',
-				'cds--layout--size-lg': size === 'lg'
+				'cds--layout--size-lg': size === 'lg',
+				'cds--accordion--flush': isFlush && align !== 'start'
 			}"
 			role="list">
 			<ng-content />
@@ -54,9 +55,16 @@ export class Accordion implements AfterContentInit {
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 
+	/**
+	 * Specify whether Accordion text should be flush, default is false.
+	 * Does not work with `align="start"`.
+	 */
+	@Input() isFlush = false;
+
 	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 
 	protected _skeleton = false;
+	protected _disabled = false;
 
 	@Input()
 	set skeleton(value: any) {
@@ -68,13 +76,34 @@ export class Accordion implements AfterContentInit {
 		return this._skeleton;
 	}
 
+	/**
+	 * Specify whether the entire accordion should be disabled.
+	 * When `true`, all items are disabled regardless of their own `disabled` input.
+	 * When `false`, each item uses its own `disabled` binding again.
+	 */
+	@Input()
+	set disabled(value: boolean) {
+		this._disabled = value;
+		this.updateChildren();
+	}
+
+	get disabled(): boolean {
+		return this._disabled;
+	}
+
 	ngAfterContentInit() {
 		this.updateChildren();
 	}
 
 	protected updateChildren() {
 		if (this.children) {
-			this.children.toArray().forEach(child => child.skeleton = this.skeleton);
+			this.children.toArray().forEach(child => {
+				child.skeleton = this.skeleton;
+				child.setParentDisabled(this.disabled);
+				if (this.disabled) {
+					child.expanded = false;
+				}
+			});
 		}
 	}
 }

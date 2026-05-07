@@ -243,12 +243,13 @@ export const withActionsAndContextData = (args) => {
 				</button>
 			</ng-template>
 			<cds-contained-list label="List title" [size]="size">
-				<cds-contained-list-item
-					*ngFor="let item of items"
-					[action]="actionWithClick"
-					[actionData]="item">
-					{{ item.label }} {{ item.id }}
-				</cds-contained-list-item>
+				@for (item of items; track item.id) {
+					<cds-contained-list-item
+						[action]="actionWithClick"
+						[actionData]="item">
+						{{ item.label }} {{ item.id }}
+					</cds-contained-list-item>
+				}
 			</cds-contained-list>
 		`
 	};

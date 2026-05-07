@@ -3,7 +3,8 @@ import {
 	Input,
 	HostBinding,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { RadioChange } from "./radio-change.class";
@@ -25,9 +26,7 @@ import { NgClass } from "@angular/common";
 @Component({
 	selector: "cds-radio, ibm-radio",
 	template: `
-		@if (skeleton) {
-			<div class="cds--radio-button cds--skeleton"></div>
-		} @else {
+		@if (!skeleton) {
 			<input
 				class="cds--radio-button"
 				type="radio"
@@ -41,6 +40,9 @@ import { NgClass } from "@angular/common";
 				(change)="onChange($event)"
 				(click)="onClick($event)">
 		}
+		@if (skeleton) {
+			<div class="cds--radio-button cds--skeleton"></div>
+		}
 		<label
 			class="cds--radio-button__label"
 			[attr.aria-label]="ariaLabel"
@@ -50,7 +52,14 @@ import { NgClass } from "@angular/common";
 			[for]="id"
 			id="label-{{id}}">
 			<span class="cds--radio-button__appearance"></span>
-			<ng-content />
+			<span class="cds--radio-button__label-text">
+				<ng-content></ng-content>
+				@if (decorator) {
+					<div class="cds--radio-button-wrapper-inner--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				}
+			</span>
 		</label>
 	`,
 	providers: [
@@ -117,9 +126,18 @@ export class Radio {
 
 	@HostBinding("class.cds--radio-button-wrapper") hostClass = true;
 
+	@HostBinding("class.cds--radio-button-wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
 	@HostBinding("class.cds--radio-button-wrapper--label-left") get labelLeft() {
 		return this.labelPlacement === "left";
 	}
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * Reflects whether or not the input is disabled at `RadioGroup` level.

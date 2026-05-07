@@ -4,11 +4,14 @@ import { FileUploader } from "./";
 import { Notification } from "../notification";
 import { Button } from "../button";
 import {
-	FileUploaderStory,
-	NgModelFileUploaderStory,
+	CustomFileIconsModule,
 	DragAndDropStory,
+	FileUploaderStory,
+	FileUploaderWithCustomFileStory,
+	NgModelFileUploaderStory,
 	ReactiveFormsStory
 } from "./stories";
+import { IconDirective } from "../icon";
 
 export default {
 	title: "Components/File Uploader",
@@ -16,6 +19,7 @@ export default {
 		moduleMetadata({
 			declarations: [
 				FileUploaderStory,
+				FileUploaderWithCustomFileStory,
 				NgModelFileUploaderStory,
 				DragAndDropStory,
 				ReactiveFormsStory
@@ -25,7 +29,11 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				Notification,
-				Button
+				Button,
+				CustomFileIconsModule,
+				FormsModule,
+				IconDirective,
+				ReactiveFormsModule
 			]
 		})
 	],
@@ -78,6 +86,37 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+
+const CustomFile = (args) => ({
+	props: args,
+	template: `
+		<!--
+		app-* components are for demo purposes only.
+		You can create your own implementation by using the component source found at:
+		https://github.com/IBM/carbon-components-angular/tree/master/src/file-uploader/stories/uploader-custom-file.component.ts
+		-->
+		<app-file-uploader-with-custom-file
+			[title]="title"
+			[description]="description"
+			[buttonText]="buttonText"
+			[buttonType]="buttonType"
+			[accept]="accept"
+			[multiple]="multiple"
+			[size]="size"
+			[fileItemSize]="fileItemSize"
+			[disabled]="disabled">
+		</app-file-uploader-with-custom-file>
+	`
+});
+export const UploaderWithCustomFile = CustomFile.bind({});
+UploaderWithCustomFile.argTypes = {
+	size: {
+		control: false
+	},
+	buttonType: {
+		control: false
+	}
+};
 
 const DragAndDropTemplate = (args) => ({
 	props: args,

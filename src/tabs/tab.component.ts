@@ -4,15 +4,14 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	TemplateRef,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { NgStyle, NgTemplateOutlet } from "@angular/common";
 
 /**
 * The `Tab` component is a child of the `Tabs` component.
 * It represents one `Tab` item and its content within a panel of other `Tab` items.
-*
 *
 * `Tab` takes a string or `TemplateRef` for the header, and any content for the body of the tab.
 * Disabled states should be handled by the application (ie. switch to the tab, but display some
@@ -23,8 +22,8 @@ import { NgStyle, NgTemplateOutlet } from "@angular/common";
 *
 *
 * Tab with string header:
-*
-* ```html
+ *
+ * ```html
 * <cds-tab heading='tab1'>
 * 	tab 1 content
 * </cds-tab>
@@ -51,31 +50,57 @@ import { NgStyle, NgTemplateOutlet } from "@angular/common";
 * 		Tab 3 content
 * 	</cds-tab>
 * </cds-tabs>
-* ```
-*/
+ * ```
+ */
 @Component({
 	selector: "cds-tab, ibm-tab",
 	template: `
 		@if (shouldRender()) {
-			<div
-				[attr.tabindex]="tabIndex"
-				role="tabpanel"
-				class="cds--tab-content"
-				[ngStyle]="{'display': active ? null : 'none'}"
-				[attr.aria-labelledby]="id + '-header'"
-				aria-live="polite">
-				@if (isTemplate(tabContent)) {
-					<ng-template [ngTemplateOutlet]="tabContent" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
-				}
-				<ng-content />
-			</div>
+			@if (isTemplate(tabContent)) {
+				<ng-template
+					[ngTemplateOutlet]="tabContent"
+					[ngTemplateOutletContext]="{ $implicit: templateContext }">
+				</ng-template>
+			}
+			<ng-content></ng-content>
 		}
 	`,
 	standalone: true,
 	imports: [NgStyle, NgTemplateOutlet]
 })
 export class Tab implements OnInit {
+	@HostBinding("attr.id") get hostId() {
+		return this.id;
+	}
+	@HostBinding("attr.aria-labelledby") get hostAriaLabelledby() {
+		return `${this.id}-header`;
+	}
+	@HostBinding("attr.tabindex") get hostTabIndex() {
+		return this.tabIndex;
+	}
+	/**
+	 * `hidden` + display keep inactive panels out of layout; `null` display when active preserves grid/flex.
+	 */
+	@HostBinding("attr.hidden") get hostHidden() {
+		return this.active ? null : "";
+	}
+	@HostBinding("style.display") get hostDisplay() {
+		return this.active ? "block" : "none";
+	}
+	/**
+	 * Set to `true` to have `Tab` items cached and not reloaded on tab switching.
+	 */
+	@Input() set cacheActive(shouldCache: boolean) {
+		this._cacheActive = shouldCache;
+	}
+
+	get cacheActive() {
+		return this._cacheActive;
+	}
 	private static counter = 0;
+	@HostBinding("class.cds--tab-content") tabContentClass = true;
+	@HostBinding("attr.role") panelRole = "tabpanel";
+	@HostBinding("attr.aria-live") panelAriaLive = "polite";
 	/**
 	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
 	 * Default value is false.
@@ -83,7 +108,7 @@ export class Tab implements OnInit {
 	public headingIsTemplate = false;
 
 	/**
-	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
+	 * The `Tab`'s title to be displayed or custom template for the `Tab` heading.
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
@@ -99,7 +124,7 @@ export class Tab implements OnInit {
 	@Input() context: any;
 	/**
 	 * Indicates whether the `Tab` is active/selected.
-	 * Determines whether it's `TabPanel` is rendered.
+	 * Determines whether its tab panel content is rendered.
 	 */
 	@Input() active = false;
 	/**
@@ -107,37 +132,68 @@ export class Tab implements OnInit {
 	 */
 	@Input() disabled = false;
 
+	/**
+	 * `tabindex` on the tab panel, the parent may set this to `null` when `isNavigation` is `true`.
+	 */
 	@Input() tabIndex = 0;
 	/**
 	 * Sets the id of the `Tab`. Will be uniquely generated if not provided.
 	 */
 	@Input() id = `n-tab-${Tab.counter++}`;
 	/**
-	 * Set to true to have Tab items cached and not reloaded on tab switching.
-	 */
-	@Input() set cacheActive(shouldCache: boolean) {
-		this._cacheActive = shouldCache;
-	}
-	/**
-	 * Allows life cycle hooks to be called on the rendered content
+	 * Allows lifecycle hooks to be called on the rendered content.
 	 */
 	@Input() tabContent: TemplateRef<any>;
 	/**
-	 * Optional data for templates passed as implicit context
+	 * Optional data for templates passed as implicit context.
 	 */
 	@Input() templateContext: any;
 	/**
-	 * Value 'selected' to be emitted after a new `Tab` is selected.
+	 * Optional template that renders an icon inside the `Tab` header.
+	 * Useful for rendering a `cdsIcon` or any other icon next to the tab label.
+	 */
+	@Input() icon: TemplateRef<any>;
+	/**
+	 * Optional secondary label rendered below the primary tab label.
+	 * Only displayed when the parent `Tabs` is using `type="contained"`.
+	 */
+	@Input() secondaryLabel: string;
+	/**
+	 * Sets the aria-label of the close button when the parent `Tabs` uses `dismissable`.
+	 */
+	@Input() closeButtonAriaLabel = "Press delete to remove tab";
+	/**
+	 * Icon-only tab: pair with `icon` and `iconLabel`.
+	 */
+	@Input() iconOnly = false;
+	/**
+	 * Icon-only tabs: accessible name and tooltip text.
+	 */
+	@Input() iconLabel: string;
+	/**
+	 * **Preview**: Icon-only tabs — show a notification dot on the icon.
+	 */
+	@Input() badgeIndicator = false;
+	/**
+	 * Icon-only tabs: tooltip show delay (ms).
+	 */
+	@Input() enterDelayMs: number;
+	/**
+	 * Icon-only tabs: tooltip hide delay (ms).
+	 */
+	@Input() leaveDelayMs: number;
+	/**
+	 * Icon-only tabs: open the tooltip on first render.
+	 */
+	@Input() isTooltipOpen = false;
+	/**
+	 * Emits when this tab becomes selected.
 	 */
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
 	/**
-	 * Used to set the id property on the element.
+	 * Emits when this tab's close button is pressed.
 	 */
-	@HostBinding("attr.id") attrClass = this.id;
-
-	get cacheActive() {
-		return this._cacheActive;
-	}
+	@Output() tabClose: EventEmitter<void> = new EventEmitter<void>();
 
 	protected _cacheActive = false;
 
@@ -159,8 +215,8 @@ export class Tab implements OnInit {
 	}
 
 	/**
-	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
-	*/
+	* Returns value indicating whether this `Tab` should be rendered in a tab panel.
+	 */
 	shouldRender() {
 		return this.active || this.cacheActive;
 	}
