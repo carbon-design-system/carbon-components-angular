@@ -77,7 +77,7 @@ export class Tag {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const skeletonClass = this.skeleton ? "cds--skeleton" : "";
