@@ -11,7 +11,8 @@ import { TilesModule, TileGroup, SelectionTile } from "./";
 			<cds-selection-tile value="tile2">Second</cds-selection-tile>
 			<cds-selection-tile value="tile3">Third</cds-selection-tile>
 		</cds-tile-group>
-	`
+	`,
+	standalone: false
 })
 class SingleSelectHostComponent {
 	multiple = false;

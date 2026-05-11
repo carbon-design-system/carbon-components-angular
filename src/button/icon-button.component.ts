@@ -59,7 +59,6 @@ import { Button } from "./button.directive";
 	</cds-tooltip>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [Tooltip, NgClass, Button]
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {

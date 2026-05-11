@@ -42,7 +42,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgTemplateOutlet, IconDirective]
 })
 export class ContainedListItem {

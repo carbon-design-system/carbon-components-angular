@@ -84,7 +84,6 @@ const VERTICAL_TAB_HEIGHT = 64;
 			<div class="cds--tab--list-gradient_bottom"></div>
 		}
 	`,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeadersVertical extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {

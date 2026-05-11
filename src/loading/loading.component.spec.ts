@@ -12,8 +12,7 @@ import { By } from "@angular/platform-browser";
 			[overlay]="overlay"
 			title="title">
 		</cds-loading>`,
-	imports: [Loading],
-	standalone: true
+	imports: [Loading]
 })
 class LoadingTest {
 	isActive = true;

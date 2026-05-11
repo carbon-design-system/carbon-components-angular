@@ -12,7 +12,6 @@ import { Tab } from "./tab.component";
 			<cds-tab heading="three">Tab Content 3</cds-tab>
 		</cds-tabs>
 	`,
-	standalone: true,
 	imports: [
 		Tabs,
 		Tab

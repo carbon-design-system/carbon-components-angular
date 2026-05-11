@@ -27,7 +27,6 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 			</cds-radio>
 		}
 	`,
-	standalone: true,
 	imports: [Radio, AsyncPipe, ReplacePipe]
 })
 export class TableRadio {

@@ -6,8 +6,7 @@ import { LayerDirective } from "./layer.directive";
 
 @Component({
 	template: `<div cdsLayer></div>`,
-	imports: [LayerDirective],
-	standalone: true
+	imports: [LayerDirective]
 })
 class TestLayerComponent {
 }
@@ -18,8 +17,7 @@ class TestLayerComponent {
 			<div cdsLayer class="test"></div>
 		</div>
 	`,
-	imports: [LayerDirective],
-	standalone: true
+	imports: [LayerDirective]
 })
 class TestNestedLayerComponent {}
 

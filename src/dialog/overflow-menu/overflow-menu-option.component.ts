@@ -74,7 +74,6 @@ const REL = "noreferrer noopener";
 			</div>
 		</ng-template>
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class OverflowMenuOption implements AfterViewInit {

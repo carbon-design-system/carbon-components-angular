@@ -89,7 +89,6 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 			<ng-content />
 		</section>
 	`,
-	standalone: true,
 	imports: [
 		NgClass,
 		Button,

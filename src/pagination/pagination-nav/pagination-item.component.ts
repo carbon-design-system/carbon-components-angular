@@ -29,7 +29,6 @@ import { NgClass } from "@angular/common";
 			</button>
 		</li>
 	`,
-	standalone: true,
 	imports: [NgClass]
 })
 export class PaginationNavItem {

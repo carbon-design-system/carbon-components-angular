@@ -70,7 +70,6 @@ import { TreeNodeComponent } from "./tree-node.component";
 		</div>
 	`,
 	providers: [TreeViewService],
-	standalone: true,
 	imports: [NgTemplateOutlet, NgClass, TreeNodeComponent]
 })
 export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {

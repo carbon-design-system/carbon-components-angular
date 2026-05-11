@@ -19,7 +19,6 @@ import { ContextMenuDividerComponent, ContextMenuItemComponent } from "../contex
 			<cds-menu-item label="Danger action" [danger]="true"></cds-menu-item>
 		</cds-combo-button>
 	`,
-	standalone: true,
 	imports: [
 		ComboButtonComponent,
 		ContextMenuItemComponent,

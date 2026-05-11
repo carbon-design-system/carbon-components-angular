@@ -108,7 +108,6 @@ export enum ToggleState {
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
 export class Toggle extends Checkbox {

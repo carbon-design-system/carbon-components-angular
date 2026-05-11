@@ -45,7 +45,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			display: list-item;
 		}
 	`],
-	standalone: true,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,

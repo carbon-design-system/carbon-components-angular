@@ -82,7 +82,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {

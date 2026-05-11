@@ -19,8 +19,7 @@ import { TableItem } from "./table-item.class";
 			title="title"
 			[showSelectionColumn]="showSelectionColumn">
 		</cds-table>`,
-	imports: [Table],
-	standalone: true
+	imports: [Table]
 })
 class TableTest implements OnInit {
 	tableModel = new TableModel();

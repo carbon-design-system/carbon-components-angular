@@ -153,7 +153,6 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 		</nav>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	providers: [EventService],
 	imports: [
 		NgClass,

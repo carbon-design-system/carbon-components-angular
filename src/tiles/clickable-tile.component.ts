@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Link } from "carbon-components-angular/link";
-import { NgClass } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Build application's clickable tiles using this component. Get started with importing the component:
@@ -53,8 +53,7 @@ import { NgClass } from "@angular/common";
 		</a>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [Link, NgClass]
+	imports: [Link, NgClass, NgTemplateOutlet]
 })
 export class ClickableTile {
 	/**

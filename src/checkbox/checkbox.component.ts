@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { CheckboxValue } from "./checkbox.types";
-import { NgClass } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { CHECKBOX_GROUP_HOST, CheckboxGroupHost } from "./checkbox-group-host";
 
 /**
@@ -134,8 +134,7 @@ export enum CheckboxState {
 		}
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [NgClass]
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**

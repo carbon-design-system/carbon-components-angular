@@ -85,7 +85,6 @@ import { BaseModalService } from "./base-modal.service";
 			}
 		</cds-modal>
 	`,
-	standalone: true,
 	providers: [BaseModalService],
 	imports: [
 		Modal,

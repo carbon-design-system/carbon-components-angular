@@ -140,7 +140,6 @@ export enum SnippetType {
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	providers: [EventService],
 	imports: [
 		NgTemplateOutlet,

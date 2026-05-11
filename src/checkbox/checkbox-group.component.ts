@@ -110,7 +110,6 @@ import { Checkbox } from "./checkbox.component";
 		{ provide: CHECKBOX_GROUP_HOST, useExisting: CheckboxGroup }
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class CheckboxGroup implements OnChanges, AfterContentInit {

@@ -17,7 +17,6 @@ import { FormsModule } from "@angular/forms";
 		[(ngModel)]="model">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
 	</cds-dropdown>`,
-	standalone: true,
 	imports: [
 		Dropdown,
 		DropdownList,

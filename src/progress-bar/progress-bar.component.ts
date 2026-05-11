@@ -78,7 +78,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</div>
 		}
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet, IconDirective, NgStyle, NgClass]
 })
 export class ProgressBar {

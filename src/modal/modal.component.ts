@@ -109,7 +109,6 @@ export class ModalDemo {
 			</div>
 		</cds-overlay>
 	`,
-	standalone: true,
 	providers: [PlaceholderService, BaseModalService],
 	imports: [Overlay, NgClass]
 })

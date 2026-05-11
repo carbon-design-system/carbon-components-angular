@@ -17,7 +17,6 @@ import { RadioGroup } from "./radio-group.component";
 			}
 		</cds-radio-group>
 		`,
-	standalone: true,
 	imports: [Radio, RadioGroup, FormsModule]
 })
 class RadioTest {

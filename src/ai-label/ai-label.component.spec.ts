@@ -23,7 +23,8 @@ import { AILabelActions } from "./ai-label-actions.directive";
 			(revertClick)="onRevert($event)">
 			<p class="ai-label-projection">Child content</p>
 		</cds-ai-label>
-	`
+	`,
+	standalone: false
 })
 class TestAILabelHostComponent {
 	@Input() id = "test-ai-label-id";
@@ -42,7 +43,8 @@ class TestAILabelHostComponent {
 }
 
 @Component({
-	template: `<div cdsAILabelActions class="actions-host"></div>`
+	template: `<div cdsAILabelActions class="actions-host"></div>`,
+	standalone: false
 })
 class TestAILabelActionsComponent {}
 

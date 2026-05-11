@@ -7,8 +7,7 @@ import { LayerDirective } from "../layer";
 
 @Component({
 	template: `<div cdsTheme></div>`,
-	imports: [ThemeDirective],
-	standalone: true
+	imports: [ThemeDirective]
 })
 class TestThemeComponent {}
 

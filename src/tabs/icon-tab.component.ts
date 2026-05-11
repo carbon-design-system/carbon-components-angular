@@ -32,7 +32,6 @@ import { Tab } from "./tab.component";
 	providers: [
 		{ provide: Tab, useExisting: forwardRef(() => IconTab) }
 	],
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class IconTab extends Tab {

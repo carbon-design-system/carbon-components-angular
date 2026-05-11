@@ -158,10 +158,8 @@ import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 			useExisting: Slider,
 			multi: true
 		},
-
 		EventService
 	],
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
 export class Slider implements AfterViewInit, ControlValueAccessor {

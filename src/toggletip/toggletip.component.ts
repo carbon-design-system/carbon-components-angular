@@ -34,7 +34,6 @@ import { ToggletipButton } from "./toggletip-button.directive";
 			<ng-content select="[cdsToggletipContent]"></ng-content>
 		</cds-popover-content>
 	`,
-	standalone: true,
 	imports: [PopoverContent]
 })
 export class Toggletip extends PopoverContainer implements AfterViewInit, OnDestroy {

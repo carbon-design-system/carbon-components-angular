@@ -65,7 +65,6 @@ import { NgStyle, NgTemplateOutlet } from "@angular/common";
 			<ng-content></ng-content>
 		}
 	`,
-	standalone: true,
 	imports: [NgStyle, NgTemplateOutlet]
 })
 export class Tab implements OnInit {

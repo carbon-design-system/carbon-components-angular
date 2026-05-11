@@ -12,7 +12,6 @@ import { RouterModule } from "@angular/router";
 @Component({
 	selector: "app-foo",
 	template: "<h1>foo</h1>",
-	standalone: true,
 	imports: []
 })
 class FooComponent {}
@@ -28,7 +27,6 @@ class FooComponent {}
 			</cds-sidenav-item>
 		</cds-sidenav>
 	`,
-	standalone: true,
 	imports: [SideNav, SideNavItem, SideNavMenu, RouterModule]
 })
 class SideNavTest {

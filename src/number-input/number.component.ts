@@ -183,7 +183,6 @@ export class NumberChange {
 		}
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,

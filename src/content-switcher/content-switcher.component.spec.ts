@@ -12,7 +12,6 @@ import { ContentSwitcherOption } from "./index";
 			<button ibmContentOption name="Third" id="third">Third section</button>
 		</cds-content-switcher>
 	`,
-	standalone: true,
 	imports: [ContentSwitcher, ContentSwitcherOption]
 })
 class ContentSwitcherTest {

@@ -49,7 +49,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</li>
 		}
 	`,
-	standalone: true,
 	imports: [PaginationNavItem, FormsModule, IconDirective]
 })
 export class PaginationOverflow {

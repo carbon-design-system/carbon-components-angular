@@ -11,8 +11,7 @@ import { PasswordInputLabelComponent, PasswordInput } from "./";
 			<input cdsPassword type="password">
 		</cds-password-label>
 	`,
-	imports: [PasswordInputLabelComponent, PasswordInput],
-	standalone: true
+	imports: [PasswordInputLabelComponent, PasswordInput]
 })
 class TestPasswordInputComponent {}
 

@@ -126,7 +126,6 @@ import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 			</div>
 		}
 	`,
-	standalone: true,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,

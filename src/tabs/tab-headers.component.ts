@@ -211,7 +211,6 @@ import { Tooltip } from "carbon-components-angular/tooltip";
 			</svg>
 		</button>
 	`,
-	standalone: true,
 	providers: [EventService],
 	imports: [NgClass, NgTemplateOutlet, Tooltip]
 })

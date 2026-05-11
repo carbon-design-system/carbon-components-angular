@@ -219,7 +219,8 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 		<cds-tab #t1>Panel 1</cds-tab>
 		<cds-tab #t2 [active]="true">Panel 2</cds-tab>
 		<cds-tab #t3>Panel 3</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGInitialSelectionSecondTest {}
 
@@ -231,7 +232,8 @@ class HGInitialSelectionSecondTest {}
 		</cds-tab-header-group>
 		<cds-tab #p1 class="my-panel custom-class">Tab Panel 1</cds-tab>
 		<cds-tab #p2>Tab Panel 2</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGCustomClassOnTabHostTest {}
 
@@ -249,7 +251,8 @@ class HGCustomClassOnTabHostTest {}
 			<cds-tab #excluded>X</cds-tab>
 		}
 		<cds-tab #t2>B</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGConditionalTabTest {}
 
@@ -261,7 +264,8 @@ class HGConditionalTabTest {}
 		</cds-tab-header-group>
 		<cds-tab #s1>A</cds-tab>
 		<cds-tab #s2>B</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGSecondaryLabelContainedTest {}
 
@@ -281,7 +285,8 @@ class HGSecondaryLabelContainedTest {}
 		</cds-tab-header-group>
 		<cds-tab #p1>First body</cds-tab>
 		<cds-tab #p2>Second body</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGContentProjectionLabeledIconTabTest {}
 
@@ -305,7 +310,8 @@ class HGContentProjectionLabeledIconTabTest {}
 			</cds-tab-header>
 		</cds-tab-header-group>
 		<cds-tab #only1>Icon-only body</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGIconTabBadgeTest {}
 
@@ -317,7 +323,8 @@ class HGIconTabBadgeTest {}
 		</cds-tab-header-group>
 		<cds-tab #a>First body</cds-tab>
 		<cds-tab #b>Second body</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class TabHeaderGroupPaneRefSwitchTest {}
 
@@ -332,7 +339,8 @@ class TabHeaderGroupPaneRefSwitchTest {}
 		</cds-tab-header-group>
 		<cds-tab #d1>P1</cds-tab>
 		<cds-tab #d2>P2</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGDismissableTabsTest {
 	onTabClose(_: number) {}
@@ -348,7 +356,8 @@ class HGDismissableTabsTest {
 		<cds-tab #k1>P1</cds-tab>
 		<cds-tab #k2>P2</cds-tab>
 		<cds-tab #k3>P3</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGKeyboardNavigationTest {}
 
@@ -362,7 +371,8 @@ class HGKeyboardNavigationTest {}
 		<cds-tab #m1>P1</cds-tab>
 		<cds-tab #m2>P2</cds-tab>
 		<cds-tab #m3>P3</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGManualActivationTest {}
 
@@ -374,7 +384,8 @@ class HGManualActivationTest {}
 		</cds-tab-header-group>
 		<cds-tab #v1>One content</cds-tab>
 		<cds-tab #v2>Two content</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGTabPanelVisibilityTest {}
 
@@ -386,7 +397,8 @@ class HGTabPanelVisibilityTest {}
 		</cds-tab-header-group>
 		<cds-tab #so1>A</cds-tab>
 		<cds-tab #so2>B</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGSelectedOutputTest {
 	onFirstSelected() {}
@@ -402,6 +414,7 @@ class HGSelectedOutputTest {
 		<cds-tab #fw1>A</cds-tab>
 		<cds-tab #fw2>B</cds-tab>
 		<cds-tab #fw3>C</cds-tab>
-	`
+	`,
+	standalone: false
 })
 class HGFullWidthContainedTest {}

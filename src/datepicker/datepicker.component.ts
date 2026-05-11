@@ -126,7 +126,6 @@ if (languages.default?.default["en"]?.weekdays) {
 	],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, DatePickerInput]
 })
 export class DatePicker implements

@@ -6,6 +6,7 @@ import {
 	Input,
 	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 import { Tag } from "./tag.component";
 import { IconDirective } from "carbon-components-angular/icon";
 
@@ -38,8 +39,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [IconDirective]
+	imports: [NgTemplateOutlet, IconDirective]
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";

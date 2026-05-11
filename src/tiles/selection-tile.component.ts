@@ -60,7 +60,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		</label>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, AsyncPipe, NgTemplateOutlet, IconDirective]
 })
 export class SelectionTile implements AfterViewInit {

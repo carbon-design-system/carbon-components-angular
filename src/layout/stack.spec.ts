@@ -6,8 +6,7 @@ import { StackDirective } from "./stack.directive";
 
 @Component({
 	template: `<div cdsStack>Test</div>`,
-	imports: [StackDirective],
-	standalone: true
+	imports: [StackDirective]
 })
 class TestStackComponent {}
 

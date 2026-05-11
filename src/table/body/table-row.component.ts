@@ -111,7 +111,6 @@ import { NgStyle } from "@angular/common";
 		}
 		<ng-content></ng-content>
 	`,
-	standalone: true,
 	imports: [
 		TableExpandButton,
 		TableCheckbox,

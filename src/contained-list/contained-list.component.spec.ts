@@ -39,7 +39,6 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			</cds-contained-list-item>
 		</cds-contained-list>
 	`,
-	standalone: true,
 	imports: [
 		ContainedList,
 		ContainedListItem,

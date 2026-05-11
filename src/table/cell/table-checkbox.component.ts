@@ -29,7 +29,6 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 			</cds-checkbox>
 		}
 	`,
-	standalone: true,
 	imports: [Checkbox, AsyncPipe, ReplacePipe]
 })
 export class TableCheckbox {

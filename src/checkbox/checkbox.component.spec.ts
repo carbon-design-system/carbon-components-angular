@@ -17,7 +17,6 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 		[(ngModel)]="model">
 	</cds-checkbox>
 	`,
-	standalone: true,
 	imports: [
 		Checkbox,
 		FormsModule

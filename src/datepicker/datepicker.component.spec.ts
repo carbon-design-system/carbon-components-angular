@@ -18,7 +18,6 @@ import { FormsModule } from "@angular/forms";
 		(valueChange)="onValueChange()">
 	</cds-date-picker>
 	`,
-	standalone: true,
 	imports: [
 		DatePicker,
 		FormsModule

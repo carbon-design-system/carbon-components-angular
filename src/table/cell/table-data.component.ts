@@ -16,7 +16,6 @@ import { NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}" />
 		}
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class TableData {

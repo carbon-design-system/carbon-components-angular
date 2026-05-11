@@ -240,7 +240,6 @@ import {  PlaceholderService } from "carbon-components-angular/placeholder";
 		I18n
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {

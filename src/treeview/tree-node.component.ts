@@ -116,7 +116,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			}
 		</div>
 	`,
-	standalone: true,
 	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy {

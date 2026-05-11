@@ -16,7 +16,6 @@ import { Accordion } from "./accordion.component";
 			test-content
 		</cds-accordion-item>
 	</cds-accordion>`,
-	standalone: true,
 	imports: [
 		Accordion,
 		AccordionItem

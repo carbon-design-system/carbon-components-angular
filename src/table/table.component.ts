@@ -264,7 +264,6 @@ import { TableBody } from "./body/table-body.component";
 			display: block;
 		}
 	`],
-	standalone: true,
 	imports: [
 		TableDirective,
 		NgClass,

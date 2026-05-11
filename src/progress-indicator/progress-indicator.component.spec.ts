@@ -16,7 +16,6 @@ import { Step } from "./progress-indicator-step.interface";
 			(stepSelected)="stepSelected.emit($event)">
 		</cds-progress-indicator>
 	`,
-	standalone: true,
 	providers: [ExperimentalService],
 	imports: [
 		ProgressIndicator

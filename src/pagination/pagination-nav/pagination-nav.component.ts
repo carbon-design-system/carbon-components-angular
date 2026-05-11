@@ -121,7 +121,6 @@ export interface PaginationNavTranslations {
 		</div>
 	</div>
 	`,
-	standalone: true,
 	imports: [
 		IconButton,
 		IconDirective,

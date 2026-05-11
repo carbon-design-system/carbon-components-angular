@@ -30,7 +30,6 @@ import { NgClass } from "@angular/common";
 			<ng-content />
 		</section>
 	`,
-	standalone: true,
 	imports: [NgClass]
 })
 export class Overlay {

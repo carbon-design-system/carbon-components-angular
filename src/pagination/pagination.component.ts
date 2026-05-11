@@ -233,7 +233,6 @@ export interface PaginationTranslations {
 }
 	</div>
 	`,
-	standalone: true,
 	imports: [
 		NgClass,
 		FormsModule,

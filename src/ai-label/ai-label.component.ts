@@ -126,7 +126,6 @@ type DeprecatedAILabelAlign =
 			</cds-icon-button>
 		}
 	`,
-	standalone: true,
 	imports: [NgClass, AILabelPopoverDirective, IconButton]
 })
 export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {

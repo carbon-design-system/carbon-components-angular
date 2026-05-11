@@ -78,7 +78,6 @@ import { Button } from "carbon-components-angular/button";
 			</button>
 		}
 	`,
-	standalone: true,
 	providers: [NotificationDisplayService],
 	imports: [
 		IconDirective,

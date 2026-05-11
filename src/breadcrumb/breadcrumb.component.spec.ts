@@ -28,7 +28,6 @@ import { OverflowMenu } from "../dialog";
 			Breadcrumb 5
 		</cds-breadcrumb-item>
 	</cds-breadcrumb>`,
-	standalone: true,
 	imports: [
 		Breadcrumb,
 		BreadcrumbItemComponent
@@ -46,7 +45,6 @@ class TestBreadcrumb {
 		[threshold]="threshold"
 		[items]="items">
 	</cds-breadcrumb>`,
-	standalone: true,
 	imports: [
 		Breadcrumb
 	]

@@ -15,8 +15,7 @@ import { Tooltip } from "./tooltip.component";
 			<button>A</button>
 		</cds-tooltip>
 	`,
-	imports: [Tooltip],
-	standalone: true
+	imports: [Tooltip]
 })
 class TestTooltipComponent {
 	@Input() isOpen = false;

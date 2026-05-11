@@ -33,7 +33,6 @@ import { BaseIconButton, IconButton } from "carbon-components-angular/button";
 			<ng-content />
 		</cds-icon-button>
 	`,
-	standalone: true,
 	imports: [IconButton]
 })
 export class HeaderAction extends BaseIconButton {

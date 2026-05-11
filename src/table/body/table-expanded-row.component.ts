@@ -16,7 +16,6 @@ import { NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="firstExpandedTemplateInRow(row)" [ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}" />
 		</td>
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class TableExpandedRow {

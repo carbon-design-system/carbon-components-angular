@@ -83,7 +83,6 @@ import { NgClass } from "@angular/common";
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [NgClass]
 })
 export class StructuredList implements AfterContentInit, ControlValueAccessor {

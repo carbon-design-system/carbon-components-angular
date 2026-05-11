@@ -17,7 +17,6 @@ import { DatePickerInput } from "./datepicker-input.component";
 			[(ngModel)]="model">
 		</cds-date-picker-input>
 		`,
-	standalone: true,
 	imports: [
 		DatePickerInput,
 		FormsModule

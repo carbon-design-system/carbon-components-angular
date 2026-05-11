@@ -36,7 +36,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</ul>
 	`,
-	standalone: true,
 	providers: [I18n, EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
 	imports: [NgClass, NgTemplateOutlet]
 })

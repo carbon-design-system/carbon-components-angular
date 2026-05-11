@@ -32,7 +32,6 @@ import { ListColumn } from "./list-column.component";
 			</cds-list-row>
 		</cds-structured-list>
 	`,
-	standalone: true,
 	imports: [
 		ListRow,
 		ListHeader,

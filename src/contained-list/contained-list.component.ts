@@ -55,7 +55,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		</div>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class ContainedList {

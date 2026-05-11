@@ -86,7 +86,6 @@ import { AsyncPipe } from "@angular/common";
 		</nav>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	standalone: true,
 	imports: [SideNavItem, SideNavMenu, AsyncPipe]
 })
 export class SideNav {

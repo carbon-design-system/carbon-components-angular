@@ -91,7 +91,6 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		Button,
 		IconButton,

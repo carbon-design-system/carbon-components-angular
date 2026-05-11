@@ -96,7 +96,6 @@ export interface ExpandableTileTranslations {
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		NgClass,
 		NgStyle,

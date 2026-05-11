@@ -20,7 +20,6 @@ import { Button } from "../button";
 			<cds-menu-item label="Danger action" [danger]="true"></cds-menu-item>
 		</cds-menu-button>
 	`,
-	standalone: true,
 	imports: [
 		MenuButtonComponent,
 		ContextMenuComponent,

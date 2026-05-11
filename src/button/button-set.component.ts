@@ -32,7 +32,6 @@ import { NgTemplateOutlet } from "@angular/common";
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class ButtonSet {

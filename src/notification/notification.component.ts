@@ -54,7 +54,6 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 			</button>
 		}
 	`,
-	standalone: true,
 	providers: [NotificationDisplayService],
 	imports: [
 		IconDirective,

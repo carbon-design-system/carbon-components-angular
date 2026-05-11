@@ -103,7 +103,6 @@ const noop = () => {};
 		}
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,

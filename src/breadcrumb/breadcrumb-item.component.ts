@@ -32,7 +32,6 @@ import { NgTemplateOutlet } from "@angular/common";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgTemplateOutlet],
 	providers: [PlaceholderService]
 })

@@ -18,7 +18,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [NgClass, IconDirective]
 })
 export class TableToolbarSearch extends Search implements AfterViewInit {

@@ -13,7 +13,6 @@ import { TimePicker } from "./timepicker.component";
 		size="lg"
 		disabled="false">
 	</cds-timepicker>`,
-	standalone: true,
 	imports: [TimePicker]
 })
 class TimePickerTest {
