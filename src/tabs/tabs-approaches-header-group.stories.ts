@@ -421,7 +421,6 @@ const headerGroupDismissable = (args) => ({
 	`
 });
 export const Dismissable = headerGroupDismissable.bind({});
-Dismissable.storyName = "Dismissable";
 Dismissable.args = {
 	followFocus: true,
 	cacheActive: true,

@@ -272,6 +272,8 @@ export class DatePicker implements
 	 * We are overriding onClose event even if users pass it via flatpickr options
 	 * Emits an event when date picker closes
 	 */
+	// Public API name retained for backward compatibility (Angular style guide discourages `on` prefix on outputs).
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix -- existing output name; renaming would break consumers
 	@Output() onClose: EventEmitter<any> = new EventEmitter();
 
 	protected _value = [];
@@ -498,15 +500,6 @@ export class DatePicker implements
 			// work when the calendar icon is clicked. In this case we simply use flatpickr.open().
 			this.flatpickrInstance.open();
 		}
-	}
-
-	private isDecoratorClick(event: Event | undefined): boolean {
-		if (!event?.target) {
-			return false;
-		}
-		const t = event.target;
-		const el = t instanceof Element ? t : (t as Node).parentElement;
-		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
 	}
 
 	protected updateCalendarListeners() {
@@ -756,5 +749,14 @@ export class DatePicker implements
 				<polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
 				<rect width="16" height="16" style="fill:none" />
 			</svg>`;
+	}
+
+	private isDecoratorClick(event: Event | undefined): boolean {
+		if (!event?.target) {
+			return false;
+		}
+		const t = event.target;
+		const el = t instanceof Element ? t : (t as Node).parentElement;
+		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
 	}
 }

@@ -90,8 +90,8 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 	/**
 	 * List of `Tab` components.
 	 */
-	// disable the next line because we need to rename the input
-
+	// Template/API uses `[tabs]`; property name differs to avoid clashing with the `tabs` field populated from content.
+	// eslint-disable-next-line @angular-eslint/no-input-rename -- intentional alias for public `[tabs]` binding
 	@Input("tabs") tabInput: QueryList<Tab>;
 
 	/**

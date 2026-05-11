@@ -229,7 +229,6 @@ const cdsTabsDismissable = (args) => ({
 	`
 });
 export const Dismissable = cdsTabsDismissable.bind({});
-Dismissable.storyName = "Dismissable";
 Dismissable.args = {
 	type: "line" as "line" | "contained"
 };
