@@ -42,7 +42,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 		@if (danger && dangerDescription) {
 			<span class="cds--visually-hidden">{{dangerDescription}}</span>
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	styles: [`
 		:host {

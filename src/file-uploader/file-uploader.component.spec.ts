@@ -7,14 +7,12 @@ import { FileItem } from "./file-item.interface";
 
 @Component({
 	template: `
-		<cds-file-uploader
-			title="title"
+		<cds-file-uploader title="title"
 			description="description"
 			buttonText="buttonText"
 			accept=".txt"
 			multiple="true"
-			[(ngModel)]="files">
-		</cds-file-uploader>
+			[(ngModel)]="files" />
 	`,
 	imports: [
 		FileUploader,

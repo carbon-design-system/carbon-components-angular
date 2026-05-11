@@ -22,7 +22,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
 		@if (count === 1) {
-			<cds-pagination-nav-item [page]="fromIndex + 1"></cds-pagination-nav-item>
+			<cds-pagination-nav-item [page]="fromIndex + 1" />
 		} @else if (count > 1) {
 			<li class="cds--pagination-nav__list-item">
 				<div class="cds--pagination-nav__select">

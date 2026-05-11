@@ -6,12 +6,10 @@ import { By } from "@angular/platform-browser";
 
 @Component({
 	template: `
-		<cds-loading
-			[isActive]="isActive"
+		<cds-loading [isActive]="isActive"
 			[size]="size"
 			[overlay]="overlay"
-			title="title">
-		</cds-loading>`,
+			title="title" />`,
 	imports: [Loading]
 })
 class LoadingTest {

@@ -7,12 +7,10 @@ import { TreeNodeComponent } from "./tree-node.component";
 
 @Component({
 	template: `
-		<cds-tree-view
-			label="Tree view"
+		<cds-tree-view label="Tree view"
 			style="width: 18rem; display: block;"
 			[tree]="tree"
-			(selected)="onSelect()">
-		</cds-tree-view>
+			(selected)="onSelect()" />
 	`,
 	imports: [TreeViewComponent, TreeNodeComponent]
 })

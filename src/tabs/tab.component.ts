@@ -59,13 +59,12 @@ import { NgStyle, NgTemplateOutlet } from "@angular/common";
 			@if (isTemplate(tabContent)) {
 				<ng-template
 					[ngTemplateOutlet]="tabContent"
-					[ngTemplateOutletContext]="{ $implicit: templateContext }">
-				</ng-template>
+					[ngTemplateOutletContext]="{ $implicit: templateContext }" />
 			}
-			<ng-content></ng-content>
+			<ng-content />
 		}
 	`,
-	imports: [NgStyle, NgTemplateOutlet]
+	imports: [NgTemplateOutlet]
 })
 export class Tab implements OnInit {
 	@HostBinding("attr.id") get hostId() {

@@ -24,11 +24,11 @@ import { NgTemplateOutlet } from "@angular/common";
 			</div>
 		}
 		@if (!fluid) {
-			<ng-container *ngTemplateOutlet="content"></ng-container>
+			<ng-container *ngTemplateOutlet="content" />
 		}
 
 		<ng-template #content>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,

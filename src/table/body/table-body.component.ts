@@ -72,7 +72,7 @@ import { ExpandedRowHover } from "../expanded-row-hover.directive";
 				}
 			}
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	imports: [
 		TableRowComponent,

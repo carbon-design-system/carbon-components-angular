@@ -26,7 +26,7 @@ import {
  */
 @Component({
 	selector: "cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped",
-	template: `<ng-content></ng-content>`,
+	template: `<ng-content />`,
 	standalone: true
 })
 export class TabsVerticalGrouped {

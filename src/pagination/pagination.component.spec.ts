@@ -6,13 +6,11 @@ import { PaginationModel } from "./pagination-model.class";
 
 @Component({
 	template: `
-		<cds-pagination
-			[model]="model"
+		<cds-pagination [model]="model"
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
-			(selectPage)="selectPage($event)">
-		</cds-pagination>
+			(selectPage)="selectPage($event)" />
 	`,
 	imports: [
 		Pagination

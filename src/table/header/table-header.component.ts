@@ -14,7 +14,7 @@ import { TableHeaderDecorator } from "./table-header-decorator.component";
 		<div class="cds--data-table-header__content">
 			<ng-content></ng-content>
 		</div>
-		<ng-content select="cds-table-header-decorator, ibm-table-header-decorator"></ng-content>
+		<ng-content select="cds-table-header-decorator, ibm-table-header-decorator" />
 	`,
 	standalone: true
 })

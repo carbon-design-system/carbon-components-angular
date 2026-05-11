@@ -67,7 +67,7 @@ import { Button } from "carbon-components-angular/button";
 				</button>
 			}
 		}
-		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }"></ng-container>
+		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }" />
 		@if (!isCloseHidden) {
 			<button
 				(click)="onClose()"

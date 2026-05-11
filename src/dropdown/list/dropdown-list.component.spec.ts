@@ -7,7 +7,7 @@ import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`,
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" />`,
 	imports: [DropdownList]
 })
 class DropdownListTest {
@@ -22,7 +22,7 @@ class DropdownListTest {
 }
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`,
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi" />`,
 	imports: [DropdownList]
 })
 class MultiTest {

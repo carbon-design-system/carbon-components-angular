@@ -301,13 +301,11 @@ class HGContentProjectionLabeledIconTabTest {}
 			</svg>
 		</ng-template>
 		<cds-tab-header-group [cacheActive]="true" [iconSize]="'lg'" [ariaLabel]="'List of tabs'">
-			<cds-tab-header
-				[paneReference]="only1"
+			<cds-tab-header [paneReference]="only1"
 				[icon]="iconTpl"
 				[iconOnly]="true"
 				iconLabel="Notifications"
-				[badgeIndicator]="true">
-			</cds-tab-header>
+				[badgeIndicator]="true" />
 		</cds-tab-header-group>
 		<cds-tab #only1>Icon-only body</cds-tab>
 	`,
@@ -334,8 +332,8 @@ class TabHeaderGroupPaneRefSwitchTest {}
 			[dismissable]="true"
 			[ariaLabel]="'List of tabs'"
 			(tabClose)="onTabClose($event)">
-			<cds-tab-header [paneReference]="d1" [dismissable]="true" title="Tab Label 1"></cds-tab-header>
-			<cds-tab-header [paneReference]="d2" [dismissable]="true" title="Tab Label 2"></cds-tab-header>
+			<cds-tab-header [paneReference]="d1" [dismissable]="true" title="Tab Label 1" />
+			<cds-tab-header [paneReference]="d2" [dismissable]="true" title="Tab Label 2" />
 		</cds-tab-header-group>
 		<cds-tab #d1>P1</cds-tab>
 		<cds-tab #d2>P2</cds-tab>

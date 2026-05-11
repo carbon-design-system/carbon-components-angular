@@ -86,7 +86,7 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 				[size]="size"
 				[open]="open"
 				[attr.id]="comboId">
-				<ng-content select="cds-menu-item, cds-menu-divider"></ng-content>
+				<ng-content select="cds-menu-item, cds-menu-divider" />
 			</cds-menu>
 		</ng-template>
 	`,

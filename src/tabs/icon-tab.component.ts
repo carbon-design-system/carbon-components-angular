@@ -23,10 +23,9 @@ import { Tab } from "./tab.component";
 			@if (isTemplate(tabContent)) {
 				<ng-template
 					[ngTemplateOutlet]="tabContent"
-					[ngTemplateOutletContext]="{ $implicit: templateContext }">
-				</ng-template>
+					[ngTemplateOutletContext]="{ $implicit: templateContext }" />
 			}
-			<ng-content></ng-content>
+			<ng-content />
 		}
 	`,
 	providers: [

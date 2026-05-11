@@ -68,8 +68,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 					[counterMode]="counterMode"
 					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
-					[textAreaTemplate]="inputContentTemplate">
-				</cds-textarea-label>
+					[textAreaTemplate]="inputContentTemplate" />
 			}
 			@case ('TextInput') {
 				<cds-text-label
@@ -89,8 +88,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 					[maxCount]="maxCount"
 					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
-					[textInputTemplate]="inputContentTemplate">
-				</cds-text-label>
+					[textInputTemplate]="inputContentTemplate" />
 			}
 			@case ('PasswordInput') {
 
@@ -107,8 +105,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 					[hideLabel]="hideLabel"
 					[inline]="inline"
 					[labelTemplate]="labelContentTemplate"
-					[passwordInputTemplate]="inputContentTemplate">
-				</cds-password-label>
+					[passwordInputTemplate]="inputContentTemplate" />
 			}
 			@default {
 				<ng-template [ngTemplateOutlet]="default" />

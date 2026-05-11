@@ -25,14 +25,12 @@ import { NgTemplateOutlet } from "@angular/common";
 @Component({
 	selector: "cds-tile, ibm-tile",
 	template: `
-		<ng-content></ng-content>
+		<ng-content />
 		@if (decorator) {
-
 			<div class="cds--tile--inner-decorator">
 				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 			</div>
-
-}
+		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet],

@@ -17,7 +17,7 @@ import { FormsModule } from "@angular/forms";
 		[(ngModel)]="model"
 		[type]="type"
 		[itemValueKey]="itemValueKey">
-		<cds-dropdown-list></cds-dropdown-list>
+		<cds-dropdown-list />
 	</cds-combo-box>`,
 	imports: [
 		ComboBox,

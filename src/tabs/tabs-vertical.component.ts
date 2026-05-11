@@ -28,7 +28,7 @@ import { TabSkeleton } from "./tab-skeleton.component";
 	selector: "cds-tabs-vertical, ibm-tabs-vertical",
 	template: `
 		@if (skeleton) {
-			<cds-tabs-skeleton [contained]="true"></cds-tabs-skeleton>
+			<cds-tabs-skeleton [contained]="true" />
 		}
 		@if (!skeleton) {
 			@if (hasTabHeaders()) {
@@ -39,15 +39,14 @@ import { TabSkeleton } from "./tab-skeleton.component";
 					[contentBefore]="before"
 					[contentAfter]="after"
 					[ariaLabel]="ariaLabel"
-					[ariaLabelledby]="ariaLabelledby">
-				</cds-tab-headers-vertical>
+					[ariaLabelledby]="ariaLabelledby" />
 			}
-			<ng-content></ng-content>
+			<ng-content />
 			<ng-template #before>
-				<ng-content select="[before]"></ng-content>
+				<ng-content select="[before]" />
 			</ng-template>
 			<ng-template #after>
-				<ng-content select="[after]"></ng-content>
+				<ng-content select="[after]" />
 			</ng-template>
 		}
 	`,

@@ -14,7 +14,7 @@ import { RouterModule } from "@angular/router";
 	selector: "cds-hamburger-test",
 	template: `
 		<cds-header>
-			<cds-hamburger></cds-hamburger>
+			<cds-hamburger />
 		</cds-header>
 	`,
 	imports: [Header, Hamburger]

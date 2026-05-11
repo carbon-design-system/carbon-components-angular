@@ -6,8 +6,7 @@ import { FormsModule } from "@angular/forms";
 
 @Component({
 	template: `
-	<cds-date-picker
-		label="Date picker label"
+	<cds-date-picker label="Date picker label"
 		placeholder="mm/dd/yyyy"
 		theme="light"
 		[(ngModel)]="value"
@@ -15,8 +14,7 @@ import { FormsModule } from "@angular/forms";
 		[invalid]="invalid"
 		invalidText="invalid text"
 		dateFormat="m/d/Y"
-		(valueChange)="onValueChange()">
-	</cds-date-picker>
+		(valueChange)="onValueChange()" />
 	`,
 	imports: [
 		DatePicker,

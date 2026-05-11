@@ -11,25 +11,25 @@ import { ContextMenuGroupComponent } from "./context-menu-group.component";
 @Component({
 	template: `
 		<cds-context-menu [open]="open">
-			<cds-context-menu-item label="Option with icon" icon="calendar"></cds-context-menu-item>
-			<cds-context-menu-divider></cds-context-menu-divider>
-			<cds-context-menu-item type="checkbox" label="Enable magic"></cds-context-menu-item>
-			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item label="Option with icon" icon="calendar" />
+			<cds-context-menu-divider />
+			<cds-context-menu-item type="checkbox" label="Enable magic" />
+			<cds-context-menu-divider />
 			<cds-context-menu-group
 				type="checkbox"
 				label="Selection group">
-				<cds-context-menu-item type="checkbox" label="Blue"></cds-context-menu-item>
-				<cds-context-menu-item type="checkbox" label="Red" [checked]="true"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Blue" />
+				<cds-context-menu-item type="checkbox" label="Red" [checked]="true" />
 			</cds-context-menu-group>
-			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-divider />
 			<cds-context-menu-item label="Radio flyout">
 				<cds-context-menu>
 					<cds-context-menu-group
 						type="radio"
 						[value]="radioGroupValue"
 						(valueChange)="onRadioChange($event)">
-						<cds-context-menu-item type="radio" label="Radio one" value="one"></cds-context-menu-item>
-						<cds-context-menu-item type="radio" label="Radio two" value="two"></cds-context-menu-item>
+						<cds-context-menu-item type="radio" label="Radio one" value="one" />
+						<cds-context-menu-item type="radio" label="Radio two" value="two" />
 					</cds-context-menu-group>
 				</cds-context-menu>
 			</cds-context-menu-item>
