@@ -1,34 +1,18 @@
-import { Checkbox, CHECKBOX_GROUP_HOST, CheckboxGroupHost } from "carbon-components-angular/checkbox";
 import {
 	ChangeDetectorRef,
 	Component,
-	Inject,
-	Input,
-	Optional,
+	EventEmitter,
 	HostBinding,
+	HostListener,
+	Input,
+	Output,
 	TemplateRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
-
-/**
- * @deprecated since v5 - Use boolean
- * Defines the set of states for a toggle component.
- */
-export enum ToggleState {
-	Init,
-	Checked,
-	Unchecked
-}
-
-/**
- * @todo - Toggle component will no longer extend `Checkbox` component as of v6
- * Toggle is no longer repies on using checkbox, so doesn't make sense for us to continue inheriting ALL checkbox
- * component attributes.
- */
 
 /**
  * Get started with importing the component:
@@ -110,11 +94,35 @@ export enum ToggleState {
 	],
 	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
-export class Toggle extends Checkbox {
+export class Toggle implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for toggle components.
 	 */
 	static toggleCount = 0;
+
+	/**
+	 * Set to `true` for a disabled toggle.
+	 */
+	@Input() disabled = false;
+
+	/**
+	 * Sets the `checked` state. `true` for on, `false` for off.
+	 * Allows double binding with the `checkedChange` Output.
+	 */
+	@Input()
+	set checked(checked: boolean) {
+		this.setChecked(!!checked);
+	}
+
+	get checked() {
+		return this._checked;
+	}
+
+	/**
+	 * Emits an event when the value of the toggle changes.
+	 * Allows double binding with the `checked` Input.
+	 */
+	@Output() checkedChange = new EventEmitter<boolean>();
 
 	/**
 	 * Text that is set on the left side of the toggle.
@@ -173,6 +181,8 @@ export class Toggle extends Checkbox {
 	 */
 	id = "toggle-" + Toggle.toggleCount;
 
+	protected _checked = false;
+
 	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
 	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
 	/**
@@ -180,10 +190,8 @@ export class Toggle extends Checkbox {
 	 */
 	constructor(
 		protected changeDetectorRef: ChangeDetectorRef,
-		@Optional() @Inject(CHECKBOX_GROUP_HOST) hostGroup: CheckboxGroupHost | null,
 		protected i18n: I18n
 	) {
-		super(changeDetectorRef, hostGroup);
 		Toggle.toggleCount++;
 	}
 
@@ -196,6 +204,7 @@ export class Toggle extends Checkbox {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	getOffText(): Observable<string> {
@@ -214,7 +223,7 @@ export class Toggle extends Checkbox {
 	}
 
 	/**
-	 * Creates instance of `ToggleChange` used to propagate the change event.
+	 * Creates instance used to propagate the change event.
 	 */
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
@@ -223,5 +232,48 @@ export class Toggle extends Checkbox {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Writes a value from `ngModel` to the component.
+	 *
+	 * @param value boolean, corresponds to the `checked` property.
+	 */
+	public writeValue(value: unknown) {
+		this.setChecked(!!value);
+	}
+
+	public registerOnChange(fn: (value: boolean) => void) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: () => void) {
+		this.onTouched = fn;
+	}
+
+	onClick(event: Event) {
+		event.stopPropagation();
+		if (this.disabled) {
+			return;
+		}
+		this.setChecked(!this._checked);
+		this.emitChangeEvent();
+	}
+
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
+	}
+
+	onTouched: () => void = () => {};
+
+	propagateChange: (value: boolean) => void = () => {};
+
+	private setChecked(checked: boolean) {
+		if (checked === this._checked) {
+			return;
+		}
+		this._checked = checked;
+		this.changeDetectorRef.markForCheck();
 	}
 }

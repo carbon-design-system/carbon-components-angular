@@ -10,8 +10,7 @@ export {
 } from "carbon-components-angular/checkbox";
 export {
 	ToggleModule,
-	Toggle,
-	ToggleState
+	Toggle
 } from "carbon-components-angular/toggle";
 export {
 	Radio,
