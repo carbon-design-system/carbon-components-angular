@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import * as Icons from "@carbon/pictograms";
 
+import { IconDirective } from "../icon.directive";
 import { IconService } from "..";
+import { ColumnDirective, GridDirective, RowDirective } from "../../grid";
 
 @Component({
 	selector: "app-demo-many-pictograms",
+	imports: [IconDirective, GridDirective, RowDirective, ColumnDirective],
 	template: `
 		<div cdsGrid>
 			<div cdsRow>

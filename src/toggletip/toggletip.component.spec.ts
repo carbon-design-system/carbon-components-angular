@@ -42,8 +42,7 @@ import {
 		ToggletipButton,
 		ToggletipAction,
 		ToggletipLabel
-	],
-	standalone: true
+	]
 })
 class TestToggletipComponent {
 	@Input() isOpen = false;

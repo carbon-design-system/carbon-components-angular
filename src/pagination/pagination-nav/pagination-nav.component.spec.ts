@@ -13,7 +13,6 @@ import { PaginationModel } from "../pagination-model.class";
 			(selectPage)="selectPage($event)">
 		</cds-pagination-nav>
 	`,
-	standalone: true,
 	imports: [
 		PaginationNav
 	]

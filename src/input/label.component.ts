@@ -177,7 +177,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			}
 		</ng-template>
 	`,
-	standalone: true,
 	imports: [
 		NgTemplateOutlet,
 		NgClass,

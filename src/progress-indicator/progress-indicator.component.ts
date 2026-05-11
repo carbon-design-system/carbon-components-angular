@@ -77,7 +77,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		</ul>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, IconDirective]
 })
 export class ProgressIndicator {

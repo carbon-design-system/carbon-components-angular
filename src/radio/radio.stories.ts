@@ -12,7 +12,6 @@ export default {
 	title: "Components/Radio",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
@@ -20,7 +19,8 @@ export default {
 				RadioGroup,
 				AILabelModule,
 				ButtonModule,
-				IconModule
+				IconModule,
+				ReactiveFormsStory
 			]
 		})
 	],

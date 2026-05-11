@@ -5,6 +5,7 @@ import {
 	ChangeDetectionStrategy,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Supported tag types for carbon v10
@@ -51,6 +52,7 @@ export type TagType = "red" |
 }
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet],
 	standalone: true
 })
 export class Tag {

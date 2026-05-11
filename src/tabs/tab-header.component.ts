@@ -30,7 +30,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 @Component({
 	selector: "cds-tab-header, ibm-tab-header",
 	providers: [
-
 		{ provide: TabHeaderBase, useExisting: forwardRef(() => TabHeaderComponent) }
 	],
 	template: `
@@ -136,7 +135,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			</div>
 		}
 	`,
-	standalone: true,
 	imports: [Tooltip, NgClass, NgTemplateOutlet]
 })
 export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {

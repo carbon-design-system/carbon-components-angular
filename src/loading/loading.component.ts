@@ -33,7 +33,6 @@ import { NgClass } from "@angular/common";
 		</div>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass]
 })
 export class Loading {

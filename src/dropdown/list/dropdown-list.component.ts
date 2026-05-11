@@ -133,7 +133,6 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 		AnimationFrameServiceSingleton
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {

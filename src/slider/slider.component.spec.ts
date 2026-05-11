@@ -15,7 +15,6 @@ import { UtilsModule } from "../utils/utils.module";
 		[max]="max"
 		[min]="min">
 	</cds-slider>`,
-	standalone: true,
 	imports: [
 		Slider
 	]

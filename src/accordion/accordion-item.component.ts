@@ -52,7 +52,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		}
 	`],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [IconDirective, NgTemplateOutlet, NgClass]
 })
 export class AccordionItem {

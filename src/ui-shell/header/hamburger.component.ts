@@ -28,7 +28,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			}
 		</button>
 	`,
-	standalone: true,
 	imports: [NgClass, IconDirective]
 })
 export class Hamburger {

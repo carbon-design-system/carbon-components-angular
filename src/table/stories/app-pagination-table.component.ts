@@ -5,6 +5,7 @@ import {
 	OnInit,
 	Input
 } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
@@ -43,7 +44,7 @@ import { Pagination } from "../../pagination";
 		<cds-pagination [model]="model" (selectPage)="selectPage($event)"></cds-pagination>
 	`,
 	standalone: true,
-	imports: [Table, Label, Pagination]
+	imports: [Table, Label, Pagination, FormsModule]
 })
 export class PaginationTableStory implements OnInit {
 	@Input() model = new TableModel();

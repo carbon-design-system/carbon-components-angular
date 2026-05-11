@@ -57,7 +57,6 @@ import { NgTemplateOutlet } from "@angular/common";
 			</span>
 		}
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class Tooltip extends PopoverContainer implements OnChanges, AfterContentChecked {

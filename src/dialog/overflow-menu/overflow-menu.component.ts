@@ -97,7 +97,6 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 		}
 	`],
 	encapsulation: ViewEncapsulation.None,
-	standalone: true,
 	providers: [PlaceholderService],
 	imports: [
 		Tooltip,

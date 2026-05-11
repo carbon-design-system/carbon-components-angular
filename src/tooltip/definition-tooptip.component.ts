@@ -63,7 +63,6 @@ import { NgTemplateOutlet } from "@angular/common";
 			</span>
 		}
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class TooltipDefinition extends PopoverContainer {

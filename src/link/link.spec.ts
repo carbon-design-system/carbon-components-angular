@@ -6,7 +6,6 @@ import { Link } from "./link.directive";
 
 @Component({
 	template: `<a href="https://angular.carbondesignsystem.com/" cdsLink>link</a>`,
-	standalone: true,
 	imports: [Link]
 })
 class TestLinkComponent {
@@ -14,15 +13,13 @@ class TestLinkComponent {
 
 @Component({
 	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" cdsLink>link</a>`,
-	imports: [Link],
-	standalone: true
+	imports: [Link]
 })
 class TestDisabledLinkComponent {
 }
 
 @Component({
 	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" cdsLink>link</a>`,
-	standalone: true,
 	imports: [Link]
 })
 class TestInlineLinkComponent {

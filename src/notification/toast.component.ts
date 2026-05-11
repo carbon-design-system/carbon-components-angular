@@ -52,7 +52,6 @@ import { NotificationService } from "./notification.service";
 			</button>
 		}
 	`,
-	standalone: true,
 	providers: [NotificationDisplayService],
 	imports: [
 		IconDirective,

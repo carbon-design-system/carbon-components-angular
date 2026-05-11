@@ -114,7 +114,6 @@ import { TableHeadCell } from "./table-head-cell.component";
 			padding-left: 2.5rem;
 		}
 	`],
-	standalone: true,
 	imports: [
 		TableHeadExpand,
 		NgClass,

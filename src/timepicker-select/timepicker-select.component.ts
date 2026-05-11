@@ -44,7 +44,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [IconDirective]
 })
 export class TimePickerSelect extends Select {

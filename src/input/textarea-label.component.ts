@@ -170,7 +170,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {

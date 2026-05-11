@@ -80,7 +80,6 @@ export enum InlineLoadingState {
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, IconDirective]
 })
 export class InlineLoading {

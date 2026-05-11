@@ -1,9 +1,12 @@
 import { Component, Input } from "@angular/core";
 
+import { Button } from "carbon-components-angular/button";
 import { FileItem } from "../";
+import { FileUploader } from "../file-uploader.component";
 
 @Component({
 	selector: "app-file-uploader",
+	imports: [FileUploader, Button],
 	template: `
 		<cds-file-uploader
 			[title]="title"

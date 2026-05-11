@@ -17,11 +17,6 @@ export default {
 	title: "Components/Combobox",
 	decorators: [
 		moduleMetadata({
-			declarations: [
-				DynamicListComboBox,
-				ReactiveFormsCombobox,
-				MockQueryCombobox
-			],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
@@ -29,7 +24,10 @@ export default {
 				DropdownList,
 				AILabelModule,
 				ButtonModule,
-				IconModule
+				IconModule,
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
 			]
 
 		})

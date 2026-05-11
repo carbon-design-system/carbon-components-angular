@@ -85,7 +85,6 @@ import { TabSkeleton } from "./tab-skeleton.component";
 			}
 		}
 	`,
-	standalone: true,
 	imports: [TabSkeleton, TabHeaders]
 })
 export class Tabs implements AfterContentInit, OnChanges {

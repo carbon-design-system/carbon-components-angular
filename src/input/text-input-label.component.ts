@@ -191,7 +191,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		</ng-template>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {

@@ -63,7 +63,6 @@ const VERTICAL_TAB_HEIGHT = 64;
 			<div class="cds--tab--list-gradient_bottom"></div>
 		}
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet]
 })
 export class TabHeaderGroupVertical

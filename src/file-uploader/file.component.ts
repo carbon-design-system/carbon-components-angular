@@ -89,7 +89,6 @@ import { Button } from "carbon-components-angular/button";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [NgTemplateOutlet, IconDirective, Loading, Button]
 })
 export class FileComponent implements OnDestroy {

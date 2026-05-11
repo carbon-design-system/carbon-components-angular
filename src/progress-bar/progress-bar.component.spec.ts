@@ -16,8 +16,7 @@ import { ProgressBar } from "./";
 			[value]="value">
 		</cds-progress-bar>
 		`,
-	imports: [ProgressBar],
-	standalone: true
+	imports: [ProgressBar]
 })
 class TestProgessBarComponent {
 	@Input() label = "Label";

@@ -1,7 +1,11 @@
 import { Component } from "@angular/core";
 
+import { DropdownList } from "carbon-components-angular/dropdown";
+import { ComboBox } from "../combobox.component";
+
 @Component({
 	selector: "app-mock-query-search",
+	imports: [ComboBox, DropdownList],
 	template: `
 		<cds-combo-box
 			appendInline="true"

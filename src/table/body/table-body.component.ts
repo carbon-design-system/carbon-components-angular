@@ -74,7 +74,6 @@ import { ExpandedRowHover } from "../expanded-row-hover.directive";
 		}
 		<ng-content></ng-content>
 	`,
-	standalone: true,
 	imports: [
 		TableRowComponent,
 		NgClass,

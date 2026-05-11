@@ -14,8 +14,7 @@ import { TreeNodeComponent } from "./tree-node.component";
 			(selected)="onSelect()">
 		</cds-tree-view>
 	`,
-	imports: [TreeViewComponent, TreeNodeComponent],
-	standalone: true
+	imports: [TreeViewComponent, TreeNodeComponent]
 })
 class TreeviewTestComponent {
 	tree = [

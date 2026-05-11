@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import {
 	Component,
 	Output,
@@ -45,8 +46,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</div>
 		</header>
 	`,
-	standalone: true,
-	imports: [IconButton, IconDirective]
+	imports: [NgTemplateOutlet, IconButton, IconDirective]
 })
 export class ModalHeader {
 	/**

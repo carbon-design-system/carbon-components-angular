@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { InlineLoadingState } from "../";
+
+import { Button } from "carbon-components-angular/button";
+import { InlineLoading, InlineLoadingState } from "../";
 
 @Component({
 	selector: "app-inline-loading",
+	imports: [InlineLoading, Button],
 	template: `
 		<cds-inline-loading
 			[state]="state"

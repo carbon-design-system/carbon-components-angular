@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { RadioChange } from "./radio-change.class";
-import { NgClass } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * class: Radio (extends Checkbox)
@@ -69,8 +69,7 @@ import { NgClass } from "@angular/common";
 			multi: true
 		}
 	],
-	standalone: true,
-	imports: [NgClass]
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class Radio {
 	/**

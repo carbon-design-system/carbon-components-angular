@@ -97,7 +97,6 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			</svg>
 		</button>
 	`,
-	standalone: true,
 	providers: [EventService],
 	imports: [NgClass, NgTemplateOutlet]
 })

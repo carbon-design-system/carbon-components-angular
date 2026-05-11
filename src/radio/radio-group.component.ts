@@ -131,7 +131,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			multi: true
 		}
 	],
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {

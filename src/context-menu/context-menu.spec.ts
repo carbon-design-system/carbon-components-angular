@@ -35,7 +35,6 @@ import { ContextMenuGroupComponent } from "./context-menu-group.component";
 			</cds-context-menu-item>
 		</cds-context-menu>
 	`,
-	standalone: true,
 	imports: [
 		ContextMenuComponent,
 		ContextMenuItemComponent,

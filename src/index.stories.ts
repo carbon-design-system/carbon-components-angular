@@ -6,6 +6,7 @@ import { IconDirective } from "./icon";
 
 @Component({
 	selector: "app-welcome",
+	imports: [Button, IconDirective],
 	template: `
 		<section class="overview-page__banner" aria-label="overview page banner">
 			<svg xmlns="http://www.w3.org/2000/svg" class="banner__background" viewBox="0 0 1530 823">
@@ -171,8 +172,7 @@ export default {
 	title: "Getting Started",
 	decorators: [
 		moduleMetadata({
-			imports: [Button, IconDirective],
-			declarations: [WelcomeStory]
+			imports: [Button, IconDirective, WelcomeStory]
 		})
 	],
 	parameters: {

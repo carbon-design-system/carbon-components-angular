@@ -27,7 +27,6 @@ import { NgClass } from "@angular/common";
 			<ng-content />
 		</a>
 	`,
-	standalone: true,
 	imports: [NgClass]
 })
 export class SwitcherListItem {

@@ -14,7 +14,6 @@ import { GridDirective } from "./grid.directive";
 @Component({
 	selector: "cds-test-grid",
 	template: "",
-	standalone: true,
 	imports: [GridDirective, RowDirective, ColumnDirective]
 })
 class TestGridComponent {}

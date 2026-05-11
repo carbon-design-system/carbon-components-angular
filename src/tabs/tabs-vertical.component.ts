@@ -51,7 +51,6 @@ import { TabSkeleton } from "./tab-skeleton.component";
 			</ng-template>
 		}
 	`,
-	standalone: true,
 	imports: [TabSkeleton, TabHeadersVertical]
 })
 export class TabsVertical implements AfterContentInit, OnChanges {

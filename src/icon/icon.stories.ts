@@ -6,8 +6,8 @@ export default {
 	title: "Components/Icon",
 	decorators: [
 		moduleMetadata({
-			imports: [IconDirective],
-			declarations: [
+			imports: [
+				IconDirective,
 				IconDemo,
 				ManyIconDemo,
 				ManyPictogramsDemo

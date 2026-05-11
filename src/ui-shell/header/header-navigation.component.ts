@@ -37,7 +37,6 @@ import { HeaderMenu } from "./header-menu.component";
 			</div>
 		</nav>
 	`,
-	standalone: true,
 	imports: [HeaderItem, HeaderMenu]
 })
 export class HeaderNavigation {

@@ -242,7 +242,6 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 		EventService
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,

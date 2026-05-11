@@ -16,7 +16,6 @@ import { FileItem } from "./file-item.interface";
 			[(ngModel)]="files">
 		</cds-file-uploader>
 	`,
-	standalone: true,
 	imports: [
 		FileUploader,
 		FormsModule

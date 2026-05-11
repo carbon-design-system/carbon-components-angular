@@ -17,7 +17,6 @@ import { RouterModule } from "@angular/router";
 			<cds-hamburger></cds-hamburger>
 		</cds-header>
 	`,
-	standalone: true,
 	imports: [Header, Hamburger]
 })
 class HamburgerTest {}

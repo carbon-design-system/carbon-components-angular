@@ -17,7 +17,6 @@ import { NgClass } from "@angular/common";
 			<ng-content />
 		</div>
 	`,
-	standalone: true,
 	imports: [NgClass]
 })
 export class Panel {

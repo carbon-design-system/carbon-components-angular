@@ -7,7 +7,6 @@ import { TagFilter } from "./tag-filter.component";
 @Component({
 	template: `
 	<cds-tag-filter [disabled]="disabled">TagFilter</cds-tag-filter>`,
-	standalone: true,
 	imports: [TagFilter]
 })
 class TagFilterTest {

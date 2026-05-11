@@ -28,7 +28,6 @@ import { AsyncPipe } from "@angular/common";
 	styles: [`
         :host { width: 10px; }
     `],
-	standalone: true,
 	imports: [Checkbox, AsyncPipe]
 })
 export class TableHeadCheckbox {

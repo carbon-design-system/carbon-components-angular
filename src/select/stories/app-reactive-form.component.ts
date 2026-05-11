@@ -2,11 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+
+import { Select } from "../select.component";
 
 @Component({
 	selector: "app-reactive-form",
+	imports: [Select, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-select formControlName="selecterino">

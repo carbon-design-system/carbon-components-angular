@@ -84,15 +84,14 @@ const VERTICAL_TAB_HEIGHT = 64;
 			<div class="cds--tab--list-gradient_bottom"></div>
 		}
 	`,
-	standalone: true,
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeadersVertical extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
 	/**
 	 * List of `Tab` components.
 	 */
-	// disable the next line because we need to rename the input
-
+	// Template/API uses `[tabs]`; property name differs to avoid clashing with the `tabs` field populated from content.
+	// eslint-disable-next-line @angular-eslint/no-input-rename -- intentional alias for public `[tabs]` binding
 	@Input("tabs") tabInput: QueryList<Tab>;
 
 	/**

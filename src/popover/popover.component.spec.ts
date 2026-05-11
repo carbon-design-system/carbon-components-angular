@@ -22,8 +22,7 @@ import { PopoverContainer, PopoverContent } from "./";
 			</cds-popover-content>
 		</span>
 		`,
-	imports: [PopoverContent, PopoverContainer],
-	standalone: true
+	imports: [PopoverContent, PopoverContainer]
 })
 class TestPopoverComponent {
 	@Input() isOpen = false;

@@ -53,7 +53,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</div>
 		}
 	`,
-	standalone: true,
 	imports: [IconDirective]
 })
 export class ListRow implements AfterContentInit {

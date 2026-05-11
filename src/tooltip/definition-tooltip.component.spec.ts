@@ -13,8 +13,7 @@ import { TooltipDefinition } from ".";
 			definition
 		</cds-tooltip-definition>
 		`,
-	imports: [TooltipDefinition],
-	standalone: true
+	imports: [TooltipDefinition]
 })
 class TestTTDefinitionComponent {
 	@Input() isOpen = false;

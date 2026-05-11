@@ -56,7 +56,6 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 			<ng-content />
 		</header>
 	`,
-	standalone: true,
 	imports: [NgTemplateOutlet, RouterLink, AsyncPipe],
 	providers: [Router]
 })

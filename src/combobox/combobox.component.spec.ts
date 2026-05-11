@@ -19,7 +19,6 @@ import { FormsModule } from "@angular/forms";
 		[itemValueKey]="itemValueKey">
 		<cds-dropdown-list></cds-dropdown-list>
 	</cds-combo-box>`,
-	standalone: true,
 	imports: [
 		ComboBox,
 		DropdownList,

@@ -50,7 +50,6 @@ import { HeaderItem } from "./header-item.component";
 			display: list-item;
 		}
 	`],
-	standalone: true,
 	imports: [NgTemplateOutlet, HeaderItem]
 })
 export class HeaderMenu {

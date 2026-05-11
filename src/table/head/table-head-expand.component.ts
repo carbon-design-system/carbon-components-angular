@@ -25,7 +25,6 @@ import { AsyncPipe } from "@angular/common";
 			<ng-content />
 		}
 	`,
-	standalone: true,
 	imports: [IconDirective, AsyncPipe]
 })
 export class TableHeadExpand {

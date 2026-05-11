@@ -226,7 +226,8 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 			<cds-tab heading="Tab Label 2" [active]="true">Panel 2</cds-tab>
 			<cds-tab heading="Tab Label 3">Panel 3</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class InitialSelectionSecondTest {}
 
@@ -237,7 +238,8 @@ class InitialSelectionSecondTest {}
 			<cds-tab heading="One" class="my-panel custom-class">Tab Panel 1</cds-tab>
 			<cds-tab heading="Two">Tab Panel 2</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class CustomClassOnTabHostTest {}
 
@@ -251,7 +253,8 @@ class CustomClassOnTabHostTest {}
 			}
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class ConditionalTabTest {}
 
@@ -262,7 +265,8 @@ class ConditionalTabTest {}
 			<cds-tab heading="One" [secondaryLabel]="'test-secondary'">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class SecondaryLabelContainedTest {}
 
@@ -273,7 +277,8 @@ class SecondaryLabelContainedTest {}
 			<cds-tab heading="One" [secondaryLabel]="'hidden-secondary'">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class SecondaryLabelNotContainedTest {}
 
@@ -292,7 +297,8 @@ class SecondaryLabelNotContainedTest {}
 			<cds-tab heading="With icon" [icon]="iconTpl">C1</cds-tab>
 			<cds-tab heading="Plain">C2</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class ContentProjectionLabeledIconTabTest {}
 
@@ -303,7 +309,8 @@ class ContentProjectionLabeledIconTabTest {}
 			<cds-tab heading="One">First body</cds-tab>
 			<cds-tab heading="Two">Second body</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class RegularPaneSwitchTest {}
 
@@ -326,7 +333,8 @@ class RegularPaneSwitchTest {}
 				Icon panel
 			</cds-icon-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class IconTabBadgeTest {}
 
@@ -340,7 +348,8 @@ class IconTabBadgeTest {}
 			<cds-tab heading="Tab Label 1">P1</cds-tab>
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class DismissableTabsTest {
 	onTabClose(_: number) {}
@@ -354,7 +363,8 @@ class DismissableTabsTest {
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 			<cds-tab heading="Tab Label 3">P3</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class KeyboardNavigationTest {}
 
@@ -366,7 +376,8 @@ class KeyboardNavigationTest {}
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 			<cds-tab heading="Tab Label 3">P3</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class ManualActivationTest {}
 
@@ -377,7 +388,8 @@ class ManualActivationTest {}
 			<cds-tab heading="One">One content</cds-tab>
 			<cds-tab heading="Two">Two content</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class TabPanelVisibilityTest {}
 
@@ -388,7 +400,8 @@ class TabPanelVisibilityTest {}
 			<cds-tab heading="One" (selected)="onFirstSelected()">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class SelectedOutputTest {
 	onFirstSelected() {}
@@ -402,6 +415,7 @@ class SelectedOutputTest {
 			<cds-tab heading="Two">B</cds-tab>
 			<cds-tab heading="Three">C</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	standalone: false
 })
 class FullWidthContainedTest {}

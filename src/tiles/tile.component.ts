@@ -5,6 +5,7 @@ import {
 	ChangeDetectionStrategy,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Build application's tiles using this component. Get started with importing the component:
@@ -34,6 +35,7 @@ import {
 }
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet],
 	standalone: true
 })
 export class Tile {

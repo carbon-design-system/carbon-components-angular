@@ -39,7 +39,6 @@ describe("ClickableTile", () => {
 	<cds-clickable-tile disabled="true" href="https://angular.carbondesignsystem.com/">
 		Test Clickable Tile
 	</cds-clickable-tile>`,
-	imports: [ClickableTile],
-	standalone: true
+	imports: [ClickableTile]
 })
 class ClickableTileTest {}

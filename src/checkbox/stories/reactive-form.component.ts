@@ -1,11 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import {
 	FormBuilder,
-	FormGroup
+	FormGroup,
+	ReactiveFormsModule
 } from "@angular/forms";
+
+import { Checkbox } from "../checkbox.component";
 
 @Component({
 	selector: "app-reactive-forms",
+	imports: [Checkbox, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-checkbox formControlName="disabledCheckbox">

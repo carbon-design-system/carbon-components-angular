@@ -10,7 +10,6 @@ import { TimePickerSelect } from "./timepicker-select.component";
 		<option class="test2" value="PM">PM</option>
 	</cds-timepicker-select>
 	`,
-	standalone: true,
 	imports: [
 		TimePickerSelect
 	]

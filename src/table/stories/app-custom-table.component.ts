@@ -13,6 +13,8 @@ import { Table } from "../table.component";
 import { TableToolbar } from "../toolbar/table-toolbar.component";
 import { Button } from "carbon-components-angular/button";
 
+import { TableHeadCellLabel } from "../head/table-head-cell-label.directive";
+
 export class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
 	compare(one: TableItem, two: TableItem) {
@@ -58,7 +60,7 @@ export class CustomHeaderItem extends TableHeaderItem {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, TableToolbar, Button]
+	imports: [Table, TableToolbar, Button, TableHeadCellLabel]
 })
 export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();

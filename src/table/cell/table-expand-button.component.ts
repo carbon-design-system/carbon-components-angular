@@ -23,7 +23,6 @@ import { AsyncPipe } from "@angular/common";
 			</button>
 		}
 	`,
-	standalone: true,
 	imports: [IconDirective, AsyncPipe]
 })
 export class TableExpandButton {

@@ -55,7 +55,6 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			}
 		</div>
 	`,
-	standalone: true,
 	imports: [SideNavItem]
 })
 export class SideNavMenu implements AfterContentInit, OnDestroy {
