@@ -21,9 +21,12 @@ export default {
 				ReactiveFormsModule,
 				AILabelModule,
 				ButtonModule,
-				IconModule
-			],
-			declarations: [ReactiveFormsSelect]
+				IconModule,
+				Select,
+				Option,
+				OptGroup,
+				ReactiveFormsSelect
+			]
 		})
 	],
 	args: {

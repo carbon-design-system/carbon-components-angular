@@ -3,21 +3,24 @@ import { breakpoints } from '@carbon/layout';
 
 // Add compodoc
 import { setCompodocJson } from "@storybook/addon-docs/angular";
-import {
-	classes,
-	components,
-	directives,
+import documentation from "../dist/docs/documentation.json";
+
+const {
+	classes = [],
+	components: rawComponents,
+	directives = [],
 	interfaces,
 	miscellaneous,
-	pipes
-} from "../dist/docs/documentation.json";
+	pipes = [],
+	injectables = [],
+} = documentation;
 
 /**
  * Remove public properties from docs Json for each component.
  * This is to prevent properties like `onTouched = () => {...}` & `propagateChange = () => {}`
  * from being rewritten as string by storybook.
  */
-components = components.map(comp => ({
+const components = rawComponents.map(comp => ({
 	...comp,
 	inputsClass: comp.inputsClass.map((input) => ({
 		...input,
@@ -40,13 +43,15 @@ components = components.map(comp => ({
 }));
 
 // Integrate compodoc documentation with storybook
+// injectables (and other arrays) must be defined: Storybook calls `.find` on each in findComponentByName.
 setCompodocJson({
 	classes,
 	components,
 	directives,
 	interfaces,
 	miscellaneous,
-	pipes
+	pipes,
+	injectables,
 });
 
 // Set carbon viewports options

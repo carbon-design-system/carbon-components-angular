@@ -1,9 +1,13 @@
 import { Component, Input } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
+import { Button } from "carbon-components-angular/button";
 import { FileItem } from "../";
+import { FileUploader } from "../file-uploader.component";
 
 @Component({
 	selector: "app-ngmodel-file-uploader",
+	imports: [FileUploader, Button, FormsModule],
 	template: `
 		<cds-file-uploader
 			[title]="title"

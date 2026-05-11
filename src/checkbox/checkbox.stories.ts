@@ -11,14 +11,14 @@ export default {
 	title: "Components/Checkbox",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
 				Checkbox,
 				ButtonModule,
 				AILabelModule,
-				IconModule
+				IconModule,
+				ReactiveFormsStory
 			]
 		})
 	],

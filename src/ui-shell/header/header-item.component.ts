@@ -16,10 +16,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 @Component({
 	selector: "cds-header-item, ibm-header-item",
 	template: `
+		<ng-template #content>
+			<ng-content />
+		</ng-template>
 		@if (useRouter) {
-			<ng-template #content>
-				<ng-content />
-			</ng-template>
 			<a
 				class="cds--header__menu-item"
 				tabindex="0"
@@ -31,12 +31,11 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		} @else {
 			<a
 				class="cds--header__menu-item"
-				[routerLinkActive]="['cds--header__menu-item--current']"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 				[routerLink]="route"
-				[routerLinkActive]="activeLinkClass">
-					<ng-container *ngTemplateOutlet="content" />
+				[routerLinkActive]="routerLinkActiveClasses">
+				<ng-container *ngTemplateOutlet="content" />
 			</a>
 		}
 	`,
@@ -76,6 +75,17 @@ export class HeaderItem {
 	 * String or array of string class names to apply when active
 	 */
 	@Input() activeLinkClass: string | string[] = "";
+
+	protected get routerLinkActiveClasses(): string[] {
+		const base = "cds--header__menu-item--current";
+		if (this.activeLinkClass === "" || this.activeLinkClass == null) {
+			return [base];
+		}
+		const extra = Array.isArray(this.activeLinkClass)
+			? this.activeLinkClass
+			: [this.activeLinkClass];
+		return [base, ...extra];
+	}
 
 	/**
 	 * Applies selected styles to the item if a user sets this to true.

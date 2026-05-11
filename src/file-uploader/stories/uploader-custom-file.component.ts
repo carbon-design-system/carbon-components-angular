@@ -1,9 +1,15 @@
 import { Component, Input } from "@angular/core";
+import { JsonPipe } from "@angular/common";
 
+import { Button } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Link } from "carbon-components-angular/link";
 import { FileItem } from "../";
+import { FileUploader } from "../file-uploader.component";
 
 @Component({
 	selector: "app-file-uploader-with-custom-file",
+	imports: [FileUploader, Button, Link, IconDirective, JsonPipe],
 	template: `
 		@if (lastViewedFile) {
 			<p>Last viewed file: {{ lastViewedFile | json }}</p>

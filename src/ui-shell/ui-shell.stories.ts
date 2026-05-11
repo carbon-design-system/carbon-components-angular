@@ -33,11 +33,6 @@ export default {
 			]
 		}),
 		moduleMetadata({
-			declarations: [
-				BarComponent,
-				FooComponent,
-				HeaderFluidComponent
-			],
 			imports: [
 				ThemeDirective,
 				IconDirective,
@@ -55,7 +50,10 @@ export default {
 				SideNavItem,
 				SwitcherList,
 				SwitcherListItem,
-				RouterModule
+				RouterModule,
+				BarComponent,
+				FooComponent,
+				HeaderFluidComponent
 			]
 		})
 	],

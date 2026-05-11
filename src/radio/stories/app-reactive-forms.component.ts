@@ -6,11 +6,16 @@ import {
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+
+import { Radio } from "../radio.component";
+import { RadioGroup } from "../radio-group.component";
 
 @Component({
 	selector: "app-reactive-forms",
+	imports: [RadioGroup, Radio, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-radio-group

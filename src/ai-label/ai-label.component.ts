@@ -17,6 +17,7 @@ import { Placement } from "@floating-ui/dom";
 import { NgClass } from "@angular/common";
 
 import { IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
 
 import { AILabelPopoverDirective } from "./ai-label-popover.directive";
 
@@ -126,7 +127,7 @@ type DeprecatedAILabelAlign =
 			</cds-icon-button>
 		}
 	`,
-	imports: [NgClass, AILabelPopoverDirective, IconButton]
+	imports: [NgClass, AILabelPopoverDirective, IconButton, IconDirective]
 })
 export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	static labelCounter = 0;

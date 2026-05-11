@@ -10,12 +10,13 @@ export default {
 	title: "Components/File",
 	decorators: [
 		moduleMetadata({
-			declarations: [BasicFileStory, CustomFileStory],
 			imports: [
 				ButtonModule,
 				CustomFileIconsModule,
 				FileUploaderModule,
-				IconModule
+				IconModule,
+				BasicFileStory,
+				CustomFileStory
 			]
 		})
 	],

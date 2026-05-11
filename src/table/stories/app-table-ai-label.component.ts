@@ -4,9 +4,16 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
+import { AILabelComponent } from "../../ai-label";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 import { TableModel } from "../table-model.class";
+import { Table } from "../table.component";
+import { TableContainer } from "../table-container.component";
+import { TableHeader } from "../header/table-header.component";
+import { TableHeaderDecorator } from "../header/table-header-decorator.component";
+import { TableHeaderDescription } from "../header/table-header-description.directive";
+import { TableHeaderTitle } from "../header/table-header-title.directive";
 import { AI_LABEL_INNER } from "../../storybook/ai-label-story-shared";
 
 const DEMO_ROWS: string[][] = [
@@ -49,7 +56,9 @@ function showSlugForRowIndex(i: number): boolean {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelWithSelectionStory implements AfterViewInit {
 
@@ -112,7 +121,9 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 
@@ -175,7 +186,9 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 
@@ -241,7 +254,9 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 
@@ -303,7 +318,9 @@ export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 			[sortable]="true"
 			[isDataGrid]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 
@@ -361,7 +378,9 @@ export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 			[sortable]="true"
 			[isDataGrid]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelComponent]
 })
 export class TableAiLabelColumnSortStory implements AfterViewInit {
 
@@ -416,7 +435,17 @@ export class TableAiLabelColumnSortStory implements AfterViewInit {
 				[isDataGrid]="true">
 			</cds-table>
 		</cds-table-container>
-	`
+	`,
+	standalone: true,
+	imports: [
+		TableContainer,
+		TableHeader,
+		TableHeaderTitle,
+		TableHeaderDescription,
+		TableHeaderDecorator,
+		Table,
+		AILabelComponent
+	]
 })
 export class TableAiLabelFullTableStory implements AfterViewInit {
 	model = new TableModel();

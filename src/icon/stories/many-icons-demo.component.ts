@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import * as Icons from "@carbon/icons";
 
+import { IconDirective } from "../icon.directive";
 import { IconService } from "../";
 
 @Component({
 	selector: "app-demo-many-icon",
+	imports: [IconDirective],
 	template: `
 		<table>
 			@for (group of groupedIcons; track group) {

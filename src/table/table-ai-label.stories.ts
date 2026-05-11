@@ -27,9 +27,7 @@ export default {
 				TableModule,
 				AILabelModule,
 				ButtonModule,
-				IconModule
-			],
-			declarations: [
+				IconModule,
 				TableAiLabelWithSelectionStory,
 				TableAiLabelRadioSelectionStory,
 				TableAiLabelSelectionExpansionStory,

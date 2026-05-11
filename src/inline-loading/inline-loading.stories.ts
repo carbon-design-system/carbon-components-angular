@@ -7,7 +7,7 @@ export default {
 	title: "Components/Inline loading",
 	decorators: [
 		moduleMetadata({
-			declarations: [InlineLoadingStory]
+			imports: [InlineLoading, InlineLoadingStory]
 		})
 	],
 	args: {

@@ -14,6 +14,7 @@ import { map } from "rxjs/operators";
 import { TableHeaderItem } from "../table-header-item.class";
 import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
 import { TableHeadCellLabel } from "./table-head-cell-label.directive";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -130,6 +131,7 @@ import { TableHeadCellLabel } from "./table-head-cell-label.directive";
 		NgClass,
 		NgTemplateOutlet,
 		TableHeadCellLabel,
+		IconDirective,
 		AsyncPipe
 	]
 })

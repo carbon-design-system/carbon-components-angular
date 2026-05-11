@@ -17,13 +17,6 @@ export default {
 	title: "Components/File Uploader",
 	decorators: [
 		moduleMetadata({
-			declarations: [
-				FileUploaderStory,
-				FileUploaderWithCustomFileStory,
-				NgModelFileUploaderStory,
-				DragAndDropStory,
-				ReactiveFormsStory
-			],
 			imports: [
 				FileUploader,
 				FormsModule,
@@ -33,7 +26,12 @@ export default {
 				CustomFileIconsModule,
 				FormsModule,
 				IconDirective,
-				ReactiveFormsModule
+				ReactiveFormsModule,
+				FileUploaderStory,
+				FileUploaderWithCustomFileStory,
+				NgModelFileUploaderStory,
+				DragAndDropStory,
+				ReactiveFormsStory
 			]
 		})
 	],

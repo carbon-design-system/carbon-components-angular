@@ -8,11 +8,16 @@ import {
 	FormBuilder,
 	FormControl,
 	FormGroup,
+	ReactiveFormsModule,
 	Validators
 } from "@angular/forms";
 
+import { Button } from "carbon-components-angular/button";
+import { FileUploader } from "../file-uploader.component";
+
 @Component({
 	selector: "app-reactive-forms",
+	imports: [FileUploader, Button, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup" (ngSubmit)="onUpload()">
 			<cds-file-uploader

@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Hamburger, HeaderNavigation, NavigationItem, SideNav } from "../";
+import { Hamburger, Header, HeaderNavigation, NavigationItem, SideNav } from "../";
 
 @Component({
 	selector: "app-bar",
@@ -26,7 +26,7 @@ export class FooComponent {}
 			}
 		</cds-header>
 	`,
-	imports: [SideNav, HeaderNavigation, Hamburger]
+	imports: [Header, SideNav, HeaderNavigation, Hamburger]
 })
 export class HeaderFluidComponent {
 	@Input() headerItems: NavigationItem[];

@@ -84,7 +84,7 @@
     "@angular/platform-browser-dynamic": "19.2.21",
     "@angular/router": "19.2.21",
     "@babel/core": "7.28.0",
-    "@carbon/styles": "1.70.0",
+    "@carbon/styles": "1.106.0",
     "@carbon/pictograms": "12.72.1",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",

@@ -22,6 +22,7 @@ import { TabsStoryModule } from "./stories";
  */
 @Component({
 	selector: "story-dismissable-tab-header-group",
+	imports: [TabsModule],
 	template: `
 		@if (panesReady) {
 			<cds-tab-header-group
@@ -117,8 +118,7 @@ export default {
 	title: "Components/Tabs/Tab header (Fine-grained)",
 	decorators: [
 		moduleMetadata({
-			imports: [TabsStoryModule, IconModule, GridModule, TabsModule],
-			declarations: [StoryDismissableTabHeaderGroupComponent]
+			imports: [TabsStoryModule, IconModule, GridModule, TabsModule, StoryDismissableTabHeaderGroupComponent]
 		})
 	]
 } as Meta;

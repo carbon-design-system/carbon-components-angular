@@ -1,7 +1,9 @@
+import { JsonPipe } from "@angular/common";
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
 import {
 	Component,
@@ -10,8 +12,12 @@ import {
 } from "@angular/core";
 import isEqual from "lodash-es/isEqual";
 
+import { DropdownList } from "carbon-components-angular/dropdown";
+import { ComboBox } from "../combobox.component";
+
 @Component({
 	selector: "app-reactive-combobox",
+	imports: [ComboBox, DropdownList, ReactiveFormsModule, JsonPipe],
 	template: `
 		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
 			<cds-combo-box

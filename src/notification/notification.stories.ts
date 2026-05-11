@@ -14,16 +14,14 @@ export default {
 	title: "Components/Notification",
 	decorators: [
 		moduleMetadata({
-			declarations: [
-				DyanmicActionableStory,
-				NotificationStory,
-				ToastStory
-			],
 			imports: [
 				Notification,
 				ActionableNotification,
 				Toast,
-				Button
+				Button,
+				DyanmicActionableStory,
+				NotificationStory,
+				ToastStory
 			]
 		})
 	],
