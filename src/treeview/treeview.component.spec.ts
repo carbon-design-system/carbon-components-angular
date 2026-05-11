@@ -12,7 +12,7 @@ import { TreeNodeComponent } from "./tree-node.component";
 			[tree]="tree"
 			(selected)="onSelect()" />
 	`,
-	imports: [TreeViewComponent, TreeNodeComponent]
+	imports: [TreeViewComponent]
 })
 class TreeviewTestComponent {
 	tree = [

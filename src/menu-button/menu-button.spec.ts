@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { ContextMenuComponent, ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
+import { ContextMenuDividerComponent, ContextMenuItemComponent } from "../context-menu";
 import { MenuButtonComponent } from "../menu-button";
 import { By } from "@angular/platform-browser";
 
@@ -22,7 +22,6 @@ import { Button } from "../button";
 	`,
 	imports: [
 		MenuButtonComponent,
-		ContextMenuComponent,
 		ContextMenuItemComponent,
 		ContextMenuDividerComponent
 	]
