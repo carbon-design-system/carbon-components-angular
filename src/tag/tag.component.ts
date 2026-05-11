@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	HostBinding,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	TemplateRef
 } from "@angular/core";
 
 /**
@@ -34,11 +35,20 @@ export type TagType = "red" |
 	selector: "cds-tag, ibm-tag",
 	template: `
 		@if (!skeleton) {
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
+
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
 			<span class="cds--tag__label">
-				<ng-content />
+				<ng-content></ng-content>
 			</span>
-		}
+			@if (decorator) {
+
+				<div class="cds--tag__decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+
+}
+
+}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true
@@ -57,6 +67,11 @@ export class Tag {
 	@Input() class = "";
 
 	@Input() skeleton = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	/**
 	 * @todo

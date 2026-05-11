@@ -64,17 +64,22 @@ import { IconDirective } from "carbon-components-angular/icon";
 						'cds--select--disabled': disabled,
 						'cds--select--readonly': readonly,
 						'cds--select--fluid--invalid': fluid && invalid,
-						'cds--select--fluid--focus': fluid && focused
+						'cds--select--fluid--focus': fluid && focused,
+						'cds--select--decorator': !!decorator
 					}">
 					@if (label) {
 						<label
 							[for]="id"
 							class="cds--label"
-							[ngClass]="{'cds--label--disabled': disabled}">
-							@if (isTemplate(label)) {
-								<ng-template [ngTemplateOutlet]="label" />
-							} @else {
+							[ngClass]="{
+								'cds--label--disabled': disabled,
+								'cds--visually-hidden': hideLabel
+							}">
+							@if (!isTemplate(label)) {
 								{{label}}
+							}
+							@if (isTemplate(label)) {
+								<ng-template [ngTemplateOutlet]="label"></ng-template>
 							}
 						</label>
 					}
@@ -91,10 +96,11 @@ import { IconDirective } from "carbon-components-angular/icon";
 							[ngClass]="{
 								'cds--form__helper-text--disabled': disabled
 							}">
-							@if (isTemplate(helperText)) {
-								<ng-template [ngTemplateOutlet]="helperText" />
-							} @else {
+							@if (!isTemplate(helperText)) {
 								{{helperText}}
+							}
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
 							}
 						</div>
 					}
@@ -123,7 +129,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 					(keydown)="onKeyDown($event)"
 					(focus)="fluid ? handleFocus($event) : null"
 					(blur)="fluid ? handleFocus($event) : null">
-					<ng-content />
+					<ng-content></ng-content>
 				</select>
 				<svg
 					focusable="false"
@@ -143,55 +149,67 @@ import { IconDirective } from "carbon-components-angular/icon";
 						size="16"
 						class="cds--select__invalid-icon">
 					</svg>
-				} @else if (warn) {
+				}
+				@if (!invalid && warn) {
 					<svg
 						cdsIcon="warning--alt--filled"
 						size="16"
 						class="cds--select__invalid-icon cds--select__invalid-icon--warning">
 					</svg>
 				}
+				@if (decorator) {
+					<div class="cds--select__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				}
 				@if (fluid) {
 					<hr class="cds--select__divider" />
-					@if (invalid) {
+					@if (invalid && invalidText) {
 						<div
 							role="alert"
 							class="cds--form-requirement"
 							aria-live="polite">
-							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText" />
-							} @else {
+							@if (!isTemplate(invalidText)) {
 								{{invalidText}}
 							}
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							}
 						</div>
-					} @else if (warn) {
+					}
+					@if (!invalid && warn) {
 						<div class="cds--form-requirement">
-							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText" />
-							} @else {
+							@if (!isTemplate(warnText)) {
 								{{warnText}}
+							}
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 							}
 						</div>
 					}
 				}
 			</div>
 			@if (!fluid) {
-				@if (invalid) {
+				@if (invalid && invalidText) {
 					<div
 						role="alert"
 						class="cds--form-requirement"
 						aria-live="polite">
-						@if (isTemplate(invalidText)) {
-							<ng-template [ngTemplateOutlet]="invalidText" />
-						} @else {
+						@if (!isTemplate(invalidText)) {
 							{{invalidText}}
 						}
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						}
 					</div>
-				} @else if (warn) {
+				}
+				@if (!invalid && warn) {
 					<div class="cds--form-requirement">
-						@if (isTemplate(warnText)) {
-							<ng-template [ngTemplateOutlet]="warnText" />
-						} @else {
+						@if (!isTemplate(warnText)) {
 							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 						}
 					</div>
 				}
@@ -282,9 +300,20 @@ export class Select implements ControlValueAccessor, AfterViewInit {
 	@Input() ariaLabel: string;
 
 	/**
+	 * Specify whether the visible label should be hidden but still available
+	 * to assistive technology.
+	 */
+	@Input() hideLabel = false;
+
+	/**
 	 * Experimental: enable fluid state
 	 */
 	@Input() fluid = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 
 	@Output() valueChange = new EventEmitter();
 

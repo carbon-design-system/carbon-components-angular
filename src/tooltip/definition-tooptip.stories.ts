@@ -21,7 +21,8 @@ export default {
 		caret: true,
 		description: "Uniform Resource Locator; the address of a resource (such as a document or website) on the Internet.",
 		align: "bottom",
-		autoAlign: false
+		autoAlign: false,
+		openOnHover: true
 	},
 	argTypes: {
 		autoAlign: {
@@ -60,6 +61,7 @@ const Template = (args) => ({
 				<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
 				<cds-tooltip-definition
 					[isOpen]="isOpen"
+					[openOnHover]="openOnHover"
 					[caret]="caret"
 					[align]="align"
 					(onOpen)="onOpen($event)"
@@ -99,6 +101,7 @@ const AutoAlignTemplate = (args) => ({
 				<p>Custom domains direct requests for your apps in this Cloud Foundry organization to a
 				<cds-tooltip-definition
 					[isOpen]="isOpen"
+					[openOnHover]="openOnHover"
 					[caret]="caret"
 					[align]="align"
 					[autoAlign]="true"

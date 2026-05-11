@@ -24,16 +24,24 @@ import {
 })
 export class TabSkeleton {
 	/**
-	 * Set number of skeleton tabs to render, default is 5
+	 * Number of skeleton tab placeholders to render, default is 5
 	 */
 	@Input() set numOftabs(num: number) {
 		this.numOfSkeletonTabs = new Array(num);
 	}
 
 	/**
+	 * Set to `true` to render the contained variant of the skeleton tabs.
+	 */
+	@Input() contained = false;
+
+	/**
 	 * Set to `true` to put tabs in a loading state.
 	 */
 	@HostBinding("class.cds--skeleton") skeleton = true;
 	@HostBinding("class.cds--tabs") tabs = true;
+	@HostBinding("class.cds--tabs--contained") get containedClass() {
+		return this.contained;
+	}
 	numOfSkeletonTabs = new Array(5);
 }

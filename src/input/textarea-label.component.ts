@@ -2,13 +2,16 @@ import {
 	Component,
 	Input,
 	AfterViewInit,
+	OnChanges,
+	OnDestroy,
 	ElementRef,
 	HostBinding,
 	TemplateRef,
 	ViewChild,
 	ContentChild,
 	ChangeDetectorRef,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	SimpleChanges
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -37,58 +40,74 @@ import { IconDirective } from "carbon-components-angular/icon";
 		@if (skeleton) {
 			<span class="cds--label cds--skeleton"></span>
 			<div class="cds--text-area cds--skeleton"></div>
-		} @else {
+		}
+		@if (!skeleton) {
 			<div class="cds--text-area__label-wrapper">
 				<label
 					[for]="labelInputID"
 					[attr.aria-label]="ariaLabel"
 					class="cds--label"
 					[ngClass]="{
-						'cds--label--disabled': disabled
+						'cds--label--disabled': disabled,
+						'cds--visually-hidden': hideLabel
 					}">
 					@if (labelTemplate) {
-						<ng-template [ngTemplateOutlet]="labelTemplate" />
+						<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
 					} @else {
-						<ng-content />
+						<ng-content></ng-content>
 					}
 				</label>
+				@if (enableCounter && maxCount) {
+					<span
+						class="cds--label"
+						[ngClass]="{'cds--label--disabled': disabled}"
+						aria-hidden="true">
+						{{textCount}}/{{maxCount}}
+					</span>
+				}
 			</div>
 			<div
 				class="cds--text-area__wrapper"
 				[ngClass]="{
-					'cds--text-area__wrapper--warn': warn
+					'cds--text-area__wrapper--warn': warn,
+					'cds--text-area__wrapper--decorator': !!decorator
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				@if(!fluid) {
-					@if (invalid) {
-						<svg
-							cdsIcon="warning--filled"
-							size="16"
-							class="cds--text-area__invalid-icon">
-						</svg>
-					} @else if (warn) {
-						<svg
-							cdsIcon="warning--alt--filled"
-							size="16"
-							class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
-						</svg>
-					}
+				@if (!fluid && invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--text-area__invalid-icon">
+					</svg>
+				}
+				@if (!fluid && !invalid && warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+					</svg>
 				}
 				@if (textAreaTemplate) {
-					<ng-template [ngTemplateOutlet]="textAreaTemplate" />
+					<ng-template [ngTemplateOutlet]="textAreaTemplate"></ng-template>
 				} @else {
-					<ng-content select="[cdsTextArea],[ibmTextArea],textarea" />
+					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
+				}
+				@if (decorator) {
+					<div class="cds--text-area__inner-wrapper--decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
 				}
 
 				@if (fluid) {
 					<hr class="cds--text-area__divider" />
 					@if (invalid) {
 						<div class="cds--form-requirement">
+							@if (!isTemplate(invalidText)) {
+								{{invalidText}}
+							}
 							@if (isTemplate(invalidText)) {
-								<ng-template [ngTemplateOutlet]="invalidText" />
-							} @else {
-								{{ invalidText }}
+								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
 							}
 							<svg
 								cdsIcon="warning--filled"
@@ -96,12 +115,14 @@ import { IconDirective } from "carbon-components-angular/icon";
 								class="cds--text-area__invalid-icon">
 							</svg>
 						</div>
-					} @else if (warn) {
+					}
+					@if (!invalid && warn) {
 						<div class="cds--form-requirement">
+							@if (!isTemplate(warnText)) {
+								{{warnText}}
+							}
 							@if (isTemplate(warnText)) {
-								<ng-template [ngTemplateOutlet]="warnText" />
-							} @else {
-								{{ warnText }}
+								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 							}
 							<svg
 								cdsIcon="warning--alt--filled"
@@ -113,28 +134,35 @@ import { IconDirective } from "carbon-components-angular/icon";
 				}
 			</div>
 			@if (!fluid) {
+				@if (helperText && !invalid && !warn) {
+					<div
+						class="cds--form__helper-text"
+						[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+						@if (!isTemplate(helperText)) {
+							{{helperText}}
+						}
+						@if (isTemplate(helperText)) {
+							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+						}
+					</div>
+				}
 				@if (invalid) {
 					<div class="cds--form-requirement">
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
 						@if (isTemplate(invalidText)) {
-							<ng-template [ngTemplateOutlet]="invalidText" />
-						} @else {
-							{{ invalidText }}
+							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
 						}
 					</div>
-				} @else if (warn) {
+				}
+				@if (!invalid && warn) {
 					<div class="cds--form-requirement">
-						@if (isTemplate(warnText)) {
-							<ng-template [ngTemplateOutlet]="warnText" />
-						} @else {
-							{{ warnText }}
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
 						}
-					</div>
-				} @else if(helperText) {
-					<div class="cds--form__helper-text" [ngClass]="{'cds--form__helper-text--disabled': disabled}">
-						@if (isTemplate(helperText)) {
-							<ng-template [ngTemplateOutlet]="helperText" />
-						} @else {
-							{{ helperText }}
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 						}
 					</div>
 				}
@@ -145,7 +173,19 @@ import { IconDirective } from "carbon-components-angular/icon";
 	standalone: true,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
-export class TextareaLabelComponent implements AfterViewInit {
+export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+
+	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
+		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
+	}
+
+	@HostBinding("class.cds--text-area--fluid") get fluidClass() {
+		return this.fluid && !this.skeleton;
+	}
+
+	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
+		return this.fluid && this.skeleton;
+	}
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
 	 */
@@ -201,6 +241,39 @@ export class TextareaLabelComponent implements AfterViewInit {
 	 */
 	@Input() fluid = false;
 
+	/**
+	 * Set to `true` to hide the label visually, but keep accessible to
+	 * screen readers.
+	 */
+	@Input() hideLabel = false;
+
+	/**
+	 * Set to `true` (`maxCount` must be set) to displays a live character/word
+	 * counter alongside the label.
+	 */
+	@Input() enableCounter = false;
+
+	/**
+	 * Maximum number of characters (or words) allowed. Required for the
+	 * counter to display.
+	 */
+	@Input() maxCount: number;
+
+	/**
+	 * Determines whether the counter counts characters or words.
+	 * When `"word"` and `maxCount` is set, input is clamped to `maxCount` words
+	 * on each change. Excess words are trimmed from the end of the value.
+	 */
+	@Input() counterMode: "character" | "word" = "character";
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	//  Tracks current character / word count for the counter display.
+	textCount = 0;
+
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
@@ -209,17 +282,10 @@ export class TextareaLabelComponent implements AfterViewInit {
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
-	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
-		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
-	}
-
-	@HostBinding("class.cds--text-area--fluid") get fluidClass() {
-		return this.fluid && !this.skeleton;
-	}
-
-	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
-		return this.fluid && this.skeleton;
-	}
+	// Cached reference to the textarea element, set once in ngAfterViewInit.
+	private _textareaElement: HTMLTextAreaElement | null = null;
+	// Cached listener so it can be removed precisely (avoids anonymous-function leak)
+	private _inputListener: ((e: Event) => void) | null = null;
 
 	/**
 	 * Creates an instance of Label.
@@ -227,19 +293,29 @@ export class TextareaLabelComponent implements AfterViewInit {
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
 
 	/**
-	 * Sets the id on the input item associated with the `Label`.
+	 * Sets the id on the input item associated with the `Label` and attaches the
+	 * counter listener when `enableCounter` is already `true` on first render.
 	 */
 	ngAfterViewInit() {
 		if (this.wrapper) {
 			// Prioritize setting id to `textarea` over div
 			const inputElement = this.wrapper.nativeElement.querySelector("textarea");
 			if (inputElement) {
-				// avoid overriding ids already set by the user reuse it instead
+				// avoid overriding ids already set by the user — reuse it instead
 				if (inputElement.id) {
 					this.labelInputID = inputElement.id;
 					this.changeDetectorRef.detectChanges();
 				}
 				inputElement.setAttribute("id", this.labelInputID);
+
+				this._textareaElement = inputElement;
+				this._syncMaxLength();
+
+				if (this.enableCounter) {
+					this.textCount = this._countValue(inputElement.value || "");
+					this._attachCounterListener();
+				}
+
 				return;
 			}
 
@@ -254,7 +330,117 @@ export class TextareaLabelComponent implements AfterViewInit {
 		}
 	}
 
+	/**
+	 * Attach/remove listener and seed `textCount` from the textarea's current value.
+	 * @param changes
+	 */
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes.enableCounter && !changes.enableCounter.firstChange) {
+			if (changes.enableCounter.currentValue) {
+				if (this._textareaElement) {
+					this.textCount = this._countValue(this._textareaElement.value || "");
+					this._attachCounterListener();
+					this.changeDetectorRef.detectChanges();
+				}
+			} else {
+				this._detachCounterListener();
+			}
+		}
+
+		if (
+			(changes.maxCount || changes.counterMode) &&
+			!(changes.maxCount?.firstChange && changes.counterMode?.firstChange)
+		) {
+			this._syncMaxLength();
+		}
+	}
+
+	ngOnDestroy() {
+		this._detachCounterListener();
+	}
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Keeps the textarea's `maxlength` attribute in sync with `maxCount`. This is only set
+	 * when counterMode is set to `character`. When counterMode is set to `word`, we enforce limit via JS.
+	 * If `maxCount` is unset or the mode is `"word"`, any previously applied
+	 * `maxlength` is removed so the textarea is unrestricted by the attribute.
+	 */
+	private _syncMaxLength(): void {
+		if (!this._textareaElement) {
+			return;
+		}
+		if (this.counterMode === "character" && this.maxCount != null) {
+			this._textareaElement.setAttribute("maxlength", String(this.maxCount));
+		} else {
+			this._textareaElement.removeAttribute("maxlength");
+		}
+	}
+
+	/**
+	 * Attaches the input event listener, ensuring it is never added twice.
+	 */
+	private _attachCounterListener(): void {
+		this._detachCounterListener();
+		if (!this._textareaElement) {
+			return;
+		}
+		this._inputListener = (e: Event) => {
+			const el = e.target as HTMLTextAreaElement;
+			// Word-mode enforcement: clamp value to maxCount words on each input so
+			// the textarea never holds more words than allowed.  Character mode relies
+			// on the native `maxlength` attribute set by the developer.
+			if (this.counterMode === "word" && this.maxCount != null) {
+				const clamped = this._truncateToWordLimit(el.value || "", this.maxCount);
+				if (clamped !== el.value) {
+					el.value = clamped;
+				}
+			}
+			this.textCount = this._countValue(el.value || "");
+		};
+		this._textareaElement.addEventListener("input", this._inputListener);
+	}
+
+	/**
+	 * Truncates `value` so it contains at most `limit` Unicode words.
+	 * Whitespace between and around words is preserved up to the last allowed word;
+	 * any trailing content (partial word or space) beyond the limit is dropped.
+	 */
+	private _truncateToWordLimit(value: string, limit: number): string {
+		let wordsSeen = 0;
+		// Walk through the string capturing word boundaries
+		const wordPattern = /\p{L}+/gu;
+		let match: RegExpExecArray | null;
+		let cutIndex = value.length;
+		while ((match = wordPattern.exec(value)) !== null) {
+			wordsSeen++;
+			if (wordsSeen === limit) {
+				// Allow the string to continue up to (but not past) the end of this word
+				cutIndex = match.index + match[0].length;
+				break;
+			}
+		}
+		return wordsSeen < limit ? value : value.slice(0, cutIndex);
+	}
+
+
+	/**
+	 * Removes the input event listener and clears the cached reference.
+	 */
+	private _detachCounterListener(): void {
+		if (this._inputListener && this._textareaElement) {
+			this._textareaElement.removeEventListener("input", this._inputListener);
+			this._inputListener = null;
+		}
+	}
+
+	private _countValue(value: string): number {
+		if (this.counterMode === "word") {
+			return value.match(/\p{L}+/gu)?.length || 0;
+		}
+		return value.length;
 	}
 }

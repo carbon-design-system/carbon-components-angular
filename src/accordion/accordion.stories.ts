@@ -15,7 +15,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-accordion [align]="align" [size]="size">
+		<cds-accordion [align]="align" [size]="size" [isFlush]="isFlush" [disabled]="accordionDisabled">
 			<cds-accordion-item title="Section 1 title" (selected)="selected($event)">
 				Lorem ipsum dolor sit amet, \
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \
@@ -38,6 +38,10 @@ const Template = (args) => ({
 	`
 });
 export const Basic = Template.bind({});
+Basic.args = {
+	isFlush: false,
+	accordionDisabled: false
+};
 Basic.argTypes = {
 	align: {
 		options: ["start", "end"],
@@ -47,6 +51,8 @@ Basic.argTypes = {
 		options: ["sm", "md", "lg"],
 		control: {type: "radio" }
 	},
+	isFlush: { control: "boolean" },
+	accordionDisabled: { control: "boolean" },
 	selected: { action: "Selected" }
 };
 

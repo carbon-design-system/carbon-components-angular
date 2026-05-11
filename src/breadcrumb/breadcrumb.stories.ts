@@ -49,7 +49,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<cds-breadcrumb [noTrailingSlash]="noTrailingSlash" [size]="size">
 			<cds-breadcrumb-item href="#1">
 				Breadcrumb 1
 			</cds-breadcrumb-item>
@@ -67,7 +67,7 @@ export const Basic = Template.bind({});
 const CurrentPageTemplate = (args) => ({
 	props: args,
 	template: `
-		<cds-breadcrumb>
+		<cds-breadcrumb [size]="size">
 			<cds-breadcrumb-item href="#1">
 				Breadcrumb 1
 			</cds-breadcrumb-item>
@@ -96,7 +96,8 @@ const ModelTemplate = (args) => ({
 		<cds-breadcrumb
 			[noTrailingSlash]="noTrailingSlash"
 			[threshold]="threshold"
-			[items]="createBreadcrumbItems(itemCount, content)">
+			[items]="createBreadcrumbItems(itemCount, content)"
+			[size]="size">
 		</cds-breadcrumb>
 	`
 });
@@ -121,7 +122,8 @@ const ModelWTemplate = (args) => ({
 		<cds-breadcrumb
 			[noTrailingSlash]="noTrailingSlash"
 			[threshold]="threshold"
-			[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))">
+			[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount, content))"
+			[size]="size">
 		</cds-breadcrumb>
 	`
 });
@@ -136,7 +138,7 @@ ModelWithTemplate.args = {
 const WithSkeleton = (args) => ({
 	props: args,
 	template: `
-		<cds-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
+		<cds-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash" [size]="size">
 			<cds-breadcrumb-item></cds-breadcrumb-item>
 			<cds-breadcrumb-item></cds-breadcrumb-item>
 			<cds-breadcrumb-item></cds-breadcrumb-item>

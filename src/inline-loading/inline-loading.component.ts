@@ -43,33 +43,41 @@ export enum InlineLoadingState {
 							'cds--loading--stop': state === InlineLoadingState.Inactive
 						}">
 						<svg class="cds--loading__svg" viewBox="0 0 100 100">
+							@if (iconDescription) {
+								<title>{{iconDescription}}</title>
+							}
 							<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
 							<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 						</svg>
 					</div>
-				} @else if (state === InlineLoadingState.Finished) {
+				}
+				@if (state === InlineLoadingState.Finished) {
 					<svg
 						cdsIcon="checkmark--filled"
 						size="16"
-						class="cds--inline-loading__checkmark-container">
+						class="cds--inline-loading__checkmark-container"
+						[attr.title]="iconDescription || null">
 					</svg>
-				} @else if (state === InlineLoadingState.Error) {
+				}
+				@if (state === InlineLoadingState.Error) {
 					<svg
 						cdsIcon="error--filled"
 						size="16"
-						class="cds--inline-loading--error">
+						class="cds--inline-loading--error"
+						[attr.title]="iconDescription || null">
 					</svg>
 				}
 			</div>
 		}
-		@if(state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
+		@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
 			<p class="cds--inline-loading__text">{{loadingText}}</p>
-		} @else if(state === InlineLoadingState.Finished) {
+		}
+		@if (state === InlineLoadingState.Finished) {
 			<p class="cds--inline-loading__text">{{successText}}</p>
-		} @else if(state === InlineLoadingState.Error) {
+		}
+		@if (state === InlineLoadingState.Error) {
 			<p class="cds--inline-loading__text">{{errorText}}</p>
 		}
-
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
@@ -98,6 +106,21 @@ export class InlineLoading {
 	 * Specify the text description for the error state.
 	 */
 	@Input() errorText: string;
+	/**
+	 * Accessible description applied to the loading/success/error SVG.
+	 */
+	@Input() iconDescription: string;
+
+	/**
+	 * `aria-live` value applied to the host based on `state` (`'off'` for inactive states, `'assertive'`
+	 * otherwise).
+	 */
+	@HostBinding("attr.aria-live") get hostAriaLive(): string | null {
+		if (this.state === InlineLoadingState.Hidden) {
+			return null;
+		}
+		return this.state === InlineLoadingState.Inactive ? "off" : "assertive";
+	}
 	/**
 	 * set to `false` to stop the loading animation
 	 */

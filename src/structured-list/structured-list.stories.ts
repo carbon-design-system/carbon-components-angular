@@ -26,7 +26,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-structured-list [condensed]="condensed">
+		<cds-structured-list [condensed]="condensed" [ariaLabel]="ariaLabel">
 			<cds-list-header>
 				<cds-list-column nowrap="true">Column 1</cds-list-column>
 				<cds-list-column nowrap="true">Column 2</cds-list-column>
@@ -59,7 +59,8 @@ const Template = (args) => ({
 });
 export const Basic = Template.bind({});
 Basic.args = {
-	condensed: false
+	condensed: false,
+	ariaLabel: "Sample structured list"
 };
 
 const SelectionTemplate = (args) => ({

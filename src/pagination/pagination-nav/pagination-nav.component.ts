@@ -145,6 +145,11 @@ export class PaginationNav {
 	 * Number of items to show in pagination. Minimum is 4.
 	 */
 	@Input() numOfItemsToShow = 4;
+	/**
+	 * When `true`, navigating past the last/first page wraps around to the
+	 * other end.
+	 */
+	@Input() loop = false;
 
 	/**
 	 * Expects an object that contains some or all of:
@@ -220,11 +225,11 @@ export class PaginationNav {
 	}
 
 	get leftArrowDisabled() {
-		return this.disabled || this.currentPage === 1;
+		return this.disabled || (!this.loop && this.currentPage === 1);
 	}
 
 	get rightArrowDisabled() {
-		return this.disabled || this.currentPage === this.totalDataLength;
+		return this.disabled || (!this.loop && this.currentPage === this.totalDataLength);
 	}
 
 	nextItemText = this.i18n.getOverridable("PAGINATION.NEXT");
@@ -244,14 +249,23 @@ export class PaginationNav {
 	}
 
 	public jumpToNext() {
-		this.currentPage =
-			this.currentPage < this.totalDataLength
-				? this.currentPage + 1
-				: this.totalDataLength;
+		if (this.currentPage < this.totalDataLength) {
+			this.currentPage = this.currentPage + 1;
+		} else if (this.loop) {
+			this.currentPage = 1;
+		} else {
+			this.currentPage = this.totalDataLength;
+		}
 	}
 
 	public jumpToPrevious() {
-		this.currentPage = this.currentPage > 1 ? this.currentPage - 1 : 1;
+		if (this.currentPage > 1) {
+			this.currentPage = this.currentPage - 1;
+		} else if (this.loop) {
+			this.currentPage = this.totalDataLength;
+		} else {
+			this.currentPage = 1;
+		}
 	}
 
 	public getPages() {

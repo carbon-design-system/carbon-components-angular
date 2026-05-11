@@ -32,11 +32,16 @@ import { TreeNodeComponent } from "./tree-node.component";
 		@if (label) {
 			<label
 				[id]="id"
-				class="cds--label">
-				@if (isTemplate(label)) {
-					<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
-				} @else {
+				class="cds--label"
+				[ngClass]="{'cds--visually-hidden': hideLabel}">
+				@if (!isTemplate(label)) {
 					{{label}}
+				}
+				@if (isTemplate(label)) {
+					<ng-template
+						[ngTemplateOutlet]="label"
+						[ngTemplateOutletContext]="{ $implicit: labelContext }">
+					</ng-template>
 				}
 			</label>
 		}
@@ -53,7 +58,7 @@ import { TreeNodeComponent } from "./tree-node.component";
 			(keydown)="navigateTree($event)"
 			#treeWrapper>
 			@if (isProjected()) {
-				<ng-content />
+				<ng-content></ng-content>
 			} @else {
 				@for (node of tree; track node) {
 					<cds-tree-node
@@ -89,6 +94,11 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * Tree view label
 	 */
 	@Input() label: string | TemplateRef<any>;
+
+	/**
+	 * Set to `true` to visually hide the label while keeping it available to assistive technologies.
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Optional context for label if it's a template
 	 */

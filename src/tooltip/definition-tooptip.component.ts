@@ -29,25 +29,29 @@ import { NgTemplateOutlet } from "@angular/common";
 			class="cds--definition-term"
 			[attr.aria-controls]="id"
 			[attr.aria-expanded]="isOpen"
+			[attr.aria-describedby]="isOpen ? id : null"
 			(blur)="onBlur($event)"
-			(click)="onClick($event)"
+			(mousedown)="onClick($event)"
 			type="button">
-			<ng-content />
+			<ng-content></ng-content>
 		</button>
 		@if (description) {
 			<span
 				class="cds--popover"
 				[id]="id"
-				[attr.aria-hidden]="isOpen"
-				role="tooltip">
-				<span class="cds--popover-content cds--definition-tooltip">
+				[attr.aria-hidden]="!isOpen"
+				role="tooltip"
+				(mousedown)="onPopoverMouseDown()"
+				(mouseup)="onPopoverMouseUp()">
+				<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
 					@if (!isTemplate(description)) {
 						{{description}}
 					}
 					@if (isTemplate(description)) {
-						<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
-					} @else {
-						{{description}}
+						<ng-template
+							[ngTemplateOutlet]="description"
+							[ngTemplateOutletContext]="{ $implicit: templateContext }">
+						</ng-template>
 					}
 					@if (autoAlign) {
 						<span class="cds--popover-caret cds--popover--auto-align"></span>
@@ -76,6 +80,13 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	@Input() templateContext: any;
 
+	@Input() openOnHover = false;
+
+	/**
+	 * Helper variable to ensure button blur doesn't fire on `click` of popover content
+	 */
+	private isInteractingWithPopover = false;
+
 	constructor(
 		protected elementRef: ElementRef,
 		protected ngZone: NgZone,
@@ -88,11 +99,24 @@ export class TooltipDefinition extends PopoverContainer {
 	}
 
 	onBlur(event: Event) {
-		this.handleChange(false, event);
+		// Only close if user is not interacting with popover content
+		if (!this.isInteractingWithPopover) {
+			this.handleChange(false, event);
+		}
 	}
 
-	onClick(event: Event) {
-		this.handleChange(!this.isOpen, event);
+	onClick(event: MouseEvent) {
+		if (event.button === 0) {
+			this.handleChange(!this.isOpen, event);
+		}
+	}
+
+	onPopoverMouseDown() {
+		this.isInteractingWithPopover = true;
+	}
+
+	onPopoverMouseUp() {
+		this.isInteractingWithPopover = false;
 	}
 
 	@HostListener("keyup", ["$event"])
@@ -106,6 +130,18 @@ export class TooltipDefinition extends PopoverContainer {
 	@HostListener("mouseleave", ["$event"])
 	mouseleave(event) {
 		this.handleChange(false, event);
+	}
+
+	@HostListener("mouseenter", ["$event"])
+	mouseenter(event) {
+		if (this.openOnHover) {
+			this.handleChange(true, event);
+		}
+	}
+
+	@HostListener("focusin", ["$event"])
+	onFocus(event) {
+		this.handleChange(true, event);
 	}
 
 	public isTemplate(value) {

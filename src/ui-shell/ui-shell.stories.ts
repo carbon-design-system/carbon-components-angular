@@ -82,7 +82,9 @@ const HeaderTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger (click)="expanded($event)"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item isCurrentPage="true">Docs</cds-header-item>
@@ -179,7 +181,9 @@ const HeaderWithTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]" [brand]="brandTemplate">
-				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger (click)="expanded($event)"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item>Docs</cds-header-item>
@@ -386,7 +390,9 @@ const TogetherTemplate = (args) => ({
 	template: `
 		<div>
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger [active]="active" (selected)="active = !active"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item>Docs</cds-header-item>
@@ -512,7 +518,9 @@ const ModelTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger [active]="active" (selected)="active = !active"></cds-hamburger>
+				}
 				<cds-header-navigation [navigationItems]="headerItems">
 				</cds-header-navigation>
 				<cds-header-global>

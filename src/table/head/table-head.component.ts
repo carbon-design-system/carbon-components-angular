@@ -30,6 +30,22 @@ import { TableHeadCell } from "./table-head-cell.component";
 	template: `
 		@if (model) {
 			<tr>
+				@if (withRowAILabels && model.header[0] && model.header[0].visible) {
+					<th
+						[ngStyle]="model.header[0].style"
+						cdsTableHeadCell
+						scope="col"
+						[class]="model.header[0].className"
+						[sortable]="sortable"
+						[skeleton]="skeleton"
+						[id]="model.getId(0)"
+						[column]="model.header[0]"
+						[filterTitle]="getFilterTitle()"
+						[attr.colspan]="model.header[0].colSpan"
+						[attr.rowspan]="model.header[0].rowSpan"
+						(sort)="sort.emit(0)">
+					</th>
+				}
 				@if (model.hasExpandableRows()) {
 					<th
 						cdsTableHeadExpand
@@ -62,7 +78,7 @@ import { TableHeadCell } from "./table-head-cell.component";
 					</th>
 				}
 				@for (column of model.header; track column; let i = $index) {
-					@if (column && column.visible) {
+					@if (column && column.visible && (!withRowAILabels || i > 0)) {
 						<th
 							[ngStyle]="column.style"
 							cdsTableHeadCell
@@ -81,17 +97,17 @@ import { TableHeadCell } from "./table-head-cell.component";
 				}
 				@if (!skeleton && stickyHeader && scrollbarWidth) {
 					<th
-					scope="col"
-					[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
-					<!--
-						Scrollbar pushes body to the left so this header column is added to push
-						the title bar the same amount and keep the header and body columns aligned.
-					-->
-				</th>
-			}
+						scope="col"
+						[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+						<!--
+							Scrollbar pushes body to the left so this header column is added to push
+							the title bar the same amount and keep the header and body columns aligned.
+						-->
+					</th>
+				}
 			</tr>
 		}
-		<ng-content />
+		<ng-content></ng-content>
 	`,
 	styles: [`
 		.cds--table-expand-v2 {
@@ -129,6 +145,11 @@ export class TableHead implements AfterViewInit {
 	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
 	 */
 	@Input() sortable = true;
+
+	/**
+	 * When true, the first model column is rendered before expand/selection (Carbon AI row decorator column).
+	 */
+	@Input() withRowAILabels = false;
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

@@ -13,9 +13,12 @@ import { Pagination, PaginationModel } from "..";
 			[model]="model"
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
+			[size]="paginationSize"
 			[pagesUnknown]="pagesUnknown"
 			[showPageInput]="showPageInput"
 			[skeleton]="skeleton"
+			[backwardDisabled]="backwardDisabled"
+			[forwardDisabled]="forwardDisabled"
 			(selectPage)="selectPage($event)">
 		</cds-pagination>
 	`,
@@ -27,8 +30,11 @@ export class PaginationStory implements OnInit {
 	@Input() skeleton = false;
 	@Input() disabled = false;
 	@Input() pageInputDisabled = false;
+	@Input() paginationSize: "sm" | "md" | "lg" = "md";
 	@Input() pagesUnknown = false;
 	@Input() showPageInput = true;
+	@Input() backwardDisabled = false;
+	@Input() forwardDisabled = false;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;

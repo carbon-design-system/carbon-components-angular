@@ -9,6 +9,7 @@ import { InlineLoadingState } from "../";
 			[loadingText]="loadingText"
 			[successText]="successText"
 			[errorText]="errorText"
+			[iconDescription]="iconDescription"
 			(onSuccess)="onSuccess($event)">
 		</cds-inline-loading>
 		<button cdsButton (click)="toggleState()">Toggle state</button>
@@ -20,6 +21,7 @@ export class InlineLoadingStory {
 	@Input() loadingText = "";
 	@Input() successText = "";
 	@Input() errorText = "";
+	@Input() iconDescription = "Loading status";
 
 	state = InlineLoadingState.Active;
 

@@ -85,10 +85,8 @@ describe("FileUploader", () => {
 		element.componentInstance.value = testFiles;
 		fixture.detectChanges();
 		expect(wrapper.files.has(fileItem)).toBe(true);
-		expect(element
-			.nativeElement
-			.querySelector(".cds--file-container .cds--file-filename")
-			.textContent).toEqual("test-filename");
+		const textContent = element.nativeElement.querySelector(".cds--file-container .cds--file-filename").textContent;
+		expect(textContent.trim()).toEqual("test-filename");
 	});
 
 	it("should set cds--file--invalid class on invalid file items", () => {

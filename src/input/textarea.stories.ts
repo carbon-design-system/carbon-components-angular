@@ -1,11 +1,15 @@
 import { Meta, moduleMetadata } from "@storybook/angular";
 import { TextArea, TextInput, TextInputLabelComponent, TextareaLabelComponent } from "./";
+import { AILabelModule } from "../ai-label";
+import { ButtonModule } from "../button";
+import { IconModule } from "../icon";
+import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
 export default {
 	title: "Components/Input/Text area",
 	decorators: [
 		moduleMetadata({
-			imports: [TextArea, TextInput, TextInputLabelComponent]
+			imports: [TextArea, TextInput, TextInputLabelComponent, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {
@@ -23,7 +27,10 @@ export default {
 		theme: "dark",
 		readonly: false,
 		fluid: false,
-		skeleton: false
+		skeleton: false,
+		enableCounter: false,
+		maxCount: 500,
+		counterMode: "character"
 	},
 	argTypes: {
 		autocomplete: {
@@ -32,6 +39,10 @@ export default {
 		},
 		theme: {
 			options: ["light", "dark"],
+			control: "radio"
+		},
+		counterMode: {
+			options: ["word", "character"],
 			control: "radio"
 		}
 	},
@@ -49,7 +60,10 @@ const Template = (args) => ({
 		[fluid]="fluid"
 		[skeleton]="skeleton"
 		[warn]="warn"
-		[warnText]="warnText">
+		[warnText]="warnText"
+		[enableCounter]="enableCounter"
+		[maxCount]="maxCount"
+		[counterMode]="counterMode">
 		{{label}}
 		<textarea
 			cdsTextArea
@@ -80,3 +94,25 @@ const SkeletonTemplate = (args) => ({
 	`
 });
 export const Skeleton = SkeletonTemplate.bind({});
+
+export const withAILabel = () => ({
+	styles: AI_LABEL_STORY_STYLES,
+	template: `
+		<cds-textarea-label [decorator]="decoratorTpl">
+			Text area with decorator
+			<textarea cdsTextArea rows="4" placeholder="Placeholder" aria-label="textarea" style="width: 100%;"></textarea>
+		</cds-textarea-label>
+		<ng-template #decoratorTpl>
+			<cds-ai-label
+				class="ai-label-container"
+				kind="default"
+				size="mini"
+				[autoAlign]="true"
+				[align]="'bottom-end'"
+				aiText="AI"
+				ariaLabel="Show information">
+				` + AI_LABEL_INNER + `
+			</cds-ai-label>
+		</ng-template>
+	`
+});

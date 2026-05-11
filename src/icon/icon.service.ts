@@ -4,6 +4,8 @@ import { toString } from "@carbon/icon-helpers";
 // icon imports
 import Add16 from "@carbon/icons/es/add/16";
 import Add20 from "@carbon/icons/es/add/20";
+import ArrowDown16 from "@carbon/icons/es/arrow--down/16";
+import ArrowsVertical16 from "@carbon/icons/es/arrows--vertical/16";
 import Bee16 from "@carbon/icons/es/bee/16";
 import Bee20 from "@carbon/icons/es/bee/20";
 import Calendar16 from "@carbon/icons/es/calendar/16";
@@ -17,6 +19,8 @@ import Checkmark16 from "@carbon/icons/es/checkmark/16";
 import CheckmarkFilled16 from "@carbon/icons/es/checkmark--filled/16";
 import CheckmarkFilled20 from "@carbon/icons/es/checkmark--filled/20";
 import CheckmarkOutline16 from "@carbon/icons/es/checkmark--outline/16";
+import Checkbox16 from "@carbon/icons/es/checkbox/16";
+import CheckboxCheckedFilled16 from "@carbon/icons/es/checkbox--checked--filled/16";
 import ChevronDown16 from "@carbon/icons/es/chevron--down/16";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16";
 import CircleDash16 from "@carbon/icons/es/circle-dash/16";
@@ -53,6 +57,7 @@ import WarningFilled16 from "@carbon/icons/es/warning--filled/16";
 import WarningFilled20 from "@carbon/icons/es/warning--filled/20";
 import WarningAltFilled16 from "@carbon/icons/es/warning--alt--filled/16";
 import WarningAltFilled20 from "@carbon/icons/es/warning--alt--filled/20";
+import Undo16 from "@carbon/icons/es/undo/16";
 import View16 from "@carbon/icons/es/view/16";
 import ViewOff16 from "@carbon/icons/es/view--off/16";
 
@@ -138,7 +143,7 @@ export class IconNameNotFoundError extends Error {
  */
 export class IconSizeNotFoundError extends Error {
 	constructor(size: string, name: string) {
-		super("Size ${size} for ${name} not found");
+		super(`Size ${size} for ${name} not found`);
 	}
 }
 
@@ -209,6 +214,8 @@ export class IconService {
 		this.registerAll([
 			Add16,
 			Add20,
+			ArrowDown16,
+			ArrowsVertical16,
 			Bee16,
 			Bee20,
 			Calendar16,
@@ -222,6 +229,8 @@ export class IconService {
 			CheckmarkFilled16,
 			CheckmarkFilled20,
 			CheckmarkOutline16,
+			Checkbox16,
+			CheckboxCheckedFilled16,
 			ChevronDown16,
 			ChevronRight16,
 			CircleDash16,
@@ -253,6 +262,7 @@ export class IconService {
 			SettingsAdjust16,
 			Subtract16,
 			TrashCan16,
+			Undo16,
 			View16,
 			ViewOff16,
 			Warning16,
@@ -283,8 +293,8 @@ export class IconService {
 	 * Registers an icon based on a uniqe name and metadata provided by `@carbon/icons`
 	 */
 	public registerAs(name: string, descriptor: object) {
-		const { size } = descriptor as IconDescriptor;
-		this.iconCache.set(name, size.toString(), descriptor);
+		let { size, attrs: { width } } = descriptor as IconDescriptor;
+		this.iconCache.set(name, (size ?? width).toString(), descriptor);
 	}
 
 	/**

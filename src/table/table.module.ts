@@ -19,6 +19,7 @@ import { TableContainer } from "./table-container.component";
 import { TableHeader } from "./header/table-header.component";
 import { TableHeaderTitle } from "./header/table-header-title.directive";
 import { TableHeaderDescription } from "./header/table-header-description.directive";
+import { TableHeaderDecorator } from "./header/table-header-decorator.component";
 
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
@@ -55,6 +56,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeaderDecorator,
 		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,
@@ -88,6 +90,7 @@ export * from "./data-grid-interaction-model.class";
 		TableHeader,
 		TableHeaderTitle,
 		TableHeaderDescription,
+		TableHeaderDecorator,
 		TableHeadCellLabel,
 		TableToolbarActions,
 		TableToolbarSearch,

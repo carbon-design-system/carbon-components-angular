@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input
+} from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Get started with importing the component:
@@ -11,10 +17,44 @@ import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
  */
 @Component({
 	selector: "cds-button-set, ibm-button-set",
-	template: "<ng-content />",
+	template: `
+		@if (fluid) {
+			<div class="cds--btn-set__fluid-inner cds--btn-set__fluid-inner--auto-stack">
+				<ng-container *ngTemplateOutlet="content"></ng-container>
+			</div>
+		}
+		@if (!fluid) {
+			<ng-container *ngTemplateOutlet="content"></ng-container>
+		}
+
+		<ng-template #content>
+			<ng-content></ng-content>
+		</ng-template>
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true
+	standalone: true,
+	imports: [NgTemplateOutlet]
 })
 export class ButtonSet {
 	@HostBinding("class.cds--btn-set") buttonSetClass = true;
+
+	/**
+	 * When `true`, buttons grow to fill the container width (fluid button set).
+	 */
+	@Input() fluid = false;
+
+	/**
+	 * When `true`, stacks buttons vertically. Use with non-fluid layouts, otherwise `fluid` will override style
+	 */
+	@Input() stacked = false;
+
+	@HostBinding("class.cds--btn-set--fluid")
+	get fluidClass(): boolean {
+		return this.fluid;
+	}
+
+	@HostBinding("class.cds--btn-set--stacked")
+	get stackedClass(): boolean {
+		return this.stacked;
+	}
 }

@@ -45,7 +45,7 @@ export default {
 		"TITLE": "Loading"
 	},
 	"MODAL": {
-		"CLOSE": "Close modal"
+		"CLOSE": "Close"
 	},
 	"NOTIFICATION": {
 		"CLOSE_BUTTON": "Close alert notification"

@@ -17,6 +17,8 @@ export class ModalStory {
 	@Input() modalText = "Hello, World";
 	@Input() size = "md";
 	@Input() showCloseButton = true;
+	@Input() isFullWidth = false;
+	@Input() ariaLabelledby: string;
 
 	constructor(protected modalService: ModalService) {}
 
@@ -26,7 +28,9 @@ export class ModalStory {
 			inputs: {
 				modalText: this.modalText,
 				size: this.size,
-				showCloseButton: this.showCloseButton
+				showCloseButton: this.showCloseButton,
+				isFullWidth: this.isFullWidth,
+				ariaLabelledby: this.ariaLabelledby
 			}
 		});
 	}

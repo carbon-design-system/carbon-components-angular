@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { CommonModule } from "@angular/common";
+
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
@@ -13,7 +13,7 @@ import { RouterModule } from "@angular/router";
 	selector: "app-foo",
 	template: "<h1>foo</h1>",
 	standalone: true,
-	imports: [CommonModule]
+	imports: []
 })
 class FooComponent {}
 

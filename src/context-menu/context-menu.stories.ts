@@ -49,7 +49,7 @@ export default {
 const Template = (args) => ({
 	props: args,
 	template: `
-		<cds-context-menu [open]="open" [position]="position">
+		<cds-context-menu [open]="open" [position]="position" [size]="size">
 			<cds-context-menu-item label="Cut" info="⌘X"></cds-context-menu-item>
 			<cds-context-menu-item label="Option with icon" icon="calendar"></cds-context-menu-item>
 			<cds-context-menu-divider></cds-context-menu-divider>
@@ -87,6 +87,12 @@ const Template = (args) => ({
 						<cds-context-menu-item type="checkbox" label="Selectable item d" value="d"></cds-context-menu-item>
 					</cds-context-menu-group>
 				</cds-context-menu>
+			</cds-context-menu-item>
+			<cds-context-menu-divider></cds-context-menu-divider>
+			<cds-context-menu-item
+				label="Delete"
+				[danger]="true"
+				dangerDescription="Permanently removes the selection">
 			</cds-context-menu-item>
 		</cds-context-menu>
 	`

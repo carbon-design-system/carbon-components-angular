@@ -150,4 +150,11 @@ export default tseslint.config(
 		},
 	},
 	storybook.configs['flat/recommended'],
+	{
+		files: ["**/*.stories.ts"],
+		rules: {
+			"storybook/prefer-pascal-case": "off",
+			"@angular-eslint/component-selector": "off"
+		}
+	}
 );

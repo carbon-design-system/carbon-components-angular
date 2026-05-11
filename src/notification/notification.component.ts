@@ -32,12 +32,16 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 			}
 			<div class="cds--inline-notification__text-wrapper">
 				@if (!notificationObj.template) {
-					<div cdsNotificationTitle [innerHTML]="notificationObj.title"></div>
+					<div
+						cdsNotificationTitle
+						[innerHTML]="notificationObj.title"
+						[id]="notificationID">
+					</div>
 					<div cdsNotificationSubtitle>
 						<span [innerHTML]="notificationObj.message"></span>
 					</div>
 				}
-				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}" />
+				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 			</div>
 		</div>
 		@if (!isCloseHidden) {
@@ -79,7 +83,8 @@ export class Notification extends BaseNotification {
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
-	@HostBinding("attr.id") notificationID = `notification-${Notification.notificationCount++}`;
+	notificationID = `notification-${Notification.notificationCount++}`;
+	@HostBinding("attr.aria-labelledBy") notificationLabel = this.notificationID;
 	@HostBinding("class.cds--inline-notification") notificationClass = true;
 	@HostBinding("class.cds--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }

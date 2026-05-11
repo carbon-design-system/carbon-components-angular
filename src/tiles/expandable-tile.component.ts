@@ -4,7 +4,8 @@ import {
 	ElementRef,
 	AfterViewInit,
 	ViewChild,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	TemplateRef
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
@@ -29,18 +30,7 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `
-		@if (interactive) {
-			<div
-				class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
-				[ngClass]="{
-					'cds--tile--is-expanded' : expanded,
-					'cds--tile--light': theme === 'light'
-				}"
-				[ngStyle]="{'max-height': expandedHeight + 'px'}"
-				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
-				<ng-container *ngTemplateOutlet="expandableTileContent" />
-			</div>
-		} @else {
+		@if (!interactive) {
 			<button
 				class="cds--tile cds--tile--expandable"
 				[ngClass]="{
@@ -52,8 +42,22 @@ export interface ExpandableTileTranslations {
 				(click)="onClick()"
 				[attr.aria-expanded]="expanded"
 				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
-					<ng-container *ngTemplateOutlet="expandableTileContent" />
+				<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
 			</button>
+		}
+		@if (interactive) {
+			<div
+				class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
+				[ngClass]="{
+					'cds--tile--is-expanded' : expanded,
+					'cds--tile--light': theme === 'light',
+					'cds--tile--decorator': !!decorator,
+					'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
+				}"
+				[ngStyle]="{'max-height': expandedHeight + 'px'}"
+				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
+				<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
+			</div>
 		}
 
 		<ng-template #chevronIcon>
@@ -62,9 +66,19 @@ export interface ExpandableTileTranslations {
 
 		<ng-template #expandableTileContent>
 			<div #container>
+				@if (interactive && decorator) {
+					<div class="cds--tile--inner-decorator">
+						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+					</div>
+				}
 				<div class="cds--tile-content">
-					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold" />
+					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
 				</div>
+				@if (!interactive) {
+					<div class="cds--tile__chevron">
+						<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
+					</div>
+				}
 				@if (interactive) {
 					<button
 						class="cds--tile__chevron cds--tile__chevron--interactive"
@@ -72,15 +86,11 @@ export interface ExpandableTileTranslations {
 						(click)="onClick()"
 						[attr.aria-expanded]="expanded"
 						[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">
-						<ng-container *ngTemplateOutlet="chevronIcon" />
+						<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
 					</button>
-				} @else {
-					<div class="cds--tile__chevron">
-						<ng-container *ngTemplateOutlet="chevronIcon" />
-					</div>
 				}
 				<div class="cds--tile-content">
-					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold" />
+					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>
 				</div>
 			</div>
 		</ng-template>
@@ -110,6 +120,17 @@ export class ExpandableTile implements AfterViewInit {
 	 * Controls the interactive state
 	 */
 	@Input() interactive = false;
+
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
+
+	/**
+	 * When `true` with a `decorator`, applies rounded styling.
+	 */
+	@Input() hasRoundedCorners = false;
+
 	/**
 	 * Expects an object that contains some or all of:
 	 * ```

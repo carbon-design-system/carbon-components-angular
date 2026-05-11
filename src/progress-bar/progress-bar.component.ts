@@ -4,7 +4,7 @@ import {
 	Input,
 	TemplateRef
 } from "@angular/core";
-import { NgTemplateOutlet, NgStyle } from "@angular/common";
+import { NgTemplateOutlet, NgStyle, NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 
 /**
@@ -22,12 +22,14 @@ import { IconDirective } from "carbon-components-angular/icon";
 		@if (label) {
 			<div
 				class="cds--progress-bar__label"
+				[ngClass]="{'cds--visually-hidden': hideLabel}"
 				[id]="id">
 				<span class="cds--progress-bar__label-text">
-					@if (isTemplate(label)) {
-						<ng-template [ngTemplateOutlet]="label" />
-					} @else {
+					@if (!isTemplate(label)) {
 						{{label}}
+					}
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label"></ng-template>
 					}
 				</span>
 				@if (isFinished) {
@@ -36,7 +38,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 						cdsIcon="checkmark--filled"
 						class="cds--progress-bar__status-icon">
 					</svg>
-				} @else if (isError) {
+				}
+				@if (isError) {
 					<svg
 						fill="currentColor"
 						cdsIcon="error--filled"
@@ -48,6 +51,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 		<div
 			class="cds--progress-bar__track"
 			role="progressbar"
+			[attr.aria-busy]="!isFinished"
 			[attr.aria-invalid]="isError"
 			[attr.aria-labelledby]="id"
 			[attr.aria-describedby]="helperText ? helperId : null"
@@ -65,16 +69,17 @@ import { IconDirective } from "carbon-components-angular/icon";
 			<div
 				[id]="helperId"
 				class="cds--progress-bar__helper-text">
-				@if (isTemplate(helperText)) {
-					<ng-template [ngTemplateOutlet]="helperText" />
-				} @else {
+				@if (!isTemplate(helperText)) {
 					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
 				}
 			</div>
 		}
 	`,
 	standalone: true,
-	imports: [NgTemplateOutlet, IconDirective, NgStyle]
+	imports: [NgTemplateOutlet, IconDirective, NgStyle, NgClass]
 })
 export class ProgressBar {
 	/**
@@ -159,6 +164,11 @@ export class ProgressBar {
 	 * Size of the progress bar, default is `big`
 	 */
 	@Input() size: "small" | "big" = "big";
+
+	/**
+	 * Set to `true` to visually hide the label while keeping it available to assistive technologies.
+	 */
+	@Input() hideLabel = false;
 
 	@HostBinding("class.cds--progress-bar") defaultClass = true;
 	private _value = undefined;

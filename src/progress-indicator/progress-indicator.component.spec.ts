@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
-import { CommonModule } from "@angular/common";
+
 import { ExperimentalService } from "../experimental";
 import { IconDirective } from "../icon";
 import { Step } from "./progress-indicator-step.interface";

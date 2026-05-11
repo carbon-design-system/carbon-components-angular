@@ -68,16 +68,17 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	template: `
 		@if (label && !skeleton) {
 			<label
-			[for]="id"
-			class="cds--label"
-			[ngClass]="{
-				'cds--label--disabled': disabled,
-				'cds--visually-hidden': hideLabel
-			}">
-				@if (isTemplate(label)) {
-					<ng-template [ngTemplateOutlet]="label" />
-				} @else {
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
+				@if (!isTemplate(label)) {
 					{{label}}
+				}
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label"></ng-template>
 				}
 			</label>
 		}
@@ -98,7 +99,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
 				'cds--dropdown--md cds--list-box--md': size === 'md',
 				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-				'cds--list-box--expanded': isOpen,
+				'cds--list-box--expanded': !menuIsClosed,
 				'cds--list-box--invalid': invalid
 			}"
 			[attr.data-invalid]="invalid ? true : null">
@@ -110,10 +111,9 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				[id]="id"
 				type="button"
 				class="cds--list-box__field"
-				[ngClass]="{'a': isOpen}"
-				[attr.aria-expanded]="isOpen"
+				[ngClass]="{'a': !menuIsClosed}"
+				[attr.aria-expanded]="!menuIsClosed"
 				[attr.aria-disabled]="disabled"
-				[attr.aria-readonly]="readonly"
 				aria-haspopup="listbox"
 				(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
 				(focus)="fluid ? handleFocus($event) : null"
@@ -123,7 +123,6 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 					<div
 						(click)="clearSelected()"
 						(keydown.enter)="clearSelected()"
-
 						class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
 						tabindex="0"
 						[title]="clearText">
@@ -144,8 +143,12 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				}
 				@if (isRenderString()) {
 					<span class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
-				} @else {
-					<ng-template [ngTemplateOutletContext]="getRenderTemplateContext()" [ngTemplateOutlet]="displayValue" />
+				}
+				@if (!isRenderString()) {
+					<ng-template
+						[ngTemplateOutletContext]="getRenderTemplateContext()"
+						[ngTemplateOutlet]="displayValue">
+					</ng-template>
 				}
 				<span class="cds--list-box__menu-icon">
 					@if (!skeleton) {
@@ -153,18 +156,24 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 							cdsIcon="chevron--down"
 							size="16"
 							[attr.aria-label]="menuButtonLabel"
-							[ngClass]="{'cds--list-box__menu-icon--open': isOpen }">
+							[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
 						</svg>
 					}
 				</span>
 			</button>
+			@if (decorator) {
+				<div class="cds--list-box__inner-wrapper--decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			}
 			@if (invalid) {
 				<svg
 					class="cds--list-box__invalid-icon"
 					cdsIcon="warning--filled"
 					size="16">
 				</svg>
-			} @else if(warn) {
+			}
+			@if (!invalid && warn) {
 				<svg
 					cdsIcon="warning--alt--filled"
 					size="16"
@@ -176,40 +185,45 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				[ngClass]="{
 					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 				}">
-				@if (isOpen) {
-					<ng-content />
+				@if (!menuIsClosed) {
+					<ng-content></ng-content>
 				}
 			</div>
 		</div>
 		@if (fluid) {
 			<hr class="cds--list-box__divider" />
 		}
-		@if (invalid) {
-			<div class="cds--form-requirement">
-				@if (isTemplate(invalidText)) {
-					<ng-template [ngTemplateOutlet]="invalidText" />
-				} @else {
-					{{ invalidText }}
-				}
-			</div>
-		} @else if (warn) {
-			<div class="cds--form-requirement">
-				@if (isTemplate(warnText)) {
-					<ng-template [ngTemplateOutlet]="warnText" />
-				} @else {
-					{{warnText}}
-				}
-			</div>
-		} @else if(helperText && !fluid) {
+		@if (helperText && !invalid && !warn && !skeleton && !fluid) {
 			<div
 				class="cds--form__helper-text"
 				[ngClass]="{
 					'cds--form__helper-text--disabled': disabled
 				}">
-				@if (isTemplate(helperText)) {
-					<ng-template [ngTemplateOutlet]="helperText" />
-				} @else {
+				@if (!isTemplate(helperText)) {
 					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+				}
+			</div>
+		}
+		@if (invalid) {
+			<div class="cds--form-requirement">
+				@if (!isTemplate(invalidText)) {
+					{{ invalidText }}
+				}
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+				}
+			</div>
+		}
+		@if (!invalid && warn) {
+			<div class="cds--form-requirement">
+				@if (!isTemplate(warnText)) {
+					{{warnText}}
+				}
+				@if (isTemplate(warnText)) {
+					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
 				}
 			</div>
 		}
@@ -270,6 +284,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * **Experimental**: Optional decorator (e.g. AI label).
+	 */
+	@Input() decorator: TemplateRef<any>;
 	/**
 	 * Value displayed if no item is selected.
 	 */
@@ -395,6 +413,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
+
+	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
 	/**
 	 * Experimental: enable fluid state
 	 */
