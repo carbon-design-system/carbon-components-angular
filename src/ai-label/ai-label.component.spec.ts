@@ -24,7 +24,7 @@ import { AILabelActions } from "./ai-label-actions.directive";
 			<p class="ai-label-projection">Child content</p>
 		</cds-ai-label>
 	`,
-	standalone: false
+	imports: [AILabelModule]
 })
 class TestAILabelHostComponent {
 	@Input() id = "test-ai-label-id";
@@ -44,7 +44,7 @@ class TestAILabelHostComponent {
 
 @Component({
 	template: `<div cdsAILabelActions class="actions-host"></div>`,
-	standalone: false
+	imports: [AILabelModule]
 })
 class TestAILabelActionsComponent {}
 
@@ -56,8 +56,7 @@ describe("AILabel", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule],
-			declarations: [TestAILabelHostComponent]
+			imports: [AILabelModule, TestAILabelHostComponent]
 		});
 		fixture = TestBed.createComponent(TestAILabelHostComponent);
 		component = fixture.componentInstance;
@@ -238,8 +237,7 @@ describe("AILabelActions", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule],
-			declarations: [TestAILabelActionsComponent]
+			imports: [AILabelModule, TestAILabelActionsComponent]
 		});
 		fixture = TestBed.createComponent(TestAILabelActionsComponent);
 		fixture.detectChanges();
