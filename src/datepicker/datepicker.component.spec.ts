@@ -6,7 +6,8 @@ import { FormsModule } from "@angular/forms";
 
 @Component({
 	template: `
-	<cds-date-picker label="Date picker label"
+	<cds-date-picker
+		label="Date picker label"
 		placeholder="mm/dd/yyyy"
 		theme="light"
 		[(ngModel)]="value"
