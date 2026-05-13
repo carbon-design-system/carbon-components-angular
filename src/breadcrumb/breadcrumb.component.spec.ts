@@ -40,9 +40,11 @@ class TestBreadcrumb {
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<cds-breadcrumb [noTrailingSlash]="noTrailingSlash"
-		[threshold]="threshold"
-		[items]="items" />`,
+		<cds-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="items" />
+	`,
 	imports: [
 		Breadcrumb
 	]
