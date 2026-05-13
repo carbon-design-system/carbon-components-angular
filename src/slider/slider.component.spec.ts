@@ -8,11 +8,13 @@ import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
-	<cds-slider [shiftMultiplier]="shiftMultiplier"
-		(valueChange)="onValueChange()"
-		[disabled]="disabled"
-		[max]="max"
-		[min]="min" />`,
+		<cds-slider
+			[shiftMultiplier]="shiftMultiplier"
+			(valueChange)="onValueChange()"
+			[disabled]="disabled"
+			[max]="max"
+			[min]="min" />
+	`,
 	imports: [
 		Slider
 	]

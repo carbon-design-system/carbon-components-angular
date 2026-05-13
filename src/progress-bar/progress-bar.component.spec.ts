@@ -6,7 +6,8 @@ import { ProgressBar } from "./";
 
 @Component({
 	template: `
-		<cds-progress-bar [label]="label"
+		<cds-progress-bar
+			[label]="label"
 			[helperText]="helperText"
 			[max]="max"
 			[size]="size"

@@ -301,7 +301,8 @@ class HGContentProjectionLabeledIconTabTest {}
 			</svg>
 		</ng-template>
 		<cds-tab-header-group [cacheActive]="true" [iconSize]="'lg'" [ariaLabel]="'List of tabs'">
-			<cds-tab-header [paneReference]="only1"
+			<cds-tab-header
+				[paneReference]="only1"
 				[icon]="iconTpl"
 				[iconOnly]="true"
 				iconLabel="Notifications"

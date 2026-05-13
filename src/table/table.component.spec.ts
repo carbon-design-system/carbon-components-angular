@@ -10,13 +10,15 @@ import { TableItem } from "./table-item.class";
 
 @Component({
 	template: `
-		<cds-table [model]="tableModel"
+		<cds-table
+			[model]="tableModel"
 			(sort)="simpleSort()"
 			(selectRow)="onChange()"
 			(deselectRow)="onChange()"
 			size="md"
 			title="title"
-			[showSelectionColumn]="showSelectionColumn" />`,
+			[showSelectionColumn]="showSelectionColumn" />
+	`,
 	imports: [Table]
 })
 class TableTest implements OnInit {

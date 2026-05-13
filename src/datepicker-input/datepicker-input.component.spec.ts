@@ -6,7 +6,8 @@ import { DatePickerInput } from "./datepicker-input.component";
 
 @Component({
 	template: `
-		<cds-date-picker-input theme="dark"
+		<cds-date-picker-input
+			theme="dark"
 			label="label"
 			placeholder="mm/dd/yyyy"
 			[disabled]="disabled"

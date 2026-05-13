@@ -10,7 +10,8 @@ import { Step } from "./progress-indicator-step.interface";
 
 @Component({
 	template: `
-		<cds-progress-indicator [steps]="steps"
+		<cds-progress-indicator
+			[steps]="steps"
 			[current]="current"
 			(stepSelected)="stepSelected.emit($event)" />
 	`,

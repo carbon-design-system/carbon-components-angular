@@ -6,7 +6,8 @@ import { PaginationModel } from "../pagination-model.class";
 
 @Component({
 	template: `
-		<cds-pagination-nav [model]="model"
+		<cds-pagination-nav
+			[model]="model"
 			[disabled]="disabled"
 			[numOfItemsToShow]="4"
 			(selectPage)="selectPage($event)" />
