@@ -12,7 +12,7 @@ import { TilesModule, TileGroup, SelectionTile } from "./";
 			<cds-selection-tile value="tile3">Third</cds-selection-tile>
 		</cds-tile-group>
 	`,
-	standalone: false
+	imports: [TilesModule]
 })
 class SingleSelectHostComponent {
 	multiple = false;
@@ -26,8 +26,7 @@ describe("TileGroup", () => {
 
 		beforeEach(waitForAsync(() => {
 			TestBed.configureTestingModule({
-				imports: [TilesModule],
-				declarations: [SingleSelectHostComponent]
+				imports: [TilesModule, SingleSelectHostComponent]
 			}).compileComponents();
 		}));
 

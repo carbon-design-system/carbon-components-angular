@@ -15,7 +15,7 @@ import { FormsModule } from "@angular/forms";
 		[isOpen]="isOpen"
 		(selected)="onSelect()"
 		[(ngModel)]="model">
-		<cds-dropdown-list [items]="items"></cds-dropdown-list>
+		<cds-dropdown-list [items]="items" />
 	</cds-dropdown>`,
 	imports: [
 		Dropdown,

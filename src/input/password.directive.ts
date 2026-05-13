@@ -24,7 +24,7 @@ export class PasswordInput implements AfterViewInit {
 	@HostBinding("class.cds--password-input") passwordInputClass = true;
 
 	/**
-	 * @todo - remove `cds--text-input--${size}` classes in v12
+	 * @todo - remove `cds--text-input--${size}` classes in Carbon v12
 	 */
 	@HostBinding("class.cds--text-input--sm") get isSizeSm() {
 		return this.size === "sm";

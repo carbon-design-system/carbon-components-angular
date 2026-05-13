@@ -10,8 +10,8 @@ import { By } from "@angular/platform-browser";
 			[isActive]="isActive"
 			[size]="size"
 			[overlay]="overlay"
-			title="title">
-		</cds-loading>`,
+			title="title" />`
+	,
 	imports: [Loading]
 })
 class LoadingTest {

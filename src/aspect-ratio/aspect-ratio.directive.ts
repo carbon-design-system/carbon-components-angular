@@ -23,8 +23,7 @@ export type AspectRatioValue =
  * ```
  */
 @Directive({
-	selector: "[cdsAspectRatio], [ibmAspectRatio]",
-	standalone: false
+	selector: "[cdsAspectRatio], [ibmAspectRatio]"
 })
 export class AspectRatioDirective {
 	/**

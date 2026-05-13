@@ -43,10 +43,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 				[leaveDelayMs]="leaveDelayMs"
 				[isOpen]="isTooltipOpen"
 				[disabled]="disabled">
-				<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container>
+				<ng-container *ngTemplateOutlet="tabButtonTemplate" />
 			</cds-tooltip>
 		} @else {
-			<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container>
+			<ng-container *ngTemplateOutlet="tabButtonTemplate" />
 		}
 
 		<ng-template #tabButtonTemplate>

@@ -11,7 +11,7 @@ import { Table } from "./table.component";
 
 @Component({
 	selector: "cds-table-container, ibm-table-container",
-	template: `<ng-content></ng-content>`,
+	template: `<ng-content />`,
 	standalone: true
 })
 export class TableContainer implements AfterContentInit {

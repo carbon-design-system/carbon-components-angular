@@ -30,7 +30,7 @@ export class TextInput {
 	@HostBinding("class.cds--text-input") inputClass = true;
 
 	/**
-	 * @todo - remove `cds--text-input--${size}` classes in v12
+	 * @todo - remove `cds--text-input--${size}` classes in Carbon v12
 	 */
 	@HostBinding("class.cds--text-input--sm") get isSizeSm() {
 		return this.size === "sm";

@@ -28,7 +28,7 @@ export class TagOperationalComponent extends Tag {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const disabledClass = this.disabled ? "cds--tag--disabled" : "";

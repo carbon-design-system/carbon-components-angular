@@ -23,8 +23,7 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 				[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 				[checked]="selected"
 				[disabled]="disabled"
-				(change)="change.emit()">
-			</cds-radio>
+				(change)="change.emit()" />
 		}
 	`,
 	imports: [Radio, AsyncPipe, ReplacePipe]

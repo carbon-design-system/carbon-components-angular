@@ -11,10 +11,9 @@ import { TreeNodeComponent } from "./tree-node.component";
 			label="Tree view"
 			style="width: 18rem; display: block;"
 			[tree]="tree"
-			(selected)="onSelect()">
-		</cds-tree-view>
+			(selected)="onSelect()" />
 	`,
-	imports: [TreeViewComponent, TreeNodeComponent]
+	imports: [TreeViewComponent]
 })
 class TreeviewTestComponent {
 	tree = [

@@ -14,8 +14,7 @@ import { DatePickerInput } from "./datepicker-input.component";
 			[invalid]="invalid"
 			invalidText="invalid text"
 			(valueChange)="valueChange($event)"
-			[(ngModel)]="model">
-		</cds-date-picker-input>
+			[(ngModel)]="model" />
 		`,
 	imports: [
 		DatePickerInput,

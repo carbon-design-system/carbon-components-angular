@@ -37,7 +37,7 @@ export type TagType = "red" |
 	template: `
 		@if (!skeleton) {
 
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
@@ -77,7 +77,7 @@ export class Tag {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const skeletonClass = this.skeleton ? "cds--skeleton" : "";

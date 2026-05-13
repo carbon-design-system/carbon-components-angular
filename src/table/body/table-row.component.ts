@@ -109,7 +109,7 @@ import { NgStyle } from "@angular/common";
 				}
 			}
 		}
-		<ng-content></ng-content>
+		<ng-content />
 	`,
 	imports: [
 		TableExpandButton,

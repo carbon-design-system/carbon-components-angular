@@ -13,8 +13,7 @@ import { Step } from "./progress-indicator-step.interface";
 		<cds-progress-indicator
 			[steps]="steps"
 			[current]="current"
-			(stepSelected)="stepSelected.emit($event)">
-		</cds-progress-indicator>
+			(stepSelected)="stepSelected.emit($event)" />
 	`,
 	providers: [ExperimentalService],
 	imports: [

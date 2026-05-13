@@ -15,7 +15,8 @@ import {
 	ViewChild,
 	OnInit,
 	SimpleChange,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	HostBinding
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -56,7 +57,6 @@ if (languages.default?.default["en"]?.weekdays) {
 @Component({
 	selector: "cds-date-picker, ibm-date-picker",
 	template: `
-	<div class="cds--form-item">
 		<div
 			class="cds--date-picker"
 			[ngClass]="{
@@ -115,7 +115,6 @@ if (languages.default?.default["en"]?.weekdays) {
 				</div>
 			}
 		</div>
-	</div>
 	`,
 	providers: [
 		{
@@ -135,6 +134,8 @@ export class DatePicker implements
 	AfterViewChecked,
 	AfterViewInit {
 	private static datePickerCount = 0;
+
+	@HostBinding("class.cds--form-item") readonly hostFormItemClass = true;
 
 	/**
 	 * Select calendar range mode

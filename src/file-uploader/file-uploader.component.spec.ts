@@ -13,8 +13,7 @@ import { FileItem } from "./file-item.interface";
 			buttonText="buttonText"
 			accept=".txt"
 			multiple="true"
-			[(ngModel)]="files">
-		</cds-file-uploader>
+			[(ngModel)]="files" />
 	`,
 	imports: [
 		FileUploader,

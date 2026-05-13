@@ -6,7 +6,8 @@ import {
 	ElementRef,
 	TemplateRef,
 	ViewChild,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
@@ -15,7 +16,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 @Component({
 	selector: "cds-date-picker-input, ibm-date-picker-input",
 	template: `
-	<div class="cds--form-item">
 		<div class="cds--date-picker"
 			[ngClass]="{
 				'cds--date-picker--simple' : type === 'simple',
@@ -145,6 +145,9 @@ import { IconDirective } from "carbon-components-angular/icon";
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
+
+	@HostBinding("class.cds--form-item") readonly hostFormItemClass = true;
+
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.

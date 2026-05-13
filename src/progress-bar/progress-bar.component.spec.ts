@@ -13,8 +13,7 @@ import { ProgressBar } from "./";
 			[size]="size"
 			[status]="status"
 			[type]="type"
-			[value]="value">
-		</cds-progress-bar>
+			[value]="value" />
 		`,
 	imports: [ProgressBar]
 })

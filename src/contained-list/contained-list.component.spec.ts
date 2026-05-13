@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { Button, IconButton } from "../button";
+import { IconButton } from "../button";
 import { IconDirective, IconService } from "../icon";
 import { ContainedListItem } from "./contained-list-item.component";
 import Apple16 from "@carbon/icons/es/apple/16";
@@ -43,8 +43,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 		ContainedList,
 		ContainedListItem,
 		IconDirective,
-		IconButton,
-		Button
+		IconButton
 	]
 })
 class WrapperComponent {

@@ -15,8 +15,7 @@ import { FormsModule } from "@angular/forms";
 		[invalid]="invalid"
 		invalidText="invalid text"
 		dateFormat="m/d/Y"
-		(valueChange)="onValueChange()">
-	</cds-date-picker>
+		(valueChange)="onValueChange()" />
 	`,
 	imports: [
 		DatePicker,

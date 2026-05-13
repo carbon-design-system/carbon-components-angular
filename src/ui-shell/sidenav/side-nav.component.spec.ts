@@ -19,12 +19,10 @@ class FooComponent {}
 @Component({
 	template: `
 		<cds-sidenav [allowExpansion]="allowExpansion" [hidden]="hidden">
-			<cds-sidenav-menu title="Example Title"></cds-sidenav-menu>
-			<cds-sidenav-item
-				[route]="route"
+			<cds-sidenav-menu title="Example Title" />
+			<cds-sidenav-item [route]="route"
 				[useRouter]="useRouter"
-				(navigation)="onNavigation($event)">
-			</cds-sidenav-item>
+				(navigation)="onNavigation($event)" />
 		</cds-sidenav>
 	`,
 	imports: [SideNav, SideNavItem, SideNavMenu, RouterModule]

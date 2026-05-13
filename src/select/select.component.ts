@@ -5,6 +5,7 @@ import {
 	Input,
 	Output,
 	HostListener,
+	HostBinding,
 	EventEmitter,
 	TemplateRef,
 	ViewChild
@@ -34,11 +35,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 @Component({
 	selector: "cds-select, ibm-select",
 	template: `
-		<div
-			[ngClass]="{
-				'cds--form-item': !skeleton,
-				'cds--select--fluid': fluid && !skeleton
-			}">
 			@if (skeleton && !fluid) {
 				@if (label) {
 					<div class="cds--label cds--skeleton"></div>
@@ -106,7 +102,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 					}
 				</div>
 			}
-		</div>
 
 		<!-- select element: dynamically projected based on 'display' variant -->
 		<ng-template #noInline>
@@ -226,6 +221,14 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class Select implements ControlValueAccessor, AfterViewInit {
+	@HostBinding("class.cds--form-item") get hostFormItemClass() {
+		return !this.skeleton;
+	}
+
+	@HostBinding("class.cds--select--fluid") get hostSelectFluidClass() {
+		return this.fluid && !this.skeleton;
+	}
+
 	@Input() set value(v) {
 		this._value = v;
 		if (this.select) {

@@ -5,14 +5,14 @@ import { TimePicker } from "./timepicker.component";
 
 @Component({
 	template: `
-	<cds-timepicker
-		theme="dark"
-		(valueChange)="onChange()"
-		[(value)]="value"
-		label="test"
-		size="lg"
-		disabled="false">
-	</cds-timepicker>`,
+		<cds-timepicker
+			theme="dark"
+			(valueChange)="onChange()"
+			[(value)]="value"
+			label="test"
+			size="lg"
+			disabled="false" />
+	`,
 	imports: [TimePicker]
 })
 class TimePickerTest {

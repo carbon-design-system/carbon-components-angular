@@ -41,7 +41,7 @@ import { TabSkeleton } from "./tab-skeleton.component";
 	selector: "cds-tabs, ibm-tabs",
 	template: `
 		@if (skeleton) {
-			<cds-tabs-skeleton [contained]="type === 'contained'"></cds-tabs-skeleton>
+			<cds-tabs-skeleton [contained]="type === 'contained'" />
 		}
 		@if (!skeleton) {
 			@if (hasTabHeaders() && position === 'top') {
@@ -60,15 +60,14 @@ import { TabSkeleton } from "./tab-skeleton.component";
 					[dismissable]="dismissable"
 					[scrollIntoView]="scrollIntoView"
 					[scrollDebounceWait]="scrollDebounceWait"
-					(tabClose)="tabClose.emit($event)">
-				</cds-tab-headers>
+					(tabClose)="tabClose.emit($event)" />
 			}
-			<ng-content></ng-content>
+			<ng-content />
 			<ng-template #before>
-				<ng-content select="[before]"></ng-content>
+				<ng-content select="[before]" />
 			</ng-template>
 			<ng-template #after>
-				<ng-content select="[after]"></ng-content>
+				<ng-content select="[after]" />
 			</ng-template>
 			@if (hasTabHeaders() && position === 'bottom') {
 				<cds-tab-headers
@@ -80,8 +79,7 @@ import { TabSkeleton } from "./tab-skeleton.component";
 					[dismissable]="dismissable"
 					[scrollIntoView]="scrollIntoView"
 					[scrollDebounceWait]="scrollDebounceWait"
-					(tabClose)="tabClose.emit($event)">
-				</cds-tab-headers>
+					(tabClose)="tabClose.emit($event)" />
 			}
 		}
 	`,

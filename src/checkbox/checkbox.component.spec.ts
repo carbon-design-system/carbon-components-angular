@@ -9,13 +9,11 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 
 @Component({
 	template: `
-	<cds-checkbox
-		[hideLabel]="hideLabel"
+	<cds-checkbox [hideLabel]="hideLabel"
 		(checkedChange)="onChange()"
 		(indeterminateChange)="onIndeterminateChange()"
 		[indeterminate]="indeterminate"
-		[(ngModel)]="model">
-	</cds-checkbox>
+		[(ngModel)]="model" />
 	`,
 	imports: [
 		Checkbox,
