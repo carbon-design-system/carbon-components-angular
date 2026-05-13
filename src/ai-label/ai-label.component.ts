@@ -161,7 +161,7 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip.
 	 */
-	@Input() autoAlign = false;
+	@Input() autoAlign = true;
 
 	/**
 	 * Whether the callout is open.
