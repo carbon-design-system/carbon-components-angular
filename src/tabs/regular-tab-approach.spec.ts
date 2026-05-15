@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { Component, Type } from "@angular/core";
 import { TestBed, fakeAsync, tick } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -7,17 +7,18 @@ import { UtilsModule } from "../utils";
 import { TabsModule } from "./tabs.module";
 import { IconModule } from "../icon";
 
+// Shared deps for standalone tab test hosts
+const tabsTestDeps = [
+	TabsModule,
+	UtilsModule,
+	I18nModule,
+	IconModule
+];
+
 describe("Tabs — Regular tab approach", () => {
-	function configureDeclarations(components: any[]) {
+	function configureTestHosts(components: Array<Type<unknown>>) {
 		TestBed.configureTestingModule({
-			imports: [
-				TabsModule,
-				UtilsModule,
-				I18nModule,
-				IconModule
-			],
-			declarations: components,
-			schemas: [CUSTOM_ELEMENTS_SCHEMA]
+			imports: components
 		});
 	}
 
@@ -26,7 +27,7 @@ describe("Tabs — Regular tab approach", () => {
 	}
 
 	beforeEach(() => {
-		configureDeclarations([
+		configureTestHosts([
 			InitialSelectionSecondTest,
 			CustomClassOnTabHostTest,
 			ConditionalTabTest,
@@ -219,6 +220,7 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 }
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-initial-selection-second",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
@@ -226,24 +228,26 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 			<cds-tab heading="Tab Label 2" [active]="true">Panel 2</cds-tab>
 			<cds-tab heading="Tab Label 3">Panel 3</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class InitialSelectionSecondTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-custom-class-on-tab-host",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
 			<cds-tab heading="One" class="my-panel custom-class">Tab Panel 1</cds-tab>
 			<cds-tab heading="Two">Tab Panel 2</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class CustomClassOnTabHostTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-conditional-tab",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
@@ -253,36 +257,39 @@ class CustomClassOnTabHostTest {}
 			}
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class ConditionalTabTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-secondary-label-contained",
 	template: `
 		<cds-tabs [type]="'contained'" ariaLabel="List of tabs">
 			<cds-tab heading="One" [secondaryLabel]="'test-secondary'">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class SecondaryLabelContainedTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-secondary-label-not-contained",
 	template: `
 		<cds-tabs [type]="'line'" ariaLabel="List of tabs">
 			<cds-tab heading="One" [secondaryLabel]="'hidden-secondary'">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class SecondaryLabelNotContainedTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-content-projection-labeled-icon",
 	template: `
 		<ng-template #iconTpl>
@@ -297,24 +304,26 @@ class SecondaryLabelNotContainedTest {}
 			<cds-tab heading="With icon" [icon]="iconTpl">C1</cds-tab>
 			<cds-tab heading="Plain">C2</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class ContentProjectionLabeledIconTabTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-regular-pane-switch",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
 			<cds-tab heading="One">First body</cds-tab>
 			<cds-tab heading="Two">Second body</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class RegularPaneSwitchTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-icon-tab-badge",
 	template: `
 		<ng-template #iconTpl>
@@ -333,12 +342,13 @@ class RegularPaneSwitchTest {}
 				Icon panel
 			</cds-icon-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class IconTabBadgeTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-dismissable",
 	template: `
 		<cds-tabs
@@ -348,14 +358,15 @@ class IconTabBadgeTest {}
 			<cds-tab heading="Tab Label 1">P1</cds-tab>
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class DismissableTabsTest {
 	onTabClose(_: number) {}
 }
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-keyboard-navigation",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
@@ -363,12 +374,13 @@ class DismissableTabsTest {
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 			<cds-tab heading="Tab Label 3">P3</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class KeyboardNavigationTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-manual-activation",
 	template: `
 		<cds-tabs [followFocus]="false" ariaLabel="List of tabs">
@@ -376,38 +388,41 @@ class KeyboardNavigationTest {}
 			<cds-tab heading="Tab Label 2">P2</cds-tab>
 			<cds-tab heading="Tab Label 3">P3</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class ManualActivationTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-tab-panel-visibility",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
 			<cds-tab heading="One">One content</cds-tab>
 			<cds-tab heading="Two">Two content</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class TabPanelVisibilityTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-selected-output",
 	template: `
 		<cds-tabs ariaLabel="List of tabs">
 			<cds-tab heading="One" (selected)="onFirstSelected()">A</cds-tab>
 			<cds-tab heading="Two">B</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class SelectedOutputTest {
 	onFirstSelected() {}
 }
 
 @Component({
+	imports: tabsTestDeps,
 	selector: "test-tabs-full-width-contained",
 	template: `
 		<cds-tabs [type]="'contained'" [fullWidth]="true" ariaLabel="List of tabs">
@@ -415,7 +430,7 @@ class SelectedOutputTest {
 			<cds-tab heading="Two">B</cds-tab>
 			<cds-tab heading="Three">C</cds-tab>
 		</cds-tabs>
-	`,
-	standalone: false
+	`
+
 })
 class FullWidthContainedTest {}
