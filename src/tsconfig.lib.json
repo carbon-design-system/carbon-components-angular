@@ -2,7 +2,7 @@
 	"extends": "./../tsconfig.json",
 	"compilerOptions": {
 		"declarationMap": false,
-		"rootDir": "."
+		"rootDir": ".."
 	},
 	"angularCompilerOptions": {
 		"enableIvy": true,
