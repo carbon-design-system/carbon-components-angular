@@ -1,4 +1,4 @@
-import { DOCUMENT, NgTemplateOutlet, NgClass } from "@angular/common";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
 import {
 	Component,
 	Input,
@@ -10,7 +10,8 @@ import {
 	ViewChild,
 	ElementRef,
 	OnInit,
-	OnDestroy
+	OnDestroy,
+	DOCUMENT
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventOnNode, Node } from "./tree-node.types";

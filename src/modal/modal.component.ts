@@ -12,9 +12,10 @@ import {
 	Renderer2,
 	Inject,
 	OnDestroy,
-	TemplateRef
+	TemplateRef,
+	DOCUMENT
 } from "@angular/core";
-import { DOCUMENT, NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { BaseModalService } from "./base-modal.service";
 import { Overlay } from "./overlay.component";

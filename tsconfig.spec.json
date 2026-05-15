@@ -13,7 +13,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "./dist/spec",
     "target": "ES2022",
     "typeRoots": [
