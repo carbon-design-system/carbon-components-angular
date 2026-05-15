@@ -5,7 +5,10 @@
 		"rootDir": ".."
 	},
 	"angularCompilerOptions": {
+		"skipTemplateCodegen": true,
+		"strictMetadataEmit": false,
+		"fullTemplateTypeCheck": false,
 		"enableIvy": true,
-		"compliationMode": "partial"
+		"compilationMode": "partial"
 	}
 }
