@@ -135,7 +135,7 @@ describe("ContainedList", () => {
 			expect(listItemElement.nativeElement.textContent.trim()).toBe("List item");
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from template ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
@@ -143,12 +143,13 @@ describe("ContainedList", () => {
 			expect(iconElement).toBeTruthy();
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from string ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const iconElement = wrapperFixture.debugElement
-				.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
+			const iconElement = wrapperFixture.debugElement.query(
+				By.css(".cds--contained-list-item:nth-child(3) .cds--contained-list-item__icon svg")
+			);
 			expect(iconElement).toBeTruthy();
 		});
 
