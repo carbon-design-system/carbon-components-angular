@@ -22,7 +22,7 @@ import {
 	AlertModalStory,
 	SampleFormModal
 } from "./stories";
-import { Button } from "../button";
+import { ButtonModule } from "../button";
 
 export default {
 	title: "Components/Modal",
@@ -38,7 +38,6 @@ export default {
 				ModalHeaderHeading,
 				ModalHeaderLabel,
 				Placeholder,
-				Button,
 				// stories
 				ModalStory,
 				SampleModal,
@@ -48,7 +47,8 @@ export default {
 				SampleFormModal,
 				IconModule,
 				InputModule,
-				AILabelModule
+				AILabelModule,
+				ButtonModule
 			],
 			providers: [PLACEHOLDER_SERVICE_PROVIDER]
 		})
