@@ -46,15 +46,7 @@ export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const animationFrameService = inject(AnimationFrameService, { optional: true })! ?? null;
-		const elementService = inject(ElementService, { optional: true })! ?? null;
-
-		super(elementRef, elementService, animationFrameService);
-
-		this.elementRef = elementRef;
-		this.animationFrameService = animationFrameService;
-		this.elementService = elementService;
+		super();
 	}
 
 	onClick(event) {

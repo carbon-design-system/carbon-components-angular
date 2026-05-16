@@ -128,11 +128,6 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 	 */
 	isOverflowingBottom = false;
 
-	protected elementRef: ElementRef;
-	protected changeDetectorRef: ChangeDetectorRef;
-	protected eventService: EventService;
-	protected renderer: Renderer2;
-
 	private resizeObserver: ResizeObserver;
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
@@ -140,17 +135,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const changeDetectorRef = inject(ChangeDetectorRef);
-		const eventService = inject(EventService);
-		const renderer = inject(Renderer2);
-
-		super(elementRef, changeDetectorRef, eventService, renderer);
-		this.elementRef = elementRef;
-		this.changeDetectorRef = changeDetectorRef;
-		this.eventService = eventService;
-		this.renderer = renderer;
-
+		super();
 		this.type = "contained";
 	}
 

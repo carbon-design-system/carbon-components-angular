@@ -102,13 +102,7 @@ export class Toast extends BaseNotification implements OnInit {
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const notificationDisplayService = inject(NotificationDisplayService);
-		const i18n = inject(I18n);
-
-		super(notificationDisplayService, i18n);
-
-		this.notificationDisplayService = notificationDisplayService;
-		this.i18n = i18n;
+		super();
 	}
 
 	ngOnInit() {

@@ -89,11 +89,6 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	protected elementRef: ElementRef;
-	protected ngZone: NgZone;
-	protected renderer: Renderer2;
-	protected changeDetectorRef: ChangeDetectorRef;
-
 	private timeoutId: any;
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
@@ -101,17 +96,7 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 	constructor(...args: unknown[]); // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
 
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const ngZone = inject(NgZone);
-		const renderer = inject(Renderer2);
-		const changeDetectorRef = inject(ChangeDetectorRef);
-
-		super(elementRef, ngZone, renderer, changeDetectorRef);
-		this.elementRef = elementRef;
-		this.ngZone = ngZone;
-		this.renderer = renderer;
-		this.changeDetectorRef = changeDetectorRef;
-
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

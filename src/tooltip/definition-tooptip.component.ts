@@ -82,11 +82,6 @@ export class TooltipDefinition extends PopoverContainer {
 
 	@Input() openOnHover = false;
 
-	protected elementRef: ElementRef;
-	protected ngZone: NgZone;
-	protected renderer: Renderer2;
-	protected changeDetectorRef: ChangeDetectorRef;
-
 	/**
 	 * Helper variable to ensure button blur doesn't fire on `click` of popover content
 	 */
@@ -97,17 +92,7 @@ export class TooltipDefinition extends PopoverContainer {
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const ngZone = inject(NgZone);
-		const renderer = inject(Renderer2);
-		const changeDetectorRef = inject(ChangeDetectorRef);
-
-		super(elementRef, ngZone, renderer, changeDetectorRef);
-		this.elementRef = elementRef;
-		this.ngZone = ngZone;
-		this.renderer = renderer;
-		this.changeDetectorRef = changeDetectorRef;
-
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

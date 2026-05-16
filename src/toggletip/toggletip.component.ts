@@ -49,11 +49,6 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 
 	documentClick = this.handleFocusOut.bind(this);
 
-	protected hostElement: ElementRef;
-	protected ngZone: NgZone;
-	protected renderer: Renderer2;
-	protected changeDetectorRef: ChangeDetectorRef;
-
 	private subscription: Subscription;
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
@@ -61,17 +56,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const hostElement = inject(ElementRef);
-		const ngZone = inject(NgZone);
-		const renderer = inject(Renderer2);
-		const changeDetectorRef = inject(ChangeDetectorRef);
-
-		super(hostElement, ngZone, renderer, changeDetectorRef);
-		this.hostElement = hostElement;
-		this.ngZone = ngZone;
-		this.renderer = renderer;
-		this.changeDetectorRef = changeDetectorRef;
-
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
@@ -112,7 +97,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	}
 
 	handleFocusOut(event) {
-		if (!this.hostElement.nativeElement.contains(event.target)) {
+		if (!this.elementRef.nativeElement.contains(event.target)) {
 			this.handleExpansion(false, event);
 		}
 	}

@@ -25,11 +25,7 @@ export class ModalService extends BaseModalService {
 	 * Creates an instance of `ModalService`.
 	 */
 	constructor() {
-		const placeholderService = inject(PlaceholderService);
-
-		super(placeholderService);
-
-		this.placeholderService = placeholderService;
+		super();
 	}
 
 	/**

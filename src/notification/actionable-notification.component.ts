@@ -146,12 +146,6 @@ export class ActionableNotification extends BaseNotification {
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const notificationDisplayService = inject(NotificationDisplayService);
-		const i18n = inject(I18n);
-
-		super(notificationDisplayService, i18n);
-
-		this.notificationDisplayService = notificationDisplayService;
-		this.i18n = i18n;
+		super();
 	}
 }

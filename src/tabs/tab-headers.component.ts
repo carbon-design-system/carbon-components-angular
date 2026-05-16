@@ -271,11 +271,6 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 		return this.distributeWidth;
 	}
 
-	protected elementRef: ElementRef;
-	protected changeDetectorRef: ChangeDetectorRef;
-	protected eventService: EventService;
-	protected renderer: Renderer2;
-
 	private resizeObserver: ResizeObserver;
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
@@ -283,17 +278,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 	constructor(...args: unknown[]);
 
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const changeDetectorRef = inject(ChangeDetectorRef);
-		const eventService = inject(EventService);
-		const renderer = inject(Renderer2);
-
-		super(elementRef, changeDetectorRef, eventService, renderer);
-
-		this.elementRef = elementRef;
-		this.changeDetectorRef = changeDetectorRef;
-		this.eventService = eventService;
-		this.renderer = renderer;
+		super();
 	}
 
 	get hasSecondaryLabelTabs(): boolean {

@@ -88,17 +88,7 @@ export class OverflowMenuDirective extends DialogDirective {
 	 * Creates an instance of `OverflowMenuDirective`.
 	 */
 	constructor() {
-		const elementRef = inject(ElementRef);
-		const viewContainerRef = inject(ViewContainerRef);
-		const dialogService = inject(DialogService);
-		const eventService = inject(EventService);
-
-		super(elementRef, viewContainerRef, dialogService, eventService);
-
-		this.elementRef = elementRef;
-		this.viewContainerRef = viewContainerRef;
-		this.dialogService = dialogService;
-		this.eventService = eventService;
+		super();
 	}
 
 	updateConfig() {
